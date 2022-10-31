@@ -12,7 +12,7 @@ As of yet, these bindings only target FFmpeg's `libcodec` and `libavutil`. Bindi
 
 These bindings exclude most or all methods or features marked as "deprecated" by FFmpeg, on the assumption that any code using these bindings will have little need for legacy compatibility, as it will by necessity be new code due to the fact that the bindings themselves are new.
 
-Many symbol names in these bindings will be heavily modified from their C counterparts in order to improve human readability. In general, these bindings will prefer natural English words to acronyms and other abbreviations. If you are already familiar enuough with FFmpeg that these symbol renamings confuse you, apologies. For everyone else, the bindings include full documentation with updated symbol names, so no prior knowledge of FFmpeg or references to its documentation should be necessary.
+Many symbol names in these bindings will be heavily modified from their C counterparts in order to improve human readability. In general, these bindings will prefer natural English words to acronyms and other abbreviations. If you are already familiar enough with FFmpeg that these symbol renamings confuse you, apologies. For everyone else, the bindings include full documentation with updated symbol names, so no prior knowledge of FFmpeg or references to its documentation should be necessary.
 
 ## Maintainers
 
