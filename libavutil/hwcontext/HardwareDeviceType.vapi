@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cprefix="", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public enum HardwareDeviceType {
     AV_HWDEVICE_TYPE_NONE,
     AV_HWDEVICE_TYPE_VDPAU,
@@ -39,7 +39,7 @@ public enum HardwareDeviceType {
     @return The type from enum HardwareDeviceType, or AV_HWDEVICE_TYPE_NONE if
         not found.
     ***********************************************************/
-    [CCode (cname="av_hwdevice_find_type_by_name", cheader_filename="libavcodec/hwcontext.h")]
+    [CCode (cname="av_hwdevice_find_type_by_name", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public static HardwareDeviceType av_hwdevice_find_type_by_name (
         string name
     );
@@ -51,7 +51,7 @@ public enum HardwareDeviceType {
     @return Pointer to a static string containing the name, or null if the type
         is not valid.
     ***********************************************************/
-    [CCode (cname="av_hwdevice_get_type_name", cheader_filename="libavcodec/hwcontext.h")]
+    [CCode (cname="av_hwdevice_get_type_name", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public static string av_hwdevice_get_type_name (
         HardwareDeviceType type
     );
@@ -64,7 +64,7 @@ public enum HardwareDeviceType {
     @return The next usable device type from enum HardwareDeviceType, or
         AV_HWDEVICE_TYPE_NONE if there are no more.
     ***********************************************************/
-    [CCode (cname="av_hwdevice_iterate_types", cheader_filename="libavcodec/hwcontext.h")]
+    [CCode (cname="av_hwdevice_iterate_types", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public static HardwareDeviceType av_hwdevice_iterate_types (
         HardwareDeviceType prev
     );

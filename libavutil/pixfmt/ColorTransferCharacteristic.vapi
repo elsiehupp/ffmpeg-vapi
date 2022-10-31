@@ -24,7 +24,7 @@ namespace LibAVUtil {
 @brief Color Transfer Characteristic.
 These values match the ones defined by ISO/IEC 23001-8_2013 § 7.2.
 ***********************************************************/
-[CCode (cprefix="AVCOL_TRC_", cheader_filename="libavcodec/pixfmt.h")]
+[CCode (cprefix="AVCOL_TRC_", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
 public enum ColorTransferCharacteristic {
     RESERVED0,
     /***********************************************************
@@ -107,7 +107,7 @@ public enum ColorTransferCharacteristic {
     /***********************************************************
     @return the name for provided color transfer or null if unknown.
     ***********************************************************/
-    [CCode (cname="av_color_transfer_name", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_color_transfer_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static string av_color_transfer_name (
         ColorTransferCharacteristic transfer
     );
@@ -115,7 +115,7 @@ public enum ColorTransferCharacteristic {
     /***********************************************************
     @return the ColorTransferCharacteristic value for name or an ErrorCode if not found.
     ***********************************************************/
-    [CCode (cname="av_color_transfer_from_name", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_color_transfer_from_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static ColorTransferCharacteristic av_color_transfer_from_name (
         string name
     );

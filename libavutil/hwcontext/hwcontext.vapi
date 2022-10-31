@@ -25,7 +25,7 @@ namespace LibAVUtil {
 @return a reference to the newly created HardwareDeviceContext on success or null
     on failure.
 ***********************************************************/
-[CCode (cname="av_hwdevice_ctx_alloc", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwdevice_ctx_alloc", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public LibAVUtil.BufferRef av_hwdevice_ctx_alloc (
     HardwareDeviceType type
 );
@@ -38,7 +38,7 @@ used in any way.
 @param ref a reference to the HardwareDeviceContext
 @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="av_hwdevice_ctx_init", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwdevice_ctx_init", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public int av_hwdevice_ctx_init (
     LibAVUtil.BufferRef ref
 );
@@ -68,7 +68,7 @@ touched by the caller.
 
 @return 0 on success, a negative LibAVUtil.ErrorCode code on failure.
 ***********************************************************/
-[CCode (cname="av_hwdevice_ctx_create", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwdevice_ctx_create", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public int av_hwdevice_ctx_create (
     LibAVUtil.BufferRef device_ctx,
     HardwareDeviceType type,
@@ -98,7 +98,7 @@ turn looking for an implemented derivation method.
 @param flags Currently unused; should be set to zero.
 @return 0 on success, a negative LibAVUtil.ErrorCode code on failure.
 ***********************************************************/
-[CCode (cname="av_hwdevice_ctx_create_derived", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwdevice_ctx_create_derived", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public int av_hwdevice_ctx_create_derived (
     LibAVUtil.BufferRef output_ctx,
     HardwareDeviceType type,
@@ -115,7 +115,7 @@ public int av_hwdevice_ctx_create_derived (
 @return a reference to the newly created HardwareFrameContext on success or null
     on failure.
 ***********************************************************/
-[CCode (cname="av_hwframe_ctx_alloc", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwframe_ctx_alloc", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public LibAVUtil.BufferRef av_hwframe_ctx_alloc (
     LibAVUtil.BufferRef device_ctx
 );
@@ -128,7 +128,7 @@ to any frames.
 @param ref a reference to the HardwareFrameContext
 @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="av_hwframe_ctx_init", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwframe_ctx_init", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public int av_hwframe_ctx_init (
     LibAVUtil.BufferRef ref
 );
@@ -142,7 +142,7 @@ public int av_hwframe_ctx_init (
 @param flags currently unused, should be set to zero
 @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="av_hwframe_get_buffer", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwframe_get_buffer", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public int av_hwframe_get_buffer (
     LibAVUtil.BufferRef hwframe_ctx,
     Frame frame,
@@ -178,7 +178,7 @@ destination frame is unspecified.
 @param flags currently unused, should be set to zero
 @return 0 on success, a negative LibAVUtil.ErrorCode error code on failure.
 ***********************************************************/
-[CCode (cname="av_hwframe_transfer_data", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwframe_transfer_data", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public int av_hwframe_transfer_data (
     Frame output_frame,
     Frame input_frame,
@@ -195,7 +195,7 @@ av_free ().
 @return The newly created hardware-specific configuration structure on
     success or null on failure.
 ***********************************************************/
-[CCode (cname="av_hwdevice_hwconfig_alloc", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwdevice_hwconfig_alloc", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public void *av_hwdevice_hwconfig_alloc (
     LibAVUtil.BufferRef device_ctx
 );
@@ -236,7 +236,7 @@ values indicate that it failed somehow.
 @param flags Some combination of HardwareFrameMappingFlags flags.
 @return 0 on success, negative LibAVUtil.ErrorCode code on failure.
 ***********************************************************/
-[CCode (cname="av_hwframe_map", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwframe_map", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public int av_hwframe_map (
     out Frame output_frame,
     Frame input_frame,
@@ -260,7 +260,7 @@ av_hwframe_ctx_init () should not be called after this.
     in the derived device.
 @return 0 on success, negative LibAVUtil.ErrorCode code on failure.
 ***********************************************************/
-[CCode (cname="av_hwframe_ctx_create_derived", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="av_hwframe_ctx_create_derived", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public int av_hwframe_ctx_create_derived (
     LibAVUtil.BufferRef derived_frame_ctx,
     PixelFormat format,

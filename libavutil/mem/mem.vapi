@@ -172,7 +172,7 @@ caution when doing so.
     be allocated
 @see @link av_mallocz ()
 ***********************************************************/
-[CCode (cname="av_malloc", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_malloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_malloc (
     size_t size
 ); // av_malloc_attrib av_alloc_size (1);
@@ -186,7 +186,7 @@ block.
 @return Pointer to the allocated block, or `null` if it cannot be allocated
 @see @link av_malloc ()
 ***********************************************************/
-[CCode (cname="av_mallocz", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_mallocz", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_mallocz (
     size_t size
 ); // av_malloc_attrib av_alloc_size (1);
@@ -202,7 +202,7 @@ The allocated memory will have size `size * nmemb` bytes.
     be allocated
 @see @link av_malloc ()
 ***********************************************************/
-[CCode (cname="av_malloc_array", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_malloc_array", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_malloc_array (
     size_t nmemb,
     size_t size
@@ -221,7 +221,7 @@ The allocated memory will have size `size * nmemb` bytes.
 @see @link av_mallocz ()
 @see @link av_malloc_array ()
 ***********************************************************/
-[CCode (cname="av_mallocz_array", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_mallocz_array", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_mallocz_array (
     size_t nmemb,
     size_t size
@@ -232,7 +232,7 @@ public void *av_mallocz_array (
 
 Created for symmetry with the calloc () C function.
 ***********************************************************/
-[CCode (cname="av_calloc", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_calloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_calloc (
     size_t nmemb,
     size_t size
@@ -258,7 +258,7 @@ shrink that block of memory according to `size`.
 @see @link av_fast_realloc ()
 @see @link av_reallocp ()
 ***********************************************************/
-[CCode (cname="av_realloc", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_realloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_realloc (
     out void *ptr,
     size_t size
@@ -283,7 +283,7 @@ shrink that block of memory according to `size`.
 @warning Unlike av_malloc (), the allocated memory is not guaranteed to be
     correctly aligned.
 ***********************************************************/
-[CCode (cname="av_reallocp", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_reallocp", cheader_filename="ffmpeg/libavutil/mem.h")]
 public int av_reallocp (
     out void *ptr,
     size_t size
@@ -304,7 +304,7 @@ This function does the same thing as av_realloc (), except:
     @endcode
     pattern.
 ***********************************************************/
-[CCode (cname="av_realloc_f", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_realloc_f", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_realloc_f (
     out void *ptr,
     size_t nelem,
@@ -329,7 +329,7 @@ If `ptr` is `null` and `nmemb` > 0, allocate a new block. If
     correctly aligned.
 @see @link av_reallocp_array ()
 ***********************************************************/
-[CCode (cname="av_realloc_array", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_realloc_array", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_realloc_array (
     out void *ptr,
     size_t nmemb,
@@ -353,7 +353,7 @@ zero, free the memory block pointed to by `*ptr`.
 @warning Unlike av_malloc (), the allocated memory is not guaranteed to be
     correctly aligned.
 ***********************************************************/
-[CCode (cname="av_reallocp_array", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_reallocp_array", cheader_filename="ffmpeg/libavutil/mem.h")]
 public int av_reallocp_array (
     out void *ptr,
     size_t nmemb,
@@ -392,7 +392,7 @@ if (!new_buf) {
 @see @link av_realloc ()
 @see @link av_fast_malloc ()
 ***********************************************************/
-[CCode (cname="av_fast_realloc", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_fast_realloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_fast_realloc (
     out void *ptr,
     out uint size,
@@ -428,7 +428,7 @@ if (!buf) {
 @see @link av_realloc ()
 @see @link av_fast_mallocz ()
 ***********************************************************/
-[CCode (cname="av_fast_malloc", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_fast_malloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void av_fast_malloc (
     out void *ptr,
     out uint size,
@@ -453,7 +453,7 @@ Reused buffer is not cleared.
 @param[in] min_size Desired minimal size of buffer `*ptr`
 @see @link av_fast_malloc ()
 ***********************************************************/
-[CCode (cname="av_fast_mallocz", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_fast_mallocz", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void av_fast_mallocz (
     out void *ptr,
     out uint size,
@@ -471,7 +471,7 @@ or av_realloc () family.
       behind dangling pointers.
 @see @link av_freep ()
 ***********************************************************/
-[CCode (cname="av_free", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_free", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void av_free (
     out void *ptr
 );
@@ -497,7 +497,7 @@ av_freep (&buf);
 @note `*ptr = null` is safe and leads to no action.
 @see @link av_free ()
 ***********************************************************/
-[CCode (cname="av_freep", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_freep", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void av_freep (
     out void *ptr
 );
@@ -510,7 +510,7 @@ public void av_freep (
     copy of `s` or `null` if the string cannot be allocated
 @see @link av_strndup ()
 ***********************************************************/
-[CCode (cname="av_strdup", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_strdup", cheader_filename="ffmpeg/libavutil/mem.h")]
 public string av_strdup (
     string s
 ); // av_malloc_attrib;
@@ -524,7 +524,7 @@ public string av_strdup (
 @return Pointer to a newly-allocated string containing a
     substring of `s` or `null` if the string cannot be allocated
 ***********************************************************/
-[CCode (cname="av_strndup", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_strndup", cheader_filename="ffmpeg/libavutil/mem.h")]
 public string av_strndup (
     string s,
     size_t len
@@ -538,7 +538,7 @@ public string av_strndup (
 @return Pointer to a newly allocated buffer containing a
     copy of `p` or `null` if the buffer cannot be allocated
 ***********************************************************/
-[CCode (cname="av_memdup", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_memdup", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_memdup (
     void *p,
     size_t size
@@ -555,7 +555,7 @@ public void *av_memdup (
 @note `cnt > back` is valid, this will copy the bytes we just copied,
       thus creating a repeating pattern with a period length of `back`.
 ***********************************************************/
-[CCode (cname="av_memcpy_backptr", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_memcpy_backptr", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void av_memcpy_backptr (
     out uint8[] output_buffer,
     int back,
@@ -656,7 +656,7 @@ In case of failure, the array is freed, `*tab_ptr` is set to `null` and
 @param[in] elem Element to add
 @see @link av_dynarray_add_nofree (), av_dynarray2_add ()
 ***********************************************************/
-[CCode (cname="av_dynarray_add", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_dynarray_add", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void av_dynarray_add (
     out void *tab_ptr,
     out int nb_ptr,
@@ -673,7 +673,7 @@ instead and leave current buffer untouched.
 @return >=0 on success, negative otherwise
 @see @link av_dynarray_add (), av_dynarray2_add ()
 ***********************************************************/
-[CCode (cname="av_dynarray_add_nofree", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_dynarray_add_nofree", cheader_filename="ffmpeg/libavutil/mem.h")]
 public int av_dynarray_add_nofree (
     void *tab_ptr,
     out int nb_ptr,
@@ -703,7 +703,7 @@ In case of failure, the array is freed, `*tab_ptr` is set to `null` and
     space
 @see @link av_dynarray_add (), av_dynarray_add_nofree ()
 ***********************************************************/
-[CCode (cname="av_dynarray2_add", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_dynarray2_add", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_dynarray2_add (
     out void *tab_ptr,
     out int nb_ptr,
@@ -724,7 +724,7 @@ Other functions related to memory allocation.
 @param[out] r Pointer to the result of the operation
 @return 0 on success, LibAVUtil.ErrorCode (EINVAL) on overflow
 ***********************************************************/
-[CCode (cname="av_size_mult", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_size_mult", cheader_filename="ffmpeg/libavutil/mem.h")]
 public static int av_size_mult (
     size_t a,
     size_t b,
@@ -744,7 +744,7 @@ By default, the max value is defined as `INT_MAX`.
 @warning Exercise extreme caution when using this function. Don't touch
     this if you do not understand the full consequence of doing so.
 ***********************************************************/
-[CCode (cname="av_max_alloc", cheader_filename="libavcodec/mem.h")]
+[CCode (cname="av_max_alloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void av_max_alloc (
     size_t max
 );

@@ -26,7 +26,7 @@ namespace LibAVUtil {
 
 @defgroup lavu_log_constants Logging Constants
 ***********************************************************/
-[CCode (cprefix="", cheader_filename="libavcodec/log.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/log.h")]
 public enum LogLevel {
     /***********************************************************
     @brief Print no output.
@@ -85,7 +85,7 @@ public enum LogLevel {
     Requires 256color terminal support. Uses outside debugging is not
     recommended.
     ***********************************************************/
-    [CCode (cname="AV_LOG_C", cheader_filename="libavcodec/log.h")]
+    [CCode (cname="AV_LOG_C", cheader_filename="ffmpeg/libavutil/log.h")]
     public static LogLevel AV_LOG_COLOR (
         int color
     );

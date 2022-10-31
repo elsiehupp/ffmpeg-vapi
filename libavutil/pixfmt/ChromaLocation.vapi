@@ -36,7 +36,7 @@ ______        ______
                   |            |1 2          1-6 are possible chroma positions
 * 2nd luma line > |X   X ...   |5 6 X ...    0 is undefined/unknown position
 ***********************************************************/
-[CCode (cprefix="AVCHROMA_LOC_", cheader_filename="libavcodec/pixfmt.h")]
+[CCode (cprefix="AVCHROMA_LOC_", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
 public enum ChromaLocation {
     UNSPECIFIED,
     /***********************************************************
@@ -65,7 +65,7 @@ public enum ChromaLocation {
     /***********************************************************
     @return the name for provided chroma location or null if unknown.
     ***********************************************************/
-    [CCode (cname="av_chroma_location_name", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_chroma_location_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static string av_chroma_location_name (
         ChromaLocation location
     );
@@ -73,7 +73,7 @@ public enum ChromaLocation {
     /***********************************************************
     @return the ChromaLocation value for name or an ErrorCode if not found.
     ***********************************************************/
-    [CCode (cname="av_chroma_location_from_name", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_chroma_location_from_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static ChromaLocation av_chroma_location_from_name (
         string name
     );

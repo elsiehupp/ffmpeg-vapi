@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cname="struct AVComplexFloat", cheader_filename="libavcodec/tx.h")]
+[CCode (cname="struct AVComplexFloat", cheader_filename="ffmpeg/libavutil/tx.h")]
 public struct ComplexFloat {
     [CCode (cname="re")]
     public float real;

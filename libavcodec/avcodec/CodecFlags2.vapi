@@ -34,7 +34,7 @@ LibAVCodec external API header
     Independent Segment Decoding
 ********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum CodecFlags2 {
     /***********************************************************
     @brief Allow non spec compliant speedup tricks.

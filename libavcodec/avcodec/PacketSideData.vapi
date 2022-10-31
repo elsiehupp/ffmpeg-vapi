@@ -27,7 +27,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cname="struct AVPacketSideData", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVPacketSideData", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct PacketSideData {
     [CCode (cname="data")]
     public uint8[] data;

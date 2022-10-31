@@ -27,7 +27,7 @@ LibAVUtil.Options
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_OPT_SERIALIZE_", cheader_filename="libavcodec/opt.h")]
+[CCode (cprefix="AV_OPT_SERIALIZE_", cheader_filename="ffmpeg/libavutil/opt.h")]
 public enum OptionSerializationFlags {
     /***********************************************************
     @brief Serialize options that are not set to default values only.
@@ -57,7 +57,7 @@ name string are escaped through the av_escape () function.
 @return >= 0 on success, negative on error
 @warning Separators cannot be neither '\\' nor '\0'. They also cannot be the same.
 ***********************************************************/
-[CCode (cname="av_opt_serialize", cheader_filename="libavcodec/opt.h")]
+[CCode (cname="av_opt_serialize", cheader_filename="ffmpeg/libavutil/opt.h")]
 public int av_opt_serialize (
     void *obj,
     int opt_flags,

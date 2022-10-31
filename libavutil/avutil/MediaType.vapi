@@ -137,7 +137,7 @@ brings in most of the "core" components.
 /***********************************************************
 @brief Return the LIBAVUTIL_VERSION_INT constant.
 ***********************************************************/
-[CCode (cname="avutil_version", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="avutil_version", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public uint avutil_version ();
 
 /***********************************************************
@@ -145,19 +145,19 @@ public uint avutil_version ();
 version number or a git commit description. This string has no fixed format
 and can change any time. It should never be parsed by code.
 ***********************************************************/
-[CCode (cname="av_version_info", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="av_version_info", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public string av_version_info ();
 
 /***********************************************************
 @brief Return the libavutil build-time configuration.
 ***********************************************************/
-[CCode (cname="avutil_configuration", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="avutil_configuration", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public string avutil_configuration ();
 
 /***********************************************************
 @brief Return the libavutil license.
 ***********************************************************/
-[CCode (cname="avutil_license", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="avutil_license", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public string avutil_license ();
 
 /***********************************************************
@@ -165,7 +165,7 @@ public string avutil_license ();
 @brief Media Type
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="libavcodec/avutil.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public enum MediaType {
     /***********************************************************
     @brief Usually treated as AVMEDIA_TYPE_DATA
@@ -188,7 +188,7 @@ public enum MediaType {
     @brief Return a string describing the media_type enum, null if media_type
     is unknown.
     ***********************************************************/
-    [CCode (cname="av_get_media_type_string", cheader_filename="libavcodec/avutil.h")]
+    [CCode (cname="av_get_media_type_string", cheader_filename="ffmpeg/libavutil/avutil.h")]
     public string av_get_media_type_string (
         MediaType media_type
     );
@@ -202,19 +202,19 @@ public enum MediaType {
 @note those definition should move to avcodec
 ***********************************************************/
 
-[CCode (cname="FF_LAMBDA_SHIFT", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="FF_LAMBDA_SHIFT", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int FF_LAMBDA_SHIFT;
-[CCode (cname="FF_LAMBDA_SCALE", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="FF_LAMBDA_SCALE", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int FF_LAMBDA_SCALE;
 /***********************************************************
 @brief Factor to convert from H.263 QP to lambda
 ***********************************************************/
-[CCode (cname="FF_QP2LAMBDA", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="FF_QP2LAMBDA", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int FF_QP2LAMBDA;
-[CCode (cname="FF_LAMBDA_MAX", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="FF_LAMBDA_MAX", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int FF_LAMBDA_MAX;
 
-[CCode (cname="FF_QUALITY_SCALE", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="FF_QUALITY_SCALE", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int FF_QUALITY_SCALE; //FIXME maybe remove
 
 /***********************************************************
@@ -230,21 +230,21 @@ Usually reported by demuxer that work on containers that do not provide
 either pts or dts.
 ***********************************************************/
 
-[CCode (cname="AV_NOPTS_VALUE", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="AV_NOPTS_VALUE", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int64 AV_NOPTS_VALUE;
 
 /***********************************************************
 @brief Internal time base represented as integer
 ***********************************************************/
 
-[CCode (cname="AV_TIME_BASE", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="AV_TIME_BASE", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int AV_TIME_BASE;
 
 /***********************************************************
 @brief Internal time base represented as fractional value
 ***********************************************************/
 
-[CCode (cname="AV_TIME_BASE_Q", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="AV_TIME_BASE_Q", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const Rational AV_TIME_BASE_Q;
 
 /***********************************************************
@@ -254,7 +254,7 @@ pict_type.
 @param[in] pict_type the picture type @return a single character
 representing the picture type, '?' if pict_type is unknown
 ***********************************************************/
-[CCode (cname="av_get_picture_type_char", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="av_get_picture_type_char", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public char av_get_picture_type_char (
     PictureType pict_type
 );
@@ -262,7 +262,7 @@ public char av_get_picture_type_char (
 /***********************************************************
 @brief Return x default pointer in case p is null.
 ***********************************************************/
-[CCode (cname="av_x_if_null", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="av_x_if_null", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public static void *av_x_if_null (
     void *p,
     void *x
@@ -276,7 +276,7 @@ public static void *av_x_if_null (
 @param list pointer to the list
 @return length of the list, in elements, not counting the terminator
 ***********************************************************/
-[CCode (cname="av_int_list_length_for_size", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="av_int_list_length_for_size", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public uint av_int_list_length_for_size (
     uint elsize,
     void *list,
@@ -290,7 +290,7 @@ public uint av_int_list_length_for_size (
 @param list pointer to the list
 @return length of the list, in elements, not counting the terminator
 ***********************************************************/
-[CCode (cname="av_int_list_length", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="av_int_list_length", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public uint av_int_list_length (
     void *list,
     uint64 term
@@ -304,7 +304,7 @@ errno.
     function may be allocated with a different CRT than the caller
     who uses the GLib.File*. No replacement provided in public API.
 ***********************************************************/
-[CCode (cname="av_fopen_utf8", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="av_fopen_utf8", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public GLib.File av_fopen_utf8 (
     string path,
     string mode
@@ -313,13 +313,13 @@ public GLib.File av_fopen_utf8 (
 /***********************************************************
 @brief Return the fractional representation of the internal time base.
 ***********************************************************/
-[CCode (cname="av_get_time_base_q", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="av_get_time_base_q", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public Rational av_get_time_base_q ();
 
-[CCode (cname="AV_FOURCC_MAX_STRING_SIZE", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="AV_FOURCC_MAX_STRING_SIZE", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int AV_FOURCC_MAX_STRING_SIZE;
 
-[CCode (cname="av_fourcc2str", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="av_fourcc2str", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public string av_fourcc2str (
     uint32 fourcc
 );
@@ -332,7 +332,7 @@ code) representation.
 @param fourcc the fourcc to represent
 @return the buffer in input
 ***********************************************************/
-[CCode (cname="av_fourcc_make_string", cheader_filename="libavcodec/avutil.h")]
+[CCode (cname="av_fourcc_make_string", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public string av_fourcc_make_string (
     string buf,
     uint32 fourcc

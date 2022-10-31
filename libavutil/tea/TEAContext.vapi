@@ -27,16 +27,16 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_tea TEA
 ***********************************************************/
 
-[CCode (cname="struct AVTEA", cheader_filename="libavcodec/tea.h")]
+[CCode (cname="struct AVTEA", cheader_filename="ffmpeg/libavutil/tea.h")]
 public struct TEAContext {
-    [CCode (cname="av_tea_size", cheader_filename="libavcodec/tea.h")]
+    [CCode (cname="av_tea_size", cheader_filename="ffmpeg/libavutil/tea.h")]
     public const size_t SIZE;
 
     /***********************************************************
     @brief Allocate an TEAContext context
     To free the struct: av_free (ptr)
     ***********************************************************/
-    [CCode (cname="av_tea_alloc", cheader_filename="libavcodec/tea.h")]
+    [CCode (cname="av_tea_alloc", cheader_filename="ffmpeg/libavutil/tea.h")]
     public TEAContext av_tea_alloc ();
 
     /***********************************************************
@@ -46,7 +46,7 @@ public struct TEAContext {
     @param key a key of 16 bytes used for encryption/decryption
     @param rounds the number of rounds in TEA (64 is the "standard")
     ***********************************************************/
-    [CCode (cname="av_tea_init", cheader_filename="libavcodec/tea.h")]
+    [CCode (cname="av_tea_init", cheader_filename="ffmpeg/libavutil/tea.h")]
     public void av_tea_init (
         TEAContext tea_context,
         uint8 key[16],
@@ -63,7 +63,7 @@ public struct TEAContext {
     @param initialization_vector initialization vector for CBC mode, if null then ECB will be used
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_tea_crypt", cheader_filename="libavcodec/tea.h")]
+    [CCode (cname="av_tea_crypt", cheader_filename="ffmpeg/libavutil/tea.h")]
     public void av_tea_crypt (
         TEAContext tea_context,
         out uint8[] output_buffer,

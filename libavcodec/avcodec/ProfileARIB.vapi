@@ -27,7 +27,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileARIB {
     FF_PROFILE_ARIB_PROFILE_A,
     FF_PROFILE_ARIB_PROFILE_C,

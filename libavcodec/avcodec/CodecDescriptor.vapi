@@ -32,7 +32,7 @@ LibAVCodec external API header
 CodecID.
 @see @link avcodec_descriptor_get ()
 ***********************************************************/
-[CCode (cname="struct AVCodecDescriptor", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecDescriptor", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct CodecDescriptor {
     [CCode (cname="id")]
     public CodecID id;
@@ -77,7 +77,7 @@ public struct CodecDescriptor {
     /***********************************************************
     @return descriptor for given codec ID or null if no descriptor exists.
     ***********************************************************/
-    [CCode (cname="avcodec_descriptor_get", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_descriptor_get", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecDescriptor avcodec_descriptor_get (
         CodecID id
     );
@@ -89,7 +89,7 @@ public struct CodecDescriptor {
 
     @return next descriptor or null after the last descriptor
     ***********************************************************/
-    [CCode (cname="avcodec_descriptor_next", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_descriptor_next", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecDescriptor avcodec_descriptor_next (
         CodecDescriptor prev
     );
@@ -98,7 +98,7 @@ public struct CodecDescriptor {
     @return codec descriptor with the given name or null if no such descriptor
         exists.
     ***********************************************************/
-    [CCode (cname="avcodec_descriptor_get_by_name", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_descriptor_get_by_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecDescriptor avcodec_descriptor_get_by_name (
         string name
     );

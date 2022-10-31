@@ -32,7 +32,7 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum ParserFlags {
     PARSER_FLAG_COMPLETE_FRAMES,
     PARSER_FLAG_ONCE,

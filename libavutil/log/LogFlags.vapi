@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/log.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/log.h")]
 public enum LogFlags {
     /***********************************************************
     @brief Skip repeated messages, this requires the user app to use av_log () instead of
@@ -41,12 +41,12 @@ public enum LogFlags {
     ***********************************************************/
     AV_LOG_PRINT_LEVEL;
 
-    [CCode (cname="av_log_set_flags", cheader_filename="libavcodec/log.h")]
+    [CCode (cname="av_log_set_flags", cheader_filename="ffmpeg/libavutil/log.h")]
     public static void av_log_set_flags (
         LogFlags arg
     );
 
-    [CCode (cname="av_log_get_flags", cheader_filename="libavcodec/log.h")]
+    [CCode (cname="av_log_get_flags", cheader_filename="ffmpeg/libavutil/log.h")]
     public static int av_log_get_flags ();
 }
 

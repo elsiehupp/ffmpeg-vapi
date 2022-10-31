@@ -29,7 +29,7 @@ CodecContext.hwaccel_context.
         callback
 - encoding: hwaccel_context must be set before avcodec_open2 ()
 ***********************************************************/
-[CCode (cname="struct AVQSVContext", cheader_filename="libavcodec/qsv.h")]
+[CCode (cname="struct AVQSVContext", cheader_filename="ffmpeg/libavcodec/qsv.h")]
 public struct QSVContext {
     /***********************************************************
     @brief If non-null, the session to use for encoding or decoding.
@@ -106,7 +106,7 @@ public struct QSVContext {
 
     It must be freed by the caller with av_free ().
     ***********************************************************/
-    [CCode (cname="av_qsv_alloc_context", cheader_filename="libavcodec/qsv.h")]
+    [CCode (cname="av_qsv_alloc_context", cheader_filename="ffmpeg/libavcodec/qsv.h")]
     public QSVContext av_qsv_alloc_context ();
 }
 

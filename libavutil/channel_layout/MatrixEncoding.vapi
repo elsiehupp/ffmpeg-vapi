@@ -30,7 +30,7 @@ audio channel layout utility functions
 @addtogroup LibAVUtil.Audio
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="libavcodec/channel_layout.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
 public enum MatrixEncoding {
     AV_MATRIX_ENCODING_NONE,
     AV_MATRIX_ENCODING_DOLBY,

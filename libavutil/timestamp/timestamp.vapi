@@ -27,7 +27,7 @@ timestamp utils, mostly useful for debugging/logging purposes
 //  #error missing -D__STDC_FORMAT_MACROS / #define __STDC_FORMAT_MACROS
 //  #endif
 
-[CCode (cname="AV_TS_MAX_STRING_SIZE", cheader_filename="libavcodec/timestamp.h")]
+[CCode (cname="AV_TS_MAX_STRING_SIZE", cheader_filename="ffmpeg/libavutil/timestamp.h")]
 public const size_t AV_TS_MAX_STRING_SIZE;
 
 /***********************************************************
@@ -38,7 +38,7 @@ representation.
 @param ts the timestamp to represent
 @return the buffer in input
 ***********************************************************/
-[CCode (cname="av_ts_make_string", cheader_filename="libavcodec/timestamp.h")]
+[CCode (cname="av_ts_make_string", cheader_filename="ffmpeg/libavutil/timestamp.h")]
 public static string av_ts_make_string (
     out string buf,
     int64 ts
@@ -48,7 +48,7 @@ public static string av_ts_make_string (
 @brief Convenience macro, the return value should be used only directly in
 function arguments but never stand-alone.
 ***********************************************************/
-[CCode (cname="av_ts2str", cheader_filename="libavcodec/timestamp.h")]
+[CCode (cname="av_ts2str", cheader_filename="ffmpeg/libavutil/timestamp.h")]
 public static string av_ts2str (
     int64 ts
 );
@@ -62,7 +62,7 @@ representation.
 @param tb the timebase of the timestamp
 @return the buffer in input
 ***********************************************************/
-[CCode (cname="av_ts_make_time_string", cheader_filename="libavcodec/timestamp.h")]
+[CCode (cname="av_ts_make_time_string", cheader_filename="ffmpeg/libavutil/timestamp.h")]
 public static string av_ts_make_time_string (
     out string buf,
     int64 ts,
@@ -73,7 +73,7 @@ public static string av_ts_make_time_string (
 @brief Convenience macro, the return value should be used only directly in
 function arguments but never stand-alone.
 ***********************************************************/
-[CCode (cname="av_ts2timestr", cheader_filename="libavcodec/timestamp.h")]
+[CCode (cname="av_ts2timestr", cheader_filename="ffmpeg/libavutil/timestamp.h")]
 public static string av_ts2timestr (
     int64 ts,
     Rational tb

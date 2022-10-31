@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 namespace LibAVCodec {
-[CCode (cname="AV_AAC_ADTS_HEADER_SIZE", cheader_filename="libavcodec/adts_parser.h")]
+[CCode (cname="AV_AAC_ADTS_HEADER_SIZE", cheader_filename="ffmpeg/libavcodec/adts_parser.h")]
 public const size_t AV_AAC_ADTS_HEADER_SIZE;
 
 /***********************************************************
@@ -27,7 +27,7 @@ public const size_t AV_AAC_ADTS_HEADER_SIZE;
 @param[out] frames Pointer to where number of frames is written
 @return Returns 0 on success, error code on failure.
 ***********************************************************/
-[CCode (cname="av_adts_header_parse", cheader_filename="libavcodec/adts_parser.h")]
+[CCode (cname="av_adts_header_parse", cheader_filename="ffmpeg/libavcodec/adts_parser.h")]
 public int av_adts_header_parse (
     uint8[] buf,
     uint32[] samples,

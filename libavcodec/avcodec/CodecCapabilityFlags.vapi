@@ -31,7 +31,7 @@ LibAVCodec external API header
 @brief Codec capabilities
 ***********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum CodecCapabilityFlags {
     /***********************************************************
     @brief Decoder can use draw_horiz_band callback.

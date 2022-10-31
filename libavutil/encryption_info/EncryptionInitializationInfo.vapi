@@ -23,7 +23,7 @@ namespace LibAVUtil {
 
 The size of this struct is not part of the public ABI.
 ***********************************************************/
-[CCode (cname="struct AVEncryptionInitInfo", cheader_filename="libavcodec/encryption_info.h")]
+[CCode (cname="struct AVEncryptionInitInfo", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
 public struct EncryptionInitializationInfo {
     /***********************************************************
     @brief A unique identifier for the key system this is for, can be null if it
@@ -78,7 +78,7 @@ public struct EncryptionInitializationInfo {
 
     @return The new EncryptionInitializationInfo structure, or null on error.
     ***********************************************************/
-    [CCode (cname="av_encryption_init_info_alloc", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="av_encryption_init_info_alloc", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public EncryptionInitializationInfo av_encryption_init_info_alloc (
         uint32 system_id_size,
         uint32 num_key_ids,
@@ -90,7 +90,7 @@ public struct EncryptionInitializationInfo {
     @brief Frees the given encryption init info object. This MUST NOT be used to free
     the side-data data pointer, that should use normal side-data methods.
     ***********************************************************/
-    [CCode (cname="av_encryption_init_info_free", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="av_encryption_init_info_free", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public void av_encryption_init_info_free (
         EncryptionInitializationInfo info
     );
@@ -102,7 +102,7 @@ public struct EncryptionInitializationInfo {
 
     @return The new EncryptionInitializationInfo structure, or null on error.
     ***********************************************************/
-    [CCode (cname="av_encryption_init_info_get_side_data", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="av_encryption_init_info_get_side_data", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public EncryptionInitializationInfo av_encryption_init_info_get_side_data (
         uint8[] side_data,
         size_t side_data_size
@@ -115,7 +115,7 @@ public struct EncryptionInitializationInfo {
 
     @return The new side-data pointer, or null.
     ***********************************************************/
-    [CCode (cname="av_encryption_init_info_add_side_data", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="av_encryption_init_info_add_side_data", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public uint8[] av_encryption_init_info_add_side_data (
         EncryptionInitializationInfo info,
         out size_t side_data_size

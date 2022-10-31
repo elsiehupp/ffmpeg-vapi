@@ -46,7 +46,7 @@ planes must be the same size. For packed sample formats, only the first data
 plane is used, and samples for each channel are interleaved. In this case,
 linesize is the buffer size, in bytes, for the 1 plane.
 ***********************************************************/
-[CCode (cheader_filename="libavcodec/samplefmt.h")]
+[CCode (cheader_filename="ffmpeg/libavutil/samplefmt.h")]
 public enum SampleFormat {
     [CCode (cname="AV_SAMPLE_FMT_NONE")]
     NONE,
@@ -119,7 +119,7 @@ public enum SampleFormat {
     @brief Return the name of sample_fmt, or null if sample_fmt is not
     recognized.
     ***********************************************************/
-    [CCode (cname="av_get_sample_fmt_name", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_get_sample_fmt_name", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static string av_get_sample_fmt_name (
         SampleFormat sample_fmt
     );
@@ -128,7 +128,7 @@ public enum SampleFormat {
     @brief Return a sample format corresponding to name, or SampleFormat.NONE
     on error.
     ***********************************************************/
-    [CCode (cname="av_get_sample_fmt", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_get_sample_fmt", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static SampleFormat av_get_sample_fmt (
         string name
     );
@@ -139,7 +139,7 @@ public enum SampleFormat {
     requested planar/packed format, the format returned is the same as the
     input.
     ***********************************************************/
-    [CCode (cname="av_get_alt_sample_fmt", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_get_alt_sample_fmt", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static SampleFormat av_get_alt_sample_fmt (
         SampleFormat sample_fmt,
         int planar
@@ -154,7 +154,7 @@ public enum SampleFormat {
     @return the packed alternative form of the given sample format or
         SampleFormat.NONE on error.
     ***********************************************************/
-    [CCode (cname="av_get_packed_sample_fmt", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_get_packed_sample_fmt", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static SampleFormat av_get_packed_sample_fmt (
         SampleFormat sample_fmt
     );
@@ -168,7 +168,7 @@ public enum SampleFormat {
     @return the planar alternative form of the given sample format or
         SampleFormat.NONE on error.
     ***********************************************************/
-    [CCode (cname="av_get_planar_sample_fmt", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_get_planar_sample_fmt", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static SampleFormat av_get_planar_sample_fmt (
         SampleFormat sample_fmt
     );
@@ -185,7 +185,7 @@ public enum SampleFormat {
     @return the pointer to the filled buffer or null if sample_fmt is
     unknown or in case of other errors
     ***********************************************************/
-    [CCode (cname="av_get_sample_fmt_string", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_get_sample_fmt_string", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static string av_get_sample_fmt_string (
         string buf,
         int buf_size,
@@ -199,7 +199,7 @@ public enum SampleFormat {
     @return number of bytes per sample or zero if unknown for the given
     sample format
     ***********************************************************/
-    [CCode (cname="av_get_bytes_per_sample", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_get_bytes_per_sample", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_get_bytes_per_sample (
         SampleFormat sample_fmt
     );
@@ -210,7 +210,7 @@ public enum SampleFormat {
     @param sample_fmt the sample format to inspect
     @return 1 if the sample format is planar, 0 if it is interleaved
     ***********************************************************/
-    [CCode (cname="av_sample_fmt_is_planar", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_sample_fmt_is_planar", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_sample_fmt_is_planar (
         SampleFormat sample_fmt
     );
@@ -225,7 +225,7 @@ public enum SampleFormat {
     @param align buffer size alignment (0 = default, 1 = no alignment)
     @return required buffer size, or negative error code on failure
     ***********************************************************/
-    [CCode (cname="av_samples_get_buffer_size", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_samples_get_buffer_size", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_get_buffer_size (
         out int linesize,
         int nb_channels,
@@ -270,7 +270,7 @@ public enum SampleFormat {
     @todo return minimum size in bytes required for the buffer in case
     of success at the next bump
     ***********************************************************/
-    [CCode (cname="av_samples_fill_arrays", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_samples_fill_arrays", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_fill_arrays (
         out uint8[] audio_data,
         out int linesize,
@@ -300,7 +300,7 @@ public enum SampleFormat {
     @see @link av_samples_fill_arrays ()
     @see @link av_samples_alloc_array_and_samples ()
     ***********************************************************/
-    [CCode (cname="av_samples_alloc", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_samples_alloc", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_alloc (
         out uint8[] audio_data,
         out int linesize,
@@ -319,7 +319,7 @@ public enum SampleFormat {
 
     @see @link av_samples_alloc ()
     ***********************************************************/
-    [CCode (cname="av_samples_alloc_array_and_samples", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_samples_alloc_array_and_samples", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_alloc_array_and_samples (
         out uint8[] audio_data,
         out int linesize,
@@ -340,7 +340,7 @@ public enum SampleFormat {
     @param nb_channels number of audio channels
     @param sample_fmt audio sample format
     ***********************************************************/
-    [CCode (cname="av_samples_copy", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_samples_copy", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_copy (
         out uint8[] output_buffer,
         out uint8[] input_buffer,
@@ -360,7 +360,7 @@ public enum SampleFormat {
     @param nb_channels number of audio channels
     @param sample_fmt audio sample format
     ***********************************************************/
-    [CCode (cname="av_samples_set_silence", cheader_filename="libavcodec/samplefmt.h")]
+    [CCode (cname="av_samples_set_silence", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_set_silence (
         out uint8[] audio_data,
         int offset,

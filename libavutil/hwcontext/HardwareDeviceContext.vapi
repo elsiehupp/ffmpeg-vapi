@@ -18,10 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cname="struct AVHWDeviceInternal", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="struct AVHWDeviceInternal", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public struct AVHWDeviceInternal { }
 
-[CCode (cname="struct AVHWContext", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="struct AVHWContext", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public abstract class AbstractHardwareContext { }
 
 public delegate void AVHWDeviceContextFreeDelegate (
@@ -45,7 +45,7 @@ references are released, the HardwareDeviceContext itself will be freed,
 optionally invoking a user-specified callback for uninitializing the hardware
 state.
 ***********************************************************/
-[CCode (cname="struct AVHWDeviceContext", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="struct AVHWDeviceContext", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public struct HardwareDeviceContext {
     /***********************************************************
     @brief A class for logging. Set by av_hwdevice_ctx_alloc ().

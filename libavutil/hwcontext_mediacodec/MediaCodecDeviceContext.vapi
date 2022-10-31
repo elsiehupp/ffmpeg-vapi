@@ -23,7 +23,7 @@ namespace LibAVUtil {
 
 Allocated as HardwareDeviceContext.hwctx
 ***********************************************************/
-[CCode (cname="struct AVMediaCodecDeviceContext", cheader_filename="libavcodec/hwcontext_mediacodec.h")]
+[CCode (cname="struct AVMediaCodecDeviceContext", cheader_filename="ffmpeg/libavutil/hwcontext_mediacodec.h")]
 public class MediaCodecDeviceContext : AbstractHardwareContext {
     /***********************************************************
     @brief Android/view/Surface handle, to be filled by the user.

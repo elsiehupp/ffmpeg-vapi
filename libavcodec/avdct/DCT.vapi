@@ -36,7 +36,7 @@ public delegate void GetPixelsDelegate (
 @note function pointers can be null if the specific features have been
     disabled at build time.
 ***********************************************************/
-[CCode (cname="struct AVDCT", cheader_filename="libavcodec/avdct.h")]
+[CCode (cname="struct AVDCT", cheader_filename="ffmpeg/libavcodec/avdct.h")]
 public struct DCT {
     [CCode (cname="av_class")]
     public LibAVUtil.Class av_class;
@@ -91,15 +91,15 @@ public struct DCT {
 
     To free it use av_free ()
     ***********************************************************/
-    [CCode (cname="avcodec_dct_alloc", cheader_filename="libavcodec/avdct.h")]
+    [CCode (cname="avcodec_dct_alloc", cheader_filename="ffmpeg/libavcodec/avdct.h")]
     public DCT avcodec_dct_alloc ();
 
-    [CCode (cname="avcodec_dct_init", cheader_filename="libavcodec/avdct.h")]
+    [CCode (cname="avcodec_dct_init", cheader_filename="ffmpeg/libavcodec/avdct.h")]
     public int avcodec_dct_init (
         DCT avdct
     );
 
-    [CCode (cname="avcodec_dct_get_class", cheader_filename="libavcodec/avdct.h")]
+    [CCode (cname="avcodec_dct_get_class", cheader_filename="ffmpeg/libavcodec/avdct.h")]
     public LibAVUtil.Class avcodec_dct_get_class ();
 }
 

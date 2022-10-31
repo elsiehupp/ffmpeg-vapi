@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cname="struct AVSubsampleEncryptionInfo", cheader_filename="libavcodec/encryption_info.h")]
+[CCode (cname="struct AVSubsampleEncryptionInfo", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
 public struct SubsampleEncryptionInfo {
     /***********************************************************
     @brief The number of bytes that are clear.

@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cprefix="AV_TX_", cheader_filename="libavcodec/tx.h")]
+[CCode (cprefix="AV_TX_", cheader_filename="ffmpeg/libavutil/tx.h")]
 public enum TransformType {
     /***********************************************************
     @brief Standard complex to complex FFT with sample data type ComplexFloat.

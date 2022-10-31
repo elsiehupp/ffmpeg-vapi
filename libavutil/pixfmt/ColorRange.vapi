@@ -23,7 +23,7 @@ namespace LibAVUtil {
 /***********************************************************
 @brief MPEG vs JPEG YUV range.
 ***********************************************************/
-[CCode (cprefix="AVCOL_RANGE_", cheader_filename="libavcodec/pixfmt.h")]
+[CCode (cprefix="AVCOL_RANGE_", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
 public enum ColorRange {
     UNSPECIFIED,
     /***********************************************************
@@ -43,7 +43,7 @@ public enum ColorRange {
     /***********************************************************
     @return the name for provided color range or null if unknown.
     ***********************************************************/
-    [CCode (cname="av_color_range_name", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_color_range_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static string av_color_range_name (
         ColorRange range
     );
@@ -51,7 +51,7 @@ public enum ColorRange {
     /***********************************************************
     @return the ColorRange value for name or an ErrorCode if not found.
     ***********************************************************/
-    [CCode (cname="av_color_range_from_name", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_color_range_from_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static ColorRange av_color_range_from_name (
         string name
     );

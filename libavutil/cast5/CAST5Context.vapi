@@ -27,17 +27,17 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_cast5 CAST5
 ***********************************************************/
 
-[CCode (cname="struct AVCAST5", cheader_filename="libavcodec/cast5.h")]
+[CCode (cname="struct AVCAST5", cheader_filename="ffmpeg/libavutil/cast5.h")]
 public struct CAST5Context {
 
-    [CCode (cname="av_cast5_size", cheader_filename="libavcodec/cast5.h")]
+    [CCode (cname="av_cast5_size", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public const size_t SIZE;
 
     /***********************************************************
     @brief Allocate an CAST5Context context
     To free the struct: av_free (ptr)
     ***********************************************************/
-    [CCode (cname="av_cast5_alloc", cheader_filename="libavcodec/cast5.h")]
+    [CCode (cname="av_cast5_alloc", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public CAST5Context av_cast5_alloc ();
 
     /***********************************************************
@@ -48,7 +48,7 @@ public struct CAST5Context {
     @param key_bits number of keybits: possible are 40,48,...,128
     @return 0 on success, less than 0 on failure
     ***********************************************************/
-    [CCode (cname="av_cast5_init", cheader_filename="libavcodec/cast5.h")]
+    [CCode (cname="av_cast5_init", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public int av_cast5_init (
         CAST5Context cast5_context,
         uint8[] key,
@@ -64,7 +64,7 @@ public struct CAST5Context {
     @param count number of 8 byte blocks
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_cast5_crypt", cheader_filename="libavcodec/cast5.h")]
+    [CCode (cname="av_cast5_crypt", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public void av_cast5_crypt (
         CAST5Context cast5_context,
         out uint8[] output_buffer,
@@ -83,7 +83,7 @@ public struct CAST5Context {
     @param initialization_vector initialization vector for CBC mode, null for ECB mode
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_cast5_crypt2", cheader_filename="libavcodec/cast5.h")]
+    [CCode (cname="av_cast5_crypt2", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public void av_cast5_crypt2 (
         CAST5Context cast5_context,
         out uint8[] output_buffer,

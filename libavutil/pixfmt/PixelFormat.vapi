@@ -25,10 +25,10 @@ namespace LibAVUtil {
 pixel format definitions
 ***********************************************************/
 
-[CCode (cname="AVPALETTE_SIZE", cheader_filename="libavcodec/pixfmt.h")]
+[CCode (cname="AVPALETTE_SIZE", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
 public const size_t AVPALETTE_SIZE;
 
-[CCode (cname="AVPALETTE_COUNT", cheader_filename="libavcodec/pixfmt.h")]
+[CCode (cname="AVPALETTE_COUNT", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
 public const size_t AVPALETTE_COUNT;
 
 /***********************************************************
@@ -60,7 +60,7 @@ For all the 8 bits per pixel formats, an RGB32 palette is in data[1] like
 for pal8. This palette is filled in automatically by the function
 allocating the picture.
 ***********************************************************/
-[CCode (cname="enum AVPixelFormat", cprefix="AV_PIX_FMT_", cheader_filename="libavcodec/pixfmt.h")]
+[CCode (cname="enum AVPixelFormat", cprefix="AV_PIX_FMT_", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
 public enum PixelFormat {
     NONE,
     /***********************************************************
@@ -1018,7 +1018,7 @@ public enum PixelFormat {
 
     @return 0 on success, LibAVUtil.ErrorCode (ENOSYS) on invalid or unknown pixel format
     ***********************************************************/
-    [CCode (cname="av_pix_fmt_get_chroma_sub_sample", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_pix_fmt_get_chroma_sub_sample", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static int av_pix_fmt_get_chroma_sub_sample (
         PixelFormat pixel_format,
         out int h_shift,
@@ -1029,7 +1029,7 @@ public enum PixelFormat {
     @return number of planes in pixel_format, a negative LibAVUtil.ErrorCode if pixel_format is not a
     valid pixel format.
     ***********************************************************/
-    [CCode (cname="av_pix_fmt_count_planes", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_pix_fmt_count_planes", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static int av_pix_fmt_count_planes (
         PixelFormat pixel_format
     );
@@ -1046,7 +1046,7 @@ public enum PixelFormat {
 
     Finally if no pixel format has been found, returns PixelFormat.NONE.
     ***********************************************************/
-    [CCode (cname="av_get_pix_fmt", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_get_pix_fmt", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static PixelFormat av_get_pix_fmt (
         string name
     );
@@ -1057,7 +1057,7 @@ public enum PixelFormat {
 
     @see @link av_get_pix_fmt (), av_get_pix_fmt_string ()
     ***********************************************************/
-    [CCode (cname="av_get_pix_fmt_name", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_get_pix_fmt_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static string av_get_pix_fmt_name (
         PixelFormat pixel_format
     );
@@ -1066,7 +1066,7 @@ public enum PixelFormat {
     @return a pixel format descriptor for provided pixel format or null if
     this pixel format is unknown.
     ***********************************************************/
-    [CCode (cname="av_pix_fmt_desc_get", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_pix_fmt_desc_get", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public PixelFormatDescriptor av_pix_fmt_desc_get (
         PixelFormat pixel_format
     );
@@ -1081,7 +1081,7 @@ public enum PixelFormat {
     corresponding info string, or a negative value to print the
     corresponding header.
     ***********************************************************/
-    [CCode (cname="av_get_pix_fmt_string", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_get_pix_fmt_string", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static string av_get_pix_fmt_string (
         string buf,
         int buf_size,
@@ -1096,7 +1096,7 @@ public enum PixelFormat {
     @return pixel format with swapped endianness if it exists,
     otherwise PixelFormat.NONE
     ***********************************************************/
-    [CCode (cname="av_pix_fmt_swap_endianness", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_pix_fmt_swap_endianness", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static PixelFormat av_pix_fmt_swap_endianness (
         PixelFormat pixel_format
     );

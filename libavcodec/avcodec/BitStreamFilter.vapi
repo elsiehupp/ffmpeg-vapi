@@ -31,7 +31,7 @@ LibAVCodec external API header
 @defgroup lavc_parsing Frame parsing
 ***********************************************************/
 
-[CCode (cname="struct AVBitStreamFilter", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVBitStreamFilter", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct BitStreamFilter {
     [CCode (cname="name")]
     public string name;

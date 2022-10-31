@@ -27,7 +27,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cname="struct AVCodecHWConfig", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecHWConfig", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct CodecHardwareConfig {
     /***********************************************************
     @brief A hardware pixel format which the codec can use.

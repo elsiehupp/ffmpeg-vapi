@@ -23,7 +23,7 @@ namespace LibAVUtil {
 /***********************************************************
 @brief Option for overlapping elliptical pixel selectors in an image.
 ***********************************************************/
-[CCode (cprefix="AV_HDR_PLUS_OVERLAP_PROCESS_", cheader_filename="libavcodec/hdr_dynamic_metadata.h")]
+[CCode (cprefix="AV_HDR_PLUS_OVERLAP_PROCESS_", cheader_filename="ffmpeg/libavutil/hdr_dynamic_metadata.h")]
 public enum HDRPlusOverlapProcessOption {
     WEIGHTED_AVERAGING,
     LAYERING,

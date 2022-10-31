@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cprefix="", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public enum HardwareFrameTransferDirection {
     /***********************************************************
     @brief Transfer the data from the queried hw frame.
@@ -47,7 +47,7 @@ public enum HardwareFrameTransferDirection {
     @param flags currently unused, should be set to zero
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure.
     ***********************************************************/
-    [CCode (cname="av_hwframe_transfer_get_formats", cheader_filename="libavcodec/hwcontext.h")]
+    [CCode (cname="av_hwframe_transfer_get_formats", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public int av_hwframe_transfer_get_formats (
         LibAVUtil.BufferRef hwframe_ctx,
         HardwareFrameTransferDirection dir,

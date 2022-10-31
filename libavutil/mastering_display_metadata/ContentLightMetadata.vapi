@@ -29,18 +29,18 @@ appropriate type.
 @note The struct should be allocated with av_content_light_metadata_alloc ()
     and its size is not a part of the public ABI.
 ***********************************************************/
-[CCode (cname="struct AVContentLightMetadata", cheader_filename="libavcodec/mastering_display_metadata.h")]
+[CCode (cname="struct AVContentLightMetadata", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
 public struct ContentLightMetadata {
     /***********************************************************
     @brief Max content light level (cd/m^2).
     ***********************************************************/
-    [CCode (cname="MaxCLL", cheader_filename="libavcodec/mastering_display_metadata.h")]
+    [CCode (cname="MaxCLL", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public uint max_content_light_level;
 
     /***********************************************************
     @brief Max average light level per frame (cd/m^2).
     ***********************************************************/
-    [CCode (cname="MaxFALL", cheader_filename="libavcodec/mastering_display_metadata.h")]
+    [CCode (cname="MaxFALL", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public uint max_frame_light_level;
 
     /***********************************************************
@@ -50,7 +50,7 @@ public struct ContentLightMetadata {
     @return An ContentLightMetadata filled with default values or null
         on failure.
     ***********************************************************/
-    [CCode (cname="av_content_light_metadata_alloc", cheader_filename="libavcodec/mastering_display_metadata.h")]
+    [CCode (cname="av_content_light_metadata_alloc", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public ContentLightMetadata av_content_light_metadata_alloc (
         out size_t size
     );
@@ -62,7 +62,7 @@ public struct ContentLightMetadata {
 
     @return The ContentLightMetadata structure to be filled by caller.
     ***********************************************************/
-    [CCode (cname="av_content_light_metadata_create_side_data", cheader_filename="libavcodec/mastering_display_metadata.h")]
+    [CCode (cname="av_content_light_metadata_create_side_data", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public ContentLightMetadata av_content_light_metadata_create_side_data (
         Frame frame
     );

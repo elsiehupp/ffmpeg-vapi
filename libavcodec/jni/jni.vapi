@@ -31,7 +31,7 @@ however it will error out if you try to set a different Java VM.
 @param log_ctx context used for logging, can be null
 @return 0 on success, < 0 otherwise
 ***********************************************************/
-[CCode (cname="av_jni_set_java_vm", cheader_filename="libavcodec/jni.h")]
+[CCode (cname="av_jni_set_java_vm", cheader_filename="ffmpeg/libavcodec/jni.h")]
 public int av_jni_set_java_vm (
     void *vm,
     void *log_ctx
@@ -43,7 +43,7 @@ public int av_jni_set_java_vm (
 @param vm Java virtual machine
 @return a pointer to the Java virtual machine
 ***********************************************************/
-[CCode (cname="av_jni_get_java_vm", cheader_filename="libavcodec/jni.h")]
+[CCode (cname="av_jni_get_java_vm", cheader_filename="ffmpeg/libavcodec/jni.h")]
 public void *av_jni_get_java_vm (
     void *log_ctx
 );

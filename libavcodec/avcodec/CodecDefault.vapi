@@ -27,7 +27,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cname="struct AVCodecDefault", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecDefault", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct CodecDefault { }
 
 } // namespace LibAVCodec

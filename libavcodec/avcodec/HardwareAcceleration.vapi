@@ -33,7 +33,7 @@ LibAVCodec external API header
 @note Nothing in this structure should be accessed by the user. At some
        point in future it will not be externally visible at all.
 ***********************************************************/
-[CCode (cname="struct AVHWAccel", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVHWAccel", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct HardwareAcceleration {
     /***********************************************************
     @brief Name of the hardware accelerated codec.

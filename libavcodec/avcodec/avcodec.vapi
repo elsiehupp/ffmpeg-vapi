@@ -169,7 +169,7 @@ This is mainly needed because some optimized bitstream readers read
 Note: If the first 23 bits of the additional bytes are not 0, then damaged
 MPEG bitstreams could cause overread and segfault.
 ***********************************************************/
-[CCode (cname="AV_INPUT_BUFFER_PADDING_SIZE", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="AV_INPUT_BUFFER_PADDING_SIZE", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public const size_t AV_INPUT_BUFFER_PADDING_SIZE;
 
 /***********************************************************
@@ -177,7 +177,7 @@ public const size_t AV_INPUT_BUFFER_PADDING_SIZE;
 minimum encoding buffer size
 Used to avoid some checks during header writing.
 ***********************************************************/
-[CCode (cname="AV_INPUT_BUFFER_MIN_SIZE", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="AV_INPUT_BUFFER_MIN_SIZE", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public const size_t AV_INPUT_BUFFER_MIN_SIZE;
 
 #if FF_API_COPY_CONTEXT
@@ -187,7 +187,7 @@ OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
 @see @link av_opt_find ().
 ***********************************************************/
-[CCode (cname="avcodec_get_frame_class", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="avcodec_get_frame_class", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public const LibAVUtil.Class avcodec_get_frame_class ();
 
 /***********************************************************
@@ -196,12 +196,12 @@ OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
 @see @link av_opt_find ().
 ***********************************************************/
-[CCode (cname="avcodec_get_subtitle_rect_class", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="avcodec_get_subtitle_rect_class", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public const LibAVUtil.Class avcodec_get_subtitle_rect_class ();
 
 #endif
 
-[CCode (cname="av_packet_side_data_name", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="av_packet_side_data_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public string av_packet_side_data_name (
     PacketSideDataType type
 );
@@ -226,7 +226,7 @@ uint8[] av_packet_pack_dictionary (
 @param dict the metadata storage dictionary
 @return 0 on success, < 0 on failure
 ***********************************************************/
-[CCode (cname="av_packet_unpack_dictionary", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="av_packet_unpack_dictionary", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public int av_packet_unpack_dictionary (
     uint8[] data,
     int size,
@@ -246,7 +246,7 @@ with luma (0,0) representing the origin and luma (1,1) representing 256,256
 @param xpos horizontal chroma sample position
 @param ypos vertical chroma sample position
 ***********************************************************/
-[CCode (cname="avcodec_enum_to_chroma_pos", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="avcodec_enum_to_chroma_pos", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public int avcodec_enum_to_chroma_pos (
     int xpos,
     int ypos,
@@ -262,7 +262,7 @@ with luma (0,0) representing the origin and luma (1,1) representing 256,256
 @param xpos horizontal chroma sample position
 @param ypos vertical chroma sample position
 ***********************************************************/
-[CCode (cname="avcodec_chroma_pos_to_enum", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="avcodec_chroma_pos_to_enum", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public LibAVUtil.ChromaLocation avcodec_chroma_pos_to_enum (
     int xpos,
     int ypos
@@ -277,7 +277,7 @@ AV_INPUT_BUFFER_PADDING_SIZE at the end which will always be 0.
 In addition the whole buffer will initially and after resizes
 be 0-initialized so that no uninitialized data will ever appear.
 ***********************************************************/
-[CCode (cname="av_fast_padded_malloc", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="av_fast_padded_malloc", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public void av_fast_padded_malloc (
     void *ptr,
     out uint size,
@@ -288,7 +288,7 @@ public void av_fast_padded_malloc (
 @brief Same behaviour av_fast_padded_malloc except that buffer will always
 be 0-initialized after call.
 ***********************************************************/
-[CCode (cname="av_fast_padded_mallocz", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="av_fast_padded_mallocz", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public void av_fast_padded_mallocz (
     void *ptr,
     out uint size,
@@ -302,7 +302,7 @@ public void av_fast_padded_mallocz (
 @param v size of extradata in bytes
 @return number of bytes written to the buffer.
 ***********************************************************/
-[CCode (cname="av_xiphlacing", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="av_xiphlacing", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public uint av_xiphlacing (
     out uchar[] s, uint v
 );

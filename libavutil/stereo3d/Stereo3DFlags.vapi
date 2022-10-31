@@ -1,6 +1,6 @@
 
 [Flags]
-[CCode (cheader_filename="libavcodec/stereo3d.h")]
+[CCode (cheader_filename="ffmpeg/libavutil/stereo3d.h")]
 public enum Stereo3DFlags {
     /***********************************************************
     @brief Inverted views, Right/Bottom represents the left view.

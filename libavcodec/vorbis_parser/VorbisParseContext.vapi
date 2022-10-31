@@ -26,7 +26,7 @@ A public API for Vorbis parsing
 Determines the duration for each packet.
 ***********************************************************/
 
-[CCode (cname="struct AVVorbisParseContext", cheader_filename="libavcodec/vorbis_parser.h")]
+[CCode (cname="struct AVVorbisParseContext", cheader_filename="ffmpeg/libavcodec/vorbis_parser.h")]
 public struct VorbisParseContext {
 
     /***********************************************************
@@ -40,7 +40,7 @@ public struct VorbisParseContext {
     /***********************************************************
     @brief Free the parser and everything associated with it.
     ***********************************************************/
-    [CCode (cname="av_vorbis_parse_free", cheader_filename="libavcodec/vorbis_parser.h")]
+    [CCode (cname="av_vorbis_parse_free", cheader_filename="ffmpeg/libavcodec/vorbis_parser.h")]
     public void av_vorbis_parse_free (
         VorbisParseContext s
     );
@@ -56,7 +56,7 @@ public struct VorbisParseContext {
     @param buf_size size of the buffer
     @param flags flags for special frames
     ***********************************************************/
-    [CCode (cname="av_vorbis_parse_frame_flags", cheader_filename="libavcodec/vorbis_parser.h")]
+    [CCode (cname="av_vorbis_parse_frame_flags", cheader_filename="ffmpeg/libavcodec/vorbis_parser.h")]
     public int av_vorbis_parse_frame_flags (
         VorbisParseContext s,
         uint8[] buf,
@@ -71,14 +71,14 @@ public struct VorbisParseContext {
     @param buf buffer containing a Vorbis frame
     @param buf_size size of the buffer
     ***********************************************************/
-    [CCode (cname="av_vorbis_parse_frame", cheader_filename="libavcodec/vorbis_parser.h")]
+    [CCode (cname="av_vorbis_parse_frame", cheader_filename="ffmpeg/libavcodec/vorbis_parser.h")]
     public int av_vorbis_parse_frame (
         VorbisParseContext s,
         uint8[] buf,
         int buf_size
     );
 
-    [CCode (cname="av_vorbis_parse_reset", cheader_filename="libavcodec/vorbis_parser.h")]
+    [CCode (cname="av_vorbis_parse_reset", cheader_filename="ffmpeg/libavcodec/vorbis_parser.h")]
     public void av_vorbis_parse_reset (
         VorbisParseContext s
     );

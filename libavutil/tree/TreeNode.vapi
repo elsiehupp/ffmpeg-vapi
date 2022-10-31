@@ -51,15 +51,15 @@ public delegate int TreeEnumerateEnumerationDelegate (
     void *elem
 );
 
-[CCode (cname="struct AVTreeNode", cheader_filename="libavcodec/tree.h")]
+[CCode (cname="struct AVTreeNode", cheader_filename="ffmpeg/libavutil/tree.h")]
 public struct TreeNode {
-    [CCode (cname="av_tree_node_size", cheader_filename="libavcodec/tree.h")]
+    [CCode (cname="av_tree_node_size", cheader_filename="ffmpeg/libavutil/tree.h")]
     public const size_t SIZE;
 
     /***********************************************************
     @brief Allocate an TreeNode.
     ***********************************************************/
-    [CCode (cname="av_tree_node_alloc", cheader_filename="libavcodec/tree.h")]
+    [CCode (cname="av_tree_node_alloc", cheader_filename="ffmpeg/libavutil/tree.h")]
     public TreeNode av_tree_node_alloc ();
 
     /***********************************************************
@@ -76,7 +76,7 @@ public struct TreeNode {
     @return An element with cmp (key, elem) == 0 or null if no such element
         exists in the tree.
     ***********************************************************/
-    [CCode (cname="av_tree_find", cheader_filename="libavcodec/tree.h")]
+    [CCode (cname="av_tree_find", cheader_filename="ffmpeg/libavutil/tree.h")]
     public void *av_tree_find (
         TreeNode root,
         void *key,
@@ -133,7 +133,7 @@ public struct TreeNode {
         Which one it is depends on the tree state and the implementation. You
         should make no assumptions that it's one or the other in the code.
     ***********************************************************/
-    [CCode (cname="av_tree_insert", cheader_filename="libavcodec/tree.h")]
+    [CCode (cname="av_tree_insert", cheader_filename="ffmpeg/libavutil/tree.h")]
     public void *av_tree_insert (
         out TreeNode rootp,
         void *key,
@@ -141,7 +141,7 @@ public struct TreeNode {
         out TreeNode next
     );
 
-    [CCode (cname="av_tree_destroy", cheader_filename="libavcodec/tree.h")]
+    [CCode (cname="av_tree_destroy", cheader_filename="ffmpeg/libavutil/tree.h")]
     public void av_tree_destroy (
         TreeNode t
     );
@@ -156,7 +156,7 @@ public struct TreeNode {
     @note The cmp function should use the same ordering used to construct the
         tree.
     ***********************************************************/
-    [CCode (cname="av_tree_enumerate", cheader_filename="libavcodec/tree.h")]
+    [CCode (cname="av_tree_enumerate", cheader_filename="ffmpeg/libavutil/tree.h")]
     public void av_tree_enumerate (
         TreeNode t,
         void *opaque,

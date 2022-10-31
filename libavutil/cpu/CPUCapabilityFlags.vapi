@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 [Flags]
-[CCode (cprefix="AV_CPU_FLAG_", cheader_filename="libavcodec/cpu.h")]
+[CCode (cprefix="AV_CPU_FLAG_", cheader_filename="ffmpeg/libavutil/cpu.h")]
 public enum CPUCapabilityFlags {
     /***********************************************************
     @brief Force usage of selected flags (OR)
@@ -169,14 +169,14 @@ public enum CPUCapabilityFlags {
     before. So av_get_cpu_flags () can easily be used in an application to
     detect the enabled cpu flags.
     ***********************************************************/
-    [CCode (cname="av_get_cpu_flags", cheader_filename="libavcodec/cpu.h")]
+    [CCode (cname="av_get_cpu_flags", cheader_filename="ffmpeg/libavutil/cpu.h")]
     public static CPUCapabilityFlags av_get_cpu_flags ();
 
     /***********************************************************
     @brief Disables cpu detection and forces the specified flags.
     -1 is a special case that disables forcing of specific flags.
     ***********************************************************/
-    [CCode (cname="av_force_cpu_flags", cheader_filename="libavcodec/cpu.h")]
+    [CCode (cname="av_force_cpu_flags", cheader_filename="ffmpeg/libavutil/cpu.h")]
     public static void av_force_cpu_flags (
         CPUCapabilityFlags flags
     );
@@ -186,7 +186,7 @@ public enum CPUCapabilityFlags {
 
     @return negative on error.
     ***********************************************************/
-    [CCode (cname="av_parse_cpu_caps", cheader_filename="libavcodec/cpu.h")]
+    [CCode (cname="av_parse_cpu_caps", cheader_filename="ffmpeg/libavutil/cpu.h")]
     public static int av_parse_cpu_caps (
         out CPUCapabilityFlags flags,
         string s
@@ -195,7 +195,7 @@ public enum CPUCapabilityFlags {
     /***********************************************************
     @return the number of logical CPU cores present.
     ***********************************************************/
-    [CCode (cname="av_cpu_count", cheader_filename="libavcodec/cpu.h")]
+    [CCode (cname="av_cpu_count", cheader_filename="ffmpeg/libavutil/cpu.h")]
     public int av_cpu_count ();
 
     /***********************************************************
@@ -207,7 +207,7 @@ public enum CPUCapabilityFlags {
     av_set_cpu_flags_mask (), then this function will behave as if AVX is not
     present.
     ***********************************************************/
-    [CCode (cname="av_cpu_max_align", cheader_filename="libavcodec/cpu.h")]
+    [CCode (cname="av_cpu_max_align", cheader_filename="ffmpeg/libavutil/cpu.h")]
     public size_t av_cpu_max_align ();
 
 }

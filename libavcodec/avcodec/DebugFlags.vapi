@@ -28,7 +28,7 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum DebugFlags {
     FF_DEBUG_PICT_INFO,
     FF_DEBUG_RC,

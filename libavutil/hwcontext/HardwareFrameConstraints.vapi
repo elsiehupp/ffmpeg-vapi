@@ -25,7 +25,7 @@ configuration. This is returned by av_hwdevice_get_hwframe_constraints ()
 and must be freed by
 av_hwframe_constraints_free () after use.
 ***********************************************************/
-[CCode (cname="struct AVHWFramesConstraints", cheader_filename="libavcodec/hwcontext.h")]
+[CCode (cname="struct AVHWFramesConstraints", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public struct HardwareFrameConstraints {
     /***********************************************************
     @brief A list of possible values for format in the hw_frames_ctx,
@@ -83,7 +83,7 @@ public struct HardwareFrameConstraints {
     @return HardwareFrameConstraints structure describing the constraints
         on the device, or null if not available.
     ***********************************************************/
-    [CCode (cname="av_hwdevice_get_hwframe_constraints", cheader_filename="libavcodec/hwcontext.h")]
+    [CCode (cname="av_hwdevice_get_hwframe_constraints", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public HardwareFrameConstraints av_hwdevice_get_hwframe_constraints (
         LibAVUtil.BufferRef ref,
         void *hwconfig
@@ -94,7 +94,7 @@ public struct HardwareFrameConstraints {
 
     @param constraints The (filled or unfilled) HardwareFrameConstraints structure.
     ***********************************************************/
-    [CCode (cname="av_hwframe_constraints_free", cheader_filename="libavcodec/hwcontext.h")]
+    [CCode (cname="av_hwframe_constraints_free", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public void av_hwframe_constraints_free (
         HardwareFrameConstraints constraints
     );

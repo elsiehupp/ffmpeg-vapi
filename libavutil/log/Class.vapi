@@ -45,7 +45,7 @@ public delegate int QueryRangesDelegate (
 arbitrary struct of which the first field is a pointer to an
 Class struct (e.g. LibAVCodec.CodecContext, AVFormatContext etc.).
 ***********************************************************/
-[CCode (cname="struct AVClass", cheader_filename="libavcodec/log.h")]
+[CCode (cname="struct AVClass", cheader_filename="ffmpeg/libavutil/log.h")]
 public struct Class {
     /***********************************************************
     @brief The name of the class; usually it is the same name as the
@@ -140,7 +140,7 @@ public struct Class {
 @param prev result of a previous call to this function or null
 @return Class corresponding to next potential child or null
 ***********************************************************/
-[CCode (cname="av_opt_child_class_next", cheader_filename="libavcodec/opt.h")]
+[CCode (cname="av_opt_child_class_next", cheader_filename="ffmpeg/libavutil/opt.h")]
 public Class av_opt_child_class_next (
     Class parent,
     Class prev

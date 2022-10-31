@@ -25,13 +25,13 @@ using LibAVUtil;
 LibAVCodec version macros.
 ***********************************************************/
 
-[CCode (cname="LIBAVCODEC_VERSION_MAJOR", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVCODEC_VERSION_MAJOR", cheader_filename="ffmpeg/libavcodec/version.h")]
 public const int LIBAVCODEC_VERSION_MAJOR;
 
-[CCode (cname="LIBAVCODEC_VERSION_MINOR", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVCODEC_VERSION_MINOR", cheader_filename="ffmpeg/libavcodec/version.h")]
 public const int LIBAVCODEC_VERSION_MINOR;
 
-[CCode (cname="LIBAVCODEC_VERSION_MICRO", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVCODEC_VERSION_MICRO", cheader_filename="ffmpeg/libavcodec/version.h")]
 public const int LIBAVCODEC_VERSION_MICRO;
 
 //  #define LIBAVCODEC_VERSION_INT AV_VERSION_INT (LIBAVCODEC_VERSION_MAJOR, \
@@ -42,7 +42,7 @@ public const int LIBAVCODEC_VERSION_MICRO;
 //        LIBAVCODEC_VERSION_MICRO)
 //  #define LIBAVCODEC_BUILD LIBAVCODEC_VERSION_INT
 
-[CCode (cname="LIBAVCODEC_IDENT", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVCODEC_IDENT", cheader_filename="ffmpeg/libavcodec/version.h")]
 public const string LIBAVCODEC_IDENT;
 
 /***********************************************************

@@ -29,7 +29,7 @@ LibAVUtil.Options
 /***********************************************************
 @brief List of OptionRange structs.
 ***********************************************************/
-[CCode (cname="struct AVOptionRanges", cheader_filename="libavcodec/opt.h")]
+[CCode (cname="struct AVOptionRanges", cheader_filename="ffmpeg/libavutil/opt.h")]
 public struct OptionRangeList {
     /***********************************************************
     @brief Array of option ranges.

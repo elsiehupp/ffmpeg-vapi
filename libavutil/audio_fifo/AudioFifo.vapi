@@ -39,7 +39,7 @@ Audio FIFO Buffer
 - Supports multiple channels with either planar or packed sample format.
 - Automatic reallocation when writing to a full buffer.
 ***********************************************************/
-[CCode (cname="struct AVAudioFifo", cheader_filename="libavcodec/audio_fifo.h")]
+[CCode (cname="struct AVAudioFifo", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
 public struct AudioFifo {
 
     /***********************************************************
@@ -47,7 +47,7 @@ public struct AudioFifo {
 
     @param audio_fifo AudioFifo to free
     ***********************************************************/
-    [CCode (cname="av_audio_fifo_free", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_free", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public void av_audio_fifo_free (
         AudioFifo audio_fifo
     );
@@ -74,7 +74,7 @@ public struct AudioFifo {
     @return 0 if OK, or negative LibAVUtil.ErrorCode code on failure
     ***********************************************************/
     //  av_warn_unused_result
-    [CCode (cname="av_audio_fifo_realloc", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_realloc", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public int av_audio_fifo_realloc (
         AudioFifo audio_fifo,
         int nb_samples
@@ -96,7 +96,7 @@ public struct AudioFifo {
         code on failure. If successful, the number of samples
         actually written will always be nb_samples.
     ***********************************************************/
-    [CCode (cname="av_audio_fifo_write", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_write", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public int av_audio_fifo_write (
         AudioFifo audio_fifo,
         out void *data,
@@ -117,7 +117,7 @@ public struct AudioFifo {
         be greater than nb_samples, and will only be less than
         nb_samples if av_audio_fifo_size is less than nb_samples.
     ***********************************************************/
-    [CCode (cname="av_audio_fifo_peek", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_peek", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public int av_audio_fifo_peek (
         AudioFifo audio_fifo,
         out void *data,
@@ -139,7 +139,7 @@ public struct AudioFifo {
         be greater than nb_samples, and will only be less than
         nb_samples if av_audio_fifo_size is less than nb_samples.
     ***********************************************************/
-    [CCode (cname="av_audio_fifo_peek_at", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_peek_at", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public int av_audio_fifo_peek_at (
         AudioFifo audio_fifo,
         out void *data,
@@ -161,7 +161,7 @@ public struct AudioFifo {
         be greater than nb_samples, and will only be less than
         nb_samples if av_audio_fifo_size is less than nb_samples.
     ***********************************************************/
-    [CCode (cname="av_audio_fifo_read", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_read", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public int av_audio_fifo_read (
         AudioFifo audio_fifo,
         out void *data,
@@ -177,7 +177,7 @@ public struct AudioFifo {
     @param nb_samples number of samples to drain
     @return 0 if OK, or negative LibAVUtil.ErrorCode code on failure
     ***********************************************************/
-    [CCode (cname="av_audio_fifo_drain", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_drain", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public int av_audio_fifo_drain (
         AudioFifo audio_fifo,
         int nb_samples
@@ -190,7 +190,7 @@ public struct AudioFifo {
 
     @param audio_fifo AudioFifo to reset
     ***********************************************************/
-    [CCode (cname="av_audio_fifo_reset", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_reset", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public void av_audio_fifo_reset (
         AudioFifo audio_fifo
     );
@@ -201,7 +201,7 @@ public struct AudioFifo {
     @param audio_fifo the AudioFifo to query
     @return number of samples available for reading
     ***********************************************************/
-    [CCode (cname="av_audio_fifo_size", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_size", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public int av_audio_fifo_size (
         AudioFifo audio_fifo
     );
@@ -212,7 +212,7 @@ public struct AudioFifo {
     @param audio_fifo the AudioFifo to query
     @return number of samples available for writing
     ***********************************************************/
-    [CCode (cname="av_audio_fifo_space", cheader_filename="libavcodec/audio_fifo.h")]
+    [CCode (cname="av_audio_fifo_space", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
     public int av_audio_fifo_space (
         AudioFifo audio_fifo
     );

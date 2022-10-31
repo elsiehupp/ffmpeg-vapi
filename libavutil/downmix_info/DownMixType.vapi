@@ -36,7 +36,7 @@ audio downmix medatata
 /***********************************************************
 @brief Possible downmix types.
 ***********************************************************/
-[CCode (cprefix="AV_DOWNMIX_TYPE_", cheader_filename="libavcodec/downmix_info.h")]
+[CCode (cprefix="AV_DOWNMIX_TYPE_", cheader_filename="ffmpeg/libavutil/downmix_info.h")]
 public enum DownMixType {
     /***********************************************************
     @brief Not indicated.

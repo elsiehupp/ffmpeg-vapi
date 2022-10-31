@@ -27,14 +27,14 @@ The exact layout, types and content of this struct may change and should
 not be accessed directly. Only its sizeof () is guranteed to stay the same
 to allow easy instantiation.
 ***********************************************************/
-[CCode (cname="struct AVLFG", cheader_filename="libavcodec/lfg.h")]
+[CCode (cname="struct AVLFG", cheader_filename="ffmpeg/libavutil/lfg.h")]
 public struct LFGContext {
     [CCode (cname="state")]
     public uint state[64];
     [CCode (cname="index")]
     public int index;
 
-    [CCode (cname="av_lfg_init", cheader_filename="libavcodec/lfg.h")]
+    [CCode (cname="av_lfg_init", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public void av_lfg_init (
         LFGContext c,
         uint seed
@@ -45,7 +45,7 @@ public struct LFGContext {
 
     Return value: 0 on success, negative value (LibAVUtil.ErrorCode) on failure.
     ***********************************************************/
-    [CCode (cname="av_lfg_init_from_data", cheader_filename="libavcodec/lfg.h")]
+    [CCode (cname="av_lfg_init_from_data", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public int av_lfg_init_from_data (
         LFGContext c,
         uint8[] data,
@@ -58,7 +58,7 @@ public struct LFGContext {
     Please also consider a simple LCG like state= state*1664525+1013904223,
     it may be good enough and faster for your specific use case.
     ***********************************************************/
-    [CCode (cname="av_lfg_get", cheader_filename="libavcodec/lfg.h")]
+    [CCode (cname="av_lfg_get", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public static uint av_lfg_get (
         LFGContext c
     );
@@ -68,7 +68,7 @@ public struct LFGContext {
 
     Please also consider av_lfg_get () above, it is faster.
     ***********************************************************/
-    [CCode (cname="av_mlfg_get", cheader_filename="libavcodec/lfg.h")]
+    [CCode (cname="av_mlfg_get", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public static uint av_mlfg_get (
         LFGContext c
     );
@@ -79,7 +79,7 @@ public struct LFGContext {
 
     @param output_buffer array where the two generated numbers are placed
     ***********************************************************/
-    [CCode (cname="av_bmg_get", cheader_filename="libavcodec/lfg.h")]
+    [CCode (cname="av_bmg_get", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public void av_bmg_get (
         LFGContext lfg,
         out double output_buffer[2]

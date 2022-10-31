@@ -27,10 +27,10 @@ namespace LibAVUtil.Crypto {
 
 namespace LZOContext {
 
-    [CCode (cname="AV_LZO_INPUT_PADDING", cheader_filename="libavcodec/lzo.h")]
+    [CCode (cname="AV_LZO_INPUT_PADDING", cheader_filename="ffmpeg/libavutil/lzo.h")]
     public const size_t INPUT_PADDING;
 
-    [CCode (cname="AV_LZO_OUTPUT_PADDING", cheader_filename="libavcodec/lzo.h")]
+    [CCode (cname="AV_LZO_OUTPUT_PADDING", cheader_filename="ffmpeg/libavutil/lzo.h")]
     public const size_t OUTPUT_PADDING;
 
     /***********************************************************
@@ -44,7 +44,7 @@ namespace LZOContext {
     Make sure all buffers are appropriately padded, in must provide
     LZOContext.INPUT_PADDING, out must provide LZOContext.OUTPUT_PADDING additional bytes.
     ***********************************************************/
-    [CCode (cname="av_lzo1x_decode", cheader_filename="libavcodec/lzo.h")]
+    [CCode (cname="av_lzo1x_decode", cheader_filename="ffmpeg/libavutil/lzo.h")]
     public static int av_lzo1x_decode (
         out void *output_buffer,
         out int output_length,

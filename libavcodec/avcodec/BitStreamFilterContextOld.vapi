@@ -32,7 +32,7 @@ LibAVCodec external API header
 ***********************************************************/
 
 #if FF_API_OLD_BSF
-[CCode (cname="struct AVBitStreamFilterContext", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVBitStreamFilterContext", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct BitStreamFilterContextOld {
     [CCode (cname="priv_data")]
     public void *priv_data;

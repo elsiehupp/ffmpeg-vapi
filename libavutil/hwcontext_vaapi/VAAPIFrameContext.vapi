@@ -23,7 +23,7 @@ namespace LibAVUtil {
 
 Allocated as HardwareFrameContext.hwctx.
 ***********************************************************/
-[CCode (cname="struct AVVAAPIFramesContext", cheader_filename="libavcodec/hwcontext_vaapi.h")]
+[CCode (cname="struct AVVAAPIFramesContext", cheader_filename="ffmpeg/libavutil/hwcontext_vaapi.h")]
 public class VAAPIFrameContext : AbstractHardwareContext {
     /***********************************************************
     @brief Set by the user to apply surface attributes to all surfaces in

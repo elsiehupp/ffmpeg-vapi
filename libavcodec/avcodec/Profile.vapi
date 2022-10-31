@@ -30,7 +30,7 @@ LibAVCodec external API header
 /***********************************************************
 @brief Profile.
 ***********************************************************/
-[CCode (cname="struct AVProfile", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVProfile", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct Profile {
     [CCode (cname="profile")]
     public int profile;

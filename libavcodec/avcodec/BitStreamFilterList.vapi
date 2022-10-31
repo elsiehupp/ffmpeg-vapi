@@ -35,7 +35,7 @@ LibAVCodec external API header
 @brief Structure for chain/list of bitstream filters.
 Empty list can be allocated by av_bsf_list_alloc ().
 ***********************************************************/
-[CCode (cname="struct AVBSFList", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVBSFList", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct BitStreamFilterList {
 
     /***********************************************************
@@ -45,7 +45,7 @@ public struct BitStreamFilterList {
 
     @return Pointer to @link BitStreamFilterList on success, null in case of failure
     ***********************************************************/
-    [CCode (cname="av_bsf_list_alloc", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_list_alloc", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public BitStreamFilterList av_bsf_list_alloc ();
 
     /***********************************************************
@@ -53,7 +53,7 @@ public struct BitStreamFilterList {
 
     @param lst Pointer to pointer returned by av_bsf_list_alloc ()
     ***********************************************************/
-    [CCode (cname="av_bsf_list_free", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_list_free", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_bsf_list_free (
         BitStreamFilterList lst
     );
@@ -66,7 +66,7 @@ public struct BitStreamFilterList {
 
     @return >=0 on success, negative LibAVUtil.ErrorCode in case of failure
     ***********************************************************/
-    [CCode (cname="av_bsf_list_append", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_list_append", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_list_append (
         BitStreamFilterList lst,
         BitStreamFilterContext bsf
@@ -82,7 +82,7 @@ public struct BitStreamFilterList {
 
     @return >=0 on success, negative LibAVUtil.ErrorCode in case of failure
     ***********************************************************/
-    [CCode (cname="av_bsf_list_append2", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_list_append2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_list_append2 (
         BitStreamFilterList lst,
         string bsf_name,
@@ -105,7 +105,7 @@ public struct BitStreamFilterList {
 
     @return >=0 on success, negative LibAVUtil.ErrorCode in case of failure
     ***********************************************************/
-    [CCode (cname="av_bsf_list_finalize", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_list_finalize", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_list_finalize (
         BitStreamFilterList lst,
         BitStreamFilterContext bsf

@@ -30,7 +30,7 @@ error code definitions
 /***********************************************************
 @brief Error handling
 ***********************************************************/
-[CCode (cprefix="", cheader_filename="libavcodec/error.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/error.h")]
 public errordomain ErrorCode {
     /***********************************************************
     @brief Bitstream filter not found
@@ -160,7 +160,7 @@ error message indicating the errnum provided to errbuf.
 @return 0 on success, a negative value if a description for errnum
 cannot be found
 ***********************************************************/
-[CCode (cname="av_strerror", cheader_filename="libavcodec/error.h")]
+[CCode (cname="av_strerror", cheader_filename="ffmpeg/libavutil/error.h")]
 public int av_strerror (
     int errnum,
     string errbuf,
@@ -177,7 +177,7 @@ corresponding to the LibAVUtil.ErrorCode code errnum.
 @return the buffer in input, filled with the error description
 @see @link av_strerror ()
 ***********************************************************/
-[CCode (cname="av_make_error_string", cheader_filename="libavcodec/error.h")]
+[CCode (cname="av_make_error_string", cheader_filename="ffmpeg/libavutil/error.h")]
 public static string av_make_error_string (
     string errbuf,
     size_t errbuf_size,
@@ -188,7 +188,7 @@ public static string av_make_error_string (
 @brief Convenience macro, the return value should be used only directly in
 function arguments but never stand-alone.
 ***********************************************************/
-[CCode (cname="av_err2str", cheader_filename="libavcodec/error.h")]
+[CCode (cname="av_err2str", cheader_filename="ffmpeg/libavutil/error.h")]
 public static string av_err2str (
     ErrorCode errnum
 );

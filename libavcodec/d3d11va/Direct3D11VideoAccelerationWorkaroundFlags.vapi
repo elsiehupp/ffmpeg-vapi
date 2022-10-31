@@ -35,7 +35,7 @@ Public LibAVCodec D3D11VA header.
 @ingroup lavc_codec_hwaccel
 ***********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/d3d11va.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/d3d11va.h")]
 public enum Direct3D11VideoAccelerationWorkaroundFlags {
     /***********************************************************
     @brief Workaround for Direct3D11 and old UVD/UVD+ ATI video cards

@@ -31,7 +31,7 @@ with the data pointer set to a pointer to IDirect3DSurface9.
 /***********************************************************
 @brief This struct is allocated as HardwareDeviceContext.hwctx
 ***********************************************************/
-[CCode (cname="struct AVDXVA2DeviceContext", cheader_filename="libavcodec/hwcontext_dxva2.h")]
+[CCode (cname="struct AVDXVA2DeviceContext", cheader_filename="ffmpeg/libavutil/hwcontext_dxva2.h")]
 public class DXVA2DeviceContext : AbstractHardwareContext {
     [CCode (cname="devmgr")]
     public IDirect3DDeviceManager9 device_manager;

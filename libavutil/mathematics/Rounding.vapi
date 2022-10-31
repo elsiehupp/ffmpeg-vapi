@@ -67,7 +67,7 @@ Mathematical utilities for working with timestamp and time base.
 /***********************************************************
 @brief Rounding methods.
 ***********************************************************/
-[CCode (cheader_filename="libavcodec/mathematics.h")]
+[CCode (cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public enum Rounding {
     /***********************************************************
     @brief Round toward zero.
@@ -128,7 +128,7 @@ public enum Rounding {
 @return GCD of a and b up to sign; if a >= 0 and b >= 0, return value is >= 0;
 if a == 0 and b == 0, returns 0.
 ***********************************************************/
-[CCode (cname="av_gcd", cheader_filename="libavcodec/mathematics.h")]
+[CCode (cname="av_gcd", cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_gcd (
     int64 a,
     int64 b
@@ -144,7 +144,7 @@ This function is equivalent to av_rescale_rnd () with #Rounding.NEAREST_THEN_AWA
 
 @see @link av_rescale_rnd (), av_rescale_q (), av_rescale_q_rnd ()
 ***********************************************************/
-[CCode (cname="av_rescale", cheader_filename="libavcodec/mathematics.h")]
+[CCode (cname="av_rescale", cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale (
     int64 a,
     int64 b,
@@ -160,7 +160,7 @@ If the result is not representable then INT64_MIN is returned.
 
 @see @link av_rescale (), av_rescale_q (), av_rescale_q_rnd ()
 ***********************************************************/
-[CCode (cname="av_rescale_rnd", cheader_filename="libavcodec/mathematics.h")]
+[CCode (cname="av_rescale_rnd", cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale_rnd (
     int64 a,
     int64 b,
@@ -177,7 +177,7 @@ This function is equivalent to av_rescale_q_rnd () with #Rounding.NEAREST_THEN_A
 
 @see @link av_rescale (), av_rescale_rnd (), av_rescale_q_rnd ()
 ***********************************************************/
-[CCode (cname="av_rescale_q", cheader_filename="libavcodec/mathematics.h")]
+[CCode (cname="av_rescale_q", cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale_q (
     int64 a,
     Rational bq,
@@ -191,7 +191,7 @@ The operation is mathematically equivalent to `a * bq / cq`.
 
 @see @link av_rescale (), av_rescale_rnd (), av_rescale_q ()
 ***********************************************************/
-[CCode (cname="av_rescale_q_rnd", cheader_filename="libavcodec/mathematics.h")]
+[CCode (cname="av_rescale_q_rnd", cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale_q_rnd (
     int64 a,
     Rational bq,
@@ -211,7 +211,7 @@ public int64 av_rescale_q_rnd (
 The result of the function is undefined if one of the timestamps is outside
 the `int64` range when represented in the other's timebase.
 ***********************************************************/
-[CCode (cname="av_compare_ts", cheader_filename="libavcodec/mathematics.h")]
+[CCode (cname="av_compare_ts", cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int av_compare_ts (
     int64 ts_a,
     Rational tb_a,
@@ -237,7 +237,7 @@ av_compare_mod (0x11, 0x02, 0x20) > 0 // since 0x11 % 0x20 (0x11) > 0x02 % 0x20 
     - a positive value if `a % mod > b % mod`
     - zero if `a % mod == b % mod`
 ***********************************************************/
-[CCode (cname="av_compare_mod", cheader_filename="libavcodec/mathematics.h")]
+[CCode (cname="av_compare_mod", cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_compare_mod (
     uint64 a,
     uint64 b,
@@ -269,7 +269,7 @@ initialized to #AV_NOPTS_VALUE.
 @note In the context of this function, "duration" is in term of samples, not
       seconds.
 ***********************************************************/
-[CCode (cname="av_rescale_delta", cheader_filename="libavcodec/mathematics.h")]
+[CCode (cname="av_rescale_delta", cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale_delta (
     Rational in_tb,
     int64 in_ts,
@@ -290,7 +290,7 @@ no accumulation of rounding errors occurs.
 @param[in] inc Value to be added
 @param[in] inc_tb Time base of `inc`
 ***********************************************************/
-[CCode (cname="av_add_stable", cheader_filename="libavcodec/mathematics.h")]
+[CCode (cname="av_add_stable", cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_add_stable (
     Rational ts_tb,
     int64 ts,

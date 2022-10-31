@@ -25,10 +25,10 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_blowfish Blowfish
 ***********************************************************/
 
-[CCode (cname="struct AVBlowfish", cheader_filename="libavcodec/blowfish.h")]
+[CCode (cname="struct AVBlowfish", cheader_filename="ffmpeg/libavutil/blowfish.h")]
 public struct BlowfishContext {
 
-    [CCode (cname="AV_BF_ROUNDS", cheader_filename="libavcodec/blowfish.h")]
+    [CCode (cname="AV_BF_ROUNDS", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public const int AV_BF_ROUNDS;
 
     [CCode (cname="p")]
@@ -39,7 +39,7 @@ public struct BlowfishContext {
     /***********************************************************
     @brief Allocate an BlowfishContext context.
     ***********************************************************/
-    [CCode (cname="av_blowfish_alloc", cheader_filename="libavcodec/blowfish.h")]
+    [CCode (cname="av_blowfish_alloc", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public BlowfishContext av_blowfish_alloc ();
 
     /***********************************************************
@@ -49,7 +49,7 @@ public struct BlowfishContext {
     @param key a key
     @param key_len length of the key
     ***********************************************************/
-    [CCode (cname="av_blowfish_init", cheader_filename="libavcodec/blowfish.h")]
+    [CCode (cname="av_blowfish_init", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public void av_blowfish_init (
         BlowfishContext blowfish,
         uint8[] key,
@@ -64,7 +64,7 @@ public struct BlowfishContext {
     @param xr right four bytes halves of input to be encrypted
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_blowfish_crypt_ecb", cheader_filename="libavcodec/blowfish.h")]
+    [CCode (cname="av_blowfish_crypt_ecb", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public void av_blowfish_crypt_ecb (
         BlowfishContext blowfish,
         uint32[] xl,
@@ -82,7 +82,7 @@ public struct BlowfishContext {
     @param initialization_vector initialization vector for CBC mode, if null ECB will be used
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_blowfish_crypt", cheader_filename="libavcodec/blowfish.h")]
+    [CCode (cname="av_blowfish_crypt", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public void av_blowfish_crypt (
         BlowfishContext blowfish,
         out uint8[] output_buffer,

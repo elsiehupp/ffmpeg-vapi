@@ -33,7 +33,7 @@ added in future.
 
 Allocated as HardwareDeviceContext.hwctx.
 ***********************************************************/
-[CCode (cname="struct AVDRMDeviceContext", cheader_filename="libavcodec/hwcontext_drm.h")]
+[CCode (cname="struct AVDRMDeviceContext", cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
 public class DRMDeviceContext : AbstractHardwareContext {
     /***********************************************************
     @brief File descriptor of DRM device.

@@ -30,7 +30,7 @@ LibAVCodec external API header
 /***********************************************************
 @brief Codec.
 ***********************************************************/
-[CCode (cname="struct AVCodec", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodec", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct Codec {
     /***********************************************************
     @brief Name of the codec implementation.
@@ -133,7 +133,7 @@ public struct Codec {
     descriptor; all other values return null. If the codec does not support
     any hardware configurations then it will always return null.
     ***********************************************************/
-    [CCode (cname="avcodec_get_hw_config", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_get_hw_config", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecHardwareConfig avcodec_get_hw_config (
         Codec codec,
         int index
@@ -148,7 +148,7 @@ public struct Codec {
     @return the next registered codec or null when the iteration is
         finished
     ***********************************************************/
-    [CCode (cname="av_codec_iterate", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_codec_iterate", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec av_codec_iterate (
         out void *opaque
     );
@@ -159,7 +159,7 @@ public struct Codec {
     @param id CodecID of the requested decoder
     @return A decoder if one was found, null otherwise.
     ***********************************************************/
-    [CCode (cname="avcodec_find_decoder", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_find_decoder", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec avcodec_find_decoder (
         CodecID id
     );
@@ -170,7 +170,7 @@ public struct Codec {
     @param name name of the requested decoder
     @return A decoder if one was found, null otherwise.
     ***********************************************************/
-    [CCode (cname="avcodec_find_decoder_by_name", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_find_decoder_by_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec avcodec_find_decoder_by_name (
         string name
     );
@@ -181,7 +181,7 @@ public struct Codec {
     @param id CodecID of the requested encoder
     @return An encoder if one was found, null otherwise.
     ***********************************************************/
-    [CCode (cname="avcodec_find_encoder", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_find_encoder", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec avcodec_find_encoder (
         CodecID id
     );
@@ -192,7 +192,7 @@ public struct Codec {
     @param name name of the requested encoder
     @return An encoder if one was found, null otherwise.
     ***********************************************************/
-    [CCode (cname="avcodec_find_encoder_by_name", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_find_encoder_by_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec avcodec_find_encoder_by_name (
         string name
     );
@@ -200,7 +200,7 @@ public struct Codec {
     /***********************************************************
     @return a non-zero number if codec is an encoder, zero otherwise
     ***********************************************************/
-    [CCode (cname="av_codec_is_encoder", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_codec_is_encoder", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_codec_is_encoder (
         Codec codec
     );
@@ -208,7 +208,7 @@ public struct Codec {
     /***********************************************************
     @return a non-zero number if codec is a decoder, zero otherwise
     ***********************************************************/
-    [CCode (cname="av_codec_is_decoder", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_codec_is_decoder", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_codec_is_decoder (
         Codec codec
     );
@@ -220,7 +220,7 @@ public struct Codec {
     @param profile the profile value for which a name is requested
     @return A name for the profile if found, null otherwise.
     ***********************************************************/
-    [CCode (cname="av_get_profile_name", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_get_profile_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public string av_get_profile_name (
         Codec codec,
         int profile
@@ -231,19 +231,19 @@ public struct Codec {
 /***********************************************************
 @brief Return the LIBAVCODEC_VERSION_INT constant.
 ***********************************************************/
-[CCode (cname="avcodec_version", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="avcodec_version", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public uint avcodec_version ();
 
 /***********************************************************
 @brief Return the LibAVCodec build-time configuration.
 ***********************************************************/
-[CCode (cname="avcodec_configuration", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="avcodec_configuration", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public string avcodec_configuration ();
 
 /***********************************************************
 @brief Return the LibAVCodec license.
 ***********************************************************/
-[CCode (cname="avcodec_license", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="avcodec_license", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public string avcodec_license ();
 
 /***********************************************************
@@ -252,7 +252,7 @@ OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
 @see @link av_opt_find ().
 ***********************************************************/
-[CCode (cname="avcodec_get_class", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="avcodec_get_class", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public LibAVUtil.Class avcodec_get_class ();
 
 } // namespace LibAVCodec

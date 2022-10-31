@@ -23,7 +23,7 @@ namespace LibAVUtil {
 /***********************************************************
 @brief Get the current time in microseconds.
 ***********************************************************/
-[CCode (cname="av_gettime", cheader_filename="libavcodec/time.h")]
+[CCode (cname="av_gettime", cheader_filename="ffmpeg/libavutil/time.h")]
 public static int64 av_gettime ();
 
 /***********************************************************
@@ -33,14 +33,14 @@ This property makes this time source ideal for measuring relative time.
 The returned values may not be monotonic on platforms where a monotonic
 clock is not available.
 ***********************************************************/
-[CCode (cname="av_gettime_relative", cheader_filename="libavcodec/time.h")]
+[CCode (cname="av_gettime_relative", cheader_filename="ffmpeg/libavutil/time.h")]
 public static int64 av_gettime_relative ();
 
 /***********************************************************
 @brief Indicates with a boolean result if the av_gettime_relative () time source
 is monotonic.
 ***********************************************************/
-[CCode (cname="av_gettime_relative_is_monotonic", cheader_filename="libavcodec/time.h")]
+[CCode (cname="av_gettime_relative_is_monotonic", cheader_filename="ffmpeg/libavutil/time.h")]
 public static int av_gettime_relative_is_monotonic ();
 
 /***********************************************************
@@ -51,7 +51,7 @@ system timer.
 @param usec Number of microseconds to sleep.
 @return zero on success or (negative) error code.
 ***********************************************************/
-[CCode (cname="av_usleep", cheader_filename="libavcodec/time.h")]
+[CCode (cname="av_usleep", cheader_filename="ffmpeg/libavutil/time.h")]
 public static int av_usleep (
     uint usec
 );

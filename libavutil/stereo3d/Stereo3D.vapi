@@ -45,7 +45,7 @@ within a single video surface, with additional information as needed.
 @note The struct must be allocated with av_stereo3d_alloc () and
       its size is not a part of the public ABI.
 ***********************************************************/
-[CCode (cname="struct AVStereo3D", cheader_filename="libavcodec/stereo3d.h")]
+[CCode (cname="struct AVStereo3D", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
 public struct Stereo3D {
     /***********************************************************
     @brief How views are packed within the video.
@@ -71,7 +71,7 @@ public struct Stereo3D {
 
     @return An Stereo3D filled with default values or null on failure.
     ***********************************************************/
-    [CCode (cname="av_stereo3d_alloc", cheader_filename="libavcodec/stereo3d.h")]
+    [CCode (cname="av_stereo3d_alloc", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
     public Stereo3D av_stereo3d_alloc ();
 
     /***********************************************************
@@ -81,7 +81,7 @@ public struct Stereo3D {
 
     @return The Stereo3D structure to be filled by caller.
     ***********************************************************/
-    [CCode (cname="av_stereo3d_create_side_data", cheader_filename="libavcodec/stereo3d.h")]
+    [CCode (cname="av_stereo3d_create_side_data", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
     public Stereo3D av_stereo3d_create_side_data (
         Frame frame
     );
@@ -93,7 +93,7 @@ public struct Stereo3D {
 
     @return The name of the stereo3d value, or "unknown".
     ***********************************************************/
-    [CCode (cname="av_stereo3d_type_name", cheader_filename="libavcodec/stereo3d.h")]
+    [CCode (cname="av_stereo3d_type_name", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
     public string av_stereo3d_type_name (
         uint type
     );
@@ -105,7 +105,7 @@ public struct Stereo3D {
 
     @return The Stereo3DType value, or -1 if not found.
     ***********************************************************/
-    [CCode (cname="av_stereo3d_from_name", cheader_filename="libavcodec/stereo3d.h")]
+    [CCode (cname="av_stereo3d_from_name", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
     public int av_stereo3d_from_name (
         string name
     );

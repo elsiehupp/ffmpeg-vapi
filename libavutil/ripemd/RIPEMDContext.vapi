@@ -33,15 +33,15 @@ Public header for RIPEMD hash function implementation.
 RIPEMD hash function implementation.
 ***********************************************************/
 
-[CCode (cname="struct AVRIPEMD", cheader_filename="libavcodec/ripemd.h")]
+[CCode (cname="struct AVRIPEMD", cheader_filename="ffmpeg/libavutil/ripemd.h")]
 public struct RIPEMDContext {
-    [CCode (cname="av_ripemd_size", cheader_filename="libavcodec/ripemd.h")]
+    [CCode (cname="av_ripemd_size", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public const size_t SIZE;
 
     /***********************************************************
     @brief Allocate an RIPEMDContext context.
     ***********************************************************/
-    [CCode (cname="av_ripemd_alloc", cheader_filename="libavcodec/ripemd.h")]
+    [CCode (cname="av_ripemd_alloc", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public RIPEMDContext av_ripemd_alloc ();
 
     /***********************************************************
@@ -51,7 +51,7 @@ public struct RIPEMDContext {
     @param bits number of bits in digest (128, 160, 256 or 320 bits)
     @return zero if initialization succeeded, -1 otherwise
     ***********************************************************/
-    [CCode (cname="av_ripemd_init", cheader_filename="libavcodec/ripemd.h")]
+    [CCode (cname="av_ripemd_init", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public int av_ripemd_init (
         RIPEMDContext context,
         int bits
@@ -65,14 +65,14 @@ public struct RIPEMDContext {
     @param len input data length
     ***********************************************************/
     #if FF_API_CRYPTO_SIZE_T
-    [CCode (cname="av_ripemd_update", cheader_filename="libavcodec/ripemd.h")]
+    [CCode (cname="av_ripemd_update", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public void av_ripemd_update (
         RIPEMDContext context,
         uint8[] data,
         uint len
     );
     #else
-    [CCode (cname="av_ripemd_update", cheader_filename="libavcodec/ripemd.h")]
+    [CCode (cname="av_ripemd_update", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public void av_ripemd_update (
         RIPEMDContext context,
         uint8[] data,
@@ -86,7 +86,7 @@ public struct RIPEMDContext {
     @param context hash function context
     @param digest buffer where output digest value is stored
     ***********************************************************/
-    [CCode (cname="av_ripemd_final", cheader_filename="libavcodec/ripemd.h")]
+    [CCode (cname="av_ripemd_final", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public void av_ripemd_final (
         RIPEMDContext context,
         uint8[] digest

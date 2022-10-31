@@ -28,7 +28,7 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_SIDE_DATA_PARAM_CHANGE_", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cprefix="AV_SIDE_DATA_PARAM_CHANGE_", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum SideDataParamChangeFlags {
     CHANNEL_COUNT,
     CHANNEL_LAYOUT,

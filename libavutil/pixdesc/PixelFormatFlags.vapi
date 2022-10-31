@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/pixdesc.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
 public enum PixelFormatFlags {
     /***********************************************************
     @brief Pixel format is big-endian.

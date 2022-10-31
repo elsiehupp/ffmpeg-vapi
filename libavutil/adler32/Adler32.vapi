@@ -45,7 +45,7 @@ they were concatenated.
 @param len size of input buffer
 @return updated checksum
 ***********************************************************/
-[CCode (cname="av_adler32_update", cheader_filename="libavcodec/adler32.h")]
+[CCode (cname="av_adler32_update", cheader_filename="ffmpeg/libavutil/adler32.h")]
 public ulong av_adler32_update (
     ulong adler,
     uint8[] buf,

@@ -43,7 +43,7 @@ enum ChannelLayoutFlags
     multiple times, such as dual-mono.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="AV_CH_", cheader_filename="libavcodec/channel_layout.h")]
+[CCode (cprefix="AV_CH_", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
 public enum ChannelLayoutFlags {
     FRONT_LEFT,
     FRONT_RIGHT,
@@ -134,7 +134,7 @@ public enum ChannelLayoutFlags {
         
         Example: "stereo+FC" = "2c+FC" = "2c+1c" = "0x7"
     ***********************************************************/
-    [CCode (cname="av_get_channel_layout", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_get_channel_layout", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static ChannelLayoutFlags av_get_channel_layout (
         string name
     );
@@ -152,7 +152,7 @@ public enum ChannelLayoutFlags {
     
     @return 0 on success, LibAVUtil.ErrorCode (EINVAL) if the parsing fails.
     ***********************************************************/
-    [CCode (cname="av_get_extended_channel_layout", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_get_extended_channel_layout", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static int av_get_extended_channel_layout (
         string name,
         out ChannelLayoutFlags channel_layout,
@@ -166,7 +166,7 @@ public enum ChannelLayoutFlags {
     @param buf put here the string containing the channel layout
     @param buf_size size in bytes of the buffer
     ***********************************************************/
-    [CCode (cname="av_get_channel_layout_string", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_get_channel_layout_string", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static void av_get_channel_layout_string (
         string buf,
         int buf_size,
@@ -177,7 +177,7 @@ public enum ChannelLayoutFlags {
     /***********************************************************
     @brief Return the number of channels in the channel layout.
     ***********************************************************/
-    [CCode (cname="av_get_channel_layout_nb_channels", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_get_channel_layout_nb_channels", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static int av_get_channel_layout_nb_channels (
         ChannelLayoutFlags channel_layout
     );
@@ -185,7 +185,7 @@ public enum ChannelLayoutFlags {
     /***********************************************************
     @brief Return default channel layout for a given number of channels.
     ***********************************************************/
-    [CCode (cname="av_get_default_channel_layout", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_get_default_channel_layout", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static ChannelLayoutFlags av_get_default_channel_layout (
         int channel_count
     );
@@ -200,7 +200,7 @@ public enum ChannelLayoutFlags {
     @return index of channel in channel_layout on success, a negative LibAVUtil.ErrorCode
         on error.
     ***********************************************************/
-    [CCode (cname="av_get_channel_layout_channel_index", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_get_channel_layout_channel_index", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static int av_get_channel_layout_channel_index (
         ChannelLayoutFlags channel_layout,
         ChannelLayoutFlags channel
@@ -209,7 +209,7 @@ public enum ChannelLayoutFlags {
     /***********************************************************
     @brief Get the channel with the given index in channel_layout.
     ***********************************************************/
-    [CCode (cname="av_channel_layout_extract_channel", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_channel_layout_extract_channel", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static uint64 av_channel_layout_extract_channel (
         ChannelLayoutFlags channel_layout,
         int index
@@ -220,7 +220,7 @@ public enum ChannelLayoutFlags {
     
     @return channel name on success, null on error.
     ***********************************************************/
-    [CCode (cname="av_get_channel_name", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_get_channel_name", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static string av_get_channel_name (
         ChannelLayoutFlags channel
     );
@@ -231,7 +231,7 @@ public enum ChannelLayoutFlags {
     @param channel a channel layout with a single channel
     @return channel description on success, null on error
     ***********************************************************/
-    [CCode (cname="av_get_channel_description", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_get_channel_description", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static string av_get_channel_description (
         ChannelLayoutFlags channel
     );
@@ -245,7 +245,7 @@ public enum ChannelLayoutFlags {
     @return 0 if the layout exists,
         <0 if index is beyond the limits
     ***********************************************************/
-    [CCode (cname="av_get_standard_channel_layout", cheader_filename="libavcodec/channel_layout.h")]
+    [CCode (cname="av_get_standard_channel_layout", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static int av_get_standard_channel_layout (
         uint index,
         out ChannelLayoutFlags layout,

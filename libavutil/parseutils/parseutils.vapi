@@ -41,7 +41,7 @@ level of log_ctx
 @param[in] log_ctx parent logging context
 @return >= 0 on success, a negative error code otherwise
 ***********************************************************/
-[CCode (cname="av_parse_ratio", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_parse_ratio", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_parse_ratio (
     Rational q,
     string str,
@@ -50,7 +50,7 @@ public int av_parse_ratio (
     void *log_ctx
 );
 
-[CCode (cname="av_parse_ratio_quiet", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_parse_ratio_quiet", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_parse_ratio_quiet (
     Rational rate,
     string str,
@@ -68,7 +68,7 @@ height value
 width x height or a valid video size abbreviation.
 @return >= 0 on success, a negative error code otherwise
 ***********************************************************/
-[CCode (cname="av_parse_video_size", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_parse_video_size", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_parse_video_size (
     out int* width_ptr,
     out int* height_ptr,
@@ -84,7 +84,7 @@ frame rate
 rate_num / rate_den, a float number or a valid video rate abbreviation
 @return >= 0 on success, a negative error code otherwise
 ***********************************************************/
-[CCode (cname="av_parse_video_rate", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_parse_video_rate", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_parse_video_rate (
     out Rational rate,
     string str
@@ -109,7 +109,7 @@ public int av_parse_video_rate (
 @return >= 0 in case of success, a negative value in case of
     failure (for example if color_string cannot be parsed).
 ***********************************************************/
-[CCode (cname="av_parse_color", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_parse_color", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_parse_color (
     out uint8 rgba_color,
     string color_string,
@@ -128,7 +128,7 @@ av_parse_color ().
 @param rgbp if not null, will point to a 3-elements array with the color value in RGB
 @return the color name string or null if color_idx is not in the array
 ***********************************************************/
-[CCode (cname="av_get_known_color_name", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_get_known_color_name", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public string av_get_known_color_name (
     int color_idx,
     out uint8[] rgb
@@ -166,7 +166,7 @@ zero timestr is interpreted as a duration, otherwise as a date
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code otherwise
 ***********************************************************/
-[CCode (cname="av_parse_time", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_parse_time", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_parse_time (
     out int64 timeval,
     string timestr,
@@ -179,7 +179,7 @@ public int av_parse_time (
 syntax: '?tag1=val1&tag2=val2...'. Little URL decoding is done.
 Return 1 if found.
 ***********************************************************/
-[CCode (cname="av_find_info_tag", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_find_info_tag", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_find_info_tag (
     string arg,
     int arg_size,
@@ -217,7 +217,7 @@ The supported input field descriptors are listed below.
     is consumed the return value points to the null byte at the end of
     the string. On failure null is returned.
 ***********************************************************/
-[CCode (cname="av_small_strptime", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_small_strptime", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public string av_small_strptime (
     string p,
     string fmt,
@@ -227,7 +227,7 @@ public string av_small_strptime (
 /***********************************************************
 @brief Convert the decomposed UTC time in tm to a time_t value.
 ***********************************************************/
-[CCode (cname="av_timegm", cheader_filename="libavcodec/parseutils.h")]
+[CCode (cname="av_timegm", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public time_t av_timegm (
     tm *tm
 );

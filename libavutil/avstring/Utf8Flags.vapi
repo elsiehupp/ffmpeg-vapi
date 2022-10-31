@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_UTF8_FLAG_", cheader_filename="libavcodec/avstring.h")]
+[CCode (cprefix="AV_UTF8_FLAG_", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public enum Utf8Flags {
     /***********************************************************
     @brief Accept codepoints over 0x10FFFF

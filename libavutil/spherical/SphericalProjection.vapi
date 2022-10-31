@@ -28,7 +28,7 @@ Spherical video
 /***********************************************************
 @brief Projection of the video surface (s) on a sphere.
 ***********************************************************/
-[CCode (cheader_filename="libavcodec/spherical.h")]
+[CCode (cheader_filename="ffmpeg/libavutil/spherical.h")]
 public enum SphericalProjection {
     /***********************************************************
     @brief Video represents a sphere mapped on a flat surface using

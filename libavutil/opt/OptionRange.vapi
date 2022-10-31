@@ -29,7 +29,7 @@ LibAVUtil.Options
 /***********************************************************
 @brief A single allowed range of values, or a single allowed value.
 ***********************************************************/
-[CCode (cname="struct AVOptionRange", cheader_filename="libavcodec/opt.h")]
+[CCode (cname="struct AVOptionRange", cheader_filename="ffmpeg/libavutil/opt.h")]
 public struct OptionRange {
     [CCode (cname="str")]
     public string str;

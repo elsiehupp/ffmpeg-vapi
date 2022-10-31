@@ -48,7 +48,7 @@ The application must make it available as CodecContext.hwaccel_context.
 
 Use av_d3d11va_alloc_context () exclusively to allocate an Direct3D11VideoAccelerationContext.
 ***********************************************************/
-[CCode (cname="struct AVD3D11VAContext", cheader_filename="libavcodec/d3d11va.h")]
+[CCode (cname="struct AVD3D11VAContext", cheader_filename="ffmpeg/libavcodec/d3d11va.h")]
 public struct Direct3D11VideoAccelerationContext {
     /***********************************************************
     @brief D3D11 decoder object
@@ -103,7 +103,7 @@ public struct Direct3D11VideoAccelerationContext {
 
     @return Newly-allocated Direct3D11VideoAccelerationContext or null on failure.
     ***********************************************************/
-    [CCode (cname="av_d3d11va_alloc_context", cheader_filename="libavcodec/d3d11va.h")]
+    [CCode (cname="av_d3d11va_alloc_context", cheader_filename="ffmpeg/libavcodec/d3d11va.h")]
     public Direct3D11VideoAccelerationContext av_d3d11va_alloc_context ();
 }
 

@@ -34,7 +34,7 @@ added in future.
 Describes a single DRM object, addressing it as a PRIME file
 descriptor.
 ***********************************************************/
-[CCode (cname="struct AVDRMObjectDescriptor", cheader_filename="libavcodec/hwcontext_drm.h")]
+[CCode (cname="struct AVDRMObjectDescriptor", cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
 public struct DRMObjectDescriptor {
     /***********************************************************
     @brief DRM PRIME fd for the object.

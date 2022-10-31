@@ -30,7 +30,7 @@ reference-counted frame API
 Flags describing additional frame properties.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/frame.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/frame.h")]
 public enum FrameFlags {
     /***********************************************************
     @brief The frame data may be corrupted, e.g. due to decoding errors.

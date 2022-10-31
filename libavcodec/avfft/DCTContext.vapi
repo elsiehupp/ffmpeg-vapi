@@ -33,7 +33,7 @@ FFT functions
 /***********************************************************
 @brief Discrete Cosine Transform
 ***********************************************************/
-[CCode (cname="struct DCTContext", cheader_filename="libavcodec/avfft.h")]
+[CCode (cname="struct DCTContext", cheader_filename="ffmpeg/libavcodec/avfft.h")]
 public struct DCTContext {
 
     /***********************************************************
@@ -46,19 +46,19 @@ public struct DCTContext {
 
     @note the first element of the input of DST-I is ignored
     ***********************************************************/
-    [CCode (cname="av_dct_init", cheader_filename="libavcodec/avfft.h")]
+    [CCode (cname="av_dct_init", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public DCTContext av_dct_init (
         int nbits,
         DCTTransformType type
     );
 
-    [CCode (cname="av_dct_calc", cheader_filename="libavcodec/avfft.h")]
+    [CCode (cname="av_dct_calc", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public void av_dct_calc (
         DCTContext dct_context,
         FFTSample data
     );
 
-    [CCode (cname="av_dct_end", cheader_filename="libavcodec/avfft.h")]
+    [CCode (cname="av_dct_end", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public void av_dct_end (
         DCTContext dct_context
     );

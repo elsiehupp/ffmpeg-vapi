@@ -31,7 +31,7 @@ LibAVCodec external API header
 @defgroup lavc_parsing Frame parsing
 ***********************************************************/
 
-[CCode (cname="struct AVCodecParserContext", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecParserContext", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct CodecParserContext {
     [CCode (cname="priv_data")]
     public void *priv_data;
@@ -100,7 +100,7 @@ public struct CodecParserContext {
     [CCode (cname="fetch_timestamp")]
     public int fetch_timestamp;
 
-    [CCode (cname="AV_PARSER_PTS_NB", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="AV_PARSER_PTS_NB", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public const int AV_PARSER_PTS_NB;
 
     [CCode (cname="cur_frame_start_index")]
@@ -264,7 +264,7 @@ public struct CodecParserContext {
     [CCode (cname="format")]
     public int format;
 
-    [CCode (cname="av_parser_init", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_parser_init", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecParserContext av_parser_init (
         int codec_id
     );
@@ -300,7 +300,7 @@ public struct CodecParserContext {
     }
     @endcode
     ***********************************************************/
-    [CCode (cname="av_parser_parse2", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_parser_parse2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_parser_parse2 (
         CodecParserContext s,
         CodecContext avctx,
@@ -310,7 +310,7 @@ public struct CodecParserContext {
         int64 pos
     );
 
-    [CCode (cname="av_parser_close", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_parser_close", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_parser_close (
         CodecParserContext s
     );

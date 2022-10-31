@@ -30,7 +30,7 @@ For user-allocated pools, HardwareFrameContext.pool must return LibAVUtil.Buffer
 with the data pointer set to a VASurfaceID.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/hwcontext_vaapi.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/hwcontext_vaapi.h")]
 public enum VAAPIDriverQuirk {
     /***********************************************************
     @brief The quirks field has been set by the user and should not be detected

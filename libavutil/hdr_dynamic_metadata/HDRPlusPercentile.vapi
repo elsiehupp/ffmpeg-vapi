@@ -24,7 +24,7 @@ namespace LibAVUtil {
 @brief Represents the percentile at a specific percentage in
 a distribution.
 ***********************************************************/
-[CCode (cname="struct AVHDRPlusPercentile", cheader_filename="libavcodec/hdr_dynamic_metadata.h")]
+[CCode (cname="struct AVHDRPlusPercentile", cheader_filename="ffmpeg/libavutil/hdr_dynamic_metadata.h")]
 public struct HDRPlusPercentile {
     /***********************************************************
     @brief The percentage value corresponding to a specific percentile linearized

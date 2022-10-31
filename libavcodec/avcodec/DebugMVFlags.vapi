@@ -29,7 +29,7 @@ LibAVCodec external API header
 
 #if FF_API_DEBUG_MV
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum DebugMVFlags {
     /***********************************************************
     @brief Visualize forward predicted MVs of P-frames

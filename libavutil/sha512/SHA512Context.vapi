@@ -42,15 +42,15 @@ This module supports the following SHA-2 hash functions:
 @see For SHA-1, SHA-256, and variants thereof, see @link lavu_sha.
 ***********************************************************/
 
-[CCode (cname="struct AVSHA512", cheader_filename="libavcodec/sha512.h")]
+[CCode (cname="struct AVSHA512", cheader_filename="ffmpeg/libavutil/sha512.h")]
 public struct SHA512Context {
-    [CCode (cname="av_sha512_size", cheader_filename="libavcodec/sha512.h")]
+    [CCode (cname="av_sha512_size", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public const size_t SIZE;
 
     /***********************************************************
     @brief Allocate an SHA512Context context.
     ***********************************************************/
-    [CCode (cname="av_sha512_alloc", cheader_filename="libavcodec/sha512.h")]
+    [CCode (cname="av_sha512_alloc", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public SHA512Context av_sha512_alloc ();
 
     /***********************************************************
@@ -60,7 +60,7 @@ public struct SHA512Context {
     @param bits number of bits in digest (224, 256, 384 or 512 bits)
     @return zero if initialization succeeded, -1 otherwise
     ***********************************************************/
-    [CCode (cname="av_sha512_init", cheader_filename="libavcodec/sha512.h")]
+    [CCode (cname="av_sha512_init", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public int av_sha512_init (
         SHA512Context context,
         int bits
@@ -74,14 +74,14 @@ public struct SHA512Context {
     @param len input data length
     ***********************************************************/
     #if FF_API_CRYPTO_SIZE_T
-    [CCode (cname="av_sha512_update", cheader_filename="libavcodec/sha512.h")]
+    [CCode (cname="av_sha512_update", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public void av_sha512_update (
         SHA512Context context,
         uint8[] data,
         uint len
     );
     #else
-    [CCode (cname="av_sha512_update", cheader_filename="libavcodec/sha512.h")]
+    [CCode (cname="av_sha512_update", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public void av_sha512_update (
         SHA512Context context,
         uint8[] data,
@@ -95,7 +95,7 @@ public struct SHA512Context {
     @param context hash function context
     @param digest buffer where output digest value is stored
     ***********************************************************/
-    [CCode (cname="av_sha512_final", cheader_filename="libavcodec/sha512.h")]
+    [CCode (cname="av_sha512_final", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public void av_sha512_final (
         SHA512Context context,
         uint8[] digest

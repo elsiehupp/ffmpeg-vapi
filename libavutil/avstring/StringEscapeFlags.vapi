@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_ESCAPE_FLAG_", cheader_filename="libavcodec/avstring.h")]
+[CCode (cprefix="AV_ESCAPE_FLAG_", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public enum StringEscapeFlags {
     /***********************************************************
     @brief Consider spaces special and escape them even in the middle of the

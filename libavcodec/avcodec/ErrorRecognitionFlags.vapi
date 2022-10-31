@@ -34,7 +34,7 @@ If AV_EF_EXPLODE is also set, a mismatching checksum will result in the
 decoder returning an error.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum ErrorRecognitionFlags {
     AV_EF_CRCCHECK,
     /***********************************************************

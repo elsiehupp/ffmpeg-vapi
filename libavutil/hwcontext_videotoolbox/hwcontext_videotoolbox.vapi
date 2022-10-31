@@ -36,7 +36,7 @@ null.
 @brief Convert a VideoToolbox (actually CoreVideo) format to PixelFormat.
 Returns PixelFormat.NONE if no known equivalent was found.
 ***********************************************************/
-[CCode (cname="av_map_videotoolbox_format_to_pixfmt", cheader_filename="libavcodec/hwcontext_videotoolbox.h")]
+[CCode (cname="av_map_videotoolbox_format_to_pixfmt", cheader_filename="ffmpeg/libavutil/hwcontext_videotoolbox.h")]
 public PixelFormat av_map_videotoolbox_format_to_pixfmt (
     uint32 cv_fmt
 );
@@ -45,7 +45,7 @@ public PixelFormat av_map_videotoolbox_format_to_pixfmt (
 @brief Convert an PixelFormat to a VideoToolbox (actually CoreVideo) format.
 Returns 0 if no known equivalent was found.
 ***********************************************************/
-[CCode (cname="av_map_videotoolbox_format_from_pixfmt", cheader_filename="libavcodec/hwcontext_videotoolbox.h")]
+[CCode (cname="av_map_videotoolbox_format_from_pixfmt", cheader_filename="ffmpeg/libavutil/hwcontext_videotoolbox.h")]
 public uint32 av_map_videotoolbox_format_from_pixfmt (
     PixelFormat pixel_format
 );

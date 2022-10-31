@@ -39,7 +39,7 @@ audio downmix medatata
 All fields are set by the decoder to the value indicated in the audio
 bitstream (if present), or to a "sane" default otherwise.
 ***********************************************************/
-[CCode (cname="struct AVDownmixInfo", cheader_filename="libavcodec/downmix_info.h")]
+[CCode (cname="struct AVDownmixInfo", cheader_filename="ffmpeg/libavutil/downmix_info.h")]
 public struct DownMixInfo {
     /***********************************************************
     @brief Type of downmix preferred by the mastering engineer.
@@ -93,7 +93,7 @@ public struct DownMixInfo {
     @return the DownMixInfo structure to be edited by the caller, or null if
             the structure cannot be allocated.
     ***********************************************************/
-    [CCode (cname="av_downmix_info_update_side_data", cheader_filename="libavcodec/downmix_info.h")]
+    [CCode (cname="av_downmix_info_update_side_data", cheader_filename="ffmpeg/libavutil/downmix_info.h")]
     public DownMixInfo av_downmix_info_update_side_data (
         Frame frame
     );

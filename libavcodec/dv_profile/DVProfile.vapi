@@ -23,7 +23,7 @@ using LibAVUtil;
 @brief Minimum number of bytes to read from a DV stream in order to
 determine the profile (6 DIF blocks)
 ***********************************************************/
-[CCode (cname="DV_PROFILE_BYTES", cheader_filename="libavcodec/dv_profile.h")]
+[CCode (cname="DV_PROFILE_BYTES", cheader_filename="ffmpeg/libavcodec/dv_profile.h")]
 public const size_t DV_PROFILE_BYTES;
 
 /***********************************************************
@@ -32,7 +32,7 @@ DV flavors. For now it's primarily used for differentiating
 525/60 and 625/50, but the plans are to use it for various
 DV specs as well (e.g. SMPTE314M vs. IEC 61834).
 ***********************************************************/
-[CCode (cname="struct DVProfile", cheader_filename="libavcodec/dv_profile.h")]
+[CCode (cname="struct DVProfile", cheader_filename="ffmpeg/libavcodec/dv_profile.h")]
 public struct DVProfile {
     /***********************************************************
     @brief Value of the dsf in the DV header
@@ -144,7 +144,7 @@ public struct DVProfile {
     @param buf_size size of the buffer in bytes
     @return the DV profile for the supplied data or null on failure
     ***********************************************************/
-    [CCode (cname="av_dv_frame_profile", cheader_filename="libavcodec/dv_profile.h")]
+    [CCode (cname="av_dv_frame_profile", cheader_filename="ffmpeg/libavcodec/dv_profile.h")]
     public DVProfile av_dv_frame_profile (
         DVProfile sys,
         uint8[] frame,
@@ -154,7 +154,7 @@ public struct DVProfile {
     /***********************************************************
     @brief Get a DV profile for the provided stream parameters.
     ***********************************************************/
-    [CCode (cname="av_dv_codec_profile", cheader_filename="libavcodec/dv_profile.h")]
+    [CCode (cname="av_dv_codec_profile", cheader_filename="ffmpeg/libavcodec/dv_profile.h")]
     public DVProfile av_dv_codec_profile (
         int width,
         int height,
@@ -165,7 +165,7 @@ public struct DVProfile {
     @brief Get a DV profile for the provided stream parameters.
     The frame rate is used as a best-effort parameter.
     ***********************************************************/
-    [CCode (cname="av_dv_codec_profile2", cheader_filename="libavcodec/dv_profile.h")]
+    [CCode (cname="av_dv_codec_profile2", cheader_filename="ffmpeg/libavcodec/dv_profile.h")]
     public DVProfile av_dv_codec_profile2 (
         int width,
         int height,

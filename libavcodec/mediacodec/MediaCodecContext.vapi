@@ -27,7 +27,7 @@ using LibAVUtil;
 @brief This structure holds a reference to a android/view/Surface object that will
 be used as output by the decoder.
 ***********************************************************/
-[CCode (cname="struct AVMediaCodecContext", cheader_filename="libavcodec/mediacodec.h")]
+[CCode (cname="struct AVMediaCodecContext", cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
 public struct LibAVCodec.MediaCodecContext {
     /***********************************************************
     @brief Android/view/Surface object reference.
@@ -44,7 +44,7 @@ MediaCodec context with av_mediacodec_default_free.
 
 @return a pointer to a newly allocated LibAVCodec.MediaCodecContext on success, null otherwise
 ***********************************************************/
-[CCode (cname="av_mediacodec_alloc_context", cheader_filename="libavcodec/mediacodec.h")]
+[CCode (cname="av_mediacodec_alloc_context", cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
 public LibAVCodec.MediaCodecContext av_mediacodec_alloc_context ();
 
 /***********************************************************
@@ -55,7 +55,7 @@ public LibAVCodec.MediaCodecContext av_mediacodec_alloc_context ();
 @param surface reference to an android/view/Surface
 @return 0 on success, < 0 otherwise
 ***********************************************************/
-[CCode (cname="av_mediacodec_default_init", cheader_filename="libavcodec/mediacodec.h")]
+[CCode (cname="av_mediacodec_default_init", cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
 public int av_mediacodec_default_init (
     CodecContext avctx,
     LibAVCodec.MediaCodecContext media_codec_context,
@@ -68,7 +68,7 @@ av_mediacodec_default_init ().
 
 @param avctx codec context
 ***********************************************************/
-[CCode (cname="av_mediacodec_default_free", cheader_filename="libavcodec/mediacodec.h")]
+[CCode (cname="av_mediacodec_default_free", cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
 public void av_mediacodec_default_free (
     CodecContext avctx
 );

@@ -36,7 +36,7 @@ public delegate double TwoArgumentDelegate (
     double arg2
 );
 
-[CCode (cname="struct AVExpr", cheader_filename="libavcodec/eval.h")]
+[CCode (cname="struct AVExpr", cheader_filename="ffmpeg/libavutil/eval.h")]
 public struct Expression {
 
     /***********************************************************
@@ -57,7 +57,7 @@ public struct Expression {
     @return >= 0 in case of success, a negative value corresponding to an
     LibAVUtil.ErrorCode code otherwise
     ***********************************************************/
-    [CCode (cname="av_expr_parse_and_eval", cheader_filename="libavcodec/eval.h")]
+    [CCode (cname="av_expr_parse_and_eval", cheader_filename="ffmpeg/libavutil/eval.h")]
     public int av_expr_parse_and_eval (
         out double res,
         string s,
@@ -89,7 +89,7 @@ public struct Expression {
     @return >= 0 in case of success, a negative value corresponding to an
     LibAVUtil.ErrorCode code otherwise
     ***********************************************************/
-    [CCode (cname="av_expr_parse", cheader_filename="libavcodec/eval.h")]
+    [CCode (cname="av_expr_parse", cheader_filename="ffmpeg/libavutil/eval.h")]
     public int av_expr_parse (
         Expression expr,
         string s,
@@ -107,7 +107,7 @@ public struct Expression {
     @param opaque a pointer which will be passed to all functions from funcs1 and funcs2
     @return the value of the expression
     ***********************************************************/
-    [CCode (cname="av_expr_eval", cheader_filename="libavcodec/eval.h")]
+    [CCode (cname="av_expr_eval", cheader_filename="ffmpeg/libavutil/eval.h")]
     public double av_expr_eval (
         Expression e,
         double const_values,
@@ -117,7 +117,7 @@ public struct Expression {
     /***********************************************************
     @brief Free a parsed expression previously created with av_expr_parse ().
     ***********************************************************/
-    [CCode (cname="av_expr_free", cheader_filename="libavcodec/eval.h")]
+    [CCode (cname="av_expr_free", cheader_filename="ffmpeg/libavutil/eval.h")]
     public void av_expr_free (
         Expression e
     );
@@ -139,7 +139,7 @@ public struct Expression {
     @param tail if non-null puts here the pointer to the char next
     after the last parsed character
     ***********************************************************/
-    [CCode (cname="av_strtod", cheader_filename="libavcodec/eval.h")]
+    [CCode (cname="av_strtod", cheader_filename="ffmpeg/libavutil/eval.h")]
     public double av_strtod (
         string numstr,
         out char[] tail

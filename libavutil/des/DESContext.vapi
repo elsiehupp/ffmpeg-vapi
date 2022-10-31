@@ -25,7 +25,7 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_des DES
 ***********************************************************/
 
-[CCode (cname="struct AVDES", cheader_filename="libavcodec/des.h")]
+[CCode (cname="struct AVDES", cheader_filename="ffmpeg/libavutil/des.h")]
 public struct DESContext {
     [CCode (cname="round_keys")]
     public uint64 round_keys[3 * 16];
@@ -35,7 +35,7 @@ public struct DESContext {
     /***********************************************************
     @brief Allocate an DESContext context.
     ***********************************************************/
-    [CCode (cname="av_des_alloc", cheader_filename="libavcodec/des.h")]
+    [CCode (cname="av_des_alloc", cheader_filename="ffmpeg/libavutil/des.h")]
     public DESContext av_des_alloc ();
 
     /***********************************************************
@@ -45,7 +45,7 @@ public struct DESContext {
     @param decrypt 0 for encryption/CBC-MAC, 1 for decryption
     @return zero on success, negative value otherwise
     ***********************************************************/
-    [CCode (cname="av_des_init", cheader_filename="libavcodec/des.h")]
+    [CCode (cname="av_des_init", cheader_filename="ffmpeg/libavutil/des.h")]
     public int av_des_init (
         DESContext d,
         uint8[] key,
@@ -63,7 +63,7 @@ public struct DESContext {
         must be 8-byte aligned
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_des_crypt", cheader_filename="libavcodec/des.h")]
+    [CCode (cname="av_des_crypt", cheader_filename="ffmpeg/libavutil/des.h")]
     public void av_des_crypt (
         DESContext d,
         out uint8[] output_buffer,
@@ -80,7 +80,7 @@ public struct DESContext {
     @param output_buffer destination array, can be equal to input_buffer, must be 8-byte aligned
     @param input_buffer source array, can be equal to output_buffer, must be 8-byte aligned, may be null
     ***********************************************************/
-    [CCode (cname="av_des_mac", cheader_filename="libavcodec/des.h")]
+    [CCode (cname="av_des_mac", cheader_filename="ffmpeg/libavutil/des.h")]
     public void av_des_mac (
         DESContext d,
         out uint8[] output_buffer,

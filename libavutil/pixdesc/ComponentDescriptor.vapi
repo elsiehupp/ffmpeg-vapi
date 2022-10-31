@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cname="struct AVComponentDescriptor", cheader_filename="libavcodec/pixdesc.h")]
+[CCode (cname="struct AVComponentDescriptor", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
 public struct ComponentDescriptor {
     /***********************************************************
     @brief Which of the 4 planes contains the component.

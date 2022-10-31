@@ -2,7 +2,7 @@
 /***********************************************************
 @brief List of possible 3D Types
 ***********************************************************/
-[CCode (cheader_filename="libavcodec/stereo3d.h")]
+[CCode (cheader_filename="ffmpeg/libavutil/stereo3d.h")]
 public enum Stereo3DType {
     /***********************************************************
     @brief Video is not stereoscopic (and metadata has to be there).

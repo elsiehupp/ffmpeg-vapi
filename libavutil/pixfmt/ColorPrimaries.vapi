@@ -24,7 +24,7 @@ namespace LibAVUtil {
 @brief Chromaticity coordinates of the source primaries.
 These values match the ones defined by ISO/IEC 23001-8_2013 § 7.1.
 ***********************************************************/
-[CCode (cprefix="AVCOL_PRI_", cheader_filename="libavcodec/pixfmt.h")]
+[CCode (cprefix="AVCOL_PRI_", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
 public enum ColorPrimaries {
     RESERVED0,
     /***********************************************************
@@ -86,7 +86,7 @@ public enum ColorPrimaries {
     /***********************************************************
     @return the name for provided color primaries or null if unknown.
     ***********************************************************/
-    [CCode (cname="av_color_primaries_name", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_color_primaries_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static string av_color_primaries_name (
         ColorPrimaries primaries
     );
@@ -94,7 +94,7 @@ public enum ColorPrimaries {
     /***********************************************************
     @return the ColorPrimaries value for name or an ErrorCode if not found.
     ***********************************************************/
-    [CCode (cname="av_color_primaries_from_name", cheader_filename="libavcodec/pixdesc.h")]
+    [CCode (cname="av_color_primaries_from_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static ColorPrimaries av_color_primaries_from_name (
         string name
     );

@@ -34,7 +34,7 @@ sizeof (CodecParameters) is not a part of the public ABI, this struct must
 be allocated with avcodec_parameters_alloc () and freed with
 avcodec_parameters_free ().
 ***********************************************************/
-[CCode (cname="struct AVCodecParameters", cheader_filename="libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecParameters", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public struct CodecParameters {
     /***********************************************************
     @brief General type of the encoded data.
@@ -253,14 +253,14 @@ public struct CodecParameters {
     (unknown/invalid/0). The returned struct must be freed with
     avcodec_parameters_free ().
     ***********************************************************/
-    [CCode (cname="avcodec_parameters_alloc", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_parameters_alloc", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecParameters avcodec_parameters_alloc ();
 
     /***********************************************************
     @brief Free an CodecParameters instance and everything associated with it and
     write null to the supplied pointer.
     ***********************************************************/
-    [CCode (cname="avcodec_parameters_free", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_parameters_free", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_parameters_free (
         CodecParameters par
     );
@@ -271,7 +271,7 @@ public struct CodecParameters {
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode code on failure.
     ***********************************************************/
-    [CCode (cname="avcodec_parameters_copy", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_parameters_copy", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_parameters_copy (
         CodecParameters output_parameters,
         CodecParameters input_parameters
@@ -284,7 +284,7 @@ public struct CodecParameters {
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode code on failure
     ***********************************************************/
-    [CCode (cname="avcodec_parameters_from_context", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_parameters_from_context", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_parameters_from_context (
         CodecParameters par,
         CodecContext codec
@@ -298,7 +298,7 @@ public struct CodecParameters {
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode code on failure.
     ***********************************************************/
-    [CCode (cname="avcodec_parameters_to_context", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_parameters_to_context", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_parameters_to_context (
         CodecContext codec,
         CodecParameters par
@@ -308,7 +308,7 @@ public struct CodecParameters {
     @brief This function is the same as av_get_audio_frame_duration (), except it works
     with CodecParameters instead of an CodecContext.
     ***********************************************************/
-    [CCode (cname="av_get_audio_frame_duration2", cheader_filename="libavcodec/avcodec.h")]
+    [CCode (cname="av_get_audio_frame_duration2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_get_audio_frame_duration2 (
         CodecParameters par,
         int frame_bytes

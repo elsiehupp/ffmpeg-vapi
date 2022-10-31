@@ -35,7 +35,7 @@ namespace Base64 {
 @return number of bytes written, or a negative value in case of
     invalid input
 ***********************************************************/
-[CCode (cname="av_base64_decode", cheader_filename="libavcodec/base64.h")]
+[CCode (cname="av_base64_decode", cheader_filename="ffmpeg/libavutil/base64.h")]
 public int av_base64_decode (
     out uint8[] output_buffer,
     string input_buffer,
@@ -58,7 +58,7 @@ with length x to a data buffer.
 @param input_size size in bytes of the in buffer
 @return output_buffer or null in case of error
 ***********************************************************/
-[CCode (cname="av_base64_encode", cheader_filename="libavcodec/base64.h")]
+[CCode (cname="av_base64_encode", cheader_filename="ffmpeg/libavutil/base64.h")]
 public string av_base64_encode (
     out string output_buffer,
     out int output_size,

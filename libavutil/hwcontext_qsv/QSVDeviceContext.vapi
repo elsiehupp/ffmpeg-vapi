@@ -29,7 +29,7 @@ contain LibAVUtil.BufferRef(s) whose data pointer points to an mfxFrameSurface1 
 /***********************************************************
 @brief This struct is allocated as HardwareDeviceContext.hwctx
 ***********************************************************/
-[CCode (cname="struct AVQSVDeviceContext", cheader_filename="libavcodec/hwcontext_qsv.h")]
+[CCode (cname="struct AVQSVDeviceContext", cheader_filename="ffmpeg/libavutil/hwcontext_qsv.h")]
 public class QSVDeviceContext : AbstractHardwareContext {
     [CCode (cname="session")]
     public mfxSession session;

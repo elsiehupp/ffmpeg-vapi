@@ -67,21 +67,21 @@ Macros and function useful to check at compiletime and at runtime
 which version of libavutil is in use.
 ***********************************************************/
 
-[CCode (cname="LIBAVUTIL_VERSION_MAJOR", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVUTIL_VERSION_MAJOR", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int LIBAVUTIL_VERSION_MAJOR;
-[CCode (cname="LIBAVUTIL_VERSION_MINOR", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVUTIL_VERSION_MINOR", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int LIBAVUTIL_VERSION_MINOR;
-[CCode (cname="LIBAVUTIL_VERSION_MICRO", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVUTIL_VERSION_MICRO", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int LIBAVUTIL_VERSION_MICRO;
 
-[CCode (cname="LIBAVUTIL_VERSION_INT", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVUTIL_VERSION_INT", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int LIBAVUTIL_VERSION_INT;
-[CCode (cname="LIBAVUTIL_VERSION", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVUTIL_VERSION", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int LIBAVUTIL_VERSION;
-[CCode (cname="LIBAVUTIL_BUILD", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVUTIL_BUILD", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int LIBAVUTIL_BUILD;
 
-[CCode (cname="LIBAVUTIL_IDENT", cheader_filename="libavcodec/version.h")]
+[CCode (cname="LIBAVUTIL_IDENT", cheader_filename="ffmpeg/libavutil/version.h")]
 public const string LIBAVUTIL_IDENT;
 
 /***********************************************************
@@ -96,35 +96,35 @@ at once through the bump. This improves the git bisect-ability of the change.
 ***********************************************************/
 
 #if !FF_API_VAAPI
-[CCode (cname="FF_API_VAAPI", cheader_filename="libavcodec/version.h")]
+[CCode (cname="FF_API_VAAPI", cheader_filename="ffmpeg/libavutil/version.h")]
 public const bool FF_API_VAAPI;
 #endif
 #if !FF_API_FRAME_QP
-[CCode (cname="FF_API_FRAME_QP", cheader_filename="libavcodec/version.h")]
+[CCode (cname="FF_API_FRAME_QP", cheader_filename="ffmpeg/libavutil/version.h")]
 public const bool FF_API_FRAME_QP;
 #endif
 #if !FF_API_PLUS1_MINUS1
-[CCode (cname="FF_API_PLUS1_MINUS1", cheader_filename="libavcodec/version.h")]
+[CCode (cname="FF_API_PLUS1_MINUS1", cheader_filename="ffmpeg/libavutil/version.h")]
 public const bool FF_API_PLUS1_MINUS1;
 #endif
 #if !FF_API_ERROR_FRAME
-[CCode (cname="FF_API_ERROR_FRAME", cheader_filename="libavcodec/version.h")]
+[CCode (cname="FF_API_ERROR_FRAME", cheader_filename="ffmpeg/libavutil/version.h")]
 public const bool FF_API_ERROR_FRAME;
 #endif
 #if !FF_API_PKT_PTS
-[CCode (cname="FF_API_PKT_PTS", cheader_filename="libavcodec/version.h")]
+[CCode (cname="FF_API_PKT_PTS", cheader_filename="ffmpeg/libavutil/version.h")]
 public const bool FF_API_PKT_PTS;
 #endif
 #if !FF_API_CRYPTO_SIZE_T
-[CCode (cname="FF_API_CRYPTO_SIZE_T", cheader_filename="libavcodec/version.h")]
+[CCode (cname="FF_API_CRYPTO_SIZE_T", cheader_filename="ffmpeg/libavutil/version.h")]
 public const bool FF_API_CRYPTO_SIZE_T;
 #endif
 #if !FF_API_FRAME_GET_SET
-[CCode (cname="FF_API_FRAME_GET_SET", cheader_filename="libavcodec/version.h")]
+[CCode (cname="FF_API_FRAME_GET_SET", cheader_filename="ffmpeg/libavutil/version.h")]
 public const bool FF_API_FRAME_GET_SET;
 #endif
 #if !FF_API_PSEUDOPAL
-[CCode (cname="FF_API_PSEUDOPAL", cheader_filename="libavcodec/version.h")]
+[CCode (cname="FF_API_PSEUDOPAL", cheader_filename="ffmpeg/libavutil/version.h")]
 public const bool FF_API_PSEUDOPAL;
 #endif
 

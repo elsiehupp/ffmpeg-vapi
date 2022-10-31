@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cprefix="AV_ESCAPE_MODE_", cheader_filename="libavcodec/avstring.h")]
+[CCode (cprefix="AV_ESCAPE_MODE_", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public enum StringEscapeMode {
     /***********************************************************
     @brief Use auto-selected escaping mode.

@@ -31,7 +31,7 @@ with the data pointer set to a pointer to IDirect3DSurface9.
 /***********************************************************
 @brief This struct is allocated as HardwareFrameContext.hwctx
 ***********************************************************/
-[CCode (cname="struct AVDXVA2FramesContext", cheader_filename="libavcodec/hwcontext_dxva2.h")]
+[CCode (cname="struct AVDXVA2FramesContext", cheader_filename="ffmpeg/libavutil/hwcontext_dxva2.h")]
 public class DXVA2FrameContext : AbstractHardwareContext {
     /***********************************************************
     @brief The surface type (e.g. DXVA2_VideoProcessorRenderTarget or

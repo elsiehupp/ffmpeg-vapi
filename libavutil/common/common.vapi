@@ -85,12 +85,12 @@ must not have a side-effect.
 
 /* misc math functions */
 
-[CCode (cname="av_log2", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_log2", cheader_filename="ffmpeg/libavutil/common.h")]
 public int av_log2 (
     uint v
 );
 
-[CCode (cname="av_log2_16bit", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_log2_16bit", cheader_filename="ffmpeg/libavutil/common.h")]
 public int av_log2_16bit (
     uint v
 );
@@ -102,7 +102,7 @@ public int av_log2_16bit (
 @param amax maximum value of the clip range
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clip_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clip_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_clip_c (
     int a,
     int amin,
@@ -116,7 +116,7 @@ public static int av_clip_c (
 @param amax maximum value of the clip range
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clip64_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clip64_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int64 av_clip64_c (
     int64 a,
     int64 amin,
@@ -128,7 +128,7 @@ public static int64 av_clip64_c (
 @param a value to clip
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clip_uint8_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clip_uint8_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static uint8 av_clip_uint8_c (
     int a
 );
@@ -138,7 +138,7 @@ public static uint8 av_clip_uint8_c (
 @param a value to clip
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clip_int8_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clip_int8_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int8 av_clip_int8_c (
     int a
 );
@@ -148,7 +148,7 @@ public static int8 av_clip_int8_c (
 @param a value to clip
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clip_uint16_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clip_uint16_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static uint16 av_clip_uint16_c (
     int a
 );
@@ -158,7 +158,7 @@ public static uint16 av_clip_uint16_c (
 @param a value to clip
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clip_int16_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clip_int16_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int16 av_clip_int16_c (
     int a
 );
@@ -168,7 +168,7 @@ public static int16 av_clip_int16_c (
 @param a value to clip
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clipl_int32_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clipl_int32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int32 av_clipl_int32_c (
     int64 a
 );
@@ -179,7 +179,7 @@ public static int32 av_clipl_int32_c (
 @param p bit position to clip at
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clip_intp2_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clip_intp2_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_clip_intp2_c (
     int a,
     int p
@@ -191,7 +191,7 @@ public static int av_clip_intp2_c (
 @param p bit position to clip at
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clip_uintp2_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clip_uintp2_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static uint av_clip_uintp2_c (
     int a,
     int p
@@ -203,7 +203,7 @@ public static uint av_clip_uintp2_c (
 @param p bit position to clip at
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_mod_uintp2_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_mod_uintp2_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static uint av_mod_uintp2_c (
     uint a,
     uint p
@@ -216,7 +216,7 @@ public static uint av_mod_uintp2_c (
 @param b another value
 @return sum with signed saturation
 ***********************************************************/
-[CCode (cname="av_sat_add32_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_sat_add32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_sat_add32_c (
     int a,
     int b
@@ -229,7 +229,7 @@ public static int av_sat_add32_c (
 @param b value doubled and added to a
 @return sum sat (a + sat (2*b)) with signed saturation
 ***********************************************************/
-[CCode (cname="av_sat_dadd32_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_sat_dadd32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_sat_dadd32_c (
     int a,
     int b
@@ -242,7 +242,7 @@ public static int av_sat_dadd32_c (
 @param b another value
 @return difference with signed saturation
 ***********************************************************/
-[CCode (cname="av_sat_sub32_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_sat_sub32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_sat_sub32_c (
     int a,
     int b
@@ -255,7 +255,7 @@ public static int av_sat_sub32_c (
 @param b value doubled and subtracted from a
 @return difference sat (a - sat (2*b)) with signed saturation
 ***********************************************************/
-[CCode (cname="av_sat_dsub32_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_sat_dsub32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_sat_dsub32_c (
     int a,
     int b
@@ -268,7 +268,7 @@ public static int av_sat_dsub32_c (
 @param amax maximum value of the clip range
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clipf_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clipf_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static float av_clipf_c (
     float a,
     float amin,
@@ -282,7 +282,7 @@ public static float av_clipf_c (
 @param amax maximum value of the clip range
 @return clipped value
 ***********************************************************/
-[CCode (cname="av_clipd_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_clipd_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static double av_clipd_c (
     double a,
     double amin,
@@ -294,7 +294,7 @@ public static double av_clipd_c (
 @param x value used to compute ceil (log2 (x))
 @return computed ceiling of log2 (x)
 ***********************************************************/
-[CCode (cname="av_ceil_log2_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_ceil_log2_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_ceil_log2_c (
     int x
 );
@@ -304,7 +304,7 @@ public static int av_ceil_log2_c (
 @param x value to count bits of
 @return the number of bits set to one in x
 ***********************************************************/
-[CCode (cname="av_popcount_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_popcount_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_popcount_c (
     uint32 x
 );
@@ -314,12 +314,12 @@ public static int av_popcount_c (
 @param x value to count bits of
 @return the number of bits set to one in x
 ***********************************************************/
-[CCode (cname="av_popcount64_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_popcount64_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_popcount64_c (
     uint64 x
 );
 
-[CCode (cname="av_parity_c", cheader_filename="libavcodec/common.h")]
+[CCode (cname="av_parity_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_parity_c (
     uint32 v
 );

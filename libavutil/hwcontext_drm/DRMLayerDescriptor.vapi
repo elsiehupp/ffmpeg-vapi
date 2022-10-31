@@ -34,7 +34,7 @@ added in future.
 Describes a single layer within a frame. This has the structure
 defined by its format, and will contain one or more planes.
 ***********************************************************/
-[CCode (cname="struct AVDRMLayerDescriptor", cheader_filename="libavcodec/hwcontext_drm.h")]
+[CCode (cname="struct AVDRMLayerDescriptor", cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
 public struct DRMLayerDescriptor {
     /***********************************************************
     @brief Format of the layer (DRM_FORMAT_*).
@@ -59,7 +59,7 @@ public struct DRMLayerDescriptor {
     /***********************************************************
     @brief The maximum number of layers/planes in a DRM frame.
     ***********************************************************/
-    [CCode (cname="AV_DRM_MAX_PLANES", cheader_filename="libavcodec/hwcontext_drm.h")]
+    [CCode (cname="AV_DRM_MAX_PLANES", cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
     public const size_t MAX_PLANE_COUNT;
 
 }

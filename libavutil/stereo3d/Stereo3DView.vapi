@@ -2,7 +2,7 @@
 /***********************************************************
 @brief List of possible view types.
 ***********************************************************/
-[CCode (cprefix="AV_STEREO3D_VIEW_", cheader_filename="libavcodec/stereo3d.h")]
+[CCode (cprefix="AV_STEREO3D_VIEW_", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
 public enum Stereo3DView {
     /***********************************************************
     @brief Frame contains two packed views.

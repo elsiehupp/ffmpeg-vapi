@@ -26,7 +26,7 @@ namespace LibAVUtil {
 Public header for CRC hash function implementation.
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="libavcodec/crc.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/crc.h")]
 public enum CRCIdentifier {
     AV_CRC_8_ATM,
     AV_CRC_16_ANSI,

@@ -29,7 +29,7 @@ LibAVUtil.BufferRef(s) whose data pointer is a VdpVideoSurface.
 /***********************************************************
 @brief This struct is allocated as HardwareDeviceContext.hwctx
 ***********************************************************/
-[CCode (cname="struct AVVDPAUDeviceContext", cheader_filename="libavcodec/hwcontext_vdpau.h")]
+[CCode (cname="struct AVVDPAUDeviceContext", cheader_filename="ffmpeg/libavutil/hwcontext_vdpau.h")]
 public class VDPAUDeviceContext : AbstractHardwareContext {
     [CCode (cname="device")]
     public VdpDevice device;

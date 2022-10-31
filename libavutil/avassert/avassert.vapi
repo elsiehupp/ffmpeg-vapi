@@ -63,7 +63,7 @@ These asserts () thus can be enabled without fearing speed loss.
 
 This will av_assert0 () that the cpu is not in MMX state on X86
 ***********************************************************/
-[CCode (cname="av_assert0_fpu", cheader_filename="libavcodec/avassert.h")]
+[CCode (cname="av_assert0_fpu", cheader_filename="ffmpeg/libavutil/avassert.h")]
 public void av_assert0_fpu ();
 
 } // namespace LibAVUtil

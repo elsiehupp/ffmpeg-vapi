@@ -24,14 +24,14 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_hmac HMAC
 ***********************************************************/
 
-[CCode (cname="struct AVHMAC", cheader_filename="libavcodec/hmac.h")]
+[CCode (cname="struct AVHMAC", cheader_filename="ffmpeg/libavutil/hmac.h")]
 public struct HMACContext {
 
     /***********************************************************
     @brief Allocate an HMACContext context.
     @param type The hash function used for the HMAC.
     ***********************************************************/
-    [CCode (cname="av_hmac_alloc", cheader_filename="libavcodec/hmac.h")]
+    [CCode (cname="av_hmac_alloc", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public HMACContext av_hmac_alloc (
         HMACType type
     );
@@ -40,7 +40,7 @@ public struct HMACContext {
     @brief Free an HMACContext context.
     @param hmac_context The context to free, may be null
     ***********************************************************/
-    [CCode (cname="av_hmac_free", cheader_filename="libavcodec/hmac.h")]
+    [CCode (cname="av_hmac_free", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public void av_hmac_free (
         HMACContext hmac_context
     );
@@ -51,7 +51,7 @@ public struct HMACContext {
     @param key The authentication key
     @param keylen The length of the key, in bytes
     ***********************************************************/
-    [CCode (cname="av_hmac_init", cheader_filename="libavcodec/hmac.h")]
+    [CCode (cname="av_hmac_init", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public void av_hmac_init (
         HMACContext hmac_context,
         uint8[] key,
@@ -64,7 +64,7 @@ public struct HMACContext {
     @param data The data to hash
     @param len The length of the data, in bytes
     ***********************************************************/
-    [CCode (cname="av_hmac_update", cheader_filename="libavcodec/hmac.h")]
+    [CCode (cname="av_hmac_update", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public void av_hmac_update (
         HMACContext hmac_context,
         uint8[] data,
@@ -78,7 +78,7 @@ public struct HMACContext {
     @param output_length The length of the out buffer, in bytes
     @return The number of bytes written to output_buffer, or a negative error code.
     ***********************************************************/
-    [CCode (cname="av_hmac_final", cheader_filename="libavcodec/hmac.h")]
+    [CCode (cname="av_hmac_final", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public int av_hmac_final (
         HMACContext hmac_context,
         out uint8[] output_buffer,
@@ -96,7 +96,7 @@ public struct HMACContext {
     @param output_length The length of the out buffer, in bytes
     @return The number of bytes written to output_buffer, or a negative error code.
     ***********************************************************/
-    [CCode (cname="av_hmac_calc", cheader_filename="libavcodec/hmac.h")]
+    [CCode (cname="av_hmac_calc", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public int av_hmac_calc (
         HMACContext hmac_context,
         uint8[] data,

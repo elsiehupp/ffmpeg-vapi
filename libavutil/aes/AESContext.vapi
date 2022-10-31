@@ -24,16 +24,16 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_aes AES
 ***********************************************************/
 
-[CCode (cname="struct AVAES", cheader_filename="libavcodec/aes.h")]
+[CCode (cname="struct AVAES", cheader_filename="ffmpeg/libavutil/aes.h")]
 public struct AESContext {
 
-    [CCode (cname="av_aes_size", cheader_filename="libavcodec/aes.h")]
+    [CCode (cname="av_aes_size", cheader_filename="ffmpeg/libavutil/aes.h")]
     public const size_t SIZE;
 
     /***********************************************************
     @brief Allocate an AESContext context.
     ***********************************************************/
-    [CCode (cname="av_aes_alloc", cheader_filename="libavcodec/aes.h")]
+    [CCode (cname="av_aes_alloc", cheader_filename="ffmpeg/libavutil/aes.h")]
     public AESContext av_aes_alloc ();
 
     /***********************************************************
@@ -41,7 +41,7 @@ public struct AESContext {
     @param key_bits 128, 192 or 256
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_aes_init", cheader_filename="libavcodec/aes.h")]
+    [CCode (cname="av_aes_init", cheader_filename="ffmpeg/libavutil/aes.h")]
     public int av_aes_init (
         AESContext a,
         uint8[] key,
@@ -58,7 +58,7 @@ public struct AESContext {
     @param initialization_vector initialization vector for CBC mode, if null then ECB will be used
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_aes_crypt", cheader_filename="libavcodec/aes.h")]
+    [CCode (cname="av_aes_crypt", cheader_filename="ffmpeg/libavutil/aes.h")]
     public void av_aes_crypt (
         AESContext a,
         out uint8[] output_buffer,

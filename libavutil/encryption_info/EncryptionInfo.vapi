@@ -24,7 +24,7 @@ info for how to decrypt the packet before passing it to the decoder.
 
 The size of this struct is not part of the public ABI.
 ***********************************************************/
-[CCode (cname="struct AVEncryptionInfo", cheader_filename="libavcodec/encryption_info.h")]
+[CCode (cname="struct AVEncryptionInfo", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
 public struct EncryptionInfo {
     /***********************************************************
     @brief The fourcc encryption scheme, in big-endian byte order.
@@ -60,9 +60,9 @@ public struct EncryptionInfo {
     be the correct block size. This should always be 16 bytes
     long, but may be changed in the future.
     ***********************************************************/
-    [CCode (cname="iv", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="iv", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public uint8[] initialization_vector;
-    [CCode (cname="iv_size", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="iv_size", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public uint32 initialization_vector_size;
 
     /***********************************************************
@@ -86,7 +86,7 @@ public struct EncryptionInfo {
 
     @return The new EncryptionInfo structure, or null on error.
     ***********************************************************/
-    [CCode (cname="av_encryption_info_alloc", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="av_encryption_info_alloc", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public EncryptionInfo av_encryption_info_alloc (
         uint32 subsample_count,
         uint32 key_id_size,
@@ -97,7 +97,7 @@ public struct EncryptionInfo {
     @brief Allocates an EncryptionInfo structure with a copy of the given data.
     @return The new EncryptionInfo structure, or null on error.
     ***********************************************************/
-    [CCode (cname="av_encryption_info_clone", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="av_encryption_info_clone", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public EncryptionInfo av_encryption_info_clone (
         EncryptionInfo info
     );
@@ -106,7 +106,7 @@ public struct EncryptionInfo {
     @brief Frees the given encryption info object. This MUST NOT be used to free the
     side-data data pointer, that should use normal side-data methods.
     ***********************************************************/
-    [CCode (cname="av_encryption_info_free", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="av_encryption_info_free", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public void av_encryption_info_free (
         EncryptionInfo info
     );
@@ -118,7 +118,7 @@ public struct EncryptionInfo {
 
     @return The new EncryptionInfo structure, or null on error.
     ***********************************************************/
-    [CCode (cname="av_encryption_info_get_side_data", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="av_encryption_info_get_side_data", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public EncryptionInfo av_encryption_info_get_side_data (
         uint8[] side_data,
         size_t side_data_size
@@ -131,7 +131,7 @@ public struct EncryptionInfo {
 
     @return The new side-data pointer, or null.
     ***********************************************************/
-    [CCode (cname="av_encryption_info_add_side_data", cheader_filename="libavcodec/encryption_info.h")]
+    [CCode (cname="av_encryption_info_add_side_data", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public uint8[] av_encryption_info_add_side_data (
         EncryptionInfo info,
         out size_t side_data_size

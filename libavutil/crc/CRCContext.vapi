@@ -36,7 +36,7 @@ widely used CRC-32-IEEE. See @link CRCIdentifier for a list of available
 polynomials.
 ***********************************************************/
 
-[CCode (cname="struct AVCRC", cheader_filename="libavcodec/crc.h")]
+[CCode (cname="struct AVCRC", cheader_filename="ffmpeg/libavutil/crc.h")]
 public struct CRCContext {
 
     /***********************************************************
@@ -55,7 +55,7 @@ public struct CRCContext {
     @param ctx_size size of crc_context in bytes
     @return <0 on failure
     ***********************************************************/
-    [CCode (cname="av_crc_init", cheader_filename="libavcodec/crc.h")]
+    [CCode (cname="av_crc_init", cheader_filename="ffmpeg/libavutil/crc.h")]
     public int av_crc_init (
         CRCContext crc_context,
         int le,
@@ -69,7 +69,7 @@ public struct CRCContext {
     @param crc_id ID of a standard CRC
     @return a pointer to the CRC table or null on failure
     ***********************************************************/
-    [CCode (cname="av_crc_get_table", cheader_filename="libavcodec/crc.h")]
+    [CCode (cname="av_crc_get_table", cheader_filename="ffmpeg/libavutil/crc.h")]
     public CRCContext av_crc_get_table (
         CRCIdentifier crc_id
     );
@@ -81,7 +81,7 @@ public struct CRCContext {
 
     @see @link av_crc_init () "le" parameter
     ***********************************************************/
-    [CCode (cname="av_crc", cheader_filename="libavcodec/crc.h")]
+    [CCode (cname="av_crc", cheader_filename="ffmpeg/libavutil/crc.h")]
     public uint32 av_crc (
         CRCContext crc_context,
         uint32 crc,

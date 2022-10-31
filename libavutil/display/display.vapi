@@ -79,7 +79,7 @@ follows:
 @note floating point numbers are inherently inexact, so callers are
       recommended to round the return value to nearest integer before use.
 ***********************************************************/
-[CCode (cname="av_display_rotation_get", cheader_filename="libavcodec/display.h")]
+[CCode (cname="av_display_rotation_get", cheader_filename="ffmpeg/libavutil/display.h")]
 public double av_display_rotation_get (
     int32 matrix[9]
 );
@@ -92,7 +92,7 @@ rotation by the specified angle (in degrees).
     by this function)
 @param angle rotation angle in degrees.
 ***********************************************************/
-[CCode (cname="av_display_rotation_set", cheader_filename="libavcodec/display.h")]
+[CCode (cname="av_display_rotation_set", cheader_filename="ffmpeg/libavutil/display.h")]
 public void av_display_rotation_set (
     int32 matrix[9],
     double angle
@@ -105,7 +105,7 @@ public void av_display_rotation_set (
 @param hflip whether the matrix should be flipped horizontally
 @param vflip whether the matrix should be flipped vertically
 ***********************************************************/
-[CCode (cname="av_display_matrix_flip", cheader_filename="libavcodec/display.h")]
+[CCode (cname="av_display_matrix_flip", cheader_filename="ffmpeg/libavutil/display.h")]
 public void av_display_matrix_flip (
     int32 matrix[9],
     int hflip,

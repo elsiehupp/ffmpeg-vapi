@@ -31,7 +31,7 @@ reference-counted frame API
 Frame is an abstraction for reference-counted raw multimedia data.
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="libavcodec/frame.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/frame.h")]
 public enum FrameSideDataType {
     /***********************************************************
     @brief The data is the LibAVCodec.PanScanArea struct defined in LibAVCodec.
@@ -170,7 +170,7 @@ public enum FrameSideDataType {
     /***********************************************************
     @return a string identifying the side data type
     ***********************************************************/
-    [CCode (cname="av_frame_side_data_name", cheader_filename="libavcodec/frame.h")]
+    [CCode (cname="av_frame_side_data_name", cheader_filename="ffmpeg/libavutil/frame.h")]
     public string av_frame_side_data_name (
         FrameSideDataType type
     );

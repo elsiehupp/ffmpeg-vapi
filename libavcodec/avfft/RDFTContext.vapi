@@ -33,26 +33,26 @@ FFT functions
 /***********************************************************
 @brief Real Discrete Fourier Transform
 ***********************************************************/
-[CCode (cname="struct RDFTContext", cheader_filename="libavcodec/avfft.h")]
+[CCode (cname="struct RDFTContext", cheader_filename="ffmpeg/libavcodec/avfft.h")]
 public struct RDFTContext {
     /***********************************************************
     @brief Set up a real FFT.
     @param nbits log2 of the length of the input array
     @param trans the type of transform
     ***********************************************************/
-    [CCode (cname="av_rdft_init", cheader_filename="libavcodec/avfft.h")]
+    [CCode (cname="av_rdft_init", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public RDFTContext av_rdft_init (
         int nbits,
         RDFTransformType trans
     );
 
-    [CCode (cname="av_rdft_calc", cheader_filename="libavcodec/avfft.h")]
+    [CCode (cname="av_rdft_calc", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public void av_rdft_calc (
         RDFTContext s,
         FFTSample data
     );
 
-    [CCode (cname="av_rdft_end", cheader_filename="libavcodec/avfft.h")]
+    [CCode (cname="av_rdft_end", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public void av_rdft_end (
         RDFTContext s
     );

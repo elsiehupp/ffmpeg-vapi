@@ -45,7 +45,7 @@ public delegate void D3D11VADeviceUnlockDelegate (
 /***********************************************************
 @brief This struct is allocated as HardwareDeviceContext.hwctx
 ***********************************************************/
-[CCode (cname="struct AVD3D11VADeviceContext", cheader_filename="libavcodec/hwcontext_d3d11va.h")]
+[CCode (cname="struct AVD3D11VADeviceContext", cheader_filename="ffmpeg/libavutil/hwcontext_d3d11va.h")]
 public class D3D11VADeviceContext : AbstractHardwareContext {
     /***********************************************************
     @brief Device used for texture creation and access. This can also be used to

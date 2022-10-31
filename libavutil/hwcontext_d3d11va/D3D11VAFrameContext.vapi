@@ -38,7 +38,7 @@ code will try to load various supported D3D debugging layers.
 /***********************************************************
 @brief This struct is allocated as HardwareFrameContext.hwctx
 ***********************************************************/
-[CCode (cname="struct AVD3D11VAFramesContext", cheader_filename="libavcodec/hwcontext_d3d11va.h")]
+[CCode (cname="struct AVD3D11VAFramesContext", cheader_filename="ffmpeg/libavutil/hwcontext_d3d11va.h")]
 public class D3D11VAFrameContext : AbstractHardwareContext {
     /***********************************************************
     @brief The canonical texture used for pool allocation. If this is set to null

@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cprefix="", cheader_filename="libavcodec/log.h")]
+[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/log.h")]
 public enum ClassCategory {
     AV_CLASS_CATEGORY_NA,
     AV_CLASS_CATEGORY_INPUT,
@@ -45,12 +45,12 @@ public enum ClassCategory {
     ***********************************************************/
     //  AV_CLASS_CATEGORY_NB
 
-    [CCode (cname="AV_IS_INPUT_DEVICE", cheader_filename="libavcodec/log.h")]
+    [CCode (cname="AV_IS_INPUT_DEVICE", cheader_filename="ffmpeg/libavutil/log.h")]
     public static bool av_is_input_device (
         ClassCategory category
     );
 
-    [CCode (cname="AV_IS_OUTPUT_DEVICE", cheader_filename="libavcodec/log.h")]
+    [CCode (cname="AV_IS_OUTPUT_DEVICE", cheader_filename="ffmpeg/libavutil/log.h")]
     public static bool av_is_output_device (
         ClassCategory category
     );
@@ -62,12 +62,12 @@ public enum ClassCategory {
 
     @return The Class class_name
     ***********************************************************/
-    [CCode (cname="av_default_item_name", cheader_filename="libavcodec/log.h")]
+    [CCode (cname="av_default_item_name", cheader_filename="ffmpeg/libavutil/log.h")]
     public static string av_default_item_name (
         void* class_context
     );
 
-    [CCode (cname="av_default_get_category", cheader_filename="libavcodec/log.h")]
+    [CCode (cname="av_default_get_category", cheader_filename="ffmpeg/libavutil/log.h")]
     public static ClassCategory av_default_get_category (
         void *ptr
     );

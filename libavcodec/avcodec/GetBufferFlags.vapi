@@ -28,7 +28,7 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cheader_filename="libavcodec/avcodec.h")]
+[CCode (cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum GetBufferFlags {
     /***********************************************************
     @brief The decoder will keep a reference to the frame and may reuse it later.

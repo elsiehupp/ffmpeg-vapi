@@ -52,14 +52,14 @@ as the seed, and therefore does not (av_murmur3_init ()).
 To make hashes comparable, you should provide the same seed for all calls to
 this hash function -- if you are supplying one yourself, that is.
 ***********************************************************/
-[CCode (cname="AVMurMur3", cheader_filename="libavcodec/murmur3.h")]
+[CCode (cname="AVMurMur3", cheader_filename="ffmpeg/libavutil/murmur3.h")]
 public struct MurMur3Context {
     /***********************************************************
     @brief Allocate an LibAVUtil.MurMur3Context hash context.
 
     @return Uninitialized hash context or `null` in case of error
     ***********************************************************/
-    [CCode (cname="av_murmur3_alloc", cheader_filename="libavcodec/murmur3.h")]
+    [CCode (cname="av_murmur3_alloc", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public LibAVUtil.MurMur3Context av_murmur3_alloc ();
 
     /***********************************************************
@@ -72,7 +72,7 @@ public struct MurMur3Context {
     @see @link lavu_murmur3_seedinfo "Detailed description" on a discussion of
     seeds for MurmurHash3.
     ***********************************************************/
-    [CCode (cname="av_murmur3_init_seeded", cheader_filename="libavcodec/murmur3.h")]
+    [CCode (cname="av_murmur3_init_seeded", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public void av_murmur3_init_seeded (
         LibAVUtil.MurMur3Context c,
         uint64 seed
@@ -89,7 +89,7 @@ public struct MurMur3Context {
     @see @link lavu_murmur3_seedinfo "Detailed description" on a discussion of
     seeds for MurmurHash3.
     ***********************************************************/
-    [CCode (cname="av_murmur3_init", cheader_filename="libavcodec/murmur3.h")]
+    [CCode (cname="av_murmur3_init", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public void av_murmur3_init (
         LibAVUtil.MurMur3Context c
     );
@@ -102,14 +102,14 @@ public struct MurMur3Context {
     @param[in] len Number of bytes to read from `input_buffer`
     ***********************************************************/
     #if FF_API_CRYPTO_SIZE_T
-    [CCode (cname="av_murmur3_update", cheader_filename="libavcodec/murmur3.h")]
+    [CCode (cname="av_murmur3_update", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public void av_murmur3_update (
         LibAVUtil.MurMur3Context c,
         uint8[] input_buffer,
         int len
     );
     #else
-    [CCode (cname="av_murmur3_update", cheader_filename="libavcodec/murmur3.h")]
+    [CCode (cname="av_murmur3_update", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public void av_murmur3_update (
         LibAVUtil.MurMur3Context c,
         uint8[] input_buffer,
@@ -123,7 +123,7 @@ public struct MurMur3Context {
     @param[in,out] c Hash context
     @param[out] output_buffer Buffer where output digest value is stored
     ***********************************************************/
-    [CCode (cname="av_murmur3_final", cheader_filename="libavcodec/murmur3.h")]
+    [CCode (cname="av_murmur3_final", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public void av_murmur3_final (
         LibAVUtil.MurMur3Context c,
         out uint8 output_buffer[16]

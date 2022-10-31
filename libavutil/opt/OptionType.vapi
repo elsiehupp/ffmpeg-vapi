@@ -26,7 +26,7 @@ namespace LibAVUtil {
 LibAVUtil.Options
 ***********************************************************/
 
-[CCode (cprefix="AV_OPT_TYPE_", cheader_filename="libavcodec/opt.h")]
+[CCode (cprefix="AV_OPT_TYPE_", cheader_filename="ffmpeg/libavutil/opt.h")]
 public enum OptionType {
     FLAGS,
     INT,
