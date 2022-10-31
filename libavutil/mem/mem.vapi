@@ -68,7 +68,7 @@ uint8 aligned_array[128];
 Declare an aligned variable appropriate for use in inline assembly code.
 
 @code{.c}
-DECLARE_ASM_ALIGNED (16, uint64_t, pw_08) = UINT64_C (0x0008000800080008);
+DECLARE_ASM_ALIGNED (16, uint64, pw_08) = UINT64_C (0x0008000800080008);
 @endcode
 
 @param n Minimum alignment in bytes
@@ -82,7 +82,7 @@ Declare a static constant aligned variable appropriate for use in inline
 assembly code.
 
 @code{.c}
-DECLARE_ASM_CONST (16, uint64_t, pw_08) = UINT64_C (0x0008000800080008);
+DECLARE_ASM_CONST (16, uint64, pw_08) = UINT64_C (0x0008000800080008);
 @endcode
 
 @param n Minimum alignment in bytes
