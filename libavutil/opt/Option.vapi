@@ -84,15 +84,13 @@ free all the allocated string and binary options.
 Continuing with the above example:
 
 @code
-test_struct alloc_test_struct ()
-{
+test_struct alloc_test_struct () {
     test_struct ret = av_mallocz (sizeof (*ret));
     ret->class = &test_class;
     av_opt_set_defaults (ret);
     return ret;
 }
-void free_test_struct (test_struct **foo)
-{
+void free_test_struct (test_struct **foo) {
     av_opt_free (*foo);
     av_freep (foo);
 }
@@ -126,15 +124,13 @@ void free_test_struct (test_struct **foo)
         .version    = LIBAVUTIL_VERSION_INT,
     };
 
-    void *child_next (void *obj, void *prev)
-    {
+    void *child_next (void *obj, void *prev) {
         test_struct t = obj;
         if (!prev && t->child_struct)
         return t->child_struct;
         return null
     }
-    Class child_class_next (Class prev)
-    {
+    Class child_class_next (Class prev) {
         return prev ? null : &child_class;
     }
     @endcode
