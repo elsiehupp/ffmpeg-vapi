@@ -96,6 +96,7 @@ srcs = files ([
 
     # './libavcodec/d3d11va/Direct3D11VideoAccelerationContext.vapi',
     # './libavcodec/d3d11va/Direct3D11VideoAccelerationWorkaroundFlags.vapi',
+    # './libavcodec/dirac/DiracChromaFormat.vapi
     # './libavcodec/dirac/DiracSequenceHeader.vapi',
     # './libavcodec/dirac/DiracParseCodes.vapi',
     # './libavcodec/dirac/DiracVersionInfo.vapi',
@@ -302,7 +303,21 @@ srcs = files ([
     './libavutil/version/version.vapi',
     './libavutil/xtea/XTEAContext.vapi',
 
-    'FooBar.vala',
+    './tests/tiny_ssim.vala',
+    './tests/utils.vala',
+    './tests/base64.vala',
+    './tests/tiny_psnr.vala',
+    './tests/audiomatch.vala',
+    './tests/videogen.vala',
+    './tests/api/api-codec-param-test.vala',
+    './tests/api/api-h264-test.vala',
+    './tests/api/api-threadmessage-test.vala',
+    './tests/api/api-seek-test.vala',
+    './tests/api/api-flac-test.vala',
+    './tests/api/api-band-test.vala',
+    './tests/api/api-h264-slice-test.vala',
+    './tests/rotozoom.vala',
+    './tests/audiogen.vala',
 ])
 
 deps = [
