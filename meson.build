@@ -1,0 +1,325 @@
+project ('org.ffmpeg.FFmpeg', 'c', 'vala', version: '1.0.0')
+
+# subdir ('ffmpeg')
+# subdir ('media-bus-format')
+# subdir ('uvcvideo')
+# subdir ('v4l2')
+# subdir ('v4l2-dv-timings')
+# subdir ('v4l2-mediabus')
+# subdir ('v4l2-subdev')
+# subdir ('videodev2')
+
+srcs = files ([
+    './libavcodec/ac3_parser/ac3_parser.vapi',
+    './libavcodec/adts_parser/adts_parser.vapi',
+    './libavcodec/avcodec/AudioServiceType.vapi',
+    './libavcodec/avcodec/BitStreamFilterContext.vapi',
+    './libavcodec/avcodec/BitStreamFilterList.vapi',
+    './libavcodec/avcodec/BitStreamFilter.vapi',
+    './libavcodec/avcodec/BitStreamFilterContextOld.vapi',
+    './libavcodec/avcodec/CPBProperties.vapi',
+    './libavcodec/avcodec/Codec.vapi',
+    './libavcodec/avcodec/CodecCapabilityFlags.vapi',
+    './libavcodec/avcodec/CodecContext.vapi',
+    './libavcodec/avcodec/CodecDefault.vapi',
+    './libavcodec/avcodec/CodecDescriptor.vapi',
+    './libavcodec/avcodec/CodecFlags1.vapi',
+    './libavcodec/avcodec/CodecFlags2.vapi',
+    './libavcodec/avcodec/CodecHardwareConfig.vapi',
+    './libavcodec/avcodec/CodecHardwareConfigMethod.vapi',
+    './libavcodec/avcodec/CodecID.vapi',
+    './libavcodec/avcodec/CodecParameters.vapi',
+    './libavcodec/avcodec/CodecParser.vapi',
+    './libavcodec/avcodec/CodecParserContext.vapi',
+    './libavcodec/avcodec/CodecPropertyFlags2.vapi',
+    './libavcodec/avcodec/Discard.vapi',
+    './libavcodec/avcodec/FieldOrder.vapi',
+    './libavcodec/avcodec/GetBufferFlags.vapi',
+    './libavcodec/avcodec/HardwareAcceleration.vapi',
+    './libavcodec/avcodec/HardwareAccelerationCapabilities.vapi',
+    './libavcodec/avcodec/HardwareAccelerationFlags.vapi',
+    './libavcodec/avcodec/Packet.vapi',
+    './libavcodec/avcodec/PacketFlags.vapi',
+    './libavcodec/avcodec/PacketSideData.vapi',
+    './libavcodec/avcodec/PacketSideDataType.vapi',
+    './libavcodec/avcodec/PanScanArea.vapi',
+    './libavcodec/avcodec/PictureStructure.vapi',
+    './libavcodec/avcodec/ProfileType.vapi',
+    './libavcodec/avcodec/SideDataParamChangeFlags.vapi',
+    './libavcodec/avcodec/Subtitle.vapi',
+    './libavcodec/avcodec/SubtitleFlags.vapi',
+    './libavcodec/avcodec/SubtitleRect.vapi',
+    './libavcodec/avcodec/SubtitleType.vapi',
+    './libavcodec/avcodec/BugWorkaroundFlags.vapi',
+    './libavcodec/avcodec/CodecPropertyFlags1.vapi',
+    './libavcodec/avcodec/DCTAlgorithm.vapi',
+    './libavcodec/avcodec/DebugFlags.vapi',
+    './libavcodec/avcodec/DebugMVFlags.vapi',
+    './libavcodec/avcodec/DebugMotionVectors.vapi',
+    './libavcodec/avcodec/ErrorConcealmentFlags.vapi',
+    './libavcodec/avcodec/ErrorRecognitionFlags.vapi',
+    './libavcodec/avcodec/IDCTAlgorithm.vapi',
+    './libavcodec/avcodec/InterlacedDCTComparison.vapi',
+    './libavcodec/avcodec/MacroBlockDecisionMode.vapi',
+    './libavcodec/avcodec/MpegEncContext.vapi',
+    './libavcodec/avcodec/ParserFlags.vapi',
+    './libavcodec/avcodec/Profile.vapi',
+    './libavcodec/avcodec/ProfileAAC.vapi',
+    './libavcodec/avcodec/ProfileARIB.vapi',
+    './libavcodec/avcodec/ProfileAV1.vapi',
+    './libavcodec/avcodec/ProfileDNXH.vapi',
+    './libavcodec/avcodec/ProfileDTS.vapi',
+    './libavcodec/avcodec/ProfileH264.vapi',
+    './libavcodec/avcodec/ProfileHEVC.vapi',
+    './libavcodec/avcodec/ProfileJPEG2000.vapi',
+    './libavcodec/avcodec/ProfileMJPEG.vapi',
+    './libavcodec/avcodec/ProfileMPEG2.vapi',
+    './libavcodec/avcodec/ProfileMPEG4.vapi',
+    './libavcodec/avcodec/ProfileProRes.vapi',
+    './libavcodec/avcodec/ProfileSBC.vapi',
+    './libavcodec/avcodec/ProfileVC1.vapi',
+    './libavcodec/avcodec/ProfileVP9.vapi',
+    './libavcodec/avcodec/RcOverride.vapi',
+    './libavcodec/avcodec/SliceFlags.vapi',
+    './libavcodec/avcodec/StrictStandardsCompliance.vapi',
+    './libavcodec/avcodec/SubtitleCharacterEncodingMode.vapi',
+    './libavcodec/avcodec/SubtitleTextFormatAssignment.vapi',
+    './libavcodec/avcodec/ThreadType.vapi',
+    './libavcodec/avcodec/avcodec.vapi',
+    './libavcodec/avdct/DCT.vapi',
+    './libavcodec/avfft/DCTContext.vapi',
+    './libavcodec/avfft/DCTTransformType.vapi',
+    './libavcodec/avfft/FFTComplex.vapi',
+    './libavcodec/avfft/FFTContext.vapi',
+    './libavcodec/avfft/RDFTContext.vapi',
+    './libavcodec/avfft/RDFTransformType.vapi',
+
+    # './libavcodec/d3d11va/Direct3D11VideoAccelerationContext.vapi',
+    # './libavcodec/d3d11va/Direct3D11VideoAccelerationWorkaroundFlags.vapi',
+    # './libavcodec/dirac/DiracSequenceHeader.vapi',
+    # './libavcodec/dirac/DiracParseCodes.vapi',
+    # './libavcodec/dirac/DiracVersionInfo.vapi',
+
+    './libavcodec/dv_profile/DVProfile.vapi',
+
+    # './libavcodec/dxva2/DirectXVideoAccelerationWorkaroundFlags.vapi',
+    # './libavcodec/dxva2/DirectXVideoAccelerationContext.vapi',
+
+    './libavcodec/jni/jni.vapi',
+
+    './libavcodec/mediacodec/MediaCodecBuffer.vapi',
+    './libavcodec/mediacodec/MediaCodecContext.vapi',
+
+    # './libavcodec/qsv/QSVContext.vapi',
+
+    # './libavcodec/vdpau/VdpContext.vapi',
+
+    './libavcodec/version/version.vapi',
+
+    # './libavcodec/videotoolbox/VideoToolboxContext.vapi',
+
+    './libavcodec/vorbis_parser/VorbisFlags.vapi',
+    './libavcodec/vorbis_parser/VorbisParseContext.vapi',
+
+    './libavutil/buffer/Buffer.vapi',
+    './libavutil/buffer/BufferFlags.vapi',
+    './libavutil/buffer/BufferPool.vapi',
+    './libavutil/buffer/BufferRef.vapi',
+
+    './libavutil/dict/Dictionary.vapi',
+    './libavutil/dict/DictionaryEntry.vapi',
+    './libavutil/dict/DictionaryFlags.vapi',
+
+    './libavutil/adler32/Adler32.vapi',
+
+    './libavutil/aes/AESContext.vapi',
+
+    './libavutil/aes_ctr/AESCTRContext.vapi',
+
+    './libavutil/attributes/attributes.vapi',
+
+    './libavutil/audio_fifo/AudioFifo.vapi',
+
+    './libavutil/avassert/avassert.vapi',
+
+    './libavutil/avstring/StringEscapeFlags.vapi',
+    './libavutil/avstring/StringEscapeMode.vapi',
+    './libavutil/avstring/Utf8Flags.vapi',
+    './libavutil/avstring/String.vapi',
+
+    './libavutil/avutil/MediaType.vapi',
+    './libavutil/avutil/PictureType.vapi',
+
+    './libavutil/base64/Base64.vapi',
+
+    './libavutil/blowfish/BlowfishContext.vapi',
+
+    './libavutil/bprint/BPrintBuffer.vapi',
+    './libavutil/bprint/BPrintSize.vapi',
+
+    './libavutil/bswap/bswap.vapi',
+
+    './libavutil/camellia/CAMELLIAContext.vapi',
+
+    './libavutil/cast5/CAST5Context.vapi',
+
+    './libavutil/channel_layout/ChannelLayoutFlags.vapi',
+    './libavutil/channel_layout/MatrixEncoding.vapi',
+
+    './libavutil/common/common.vapi',
+
+    './libavutil/cpu/CPUCapabilityFlags.vapi',
+
+    './libavutil/crc/CRCContext.vapi',
+    './libavutil/crc/CRCIdentifier.vapi',
+
+    './libavutil/des/DESContext.vapi',
+
+    './libavutil/display/display.vapi',
+
+    './libavutil/downmix_info/DownMixInfo.vapi',
+    './libavutil/downmix_info/DownMixType.vapi',
+
+    './libavutil/encryption_info/EncryptionInfo.vapi',
+    './libavutil/encryption_info/EncryptionInitializationInfo.vapi',
+    './libavutil/encryption_info/SubsampleEncryptionInfo.vapi',
+
+    './libavutil/error/ErrorCode.vapi',
+
+    './libavutil/eval/Expression.vapi',
+
+    './libavutil/fifo/FifoBuffer.vapi',
+
+    './libavutil/file/file.vapi',
+
+    './libavutil/frame/ActiveFormatDescription.vapi',
+    './libavutil/frame/DecodeErrorFlags.vapi',
+    './libavutil/frame/Frame.vapi',
+    './libavutil/frame/FrameCropFlags.vapi',
+    './libavutil/frame/FrameFlags.vapi',
+    './libavutil/frame/FrameSideData.vapi',
+    './libavutil/frame/FrameSideDataType.vapi',
+    './libavutil/frame/RegionOfInterest.vapi',
+
+    './libavutil/hash/HashContext.vapi',
+
+    './libavutil/hdr_dynamic_metadata/HDRPlusDynamicMetadata.vapi',
+    './libavutil/hdr_dynamic_metadata/HDRPlusColorTransformParameters.vapi',
+    './libavutil/hdr_dynamic_metadata/HDRPlusOverlapProcessOption.vapi',
+    './libavutil/hdr_dynamic_metadata/HDRPlusPercentile.vapi',
+
+    './libavutil/hmac/HMACContext.vapi',
+    './libavutil/hmac/HMACType.vapi',
+
+    './libavutil/hwcontext/HardwareDeviceContext.vapi',
+    './libavutil/hwcontext/HardwareDeviceType.vapi',
+    './libavutil/hwcontext/HardwareFrameMappingFlags.vapi',
+    './libavutil/hwcontext/HardwareFrameTransferDirection.vapi',
+    './libavutil/hwcontext/HardwareFrameConstraints.vapi',
+    './libavutil/hwcontext/HardwareFrameContext.vapi',
+    './libavutil/hwcontext/hwcontext.vapi',
+    # './libavutil/hwcontext_cuda/CUDADeviceContext.vapi',
+    # './libavutil/hwcontext_d3d11va/D3D11FrameDescriptor.vapi',
+    # './libavutil/hwcontext_d3d11va/D3D11VADeviceContext.vapi',
+    # './libavutil/hwcontext_d3d11va/D3D11VAFrameContext.vapi',
+    # './libavutil/hwcontext_drm/DRMDeviceContext.vapi',
+    # './libavutil/hwcontext_drm/DRMFrameDescriptor.vapi',
+    # './libavutil/hwcontext_drm/DRMLayerDescriptor.vapi',
+    # './libavutil/hwcontext_drm/DRMObjectDescriptor.vapi',
+    # './libavutil/hwcontext_drm/DRMPlaneDescriptor.vapi',
+    # './libavutil/hwcontext_dxva2/DXVA2DeviceContext.vapi',
+    # './libavutil/hwcontext_dxva2/DXVA2FrameContext.vapi',
+    # './libavutil/hwcontext_mediacodec/MediaCodecDeviceContext.vapi',
+    # './libavutil/hwcontext_qsv/QSVDeviceContext.vapi',
+    # './libavutil/hwcontext_qsv/QSVFrameContext.vapi',
+    # './libavutil/hwcontext_vaapi/VAAPIDeviceContext.vapi',
+    # './libavutil/hwcontext_vaapi/VAAPIDriverQuirk.vapi',
+    # './libavutil/hwcontext_vaapi/VAAPIFrameContext.vapi',
+    # './libavutil/hwcontext_vaapi/VAAPIHWConfig.vapi',
+    # './libavutil/hwcontext_vdpau/VDPAUDeviceContext.vapi',
+    # './libavutil/hwcontext_videotoolbox/hwcontext_videotoolbox.vapi',
+    './libavutil/imgutils/imgutils.vapi',
+    './libavutil/intfloat/intfloat.vapi',
+    './libavutil/lfg/LFGContext.vapi',
+    './libavutil/log/Class.vapi',
+    './libavutil/log/ClassCategory.vapi',
+    './libavutil/log/LogFlags.vapi',
+    './libavutil/log/LogLevel.vapi',
+    './libavutil/log/log.vapi',
+    './libavutil/lzo/LZOErrorFlags.vapi',
+    './libavutil/mastering_display_metadata/ContentLightMetadata.vapi',
+    './libavutil/mastering_display_metadata/MasteringDisplayMetadata.vapi',
+    './libavutil/mathematics/Rounding.vapi',
+    './libavutil/md5/MD5Context.vapi',
+    './libavutil/mem/mem.vapi',
+    './libavutil/motion_vector/MotionVector.vapi',
+    './libavutil/murmur3/MurMur3Context.vapi',
+    './libavutil/opt/Option.vapi',
+    './libavutil/opt/OptionFlags.vapi',
+    './libavutil/opt/OptionRange.vapi',
+    './libavutil/opt/OptionRangeList.vapi',
+    './libavutil/opt/OptionSearchFlags.vapi',
+    './libavutil/opt/OptionSerializationFlags.vapi',
+    './libavutil/opt/OptionType.vapi',
+    # './libavutil/parseutils/parseutils.vapi',
+    './libavutil/pixdesc/ComponentDescriptor.vapi',
+    './libavutil/pixdesc/PixelFormatDescriptor.vapi',
+    './libavutil/pixdesc/PixelLossFlags.vapi',
+    './libavutil/pixdesc/PixelFormatFlags.vapi',
+    './libavutil/pixelutils/pixelutils.vapi',
+    './libavutil/pixfmt/ChromaLocation.vapi',
+    './libavutil/pixfmt/ColorPrimaries.vapi',
+    './libavutil/pixfmt/ColorRange.vapi',
+    './libavutil/pixfmt/ColorSpace.vapi',
+    './libavutil/pixfmt/ColorTransferCharacteristic.vapi',
+    './libavutil/pixfmt/PixelFormat.vapi',
+    './libavutil/random_seed/random_seed.vapi',
+    './libavutil/rational/Rational.vapi',
+    './libavutil/rc4/RC4Context.vapi',
+    './libavutil/replaygain/ReplayGain.vapi',
+    './libavutil/ripemd/RIPEMDContext.vapi',
+    './libavutil/samplefmt/SampleFormat.vapi',
+    './libavutil/sha/SHAContext.vapi',
+    './libavutil/sha512/SHA512Context.vapi',
+    './libavutil/spherical/SphericalMapping.vapi',
+    './libavutil/spherical/SphericalProjection.vapi',
+    './libavutil/stereo3d/Stereo3D.vapi',
+    './libavutil/stereo3d/Stereo3DFlags.vapi',
+    './libavutil/stereo3d/Stereo3DType.vapi',
+    './libavutil/stereo3d/Stereo3DView.vapi',
+    './libavutil/tea/TEAContext.vapi',
+    './libavutil/threadmessage/ThreadMessageFlags.vapi',
+    './libavutil/threadmessage/ThreadMessageQueue.vapi',
+    './libavutil/time/time.vapi',
+    './libavutil/timecode/TimeCode.vapi',
+    './libavutil/timecode/TimeCodeFlags.vapi',
+    './libavutil/timestamp/timestamp.vapi',
+    './libavutil/tree/TreeNode.vapi',
+    './libavutil/twofish/TWOFISHContext.vapi',
+    './libavutil/tx/ComplexFloat.vapi',
+    './libavutil/tx/TransformContext.vapi',
+    './libavutil/tx/TransformType.vapi',
+    './libavutil/version/version.vapi',
+    './libavutil/xtea/XTEAContext.vapi',
+
+    'FooBar.vala',
+])
+
+deps = [
+    # meson.get_compiler ('vala').find_library ('posix'),
+    dependency ('glib-2.0'),
+    dependency ('gtk+-3.0')
+    # libavcodec-dev
+]
+
+ffmpeg_lib = library(
+    meson.project_name (),
+    srcs,
+    dependencies: deps,
+    install: true
+)
+
+ffmpeg_dep = declare_dependency(
+    link_with: ffmpeg_lib, 
+    include_directories: include_directories('.')
+)

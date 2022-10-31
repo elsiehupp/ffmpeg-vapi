@@ -1,0 +1,171 @@
+/***********************************************************
+@brief The Video Decode and Presentation API for UNIX (VDPAU) is used for
+hardware-accelerated decoding of MPEG-1/2, H.264 and VC-1.
+
+@copyright 2008 NVIDIA
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
+
+namespace LibAVCodec {
+using LibAVUtil;
+
+/***********************************************************
+@file
+@ingroup lavc_codec_hwaccel_vdpau
+Public LibAVCodec VDPAU header.
+***********************************************************/
+
+/***********************************************************
+@defgroup lavc_codec_hwaccel_vdpau Video Decode and Presentation API for Unix Decoder and Renderer
+@ingroup lavc_codec_hwaccel
+
+Video Decode and Presentation API for Unix (VDPAU)
+hardware acceleration has two modules:
+- VDPAU decoding
+- VDPAU presentation
+
+The VDPAU decoding module parses all headers using FFmpeg
+parsing mechanisms and uses VDPAU for the actual decoding.
+
+As per the current implementation, the actual decoding
+and rendering (API calls) are done as part of the VDPAU
+presentation (vo_vdpau.c) module.
+***********************************************************/
+
+public delegate int AVVDPAU_Render2 (
+    CodecContext c,
+    LibAVUtil.Frame f,
+    VdpPictureInfo i,
+    uint32 u,
+    VdpBitstreamBuffer b
+);
+
+/***********************************************************
+@brief This structure is used to share data between the LibAVCodec library and
+the client video application.
+The user shall allocate the structure via the av_alloc_vdpau_hwaccel
+function and make it available as
+CodecContext.hwaccel_context. Members can be set by the user once
+during initialization or through each CodecContext.get_buffer ()
+function call. In any case, they must be valid prior to calling
+decoding functions.
+
+The size of this structure is not a part of the public ABI and must not
+be used outside of  Use av_vdpau_alloc_context () to allocate an
+VdpContext.
+***********************************************************/
+[CCode (cname="struct AVVDPAUContext", cheader_filename="libavcodec/vdpau.h")]
+public struct VdpContext {
+    /***********************************************************
+    @brief VDPAU decoder handle
+
+    Set by user.
+    ***********************************************************/
+    [CCode (cname="decoder")]
+    public VdpDecoder decoder;
+
+    /***********************************************************
+    @brief VDPAU decoder render callback
+
+    Set by the user.
+    ***********************************************************/
+    [CCode (cname="render")]
+    public VdpDecoderRender render;
+
+    [CCode (cname="render2")]
+    public AVVDPAU_Render2 render2;
+
+    /***********************************************************
+    @brief allocation function for VdpContext
+
+    Allows extending the struct without breaking API/ABI
+    ***********************************************************/
+    [CCode (cname="av_alloc_vdpaucontext", cheader_filename="libavcodec/vdpau.h")]
+    public VdpContext av_alloc_vdpaucontext ();
+
+    [CCode (cname="av_vdpau_hwaccel_get_render2", cheader_filename="libavcodec/vdpau.h")]
+    public AVVDPAU_Render2 av_vdpau_hwaccel_get_render2 (
+        VdpContext c
+    );
+
+    [CCode (cname="av_vdpau_hwaccel_set_render2", cheader_filename="libavcodec/vdpau.h")]
+    public void av_vdpau_hwaccel_set_render2 (
+        VdpContext c,
+        AVVDPAU_Render2 r
+    );
+
+    /***********************************************************
+    @brief Associate a VDPAU device with a codec context for hardware acceleration.
+    This function is meant to be called from the get_format () codec callback,
+    or earlier. It can also be called after avcodec_flush_buffers () to change
+    the underlying VDPAU device mid-stream (e.g. to recover from non-transparent
+    display preemption).
+
+    @note get_format () must return LibAVUtil.PixelFormat.VDPAU if this function completes
+        successfully.
+
+    @param avctx decoding context whose get_format () callback is invoked
+    @param device VDPAU device handle to use for hardware acceleration
+    @param get_proc_address VDPAU device driver
+    @param flags zero of more OR'd HardwareAccelerationFlags flags
+
+    @return 0 on success, an LibAVUtil.ErrorCode code on failure.
+    ***********************************************************/
+    [CCode (cname="av_vdpau_bind_context", cheader_filename="libavcodec/vdpau.h")]
+    public int av_vdpau_bind_context (
+        CodecContext avctx,
+        VdpDevice device,
+        VdpGetProcAddress get_proc_address,
+        HardwareAccelerationFlags flags
+    );
+
+    /***********************************************************
+    @brief Gets the parameters to create an adequate VDPAU video surface for the codec
+    context using VDPAU hardware decoding acceleration.
+
+    @note Behavior is undefined if the context was not successfully bound to a
+    VDPAU device using av_vdpau_bind_context ().
+
+    @param avctx the codec context being used for decoding the stream
+    @param type storage space for the VDPAU video surface chroma type
+        (or null to ignore)
+    @param width storage space for the VDPAU video surface pixel width
+        (or null to ignore)
+    @param height storage space for the VDPAU video surface pixel height
+        (or null to ignore)
+
+    @return 0 on success, a negative LibAVUtil.ErrorCode code on failure.
+    ***********************************************************/
+    [CCode (cname="av_vdpau_get_surface_parameters", cheader_filename="libavcodec/vdpau.h")]
+    public int av_vdpau_get_surface_parameters (
+        CodecContext avctx,
+        VdpChromaType type,
+        uint32[] width,
+        uint32[] height
+    );
+
+    /***********************************************************
+    @brief Allocate an VdpContext.
+
+    @return Newly-allocated VdpContext or null on failure.
+    ***********************************************************/
+    [CCode (cname="av_vdpau_alloc_context", cheader_filename="libavcodec/vdpau.h")]
+    public VdpContext av_vdpau_alloc_context ();
+}
+
+} // namespace LibAVCodec
