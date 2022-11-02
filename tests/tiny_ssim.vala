@@ -109,11 +109,11 @@ Maximum value for 9-bit is: ss*64 = (2^9-1)^2*16*4*64 = 1069551616, which will n
 static float ssim_end4 (
     uint sum0[5 * 4], // [5][4]
     uint sum1[5 * 4], // [5][4]
-    uint width
+    uint width_2
 ) {
     float ssim = 0.0f;
 
-    for (uint i = 0; i < width; i++ )
+    for (uint i = 0; i < width_2; i++ )
         ssim += ssim_end1 (sum0[i][0] + sum0[i+1][0] + sum1[i][0] + sum1[i+1][0],
                            sum0[i][1] + sum0[i+1][1] + sum1[i][1] + sum1[i+1][1],
                            sum0[i][2] + sum0[i+1][2] + sum1[i][2] + sum1[i+1][2],
@@ -126,8 +126,8 @@ float ssim_plane (
     out uint stride1,
     pixel *pix2, out
     uint stride2,
-    uint width,
-    uint height,
+    uint width_2,
+    uint height_2,
     void *buf,
     uint *cnt
 ) {
@@ -136,20 +136,20 @@ float ssim_plane (
     uint y;
     float ssim = 0.0f;
     uint *sum0[4] = (uint *)buf;
-    uint *sum1[4] = sum0 + (width >> 2) + 3;
-    width >>= 2;
-    height >>= 2;
-    for (y = 1; y < height; y++ ) {
+    uint *sum1[4] = sum0 + (width_2 >> 2) + 3;
+    width_2 >>= 2;
+    height_2 >>= 2;
+    for (y = 1; y < height_2; y++ ) {
         for (; z <= y; z++ ) {
             FFSWAP<void*> (out sum0, out sum1);
-            for (x = 0; x < width; x+=2 )
+            for (x = 0; x < width_2; x+=2 )
                 ssim_4x4x2_core (out pix1[4*(x+z*stride1)], stride1, out pix2[4*(x+z*stride2)], stride2, out sum0[x] );
         }
-        for (x = 0; x < width-1; x += 4 )
-            ssim += ssim_end4 (sum0+x, sum1+x, FFMIN (4,width-x-1) );
+        for (x = 0; x < width_2-1; x += 4 )
+            ssim += ssim_end4 (sum0+x, sum1+x, FFMIN (4,width_2-x-1) );
     }
-//     *cnt = (height-1) * (width-1);
-    return ssim / ((height-1) * (width-1));
+//     *cnt = (height_2-1) * (width_2-1);
+    return ssim / ((height_2-1) * (width_2-1));
 }
 
 
@@ -170,12 +170,12 @@ static double ssim_db (double ssim, double weight ) {
     return 10*(log (weight)/log (10)-log (weight-ssim)/log (10));
 }
 
-static void print_results (uint64 ssd[3], double ssim[3], uint frames, uint w, uint h) {
+static void print_results (uint64 ssd[3], double ssim[3], uint frames, uint width, uint height) {
     GLib.print ("PSNR Y:%.3f  U:%.3f  V:%.3f  All:%.3f | ",
-            ssd_to_psnr (ssd[0], (uint64)frames*w*h ),
-            ssd_to_psnr (ssd[1], (uint64)frames*w*h/4 ),
-            ssd_to_psnr (ssd[2], (uint64)frames*w*h/4 ),
-            ssd_to_psnr (ssd[0] + ssd[1] + ssd[2], (uint64)frames*w*h*3/2 ) );
+            ssd_to_psnr (ssd[0], (uint64)frames*width*height ),
+            ssd_to_psnr (ssd[1], (uint64)frames*width*height/4 ),
+            ssd_to_psnr (ssd[2], (uint64)frames*width*height/4 ),
+            ssd_to_psnr (ssd[0] + ssd[1] + ssd[2], (uint64)frames*width*height*3/2 ) );
     GLib.print ("SSIM Y:%.5f U:%.5f V:%.5f All:%.5f (%.5f)",
             ssim[0] / frames,
             ssim[1] / frames,
@@ -194,31 +194,31 @@ uint main (
     uint *temp;
     uint64 ssd[3] = {0,0,0};
     double ssim[3] = {0,0,0};
-    uint frame_size, w, h;
+    uint frame_size, width, height;
     uint frames, seek;
 
-    if (argc<4 || 2 != sscanf (argv[3], "%dx%d", out w, out h) ) {
-        GLib.print ("tiny_ssim <file1.yuv> <file2.yuv> <width>x<height> [<seek>]\n");
+    if (argc<4 || 2 != sscanf (argv[3], "%dx%d", out width, out height) ) {
+        GLib.print ("tiny_ssim <file1.yuv> <file2.yuv> <width_2>x<height_2> [<seek>]\n");
         return -1;
     }
 
     f[0] = fopen (argv[1], "rb");
     f[1] = fopen (argv[2], "rb");
-    sscanf (argv[3], "%dx%d", out w, out h);
+    sscanf (argv[3], "%dx%d", out width, out height);
 
-    if (w<=0 || h<=0 || w*(int64)h >= INT_MAX/3 || 2LL*w+12 >= INT_MAX / sizeof (temp)) {
+    if (width<=0 || height<=0 || width*(int64)height >= INT_MAX/3 || 2LL*width+12 >= INT_MAX / sizeof (temp)) {
         fprintf (stderr, "Dimensions are too large, or invalid\n");
         return -2;
     }
 
-    frame_size = w*h*3LL/2;
+    frame_size = width*height*3LL/2;
     for (uint i = 0; i < 2; i++ ) {
         buf[i] = malloc (frame_size);
         plane[i][0] = buf[i];
-        plane[i][1] = plane[i][0] + w*h;
-        plane[i][2] = plane[i][1] + w*h/4;
+        plane[i][1] = plane[i][0] + width*height;
+        plane[i][2] = plane[i][1] + width*height/4;
     }
-    temp = malloc ((2 * w + 12) * sizeof (temp));
+    temp = malloc ((2 * width + 12) * sizeof (temp));
     seek = argc<5 ? 0 : atoi (argv[4]);
     fseek (f[seek<0], seek < 0 ? -seek : seek, SEEK_SET);
 
@@ -228,16 +228,16 @@ uint main (
         if (fread (buf[0], frame_size, 1, f[0]) != 1) break;
         if (fread (buf[1], frame_size, 1, f[1]) != 1) break;
         for (uint i = 0; i < 3; i++ ) {
-            ssd_one[i] = ssd_plane (plane[0][i], plane[1][i], w*h>>2*!!i );
-            ssim_one[i] = ssim_plane (plane[0][i], w>>!!i,
-                                     plane[1][i], w>>!!i,
-                                     w>>!!i, h>>!!i, temp, null );
+            ssd_one[i] = ssd_plane (plane[0][i], plane[1][i], width*height>>2*!!i );
+            ssim_one[i] = ssim_plane (plane[0][i], width>>!!i,
+                                     plane[1][i], width>>!!i,
+                                     width>>!!i, height>>!!i, temp, null );
             ssd[i] += ssd_one[i];
             ssim[i] += ssim_one[i];
         }
 
         GLib.print ("Frame %d | ", frames);
-        print_results (ssd_one, ssim_one, 1, w, h);
+        print_results (ssd_one, ssim_one, 1, width, height);
         GLib.print ("                \r");
         fflush (stdout);
     }
@@ -245,7 +245,7 @@ uint main (
     if (!frames ) return 0;
 
     GLib.print ("Total %d frames | ", frames);
-    print_results (ssd, ssim, frames, w, h);
+    print_results (ssd, ssim, frames, width, height);
     GLib.print ("\n");
 
     return 0;

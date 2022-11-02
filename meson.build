@@ -309,15 +309,16 @@ srcs = files ([
     './tests/tiny_psnr.vala',
     './tests/audiomatch.vala',
     './tests/videogen.vala',
-    './tests/api/api-codec-param-test.vala',
-    './tests/api/api-h264-test.vala',
-    './tests/api/api-threadmessage-test.vala',
-    './tests/api/api-seek-test.vala',
-    './tests/api/api-flac-test.vala',
-    './tests/api/api-band-test.vala',
-    './tests/api/api-h264-slice-test.vala',
     './tests/rotozoom.vala',
     './tests/audiogen.vala',
+
+    './tests/api/ApiThreadMessageTest.vala',
+    './tests/api/ApiH264Test.vala',
+    './tests/api/ApiSeekTest.vala',
+    './tests/api/ApiFLACTest.vala',
+    './tests/api/ApiCodecParameterTest.vala',
+    './tests/api/ApiH264SliceTest.vala',
+    './tests/api/ApiBandTest.vala',
 ])
 
 deps = [

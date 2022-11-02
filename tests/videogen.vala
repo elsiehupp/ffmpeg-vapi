@@ -69,8 +69,8 @@ public struct VObj {
     uint x;
     uint y;
 
-    uint w;
-    uint h;
+    uint width;
+    uint height;
 
     uint r;
     uint g;
@@ -81,16 +81,16 @@ static VObj objs[NB_OBJS];
 
 static uint seed = 1;
 
-static void gen_image (uint num, uint w, uint h) {
+static void gen_image (uint num, uint width, uint height) {
     uint r, g, b, x, y, i, dx, dy, x1, y1;
     uint seed1;
 
     if (num == 0) {
         for (uint i = 0; i < NB_OBJS; i++) {
-            objs[i].x = myrnd (out seed, w);
-            objs[i].y = myrnd (out seed, h);
-            objs[i].w = myrnd (out seed, w / 4) + 10;
-            objs[i].h = myrnd (out seed, h / 4) + 10;
+            objs[i].x = myrnd (out seed, width);
+            objs[i].y = myrnd (out seed, height);
+            objs[i].width = myrnd (out seed, width / 4) + 10;
+            objs[i].height = myrnd (out seed, height / 4) + 10;
             objs[i].r = myrnd (out seed, 256);
             objs[i].g = myrnd (out seed, 256);
             objs[i].b = myrnd (out seed, 256);
@@ -107,8 +107,8 @@ static void gen_image (uint num, uint w, uint h) {
 
     dx = int_cos (num * FRAC_ONE / 50) * 35;
     dy = int_cos (num * FRAC_ONE / 50 + FRAC_ONE / 10) * 30;
-    for (y = 0; y < h; y++) {
-        for (x = 0; x < w; x++) {
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
             x1 = (x << FRAC_BITS) + dx;
             y1 = (y << FRAC_BITS) + dy;
             r =       ((y1  * 7) >> FRAC_BITS) & 0xff;
@@ -139,8 +139,8 @@ static void gen_image (uint num, uint w, uint h) {
     for (uint i = 0; i < NB_OBJS; i++) {
         VObj *p = &objs[i];
         seed1 = i;
-        for (y = 0; y < p.h; y++) {
-            for (x = 0; x < p.w; x++) {
+        for (y = 0; y < p.height; y++) {
+            for (x = 0; x < p.width; x++) {
                 r = p.r;
                 g = p.g;
                 b = p.b;
@@ -160,7 +160,7 @@ static void gen_image (uint num, uint w, uint h) {
 }
 
 void print_help (string name) {
-    GLib.print ("usage: %s file|dir [w=%i] [h=%i]\n" +
+    GLib.print ("usage: %s file|dir [width=%i] [height=%i]\n" +
         "generate a test video stream\n",
         name,
         DEFAULT_WIDTH,
@@ -173,40 +173,40 @@ uint main (
     uint argc,
     string[] argv
 ) {
-    uint w, h, i;
+    uint width, height;
     char buf[1024];
-    uint isdir = 0;
+    bool isdir = false;
 
     if (argc < 2 || argc > 4) {
         print_help (argv[0]);
     }
 
     if (!freopen (argv[1], "wb", stdout))
-        isdir = 1;
+        isdir = true;
 
-    w = DEFAULT_WIDTH;
+    width = DEFAULT_WIDTH;
     if (argc > 2) {
-        w = atoi (argv[2]);
-        if (w < 1) print_help (argv[0]);
+        width = atoi (argv[2]);
+        if (width < 1) print_help (argv[0]);
     }
-    h = DEFAULT_HEIGHT;
+    height = DEFAULT_HEIGHT;
     if (argc > 3) {
-        h = atoi (argv[3]);
-        if (h < 1) print_help (argv[0]);
+        height = atoi (argv[3]);
+        if (height < 1) print_help (argv[0]);
     }
 
-    rgb_tab = malloc (w * h * 3);
-    wrap = w * 3;
-    width = w;
-    height = h;
+    rgb_tab = malloc (width * height * 3);
+    wrap = width * 3;
+    width_2 = width;
+    height_2 = height;
 
     for (uint i = 0; i < DEFAULT_NB_PICT; i++) {
-        gen_image (i, w, h);
+        gen_image (i, width, height);
         if (isdir) {
             snprintf (buf, sizeof (buf), "%s%02d.pgm", argv[1], i);
-            pgmyuv_save (buf, w, h, rgb_tab);
+            pgmyuv_save (buf, width, height, rgb_tab);
         } else {
-            pgmyuv_save (null, w, h, rgb_tab);
+            pgmyuv_save (null, width, height, rgb_tab);
         }
     }
 

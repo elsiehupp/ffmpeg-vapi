@@ -1857,7 +1857,7 @@ public struct CodecContext {
         avcodec_register_all ();
         av_dict_set (&opts, "b", "2.5M", 0);
         codec = avcodec_find_decoder (AV_CODEC_ID_H264);
-        if (!codec)
+        if (codec == null)
             exit (1);
 
         context = avcodec_alloc_context3 (codec);

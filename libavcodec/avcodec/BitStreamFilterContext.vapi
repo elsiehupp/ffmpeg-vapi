@@ -156,8 +156,8 @@ public struct BitStreamFilterContext {
     av_bsf_receive_packet () repeatedly until it returns LibAVUtil.ErrorCode (EAGAIN) or
     AVERROR_EOF.
 
-    @param pkt the packet to filter. The bitstream filter will take ownership of
-    the packet and reset the contents of pkt. pkt is not touched if an error occurs.
+    @param packet the packet to filter. The bitstream filter will take ownership of
+    the packet and reset the contents of packet. packet is not touched if an error occurs.
     This parameter may be null, which signals the end of the stream (i.e. no more
     packets will be sent). That will cause the filter to output any packets it
     may have buffered internally.
@@ -167,20 +167,20 @@ public struct BitStreamFilterContext {
     [CCode (cname="av_bsf_send_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_send_packet (
         BitStreamFilterContext bsf_context,
-        Packet pkt
+        Packet packet
     );
 
     /***********************************************************
     @brief Retrieve a filtered packet.
 
-    @param[out] pkt this struct will be filled with the contents of the filtered
+    @param[out] packet this struct will be filled with the contents of the filtered
         packet. It is owned by the caller and must be freed using
         av_packet_unref () when it is no longer needed.
         This parameter should be "clean" (i.e. freshly allocated
         with av_packet_alloc () or unreffed with av_packet_unref ())
         when this function is called. If this function returns
-        successfully, the contents of pkt will be completely
-        overwritten by the returned data. On failure, pkt is not
+        successfully, the contents of packet will be completely
+        overwritten by the returned data. On failure, packet is not
         touched.
 
     @return 0 on success. LibAVUtil.ErrorCode (EAGAIN) if more packets need to be sent to the
@@ -197,7 +197,7 @@ public struct BitStreamFilterContext {
     [CCode (cname="av_bsf_receive_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_receive_packet (
         BitStreamFilterContext bsf_context,
-        Packet pkt
+        Packet packet
     );
 
     /***********************************************************

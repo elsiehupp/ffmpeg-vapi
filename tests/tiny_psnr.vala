@@ -121,8 +121,6 @@ static uint run_psnr (
     uint shift,
     uint skip_bytes
 ) {
-    uint64 i;
-    uint64 j;
     uint64 sse = 0;
     double sse_d = 0.0;
     uint8 buf[2 * SIZE]; // [2][SIZE]
@@ -137,7 +135,7 @@ static uint run_psnr (
              fseek (f[1], 0, SEEK_SET);
 
     if (!noseek) {
-        for (uint i = 0; i < 2; i++) {
+        for (uint64 i = 0; i < 2; i++) {
             uint8[] p = buf[i];
             if (fread (p, 1, 12, f[i]) != 12)
                 return -1;
@@ -188,7 +186,7 @@ static uint run_psnr (
             f[1]
         );
 
-        for (uint j = 0; j < FFMIN (s0, s1); j += len) {
+        for (uint64 j = 0; j < FFMIN (s0, s1); j += len) {
             switch (len) {
             case 1:
             case 2: {

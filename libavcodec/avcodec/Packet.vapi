@@ -156,12 +156,12 @@ public struct Packet {
     @brief Free the packet, if the packet is reference counted, it will be
     unreferenced first.
 
-    @param pkt packet to be freed. The pointer will be set to null.
+    @param packet packet to be freed. The pointer will be set to null.
     @note passing null is a no-op.
     ***********************************************************/
     [CCode (cname="av_packet_free", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_packet_free (
-        Packet pkt
+        Packet packet
     );
 
     /***********************************************************
@@ -170,55 +170,55 @@ public struct Packet {
     Note, this does not touch the data and size members, which have to be
     initialized separately.
 
-    @param pkt packet
+    @param packet packet
     ***********************************************************/
     [CCode (cname="av_init_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_init_packet (
-        Packet pkt
+        Packet packet
     );
 
     /***********************************************************
     @brief Allocate the payload of a packet and initialize its fields with
     default values.
 
-    @param pkt packet
+    @param packet packet
     @param size wanted payload size
     @return 0 if OK, LibAVUtil.ErrorCode otherwise
     ***********************************************************/
     [CCode (cname="av_new_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_new_packet (
-        Packet pkt,
+        Packet packet,
         int size
     );
 
     /***********************************************************
     @brief Reduce packet size, correctly zeroing padding
 
-    @param pkt packet
+    @param packet packet
     @param size new size
     ***********************************************************/
     [CCode (cname="av_shrink_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_shrink_packet (
-        Packet pkt,
+        Packet packet,
         int size
     );
 
     /***********************************************************
     @brief Increase packet size, correctly zeroing padding
 
-    @param pkt packet
+    @param packet packet
     @param grow_by number of bytes by which to increase the size of the packet
     ***********************************************************/
     [CCode (cname="av_grow_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_grow_packet (
-        Packet pkt,
+        Packet packet,
         int grow_by
     );
 
     /***********************************************************
     @brief Initialize a reference-counted packet from av_malloc ()ed data.
 
-    @param pkt packet to be initialized. This function will set the data, size,
+    @param packet packet to be initialized. This function will set the data, size,
         and buf fields, all others are left untouched.
     @param data Data allocated by av_malloc () to be used as packet data. If this
         function returns successfully, the data is owned by the underlying LibAVUtil.Buffer.
@@ -230,7 +230,7 @@ public struct Packet {
     ***********************************************************/
     [CCode (cname="av_packet_from_data", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_from_data (
-        Packet pkt,
+        Packet packet,
         uint8[] data,
         int size
     );
@@ -238,13 +238,13 @@ public struct Packet {
     /***********************************************************
     @brief Allocate new information of a packet.
 
-    @param pkt packet
+    @param packet packet
     @param type side information type
     @param size side information size
     @return pointer to fresh allocated data or null otherwise
     ***********************************************************/
     uint8[] av_packet_new_side_data (
-        Packet pkt,
+        Packet packet,
         PacketSideDataType type,
         int size
     );
@@ -252,11 +252,11 @@ public struct Packet {
     /***********************************************************
     @brief Wrap an existing array as a packet side data.
 
-    @param pkt packet
+    @param packet packet
     @param type side information type
     @param data the side data array. It must be allocated with the av_malloc ()
         family of functions. The ownership of the data is transferred to
-        pkt.
+        packet.
     @param size side information size
     @return a non-negative number on success, a negative LibAVUtil.ErrorCode code on
         failure. On failure, the packet is unchanged and the data remains
@@ -264,7 +264,7 @@ public struct Packet {
     ***********************************************************/
     [CCode (cname="av_packet_add_side_data", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_add_side_data (
-        Packet pkt,
+        Packet packet,
         PacketSideDataType type,
         uint8[] data,
         size_t size
@@ -273,14 +273,14 @@ public struct Packet {
     /***********************************************************
     @brief Shrink the already allocated side data buffer
 
-    @param pkt packet
+    @param packet packet
     @param type side information type
     @param size new side information size
     @return 0 on success, < 0 on failure
     ***********************************************************/
     [CCode (cname="av_packet_shrink_side_data", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_shrink_side_data (
-        Packet pkt,
+        Packet packet,
         PacketSideDataType type,
         int size
     );
@@ -288,13 +288,13 @@ public struct Packet {
     /***********************************************************
     @brief Get side information from packet.
 
-    @param pkt packet
+    @param packet packet
     @param type desired side information type
     @param size pointer for side information size to store (optional)
     @return pointer to data if present or null otherwise
     ***********************************************************/
     uint8[] av_packet_get_side_data (
-        Packet pkt,
+        Packet packet,
         PacketSideDataType type,
         out int size
     );
@@ -303,11 +303,11 @@ public struct Packet {
     @brief Convenience function to free all the side data stored.
     All the other fields stay untouched.
 
-    @param pkt packet
+    @param packet packet
     ***********************************************************/
     [CCode (cname="av_packet_free_side_data", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_packet_free_side_data (
-        Packet pkt
+        Packet packet
     );
 
     /***********************************************************
@@ -338,11 +338,11 @@ public struct Packet {
     Unreference the buffer referenced by the packet and reset the
     remaining packet fields to their default values.
 
-    @param pkt The packet to be unreferenced.
+    @param packet The packet to be unreferenced.
     ***********************************************************/
     [CCode (cname="av_packet_unref", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_packet_unref (
-        Packet pkt
+        Packet packet
     );
 
     /***********************************************************
@@ -385,28 +385,28 @@ public struct Packet {
     @see @link av_packet_ref
     @see @link av_packet_make_writable
 
-    @param pkt packet whose data should be made reference counted.
+    @param packet packet whose data should be made reference counted.
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on error. On failure, the
         packet is unchanged.
     ***********************************************************/
     [CCode (cname="av_packet_make_refcounted", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_make_refcounted (
-        Packet pkt
+        Packet packet
     );
 
     /***********************************************************
     @brief Create a writable reference for the data described by a given packet,
     avoiding data copy if possible.
 
-    @param pkt Packet whose data should be made writable.
+    @param packet Packet whose data should be made writable.
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on failure. On failure, the
         packet is unchanged.
     ***********************************************************/
     [CCode (cname="av_packet_make_writable", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_make_writable (
-        Packet pkt
+        Packet packet
     );
 
     /***********************************************************
@@ -414,15 +414,15 @@ public struct Packet {
     timebase to another. Timestamps with unknown values (AV_NOPTS_VALUE) will be
     ignored.
 
-    @param pkt packet on which the conversion will be performed
-    @param tb_src source timebase, in which the timing fields in pkt are
+    @param packet packet on which the conversion will be performed
+    @param tb_src source timebase, in which the timing fields in packet are
         expressed
     @param tb_dst output_packet timebase, to which the timing fields will be
         converted
     ***********************************************************/
     [CCode (cname="av_packet_rescale_ts", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_packet_rescale_ts (
-        Packet pkt,
+        Packet packet,
         LibAVUtil.Rational tb_src,
         LibAVUtil.Rational tb_dst
     );

@@ -41,8 +41,8 @@ static void rgb24_to_yuv420p (
     uchar[] cb,
     uchar[] cr,
     uchar[] src,
-    uint width,
-    uint height
+    uint width_2,
+    uint height_2
 ) {
     uint wrap;
     uint wrap3;
@@ -56,11 +56,11 @@ static void rgb24_to_yuv420p (
     uint b1;
     uchar[] p;
 
-    wrap = width;
-    wrap3 = width * 3;
+    wrap = width_2;
+    wrap3 = width_2 * 3;
     p = src;
-    for (y = 0; y < height; y += 2) {
-        for (x = 0; x < width; x += 2) {
+    for (y = 0; y < height_2; y += 2) {
+        for (x = 0; x < width_2; x += 2) {
             r = p[0];
             g = p[1];
             b = p[2];
@@ -122,8 +122,8 @@ const uint DEFAULT_NB_PICT = 50;
 
 static void pgmyuv_save (
     string filename,
-    uint w,
-    uint h,
+    uint width,
+    uint height,
     uchar[] rgb_tab
 ) {
     GLib.File f;
@@ -135,26 +135,26 @@ static void pgmyuv_save (
     uchar[] cb_tab;
     uchar[] cr_tab;
 
-    lum_tab = new uchar[w * h];
-    cb_tab = new uchar[w * h / 4];
-    cr_tab = new uchar[w * h / 4];
+    lum_tab = new uchar[width * height];
+    cb_tab = new uchar[width * height / 4];
+    cr_tab = new uchar[width * height / 4];
 
-    rgb24_to_yuv420p (lum_tab, cb_tab, cr_tab, rgb_tab, w, h);
+    rgb24_to_yuv420p (lum_tab, cb_tab, cr_tab, rgb_tab, width, height);
 
-    if (filename) {
+    if (filename != "") {
         f = fopen (filename, "wb");
-        fprintf (f, "P5\n%d %d\n%d\n", w, h * 3 / 2, 255);
+        fprintf (f, "P5\n%d %d\n%d\n", width, height * 3 / 2, 255);
     } else {
         f = stdout;
     }
 
-    err_if (fwrite (lum_tab, 1, w * h, f) != w * h);
-    h2 = h / 2;
-    w2 = w / 2;
+    err_if (fwrite (lum_tab, 1, width * height, f) != width * height);
+    h2 = height / 2;
+    w2 = width / 2;
     cb = cb_tab;
     cr = cr_tab;
 
-    if (filename) {
+    if (filename != "") {
         for (uint i = 0; i < h2; i++) {
             err_if (fwrite (cb, 1, w2, f) != w2);
             err_if (fwrite (cr, 1, w2, f) != w2);
@@ -179,8 +179,8 @@ static void pgmyuv_save (
 }
 
 static uchar[] rgb_tab;
-static uint width;
-static uint height;
+static uint width_2;
+static uint height_2;
 static uint wrap;
 
 static void put_pixel (
@@ -192,8 +192,8 @@ static void put_pixel (
 ) {
     uchar[] p;
 
-    if (x < 0 || x >= width ||
-        y < 0 || y >= height)
+    if (x < 0 || x >= width_2 ||
+        y < 0 || y >= height_2)
         return;
 
     p = rgb_tab + y * wrap + x * 3;

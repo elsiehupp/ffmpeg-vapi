@@ -73,29 +73,29 @@ static uint ipol (uint8[] src, uint x, uint y) {
     return (((1 << 16) - frac_y) * s0 + frac_y * s1) >> 24;
 }
 
-static void gen_image (uint num, uint w, uint h) {
+static void gen_image (uint num, uint width, uint height) {
     uint c = h_cos[num % 360];
     uint s = h_sin[num % 360];
 
-    uint xi = -(w / 2) * c;
-    uint yi =  (w / 2) * s;
+    uint xi = -(width / 2) * c;
+    uint yi =  (width / 2) * s;
 
-    uint xj = -(h / 2) * s;
-    uint yj = -(h / 2) * c;
+    uint xj = -(height / 2) * s;
+    uint yj = -(height / 2) * c;
 
     uint x;
     uint y;
     uint xprime = xj;
     uint yprime = yj;
 
-    for (uint j = 0; j < h; j++) {
-        x = xprime + xi + FIXP * w / 2;
+    for (uint j = 0; j < height; j++) {
+        x = xprime + xi + FIXP * width / 2;
         xprime += s;
 
-        y = yprime + yi + FIXP * h / 2;
+        y = yprime + yi + FIXP * height / 2;
         yprime += c;
 
-        for (uint i = 0; i < w; i++) {
+        for (uint i = 0; i < width; i++) {
             x += c;
             y -= s;
             put_pixel (
@@ -125,14 +125,14 @@ const uint W = 256;
 const uint H = 256;
 
 static uint init_demo (string filename) {
-    uint h;
+    uint height;
     uint radian;
     char line[3 * W];
 
     GLib.File input_file;
 
     input_file = fopen (filename, "rb");
-    if (!input_file) {
+    if (input_file == null) {
         perror (filename);
         return 1;
     }
@@ -156,9 +156,9 @@ static uint init_demo (string filename) {
 
     for (uint i = 0; i < 360; i++) {
         radian = 2 * i * MY_PI / 360;
-        h = 2 * FIXP + int_sin (radian);
-        h_cos[i] = h * int_sin (radian + MY_PI / 2) / 2 / FIXP;
-        h_sin[i] = h * int_sin (radian)             / 2 / FIXP;
+        height = 2 * FIXP + int_sin (radian);
+        h_cos[i] = height * int_sin (radian + MY_PI / 2) / 2 / FIXP;
+        h_sin[i] = height * int_sin (radian)             / 2 / FIXP;
     }
 
     return 0;
@@ -168,8 +168,8 @@ uint main (
     uint argc,
     string[] argv
 ) {
-    uint w;
-    uint h;
+    uint width;
+    uint height;
     char buf[1024];
     uint isdir = 0;
 
@@ -182,13 +182,13 @@ uint main (
     if (!freopen (argv[2], "wb", stdout))
         isdir = 1;
 
-    w = DEFAULT_WIDTH;
-    h = DEFAULT_HEIGHT;
+    width = DEFAULT_WIDTH;
+    height = DEFAULT_HEIGHT;
 
-    rgb_tab = malloc (w * h * 3);
-    wrap = w * 3;
-    width = w;
-    height = h;
+    rgb_tab = malloc (width * height * 3);
+    wrap = width * 3;
+    width_2 = width;
+    height_2 = height;
 
     if (init_demo (argv[1]))
         return 1;
@@ -196,8 +196,8 @@ uint main (
     for (uint i = 0; i < DEFAULT_NB_PICT; i++) {
         gen_image (
             i,
-            w,
-            h
+            width,
+            height
         );
         if (isdir) {
             snprintf (
@@ -209,15 +209,15 @@ uint main (
             );
             pgmyuv_save (
                 buf,
-                w,
-                h,
+                width,
+                height,
                 rgb_tab
             );
         } else {
             pgmyuv_save (
                 null,
-                w,
-                h,
+                width,
+                height,
                 rgb_tab
             );
         }
