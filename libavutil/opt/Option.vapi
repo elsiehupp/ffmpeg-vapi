@@ -50,10 +50,10 @@ The following example illustrates an LibAVUtil.Options-enabled struct:
 public struct test_struct {
     Class class;
     int int_opt;
-    char    *str_opt;
+    char *str_opt;
     uint8[] bin_opt;
     int bin_len;
-} test_struct;
+}
 
 static const Option test_options[] = {
   { "test_int", "This is a test option of int type.", offsetof (test_struct, int_opt),
@@ -63,14 +63,14 @@ static const Option test_options[] = {
   { "test_bin", "This is a test option of binary type.", offsetof (test_struct, bin_opt),
     OptionType.BINARY },
   { null },
-};
+}
 
 static const Class test_class = {
     .class_name = "test class",
-    .item_name  = av_default_item_name,
-    .option     = test_options,
-    .version    = LIBAVUTIL_VERSION_INT,
-};
+    .item_name = av_default_item_name,
+    .option = test_options,
+    .version = LIBAVUTIL_VERSION_INT,
+}
 @endcode
 
 Next, when allocating your struct, you must ensure that the Class pointer
@@ -116,13 +116,13 @@ void free_test_struct (test_struct **foo) {
         { "test_flags", "This is a test option of flags type.",
         offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, INT_MAX },
         { null },
-    };
+    }
     static const Class child_class = {
         .class_name = "child class",
-        .item_name  = av_default_item_name,
-        .option     = child_opts,
-        .version    = LIBAVUTIL_VERSION_INT,
-    };
+        .item_name = av_default_item_name,
+        .option = child_opts,
+        .version = LIBAVUTIL_VERSION_INT,
+    }
 
     void *child_next (void *obj, void *prev) {
         test_struct t = obj;
@@ -235,8 +235,9 @@ public struct Option {
     //      int64 i64;
     //      double dbl;
     //      string str;
-    //      /* TODO those are unused now */
-    //      Rational q;
+    //      /* TODO those are unused now
+    ***********************************************************/
+//      Rational q;
     //  } default_val;
 
     /***********************************************************

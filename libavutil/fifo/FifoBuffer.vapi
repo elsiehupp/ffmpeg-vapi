@@ -34,11 +34,11 @@ public struct FifoBuffer {
     [CCode (cname="buffer")]
     public uint8[] buffer;
     [CCode (cname="rptr")]
-    public uint8 *r_pointer;
+    public uint8[] r_pointer;
     [CCode (cname="wptr")]
-    public uint8 *w_pointer;
+    public uint8[] w_pointer;
     [CCode (cname="end")]
-    public uint8 *end_pointer;
+    public uint8[] end_pointer;
     [CCode (cname="rndx")]
     public uint32 r_index;
     [CCode (cname="wndx")]

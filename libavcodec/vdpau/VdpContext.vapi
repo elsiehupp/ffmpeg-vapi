@@ -66,7 +66,7 @@ function call. In any case, they must be valid prior to calling
 decoding functions.
 
 The size of this structure is not a part of the public ABI and must not
-be used outside of  Use av_vdpau_alloc_context () to allocate an
+be used outside of Use av_vdpau_alloc_context () to allocate an
 VdpContext.
 ***********************************************************/
 [CCode (cname="struct AVVDPAUContext", cheader_filename="ffmpeg/libavcodec/vdpau.h")]

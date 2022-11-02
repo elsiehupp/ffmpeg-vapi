@@ -268,7 +268,9 @@ public LibAVUtil.ChromaLocation avcodec_chroma_pos_to_enum (
     int ypos
 );
 
-/* memory */
+/***********************************************************
+memory
+***********************************************************/
 
 /***********************************************************
 @brief Same behaviour av_fast_malloc but the buffer has additional

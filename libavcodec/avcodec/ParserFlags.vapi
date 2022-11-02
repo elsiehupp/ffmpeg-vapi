@@ -36,7 +36,9 @@ LibAVCodec external API header
 public enum ParserFlags {
     PARSER_FLAG_COMPLETE_FRAMES,
     PARSER_FLAG_ONCE,
-    /// Set if the parser has a valid file offset
+    /***********************************************************
+    Set if the parser has a valid file offset
+    ***********************************************************/
     PARSER_FLAG_FETCHED_OFFSET,
     PARSER_FLAG_USE_CODEC_TS,
 }

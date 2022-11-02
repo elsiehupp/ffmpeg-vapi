@@ -130,7 +130,6 @@ the given pixel formats should be used to suffer the least amount of loss.
 The pixel formats from which it chooses one, are determined by the
 pix_fmt_list parameter.
 
- *
 @param[in] pix_fmt_list LibAVUtil.PixelFormat.NONE terminated array of pixel formats to choose from
 @param[in] input_pix_fmt source pixel format
 @param[in] has_alpha Whether the source pixel format alpha channel is used.

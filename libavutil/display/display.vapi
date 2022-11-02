@@ -64,7 +64,7 @@ follows:
 @code{.unparsed}
     p' = (a * p + c * q + x) / z;
     q' = (b * p + d * q + y) / z;
-    z  =  u * p + v * q + w
+    z = u * p + v * q + w
 @endcode
 ***********************************************************/
 

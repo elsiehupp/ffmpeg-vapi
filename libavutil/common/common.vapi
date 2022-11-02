@@ -37,11 +37,17 @@ common internal and external API header
 
 //rounded division & shift
 //  #define RSHIFT (a,b);
-/* assume b>0 */
+/***********************************************************
+assume b>0
+***********************************************************/
 //  #define ROUNDED_DIV (a,b);
-/* Fast a/(1<<b) rounded toward +inf. Assume a>=0 and b>=0 */
+/***********************************************************
+Fast a/(1<<b) rounded toward +inf. Assume a>=0 and b>=0
+***********************************************************/
 //  #define AV_CEIL_RSHIFT (a,b);
-/* Backwards compat. */
+/***********************************************************
+Backwards compat.
+    ***********************************************************/
 //  #define FF_CEIL_RSHIFT AV_CEIL_RSHIFT
 
 //  #define FFUDIV (a,b);
@@ -83,7 +89,9 @@ must not have a side-effect.
 //  #define FFSWAP (type,a,b) do {type SWAP_tmp= b; b= a; a= SWAP_tmp;}while (0)
 //  #define FF_ARRAY_ELEMS (a) (sizeof (a) / sizeof ((a)[0]))
 
-/* misc math functions */
+/***********************************************************
+misc math functions
+***********************************************************/
 
 [CCode (cname="av_log2", cheader_filename="ffmpeg/libavutil/common.h")]
 public int av_log2 (

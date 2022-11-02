@@ -56,7 +56,9 @@ public struct CodecParserContext {
     [CCode (cname="next_frame_offset")]
     public int64 next_frame_offset;
 
-    /* video info */
+    /***********************************************************
+    video info
+    ***********************************************************/
 
     /***********************************************************
     @brief XXX: Put it back in CodecContext.
@@ -133,7 +135,9 @@ public struct CodecParserContext {
     [CCode (cname="key_frame")]
     public int key_frame;
 
-    /* Timestamp generation support */
+    /***********************************************************
+    Timestamp generation support
+***********************************************************/
 
     /***********************************************************
     @brief Synchronization point for start of timestamp generation.
@@ -293,7 +297,7 @@ public struct CodecParserContext {
         in_data, in_len,
         pts, dts, pos);
         in_data += len;
-        in_len  -= len;
+        in_len -= len;
 
         if (size)
         decode_frame (data, size);

@@ -76,12 +76,12 @@ public struct SphericalMapping {
 
     @code{.unparsed}
         Yaw
-        -180        0        180
+        -180 0 180
       90 +-------------+-------------+  180
          |             |             |        up
     P    |             |             |        y|    forward
     i    |             ^             |         |   /z
-    t  0 +-------------X-------------+    0 Roll        |  /
+    t 0 +-------------X-------------+    0 Roll        |  /
     c    |             |             |         | /
     h    |             |             |        0|/_____right
          |             |             |        x
@@ -119,12 +119,12 @@ public struct SphericalMapping {
 
     @code{.unparsed}
                       Yaw
-        -180           0           180
+        -180 0 180
       90 +-------------+-------------+  180
          |             |             |                  up
     P    |             |             |                 y|    forward
     i    |             ^             |                  |   /z
-    t  0 +-------------X-------------+    0 Roll        |  /
+    t 0 +-------------X-------------+    0 Roll        |  /
     c    |             |             |                  | /
     h    |             |             |                 0|/_____right
          |             |             |                        x
@@ -139,7 +139,7 @@ public struct SphericalMapping {
     like in the following example:
 
     @code{c}
-        original_width  = tile.width  + bound_left + bound_right;
+        original_width = tile.width  + bound_left + bound_right;
         original_height = tile.height + bound_top  + bound_bottom;
     @endcode
 

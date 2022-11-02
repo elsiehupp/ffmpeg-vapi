@@ -37,7 +37,7 @@ Interface to Dirac Decoder/Encoder
 Dirac Specification ->
 9.6.1 Table 9.1
 
-VC-2 Specification  ->
+VC-2 Specification ->
 10.4.1 Table 10.1
 ***********************************************************/
 

@@ -73,7 +73,7 @@ This helps ensuring binary compatibility with future versions.
 ***********************************************************/
 
 //  #define FF_PAD_STRUCTURE (name, size, ...) \
-//  public struct ff_pad_helper_##name { __VA_ARGS__ }; \
+//  public struct ff_pad_helper_##name { __VA_ARGS__ } \
 //  public struct name { \
 //      __VA_ARGS__ \
 //      char reserved_padding[size - sizeof (ff_pad_helper_##name)]; \
@@ -121,10 +121,18 @@ such as the current paragraph.
 ***********************************************************/
 
 //  FF_PAD_STRUCTURE (BPrintBuffer, 1024,
-//      string str; /**< string so far */
-//      uint len; /**< length so far */
-//      uint size; /**< allocated memory */
-//      uint size_max; /**< maximum allocated memory */
+//      string str; /***********************************************************
+string so far
+***********************************************************/
+//      uint len; /***********************************************************
+length so far
+***********************************************************/
+//      uint size; /***********************************************************
+allocated memory
+***********************************************************/
+//      uint size_max; /***********************************************************
+maximum allocated memory
+***********************************************************/
 //      char reserved_internal_buffer[1];
 //  )
 

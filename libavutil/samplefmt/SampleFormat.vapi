@@ -51,7 +51,7 @@ public enum SampleFormat {
     [CCode (cname="AV_SAMPLE_FMT_NONE")]
     NONE,
     /***********************************************************
-    @brief unsigned 8 bits
+    @brief uint 8 bits
     ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_U8")]
     UNSIGNED_8_BIT,
@@ -76,7 +76,7 @@ public enum SampleFormat {
     [CCode (cname="AV_SAMPLE_FMT_DBL")]
     DOUBLE,
     /***********************************************************
-    @brief unsigned 8 bits, planar
+    @brief uint 8 bits, planar
     ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_U8P")]
     UNSIGNED_8_BIT_PLANAR,

@@ -33,7 +33,7 @@ assumed to be allocated in the same way and interchangeable.
 This struct is reference-counted with the LibAVUtil.Buffer mechanism and tied to a
 given HardwareDeviceContext instance. The av_hwframe_ctx_alloc () constructor
 yields a reference, whose data field points to the actual HardwareFrameContext
-struct.
+public struct.
 ***********************************************************/
 [CCode (cname="struct AVHWFramesContext", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public struct HardwareFrameContext {

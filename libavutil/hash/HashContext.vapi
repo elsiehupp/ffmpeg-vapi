@@ -50,7 +50,7 @@ If you just need to use one particular hash function, use the @link lavu_hash
 A basic template for using the Generic Hashing API follows:
 
 @code
-struct HashContext hash_context = null;
+public struct HashContext hash_context = null;
 const string hash_name = null;
 uint8[] output_buf = null;
 

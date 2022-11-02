@@ -40,7 +40,7 @@ public enum Stereo3DType {
     @brief Views are alternated temporally.
 
     @code{.unparsed}
-        frame0   frame1   frame2   ...
+        frame0 frame1 frame2   ...
         LLLLLLLL RRRRRRRR LLLLLLLL
         LLLLLLLL RRRRRRRR LLLLLLLL
         LLLLLLLL RRRRRRRR LLLLLLLL
@@ -68,10 +68,10 @@ public enum Stereo3DType {
         apply a checkerboard pattern.
 
     @code{.unparsed}
-        LLLLRRRR          L L L L    R R R R
-        LLLLRRRR    =>    L L L L    R R R R
-        LLLLRRRR          L L L L    R R R R
-        LLLLRRRR          L L L L    R R R R
+        LLLLRRRR L L L L R R R R
+        LLLLRRRR =>    L L L L R R R R
+        LLLLRRRR L L L L R R R R
+        LLLLRRRR L L L L R R R R
     @endcode
     ***********************************************************/
     [CCode (cname="AV_STEREO3D_SIDEBYSIDE_QUINCUNX")]

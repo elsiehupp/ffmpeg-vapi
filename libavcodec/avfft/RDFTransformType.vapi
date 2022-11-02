@@ -30,7 +30,9 @@ FFT functions
 @ingroup lavc_misc
 ***********************************************************/
 
-/* Real Discrete Fourier Transform */
+/***********************************************************
+Real Discrete Fourier Transform
+***********************************************************/
 [CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avfft.h")]
 public enum RDFTransformType {
     DFT_R2C,

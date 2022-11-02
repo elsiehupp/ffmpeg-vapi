@@ -583,9 +583,9 @@ av_dynarray_add_nofree () implement this system.
 
 @code
 type **array = null; ///< an array of pointers to values
-int nb    = 0; ///< a variable to keep track of the length of the array
+int nb = 0; ///< a variable to keep track of the length of the array
 
-type to_be_added  = ...;
+type to_be_added = ...;
 type to_be_added2 = ...;
 
 av_dynarray_add (&array, &nb, &to_be_added);
@@ -597,8 +597,8 @@ if (nb == 0)
     return LibAVUtil.ErrorCode (ENOMEM);
 
 // Now:
-//  nb    == 2
-// &to_be_added  == array[0]
+//  nb == 2
+// &to_be_added == array[0]
 // &to_be_added2 == array[1]
 
 av_freep (&array);
@@ -610,9 +610,9 @@ implements this mechanism.
 
 @code
 type *array = null; ///< an array of values
-int nb    = 0; ///< a variable to keep track of the length of the array
+int nb = 0; ///< a variable to keep track of the length of the array
 
-type to_be_added  = ...;
+type to_be_added = ...;
 type to_be_added2 = ...;
 
 type *addr = av_dynarray2_add ((out void *)&array, &nb, sizeof (*array), null);
@@ -628,7 +628,7 @@ if (!addr)
 
 // Now:
 //  nb == 2
-//  to_be_added  == array[0]
+//  to_be_added == array[0]
 //  to_be_added2 == array[1]
 
 av_freep (&array);

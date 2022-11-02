@@ -46,7 +46,9 @@ descriptor list and bump LibAVCodec minor version.
 public enum CodecID {
     AV_CODEC_ID_NONE,
 
-    /* video codecs */
+    /***********************************************************
+    video codecs
+    ***********************************************************/
 
     AV_CODEC_ID_MPEG1VIDEO,
     /***********************************************************
@@ -293,7 +295,9 @@ public enum CodecID {
     AV_CODEC_ID_LSCR,
     AV_CODEC_ID_VP4,
 
-    /* various PCM "codecs" */
+    /***********************************************************
+    various PCM "codecs"
+    ***********************************************************/
 
     /***********************************************************
     @brief A dummy id pointing at the start of audio codecs
@@ -337,8 +341,10 @@ public enum CodecID {
     AV_CODEC_ID_PCM_F24LE,
     AV_CODEC_ID_PCM_VIDC,
 
-    /* various ADPCM codecs */
-    AV_CODEC_ID_ADPCM_IMA_QT,
+    /***********************************************************
+    various ADPCM codecs
+    ***********************************************************/
+AV_CODEC_ID_ADPCM_IMA_QT,
     AV_CODEC_ID_ADPCM_IMA_WAV,
     AV_CODEC_ID_ADPCM_IMA_DK3,
     AV_CODEC_ID_ADPCM_IMA_DK4,
@@ -382,16 +388,21 @@ public enum CodecID {
     AV_CODEC_ID_ADPCM_MTAF,
     AV_CODEC_ID_ADPCM_AGM,
 
-    /* AMR */
-    AV_CODEC_ID_AMR_NB,
+    /***********************************************************
+    AMR
+    ***********************************************************/
+AV_CODEC_ID_AMR_NB,
     AV_CODEC_ID_AMR_WB,
 
-    /* RealAudio codecs*/
+    /***********************************************************
+    RealAudio codecs*/
     AV_CODEC_ID_RA_144,
     AV_CODEC_ID_RA_288,
 
-    /* various DPCM codecs */
-    AV_CODEC_ID_ROQ_DPCM,
+    /***********************************************************
+    various DPCM codecs
+    ***********************************************************/
+AV_CODEC_ID_ROQ_DPCM,
     AV_CODEC_ID_INTERPLAY_DPCM,
     AV_CODEC_ID_XAN_DPCM,
     AV_CODEC_ID_SOL_DPCM,
@@ -399,7 +410,9 @@ public enum CodecID {
     AV_CODEC_ID_SDX2_DPCM,
     AV_CODEC_ID_GREMLIN_DPCM,
 
-    /* audio codecs */
+    /***********************************************************
+    audio codecs
+***********************************************************/
 
     AV_CODEC_ID_MP2,
     /***********************************************************
@@ -502,7 +515,9 @@ public enum CodecID {
     AV_CODEC_ID_ATRAC9,
     AV_CODEC_ID_HCOM,
 
-    /* subtitle codecs */
+    /***********************************************************
+    subtitle codecs
+***********************************************************/
 
     /***********************************************************
     @brief A dummy ID pointing at the start of subtitle codecs.
@@ -539,7 +554,9 @@ public enum CodecID {
     AV_CODEC_ID_TTML,
     AV_CODEC_ID_ARIB_CAPTION,
 
-    /* other specific kind of codecs (generally used for attachments) */
+    /***********************************************************
+    other specific kind of codecs (generally used for attachments)
+    ***********************************************************/
 
     /***********************************************************
     @brief A dummy ID pointing at the start of various fake codecs.

@@ -28,13 +28,13 @@ image, the left shows only luma, the right
 shows the location of the chroma sample, the 2 could be imagined to overlay
 each other but are drawn separately due to limitations of ASCII
 
-1st  2nd      1st  2nd horizontal luma sample positions
-v    v        v    v
-______        ______
+1st 2nd 1st 2nd horizontal luma sample positions
+v v v v
+______ ______
 
-* 1st luma line > |X   X ...   |3 4 X ...    X are luma samples,
-                  |            |1 2          1-6 are possible chroma positions
-* 2nd luma line > |X   X ...   |5 6 X ...    0 is undefined/unknown position
+* 1st luma line > |X X ...   |3 4 X ...    X are luma samples,
+                  |            |1 2 1-6 are possible chroma positions
+* 2nd luma line > |X X ...   |5 6 X ...    0 is undefined/unknown position
 ***********************************************************/
 [CCode (cprefix="AVCHROMA_LOC_", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
 public enum ChromaLocation {

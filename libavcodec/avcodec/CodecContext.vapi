@@ -301,7 +301,9 @@ public struct CodecContext {
     [CCode (cname="delay")]
     public int delay;
 
-    /* video only */
+    /***********************************************************
+    video only
+    ***********************************************************/
 
     /***********************************************************
     @brief Picture width / height.
@@ -666,7 +668,7 @@ public struct CodecContext {
     @note Must be allocated with the av_malloc () family of functions, and will be freed in
         avcodec_free_context ().
 
-    - encoding: Set/allocated by user, freed by  Can be null.
+    - encoding: Set/allocated by user, freed by Can be null.
     - decoding: Set/allocated/freed by 
     ***********************************************************/
     [CCode (cname="intra_matrix")]
@@ -678,7 +680,7 @@ public struct CodecContext {
     @note Must be allocated with the av_malloc () family of functions, and will be freed in
         avcodec_free_context ().
 
-    - encoding: Set/allocated by user, freed by  Can be null.
+    - encoding: Set/allocated by user, freed by Can be null.
     - decoding: Set/allocated/freed by 
     ***********************************************************/
     [CCode (cname="inter_matrix")]
@@ -852,7 +854,9 @@ public struct CodecContext {
     [CCode (cname="sample_fmt")]
     public LibAVUtil.SampleFormat sample_fmt;
 
-    /* The following data should not be initialized. */
+    /***********************************************************
+    The following data should not be initialized.
+    ***********************************************************/
 
     /***********************************************************
     @brief Number of samples per channel in an audio frame.
@@ -1013,7 +1017,9 @@ public struct CodecContext {
     [CCode (cname="get_buffer2")]
     public AVCodecGetBuffer2Delegate get_buffer2;
 
-    /* - encoding parameters */
+    /***********************************************************
+    - encoding parameters
+***********************************************************/
 
     /***********************************************************
     @brief Amount of qscale change between easy & hard scenes (0.0-1.0)
@@ -1465,7 +1471,7 @@ public struct CodecContext {
 
     - decoding: unused
 
-    - encoding: Set by  The timestamps on the output packets are
+    - encoding: Set by The timestamps on the output packets are
         adjusted by the encoder so that they always refer to the
         first sample of the data actually contained in the packet,
         including any added padding. E.g. if the timebase is

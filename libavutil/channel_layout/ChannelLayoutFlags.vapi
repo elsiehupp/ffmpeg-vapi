@@ -31,9 +31,9 @@ audio channel layout utility functions
 ***********************************************************/
 
 /***********************************************************
-enum ChannelLayoutFlags
+public enum ChannelLayoutFlags
 
-@description A channel layout is a 64-bit unsigned integer
+@description A channel layout is a 64-bit uint integer
     with a bit set for every channel. The number of bits set
     must be equal to the number of channels. The value 0
     means that the channel layout is not known.

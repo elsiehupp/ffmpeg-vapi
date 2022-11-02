@@ -1,5 +1,5 @@
 /**
-    Copyright (C) 2005  Michael Ahlberg, Måns Rullgård
+    Copyright (C) 2005 Michael Ahlberg, Måns Rullgård
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
@@ -22,122 +22,140 @@
     DEALINGS IN THE SOFTWARE.
 **/
 
-#ifndef AVFORMAT_OGGDEC_H
-#define AVFORMAT_OGGDEC_H
-
-#include "avformat.h"
-#include "metadata.h"
-
-struct ogg_codec {
-    const int8_t *magic;
-    uint8_t magicsize;
-    const int8_t *name;
-    /**
-     * Attempt to process a packet as a header
-     * @return 1 if the packet was a valid header,
-     *         0 if the packet was not a header (was a data packet)
-     *         -1 if an error occurred or for unsupported stream
-     */
+public struct ogg_codec {
+    int8[] magic;
+    uint8 magicsize;
+    int8[] name;
+    /***********************************************************
+    Attempt to process a packet as a header
+    @return 1 if the packet was a valid header,
+            0 if the packet was not a header (was a data packet)
+            -1 if an error occurred or for unsupported stream
+    ***********************************************************/
     int (*header)(AVFormatContext *, int);
     int (*packet)(AVFormatContext *, int);
-    /**
-     * Translate a granule into a timestamp.
-     * Will set dts if non-null and known.
-     * @return pts
-     */
-    uint64_t (*gptopts)(AVFormatContext *, int, uint64_t, int64_t *dts);
-    /**
-     * 1 if granule is the start time of the associated packet.
-     * 0 if granule is the end time of the associated packet.
-     */
+    /***********************************************************
+    Translate a granule into a timestamp.
+    Will set dts if non-null and known.
+    @return pts
+    ***********************************************************/
+    uint64 (*gptopts)(AVFormatContext *, int, uint64, int64[] dts);
+    /***********************************************************
+    1 if granule is the start time of the associated packet.
+    0 if granule is the end time of the associated packet.
+    ***********************************************************/
     int granule_is_start;
-    /**
-     * Number of expected headers
-     */
+    /***********************************************************
+    Number of expected headers
+    ***********************************************************/
     int nb_header;
     void (*cleanup)(AVFormatContext *s, int idx);
-};
+}
 
-struct ogg_stream {
-    uint8_t *buf;
-    unsigned int bufsize;
-    unsigned int bufpos;
-    unsigned int pstart;
-    unsigned int psize;
-    unsigned int pflags;
-    unsigned int pduration;
-    uint32_t serial;
-    uint64_t granule;
-    uint64_t start_granule;
-    int64_t lastpts;
-    int64_t lastdts;
-    int64_t sync_pos;   ///< file offset of the first page needed to reconstruct the current packet
-    int64_t page_pos;   ///< file offset of the current page
+public struct ogg_stream {
+    uint8[] buf;
+    uint bufsize;
+    uint bufpos;
+    uint pstart;
+    uint psize;
+    uint pflags;
+    uint pduration;
+    uint32 serial;
+    uint64 granule;
+    uint64 start_granule;
+    int64 lastpts;
+    int64 lastdts;
+    /***********************************************************
+    file offset of the first page needed to reconstruct the current packet
+    ***********************************************************/
+    int64 sync_pos;
+    /***********************************************************
+    file offset of the current page
+    ***********************************************************/
+    int64 page_pos;
     int flags;
-    const struct ogg_codec *codec;
+    ogg_codec *codec;
     int header;
     int nsegs, segp;
-    uint8_t segments[255];
-    int incomplete; ///< whether we're expecting a continuation in the next page
-    int page_end;   ///< current packet is the last one completed in the page
+    uint8 segments[255];
+    /***********************************************************
+    whether we're expecting a continuation in the next page
+    ***********************************************************/
+    int incomplete;
+    /***********************************************************
+    current packet is the last one completed in the page
+    ***********************************************************/
+    int page_end;
     int keyframe_seek;
     int got_start;
-    int got_data;   ///< 1 if the stream got some data (non-initial packets), 0 otherwise
-    int nb_header; ///< set to the number of parsed headers
-    int end_trimming; ///< set the number of packets to drop from the end
-    uint8_t *new_metadata;
-    unsigned int new_metadata_size;
+    /***********************************************************
+    1 if the stream got some data (non-initial packets), 0 otherwise
+    ***********************************************************/
+    int got_data;
+    /***********************************************************
+    set to the number of parsed headers
+    ***********************************************************/
+    int nb_header;
+    /***********************************************************
+    set the number of packets to drop from the end
+    ***********************************************************/
+    int end_trimming;
+    uint8[] new_metadata;
+    uint new_metadata_size;
     void *private;
-};
+}
 
-struct ogg_state {
-    uint64_t pos;
+public struct ogg_state {
+    uint64 pos;
     int curidx;
-    struct ogg_state *next;
+    ogg_state *next;
     int nstreams;
-    struct ogg_stream streams[1];
-};
+    ogg_stream streams[1];
+}
 
-struct ogg {
-    struct ogg_stream *streams;
+public struct ogg {
+    ogg_stream *streams;
     int nstreams;
     int headers;
     int curidx;
-    int64_t page_pos;                   ///< file offset of the current page
-    struct ogg_state *state;
-};
+    /***********************************************************
+    file offset of the current page
+    ***********************************************************/
+    int64 page_pos;
+    ogg_state *state;
+}
 
 #define OGG_FLAG_CONT 1
-#define OGG_FLAG_BOS  2
-#define OGG_FLAG_EOS  4
+#define OGG_FLAG_BOS 2
+#define OGG_FLAG_EOS 4
 
 #define OGG_NOGRANULE_VALUE (-1ull)
 
-extern const struct ogg_codec ff_celt_codec;
-extern const struct ogg_codec ff_daala_codec;
-extern const struct ogg_codec ff_dirac_codec;
-extern const struct ogg_codec ff_flac_codec;
-extern const struct ogg_codec ff_ogm_audio_codec;
-extern const struct ogg_codec ff_ogm_old_codec;
-extern const struct ogg_codec ff_ogm_text_codec;
-extern const struct ogg_codec ff_ogm_video_codec;
-extern const struct ogg_codec ff_old_dirac_codec;
-extern const struct ogg_codec ff_old_flac_codec;
-extern const struct ogg_codec ff_opus_codec;
-extern const struct ogg_codec ff_skeleton_codec;
-extern const struct ogg_codec ff_speex_codec;
-extern const struct ogg_codec ff_theora_codec;
-extern const struct ogg_codec ff_vorbis_codec;
-extern const struct ogg_codec ff_vp8_codec;
+//  extern const struct ogg_codec ff_celt_codec;
+//  extern const struct ogg_codec ff_daala_codec;
+//  extern const struct ogg_codec ff_dirac_codec;
+//  extern const struct ogg_codec ff_flac_codec;
+//  extern const struct ogg_codec ff_ogm_audio_codec;
+//  extern const struct ogg_codec ff_ogm_old_codec;
+//  extern const struct ogg_codec ff_ogm_text_codec;
+//  extern const struct ogg_codec ff_ogm_video_codec;
+//  extern const struct ogg_codec ff_old_dirac_codec;
+//  extern const struct ogg_codec ff_old_flac_codec;
+//  extern const struct ogg_codec ff_opus_codec;
+//  extern const struct ogg_codec ff_skeleton_codec;
+//  extern const struct ogg_codec ff_speex_codec;
+//  extern const struct ogg_codec ff_theora_codec;
+//  extern const struct ogg_codec ff_vorbis_codec;
+//  extern const struct ogg_codec ff_vp8_codec;
 
 int ff_vorbis_comment(AVFormatContext *ms, AVDictionary **m,
-                      const uint8_t *buf, int size, int parse_picture);
+                      uint8[] buf, int size, int parse_picture);
 
 int ff_vorbis_stream_comment(AVFormatContext *as, AVStream *st,
-                             const uint8_t *buf, int size);
+                             uint8[] buf, int size);
 
 static inline int
-ogg_find_stream (struct ogg * ogg, int serial)
+ogg_find_stream (ogg * ogg, int serial)
 {
     int i;
 
@@ -148,12 +166,12 @@ ogg_find_stream (struct ogg * ogg, int serial)
     return -1;
 }
 
-static inline uint64_t
-ogg_gptopts (AVFormatContext * s, int i, uint64_t gp, int64_t *dts)
+static inline uint64
+ogg_gptopts (AVFormatContext * s, int i, uint64 gp, int64[] dts)
 {
-    struct ogg *ogg = s->priv_data;
-    struct ogg_stream *os = ogg->streams + i;
-    uint64_t pts = AV_NOPTS_VALUE;
+    ogg *ogg = s->priv_data;
+    ogg_stream *os = ogg->streams + i;
+    uint64 pts = AV_NOPTS_VALUE;
 
     if(os->codec && os->codec->gptopts){
         pts = os->codec->gptopts(s, i, gp, dts);
@@ -163,12 +181,10 @@ ogg_gptopts (AVFormatContext * s, int i, uint64_t gp, int64_t *dts)
             *dts = pts;
     }
     if (pts > INT64_MAX && pts != AV_NOPTS_VALUE) {
-        // The return type is unsigned, we thus cannot return negative pts
+        // The return type is uint, we thus cannot return negative pts
         av_log(s, AV_LOG_ERROR, "invalid pts %"PRId64"\n", pts);
         pts = AV_NOPTS_VALUE;
     }
 
     return pts;
 }
-
-#endif /* AVFORMAT_OGGDEC_H */
