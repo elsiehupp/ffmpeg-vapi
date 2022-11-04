@@ -19,75 +19,99 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define SYNCWORD1 0xF872
-#define SYNCWORD2 0x4E1F
-#define BURST_HEADER_SIZE 0x8
+public const int SYNCWORD1;
+public const int SYNCWORD2;
+public const size_t BURST_HEADER_SIZE;
 
 public enum IEC61937DataType {
     /***********************************************************
+    AC-3 data
     ***********************************************************/
-    IEC61937_AC3 = 0x01, ///< AC-3 data
+    IEC61937_AC3,
     /***********************************************************
+    MPEG-1 layer 1
     ***********************************************************/
-    IEC61937_MPEG1_LAYER1 = 0x04, ///< MPEG-1 layer 1
+    IEC61937_MPEG1_LAYER1,
     /***********************************************************
+    MPEG-1 layer 2 or 3 data or MPEG-2 without extension
     ***********************************************************/
-    IEC61937_MPEG1_LAYER23 = 0x05, ///< MPEG-1 layer 2 or 3 data or MPEG-2 without extension
+    IEC61937_MPEG1_LAYER23,
     /***********************************************************
+    MPEG-2 data with extension
     ***********************************************************/
-    IEC61937_MPEG2_EXT = 0x06, ///< MPEG-2 data with extension
+    IEC61937_MPEG2_EXT,
     /***********************************************************
+    MPEG-2 AAC ADTS
     ***********************************************************/
-    IEC61937_MPEG2_AAC = 0x07, ///< MPEG-2 AAC ADTS
+    IEC61937_MPEG2_AAC,
     /***********************************************************
+    MPEG-2, layer-1 low sampling frequency
     ***********************************************************/
-    IEC61937_MPEG2_LAYER1_LSF = 0x08, ///< MPEG-2, layer-1 low sampling frequency
+    IEC61937_MPEG2_LAYER1_LSF,
     /***********************************************************
+    MPEG-2, layer-2 low sampling frequency
     ***********************************************************/
-    IEC61937_MPEG2_LAYER2_LSF = 0x09, ///< MPEG-2, layer-2 low sampling frequency
+    IEC61937_MPEG2_LAYER2_LSF,
     /***********************************************************
+    MPEG-2, layer-3 low sampling frequency
     ***********************************************************/
-    IEC61937_MPEG2_LAYER3_LSF = 0x0A, ///< MPEG-2, layer-3 low sampling frequency
+    IEC61937_MPEG2_LAYER3_LSF,
     /***********************************************************
+    DTS type I (512 samples)
     ***********************************************************/
-    IEC61937_DTS1 = 0x0B, ///< DTS type I (512 samples)
+    IEC61937_DTS1,
     /***********************************************************
+    DTS type II (1024 samples)
     ***********************************************************/
-    IEC61937_DTS2 = 0x0C, ///< DTS type II (1024 samples)
-    IEC61937_DTS3 = 0x0D, ///< DTS type III (2048 samples)
-    IEC61937_ATRAC = 0x0E, ///< ATRAC data
+    IEC61937_DTS2,
     /***********************************************************
+    DTS type III (2048 samples)
     ***********************************************************/
-    IEC61937_ATRAC3 = 0x0F, ///< ATRAC3 data
+    IEC61937_DTS3,
     /***********************************************************
+    ATRAC data
     ***********************************************************/
-    IEC61937_ATRACX = 0x10, ///< ATRAC3+ data
+    IEC61937_ATRAC,
     /***********************************************************
+    ATRAC3 data
     ***********************************************************/
-    IEC61937_DTSHD = 0x11, ///< DTS HD data
+    IEC61937_ATRAC3,
     /***********************************************************
+    ATRAC3+ data
     ***********************************************************/
-    IEC61937_WMAPRO = 0x12, ///< WMA 9 Professional data
+    IEC61937_ATRACX,
     /***********************************************************
+    DTS HD data
     ***********************************************************/
-    IEC61937_MPEG2_AAC_LSF_2048 = 0x13, ///< MPEG-2 AAC ADTS half-rate low sampling frequency
+    IEC61937_DTSHD,
     /***********************************************************
+    WMA 9 Professional data
     ***********************************************************/
-    IEC61937_MPEG2_AAC_LSF_4096 = 0x13 | 0x20, ///< MPEG-2 AAC ADTS quarter-rate low sampling frequency
+    IEC61937_WMAPRO,
     /***********************************************************
+    MPEG-2 AAC ADTS half-rate low sampling frequency
     ***********************************************************/
-    IEC61937_EAC3 = 0x15, ///< E-AC-3 data
+    IEC61937_MPEG2_AAC_LSF_2048,
     /***********************************************************
+    MPEG-2 AAC ADTS quarter-rate low sampling frequency
     ***********************************************************/
-    IEC61937_TRUEHD = 0x16, ///< TrueHD data
+    IEC61937_MPEG2_AAC_LSF_4096,
+    /***********************************************************
+    E-AC-3 data
+    ***********************************************************/
+    IEC61937_EAC3,
+    /***********************************************************
+    TrueHD data
+    ***********************************************************/
+    IEC61937_TRUEHD,
 }
 
-static const uint16 spdif_mpeg_pkt_offset[2][3] = {
-    //LAYER1 LAYER2 LAYER3
-    { 3072, 9216, 4608 }, // MPEG-2 LSF
-    { 1536, 4608, 4608 }, // MPEG-1
-}
+//  public const uint16 spdif_mpeg_pkt_offset[2][3] = {
+//      //LAYER1 LAYER2 LAYER3
+//      { 3072, 9216, 4608 }, // MPEG-2 LSF
+//      { 1536, 4608, 4608 }, // MPEG-1
+//  }
 
-void ff_spdif_bswap_buf16(uint16[] dst, uint16[] src, int w);
-int ff_spdif_read_packet(AVFormatContext *s, AVPacket *pkt);
-int ff_spdif_probe(uint8[] p_buf, int buf_size, AVCodecID *codec);
+void ff_spdif_bswap_buf16 (uint16[] dst, uint16[] src, int w);
+int ff_spdif_read_packet (AVFormatContext *s, AVPacket *packet);
+int ff_spdif_probe (uint8[] p_buf, int buf_size, AVCodecID *codec);

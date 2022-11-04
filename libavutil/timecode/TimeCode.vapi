@@ -78,7 +78,7 @@ public struct TimeCode {
 
     @note Frame number adjustment is automatically done in case of drop timecode,
         you do NOT have to call av_timecode_adjust_ntsc_framenum2 ().
-    @note The frame number is relative to tc->start.
+    @note The frame number is relative to tc.start.
     @note Color frame (CF), binary group flags (BGF) and biphase mark polarity
         correction (PC) bits are set to zero.
     ***********************************************************/
@@ -98,7 +98,7 @@ public struct TimeCode {
 
     @note Timecode representation can be a negative timecode and have more than
         24 hours, but will only be honored if the flags are correctly set.
-    @note The frame number is relative to tc->start.
+    @note The frame number is relative to tc.start.
     ***********************************************************/
     [CCode (cname="av_timecode_make_string", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public string av_timecode_make_string (

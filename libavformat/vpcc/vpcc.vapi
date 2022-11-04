@@ -41,8 +41,8 @@ Writes VP codec configuration to the provided AVIOContext.
 @return >=0 in case of success, a negative value corresponding to an AVERROR
         code in case of failure
 ***********************************************************/
-int ff_isom_write_vpcc(AVFormatContext *s, AVIOContext *pb,
+int ff_isom_write_vpcc (AVFormatContext *s, AVIOContext *pb,
                        AVCodecParameters *par);
 
-int ff_isom_get_vpcc_features(AVFormatContext *s, AVCodecParameters *par,
+int ff_isom_get_vpcc_features (AVFormatContext *s, AVCodecParameters *par,
                               AVRational *frame_rate, VPCC *vpcc);

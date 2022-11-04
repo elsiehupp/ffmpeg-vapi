@@ -27,18 +27,18 @@ public enum PlaylistType {
     PLAYLIST_TYPE_NB,
 }
 
-void ff_hls_write_playlist_version(AVIOContext *out, int version);
-void ff_hls_write_audio_rendition(AVIOContext *out, string agroup,
+void ff_hls_write_playlist_version (AVIOContext *out, int version);
+void ff_hls_write_audio_rendition (AVIOContext *out, string agroup,
                                   string filename, string language, int name_id, int is_default);
-void ff_hls_write_stream_info(AVStream *st, AVIOContext *out,
+void ff_hls_write_stream_info (AVStream *st, AVIOContext *out,
                               int bandwidth, string filename, string agroup,
                               string codecs, string ccgroup);
-void ff_hls_write_playlist_header(AVIOContext *out, int version, int allowcache,
+void ff_hls_write_playlist_header (AVIOContext *out, int version, int allowcache,
                                   int target_duration, int64 sequence,
                                   uint32 playlist_type, int iframe_mode);
-void ff_hls_write_init_file(AVIOContext *out, string filename,
+void ff_hls_write_init_file (AVIOContext *out, string filename,
                             int byterange_mode, int64 size, int64 pos);
-int ff_hls_write_file_entry(AVIOContext *out, int insert_discont,
+int ff_hls_write_file_entry (AVIOContext *out, int insert_discont,
                              int byterange_mode,
                              double duration, int round_duration,
                              int64 size, int64 pos, //Used only if HLS_SINGLE_FILE flag is set

@@ -23,7 +23,7 @@ namespace LibAVUtil {
 An API-specific header for AV_HWDEVICE_TYPE_CUDA.
 
 This API supports dynamic frame pools. HardwareFrameContext.pool must return
-LibAVUtil.BufferRef(s) whose data pointer is a CUdeviceptr.
+LibAVUtil.BufferRef (s) whose data pointer is a CUdeviceptr.
 ***********************************************************/
 
 [CCode (cname="struct AVCUDADeviceContextInternal", cheader_filename="ffmpeg/libavutil/hwcontext_cuda.h")]

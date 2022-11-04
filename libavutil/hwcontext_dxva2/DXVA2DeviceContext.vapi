@@ -24,7 +24,7 @@ An API-specific header for AV_HWDEVICE_TYPE_DXVA2.
 
 Only fixed-size pools are supported.
 
-For user-allocated pools, HardwareFrameContext.pool must return LibAVUtil.BufferRef(s)
+For user-allocated pools, HardwareFrameContext.pool must return LibAVUtil.BufferRef (s)
 with the data pointer set to a pointer to IDirect3DSurface9.
 ***********************************************************/
 

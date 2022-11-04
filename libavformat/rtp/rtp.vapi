@@ -30,7 +30,7 @@ The format context private option payload_type overrides both.
 @param idx The stream index
 @return The payload type (the 'PT' field in the RTP header).
 ***********************************************************/
-int ff_rtp_get_payload_type(AVFormatContext *fmt, AVCodecParameters *par,
+int ff_rtp_get_payload_type (AVFormatContext *fmt, AVCodecParameters *par,
                             int idx);
 
 /***********************************************************
@@ -45,7 +45,7 @@ channels and sample_rate fields are also filled.
 @return In case of unknown payload type or dynamic payload type, a
 negative value is returned; otherwise, 0 is returned
 ***********************************************************/
-int ff_rtp_get_codec_info(AVCodecParameters *par, int payload_type);
+int ff_rtp_get_codec_info (AVCodecParameters *par, int payload_type);
 
 /***********************************************************
 Return the encoding name (as defined in
@@ -56,7 +56,7 @@ http://www.iana.org/assignments/rtp-parameters) for a given payload type.
 to an empty string is returned; otherwise, a pointer to a string containing
 the encoding name is returned
 ***********************************************************/
-string ff_rtp_enc_name(int payload_type);
+string ff_rtp_enc_name (int payload_type);
 
 /***********************************************************
 Return the codec id for the given encoding name and codec type.
@@ -66,7 +66,7 @@ Return the codec id for the given encoding name and codec type.
 @return In case of unknown encoding name, AV_CODEC_ID_NONE is returned;
 otherwise, the codec id is returned
 ***********************************************************/
-public enum AVCodecID ff_rtp_codec_id(string buf, AVMediaType codec_type);
+public enum AVCodecID ff_rtp_codec_id (string buf, AVMediaType codec_type);
 
 #define RTP_PT_PRIVATE 96
 #define RTP_VERSION 2
@@ -108,7 +108,7 @@ public enum RTCPType {
     RTCP_TOKEN,// 210
 }
 
-#define RTP_PT_IS_RTCP(x) (((x) >= RTCP_FIR && (x) <= RTCP_IJ) || \
+#define RTP_PT_IS_RTCP (x) (((x) >= RTCP_FIR && (x) <= RTCP_IJ) || \
                            ((x) >= RTCP_SR  && (x) <= RTCP_TOKEN))
 
-#define NTP_TO_RTP_FORMAT(x) av_rescale((x), INT64_C(1) << 32, 1000000)
+#define NTP_TO_RTP_FORMAT (x) av_rescale ((x), INT64_C (1) << 32, 1000000)

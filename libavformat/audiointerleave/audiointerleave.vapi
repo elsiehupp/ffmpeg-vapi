@@ -48,18 +48,23 @@ public struct AudioInterleaveContext {
     AVRational time_base;
 }
 
-int ff_audio_interleave_init(AVFormatContext *s, int[] samples_per_frame, AVRational time_base);
-void ff_audio_interleave_close(AVFormatContext *s);
+int ff_audio_interleave_init (AVFormatContext *s, int[] samples_per_frame, AVRational time_base);
+void ff_audio_interleave_close (AVFormatContext *s);
+
+public delegate int GetPacketDelegate (AVFormatContext format_context, AVPacket packet_1, AVPacket packet_2, int arg);
+public delegate int CompareTimeStampDelegate (AVFormatContext format_context, AVPacket packet_1, AVPacket packet_2);
 
 /***********************************************************
-Rechunk audio PCM packets per AudioInterleaveContext->samples_per_frame
+Rechunk audio PCM packets per AudioInterleaveContext.samples_per_frame
 and interleave them correctly.
-The first element of AVStream->priv_data must be AudioInterleaveContext
+The first element of AVStream.priv_data must be AudioInterleaveContext
 when using this function.
 
 @param get_packet function will output a packet when streams are correctly interleaved.
 @param compare_ts function will compare AVPackets and decide interleaving order.
 ***********************************************************/
-int ff_audio_rechunk_interleave(AVFormatContext *s, AVPacket *out, AVPacket *pkt, int flush,
-                        int (*get_packet)(AVFormatContext *, AVPacket *, AVPacket *, int),
-                        int (*compare_ts)(AVFormatContext *, AVPacket *, AVPacket *));
+int ff_audio_rechunk_interleave (
+    AVFormatContext *s,
+    AVPacket *out, AVPacket *packet, int flush,
+    GetPacketDelegate get_packet,
+    CompareTimeStampDelegate compare_ts);

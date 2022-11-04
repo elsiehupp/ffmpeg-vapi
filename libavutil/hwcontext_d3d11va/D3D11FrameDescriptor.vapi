@@ -38,7 +38,7 @@ code will try to load various supported D3D debugging layers.
 /***********************************************************
 @brief D3D11 frame descriptor for pool allocation.
 
-In user-allocated pools, HardwareFrameContext.pool must return LibAVUtil.BufferRef(s)
+In user-allocated pools, HardwareFrameContext.pool must return LibAVUtil.BufferRef (s)
 with the data pointer pointing at an object of this type describing the
 planes of the frame.
 

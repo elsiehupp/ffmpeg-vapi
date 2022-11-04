@@ -26,7 +26,7 @@ Dynamic frame pools are supported, but note that any pool used as a render
 target is required to be of fixed size in order to be be usable as an
 argument to vaCreateContext ().
 
-For user-allocated pools, HardwareFrameContext.pool must return LibAVUtil.BufferRef(s)
+For user-allocated pools, HardwareFrameContext.pool must return LibAVUtil.BufferRef (s)
 with the data pointer set to a VASurfaceID.
 ***********************************************************/
 [Flags]

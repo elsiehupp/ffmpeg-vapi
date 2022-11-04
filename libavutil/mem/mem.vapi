@@ -97,19 +97,19 @@ DECLARE_ASM_CONST (16, uint64, pw_08) = UINT64_C (0x0008000800080008);
 //  #elif defined (__DJGPP__)
 //      #define DECLARE_ALIGNED (n,t,v)      t __attribute__ ((aligned (FFMIN (n, 16)))) v
 //      #define DECLARE_ASM_ALIGNED (n,t,v)  t av_used __attribute__ ((aligned (FFMIN (n, 16)))) v
-//      #define DECLARE_ASM_CONST (n,t,v)    static const t av_used __attribute__ ((aligned (FFMIN (n, 16)))) v
+//      #define DECLARE_ASM_CONST (n,t,v)    public const t av_used __attribute__ ((aligned (FFMIN (n, 16)))) v
 //  #elif defined (__GNUC__) || defined (__clang__)
 //      #define DECLARE_ALIGNED (n,t,v)      t __attribute__ ((aligned (n))) v
 //      #define DECLARE_ASM_ALIGNED (n,t,v)  t av_used __attribute__ ((aligned (n))) v
-//      #define DECLARE_ASM_CONST (n,t,v)    static const t av_used __attribute__ ((aligned (n))) v
+//      #define DECLARE_ASM_CONST (n,t,v)    public const t av_used __attribute__ ((aligned (n))) v
 //  #elif defined (_MSC_VER)
 //      #define DECLARE_ALIGNED (n,t,v)      __declspec (align (n)) t v
 //      #define DECLARE_ASM_ALIGNED (n,t,v)  __declspec (align (n)) t v
-//      #define DECLARE_ASM_CONST (n,t,v)    __declspec (align (n)) static const t v
+//      #define DECLARE_ASM_CONST (n,t,v)    __declspec (align (n)) public const t v
 //  #else
 //      #define DECLARE_ALIGNED (n,t,v)      t v
 //      #define DECLARE_ASM_ALIGNED (n,t,v)  t v
-//      #define DECLARE_ASM_CONST (n,t,v)    static const t v
+//      #define DECLARE_ASM_CONST (n,t,v)    public const t v
 //  #endif
 
 /***********************************************************

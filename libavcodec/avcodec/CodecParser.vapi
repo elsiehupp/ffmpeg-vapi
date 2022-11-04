@@ -154,9 +154,9 @@ LibAVUtil.Frame extended_data channel pointers are allocated if necessary for
 planar audio.
 
 @param frame the LibAVUtil.Frame
-    frame->nb_samples must be set prior to calling the
-    function. This function fills in frame->data,
-    frame->extended_data, frame->linesize[0].
+    frame.nb_samples must be set prior to calling the
+    function. This function fills in frame.data,
+    frame.extended_data, frame.linesize[0].
 @param nb_channels channel count
 @param sample_fmt sample format
 @param buf buffer to use for frame data

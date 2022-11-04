@@ -33,7 +33,7 @@ added in future.
 
 This is used as the data pointer for PixelFormat.DRM_PRIME frames.
 It is also used by user-allocated frame pools - allocating in
-HardwareFrameContext.pool must return LibAVUtil.BufferRef(s) which contain
+HardwareFrameContext.pool must return LibAVUtil.BufferRef (s) which contain
 an object of this type.
 
 The fields of this structure should be set such it can be

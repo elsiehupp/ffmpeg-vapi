@@ -24,16 +24,12 @@ internal metadata API header
 see avformat.h or the public API!
 ***********************************************************/
 
-
-#include "avformat.h"
-#include "libavutil/dict.h"
-
 public struct AVMetadataConv {
     string native;
     string generic;
 }
 
-void ff_metadata_conv(AVDictionary **pm, AVMetadataConv *d_conv,
+void ff_metadata_conv (AVDictionary **pm, AVMetadataConv *d_conv,
                                        AVMetadataConv *s_conv);
-void ff_metadata_conv_ctx(AVFormatContext *ctx, AVMetadataConv *d_conv,
+void ff_metadata_conv_ctx (AVFormatContext *ctx, AVMetadataConv *d_conv,
                                                 AVMetadataConv *s_conv);

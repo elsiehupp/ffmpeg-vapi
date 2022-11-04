@@ -123,12 +123,12 @@ public struct Dispositions {
     int flag;
 }
 
-void ff_nut_reset_ts(NUTContext *nut, AVRational time_base, int64 val);
-int64 ff_lsb2full(StreamContext *stream, int64 lsb);
-int ff_nut_sp_pos_cmp(void *a, void *b);
-int ff_nut_sp_pts_cmp(void *a, void *b);
-int ff_nut_add_sp(NUTContext *nut, int64 pos, int64 back_ptr, int64 ts);
-void ff_nut_free_sp(NUTContext *nut);
+void ff_nut_reset_ts (NUTContext *nut, AVRational time_base, int64 val);
+int64 ff_lsb2full (StreamContext *stream, int64 lsb);
+int ff_nut_sp_pos_cmp (void *a, void *b);
+int ff_nut_sp_pts_cmp (void *a, void *b);
+int ff_nut_add_sp (NUTContext *nut, int64 pos, int64 back_ptr, int64 ts);
+void ff_nut_free_sp (NUTContext *nut);
 
 //  extern const Dispositions ff_nut_dispositions[];
 

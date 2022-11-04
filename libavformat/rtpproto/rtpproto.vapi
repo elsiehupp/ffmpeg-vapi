@@ -18,6 +18,6 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_rtp_set_remote_url(URLContext *h, string uri);
+int ff_rtp_set_remote_url (URLContext *h, string uri);
 
-int ff_rtp_get_local_rtp_port(URLContext *h);
+int ff_rtp_get_local_rtp_port (URLContext *h);

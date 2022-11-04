@@ -95,7 +95,7 @@ The length of the string can go beyond the allocated size: the buffer is
 then truncated, but the functions still keep account of the actual total
 length.
 
-In other words, buf->len can be greater than buf->size and records the
+In other words, buf.len can be greater than buf.size and records the
 total length of what would have been to the buffer if there had been
 enough memory.
 

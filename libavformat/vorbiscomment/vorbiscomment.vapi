@@ -21,21 +21,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 /***********************************************************
 Calculate the length in bytes of a VorbisComment. This is the minimum
-size required by ff_vorbiscomment_write().
+size required by ff_vorbiscomment_write ().
 
 @param m The metadata structure to be parsed. For no metadata, set to NULL.
 @param vendor_string The vendor string to be added into the VorbisComment.
 For no string, set to an empty string.
 @return The length in bytes.
 ***********************************************************/
-int64 ff_vorbiscomment_length(AVDictionary *m, string vendor_string,
+int64 ff_vorbiscomment_length (AVDictionary *m, string vendor_string,
                                 AVChapter **chapters, uint nb_chapters);
 
 /***********************************************************
 Write a VorbisComment into a buffer. The buffer, p, must have enough
 data to hold the whole VorbisComment. The minimum size required can be
 obtained by passing the same AVDictionary and vendor_string to
-ff_vorbiscomment_length()
+ff_vorbiscomment_length ()
 
 @param p The buffer in which to write.
 @param m The metadata struct to write.
@@ -43,7 +43,7 @@ ff_vorbiscomment_length()
 @param chapters The chapters to write.
 @param nb_chapters The number of chapters to write.
 ***********************************************************/
-int ff_vorbiscomment_write(uint8[] *p, AVDictionary **m,
+int ff_vorbiscomment_write (uint8[] *p, AVDictionary **m,
                            string vendor_string,
                            AVChapter **chapters, uint nb_chapters);
 

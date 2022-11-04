@@ -20,7 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static const uint8 ff_qt_default_palette_2[2 * 3] = {
+public const uint8 ff_qt_default_palette_2[2 * 3] = {
   0xFF, 0xFF, 0xFF,
   0x00, 0x00, 0x00
 }
@@ -28,7 +28,7 @@ static const uint8 ff_qt_default_palette_2[2 * 3] = {
 /***********************************************************
 From a screenshot of the "Monitors & Sound" control panel in Mac OS 7.5.5
 ***********************************************************/
-static const uint8 ff_qt_default_palette_4[4 * 3] = {
+public const uint8 ff_qt_default_palette_4[4 * 3] = {
   0xFF, 0xFF, 0xFF,
   0xAC, 0xAC, 0xAC,
   0x55, 0x55, 0x55,
@@ -38,7 +38,7 @@ static const uint8 ff_qt_default_palette_4[4 * 3] = {
 /***********************************************************
 From a screenshot of the "Monitors & Sound" control panel in Mac OS 7.5.5
 ***********************************************************/
-static const uint8 ff_qt_default_palette_16[16 * 3] = {
+public const uint8 ff_qt_default_palette_16[16 * 3] = {
   0xFF, 0xFF, 0xFF,
   0xFC, 0xF3, 0x05,
   0xFF, 0x64, 0x02,
@@ -57,7 +57,7 @@ static const uint8 ff_qt_default_palette_16[16 * 3] = {
   0x00, 0x00, 0x00
 }
 
-static const uint8 ff_qt_default_palette_256[256 * 3] = {
+public const uint8 ff_qt_default_palette_256[256 * 3] = {
   /* 0, 0x00 */  0xFF, 0xFF, 0xFF,
   /* 1, 0x01 */  0xFF, 0xFF, 0xCC,
   /* 2, 0x02 */  0xFF, 0xFF, 0x99,
@@ -325,4 +325,4 @@ The file offset of the AVIOContext pointed to by the 'pb' variable
 should be the start of the video sample description (the sample
 description size and the data format).
 ***********************************************************/
-int ff_get_qtpalette(int codec_id, AVIOContext *pb, uint32[] palette);
+int ff_get_qtpalette (int codec_id, AVIOContext *pb, uint32[] palette);

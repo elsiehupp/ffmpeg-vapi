@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 public struct RMStream { }
 
-RMStream *ff_rm_alloc_rmstream (void);
+RMStream *ff_rm_alloc_rmstream ();
 void ff_rm_free_rmstream (RMStream *rms);
 
 /*< input format for Realmedia-style RTSP streams
@@ -55,24 +55,24 @@ Parse one rm-stream packet from the input bytestream.
 @param st stream to which the packet to be read belongs
 @param rst Real-specific stream information
 @param len packet length to read from the input
-@param pkt packet location to store the parsed packet data
+@param packet packet location to store the parsed packet data
 @param seq pointer to an integer containing the sequence number, may be
            updated
 @param flags the packet flags
 @param ts timestamp of the current packet
-@return <0 on error, 0 if a packet was placed in the pkt pointer. A
-        value >0 means that no data was placed in pkt, but that cached
-        data is available by calling ff_rm_retrieve_cache().
+@return <0 on error, 0 if a packet was placed in the packet pointer. A
+        value >0 means that no data was placed in packet, but that cached
+        data is available by calling ff_rm_retrieve_cache ().
 ***********************************************************/
 int ff_rm_parse_packet (AVFormatContext *s, AVIOContext *pb,
                         AVStream *st, RMStream *rst, int len,
-                        AVPacket *pkt, int[] seq, int flags, int64 ts);
+                        AVPacket *packet, int[] seq, int flags, int64 ts);
 
 /***********************************************************
 Retrieve one cached packet from the rm-context. The real container can
 store several packets (as interpreted by the codec) in a single container
 packet, which means the demuxer holds some back when the first container
-packet is parsed and returned. The result is that rm->audio_pkt_cnt is
+packet is parsed and returned. The result is that rm.audio_pkt_cnt is
 a positive number, the amount of cached packets. Using this function, each
 of those packets can be retrieved sequentially.
 
@@ -80,9 +80,9 @@ of those packets can be retrieved sequentially.
 @param pb context to read the data from
 @param st stream that this packet belongs to
 @param rst Real-specific stream information
-@param pkt location to store the packet data
+@param packet location to store the packet data
 @return the number of samples left for subsequent calls to this same
          function, or 0 if all samples have been retrieved.
 ***********************************************************/
 int ff_rm_retrieve_cache (AVFormatContext *s, AVIOContext *pb,
-                          AVStream *st, RMStream *rst, AVPacket *pkt);
+                          AVStream *st, RMStream *rst, AVPacket *packet);

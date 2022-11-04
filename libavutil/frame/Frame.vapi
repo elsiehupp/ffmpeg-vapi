@@ -335,7 +335,7 @@ public struct Frame {
 
     /***********************************************************
     @brief Duration of the corresponding packet, expressed in
-    AVStream->time_base units, 0 if unknown.
+    AVStream.time_base units, 0 if unknown.
 
     - encoding: unused
     - decoding: Read by user.
@@ -557,7 +557,7 @@ public struct Frame {
     stored in this frame). Return 0 otherwise.
 
     If 1 is returned the answer is valid until av_buffer_ref () is called on any
-    of the underlying LibAVUtil.BufferRef(s) (e.g. through av_frame_ref () or directly).
+    of the underlying LibAVUtil.BufferRef (s) (e.g. through av_frame_ref () or directly).
 
     @see @link av_frame_make_writable (), av_buffer_is_writable ()
     ***********************************************************/
@@ -616,7 +616,7 @@ public struct Frame {
     /***********************************************************
     @brief Get the buffer reference a given data plane is stored in.
 
-    @param plane index of the data plane of interest in frame->extended_data.
+    @param plane index of the data plane of interest in frame.extended_data.
 
     @return the buffer reference that contains the plane or null if the input
     frame is not valid.

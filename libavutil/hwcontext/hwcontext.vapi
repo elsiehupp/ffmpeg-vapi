@@ -162,8 +162,8 @@ AV_HWFRAME_TRANSFER_DIRECTION_TO)
 
 output_frame may be "clean" (i.e. with data/buf pointers unset), in which case the
 data buffers will be allocated by this function using av_frame_get_buffer ().
-If output_frame->format is set, then this format will be used, otherwise (when
-output_frame->format is PixelFormat.NONE) the first acceptable format will be chosen.
+If output_frame.format is set, then this format will be used, otherwise (when
+output_frame.format is PixelFormat.NONE) the first acceptable format will be chosen.
 
 The two frames must have matching allocated dimensions (i.e. equal to
 HardwareFrameContext.width/height), since not all device types support

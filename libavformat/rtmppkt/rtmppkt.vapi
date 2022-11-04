@@ -30,20 +30,25 @@ control, remote procedure calls, etc.)
 ***********************************************************/
 public enum RTMPChannel {
     /***********************************************************
+    Channel for network-related messages (bandwidth report, ping, etc)
     ***********************************************************/
-    RTMP_NETWORK_CHANNEL = 2, ///< channel for network-related messages (bandwidth report, ping, etc)
+    RTMP_NETWORK_CHANNEL,
     /***********************************************************
+    Channel for sending server control messages
     ***********************************************************/
-    RTMP_SYSTEM_CHANNEL, ///< channel for sending server control messages
+    RTMP_SYSTEM_CHANNEL,
     /***********************************************************
+    Channel for audio data
     ***********************************************************/
-    RTMP_AUDIO_CHANNEL, ///< channel for audio data
+    RTMP_AUDIO_CHANNEL,
     /***********************************************************
+    Channel for video data
     ***********************************************************/
-    RTMP_VIDEO_CHANNEL = 6, ///< channel for video data
+    RTMP_VIDEO_CHANNEL,
     /***********************************************************
+    Channel for a/v invokes
     ***********************************************************/
-    RTMP_SOURCE_CHANNEL = 8, ///< channel for a/v invokes
+    RTMP_SOURCE_CHANNEL;
 }
 
 /***********************************************************
@@ -51,47 +56,61 @@ known RTMP packet types
 ***********************************************************/
 public enum RTMPPacketType {
     /***********************************************************
+    Chunk size change
     ***********************************************************/
-    RTMP_PT_CHUNK_SIZE = 1, ///< chunk size change
+    RTMP_PT_CHUNK_SIZE,
     /***********************************************************
+    Number of bytes read
     ***********************************************************/
-    RTMP_PT_BYTES_READ = 3, ///< number of bytes read
+    RTMP_PT_BYTES_READ,
     /***********************************************************
+    User control
     ***********************************************************/
-    RTMP_PT_USER_CONTROL, ///< user control
+    RTMP_PT_USER_CONTROL,
     /***********************************************************
+    Window acknowledgement size
     ***********************************************************/
-    RTMP_PT_WINDOW_ACK_SIZE, ///< window acknowledgement size
+    RTMP_PT_WINDOW_ACK_SIZE,
     /***********************************************************
+    Peer bandwidth
     ***********************************************************/
-    RTMP_PT_SET_PEER_BW, ///< peer bandwidth
+    RTMP_PT_SET_PEER_BW,
     /***********************************************************
+    Audio packet
     ***********************************************************/
-    RTMP_PT_AUDIO = 8, ///< audio packet
+    RTMP_PT_AUDIO,
     /***********************************************************
+    Video packet
     ***********************************************************/
-    RTMP_PT_VIDEO, ///< video packet
+    RTMP_PT_VIDEO,
     /***********************************************************
+    Flex shared stream
     ***********************************************************/
-    RTMP_PT_FLEX_STREAM = 15, ///< Flex shared stream
+    RTMP_PT_FLEX_STREAM,
     /***********************************************************
+    Flex shared object
     ***********************************************************/
-    RTMP_PT_FLEX_OBJECT, ///< Flex shared object
+    RTMP_PT_FLEX_OBJECT,
     /***********************************************************
+    Flex shared message
     ***********************************************************/
-    RTMP_PT_FLEX_MESSAGE, ///< Flex shared message
+    RTMP_PT_FLEX_MESSAGE,
     /***********************************************************
+    Some notification
     ***********************************************************/
-    RTMP_PT_NOTIFY, ///< some notification
+    RTMP_PT_NOTIFY,
     /***********************************************************
+    Shared object
     ***********************************************************/
-    RTMP_PT_SHARED_OBJ, ///< shared object
+    RTMP_PT_SHARED_OBJ,
     /***********************************************************
+    Invoke some stream action
     ***********************************************************/
-    RTMP_PT_INVOKE, ///< invoke some stream action
+    RTMP_PT_INVOKE,
     /***********************************************************
+    FLV metadata
     ***********************************************************/
-    RTMP_PT_METADATA = 22, ///< FLV metadata
+    RTMP_PT_METADATA;
 }
 
 /***********************************************************
@@ -101,17 +120,21 @@ possible RTMP packet header sizes
 ***********************************************************/
 public enum RTMPPacketSize {
     /***********************************************************
+    Packet has 12-byte header
     ***********************************************************/
-    RTMP_PS_TWELVEBYTES = 0, ///< packet has 12-byte header
+    RTMP_PS_TWELVEBYTES,
     /***********************************************************
+    Packet has 8-byte header
     ***********************************************************/
-    RTMP_PS_EIGHTBYTES, ///< packet has 8-byte header
+    RTMP_PS_EIGHTBYTES,
     /***********************************************************
+    Packet has 4-byte header
     ***********************************************************/
-    RTMP_PS_FOURBYTES, ///< packet has 4-byte header
+    RTMP_PS_FOURBYTES,
     /***********************************************************
+    Packet is really a next chunk of a packet
     ***********************************************************/
-    RTMP_PS_ONEBYTE ///< packet is really a next chunk of a packet
+    RTMP_PS_ONEBYTE;
 }
 
 /***********************************************************
@@ -123,50 +146,60 @@ public struct RTMPPacket {
     ***********************************************************/
     int channel_id;
     /***********************************************************
+    Packet payload type
     ***********************************************************/
-    RTMPPacketType type; ///< packet payload type
+    RTMPPacketType type;
     /***********************************************************
+    Packet full timestamp
     ***********************************************************/
-    uint32 timestamp; ///< packet full timestamp
+    uint32 timestamp;
     /***********************************************************
+    24-bit timestamp or increment to the previous one, in
+    milliseconds (latter only for media packets). Clipped to a
+    maximum of 0xFFFFFF, indicating an extended timestamp field.
     ***********************************************************/
-    uint32 ts_field; ///< 24-bit timestamp or increment to the previous one, in milliseconds (latter only for media packets). Clipped to a maximum of 0xFFFFFF, indicating an extended timestamp field.
+    uint32 ts_field;
     /***********************************************************
+    Probably an additional channel ID used during streaming data
     ***********************************************************/
-    uint32 extra; ///< probably an additional channel ID used during streaming data
+    uint32 extra;
     /***********************************************************
+    Packet payload
     ***********************************************************/
-    uint8 *data; ///< packet payload
+    uint8[] data;
     /***********************************************************
+    Packet payload size
     ***********************************************************/
-    int size; ///< packet payload size
+    int size;
     /***********************************************************
+    Amount of data read so far
     ***********************************************************/
-    int offset; ///< amount of data read so far
+    int offset;
     /***********************************************************
+    Amount read, including headers
     ***********************************************************/
-    int read; ///< amount read, including headers
+    int read;
 }
 
 /***********************************************************
 Create new RTMP packet with given attributes.
 
-@param pkt packet
+@param packet packet
 @param channel_id packet channel ID
 @param type packet type
 @param timestamp packet timestamp
 @param size packet size
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_create(RTMPPacket *pkt, int channel_id, RTMPPacketType type,
+int ff_rtmp_packet_create (RTMPPacket *packet, int channel_id, RTMPPacketType type,
                           int timestamp, int size);
 
 /***********************************************************
 Free RTMP packet.
 
-@param pkt packet
+@param packet packet
 ***********************************************************/
-void ff_rtmp_packet_destroy(RTMPPacket *pkt);
+void ff_rtmp_packet_destroy (RTMPPacket *packet);
 
 /***********************************************************
 Read RTMP packet sent by the server.
@@ -179,7 +212,7 @@ Read RTMP packet sent by the server.
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_read(URLContext *h, RTMPPacket *p,
+int ff_rtmp_packet_read (URLContext *h, RTMPPacket *p,
                         int chunk_size, RTMPPacket **prev_pkt,
                         int[] nb_prev_pkt);
 /***********************************************************
@@ -194,7 +227,7 @@ Read internal RTMP packet sent by the server.
 @param c the first byte already read
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_read_internal(URLContext *h, RTMPPacket *p, int chunk_size,
+int ff_rtmp_packet_read_internal (URLContext *h, RTMPPacket *p, int chunk_size,
                                  RTMPPacket **prev_pkt, int[] nb_prev_pkt,
                                  uint8 c);
 
@@ -209,7 +242,7 @@ Send RTMP packet to the server.
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes written on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_write(URLContext *h, RTMPPacket *p,
+int ff_rtmp_packet_write (URLContext *h, RTMPPacket *p,
                          int chunk_size, RTMPPacket **prev_pkt,
                          int[] nb_prev_pkt);
 
@@ -219,7 +252,7 @@ Print information and contents of RTMP packet.
 @param ctx output context
 @param p packet to dump
 ***********************************************************/
-void ff_rtmp_packet_dump(void *ctx, RTMPPacket *p);
+void ff_rtmp_packet_dump (void *ctx, RTMPPacket *p);
 
 /***********************************************************
 Enlarge the prev_pkt array to fit the given channel
@@ -228,7 +261,7 @@ Enlarge the prev_pkt array to fit the given channel
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @param channel the channel number that needs to be allocated
 ***********************************************************/
-int ff_rtmp_check_alloc_array(RTMPPacket **prev_pkt, int[] nb_prev_pkt,
+int ff_rtmp_check_alloc_array (RTMPPacket **prev_pkt, int[] nb_prev_pkt,
                               int channel);
 
 /***********************************************************
@@ -244,7 +277,7 @@ Calculate number of bytes taken by first AMF entry in data.
 @param data_end input buffer end
 @return number of bytes used by first AMF entry
 ***********************************************************/
-int ff_amf_tag_size(uint8[] data, uint8[] data_end);
+int ff_amf_tag_size (uint8[] data, uint8[] data_end);
 
 /***********************************************************
 Retrieve value of given AMF object field in string form.
@@ -256,7 +289,7 @@ Retrieve value of given AMF object field in string form.
 @param dst_size output buffer size
 @return 0 if search and retrieval succeeded, negative value otherwise
 ***********************************************************/
-int ff_amf_get_field_value(uint8[] data, uint8[] data_end,
+int ff_amf_get_field_value (uint8[] data, uint8[] data_end,
                            uint8[] name, uint8[] dst, int dst_size);
 
 /***********************************************************
@@ -265,7 +298,7 @@ Write boolean value in AMF format to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param val value to write
 ***********************************************************/
-void ff_amf_write_bool(uint8[] *dst, int val);
+void ff_amf_write_bool (uint8[] *dst, int val);
 
 /***********************************************************
 Write number in AMF format to buffer.
@@ -273,7 +306,7 @@ Write number in AMF format to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param num value to write
 ***********************************************************/
-void ff_amf_write_number(uint8[] *dst, double num);
+void ff_amf_write_number (uint8[] *dst, double num);
 
 /***********************************************************
 Write string in AMF format to buffer.
@@ -281,7 +314,7 @@ Write string in AMF format to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-void ff_amf_write_string(uint8[] *dst, string str);
+void ff_amf_write_string (uint8[] *dst, string str);
 
 /***********************************************************
 Write a string consisting of two parts in AMF format to a buffer.
@@ -290,21 +323,21 @@ Write a string consisting of two parts in AMF format to a buffer.
 @param str1 first string to write, may be null
 @param str2 second string to write, may be null
 ***********************************************************/
-void ff_amf_write_string2(uint8[] *dst, string str1, string str2);
+void ff_amf_write_string2 (uint8[] *dst, string str1, string str2);
 
 /***********************************************************
 Write AMF NULL value to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-void ff_amf_write_null(uint8[] *dst);
+void ff_amf_write_null (uint8[] *dst);
 
 /***********************************************************
 Write marker for AMF object to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-void ff_amf_write_object_start(uint8[] *dst);
+void ff_amf_write_object_start (uint8[] *dst);
 
 /***********************************************************
 Write string used as field name in AMF object to buffer.
@@ -312,14 +345,14 @@ Write string used as field name in AMF object to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-void ff_amf_write_field_name(uint8[] *dst, string str);
+void ff_amf_write_field_name (uint8[] *dst, string str);
 
 /***********************************************************
 Write marker for end of AMF object to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-void ff_amf_write_object_end(uint8[] *dst);
+void ff_amf_write_object_end (uint8[] *dst);
 
 /***********************************************************
 Read AMF boolean value.
@@ -328,7 +361,7 @@ Read AMF boolean value.
  *@param[out]    val 0 or 1
  *@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_read_bool(GetByteContext *gbc, int[] val);
+int ff_amf_read_bool (GetByteContext *gbc, int[] val);
 
 /***********************************************************
 Read AMF number value.
@@ -337,7 +370,7 @@ Read AMF number value.
  *@param[out]    val read value
  *@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_read_number(GetByteContext *gbc, double *val);
+int ff_amf_read_number (GetByteContext *gbc, double *val);
 
 /***********************************************************
 Get AMF string value.
@@ -353,7 +386,7 @@ ease later parsing.
  *@param[out]    length read string length
  *@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_get_string(GetByteContext *bc, uint8[] str,
+int ff_amf_get_string (GetByteContext *bc, uint8[] str,
                       int strsize, int[] length);
 
 /***********************************************************
@@ -368,7 +401,7 @@ ease later parsing.
  *@param[out]    length read string length
  *@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_read_string(GetByteContext *gbc, uint8[] str,
+int ff_amf_read_string (GetByteContext *gbc, uint8[] str,
                        int strsize, int[] length);
 
 /***********************************************************
@@ -377,7 +410,7 @@ Read AMF NULL value.
  *@param[in,out] gbc GetByteContext initialized with AMF-formatted data
  *@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_read_null(GetByteContext *gbc);
+int ff_amf_read_null (GetByteContext *gbc);
 
 /***********************************************************
 Match AMF string with a NULL-terminated string.
@@ -385,7 +418,7 @@ Match AMF string with a NULL-terminated string.
 @return 0 if the strings do not match.
 ***********************************************************/
 
-int ff_amf_match_string(uint8[] data, int size, string str);
+int ff_amf_match_string (uint8[] data, int size, string str);
 
 /***********************************************************
 AMF funcs

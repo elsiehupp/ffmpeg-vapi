@@ -57,12 +57,12 @@ public enum CodecPropertyFlags2 {
     AV_CODEC_PROP_REORDER,
     /***********************************************************
     @brief Subtitle codec is bitmap based
-    Decoded Subtitle data can be read from the SubtitleRect->pict field.
+    Decoded Subtitle data can be read from the SubtitleRect.pict field.
     ***********************************************************/
     AV_CODEC_PROP_BITMAP_SUB,
     /***********************************************************
     @brief Subtitle codec is text based.
-    Decoded Subtitle data can be read from the SubtitleRect->ass field.
+    Decoded Subtitle data can be read from the SubtitleRect.ass field.
     ***********************************************************/
     AV_CODEC_PROP_TEXT_SUB,
 }

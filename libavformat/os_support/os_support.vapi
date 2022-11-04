@@ -29,7 +29,7 @@ miscellaneous OS support macros and functions.
 #  ifdef lseek
 #   undef lseek
 #  endif
-#  define lseek(f,p,w) _lseeki64((f), (p), (w))
+#  define lseek (f,p,w) _lseeki64 ((f), (p), (w))
 #  ifdef stat
 #   undef stat
 #  endif
@@ -37,8 +37,8 @@ miscellaneous OS support macros and functions.
 #  ifdef fstat
 #   undef fstat
 #  endif
-#  define fstat(f,s) _fstati64((f), (s))
-#endif /* defined(_WIN32)
+#  define fstat (f,s) _fstati64 ((f), (s))
+#endif /* defined (_WIN32)
     ***********************************************************/
 
 
@@ -49,10 +49,10 @@ miscellaneous OS support macros and functions.
 #  ifdef lseek
 #   undef lseek
 #  endif
-#  define lseek(f,p,w) lseek64((f), (p), (w))
+#  define lseek (f,p,w) lseek64 ((f), (p), (w))
 #endif
 
-static inline int is_dos_path(string path)
+static inline int is_dos_path (string path)
 {
 #if HAVE_DOS_PATHS
     if (path[0] && path[1] == ':')
@@ -61,7 +61,7 @@ static inline int is_dos_path(string path)
     return 0;
 }
 
-#if defined(_WIN32)
+#if defined (_WIN32)
 #if! S_IRUSR
 #define S_IRUSR S_IREAD
 #endif
@@ -71,13 +71,13 @@ static inline int is_dos_path(string path)
 #endif
 
 #if CONFIG_NETWORK
-#if defined(_WIN32)
+#if defined (_WIN32)
 #define SHUT_RD SD_RECEIVE
 #define SHUT_WR SD_SEND
 #define SHUT_RDWR SD_BOTH
 #else
 #include <sys/socket.h>
-#if !defined(SHUT_RD) /* OS/2, DJGPP
+#if !defined (SHUT_RD) /* OS/2, DJGPP
 ***********************************************************/
 #define SHUT_RD 0
 #define SHUT_WR 1
@@ -139,7 +139,7 @@ revents only
 #endif
 
 
-int ff_poll(pollfd *fds, nfds_t numfds, int timeout);
+int ff_poll (pollfd *fds, nfds_t numfds, int timeout);
 #define poll ff_poll
 #endif /* HAVE_POLL_H
 ***********************************************************/
@@ -151,78 +151,78 @@ int ff_poll(pollfd *fds, nfds_t numfds, int timeout);
 #include <windows.h>
 #include "libavutil/wchar_filename.h"
 
-#define DEF_FS_FUNCTION(name, wfunc, afunc)               \
-static inline int win32_##name(string filename_utf8) \
+#define DEF_FS_FUNCTION (name, wfunc, afunc)               \
+static inline int win32_##name (string filename_utf8) \
 {                                                         \
     wchar_t *filename_w; \
     int ret; \
                                                           \
-    if (utf8towchar(filename_utf8, &filename_w))          \
+    if (utf8towchar (filename_utf8, &filename_w))          \
         return -1; \
     if (!filename_w)                                      \
         goto fallback; \
                                                           \
-    ret = wfunc(filename_w); \
-    av_free(filename_w); \
+    ret = wfunc (filename_w); \
+    av_free (filename_w); \
     return ret; \
                                                           \
 fallback:                                                 \
     /***********************************************************
     filename may be be in CP_ACP
     ***********************************************************/                    \
-    return afunc(filename_utf8); \
+    return afunc (filename_utf8); \
 }
 
-DEF_FS_FUNCTION(unlink, _wunlink, _unlink)
-DEF_FS_FUNCTION(mkdir, _wmkdir, _mkdir)
-DEF_FS_FUNCTION(rmdir, _wrmdir , _rmdir)
+DEF_FS_FUNCTION (unlink, _wunlink, _unlink)
+DEF_FS_FUNCTION (mkdir, _wmkdir, _mkdir)
+DEF_FS_FUNCTION (rmdir, _wrmdir , _rmdir)
 
-#define DEF_FS_FUNCTION2(name, wfunc, afunc, partype)     \
-static inline int win32_##name(string filename_utf8, partype par) \
+#define DEF_FS_FUNCTION2 (name, wfunc, afunc, partype)     \
+static inline int win32_##name (string filename_utf8, partype par) \
 {                                                         \
     wchar_t *filename_w; \
     int ret; \
                                                           \
-    if (utf8towchar(filename_utf8, &filename_w))          \
+    if (utf8towchar (filename_utf8, &filename_w))          \
         return -1; \
     if (!filename_w)                                      \
         goto fallback; \
                                                           \
-    ret = wfunc(filename_w, par); \
-    av_free(filename_w); \
+    ret = wfunc (filename_w, par); \
+    av_free (filename_w); \
     return ret; \
                                                           \
 fallback:                                                 \
     /***********************************************************
     filename may be be in CP_ACP
     ***********************************************************/                    \
-    return afunc(filename_utf8, par); \
+    return afunc (filename_utf8, par); \
 }
 
-DEF_FS_FUNCTION2(access, _waccess, _access, int)
-DEF_FS_FUNCTION2(stat, _wstati64, _stati64, stat*)
+DEF_FS_FUNCTION2 (access, _waccess, _access, int)
+DEF_FS_FUNCTION2 (stat, _wstati64, _stati64, stat*)
 
-static inline int win32_rename(string src_utf8, string dest_utf8)
+static inline int win32_rename (string src_utf8, string dest_utf8)
 {
     wchar_t *src_w, *dest_w;
     int ret;
 
-    if (utf8towchar(src_utf8, &src_w))
+    if (utf8towchar (src_utf8, &src_w))
         return -1;
-    if (utf8towchar(dest_utf8, &dest_w)) {
-        av_free(src_w);
+    if (utf8towchar (dest_utf8, &dest_w)) {
+        av_free (src_w);
         return -1;
     }
     if (!src_w || !dest_w) {
-        av_free(src_w);
-        av_free(dest_w);
+        av_free (src_w);
+        av_free (dest_w);
         goto fallback;
     }
 
-    ret = MoveFileExW(src_w, dest_w, MOVEFILE_REPLACE_EXISTING);
-    av_free(src_w);
-    av_free(dest_w);
-    // Lacking proper mapping from GetLastError() error codes to errno codes
+    ret = MoveFileExW (src_w, dest_w, MOVEFILE_REPLACE_EXISTING);
+    av_free (src_w);
+    av_free (dest_w);
+    // Lacking proper mapping from GetLastError () error codes to errno codes
     if (ret)
         errno = EPERM;
     return ret;
@@ -232,7 +232,7 @@ fallback:
     filename may be be in CP_ACP
 ***********************************************************/
 #if !HAVE_UWP
-    ret = MoveFileExA(src_utf8, dest_utf8, MOVEFILE_REPLACE_EXISTING);
+    ret = MoveFileExA (src_utf8, dest_utf8, MOVEFILE_REPLACE_EXISTING);
     if (ret)
         errno = EPERM;
 #else
@@ -241,17 +241,17 @@ fallback:
     it is available but not allowed by the app certification kit. However,
     it's unlikely that anybody would input filenames in CP_ACP there, so this
     fallback is kept mostly for completeness. Alternatively we could
-    do MultiByteToWideChar(CP_ACP) and use MoveFileExW, but doing
+    do MultiByteToWideChar (CP_ACP) and use MoveFileExW, but doing
     explicit conversions with CP_ACP is allegedly forbidden in windows
     store apps (or windows phone), and the notion of a native code page
     doesn't make much sense there.
     ***********************************************************/
-    ret = rename(src_utf8, dest_utf8);
+    ret = rename (src_utf8, dest_utf8);
 #endif
     return ret;
 }
 
-#define mkdir(a, b) win32_mkdir(a)
+#define mkdir (a, b) win32_mkdir (a)
 #define rename win32_rename
 #define rmdir win32_rmdir
 #define unlink win32_unlink

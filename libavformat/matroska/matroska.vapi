@@ -420,4 +420,4 @@ AVStream Metadata tag keys for WebM Dash Manifest
 #define TRACK_NUMBER "webm_dash_manifest_track_number"
 #define CODEC_PRIVATE_SIZE "webm_dash_manifest_codec_priv_size"
 
-int ff_mkv_stereo3d_conv(AVStream *st, MatroskaVideoStereoModeType stereo_mode);
+int ff_mkv_stereo3d_conv (AVStream *st, MatroskaVideoStereoModeType stereo_mode);

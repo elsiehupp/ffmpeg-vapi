@@ -94,6 +94,6 @@ public struct MMSContext {
     uint nb_streams_allocated;
 }
 
-int ff_mms_asf_header_parser(MMSContext * mms);
-int ff_mms_read_data(MMSContext *mms, uint8[] buf, int size);
-int ff_mms_read_header(MMSContext * mms, uint8[]  buf, int size);
+int ff_mms_asf_header_parser (MMSContext * mms);
+int ff_mms_read_data (MMSContext *mms, uint8[] buf, int size);
+int ff_mms_read_header (MMSContext * mms, uint8[]  buf, int size);

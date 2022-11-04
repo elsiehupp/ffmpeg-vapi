@@ -25,4 +25,4 @@ Perform 4-bit block reordering for SIPR data.
 
 @param buf SIPR data
 ***********************************************************/
-void ff_rm_reorder_sipr_data(uint8[] buf, int sub_packet_h, int framesize);
+void ff_rm_reorder_sipr_data (uint8[] buf, int sub_packet_h, int framesize);

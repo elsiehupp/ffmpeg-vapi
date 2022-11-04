@@ -30,4 +30,4 @@ public enum DASHTmplId {
 }
 
 
-void ff_dash_fill_tmpl_params(string dst, size_t buffer_size, string template, int rep_id, int number, int bit_rate, int64 time);
+void ff_dash_fill_tmpl_params (string dst, size_t buffer_size, string template, int rep_id, int number, int bit_rate, int64 time);

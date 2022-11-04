@@ -22,20 +22,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Known language codespaces
 ***********************************************************/
 public enum AVLangCodespace {
-    AV_LANG_ISO639_2_BIBL, /** 3-char bibliographic language codes as per ISO-IEC 639-2
+    /***********************************************************
+    3-char bibliographic language codes as per ISO-IEC 639-2
     ***********************************************************/
-AV_LANG_ISO639_2_TERM, /** 3-char terminological language codes as per ISO-IEC 639-2
+    AV_LANG_ISO639_2_BIBL,
+    /***********************************************************
+    3-char terminological language codes as per ISO-IEC 639-2
     ***********************************************************/
-AV_LANG_ISO639_1 /** 2-char code of language as per ISO/IEC 639-1
-***********************************************************/
+    AV_LANG_ISO639_2_TERM,
+    /***********************************************************
+    2-char code of language as per ISO/IEC 639-1
+    ***********************************************************/
+    AV_LANG_ISO639_1
 }
 
 /***********************************************************
 Convert a language code to a target codespace. The source codespace is guessed.
 @return NULL if the provided lang is null or invalid.
 ***********************************************************/
-string ff_convert_lang_to(string lang, AVLangCodespace target_codespace);
-#if LIBAVFORMAT_VERSION_MAJOR < 58
-attribute_deprecated
-string av_convert_lang_to(string lang, AVLangCodespace target_codespace);
-#endif
+string ff_convert_lang_to (string lang, AVLangCodespace target_codespace);

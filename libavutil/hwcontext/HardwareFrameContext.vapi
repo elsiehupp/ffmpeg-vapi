@@ -60,7 +60,7 @@ public struct HardwareFrameContext {
 
     /***********************************************************
     @brief The parent HardwareDeviceContext. This is simply a pointer to
-    device_ref->data provided for convenience.
+    device_ref.data provided for convenience.
 
     Set by libavutil in av_hwframe_ctx_init ().
     ***********************************************************/

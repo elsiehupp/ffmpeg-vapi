@@ -25,17 +25,17 @@ public struct RDTDemuxContext { }
 Allocate and init the RDT parsing context.
 @param ic the containing RTSP demuxer context
 @param first_stream_of_set_idx index to the first AVStream in the RTSP
-             demuxer context's ic->streams array that is part of this
+             demuxer context's ic.streams array that is part of this
              particular stream's set of streams (with identical content)
 @param priv_data private data of the payload data handler context
-@param handler pointer to the parse_packet() payload parsing function
-@return a newly allocated RDTDemuxContext. Free with ff_rdt_parse_close().
+@param handler pointer to the parse_packet () payload parsing function
+@return a newly allocated RDTDemuxContext. Free with ff_rdt_parse_close ().
 ***********************************************************/
-RDTDemuxContext *ff_rdt_parse_open(AVFormatContext *ic,
+RDTDemuxContext *ff_rdt_parse_open (AVFormatContext *ic,
                                    int first_stream_of_set_idx,
                                    void *priv_data,
                                    RTPDynamicProtocolHandler *handler);
-void ff_rdt_parse_close(RDTDemuxContext *s);
+void ff_rdt_parse_close (RDTDemuxContext *s);
 
 /***********************************************************
 Calculate the response (RealChallenge2 in the RTSP header) to the
@@ -49,7 +49,7 @@ server), which is used as some sort of client validation.
 @param challenge pointer to the RealChallenge1 value provided by the
                  server.
 ***********************************************************/
-void ff_rdt_calc_response_and_checksum(char response[41], char chksum[9],
+void ff_rdt_calc_response_and_checksum (char response[41], char chksum[9],
                                        string challenge);
 
 /***********************************************************
@@ -60,7 +60,7 @@ Add subscription information to Subscribe parameter string.
 @param stream_nr stream number.
 @param rule_nr rule number to conform to.
 ***********************************************************/
-void ff_rdt_subscribe_rule(string cmd, int size,
+void ff_rdt_subscribe_rule (string cmd, int size,
                            int stream_nr, int rule_nr);
 
 /***********************************************************
@@ -75,15 +75,15 @@ Parse RDT-style packet header.
 @param ptimestamp will be set to the timestamp of the packet
 @return the amount of bytes consumed, or negative on error
 ***********************************************************/
-int ff_rdt_parse_header(uint8[] buf, int len,
+int ff_rdt_parse_header (uint8[] buf, int len,
                         int[] pset_id, int[] pseq_no, int[] pstream_id,
                         int[] pis_keyframe, uint32[] ptimestamp);
 
 /***********************************************************
 Parse RDT-style packet data (header + media data).
-Usage similar to rtp_parse_packet().
+Usage similar to rtp_parse_packet ().
 ***********************************************************/
-int ff_rdt_parse_packet(RDTDemuxContext *s, AVPacket *pkt,
+int ff_rdt_parse_packet (RDTDemuxContext *s, AVPacket *packet,
                         uint8[] *buf, int len);
 
 /***********************************************************
@@ -91,8 +91,8 @@ Parse a server-related SDP line.
 
 @param s the RTSP AVFormatContext
 @param stream_index the index of the first stream in the set represented
-              by the SDP m= line (in s->streams)
+              by the SDP m= line (in s.streams)
 @param buf the SDP line
 ***********************************************************/
-void ff_real_parse_sdp_a_line(AVFormatContext *s, int stream_index,
+void ff_real_parse_sdp_a_line (AVFormatContext *s, int stream_index,
                               string buf);

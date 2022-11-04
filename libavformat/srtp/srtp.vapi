@@ -19,27 +19,29 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct AVAES;
-public struct AVHMAC;
-
 public struct SRTPContext {
     AVAES *aes;
     AVHMAC *hmac;
-    int rtp_hmac_size, rtcp_hmac_size;
+    int rtp_hmac_size;
+    int rtcp_hmac_size;
     uint8 master_key[16];
     uint8 master_salt[14];
-    uint8 rtp_key[16], rtcp_key[16];
-    uint8 rtp_salt[14], rtcp_salt[14];
-    uint8 rtp_auth[20], rtcp_auth[20];
-    int seq_largest, seq_initialized;
+    uint8 rtp_key[16];
+    uint8 rtcp_key[16];
+    uint8 rtp_salt[14];
+    uint8 rtcp_salt[14];
+    uint8 rtp_auth[20];
+    uint8 rtcp_auth[20];
+    int seq_largest;
+    int seq_initialized;
     uint32 roc;
 
     uint32 rtcp_index;
 }
 
-int ff_srtp_set_crypto(SRTPContext *s, string suite,
+int ff_srtp_set_crypto (SRTPContext *s, string suite,
                        string params);
-void ff_srtp_free(SRTPContext *s);
-int ff_srtp_decrypt(SRTPContext *s, uint8[] buf, int[] lenptr);
-int ff_srtp_encrypt(SRTPContext *s, uint8[] in, int len,
-                    uint8[] out, int outlen);
+void ff_srtp_free (SRTPContext *s);
+int ff_srtp_decrypt (SRTPContext *s, uint8[] buf, int[] lenptr);
+int ff_srtp_encrypt (SRTPContext *s, uint8[] input_buffer, int len,
+                    out uint8[] output_buffer, int outlen);

@@ -121,34 +121,39 @@ public enum FLVVCodecID {
 [Flags]
 public enum FLVVideoFrameType {
     /***********************************************************
+    Key frame (for AVC, a seekable frame)
     ***********************************************************/
-    FLV_FRAME_KEY = 1 << FLV_VIDEO_FRAMETYPE_OFFSET, ///< key frame (for AVC, a seekable frame)
+    FLV_FRAME_KEY,
     /***********************************************************
+    Inter frame (for AVC, a non-seekable frame)
     ***********************************************************/
-    FLV_FRAME_INTER = 2 << FLV_VIDEO_FRAMETYPE_OFFSET, ///< inter frame (for AVC, a non-seekable frame)
+    FLV_FRAME_INTER,
     /***********************************************************
+    Disposable inter frame (H.263 only)
     ***********************************************************/
-    FLV_FRAME_DISP_INTER = 3 << FLV_VIDEO_FRAMETYPE_OFFSET, ///< disposable inter frame (H.263 only)
+    FLV_FRAME_DISP_INTER,
     /***********************************************************
+    Generated key frame (reserved for server use only)
     ***********************************************************/
-    FLV_FRAME_GENERATED_KEY = 4 << FLV_VIDEO_FRAMETYPE_OFFSET, ///< generated key frame (reserved for server use only)
+    FLV_FRAME_GENERATED_KEY,
     /***********************************************************
+    Video info/command frame
     ***********************************************************/
-    FLV_FRAME_VIDEO_INFO_CMD = 5 << FLV_VIDEO_FRAMETYPE_OFFSET, ///< video info/command frame
+    FLV_FRAME_VIDEO_INFO_CMD;
 }
 
 public enum AMFDataType {
-    AMF_DATA_TYPE_NUMBER = 0x00,
-    AMF_DATA_TYPE_BOOL = 0x01,
-    AMF_DATA_TYPE_STRING = 0x02,
-    AMF_DATA_TYPE_OBJECT = 0x03,
-    AMF_DATA_TYPE_NULL = 0x05,
-    AMF_DATA_TYPE_UNDEFINED = 0x06,
-    AMF_DATA_TYPE_REFERENCE = 0x07,
-    AMF_DATA_TYPE_MIXEDARRAY = 0x08,
-    AMF_DATA_TYPE_OBJECT_END = 0x09,
-    AMF_DATA_TYPE_ARRAY = 0x0a,
-    AMF_DATA_TYPE_DATE = 0x0b,
-    AMF_DATA_TYPE_LONG_STRING = 0x0c,
-    AMF_DATA_TYPE_UNSUPPORTED = 0x0d,
+    AMF_DATA_TYPE_NUMBER,
+    AMF_DATA_TYPE_BOOL,
+    AMF_DATA_TYPE_STRING,
+    AMF_DATA_TYPE_OBJECT,
+    AMF_DATA_TYPE_NULL,
+    AMF_DATA_TYPE_UNDEFINED,
+    AMF_DATA_TYPE_REFERENCE,
+    AMF_DATA_TYPE_MIXEDARRAY,
+    AMF_DATA_TYPE_OBJECT_END,
+    AMF_DATA_TYPE_ARRAY,
+    AMF_DATA_TYPE_DATE,
+    AMF_DATA_TYPE_LONG_STRING,
+    AMF_DATA_TYPE_UNSUPPORTED,
 }

@@ -46,7 +46,7 @@ the resulting bitstream to the provided AVIOContext.
 @return the amount of bytes written in case of success, a negative AVERROR
         code in case of failure
 ***********************************************************/
-int ff_av1_filter_obus(AVIOContext *pb, uint8[] buf, int size);
+int ff_av1_filter_obus (AVIOContext *pb, uint8[] buf, int size);
 
 /***********************************************************
 Filter out AV1 OBUs not meant to be present in ISOBMFF sample data and write
@@ -54,15 +54,15 @@ the resulting bitstream to a newly allocated data buffer.
 
 @param pb pointer to the AVIOContext where the filtered bitstream shall be
           written
-@param buf input data buffer
-@param out pointer to pointer that will hold the allocated data buffer
+@param input_buffer input data buffer
+@param output_buffer pointer to pointer that will hold the allocated data buffer
 @param size size of the input data buffer. The size of the resulting output
                data buffer will be written here
 
 @return the amount of bytes written in case of success, a negative AVERROR
         code in case of failure. On failure, out and size are unchanged
 ***********************************************************/
-int ff_av1_filter_obus_buf(uint8[] buf, uint8[] *out, int[] size);
+int ff_av1_filter_obus_buf (uint8[] input_buffer, out uint8[] output_buffer, out int size);
 
 /***********************************************************
 Parses a Sequence Header from the the provided buffer.
@@ -74,7 +74,7 @@ Parses a Sequence Header from the the provided buffer.
 
 @return >= 0 in case of success, a negative AVERROR code in case of failure
 ***********************************************************/
-int ff_av1_parse_seq_header(AV1SequenceParameters *seq, uint8[] buf, int size);
+int ff_av1_parse_seq_header (AV1SequenceParameters *seq, uint8[] buf, int size);
 
 /***********************************************************
 Writes AV1 extradata (Sequence Header and Metadata OBUs) to the provided
@@ -86,4 +86,4 @@ AVIOContext.
 
 @return >= 0 in case of success, a negative AVERROR code in case of failure
 ***********************************************************/
-int ff_isom_write_av1c(AVIOContext *pb, uint8[] buf, int size);
+int ff_isom_write_av1c (AVIOContext *pb, uint8[] buf, int size);

@@ -31,4 +31,4 @@ ID3v1 genres
 /***********************************************************
 Read an ID3v1 tag
 ***********************************************************/
-void ff_id3v1_read(AVFormatContext *s);
+void ff_id3v1_read (AVFormatContext *s);

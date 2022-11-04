@@ -26,7 +26,7 @@ This API currently does not support frame allocation, as the raw VideoToolbox
 API does allocation, and FFmpeg itself never has the need to allocate frames.
 
 If the API user sets a custom pool, HardwareFrameContext.pool must return
-LibAVUtil.BufferRef(s) whose data pointer is a CVImageBufferRef or CVPixelBufferRef.
+LibAVUtil.BufferRef (s) whose data pointer is a CVImageBufferRef or CVPixelBufferRef.
 
 Currently HardwareDeviceContext.hwctx and HardwareFrameContext.hwctx are always
 null.

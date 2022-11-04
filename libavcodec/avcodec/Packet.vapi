@@ -66,7 +66,7 @@ public struct Packet {
     public LibAVUtil.BufferRef buf;
 
     /***********************************************************
-    @brief Presentation timestamp in AVStream->time_base units; the time at which
+    @brief Presentation timestamp in AVStream.time_base units; the time at which
     the decompressed packet will be presented to the user.
     Can be AV_NOPTS_VALUE if it is not stored in the file.
     pts MUST be larger or equal to dts as presentation cannot happen before
@@ -78,7 +78,7 @@ public struct Packet {
     public int64 pts;
 
     /***********************************************************
-    @brief Decompression timestamp in AVStream->time_base units; the time at which
+    @brief Decompression timestamp in AVStream.time_base units; the time at which
     the packet is decompressed.
     Can be AV_NOPTS_VALUE if it is not stored in the file.
     ***********************************************************/
@@ -107,7 +107,7 @@ public struct Packet {
     public int side_data_elems;
 
     /***********************************************************
-    @brief Duration of this packet in AVStream->time_base units, 0 if unknown.
+    @brief Duration of this packet in AVStream.time_base units, 0 if unknown.
     Equals next_pts - this_pts in presentation order.
     ***********************************************************/
     [CCode (cname="duration")]

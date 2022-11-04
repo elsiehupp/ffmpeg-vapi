@@ -66,7 +66,7 @@ public struct BitStreamFilterContext {
     public BSFInternal internal;
 
     /***********************************************************
-    @brief Opaque filter-specific private data. If filter->priv_class is non-null,
+    @brief Opaque filter-specific private data. If filter.priv_class is non-null,
         this is an LibAVUtil.Options-enabled struct.
     ***********************************************************/
     [CCode (cname="priv_data")]

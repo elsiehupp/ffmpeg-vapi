@@ -55,7 +55,7 @@ public struct test_struct {
     int bin_len;
 }
 
-static const Option test_options[] = {
+public const Option test_options[] = {
   { "test_int", "This is a test option of int type.", offsetof (test_struct, int_opt),
     OptionType.INT, { .i64 = -1 }, INT_MIN, INT_MAX },
   { "test_str", "This is a test option of string type.", offsetof (test_struct, str_opt),
@@ -65,7 +65,7 @@ static const Option test_options[] = {
   { null },
 }
 
-static const Class test_class = {
+public const Class test_class = {
     .class_name = "test class",
     .item_name = av_default_item_name,
     .option = test_options,
@@ -86,7 +86,7 @@ Continuing with the above example:
 @code
 test_struct alloc_test_struct () {
     test_struct ret = av_mallocz (sizeof (*ret));
-    ret->class = &test_class;
+    ret.class = &test_class;
     av_opt_set_defaults (ret);
     return ret;
 }
@@ -112,12 +112,12 @@ void free_test_struct (test_struct **foo) {
         Class class;
         int flags_opt;
     } child_struct;
-    static const Option child_opts[] = {
+    public const Option child_opts[] = {
         { "test_flags", "This is a test option of flags type.",
         offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, INT_MAX },
         { null },
     }
-    static const Class child_class = {
+    public const Class child_class = {
         .class_name = "child class",
         .item_name = av_default_item_name,
         .option = child_opts,
@@ -126,8 +126,8 @@ void free_test_struct (test_struct **foo) {
 
     void *child_next (void *obj, void *prev) {
         test_struct t = obj;
-        if (!prev && t->child_struct)
-        return t->child_struct;
+        if (!prev && t.child_struct)
+        return t.child_struct;
         return null
     }
     Class child_class_next (Class prev) {
@@ -751,9 +751,9 @@ public struct Option {
     @brief Show the obj options.
 
     @param req_flags requested flags for the options to show. Show only the
-        options for which it is opt->flags & req_flags.
+        options for which it is opt.flags & req_flags.
     @param rej_flags rejected flags for the options to show. Show only the
-        options for which it is !(opt->flags & req_flags).
+        options for which it is !(opt.flags & req_flags).
     @param av_log_obj log context to use for showing the options
     ***********************************************************/
     [CCode (cname="av_opt_show2", cheader_filename="ffmpeg/libavutil/opt.h")]
@@ -776,7 +776,7 @@ public struct Option {
 
     /***********************************************************
     @brief Set the values of all Option fields to their default values. Only these
-    Option fields for which (opt->flags & mask) == flags will have their
+    Option fields for which (opt.flags & mask) == flags will have their
     default applied to s.
 
     @param s an Option-enabled struct (its first member must be a pointer to Class)

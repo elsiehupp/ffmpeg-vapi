@@ -284,10 +284,10 @@ public struct MOVMuxContext {
 #define FF_MOV_FLAG_FRAG_EVERY_FRAME (1 << 20)
 #define FF_MOV_FLAG_SKIP_SIDX (1 << 21)
 
-int ff_mov_write_packet(AVFormatContext *s, AVPacket *pkt);
+int ff_mov_write_packet (AVFormatContext *s, AVPacket *packet);
 
-int ff_mov_init_hinting(AVFormatContext *s, int index, int src_index);
-int ff_mov_add_hinted_packet(AVFormatContext *s, AVPacket *pkt,
+int ff_mov_init_hinting (AVFormatContext *s, int index, int src_index);
+int ff_mov_add_hinted_packet (AVFormatContext *s, AVPacket *packet,
                              int track_index, int sample,
                              uint8[] sample_data, int sample_size);
-void ff_mov_close_hinting(MOVTrack *track);
+void ff_mov_close_hinting (MOVTrack *track);

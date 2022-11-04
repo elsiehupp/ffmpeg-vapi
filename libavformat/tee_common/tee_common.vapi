@@ -19,7 +19,6 @@ along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_tee_parse_slave_options(void *log, string slave,
+int ff_tee_parse_slave_options (void *log, string slave,
                                AVDictionary **options, string[] filename);
 
-#endif

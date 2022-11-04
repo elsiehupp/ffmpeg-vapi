@@ -23,7 +23,7 @@ namespace LibAVUtil {
 An API-specific header for AV_HWDEVICE_TYPE_QSV.
 
 This API does not support dynamic frame pools. HardwareFrameContext.pool must
-contain LibAVUtil.BufferRef(s) whose data pointer points to an mfxFrameSurface1 struct.
+contain LibAVUtil.BufferRef (s) whose data pointer points to an mfxFrameSurface1 struct.
 ***********************************************************/
 
 /***********************************************************

@@ -57,7 +57,7 @@ public enum CodecCapabilityFlags {
 
     Decoders:
     The decoder has a non-zero delay and needs to be fed with
-    avpkt->data=null, avpkt->size=0 at the end to get the
+    avpkt.data=null, avpkt.size=0 at the end to get the
     delayed data until the decoder no longer returns frames.
 
     Encoders:
@@ -113,7 +113,7 @@ public enum CodecCapabilityFlags {
     ***********************************************************/
     AV_CODEC_CAP_PARAM_CHANGE,
     /***********************************************************
-    @brief Codec supports avctx->thread_count == 0 (auto).
+    @brief Codec supports avctx.thread_count == 0 (auto).
     ***********************************************************/
     AV_CODEC_CAP_AUTO_THREADS,
     /***********************************************************

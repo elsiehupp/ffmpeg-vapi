@@ -23,25 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 public struct PayloadContext { }
 public struct RTPDynamicProtocolHandler { }
 
-#define RTP_MIN_PACKET_LENGTH 12
-#define RTP_MAX_PACKET_LENGTH 8192
+public const size_t RTP_MIN_PACKET_LENGTH;
+public const size_t RTP_MAX_PACKET_LENGTH;
 
-#define RTP_REORDER_QUEUE_DEFAULT_SIZE 500
+public const size_t RTP_REORDER_QUEUE_DEFAULT_SIZE;
 
-#define RTP_NOTS_VALUE ((uint32)-1)
+public const uint32 RTP_NOTS_VALUE;
 
-public struct RTPDemuxContext RTPDemuxContext;
-RTPDemuxContext *ff_rtp_parse_open(AVFormatContext *s1, AVStream *st,
+public struct RTPDemuxContext { }
+RTPDemuxContext *ff_rtp_parse_open (AVFormatContext *s1, AVStream *st,
                                    int payload_type, int queue_size);
-void ff_rtp_parse_set_dynamic_protocol(RTPDemuxContext *s, PayloadContext *ctx,
+void ff_rtp_parse_set_dynamic_protocol (RTPDemuxContext *s, PayloadContext *ctx,
                                        RTPDynamicProtocolHandler *handler);
-void ff_rtp_parse_set_crypto(RTPDemuxContext *s, string suite,
+void ff_rtp_parse_set_crypto (RTPDemuxContext *s, string suite,
                              string params);
-int ff_rtp_parse_packet(RTPDemuxContext *s, AVPacket *pkt,
+int ff_rtp_parse_packet (RTPDemuxContext *s, AVPacket *packet,
                         uint8[] *buf, int len);
-void ff_rtp_parse_close(RTPDemuxContext *s);
-int64 ff_rtp_queued_packet_time(RTPDemuxContext *s);
-void ff_rtp_reset_packet_queue(RTPDemuxContext *s);
+void ff_rtp_parse_close (RTPDemuxContext *s);
+int64 ff_rtp_queued_packet_time (RTPDemuxContext *s);
+void ff_rtp_reset_packet_queue (RTPDemuxContext *s);
 
 /***********************************************************
 Send a dummy packet on both port pairs to set up the connection
@@ -54,67 +54,83 @@ isn't a standardized procedure, but it works in many cases in practice.
 The same routine is used with RDT too, even if RDT doesn't use normal
 RTP packets otherwise.
 ***********************************************************/
-void ff_rtp_send_punch_packets(URLContext* rtp_handle);
+void ff_rtp_send_punch_packets (URLContext* rtp_handle);
 
 /***********************************************************
 some rtp servers assume client is dead if they don't hear from them...
 so we send a Receiver Report to the provided URLContext or AVIOContext
 (we don't have access to the rtcp handle from here)
 ***********************************************************/
-int ff_rtp_check_and_send_back_rr(RTPDemuxContext *s, URLContext *fd,
+int ff_rtp_check_and_send_back_rr (RTPDemuxContext *s, URLContext *fd,
                                   AVIOContext *avio, int count);
-int ff_rtp_send_rtcp_feedback(RTPDemuxContext *s, URLContext *fd,
+int ff_rtp_send_rtcp_feedback (RTPDemuxContext *s, URLContext *fd,
                               AVIOContext *avio);
 
 /***********************************************************
+Phese statistics are used for rtcp receiver reports...
 ***********************************************************/
-// these statistics are used for rtcp receiver reports...
 public struct RTPStatistics {
     /***********************************************************
+    Highest sequence number seen
     ***********************************************************/
-    uint16 max_seq; ///< highest sequence number seen
+    uint16 max_seq;
     /***********************************************************
+    Shifted count of sequence number cycles
     ***********************************************************/
-    uint32 cycles; ///< shifted count of sequence number cycles
+    uint32 cycles;
     /***********************************************************
+    Base sequence number
     ***********************************************************/
-    uint32 base_seq; ///< base sequence number
+    uint32 base_seq;
     /***********************************************************
+    Last bad sequence number + 1
     ***********************************************************/
-    uint32 bad_seq; ///< last bad sequence number + 1
+    uint32 bad_seq;
     /***********************************************************
+    Sequence packets till source is valid
     ***********************************************************/
-    int probation; ///< sequence packets till source is valid
+    int probation;
     /***********************************************************
+    Packets received
     ***********************************************************/
-    uint32 received; ///< packets received
+    uint32 received;
     /***********************************************************
+    Packets expected in last interval
     ***********************************************************/
-    uint32 expected_prior; ///< packets expected in last interval
+    uint32 expected_prior;
     /***********************************************************
+    Packets received in last interval
     ***********************************************************/
-    uint32 received_prior; ///< packets received in last interval
+    uint32 received_prior;
     /***********************************************************
+    Relative transit time for previous packet
     ***********************************************************/
-    uint32 transit; ///< relative transit time for previous packet
+    uint32 transit;
     /***********************************************************
+    Estimated jitter
     ***********************************************************/
-    uint32 jitter; ///< estimated jitter.
+    uint32 jitter;
 }
 
-/***********************************************************
-***********************************************************/
-#define RTP_FLAG_KEY 0x1 ///< RTP packet contains a keyframe
-/***********************************************************
-***********************************************************/
-#define RTP_FLAG_MARKER 0x2 ///< RTP marker bit was set for this packet
+[Flags]
+public enum RTPFlags {
+    /***********************************************************
+    RTP packet contains a keyframe
+    ***********************************************************/
+    RTP_FLAG_KEY,
+    /***********************************************************
+    RTP marker bit was set for this packet
+    ***********************************************************/
+    RTP_FLAG_MARKER,
+}
+
 /***********************************************************
 Packet parsing for "private" payloads in the RTP specs.
 
 @param ctx RTSP demuxer context
 @param s stream context
 @param st stream that this packet belongs to
-@param pkt packet in which to write the parsed data
+@param packet packet in which to write the parsed data
 @param timestamp pointer to the RTP timestamp of the input data, can be
                  updated by the function if returning older, buffered data
 @param buf pointer to raw RTP packet data
@@ -124,7 +140,7 @@ Packet parsing for "private" payloads in the RTP specs.
 ***********************************************************/
 typedef int (*DynamicPayloadPacketHandlerProc)(AVFormatContext *ctx,
                                                PayloadContext *s,
-                                               AVStream *st, AVPacket *pkt,
+                                               AVStream *st, AVPacket *packet,
                                                uint32[] timestamp,
                                                uint8[]  buf,
                                                int len, uint16 seq, int flags);
@@ -202,17 +218,21 @@ char hostname[256];
     Fields for packet reordering @{
     ***********************************************************/
     /***********************************************************
+    The return value of the actual parsing of the previous packet
     ***********************************************************/
-    int prev_ret; ///< The return value of the actual parsing of the previous packet
+    int prev_ret;
     /***********************************************************
+    A sorted queue of buffered packets not yet returned
     ***********************************************************/
-    RTPPacket* queue; ///< A sorted queue of buffered packets not yet returned
+    RTPPacket[] queue;
     /***********************************************************
+    The number of packets in queue
     ***********************************************************/
-    int queue_len; ///< The number of packets in queue
+    int queue_len;
     /***********************************************************
+    The size of queue, or 0 if reordering is disabled
     ***********************************************************/
-    int queue_size; ///< The size of queue, or 0 if reordering is disabled
+    int queue_size;
     /*@}*/
 
     /***********************************************************
@@ -248,14 +268,14 @@ Iterate over all registered rtp dynamic protocol handlers.
 @return the next registered rtp dynamic protocol handler or NULL when the iteration is
         finished
 ***********************************************************/
-const RTPDynamicProtocolHandler *ff_rtp_handler_iterate(void **opaque);
+const RTPDynamicProtocolHandler *ff_rtp_handler_iterate (void **opaque);
 /***********************************************************
 Find a registered rtp dynamic protocol handler with the specified name.
 
 @param name name of the requested rtp dynamic protocol handler
 @return A rtp dynamic protocol handler if one was found, NULL otherwise.
 ***********************************************************/
-const RTPDynamicProtocolHandler *ff_rtp_handler_find_by_name(string name,
+const RTPDynamicProtocolHandler *ff_rtp_handler_find_by_name (string name,
                                                   AVMediaType codec_type);
 /***********************************************************
 Find a registered rtp dynamic protocol handler with a matching codec ID.
@@ -263,16 +283,16 @@ Find a registered rtp dynamic protocol handler with a matching codec ID.
 @param id AVCodecID of the requested rtp dynamic protocol handler.
 @return A rtp dynamic protocol handler if one was found, NULL otherwise.
 ***********************************************************/
-const RTPDynamicProtocolHandler *ff_rtp_handler_find_by_id(int id,
+const RTPDynamicProtocolHandler *ff_rtp_handler_find_by_id (int id,
                                                 AVMediaType codec_type);
 
 /***********************************************************
 from rtsp.c, but used by rtp dynamic protocol handlers.
     ***********************************************************/
-int ff_rtsp_next_attr_and_value(string[] p, string attr, int attr_size,
+int ff_rtsp_next_attr_and_value (string[] p, string attr, int attr_size,
                                 string value, int value_size);
 
-int ff_parse_fmtp(AVFormatContext *s,
+int ff_parse_fmtp (AVFormatContext *s,
                   AVStream *stream, PayloadContext *data, string p,
                   int (*parse_fmtp)(AVFormatContext *s,
                                     AVStream *stream,
@@ -282,4 +302,4 @@ int ff_parse_fmtp(AVFormatContext *s,
 /***********************************************************
 Close the dynamic buffer and make a packet from it.
 ***********************************************************/
-int ff_rtp_finalize_packet(AVPacket *pkt, AVIOContext **dyn_buf, int stream_idx);
+int ff_rtp_finalize_packet (AVPacket *packet, AVIOContext **dyn_buf, int stream_idx);

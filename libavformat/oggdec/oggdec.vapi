@@ -148,10 +148,10 @@ public struct ogg {
 //  extern const struct ogg_codec ff_vorbis_codec;
 //  extern const struct ogg_codec ff_vp8_codec;
 
-int ff_vorbis_comment(AVFormatContext *ms, AVDictionary **m,
+int ff_vorbis_comment (AVFormatContext *ms, AVDictionary **m,
                       uint8[] buf, int size, int parse_picture);
 
-int ff_vorbis_stream_comment(AVFormatContext *as, AVStream *st,
+int ff_vorbis_stream_comment (AVFormatContext *as, AVStream *st,
                              uint8[] buf, int size);
 
 static inline int
@@ -159,8 +159,8 @@ ogg_find_stream (ogg * ogg, int serial)
 {
     int i;
 
-    for (i = 0; i < ogg->nstreams; i++)
-        if (ogg->streams[i].serial == serial)
+    for (i = 0; i < ogg.nstreams; i++)
+        if (ogg.streams[i].serial == serial)
             return i;
 
     return -1;
@@ -169,12 +169,12 @@ ogg_find_stream (ogg * ogg, int serial)
 static inline uint64
 ogg_gptopts (AVFormatContext * s, int i, uint64 gp, int64[] dts)
 {
-    ogg *ogg = s->priv_data;
-    ogg_stream *os = ogg->streams + i;
+    ogg *ogg = s.priv_data;
+    ogg_stream *os = ogg.streams + i;
     uint64 pts = AV_NOPTS_VALUE;
 
-    if(os->codec && os->codec->gptopts){
-        pts = os->codec->gptopts(s, i, gp, dts);
+    if (os.codec && os.codec.gptopts){
+        pts = os.codec.gptopts (s, i, gp, dts);
     } else {
         pts = gp;
         if (dts)
@@ -182,7 +182,7 @@ ogg_gptopts (AVFormatContext * s, int i, uint64 gp, int64[] dts)
     }
     if (pts > INT64_MAX && pts != AV_NOPTS_VALUE) {
         // The return type is uint, we thus cannot return negative pts
-        av_log(s, AV_LOG_ERROR, "invalid pts %"PRId64"\n", pts);
+        av_log (s, AV_LOG_ERROR, "invalid pts %"PRId64"\n", pts);
         pts = AV_NOPTS_VALUE;
     }
 

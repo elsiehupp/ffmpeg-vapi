@@ -26,7 +26,7 @@ Initialize the Diffie-Hellmann context and generate the public key.
 @param buf handshake data (1536 bytes)
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_rtmpe_gen_pub_key(URLContext *h, uint8[] buf);
+int ff_rtmpe_gen_pub_key (URLContext *h, uint8[] buf);
 
 /***********************************************************
 Compute the shared secret key and initialize the RC4 encryption.
@@ -37,7 +37,7 @@ Compute the shared secret key and initialize the RC4 encryption.
 @param type the position of the server digest
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_rtmpe_compute_secret_key(URLContext *h, uint8[] serverdata,
+int ff_rtmpe_compute_secret_key (URLContext *h, uint8[] serverdata,
                                 uint8[] clientdata, int type);
 
 /***********************************************************
@@ -48,7 +48,7 @@ Encrypt the signature.
 @param digest the digest used for finding the encryption key
 @param type type of encryption (8 for XTEA, 9 for Blowfish)
 ***********************************************************/
-void ff_rtmpe_encrypt_sig(URLContext *h, uint8[] signature,
+void ff_rtmpe_encrypt_sig (URLContext *h, uint8[] signature,
                           uint8[] digest, int type);
 
 /***********************************************************
@@ -57,4 +57,4 @@ Update the keystream and set RC4 keys for encryption.
 @param h an URLContext
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_rtmpe_update_keystream(URLContext *h);
+int ff_rtmpe_update_keystream (URLContext *h);

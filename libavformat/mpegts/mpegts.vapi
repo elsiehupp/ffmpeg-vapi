@@ -64,10 +64,10 @@ table ids
 
 public struct MpegTSContext MpegTSContext;
 
-MpegTSContext *avpriv_mpegts_parse_open(AVFormatContext *s);
-int avpriv_mpegts_parse_packet(MpegTSContext *ts, AVPacket *pkt,
+MpegTSContext *avpriv_mpegts_parse_open (AVFormatContext *s);
+int avpriv_mpegts_parse_packet (MpegTSContext *ts, AVPacket *packet,
                                uint8[] buf, int len);
-void avpriv_mpegts_parse_close(MpegTSContext *ts);
+void avpriv_mpegts_parse_close (MpegTSContext *ts);
 
 public struct SLConfigDescr {
     int use_au_start;
@@ -102,7 +102,7 @@ Parse an MPEG-2 descriptor
 @param desc_list_end End of buffer
 @return <0 to stop processing
 ***********************************************************/
-int ff_parse_mpeg2_descriptor(AVFormatContext *fc, AVStream *st, int stream_type,
+int ff_parse_mpeg2_descriptor (AVFormatContext *fc, AVStream *st, int stream_type,
                               uint8[] *pp, uint8[] desc_list_end,
                               Mp4Descr *mp4_descr, int mp4_descr_count, int pid,
                               MpegTSContext *ts);
@@ -111,4 +111,4 @@ int ff_parse_mpeg2_descriptor(AVFormatContext *fc, AVStream *st, int stream_type
 Check presence of H264 startcode
 @return <0 to stop processing
 ***********************************************************/
-int ff_check_h264_startcode(AVFormatContext *s, AVStream *st, AVPacket *pkt);
+int ff_check_h264_startcode (AVFormatContext *s, AVStream *st, AVPacket *packet);

@@ -28,7 +28,7 @@ refcounted data buffer API
 @defgroup LibAVUtil.BufferPool LibAVUtil.BufferPool
 @ingroup LibAVUtil.Data
 
-LibAVUtil.BufferPool is an API for a lock-free thread-safe pool of LibAVUtil.Buffer(s).
+LibAVUtil.BufferPool is an API for a lock-free thread-safe pool of LibAVUtil.Buffer (s).
 
 Frequently allocating and freeing large buffers may be slow. LibAVUtil.BufferPool is
 meant to solve this in cases when the caller needs a set of buffers of the

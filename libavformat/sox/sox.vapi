@@ -19,8 +19,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define SOX_FIXED_HDR (4 + 8 + 8 + 4 + 4) /***********************************************************
+/***********************************************************
 Size of fixed header without magic
 ***********************************************************/
+const size_t SOX_FIXED_HDR;
 
-#define SOX_TAG MKTAG('.', 'S', 'o', 'X')
+//  #define SOX_TAG MKTAG ('.', 'S', 'o', 'X')

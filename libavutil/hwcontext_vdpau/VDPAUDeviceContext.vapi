@@ -23,7 +23,7 @@ namespace LibAVUtil {
 An API-specific header for AV_HWDEVICE_TYPE_VDPAU.
 
 This API supports dynamic frame pools. HardwareFrameContext.pool must return
-LibAVUtil.BufferRef(s) whose data pointer is a VdpVideoSurface.
+LibAVUtil.BufferRef (s) whose data pointer is a VdpVideoSurface.
 ***********************************************************/
 
 /***********************************************************

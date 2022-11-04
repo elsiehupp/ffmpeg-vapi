@@ -56,4 +56,4 @@ Parse a WavPack block header.
 
 @return 0 on success, a negative AVERROR code on failure
 ***********************************************************/
-int ff_wv_parse_header(WvHeader *wv, uint8[] data);
+int ff_wv_parse_header (WvHeader *wv, uint8[] data);

@@ -24,21 +24,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Libavformat version macros
 ***********************************************************/
 
-// Major bumping may affect Ticket5467, 5421, 5451(compatibility with Chromium)
+// Major bumping may affect Ticket5467, 5421, 5451 (compatibility with Chromium)
 // Also please add any ticket numbers that you believe might be affected here
 #define LIBAVFORMAT_VERSION_MAJOR 58
 #define LIBAVFORMAT_VERSION_MINOR 29
 #define LIBAVFORMAT_VERSION_MICRO 100
 
-#define LIBAVFORMAT_VERSION_INT AV_VERSION_INT(LIBAVFORMAT_VERSION_MAJOR, \
+#define LIBAVFORMAT_VERSION_INT AV_VERSION_INT (LIBAVFORMAT_VERSION_MAJOR, \
                                                LIBAVFORMAT_VERSION_MINOR, \
                                                LIBAVFORMAT_VERSION_MICRO)
-#define LIBAVFORMAT_VERSION AV_VERSION(LIBAVFORMAT_VERSION_MAJOR, \
+#define LIBAVFORMAT_VERSION AV_VERSION (LIBAVFORMAT_VERSION_MAJOR, \
                                            LIBAVFORMAT_VERSION_MINOR, \
                                            LIBAVFORMAT_VERSION_MICRO)
 #define LIBAVFORMAT_BUILD LIBAVFORMAT_VERSION_INT
 
-#define LIBAVFORMAT_IDENT       "Lavf" AV_STRINGIFY(LIBAVFORMAT_VERSION)
+#define LIBAVFORMAT_IDENT       "Lavf" AV_STRINGIFY (LIBAVFORMAT_VERSION)
 
 /***********************************************************
 FF_API_* defines may be placed below to indicate public API that will be

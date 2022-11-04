@@ -27,8 +27,8 @@ do NOT include this in end user applications
 
 //  extern const AVMetadataConv ff_riff_info_conv[];
 
-int64 ff_start_tag(AVIOContext *pb, string tag);
-void ff_end_tag(AVIOContext *pb, int64 start);
+int64 ff_start_tag (AVIOContext *pb, string tag);
+void ff_end_tag (AVIOContext *pb, int64 start);
 
 /***********************************************************
 Read BITMAPINFOHEADER structure and set AVStream codec width, height and
@@ -36,17 +36,17 @@ bits_per_encoded_sample fields. Does not read extradata.
 Writes the size of the BMP file to *size.
 @return codec tag
 ***********************************************************/
-int ff_get_bmp_header(AVIOContext *pb, AVStream *st, uint32[] size);
+int ff_get_bmp_header (AVIOContext *pb, AVStream *st, uint32[] size);
 
-void ff_put_bmp_header(AVIOContext *pb, AVCodecParameters *par, int for_asf, int ignore_extradata);
+void ff_put_bmp_header (AVIOContext *pb, AVCodecParameters *par, int for_asf, int ignore_extradata);
 
 /***********************************************************
-Tell ff_put_wav_header() to use WAVEFORMATEX even for PCM codecs.
+Tell ff_put_wav_header () to use WAVEFORMATEX even for PCM codecs.
 ***********************************************************/
 #define FF_PUT_WAV_HEADER_FORCE_WAVEFORMATEX 0x00000001
 
 /***********************************************************
-Tell ff_put_wav_header() to write an empty channel mask.
+Tell ff_put_wav_header () to write an empty channel mask.
 ***********************************************************/
 #define FF_PUT_WAV_HEADER_SKIP_CHANNELMASK 0x00000002
 
@@ -57,29 +57,29 @@ Write WAVEFORMAT header structure.
 
 @return the size or -1 on error
 ***********************************************************/
-int ff_put_wav_header(AVFormatContext *s, AVIOContext *pb, AVCodecParameters *par, int flags);
+int ff_put_wav_header (AVFormatContext *s, AVIOContext *pb, AVCodecParameters *par, int flags);
 
-public enum AVCodecID ff_wav_codec_get_id(uint tag, int bps);
-int ff_get_wav_header(AVFormatContext *s, AVIOContext *pb, AVCodecParameters *par, int size, int big_endian);
+public enum AVCodecID ff_wav_codec_get_id (uint tag, int bps);
+int ff_get_wav_header (AVFormatContext *s, AVIOContext *pb, AVCodecParameters *par, int size, int big_endian);
 
-//  extern const AVCodecTag ff_codec_bmp_tags[]; // exposed through avformat_get_riff_video_tags()
+//  extern const AVCodecTag ff_codec_bmp_tags[]; // exposed through avformat_get_riff_video_tags ()
 //  extern const AVCodecTag ff_codec_wav_tags[];
 
 //  extern const AVCodecTag ff_codec_bmp_tags_unofficial[];
 
-void ff_parse_specific_params(AVStream *st, int[] au_rate, int[] au_ssize, int[] au_scale);
+void ff_parse_specific_params (AVStream *st, int[] au_rate, int[] au_ssize, int[] au_scale);
 
-int ff_read_riff_info(AVFormatContext *s, int64 size);
+int ff_read_riff_info (AVFormatContext *s, int64 size);
 
 /***********************************************************
-Write all recognized RIFF tags from s->metadata
+Write all recognized RIFF tags from s.metadata
 ***********************************************************/
-void ff_riff_write_info(AVFormatContext *s);
+void ff_riff_write_info (AVFormatContext *s);
 
 /***********************************************************
 Write a single RIFF info tag
 ***********************************************************/
-void ff_riff_write_info_tag(AVIOContext *pb, string tag, string str);
+void ff_riff_write_info_tag (AVIOContext *pb, string tag, string str);
 
 typedef uint8 ff_asf_guid[16];
 
@@ -94,7 +94,7 @@ public struct AVCodecGuid {
     "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x " \
     "{%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x}"
 
-#define FF_ARG_GUID(g) \
+#define FF_ARG_GUID (g) \
     g[0], g[1], g[2], g[3], g[4], g[5], g[6], g[7], \
     g[8], g[9], g[10], g[11], g[12], g[13], g[14], g[15],\
     g[3], g[2], g[1], g[0], g[5], g[4], g[7], g[6], \
@@ -107,13 +107,13 @@ public struct AVCodecGuid {
 #define FF_BROKEN_BASE_GUID \
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0xAA
 
-static av_always_inline int ff_guidcmp(void *g1, void *g2)
+static av_always_inline int ff_guidcmp (void *g1, void *g2)
 {
-    return memcmp(g1, g2, sizeof(ff_asf_guid));
+    return memcmp (g1, g2, sizeof (ff_asf_guid));
 }
 
-int ff_get_guid(AVIOContext *s, ff_asf_guid *g);
-void ff_put_guid(AVIOContext *s, ff_asf_guid *g);
-const ff_asf_guid *ff_get_codec_guid(AVCodecID id, AVCodecGuid *av_guid);
+int ff_get_guid (AVIOContext *s, ff_asf_guid *g);
+void ff_put_guid (AVIOContext *s, ff_asf_guid *g);
+const ff_asf_guid *ff_get_codec_guid (AVCodecID id, AVCodecGuid *av_guid);
 
-public AVCodecID ff_codec_guid_get_id(AVCodecGuid *guids, ff_asf_guid guid);
+public AVCodecID ff_codec_guid_get_id (AVCodecGuid *guids, ff_asf_guid guid);

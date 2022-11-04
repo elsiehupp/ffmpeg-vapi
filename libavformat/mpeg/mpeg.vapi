@@ -56,13 +56,13 @@ mpeg2
 
 #define STREAM_TYPE_AUDIO_AC3 0x81
 
-static const int lpcm_freq_tab[4] = { 48000, 96000, 44100, 32000 }
+public const int lpcm_freq_tab[4] = { 48000, 96000, 44100, 32000 }
 
 /***********************************************************
 Parse MPEG-PES five-byte timestamp
 ***********************************************************/
-static inline int64 ff_parse_pes_pts(uint8[] buf) {
+static inline int64 ff_parse_pes_pts (uint8[] buf) {
     return (int64)(*buf & 0x0e) << 29 |
-            (AV_RB16(buf+1) >> 1) << 15 |
-             AV_RB16(buf+3) >> 1;
+            (AV_RB16 (buf+1) >> 1) << 15 |
+             AV_RB16 (buf+3) >> 1;
 }

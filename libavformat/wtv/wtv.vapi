@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WTV_SECTOR_BITS 12
 #define WTV_SECTOR_SIZE (1 << WTV_SECTOR_BITS)
 #define WTV_BIGSECTOR_BITS 18
-#define WTV_PAD8(x) (((x) + 7) & ~7)
+#define WTV_PAD8 (x) (((x) + 7) & ~7)
 
 //  extern const uint8 ff_timeline_le16[16];
 //  extern const uint8 ff_timeline_table_0_entries_Events_le16[62];
