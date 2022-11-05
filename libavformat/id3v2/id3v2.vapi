@@ -1,6 +1,6 @@
 /***********************************************************
 ID3v2 header parser
-Copyright (c) 2003 Fabrice Bellard
+@copyright 2003 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -61,7 +61,7 @@ public struct ID3v2EncContext {
 public struct ID3v2ExtraMeta {
     string tag;
     void *data;
-    ID3v2ExtraMeta *next;
+    ID3v2ExtraMeta next;
 }
 
 public struct ID3v2ExtraMetaGEOB {
@@ -121,8 +121,8 @@ Read an ID3v2 tag into specified dictionary and retrieve supported extra metadat
 ID3v2ExtraMeta structs and *extra_meta points to the head of the list
 ***********************************************************/
 void ff_id3v2_read_dict (
-    AVIOContext *pb,
-    LibAVUtil.Dictionary **metadata,
+    AVIOContext pb,
+    out LibAVUtil.Dictionary metadata,
     string magic,
     out ID3v2ExtraMeta extra_meta
 );
@@ -137,7 +137,7 @@ ID3v2ExtraMeta structs and *extra_meta points to the head of the list
 @param[opt] max_search_search restrict ID3 magic number search (bytes from start)
 ***********************************************************/
 void ff_id3v2_read (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     string magic,
     out ID3v2ExtraMeta extra_meta,
     uint max_search_size
@@ -147,46 +147,46 @@ void ff_id3v2_read (
 Initialize an ID3v2 tag.
 ***********************************************************/
 void ff_id3v2_start (
-    ID3v2EncContext *id3,
-    AVIOContext *pb,
+    ID3v2EncContext id3,
+    AVIOContext pb,
     int id3v2_version,
     string magic
 );
 
 /***********************************************************
-Convert and write all global metadata from s into an ID3v2 tag.
+Convert and write all global metadata from format_context into an ID3v2 tag.
 ***********************************************************/
 int ff_id3v2_write_metadata (
-    AVFormatContext *s,
-    ID3v2EncContext *id3
+    AVFormatContext format_context,
+    ID3v2EncContext id3
 );
 
 /***********************************************************
 Write an attached picture from packet into an ID3v2 tag.
 ***********************************************************/
 int ff_id3v2_write_apic (
-    AVFormatContext *s,
-    ID3v2EncContext *id3,
-    LibAVCodec.Packet *packet
+    AVFormatContext format_context,
+    ID3v2EncContext id3,
+    LibAVCodec.Packet packet
 );
 
 /***********************************************************
 Finalize an opened ID3v2 tag.
 ***********************************************************/
 void ff_id3v2_finish (
-    ID3v2EncContext *id3,
-    AVIOContext *pb,
+    ID3v2EncContext id3,
+    AVIOContext pb,
     int padding_bytes
 );
 
 /***********************************************************
-Write an ID3v2 tag containing all global metadata from s.
+Write an ID3v2 tag containing all global metadata from format_context.
 @param id3v2_version Subversion of ID3v2; supported values are 3 and 4
 @param magic magic bytes to identify the header
 If in doubt, use ID3v2_DEFAULT_MAGIC.
 ***********************************************************/
 int ff_id3v2_write_simple (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     int id3v2_version,
     string magic
 );
@@ -204,7 +204,7 @@ Create a stream for each APIC (attached picture) extracted from the
 ID3v2 header.
 ***********************************************************/
 int ff_id3v2_parse_apic (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     out ID3v2ExtraMeta extra_meta
 );
 
@@ -212,7 +212,7 @@ int ff_id3v2_parse_apic (
 Create chapters for all CHAP tags found in the ID3v2 header.
 ***********************************************************/
 int ff_id3v2_parse_chapters (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     out ID3v2ExtraMeta extra_meta
 );
 
@@ -221,7 +221,7 @@ Parse PRIV tags into a dictionary. The PRIV owner is the metadata key. The
 PRIV data is the value, with non-printable characters escaped.
 ***********************************************************/
 int ff_id3v2_parse_priv_dict (
-    LibAVUtil.Dictionary **d,
+    out LibAVUtil.Dictionary dictionary,
     out ID3v2ExtraMeta extra_meta
 );
 
@@ -231,7 +231,7 @@ metadata key. The PRIV data is the value, with non-printable characters
 escaped.
 ***********************************************************/
 int ff_id3v2_parse_priv (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     out ID3v2ExtraMeta extra_meta
 );
 

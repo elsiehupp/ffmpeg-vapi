@@ -56,7 +56,7 @@ Backwards compat.
 /***********************************************************
 @brief Absolute value, Note, INT_MIN / INT64_MIN result in undefined behavior as they
 are not representable as absolute values of their type. This is the same
-as with *abs ()
+as with abs ()
 @see @link FFNABS ()
 ***********************************************************/
 //  #define FFABS (a) ((a) >= 0 ? (a) : (-(a)))
@@ -342,7 +342,7 @@ public static int av_parity_c (
 @param GET_BYTE Expression reading one byte from the input.
     Evaluated up to 7 times (4 for the currently
     assigned Unicode range). With a memory buffer
-    input, this could be *ptr++.
+    input, this could be ptr++.
 @param ERROR Expression to be evaluated on invalid input,
     typically a goto statement.
 

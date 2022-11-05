@@ -1,6 +1,6 @@
 /***********************************************************
 raw FLAC muxer
-Copyright (C) 2009 Justin Ruggles
+@copyright 2009 Justin Ruggles
 
 This file is part of FFmpeg.
 
@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 int ff_flac_write_header (
-    AVIOContext *pb,
+    AVIOContext pb,
     uint8[] extradata,
     int extradata_size,
     int last_block

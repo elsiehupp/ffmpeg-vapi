@@ -1,6 +1,6 @@
 /***********************************************************
 MOV CENC (Common Encryption) writer
-Copyright (c) 2015 Eran Kornblau <erankor at gmail dot com>
+@copyright 2015 Eran Kornblau <erankor at gmail dot com>
 
 This file is part of FFmpeg.
 
@@ -44,7 +44,7 @@ Initialize a CENC context
 @param use_subsamples when enabled parts of a packet can be encrypted, otherwise the whole packet is encrypted
 ***********************************************************/
 int ff_mov_cenc_init (
-    MOVMuxCencContext* ctx,
+    MOVMuxCencContext* cenc_context,
     uint8[] encryption_key,
     int use_subsamples,
     int bitexact
@@ -54,15 +54,15 @@ int ff_mov_cenc_init (
 Free a CENC context
 ***********************************************************/
 void ff_mov_cenc_free (
-    MOVMuxCencContext* ctx
+    MOVMuxCencContext* cenc_context
 );
 
 /***********************************************************
 Write a fully encrypted packet
 ***********************************************************/
 int ff_mov_cenc_write_packet (
-    MOVMuxCencContext* ctx,
-    AVIOContext *pb,
+    MOVMuxCencContext* cenc_context,
+    AVIOContext pb,
     uint8[] buf_in,
     int size
 );
@@ -71,8 +71,8 @@ int ff_mov_cenc_write_packet (
 Parse AVC NAL units from annex B format, the nal size and type are written in the clear while the body is encrypted
 ***********************************************************/
 int ff_mov_cenc_avc_parse_nal_units (
-    MOVMuxCencContext* ctx,
-    AVIOContext *pb,
+    MOVMuxCencContext* cenc_context,
+    AVIOContext pb,
     uint8[] buf_in,
     int size
 );
@@ -81,10 +81,10 @@ int ff_mov_cenc_avc_parse_nal_units (
 Write AVC NAL units that are in MP4 format, the nal size and type are written in the clear while the body is encrypted
 ***********************************************************/
 int ff_mov_cenc_avc_write_nal_units (
-    AVFormatContext *s,
-    MOVMuxCencContext* ctx,
+    AVFormatContext format_context,
+    MOVMuxCencContext* cenc_context,
     int nal_length_size,
-    AVIOContext *pb,
+    AVIOContext pb,
     uint8[] buf_in,
     int size
 );
@@ -93,8 +93,8 @@ int ff_mov_cenc_avc_write_nal_units (
 Write the cenc atoms that should reside inside stbl
 ***********************************************************/
 void ff_mov_cenc_write_stbl_atoms (
-    MOVMuxCencContext* ctx,
-    AVIOContext *pb
+    MOVMuxCencContext* cenc_context,
+    AVIOContext pb
 );
 
 /***********************************************************
@@ -102,6 +102,6 @@ Write the sinf atom, contained inside stsd
 ***********************************************************/
 int ff_mov_cenc_write_sinf_tag (
     MOVTrack* track,
-    AVIOContext *pb,
+    AVIOContext pb,
     uint8[] kid
 );

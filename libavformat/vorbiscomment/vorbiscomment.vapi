@@ -1,6 +1,6 @@
 /***********************************************************
 VorbisComment writer
-Copyright (c) 2009 James Darnley
+@copyright 2009 James Darnley
 
 This file is part of FFmpeg.
 
@@ -29,7 +29,7 @@ For no string, set to an empty string.
 @return The length in bytes.
 ***********************************************************/
 int64 ff_vorbiscomment_length (
-    LibAVUtil.Dictionary *m,
+    LibAVUtil.Dictionary m,
     string vendor_string,
     AVChapter[] chapters,
     uint nb_chapters
@@ -49,7 +49,7 @@ ff_vorbiscomment_length ()
 ***********************************************************/
 int ff_vorbiscomment_write (
     out uint8[] p,
-    out LibAVUtil.Dictionary *m,
+    out LibAVUtil.Dictionary m,
     string vendor_string,
     AVChapter[] chapters,
     uint nb_chapters

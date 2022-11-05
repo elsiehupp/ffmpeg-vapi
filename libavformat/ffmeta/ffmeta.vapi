@@ -1,6 +1,6 @@
 /***********************************************************
 Common data for metadata muxer/demuxer
-Copyright (c) 2010 Anton Khirnov
+@copyright 2010 Anton Khirnov
 
 This file is part of FFmpeg.
 

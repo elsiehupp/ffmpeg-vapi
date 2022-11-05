@@ -1,6 +1,6 @@
 /***********************************************************
 RTMP Diffie-Hellmann utilities
-Copyright (c) 2012 Samuel Pitoiset
+@copyright 2012 Samuel Pitoiset
 
 This file is part of FFmpeg.
 
@@ -36,7 +36,7 @@ Initialize a Diffie-Hellmann context.
 @param key_len length of the key
 @return a new Diffie-Hellmann context on success, NULL otherwise
 ***********************************************************/
-FF_DH *ff_dh_init (
+FF_DH ff_dh_init (
     int key_len
 );
 
@@ -46,7 +46,7 @@ Free a Diffie-Hellmann context.
 @param dh a Diffie-Hellmann context to free
 ***********************************************************/
 void ff_dh_free (
-    FF_DH *dh
+    FF_DH dh
 );
 
 /***********************************************************
@@ -56,7 +56,7 @@ Generate a public key.
 @return zero on success, negative value otherwise
 ***********************************************************/
 int ff_dh_generate_public_key (
-    FF_DH *dh
+    FF_DH dh
 );
 
 /***********************************************************
@@ -68,7 +68,7 @@ Write the public key into the given buffer.
 @return zero on success, negative value otherwise
 ***********************************************************/
 int ff_dh_write_public_key (
-    FF_DH *dh,
+    FF_DH dh,
     uint8[] pub_key,
     int pub_key_len
 );
@@ -85,7 +85,7 @@ other party's public value.
 @return length of the shared secret key on success, negative value otherwise
 ***********************************************************/
 int ff_dh_compute_shared_secret_key (
-    FF_DH *dh,
+    FF_DH dh,
     uint8[] pub_key,
     int pub_key_len,
     uint8[] secret_key,

@@ -36,7 +36,7 @@ public struct LFGContext {
 
     [CCode (cname="av_lfg_init", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public void av_lfg_init (
-        LFGContext c,
+        LFGContext lfg_context,
         uint seed
     );
 
@@ -47,7 +47,7 @@ public struct LFGContext {
     ***********************************************************/
     [CCode (cname="av_lfg_init_from_data", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public int av_lfg_init_from_data (
-        LFGContext c,
+        LFGContext lfg_context,
         uint8[] data,
         uint length
     );
@@ -60,7 +60,7 @@ public struct LFGContext {
     ***********************************************************/
     [CCode (cname="av_lfg_get", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public static uint av_lfg_get (
-        LFGContext c
+        LFGContext lfg_context
     );
 
     /***********************************************************
@@ -70,7 +70,7 @@ public struct LFGContext {
     ***********************************************************/
     [CCode (cname="av_mlfg_get", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public static uint av_mlfg_get (
-        LFGContext c
+        LFGContext lfg_context
     );
 
     /***********************************************************

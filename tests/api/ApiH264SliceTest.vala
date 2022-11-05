@@ -29,9 +29,9 @@ public class ApiH264SliceTest : GLib.TestCase {
     static uint64 frame_cnt = 0;
 
     static uint decode (
-        LibAVCodec.CodecContext *dec_ctx,
-        LibAVUtil.Frame *frame,
-        LibAVCodec.Packet *packet
+        LibAVCodec.CodecContext dec_ctx,
+        LibAVUtil.Frame frame,
+        LibAVCodec.Packet packet
     ) {
         uint ret = avcodec_send_packet (
             dec_ctx,
@@ -43,9 +43,9 @@ public class ApiH264SliceTest : GLib.TestCase {
         }
 
         while (ret >= 0) {
-            LibAVUtil.PixelFormatDescriptor *desc;
+            LibAVUtil.PixelFormatDescriptor desc;
             char sum[AV_HASH_MAX_SIZE * 2 + 1];
-            LibAVUtil.Crypto.HashContext *hash;
+            LibAVUtil.Crypto.HashContext hash;
 
             ret = avcodec_receive_frame (dec_ctx, frame);
             if (ret == AVERROR (EAGAIN) || ret == AVERROR_EOF) {
@@ -92,11 +92,11 @@ public class ApiH264SliceTest : GLib.TestCase {
         return 0;
     }
 
-    static LibAVCodec.Codec *codec = null;
-    static LibAVCodec.CodecContext *c = null;
-    static LibAVUtil.Frame *frame = null;
+    static LibAVCodec.Codec codec = null;
+    static LibAVCodec.CodecContext codec_context = null;
+    static LibAVUtil.Frame frame = null;
     static uint threads;
-    static LibAVCodec.Packet *packet;
+    static LibAVCodec.Packet packet;
     static GLib.File file = null;
     static char[] nal = null;
     static uint nals = 0;
@@ -119,7 +119,7 @@ public class ApiH264SliceTest : GLib.TestCase {
             throw new Goto.ERROR ("");
         }
 
-        if (!(c = avcodec_alloc_context3 (codec))) {
+        if (!(codec_context = avcodec_alloc_context3 (codec))) {
             fprintf (
                 stderr,
                 "Could not allocate video codec context\n"
@@ -128,14 +128,14 @@ public class ApiH264SliceTest : GLib.TestCase {
             throw new Goto.ERROR ("");
         }
 
-        c.width = 352;
-        c.height = 288;
+        codec_context.width = 352;
+        codec_context.height = 288;
 
-        c.flags2 |= AV_CODEC_FLAG2_CHUNKS;
-        c.thread_type = FF_THREAD_SLICE;
-        c.thread_count = threads;
+        codec_context.flags2 |= AV_CODEC_FLAG2_CHUNKS;
+        codec_context.thread_type = FF_THREAD_SLICE;
+        codec_context.thread_count = threads;
 
-        if ((ret = avcodec_open2 (c, codec, null)) < 0) {
+        if ((ret = avcodec_open2 (codec_context, codec, null)) < 0) {
             fprintf (
                 stderr,
                 "Could not open codec\n"
@@ -144,8 +144,8 @@ public class ApiH264SliceTest : GLib.TestCase {
         }
 
     #if HAVE_THREADS
-        if (c.active_thread_type != FF_THREAD_SLICE) {
-            fprintf (stderr, "Couldn't activate slice threading: %d\n", c.active_thread_type);
+        if (codec_context.active_thread_type != FF_THREAD_SLICE) {
+            fprintf (stderr, "Couldn't activate slice threading: %d\n", codec_context.active_thread_type);
             ret = -1;
             throw new Goto.ERROR ("");
         }
@@ -193,7 +193,7 @@ public class ApiH264SliceTest : GLib.TestCase {
                 uint decret = 0;
                 packet.data = nal;
                 packet.size = p - nal;
-                if ((decret = decode (c, frame, packet)) < 0) {
+                if ((decret = decode (codec_context, frame, packet)) < 0) {
                     throw new Goto.ERROR ("");
                 }
                 memset (nal, 0, MAX_SLICES * UINT16_MAX + AV_INPUT_BUFFER_PADDING_SIZE);
@@ -205,12 +205,12 @@ public class ApiH264SliceTest : GLib.TestCase {
         if (nals) {
             packet.data = nal;
             packet.size = p - nal;
-            if ((ret = decode (c, frame, packet)) < 0) {
+            if ((ret = decode (codec_context, frame, packet)) < 0) {
                 throw new Goto.ERROR ("");
             }
         }
 
-        return decode (c, frame, null);
+        return decode (codec_context, frame, null);
     }
 
     static uint main (
@@ -246,7 +246,7 @@ public class ApiH264SliceTest : GLib.TestCase {
         if (file)
             fclose (file);
         av_frame_free (out frame);
-        avcodec_free_context (out c);
+        avcodec_free_context (out codec_context);
         av_packet_free (out packet);
 
         return ret;

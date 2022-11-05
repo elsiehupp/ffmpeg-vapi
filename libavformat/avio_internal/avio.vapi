@@ -1,5 +1,5 @@
 /***********************************************************
-copyright (c) 2001 Fabrice Bellard
+@copyright 2001 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -117,7 +117,7 @@ public struct AVIODirEntry {
 }
 
 public struct AVIODirContext {
-    URLContext *url_context;
+    URLContext url_context;
 }
 
 /***********************************************************
@@ -187,7 +187,7 @@ public abstract class AVIOContext {
     warning -- this field can be NULL, be sure to not pass this AVIOContext
     to any av_opt_* functions in that case.
     ***********************************************************/
-    LibAVUtil.Class *av_class;
+    LibAVUtil.Class av_class;
 
     /***********************************************************
     The following shows the relationship between buffer, buf_ptr,
@@ -470,7 +470,7 @@ int avpriv_io_delete (
 /***********************************************************
 Open directory for reading.
 
-@param s directory read context. Pointer to a NULL pointer must be passed.
+@param io_context directory read context. Pointer to a NULL pointer must be passed.
 @param url directory to be listed.
 @param options A dictionary filled with protocol-private options. On return
                this parameter will be destroyed and replaced with a dictionary
@@ -478,9 +478,9 @@ Open directory for reading.
 @return >=0 on success or negative on error.
 ***********************************************************/
 int avio_open_dir (
-    AVIODirContext **s,
+    out AVIODirContext io_dir_context,
     string url,
-    LibAVUtil.Dictionary **options
+    out LibAVUtil.Dictionary options
 );
 
 /***********************************************************
@@ -489,14 +489,14 @@ Get next directory entry.
 Returned entry must be freed with avio_free_directory_entry (). In particular
 it may outlive AVIODirContext.
 
-@param s directory read context.
+@param io_dir_context directory read context.
 @param[out] next next entry or NULL when no more entries.
 @return >=0 on success or negative on error. End of list is not considered an
             error.
 ***********************************************************/
 int avio_read_dir (
-    AVIODirContext *s,
-    AVIODirEntry **next
+    AVIODirContext io_dir_context,
+    out AVIODirEntry next
 );
 
 /***********************************************************
@@ -505,11 +505,11 @@ Close directory.
 @note Entries created using avio_read_dir () are not deleted and must be
 freeded with avio_free_directory_entry ().
 
-@param s directory read context.
+@param io_dir_context directory read context.
 @return >=0 on success or negative on error.
 ***********************************************************/
 int avio_close_dir (
-    AVIODirContext **s
+    out AVIODirContext io_dir_context
 );
 
 /***********************************************************
@@ -518,7 +518,7 @@ Free entry allocated by avio_read_dir ().
 @param entry entry to be freed.
 ***********************************************************/
 void avio_free_directory_entry (
-    AVIODirEntry **entry
+    out AVIODirEntry entry
 );
 
 //  public delegate int ReadPacketDelegate (
@@ -560,65 +560,65 @@ freed with avio_context_free ().
 
 @return Allocated AVIOContext or NULL on failure.
 ***********************************************************/
-AVIOContext *avio_alloc_context (
+AVIOContext avio_alloc_context (
     uchar[] buffer,
     int buffer_size,
     int write_flag,
     void *opaque,
     ReadPacketDelegate read_packet,
     WritePacketDelegate write_packet,
-    SeekDelegate *seek
+    SeekDelegate seek
 );
 
 /***********************************************************
 Free the supplied IO context and everything associated with it.
 
-@param s Double pointer to the IO context. This function will write NULL
-into s.
+@param io_context Double pointer to the IO context. This function will write NULL
+into io_context.
 ***********************************************************/
 void avio_context_free (
-    AVIOContext **s
+    out AVIOContext io_context
 );
 
 void avio_w8 (
-    AVIOContext *s,
+    AVIOContext io_context,
     int b
 );
 void avio_write (
-    AVIOContext *s,
+    AVIOContext io_context,
     uchar[] buf,
     int size
 );
 void avio_wl64 (
-    AVIOContext *s,
+    AVIOContext io_context,
     uint64 val
 );
 void avio_wb64 (
-    AVIOContext *s,
+    AVIOContext io_context,
     uint64 val
 );
 void avio_wl32 (
-    AVIOContext *s,
+    AVIOContext io_context,
     uint val
 );
 void avio_wb32 (
-    AVIOContext *s,
+    AVIOContext io_context,
     uint val
 );
 void avio_wl24 (
-    AVIOContext *s,
+    AVIOContext io_context,
     uint val
 );
 void avio_wb24 (
-    AVIOContext *s,
+    AVIOContext io_context,
     uint val
 );
 void avio_wl16 (
-    AVIOContext *s,
+    AVIOContext io_context,
     uint val
 );
 void avio_wb16 (
-    AVIOContext *s,
+    AVIOContext io_context,
     uint val
 );
 
@@ -627,31 +627,31 @@ Write a NULL-terminated string.
 @return number of bytes written.
 ***********************************************************/
 int avio_put_str (
-    AVIOContext *s,
+    AVIOContext io_context,
     string str
 );
 
 /***********************************************************
 Convert an UTF-8 string to UTF-16LE and write it.
-@param s the AVIOContext
+@param io_context the AVIOContext
 @param str NULL-terminated UTF-8 string
 
 @return number of bytes written.
 ***********************************************************/
 int avio_put_str16le (
-    AVIOContext *s,
+    AVIOContext io_context,
     string str
 );
 
 /***********************************************************
 Convert an UTF-8 string to UTF-16BE and write it.
-@param s the AVIOContext
+@param io_context the AVIOContext
 @param str NULL-terminated UTF-8 string
 
 @return number of bytes written.
 ***********************************************************/
 int avio_put_str16be (
-    AVIOContext *s,
+    AVIOContext io_context,
     string str
 );
 
@@ -666,7 +666,7 @@ Zero-length ranges are omitted from the output.
 @param type the kind of data written starting at the current pos
 ***********************************************************/
 void avio_write_marker (
-    AVIOContext *s,
+    AVIOContext io_context,
     int64 time,
     AVIODataMarkerType type
 );
@@ -694,7 +694,7 @@ fseek () equivalent for AVIOContext.
 @return new position or LibAVUtil.ErrorCode.
 ***********************************************************/
 int64 avio_seek (
-    AVIOContext *s,
+    AVIOContext io_context,
     int64 offset,
     int whence
 );
@@ -704,7 +704,7 @@ Skip given number of bytes forward
 @return new position or LibAVUtil.ErrorCode.
 ***********************************************************/
 int64 avio_skip (
-    AVIOContext *s,
+    AVIOContext io_context,
     int64 offset
 );
 
@@ -713,7 +713,7 @@ ftell () equivalent for AVIOContext.
 @return position or LibAVUtil.ErrorCode.
 ***********************************************************/
 public static int64 avio_tell (
-    AVIOContext *s
+    AVIOContext io_context
 );
 
 /***********************************************************
@@ -721,7 +721,7 @@ Get the filesize.
 @return filesize or LibAVUtil.ErrorCode
 ***********************************************************/
 int64 avio_size (
-    AVIOContext *s
+    AVIOContext io_context
 );
 
 /***********************************************************
@@ -729,14 +729,14 @@ Similar to feof () but also returns nonzero on read errors.
 @return non zero if and only if at end of file or a read error happened when reading.
 ***********************************************************/
 int avio_feof (
-    AVIOContext *s
+    AVIOContext io_context
 );
 
 /***********************************************************
 @warning Writes up to 4 KiB per call
 ***********************************************************/
 int avio_printf (
-    AVIOContext *s,
+    AVIOContext io_context,
     string fmt,
     ...
 ); // av_printf_format (2, 3);
@@ -752,7 +752,7 @@ reported file position to that of the underlying stream. This does not
 read new data, and does not perform any seeks.
 ***********************************************************/
 void avio_flush (
-    AVIOContext *s
+    AVIOContext io_context
 );
 
 /***********************************************************
@@ -760,7 +760,7 @@ Read size bytes from AVIOContext into buf.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
 int avio_read (
-    AVIOContext *s,
+    AVIOContext io_context,
     uchar[] buf,
     int size
 );
@@ -773,7 +773,7 @@ Useful to reduce latency in certain cases.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
 int avio_read_partial (
-    AVIOContext *s,
+    AVIOContext io_context,
     uchar[] buf,
     int size
 );
@@ -786,31 +786,31 @@ int avio_read_partial (
       necessary
 ***********************************************************/
 int avio_r8 (
-    AVIOContext *s
+    AVIOContext io_context
 );
 uint avio_rl16 (
-    AVIOContext *s
+    AVIOContext io_context
 );
 uint avio_rl24 (
-    AVIOContext *s
+    AVIOContext io_context
 );
 uint avio_rl32 (
-    AVIOContext *s
+    AVIOContext io_context
 );
 uint64 avio_rl64 (
-    AVIOContext *s
+    AVIOContext io_context
 );
 uint avio_rb16 (
-    AVIOContext *s
+    AVIOContext io_context
 );
 uint avio_rb24 (
-    AVIOContext *s
+    AVIOContext io_context
 );
 uint avio_rb32 (
-    AVIOContext *s
+    AVIOContext io_context
 );
 uint64 avio_rb64 (
-    AVIOContext *s
+    AVIOContext io_context
 );
 /***********************************************************
 @}
@@ -829,7 +829,7 @@ If reading ends on EOF or error, the return value will be one more than
 bytes actually read.
 ***********************************************************/
 int avio_get_str (
-    AVIOContext *pb,
+    AVIOContext pb,
     int maxlen,
     string buf,
     int buflen
@@ -842,13 +842,13 @@ encountered or maxlen bytes have been read.
 @return number of bytes read (is always <= maxlen)
 ***********************************************************/
 int avio_get_str16le (
-    AVIOContext *pb,
+    AVIOContext pb,
     int maxlen,
     string buf,
     int buflen
 );
 int avio_get_str16be (
-    AVIOContext *pb,
+    AVIOContext pb,
     int maxlen,
     string buf,
     int buflen
@@ -905,7 +905,7 @@ resource indicated by url.
 @note When the resource indicated by url has been opened in
 read+write mode, the AVIOContext can be used only for writing.
 
-@param s Used to return the pointer to the created AVIOContext.
+@param io_context Used to return the pointer to the created AVIOContext.
 In case of failure the pointed to value is set to NULL.
 @param url resource to access
 @param flags flags which control how the resource indicated by url
@@ -914,7 +914,7 @@ is to be opened
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int avio_open (
-    AVIOContext **s,
+    out AVIOContext io_context,
     string url,
     int flags
 );
@@ -925,7 +925,7 @@ resource indicated by url.
 @note When the resource indicated by url has been opened in
 read+write mode, the AVIOContext can be used only for writing.
 
-@param s Used to return the pointer to the created AVIOContext.
+@param io_context Used to return the pointer to the created AVIOContext.
 In case of failure the pointed to value is set to NULL.
 @param url resource to access
 @param flags flags which control how the resource indicated by url
@@ -938,16 +938,16 @@ that were not found. May be NULL.
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int avio_open2 (
-    AVIOContext **s,
+    out AVIOContext io_context,
     string url,
     int flags,
-    AVIOInterruptCB *int_cb,
-    LibAVUtil.Dictionary **options
+    AVIOInterruptCB int_cb,
+    out LibAVUtil.Dictionary options
 );
 
 /***********************************************************
-Close the resource accessed by the AVIOContext s and free it.
-This function can only be used if s was opened by avio_open ().
+Close the resource accessed by the AVIOContext io_context and free it.
+This function can only be used if io_context was opened by avio_open ().
 
 The internal buffer is automatically flushed before closing the
 resource.
@@ -956,13 +956,13 @@ resource.
 @see avio_closep
 ***********************************************************/
 int avio_close (
-    AVIOContext *s
+    AVIOContext io_context
 );
 
 /***********************************************************
-Close the resource accessed by the AVIOContext *s, free it
+Close the resource accessed by the AVIOContext io_context, free it
 and set the pointer pointing to it to NULL.
-This function can only be used if s was opened by avio_open ().
+This function can only be used if io_context was opened by avio_open ().
 
 The internal buffer is automatically flushed before closing the
 resource.
@@ -971,18 +971,18 @@ resource.
 @see avio_close
 ***********************************************************/
 int avio_closep (
-    AVIOContext **s
+    out AVIOContext io_context
 );
 
 
 /***********************************************************
 Open a write only memory stream.
 
-@param s new IO context
+@param io_context new IO context
 @return zero if no error.
 ***********************************************************/
 int avio_open_dyn_buf (
-    AVIOContext **s
+    out AVIOContext io_context
 );
 
 /***********************************************************
@@ -991,12 +991,12 @@ The AVIOContext stream is left intact.
 The buffer must NOT be freed.
 No padding is added to the buffer.
 
-@param s IO context
+@param io_context IO context
 @param pbuffer pointer to a byte buffer
 @return the length of the byte buffer
 ***********************************************************/
 int avio_get_dyn_buf (
-    AVIOContext *s,
+    AVIOContext io_context,
     out uint8[] pbuffer
 );
 
@@ -1005,12 +1005,12 @@ Return the written size and a pointer to the buffer. The buffer
 must be freed with av_free ().
 Padding of AV_INPUT_BUFFER_PADDING_SIZE is added to the buffer.
 
-@param s IO context
+@param io_context IO context
 @param pbuffer pointer to a byte buffer
 @return the length of the byte buffer
 ***********************************************************/
 int avio_close_dyn_buf (
-    AVIOContext *s,
+    AVIOContext io_context,
     out uint8[] pbuffer
 );
 
@@ -1038,7 +1038,7 @@ protocol (e.g. MMS).
 @param pause 1 for pause, 0 for resume
 ***********************************************************/
 int avio_pause (
-    AVIOContext *h,
+    AVIOContext h,
     int pause
 );
 
@@ -1062,7 +1062,7 @@ Only meaningful if using a network streaming protocol (e.g. MMS.).
 @see AVInputFormat::read_seek
 ***********************************************************/
 int64 avio_seek_time (
-    AVIOContext *h,
+    AVIOContext h,
     int stream_index,
     int64 timestamp,
     int flags
@@ -1075,21 +1075,21 @@ Read contents of h into print buffer, up to max_size bytes, or up to EOF.
 code otherwise
 ***********************************************************/
 int avio_read_to_bprint (
-    AVIOContext *h,
-    LibAVUtil.BPrintBuffer *pb,
+    AVIOContext h,
+    LibAVUtil.BPrintBuffer pb,
     size_t max_size
 );
 
 /***********************************************************
 Accept and allocate a client context on a server context.
-@param s the server context
-@param c the client context, must be unallocated
+@param io_context the server context
+@param io_context the client context, must be unallocated
 @return   >= 0 on success or a negative value corresponding
           to an LibAVUtil.ErrorCode on failure
 ***********************************************************/
 int avio_accept (
-    AVIOContext *s,
-    out AVIOContext c
+    AVIOContext io_context,
+    out AVIOContext io_context
 );
 
 /***********************************************************
@@ -1106,11 +1106,11 @@ chunk of the request can constitute a step.
 If the handshake is already finished, avio_handshake () does nothing and
 returns 0 immediately.
 
-@param c the client context to perform the handshake on
+@param io_context the client context to perform the handshake on
 @return 0 on a complete and successful handshake
           > 0 if the handshake progressed, but is not complete
           < 0 for an LibAVUtil.ErrorCode code
 ***********************************************************/
 int avio_handshake (
-    AVIOContext *c
+    AVIOContext io_context
 );

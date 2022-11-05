@@ -1,6 +1,6 @@
 /***********************************************************
 MPEG-2 transport stream defines
-Copyright (c) 2003 Fabrice Bellard
+@copyright 2003 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -69,17 +69,17 @@ public enum MpegTransportStreamType {
 }
 
 public struct MpegTSContext {
-    MpegTSContext *avpriv_mpegts_parse_open (
-        AVFormatContext *s
+    MpegTSContext avpriv_mpegts_parse_open (
+        AVFormatContext format_context
     );
     int avpriv_mpegts_parse_packet (
-        MpegTSContext *ts,
-        LibAVCodec.Packet *packet,
+        MpegTSContext ts,
+        LibAVCodec.Packet packet,
         uint8[] buf,
         int len
     );
     void avpriv_mpegts_parse_close (
-        MpegTSContext *ts
+        MpegTSContext ts
     );
 }
 
@@ -117,15 +117,15 @@ Parse an MPEG-2 descriptor
 @return <0 to stop processing
 ***********************************************************/
 int ff_parse_mpeg2_descriptor (
-    AVFormatContext *fc,
-    AVStream *st,
+    AVFormatContext fc,
+    AVStream st,
     int stream_type,
     out uint8[] pp,
     out uint8 desc_list_end,
-    Mp4Descr *mp4_descr,
+    Mp4Descr mp4_descr,
     int mp4_descr_count,
     int pid,
-    MpegTSContext *ts
+    MpegTSContext ts
 );
 
 /***********************************************************
@@ -133,7 +133,7 @@ Check presence of H264 startcode
 @return <0 to stop processing
 ***********************************************************/
 int ff_check_h264_startcode (
-    AVFormatContext *s,
-    AVStream *st,
-    LibAVCodec.Packet *packet
+    AVFormatContext format_context,
+    AVStream st,
+    LibAVCodec.Packet packet
 );

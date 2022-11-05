@@ -1,6 +1,6 @@
 /***********************************************************
 MMS protocol common definitions.
-Copyright (c) 2010 Zhentan Feng <spyfeng at gmail dot com>
+@copyright 2010 Zhentan Feng <spyfeng at gmail dot com>
 
 This file is part of FFmpeg.
 
@@ -27,8 +27,8 @@ public struct MMSContext {
     /***********************************************************
     TCP connection handle
     ***********************************************************/
-    URLContext *mms_hd;
-    MMSStream *streams;
+    URLContext mms_hd;
+    MMSStream streams;
 
     /***********************************************************
     ***********************************************************/
@@ -95,15 +95,15 @@ public struct MMSContext {
 }
 
 int ff_mms_asf_header_parser (
-    MMSContext *mms
+    MMSContext mms
 );
 int ff_mms_read_data (
-    MMSContext *mms,
+    MMSContext mms,
     uint8[] buf,
     int size
 );
 int ff_mms_read_header (
-    MMSContext *mms,
+    MMSContext mms,
     uint8[] buf,
     int size
 );

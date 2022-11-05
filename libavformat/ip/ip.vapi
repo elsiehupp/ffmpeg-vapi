@@ -24,8 +24,8 @@ Structure for storing IP (UDP) source filters or block lists.
 public struct IPSourceFilters {
     int nb_include_addrs;
     int nb_exclude_addrs;
-    sockaddr_storage *include_addrs;
-    sockaddr_storage *exclude_addrs;
+    sockaddr_storage include_addrs;
+    sockaddr_storage exclude_addrs;
 }
 
 /***********************************************************
@@ -34,8 +34,8 @@ Checks the source address against a given IP source filter.
     can be dropped.
 ***********************************************************/
 int ff_ip_check_source_lists (
-    sockaddr_storage *source_addr_ptr,
-    IPSourceFilters *s
+    sockaddr_storage source_addr_ptr,
+    IPSourceFilters source_filters
 );
 
 /***********************************************************
@@ -43,7 +43,7 @@ Resolves hostname into an addrinfo structure.
 @return addrinfo structure which should be freed by the user, NULL in case
     of error.
 ***********************************************************/
-public addrinfo *ff_ip_resolve_host (
+public addrinfo ff_ip_resolve_host (
     void *log_ctx,
     string hostname, int port,
     int type, int family, int flags
@@ -57,7 +57,7 @@ in the IPSourceFilters structure.
 int ff_ip_parse_sources (
     void *log_ctx,
     string buf,
-    IPSourceFilters *filters
+    IPSourceFilters filters
 );
 
 /***********************************************************
@@ -68,7 +68,7 @@ filters in the IPSourceFilters structure.
 int ff_ip_parse_blocks (
     void *log_ctx,
     string buf,
-    IPSourceFilters *filters
+    IPSourceFilters filters
 );
 
 /***********************************************************
@@ -76,5 +76,5 @@ Resets the IP filter list and frees the internal fields of an
 IPSourceFilters structure.
 ***********************************************************/
 void ff_ip_reset_filters (
-    IPSourceFilters *filters
+    IPSourceFilters filters
 );

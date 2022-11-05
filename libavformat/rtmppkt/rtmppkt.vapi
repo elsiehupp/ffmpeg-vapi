@@ -1,6 +1,6 @@
 /***********************************************************
 RTMP packet utilities
-Copyright (c) 2009 Konstantin Shishkov
+@copyright 2009 Konstantin Shishkov
 
 This file is part of FFmpeg.
 
@@ -192,7 +192,7 @@ Create new RTMP packet with given attributes.
 @return zero on success, negative value otherwise
 ***********************************************************/
 int ff_rtmp_packet_create (
-    RTMPPacket *packet,
+    RTMPPacket packet,
     int channel_id,
     RTMPPacketType type,
     int timestamp,
@@ -205,14 +205,14 @@ Free RTMP packet.
 @param packet packet
 ***********************************************************/
 void ff_rtmp_packet_destroy (
-    RTMPPacket *packet
+    RTMPPacket packet
 );
 
 /***********************************************************
 Read RTMP packet sent by the server.
 
 @param h reader context
-@param p packet
+@param packet packet
 @param chunk_size current chunk size
 @param prev_pkt previously read packet headers for all channels
                   (may be needed for restoring incomplete packet header)
@@ -220,17 +220,17 @@ Read RTMP packet sent by the server.
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
 int ff_rtmp_packet_read (
-    URLContext *h,
-    RTMPPacket *p,
+    URLContext h,
+    RTMPPacket packet,
     int chunk_size,
-    RTMPPacket **prev_pkt,
+    out RTMPPacket prev_pkt,
     int[] nb_prev_pkt
 );
 /***********************************************************
 Read internal RTMP packet sent by the server.
 
 @param h reader context
-@param p packet
+@param packet packet
 @param chunk_size current chunk size
 @param prev_pkt previously read packet headers for all channels
                   (may be needed for restoring incomplete packet header)
@@ -239,10 +239,10 @@ Read internal RTMP packet sent by the server.
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
 int ff_rtmp_packet_read_internal (
-    URLContext *h,
-    RTMPPacket *p,
+    URLContext h,
+    RTMPPacket packet,
     int chunk_size,
-    out RTMPPacket *prev_pkt,
+    out RTMPPacket prev_pkt,
     int[] nb_prev_pkt,
     uint8 c
 );
@@ -251,7 +251,7 @@ int ff_rtmp_packet_read_internal (
 Send RTMP packet to the server.
 
 @param h reader context
-@param p packet to send
+@param packet packet to send
 @param chunk_size current chunk size
 @param prev_pkt previously sent packet headers for all channels
                   (may be used for packet header compressing)
@@ -259,22 +259,22 @@ Send RTMP packet to the server.
 @return number of bytes written on success, negative value otherwise
 ***********************************************************/
 int ff_rtmp_packet_write (
-    URLContext *h,
-    RTMPPacket *p,
+    URLContext h,
+    RTMPPacket packet,
     int chunk_size,
-    out RTMPPacket *prev_pkt,
+    out RTMPPacket prev_pkt,
     out int nb_prev_pkt
 );
 
 /***********************************************************
 Print information and contents of RTMP packet.
 
-@param ctx output context
-@param p packet to dump
+@param opaque_context output context
+@param packet packet to dump
 ***********************************************************/
 void ff_rtmp_packet_dump (
-    void *ctx,
-    RTMPPacket *p
+    void *opaque_context,
+    RTMPPacket packet
 );
 
 /***********************************************************
@@ -285,7 +285,7 @@ Enlarge the prev_pkt array to fit the given channel
 @param channel the channel number that needs to be allocated
 ***********************************************************/
 int ff_rtmp_check_alloc_array (
-    out RTMPPacket *prev_pkt,
+    out RTMPPacket prev_pkt,
     out int nb_prev_pkt,
     int channel
 );
@@ -418,7 +418,7 @@ Read AMF boolean value.
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_read_bool (
-    GetByteContext *gbc,
+    GetByteContext gbc,
     out int val
 );
 
@@ -430,7 +430,7 @@ Read AMF number value.
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_read_number (
-    GetByteContext *gbc,
+    GetByteContext gbc,
     out double val
 );
 
@@ -449,7 +449,7 @@ ease later parsing.
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_get_string (
-    GetByteContext *bc,
+    GetByteContext bc,
     uint8[] str,
     int strsize,
     out int length
@@ -468,7 +468,7 @@ ease later parsing.
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_read_string (
-    GetByteContext *gbc,
+    GetByteContext gbc,
     uint8[] str,
     int strsize,
     out int length
@@ -481,7 +481,7 @@ Read AMF NULL value.
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_read_null (
-    GetByteContext *gbc
+    GetByteContext gbc
 );
 
 /***********************************************************

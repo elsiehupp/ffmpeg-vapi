@@ -404,7 +404,7 @@ public int av_escape (
 
 /***********************************************************
 @brief Read and decode a single UTF-8 code point (character) from the
-buffer in *buf, and update *buf to point to the next byte to
+buffer in buf, and update buf to point to the next byte to
 decode.
 
 In case of an invalid byte sequence, the pointer will be updated to
@@ -418,7 +418,7 @@ case the decoded code point does not belong to a valid range.
 GET_UTF8 () may be preferred.
 
 @param codep pointer used to return the parsed code in case of success.
-    The value in *codep is set even in case the range check fails.
+    The value in codep is set even in case the range check fails.
 @param bufp pointer to the address the first byte of the sequence
     to decode, updated by the function to point to the
     byte next after the decoded sequence

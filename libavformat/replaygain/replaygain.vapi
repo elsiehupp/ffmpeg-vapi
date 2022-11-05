@@ -20,8 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Parse replaygain tags and export them as per-stream side data.
 ***********************************************************/
 int ff_replaygain_export (
-    AVStream *st,
-    LibAVUtil.Dictionary *metadata
+    AVStream st,
+    LibAVUtil.Dictionary metadata
 );
 
 
@@ -29,7 +29,7 @@ int ff_replaygain_export (
 Export already decoded replaygain values as per-stream side data.
 ***********************************************************/
 int ff_replaygain_export_raw (
-    AVStream *st,
+    AVStream st,
     int32 tg,
     uint32 tp,
     int32 ag,

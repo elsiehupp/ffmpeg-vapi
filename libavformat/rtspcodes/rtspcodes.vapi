@@ -1,7 +1,7 @@
 /***********************************************************
 RTSP definitions
-copyright (c) 2002 Fabrice Bellard
-copyright (c) 2014 Samsung Electronics. All rights reserved.
+@copyright 2002 Fabrice Bellard
+@copyright 2014 Samsung Electronics. All rights reserved.
     @Author: Reynaldo H. Verdejo Pinochet <r.verdejo@sisa.samsung.com>
 
 This file is part of FFmpeg.

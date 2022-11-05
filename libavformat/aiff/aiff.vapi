@@ -1,6 +1,6 @@
 /***********************************************************
 AIFF/AIFF-C muxer/demuxer common header
-Copyright (c) 2006 Patrick Guimond
+@copyright 2006 Patrick Guimond
 
 This file is part of FFmpeg.
 

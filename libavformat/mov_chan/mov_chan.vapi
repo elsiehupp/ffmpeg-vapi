@@ -1,5 +1,5 @@
 /***********************************************************
-Copyright (c) 2011 Justin Ruggles
+@copyright 2011 Justin Ruggles
 
 This file is part of FFmpeg.
 
@@ -53,15 +53,15 @@ uint32 ff_mov_get_channel_layout_tag (
 /***********************************************************
 Read 'chan' tag from the input stream.
 
-@param s AVFormatContext
+@param format_context AVFormatContext
 @param pb AVIOContext
 @param st The stream to set codec values for
 @param size Remaining size in the 'chan' tag
 @return 0 if ok, or negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_mov_read_chan (
-    AVFormatContext *s,
-    AVIOContext *pb,
-    AVStream *st,
+    AVFormatContext format_context,
+    AVIOContext pb,
+    AVStream st,
     int64 size
 );

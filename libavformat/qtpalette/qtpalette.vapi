@@ -331,6 +331,6 @@ description size and the data format).
 ***********************************************************/
 int ff_get_qtpalette (
     int codec_id,
-    AVIOContext *pb,
+    AVIOContext pb,
     out uint32 palette
 );

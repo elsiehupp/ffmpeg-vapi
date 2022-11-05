@@ -1,7 +1,7 @@
 /***********************************************************
 FLV common header
 
-Copyright (c) 2006 The FFmpeg Project
+@copyright 2006 The FFmpeg Project
 
 This file is part of FFmpeg.
 

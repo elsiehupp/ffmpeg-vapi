@@ -26,10 +26,10 @@ Misc file utilities.
 /***********************************************************
 @brief Read the file with name filename, and put its content in a newly
 allocated buffer or map it with mmap () when available.
-In case of success set *bufptr to the read or mmapped buffer, and
-*size to the size in bytes of the buffer in *bufptr.
+In case of success set bufptr to the read or mmapped buffer, and
+*size to the size in bytes of the buffer in bufptr.
 Unlike mmap this function succeeds with zero sized files, in this
-case *bufptr will be set to null and *size will be set to 0.
+case bufptr will be set to null and *size will be set to 0.
 The returned buffer must be released with av_file_unmap ().
 
 @param log_offset loglevel offset used for logging
@@ -65,7 +65,7 @@ Also, tries to create file in /tmp first, if possible.
 @param prefix can be a character constant
 @param filename will be allocated internally
 @return file descriptor of opened file (or negative value corresponding to an
-    LibAVUtil.ErrorCode code on error) and opened file name in **filename.
+    LibAVUtil.ErrorCode code on error) and opened file name in filename.
 @note On very old libcs it is necessary to set a secure umask before
     calling this, av_tempfile () can't call umask itself as it is used in
     libraries and could interfere with the calling application.

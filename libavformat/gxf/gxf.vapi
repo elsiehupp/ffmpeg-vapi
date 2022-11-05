@@ -1,6 +1,6 @@
 /***********************************************************
 GXF demuxer
-copyright (c) 2006 Reimar Doeffinger
+@copyright 2006 Reimar Doeffinger
 
 This file is part of FFmpeg.
 

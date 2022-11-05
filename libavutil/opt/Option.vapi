@@ -50,7 +50,7 @@ The following example illustrates an LibAVUtil.Options-enabled struct:
 public struct test_struct {
     Class class;
     int int_opt;
-    char *str_opt;
+    char str_opt;
     uint8[] bin_opt;
     int bin_len;
 }
@@ -90,7 +90,7 @@ test_struct alloc_test_struct () {
     av_opt_set_defaults (ret);
     return ret;
 }
-void free_test_struct (test_struct **foo) {
+void free_test_struct (out test_struct foo) {
     av_opt_free (*foo);
     av_freep (foo);
 }
@@ -767,25 +767,25 @@ public struct Option {
     /***********************************************************
     @brief Set the values of all Option fields to their default values.
 
-    @param s an Option-enabled struct (its first member must be a pointer to Class)
+    @param void_context an Option-enabled struct (its first member must be a pointer to Class)
     ***********************************************************/
     [CCode (cname="av_opt_set_defaults", cheader_filename="ffmpeg/libavutil/opt.h")]
     public void av_opt_set_defaults (
-        void *s
+        void *void_context
     );
 
     /***********************************************************
     @brief Set the values of all Option fields to their default values. Only these
     Option fields for which (opt.flags & mask) == flags will have their
-    default applied to s.
+    default applied to void_context.
 
-    @param s an Option-enabled struct (its first member must be a pointer to Class)
+    @param void_context an Option-enabled struct (its first member must be a pointer to Class)
     @param mask combination of OptionFlags
     @param flags combination of OptionFlags
     ***********************************************************/
     [CCode (cname="av_opt_set_defaults2", cheader_filename="ffmpeg/libavutil/opt.h")]
     public void av_opt_set_defaults2 (
-        void *s,
+        void *void_context,
         OptionFlags mask,
         OptionFlags flags
     );

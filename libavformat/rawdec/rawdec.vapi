@@ -1,6 +1,6 @@
 /***********************************************************
 RAW demuxers
-Copyright (C) 2007 Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2007 Aurelien Jacobs <aurel@gnuage.org>
 
 This file is part of FFmpeg.
 
@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 public struct FFRawVideoDemuxerContext {
-    LibAVUtil.Class *class; /***********************************************************
+    LibAVUtil.Class class; /***********************************************************
 Class for private options.
     ***********************************************************/
     int raw_packet_size;
@@ -36,7 +36,7 @@ LibAVUtil.Rational describing framerate, set by a private option.
 }
 
 public struct FFRawDemuxerContext {
-    LibAVUtil.Class *class; /***********************************************************
+    LibAVUtil.Class class; /***********************************************************
     Class for private options.
     ***********************************************************/
     int raw_packet_size;
@@ -46,24 +46,24 @@ public struct FFRawDemuxerContext {
 //  extern const LibAVUtil.Option ff_raw_options[];
 
 int ff_raw_read_partial_packet (
-    AVFormatContext *s,
-    LibAVCodec.Packet *packet
+    AVFormatContext format_context,
+    LibAVCodec.Packet packet
 );
 
 int ff_raw_audio_read_header (
-    AVFormatContext *s
+    AVFormatContext format_context
 );
 
 int ff_raw_video_read_header (
-    AVFormatContext *s
+    AVFormatContext format_context
 );
 
 int ff_raw_subtitle_read_header (
-    AVFormatContext *s
+    AVFormatContext format_context
 );
 
 int ff_raw_data_read_header (
-    AVFormatContext *s
+    AVFormatContext format_context
 );
 
 //  #define FF_RAW_DEMUXER_CLASS (name)\

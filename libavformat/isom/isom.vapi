@@ -1,8 +1,8 @@
 /***********************************************************
 ISO Media common code
-copyright (c) 2001 Fabrice Bellard
-copyright (c) 2002 Francois Revol <revol@free.fr>
-copyright (c) 2006 Baptiste Coudurier <baptiste.coudurier@free.fr>
+@copyright 2001 Fabrice Bellard
+@copyright 2002 Francois Revol <revol@free.fr>
+@copyright 2006 Baptiste Coudurier <baptiste.coudurier@free.fr>
 
 This file is part of FFmpeg.
 
@@ -130,7 +130,7 @@ public struct MOVFragmentStreamInfo {
     int64 first_tfra_pts;
     int64 tfdt_dts;
     int index_entry;
-    MOVEncryptionIndex *encryption_index;
+    MOVEncryptionIndex encryption_index;
 }
 
 public struct MOVFragmentIndexItem {
@@ -155,7 +155,7 @@ public struct MOVIndexRange {
 }
 
 public struct MOVStreamContext {
-    AVIOContext *pb;
+    AVIOContext pb;
     int pb_is_copied;
     /***********************************************************
     AVStream index
@@ -165,12 +165,12 @@ public struct MOVStreamContext {
     uint chunk_count;
     int64[] chunk_offsets;
     uint stts_count;
-    MOVStts *stts_data;
+    MOVStts stts_data;
     uint ctts_count;
     uint ctts_allocated_size;
-    MOVStts *ctts_data;
+    MOVStts ctts_data;
     uint stsc_count;
-    MOVStsc *stsc_data;
+    MOVStsc stsc_data;
     uint stsc_index;
     int stsc_sample;
     uint stps_count;
@@ -178,7 +178,7 @@ public struct MOVStreamContext {
     partial sync sample for mpeg-2 open gop
     ***********************************************************/
     uint[] stps_data;
-    MOVElst *elst_data;
+    MOVElst elst_data;
     uint elst_count;
     int ctts_index;
     int ctts_sample;
@@ -220,7 +220,7 @@ public struct MOVStreamContext {
     ***********************************************************/
     int16 audio_cid;
     uint drefs_count;
-    MOVDref *drefs;
+    MOVDref drefs;
     int dref_id;
     int timecode_track;
     /***********************************************************
@@ -251,7 +251,7 @@ public struct MOVStreamContext {
     ***********************************************************/
     int start_pad;
     uint rap_group_count;
-    MOVSbgp *rap_group;
+    MOVSbgp rap_group;
 
     int nb_frames_for_fps;
     int64 duration_for_fps;
@@ -268,11 +268,11 @@ public struct MOVStreamContext {
     int stsd_version;
 
     int32[] display_matrix;
-    LibAVUtil.Stereo3D *stereo3d;
-    LibAVUtil.SphericalMapping *spherical;
+    LibAVUtil.Stereo3D stereo3d;
+    LibAVUtil.SphericalMapping spherical;
     size_t spherical_size;
-    LibAVUtil.MasteringDisplayMetadata *mastering;
-    LibAVUtil.ContentLightMetadata *coll;
+    LibAVUtil.MasteringDisplayMetadata mastering;
+    LibAVUtil.ContentLightMetadata coll;
     size_t coll_size;
 
     uint32 format;
@@ -290,16 +290,16 @@ public struct CEnc {
     Either 0, 8, or 16.
     ***********************************************************/
     uint per_sample_iv_size;
-    LibAVUtil.EncryptionInfo *default_encrypted_sample;
-    MOVEncryptionIndex *encryption_index;
+    LibAVUtil.EncryptionInfo default_encrypted_sample;
+    MOVEncryptionIndex encryption_index;
 }
 
 public struct MOVContext {
     /***********************************************************
     class for private options
     ***********************************************************/
-    LibAVUtil.Class *class;
-    AVFormatContext *fc;
+    LibAVUtil.Class class;
+    AVFormatContext fc;
     int time_scale;
     /***********************************************************
     duration of the longest track
@@ -323,8 +323,8 @@ public struct MOVContext {
     int trak_index;
     string[] meta_keys;
     uint meta_keys_count;
-    DVDemuxContext *dv_demux;
-    AVFormatContext *dv_fctx;
+    DVDemuxContext dv_demux;
+    AVFormatContext dv_fctx;
     /***********************************************************
     1 if file is ISO Media (mp4/3gp)
     ***********************************************************/
@@ -333,7 +333,7 @@ public struct MOVContext {
     current fragment in moof atom
     ***********************************************************/
     MOVFragment fragment;
-    MOVTrackExt *trex_data;
+    MOVTrackExt trex_data;
     uint trex_count;
     /***********************************************************
     metadata are itunes style
@@ -373,7 +373,7 @@ public struct MOVContext {
     int activation_bytes_size;
     void *audible_fixed_key;
     int audible_fixed_key_size;
-    LibAVUtil.Crypto.AESContext *aes_decrypt;
+    LibAVUtil.Crypto.AESContext aes_decrypt;
     uint8[] decryption_key;
     int decryption_key_len;
     int enable_drefs;
@@ -384,20 +384,20 @@ public struct MOVContext {
 }
 
 int ff_mp4_read_descr_len (
-    AVIOContext *pb
+    AVIOContext pb
 );
 int ff_mp4_read_descr (
-    AVFormatContext *fc,
-    AVIOContext *pb,
+    AVFormatContext fc,
+    AVIOContext pb,
     int[] tag
 );
 int ff_mp4_read_dec_config_descr (
-    AVFormatContext *fc,
-    AVStream *st,
-    AVIOContext *pb
+    AVFormatContext fc,
+    AVStream st,
+    AVIOContext pb
 );
 void ff_mp4_parse_es_descr (
-    AVIOContext *pb,
+    AVIOContext pb,
     int[] es_id
 );
 
@@ -481,17 +481,17 @@ public bool TAG_IS_AVCI (
 
 
 int ff_mov_read_esds (
-    AVFormatContext *fc,
-    AVIOContext *pb
+    AVFormatContext fc,
+    AVIOContext pb
 );
 
 int ff_mov_read_stsd_entries (
-    MOVContext *c,
-    AVIOContext *pb,
+    MOVContext mov_context,
+    AVIOContext pb,
     int entries
 );
 void ff_mov_write_chan (
-    AVIOContext *pb,
+    AVIOContext pb,
     int64 channel_layout
 );
 

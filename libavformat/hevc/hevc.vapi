@@ -1,5 +1,5 @@
 /***********************************************************
-Copyright (c) 2014 Tim Walker <tdskywalker@gmail.com>
+@copyright 2014 Tim Walker <tdskywalker@gmail.com>
 
 This file is part of FFmpeg.
 
@@ -43,7 +43,7 @@ discarded, and *ps_count will be set to the number of discarded PS NAL units.
     value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ff_hevc_annexb2mp4 (
-    AVIOContext *pb,
+    AVIOContext pb,
     uint8[] buf_in,
     int size,
     int filter_ps,
@@ -97,7 +97,7 @@ writing.
      code in case of failure
 ***********************************************************/
 int ff_isom_write_hvcc (
-    AVIOContext *pb,
+    AVIOContext pb,
     uint8[] data,
     int size,
     int ps_array_completeness

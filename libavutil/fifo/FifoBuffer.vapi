@@ -68,57 +68,57 @@ public struct FifoBuffer {
 
     /***********************************************************
     @brief Free an FifoBuffer.
-    @param f FifoBuffer to free
+    @param fifo_buffer FifoBuffer to free
     ***********************************************************/
     [CCode (cname="av_fifo_free", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public void av_fifo_free (
-        FifoBuffer f
+        FifoBuffer fifo_buffer
     );
 
     /***********************************************************
     @brief Free an FifoBuffer and reset pointer to null.
-    @param f FifoBuffer to free
+    @param fifo_buffer FifoBuffer to free
     ***********************************************************/
     [CCode (cname="av_fifo_freep", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public void av_fifo_freep (
-        FifoBuffer f
+        FifoBuffer fifo_buffer
     );
 
     /***********************************************************
     @brief Reset the FifoBuffer to the state right after av_fifo_alloc, in particular it is emptied.
-    @param f FifoBuffer to reset
+    @param fifo_buffer FifoBuffer to reset
     ***********************************************************/
     [CCode (cname="av_fifo_reset", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public void av_fifo_reset (
-        FifoBuffer f
+        FifoBuffer fifo_buffer
     );
 
     /***********************************************************
     @brief Return the amount of data in bytes in the FifoBuffer, that is the
     amount of data you can read from it.
-    @param f FifoBuffer to read from
+    @param fifo_buffer FifoBuffer to read from
     @return size
     ***********************************************************/
     [CCode (cname="av_fifo_size", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public int av_fifo_size (
-        FifoBuffer f
+        FifoBuffer fifo_buffer
     );
 
     /***********************************************************
     @brief Return the amount of space in bytes in the FifoBuffer, that is the
     amount of data you can write into it.
-    @param f FifoBuffer to write into
+    @param fifo_buffer FifoBuffer to write into
     @return size
     ***********************************************************/
     [CCode (cname="av_fifo_space", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public int av_fifo_space (
-        FifoBuffer f
+        FifoBuffer fifo_buffer
     );
 
     /***********************************************************
     @brief Feed data at specific position from an FifoBuffer to a user-supplied callback.
     Similar as av_fifo_gereric_read but without discarding data.
-    @param f FifoBuffer to read from
+    @param fifo_buffer FifoBuffer to read from
     @param offset offset from current read position
     @param buf_size number of bytes to read
     @param func generic read function
@@ -126,7 +126,7 @@ public struct FifoBuffer {
     ***********************************************************/
     [CCode (cname="av_fifo_generic_peek_at", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public int av_fifo_generic_peek_at (
-        FifoBuffer f,
+        FifoBuffer fifo_buffer,
         out void *dest,
         int offset,
         int buf_size,
@@ -136,14 +136,14 @@ public struct FifoBuffer {
     /***********************************************************
     @brief Feed data from an FifoBuffer to a user-supplied callback.
     Similar as av_fifo_gereric_read but without discarding data.
-    @param f FifoBuffer to read from
+    @param fifo_buffer FifoBuffer to read from
     @param buf_size number of bytes to read
     @param func generic read function
     @param dest data destination
     ***********************************************************/
     [CCode (cname="av_fifo_generic_peek", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public int av_fifo_generic_peek (
-        FifoBuffer f,
+        FifoBuffer fifo_buffer,
         out void *dest,
         int buf_size,
         GenericReadDelegate func
@@ -151,14 +151,14 @@ public struct FifoBuffer {
 
     /***********************************************************
     @brief Feed data from an FifoBuffer to a user-supplied callback.
-    @param f FifoBuffer to read from
+    @param fifo_buffer FifoBuffer to read from
     @param buf_size number of bytes to read
     @param func generic read function
     @param dest data destination
     ***********************************************************/
     [CCode (cname="av_fifo_generic_read", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public int av_fifo_generic_read (
-        FifoBuffer f,
+        FifoBuffer fifo_buffer,
         out void *dest,
         int buf_size,
         GenericReadDelegate func
@@ -166,7 +166,7 @@ public struct FifoBuffer {
 
     /***********************************************************
     @brief Feed data from a user-supplied callback to an FifoBuffer.
-    @param f FifoBuffer to write to
+    @param fifo_buffer FifoBuffer to write to
     @param input_buffer data source; non-const since it may be used as a
         modifiable context by the function defined in func
     @param size number of bytes to write
@@ -179,7 +179,7 @@ public struct FifoBuffer {
     ***********************************************************/
     [CCode (cname="av_fifo_generic_write", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public int av_fifo_generic_write (
-        FifoBuffer f,
+        FifoBuffer fifo_buffer,
         void *input_buffer,
         int size,
         GenericReadDelegate func
@@ -189,13 +189,13 @@ public struct FifoBuffer {
     @brief Resize an FifoBuffer.
     In case of reallocation failure, the old FIFO is kept unchanged.
 
-    @param f FifoBuffer to resize
+    @param fifo_buffer FifoBuffer to resize
     @param size new FifoBuffer size in bytes
     @return <0 for failure, >=0 otherwise
     ***********************************************************/
     [CCode (cname="av_fifo_realloc2", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public int av_fifo_realloc2 (
-        FifoBuffer f,
+        FifoBuffer fifo_buffer,
         uint size
     );
 
@@ -204,24 +204,24 @@ public struct FifoBuffer {
     In case of reallocation failure, the old FIFO is kept unchanged.
     The new fifo size may be larger than the requested size.
 
-    @param f FifoBuffer to resize
+    @param fifo_buffer FifoBuffer to resize
     @param additional_space the amount of space in bytes to allocate in addition to av_fifo_size ()
     @return <0 for failure, >=0 otherwise
     ***********************************************************/
     [CCode (cname="av_fifo_grow", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public int av_fifo_grow (
-        FifoBuffer f,
+        FifoBuffer fifo_buffer,
         uint additional_space
     );
 
     /***********************************************************
     @brief Read and discard the specified amount of data from an FifoBuffer.
-    @param f FifoBuffer to read from
+    @param fifo_buffer FifoBuffer to read from
     @param size amount of data to read in bytes
     ***********************************************************/
     [CCode (cname="av_fifo_drain", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public void av_fifo_drain (
-        FifoBuffer f,
+        FifoBuffer fifo_buffer,
         int size
     );
 
@@ -229,7 +229,7 @@ public struct FifoBuffer {
     @brief Return a pointer to the data stored in a FIFO buffer at a certain offset.
     The FIFO buffer is not modified.
 
-    @param f FifoBuffer to peek at, f must be non-null
+    @param fifo_buffer FifoBuffer to peek at, fifo_buffer must be non-null
     @param offs an offset in bytes, its absolute value must be less
         than the used buffer size or the returned pointer will
         point outside to the buffer data.
@@ -237,7 +237,7 @@ public struct FifoBuffer {
     ***********************************************************/
     [CCode (cname="av_fifo_peek2", cheader_filename="ffmpeg/libavutil/fifo.h")]
     public static uint8[] av_fifo_peek2 (
-        FifoBuffer f,
+        FifoBuffer fifo_buffer,
         int offs
     );
 }

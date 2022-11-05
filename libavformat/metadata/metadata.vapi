@@ -1,5 +1,5 @@
 /***********************************************************
-copyright (c) 2009 Michael Niedermayer
+@copyright 2009 Michael Niedermayer
 
 This file is part of FFmpeg.
 
@@ -30,12 +30,12 @@ public struct AVMetadataConv {
 }
 
 void ff_metadata_conv (
-    LibAVUtil.Dictionary **pm,
-    AVMetadataConv *d_conv,
-    AVMetadataConv *s_conv
+    out LibAVUtil.Dictionary pm,
+    AVMetadataConv d_conv,
+    AVMetadataConv s_conv
 );
 void ff_metadata_conv_ctx (
-    AVFormatContext *ctx,
-    AVMetadataConv *d_conv,
-    AVMetadataConv *s_conv
+    AVFormatContext fomat_context,
+    AVMetadataConv d_conv,
+    AVMetadataConv s_conv
 );

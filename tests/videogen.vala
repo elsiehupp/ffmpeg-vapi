@@ -137,7 +137,7 @@ static void gen_image (uint num, uint width, uint height) {
     ***********************************************************/
 
     for (uint i = 0; i < NB_OBJS; i++) {
-        VObj *p = &objs[i];
+        VObj p = &objs[i];
         seed1 = i;
         for (y = 0; y < p.height; y++) {
             for (x = 0; x < p.width; x++) {

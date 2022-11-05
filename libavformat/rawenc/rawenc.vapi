@@ -1,6 +1,6 @@
 /***********************************************************
 RAW muxers
-Copyright (C) 2007 Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2007 Aurelien Jacobs <aurel@gnuage.org>
 
 This file is part of FFmpeg.
 
@@ -20,6 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 int ff_raw_write_packet (
-    AVFormatContext *s,
-    LibAVCodec.Packet *packet
+    AVFormatContext format_context,
+    LibAVCodec.Packet packet
 );

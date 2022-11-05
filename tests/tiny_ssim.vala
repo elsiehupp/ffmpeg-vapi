@@ -43,9 +43,9 @@ public class tiny_ssim {
     structural similarity metric
     ***************************************************************************/
     static void ssim_4x4x2_core (
-        out pixel *pix1,
+        out pixel pix1,
         out uint stride1,
-        out pixel *pix2,
+        out pixel pix2,
         out uint stride2,
         uint sums[2 * 4] // [2][4]
     ) {
@@ -123,21 +123,21 @@ public class tiny_ssim {
     }
 
     float ssim_plane (
-        pixel *pix1,
+        pixel pix1,
         out uint stride1,
-        pixel *pix2, out
+        pixel pix2, out
         uint stride2,
         uint width_2,
         uint height_2,
         void *buf,
-        uint *cnt
+        uint cnt
     ) {
         uint z = 0;
         uint x;
         uint y;
         float ssim = 0.0f;
-        uint *sum0[4] = (uint *)buf;
-        uint *sum1[4] = sum0 + (width_2 >> 2) + 3;
+        uint sum0[4] = (uint *)buf;
+        uint sum1[4] = sum0 + (width_2 >> 2) + 3;
         width_2 >>= 2;
         height_2 >>= 2;
         for (y = 1; y < height_2; y++ ) {
@@ -192,7 +192,7 @@ public class tiny_ssim {
         GLib.File f[2];
         uint8 *buf[2];
         uint8 *plane[2 * 3]; // [2][3];
-        uint *temp;
+        uint temp;
         uint64 ssd[3] = {0,0,0};
         double ssim[3] = {0,0,0};
         uint frame_size, width, height;

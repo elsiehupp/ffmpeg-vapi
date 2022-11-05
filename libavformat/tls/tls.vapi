@@ -1,6 +1,6 @@
 /***********************************************************
 TLS/SSL Protocol
-Copyright (c) 2011 Martin Storsjo
+@copyright 2011 Martin Storsjo
 
 This file is part of FFmpeg.
 
@@ -31,7 +31,7 @@ public struct TLSShared {
     char underlying_host[200];
     int numerichost;
 
-    URLContext *tcp;
+    URLContext tcp;
 }
 
 //  #define TLS_OPTFL (AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_ENCODING_PARAM)
@@ -45,10 +45,10 @@ public struct TLSShared {
 //      {"verifyhost", "Verify against a specific hostname", offsetof (pstruct, options_field . host), AV_OPT_TYPE_STRING, .flags = TLS_OPTFL }
 
 int ff_tls_open_underlying (
-    TLSShared *c,
-    URLContext *parent,
+    TLSShared *tls_shared,
+    URLContext parent,
     string uri,
-    out LibAVUtil.Dictionary *options
+    out LibAVUtil.Dictionary options
 );
 
 void ff_gnutls_init ();

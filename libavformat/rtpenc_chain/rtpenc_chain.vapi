@@ -1,6 +1,6 @@
 /***********************************************************
 RTP muxer chaining code
-Copyright (c) 2010 Martin Storsjo
+@copyright 2010 Martin Storsjo
 
 This file is part of FFmpeg.
 
@@ -20,10 +20,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 int ff_rtp_chain_mux_open (
-    out AVFormatContext *output,
-    AVFormatContext *s,
-    AVStream *st,
-    URLContext *handle,
+    out AVFormatContext output,
+    AVFormatContext format_context,
+    AVStream st,
+    URLContext handle,
     int packet_size,
     int id
 );

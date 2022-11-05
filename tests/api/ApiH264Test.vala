@@ -28,13 +28,13 @@ public class ApiH264Test : GLib.TestCase {
 
 
     static uint video_decode_example (string input_filename) {
-        LibAVCodec.Codec *codec = null;
-        LibAVCodec.CodecContext *ctx= null;
-        LibAVCodec.CodecParameters *origin_par = null;
-        LibAVUtil.Frame *frame = null;
+        LibAVCodec.Codec codec = null;
+        LibAVCodec.CodecContext codec_context= null;
+        LibAVCodec.CodecParameters origin_par = null;
+        LibAVUtil.Frame frame = null;
         uint8[] byte_buffer = null;
         LibAVCodec.Packet packet;
-        AVFormatContext *format_context = null;
+        AVFormatContext format_context = null;
         uint number_of_written_bytes;
         uint video_stream;
         bool got_frame = false;
@@ -91,8 +91,8 @@ public class ApiH264Test : GLib.TestCase {
             return -1;
         }
 
-        ctx = avcodec_alloc_context3 (codec);
-        if (ctx == null) {
+        codec_context = avcodec_alloc_context3 (codec);
+        if (codec_context == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -101,7 +101,7 @@ public class ApiH264Test : GLib.TestCase {
             return AVERROR (ENOMEM);
         }
 
-        result = avcodec_parameters_to_context (ctx, origin_par);
+        result = avcodec_parameters_to_context (codec_context, origin_par);
         if (result) {
             av_log (
                 null,
@@ -111,10 +111,10 @@ public class ApiH264Test : GLib.TestCase {
             return result;
         }
 
-        result = avcodec_open2 (ctx, codec, null);
+        result = avcodec_open2 (codec_context, codec, null);
         if (result < 0) {
             av_log (
-                ctx,
+                codec_context,
                 AV_LOG_ERROR,
                 "Can't open decoder\n"
             );
@@ -131,7 +131,7 @@ public class ApiH264Test : GLib.TestCase {
             return AVERROR (ENOMEM);
         }
 
-        byte_buffer_size = av_image_get_buffer_size (ctx.pix_fmt, ctx.width, ctx.height, 16);
+        byte_buffer_size = av_image_get_buffer_size (codec_context.pix_fmt, codec_context.width, codec_context.height, 16);
         byte_buffer = av_malloc (byte_buffer_size);
         if (byte_buffer == null) {
             av_log (
@@ -157,7 +157,7 @@ public class ApiH264Test : GLib.TestCase {
                 got_frame = false;
                 if (packet.pts == AV_NOPTS_VALUE)
                     packet.pts = packet.dts = i;
-                result = avcodec_decode_video2 (ctx, frame, out got_frame, out packet);
+                result = avcodec_decode_video2 (codec_context, frame, out got_frame, out packet);
                 if (result < 0) {
                     av_log (
                         null,
@@ -169,7 +169,7 @@ public class ApiH264Test : GLib.TestCase {
                 if (got_frame) {
                     number_of_written_bytes = av_image_copy_to_buffer (byte_buffer, byte_buffer_size,
                                             (uint8[])frame.data, (uint[]) frame.linesize,
-                                            ctx.pix_fmt, ctx.width, ctx.height, 1);
+                                            codec_context.pix_fmt, codec_context.width, codec_context.height, 1);
                     if (number_of_written_bytes < 0) {
                         av_log (
                             null,
@@ -190,9 +190,9 @@ public class ApiH264Test : GLib.TestCase {
 
         av_packet_unref (out packet);
         av_frame_free (out frame);
-        avcodec_close (ctx);
+        avcodec_close (codec_context);
         avformat_close_input (out format_context);
-        avcodec_free_context (out ctx);
+        avcodec_free_context (out codec_context);
         av_freep (out byte_buffer);
         return 0;
     }

@@ -1,5 +1,5 @@
 /***********************************************************
-Copyright (c) 2007 The FFmpeg Project
+@copyright 2007 The FFmpeg Project
 
 This file is part of FFmpeg.
 
@@ -76,7 +76,7 @@ int ff_network_wait_fd_timeout (
     int fd,
     int write,
     int64 timeout,
-    AVIOInterruptCB *int_cb
+    AVIOInterruptCB int_cb
 );
 
 /***********************************************************
@@ -88,7 +88,7 @@ triggered, return before that.
 ***********************************************************/
 int ff_network_sleep_interruptible (
     int64 timeout,
-    AVIOInterruptCB *int_cb
+    AVIOInterruptCB int_cb
 );
 
 #if !HAVE_STRUCT_SOCKADDR_STORAGE
@@ -126,9 +126,9 @@ public struct addrinfo {
     int ai_socktype;
     int ai_protocol;
     int ai_addrlen;
-    Posix.SockAddr *ai_addr;
+    Posix.SockAddr ai_addr;
     string ai_canonname;
-    addrinfo *ai_next;
+    addrinfo ai_next;
 }
 #endif /* !HAVE_STRUCT_ADDRINFO
 ***********************************************************/
@@ -200,14 +200,14 @@ public const int NI_DGRAM; // 16
 int ff_getaddrinfo (
     string node,
     string service,
-    addrinfo *hints,
-    out addrinfo *res
+    addrinfo hints,
+    out addrinfo res
 );
 void ff_freeaddrinfo (
-    addrinfo *res
+    addrinfo res
 );
 int ff_getnameinfo (
-    Posix.SockAddr *sa,
+    Posix.SockAddr sa,
     int salen,
     string host,
     int hostlen,
@@ -245,7 +245,7 @@ public bool IN6_IS_ADDR_MULTICAST (uint8[] a); // (((uint8[] ) (a))[0] == 0xff)
 #endif
 
 int ff_is_multicast_address (
-    Posix.SockAddr *addr
+    Posix.SockAddr addr
 );
 
 /***********************************************************
@@ -267,10 +267,10 @@ Bind to a file descriptor and poll for a connection.
 ***********************************************************/
 int ff_listen_bind (
     int fd,
-    Posix.SockAddr *addr,
+    Posix.SockAddr addr,
     Posix.socklen_t addrlen,
     int timeout,
-    URLContext *h
+    URLContext h
 );
 
 /***********************************************************
@@ -282,7 +282,7 @@ Bind to a file descriptor to an address without accepting connections.
 ***********************************************************/
 int ff_listen (
     int fd,
-    Posix.SockAddr *addr,
+    Posix.SockAddr addr,
     Posix.socklen_t addrlen
 );
 
@@ -298,7 +298,7 @@ Poll for a single connection on the passed file descriptor.
 int ff_accept (
     int fd,
     int timeout,
-    URLContext *h
+    URLContext h
 );
 
 /***********************************************************
@@ -318,10 +318,10 @@ Connect to a file descriptor and poll for result.
 ***********************************************************/
 int ff_listen_connect (
     int fd,
-    Posix.SockAddr *addr,
+    Posix.SockAddr addr,
     Posix.socklen_t addrlen,
     int timeout,
-    URLContext *h,
+    URLContext h,
     int will_try_next
 );
 
@@ -337,7 +337,7 @@ int ff_socket (
 );
 
 void ff_log_net_error (
-    void *ctx,
+    void *opaque_context,
     int level,
     char* prefix
 );
@@ -370,7 +370,7 @@ int ff_connect_parallel (
     addrinfo[] addrs,
     int timeout_ms_per_address,
     int parallel,
-    URLContext *h,
+    URLContext h,
     out int fd,
     CustomizeFileDescriptorDelegate customize_fd,
     void *customize_ctx

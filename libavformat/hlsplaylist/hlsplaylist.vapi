@@ -1,7 +1,7 @@
 /***********************************************************
 Apple HTTP Live Streaming segmenter
-Copyright (c) 2012, Luca Barbato
-Copyright (c) 2017 Akamai Technologies, Inc.
+@copyright 2012, Luca Barbato
+@copyright 2017 Akamai Technologies, Inc.
 
 This file is part of FFmpeg.
 
@@ -28,11 +28,11 @@ public enum PlaylistType {
 }
 
 void ff_hls_write_playlist_version (
-    AVIOContext *out,
+    AVIOContext out,
     int version
 );
 void ff_hls_write_audio_rendition (
-    AVIOContext *output,
+    AVIOContext output,
     string agroup,
     string filename,
     string language,
@@ -40,8 +40,8 @@ void ff_hls_write_audio_rendition (
     int is_default
 );
 void ff_hls_write_stream_info (
-    AVStream *st,
-    AVIOContext *output,
+    AVStream st,
+    AVIOContext output,
     int bandwidth,
     string filename,
     string agroup,
@@ -49,7 +49,7 @@ void ff_hls_write_stream_info (
     string ccgroup
 );
 void ff_hls_write_playlist_header (
-    AVIOContext *output,
+    AVIOContext output,
     int version,
     int allowcache,
     int target_duration,
@@ -58,14 +58,14 @@ void ff_hls_write_playlist_header (
     int iframe_mode
 );
 void ff_hls_write_init_file (
-    AVIOContext *output,
+    AVIOContext output,
     string filename,
     int byterange_mode,
     int64 size,
     int64 pos
 );
 int ff_hls_write_file_entry (
-    AVIOContext *output,
+    AVIOContext output,
     int insert_discont,
     int byterange_mode,
     double duration,
@@ -79,5 +79,5 @@ int ff_hls_write_file_entry (
     int64 video_keyframe_pos,
     int iframe_mode);
 void ff_hls_write_end_list (
-    AVIOContext *output
+    AVIOContext output
 );

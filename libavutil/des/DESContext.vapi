@@ -47,7 +47,7 @@ public struct DESContext {
     ***********************************************************/
     [CCode (cname="av_des_init", cheader_filename="ffmpeg/libavutil/des.h")]
     public int av_des_init (
-        DESContext d,
+        DESContext des_context,
         uint8[] key,
         int key_bits,
         int decrypt
@@ -65,7 +65,7 @@ public struct DESContext {
     ***********************************************************/
     [CCode (cname="av_des_crypt", cheader_filename="ffmpeg/libavutil/des.h")]
     public void av_des_crypt (
-        DESContext d,
+        DESContext des_context,
         out uint8[] output_buffer,
         uint8[] input_buffer,
         int count,
@@ -82,7 +82,7 @@ public struct DESContext {
     ***********************************************************/
     [CCode (cname="av_des_mac", cheader_filename="ffmpeg/libavutil/des.h")]
     public void av_des_mac (
-        DESContext d,
+        DESContext des_context,
         out uint8[] output_buffer,
         uint8[] input_buffer,
         int count

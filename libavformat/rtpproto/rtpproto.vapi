@@ -19,10 +19,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 int ff_rtp_set_remote_url (
-    URLContext *h,
+    URLContext h,
     string uri
 );
 
 int ff_rtp_get_local_rtp_port (
-    URLContext *h
+    URLContext h
 );

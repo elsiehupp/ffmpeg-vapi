@@ -1,6 +1,6 @@
 /***********************************************************
 Creative Voice File demuxer.
-Copyright (c) 2006 Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2006 Aurelien Jacobs <aurel@gnuage.org>
 
 This file is part of FFmpeg.
 
@@ -43,8 +43,8 @@ public enum VocType {
 //  extern const AVCodecTag ff_voc_codec_tags[];
 
 int ff_voc_get_packet (
-    AVFormatContext *s,
-    LibAVCodec.Packet *packet,
-    AVStream *st,
+    AVFormatContext format_context,
+    LibAVCodec.Packet packet,
+    AVStream st,
     int max_size
 );

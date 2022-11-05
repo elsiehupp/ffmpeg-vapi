@@ -1,6 +1,6 @@
 /***********************************************************
 RTP depacketizer declarations
-Copyright (c) 2010 Martin Storsjo
+@copyright 2010 Martin Storsjo
 
 This file is part of FFmpeg.
 
@@ -22,18 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /***********************************************************
 Parse a Windows Media Server-specific SDP line
 
-@param s RTSP demux context
+@param format_context RTSP demux context
 ***********************************************************/
 int ff_wms_parse_sdp_a_line (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     string p
 );
 
 int ff_h263_handle_packet (
-    AVFormatContext *ctx,
-    PayloadContext *data,
-    AVStream *st,
-    LibAVCodec.Packet *packet, uint32[] timestamp,
+    AVFormatContext format_context,
+    PayloadContext data,
+    AVStream st,
+    LibAVCodec.Packet packet, uint32[] timestamp,
     uint8[] buf,
     int len,
     uint16 seq,
@@ -41,21 +41,21 @@ int ff_h263_handle_packet (
 );
 
 int ff_h264_parse_sprop_parameter_sets (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     out uint8[] data_ptr,
     int[] size_ptr,
     string value
 );
 int ff_h264_handle_aggregated_packet (
-    AVFormatContext *ctx,
-    PayloadContext *data,
-    LibAVCodec.Packet *packet,
+    AVFormatContext format_context,
+    PayloadContext data,
+    LibAVCodec.Packet packet,
     uint8[] buf, int len,
     int start_skip, int[] nal_counters,
     int nal_mask
 );
 int ff_h264_handle_frag_packet (
-    LibAVCodec.Packet *packet,
+    LibAVCodec.Packet packet,
     uint8[] buf,
     int len,
     int start_bit,
@@ -63,7 +63,7 @@ int ff_h264_handle_frag_packet (
     int nal_header_len
 );
 void ff_h264_parse_framesize (
-    LibAVCodec.CodecParameters *par,
+    LibAVCodec.CodecParameters par,
     string p
 );
 

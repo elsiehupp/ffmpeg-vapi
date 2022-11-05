@@ -76,7 +76,7 @@ public int av_parse_video_size (
 );
 
 /***********************************************************
-@brief Parse str and store the detected values in *rate.
+@brief Parse str and store the detected values in rate.
 
 @param[in,out] rate pointer to the Rational which will contain the detected
 frame rate
@@ -135,7 +135,7 @@ public string av_get_known_color_name (
 );
 
 /***********************************************************
-@brief Parse timestr and return in *time a corresponding number of
+@brief Parse timestr and return in time a corresponding number of
 microseconds.
 
 @param timeval puts here the number of microseconds corresponding
@@ -143,7 +143,7 @@ to the string in timestr. If the string represents a duration, it
 is the number of microseconds contained in the time interval. If
 the string is a date, is the number of microseconds since 1st of
 January, 1970 up to the time of the parsed date. If timestr cannot
-be successfully parsed, set *time to INT64_MIN.
+be successfully parsed, set time to INT64_MIN.
 
 @param timestr a string representing a date or a duration.
 - If a date the syntax is:
@@ -221,7 +221,7 @@ The supported input field descriptors are listed below.
 //  public string av_small_strptime (
 //      string p,
 //      string fmt,
-//      tm *dt
+//      tm dt
 //  );
 
 /***********************************************************
@@ -229,7 +229,7 @@ The supported input field descriptors are listed below.
 ***********************************************************/
 //  [CCode (cname="av_timegm", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 //  public time_t av_timegm (
-//      tm *tm
+//      tm tm
 //  );
 
 } // namespace LibAVUtil

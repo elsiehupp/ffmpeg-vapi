@@ -1,7 +1,7 @@
 /***********************************************************
 audio interleaving prototypes and declarations
 
-Copyright (c) 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
+@copyright 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
 
 This file is part of FFmpeg.
 
@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 public struct AudioInterleaveContext {
-    LibAVUtil.FifoBuffer *fifo;
+    LibAVUtil.FifoBuffer fifo;
     /***********************************************************
     size of currently allocated FIFO
     ***********************************************************/
@@ -49,12 +49,12 @@ public struct AudioInterleaveContext {
 }
 
 int ff_audio_interleave_init (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     int[] samples_per_frame,
     LibAVUtil.Rational time_base
 );
 void ff_audio_interleave_close (
-    AVFormatContext *s
+    AVFormatContext format_context
 );
 
 public delegate int GetPacketDelegate (
@@ -79,7 +79,7 @@ when using this function.
 @param compare_ts function will compare AVPackets and decide interleaving order.
 ***********************************************************/
 int ff_audio_rechunk_interleave (
-    AVFormatContext *s,
-    LibAVCodec.Packet *out, LibAVCodec.Packet *packet, int flush,
+    AVFormatContext format_context,
+    LibAVCodec.Packet out, LibAVCodec.Packet packet, int flush,
     GetPacketDelegate get_packet,
     CompareTimeStampDelegate compare_ts);

@@ -1,6 +1,6 @@
 /***********************************************************
 "NUT" Container Format (de)muxer
-Copyright (c) 2006 Michael Niedermayer
+@copyright 2006 Michael Niedermayer
 
 This file is part of FFmpeg.
 
@@ -106,7 +106,7 @@ public struct StreamContext {
     int skip_until_key_frame;
     int64 last_pts;
     int time_base_id;
-    LibAVUtil.Rational *time_base;
+    LibAVUtil.Rational time_base;
     int msb_pts_shift;
     int max_pts_distance;
     int decode_delay; //FIXME duplicate of has_b_frames
@@ -114,31 +114,31 @@ public struct StreamContext {
 }
 
 public struct ChapterContext {
-    LibAVUtil.Rational *time_base;
+    LibAVUtil.Rational time_base;
 }
 
 public struct NUTContext {
-    LibAVUtil.Class *av_class;
-    AVFormatContext *avf;
+    LibAVUtil.Class av_class;
+    AVFormatContext avf;
 //    int written_packet_size;
 //    int64 packet_start;
     FrameCode frame_code[256];
     uint8 header_len[128];
     uint8 *header[128];
     uint64 next_startcode; // stores the next startcode if it has already been parsed but the stream is not seekable
-    StreamContext *stream;
-    ChapterContext *chapter;
+    StreamContext stream;
+    ChapterContext chapter;
     uint max_distance;
     uint time_base_count;
     int64 last_syncpoint_pos;
     int64 last_resync_pos;
     int header_count;
-    LibAVUtil.Rational *time_base;
-    LibAVUtil.TreeNode *syncpoints;
+    LibAVUtil.Rational time_base;
+    LibAVUtil.TreeNode syncpoints;
     int sp_count;
     int write_index;
     int64 max_pts;
-    LibAVUtil.Rational *max_pts_tb;
+    LibAVUtil.Rational max_pts_tb;
     NUTFlags flags;
     int version; // version currently in use
     int minor_version;
@@ -164,12 +164,12 @@ public struct Dispositions {
 }
 
 void ff_nut_reset_ts (
-    NUTContext *nut,
+    NUTContext nut,
     LibAVUtil.Rational time_base,
     int64 val
 );
 int64 ff_lsb2full (
-    StreamContext *stream,
+    StreamContext stream,
     int64 lsb
 );
 int ff_nut_sp_pos_cmp (
@@ -181,13 +181,13 @@ int ff_nut_sp_pts_cmp (
     void *b
 );
 int ff_nut_add_sp (
-    NUTContext *nut,
+    NUTContext nut,
     int64 pos,
     int64 back_ptr,
     int64 ts
 );
 void ff_nut_free_sp (
-    NUTContext *nut
+    NUTContext nut
 );
 
 //  extern const Dispositions ff_nut_dispositions[];

@@ -68,7 +68,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
         
         public static void WAIT_THREADS () throws Goto {
             for (uint i = 0; i < count; i++) {
-                AbstractData *td = instance_array[i];
+                AbstractData td = instance_array[i];
         
                 ret = pthread_join (
                     td.tid,
@@ -125,7 +125,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
                     av_thread_message_flush (this.queue);
                 } else {
                     char[] val;
-                    LibAVUtil.Dictionary *meta = null;
+                    LibAVUtil.Dictionary meta = null;
                     ThreadMessage msg = new ThreadMessage () {
                         magic = MAGIC,
                         frame = av_frame_alloc (),
@@ -244,8 +244,8 @@ public class ApiThreadMessageTest : GLib.TestCase {
                     av_thread_message_flush (this.queue);
                 } else {
                     ThreadMessage msg;
-                    LibAVUtil.Dictionary *meta;
-                    LibAVUtil.DictionaryEntry *e;
+                    LibAVUtil.Dictionary meta;
+                    LibAVUtil.DictionaryEntry e;
         
                     ret = av_thread_message_queue_recv (
                         this.queue,

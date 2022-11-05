@@ -1,6 +1,6 @@
 /***********************************************************
 RTMPE encryption utilities
-Copyright (c) 2012 Samuel Pitoiset
+@copyright 2012 Samuel Pitoiset
 
 This file is part of FFmpeg.
 
@@ -27,7 +27,7 @@ Initialize the Diffie-Hellmann context and generate the public key.
 @return zero on success, negative value otherwise
 ***********************************************************/
 int ff_rtmpe_gen_pub_key (
-    URLContext *h,
+    URLContext h,
     uint8[] buf
 );
 
@@ -41,7 +41,7 @@ Compute the shared secret key and initialize the RC4 encryption.
 @return zero on success, negative value otherwise
 ***********************************************************/
 int ff_rtmpe_compute_secret_key (
-    URLContext *h,
+    URLContext h,
     uint8[] serverdata,
     uint8[] clientdata,
     int type
@@ -56,7 +56,7 @@ Encrypt the signature.
 @param type type of encryption (8 for XTEA, 9 for Blowfish)
 ***********************************************************/
 void ff_rtmpe_encrypt_sig (
-    URLContext *h,
+    URLContext h,
     uint8[] signature,
     uint8[] digest,
     int type
@@ -69,5 +69,5 @@ Update the keystream and set RC4 keys for encryption.
 @return zero on success, negative value otherwise
 ***********************************************************/
 int ff_rtmpe_update_keystream (
-    URLContext *h
+    URLContext h
 );

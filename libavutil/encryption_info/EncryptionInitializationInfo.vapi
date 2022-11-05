@@ -70,7 +70,7 @@ public struct EncryptionInitializationInfo {
     @brief An optional pointer to the next initialization info in the list.
     ***********************************************************/
     [CCode (cname="next")]
-    public EncryptionInitializationInfo *next;
+    public EncryptionInitializationInfo next;
 
     /***********************************************************
     @brief Allocates an EncryptionInitializationInfo structure and sub-pointers to hold the

@@ -31,7 +31,7 @@ public class ApiBandTest : GLib.TestCase {
     static uint draw_horiz_band_called;
 
     static void draw_horiz_band (
-        LibAVCodec.CodecContext ctx,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.Frame frame,
         uint offset[4],
         uint slice_position,
@@ -46,34 +46,34 @@ public class ApiBandTest : GLib.TestCase {
 
         draw_horiz_band_called = 1;
 
-        pixel_format_descriptor = av_pix_fmt_desc_get (ctx.pix_fmt);
-        chroma_w = -((-ctx.width) >> pixel_format_descriptor.log2_chroma_w);
+        pixel_format_descriptor = av_pix_fmt_desc_get (codec_context.pix_fmt);
+        chroma_w = -((-codec_context.width) >> pixel_format_descriptor.log2_chroma_w);
         chroma_h = -((-height_2) >> pixel_format_descriptor.log2_chroma_h);
         shift_slice_position = -((-slice_position) >> pixel_format_descriptor.log2_chroma_h);
-        shift_height = -((-ctx.height) >> pixel_format_descriptor.log2_chroma_h);
+        shift_height = -((-codec_context.height) >> pixel_format_descriptor.log2_chroma_h);
 
         for (uint i = 0; i < height_2; i++) {
-            Posix.memcpy (slice_byte_buffer + ctx.width * slice_position + i * ctx.width,
-                frame.data[0] + offset[0] + i * frame.linesize[0], ctx.width);
+            Posix.memcpy (slice_byte_buffer + codec_context.width * slice_position + i * codec_context.width,
+                frame.data[0] + offset[0] + i * frame.linesize[0], codec_context.width);
         }
         for (uint i = 0; i < chroma_h; i++) {
-            Posix.memcpy (slice_byte_buffer + ctx.width * ctx.height + chroma_w * shift_slice_position + i * chroma_w,
+            Posix.memcpy (slice_byte_buffer + codec_context.width * codec_context.height + chroma_w * shift_slice_position + i * chroma_w,
                 frame.data[1] + offset[1] + i * frame.linesize[1], chroma_w);
         }
         for (uint i = 0; i < chroma_h; i++) {
-            Posix.memcpy (slice_byte_buffer + ctx.width * ctx.height + chroma_w * shift_height + chroma_w * shift_slice_position + i * chroma_w,
+            Posix.memcpy (slice_byte_buffer + codec_context.width * codec_context.height + chroma_w * shift_height + chroma_w * shift_slice_position + i * chroma_w,
                 frame.data[2] + offset[2] + i * frame.linesize[2], chroma_w);
         }
     }
 
     static uint video_decode (string input_filename) {
-        LibAVCodec.Codec *codec = null;
-        LibAVCodec.CodecContext *ctx= null;
-        LibAVCodec.CodecParameters *origin_par = null;
+        LibAVCodec.Codec codec = null;
+        LibAVCodec.CodecContext codec_context= null;
+        LibAVCodec.CodecParameters origin_par = null;
         uint8[] byte_buffer = null;
-        LibAVUtil.Frame *frame = null;
+        LibAVUtil.Frame frame = null;
         LibAVCodec.Packet packet;
-        AVFormatContext *format_context = null;
+        AVFormatContext format_context = null;
         uint number_of_written_bytes;
         uint video_stream;
         bool got_frame = false;
@@ -132,8 +132,8 @@ public class ApiBandTest : GLib.TestCase {
             return -1;
         }
 
-        ctx = avcodec_alloc_context3 (codec);
-        if (ctx == null) {
+        codec_context = avcodec_alloc_context3 (codec);
+        if (codec_context == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -142,7 +142,7 @@ public class ApiBandTest : GLib.TestCase {
             return AVERROR (ENOMEM);
         }
 
-        result = avcodec_parameters_to_context (ctx, origin_par);
+        result = avcodec_parameters_to_context (codec_context, origin_par);
         if (result) {
             av_log (
                 null,
@@ -152,13 +152,13 @@ public class ApiBandTest : GLib.TestCase {
             return result;
         }
 
-        ctx.draw_horiz_band = draw_horiz_band;
-        ctx.thread_count = 1;
+        codec_context.draw_horiz_band = draw_horiz_band;
+        codec_context.thread_count = 1;
 
-        result = avcodec_open2 (ctx, codec, null);
+        result = avcodec_open2 (codec_context, codec, null);
         if (result < 0) {
             av_log (
-                ctx,
+                codec_context,
                 AV_LOG_ERROR,
                 "Can't open decoder\n"
             );
@@ -184,7 +184,7 @@ public class ApiBandTest : GLib.TestCase {
             return -1;
         }
 
-        byte_buffer_size = av_image_get_buffer_size (ctx.pix_fmt, ctx.width, ctx.height, 32);
+        byte_buffer_size = av_image_get_buffer_size (codec_context.pix_fmt, codec_context.width, codec_context.height, 32);
         byte_buffer = av_malloc (byte_buffer_size);
         if (byte_buffer == null) {
             av_log (
@@ -220,7 +220,7 @@ public class ApiBandTest : GLib.TestCase {
             }
             if (packet.stream_index == video_stream || end_of_stream) {
                 got_frame = false;
-                result = avcodec_decode_video2 (ctx, frame, out got_frame, out packet);
+                result = avcodec_decode_video2 (codec_context, frame, out got_frame, out packet);
                 if (result < 0) {
                     av_log (
                         null,
@@ -232,7 +232,7 @@ public class ApiBandTest : GLib.TestCase {
                 if (got_frame) {
                     number_of_written_bytes = av_image_copy_to_buffer (byte_buffer, byte_buffer_size,
                                             (uint8[])frame.data, (uint[]) frame.linesize,
-                                            ctx.pix_fmt, ctx.width, ctx.height, 1);
+                                            codec_context.pix_fmt, codec_context.width, codec_context.height, 1);
                     if (number_of_written_bytes < 0) {
                         av_log (
                             null,
@@ -266,9 +266,9 @@ public class ApiBandTest : GLib.TestCase {
 
         av_packet_unref (out packet);
         av_frame_free (out frame);
-        avcodec_close (ctx);
+        avcodec_close (codec_context);
         avformat_close_input (out format_context);
-        avcodec_free_context (out ctx);
+        avcodec_free_context (out codec_context);
         av_freep (out byte_buffer);
         av_freep (out slice_byte_buffer);
         return 0;

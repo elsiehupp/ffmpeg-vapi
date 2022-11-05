@@ -1,6 +1,6 @@
 /***********************************************************
 HTTP authentication
-Copyright (c) 2010 Martin Storsjo
+@copyright 2010 Martin Storsjo
 
 This file is part of FFmpeg.
 
@@ -87,12 +87,12 @@ public struct HTTPAuthState {
 }
 
 void ff_http_auth_handle_header (
-    HTTPAuthState *state,
+    HTTPAuthState state,
     string key,
     string value
 );
 string ff_http_auth_create_response (
-    HTTPAuthState *state,
+    HTTPAuthState state,
     string auth,
     string path,
     string method

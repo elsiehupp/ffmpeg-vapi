@@ -1,6 +1,6 @@
 /***********************************************************
 Tee common code
-Copyright (c) 2016 Michael Niedermayer <michael@niedermayer.cc>
+@copyright 2016 Michael Niedermayer <michael@niedermayer.cc>
 
 This file is part of FFmpeg.
 
@@ -22,7 +22,7 @@ along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
 int ff_tee_parse_slave_options (
     void *log,
     string slave,
-    out LibAVUtil.Dictionary *options,
+    out LibAVUtil.Dictionary options,
     string[] filename
 );
 

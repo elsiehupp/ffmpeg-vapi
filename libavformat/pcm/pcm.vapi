@@ -1,6 +1,6 @@
 /***********************************************************
 PCM common functions
-Copyright (C) 2007 Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2007 Aurelien Jacobs <aurel@gnuage.org>
 
 This file is part of FFmpeg.
 
@@ -20,11 +20,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 int ff_pcm_read_packet (
-    AVFormatContext *s,
-    LibAVCodec.Packet *packet
+    AVFormatContext format_context,
+    LibAVCodec.Packet packet
 );
 int ff_pcm_read_seek (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     int stream_index,
     int64 timestamp,
     int flags

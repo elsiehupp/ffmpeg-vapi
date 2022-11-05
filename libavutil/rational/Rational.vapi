@@ -130,7 +130,7 @@ public struct Rational {
     @brief Multiply two rationals.
     @param b First rational
     @param c Second rational
-    @return b*c
+    @return b * c
     ***********************************************************/
     [CCode (cname="av_mul_q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public Rational av_mul_q (

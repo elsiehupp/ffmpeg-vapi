@@ -35,10 +35,10 @@ public enum URLProtocolFlags {
 //  extern const LibAVUtil.Class ffurl_context_class;
 
 public struct URLContext {
-    LibAVUtil.Class *av_class; /***********************************************************
+    LibAVUtil.Class av_class; /***********************************************************
     information for av_log (). Set by url_open ().
     ***********************************************************/
-    URLProtocol *prot;
+    URLProtocol prot;
     void *priv_data;
     string filename; /***********************************************************
     specified URL
@@ -65,7 +65,7 @@ public struct URLContext {
 public abstract class URLProtocol {
     string name;
     public abstract int url_open (
-        URLContext *h,
+        URLContext h,
         string url,
         int flags
     );
@@ -75,17 +75,17 @@ public abstract class URLProtocol {
     for those nested protocols.
     ***********************************************************/
     public abstract int url_open2 (
-        URLContext *h,
+        URLContext h,
         string url,
         int flags,
-        out LibAVUtil.Dictionary *options
+        out LibAVUtil.Dictionary options
     );
     public abstract int url_accept (
-        URLContext *s,
-        out URLContext *c
+        URLContext server_url_context,
+        out URLContext client_url_context
     );
     public abstract int url_handshake (
-        URLContext *c
+        URLContext client_url_context
     );
 
     /***********************************************************
@@ -101,71 +101,71 @@ public abstract class URLProtocol {
     retry_transfer_wrapper in avio.c.
     ***********************************************************/
     public abstract int url_read (
-        URLContext *h,
+        URLContext h,
         uchar[] buf,
         int size
     );
     public abstract int url_write (
-        URLContext *h,
+        URLContext h,
         uchar[] buf,
         int size
     );
     public abstract int64 url_seek (
-        URLContext *h,
+        URLContext h,
         int64 pos,
         int whence
     );
     public abstract int url_close (
-        URLContext *h
+        URLContext h
     );
     public abstract int url_read_pause (
-        URLContext *h,
+        URLContext h,
         int pause
     );
     public abstract int64 url_read_seek (
-        URLContext *h,
+        URLContext h,
         int stream_index,
         int64 timestamp,
         int flags
     );
     public abstract int url_get_file_handle (
-        URLContext *h
+        URLContext h
     );
     public abstract int url_get_multi_file_handle (
-        URLContext *h,
+        URLContext h,
         out int[] handles,
         out int numhandles
     );
     public abstract int url_get_short_seek (
-        URLContext *h
+        URLContext h
     );
     public abstract int url_shutdown (
-        URLContext *h,
+        URLContext h,
         int flags
     );
     int priv_data_size;
-    LibAVUtil.Class *priv_data_class;
+    LibAVUtil.Class priv_data_class;
     int flags;
     public abstract int url_check (
-        URLContext *h,
+        URLContext h,
         int mask
     );
     public abstract int url_open_dir (
-        URLContext *h
+        URLContext h
     );
     public abstract int url_read_dir (
-        URLContext *h,
+        URLContext h,
         out AVIODirEntry next
     );
     public abstract int url_close_dir (
-        URLContext *h
+        URLContext h
     );
     public abstract int url_delete (
-        URLContext *h
+        URLContext h
     );
     public abstract int url_move (
-        URLContext *h_src,
-        URLContext *h_dst
+        URLContext h_src,
+        URLContext h_dst
     );
     string default_whitelist;
 }
@@ -184,10 +184,10 @@ NULL
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ffurl_alloc (
-    URLContext **puc,
+    out URLContext puc,
     string filename,
     int flags,
-    AVIOInterruptCB *int_cb
+    AVIOInterruptCB int_cb
 );
 
 /***********************************************************
@@ -199,8 +199,8 @@ This parameter will be destroyed and replaced with a dict containing options
 that were not found. May be NULL.
 ***********************************************************/
 int ffurl_connect (
-    URLContext *uc,
-    LibAVUtil.Dictionary **options
+    URLContext uc,
+    out LibAVUtil.Dictionary options
 );
 
 /***********************************************************
@@ -222,34 +222,34 @@ that were not found. May be NULL.
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ffurl_open_whitelist (
-    URLContext **puc,
+    out URLContext puc,
     string filename,
     int flags,
-    AVIOInterruptCB *int_cb,
-    LibAVUtil.Dictionary **options,
+    AVIOInterruptCB int_cb,
+    out LibAVUtil.Dictionary options,
     string whitelist,
     char* blacklist,
-    URLContext *parent
+    URLContext parent
 );
 
 int ffurl_open (
-    URLContext **puc,
+    out URLContext puc,
     string filename,
     int flags,
-    AVIOInterruptCB *int_cb,
-    LibAVUtil.Dictionary **options
+    AVIOInterruptCB int_cb,
+    out LibAVUtil.Dictionary options
 );
 
 /***********************************************************
-Accept an URLContext c on an URLContext s
+Accept an URLContext client_url_context on an URLContext server_url_context
 
-@param s server context
-@param c client context, must be unallocated.
+@param server_url_context server context
+@param client_url_context client context, must be unallocated.
 @return >= 0 on success, ff_neterrno () on failure.
 ***********************************************************/
 int ffurl_accept (
-    URLContext *s,
-    URLContext **c
+    URLContext server_url_context,
+    out URLContext client_url_context
 );
 
 /***********************************************************
@@ -260,12 +260,12 @@ If the protocol uses an underlying protocol, the underlying handshake is
 usually the first step, and the return value can be:
 (largest value for this protocol) + (return value from other protocol)
 
-@param c the client context
+@param client_url_context the client context
 @return >= 0 on success or a negative value corresponding
         to an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ffurl_handshake (
-    URLContext *c
+    URLContext client_url_context
 );
 
 /***********************************************************
@@ -278,7 +278,7 @@ indicates that it is not possible to read more from the accessed
 resource (except if the value of the size argument is also zero).
 ***********************************************************/
 int ffurl_read (
-    URLContext *h,
+    URLContext h,
     uchar[] buf,
     int size
 );
@@ -291,7 +291,7 @@ unnecessary, if the return value is < size then it is
 certain there was either an error or the end of file was reached.
 ***********************************************************/
 int ffurl_read_complete (
-    URLContext *h,
+    URLContext h,
     uchar[] buf,
     int size
 );
@@ -303,7 +303,7 @@ Write size bytes from buf to the resource accessed by h.
 corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ffurl_write (
-    URLContext *h,
+    URLContext h,
     uchar[] buf,
     int size
 );
@@ -323,7 +323,7 @@ the beginning of the file. You can use this feature together with
 SEEK_CUR to read the current file position.
 ***********************************************************/
 int64 ffurl_seek (
-    URLContext *h,
+    URLContext h,
     int64 pos,
     int whence
 );
@@ -336,10 +336,10 @@ memory used by it. Also set the URLContext pointer to NULL.
 otherwise
 ***********************************************************/
 int ffurl_closep (
-    out URLContext *h
+    out URLContext h
 );
 int ffurl_close (
-    URLContext *h
+    URLContext h
 );
 
 /***********************************************************
@@ -348,7 +348,7 @@ if the operation is not supported by h, or another negative value
 corresponding to an LibAVUtil.ErrorCode error code in case of failure.
 ***********************************************************/
 int64 ffurl_size (
-    URLContext *h
+    URLContext h
 );
 
 /***********************************************************
@@ -358,7 +358,7 @@ will return only the RTP file descriptor, not the RTCP file descriptor.
 @return the file descriptor associated with this URL, or <0 on error.
 ***********************************************************/
 int ffurl_get_file_handle (
-    URLContext *h
+    URLContext h
 );
 
 /***********************************************************
@@ -367,7 +367,7 @@ Return the file descriptors associated with this URL.
 @return 0 on success or <0 on error.
 ***********************************************************/
 int ffurl_get_multi_file_handle (
-    URLContext *h,
+    URLContext h,
     out int[] handles,
     out int numhandles
 );
@@ -378,7 +378,7 @@ Return the current short seek threshold value for this URL.
 @return threshold (>0) on success or <=0 on error.
 ***********************************************************/
 int ffurl_get_short_seek (
-    URLContext *h
+    URLContext h
 );
 
 /***********************************************************
@@ -392,7 +392,7 @@ is to be shutdown
 otherwise
 ***********************************************************/
 int ffurl_shutdown (
-    URLContext *h,
+    URLContext h,
     int flags
 );
 
@@ -401,18 +401,18 @@ Check if the user has requested to interrupt a blocking function
 associated with cb.
 ***********************************************************/
 int ff_check_interrupt (
-    AVIOInterruptCB *cb
+    AVIOInterruptCB cb
 );
 
 /***********************************************************
 udp.c
 ***********************************************************/
 int ff_udp_set_remote_url (
-    URLContext *h,
+    URLContext h,
     string uri
 );
 int ff_udp_get_local_port (
-    URLContext *h
+    URLContext h
 );
 
 /***********************************************************
@@ -467,10 +467,10 @@ Allocate directory entry with default values.
 
 @return entry or NULL on error
 ***********************************************************/
-AVIODirEntry *ff_alloc_dir_entry ();
+AVIODirEntry ff_alloc_dir_entry ();
 
-LibAVUtil.Class *ff_urlcontext_child_class_next (
-    LibAVUtil.Class *prev
+LibAVUtil.Class ff_urlcontext_child_class_next (
+    LibAVUtil.Class prev
 );
 
 /***********************************************************

@@ -34,7 +34,7 @@ public class ApiCodecParameterTest : GLib.TestCase {
             uint skip_frame = codec_context.skip_frame;
 
             if (!avcodec_is_open (codec_context)) {
-                LibAVCodec.Codec *codec = avcodec_find_decoder (codec_context.codec_id);
+                LibAVCodec.Codec codec = avcodec_find_decoder (codec_context.codec_id);
 
                 ret = avcodec_open2 (codec_context, codec, null);
                 if (ret < 0) {
@@ -93,8 +93,8 @@ public class ApiCodecParameterTest : GLib.TestCase {
             av_init_packet (out packet);
 
             while (!done) {
-                LibAVCodec.CodecContext *codec_context = null;
-                AVStream *st;
+                LibAVCodec.CodecContext codec_context = null;
+                AVStream st;
 
                 if ((ret = av_read_frame (format_context, out packet)) < 0) {
                     av_log (
@@ -157,19 +157,19 @@ public class ApiCodecParameterTest : GLib.TestCase {
         ***********************************************************/
 
         for (uint i = 0; i < format_context.nb_streams; i++) {
-            AVStream *st = format_context.streams[i];
+            AVStream st = format_context.streams[i];
             avcodec_close (st.codec);
         }
 
         return ret < 0;
     }
 
-    static void dump_video_streams (AVFormatContext *format_context, uint decode) {
+    static void dump_video_streams (AVFormatContext format_context, uint decode) {
 
         for (uint i = 0; i < format_context.nb_streams; i++) {
-            LibAVUtil.Option *opt = null;
-            AVStream *st = format_context.streams[i];
-            LibAVCodec.CodecContext *codec_context = st.codec;
+            LibAVUtil.Option opt = null;
+            AVStream st = format_context.streams[i];
+            LibAVCodec.CodecContext codec_context = st.codec;
 
             GLib.print ("stream=%d, decode=%d\n", i, decode);
             while (opt = av_opt_next (codec_context, opt)) {
@@ -189,7 +189,11 @@ public class ApiCodecParameterTest : GLib.TestCase {
         }
     }
 
-    static uint open_and_probe_video_streams (AVFormatContext **format_context, string filename, uint decode) {
+    static uint open_and_probe_video_streams (
+        out AVFormatContext format_context,
+        string filename,
+        uint decode
+    ) {
         try {
             uint ret = 0;
 
@@ -216,18 +220,18 @@ public class ApiCodecParameterTest : GLib.TestCase {
     }
 
     static uint check_video_streams (
-        AVFormatContext *fmt_ctx1,
-        AVFormatContext *fmt_ctx2
+        AVFormatContext fmt_ctx1,
+        AVFormatContext fmt_ctx2
     ) {
         uint ret = 0;
 
         av_assert0 (fmt_ctx1.nb_streams == fmt_ctx2.nb_streams);
         for (uint i = 0; i < fmt_ctx1.nb_streams; i++) {
-            LibAVUtil.Option *opt = null;
-            AVStream *st1 = fmt_ctx1.streams[i];
-            AVStream *st2 = fmt_ctx2.streams[i];
-            LibAVCodec.CodecContext *codec_ctx1 = st1.codec;
-            LibAVCodec.CodecContext *codec_ctx2 = st2.codec;
+            LibAVUtil.Option opt = null;
+            AVStream st1 = fmt_ctx1.streams[i];
+            AVStream st2 = fmt_ctx2.streams[i];
+            LibAVCodec.CodecContext codec_ctx1 = st1.codec;
+            LibAVCodec.CodecContext codec_ctx2 = st2.codec;
 
             if (codec_ctx1.codec_type != AVMEDIA_TYPE_VIDEO)
                 continue;
@@ -262,8 +266,8 @@ public class ApiCodecParameterTest : GLib.TestCase {
     uint main (uint argc, char* argv[]) {
         try {
             uint ret = 0;
-            AVFormatContext *format_context = null;
-            AVFormatContext *fmt_ctx_no_decode = null;
+            AVFormatContext format_context = null;
+            AVFormatContext fmt_ctx_no_decode = null;
 
             if (argc < 2) {
                 av_log (

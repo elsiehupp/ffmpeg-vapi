@@ -1,6 +1,6 @@
 /***********************************************************
 Image format
-Copyright (c) 2014 Michael Niedermayer
+@copyright 2014 Michael Niedermayer
 
 This file is part of FFmpeg.
 
@@ -28,7 +28,7 @@ public enum PatternType {
 }
 
 public struct VideoDemuxData {
-    LibAVUtil.Class *class; /***********************************************************
+    LibAVUtil.Class class; /***********************************************************
     Class for private options.
     ***********************************************************/
     int img_first;
@@ -77,10 +77,10 @@ public struct IdStrMap {
 //  extern const LibAVUtil.Option ff_img_options[];
 
 int ff_img_read_header (
-    AVFormatContext *s1
+    AVFormatContext s1
 );
 
 int ff_img_read_packet (
-    AVFormatContext *s1,
-    LibAVCodec.Packet *packet
+    AVFormatContext s1,
+    LibAVCodec.Packet packet
 );

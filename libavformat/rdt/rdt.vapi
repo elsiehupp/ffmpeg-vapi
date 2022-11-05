@@ -1,6 +1,6 @@
 /***********************************************************
 Realmedia RTSP (RDT) definitions
-Copyright (c) 2007 Ronald S. Bultje <rbultje@ronald.bitfreak.net>
+@copyright 2007 Ronald S. Bultje <rbultje@ronald.bitfreak.net>
 
 This file is part of FFmpeg.
 
@@ -31,14 +31,14 @@ Allocate and init the RDT parsing context.
 @param handler pointer to the parse_packet () payload parsing function
 @return a newly allocated RDTDemuxContext. Free with ff_rdt_parse_close ().
 ***********************************************************/
-RDTDemuxContext *ff_rdt_parse_open (
-    AVFormatContext *ic,
+RDTDemuxContext ff_rdt_parse_open (
+    AVFormatContext ic,
     int first_stream_of_set_idx,
     void *priv_data,
-    RTPDynamicProtocolHandler *handler
+    RTPDynamicProtocolHandler handler
 );
 void ff_rdt_parse_close (
-    RDTDemuxContext *s
+    RDTDemuxContext demux_context
 );
 
 /***********************************************************
@@ -101,8 +101,8 @@ Parse RDT-style packet data (header + media data).
 Usage similar to rtp_parse_packet ().
 ***********************************************************/
 int ff_rdt_parse_packet (
-    RDTDemuxContext *s,
-    LibAVCodec.Packet *packet,
+    RDTDemuxContext demux_context,
+    LibAVCodec.Packet packet,
     out uint8[] buf,
     int len
 );
@@ -110,13 +110,13 @@ int ff_rdt_parse_packet (
 /***********************************************************
 Parse a server-related SDP line.
 
-@param s the RTSP AVFormatContext
+@param format_context the RTSP AVFormatContext
 @param stream_index the index of the first stream in the set represented
-              by the SDP m= line (in s.streams)
+              by the SDP m= line (in format_context.streams)
 @param buf the SDP line
 ***********************************************************/
 void ff_real_parse_sdp_a_line (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     int stream_index,
     string buf
 );

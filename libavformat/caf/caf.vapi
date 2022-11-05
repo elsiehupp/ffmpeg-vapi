@@ -1,6 +1,6 @@
 /***********************************************************
 CAF common code
-Copyright (c) 2007 Justin Ruggles
+@copyright 2007 Justin Ruggles
 
 This file is part of FFmpeg.
 

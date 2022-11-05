@@ -1,6 +1,6 @@
 /***********************************************************
 SMJPEG common code
-Copyright (c) 2011-2012 Paul B Mahol
+@copyright 2011-2012 Paul B Mahol
 
 This file is part of FFmpeg.
 

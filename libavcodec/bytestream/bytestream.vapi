@@ -1,7 +1,7 @@
 /*
  * Bytestream functions
- * copyright (c) 2006 Baptiste Coudurier <baptiste.coudurier@free.fr>
- * Copyright (c) 2012 Aneesh Dogra (lionaneesh) <lionaneesh@gmail.com>
+ * @copyright 2006 Baptiste Coudurier <baptiste.coudurier@free.fr>
+ * @copyright 2012 Aneesh Dogra (lionaneesh) <lionaneesh@gmail.com>
  *
  * This file is part of FFmpeg.
  *
@@ -45,37 +45,37 @@ public struct PutByteContext {
 //      write (*b, value);                                                          \
 //      (*b) += bytes;                                                             \
 //  }                                                                              \
-//  static void bytestream2_put_ ## name ## u (PutByteContext *p,  \
+//  static void bytestream2_put_ ## name ## u (PutByteContext put_byte_context,  \
 //                                                             const type value)   \
 //  {                                                                              \
-//      bytestream_put_ ## name (&p.buffer, value);                                \
+//      bytestream_put_ ## name (&put_byte_context.buffer, value);                                \
 //  }                                                                              \
-//  static void bytestream2_put_ ## name (PutByteContext *p,       \
+//  static void bytestream2_put_ ## name (PutByteContext put_byte_context,       \
 //                                                        const type value)        \
 //  {                                                                              \
-//      if (!p.eof && (p.buffer_end - p.buffer >= bytes)) {                     \
-//          write (p.buffer, value);                                               \
-//          p.buffer += bytes;                                                    \
+//      if (!put_byte_context.eof && (put_byte_context.buffer_end - put_byte_context.buffer >= bytes)) {                     \
+//          write (put_byte_context.buffer, value);                                               \
+//          put_byte_context.buffer += bytes;                                                    \
 //      } else                                                                     \
-//          p.eof = 1;                                                            \
+//          put_byte_context.eof = 1;                                                            \
 //  }                                                                              \
-//  static type bytestream2_get_ ## name ## u (GetByteContext *g)  \
+//  static type bytestream2_get_ ## name ## u (GetByteContext get_byte_context)  \
 //  {                                                                              \
-//      return bytestream_get_ ## name (&g.buffer);                                \
+//      return bytestream_get_ ## name (&get_byte_context.buffer);                                \
 //  }                                                                              \
-//  static type bytestream2_get_ ## name (GetByteContext *g)       \
+//  static type bytestream2_get_ ## name (GetByteContext get_byte_context)       \
 //  {                                                                              \
-//      if (g.buffer_end - g.buffer < bytes) {                                   \
-//          g.buffer = g.buffer_end;                                             \
+//      if (get_byte_context.buffer_end - get_byte_context.buffer < bytes) {                                   \
+//          get_byte_context.buffer = get_byte_context.buffer_end;                                             \
 //          return 0;                                                              \
 //      }                                                                          \
-//      return bytestream2_get_ ## name ## u (g);                                   \
+//      return bytestream2_get_ ## name ## u (get_byte_context);                                   \
 //  }                                                                              \
-//  static type bytestream2_peek_ ## name (GetByteContext *g)      \
+//  static type bytestream2_peek_ ## name (GetByteContext get_byte_context)      \
 //  {                                                                              \
-//      if (g.buffer_end - g.buffer < bytes)                                     \
+//      if (get_byte_context.buffer_end - get_byte_context.buffer < bytes)                                     \
 //          return 0;                                                              \
-//      return read (g.buffer);                                                    \
+//      return read (get_byte_context.buffer);                                                    \
 //  }
 
 //  DEF (uint64_t,     le64, 8, AV_RL64, AV_WL64)
@@ -125,117 +125,117 @@ public struct PutByteContext {
 //  #endif
 
 static void bytestream2_init (
-    GetByteContext *g,
+    GetByteContext get_byte_context,
     uint8[] buf,
     int buf_size
 );
 
 static void bytestream2_init_writer (
-    PutByteContext *p,
+    PutByteContext put_byte_context,
     uint8[] buf,
     int buf_size
 );
 
 static uint bytestream2_get_bytes_left (
-    GetByteContext *g
+    GetByteContext get_byte_context
 );
 
 static uint bytestream2_get_bytes_left_p (
-    PutByteContext *p
+    PutByteContext put_byte_context
 );
 
 static void bytestream2_skip (
-    GetByteContext *g,
+    GetByteContext get_byte_context,
     uint size
 );
 
 static void bytestream2_skipu (
-    GetByteContext *g,
+    GetByteContext get_byte_context,
     uint size
 );
 
 static void bytestream2_skip_p (
-    PutByteContext *p,
+    PutByteContext put_byte_context,
     uint size
 );
 
 static int bytestream2_tell (
-    GetByteContext *g
+    GetByteContext get_byte_context
 );
 
 static int bytestream2_tell_p (
-    PutByteContext *p
+    PutByteContext put_byte_context
 );
 
 static int bytestream2_size (
-    GetByteContext *g
+    GetByteContext get_byte_context
 );
 
 static int bytestream2_size_p (
-    PutByteContext *p
+    PutByteContext put_byte_context
 );
 
 static int bytestream2_seek (
-    GetByteContext *g,
+    GetByteContext get_byte_context,
     int offset,
     int whence
 );
 
 static int bytestream2_seek_p (
-    PutByteContext *p,
+    PutByteContext put_byte_context,
     int offset,
     int whence
 );
 
 static uint bytestream2_get_buffer (
-    GetByteContext *g,
+    GetByteContext get_byte_context,
     uint8[] dst,
     uint size
 );
 
 static uint bytestream2_get_bufferu (
-    GetByteContext *g,
+    GetByteContext get_byte_context,
     uint8[] dst,
     uint size
 );
 
 static uint bytestream2_put_buffer (
-    PutByteContext *p,
+    PutByteContext put_byte_context,
     uint8[] src,
     uint size
 );
 
 static uint bytestream2_put_bufferu (
-    PutByteContext *p,
+    PutByteContext put_byte_context,
     uint8[] src,
     uint size
 );
 
 static void bytestream2_set_buffer (
-    PutByteContext *p,
+    PutByteContext put_byte_context,
     uint8 c,
     uint size
 );
 
 static void bytestream2_set_bufferu (
-    PutByteContext *p,
+    PutByteContext put_byte_context,
     uint8 c,
     uint size
 );
 
 static uint bytestream2_get_eof (
-    PutByteContext *p
+    PutByteContext put_byte_context
 );
 
 static uint bytestream2_copy_bufferu (
-    PutByteContext *p,
-    GetByteContext *g,
+    PutByteContext put_byte_context,
+    GetByteContext get_byte_context,
     uint size
 );
 
 static uint bytestream2_copy_buffer (
-    PutByteContext *p,
-    GetByteContext *g,
+    PutByteContext put_byte_context,
+    GetByteContext get_byte_context,
     uint size
 );
 

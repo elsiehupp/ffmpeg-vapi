@@ -48,11 +48,11 @@ presentation (vo_vdpau.c) module.
 ***********************************************************/
 
 public delegate int AVVDPAU_Render2 (
-    CodecContext c,
-    LibAVUtil.Frame f,
-    VdpPictureInfo i,
+    CodecContext codec_context,
+    LibAVUtil.Frame frame,
+    VdpPictureInfo info,
     uint32 u,
-    VdpBitstreamBuffer b
+    VdpBitstreamBuffer buffer
 );
 
 /***********************************************************
@@ -100,13 +100,13 @@ public struct VdpContext {
 
     [CCode (cname="av_vdpau_hwaccel_get_render2", cheader_filename="ffmpeg/libavcodec/vdpau.h")]
     public AVVDPAU_Render2 av_vdpau_hwaccel_get_render2 (
-        VdpContext c
+        VdpContext vdp_context
     );
 
     [CCode (cname="av_vdpau_hwaccel_set_render2", cheader_filename="ffmpeg/libavcodec/vdpau.h")]
     public void av_vdpau_hwaccel_set_render2 (
-        VdpContext c,
-        AVVDPAU_Render2 r
+        VdpContext vdp_context,
+        AVVDPAU_Render2 render
     );
 
     /***********************************************************

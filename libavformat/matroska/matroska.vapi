@@ -1,6 +1,6 @@
 /***********************************************************
 Matroska constants
-Copyright (c) 2003-2004 The FFmpeg project
+@copyright 2003-2004 The FFmpeg project
 
 This file is part of FFmpeg.
 
@@ -424,6 +424,6 @@ public const string TRACK_NUMBER; // "webm_dash_manifest_track_number"
 public const string CODEC_PRIVATE_SIZE; // "webm_dash_manifest_codec_priv_size"
 
 int ff_mkv_stereo3d_conv (
-    AVStream *st,
+    AVStream st,
     MatroskaVideoStereoModeType stereo_mode
 );

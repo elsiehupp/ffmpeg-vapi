@@ -1,7 +1,7 @@
 /***********************************************************
 Flash Compatible Streaming Format common header.
-Copyright (c) 2000 Fabrice Bellard
-Copyright (c) 2003 Tinic Uro
+@copyright 2000 Fabrice Bellard
+@copyright 2003 Tinic Uro
 
 This file is part of FFmpeg.
 
@@ -129,13 +129,13 @@ public struct SWFContext {
     int video_frame_number;
     int frame_rate;
     int tag;
-    LibAVUtil.FifoBuffer *audio_fifo;
-    LibAVCodec.CodecParameters *audio_par;
-    LibAVCodec.CodecParameters *video_par;
-    AVStream *video_st;
+    LibAVUtil.FifoBuffer audio_fifo;
+    LibAVCodec.CodecParameters audio_par;
+    LibAVCodec.CodecParameters video_par;
+    AVStream video_st;
 #if CONFIG_ZLIB
     const size_t ZBUF_SIZE;
-    AVIOContext *zpb;
+    AVIOContext zpb;
     uint8[] zbuf_in;
     uint8[] zbuf_out;
     z_stream zstream;

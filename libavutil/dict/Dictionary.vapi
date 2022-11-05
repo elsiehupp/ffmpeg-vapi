@@ -52,7 +52,7 @@ public struct Dictionary  {
     ***********************************************************/
     [CCode (cname="av_dict_get", cheader_filename="dict.h")]
     public LibAVUtil.DictionaryEntry av_dict_get (
-        LibAVUtil.Dictionary m,
+        LibAVUtil.Dictionary dictionary,
         string key,
         LibAVUtil.DictionaryEntry prev,
         int flags
@@ -61,16 +61,16 @@ public struct Dictionary  {
     /***********************************************************
     @brief Get number of entries in dictionary.
 
-    @param m dictionary
+    @param dictionary dictionary
     @return number of entries in dictionary
     ***********************************************************/
     [CCode (cname="av_dict_count", cheader_filename="dict.h")]
     public int av_dict_count (
-        LibAVUtil.Dictionary m
+        LibAVUtil.Dictionary dictionary
     );
 
     /***********************************************************
-    @brief Set the given entry in *pm, overwriting an existing entry.
+    @brief Set the given entry in pm, overwriting an existing entry.
 
     @note If AVDictionaryFlags.DONT_STRDUP_KEY or AVDictionaryFlags.DONT_STRDUP_VAL is set,
         these arguments will be freed on error.
@@ -78,10 +78,10 @@ public struct Dictionary  {
     @warning Adding a new entry to a dictionary invalidates all existing entries
     previously returned with av_dict_get.
 
-    @param pm pointer to a pointer to a dictionary struct. If *pm is null
-        a dictionary struct is allocated and put in *pm.
-    @param key entry key to add to *pm (will either be av_strduped or added as a new key depending on flags)
-    @param value entry value to add to *pm (will be av_strduped or added as a new key depending on flags).
+    @param pm pointer to a pointer to a dictionary struct. If pm is null
+        a dictionary struct is allocated and put in pm.
+    @param key entry key to add to pm (will either be av_strduped or added as a new key depending on flags)
+    @param value entry value to add to pm (will be av_strduped or added as a new key depending on flags).
         Passing a null value will cause an existing entry to be deleted.
     @return >= 0 on success otherwise an error code <0
     ***********************************************************/
@@ -155,7 +155,7 @@ public struct Dictionary  {
     ***********************************************************/
     [CCode (cname="av_dict_free", cheader_filename="dict.h")]
     public void av_dict_free (
-        LibAVUtil.Dictionary m
+        LibAVUtil.Dictionary dictionary
     );
 
     /***********************************************************
@@ -166,7 +166,7 @@ public struct Dictionary  {
 
     @note String is escaped with backslashes ('\').
 
-    @param[in] m dictionary
+    @param[in] dictionary dictionary
     @param[out] buffer Pointer to buffer that will be allocated with string containg entries.
         Buffer must be freed by the caller when is no longer needed.
     @param[in] key_val_sep character used to separate key from value
@@ -176,7 +176,7 @@ public struct Dictionary  {
     ***********************************************************/
     [CCode (cname="av_dict_get_string", cheader_filename="dict.h")]
     public int av_dict_get_string (
-        LibAVUtil.Dictionary m,
+        LibAVUtil.Dictionary dictionary,
         string buffer,
         char key_val_sep,
         char pairs_sep

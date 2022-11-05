@@ -54,12 +54,12 @@ public class ApiFLACTest : GLib.TestCase {
     }
 
     static uint init_encoder (
-        LibAVCodec.Codec *enc,
-        LibAVCodec.CodecContext **enc_ctx,
+        LibAVCodec.Codec enc,
+        out LibAVCodec.CodecContext enc_ctx,
         int64 ch_layout,
         uint sample_rate
     ) {
-        LibAVCodec.CodecContext *ctx;
+        LibAVCodec.CodecContext codec_context;
         uint result;
         char name_buff[NAME_BUFF_SIZE];
 
@@ -72,8 +72,8 @@ public class ApiFLACTest : GLib.TestCase {
             sample_rate
         );
 
-        ctx = avcodec_alloc_context3 (enc);
-        if (ctx == null) {
+        codec_context = avcodec_alloc_context3 (enc);
+        if (codec_context == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -82,34 +82,34 @@ public class ApiFLACTest : GLib.TestCase {
             return AVERROR (ENOMEM);
         }
 
-        ctx.sample_fmt = AV_SAMPLE_FMT_S16;
-        ctx.sample_rate = sample_rate;
-        ctx.channel_layout = ch_layout;
+        codec_context.sample_fmt = AV_SAMPLE_FMT_S16;
+        codec_context.sample_rate = sample_rate;
+        codec_context.channel_layout = ch_layout;
 
-        result = avcodec_open2 (ctx, enc, null);
+        result = avcodec_open2 (codec_context, enc, null);
         if (result < 0) {
             av_log (
-                ctx,
+                codec_context,
                 AV_LOG_ERROR,
                 "Can't open encoder\n"
             );
             return result;
         }
 
-        *enc_ctx = ctx;
+        *enc_ctx = codec_context;
         return 0;
     }
 
     static uint init_decoder (
-        LibAVCodec.Codec *dec,
-        LibAVCodec.CodecContext **dec_ctx,
+        LibAVCodec.Codec dec,
+        out LibAVCodec.CodecContext dec_ctx,
         int64 ch_layout
     ) {
-        LibAVCodec.CodecContext *ctx;
+        LibAVCodec.CodecContext codec_context;
         uint result;
 
-        ctx = avcodec_alloc_context3 (dec);
-        if (ctx == null) {
+        codec_context = avcodec_alloc_context3 (dec);
+        if (codec_context == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -118,33 +118,33 @@ public class ApiFLACTest : GLib.TestCase {
             return AVERROR (ENOMEM);
         }
 
-        ctx.request_sample_fmt = AV_SAMPLE_FMT_S16;
+        codec_context.request_sample_fmt = AV_SAMPLE_FMT_S16;
         /***********************************************************
         XXX: FLAC ignores it for some reason
     ***********************************************************/
 
-        ctx.request_channel_layout = ch_layout;
-        ctx.channel_layout = ch_layout;
+        codec_context.request_channel_layout = ch_layout;
+        codec_context.channel_layout = ch_layout;
 
-        result = avcodec_open2 (ctx, dec, null);
+        result = avcodec_open2 (codec_context, dec, null);
         if (result < 0) {
             av_log (
-                ctx,
+                codec_context,
                 AV_LOG_ERROR,
                 "Can't open decoder\n"
             );
             return result;
         }
 
-        *dec_ctx = ctx;
+        *dec_ctx = codec_context;
         return 0;
     }
 
     static uint run_test (
-        LibAVCodec.Codec *enc,
-        LibAVCodec.Codec *dec,
-        LibAVCodec.CodecContext *enc_ctx,
-        LibAVCodec.CodecContext *dec_ctx
+        LibAVCodec.Codec enc,
+        LibAVCodec.Codec dec,
+        LibAVCodec.CodecContext enc_ctx,
+        LibAVCodec.CodecContext dec_ctx
     ) {
         LibAVCodec.Packet enc_pkt;
         LibAVUtil.Frame in_frame;
@@ -326,23 +326,23 @@ public class ApiFLACTest : GLib.TestCase {
         return 0;
     }
 
-    static uint close_encoder (LibAVCodec.CodecContext **enc_ctx) {
+    static uint close_encoder (out LibAVCodec.CodecContext enc_ctx) {
         avcodec_close (*enc_ctx);
         av_freep (enc_ctx);
         return 0;
     }
 
-    static uint close_decoder (LibAVCodec.CodecContext **dec_ctx) {
+    static uint close_decoder (out LibAVCodec.CodecContext dec_ctx) {
         avcodec_close (*dec_ctx);
         av_freep (dec_ctx);
         return 0;
     }
 
     uint main () {
-        LibAVCodec.Codec *enc = null;
-        LibAVCodec.Codec *dec = null;
-        LibAVCodec.CodecContext *enc_ctx = null;
-        LibAVCodec.CodecContext *dec_ctx = null;
+        LibAVCodec.Codec enc = null;
+        LibAVCodec.Codec dec = null;
+        LibAVCodec.CodecContext enc_ctx = null;
+        LibAVCodec.CodecContext dec_ctx = null;
         uint64 channel_layouts[] = {
             AV_CH_LAYOUT_STEREO,
             AV_CH_LAYOUT_5POINT1_BACK,

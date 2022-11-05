@@ -1,6 +1,6 @@
 /***********************************************************
 MXF
-Copyright (c) 2006 SmartJog S.A., Baptiste Coudurier <baptiste dot coudurier at smartjog dot com>
+@copyright 2006 SmartJog S.A., Baptiste Coudurier <baptiste dot coudurier at smartjog dot com>
 
 This file is part of FFmpeg.
 
@@ -88,10 +88,10 @@ public struct MXFSamplesPerFrame {
 
 int ff_mxf_decode_pixel_layout (
     char pixel_layout[16],
-    LibAVUtil.PixelFormat *pix_fmt
+    LibAVUtil.PixelFormat pix_fmt
 );
-MXFSamplesPerFrame *ff_mxf_get_samples_per_frame (
-    AVFormatContext *s,
+MXFSamplesPerFrame ff_mxf_get_samples_per_frame (
+    AVFormatContext format_context,
     LibAVUtil.Rational time_base
 );
 int ff_mxf_get_content_package_rate (

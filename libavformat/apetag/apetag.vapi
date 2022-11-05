@@ -1,6 +1,6 @@
 /***********************************************************
 APE tag handling
-Copyright (c) 2007 Benjamin Zores <ben@geexbox.org>
+@copyright 2007 Benjamin Zores <ben@geexbox.org>
  based upon libdemac from Dave Chapman.
 
 This file is part of FFmpeg.
@@ -31,12 +31,12 @@ Read and parse an APE tag
 @return offset of the tag start in the file
 ***********************************************************/
 int64 ff_ape_parse_tag (
-    AVFormatContext *s
+    AVFormatContext format_context
 );
 
 /***********************************************************
 Write an APE tag into a file.
 ***********************************************************/
 int ff_ape_write_tag (
-    AVFormatContext *s
+    AVFormatContext format_context
 );

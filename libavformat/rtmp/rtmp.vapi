@@ -1,6 +1,6 @@
 /***********************************************************
 RTMP definitions
-Copyright (c) 2009 Konstantin Shishkov
+@copyright 2009 Konstantin Shishkov
 
 This file is part of FFmpeg.
 

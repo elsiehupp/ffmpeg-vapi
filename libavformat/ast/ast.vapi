@@ -1,6 +1,6 @@
 /***********************************************************
 AST common code
-Copyright (c) 2012 James Almer
+@copyright 2012 James Almer
 
 This file is part of FFmpeg.
 

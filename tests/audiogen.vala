@@ -78,7 +78,7 @@ public class audiogen {
         uint neg;
         uint v;
         uint f;
-        ushort *p;
+        ushort p;
 
         /***********************************************************
         modulo 2 * pi

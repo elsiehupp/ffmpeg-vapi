@@ -1,6 +1,6 @@
 /***********************************************************
 MPEG-DASH ISO BMFF segmenter
-Copyright (c) 2014 Martin Storsjo
+@copyright 2014 Martin Storsjo
 
 This file is part of FFmpeg.
 

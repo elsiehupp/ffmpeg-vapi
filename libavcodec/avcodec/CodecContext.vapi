@@ -1,5 +1,5 @@
 /***********************************************************
-@copyright (c) 2001 Fabrice Bellard
+@@copyright 2001 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -1963,7 +1963,7 @@ public struct CodecContext {
 
     @description Return a negative value on error, otherwise return the number of bytes used.
         If no subtitle could be decompressed, got_sub_ptr is zero.
-        Otherwise, the subtitle is stored in *sub.
+        Otherwise, the subtitle is stored in sub.
         Note that AV_CODEC_CAP_DR1 is not available for subtitle codecs. This is for
         simplicity, because the performance difference is expect to be negligible
         and reusing a get_buffer written for video codecs would probably perform badly
@@ -1982,7 +1982,7 @@ public struct CodecContext {
 
     @param codec_context the codec context
     @param[out] sub The Preallocated Subtitle in which the decoded subtitle will be stored,
-        must be freed with avsubtitle_free if *got_sub_ptr is set.
+        must be freed with avsubtitle_free if got_sub_ptr is set.
     @param[in,out] got_sub_ptr Zero if no subtitle could be decompressed, otherwise, it is nonzero.
     @param[in] avpkt The input Packet containing the input buffer.
     ***********************************************************/

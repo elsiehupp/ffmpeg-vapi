@@ -1,12 +1,12 @@
 /***********************************************************
 General DV muxer/demuxer
-Copyright (c) 2003 Roman Shaposhnik
+@copyright 2003 Roman Shaposhnik
 
 Many thanks to Dan Dennedy <dan@dennedy.org> for providing wealth
 of DV technical info.
 
 Raw DV format
-Copyright (c) 2002 Fabrice Bellard
+@copyright 2002 Fabrice Bellard
 
 This file is part of FFmpeg.
 

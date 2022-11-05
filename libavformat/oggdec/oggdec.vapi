@@ -1,5 +1,5 @@
 /**
-    Copyright (C) 2005 Michael Ahlberg, Måns Rullgård
+    @copyright 2005 Michael Ahlberg, Måns Rullgård
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
@@ -33,10 +33,10 @@ public abstract class ogg_codec {
             -1 if an error occurred or for unsupported stream
     ***********************************************************/
     public abstract int header (
-        AVFormatContext *context, int arg
+        AVFormatContext context, int arg
     );
     public abstract int packet (
-        AVFormatContext *context, int arg
+        AVFormatContext context, int arg
     );
     /***********************************************************
     Translate a granule into a timestamp.
@@ -44,7 +44,7 @@ public abstract class ogg_codec {
     @return pts
     ***********************************************************/
     public abstract uint64 gptopts (
-        AVFormatContext *context,
+        AVFormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
@@ -59,7 +59,7 @@ public abstract class ogg_codec {
     ***********************************************************/
     int nb_header;
     public abstract void cleanup (
-        AVFormatContext *s,
+        AVFormatContext format_context,
         int idx
     );
 }
@@ -86,7 +86,7 @@ public struct ogg_stream {
     ***********************************************************/
     int64 page_pos;
     int flags;
-    ogg_codec *codec;
+    ogg_codec codec;
     int header;
     int nsegs;
     int segp;
@@ -121,13 +121,13 @@ public struct ogg_stream {
 public struct ogg_state {
     uint64 pos;
     int curidx;
-    ogg_state *next;
+    ogg_state next;
     int nstreams;
     ogg_stream streams[1];
 }
 
 public struct ogg {
-    ogg_stream *streams;
+    ogg_stream streams;
     int nstreams;
     int headers;
     int curidx;
@@ -135,7 +135,7 @@ public struct ogg {
     file offset of the current page
     ***********************************************************/
     int64 page_pos;
-    ogg_state *state;
+    ogg_state state;
 }
 
 [Flags]
@@ -165,27 +165,27 @@ public const uint64 OGG_NOGRANULE_VALUE;
 //  extern const struct ogg_codec ff_vp8_codec;
 
 int ff_vorbis_comment (
-    AVFormatContext *ms,
-    LibAVUtil.Dictionary **m,
+    AVFormatContext ms,
+    out LibAVUtil.Dictionary m,
     uint8[] buf,
     int size,
     int parse_picture
 );
 
 int ff_vorbis_stream_comment (
-    AVFormatContext *as,
-    AVStream *st,
+    AVFormatContext as,
+    AVStream st,
     uint8[] buf,
     int size
 );
 
 static int ogg_find_stream (
-    ogg *ogg,
+    ogg ogg,
     int serial
 );
 
 static uint64 ogg_gptopts (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     int i,
     uint64 gp,
     out int64 dts

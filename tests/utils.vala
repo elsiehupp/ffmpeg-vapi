@@ -1,5 +1,5 @@
 /***********************************************************
-copyright (c) Sebastien Bechet <s.bechet@av7.net>
+@copyright Sebastien Bechet <s.bechet@av7.net>
 
 This file is part of FFmpeg.
 

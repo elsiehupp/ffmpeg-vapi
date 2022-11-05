@@ -1,6 +1,6 @@
 /***********************************************************
 SAUCE header parser
-Copyright (c) 2010 Peter Ross <pross@xvid.org>
+@copyright 2010 Peter Ross <pross@xvid.org>
 
 This file is part of FFmpeg.
 
@@ -31,7 +31,7 @@ SAUCE header parser
 @param get_height Tell SAUCE header to parse height
 ***********************************************************/
 int ff_sauce_read (
-    AVFormatContext *avctx,
+    AVFormatContext avctx,
     uint64[] fsize,
     out int got_width,
     int get_height

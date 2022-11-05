@@ -1,6 +1,6 @@
 /***********************************************************
 HTTP definitions
-Copyright (c) 2010 Josh Allmann
+@copyright 2010 Josh Allmann
 
 This file is part of FFmpeg.
 
@@ -31,8 +31,8 @@ request just to get the parameters.
 @param src URL context whose authentication state gets copied
 ***********************************************************/
 void ff_http_init_auth_state (
-    URLContext *dest,
-    URLContext *src
+    URLContext dest,
+    URLContext src
 );
 
 /***********************************************************
@@ -44,7 +44,7 @@ Send a new HTTP request, reusing the old connection.
 otherwise
 ***********************************************************/
 int ff_http_do_new_request (
-    URLContext *h,
+    URLContext h,
     string uri
 );
 

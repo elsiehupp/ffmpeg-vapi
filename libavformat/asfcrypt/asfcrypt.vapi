@@ -1,6 +1,6 @@
 /***********************************************************
 ASF decryption
-Copyright (c) 2007 Reimar Doeffinger
+@copyright 2007 Reimar Doeffinger
 
 This file is part of FFmpeg.
 

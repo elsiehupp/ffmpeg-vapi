@@ -49,7 +49,7 @@ public struct FFTContext {
     [CCode (cname="av_fft_permute", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public void av_fft_permute (
         FFTContext fft_context,
-        FFTComplex z
+        FFTComplex fft_complex
     );
 
     /***********************************************************
@@ -59,7 +59,7 @@ public struct FFTContext {
     [CCode (cname="av_fft_calc", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public void av_fft_calc (
         FFTContext fft_context,
-        FFTComplex z
+        FFTComplex fft_complex
     );
 
     [CCode (cname="av_fft_end", cheader_filename="ffmpeg/libavcodec/avfft.h")]

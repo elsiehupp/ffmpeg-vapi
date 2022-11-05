@@ -1,6 +1,6 @@
 /***********************************************************
 "Real" compatible muxer and demuxer.
-Copyright (c) 2000, 2001 Fabrice Bellard
+@copyright 2000, 2001 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -24,9 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 public struct RMStream { }
 
-RMStream *ff_rm_alloc_rmstream ();
+RMStream ff_rm_alloc_rmstream ();
 void ff_rm_free_rmstream (
-    RMStream *rms
+    RMStream rms
 );
 
 /*< input format for Realmedia-style RTSP streams
@@ -37,7 +37,7 @@ void ff_rm_free_rmstream (
 Read the MDPR chunk, which contains stream-specific codec initialization
 parameters.
 
-@param s context containing RMContext and AVIOContext for stream reading
+@param format_context context containing RMContext and AVIOContext for stream reading
 @param pb context to read the data from
 @param st the stream that the MDPR chunk belongs to and where to store the
       parameters read from the chunk into
@@ -46,9 +46,9 @@ parameters.
 @return 0 on success, errno codes on error
 ***********************************************************/
 int ff_rm_read_mdpr_codecdata (
-    AVFormatContext *s,
-    AVIOContext *pb,
-    AVStream *st, RMStream *rst,
+    AVFormatContext format_context,
+    AVIOContext pb,
+    AVStream st, RMStream rst,
     uint codec_data_size,
     uint8[] mime
 );
@@ -56,7 +56,7 @@ int ff_rm_read_mdpr_codecdata (
 /***********************************************************
 Parse one rm-stream packet from the input bytestream.
 
-@param s context containing RMContext and AVIOContext for stream reading
+@param format_context context containing RMContext and AVIOContext for stream reading
 @param pb context to read the data from
 @param st stream to which the packet to be read belongs
 @param rst Real-specific stream information
@@ -71,12 +71,12 @@ Parse one rm-stream packet from the input bytestream.
     data is available by calling ff_rm_retrieve_cache ().
 ***********************************************************/
 int ff_rm_parse_packet (
-    AVFormatContext *s,
-    AVIOContext *pb,
-    AVStream *st,
-    RMStream *rst,
+    AVFormatContext format_context,
+    AVIOContext pb,
+    AVStream st,
+    RMStream rst,
     int len,
-    LibAVCodec.Packet *packet,
+    LibAVCodec.Packet packet,
     out int seq,
     int flags,
     int64 ts
@@ -90,7 +90,7 @@ packet is parsed and returned. The result is that rm.audio_pkt_cnt is
 a positive number, the amount of cached packets. Using this function, each
 of those packets can be retrieved sequentially.
 
-@param s context containing RMContext and AVIOContext for stream reading
+@param format_context context containing RMContext and AVIOContext for stream reading
 @param pb context to read the data from
 @param st stream that this packet belongs to
 @param rst Real-specific stream information
@@ -99,9 +99,9 @@ of those packets can be retrieved sequentially.
      function, or 0 if all samples have been retrieved.
 ***********************************************************/
 int ff_rm_retrieve_cache (
-    AVFormatContext *s,
-    AVIOContext *pb,
-    AVStream *st,
-    RMStream *rst,
-    LibAVCodec.Packet *packet
+    AVFormatContext format_context,
+    AVIOContext pb,
+    AVStream st,
+    RMStream rst,
+    LibAVCodec.Packet packet
 );

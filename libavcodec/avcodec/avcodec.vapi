@@ -300,13 +300,14 @@ public void av_fast_padded_mallocz (
 /***********************************************************
 @brief Encode extradata length to a buffer. Used by xiph codecs.
 
-@param s buffer to write to; must be at least (v/255+1) bytes long
-@param v size of extradata in bytes
+@param s buffer to write to; must be at least (data_size/255+1) bytes long
+@param data_size size of extradata in bytes
 @return number of bytes written to the buffer.
 ***********************************************************/
 [CCode (cname="av_xiphlacing", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public uint av_xiphlacing (
-    out uchar[] s, uint v
+    out uchar[] s,
+    uint data_size
 );
 
 } // namespace LibAVCodec

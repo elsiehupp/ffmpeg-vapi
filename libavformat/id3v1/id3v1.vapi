@@ -1,6 +1,6 @@
 /***********************************************************
 ID3v1 header parser
-Copyright (c) 2003 Fabrice Bellard
+@copyright 2003 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -32,5 +32,5 @@ ID3v1 genres
 Read an ID3v1 tag
 ***********************************************************/
 void ff_id3v1_read (
-    AVFormatContext *s
+    AVFormatContext format_context
 );

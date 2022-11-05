@@ -47,7 +47,7 @@ the resulting bitstream to the provided AVIOContext.
     code in case of failure
 ***********************************************************/
 int ff_av1_filter_obus (
-    AVIOContext *pb,
+    AVIOContext pb,
     uint8[] buf,
     int size
 );
@@ -83,7 +83,7 @@ Parses a Sequence Header from the the provided buffer.
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ff_av1_parse_seq_header (
-    AV1SequenceParameters *seq,
+    AV1SequenceParameters seq,
     uint8[] buf,
     int size
 );
@@ -99,7 +99,7 @@ AVIOContext.
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ff_isom_write_av1c (
-    AVIOContext *pb,
+    AVIOContext pb,
     uint8[] buf,
     int size
 );

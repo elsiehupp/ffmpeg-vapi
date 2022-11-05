@@ -1,6 +1,6 @@
 /***********************************************************
 AVC helper functions for muxers
-Copyright (c) 2008 Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2008 Aurelien Jacobs <aurel@gnuage.org>
 
 This file is part of FFmpeg.
 
@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 int ff_avc_parse_nal_units (
-    AVIOContext *s,
+    AVIOContext io_context,
     uint8[] buf,
     int size
 );
@@ -30,12 +30,12 @@ int ff_avc_parse_nal_units_buf (
     int[] size
 );
 int ff_isom_write_avcc (
-    AVIOContext *pb,
+    AVIOContext pb,
     uint8[] data,
     int len
 );
 uint8[] ff_avc_find_startcode (
-    uint8[] p,
+    uint8[] pointer,
     uint8[] end
 );
 int ff_avc_write_annexb_extradata (
@@ -67,7 +67,7 @@ public struct H264SPS {
 }
 
 int ff_avc_decode_sps (
-    H264SPS *sps,
+    H264SPS sps,
     uint8[] buf,
     int buf_size
 );

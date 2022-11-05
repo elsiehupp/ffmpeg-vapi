@@ -1,6 +1,6 @@
 /***********************************************************
 RTP definitions
-Copyright (c) 2002 Fabrice Bellard
+@copyright 2002 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -31,8 +31,8 @@ The format context private option payload_type overrides both.
 @return The payload type (the 'PT' field in the RTP header).
 ***********************************************************/
 int ff_rtp_get_payload_type (
-    AVFormatContext *fmt,
-    LibAVCodec.CodecParameters *par,
+    AVFormatContext fmt,
+    LibAVCodec.CodecParameters par,
     int idx
 );
 
@@ -49,7 +49,7 @@ channels and sample_rate fields are also filled.
 negative value is returned; otherwise, 0 is returned
 ***********************************************************/
 int ff_rtp_get_codec_info (
-    LibAVCodec.CodecParameters *par,
+    LibAVCodec.CodecParameters par,
     int payload_type
 );
 

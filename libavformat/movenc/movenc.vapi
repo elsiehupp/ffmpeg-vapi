@@ -1,8 +1,8 @@
 /***********************************************************
 MOV, 3GP, MP4 muxer
-Copyright (c) 2003 Thomas Raivio
-Copyright (c) 2004 Gildas Bazin <gbazin at videolan dot org>
-Copyright (c) 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
+@copyright 2003 Thomas Raivio
+@copyright 2004 Gildas Bazin <gbazin at videolan dot org>
+@copyright 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
 
 This file is part of FFmpeg.
 
@@ -72,7 +72,7 @@ public struct HintSample {
 public struct HintSampleQueue {
     int size;
     int len;
-    HintSample *samples;
+    HintSample samples;
 }
 
 public struct MOVFragmentInfo {
@@ -117,13 +117,13 @@ public struct MOVTrack {
     stsd fourcc
     ***********************************************************/
     int tag;
-    AVStream *st;
-    LibAVCodec.CodecParameters *par;
+    AVStream st;
+    LibAVCodec.CodecParameters par;
     int multichannel_as_mono;
 
     int vos_len;
     uint8 *vos_data;
-    MOVIentry *cluster;
+    MOVIentry cluster;
     uint cluster_capacity;
     int audio_vbr;
     /***********************************************************
@@ -153,7 +153,7 @@ public struct MOVTrack {
     /***********************************************************
     the format context for the hinting rtp muxer
     ***********************************************************/
-    AVFormatContext *rtp_ctx;
+    AVFormatContext rtp_ctx;
     uint32 prev_rtp_ts;
     int64 cur_rtp_ts_unwrapped;
     uint32 max_packet_size;
@@ -165,14 +165,14 @@ public struct MOVTrack {
     HintSampleQueue sample_queue;
     LibAVCodec.Packet cover_image;
 
-    AVIOContext *mdat_buf;
+    AVIOContext mdat_buf;
     int64 data_offset;
     int64 frag_start;
     int frag_discont;
     int entries_flushed;
 
     int nb_frag_info;
-    MOVFragmentInfo *frag_info;
+    MOVFragmentInfo frag_info;
     uint frag_info_capacity;
 
     VC1Info vc1_info;
@@ -210,7 +210,7 @@ public enum MOVPrftBox {
 }
 
 public struct MOVMuxContext {
-    LibAVUtil.Class *av_class;
+    LibAVUtil.Class av_class;
     int mode;
     int64 time;
     int nb_streams;
@@ -224,7 +224,7 @@ public struct MOVMuxContext {
     int chapter_track;
     int64 mdat_pos;
     uint64 mdat_size;
-    MOVTrack *tracks;
+    MOVTrack tracks;
 
     int flags;
     int rtp_flags;
@@ -239,7 +239,7 @@ public struct MOVMuxContext {
     int min_fragment_duration;
     int max_fragment_size;
     int ism_lookahead;
-    AVIOContext *mdat_buf;
+    AVIOContext mdat_buf;
     int first_trun;
 
     int video_track_timescale;
@@ -253,7 +253,7 @@ public struct MOVMuxContext {
     string major_brand;
 
     int per_stream_grouping;
-    AVFormatContext *fc;
+    AVFormatContext fc;
 
     int use_editlist;
     float gamma;
@@ -304,23 +304,23 @@ public enum MOVFlags {
 }
 
 int ff_mov_write_packet (
-    AVFormatContext *s,
-    LibAVCodec.Packet *packet
+    AVFormatContext format_context,
+    LibAVCodec.Packet packet
 );
 
 int ff_mov_init_hinting (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     int index,
     int src_index
 );
 int ff_mov_add_hinted_packet (
-    AVFormatContext *s,
-    LibAVCodec.Packet *packet,
+    AVFormatContext format_context,
+    LibAVCodec.Packet packet,
     int track_index,
     int sample,
     uint8[] sample_data,
     int sample_size
 );
 void ff_mov_close_hinting (
-    MOVTrack *track
+    MOVTrack track
 );

@@ -1,6 +1,6 @@
 /***********************************************************
 RSO format common data
-Copyright (c) 2010 Rafael Carre
+@copyright 2010 Rafael Carre
 
 This file is part of FFmpeg.
 

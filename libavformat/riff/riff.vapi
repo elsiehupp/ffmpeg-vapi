@@ -1,6 +1,6 @@
 /***********************************************************
 RIFF common functions and data
-copyright (c) 2000 Fabrice Bellard
+@copyright 2000 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -28,29 +28,29 @@ do NOT include this in end user applications
 //  extern const AVMetadataConv ff_riff_info_conv[];
 
 int64 ff_start_tag (
-    AVIOContext *pb,
+    AVIOContext pb,
     string tag
 );
 void ff_end_tag (
-    AVIOContext *pb,
+    AVIOContext pb,
     int64 start
 );
 
 /***********************************************************
 Read BITMAPINFOHEADER structure and set AVStream codec width, height and
 bits_per_encoded_sample fields. Does not read extradata.
-Writes the size of the BMP file to *size.
+Writes the size of the BMP file to size.
 @return codec tag
 ***********************************************************/
 int ff_get_bmp_header (
-    AVIOContext *pb,
-    AVStream *st,
+    AVIOContext pb,
+    AVStream st,
     uint32[] size
 );
 
 void ff_put_bmp_header (
-    AVIOContext *pb,
-    LibAVCodec.CodecParameters *par,
+    AVIOContext pb,
+    LibAVCodec.CodecParameters par,
     int for_asf,
     int ignore_extradata
 );
@@ -76,9 +76,9 @@ Write WAVEFORMAT header structure.
 @return the size or -1 on error
 ***********************************************************/
 int ff_put_wav_header (
-    AVFormatContext *s,
-    AVIOContext *pb,
-    LibAVCodec.CodecParameters *par,
+    AVFormatContext format_context,
+    AVIOContext pb,
+    LibAVCodec.CodecParameters par,
     int flags
 );
 
@@ -87,9 +87,9 @@ public LibAVCodec.CodecID ff_wav_codec_get_id (
     int bps
 );
 int ff_get_wav_header (
-    AVFormatContext *s,
-    AVIOContext *pb,
-    LibAVCodec.CodecParameters *par,
+    AVFormatContext format_context,
+    AVIOContext pb,
+    LibAVCodec.CodecParameters par,
     int size,
     int big_endian
 );
@@ -100,29 +100,29 @@ int ff_get_wav_header (
 //  extern const AVCodecTag ff_codec_bmp_tags_unofficial[];
 
 void ff_parse_specific_params (
-    AVStream *st,
+    AVStream st,
     out int au_rate,
     out int au_ssize,
     out int au_scale
 );
 
 int ff_read_riff_info (
-    AVFormatContext *s,
+    AVFormatContext format_context,
     int64 size
 );
 
 /***********************************************************
-Write all recognized RIFF tags from s.metadata
+Write all recognized RIFF tags from format_context.metadata
 ***********************************************************/
 void ff_riff_write_info (
-    AVFormatContext *s
+    AVFormatContext format_context
 );
 
 /***********************************************************
 Write a single RIFF info tag
 ***********************************************************/
 void ff_riff_write_info_tag (
-    AVIOContext *pb,
+    AVIOContext pb,
     string tag,
     string str
 );
@@ -159,11 +159,11 @@ static int ff_guidcmp (
 );
 
 int ff_get_guid (
-    AVIOContext *s,
+    AVIOContext io_context,
     ff_asf_guid *g
 );
 void ff_put_guid (
-    AVIOContext *s,
+    AVIOContext io_context,
     ff_asf_guid *g
 );
 ff_asf_guid *ff_get_codec_guid (

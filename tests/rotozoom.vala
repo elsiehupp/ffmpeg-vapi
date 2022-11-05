@@ -1,7 +1,7 @@
 /***********************************************************
 Generate a synthetic YUV video sequence suitable for codec testing.
 
-copyright (c) Sebastien Bechet <s.bechet@av7.net>
+@copyright Sebastien Bechet <s.bechet@av7.net>
 
 This file is part of FFmpeg.
 

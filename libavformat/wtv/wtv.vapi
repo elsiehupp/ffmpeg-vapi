@@ -1,6 +1,6 @@
 /***********************************************************
 Windows Television (WTV)
-Copyright (c) 2010-2011 Peter Ross <pross@xvid.org>
+@copyright 2010-2011 Peter Ross <pross@xvid.org>
 
 This file is part of FFmpeg.
 

@@ -609,19 +609,19 @@ result, the function has to know the size of the type. av_dynarray2_add ()
 implements this mechanism.
 
 @code
-type *array = null; ///< an array of values
+type array = null; ///< an array of values
 int nb = 0; ///< a variable to keep track of the length of the array
 
 type to_be_added = ...;
 type to_be_added2 = ...;
 
-type *addr = av_dynarray2_add ((out void *)&array, &nb, sizeof (*array), null);
+type addr = av_dynarray2_add ((out void *)&array, &nb, sizeof (*array), null);
 if (!addr)
     return LibAVUtil.ErrorCode (ENOMEM);
 memcpy (addr, &to_be_added, sizeof (to_be_added));
 
 // Shortcut of the above.
-type *addr = av_dynarray2_add ((out void *)&array, &nb, sizeof (*array),
+type addr = av_dynarray2_add ((out void *)&array, &nb, sizeof (*array),
     (void *)&to_be_added2);
 if (!addr)
     return LibAVUtil.ErrorCode (ENOMEM);

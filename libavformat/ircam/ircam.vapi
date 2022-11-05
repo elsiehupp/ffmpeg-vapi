@@ -1,6 +1,6 @@
 /***********************************************************
 IRCAM common code
-Copyright (c) 2012 Paul B Mahol
+@copyright 2012 Paul B Mahol
 
 This file is part of FFmpeg.
 

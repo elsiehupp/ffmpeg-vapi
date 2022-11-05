@@ -1,6 +1,6 @@
 /***********************************************************
 various OS-feature replacement utilities
-copyright (c) 2000, 2001, 2002 Fabrice Bellard
+@copyright 2000, 2001, 2002 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -141,7 +141,7 @@ public enum PollEvent {
 
 
 //  int ff_poll (
-//      GLib.PollFD *fds,
+//      GLib.PollFD fds,
 //      nfds_t numfds,
 //      int timeout
 //  );
@@ -159,7 +159,7 @@ public enum PollEvent {
 //  #define DEF_FS_FUNCTION (name, wfunc, afunc)               \
 //  static inline int win32_##name (string filename_utf8) \
 //  {                                                         \
-//      wchar_t *filename_w; \
+//      wchar_t filename_w; \
 //      int ret; \
 //                                                            \
 //      if (utf8towchar (filename_utf8, &filename_w))          \
@@ -185,7 +185,7 @@ public enum PollEvent {
 //  #define DEF_FS_FUNCTION2 (name, wfunc, afunc, partype)     \
 //  static inline int win32_##name (string filename_utf8, partype par) \
 //  {                                                         \
-//      wchar_t *filename_w; \
+//      wchar_t filename_w; \
 //      int ret; \
 //                                                            \
 //      if (utf8towchar (filename_utf8, &filename_w))          \
@@ -209,7 +209,7 @@ public enum PollEvent {
 
 //  static inline int win32_rename (string src_utf8, string dest_utf8)
 //  {
-//      wchar_t *src_w, *dest_w;
+//      wchar_t src_w, *dest_w;
 //      int ret;
 
 //      if (utf8towchar (src_utf8, &src_w))

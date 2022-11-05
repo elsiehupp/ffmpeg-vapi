@@ -1,6 +1,6 @@
 /***********************************************************
 IEC 61937 common header
-Copyright (c) 2009 Bartlomiej Wolowiec
+@copyright 2009 Bartlomiej Wolowiec
 
 This file is part of FFmpeg.
 
@@ -118,11 +118,11 @@ void ff_spdif_bswap_buf16 (
     int w
 );
 int ff_spdif_read_packet (
-    AVFormatContext *s,
-    LibAVCodec.Packet *packet
+    AVFormatContext format_context,
+    LibAVCodec.Packet packet
 );
 int ff_spdif_probe (
     uint8[] probe_buf,
     int buf_size,
-    LibAVCodec.CodecID *codec
+    LibAVCodec.CodecID codec
 );

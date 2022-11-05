@@ -87,8 +87,8 @@ public struct TreeNode {
     /***********************************************************
     @brief Insert or remove an element.
 
-    If *next is null, then the supplied element will be removed if it exists.
-    If *next is non-null, then the supplied element will be inserted, unless
+    If next is null, then the supplied element will be removed if it exists.
+    If next is non-null, then the supplied element will be inserted, unless
     it already exists in the tree.
 
     @param rootp A pointer to a pointer to the root node of the tree; note that
@@ -99,7 +99,7 @@ public struct TreeNode {
         must set it to an allocated and zeroed object of at least
         av_tree_node_size bytes size. av_tree_insert () will set it to
         null if it has been consumed.
-        For deleting elements *next is set to null by the user and
+        For deleting elements next is set to null by the user and
         av_tree_insert () will set it to the TreeNode which was
         used for the removed element.
         This allows the use of flat arrays, which have
