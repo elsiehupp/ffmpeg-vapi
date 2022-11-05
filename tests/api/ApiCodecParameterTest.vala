@@ -167,7 +167,7 @@ public class ApiCodecParameterTest : GLib.TestCase {
     static void dump_video_streams (AVFormatContext *format_context, uint decode) {
 
         for (uint i = 0; i < format_context.nb_streams; i++) {
-            AVOption *opt = null;
+            LibAVUtil.Option *opt = null;
             AVStream *st = format_context.streams[i];
             LibAVCodec.CodecContext *codec_context = st.codec;
 
@@ -223,7 +223,7 @@ public class ApiCodecParameterTest : GLib.TestCase {
 
         av_assert0 (fmt_ctx1.nb_streams == fmt_ctx2.nb_streams);
         for (uint i = 0; i < fmt_ctx1.nb_streams; i++) {
-            AVOption *opt = null;
+            LibAVUtil.Option *opt = null;
             AVStream *st1 = fmt_ctx1.streams[i];
             AVStream *st2 = fmt_ctx2.streams[i];
             LibAVCodec.CodecContext *codec_ctx1 = st1.codec;

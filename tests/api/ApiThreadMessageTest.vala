@@ -20,25 +20,21 @@ THE SOFTWARE.
 
 public class ApiThreadMessageTest : GLib.TestCase {
 
-    errordomain Goto {
-        END
-    }
     /***********************************************************
     Thread message API test
     ***********************************************************/
     abstract class AbstractData {
         public abstract string stringify ();
-        public static AbstractData[] instance_array;
         public static uint count;
         public static uint min_load;
         public static uint max_load;
         public uint id;
-        public pthread_t tid;
+        public GLib.Thread tid;
         public uint workload;
-        public AVThreadMessageQueue queue;
+        public LibAVUtil.ThreadMessageQueue queue;
         public abstract void *thread ();
 
-        public static void SPAWN_THREADS (AVThreadMessageQueue queue) throws Goto {
+        public static void SPAWN_THREADS (LibAVUtil.ThreadMessageQueue queue) throws Goto {
             for (int i = 0; i < count; i++) {
                 AbstractData td = instance_array[i];
         
@@ -104,6 +100,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
     }
 
     class SenderData : AbstractData {
+        public static SenderData[] instance_array;
         public override string stringify () {
             return "SenderData";
         }
@@ -227,6 +224,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
     ***********************************************************/
 
     class ReceiverData : AbstractData {
+        public static ReceiverData[] instance_array;
         public override string stringify () {
             return "ReceiverData";
         }
@@ -247,7 +245,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
                 } else {
                     ThreadMessage msg;
                     LibAVUtil.Dictionary *meta;
-                    AVDictionaryEntry *e;
+                    LibAVUtil.DictionaryEntry *e;
         
                     ret = av_thread_message_queue_recv (
                         this.queue,
@@ -329,7 +327,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
     ) {
         uint ret = 0;
         uint max_queue_size;
-        AVThreadMessageQueue queue = null;
+        LibAVUtil.ThreadMessageQueue queue = null;
 
         if (ac != 8) {
             av_log (

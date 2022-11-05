@@ -59,14 +59,14 @@ public struct HardwareFrameConstraints {
 
     /***********************************************************
     @brief The maximum size of frames in this hw_frames_ctx.
-    (INT_MAX if not known / no limit.)
+    (int.MAX if not known / no limit.)
     ***********************************************************/
     [CCode (cname="max_width")]
     public int max_width;
 
     /***********************************************************
     @brief The maximum size of frames in this hw_frames_ctx.
-    (INT_MAX if not known / no limit.)
+    (int.MAX if not known / no limit.)
     ***********************************************************/
     [CCode (cname="max_height")]
     public int max_height;

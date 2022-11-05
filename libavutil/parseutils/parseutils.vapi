@@ -198,7 +198,7 @@ by the standard strptime ().
 The supported input field descriptors are listed below.
 - %H: the hour as a decimal number, using a 24-hour clock, in the
     range '00' through '23'
-- %J: hours as a decimal number, in the range '0' through INT_MAX
+- %J: hours as a decimal number, in the range '0' through int.MAX
 - %M: the minute as a decimal number, using a 24-hour clock, in the
     range '00' through '59'
 - %S: the second as a decimal number, using a 24-hour clock, in the
@@ -217,19 +217,19 @@ The supported input field descriptors are listed below.
     is consumed the return value points to the null byte at the end of
     the string. On failure null is returned.
 ***********************************************************/
-[CCode (cname="av_small_strptime", cheader_filename="ffmpeg/libavutil/parseutils.h")]
-public string av_small_strptime (
-    string p,
-    string fmt,
-    tm *dt
-);
+//  [CCode (cname="av_small_strptime", cheader_filename="ffmpeg/libavutil/parseutils.h")]
+//  public string av_small_strptime (
+//      string p,
+//      string fmt,
+//      tm *dt
+//  );
 
 /***********************************************************
 @brief Convert the decomposed UTC time in tm to a time_t value.
 ***********************************************************/
-[CCode (cname="av_timegm", cheader_filename="ffmpeg/libavutil/parseutils.h")]
-public time_t av_timegm (
-    tm *tm
-);
+//  [CCode (cname="av_timegm", cheader_filename="ffmpeg/libavutil/parseutils.h")]
+//  public time_t av_timegm (
+//      tm *tm
+//  );
 
 } // namespace LibAVUtil

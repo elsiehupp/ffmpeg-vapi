@@ -26,7 +26,7 @@ public class ApiBandTest : GLib.TestCase {
     draw_horiz_band test.
     ***********************************************************/
 
-    static uint8[] slice_byte_buffer;
+    static uint8 *slice_byte_buffer;
     static uint8 slice_byte_buffer_size;
     static uint draw_horiz_band_called;
 

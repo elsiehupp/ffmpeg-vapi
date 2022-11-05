@@ -45,7 +45,7 @@ public class ApiH264SliceTest : GLib.TestCase {
         while (ret >= 0) {
             LibAVUtil.PixelFormatDescriptor *desc;
             char sum[AV_HASH_MAX_SIZE * 2 + 1];
-            AVHashContext *hash;
+            LibAVUtil.Crypto.HashContext *hash;
 
             ret = avcodec_receive_frame (dec_ctx, frame);
             if (ret == AVERROR (EAGAIN) || ret == AVERROR_EOF) {
@@ -90,10 +90,6 @@ public class ApiH264SliceTest : GLib.TestCase {
             av_hash_freep (out hash);
         }
         return 0;
-    }
-
-    errordomain Goto {
-        ERROR
     }
 
     static LibAVCodec.Codec *codec = null;

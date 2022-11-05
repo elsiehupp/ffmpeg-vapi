@@ -143,7 +143,7 @@ options are then returned in the options dictionary (recognized options are
 consumed). The calling program can handle such unrecognized options as it
 wishes, e.g.
 @code
-AVDictionaryEntry *e;
+LibAVUtil.DictionaryEntry *e;
 if (e = av_dict_get (options, "", NULL, AV_DICT_IGNORE_SUFFIX)) {
     fprintf (stderr, "Option %s not recognized by the demuxer.\n", e.key);
     abort ();

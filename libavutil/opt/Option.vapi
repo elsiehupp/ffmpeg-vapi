@@ -57,7 +57,7 @@ public struct test_struct {
 
 public const Option test_options[] = {
   { "test_int", "This is a test option of int type.", offsetof (test_struct, int_opt),
-    OptionType.INT, { .i64 = -1 }, INT_MIN, INT_MAX },
+    OptionType.INT, { .i64 = -1 }, INT_MIN, int.MAX },
   { "test_str", "This is a test option of string type.", offsetof (test_struct, str_opt),
     OptionType.STRING },
   { "test_bin", "This is a test option of binary type.", offsetof (test_struct, bin_opt),
@@ -114,7 +114,7 @@ void free_test_struct (test_struct **foo) {
     } child_struct;
     public const Option child_opts[] = {
         { "test_flags", "This is a test option of flags type.",
-        offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, INT_MAX },
+        offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, int.MAX },
         { null },
     }
     public const Class child_class = {
@@ -159,7 +159,7 @@ void free_test_struct (test_struct **foo) {
     above, put the following into the child_opts array:
     @code
     { "test_flags", "This is a test option of flags type.",
-     offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, INT_MAX, "test_unit" },
+     offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, int.MAX, "test_unit" },
     { "flag1", "This is a flag with value 16", 0, OptionType.CONST, { .i64 = 16 }, 0, 0, "test_unit" },
     @endcode
 

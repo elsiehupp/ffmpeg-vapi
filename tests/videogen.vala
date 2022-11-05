@@ -203,7 +203,7 @@ uint main (
     for (uint i = 0; i < DEFAULT_NB_PICT; i++) {
         gen_image (i, width, height);
         if (isdir) {
-            snprintf (buf, sizeof (buf), "%s%02d.pgm", argv[1], i);
+            snprintf (buf, sizeof (char), "%s%02d.pgm", argv[1], i);
             pgmyuv_save (buf, width, height, rgb_tab);
         } else {
             pgmyuv_save (null, width, height, rgb_tab);

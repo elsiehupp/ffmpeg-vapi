@@ -47,7 +47,7 @@ Encoding/Decoding Library
 @ingroup libavc
 @defgroup lavc_encdec send/receive encoding and decoding API overview
 
-The avcodec_send_packet ()/avcodec_receive_frame ()/avcodec_send_frame ()/
+The LibACCodec.CodecContext.avcodec_send_packet ()/avcodec_receive_frame ()/avcodec_send_frame ()/
 avcodec_receive_packet () functions provide an encode/decode API, which
 decouples input and output.
 
@@ -55,7 +55,7 @@ The API is very similar for encoding/decoding and audio/video, and works as
 follows:
 - Set up and open the CodecContext as usual.
 - Send valid input:
-    - For decoding, call avcodec_send_packet () to give the decoder raw
+    - For decoding, call LibACCodec.CodecContext.avcodec_send_packet () to give the decoder raw
         compressed data in an Packet.
     - For encoding, call avcodec_send_frame () to give the encoder an LibAVUtil.Frame
         containing uncompressed audio or video.
@@ -90,7 +90,7 @@ End of stream situations. These require "flushing" (aka draining) the codec,
 as the codec might buffer multiple frames or packets internally for
 performance or out of necessity (consider B-frames).
 This is handled as follows:
-- Instead of valid input, send null to the avcodec_send_packet () (decoding)
+- Instead of valid input, send null to the LibACCodec.CodecContext.avcodec_send_packet () (decoding)
     or avcodec_send_frame () (encoding) functions. This will enter draining
     mode.
 - Call avcodec_receive_frame () (decoding) or avcodec_receive_packet ()
@@ -101,8 +101,8 @@ This is handled as follows:
 
 Using the API as outlined above is highly recommended. But it is also
 possible to call functions outside of this rigid schema. For example, you can
-call avcodec_send_packet () repeatedly without calling
-avcodec_receive_frame (). In this case, avcodec_send_packet () will succeed
+call LibACCodec.CodecContext.avcodec_send_packet () repeatedly without calling
+avcodec_receive_frame (). In this case, LibACCodec.CodecContext.avcodec_send_packet () will succeed
 until the codec's internal buffer has been filled up (which is typically of
 size 1 per output frame, after initial input), and then reject input with
 LibAVUtil.ErrorCode (EAGAIN). Once it starts rejecting input, you have no choice but to
@@ -116,7 +116,7 @@ permit unlimited buffering of input or output.
 
 This API replaces the following legacy functions:
 - avcodec_decode_video2 () and avcodec_decode_audio4 ():
-    Use avcodec_send_packet () to feed input to the decoder, then use
+    Use LibACCodec.CodecContext.avcodec_send_packet () to feed input to the decoder, then use
     avcodec_receive_frame () to receive decoded frames after each packet.
     Unlike with the old video decoding API, multiple frames might result from
     a packet. For audio, splitting the input packet into frames by partially
@@ -140,7 +140,7 @@ an error when calling it. All codecs support the new API.
 A codec is not allowed to return LibAVUtil.ErrorCode (EAGAIN) for both sending and receiving. This
 would be an invalid state, which could put the codec user into an endless
 loop. The API has no concept of time either: it cannot happen that trying to
-do avcodec_send_packet () results in LibAVUtil.ErrorCode (EAGAIN), but a repeated call 1 second
+do LibACCodec.CodecContext.avcodec_send_packet () results in LibAVUtil.ErrorCode (EAGAIN), but a repeated call 1 second
 later accepts the packet (with no other receive/flush API calls involved).
 The API is a strict state machine, and the passage of time is not supposed
 to influence it. Some timing-dependent behavior might still be deemed
@@ -150,7 +150,7 @@ avoided that the current state is "unstable" and can "flip-flop" between
 the send/receive APIs allowing progress. For example, it's not allowed that
 the codec randomly decides that it actually wants to consume a packet now
 instead of returning a frame, after it just returned LibAVUtil.ErrorCode (EAGAIN) on an
-avcodec_send_packet () call.
+LibACCodec.CodecContext.avcodec_send_packet () call.
 ***********************************************************/
 
 /***********************************************************

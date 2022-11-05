@@ -20,47 +20,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /***********************************************************
 Based on libavutil/base64.c
 ***********************************************************/
+public class base64 {
 
-static void putb64 (
-    out char[] b64,
-    out uint i_bits,
-    out uint i_shift,
-    out uint out_len
-) {
-    putchar (b64[(i_bits << 6 >> i_shift) & 0x3f]);
-    out_len++;
-    i_shift -= 6;
-}
+    static void putb64 (
+        out char[] b64,
+        out uint i_bits,
+        out uint i_shift,
+        out uint out_len
+    ) {
+        putchar (b64[(i_bits << 6 >> i_shift) & 0x3f]);
+        out_len++;
+        i_shift -= 6;
+    }
 
-uint main () {
-    char b64[] =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-    uint i_bits = 0;
-    uint i_shift = 0;
-    uint out_len = 0;
-    uint in;
+    uint main () {
+        char b64[] =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+        uint i_bits = 0;
+        uint i_shift = 0;
+        uint out_len = 0;
+        uint in;
 
-    while ((in = getchar ()) != EOF) {
-        i_bits = (i_bits << 8) + in;
-        i_shift += 8;
-        while (i_shift > 6)
+        while ((in = getchar ()) != EOF) {
+            i_bits = (i_bits << 8) + in;
+            i_shift += 8;
+            while (i_shift > 6)
+                putb64 (
+                    out b64,
+                    out i_bits,
+                    out i_shift,
+                    out out_len
+                );
+        }
+        while (i_shift > 0)
             putb64 (
                 out b64,
                 out i_bits,
                 out i_shift,
                 out out_len
             );
-    }
-    while (i_shift > 0)
-        putb64 (
-            out b64,
-            out i_bits,
-            out i_shift,
-            out out_len
-        );
-    while (out_len++ & 3)
-        putchar ('=');
-    putchar ('\n');
+        while (out_len++ & 3)
+            putchar ('=');
+        putchar ('\n');
 
-    return 0;
+        return 0;
+    }
+
 }

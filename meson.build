@@ -366,7 +366,7 @@ srcs = files ([
     './libavutil/opt/OptionSearchFlags.vapi',
     './libavutil/opt/OptionSerializationFlags.vapi',
     './libavutil/opt/OptionType.vapi',
-    # './libavutil/parseutils/parseutils.vapi',
+    './libavutil/parseutils/parseutils.vapi',
     './libavutil/pixdesc/ComponentDescriptor.vapi',
     './libavutil/pixdesc/PixelFormatDescriptor.vapi',
     './libavutil/pixdesc/PixelLossFlags.vapi',
@@ -423,6 +423,7 @@ srcs = files ([
     './tests/api/ApiCodecParameterTest.vala',
     './tests/api/ApiH264SliceTest.vala',
     './tests/api/ApiBandTest.vala',
+    './tests/api/Goto.vala',
 ])
 
 deps = [

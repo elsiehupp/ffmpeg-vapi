@@ -45,7 +45,7 @@ and all its contents.
 
 @code
 LibAVUtil.Dictionary d = null; // "create" an empty dictionary
-AVDictionaryEntry t = null;
+LibAVUtil.DictionaryEntry t = null;
 
 av_dict_set (&d, "foo", "bar", 0); // add an entry
 

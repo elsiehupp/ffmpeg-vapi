@@ -158,7 +158,7 @@ void *av_calloc (size_t nmemb, size_t size) av_alloc_size (1, 2);
 @defgroup lavu_mem_funcs Heap Management
 Functions responsible for allocating, freeing, and copying memory.
 
-All memory allocation functions have a built-in upper limit of `INT_MAX`
+All memory allocation functions have a built-in upper limit of `int.MAX`
 bytes. This may be changed with av_max_alloc (), although exercise extreme
 caution when doing so.
 ***********************************************************/
@@ -737,7 +737,7 @@ public static int av_size_mult (
 The value specified with this function is effective for all libavutil's @ref
 lavu_mem_funcs "heap management functions."
 
-By default, the max value is defined as `INT_MAX`.
+By default, the max value is defined as `int.MAX`.
 
 @param max Value to be set as the new maximum size
 

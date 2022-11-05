@@ -51,10 +51,10 @@ public struct Dictionary  {
         found in the dictionary
     ***********************************************************/
     [CCode (cname="av_dict_get", cheader_filename="dict.h")]
-    public AVDictionaryEntry av_dict_get (
+    public LibAVUtil.DictionaryEntry av_dict_get (
         LibAVUtil.Dictionary m,
         string key,
-        AVDictionaryEntry prev,
+        LibAVUtil.DictionaryEntry prev,
         int flags
     );
 
