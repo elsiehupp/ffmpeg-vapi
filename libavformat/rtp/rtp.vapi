@@ -32,7 +32,7 @@ The format context private option payload_type overrides both.
 ***********************************************************/
 int ff_rtp_get_payload_type (
     AVFormatContext *fmt,
-    AVCodecParameters *par,
+    LibAVCodec.CodecParameters *par,
     int idx
 );
 
@@ -49,7 +49,7 @@ channels and sample_rate fields are also filled.
 negative value is returned; otherwise, 0 is returned
 ***********************************************************/
 int ff_rtp_get_codec_info (
-    AVCodecParameters *par,
+    LibAVCodec.CodecParameters *par,
     int payload_type
 );
 
@@ -74,39 +74,39 @@ Return the codec id for the given encoding name and codec type.
 @return In case of unknown encoding name, AV_CODEC_ID_NONE is returned;
 otherwise, the codec id is returned
 ***********************************************************/
-public AVCodecID ff_rtp_codec_id (
+public LibAVCodec.CodecID ff_rtp_codec_id (
     string buf,
-    AVMediaType codec_type
+    LibAVUtil.MediaType codec_type
 );
 
-#define RTP_PT_PRIVATE 96
-#define RTP_VERSION 2
-#define RTP_MAX_SDES 256 /***********************************************************
-maximum text length for SDES
-***********************************************************/
+public const int RTP_PT_PRIVATE; // 96
+public const int RTP_VERSION; // 2
+public const size_t RTP_MAX_SDES; // 256 /***********************************************************
+//  maximum text length for SDES
+//  ***********************************************************/
 
 /***********************************************************
 RTCP packets use 0.5% of the bandwidth
 ***********************************************************/
-#define RTCP_TX_RATIO_NUM 5
-#define RTCP_TX_RATIO_DEN 1000
+public const int RTCP_TX_RATIO_NUM; // 5
+public const int RTCP_TX_RATIO_DEN; // 1000
 
 /***********************************************************
 An arbitrary id value for RTP Xiph streams - only relevant to indicate
 that the configuration has changed within a stream (by changing the
 ident value sent).
 ***********************************************************/
-#define RTP_XIPH_IDENT 0xfecdba
+public const uint32 RTP_XIPH_IDENT; // 0xfecdba
 
 /***********************************************************
 RTCP packet types
 ***********************************************************/
 public enum RTCPType {
-    RTCP_FIR = 192,
+    RTCP_FIR, // 192,
     RTCP_NACK, // 193
     RTCP_SMPTETC,// 194
     RTCP_IJ, // 195
-    RTCP_SR = 200,
+    RTCP_SR, // 200,
     RTCP_RR, // 201
     RTCP_SDES, // 202
     RTCP_BYE, // 203
@@ -119,7 +119,8 @@ public enum RTCPType {
     RTCP_TOKEN,// 210
 }
 
-#define RTP_PT_IS_RTCP (x) (((x) >= RTCP_FIR && (x) <= RTCP_IJ) || \
-                           ((x) >= RTCP_SR  && (x) <= RTCP_TOKEN))
+public static bool RTP_PT_IS_RTCP (
+    RTCPType x
+);
 
-#define NTP_TO_RTP_FORMAT (x) av_rescale ((x), INT64_C (1) << 32, 1000000)
+//  #define NTP_TO_RTP_FORMAT (x) av_rescale ((x), INT64_C (1) << 32, 1000000)

@@ -32,11 +32,11 @@ public struct DVDemuxContext {
     );
     int avpriv_dv_get_packet (
         DVDemuxContext demux_context,
-        AVPacket packet
+        LibAVCodec.Packet packet
     );
     int avpriv_dv_produce_packet (
         DVDemuxContext demux_context,
-        AVPacket packet,
+        LibAVCodec.Packet packet,
         uint8[] buffer,
         int arg,
         int64 arg_

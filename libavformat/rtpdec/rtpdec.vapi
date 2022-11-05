@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 public struct PayloadContext { }
-public struct RTPDynamicProtocolHandler { }
 
 public const size_t RTP_MIN_PACKET_LENGTH;
 public const size_t RTP_MAX_PACKET_LENGTH;
@@ -29,40 +28,6 @@ public const size_t RTP_MAX_PACKET_LENGTH;
 public const size_t RTP_REORDER_QUEUE_DEFAULT_SIZE;
 
 public const uint32 RTP_NOTS_VALUE;
-
-public struct RTPDemuxContext {
-    RTPDemuxContext *ff_rtp_parse_open (
-        FormatContext *s1,
-        AVStream *st,
-        int payload_type,
-        int queue_size
-    );
-    void ff_rtp_parse_set_dynamic_protocol (
-        RTPDemuxContext *s,
-        PayloadContext *ctx,
-        RTPDynamicProtocolHandler *handler
-    );
-    void ff_rtp_parse_set_crypto (
-        RTPDemuxContext *s,
-        string suite,
-        string params
-    );
-    int ff_rtp_parse_packet (
-        RTPDemuxContext *s,
-        AVPacket *packet,
-        out uint8[] buf,
-        int len
-    );
-    void ff_rtp_parse_close (
-        RTPDemuxContext *s
-    );
-    int64 ff_rtp_queued_packet_time (
-        RTPDemuxContext *s
-    );
-    void ff_rtp_reset_packet_queue (
-        RTPDemuxContext *s
-    );
-}
 
 /***********************************************************
 Send a dummy packet on both port pairs to set up the connection
@@ -143,7 +108,7 @@ public struct RTPStatistics {
 }
 
 [Flags]
-public enum RTPFlags {
+public enum RTPDecoderFlags {
     /***********************************************************
     RTP packet contains a keyframe
     ***********************************************************/
@@ -172,7 +137,7 @@ public delegate int DynamicPayloadPacketHandlerProc (
     AVFormatContext *ctx,
     PayloadContext *s,
     AVStream *st,
-    AVPacket *packet,
+    LibAVCodec.Packet *packet,
     uint32[] timestamp,
     uint8[] buf,
     int len,
@@ -182,8 +147,8 @@ public delegate int DynamicPayloadPacketHandlerProc (
 
 public abstract class RTPDynamicProtocolHandler {
     string enc_name;
-    AVMediaType codec_type;
-    AVCodecID codec_id;
+    LibAVUtil.MediaType codec_type;
+    LibAVCodec.CodecID codec_id;
     AVStreamParseType need_parsing;
     int static_payload_id; /***********************************************************
     0 means no payload id is set. 0 is a valid
@@ -250,7 +215,7 @@ public struct RTPDemuxContext {
     /***********************************************************
     used to send back RTCP RR
     ***********************************************************/
-char hostname[256];
+    char hostname[256];
 
     int srtp_enabled;
     SRTPContext srtp;
@@ -305,6 +270,38 @@ char hostname[256];
     ***********************************************************/
     RTPDynamicProtocolHandler *handler;
     PayloadContext *dynamic_protocol_context;
+
+    RTPDemuxContext *ff_rtp_parse_open (
+        AVFormatContext *s1,
+        AVStream *st,
+        int payload_type,
+        int queue_size
+    );
+    void ff_rtp_parse_set_dynamic_protocol (
+        RTPDemuxContext *s,
+        PayloadContext *ctx,
+        RTPDynamicProtocolHandler *handler
+    );
+    void ff_rtp_parse_set_crypto (
+        RTPDemuxContext *s,
+        string suite,
+        string params
+    );
+    int ff_rtp_parse_packet (
+        RTPDemuxContext *s,
+        LibAVCodec.Packet *packet,
+        out uint8[] buf,
+        int len
+    );
+    void ff_rtp_parse_close (
+        RTPDemuxContext *s
+    );
+    int64 ff_rtp_queued_packet_time (
+        RTPDemuxContext *s
+    );
+    void ff_rtp_reset_packet_queue (
+        RTPDemuxContext *s
+    );
 }
 
 /***********************************************************
@@ -328,17 +325,17 @@ Find a registered rtp dynamic protocol handler with the specified name.
 ***********************************************************/
 RTPDynamicProtocolHandler *ff_rtp_handler_find_by_name (
     string name,
-    AVMediaType codec_type
+    LibAVUtil.MediaType codec_type
 );
 /***********************************************************
 Find a registered rtp dynamic protocol handler with a matching codec ID.
 
-@param id AVCodecID of the requested rtp dynamic protocol handler.
+@param id LibAVCodec.CodecID of the requested rtp dynamic protocol handler.
 @return A rtp dynamic protocol handler if one was found, NULL otherwise.
 ***********************************************************/
 RTPDynamicProtocolHandler *ff_rtp_handler_find_by_id (
     int id,
-    AVMediaType codec_type
+    LibAVUtil.MediaType codec_type
 );
 
 /***********************************************************
@@ -372,7 +369,7 @@ int ff_parse_fmtp (
 Close the dynamic buffer and make a packet from it.
 ***********************************************************/
 int ff_rtp_finalize_packet (
-    AVPacket *packet,
+    LibAVCodec.Packet *packet,
     out AVIOContext *dyn_buf,
     int stream_idx
 );

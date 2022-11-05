@@ -127,7 +127,7 @@ public struct FFDemuxSubtitlesQueue {
     /***********************************************************
     Array of subtitles packets
     ***********************************************************/
-    AVPacket[] subs;
+    LibAVCodec.Packet[] subs;
     /***********************************************************
     Number of subtitles packets
     ***********************************************************/
@@ -158,7 +158,7 @@ Insert a new subtitle event.
 @param merge set to 1 if the current event should be concatenated with the
              previous one instead of adding a new entry, 0 otherwise
 ***********************************************************/
-AVPacket *ff_subtitles_queue_insert (
+LibAVCodec.Packet *ff_subtitles_queue_insert (
     FFDemuxSubtitlesQueue *q,
     uint8[] event,
     size_t len,
@@ -180,7 +180,7 @@ system.
 ***********************************************************/
 int ff_subtitles_queue_read_packet (
     FFDemuxSubtitlesQueue *q,
-    AVPacket *packet
+    LibAVCodec.Packet *packet
 );
 
 /***********************************************************
@@ -211,7 +211,7 @@ SMIL helper to load next chunk ("<...>" or untagged content) in buf.
 ***********************************************************/
 int ff_smil_extract_next_text_chunk (
     FFTextReader *tr,
-    AVBPrint *buf,
+    LibAVUtil.BPrintBuffer *buf,
     string c
 );
 
@@ -231,7 +231,7 @@ string ff_smil_get_attr_ptr (
 ***********************************************************/
 void ff_subtitles_read_chunk (
     AVIOContext *pb,
-    AVBPrint *buf
+    LibAVUtil.BPrintBuffer *buf
 );
 
 /***********************************************************
@@ -249,7 +249,7 @@ will focus on the 'n' of the "next" string.
 ***********************************************************/
 void ff_subtitles_read_text_chunk (
     FFTextReader *tr,
-    AVBPrint *buf
+    LibAVUtil.BPrintBuffer *buf
 );
 
 /***********************************************************

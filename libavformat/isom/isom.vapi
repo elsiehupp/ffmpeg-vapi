@@ -111,7 +111,7 @@ public struct MOVEncryptionIndex {
     Individual encrypted samples. If there are no elements,
     then the default settings will be used.
     ***********************************************************/
-    AVEncryptionInfo[] encrypted_samples;
+    LibAVUtil.EncryptionInfo[] encrypted_samples;
     uint nb_encrypted_samples;
 
     uint8[] auxiliary_info_sizes;
@@ -268,11 +268,11 @@ public struct MOVStreamContext {
     int stsd_version;
 
     int32[] display_matrix;
-    AVStereo3D *stereo3d;
-    AVSphericalMapping *spherical;
+    LibAVUtil.Stereo3D *stereo3d;
+    LibAVUtil.SphericalMapping *spherical;
     size_t spherical_size;
-    AVMasteringDisplayMetadata *mastering;
-    AVContentLightMetadata *coll;
+    LibAVUtil.MasteringDisplayMetadata *mastering;
+    LibAVUtil.ContentLightMetadata *coll;
     size_t coll_size;
 
     uint32 format;
@@ -285,12 +285,12 @@ public struct MOVStreamContext {
 }
 
 public struct CEnc {
-    AVAESCTR aes_ctr;
+    LibAVUtil.AESCTRContext aes_ctr;
     /***********************************************************
     Either 0, 8, or 16.
     ***********************************************************/
     uint per_sample_iv_size;
-    AVEncryptionInfo *default_encrypted_sample;
+    LibAVUtil.EncryptionInfo *default_encrypted_sample;
     MOVEncryptionIndex *encryption_index;
 }
 
@@ -298,7 +298,7 @@ public struct MOVContext {
     /***********************************************************
     class for private options
     ***********************************************************/
-    AVClass *class;
+    LibAVUtil.Class *class;
     AVFormatContext *fc;
     int time_scale;
     /***********************************************************
@@ -373,7 +373,7 @@ public struct MOVContext {
     int activation_bytes_size;
     void *audible_fixed_key;
     int audible_fixed_key_size;
-    AVAES *aes_decrypt;
+    LibAVUtil.Crypto.AESContext *aes_decrypt;
     uint8[] decryption_key;
     int decryption_key_len;
     int enable_drefs;
@@ -403,46 +403,46 @@ void ff_mp4_parse_es_descr (
 
 [Flags]
 public enum MP4TagFlags {
-    MP4ODescrTag 0x01
-    MP4IODescrTag 0x02
-    MP4ESDescrTag 0x03
-    MP4DecConfigDescrTag 0x04
-    MP4DecSpecificDescrTag 0x05
-    MP4SLDescrTag 0x06
+    MP4ODescrTag,
+    MP4IODescrTag,
+    MP4ESDescrTag,
+    MP4DecConfigDescrTag,
+    MP4DecSpecificDescrTag,
+    MP4SLDescrTag,
 }
 
 [Flags]
 public enum MOVTFHDFlags {
-    MOV_TFHD_BASE_DATA_OFFSET 0x01
-    MOV_TFHD_STSD_ID 0x02
-    MOV_TFHD_DEFAULT_DURATION 0x08
-    MOV_TFHD_DEFAULT_SIZE 0x10
-    MOV_TFHD_DEFAULT_FLAGS 0x20
-    MOV_TFHD_DURATION_IS_EMPTY 0x010000
-    MOV_TFHD_DEFAULT_BASE_IS_MOOF 0x020000
+    MOV_TFHD_BASE_DATA_OFFSET,
+    MOV_TFHD_STSD_ID,
+    MOV_TFHD_DEFAULT_DURATION,
+    MOV_TFHD_DEFAULT_SIZE,
+    MOV_TFHD_DEFAULT_FLAGS,
+    MOV_TFHD_DURATION_IS_EMPTY,
+    MOV_TFHD_DEFAULT_BASE_IS_MOOF,
 }
 
 [Flags]
 public enum MOVTruncationFlags {
-    MOV_TRUN_DATA_OFFSET 0x01
-    MOV_TRUN_FIRST_SAMPLE_FLAGS 0x04
-    MOV_TRUN_SAMPLE_DURATION 0x100
-    MOV_TRUN_SAMPLE_SIZE 0x200
-    MOV_TRUN_SAMPLE_FLAGS 0x400
-    MOV_TRUN_SAMPLE_CTS 0x800
+    MOV_TRUN_DATA_OFFSET,
+    MOV_TRUN_FIRST_SAMPLE_FLAGS,
+    MOV_TRUN_SAMPLE_DURATION,
+    MOV_TRUN_SAMPLE_SIZE,
+    MOV_TRUN_SAMPLE_FLAGS,
+    MOV_TRUN_SAMPLE_CTS,
 }
 
 [Flags]
 public enum MOVFragmentSampleFlags {
-    MOV_FRAG_SAMPLE_FLAG_DEGRADATION_PRIORITY_MASK 0x0000ffff
-    MOV_FRAG_SAMPLE_FLAG_IS_NON_SYNC 0x00010000
-    MOV_FRAG_SAMPLE_FLAG_PADDING_MASK 0x000e0000
-    MOV_FRAG_SAMPLE_FLAG_REDUNDANCY_MASK 0x00300000
-    MOV_FRAG_SAMPLE_FLAG_DEPENDED_MASK 0x00c00000
-    MOV_FRAG_SAMPLE_FLAG_DEPENDS_MASK 0x03000000
+    MOV_FRAG_SAMPLE_FLAG_DEGRADATION_PRIORITY_MASK,
+    MOV_FRAG_SAMPLE_FLAG_IS_NON_SYNC,
+    MOV_FRAG_SAMPLE_FLAG_PADDING_MASK,
+    MOV_FRAG_SAMPLE_FLAG_REDUNDANCY_MASK,
+    MOV_FRAG_SAMPLE_FLAG_DEPENDED_MASK,
+    MOV_FRAG_SAMPLE_FLAG_DEPENDS_MASK,
 
-    MOV_FRAG_SAMPLE_FLAG_DEPENDS_NO 0x02000000
-    MOV_FRAG_SAMPLE_FLAG_DEPENDS_YES 0x01000000
+    MOV_FRAG_SAMPLE_FLAG_DEPENDS_NO,
+    MOV_FRAG_SAMPLE_FLAG_DEPENDS_YES,
 }
 
 [Flags]
@@ -461,21 +461,23 @@ public enum MOVSampleDependencyFlags {
 }
 
 
-#define TAG_IS_AVCI (tag)                    \
-    ((tag) == MKTAG ('a', 'i', '5', 'p') ||  \
-     (tag) == MKTAG ('a', 'i', '5', 'q') ||  \
-     (tag) == MKTAG ('a', 'i', '5', '2') ||  \
-     (tag) == MKTAG ('a', 'i', '5', '3') ||  \
-     (tag) == MKTAG ('a', 'i', '5', '5') ||  \
-     (tag) == MKTAG ('a', 'i', '5', '6') ||  \
-     (tag) == MKTAG ('a', 'i', '1', 'p') ||  \
-     (tag) == MKTAG ('a', 'i', '1', 'q') ||  \
-     (tag) == MKTAG ('a', 'i', '1', '2') ||  \
-     (tag) == MKTAG ('a', 'i', '1', '3') ||  \
-     (tag) == MKTAG ('a', 'i', '1', '5') ||  \
-     (tag) == MKTAG ('a', 'i', '1', '6') ||  \
-     (tag) == MKTAG ('a', 'i', 'v', 'x') ||  \
-     (tag) == MKTAG ('A', 'V', 'i', 'n'))
+public bool TAG_IS_AVCI (
+    uint32 tag
+);
+    //  ((tag) == MKTAG ('a', 'i', '5', 'p') ||  \
+    //   (tag) == MKTAG ('a', 'i', '5', 'q') ||  \
+    //   (tag) == MKTAG ('a', 'i', '5', '2') ||  \
+    //   (tag) == MKTAG ('a', 'i', '5', '3') ||  \
+    //   (tag) == MKTAG ('a', 'i', '5', '5') ||  \
+    //   (tag) == MKTAG ('a', 'i', '5', '6') ||  \
+    //   (tag) == MKTAG ('a', 'i', '1', 'p') ||  \
+    //   (tag) == MKTAG ('a', 'i', '1', 'q') ||  \
+    //   (tag) == MKTAG ('a', 'i', '1', '2') ||  \
+    //   (tag) == MKTAG ('a', 'i', '1', '3') ||  \
+    //   (tag) == MKTAG ('a', 'i', '1', '5') ||  \
+    //   (tag) == MKTAG ('a', 'i', '1', '6') ||  \
+    //   (tag) == MKTAG ('a', 'i', 'v', 'x') ||  \
+    //   (tag) == MKTAG ('A', 'V', 'i', 'n'))
 
 
 int ff_mov_read_esds (
@@ -503,13 +505,20 @@ public enum FFMOVFlagMfra {
 Compute codec id for 'lpcm' tag.
 See CoreAudioTypes and AudioStreamBasicDescription at Apple.
 ***********************************************************/
-public static AVCodecID ff_mov_get_lpcm_codec_id (int bps, int flags)
-{
+public static LibAVCodec.CodecID ff_mov_get_lpcm_codec_id (
+    int bps,
+    int flags
+) {
     /***********************************************************
     lpcm flags:
     0x1 = float
     0x2 = big-endian
     0x4 = signed
     ***********************************************************/
-    return ff_get_pcm_codec_id (bps, flags & 1, flags & 2, flags & 4 ? -1 : 0);
+    return ff_get_pcm_codec_id (
+        bps,
+        flags & 1,
+        flags & 2,
+        (flags & 4) != 0 ? -1 : 0
+    );
 }

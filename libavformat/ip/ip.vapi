@@ -52,7 +52,7 @@ public addrinfo *ff_ip_resolve_host (
 /***********************************************************
 Parses the address[,address] source list in buf and adds it to the filters
 in the IPSourceFilters structure.
-@return 0 on success, < 0 AVERROR code on error.
+@return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
 int ff_ip_parse_sources (
     void *log_ctx,
@@ -63,7 +63,7 @@ int ff_ip_parse_sources (
 /***********************************************************
 Parses the address[,address] source block list in buf and adds it to the
 filters in the IPSourceFilters structure.
-@return 0 on success, < 0 AVERROR code on error.
+@return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
 int ff_ip_parse_blocks (
     void *log_ctx,

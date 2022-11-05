@@ -76,7 +76,7 @@ int ff_rm_parse_packet (
     AVStream *st,
     RMStream *rst,
     int len,
-    AVPacket *packet,
+    LibAVCodec.Packet *packet,
     out int seq,
     int flags,
     int64 ts
@@ -103,5 +103,5 @@ int ff_rm_retrieve_cache (
     AVIOContext *pb,
     AVStream *st,
     RMStream *rst,
-    AVPacket *packet
+    LibAVCodec.Packet *packet
 );

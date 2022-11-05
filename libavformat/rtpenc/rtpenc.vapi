@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 public struct RTPMuxContext {
-    AVClass *av_class;
+    LibAVUtil.Class *av_class;
     AVFormatContext *ic;
     AVStream *st;
     int payload_type;
@@ -62,21 +62,22 @@ public struct RTPMuxContext {
     uint frame_count;
 }
 
-public struct RTPMuxContext RTPMuxContext;
+[Flags]
+public enum RTPEncoderFlags {
+    FF_RTP_FLAG_MP4A_LATM,
+    FF_RTP_FLAG_RFC2190,
+    FF_RTP_FLAG_SKIP_RTCP,
+    FF_RTP_FLAG_H264_MODE0,
+    FF_RTP_FLAG_SEND_BYE,
+}
 
-#define FF_RTP_FLAG_MP4A_LATM 1
-#define FF_RTP_FLAG_RFC2190 2
-#define FF_RTP_FLAG_SKIP_RTCP 4
-#define FF_RTP_FLAG_H264_MODE0 8
-#define FF_RTP_FLAG_SEND_BYE 16
-
-#define FF_RTP_FLAG_OPTS (ctx, fieldname) \
-    { "rtpflags", "RTP muxer flags", offsetof (ctx, fieldname), AV_OPT_TYPE_FLAGS, {.i64 = 0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
-    { "latm", "Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_MP4A_LATM}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
-    { "rfc2190", "Use RFC 2190 packetization instead of RFC 4629 for H.263", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_RFC2190}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
-    { "skip_rtcp", "Don't send RTCP sender reports", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_SKIP_RTCP}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
-    { "h264_mode0", "Use mode 0 for H.264 in RTP", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_H264_MODE0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
-    { "send_bye", "Send RTCP BYE packets when finishing", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_SEND_BYE}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" } \
+//  #define FF_RTP_FLAG_OPTS (ctx, fieldname) \
+//      { "rtpflags", "RTP muxer flags", offsetof (ctx, fieldname), AV_OPT_TYPE_FLAGS, {.i64 = 0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
+//      { "latm", "Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_MP4A_LATM}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
+//      { "rfc2190", "Use RFC 2190 packetization instead of RFC 4629 for H.263", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_RFC2190}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
+//      { "skip_rtcp", "Don't send RTCP sender reports", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_SKIP_RTCP}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
+//      { "h264_mode0", "Use mode 0 for H.264 in RTP", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_H264_MODE0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
+//      { "send_bye", "Send RTCP BYE packets when finishing", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_SEND_BYE}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" } \
 
 void ff_rtp_send_data (
     AVFormatContext *s1,
@@ -155,6 +156,6 @@ void ff_rtp_send_jpeg (
 );
 
 uint8[] ff_h263_find_resync_marker_reverse (
-    uint8[] av_restrict start,
-    uint8[] av_restrict end
+    uint8[] start, // av_restrict
+    uint8[] end // av_restrict
 );

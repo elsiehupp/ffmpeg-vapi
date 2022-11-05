@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-typedef uint8 UID[16];
+public struct UID { } // uint8[16]
 
 public enum MXFMetadataSetType {
     AnyType,
@@ -77,7 +77,7 @@ public struct MXFCodecUL {
 }
 
 public struct MXFSamplesPerFrame {
-    AVRational time_base;
+    LibAVUtil.Rational time_base;
     int samples_per_frame[6];
 }
 
@@ -88,14 +88,14 @@ public struct MXFSamplesPerFrame {
 
 int ff_mxf_decode_pixel_layout (
     char pixel_layout[16],
-    AVPixelFormat *pix_fmt
+    LibAVUtil.PixelFormat *pix_fmt
 );
 MXFSamplesPerFrame *ff_mxf_get_samples_per_frame (
     AVFormatContext *s,
-    AVRational time_base
+    LibAVUtil.Rational time_base
 );
 int ff_mxf_get_content_package_rate (
-    AVRational time_base
+    LibAVUtil.Rational time_base
 );
 
 

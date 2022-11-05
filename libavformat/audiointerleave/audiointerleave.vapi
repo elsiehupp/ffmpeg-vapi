@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 public struct AudioInterleaveContext {
-    AVFifoBuffer *fifo;
+    LibAVUtil.FifoBuffer *fifo;
     /***********************************************************
     size of currently allocated FIFO
     ***********************************************************/
@@ -45,13 +45,13 @@ public struct AudioInterleaveContext {
     /***********************************************************
     time base of output audio packets
     ***********************************************************/
-    AVRational time_base;
+    LibAVUtil.Rational time_base;
 }
 
 int ff_audio_interleave_init (
     AVFormatContext *s,
     int[] samples_per_frame,
-    AVRational time_base
+    LibAVUtil.Rational time_base
 );
 void ff_audio_interleave_close (
     AVFormatContext *s
@@ -59,14 +59,14 @@ void ff_audio_interleave_close (
 
 public delegate int GetPacketDelegate (
     AVFormatContext format_context,
-    AVPacket packet_1,
-    AVPacket packet_2,
+    LibAVCodec.Packet packet_1,
+    LibAVCodec.Packet packet_2,
     int arg
 );
 public delegate int CompareTimeStampDelegate (
     AVFormatContext format_context,
-    AVPacket packet_1,
-    AVPacket packet_2
+    LibAVCodec.Packet packet_1,
+    LibAVCodec.Packet packet_2
 );
 
 /***********************************************************
@@ -80,6 +80,6 @@ when using this function.
 ***********************************************************/
 int ff_audio_rechunk_interleave (
     AVFormatContext *s,
-    AVPacket *out, AVPacket *packet, int flush,
+    LibAVCodec.Packet *out, LibAVCodec.Packet *packet, int flush,
     GetPacketDelegate get_packet,
     CompareTimeStampDelegate compare_ts);

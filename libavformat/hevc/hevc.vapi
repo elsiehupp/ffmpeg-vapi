@@ -40,7 +40,7 @@ discarded, and *ps_count will be set to the number of discarded PS NAL units.
 @param ps_count address of the variable where the number of discarded
     parameter set NAL units shall be written, may be NULL
 @return the amount (in bytes) of data written in case of success, a negative
-    value corresponding to an AVERROR code in case of failure
+    value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ff_hevc_annexb2mp4 (
     AVIOContext *pb,
@@ -71,7 +71,7 @@ On output, *size holds the size (in bytes) of the output data buffer.
 @param ps_count address of the variable where the number of discarded
     parameter set NAL units shall be written, may be NULL
 @return the amount (in bytes) of data written in case of success, a negative
-     value corresponding to an AVERROR code in case of failure
+     value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ff_hevc_annexb2mp4_buf (
     uint8[] buf_in,
@@ -93,7 +93,7 @@ writing.
 @param size size (in bytes) of the data buffer
 @param ps_array_completeness whether all parameter sets are in the hvcC (1)
     or there may be additional parameter sets in the bitstream (0)
-@return >=0 in case of success, a negative value corresponding to an AVERROR
+@return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
      code in case of failure
 ***********************************************************/
 int ff_isom_write_hvcc (

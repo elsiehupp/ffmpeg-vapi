@@ -128,7 +128,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
                     av_thread_message_flush (this.queue);
                 } else {
                     char[] val;
-                    AVDictionary *meta = null;
+                    LibAVUtil.Dictionary *meta = null;
                     ThreadMessage msg = new ThreadMessage () {
                         magic = MAGIC,
                         frame = av_frame_alloc (),
@@ -246,7 +246,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
                     av_thread_message_flush (this.queue);
                 } else {
                     ThreadMessage msg;
-                    AVDictionary *meta;
+                    LibAVUtil.Dictionary *meta;
                     AVDictionaryEntry *e;
         
                     ret = av_thread_message_queue_recv (

@@ -18,18 +18,18 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define EA3_HEADER_SIZE 96
-#define ID3v2_EA3_MAGIC "ea3"
-#define OMA_ENC_HEADER_SIZE 16
+public const size_t EA3_HEADER_SIZE;
+public const string ID3v2_EA3_MAGIC;
+public const size_t OMA_ENC_HEADER_SIZE;
 
 public enum OMACodecID {
-    OMA_CODECID_ATRAC3 = 0,
-    OMA_CODECID_ATRAC3P = 1,
-    OMA_CODECID_MP3 = 3,
-    OMA_CODECID_LPCM = 4,
-    OMA_CODECID_WMA = 5,
-    OMA_CODECID_ATRAC3PAL = 33,
-    OMA_CODECID_ATRAC3AL = 34,
+    OMA_CODECID_ATRAC3,
+    OMA_CODECID_ATRAC3P,
+    OMA_CODECID_MP3,
+    OMA_CODECID_LPCM,
+    OMA_CODECID_WMA,
+    OMA_CODECID_ATRAC3PAL,
+    OMA_CODECID_ATRAC3AL,
 }
 
 //  extern const uint16 ff_oma_srate_tab[8];

@@ -391,7 +391,7 @@ Matroska Codec IDs, strings
 
 public struct CodecTags{
     char str[22];
-    AVCodecID id;
+    LibAVCodec.CodecID id;
 }
 
 /***********************************************************

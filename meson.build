@@ -94,6 +94,8 @@ srcs = files ([
     './libavcodec/avfft/RDFTContext.vapi',
     './libavcodec/avfft/RDFTransformType.vapi',
 
+    './libavcodec/bytestream/bytestream.vapi',
+
     # './libavcodec/d3d11va/Direct3D11VideoAccelerationContext.vapi',
     # './libavcodec/d3d11va/Direct3D11VideoAccelerationWorkaroundFlags.vapi',
     # './libavcodec/dirac/DiracChromaFormat.vapi
@@ -424,7 +426,7 @@ srcs = files ([
 ])
 
 deps = [
-    # meson.get_compiler ('vala').find_library ('posix'),
+    meson.get_compiler ('vala').find_library ('posix'),
     dependency ('glib-2.0'),
     dependency ('gtk+-3.0')
     # libavcodec-dev

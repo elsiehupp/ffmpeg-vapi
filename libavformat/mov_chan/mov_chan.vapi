@@ -45,7 +45,7 @@ If the layout tag was not found, use a channel bitmap if possible.
 @return channel layout tag
 ***********************************************************/
 uint32 ff_mov_get_channel_layout_tag (
-    AVCodecID codec_id,
+    LibAVCodec.CodecID codec_id,
     uint64 channel_layout,
     uint32[] bitmap
 );
@@ -57,7 +57,7 @@ Read 'chan' tag from the input stream.
 @param pb AVIOContext
 @param st The stream to set codec values for
 @param size Remaining size in the 'chan' tag
-@return 0 if ok, or negative AVERROR code on failure
+@return 0 if ok, or negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_mov_read_chan (
     AVFormatContext *s,

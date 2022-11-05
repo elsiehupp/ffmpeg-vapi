@@ -29,16 +29,16 @@ For no string, set to an empty string.
 @return The length in bytes.
 ***********************************************************/
 int64 ff_vorbiscomment_length (
-    AVDictionary *m,
+    LibAVUtil.Dictionary *m,
     string vendor_string,
-    AVChapterp[] chapters,
+    AVChapter[] chapters,
     uint nb_chapters
 );
 
 /***********************************************************
 Write a VorbisComment into a buffer. The buffer, p, must have enough
 data to hold the whole VorbisComment. The minimum size required can be
-obtained by passing the same AVDictionary and vendor_string to
+obtained by passing the same LibAVUtil.Dictionary and vendor_string to
 ff_vorbiscomment_length ()
 
 @param p The buffer in which to write.
@@ -49,7 +49,7 @@ ff_vorbiscomment_length ()
 ***********************************************************/
 int ff_vorbiscomment_write (
     out uint8[] p,
-    out AVDictionary *m,
+    out LibAVUtil.Dictionary *m,
     string vendor_string,
     AVChapter[] chapters,
     uint nb_chapters

@@ -32,10 +32,10 @@ public enum URLProtocolFlags {
     URL_PROTOCOL_FLAG_NETWORK,
 }
 
-//  extern const AVClass ffurl_context_class;
+//  extern const LibAVUtil.Class ffurl_context_class;
 
 public struct URLContext {
-    AVClass *av_class; /***********************************************************
+    LibAVUtil.Class *av_class; /***********************************************************
     information for av_log (). Set by url_open ().
     ***********************************************************/
     URLProtocol *prot;
@@ -78,7 +78,7 @@ public abstract class URLProtocol {
         URLContext *h,
         string url,
         int flags,
-        out AVDictionary *options
+        out LibAVUtil.Dictionary *options
     );
     public abstract int url_accept (
         URLContext *s,
@@ -93,9 +93,9 @@ public abstract class URLProtocol {
     If data is immediately available (even less than size), EOF is
     reached or an error occurs (including EINTR), return immediately.
     Otherwise:
-    In non-blocking mode, return AVERROR (EAGAIN) immediately.
+    In non-blocking mode, return LibAVUtil.ErrorCode (EAGAIN) immediately.
     In blocking mode, wait for data/EOF/error with a short timeout (0.1s),
-    and return AVERROR (EAGAIN) on timeout.
+    and return LibAVUtil.ErrorCode (EAGAIN) on timeout.
     Checking interrupt_callback, looping on EINTR and EAGAIN and until
     enough data has been read is left to the calling function; see
     retry_transfer_wrapper in avio.c.
@@ -144,7 +144,7 @@ public abstract class URLProtocol {
         int flags
     );
     int priv_data_size;
-    AVClass *priv_data_class;
+    LibAVUtil.Class *priv_data_class;
     int flags;
     public abstract int url_check (
         URLContext *h,
@@ -181,7 +181,7 @@ is to be opened
 @param int_cb interrupt callback to use for the URLContext, may be
 NULL
 @return >= 0 in case of success, a negative value corresponding to an
-AVERROR code in case of failure
+LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ffurl_alloc (
     URLContext **puc,
@@ -200,7 +200,7 @@ that were not found. May be NULL.
 ***********************************************************/
 int ffurl_connect (
     URLContext *uc,
-    AVDictionary **options
+    LibAVUtil.Dictionary **options
 );
 
 /***********************************************************
@@ -219,14 +219,14 @@ that were not found. May be NULL.
 @param parent An enclosing URLContext, whose generic options should
               be applied to this URLContext as well.
 @return >= 0 in case of success, a negative value corresponding to an
-AVERROR code in case of failure
+LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ffurl_open_whitelist (
     URLContext **puc,
     string filename,
     int flags,
     AVIOInterruptCB *int_cb,
-    AVDictionary **options,
+    LibAVUtil.Dictionary **options,
     string whitelist,
     char* blacklist,
     URLContext *parent
@@ -237,7 +237,7 @@ int ffurl_open (
     string filename,
     int flags,
     AVIOInterruptCB *int_cb,
-    AVDictionary **options
+    LibAVUtil.Dictionary **options
 );
 
 /***********************************************************
@@ -262,7 +262,7 @@ usually the first step, and the return value can be:
 
 @param c the client context
 @return >= 0 on success or a negative value corresponding
-        to an AVERROR code on failure
+        to an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ffurl_handshake (
     URLContext *c
@@ -273,7 +273,7 @@ Read up to size bytes from the resource accessed by h, and store
 the read bytes in buf.
 
 @return The number of bytes actually read, or a negative value
-corresponding to an AVERROR code in case of error. A value of zero
+corresponding to an LibAVUtil.ErrorCode code in case of error. A value of zero
 indicates that it is not possible to read more from the accessed
 resource (except if the value of the size argument is also zero).
 ***********************************************************/
@@ -300,7 +300,7 @@ int ffurl_read_complete (
 Write size bytes from buf to the resource accessed by h.
 
 @return the number of bytes actually written, or a negative value
-corresponding to an AVERROR code in case of failure
+corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ffurl_write (
     URLContext *h,
@@ -317,7 +317,7 @@ operation on the resource accessed by h.
 one of SEEK_SET (seek from the beginning), SEEK_CUR (seek from the
 current position), SEEK_END (seek from the end), or AVSEEK_SIZE
 (return the filesize of the requested resource, pos is ignored).
-@return a negative value corresponding to an AVERROR code in case
+@return a negative value corresponding to an LibAVUtil.ErrorCode code in case
 of failure, or the resulting file position, measured in bytes from
 the beginning of the file. You can use this feature together with
 SEEK_CUR to read the current file position.
@@ -343,9 +343,9 @@ int ffurl_close (
 );
 
 /***********************************************************
-Return the filesize of the resource accessed by h, AVERROR (ENOSYS)
+Return the filesize of the resource accessed by h, LibAVUtil.ErrorCode (ENOSYS)
 if the operation is not supported by h, or another negative value
-corresponding to an AVERROR error code in case of failure.
+corresponding to an LibAVUtil.ErrorCode error code in case of failure.
 ***********************************************************/
 int64 ffurl_size (
     URLContext *h
@@ -469,8 +469,8 @@ Allocate directory entry with default values.
 ***********************************************************/
 AVIODirEntry *ff_alloc_dir_entry ();
 
-AVClass *ff_urlcontext_child_class_next (
-    AVClass *prev
+LibAVUtil.Class *ff_urlcontext_child_class_next (
+    LibAVUtil.Class *prev
 );
 
 /***********************************************************

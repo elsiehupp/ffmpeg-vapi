@@ -28,7 +28,7 @@ public enum PatternType {
 }
 
 public struct VideoDemuxData {
-    AVClass *class; /***********************************************************
+    LibAVUtil.Class *class; /***********************************************************
     Class for private options.
     ***********************************************************/
     int img_first;
@@ -44,10 +44,13 @@ public struct VideoDemuxData {
     string pixel_format; /***********************************************************
     Set by a private option.
     ***********************************************************/
-    int width, height; /***********************************************************
+    int width; /***********************************************************
     Set by a private option.
     ***********************************************************/
-    AVRational framerate; /***********************************************************
+    int height; /***********************************************************
+    Set by a private option.
+    ***********************************************************/
+    LibAVUtil.Rational framerate; /***********************************************************
     Set by a private option.
     ***********************************************************/
     int loop;
@@ -65,13 +68,13 @@ public struct VideoDemuxData {
 }
 
 public struct IdStrMap {
-    AVCodecID id;
+    LibAVCodec.CodecID id;
     string str;
 }
 
 //  extern const IdStrMap ff_img_tags[];
 
-//  extern const AVOption ff_img_options[];
+//  extern const LibAVUtil.Option ff_img_options[];
 
 int ff_img_read_header (
     AVFormatContext *s1
@@ -79,5 +82,5 @@ int ff_img_read_header (
 
 int ff_img_read_packet (
     AVFormatContext *s1,
-    AVPacket *packet
+    LibAVCodec.Packet *packet
 );

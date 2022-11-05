@@ -19,12 +19,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public const size_t ID3v2_HEADER_SIZE 10
+public const size_t ID3v2_HEADER_SIZE; // 10
 
 /***********************************************************
 Default magic bytes for ID3v2 header: "ID3"
 ***********************************************************/
-public const string ID3v2_DEFAULT_MAGIC "ID3"
+public const string ID3v2_DEFAULT_MAGIC; // "ID3"
 
 [Flags]
 public enum ID3v2Flags {
@@ -73,10 +73,10 @@ public struct ID3v2ExtraMetaGEOB {
 }
 
 public struct ID3v2ExtraMetaAPIC {
-    AVBufferRef buf;
+    LibAVUtil.BufferRef buf;
     string type;
     string description;
-    AVCodecID id;
+    LibAVCodec.CodecID id;
 }
 
 public struct ID3v2ExtraMetaPRIV {
@@ -89,7 +89,7 @@ public struct ID3v2ExtraMetaCHAP {
     uint8[] element_id;
     uint32 start;
     uint32 end;
-    AVDictionary meta;
+    LibAVUtil.Dictionary meta;
 }
 
 
@@ -122,7 +122,7 @@ ID3v2ExtraMeta structs and *extra_meta points to the head of the list
 ***********************************************************/
 void ff_id3v2_read_dict (
     AVIOContext *pb,
-    AVDictionary **metadata,
+    LibAVUtil.Dictionary **metadata,
     string magic,
     out ID3v2ExtraMeta extra_meta
 );
@@ -167,7 +167,7 @@ Write an attached picture from packet into an ID3v2 tag.
 int ff_id3v2_write_apic (
     AVFormatContext *s,
     ID3v2EncContext *id3,
-    AVPacket *packet
+    LibAVCodec.Packet *packet
 );
 
 /***********************************************************
@@ -221,7 +221,7 @@ Parse PRIV tags into a dictionary. The PRIV owner is the metadata key. The
 PRIV data is the value, with non-printable characters escaped.
 ***********************************************************/
 int ff_id3v2_parse_priv_dict (
-    AVDictionary **d,
+    LibAVUtil.Dictionary **d,
     out ID3v2ExtraMeta extra_meta
 );
 

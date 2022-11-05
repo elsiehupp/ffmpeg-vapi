@@ -32,7 +32,7 @@ LibAVCodec external API header
 
 Types and functions for working with Packet.
 ***********************************************************/
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="AVPacketSideDataType", cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum PacketSideDataType {
     /***********************************************************
     @brief An AV_PKT_DATA_PALETTE side data packet contains exactly AVPALETTE_SIZE

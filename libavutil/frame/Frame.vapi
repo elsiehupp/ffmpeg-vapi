@@ -73,7 +73,7 @@ public struct Frame {
     MUST be set to null.
     ***********************************************************/
     [CCode (cname="data")]
-    public uint8[] data[AV_NUM_DATA_POINTERS];
+    public uint8 *data[AV_NUM_DATA_POINTERS];
 
     /***********************************************************
     @brief For video, size in bytes of each picture line.

@@ -18,10 +18,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define WV_HEADER_SIZE 32
+public const size_t WV_HEADER_SIZE; // 32
 
-#define WV_FLAG_INITIAL_BLOCK (1 << 11)
-#define WV_FLAG_FINAL_BLOCK (1 << 12)
+[Flags]
+public enum BlockFlags {
+    WV_FLAG_INITIAL_BLOCK,
+    WV_FLAG_FINAL_BLOCK,
+}
 
 /***********************************************************
 Specs say that maximum block size is 1Mb
@@ -49,10 +52,11 @@ public struct WvHeader {
     Number of samples in this block
     ***********************************************************/
     uint32 samples;
-    uint32 flags;
+    BlockFlags flags;
     uint32 crc;
 
-    int initial, final;
+    int initial;
+    int final;
 }
 
 /***********************************************************
@@ -61,7 +65,7 @@ Parse a WavPack block header.
 @param wv this struct will be filled with parse header information
 @param data header data, must be WV_HEADER_SIZE bytes long
 
-@return 0 on success, a negative AVERROR code on failure
+@return 0 on success, a negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_wv_parse_header (
     WvHeader *wv,

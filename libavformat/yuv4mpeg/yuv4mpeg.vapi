@@ -18,6 +18,6 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define Y4M_MAGIC "YUV4MPEG2"
-#define Y4M_FRAME_MAGIC "FRAME"
-#define Y4M_FRAME_MAGIC_LEN 6
+public const string Y4M_MAGIC; // "YUV4MPEG2"
+public const string Y4M_FRAME_MAGIC; // "FRAME"
+public const size_t Y4M_FRAME_MAGIC_LEN; // 6

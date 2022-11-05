@@ -119,10 +119,10 @@ void ff_spdif_bswap_buf16 (
 );
 int ff_spdif_read_packet (
     AVFormatContext *s,
-    AVPacket *packet
+    LibAVCodec.Packet *packet
 );
 int ff_spdif_probe (
     uint8[] probe_buf,
     int buf_size,
-    AVCodecID *codec
+    LibAVCodec.CodecID *codec
 );

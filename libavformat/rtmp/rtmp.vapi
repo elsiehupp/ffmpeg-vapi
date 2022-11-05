@@ -19,21 +19,21 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define RTMP_DEFAULT_PORT 1935
-#define RTMPS_DEFAULT_PORT 443
+public const int RTMP_DEFAULT_PORT; // 1935
+public const int RTMPS_DEFAULT_PORT; // 443
 
-#define RTMP_HANDSHAKE_PACKET_SIZE 1536
+public const size_t RTMP_HANDSHAKE_PACKET_SIZE; // 1536
 
 /***********************************************************
 emulated Flash client version - 9.0.124.2 on Linux
 
 version defines
 ***********************************************************/
-#define RTMP_CLIENT_PLATFORM "LNX"
-#define RTMP_CLIENT_VER1 9
-#define RTMP_CLIENT_VER2 0
-#define RTMP_CLIENT_VER3 124
-#define RTMP_CLIENT_VER4 2
+public const string RTMP_CLIENT_PLATFORM; // "LNX"
+public const int RTMP_CLIENT_VER1; // 9
+public const int RTMP_CLIENT_VER2; // 0
+public const int RTMP_CLIENT_VER3; // 124
+public const int RTMP_CLIENT_VER4; // 2
 
 /***********************************************************
 Calculate HMAC-SHA2 digest for RTMP handshake packets.

@@ -25,27 +25,63 @@ public const uint64 SYNCPOINT_STARTCODE;
 public const uint64 INDEX_STARTCODE;
 public const uint64 INFO_STARTCODE;
 
-#define ID_STRING "nut/multimedia container\0"
+public const string ID_STRING; // "nut/multimedia container\0"
 
-#define MAX_DISTANCE (1024*32-1)
+public const size_t MAX_DISTANCE; // (1024*32-1)
 
-#define NUT_MAX_VERSION 4
-#define NUT_STABLE_VERSION 3
-#define NUT_MIN_VERSION 2
+public const int NUT_MAX_VERSION; // 4
+public const int NUT_STABLE_VERSION; // 3
+public const int NUT_MIN_VERSION; // 2
 
 public enum Flag {
-    FLAG_KEY = 1, // if set, frame is keyframe
-    FLAG_EOR = 2, // if set, stream has no relevance on presentation. (EOR)
-    FLAG_CODED_PTS = 8, // if set, coded_pts is in the frame header
-    FLAG_STREAM_ID = 16, // if set, stream_id is coded in the frame header
-    FLAG_SIZE_MSB = 32, // if set, data_size_msb is at frame header, otherwise data_size_msb is 0
-    FLAG_CHECKSUM = 64, // if set, the frame header contains a checksum
-    FLAG_RESERVED = 128, // if set, reserved_count is coded in the frame header
-    FLAG_SM_DATA = 256, // if set, side / meta data is stored in the frame header.
-    FLAG_HEADER_IDX =1024, // If set, header_idx is coded in the frame header.
-    FLAG_MATCH_TIME =2048, // If set, match_time_delta is coded in the frame header
-    FLAG_CODED =4096, // if set, coded_flags are stored in the frame header
-    FLAG_INVALID =8192, // if set, frame_code is invalid
+    /***********************************************************
+    If set, frame is keyframe
+    ***********************************************************/
+    FLAG_KEY,
+    /***********************************************************
+    If set, stream has no relevance on presentation. (EOR)
+    ***********************************************************/
+    FLAG_EOR,
+    /***********************************************************
+    If set, coded_pts is in the frame header
+    ***********************************************************/
+    FLAG_CODED_PTS,
+    /***********************************************************
+    If set, stream_id is coded in the frame header
+    ***********************************************************/
+    FLAG_STREAM_ID,
+    /***********************************************************
+    If set, data_size_msb is at frame header, otherwise data_size_msb is 0
+    ***********************************************************/
+    FLAG_SIZE_MSB,
+    /***********************************************************
+    If set, the frame header contains a checksum
+    ***********************************************************/
+    FLAG_CHECKSUM,
+    /***********************************************************
+    If set, reserved_count is coded in the frame header
+    ***********************************************************/
+    FLAG_RESERVED,
+    /***********************************************************
+    If set, side / meta data is stored in the frame header.
+    ***********************************************************/
+    FLAG_SM_DATA,
+    /***********************************************************
+    If set, header_idx is coded in the frame header.
+    ***********************************************************/
+    FLAG_HEADER_IDX,
+    /***********************************************************
+    If set, match_time_delta is coded in the frame header
+    ***********************************************************/
+    FLAG_MATCH_TIME,
+    /***********************************************************
+    If set, coded_flags are stored in the frame header
+    ***********************************************************/
+    FLAG_CODED,
+    /***********************************************************
+    If set, frame_code is invalid
+    ***********************************************************/
+    FLAG_INVALID,
 }
 
 public struct Syncpoint {
@@ -70,7 +106,7 @@ public struct StreamContext {
     int skip_until_key_frame;
     int64 last_pts;
     int time_base_id;
-    AVRational *time_base;
+    LibAVUtil.Rational *time_base;
     int msb_pts_shift;
     int max_pts_distance;
     int decode_delay; //FIXME duplicate of has_b_frames
@@ -78,17 +114,17 @@ public struct StreamContext {
 }
 
 public struct ChapterContext {
-    AVRational *time_base;
+    LibAVUtil.Rational *time_base;
 }
 
 public struct NUTContext {
-    AVClass *av_class;
+    LibAVUtil.Class *av_class;
     AVFormatContext *avf;
 //    int written_packet_size;
 //    int64 packet_start;
     FrameCode frame_code[256];
     uint8 header_len[128];
-    uint8[] header[128];
+    uint8 *header[128];
     uint64 next_startcode; // stores the next startcode if it has already been parsed but the stream is not seekable
     StreamContext *stream;
     ChapterContext *chapter;
@@ -97,17 +133,21 @@ public struct NUTContext {
     int64 last_syncpoint_pos;
     int64 last_resync_pos;
     int header_count;
-    AVRational *time_base;
-    AVTreeNode *syncpoints;
+    LibAVUtil.Rational *time_base;
+    LibAVUtil.TreeNode *syncpoints;
     int sp_count;
     int write_index;
     int64 max_pts;
-    AVRational *max_pts_tb;
-#define NUT_BROADCAST 1 // use extended syncpoints
-#define NUT_PIPE 2 // do not write syncpoints
-    int flags;
+    LibAVUtil.Rational *max_pts_tb;
+    NUTFlags flags;
     int version; // version currently in use
     int minor_version;
+}
+
+[Flags]
+public enum NUTFlags {
+    NUT_BROADCAST, // use extended syncpoints
+    NUT_PIPE, // do not write syncpoints
 }
 
 //  extern const AVCodecTag ff_nut_subtitle_tags[];
@@ -125,7 +165,7 @@ public struct Dispositions {
 
 void ff_nut_reset_ts (
     NUTContext *nut,
-    AVRational time_base,
+    LibAVUtil.Rational time_base,
     int64 val
 );
 int64 ff_lsb2full (

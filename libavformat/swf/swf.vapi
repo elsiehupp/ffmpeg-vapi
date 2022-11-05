@@ -129,9 +129,9 @@ public struct SWFContext {
     int video_frame_number;
     int frame_rate;
     int tag;
-    AVFifoBuffer *audio_fifo;
-    AVCodecParameters *audio_par;
-    AVCodecParameters *video_par;
+    LibAVUtil.FifoBuffer *audio_fifo;
+    LibAVCodec.CodecParameters *audio_par;
+    LibAVCodec.CodecParameters *video_par;
     AVStream *video_st;
 #if CONFIG_ZLIB
     const size_t ZBUF_SIZE;

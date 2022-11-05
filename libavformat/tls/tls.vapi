@@ -48,7 +48,7 @@ int ff_tls_open_underlying (
     TLSShared *c,
     URLContext *parent,
     string uri,
-    out AVDictionary *options
+    out LibAVUtil.Dictionary *options
 );
 
 void ff_gnutls_init ();

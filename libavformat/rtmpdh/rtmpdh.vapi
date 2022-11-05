@@ -19,23 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-typedef mpz_ptr FFBigNum;
-#elif CONFIG_GCRYPT
-#include <gcrypt.h>
-
-typedef gcry_mpi_t FFBigNum;
-
-#elif CONFIG_OPENSSL
-#include <openssl/bn.h>
-#include <openssl/dh.h>
-
-typedef BIGNUM *FFBigNum;
-#elif CONFIG_MBEDTLS
-#include <mbedtls/bignum.h>
-
-typedef mbedtls_mpi *FFBigNum;
-
-#endif
+public struct FFBigNum { }
 
 public struct FF_DH {
     FFBigNum p;

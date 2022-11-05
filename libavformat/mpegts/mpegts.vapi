@@ -24,46 +24,48 @@ public const size_t TS_DVHS_PACKET_SIZE;
 public const size_t TS_PACKET_SIZE;
 public const size_t TS_MAX_PACKET_SIZE;
 
-public const size_t NB_PID_MAX 8192
-public const size_t MAX_SECTION_SIZE 4096
+public const size_t NB_PID_MAX;
+public const size_t MAX_SECTION_SIZE;
 
 /***********************************************************
 pids
 ***********************************************************/
-public enum MpegTransportStreamPID
-#define PAT_PID 0x0000
-#define SDT_PID 0x0011
+public enum MpegTransportStreamPID {
+    PAT_PID,
+    SDT_PID,
+}
 
 /***********************************************************
 table ids
 ***********************************************************/
-public enum MpegTransportStreamTableID
-#define PAT_TID 0x00
-#define PMT_TID 0x02
-#define M4OD_TID 0x05
-#define SDT_TID 0x42
+public enum MpegTransportStreamTableID {
+    PAT_TID,
+    PMT_TID,
+    M4OD_TID,
+    SDT_TID,
+}
 
 public enum MpegTransportStreamType {
-    #define STREAM_TYPE_VIDEO_MPEG1 0x01
-    #define STREAM_TYPE_VIDEO_MPEG2 0x02
-    #define STREAM_TYPE_AUDIO_MPEG1 0x03
-    #define STREAM_TYPE_AUDIO_MPEG2 0x04
-    #define STREAM_TYPE_PRIVATE_SECTION 0x05
-    #define STREAM_TYPE_PRIVATE_DATA 0x06
-    #define STREAM_TYPE_AUDIO_AAC 0x0f
-    #define STREAM_TYPE_AUDIO_AAC_LATM 0x11
-    #define STREAM_TYPE_VIDEO_MPEG4 0x10
-    #define STREAM_TYPE_METADATA 0x15
-    #define STREAM_TYPE_VIDEO_H264 0x1b
-    #define STREAM_TYPE_VIDEO_HEVC 0x24
-    #define STREAM_TYPE_VIDEO_CAVS 0x42
-    #define STREAM_TYPE_VIDEO_VC1 0xea
-    #define STREAM_TYPE_VIDEO_DIRAC 0xd1
+    STREAM_TYPE_VIDEO_MPEG1,
+    STREAM_TYPE_VIDEO_MPEG2,
+    STREAM_TYPE_AUDIO_MPEG1,
+    STREAM_TYPE_AUDIO_MPEG2,
+    STREAM_TYPE_PRIVATE_SECTION,
+    STREAM_TYPE_PRIVATE_DATA,
+    STREAM_TYPE_AUDIO_AAC,
+    STREAM_TYPE_AUDIO_AAC_LATM,
+    STREAM_TYPE_VIDEO_MPEG4,
+    STREAM_TYPE_METADATA,
+    STREAM_TYPE_VIDEO_H264,
+    STREAM_TYPE_VIDEO_HEVC,
+    STREAM_TYPE_VIDEO_CAVS,
+    STREAM_TYPE_VIDEO_VC1,
+    STREAM_TYPE_VIDEO_DIRAC,
 
-    #define STREAM_TYPE_AUDIO_AC3 0x81
-    #define STREAM_TYPE_AUDIO_DTS 0x82
-    #define STREAM_TYPE_AUDIO_TRUEHD 0x83
-    #define STREAM_TYPE_AUDIO_EAC3 0x87
+    STREAM_TYPE_AUDIO_AC3,
+    STREAM_TYPE_AUDIO_DTS,
+    STREAM_TYPE_AUDIO_TRUEHD,
+    STREAM_TYPE_AUDIO_EAC3,
 }
 
 public struct MpegTSContext {
@@ -72,7 +74,7 @@ public struct MpegTSContext {
     );
     int avpriv_mpegts_parse_packet (
         MpegTSContext *ts,
-        AVPacket *packet,
+        LibAVCodec.Packet *packet,
         uint8[] buf,
         int len
     );
@@ -133,5 +135,5 @@ Check presence of H264 startcode
 int ff_check_h264_startcode (
     AVFormatContext *s,
     AVStream *st,
-    AVPacket *packet
+    LibAVCodec.Packet *packet
 );

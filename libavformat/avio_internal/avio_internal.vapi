@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  extern const AVClass ff_avio_class;
+//  extern const LibAVUtil.Class ff_avio_class;
 
 public delegate int ReadPacketDelegate (
     void *opaque,
@@ -58,7 +58,7 @@ valid until the next call that references the same IO context.
     a direct pointer into the underlying buffer if the requested
     number of bytes are available at contiguous addresses, otherwise
     will be a copy of buf
-@return number of bytes read or AVERROR
+@return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
 int ffio_read_indirect (
     AVIOContext *s,
@@ -88,7 +88,7 @@ Joins buf and s.buffer, taking any overlap into consideration.
 @param buf The probe buffer containing the first buf_size bytes of the file
 @param buf_size The size of buf
 @return >= 0 in case of success, a negative value corresponding to an
-AVERROR code in case of failure
+LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ffio_rewind_with_probe_data (
     AVIOContext *s,
@@ -103,7 +103,7 @@ uint64 ffio_read_varlen (
 /***********************************************************
 Read size bytes from AVIOContext into buf.
 Check that exactly size bytes have been read.
-@return number of bytes read or AVERROR
+@return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
 int ffio_read_size (
     AVIOContext *s,
@@ -188,7 +188,7 @@ AVIOContext can be used only for writing.
 @param s Used to return the pointer to the created AVIOContext.
 In case of failure the pointed to value is set to NULL.
 @return >= 0 in case of success, a negative value corresponding to an
-AVERROR code in case of failure
+LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ffio_fdopen (
     AVIOContext **s,
@@ -222,7 +222,7 @@ int ffio_open_whitelist (
     string url,
     int flags,
     AVIOInterruptCB *int_cb,
-    AVDictionary **options,
+    LibAVUtil.Dictionary **options,
     string whitelist,
     string blacklist
 );

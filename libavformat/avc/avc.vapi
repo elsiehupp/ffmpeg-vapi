@@ -63,7 +63,7 @@ public struct H264SPS {
     uint8 chroma_format_idc;
     uint8 bit_depth_luma;
     uint8 frame_mbs_only_flag;
-    AVRational sar;
+    LibAVUtil.Rational sar;
 }
 
 int ff_avc_decode_sps (

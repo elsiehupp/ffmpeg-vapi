@@ -30,7 +30,7 @@ public struct AVMetadataConv {
 }
 
 void ff_metadata_conv (
-    AVDictionary **pm,
+    LibAVUtil.Dictionary **pm,
     AVMetadataConv *d_conv,
     AVMetadataConv *s_conv
 );

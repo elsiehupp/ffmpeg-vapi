@@ -42,7 +42,7 @@ If you add a codec ID to this list, add it so that
 After adding new codec IDs, do not forget to add an entry to the codec
 descriptor list and bump LibAVCodec minor version.
 ***********************************************************/
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="AVCodecID", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum CodecID {
     AV_CODEC_ID_NONE,
 

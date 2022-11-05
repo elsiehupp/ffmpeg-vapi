@@ -43,7 +43,7 @@ the resulting bitstream to the provided AVIOContext.
 @param buf input data buffer
 @param size size of the input data buffer
 
-@return the amount of bytes written in case of success, a negative AVERROR
+@return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure
 ***********************************************************/
 int ff_av1_filter_obus (
@@ -63,7 +63,7 @@ the resulting bitstream to a newly allocated data buffer.
 @param size size of the input data buffer. The size of the resulting output
            data buffer will be written here
 
-@return the amount of bytes written in case of success, a negative AVERROR
+@return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure. On failure, out and size are unchanged
 ***********************************************************/
 int ff_av1_filter_obus_buf (
@@ -80,7 +80,7 @@ Parses a Sequence Header from the the provided buffer.
 @param buf input data buffer
 @param size size in bytes of the input data buffer
 
-@return >= 0 in case of success, a negative AVERROR code in case of failure
+@return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ff_av1_parse_seq_header (
     AV1SequenceParameters *seq,
@@ -96,7 +96,7 @@ AVIOContext.
 @param buf input data buffer
 @param size size in bytes of the input data buffer
 
-@return >= 0 in case of success, a negative AVERROR code in case of failure
+@return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int ff_isom_write_av1c (
     AVIOContext *pb,

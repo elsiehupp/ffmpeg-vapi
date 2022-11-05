@@ -33,7 +33,7 @@ int ff_h263_handle_packet (
     AVFormatContext *ctx,
     PayloadContext *data,
     AVStream *st,
-    AVPacket *packet, uint32[] timestamp,
+    LibAVCodec.Packet *packet, uint32[] timestamp,
     uint8[] buf,
     int len,
     uint16 seq,
@@ -49,13 +49,13 @@ int ff_h264_parse_sprop_parameter_sets (
 int ff_h264_handle_aggregated_packet (
     AVFormatContext *ctx,
     PayloadContext *data,
-    AVPacket *packet,
+    LibAVCodec.Packet *packet,
     uint8[] buf, int len,
     int start_skip, int[] nal_counters,
     int nal_mask
 );
 int ff_h264_handle_frag_packet (
-    AVPacket *packet,
+    LibAVCodec.Packet *packet,
     uint8[] buf,
     int len,
     int start_bit,
@@ -63,7 +63,7 @@ int ff_h264_handle_frag_packet (
     int nal_header_len
 );
 void ff_h264_parse_framesize (
-    AVCodecParameters *par,
+    LibAVCodec.CodecParameters *par,
     string p
 );
 

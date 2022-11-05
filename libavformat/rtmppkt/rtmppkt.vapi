@@ -415,7 +415,7 @@ Read AMF boolean value.
 
 @param[in,out] gbc GetByteContext initialized with AMF-formatted data
 @param[out]    val 0 or 1
-@return 0 on success or an AVERROR code on failure
+@return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_read_bool (
     GetByteContext *gbc,
@@ -427,7 +427,7 @@ Read AMF number value.
 
 @param[in,out] gbc GetByteContext initialized with AMF-formatted data
 @param[out]    val read value
-@return 0 on success or an AVERROR code on failure
+@return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_read_number (
     GetByteContext *gbc,
@@ -446,7 +446,7 @@ ease later parsing.
 @param[out]    str read string
 @param[in]     strsize buffer size available to store the read string
 @param[out]    length read string length
-@return 0 on success or an AVERROR code on failure
+@return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_get_string (
     GetByteContext *bc,
@@ -465,7 +465,7 @@ ease later parsing.
 @param[out]    str read string
 @param[in]     strsize buffer size available to store the read string
 @param[out]    length read string length
-@return 0 on success or an AVERROR code on failure
+@return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_read_string (
     GetByteContext *gbc,
@@ -478,7 +478,7 @@ int ff_amf_read_string (
 Read AMF NULL value.
 
 @param[in,out] gbc GetByteContext initialized with AMF-formatted data
-@return 0 on success or an AVERROR code on failure
+@return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
 int ff_amf_read_null (
     GetByteContext *gbc

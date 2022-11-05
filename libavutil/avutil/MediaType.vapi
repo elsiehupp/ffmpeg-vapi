@@ -165,7 +165,7 @@ public string avutil_license ();
 @brief Media Type
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/avutil.h")]
+[CCode (cname="AVMediaType", cprefix="", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public enum MediaType {
     /***********************************************************
     @brief Usually treated as AVMEDIA_TYPE_DATA

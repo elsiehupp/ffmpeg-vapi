@@ -198,7 +198,7 @@ in case of failure
 ***********************************************************/
 [CCode (cname="av_image_fill_arrays", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public int av_image_fill_arrays (
-    out uint8[] output_data[4],
+    out uint8 *output_data[4],
     out int output_linesize[4],
     uint8[] input_buffer,
     PixelFormat pixel_format,

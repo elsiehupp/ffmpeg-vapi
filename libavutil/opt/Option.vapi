@@ -236,7 +236,7 @@ public struct Option {
     //      double dbl;
     //      string str;
     //      /* TODO those are unused now
-    ***********************************************************/
+    //  ***********************************************************/
 //      Rational q;
     //  } default_val;
 

@@ -73,21 +73,21 @@ tunneled, which is done over HTTP.
 ***********************************************************/
 public enum RTSPControlTransport {
     RTSP_MODE_PLAIN, /***********************************************************
-Normal RTSP
+    Normal RTSP
     ***********************************************************/
-RTSP_MODE_TUNNEL /***********************************************************
-RTSP over HTTP (tunneling)
+    RTSP_MODE_TUNNEL /***********************************************************
+    RTSP over HTTP (tunneling)
     ***********************************************************/
 }
 
-#define RTSP_DEFAULT_PORT 554
-#define RTSPS_DEFAULT_PORT 322
-#define RTSP_MAX_TRANSPORTS 8
-#define RTSP_TCP_MAX_PACKET_SIZE 1472
-#define RTSP_DEFAULT_NB_AUDIO_CHANNELS 1
-#define RTSP_DEFAULT_AUDIO_SAMPLERATE 44100
-#define RTSP_RTP_PORT_MIN 5000
-#define RTSP_RTP_PORT_MAX 65000
+public const int RTSP_DEFAULT_PORT; // 554
+public const int RTSPS_DEFAULT_PORT; // 322
+public const int RTSP_MAX_TRANSPORTS; // 8
+public const size_t RTSP_TCP_MAX_PACKET_SIZE; // 1472
+public const int RTSP_DEFAULT_NB_AUDIO_CHANNELS; // 1
+public const int RTSP_DEFAULT_AUDIO_SAMPLERATE; // 44100
+public const int RTSP_RTP_PORT_MIN; // 5000
+public const int RTSP_RTP_PORT_MAX; // 65000
 
 /***********************************************************
 This describes a single item in the "Transport:" line of one stream as
@@ -103,25 +103,29 @@ public struct RTSPTransportField {
     the range of this interleaved_min-max, then the packet belongs to
     this stream.
     ***********************************************************/
-    int interleaved_min, interleaved_max;
+    int interleaved_min;
+    int interleaved_max;
 
     /***********************************************************
     UDP multicast port range; the ports to which we should connect to
     receive multicast UDP data.
     ***********************************************************/
-    int port_min, port_max;
+    int port_min;
+    int port_max;
 
     /***********************************************************
     UDP client ports; these should be the local ports of the UDP RTP
     (and RTCP) sockets over which we receive RTP/RTCP data.
     ***********************************************************/
-    int client_port_min, client_port_max;
+    int client_port_min;
+    int client_port_max;
 
     /***********************************************************
     UDP unicast server port range; the ports to which we should connect
     to receive unicast UDP RTP/RTCP data.
     ***********************************************************/
-    int server_port_min, server_port_max;
+    int server_port_min;
+    int server_port_max;
 
     /***********************************************************
     time-to-live value (required for multicast); the amount of HOPs that
@@ -174,7 +178,8 @@ public struct RTSPMessageHeader {
     Time range of the streams that the server will stream. In
     AV_TIME_BASE unit, AV_NOPTS_VALUE if not used
     ***********************************************************/
-    int64 range_start, range_end;
+    int64 range_start;
+    int64 range_end;
 
     /***********************************************************
     describes the complete "Transport:" line of the server in response
@@ -285,7 +290,7 @@ Private data for the RTSP demuxer.
 @todo Use AVIOContext instead of URLContext
 ***********************************************************/
 public struct RTSPState {
-    AVClass *class; /***********************************************************
+    LibAVUtil.Class *class; /***********************************************************
     Class for private options.
     ***********************************************************/
     URLContext *rtsp_hd; /***********************************************************
@@ -402,13 +407,13 @@ public struct RTSPState {
     stream setup during the last frame read. This is used to detect if
     we need to subscribe or unsubscribe to any new streams.
     ***********************************************************/
-    AVDiscard *real_setup_cache;
+    LibAVCodec.Discard *real_setup_cache;
 
     /***********************************************************
     current stream setup. This is a temporary buffer used to compare
     current setup to previous frame setup.
     ***********************************************************/
-    AVDiscard *real_setup;
+    LibAVCodec.Discard *real_setup;
 
     /***********************************************************
     the last value of the "SET_PARAMETER Subscribe:" RTSP command.
@@ -486,7 +491,7 @@ public struct RTSPState {
     /***********************************************************
     Polling array for udp
     ***********************************************************/
-    pollfd *p;
+    GLib.PollFD *p;
     int max_p;
 
     /***********************************************************
@@ -522,7 +527,8 @@ public struct RTSPState {
     /***********************************************************
     Minimum and maximum local UDP ports.
     ***********************************************************/
-    int rtp_port_min, rtp_port_max;
+    int rtp_port_min;
+    int rtp_port_max;
 
     /***********************************************************
     Timeout to wait for incoming connections.
@@ -600,7 +606,8 @@ public struct RTSPStream {
     interleave IDs; copies of RTSPTransportField.interleaved_min/max
     for the selected transport. Only used for TCP.
     ***********************************************************/
-    int interleaved_min, interleaved_max;
+    int interleaved_min;
+    int interleaved_max;
 
     char control_url[1024]; /***********************************************************
     url for this stream (from SDP)
@@ -616,17 +623,17 @@ public struct RTSPStream {
     sockaddr_storage sdp_ip; /***********************************************************
     IP address (from SDP content)
     ***********************************************************/
+    RTSPSource[] include_source_addrs; /***********************************************************
+    Source-specific multicast include source IP addresses (from SDP content)
+    ***********************************************************/
     int nb_include_source_addrs; /***********************************************************
     Number of source-specific multicast include source IP addresses (from SDP content)
     ***********************************************************/
-    RTSPSource **include_source_addrs; /***********************************************************
-    Source-specific multicast include source IP addresses (from SDP content)
+    RTSPSource[] exclude_source_addrs; /***********************************************************
+    Source-specific multicast exclude source IP addresses (from SDP content)
     ***********************************************************/
     int nb_exclude_source_addrs; /***********************************************************
     Number of source-specific multicast exclude source IP addresses (from SDP content)
-    ***********************************************************/
-    RTSPSource **exclude_source_addrs; /***********************************************************
-    Source-specific multicast exclude source IP addresses (from SDP content)
     ***********************************************************/
     int sdp_ttl; /***********************************************************
     IP Time-To-Live (from SDP content)
@@ -823,7 +830,7 @@ int ff_rtsp_parse_streaming_commands (
 /***********************************************************
 Parse an SDP description of streams by populating an RTSPState struct
 within the AVFormatContext; also allocate the RTP streams and the
-pollfd array used for UDP streams.
+GLib.PollFD array used for UDP streams.
 ***********************************************************/
 int ff_sdp_parse (
     AVFormatContext *s,
@@ -854,7 +861,7 @@ Receive one packet from the RTSPStreams set up in the AVFormatContext
 ***********************************************************/
 int ff_rtsp_fetch_packet (
     AVFormatContext *s,
-    AVPacket *packet
+    LibAVCodec.Packet *packet
 );
 
 /***********************************************************
@@ -887,4 +894,4 @@ int ff_rtsp_open_transport_ctx (
     RTSPStream *rtsp_st
 );
 
-//  extern const AVOption ff_rtsp_options[];
+//  extern const LibAVUtil.Option ff_rtsp_options[];

@@ -44,7 +44,7 @@ public enum VocType {
 
 int ff_voc_get_packet (
     AVFormatContext *s,
-    AVPacket *packet,
+    LibAVCodec.Packet *packet,
     AVStream *st,
     int max_size
 );

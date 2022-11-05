@@ -20,8 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 public struct SRTPContext {
-    AVAES *aes;
-    AVHMAC *hmac;
+    LibAVUtil.Crypto.AESContext *aes;
+    LibAVUtil.Crypto.HMACContext *hmac;
     int rtp_hmac_size;
     int rtcp_hmac_size;
     uint8 master_key[16];

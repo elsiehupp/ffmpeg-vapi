@@ -187,7 +187,7 @@ public abstract class AVIOContext {
     warning -- this field can be NULL, be sure to not pass this AVIOContext
     to any av_opt_* functions in that case.
     ***********************************************************/
-    AVClass *av_class;
+    LibAVUtil.Class *av_class;
 
     /***********************************************************
     The following shows the relationship between buffer, buf_ptr,
@@ -429,7 +429,7 @@ string avio_find_protocol_name (
 /***********************************************************
 Return AVIO_FLAG_* access flags corresponding to the access permissions
 of the resource in url, or a negative value corresponding to an
-AVERROR code in case of failure. The returned access flags are
+LibAVUtil.ErrorCode code in case of failure. The returned access flags are
 masked by the value in flags.
 
 @note This function is intrinsically unsafe, in the sense that the
@@ -480,7 +480,7 @@ Open directory for reading.
 int avio_open_dir (
     AVIODirContext **s,
     string url,
-    AVDictionary **options
+    LibAVUtil.Dictionary **options
 );
 
 /***********************************************************
@@ -553,7 +553,7 @@ freed with avio_context_free ().
 @param opaque An opaque pointer to user-specific data.
 @param read_packet A function for refilling the buffer, may be NULL.
                     For stream protocols, must never return 0 but rather
-                    a proper AVERROR code.
+                    a proper LibAVUtil.ErrorCode code.
 @param write_packet A function for writing the buffer contents, may be NULL.
        The function may not change the input buffers content.
 @param seek A function for seeking to specified byte position, may be NULL.
@@ -691,7 +691,7 @@ public enum AVSeekWhence {
 
 /***********************************************************
 fseek () equivalent for AVIOContext.
-@return new position or AVERROR.
+@return new position or LibAVUtil.ErrorCode.
 ***********************************************************/
 int64 avio_seek (
     AVIOContext *s,
@@ -701,7 +701,7 @@ int64 avio_seek (
 
 /***********************************************************
 Skip given number of bytes forward
-@return new position or AVERROR.
+@return new position or LibAVUtil.ErrorCode.
 ***********************************************************/
 int64 avio_skip (
     AVIOContext *s,
@@ -710,7 +710,7 @@ int64 avio_skip (
 
 /***********************************************************
 ftell () equivalent for AVIOContext.
-@return position or AVERROR.
+@return position or LibAVUtil.ErrorCode.
 ***********************************************************/
 public static int64 avio_tell (
     AVIOContext *s
@@ -718,7 +718,7 @@ public static int64 avio_tell (
 
 /***********************************************************
 Get the filesize.
-@return filesize or AVERROR
+@return filesize or LibAVUtil.ErrorCode
 ***********************************************************/
 int64 avio_size (
     AVIOContext *s
@@ -757,7 +757,7 @@ void avio_flush (
 
 /***********************************************************
 Read size bytes from AVIOContext into buf.
-@return number of bytes read or AVERROR
+@return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
 int avio_read (
     AVIOContext *s,
@@ -770,7 +770,7 @@ Read size bytes from AVIOContext into buf. Unlike avio_read (), this is allowed
 to read fewer bytes than requested. The missing bytes can be read in the next
 call. This always tries to read at least 1 byte.
 Useful to reduce latency in certain cases.
-@return number of bytes read or AVERROR
+@return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
 int avio_read_partial (
     AVIOContext *s,
@@ -879,9 +879,9 @@ public enum AVIOOpenFlags {
     /***********************************************************
     Use non-blocking mode.
     If this flag is set, operations on the context will return
-    AVERROR (EAGAIN) if they can not be performed immediately.
+    LibAVUtil.ErrorCode (EAGAIN) if they can not be performed immediately.
     If this flag is not set, operations on the context will never return
-    AVERROR (EAGAIN).
+    LibAVUtil.ErrorCode (EAGAIN).
     Note that this flag does not affect the opening/connecting of the
     context. Connecting a protocol will always block if necessary (e.g. on
     network protocols) but never hang (e.g. on busy devices).
@@ -911,7 +911,7 @@ In case of failure the pointed to value is set to NULL.
 @param flags flags which control how the resource indicated by url
 is to be opened
 @return >= 0 in case of success, a negative value corresponding to an
-AVERROR code in case of failure
+LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int avio_open (
     AVIOContext **s,
@@ -935,14 +935,14 @@ is to be opened
 this parameter will be destroyed and replaced with a dict containing options
 that were not found. May be NULL.
 @return >= 0 in case of success, a negative value corresponding to an
-AVERROR code in case of failure
+LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 int avio_open2 (
     AVIOContext **s,
     string url,
     int flags,
     AVIOInterruptCB *int_cb,
-    AVDictionary **options
+    LibAVUtil.Dictionary **options
 );
 
 /***********************************************************
@@ -952,7 +952,7 @@ This function can only be used if s was opened by avio_open ().
 The internal buffer is automatically flushed before closing the
 resource.
 
-@return 0 on success, an AVERROR < 0 on error.
+@return 0 on success, an LibAVUtil.ErrorCode < 0 on error.
 @see avio_closep
 ***********************************************************/
 int avio_close (
@@ -967,7 +967,7 @@ This function can only be used if s was opened by avio_open ().
 The internal buffer is automatically flushed before closing the
 resource.
 
-@return 0 on success, an AVERROR < 0 on error.
+@return 0 on success, an LibAVUtil.ErrorCode < 0 on error.
 @see avio_close
 ***********************************************************/
 int avio_closep (
@@ -1076,7 +1076,7 @@ code otherwise
 ***********************************************************/
 int avio_read_to_bprint (
     AVIOContext *h,
-    AVBPrint *pb,
+    LibAVUtil.BPrintBuffer *pb,
     size_t max_size
 );
 
@@ -1085,7 +1085,7 @@ Accept and allocate a client context on a server context.
 @param s the server context
 @param c the client context, must be unallocated
 @return   >= 0 on success or a negative value corresponding
-          to an AVERROR on failure
+          to an LibAVUtil.ErrorCode on failure
 ***********************************************************/
 int avio_accept (
     AVIOContext *s,
@@ -1109,7 +1109,7 @@ returns 0 immediately.
 @param c the client context to perform the handshake on
 @return 0 on a complete and successful handshake
           > 0 if the handshake progressed, but is not complete
-          < 0 for an AVERROR code
+          < 0 for an LibAVUtil.ErrorCode code
 ***********************************************************/
 int avio_handshake (
     AVIOContext *c

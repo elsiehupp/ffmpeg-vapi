@@ -18,29 +18,31 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+#if HAVE_WINSOCK2_H
+
 #if !EPROTONOSUPPORT
-#define EPROTONOSUPPORT WSAEPROTONOSUPPORT
+public const int EPROTONOSUPPORT; // WSAEPROTONOSUPPORT
 #endif
 #if !ETIMEDOUT
-#define ETIMEDOUT WSAETIMEDOUT
+public const int ETIMEDOUT; // WSAETIMEDOUT
 #endif
 #if !ECONNREFUSED
-#define ECONNREFUSED WSAECONNREFUSED
+public const int ECONNREFUSED; // WSAECONNREFUSED
 #endif
 #if !EINPROGRESS
-#define EINPROGRESS WSAEINPROGRESS
+public const int EINPROGRESS; // WSAEINPROGRESS
 #endif
 #if !ENOTCONN
-#define ENOTCONN WSAENOTCONN
+public const int ENOTCONN; // WSAENOTCONN
 #endif
 
-#define getsockopt (a, b, c, d, e) getsockopt (a, b, c, (char*) d, e)
-#define setsockopt (a, b, c, d, e) setsockopt (a, b, c, (char*) d, e)
+//  #define getsockopt (a, b, c, d, e) getsockopt (a, b, c, (char*) d, e)
+//  #define setsockopt (a, b, c, d, e) setsockopt (a, b, c, (char*) d, e)
 
 int ff_neterrno ();
 #else
 
-#define ff_neterrno () AVERROR (errno)
+public LibAVUtil.ErrorCode ff_neterrno (); // LibAVUtil.ErrorCode (errno)
 #endif /* HAVE_WINSOCK2_H
 ***********************************************************/
 
@@ -68,7 +70,7 @@ Uses ff_network_wait_fd in a loop
 @param write Set 1 to wait for socket able to be read, 0 to be written
 @param timeout Timeout interval, in microseconds. Actual precision is 100000 mcs, due to ff_network_wait_fd usage
 @param int_cb Interrupt callback, is checked before each ff_network_wait_fd call
-@return 0 if data can be read/written, AVERROR (ETIMEDOUT) if timeout expired, or negative error code
+@return 0 if data can be read/written, LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expired, or negative error code
 ***********************************************************/
 int ff_network_wait_fd_timeout (
     int fd,
@@ -82,7 +84,7 @@ Waits for up to 'timeout' microseconds. If the usert's int_cb is set and
 triggered, return before that.
 @param timeout Timeout in microseconds. Maybe have lower actual precision.
 @param int_cb Interrupt callback, is checked regularly.
-@return AVERROR (ETIMEDOUT) if timeout expirted, AVERROR_EXIT if interrupted by int_cb
+@return LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expirted, AVERROR_EXIT if interrupted by int_cb
 ***********************************************************/
 int ff_network_sleep_interruptible (
     int64 timeout,
@@ -105,16 +107,16 @@ char ss_pad1[6];
 #endif /* !HAVE_STRUCT_SOCKADDR_STORAGE
 ***********************************************************/
 
-typedef union sockaddr_union {
+public struct sockaddr_union {
     sockaddr_storage storage;
-    sockaddr_in in;
+    Posix.SockAddrIn in;
 #if HAVE_STRUCT_SOCKADDR_IN6
-    sockaddr_in6 in6;
+    Posix.SockAddrIn6 in6;
 #endif
 }
 
 #if !MSG_NOSIGNAL
-#define MSG_NOSIGNAL 0
+public const int MSG_NOSIGNAL; // 0
 #endif
 
 #if !HAVE_STRUCT_ADDRINFO
@@ -124,7 +126,7 @@ public struct addrinfo {
     int ai_socktype;
     int ai_protocol;
     int ai_addrlen;
-    sockaddr *ai_addr;
+    Posix.SockAddr *ai_addr;
     string ai_canonname;
     addrinfo *ai_next;
 }
@@ -132,66 +134,66 @@ public struct addrinfo {
 ***********************************************************/
 
 /***********************************************************
-getaddrinfo constants
+ff_getaddrinfo constants
 ***********************************************************/
 #if !EAI_AGAIN
-#define EAI_AGAIN 2
+public const int EAI_AGAIN; // 2
 #endif
 #if !EAI_BADFLAGS
-#define EAI_BADFLAGS 3
+public const int EAI_BADFLAGS; // 3
 #endif
 #if !EAI_FAIL
-#define EAI_FAIL 4
+public const int EAI_FAIL; // 4
 #endif
 #if !EAI_FAMILY
-#define EAI_FAMILY 5
+public const int EAI_FAMILY; // 5
 #endif
 #if !EAI_MEMORY
-#define EAI_MEMORY 6
+public const int EAI_MEMORY; // 6
 #endif
 #if !EAI_NODATA
-#define EAI_NODATA 7
+public const int EAI_NODATA; // 7
 #endif
 #if !EAI_NONAME
-#define EAI_NONAME 8
+public const int EAI_NONAME; // 8
 #endif
 #if !EAI_SERVICE
-#define EAI_SERVICE 9
+public const int EAI_SERVICE; // 9
 #endif
 #if !EAI_SOCKTYPE
-#define EAI_SOCKTYPE 10
+public const int EAI_SOCKTYPE; // 10
 #endif
 
 #if !AI_PASSIVE
-#define AI_PASSIVE 1
+public const int AI_PASSIVE; // 1
 #endif
 
 #if !AI_CANONNAME
-#define AI_CANONNAME 2
+public const int AI_CANONNAME; // 2
 #endif
 
 #if !AI_NUMERICHOST
-#define AI_NUMERICHOST 4
+public const int AI_NUMERICHOST; // 4
 #endif
 
 #if !NI_NOFQDN
-#define NI_NOFQDN 1
+public const int NI_NOFQDN; // 1
 #endif
 
 #if !NI_NUMERICHOST
-#define NI_NUMERICHOST 2
+public const int NI_NUMERICHOST; // 2
 #endif
 
 #if !NI_NAMERQD
-#define NI_NAMERQD 4
+public const int NI_NAMERQD; // 4
 #endif
 
 #if !NI_NUMERICSERV
-#define NI_NUMERICSERV 8
+public const int NI_NUMERICSERV; // 8
 #endif
 
 #if !NI_DGRAM
-#define NI_DGRAM 16
+public const int NI_DGRAM; // 16
 #endif
 
 #if !HAVE_GETADDRINFO
@@ -205,7 +207,7 @@ void ff_freeaddrinfo (
     addrinfo *res
 );
 int ff_getnameinfo (
-    sockaddr *sa,
+    Posix.SockAddr *sa,
     int salen,
     string host,
     int hostlen,
@@ -213,9 +215,6 @@ int ff_getnameinfo (
     int servlen,
     int flags
 );
-#define getaddrinfo ff_getaddrinfo
-#define freeaddrinfo ff_freeaddrinfo
-#define getnameinfo ff_getnameinfo
 #endif /* !HAVE_GETADDRINFO
 ***********************************************************/
 
@@ -223,8 +222,6 @@ int ff_getnameinfo (
 string ff_gai_strerror (
     int ecode
 );
-#undef gai_strerror
-#define gai_strerror ff_gai_strerror
 #endif /* !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
 ***********************************************************/
 
@@ -237,18 +234,18 @@ public const size_t INET_ADDRSTRLEN;
 #endif
 
 #if !INET6_ADDRSTRLEN
-#define INET6_ADDRSTRLEN INET_ADDRSTRLEN
+public const size_t INET6_ADDRSTRLEN; // INET_ADDRSTRLEN
 #endif
 
 #if !IN_MULTICAST
-#define IN_MULTICAST (a) ((((uint32)(a)) & 0xf0000000) == 0xe0000000)
+public uint32 IN_MULTICAST (uint32 a); // ((((uint32)(a)) & 0xf0000000) == 0xe0000000)
 #endif
 #if !IN6_IS_ADDR_MULTICAST
-#define IN6_IS_ADDR_MULTICAST (a) (((uint8[] ) (a))[0] == 0xff)
+public bool IN6_IS_ADDR_MULTICAST (uint8[] a); // (((uint8[] ) (a))[0] == 0xff)
 #endif
 
 int ff_is_multicast_address (
-    sockaddr *addr
+    Posix.SockAddr *addr
 );
 
 /***********************************************************
@@ -266,12 +263,12 @@ Bind to a file descriptor and poll for a connection.
 @param h URLContext providing interrupt check
                callback and logging context.
 @return A non-blocking file descriptor on success
-               or an AVERROR on failure.
+               or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
 int ff_listen_bind (
     int fd,
-    sockaddr *addr,
-    socklen_t addrlen,
+    Posix.SockAddr *addr,
+    Posix.socklen_t addrlen,
     int timeout,
     URLContext *h
 );
@@ -281,12 +278,12 @@ Bind to a file descriptor to an address without accepting connections.
 @param fd First argument of bind ().
 @param addr Second argument of bind ().
 @param addrlen Third argument of bind ().
-@return 0 on success or an AVERROR on failure.
+@return 0 on success or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
 int ff_listen (
     int fd,
-    sockaddr *addr,
-    socklen_t addrlen
+    Posix.SockAddr *addr,
+    Posix.socklen_t addrlen
 );
 
 /***********************************************************
@@ -296,7 +293,7 @@ Poll for a single connection on the passed file descriptor.
 @param h URLContext providing interrupt check
                callback and logging context.
 @return A non-blocking file descriptor on success
-               or an AVERROR on failure.
+               or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
 int ff_accept (
     int fd,
@@ -317,12 +314,12 @@ Connect to a file descriptor and poll for result.
 @param will_try_next Whether the caller will try to connect to another
                 address for the same host name, affecting the form of
                 logged errors.
-@return 0 on success, AVERROR on failure.
+@return 0 on success, LibAVUtil.ErrorCode on failure.
 ***********************************************************/
 int ff_listen_connect (
     int fd,
-    sockaddr *addr,
-    socklen_t addrlen,
+    Posix.SockAddr *addr,
+    Posix.socklen_t addrlen,
     int timeout,
     URLContext *h,
     int will_try_next
@@ -367,7 +364,7 @@ running in parallel.
                 to allow the caller to set socket options before calling
                 connect () on it, may be NULL.
 @param customize_ctx Context parameter passed to customize_fd.
-@return 0 on success, AVERROR on failure.
+@return 0 on success, LibAVUtil.ErrorCode on failure.
 ***********************************************************/
 int ff_connect_parallel (
     addrinfo[] addrs,

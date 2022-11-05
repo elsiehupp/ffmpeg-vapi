@@ -21,21 +21,23 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define MOV_FRAG_INFO_ALLOC_INCREMENT 64
-#define MOV_INDEX_CLUSTER_SIZE 1024
-#define MOV_TIMESCALE 1000
+public const size_t MOV_FRAG_INFO_ALLOC_INCREMENT;
+public const size_t MOV_INDEX_CLUSTER_SIZE;
+public const int MOV_TIMESCALE;
 
-#define RTP_MAX_PACKET_SIZE 1450
+public const size_t RTP_MAX_PACKET_SIZE;
 
-#define MODE_MP4 0x01
-#define MODE_MOV 0x02
-#define MODE_3GP 0x04
-#define MODE_PSP 0x08 // example working PSP command line:
-// ffmpeg -i testinput.avi -f psp -r 14.985 -s 320x240 -b 768 -ar 24000 -ab 32 M4V00001.MP4
-#define MODE_3G2 0x10
-#define MODE_IPOD 0x20
-#define MODE_ISM 0x40
-#define MODE_F4V 0x80
+public enum Mode {
+    MODE_MP4,
+    MODE_MOV,
+    MODE_3GP,
+    MODE_PSP, // example working PSP command line:
+    // ffmpeg -i testinput.avi -f psp -r 14.985 -s 320x240 -b 768 -ar 24000 -ab 32 M4V00001.MP4
+    MODE_3G2,
+    MODE_IPOD,
+    MODE_ISM,
+    MODE_F4V,
+}
 
 public struct MOVIentry {
     uint64 pos;
@@ -49,10 +51,14 @@ public struct MOVIentry {
     uint chunkNum;
     uint entries;
     int cts;
-#define MOV_SYNC_SAMPLE 0x0001
-#define MOV_PARTIAL_SYNC_SAMPLE 0x0002
-#define MOV_DISPOSABLE_SAMPLE 0x0004
-    uint32 flags;
+    MOVSampleFlags flags;
+}
+
+[Flags]
+public enum MOVSampleFlags {
+    MOV_SYNC_SAMPLE,
+    MOV_PARTIAL_SYNC_SAMPLE,
+    MOV_DISPOSABLE_SAMPLE,
 }
 
 public struct HintSample {
@@ -77,6 +83,20 @@ public struct MOVFragmentInfo {
     int size;
 }
 
+[Flags]
+public enum MOVTrackFlags {
+    MOV_TRACK_CTTS,
+    MOV_TRACK_STPS,
+    MOV_TRACK_ENABLED,
+}
+
+[Flags]
+public enum MOVETimeCodeFlags {
+    MOV_TIMECODE_FLAG_DROPFRAME,
+    MOV_TIMECODE_FLAG_24HOURSMAX,
+    MOV_TIMECODE_FLAG_ALLOWNEGATIVE,
+}
+
 public struct MOVTrack {
     int mode;
     int entry;
@@ -89,14 +109,8 @@ public struct MOVTrack {
     long chunkCount;
     int has_keyframes;
     int has_disposable;
-#define MOV_TRACK_CTTS 0x0001
-#define MOV_TRACK_STPS 0x0002
-#define MOV_TRACK_ENABLED 0x0004
-    uint32 flags;
-#define MOV_TIMECODE_FLAG_DROPFRAME 0x0001
-#define MOV_TIMECODE_FLAG_24HOURSMAX 0x0002
-#define MOV_TIMECODE_FLAG_ALLOWNEGATIVE 0x0004
-    uint32 timecode_flags;
+    MOVTrackFlags flags;
+    MOVETimeCodeFlags timecode_flags;
     int language;
     int track_id;
     /***********************************************************
@@ -104,7 +118,7 @@ public struct MOVTrack {
     ***********************************************************/
     int tag;
     AVStream *st;
-    AVCodecParameters *par;
+    LibAVCodec.CodecParameters *par;
     int multichannel_as_mono;
 
     int vos_len;
@@ -149,7 +163,7 @@ public struct MOVTrack {
     uint32 default_size;
 
     HintSampleQueue sample_queue;
-    AVPacket cover_image;
+    LibAVCodec.Packet cover_image;
 
     AVIOContext *mdat_buf;
     int64 data_offset;
@@ -161,28 +175,30 @@ public struct MOVTrack {
     MOVFragmentInfo *frag_info;
     uint frag_info_capacity;
 
-    struct {
-        int first_packet_seq;
-        int first_packet_entry;
-        int first_packet_seen;
-        int first_frag_written;
-        int packet_seq;
-        int packet_entry;
-        int slices;
-    } vc1_info;
+    VC1Info vc1_info;
 
     void *eac3_priv;
 
     MOVMuxCencContext cenc;
 
-    uint32 palette[AVPALETTE_COUNT];
+    uint32 palette[LibAVUtil.AVPALETTE_COUNT];
     int pal_done;
 
     int is_unaligned_qt_rgb;
 }
 
+public struct VC1Info {
+    int first_packet_seq;
+    int first_packet_entry;
+    int first_packet_seen;
+    int first_frag_written;
+    int packet_seq;
+    int packet_entry;
+    int slices;
+}
+
 public enum MOVEncryptionScheme {
-    MOV_ENC_NONE = 0,
+    MOV_ENC_NONE,
     MOV_ENC_CENC_AES_CTR,
 }
 
@@ -194,7 +210,7 @@ public enum MOVPrftBox {
 }
 
 public struct MOVMuxContext {
-    AVClass *av_class;
+    LibAVUtil.Class *av_class;
     int mode;
     int64 time;
     int nb_streams;
@@ -289,7 +305,7 @@ public enum MOVFlags {
 
 int ff_mov_write_packet (
     AVFormatContext *s,
-    AVPacket *packet
+    LibAVCodec.Packet *packet
 );
 
 int ff_mov_init_hinting (
@@ -299,7 +315,7 @@ int ff_mov_init_hinting (
 );
 int ff_mov_add_hinted_packet (
     AVFormatContext *s,
-    AVPacket *packet,
+    LibAVCodec.Packet *packet,
     int track_index,
     int sample,
     uint8[] sample_data,

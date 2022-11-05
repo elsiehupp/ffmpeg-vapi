@@ -22,7 +22,7 @@ along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
 int ff_tee_parse_slave_options (
     void *log,
     string slave,
-    out AVDictionary *options,
+    out LibAVUtil.Dictionary *options,
     string[] filename
 );
 

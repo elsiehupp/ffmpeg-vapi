@@ -19,12 +19,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define CENC_KID_SIZE (16)
-
-public struct MOVTrack { }
+public const size_t CENC_KID_SIZE;
 
 public struct MOVMuxCencContext {
-    AVAESCTR* aes_ctr;
+    LibAVUtil.AESCTRContext* aes_ctr;
     uint8[] auxiliary_info;
     size_t auxiliary_info_size;
     size_t auxiliary_info_alloc_size;

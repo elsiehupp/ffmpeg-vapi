@@ -102,7 +102,7 @@ Usage similar to rtp_parse_packet ().
 ***********************************************************/
 int ff_rdt_parse_packet (
     RDTDemuxContext *s,
-    AVPacket *packet,
+    LibAVCodec.Packet *packet,
     out uint8[] buf,
     int len
 );

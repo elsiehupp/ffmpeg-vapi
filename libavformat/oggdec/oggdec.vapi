@@ -138,11 +138,14 @@ public struct ogg {
     ogg_state *state;
 }
 
-#define OGG_FLAG_CONT 1
-#define OGG_FLAG_BOS 2
-#define OGG_FLAG_EOS 4
+[Flags]
+public enum OggFlags {
+    OGG_FLAG_CONT,
+    OGG_FLAG_BOS,
+    OGG_FLAG_EOS,
+}
 
-#define OGG_NOGRANULE_VALUE (-1ull)
+public const uint64 OGG_NOGRANULE_VALUE;
 
 //  extern const struct ogg_codec ff_celt_codec;
 //  extern const struct ogg_codec ff_daala_codec;
@@ -163,7 +166,7 @@ public struct ogg {
 
 int ff_vorbis_comment (
     AVFormatContext *ms,
-    AVDictionary **m,
+    LibAVUtil.Dictionary **m,
     uint8[] buf,
     int size,
     int parse_picture

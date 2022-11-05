@@ -37,19 +37,19 @@ Writes VP codec configuration to the provided AVIOContext.
 
 @param s address of the AVFormatContext for the logging context.
 @param pb address of the AVIOContext where the vpcC shall be written.
-@param par address of the AVCodecParameters which contains codec information.
-@return >=0 in case of success, a negative value corresponding to an AVERROR
+@param par address of the LibAVCodec.CodecParameters which contains codec information.
+@return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
         code in case of failure
 ***********************************************************/
 int ff_isom_write_vpcc (
     AVFormatContext *s,
     AVIOContext *pb,
-    AVCodecParameters *par
+    LibAVCodec.CodecParameters *par
 );
 
 int ff_isom_get_vpcc_features (
     AVFormatContext *s,
-    AVCodecParameters *par,
-    AVRational *frame_rate,
+    LibAVCodec.CodecParameters *par,
+    LibAVUtil.Rational *frame_rate,
     VPCC *vpcc
 );

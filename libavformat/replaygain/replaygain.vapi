@@ -21,7 +21,7 @@ Parse replaygain tags and export them as per-stream side data.
 ***********************************************************/
 int ff_replaygain_export (
     AVStream *st,
-    AVDictionary *metadata
+    LibAVUtil.Dictionary *metadata
 );
 
 
