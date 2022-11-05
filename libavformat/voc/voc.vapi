@@ -42,5 +42,9 @@ public enum VocType {
 //  extern const uchar ff_voc_magic[21];
 //  extern const AVCodecTag ff_voc_codec_tags[];
 
-int ff_voc_get_packet (AVFormatContext *s, AVPacket *packet,
-                      AVStream *st, int max_size);
+int ff_voc_get_packet (
+    AVFormatContext *s,
+    AVPacket *packet,
+    AVStream *st,
+    int max_size
+);

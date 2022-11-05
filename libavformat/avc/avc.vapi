@@ -19,16 +19,41 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_avc_parse_nal_units (AVIOContext *s, uint8[] buf, int size);
-int ff_avc_parse_nal_units_buf (uint8[] buf_in, out uint8[] buf_out, int[] size);
-int ff_isom_write_avcc (AVIOContext *pb, uint8[] data, int len);
-uint8[] ff_avc_find_startcode (uint8[] p, uint8[] end);
-int ff_avc_write_annexb_extradata (uint8[] buf_in, out uint8[] buf_out, int[] size);
-uint8[] ff_avc_mp4_find_startcode (uint8[] start,
-                                         uint8[] end,
-                                         int nal_length_size);
-uint8[] ff_nal_unit_extract_rbsp (uint8[] src, uint32 src_len,
-                                  uint32[] dst_len, int header_len);
+int ff_avc_parse_nal_units (
+    AVIOContext *s,
+    uint8[] buf,
+    int size
+);
+int ff_avc_parse_nal_units_buf (
+    uint8[] buf_in,
+    out uint8[] buf_out,
+    int[] size
+);
+int ff_isom_write_avcc (
+    AVIOContext *pb,
+    uint8[] data,
+    int len
+);
+uint8[] ff_avc_find_startcode (
+    uint8[] p,
+    uint8[] end
+);
+int ff_avc_write_annexb_extradata (
+    uint8[] buf_in,
+    out uint8[] buf_out,
+    int[] size
+);
+uint8[] ff_avc_mp4_find_startcode (
+    uint8[] start,
+    uint8[] end,
+    int nal_length_size
+);
+uint8[] ff_nal_unit_extract_rbsp (
+    uint8[] src,
+    uint32 src_len,
+    out uint32 dst_len,
+    int header_len
+);
 
 public struct H264SPS {
     uint8 id;
@@ -41,4 +66,8 @@ public struct H264SPS {
     AVRational sar;
 }
 
-int ff_avc_decode_sps (H264SPS *sps, uint8[] buf, int buf_size);
+int ff_avc_decode_sps (
+    H264SPS *sps,
+    uint8[] buf,
+    int buf_size
+);

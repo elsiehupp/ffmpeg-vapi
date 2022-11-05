@@ -40,4 +40,7 @@ public enum AVLangCodespace {
 Convert a language code to a target codespace. The source codespace is guessed.
 @return NULL if the provided lang is null or invalid.
 ***********************************************************/
-string ff_convert_lang_to (string lang, AVLangCodespace target_codespace);
+string ff_convert_lang_to (
+    string lang,
+    AVLangCodespace target_codespace
+);

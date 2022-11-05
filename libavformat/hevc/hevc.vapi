@@ -36,14 +36,19 @@ discarded, and *ps_count will be set to the number of discarded PS NAL units.
 @param buf_in address of the buffer holding the input data
 @param size size (in bytes) of the input buffer
 @param filter_ps whether to write parameter set NAL units to the output (0)
-       or to discard them (non-zero)
+    or to discard them (non-zero)
 @param ps_count address of the variable where the number of discarded
-       parameter set NAL units shall be written, may be NULL
+    parameter set NAL units shall be written, may be NULL
 @return the amount (in bytes) of data written in case of success, a negative
-        value corresponding to an AVERROR code in case of failure
+    value corresponding to an AVERROR code in case of failure
 ***********************************************************/
-int ff_hevc_annexb2mp4 (AVIOContext *pb, uint8[] buf_in,
-                       int size, int filter_ps, int[] ps_count);
+int ff_hevc_annexb2mp4 (
+    AVIOContext *pb,
+    uint8[] buf_in,
+    int size,
+    int filter_ps,
+    int[] ps_count
+);
 
 /***********************************************************
 Writes Annex B formatted HEVC NAL units to a data buffer.
@@ -58,18 +63,23 @@ On output, *size holds the size (in bytes) of the output data buffer.
 
 @param buf_in address of the buffer holding the input data
 @param size address of the variable holding the size (in bytes) of the input
-       buffer (on input) and of the output buffer (on output)
+    buffer (on input) and of the output buffer (on output)
 @param buf_out address of the variable holding the address of the output
-       buffer
+    buffer
 @param filter_ps whether to write parameter set NAL units to the output (0)
-       or to discard them (non-zero)
+    or to discard them (non-zero)
 @param ps_count address of the variable where the number of discarded
-       parameter set NAL units shall be written, may be NULL
+    parameter set NAL units shall be written, may be NULL
 @return the amount (in bytes) of data written in case of success, a negative
-        value corresponding to an AVERROR code in case of failure
+     value corresponding to an AVERROR code in case of failure
 ***********************************************************/
-int ff_hevc_annexb2mp4_buf (uint8[] buf_in, out uint8[] buf_out,
-                           int[] size, int filter_ps, int[] ps_count);
+int ff_hevc_annexb2mp4_buf (
+    uint8[] buf_in,
+    out uint8[] buf_out,
+    int[] size,
+    int filter_ps,
+    int[] ps_count
+);
 
 /***********************************************************
 Writes HEVC extradata (parameter sets, declarative SEI NAL units) to the
@@ -82,9 +92,13 @@ writing.
 @param data address of the buffer holding the data needed to write the hvcC
 @param size size (in bytes) of the data buffer
 @param ps_array_completeness whether all parameter sets are in the hvcC (1)
-       or there may be additional parameter sets in the bitstream (0)
+    or there may be additional parameter sets in the bitstream (0)
 @return >=0 in case of success, a negative value corresponding to an AVERROR
-        code in case of failure
+     code in case of failure
 ***********************************************************/
-int ff_isom_write_hvcc (AVIOContext *pb, uint8[] data,
-                       int size, int ps_array_completeness);
+int ff_isom_write_hvcc (
+    AVIOContext *pb,
+    uint8[] data,
+    int size,
+    int ps_array_completeness
+);

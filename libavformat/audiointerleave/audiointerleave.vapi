@@ -48,11 +48,26 @@ public struct AudioInterleaveContext {
     AVRational time_base;
 }
 
-int ff_audio_interleave_init (AVFormatContext *s, int[] samples_per_frame, AVRational time_base);
-void ff_audio_interleave_close (AVFormatContext *s);
+int ff_audio_interleave_init (
+    AVFormatContext *s,
+    int[] samples_per_frame,
+    AVRational time_base
+);
+void ff_audio_interleave_close (
+    AVFormatContext *s
+);
 
-public delegate int GetPacketDelegate (AVFormatContext format_context, AVPacket packet_1, AVPacket packet_2, int arg);
-public delegate int CompareTimeStampDelegate (AVFormatContext format_context, AVPacket packet_1, AVPacket packet_2);
+public delegate int GetPacketDelegate (
+    AVFormatContext format_context,
+    AVPacket packet_1,
+    AVPacket packet_2,
+    int arg
+);
+public delegate int CompareTimeStampDelegate (
+    AVFormatContext format_context,
+    AVPacket packet_1,
+    AVPacket packet_2
+);
 
 /***********************************************************
 Rechunk audio PCM packets per AudioInterleaveContext.samples_per_frame

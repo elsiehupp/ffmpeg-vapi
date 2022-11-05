@@ -44,7 +44,10 @@ int ff_neterrno ();
 #endif /* HAVE_WINSOCK2_H
 ***********************************************************/
 
-int ff_socket_nonblock (int socket, int enable);
+int ff_socket_nonblock (
+    int socket,
+    int enable
+);
 
 int ff_network_init ();
 void ff_network_close ();
@@ -52,7 +55,10 @@ void ff_network_close ();
 int ff_tls_init ();
 void ff_tls_deinit ();
 
-int ff_network_wait_fd (int fd, int write);
+int ff_network_wait_fd (
+    int fd,
+    int write
+);
 
 /***********************************************************
 This works similarly to ff_network_wait_fd, but waits up to 'timeout' microseconds
@@ -64,7 +70,12 @@ Uses ff_network_wait_fd in a loop
 @param int_cb Interrupt callback, is checked before each ff_network_wait_fd call
 @return 0 if data can be read/written, AVERROR (ETIMEDOUT) if timeout expired, or negative error code
 ***********************************************************/
-int ff_network_wait_fd_timeout (int fd, int write, int64 timeout, AVIOInterruptCB *int_cb);
+int ff_network_wait_fd_timeout (
+    int fd,
+    int write,
+    int64 timeout,
+    AVIOInterruptCB *int_cb
+);
 
 /***********************************************************
 Waits for up to 'timeout' microseconds. If the usert's int_cb is set and
@@ -73,7 +84,10 @@ triggered, return before that.
 @param int_cb Interrupt callback, is checked regularly.
 @return AVERROR (ETIMEDOUT) if timeout expirted, AVERROR_EXIT if interrupted by int_cb
 ***********************************************************/
-int ff_network_sleep_interruptible (int64 timeout, AVIOInterruptCB *int_cb);
+int ff_network_sleep_interruptible (
+    int64 timeout,
+    AVIOInterruptCB *int_cb
+);
 
 #if !HAVE_STRUCT_SOCKADDR_STORAGE
 public struct sockaddr_storage {
@@ -181,12 +195,24 @@ getaddrinfo constants
 #endif
 
 #if !HAVE_GETADDRINFO
-int ff_getaddrinfo (string node, string service,
-                   struct addrinfo *hints, addrinfo **res);
-void ff_freeaddrinfo (addrinfo *res);
-int ff_getnameinfo (sockaddr *sa, int salen,
-                   string host, int hostlen,
-                   string serv, int servlen, int flags);
+int ff_getaddrinfo (
+    string node,
+    string service,
+    addrinfo *hints,
+    out addrinfo *res
+);
+void ff_freeaddrinfo (
+    addrinfo *res
+);
+int ff_getnameinfo (
+    sockaddr *sa,
+    int salen,
+    string host,
+    int hostlen,
+    string serv,
+    int servlen,
+    int flags
+);
 #define getaddrinfo ff_getaddrinfo
 #define freeaddrinfo ff_freeaddrinfo
 #define getnameinfo ff_getnameinfo
@@ -194,18 +220,20 @@ int ff_getnameinfo (sockaddr *sa, int salen,
 ***********************************************************/
 
 #if !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
-string ff_gai_strerror (int ecode);
+string ff_gai_strerror (
+    int ecode
+);
 #undef gai_strerror
 #define gai_strerror ff_gai_strerror
 #endif /* !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
 ***********************************************************/
 
 #if !INADDR_LOOPBACK
-#define INADDR_LOOPBACK 0x7f000001
+public const uint INADDR_LOOPBACK;
 #endif
 
 #if !INET_ADDRSTRLEN
-#define INET_ADDRSTRLEN 16
+public const size_t INET_ADDRSTRLEN;
 #endif
 
 #if !INET6_ADDRSTRLEN
@@ -219,7 +247,9 @@ string ff_gai_strerror (int ecode);
 #define IN6_IS_ADDR_MULTICAST (a) (((uint8[] ) (a))[0] == 0xff)
 #endif
 
-int ff_is_multicast_address (sockaddr *addr);
+int ff_is_multicast_address (
+    sockaddr *addr
+);
 
 /***********************************************************
 Time in milliseconds between interrupt check
@@ -238,9 +268,13 @@ Bind to a file descriptor and poll for a connection.
 @return A non-blocking file descriptor on success
                or an AVERROR on failure.
 ***********************************************************/
-int ff_listen_bind (int fd, sockaddr *addr,
-                   socklen_t addrlen, int timeout,
-                   URLContext *h);
+int ff_listen_bind (
+    int fd,
+    sockaddr *addr,
+    socklen_t addrlen,
+    int timeout,
+    URLContext *h
+);
 
 /***********************************************************
 Bind to a file descriptor to an address without accepting connections.
@@ -249,7 +283,11 @@ Bind to a file descriptor to an address without accepting connections.
 @param addrlen Third argument of bind ().
 @return 0 on success or an AVERROR on failure.
 ***********************************************************/
-int ff_listen (int fd, sockaddr *addr, socklen_t addrlen);
+int ff_listen (
+    int fd,
+    sockaddr *addr,
+    socklen_t addrlen
+);
 
 /***********************************************************
 Poll for a single connection on the passed file descriptor.
@@ -260,7 +298,11 @@ Poll for a single connection on the passed file descriptor.
 @return A non-blocking file descriptor on success
                or an AVERROR on failure.
 ***********************************************************/
-int ff_accept (int fd, int timeout, URLContext *h);
+int ff_accept (
+    int fd,
+    int timeout,
+    URLContext *h
+);
 
 /***********************************************************
 Connect to a file descriptor and poll for result.
@@ -277,15 +319,31 @@ Connect to a file descriptor and poll for result.
                 logged errors.
 @return 0 on success, AVERROR on failure.
 ***********************************************************/
-int ff_listen_connect (int fd, sockaddr *addr,
-                      socklen_t addrlen, int timeout,
-                      URLContext *h, int will_try_next);
+int ff_listen_connect (
+    int fd,
+    sockaddr *addr,
+    socklen_t addrlen,
+    int timeout,
+    URLContext *h,
+    int will_try_next
+);
 
-int ff_http_match_no_proxy (string no_proxy, string hostname);
+int ff_http_match_no_proxy (
+    string no_proxy,
+    string hostname
+);
 
-int ff_socket (int domain, int type, int protocol);
+int ff_socket (
+    int domain,
+    int type,
+    int protocol
+);
 
-void ff_log_net_error (void *ctx, int level, char* prefix);
+void ff_log_net_error (
+    void *ctx,
+    int level,
+    char* prefix
+);
 
 /***********************************************************
 Connect to any of the given addrinfo addresses, with multiple attempts
@@ -311,9 +369,13 @@ running in parallel.
 @param customize_ctx Context parameter passed to customize_fd.
 @return 0 on success, AVERROR on failure.
 ***********************************************************/
-int ff_connect_parallel (addrinfo *addrs, int timeout_ms_per_address,
-                        int parallel, URLContext *h, int[] fd,
-                        void (*customize_fd)(void *, int), void *customize_ctx);
-
-#endif /* AVFORMAT_NETWORK_H
-***********************************************************/
+int ff_connect_parallel (
+    addrinfo[] addrs,
+    int timeout_ms_per_address,
+    int parallel,
+    URLContext *h,
+    out int fd,
+    CustomizeFileDescriptorDelegate customize_fd,
+    void *customize_ctx
+);
+public delegate void CustomizeFileDescriptorDelegate (void *opaque, int arg);

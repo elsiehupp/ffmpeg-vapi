@@ -30,8 +30,14 @@ isom.c
 //  extern const AVCodecTag ff_codec_movsubtitle_tags[];
 //  extern const AVCodecTag ff_codec_movdata_tags[];
 
-int ff_mov_iso639_to_lang (char lang[4], int mp4);
-int ff_mov_lang_to_iso639 (uint code, char to[4]);
+int ff_mov_iso639_to_lang (
+    char lang[4],
+    int mp4
+);
+int ff_mov_lang_to_iso639 (
+    uint code,
+    char to[4]
+);
 
 /***********************************************************
 the QuickTime file format is quite convoluted...
@@ -374,13 +380,26 @@ public struct MOVContext {
     /***********************************************************
     display matrix from mvhd
     ***********************************************************/
-    int32 movie_display_matrix[3][3];
+    int32 movie_display_matrix[3 * 3];
 }
 
-int ff_mp4_read_descr_len (AVIOContext *pb);
-int ff_mp4_read_descr (AVFormatContext *fc, AVIOContext *pb, int[] tag);
-int ff_mp4_read_dec_config_descr (AVFormatContext *fc, AVStream *st, AVIOContext *pb);
-void ff_mp4_parse_es_descr (AVIOContext *pb, int[] es_id);
+int ff_mp4_read_descr_len (
+    AVIOContext *pb
+);
+int ff_mp4_read_descr (
+    AVFormatContext *fc,
+    AVIOContext *pb,
+    int[] tag
+);
+int ff_mp4_read_dec_config_descr (
+    AVFormatContext *fc,
+    AVStream *st,
+    AVIOContext *pb
+);
+void ff_mp4_parse_es_descr (
+    AVIOContext *pb,
+    int[] es_id
+);
 
 [Flags]
 public enum MP4TagFlags {
@@ -459,22 +478,32 @@ public enum MOVSampleDependencyFlags {
      (tag) == MKTAG ('A', 'V', 'i', 'n'))
 
 
-int ff_mov_read_esds (AVFormatContext *fc, AVIOContext *pb);
+int ff_mov_read_esds (
+    AVFormatContext *fc,
+    AVIOContext *pb
+);
 
-int ff_mov_read_stsd_entries (MOVContext *c, AVIOContext *pb, int entries);
-void ff_mov_write_chan (AVIOContext *pb, int64 channel_layout);
+int ff_mov_read_stsd_entries (
+    MOVContext *c,
+    AVIOContext *pb,
+    int entries
+);
+void ff_mov_write_chan (
+    AVIOContext *pb,
+    int64 channel_layout
+);
 
 public enum FFMOVFlagMfra {
-    FF_MOV_FLAG_MFRA_AUTO -1
-    FF_MOV_FLAG_MFRA_DTS 1
-    FF_MOV_FLAG_MFRA_PTS 2
+    FF_MOV_FLAG_MFRA_AUTO,
+    FF_MOV_FLAG_MFRA_DTS,
+    FF_MOV_FLAG_MFRA_PTS,
 }
 
 /***********************************************************
 Compute codec id for 'lpcm' tag.
 See CoreAudioTypes and AudioStreamBasicDescription at Apple.
 ***********************************************************/
-static inline enum AVCodecID ff_mov_get_lpcm_codec_id (int bps, int flags)
+public static AVCodecID ff_mov_get_lpcm_codec_id (int bps, int flags)
 {
     /***********************************************************
     lpcm flags:

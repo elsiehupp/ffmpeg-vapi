@@ -28,8 +28,12 @@ size required by ff_vorbiscomment_write ().
 For no string, set to an empty string.
 @return The length in bytes.
 ***********************************************************/
-int64 ff_vorbiscomment_length (AVDictionary *m, string vendor_string,
-                                AVChapter **chapters, uint nb_chapters);
+int64 ff_vorbiscomment_length (
+    AVDictionary *m,
+    string vendor_string,
+    AVChapterp[] chapters,
+    uint nb_chapters
+);
 
 /***********************************************************
 Write a VorbisComment into a buffer. The buffer, p, must have enough
@@ -43,8 +47,12 @@ ff_vorbiscomment_length ()
 @param chapters The chapters to write.
 @param nb_chapters The number of chapters to write.
 ***********************************************************/
-int ff_vorbiscomment_write (uint8[] *p, AVDictionary **m,
-                           string vendor_string,
-                           AVChapter **chapters, uint nb_chapters);
+int ff_vorbiscomment_write (
+    out uint8[] p,
+    out AVDictionary *m,
+    string vendor_string,
+    AVChapter[] chapters,
+    uint nb_chapters
+);
 
 //  extern const AVMetadataConv ff_vorbiscomment_metadata_conv[];

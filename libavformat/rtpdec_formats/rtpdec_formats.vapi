@@ -24,23 +24,48 @@ Parse a Windows Media Server-specific SDP line
 
 @param s RTSP demux context
 ***********************************************************/
-int ff_wms_parse_sdp_a_line (AVFormatContext *s, string p);
+int ff_wms_parse_sdp_a_line (
+    AVFormatContext *s,
+    string p
+);
 
-int ff_h263_handle_packet (AVFormatContext *ctx, PayloadContext *data,
-                          AVStream *st, AVPacket *packet, uint32[] timestamp,
-                          uint8[] buf, int len, uint16 seq, int flags);
+int ff_h263_handle_packet (
+    AVFormatContext *ctx,
+    PayloadContext *data,
+    AVStream *st,
+    AVPacket *packet, uint32[] timestamp,
+    uint8[] buf,
+    int len,
+    uint16 seq,
+    int flags
+);
 
-int ff_h264_parse_sprop_parameter_sets (AVFormatContext *s,
-                                       uint8[] *data_ptr, int[] size_ptr,
-                                       string value);
-int ff_h264_handle_aggregated_packet (AVFormatContext *ctx, PayloadContext *data, AVPacket *packet,
-                                     uint8[] buf, int len,
-                                     int start_skip, int[] nal_counters,
-                                     int nal_mask);
-int ff_h264_handle_frag_packet (AVPacket *packet, uint8[] buf, int len,
-                               int start_bit, uint8[] nal_header,
-                               int nal_header_len);
-void ff_h264_parse_framesize (AVCodecParameters *par, string p);
+int ff_h264_parse_sprop_parameter_sets (
+    AVFormatContext *s,
+    out uint8[] data_ptr,
+    int[] size_ptr,
+    string value
+);
+int ff_h264_handle_aggregated_packet (
+    AVFormatContext *ctx,
+    PayloadContext *data,
+    AVPacket *packet,
+    uint8[] buf, int len,
+    int start_skip, int[] nal_counters,
+    int nal_mask
+);
+int ff_h264_handle_frag_packet (
+    AVPacket *packet,
+    uint8[] buf,
+    int len,
+    int start_bit,
+    uint8[] nal_header,
+    int nal_header_len
+);
+void ff_h264_parse_framesize (
+    AVCodecParameters *par,
+    string p
+);
 
 //  extern const RTPDynamicProtocolHandler ff_ac3_dynamic_handler;
 //  extern const RTPDynamicProtocolHandler ff_amr_nb_dynamic_handler;

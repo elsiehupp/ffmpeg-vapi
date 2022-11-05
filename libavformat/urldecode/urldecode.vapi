@@ -27,4 +27,6 @@ in that case the original string is duplicated.
 Note that the returned string should be explicitly freed when not
 used anymore.
 ***********************************************************/
-string ff_urldecode (string url);
+static string ff_urldecode (
+    string url
+);

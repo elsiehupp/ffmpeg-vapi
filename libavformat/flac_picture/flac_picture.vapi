@@ -21,4 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 //  #define RETURN_ERROR (code) do { ret = (code); goto fail; } while (0)
 
-int ff_flac_parse_picture (AVFormatContext *s, uint8[] buf, int buf_size);
+int ff_flac_parse_picture (
+    AVFormatContext *s,
+    uint8[] buf,
+    int buf_size
+);

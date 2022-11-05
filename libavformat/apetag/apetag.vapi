@@ -30,9 +30,13 @@ Read and parse an APE tag
 
 @return offset of the tag start in the file
 ***********************************************************/
-int64 ff_ape_parse_tag (AVFormatContext *s);
+int64 ff_ape_parse_tag (
+    AVFormatContext *s
+);
 
 /***********************************************************
 Write an APE tag into a file.
 ***********************************************************/
-int ff_ape_write_tag (AVFormatContext *s);
+int ff_ape_write_tag (
+    AVFormatContext *s
+);

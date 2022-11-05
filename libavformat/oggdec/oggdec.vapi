@@ -22,7 +22,7 @@
     DEALINGS IN THE SOFTWARE.
 **/
 
-public struct ogg_codec {
+public abstract class ogg_codec {
     int8[] magic;
     uint8 magicsize;
     int8[] name;
@@ -32,14 +32,23 @@ public struct ogg_codec {
             0 if the packet was not a header (was a data packet)
             -1 if an error occurred or for unsupported stream
     ***********************************************************/
-    int (*header)(AVFormatContext *, int);
-    int (*packet)(AVFormatContext *, int);
+    public abstract int header (
+        AVFormatContext *context, int arg
+    );
+    public abstract int packet (
+        AVFormatContext *context, int arg
+    );
     /***********************************************************
     Translate a granule into a timestamp.
     Will set dts if non-null and known.
     @return pts
     ***********************************************************/
-    uint64 (*gptopts)(AVFormatContext *, int, uint64, int64[] dts);
+    public abstract uint64 gptopts (
+        AVFormatContext *context,
+        int arg1,
+        uint64 arg2,
+        out int64 dts
+    );
     /***********************************************************
     1 if granule is the start time of the associated packet.
     0 if granule is the end time of the associated packet.
@@ -49,7 +58,10 @@ public struct ogg_codec {
     Number of expected headers
     ***********************************************************/
     int nb_header;
-    void (*cleanup)(AVFormatContext *s, int idx);
+    public abstract void cleanup (
+        AVFormatContext *s,
+        int idx
+    );
 }
 
 public struct ogg_stream {
@@ -76,7 +88,8 @@ public struct ogg_stream {
     int flags;
     ogg_codec *codec;
     int header;
-    int nsegs, segp;
+    int nsegs;
+    int segp;
     uint8 segments[255];
     /***********************************************************
     whether we're expecting a continuation in the next page
@@ -148,43 +161,29 @@ public struct ogg {
 //  extern const struct ogg_codec ff_vorbis_codec;
 //  extern const struct ogg_codec ff_vp8_codec;
 
-int ff_vorbis_comment (AVFormatContext *ms, AVDictionary **m,
-                      uint8[] buf, int size, int parse_picture);
+int ff_vorbis_comment (
+    AVFormatContext *ms,
+    AVDictionary **m,
+    uint8[] buf,
+    int size,
+    int parse_picture
+);
 
-int ff_vorbis_stream_comment (AVFormatContext *as, AVStream *st,
-                             uint8[] buf, int size);
+int ff_vorbis_stream_comment (
+    AVFormatContext *as,
+    AVStream *st,
+    uint8[] buf,
+    int size
+);
 
-static inline int
-ogg_find_stream (ogg * ogg, int serial)
-{
-    int i;
+static int ogg_find_stream (
+    ogg *ogg,
+    int serial
+);
 
-    for (i = 0; i < ogg.nstreams; i++)
-        if (ogg.streams[i].serial == serial)
-            return i;
-
-    return -1;
-}
-
-static inline uint64
-ogg_gptopts (AVFormatContext * s, int i, uint64 gp, int64[] dts)
-{
-    ogg *ogg = s.priv_data;
-    ogg_stream *os = ogg.streams + i;
-    uint64 pts = AV_NOPTS_VALUE;
-
-    if (os.codec && os.codec.gptopts){
-        pts = os.codec.gptopts (s, i, gp, dts);
-    } else {
-        pts = gp;
-        if (dts)
-            *dts = pts;
-    }
-    if (pts > INT64_MAX && pts != AV_NOPTS_VALUE) {
-        // The return type is uint, we thus cannot return negative pts
-        av_log (s, AV_LOG_ERROR, "invalid pts %"PRId64"\n", pts);
-        pts = AV_NOPTS_VALUE;
-    }
-
-    return pts;
-}
+static uint64 ogg_gptopts (
+    AVFormatContext *s,
+    int i,
+    uint64 gp,
+    out int64 dts
+);

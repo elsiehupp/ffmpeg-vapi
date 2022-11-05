@@ -37,7 +37,7 @@ AVRational describing framerate, set by a private option.
 
 public struct FFRawDemuxerContext {
     AVClass *class; /***********************************************************
-Class for private options.
+    Class for private options.
     ***********************************************************/
     int raw_packet_size;
 }
@@ -45,15 +45,26 @@ Class for private options.
 //  extern const AVOption ff_rawvideo_options[];
 //  extern const AVOption ff_raw_options[];
 
-int ff_raw_read_partial_packet (AVFormatContext *s, AVPacket *packet);
+int ff_raw_read_partial_packet (
+    AVFormatContext *s,
+    AVPacket *packet
+);
 
-int ff_raw_audio_read_header (AVFormatContext *s);
+int ff_raw_audio_read_header (
+    AVFormatContext *s
+);
 
-int ff_raw_video_read_header (AVFormatContext *s);
+int ff_raw_video_read_header (
+    AVFormatContext *s
+);
 
-int ff_raw_subtitle_read_header (AVFormatContext *s);
+int ff_raw_subtitle_read_header (
+    AVFormatContext *s
+);
 
-int ff_raw_data_read_header (AVFormatContext *s);
+int ff_raw_data_read_header (
+    AVFormatContext *s
+);
 
 #define FF_RAW_DEMUXER_CLASS (name)\
 public const AVClass name ## _demuxer_class = {\

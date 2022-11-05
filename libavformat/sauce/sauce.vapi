@@ -30,4 +30,9 @@ SAUCE header parser
 @param[out] got_width set to non-zero if SAUCE header reported height
 @param get_height Tell SAUCE header to parse height
 ***********************************************************/
-int ff_sauce_read (AVFormatContext *avctx, uint64[] fsize, int[] got_width, int get_height);
+int ff_sauce_read (
+    AVFormatContext *avctx,
+    uint64[] fsize,
+    out int got_width,
+    int get_height
+);

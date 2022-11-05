@@ -261,33 +261,50 @@ public struct MOVMuxContext {
     int empty_hdlr_name;
 }
 
-#define FF_MOV_FLAG_RTP_HINT (1 <<  0)
-#define FF_MOV_FLAG_FRAGMENT (1 <<  1)
-#define FF_MOV_FLAG_EMPTY_MOOV (1 <<  2)
-#define FF_MOV_FLAG_FRAG_KEYFRAME (1 <<  3)
-#define FF_MOV_FLAG_SEPARATE_MOOF (1 <<  4)
-#define FF_MOV_FLAG_FRAG_CUSTOM (1 <<  5)
-#define FF_MOV_FLAG_ISML (1 <<  6)
-#define FF_MOV_FLAG_FASTSTART (1 <<  7)
-#define FF_MOV_FLAG_OMIT_TFHD_OFFSET (1 <<  8)
-#define FF_MOV_FLAG_DISABLE_CHPL (1 <<  9)
-#define FF_MOV_FLAG_DEFAULT_BASE_MOOF (1 << 10)
-#define FF_MOV_FLAG_DASH (1 << 11)
-#define FF_MOV_FLAG_FRAG_DISCONT (1 << 12)
-#define FF_MOV_FLAG_DELAY_MOOV (1 << 13)
-#define FF_MOV_FLAG_GLOBAL_SIDX (1 << 14)
-#define FF_MOV_FLAG_WRITE_COLR (1 << 15)
-#define FF_MOV_FLAG_WRITE_GAMA (1 << 16)
-#define FF_MOV_FLAG_USE_MDTA (1 << 17)
-#define FF_MOV_FLAG_SKIP_TRAILER (1 << 18)
-#define FF_MOV_FLAG_NEGATIVE_CTS_OFFSETS (1 << 19)
-#define FF_MOV_FLAG_FRAG_EVERY_FRAME (1 << 20)
-#define FF_MOV_FLAG_SKIP_SIDX (1 << 21)
+[Flags]
+public enum MOVFlags {
+    FF_MOV_FLAG_RTP_HINT,
+    FF_MOV_FLAG_FRAGMENT,
+    FF_MOV_FLAG_EMPTY_MOOV,
+    FF_MOV_FLAG_FRAG_KEYFRAME,
+    FF_MOV_FLAG_SEPARATE_MOOF,
+    FF_MOV_FLAG_FRAG_CUSTOM,
+    FF_MOV_FLAG_ISML,
+    FF_MOV_FLAG_FASTSTART,
+    FF_MOV_FLAG_OMIT_TFHD_OFFSET,
+    FF_MOV_FLAG_DISABLE_CHPL,
+    FF_MOV_FLAG_DEFAULT_BASE_MOOF,
+    FF_MOV_FLAG_DASH,
+    FF_MOV_FLAG_FRAG_DISCONT,
+    FF_MOV_FLAG_DELAY_MOOV,
+    FF_MOV_FLAG_GLOBAL_SIDX,
+    FF_MOV_FLAG_WRITE_COLR,
+    FF_MOV_FLAG_WRITE_GAMA,
+    FF_MOV_FLAG_USE_MDTA,
+    FF_MOV_FLAG_SKIP_TRAILER,
+    FF_MOV_FLAG_NEGATIVE_CTS_OFFSETS,
+    FF_MOV_FLAG_FRAG_EVERY_FRAME,
+    FF_MOV_FLAG_SKIP_SIDX,
+}
 
-int ff_mov_write_packet (AVFormatContext *s, AVPacket *packet);
+int ff_mov_write_packet (
+    AVFormatContext *s,
+    AVPacket *packet
+);
 
-int ff_mov_init_hinting (AVFormatContext *s, int index, int src_index);
-int ff_mov_add_hinted_packet (AVFormatContext *s, AVPacket *packet,
-                             int track_index, int sample,
-                             uint8[] sample_data, int sample_size);
-void ff_mov_close_hinting (MOVTrack *track);
+int ff_mov_init_hinting (
+    AVFormatContext *s,
+    int index,
+    int src_index
+);
+int ff_mov_add_hinted_packet (
+    AVFormatContext *s,
+    AVPacket *packet,
+    int track_index,
+    int sample,
+    uint8[] sample_data,
+    int sample_size
+);
+void ff_mov_close_hinting (
+    MOVTrack *track
+);

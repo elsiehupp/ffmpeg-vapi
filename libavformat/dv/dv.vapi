@@ -25,10 +25,26 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct DVDemuxContext { }
-DVDemuxContext* avpriv_dv_init_demux (AVFormatContext format_context);
-int avpriv_dv_get_packet (DVDemuxContext demux_context, AVPacket packet);
-int avpriv_dv_produce_packet (DVDemuxContext demux_context, AVPacket packet, uint8[] buffer, int arg, int64 arg_);
-void ff_dv_offset_reset (DVDemuxContext demux_context, int64 frame_offset);
+public struct DVDemuxContext {
+
+    DVDemuxContext* avpriv_dv_init_demux (
+        AVFormatContext format_context
+    );
+    int avpriv_dv_get_packet (
+        DVDemuxContext demux_context,
+        AVPacket packet
+    );
+    int avpriv_dv_produce_packet (
+        DVDemuxContext demux_context,
+        AVPacket packet,
+        uint8[] buffer,
+        int arg,
+        int64 arg_
+    );
+    void ff_dv_offset_reset (
+        DVDemuxContext demux_context,
+        int64 frame_offset
+    );
+}
 
 public struct DVMuxContext { }

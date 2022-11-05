@@ -19,7 +19,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_flac_write_header (AVIOContext *pb, uint8[] extradata,
-                         int extradata_size, int last_block);
+int ff_flac_write_header (
+    AVIOContext *pb,
+    uint8[] extradata,
+    int extradata_size,
+    int last_block
+);
 
-int ff_flac_is_native_layout (uint64 channel_layout);
+int ff_flac_is_native_layout (
+    uint64 channel_layout
+);

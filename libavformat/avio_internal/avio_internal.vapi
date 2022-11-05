@@ -18,9 +18,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 //  extern const AVClass ff_avio_class;
 
-public delegate int ReadPacketDelegate (void *opaque, uint8[] buf, int buf_size);
-public delegate int WritePacketDelegate (void *opaque, uint8[] buf, int buf_size);
-public delegate int64 SeekDelegate (void *opaque, int64 offset, int whence);
+public delegate int ReadPacketDelegate (
+    void *opaque,
+    uint8[] buf,
+    int buf_size
+);
+public delegate int WritePacketDelegate (
+    void *opaque,
+    uint8[] buf,
+    int buf_size
+);
+public delegate int64 SeekDelegate (
+    void *opaque,
+    int64 offset,
+    int whence
+);
 
 int ffio_init_context (
     AVIOContext *s,
@@ -48,11 +60,23 @@ valid until the next call that references the same IO context.
     will be a copy of buf
 @return number of bytes read or AVERROR
 ***********************************************************/
-int ffio_read_indirect (AVIOContext *s, uchar[] buf, int size, out uchar[] data);
+int ffio_read_indirect (
+    AVIOContext *s,
+    uchar[] buf,
+    int size,
+    out uchar[] data
+);
 
-void ffio_fill (AVIOContext *s, int b, int count);
+void ffio_fill (
+    AVIOContext *s,
+    int b,
+    int count
+);
 
-public static void ffio_wfourcc (AVIOContext *pb, uint8[] s);
+public void ffio_wfourcc (
+    AVIOContext *pb,
+    uint8[] s
+);
 
 /***********************************************************
 Rewind the AVIOContext using the specified buffer containing the first buf_size bytes of the file.
@@ -66,21 +90,34 @@ Joins buf and s.buffer, taking any overlap into consideration.
 @return >= 0 in case of success, a negative value corresponding to an
 AVERROR code in case of failure
 ***********************************************************/
-int ffio_rewind_with_probe_data (AVIOContext *s, out uchar[] buf, int buf_size);
+int ffio_rewind_with_probe_data (
+    AVIOContext *s,
+    out uchar[] buf,
+    int buf_size
+);
 
-uint64 ffio_read_varlen (AVIOContext *bc);
+uint64 ffio_read_varlen (
+    AVIOContext *bc
+);
 
 /***********************************************************
 Read size bytes from AVIOContext into buf.
 Check that exactly size bytes have been read.
 @return number of bytes read or AVERROR
 ***********************************************************/
-int ffio_read_size (AVIOContext *s, uchar[] buf, int size);
+int ffio_read_size (
+    AVIOContext *s,
+    uchar[] buf,
+    int size
+);
 
 /***********************************************************
 @warning must be called before any I/O
 ***********************************************************/
-int ffio_set_buf_size (AVIOContext *s, int buf_size);
+int ffio_set_buf_size (
+    AVIOContext *s,
+    int buf_size
+);
 
 /***********************************************************
 Ensures that the requested seekback buffer size will be available
@@ -89,22 +126,44 @@ Will ensure that when reading sequentially up to buf_size, seeking
 within the current pos and pos+buf_size is possible.
 Once the stream position moves outside this window this guarantee is lost.
 ***********************************************************/
-int ffio_ensure_seekback (AVIOContext *s, int64 buf_size);
+int ffio_ensure_seekback (
+    AVIOContext *s,
+    int64 buf_size
+);
 
-int ffio_limit (AVIOContext *s, int size);
+int ffio_limit (
+    AVIOContext *s,
+    int size
+);
 
-public delegate ulong UpdateChecksumDelegate (ulong c, uint8[] p, uint len);
-void ffio_init_checksum (AVIOContext *s,
+public delegate ulong UpdateChecksumDelegate (
+    ulong c,
+    uint8[] p,
+    uint len
+);
+void ffio_init_checksum (
+    AVIOContext *s,
     UpdateChecksumDelegate update_checksum,
     ulong checksum
 );
-ulong ffio_get_checksum (AVIOContext *s);
-ulong ff_crc04C11DB7_update (ulong checksum, uint8[] buf,
-                                    uint len);
-ulong ff_crcEDB88320_update (ulong checksum, uint8[] buf,
-                                    uint len);
-ulong ff_crcA001_update (ulong checksum, uint8[] buf,
-                                uint len);
+ulong ffio_get_checksum (
+    AVIOContext *s
+);
+ulong ff_crc04C11DB7_update (
+    ulong checksum,
+    uint8[] buf,
+    uint len
+);
+ulong ff_crcEDB88320_update (
+    ulong checksum,
+    uint8[] buf,
+    uint len
+);
+ulong ff_crcA001_update (
+    ulong checksum,
+    uint8[] buf,
+    uint len
+);
 
 /***********************************************************
 Open a write only packetized memory stream with a maximum packet
@@ -115,7 +174,10 @@ with a big-endian 4 byte header giving the packet size in bytes.
 @param max_packet_size maximum packet size (must be > 0)
 @return zero if no error.
 ***********************************************************/
-int ffio_open_dyn_packet_buf (AVIOContext **s, int max_packet_size);
+int ffio_open_dyn_packet_buf (
+    AVIOContext **s,
+    int max_packet_size
+);
 
 /***********************************************************
 Create and initialize a AVIOContext for accessing the
@@ -128,7 +190,10 @@ In case of failure the pointed to value is set to NULL.
 @return >= 0 in case of success, a negative value corresponding to an
 AVERROR code in case of failure
 ***********************************************************/
-int ffio_fdopen (AVIOContext **s, URLContext *h);
+int ffio_fdopen (
+    AVIOContext **s,
+    URLContext *h
+);
 
 /***********************************************************
 Return the URLContext associated with the AVIOContext
@@ -136,7 +201,9 @@ Return the URLContext associated with the AVIOContext
 @param s IO context
 @return pointer to URLContext or NULL.
 ***********************************************************/
-URLContext *ffio_geturlcontext (AVIOContext *s);
+URLContext *ffio_geturlcontext (
+    AVIOContext *s
+);
 
 /***********************************************************
 Open a write-only fake memory stream. The written data is not stored
@@ -146,11 +213,19 @@ written.
 @param s new IO context
 @return zero if no error.
 ***********************************************************/
-int ffio_open_null_buf (AVIOContext **s);
+int ffio_open_null_buf (
+    AVIOContext **s
+);
 
-int ffio_open_whitelist (AVIOContext **s, string url, int flags,
-                         AVIOInterruptCB *int_cb, AVDictionary **options,
-                         string whitelist, string blacklist);
+int ffio_open_whitelist (
+    AVIOContext **s,
+    string url,
+    int flags,
+    AVIOInterruptCB *int_cb,
+    AVDictionary **options,
+    string whitelist,
+    string blacklist
+);
 
 /***********************************************************
 Close a null buffer.
@@ -158,11 +233,15 @@ Close a null buffer.
 @param s an IO context opened by ffio_open_null_buf
 @return the number of bytes written to the null buffer
 ***********************************************************/
-int ffio_close_null_buf (AVIOContext *s);
+int ffio_close_null_buf (
+    AVIOContext *s
+);
 
 /***********************************************************
 Free a dynamic buffer.
 
 @param s a pointer to an IO context opened by avio_open_dyn_buf ()
 ***********************************************************/
-void ffio_free_dyn_buf (AVIOContext **s);
+void ffio_free_dyn_buf (
+    AVIOContext **s
+);

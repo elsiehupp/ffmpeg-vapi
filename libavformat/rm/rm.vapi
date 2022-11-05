@@ -25,7 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 public struct RMStream { }
 
 RMStream *ff_rm_alloc_rmstream ();
-void ff_rm_free_rmstream (RMStream *rms);
+void ff_rm_free_rmstream (
+    RMStream *rms
+);
 
 /*< input format for Realmedia-style RTSP streams
 ***********************************************************/
@@ -38,14 +40,18 @@ parameters.
 @param s context containing RMContext and AVIOContext for stream reading
 @param pb context to read the data from
 @param st the stream that the MDPR chunk belongs to and where to store the
-          parameters read from the chunk into
+      parameters read from the chunk into
 @param rst real-specific stream information
 @param codec_data_size size of the MDPR chunk
 @return 0 on success, errno codes on error
 ***********************************************************/
-int ff_rm_read_mdpr_codecdata (AVFormatContext *s, AVIOContext *pb,
-                               AVStream *st, RMStream *rst,
-                               uint codec_data_size, uint8[] mime);
+int ff_rm_read_mdpr_codecdata (
+    AVFormatContext *s,
+    AVIOContext *pb,
+    AVStream *st, RMStream *rst,
+    uint codec_data_size,
+    uint8[] mime
+);
 
 /***********************************************************
 Parse one rm-stream packet from the input bytestream.
@@ -57,16 +63,24 @@ Parse one rm-stream packet from the input bytestream.
 @param len packet length to read from the input
 @param packet packet location to store the parsed packet data
 @param seq pointer to an integer containing the sequence number, may be
-           updated
+       updated
 @param flags the packet flags
 @param ts timestamp of the current packet
 @return <0 on error, 0 if a packet was placed in the packet pointer. A
-        value >0 means that no data was placed in packet, but that cached
-        data is available by calling ff_rm_retrieve_cache ().
+    value >0 means that no data was placed in packet, but that cached
+    data is available by calling ff_rm_retrieve_cache ().
 ***********************************************************/
-int ff_rm_parse_packet (AVFormatContext *s, AVIOContext *pb,
-                        AVStream *st, RMStream *rst, int len,
-                        AVPacket *packet, int[] seq, int flags, int64 ts);
+int ff_rm_parse_packet (
+    AVFormatContext *s,
+    AVIOContext *pb,
+    AVStream *st,
+    RMStream *rst,
+    int len,
+    AVPacket *packet,
+    out int seq,
+    int flags,
+    int64 ts
+);
 
 /***********************************************************
 Retrieve one cached packet from the rm-context. The real container can
@@ -82,7 +96,12 @@ of those packets can be retrieved sequentially.
 @param rst Real-specific stream information
 @param packet location to store the packet data
 @return the number of samples left for subsequent calls to this same
-         function, or 0 if all samples have been retrieved.
+     function, or 0 if all samples have been retrieved.
 ***********************************************************/
-int ff_rm_retrieve_cache (AVFormatContext *s, AVIOContext *pb,
-                          AVStream *st, RMStream *rst, AVPacket *packet);
+int ff_rm_retrieve_cache (
+    AVFormatContext *s,
+    AVIOContext *pb,
+    AVStream *st,
+    RMStream *rst,
+    AVPacket *packet
+);

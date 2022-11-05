@@ -30,7 +30,10 @@ request just to get the parameters.
 @param dest URL context whose authentication state gets updated
 @param src URL context whose authentication state gets copied
 ***********************************************************/
-void ff_http_init_auth_state (URLContext *dest, URLContext *src);
+void ff_http_init_auth_state (
+    URLContext *dest,
+    URLContext *src
+);
 
 /***********************************************************
 Send a new HTTP request, reusing the old connection.
@@ -40,6 +43,12 @@ Send a new HTTP request, reusing the old connection.
 @return a negative value if an error condition occurred, 0
 otherwise
 ***********************************************************/
-int ff_http_do_new_request (URLContext *h, string uri);
+int ff_http_do_new_request (
+    URLContext *h,
+    string uri
+);
 
-int ff_http_averror (int status_code, int default_averror);
+int ff_http_averror (
+    int status_code,
+    int default_averror
+);

@@ -118,7 +118,9 @@ public enum RTSPStatusCode {
 //  [RTSP_STATUS_UNSUPPORTED_OPTION]     ="Option not supported",
 //  }
 
-public static string RTSP_STATUS_CODE2STRING (RTSPStatusCode x);
+public static string RTSP_STATUS_CODE2STRING (
+    RTSPStatusCode x
+);
 
 public enum RTSPMethod {
     DESCRIBE,
@@ -132,10 +134,10 @@ public enum RTSPMethod {
     SET_PARAMETER,
     REDIRECT,
     RECORD,
-    UNKNOWN = -1,
+    UNKNOWN,
 }
 
-static inline int ff_rtsp_averror (RTSPStatusCode status_code, int default_averror)
-{
-    return ff_http_averror (status_code, default_averror);
-}
+public static int ff_rtsp_averror (
+    RTSPStatusCode status_code,
+    int default_averror
+);

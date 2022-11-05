@@ -73,7 +73,11 @@ public struct IdStrMap {
 
 //  extern const AVOption ff_img_options[];
 
-int ff_img_read_header (AVFormatContext *s1);
+int ff_img_read_header (
+    AVFormatContext *s1
+);
 
-int ff_img_read_packet (AVFormatContext *s1, AVPacket *packet);
-#endif
+int ff_img_read_packet (
+    AVFormatContext *s1,
+    AVPacket *packet
+);

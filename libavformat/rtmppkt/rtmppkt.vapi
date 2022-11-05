@@ -191,15 +191,22 @@ Create new RTMP packet with given attributes.
 @param size packet size
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_create (RTMPPacket *packet, int channel_id, RTMPPacketType type,
-                          int timestamp, int size);
+int ff_rtmp_packet_create (
+    RTMPPacket *packet,
+    int channel_id,
+    RTMPPacketType type,
+    int timestamp,
+    int size
+);
 
 /***********************************************************
 Free RTMP packet.
 
 @param packet packet
 ***********************************************************/
-void ff_rtmp_packet_destroy (RTMPPacket *packet);
+void ff_rtmp_packet_destroy (
+    RTMPPacket *packet
+);
 
 /***********************************************************
 Read RTMP packet sent by the server.
@@ -212,9 +219,13 @@ Read RTMP packet sent by the server.
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_read (URLContext *h, RTMPPacket *p,
-                        int chunk_size, RTMPPacket **prev_pkt,
-                        int[] nb_prev_pkt);
+int ff_rtmp_packet_read (
+    URLContext *h,
+    RTMPPacket *p,
+    int chunk_size,
+    RTMPPacket **prev_pkt,
+    int[] nb_prev_pkt
+);
 /***********************************************************
 Read internal RTMP packet sent by the server.
 
@@ -227,9 +238,14 @@ Read internal RTMP packet sent by the server.
 @param c the first byte already read
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_read_internal (URLContext *h, RTMPPacket *p, int chunk_size,
-                                 RTMPPacket **prev_pkt, int[] nb_prev_pkt,
-                                 uint8 c);
+int ff_rtmp_packet_read_internal (
+    URLContext *h,
+    RTMPPacket *p,
+    int chunk_size,
+    out RTMPPacket *prev_pkt,
+    int[] nb_prev_pkt,
+    uint8 c
+);
 
 /***********************************************************
 Send RTMP packet to the server.
@@ -242,9 +258,13 @@ Send RTMP packet to the server.
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes written on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_write (URLContext *h, RTMPPacket *p,
-                         int chunk_size, RTMPPacket **prev_pkt,
-                         int[] nb_prev_pkt);
+int ff_rtmp_packet_write (
+    URLContext *h,
+    RTMPPacket *p,
+    int chunk_size,
+    out RTMPPacket *prev_pkt,
+    out int nb_prev_pkt
+);
 
 /***********************************************************
 Print information and contents of RTMP packet.
@@ -252,7 +272,10 @@ Print information and contents of RTMP packet.
 @param ctx output context
 @param p packet to dump
 ***********************************************************/
-void ff_rtmp_packet_dump (void *ctx, RTMPPacket *p);
+void ff_rtmp_packet_dump (
+    void *ctx,
+    RTMPPacket *p
+);
 
 /***********************************************************
 Enlarge the prev_pkt array to fit the given channel
@@ -261,8 +284,11 @@ Enlarge the prev_pkt array to fit the given channel
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @param channel the channel number that needs to be allocated
 ***********************************************************/
-int ff_rtmp_check_alloc_array (RTMPPacket **prev_pkt, int[] nb_prev_pkt,
-                              int channel);
+int ff_rtmp_check_alloc_array (
+    out RTMPPacket *prev_pkt,
+    out int nb_prev_pkt,
+    int channel
+);
 
 /***********************************************************
 @name Functions used to work with the AMF format (which is also used in .flv)
@@ -277,7 +303,10 @@ Calculate number of bytes taken by first AMF entry in data.
 @param data_end input buffer end
 @return number of bytes used by first AMF entry
 ***********************************************************/
-int ff_amf_tag_size (uint8[] data, uint8[] data_end);
+int ff_amf_tag_size (
+    uint8[] data,
+    uint8[] data_end
+);
 
 /***********************************************************
 Retrieve value of given AMF object field in string form.
@@ -289,8 +318,13 @@ Retrieve value of given AMF object field in string form.
 @param dst_size output buffer size
 @return 0 if search and retrieval succeeded, negative value otherwise
 ***********************************************************/
-int ff_amf_get_field_value (uint8[] data, uint8[] data_end,
-                           uint8[] name, uint8[] dst, int dst_size);
+int ff_amf_get_field_value (
+    uint8[] data,
+    uint8[] data_end,
+    uint8[] name,
+    uint8[] dst,
+    int dst_size
+);
 
 /***********************************************************
 Write boolean value in AMF format to buffer.
@@ -298,7 +332,10 @@ Write boolean value in AMF format to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param val value to write
 ***********************************************************/
-void ff_amf_write_bool (uint8[] *dst, int val);
+void ff_amf_write_bool (
+    out uint8[] dst,
+    int val
+);
 
 /***********************************************************
 Write number in AMF format to buffer.
@@ -306,7 +343,10 @@ Write number in AMF format to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param num value to write
 ***********************************************************/
-void ff_amf_write_number (uint8[] *dst, double num);
+void ff_amf_write_number (
+    out uint8[] dst,
+    double num
+);
 
 /***********************************************************
 Write string in AMF format to buffer.
@@ -314,7 +354,10 @@ Write string in AMF format to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-void ff_amf_write_string (uint8[] *dst, string str);
+void ff_amf_write_string (
+    out uint8[] dst,
+    string str
+);
 
 /***********************************************************
 Write a string consisting of two parts in AMF format to a buffer.
@@ -323,21 +366,29 @@ Write a string consisting of two parts in AMF format to a buffer.
 @param str1 first string to write, may be null
 @param str2 second string to write, may be null
 ***********************************************************/
-void ff_amf_write_string2 (uint8[] *dst, string str1, string str2);
+void ff_amf_write_string2 (
+    out uint8[] dst,
+    string str1,
+    string str2
+);
 
 /***********************************************************
 Write AMF NULL value to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-void ff_amf_write_null (uint8[] *dst);
+void ff_amf_write_null (
+    out uint8[] dst
+);
 
 /***********************************************************
 Write marker for AMF object to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-void ff_amf_write_object_start (uint8[] *dst);
+void ff_amf_write_object_start (
+    out uint8[] dst
+);
 
 /***********************************************************
 Write string used as field name in AMF object to buffer.
@@ -345,32 +396,43 @@ Write string used as field name in AMF object to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-void ff_amf_write_field_name (uint8[] *dst, string str);
+void ff_amf_write_field_name (
+    out uint8[] dst,
+    string str
+);
 
 /***********************************************************
 Write marker for end of AMF object to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-void ff_amf_write_object_end (uint8[] *dst);
+void ff_amf_write_object_end (
+    out uint8[] dst
+);
 
 /***********************************************************
 Read AMF boolean value.
 
- *@param[in,out] gbc GetByteContext initialized with AMF-formatted data
- *@param[out]    val 0 or 1
- *@return 0 on success or an AVERROR code on failure
+@param[in,out] gbc GetByteContext initialized with AMF-formatted data
+@param[out]    val 0 or 1
+@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_read_bool (GetByteContext *gbc, int[] val);
+int ff_amf_read_bool (
+    GetByteContext *gbc,
+    out int val
+);
 
 /***********************************************************
 Read AMF number value.
 
- *@param[in,out] gbc GetByteContext initialized with AMF-formatted data
- *@param[out]    val read value
- *@return 0 on success or an AVERROR code on failure
+@param[in,out] gbc GetByteContext initialized with AMF-formatted data
+@param[out]    val read value
+@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_read_number (GetByteContext *gbc, double *val);
+int ff_amf_read_number (
+    GetByteContext *gbc,
+    out double val
+);
 
 /***********************************************************
 Get AMF string value.
@@ -380,14 +442,18 @@ it does not expect the AMF type prepended to the actual data.
 Appends a trailing null byte to output string in order to
 ease later parsing.
 
- *@param[in,out] gbc GetByteContext initialized with AMF-formatted data
- *@param[out]    str read string
- *@param[in]     strsize buffer size available to store the read string
- *@param[out]    length read string length
- *@return 0 on success or an AVERROR code on failure
+@param[in,out] gbc GetByteContext initialized with AMF-formatted data
+@param[out]    str read string
+@param[in]     strsize buffer size available to store the read string
+@param[out]    length read string length
+@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_get_string (GetByteContext *bc, uint8[] str,
-                      int strsize, int[] length);
+int ff_amf_get_string (
+    GetByteContext *bc,
+    uint8[] str,
+    int strsize,
+    out int length
+);
 
 /***********************************************************
 Read AMF string value.
@@ -395,22 +461,28 @@ Read AMF string value.
 Appends a trailing null byte to output string in order to
 ease later parsing.
 
- *@param[in,out] gbc GetByteContext initialized with AMF-formatted data
- *@param[out]    str read string
- *@param[in]     strsize buffer size available to store the read string
- *@param[out]    length read string length
- *@return 0 on success or an AVERROR code on failure
+@param[in,out] gbc GetByteContext initialized with AMF-formatted data
+@param[out]    str read string
+@param[in]     strsize buffer size available to store the read string
+@param[out]    length read string length
+@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_read_string (GetByteContext *gbc, uint8[] str,
-                       int strsize, int[] length);
+int ff_amf_read_string (
+    GetByteContext *gbc,
+    uint8[] str,
+    int strsize,
+    out int length
+);
 
 /***********************************************************
 Read AMF NULL value.
 
- *@param[in,out] gbc GetByteContext initialized with AMF-formatted data
- *@return 0 on success or an AVERROR code on failure
+@param[in,out] gbc GetByteContext initialized with AMF-formatted data
+@return 0 on success or an AVERROR code on failure
 ***********************************************************/
-int ff_amf_read_null (GetByteContext *gbc);
+int ff_amf_read_null (
+    GetByteContext *gbc
+);
 
 /***********************************************************
 Match AMF string with a NULL-terminated string.
@@ -418,7 +490,11 @@ Match AMF string with a NULL-terminated string.
 @return 0 if the strings do not match.
 ***********************************************************/
 
-int ff_amf_match_string (uint8[] data, int size, string str);
+int ff_amf_match_string (
+    uint8[] data,
+    int size,
+    string str
+);
 
 /***********************************************************
 AMF funcs

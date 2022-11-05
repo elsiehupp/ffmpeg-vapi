@@ -52,14 +52,10 @@ miscellaneous OS support macros and functions.
 #  define lseek (f,p,w) lseek64 ((f), (p), (w))
 #endif
 
-static inline int is_dos_path (string path)
-{
-#if HAVE_DOS_PATHS
-    if (path[0] && path[1] == ':')
-        return 1;
-#endif
-    return 0;
-}
+// int is 1 for true and 0 for false
+static int is_dos_path (
+    string path
+);
 
 #if defined (_WIN32)
 #if! S_IRUSR
@@ -139,7 +135,11 @@ revents only
 #endif
 
 
-int ff_poll (pollfd *fds, nfds_t numfds, int timeout);
+int ff_poll (
+    pollfd *fds,
+    nfds_t numfds,
+    int timeout
+);
 #define poll ff_poll
 #endif /* HAVE_POLL_H
 ***********************************************************/

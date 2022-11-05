@@ -19,50 +19,51 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define PACK_START_CODE ((uint)0x000001ba)
-#define SYSTEM_HEADER_START_CODE ((uint)0x000001bb)
-#define SEQUENCE_END_CODE ((uint)0x000001b7)
-#define PACKET_START_CODE_MASK ((uint)0xffffff00)
-#define PACKET_START_CODE_PREFIX ((uint)0x00000100)
-#define ISO_11172_END_CODE ((uint)0x000001b9)
+public const uint PACK_START_CODE;
+public const uint SYSTEM_HEADER_START_CODE;
+public const uint SEQUENCE_END_CODE;
+public const uint PACKET_START_CODE_MASK;
+public const uint PACKET_START_CODE_PREFIX;
+public const uint ISO_11172_END_CODE;
 
 /***********************************************************
 mpeg2
 ***********************************************************/
-#define PROGRAM_STREAM_MAP 0x1bc
-#define PRIVATE_STREAM_1 0x1bd
-#define PADDING_STREAM 0x1be
-#define PRIVATE_STREAM_2 0x1bf
+public const uint PROGRAM_STREAM_MAP;
+public const uint PRIVATE_STREAM_1;
+public const uint PADDING_STREAM;
+public const uint PRIVATE_STREAM_2;
 
-#define AUDIO_ID 0xc0
-#define VIDEO_ID 0xe0
-#define H264_ID 0xe2
-#define AC3_ID 0x80
-#define DTS_ID 0x88
-#define LPCM_ID 0xa0
-#define SUB_ID 0x20
+public enum MpegID {
+    AUDIO_ID,
+    VIDEO_ID,
+    H264_ID,
+    AC3_ID,
+    DTS_ID,
+    LPCM_ID,
+    SUB_ID,
+}
 
-#define STREAM_TYPE_VIDEO_MPEG1 0x01
-#define STREAM_TYPE_VIDEO_MPEG2 0x02
-#define STREAM_TYPE_AUDIO_MPEG1 0x03
-#define STREAM_TYPE_AUDIO_MPEG2 0x04
-#define STREAM_TYPE_PRIVATE_SECTION 0x05
-#define STREAM_TYPE_PRIVATE_DATA 0x06
-#define STREAM_TYPE_AUDIO_AAC 0x0f
-#define STREAM_TYPE_VIDEO_MPEG4 0x10
-#define STREAM_TYPE_VIDEO_H264 0x1b
-#define STREAM_TYPE_VIDEO_HEVC 0x24
-#define STREAM_TYPE_VIDEO_CAVS 0x42
+public enum StreamType {
+    STREAM_TYPE_VIDEO_MPEG1,
+    STREAM_TYPE_VIDEO_MPEG2,
+    STREAM_TYPE_AUDIO_MPEG1,
+    STREAM_TYPE_AUDIO_MPEG2,
+    STREAM_TYPE_PRIVATE_SECTION,
+    STREAM_TYPE_PRIVATE_DATA,
+    STREAM_TYPE_AUDIO_AAC,
+    STREAM_TYPE_VIDEO_MPEG4,
+    STREAM_TYPE_VIDEO_H264,
+    STREAM_TYPE_VIDEO_HEVC,
+    STREAM_TYPE_VIDEO_CAVS,
+    STREAM_TYPE_AUDIO_AC3,
+}
 
-#define STREAM_TYPE_AUDIO_AC3 0x81
-
-public const int lpcm_freq_tab[4] = { 48000, 96000, 44100, 32000 }
+public const int lpcm_freq_tab[4]; // = { 48000, 96000, 44100, 32000 }
 
 /***********************************************************
 Parse MPEG-PES five-byte timestamp
 ***********************************************************/
-static inline int64 ff_parse_pes_pts (uint8[] buf) {
-    return (int64)(*buf & 0x0e) << 29 |
-            (AV_RB16 (buf+1) >> 1) << 15 |
-             AV_RB16 (buf+3) >> 1;
-}
+public static int64 ff_parse_pes_pts (
+    uint8[] buf
+);

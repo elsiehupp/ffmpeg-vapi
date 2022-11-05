@@ -24,7 +24,8 @@ NOTE: No floats are used to guarantee bitexact output.
 ***********************************************************/
 const uint MAX_CHANNELS = 12;
 
-static uint myrnd (out uint seed_ptr,
+static uint myrnd (
+    out uint seed_ptr,
     uint n
 ) {
     uint seed;

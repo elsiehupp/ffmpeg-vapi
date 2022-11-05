@@ -112,6 +112,17 @@ public enum IEC61937DataType {
 //      { 1536, 4608, 4608 }, // MPEG-1
 //  }
 
-void ff_spdif_bswap_buf16 (uint16[] dst, uint16[] src, int w);
-int ff_spdif_read_packet (AVFormatContext *s, AVPacket *packet);
-int ff_spdif_probe (uint8[] p_buf, int buf_size, AVCodecID *codec);
+void ff_spdif_bswap_buf16 (
+    out uint16 dst,
+    out uint16 src,
+    int w
+);
+int ff_spdif_read_packet (
+    AVFormatContext *s,
+    AVPacket *packet
+);
+int ff_spdif_probe (
+    uint8[] probe_buf,
+    int buf_size,
+    AVCodecID *codec
+);

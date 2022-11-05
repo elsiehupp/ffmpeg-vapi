@@ -665,17 +665,24 @@ public struct RTSPStream {
     char crypto_params[100];
 }
 
-void ff_rtsp_parse_line (AVFormatContext *s,
-                        RTSPMessageHeader *reply, string buf,
-                        RTSPState *rt, string method);
+void ff_rtsp_parse_line (
+    AVFormatContext *s,
+    RTSPMessageHeader *reply, string buf,
+    RTSPState *rt,
+    string method
+);
 
 /***********************************************************
 Send a command to the RTSP server without waiting for the reply.
 
 @see rtsp_send_cmd_with_content_async
 ***********************************************************/
-int ff_rtsp_send_cmd_async (AVFormatContext *s, string method,
-                           string url, string headers);
+int ff_rtsp_send_cmd_async (
+    AVFormatContext *s,
+    string method,
+    string url,
+    string headers
+);
 
 /***********************************************************
 Send a command to the RTSP server and wait for the reply.
@@ -693,22 +700,30 @@ Send a command to the RTSP server and wait for the reply.
 
 @return zero if success, nonzero otherwise
 ***********************************************************/
-int ff_rtsp_send_cmd_with_content (AVFormatContext *s,
-                                  string method, string url,
-                                  string headers,
-                                  RTSPMessageHeader *reply,
-                                  uchar[] *content_ptr,
-                                  uchar[] send_content,
-                                  int send_content_length);
+int ff_rtsp_send_cmd_with_content (
+    AVFormatContext *s,
+    string method,
+    string url,
+    string headers,
+    RTSPMessageHeader *reply,
+    out uchar[] content_ptr,
+    uchar[] send_content,
+    int send_content_length
+);
 
 /***********************************************************
 Send a command to the RTSP server and wait for the reply.
 
 @see rtsp_send_cmd_with_content
 ***********************************************************/
-int ff_rtsp_send_cmd (AVFormatContext *s, string method,
-                     string url, string headers,
-                     RTSPMessageHeader *reply, uchar[] *content_ptr);
+int ff_rtsp_send_cmd (
+    AVFormatContext *s,
+    string method,
+    string url,
+    string headers,
+    RTSPMessageHeader *reply,
+    out uchar[] content_ptr
+);
 
 /***********************************************************
 Read a RTSP message from the server, or prepare to read data
@@ -733,14 +748,20 @@ connection as well.
 @return 1 if a data packets is ready to be received, -1 on error,
          and 0 on success.
 ***********************************************************/
-int ff_rtsp_read_reply (AVFormatContext *s, RTSPMessageHeader *reply,
-                       uchar[] *content_ptr,
-                       int return_on_interleaved_data, string method);
+int ff_rtsp_read_reply (
+    AVFormatContext *s,
+    RTSPMessageHeader *reply,
+    out uchar[] content_ptr,
+    int return_on_interleaved_data,
+    string method
+);
 
 /***********************************************************
 Skip a RTP/TCP interleaved packet.
 ***********************************************************/
-void ff_rtsp_skip_packet (AVFormatContext *s);
+void ff_rtsp_skip_packet (
+    AVFormatContext *s
+);
 
 /***********************************************************
 Connect to the RTSP server and set up the individual media streams.
@@ -751,81 +772,119 @@ This can be used for both muxers and demuxers.
 @return 0 on success, < 0 on error. Cleans up all allocations done
          within the function on error.
 ***********************************************************/
-int ff_rtsp_connect (AVFormatContext *s);
+int ff_rtsp_connect (
+    AVFormatContext *s
+);
 
 /***********************************************************
 Close and free all streams within the RTSP (de)muxer
 
 @param s RTSP (de)muxer context
 ***********************************************************/
-void ff_rtsp_close_streams (AVFormatContext *s);
+void ff_rtsp_close_streams (
+    AVFormatContext *s
+);
 
 /***********************************************************
 Close all connection handles within the RTSP (de)muxer
 
 @param s RTSP (de)muxer context
 ***********************************************************/
-void ff_rtsp_close_connections (AVFormatContext *s);
+void ff_rtsp_close_connections (
+    AVFormatContext *s
+);
 
 /***********************************************************
 Get the description of the stream and set up the RTSPStream child
 objects.
 ***********************************************************/
-int ff_rtsp_setup_input_streams (AVFormatContext *s, RTSPMessageHeader *reply);
+int ff_rtsp_setup_input_streams (
+    AVFormatContext *s,
+    RTSPMessageHeader *reply
+);
 
 /***********************************************************
 Announce the stream to the server and set up the RTSPStream child
 objects for each media stream.
 ***********************************************************/
-int ff_rtsp_setup_output_streams (AVFormatContext *s, string addr);
+int ff_rtsp_setup_output_streams (
+    AVFormatContext *s,
+    string addr
+);
 
 /***********************************************************
 Parse RTSP commands (OPTIONS, PAUSE and TEARDOWN) during streaming in
 listen mode.
 ***********************************************************/
-int ff_rtsp_parse_streaming_commands (AVFormatContext *s);
+int ff_rtsp_parse_streaming_commands (
+    AVFormatContext *s
+);
 
 /***********************************************************
 Parse an SDP description of streams by populating an RTSPState struct
 within the AVFormatContext; also allocate the RTP streams and the
 pollfd array used for UDP streams.
 ***********************************************************/
-int ff_sdp_parse (AVFormatContext *s, string content);
+int ff_sdp_parse (
+    AVFormatContext *s,
+    string content
+);
 
 /***********************************************************
 Receive one RTP packet from an TCP interleaved RTSP stream.
 ***********************************************************/
-int ff_rtsp_tcp_read_packet (AVFormatContext *s, RTSPStream **prtsp_st,
-                            uint8[] buf, int buf_size);
+int ff_rtsp_tcp_read_packet (
+    AVFormatContext *s,
+    out RTSPStream *prtsp_st,
+    uint8[] buf,
+    int buf_size
+);
 
 /***********************************************************
 Send buffered packets over TCP.
 ***********************************************************/
-int ff_rtsp_tcp_write_packet (AVFormatContext *s, RTSPStream *rtsp_st);
+int ff_rtsp_tcp_write_packet (
+    AVFormatContext *s,
+    RTSPStream *rtsp_st
+);
 
 /***********************************************************
 Receive one packet from the RTSPStreams set up in the AVFormatContext
 (which should contain a RTSPState struct as priv_data).
 ***********************************************************/
-int ff_rtsp_fetch_packet (AVFormatContext *s, AVPacket *packet);
+int ff_rtsp_fetch_packet (
+    AVFormatContext *s,
+    AVPacket *packet
+);
 
 /***********************************************************
 Do the SETUP requests for each stream for the chosen
 lower transport mode.
 @return 0 on success, <0 on error, 1 if protocol is unavailable
 ***********************************************************/
-int ff_rtsp_make_setup_request (AVFormatContext *s, string host, int port,
-                               int lower_transport, string real_challenge);
+int ff_rtsp_make_setup_request (
+    AVFormatContext *s,
+    string host,
+    int port,
+    int lower_transport,
+    string real_challenge
+);
 
 /***********************************************************
 Undo the effect of ff_rtsp_make_setup_request, close the
 transport_priv and rtp_handle fields.
 ***********************************************************/
-void ff_rtsp_undo_setup (AVFormatContext *s, int send_packets);
+void ff_rtsp_undo_setup (
+    AVFormatContext *s,
+    int send_packets
+);
 
 /***********************************************************
 Open RTSP transport context.
 ***********************************************************/
-int ff_rtsp_open_transport_ctx (AVFormatContext *s, RTSPStream *rtsp_st);
+int ff_rtsp_open_transport_ctx (
+    AVFormatContext *s,
+    RTSPStream *rtsp_st
+);
 
 //  extern const AVOption ff_rtsp_options[];

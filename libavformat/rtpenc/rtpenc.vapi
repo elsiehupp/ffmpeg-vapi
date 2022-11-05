@@ -36,7 +36,7 @@ public struct RTPMuxContext {
     /***********************************************************
     rtcp sender statistics
     ***********************************************************/
-int64 last_rtcp_ntp_time;
+    int64 last_rtcp_ntp_time;
     int64 first_rtcp_ntp_time;
     uint packet_count;
     uint octet_count;
@@ -45,7 +45,7 @@ int64 last_rtcp_ntp_time;
     /***********************************************************
     buffer for output
     ***********************************************************/
-uint8[] buf;
+    uint8[] buf;
     uint8[] buf_ptr;
 
     int max_frames_per_packet;
@@ -78,22 +78,83 @@ public struct RTPMuxContext RTPMuxContext;
     { "h264_mode0", "Use mode 0 for H.264 in RTP", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_H264_MODE0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
     { "send_bye", "Send RTCP BYE packets when finishing", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_SEND_BYE}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" } \
 
-void ff_rtp_send_data (AVFormatContext *s1, uint8[] buf1, int len, int m);
+void ff_rtp_send_data (
+    AVFormatContext *s1,
+    uint8[] buf1,
+    int len,
+    int m
+);
 
-void ff_rtp_send_h264_hevc (AVFormatContext *s1, uint8[] buf1, int size);
-void ff_rtp_send_h261 (AVFormatContext *s1, uint8[] buf1, int size);
-void ff_rtp_send_h263 (AVFormatContext *s1, uint8[] buf1, int size);
-void ff_rtp_send_h263_rfc2190 (AVFormatContext *s1, uint8[] buf1, int size,
-                              uint8[] mb_info, int mb_info_size);
-void ff_rtp_send_aac (AVFormatContext *s1, uint8[] buff, int size);
-void ff_rtp_send_latm (AVFormatContext *s1, uint8[] buff, int size);
-void ff_rtp_send_amr (AVFormatContext *s1, uint8[] buff, int size);
-void ff_rtp_send_mpegvideo (AVFormatContext *s1, uint8[] buf1, int size);
-void ff_rtp_send_xiph (AVFormatContext *s1, uint8[] buff, int size);
-void ff_rtp_send_vc2hq (AVFormatContext *s1, uint8[] buf, int size, int interlaced);
-void ff_rtp_send_vp8 (AVFormatContext *s1, uint8[] buff, int size);
-void ff_rtp_send_vp9 (AVFormatContext *s1, uint8[] buff, int size);
-void ff_rtp_send_jpeg (AVFormatContext *s1, uint8[] buff, int size);
+void ff_rtp_send_h264_hevc (
+    AVFormatContext *s1,
+    uint8[] buf1,
+    int size
+);
+void ff_rtp_send_h261 (
+    AVFormatContext *s1,
+    uint8[] buf1,
+    int size
+);
+void ff_rtp_send_h263 (
+    AVFormatContext *s1,
+    uint8[] buf1,
+    int size
+);
+void ff_rtp_send_h263_rfc2190 (
+    AVFormatContext *s1,
+    uint8[] buf1,
+    int size,
+    uint8[] mb_info,
+    int mb_info_size
+);
+void ff_rtp_send_aac (
+    AVFormatContext *s1,
+    uint8[] buff,
+    int size
+);
+void ff_rtp_send_latm (
+    AVFormatContext *s1,
+    uint8[] buff,
+    int size
+);
+void ff_rtp_send_amr (
+    AVFormatContext *s1,
+    uint8[] buff,
+    int size
+);
+void ff_rtp_send_mpegvideo (
+    AVFormatContext *s1,
+    uint8[] buf1,
+    int size
+);
+void ff_rtp_send_xiph (
+    AVFormatContext *s1,
+    uint8[] buff,
+    int size
+);
+void ff_rtp_send_vc2hq (
+    AVFormatContext *s1,
+    uint8[] buf,
+    int size,
+    int interlaced
+);
+void ff_rtp_send_vp8 (
+    AVFormatContext *s1,
+    uint8[] buff,
+    int size
+);
+void ff_rtp_send_vp9 (
+    AVFormatContext *s1,
+    uint8[] buff,
+    int size
+);
+void ff_rtp_send_jpeg (
+    AVFormatContext *s1,
+    uint8[] buff,
+    int size
+);
 
-uint8[] ff_h263_find_resync_marker_reverse (uint8[] av_restrict start,
-                                                  uint8[] av_restrict end);
+uint8[] ff_h263_find_resync_marker_reverse (
+    uint8[] av_restrict start,
+    uint8[] av_restrict end
+);

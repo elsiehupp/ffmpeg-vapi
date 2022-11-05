@@ -19,11 +19,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define MAIN_STARTCODE (0x7A561F5F04ADULL + (((uint64)('N'<<8) + 'M')<<48))
-#define STREAM_STARTCODE (0x11405BF2F9DBULL + (((uint64)('N'<<8) + 'S')<<48))
-#define SYNCPOINT_STARTCODE (0xE4ADEECA4569ULL + (((uint64)('N'<<8) + 'K')<<48))
-#define INDEX_STARTCODE (0xDD672F23E64EULL + (((uint64)('N'<<8) + 'X')<<48))
-#define INFO_STARTCODE (0xAB68B596BA78ULL + (((uint64)('N'<<8) + 'I')<<48))
+public const uint64 MAIN_STARTCODE;
+public const uint64 STREAM_STARTCODE;
+public const uint64 SYNCPOINT_STARTCODE;
+public const uint64 INDEX_STARTCODE;
+public const uint64 INFO_STARTCODE;
 
 #define ID_STRING "nut/multimedia container\0"
 
@@ -123,12 +123,32 @@ public struct Dispositions {
     int flag;
 }
 
-void ff_nut_reset_ts (NUTContext *nut, AVRational time_base, int64 val);
-int64 ff_lsb2full (StreamContext *stream, int64 lsb);
-int ff_nut_sp_pos_cmp (void *a, void *b);
-int ff_nut_sp_pts_cmp (void *a, void *b);
-int ff_nut_add_sp (NUTContext *nut, int64 pos, int64 back_ptr, int64 ts);
-void ff_nut_free_sp (NUTContext *nut);
+void ff_nut_reset_ts (
+    NUTContext *nut,
+    AVRational time_base,
+    int64 val
+);
+int64 ff_lsb2full (
+    StreamContext *stream,
+    int64 lsb
+);
+int ff_nut_sp_pos_cmp (
+    void *a,
+    void *b
+);
+int ff_nut_sp_pts_cmp (
+    void *a,
+    void *b
+);
+int ff_nut_add_sp (
+    NUTContext *nut,
+    int64 pos,
+    int64 back_ptr,
+    int64 ts
+);
+void ff_nut_free_sp (
+    NUTContext *nut
+);
 
 //  extern const Dispositions ff_nut_dispositions[];
 

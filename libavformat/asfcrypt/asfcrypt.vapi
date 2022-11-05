@@ -19,4 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-void ff_asfcrypt_dec (uint8 key[20], uint8[] data, int len);
+void ff_asfcrypt_dec (
+    uint8 key[20],
+    uint8[] data,
+    int len
+);

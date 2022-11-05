@@ -44,7 +44,12 @@ public struct TLSShared {
 //      {"listen", "Listen for incoming connections", offsetof (pstruct, options_field . listen), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 1, .flags = TLS_OPTFL }, \
 //      {"verifyhost", "Verify against a specific hostname", offsetof (pstruct, options_field . host), AV_OPT_TYPE_STRING, .flags = TLS_OPTFL }
 
-int ff_tls_open_underlying (TLSShared *c, URLContext *parent, string uri, AVDictionary **options);
+int ff_tls_open_underlying (
+    TLSShared *c,
+    URLContext *parent,
+    string uri,
+    out AVDictionary *options
+);
 
 void ff_gnutls_init ();
 void ff_gnutls_deinit ();

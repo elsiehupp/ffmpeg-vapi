@@ -19,6 +19,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_pcm_read_packet (AVFormatContext *s, AVPacket *packet);
-int ff_pcm_read_seek (AVFormatContext *s,
-                     int stream_index, int64 timestamp, int flags);
+int ff_pcm_read_packet (
+    AVFormatContext *s,
+    AVPacket *packet
+);
+int ff_pcm_read_seek (
+    AVFormatContext *s,
+    int stream_index,
+    int64 timestamp,
+    int flags
+);

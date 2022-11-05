@@ -86,7 +86,14 @@ public struct HTTPAuthState {
     int stale;
 }
 
-void ff_http_auth_handle_header (HTTPAuthState *state, string key,
-                                string value);
-string ff_http_auth_create_response (HTTPAuthState *state, string auth,
-                                   string path, string method);
+void ff_http_auth_handle_header (
+    HTTPAuthState *state,
+    string key,
+    string value
+);
+string ff_http_auth_create_response (
+    HTTPAuthState *state,
+    string auth,
+    string path,
+    string method
+);

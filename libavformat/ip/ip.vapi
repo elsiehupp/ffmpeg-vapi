@@ -31,35 +31,50 @@ public struct IPSourceFilters {
 /***********************************************************
 Checks the source address against a given IP source filter.
 @return 0 if packet should be processed based on the filter, 1 if the packet
-        can be dropped.
+    can be dropped.
 ***********************************************************/
-int ff_ip_check_source_lists (sockaddr_storage *source_addr_ptr, IPSourceFilters *s);
+int ff_ip_check_source_lists (
+    sockaddr_storage *source_addr_ptr,
+    IPSourceFilters *s
+);
 
 /***********************************************************
 Resolves hostname into an addrinfo structure.
 @return addrinfo structure which should be freed by the user, NULL in case
-        of error.
+    of error.
 ***********************************************************/
-public struct addrinfo *ff_ip_resolve_host (void *log_ctx,
-                                    string hostname, int port,
-                                    int type, int family, int flags);
+public addrinfo *ff_ip_resolve_host (
+    void *log_ctx,
+    string hostname, int port,
+    int type, int family, int flags
+);
 
 /***********************************************************
 Parses the address[,address] source list in buf and adds it to the filters
 in the IPSourceFilters structure.
 @return 0 on success, < 0 AVERROR code on error.
 ***********************************************************/
-int ff_ip_parse_sources (void *log_ctx, string buf, IPSourceFilters *filters);
+int ff_ip_parse_sources (
+    void *log_ctx,
+    string buf,
+    IPSourceFilters *filters
+);
 
 /***********************************************************
 Parses the address[,address] source block list in buf and adds it to the
 filters in the IPSourceFilters structure.
 @return 0 on success, < 0 AVERROR code on error.
 ***********************************************************/
-int ff_ip_parse_blocks (void *log_ctx, string buf, IPSourceFilters *filters);
+int ff_ip_parse_blocks (
+    void *log_ctx,
+    string buf,
+    IPSourceFilters *filters
+);
 
 /***********************************************************
 Resets the IP filter list and frees the internal fields of an
 IPSourceFilters structure.
 ***********************************************************/
-void ff_ip_reset_filters (IPSourceFilters *filters);
+void ff_ip_reset_filters (
+    IPSourceFilters *filters
+);

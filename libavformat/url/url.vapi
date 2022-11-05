@@ -62,17 +62,31 @@ public struct URLContext {
     ***********************************************************/
 }
 
-public struct URLProtocol {
+public abstract class URLProtocol {
     string name;
-    int (*url_open)(URLContext *h, string url, int flags);
+    public abstract int url_open (
+        URLContext *h,
+        string url,
+        int flags
+    );
     /***********************************************************
     This callback is to be used by protocols which open further nested
     protocols. options are then to be passed to ffurl_open ()/ffurl_connect ()
     for those nested protocols.
     ***********************************************************/
-    int (*url_open2)(URLContext *h, string url, int flags, AVDictionary **options);
-    int (*url_accept)(URLContext *s, URLContext **c);
-    int (*url_handshake)(URLContext *c);
+    public abstract int url_open2 (
+        URLContext *h,
+        string url,
+        int flags,
+        out AVDictionary *options
+    );
+    public abstract int url_accept (
+        URLContext *s,
+        out URLContext *c
+    );
+    public abstract int url_handshake (
+        URLContext *c
+    );
 
     /***********************************************************
     Read data from the protocol.
@@ -86,27 +100,73 @@ public struct URLProtocol {
     enough data has been read is left to the calling function; see
     retry_transfer_wrapper in avio.c.
     ***********************************************************/
-    int (*url_read)( URLContext *h, uchar[] buf, int size);
-    int (*url_write)(URLContext *h, uchar[] buf, int size);
-    int64 (*url_seek)( URLContext *h, int64 pos, int whence);
-    int (*url_close)(URLContext *h);
-    int (*url_read_pause)(URLContext *h, int pause);
-    int64 (*url_read_seek)(URLContext *h, int stream_index,
-                             int64 timestamp, int flags);
-    int (*url_get_file_handle)(URLContext *h);
-    int (*url_get_multi_file_handle)(URLContext *h, int[] *handles,
-                                     int[] numhandles);
-    int (*url_get_short_seek)(URLContext *h);
-    int (*url_shutdown)(URLContext *h, int flags);
+    public abstract int url_read (
+        URLContext *h,
+        uchar[] buf,
+        int size
+    );
+    public abstract int url_write (
+        URLContext *h,
+        uchar[] buf,
+        int size
+    );
+    public abstract int64 url_seek (
+        URLContext *h,
+        int64 pos,
+        int whence
+    );
+    public abstract int url_close (
+        URLContext *h
+    );
+    public abstract int url_read_pause (
+        URLContext *h,
+        int pause
+    );
+    public abstract int64 url_read_seek (
+        URLContext *h,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );
+    public abstract int url_get_file_handle (
+        URLContext *h
+    );
+    public abstract int url_get_multi_file_handle (
+        URLContext *h,
+        out int[] handles,
+        out int numhandles
+    );
+    public abstract int url_get_short_seek (
+        URLContext *h
+    );
+    public abstract int url_shutdown (
+        URLContext *h,
+        int flags
+    );
     int priv_data_size;
     AVClass *priv_data_class;
     int flags;
-    int (*url_check)(URLContext *h, int mask);
-    int (*url_open_dir)(URLContext *h);
-    int (*url_read_dir)(URLContext *h, AVIODirEntry **next);
-    int (*url_close_dir)(URLContext *h);
-    int (*url_delete)(URLContext *h);
-    int (*url_move)(URLContext *h_src, URLContext *h_dst);
+    public abstract int url_check (
+        URLContext *h,
+        int mask
+    );
+    public abstract int url_open_dir (
+        URLContext *h
+    );
+    public abstract int url_read_dir (
+        URLContext *h,
+        out AVIODirEntry next
+    );
+    public abstract int url_close_dir (
+        URLContext *h
+    );
+    public abstract int url_delete (
+        URLContext *h
+    );
+    public abstract int url_move (
+        URLContext *h_src,
+        URLContext *h_dst
+    );
     string default_whitelist;
 }
 
@@ -123,8 +183,12 @@ NULL
 @return >= 0 in case of success, a negative value corresponding to an
 AVERROR code in case of failure
 ***********************************************************/
-int ffurl_alloc (URLContext **puc, string filename, int flags,
-                AVIOInterruptCB *int_cb);
+int ffurl_alloc (
+    URLContext **puc,
+    string filename,
+    int flags,
+    AVIOInterruptCB *int_cb
+);
 
 /***********************************************************
 Connect an URLContext that has been allocated by ffurl_alloc
@@ -134,7 +198,10 @@ i.e. it will be passed to url_open2 () for protocols implementing it.
 This parameter will be destroyed and replaced with a dict containing options
 that were not found. May be NULL.
 ***********************************************************/
-int ffurl_connect (URLContext *uc, AVDictionary **options);
+int ffurl_connect (
+    URLContext *uc,
+    AVDictionary **options
+);
 
 /***********************************************************
 Create an URLContext for accessing to the resource indicated by
@@ -154,13 +221,24 @@ that were not found. May be NULL.
 @return >= 0 in case of success, a negative value corresponding to an
 AVERROR code in case of failure
 ***********************************************************/
-int ffurl_open_whitelist (URLContext **puc, string filename, int flags,
-               AVIOInterruptCB *int_cb, AVDictionary **options,
-               string whitelist, char* blacklist,
-               URLContext *parent);
+int ffurl_open_whitelist (
+    URLContext **puc,
+    string filename,
+    int flags,
+    AVIOInterruptCB *int_cb,
+    AVDictionary **options,
+    string whitelist,
+    char* blacklist,
+    URLContext *parent
+);
 
-int ffurl_open (URLContext **puc, string filename, int flags,
-               AVIOInterruptCB *int_cb, AVDictionary **options);
+int ffurl_open (
+    URLContext **puc,
+    string filename,
+    int flags,
+    AVIOInterruptCB *int_cb,
+    AVDictionary **options
+);
 
 /***********************************************************
 Accept an URLContext c on an URLContext s
@@ -169,7 +247,10 @@ Accept an URLContext c on an URLContext s
 @param c client context, must be unallocated.
 @return >= 0 on success, ff_neterrno () on failure.
 ***********************************************************/
-int ffurl_accept (URLContext *s, URLContext **c);
+int ffurl_accept (
+    URLContext *s,
+    URLContext **c
+);
 
 /***********************************************************
 Perform one step of the protocol handshake to accept a new client.
@@ -183,7 +264,9 @@ usually the first step, and the return value can be:
 @return >= 0 on success or a negative value corresponding
         to an AVERROR code on failure
 ***********************************************************/
-int ffurl_handshake (URLContext *c);
+int ffurl_handshake (
+    URLContext *c
+);
 
 /***********************************************************
 Read up to size bytes from the resource accessed by h, and store
@@ -194,7 +277,11 @@ corresponding to an AVERROR code in case of error. A value of zero
 indicates that it is not possible to read more from the accessed
 resource (except if the value of the size argument is also zero).
 ***********************************************************/
-int ffurl_read (URLContext *h, uchar[] buf, int size);
+int ffurl_read (
+    URLContext *h,
+    uchar[] buf,
+    int size
+);
 
 /***********************************************************
 Read as many bytes as possible (up to size), calling the
@@ -203,7 +290,11 @@ This makes special short-read handling in applications
 unnecessary, if the return value is < size then it is
 certain there was either an error or the end of file was reached.
 ***********************************************************/
-int ffurl_read_complete (URLContext *h, uchar[] buf, int size);
+int ffurl_read_complete (
+    URLContext *h,
+    uchar[] buf,
+    int size
+);
 
 /***********************************************************
 Write size bytes from buf to the resource accessed by h.
@@ -211,7 +302,11 @@ Write size bytes from buf to the resource accessed by h.
 @return the number of bytes actually written, or a negative value
 corresponding to an AVERROR code in case of failure
 ***********************************************************/
-int ffurl_write (URLContext *h, uchar[] buf, int size);
+int ffurl_write (
+    URLContext *h,
+    uchar[] buf,
+    int size
+);
 
 /***********************************************************
 Change the position that will be used by the next read/write
@@ -227,7 +322,11 @@ of failure, or the resulting file position, measured in bytes from
 the beginning of the file. You can use this feature together with
 SEEK_CUR to read the current file position.
 ***********************************************************/
-int64 ffurl_seek (URLContext *h, int64 pos, int whence);
+int64 ffurl_seek (
+    URLContext *h,
+    int64 pos,
+    int whence
+);
 
 /***********************************************************
 Close the resource accessed by the URLContext h, and free the
@@ -236,15 +335,21 @@ memory used by it. Also set the URLContext pointer to NULL.
 @return a negative value if an error condition occurred, 0
 otherwise
 ***********************************************************/
-int ffurl_closep (URLContext **h);
-int ffurl_close (URLContext *h);
+int ffurl_closep (
+    out URLContext *h
+);
+int ffurl_close (
+    URLContext *h
+);
 
 /***********************************************************
 Return the filesize of the resource accessed by h, AVERROR (ENOSYS)
 if the operation is not supported by h, or another negative value
 corresponding to an AVERROR error code in case of failure.
 ***********************************************************/
-int64 ffurl_size (URLContext *h);
+int64 ffurl_size (
+    URLContext *h
+);
 
 /***********************************************************
 Return the file descriptor associated with this URL. For RTP, this
@@ -252,21 +357,29 @@ will return only the RTP file descriptor, not the RTCP file descriptor.
 
 @return the file descriptor associated with this URL, or <0 on error.
 ***********************************************************/
-int ffurl_get_file_handle (URLContext *h);
+int ffurl_get_file_handle (
+    URLContext *h
+);
 
 /***********************************************************
 Return the file descriptors associated with this URL.
 
 @return 0 on success or <0 on error.
 ***********************************************************/
-int ffurl_get_multi_file_handle (URLContext *h, int[] *handles, int[] numhandles);
+int ffurl_get_multi_file_handle (
+    URLContext *h,
+    out int[] handles,
+    out int numhandles
+);
 
 /***********************************************************
 Return the current short seek threshold value for this URL.
 
 @return threshold (>0) on success or <=0 on error.
 ***********************************************************/
-int ffurl_get_short_seek (URLContext *h);
+int ffurl_get_short_seek (
+    URLContext *h
+);
 
 /***********************************************************
 Signal the URLContext that we are done reading or writing the stream.
@@ -278,19 +391,29 @@ is to be shutdown
 @return a negative value if an error condition occurred, 0
 otherwise
 ***********************************************************/
-int ffurl_shutdown (URLContext *h, int flags);
+int ffurl_shutdown (
+    URLContext *h,
+    int flags
+);
 
 /***********************************************************
 Check if the user has requested to interrupt a blocking function
 associated with cb.
 ***********************************************************/
-int ff_check_interrupt (AVIOInterruptCB *cb);
+int ff_check_interrupt (
+    AVIOInterruptCB *cb
+);
 
 /***********************************************************
 udp.c
 ***********************************************************/
-int ff_udp_set_remote_url (URLContext *h, string uri);
-int ff_udp_get_local_port (URLContext *h);
+int ff_udp_set_remote_url (
+    URLContext *h,
+    string uri
+);
+int ff_udp_get_local_port (
+    URLContext *h
+);
 
 /***********************************************************
 Assemble a URL string from components. This is the reverse operation
@@ -313,9 +436,16 @@ ensure ff_network_init has been called.
            host/port, may be null
 @return the number of characters written to the destination buffer
 ***********************************************************/
-int ff_url_join (string str, int size, string proto,
-                string authorization, string hostname,
-                int port, string fmt, ...) av_printf_format (7, 8);
+int ff_url_join (
+    string str,
+    int size,
+    string proto,
+    string authorization,
+    string hostname,
+    int port,
+    string fmt,
+    ...
+); // av_printf_format (7, 8);
 
 /***********************************************************
 Convert a relative url into an absolute url, given a base url.
@@ -325,8 +455,12 @@ Convert a relative url into an absolute url, given a base url.
 @param base the base url, may be equal to buf.
 @param rel the new url, which is interpreted relative to base
 ***********************************************************/
-void ff_make_absolute_url (string buf, int size, string base,
-                          string rel);
+void ff_make_absolute_url (
+    string buf,
+    int size,
+    string base_url,
+    string rel
+);
 
 /***********************************************************
 Allocate directory entry with default values.
@@ -335,7 +469,9 @@ Allocate directory entry with default values.
 ***********************************************************/
 AVIODirEntry *ff_alloc_dir_entry ();
 
-const AVClass *ff_urlcontext_child_class_next (AVClass *prev);
+AVClass *ff_urlcontext_child_class_next (
+    AVClass *prev
+);
 
 /***********************************************************
 Construct a list of protocols matching a given whitelist and/or blacklist.
@@ -350,5 +486,7 @@ Construct a list of protocols matching a given whitelist and/or blacklist.
 @return a NULL-terminated array of matching protocols. The array must be
 freed by the caller.
 ***********************************************************/
-const URLProtocol **ffurl_get_protocols (string whitelist,
-                                        string blacklist);
+URLProtocol[] ffurl_get_protocols (
+    string whitelist,
+    string blacklist
+);

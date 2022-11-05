@@ -41,13 +41,19 @@ Calculate HMAC-SHA2 digest for RTMP handshake packets.
 @param src input buffer
 @param len input buffer length (should be 1536)
 @param gap offset in buffer where 32 bytes should not be taken into account
-              when calculating digest (since it will be used to store that digest)
+    when calculating digest (since it will be used to store that digest)
 @param key digest key
 @param keylen digest key length
 @param dst buffer where calculated digest will be stored (32 bytes)
 ***********************************************************/
-int ff_rtmp_calc_digest (uint8[] src, int len, int gap,
-                        uint8[] key, int keylen, uint8[] dst);
+int ff_rtmp_calc_digest (
+    uint8[] src,
+    int len,
+    int gap,
+    uint8[] key,
+    int keylen,
+    uint8[] dst
+);
 
 /***********************************************************
 Calculate digest position for RTMP handshake packets.
@@ -57,5 +63,9 @@ Calculate digest position for RTMP handshake packets.
 @param mod_val value used for computing modulo
 @param add_val value added at the end (after computing modulo)
 ***********************************************************/
-int ff_rtmp_calc_digest_pos (uint8[] buf, int off, int mod_val,
-                            int add_val);
+int ff_rtmp_calc_digest_pos (
+    uint8[] buf,
+    int off,
+    int mod_val,
+    int add_val
+);

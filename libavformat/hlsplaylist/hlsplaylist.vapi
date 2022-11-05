@@ -27,22 +27,57 @@ public enum PlaylistType {
     PLAYLIST_TYPE_NB,
 }
 
-void ff_hls_write_playlist_version (AVIOContext *out, int version);
-void ff_hls_write_audio_rendition (AVIOContext *out, string agroup,
-                                  string filename, string language, int name_id, int is_default);
-void ff_hls_write_stream_info (AVStream *st, AVIOContext *out,
-                              int bandwidth, string filename, string agroup,
-                              string codecs, string ccgroup);
-void ff_hls_write_playlist_header (AVIOContext *out, int version, int allowcache,
-                                  int target_duration, int64 sequence,
-                                  uint32 playlist_type, int iframe_mode);
-void ff_hls_write_init_file (AVIOContext *out, string filename,
-                            int byterange_mode, int64 size, int64 pos);
-int ff_hls_write_file_entry (AVIOContext *out, int insert_discont,
-                             int byterange_mode,
-                             double duration, int round_duration,
-                             int64 size, int64 pos, //Used only if HLS_SINGLE_FILE flag is set
-                             string baseurl, //Ignored if NULL
-                             string filename, double *prog_date_time,
-                             int64 video_keyframe_size, int64 video_keyframe_pos, int iframe_mode);
-void ff_hls_write_end_list (AVIOContext *out);
+void ff_hls_write_playlist_version (
+    AVIOContext *out,
+    int version
+);
+void ff_hls_write_audio_rendition (
+    AVIOContext *output,
+    string agroup,
+    string filename,
+    string language,
+    int name_id,
+    int is_default
+);
+void ff_hls_write_stream_info (
+    AVStream *st,
+    AVIOContext *output,
+    int bandwidth,
+    string filename,
+    string agroup,
+    string codecs,
+    string ccgroup
+);
+void ff_hls_write_playlist_header (
+    AVIOContext *output,
+    int version,
+    int allowcache,
+    int target_duration,
+    int64 sequence,
+    uint32 playlist_type,
+    int iframe_mode
+);
+void ff_hls_write_init_file (
+    AVIOContext *output,
+    string filename,
+    int byterange_mode,
+    int64 size,
+    int64 pos
+);
+int ff_hls_write_file_entry (
+    AVIOContext *output,
+    int insert_discont,
+    int byterange_mode,
+    double duration,
+    int round_duration,
+    int64 size,
+    int64 pos, //Used only if HLS_SINGLE_FILE flag is set
+    string baseurl, //Ignored if NULL
+    string filename,
+    out double prog_date_time,
+    int64 video_keyframe_size,
+    int64 video_keyframe_pos,
+    int iframe_mode);
+void ff_hls_write_end_list (
+    AVIOContext *output
+);

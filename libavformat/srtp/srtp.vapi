@@ -39,9 +39,23 @@ public struct SRTPContext {
     uint32 rtcp_index;
 }
 
-int ff_srtp_set_crypto (SRTPContext *s, string suite,
-                       string params);
-void ff_srtp_free (SRTPContext *s);
-int ff_srtp_decrypt (SRTPContext *s, uint8[] buf, int[] lenptr);
-int ff_srtp_encrypt (SRTPContext *s, uint8[] input_buffer, int len,
-                    out uint8[] output_buffer, int outlen);
+int ff_srtp_set_crypto (
+    SRTPContext *s,
+    string suite,
+    string params
+);
+void ff_srtp_free (
+    SRTPContext *s
+);
+int ff_srtp_decrypt (
+    SRTPContext *s,
+    uint8[] buf,
+    out int lenptr
+);
+int ff_srtp_encrypt (
+    SRTPContext *s,
+    uint8[] input_buffer,
+    int len,
+    out uint8[] output_buffer,
+    int outlen
+);
