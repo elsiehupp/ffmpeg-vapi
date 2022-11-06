@@ -1,23 +1,23 @@
-/*
- * RAW AC-3 and E-AC-3 demuxer
- * Copyright (c) 2007 Justin Ruggles <justin.ruggles@gmail.com>
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+RAW AC-3 and E-AC-3 demuxer
+@copyright 2007 Justin Ruggles <justin.ruggles@gmail.com>
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #if CONFIG_AC3_DEMUXER
 static int ac3_probe(const AVProbeData *p)
@@ -47,7 +47,7 @@ public class InputFormat : AVInputFormat ff_ac3_demuxer = {
     //  .raw_codec_id   = AV_CODEC_ID_AC3,
     //  .priv_data_size = sizeof(FFRawDemuxerContext),
     //  .priv_class     = &ac3_demuxer_class,
-};
+}
 #endif
 
 #if CONFIG_EAC3_DEMUXER
@@ -78,5 +78,5 @@ public class InputFormat : AVInputFormat ff_eac3_demuxer = {
     //  .raw_codec_id   = AV_CODEC_ID_EAC3,
     //  .priv_data_size = sizeof(FFRawDemuxerContext),
     //  .priv_class     = &eac3_demuxer_class,
-};
+}
 #endif

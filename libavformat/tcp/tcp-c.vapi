@@ -1,23 +1,23 @@
-/*
- * TCP protocol
- * Copyright (c) 2002 Fabrice Bellard
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+TCP protocol
+@copyright 2002 Fabrice Bellard
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #define OFFSET(x) offsetof(TCPContext, x)
 #define D AV_OPT_FLAG_DECODING_PARAM
@@ -33,14 +33,14 @@ static const AVOption options[] = {
     { "tcp_mss",     "Maximum segment size for outgoing TCP packets",          OFFSET(tcp_mss),     AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
 #endif /* !HAVE_WINSOCK2_H */
     { NULL }
-};
+}
 
 static const AVClass tcp_class = {
     //  .class_name = "tcp",
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="ff_tcp_protocol", cheader="")]
 public class TCPURLProtocol : URLProtocol {
@@ -88,4 +88,4 @@ public class TCPURLProtocol : URLProtocol {
     //  .priv_data_size      = sizeof(TCPContext),
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
     //  .priv_data_class     = &tcp_class,
-};
+}

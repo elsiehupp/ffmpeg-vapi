@@ -1,30 +1,30 @@
-/*
- * RTSP demuxer
- * Copyright (c) 2002 Fabrice Bellard
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+RTSP demuxer
+@copyright 2002 Fabrice Bellard
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 static const AVClass rtsp_demuxer_class = {
     //  .class_name     = "RTSP demuxer",
     //  .item_name      = av_default_item_name,
     //  .option         = ff_rtsp_options,
     //  .version        = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class InputFormat : AVInputFormat ff_rtsp_demuxer = {
@@ -65,4 +65,4 @@ public class InputFormat : AVInputFormat ff_rtsp_demuxer = {
         AVFormatContext format_context
     );     = rtsp_read_pause,
     //  .priv_class     = &rtsp_demuxer_class,
-};
+}

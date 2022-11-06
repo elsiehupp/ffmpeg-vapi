@@ -1,30 +1,30 @@
-/*
- * BRender PIX image demuxer
- * Copyright (c) 2014 Michael Niedermayer
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+BRender PIX image demuxer
+@copyright 2014 Michael Niedermayer
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 static const AVClass image2_brender_pix_class = {
     //  .class_name = "brender_pix demuxer",
     //  .item_name  = av_default_item_name,
     //  .option     = ff_img_options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class InputFormat : AVInputFormat ff_image2_brender_pix_demuxer = {
@@ -46,4 +46,4 @@ public class InputFormat : AVInputFormat ff_image2_brender_pix_demuxer = {
     );    = ff_img_read_packet,
     //  .raw_codec_id   = AV_CODEC_ID_BRENDER_PIX,
     //  .priv_class     = &image2_brender_pix_class,
-};
+}

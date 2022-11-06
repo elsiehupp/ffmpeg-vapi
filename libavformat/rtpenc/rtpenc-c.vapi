@@ -1,23 +1,23 @@
-/*
- * RTP output format
- * Copyright (c) 2002 Fabrice Bellard
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+ RTP output format
+ @copyright 2002 Fabrice Bellard
+
+ This file is part of FFmpeg.
+
+ FFmpeg is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ FFmpeg is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with FFmpeg; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 static const AVOption options[] = {
     FF_RTP_FLAG_OPTS(RTPMuxContext, flags),
@@ -26,14 +26,14 @@ static const AVOption options[] = {
     { "cname", "CNAME to include in RTCP SR packets", offsetof(RTPMuxContext, cname), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, AV_OPT_FLAG_ENCODING_PARAM },
     { "seq", "Starting sequence number", offsetof(RTPMuxContext, seq), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 65535, AV_OPT_FLAG_ENCODING_PARAM },
     { NULL },
-};
+}
 
 static const AVClass rtp_muxer_class = {
     //  .class_name = "RTP muxer",
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class OutputFormat : AVOutputFormat ff_rtp_muxer = {
@@ -58,4 +58,4 @@ public class OutputFormat : AVOutputFormat ff_rtp_muxer = {
     );     = rtp_write_trailer,
     //  .priv_class        = &rtp_muxer_class,
     //  .flags             = AVFMT_TS_NONSTRICT,
-};
+}

@@ -1,25 +1,25 @@
-/*
- * amr file format
- * Copyright (c) 2001 FFmpeg project
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+amr file format
+@copyright 2001 FFmpeg project
 
-/*
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
+
+/***********************************************************
 Write and read amr data according to RFC3267, http://www.ietf.org/rfc/rfc3267.txt?number=3267
 
 Only mono files are supported.
@@ -45,7 +45,7 @@ public class InputFormat : AVInputFormat ff_amrwb_demuxer = {
         LibAVCodec.Packet packet
     );    = amr_read_packet,
     //  .flags          = AVFMT_GENERIC_INDEX,
-};
+}
 #endif
 
 #if CONFIG_AMR_MUXER
@@ -67,5 +67,5 @@ public class OutputFormat : AVOutputFormat ff_amr_muxer = {
         int buf_size
     );
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif

@@ -1,34 +1,34 @@
-/*
- * Binary text demuxer
- * eXtended BINary text (XBIN) demuxer
- * Artworx Data Format demuxer
- * iCEDraw File demuxer
- * Copyright (c) 2010 Peter Ross <pross@xvid.org>
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+Binary text demuxer
+eXtended BINary text (XBIN) demuxer
+Artworx Data Format demuxer
+iCEDraw File demuxer
+@copyright 2010 Peter Ross <pross@xvid.org>
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 /**
- * @file
- * Binary text demuxer
- * eXtended BINary text (XBIN) demuxer
- * Artworx Data Format demuxer
- * iCEDraw File demuxer
- */
+@file
+Binary text demuxer
+eXtended BINary text (XBIN) demuxer
+Artworx Data Format demuxer
+iCEDraw File demuxer
+***********************************************************/
 
 #define OFFSET(x) offsetof(BinDemuxContext, x)
 static const AVOption options[] = {
@@ -36,7 +36,7 @@ static const AVOption options[] = {
     { "video_size", "set video size, such as 640x480 or hd720.", OFFSET(width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, AV_OPT_FLAG_DECODING_PARAM },
     { "framerate", "set framerate (frames per second)", OFFSET(framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
     { NULL },
-};
+}
 
 #define CLASS(name) \
 (const AVClass[1]){{ \
@@ -65,7 +65,7 @@ public class InputFormat : AVInputFormat ff_bintext_demuxer = {
         LibAVCodec.Packet packet
     );    = read_packet,
     //  .priv_class     = CLASS("Binary text demuxer",
-};
+}
 #endif
 
 #if CONFIG_XBIN_DEMUXER
@@ -87,7 +87,7 @@ public class InputFormat : AVInputFormat ff_xbin_demuxer = {
         LibAVCodec.Packet packet
     );    = read_packet,
     //  .priv_class     = CLASS("eXtended BINary text (XBIN) demuxer",
-};
+}
 #endif
 
 #if CONFIG_ADF_DEMUXER
@@ -106,7 +106,7 @@ public class InputFormat : AVInputFormat ff_adf_demuxer = {
     );    = read_packet,
     //  .extensions     = "adf",
     //  .priv_class     = CLASS("Artworx Data Format demuxer",
-};
+}
 #endif
 
 #if CONFIG_IDF_DEMUXER
@@ -129,5 +129,5 @@ public class InputFormat : AVInputFormat ff_idf_demuxer = {
     );    = read_packet,
     //  .extensions     = "idf",
     //  .priv_class     = CLASS("iCE Draw File demuxer",
-};
+}
 #endif

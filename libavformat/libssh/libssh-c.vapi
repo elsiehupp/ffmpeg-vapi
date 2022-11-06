@@ -1,22 +1,22 @@
-/*
- * Copyright (c) 2013 Lukasz Marek <lukasz.m.luki@gmail.com>
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+@copyright 2013 Lukasz Marek <lukasz.m.luki@gmail.com>
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #define OFFSET(x) offsetof(LIBSSHContext, x)
 #define D AV_OPT_FLAG_DECODING_PARAM
@@ -26,14 +26,14 @@ static const AVOption options[] = {
     {"truncate", "Truncate existing files on write", OFFSET(trunc), AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 1, E },
     {"private_key", "set path to private key", OFFSET(priv_key), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, D|E },
     {NULL}
-};
+}
 
 static const AVClass libssh_context_class = {
     //  .class_name     = "libssh",
     //  .item_name      = av_default_item_name,
     //  .option         = options,
     //  .version        = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="ff_libssh_protocol", cheader="")]
 public class LibSSHURLProtocol : URLProtocol {
@@ -91,4 +91,4 @@ public class LibSSHURLProtocol : URLProtocol {
     //  .priv_data_size      = sizeof(LIBSSHContext),
     //  .priv_data_class     = &libssh_context_class,
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-};
+}

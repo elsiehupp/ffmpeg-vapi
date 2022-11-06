@@ -1,25 +1,25 @@
-/*
- * MOV, 3GP, MP4 muxer
- * Copyright (c) 2003 Thomas Raivio
- * Copyright (c) 2004 Gildas Bazin <gbazin at videolan dot org>
- * Copyright (c) 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+MOV, 3GP, MP4 muxer
+@copyright 2003 Thomas Raivio
+@copyright 2004 Gildas Bazin <gbazin at videolan dot org>
+@copyright 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 static const AVOption options[] = {
     { "movflags", "MOV muxer flags", offsetof(MOVMuxContext, flags), AV_OPT_TYPE_FLAGS, {.i64 = 0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "movflags" },
@@ -69,7 +69,7 @@ static const AVOption options[] = {
     { "pts", NULL, 0, AV_OPT_TYPE_CONST, {.i64 = MOV_PRFT_SRC_PTS}, 0, 0, AV_OPT_FLAG_ENCODING_PARAM, "prft"},
     { "empty_hdlr_name", "write zero-length name string in hdlr atoms within mdia and minf atoms", offsetof(MOVMuxContext, empty_hdlr_name), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
     { NULL },
-};
+}
 
 #define MOV_CLASS(flavor)\
 static const AVClass flavor ## _muxer_class = {\
@@ -77,7 +77,7 @@ static const AVClass flavor ## _muxer_class = {\
     //  .item_name  = av_default_item_name,\
     //  .option     = options,\
     //  .version    = LIBAVUTIL_VERSION_INT,\
-};
+}
 
 static const AVCodecTag codec_3gp_tags[] = {
     { AV_CODEC_ID_H263,     MKTAG('s','2','6','3') },
@@ -88,7 +88,7 @@ static const AVCodecTag codec_3gp_tags[] = {
     { AV_CODEC_ID_AMR_WB,   MKTAG('s','a','w','b') },
     { AV_CODEC_ID_MOV_TEXT, MKTAG('t','x','3','g') },
     { AV_CODEC_ID_NONE, 0 },
-};
+}
 
 const AVCodecTag codec_mp4_tags[] = {
     { AV_CODEC_ID_MPEG4       , MKTAG('m', 'p', '4', 'v') },
@@ -122,12 +122,12 @@ const AVCodecTag codec_mp4_tags[] = {
     { AV_CODEC_ID_MOV_TEXT    , MKTAG('t', 'x', '3', 'g') },
     { AV_CODEC_ID_BIN_DATA    , MKTAG('g', 'p', 'm', 'd') },
     { AV_CODEC_ID_NONE        ,    0 },
-};
+}
 
 const AVCodecTag codec_ism_tags[] = {
     { AV_CODEC_ID_WMAPRO      , MKTAG('w', 'm', 'a', ' ') },
     { AV_CODEC_ID_NONE        ,    0 },
-};
+}
 
 static const AVCodecTag codec_ipod_tags[] = {
     { AV_CODEC_ID_H264,     MKTAG('a','v','c','1') },
@@ -138,7 +138,7 @@ static const AVCodecTag codec_ipod_tags[] = {
     { AV_CODEC_ID_MOV_TEXT, MKTAG('t','x','3','g') },
     { AV_CODEC_ID_MOV_TEXT, MKTAG('t','e','x','t') },
     { AV_CODEC_ID_NONE, 0 },
-};
+}
 
 static const AVCodecTag codec_f4v_tags[] = {
     { AV_CODEC_ID_MP3,    MKTAG('.','m','p','3') },
@@ -147,7 +147,7 @@ static const AVCodecTag codec_f4v_tags[] = {
     { AV_CODEC_ID_VP6A,   MKTAG('V','P','6','A') },
     { AV_CODEC_ID_VP6F,   MKTAG('V','P','6','F') },
     { AV_CODEC_ID_NONE, 0 },
-};
+}
 
 #if CONFIG_MOV_MUXER
 MOV_CLASS(mov)
@@ -191,7 +191,7 @@ public class OutputFormat : AVOutputFormat ff_mov_muxer = {
         LibAVCodec.Packet packet
     );   = mov_check_bitstream,
     //  .priv_class        = &mov_muxer_class,
-};
+}
 #endif
 #if CONFIG_TGP_MUXER
 MOV_CLASS(tgp)
@@ -232,7 +232,7 @@ public class OutputFormat : AVOutputFormat ff_tgp_muxer = {
         LibAVCodec.Packet packet
     );   = mov_check_bitstream,
     //  .priv_class        = &tgp_muxer_class,
-};
+}
 #endif
 #if CONFIG_MP4_MUXER
 MOV_CLASS(mp4)
@@ -275,7 +275,7 @@ public class OutputFormat : AVOutputFormat ff_mp4_muxer = {
         LibAVCodec.Packet packet
     );   = mov_check_bitstream,
     //  .priv_class        = &mp4_muxer_class,
-};
+}
 #endif
 #if CONFIG_PSP_MUXER
 MOV_CLASS(psp)
@@ -317,7 +317,7 @@ public class OutputFormat : AVOutputFormat ff_psp_muxer = {
         LibAVCodec.Packet packet
     );   = mov_check_bitstream,
     //  .priv_class        = &psp_muxer_class,
-};
+}
 #endif
 #if CONFIG_TG2_MUXER
 MOV_CLASS(tg2)
@@ -358,7 +358,7 @@ public class OutputFormat : AVOutputFormat ff_tg2_muxer = {
         LibAVCodec.Packet packet
     );   = mov_check_bitstream,
     //  .priv_class        = &tg2_muxer_class,
-};
+}
 #endif
 #if CONFIG_IPOD_MUXER
 MOV_CLASS(ipod)
@@ -400,7 +400,7 @@ public class OutputFormat : AVOutputFormat ff_ipod_muxer = {
         LibAVCodec.Packet packet
     );   = mov_check_bitstream,
     //  .priv_class        = &ipod_muxer_class,
-};
+}
 #endif
 #if CONFIG_ISMV_MUXER
 MOV_CLASS(ismv)
@@ -443,7 +443,7 @@ public class OutputFormat : AVOutputFormat ff_ismv_muxer = {
         LibAVCodec.Packet packet
     );   = mov_check_bitstream,
     //  .priv_class        = &ismv_muxer_class,
-};
+}
 #endif
 #if CONFIG_F4V_MUXER
 MOV_CLASS(f4v)
@@ -485,5 +485,5 @@ public class OutputFormat : AVOutputFormat ff_f4v_muxer = {
         LibAVCodec.Packet packet
     );   = mov_check_bitstream,
     //  .priv_class        = &f4v_muxer_class,
-};
+}
 #endif

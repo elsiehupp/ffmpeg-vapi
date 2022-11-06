@@ -1,23 +1,23 @@
-/*
- * Matroska common data
- * Copyright (c) 2003-2004 The FFmpeg project
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+Matroska common data
+@copyright 2003-2004 The FFmpeg project
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #include "libavutil/stereo3d.h"
 
@@ -101,7 +101,7 @@ const CodecTags ff_mkv_codec_tags[]={
     {"V_VP9"            , AV_CODEC_ID_VP9},
 
     {""                 , AV_CODEC_ID_NONE}
-};
+}
 
 const CodecTags ff_webm_codec_tags[] = {
     {"V_VP8"            , AV_CODEC_ID_VP8},
@@ -117,7 +117,7 @@ const CodecTags ff_webm_codec_tags[] = {
     {"D_WEBVTT/METADATA"    , AV_CODEC_ID_WEBVTT},
 
     {""                 , AV_CODEC_ID_NONE}
-};
+}
 
 const CodecMime ff_mkv_image_mime_tags[] = {
     {"image/gif"                  , AV_CODEC_ID_GIF},
@@ -126,7 +126,7 @@ const CodecMime ff_mkv_image_mime_tags[] = {
     {"image/tiff"                 , AV_CODEC_ID_TIFF},
 
     {""                           , AV_CODEC_ID_NONE}
-};
+}
 
 const CodecMime ff_mkv_mime_tags[] = {
     {"text/plain"                 , AV_CODEC_ID_TEXT},
@@ -136,13 +136,13 @@ const CodecMime ff_mkv_mime_tags[] = {
     {"binary"                     , AV_CODEC_ID_BIN_DATA},
 
     {""                           , AV_CODEC_ID_NONE}
-};
+}
 
 const AVMetadataConv ff_mkv_metadata_conv[] = {
     { "LEAD_PERFORMER", "performer" },
     { "PART_NUMBER"   , "track"  },
     { 0 }
-};
+}
 
 const char * const ff_matroska_video_stereo_mode[MATROSKA_VIDEO_STEREOMODE_TYPE_NB] = {
     "mono",
@@ -160,13 +160,13 @@ const char * const ff_matroska_video_stereo_mode[MATROSKA_VIDEO_STEREOMODE_TYPE_
     "anaglyph_green_magenta",
     "block_lr",
     "block_rl",
-};
+}
 
 const char * const ff_matroska_video_stereo_plane[MATROSKA_VIDEO_STEREO_PLANE_COUNT] = {
     "left",
     "right",
     "background",
-};
+}
 
 int ff_mkv_stereo3d_conv(AVStream *st, MatroskaVideoStereoModeType stereo_mode)
 {

@@ -1,35 +1,35 @@
-/*
- * Multipart JPEG format
- * Copyright (c) 2000, 2001, 2002, 2003 Fabrice Bellard
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+ Multipart JPEG format
+ @copyright 2000, 2001, 2002, 2003 Fabrice Bellard
+
+ This file is part of FFmpeg.
+
+ FFmpeg is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ FFmpeg is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with FFmpeg; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 static const AVOption options[] = {
     { "boundary_tag",    "Boundary tag", offsetof(MPJPEGContext, boundary_tag),   AV_OPT_TYPE_STRING, {.str = BOUNDARY_TAG}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
     { NULL },
-};
+}
 
 static const AVClass mpjpeg_muxer_class = {
     //  .class_name = "mpjpeg_muxer",
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class OutputFormat : AVOutputFormat ff_mpjpeg_muxer = {
@@ -56,4 +56,4 @@ public class OutputFormat : AVOutputFormat ff_mpjpeg_muxer = {
     );     = mpjpeg_write_trailer,
     //  .flags             = AVFMT_NOTIMESTAMPS,
     //  .priv_class        = &mpjpeg_muxer_class,
-};
+}

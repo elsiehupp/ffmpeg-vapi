@@ -1,28 +1,28 @@
-/*
- * RTP network protocol
- * Copyright (c) 2002 Fabrice Bellard
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+RTP network protocol
+@copyright 2002 Fabrice Bellard
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 /**
- * @file
- * RTP protocol
- */
+@file
+RTP protocol
+***********************************************************/
 
 #define OFFSET(x) offsetof(RTPContext, x)
 #define D AV_OPT_FLAG_DECODING_PARAM
@@ -41,14 +41,14 @@ static const AVOption options[] = {
     { "block",              "Block list",                                                       OFFSET(block),           AV_OPT_TYPE_STRING, { .str = NULL },               //  .flags = D|E },
     { "fec",                "FEC",                                                              OFFSET(fec_options_str), AV_OPT_TYPE_STRING, { .str = NULL },               //  .flags = E },
     { NULL }
-};
+}
 
 static const AVClass rtp_class = {
     //  .class_name = "rtp",
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="ff_rtp_protocol", cheader="")]
 public class RTPURLProtocol : URLProtocol {
@@ -88,4 +88,4 @@ public class RTPURLProtocol : URLProtocol {
     //  .priv_data_size            = sizeof(RTPContext),
     //  .flags                     = URL_PROTOCOL_FLAG_NETWORK,
     //  .priv_data_class           = &rtp_class,
-};
+}

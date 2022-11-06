@@ -1,32 +1,32 @@
-/*
- * Pro-MPEG Code of Practice #3 Release 2 FEC
- * Copyright (c) 2016 Mobibase, France (http://www.mobibase.com)
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+Pro-MPEG Code of Practice #3 Release 2 FEC
+@copyright 2016 Mobibase, France (http://www.mobibase.com)
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 /**
- * @file
- * Pro-MPEG Code of Practice #3 Release 2 FEC protocol
- * @author Vlad Tarca <vlad.tarca@gmail.com>
- */
+@file
+Pro-MPEG Code of Practice #3 Release 2 FEC protocol
+@author Vlad Tarca <vlad.tarca@gmail.com>
+***********************************************************/
 
-/*
- * Reminder:
+/***********************************************************
+Reminder:
 
  [RFC 2733] FEC Packet Structure
 
@@ -78,7 +78,7 @@
    |X|D|type |index|    offset     |      NA       |SNBase ext bits|
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
- */
+***********************************************************/
 
 #define OFFSET(x) offsetof(PrompegContext, x)
 #define E AV_OPT_FLAG_ENCODING_PARAM
@@ -88,14 +88,14 @@ static const AVOption options[] = {
     { "l", "FEC L", OFFSET(l), AV_OPT_TYPE_INT, { .i64 =  5 }, 4, 20, .flags = E },
     { "d", "FEC D", OFFSET(d), AV_OPT_TYPE_INT, { .i64 =  5 }, 4, 20, .flags = E },
     { NULL }
-};
+}
 
 static const AVClass prompeg_class = {
     //  .class_name = "prompeg",
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="ff_prompeg_protocol", cheader="")]
 public class ProMpegURLProtocol : URLProtocol {
@@ -119,4 +119,4 @@ public class ProMpegURLProtocol : URLProtocol {
     //  .priv_data_size            = sizeof(PrompegContext),
     //  .flags                     = URL_PROTOCOL_FLAG_NETWORK,
     //  .priv_data_class           = &prompeg_class,
-};
+}

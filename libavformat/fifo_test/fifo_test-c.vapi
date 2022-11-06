@@ -1,23 +1,23 @@
-/*
- * FIFO test pseudo-muxer
- * Copyright (c) 2016 Jan Sebechlebsky
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public License
- * as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+FIFO test pseudo-muxer
+@copyright 2016 Jan Sebechlebsky
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #define OFFSET(x) offsetof(FailingMuxerContext, x)
 static const AVOption options[] = {
@@ -28,14 +28,14 @@ static const AVOption options[] = {
         {"print_deinit_summary", "print summary when deinitializing muxer", OFFSET(print_deinit_summary),
          AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
         {NULL}
-    };
+    }
 
 static const AVClass failing_muxer_class = {
     //  .class_name = "Fifo test muxer",
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class OutputFormat : AVOutputFormat ff_fifo_test_muxer = {
@@ -62,5 +62,5 @@ public class OutputFormat : AVOutputFormat ff_fifo_test_muxer = {
     );         = failing_deinit,
     //  .priv_class     = &failing_muxer_class,
     //  .flags          = AVFMT_NOFILE | AVFMT_ALLOW_FLUSH,
-};
+}
 

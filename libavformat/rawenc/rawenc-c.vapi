@@ -1,24 +1,24 @@
-/*
- * RAW muxers
- * Copyright (c) 2001 Fabrice Bellard
- * Copyright (c) 2005 Alex Beregszaszi
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+RAW muxers
+@copyright 2001 Fabrice Bellard
+@copyright 2005 Alex Beregszaszi
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #if CONFIG_AC3_MUXER
 public class OutputFormat : AVOutputFormat ff_ac3_muxer = {
@@ -39,7 +39,7 @@ public class OutputFormat : AVOutputFormat ff_ac3_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_ADX_MUXER
@@ -66,7 +66,7 @@ public class OutputFormat : AVOutputFormat ff_adx_muxer = {
         AVFormatContext format_context
     );     = adx_write_trailer,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_APTX_MUXER
@@ -87,7 +87,7 @@ public class OutputFormat : AVOutputFormat ff_aptx_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_APTX_HD_MUXER
@@ -108,7 +108,7 @@ public class OutputFormat : AVOutputFormat ff_aptx_hd_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_AVS2_MUXER
@@ -129,7 +129,7 @@ public class OutputFormat : AVOutputFormat ff_avs2_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_CAVSVIDEO_MUXER
@@ -150,7 +150,7 @@ public class OutputFormat : AVOutputFormat ff_cavsvideo_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_CODEC2RAW_MUXER
@@ -170,7 +170,7 @@ public class OutputFormat : AVOutputFormat ff_codec2raw_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 
@@ -189,7 +189,7 @@ public class OutputFormat : AVOutputFormat ff_data_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_DIRAC_MUXER
@@ -210,7 +210,7 @@ public class OutputFormat : AVOutputFormat ff_dirac_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_DNXHD_MUXER
@@ -231,7 +231,7 @@ public class OutputFormat : AVOutputFormat ff_dnxhd_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_DTS_MUXER
@@ -253,7 +253,7 @@ public class OutputFormat : AVOutputFormat ff_dts_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_EAC3_MUXER
@@ -275,7 +275,7 @@ public class OutputFormat : AVOutputFormat ff_eac3_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_G722_MUXER
@@ -297,7 +297,7 @@ public class OutputFormat : AVOutputFormat ff_g722_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_G723_1_MUXER
@@ -319,7 +319,7 @@ public class OutputFormat : AVOutputFormat ff_g723_1_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_G726_MUXER
@@ -339,7 +339,7 @@ public class OutputFormat : AVOutputFormat ff_g726_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_G726LE_MUXER
@@ -359,7 +359,7 @@ public class OutputFormat : AVOutputFormat ff_g726le_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_GSM_MUXER
@@ -381,7 +381,7 @@ public class OutputFormat : AVOutputFormat ff_gsm_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_H261_MUXER
@@ -403,7 +403,7 @@ public class OutputFormat : AVOutputFormat ff_h261_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_H263_MUXER
@@ -425,7 +425,7 @@ public class OutputFormat : AVOutputFormat ff_h263_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_H264_MUXER
@@ -461,7 +461,7 @@ public class OutputFormat : AVOutputFormat ff_h264_muxer = {
         LibAVCodec.Packet packet
     );   = h264_check_bitstream,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_HEVC_MUXER
@@ -497,7 +497,7 @@ public class OutputFormat : AVOutputFormat ff_hevc_muxer = {
         LibAVCodec.Packet packet
     );   = hevc_check_bitstream,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_M4V_MUXER
@@ -518,7 +518,7 @@ public class OutputFormat : AVOutputFormat ff_m4v_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_MJPEG_MUXER
@@ -540,7 +540,7 @@ public class OutputFormat : AVOutputFormat ff_mjpeg_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_SINGLEJPEG_MUXER
@@ -561,7 +561,7 @@ public class OutputFormat : AVOutputFormat ff_singlejpeg_muxer = {
     public override int write_header (
         AVFormatContext format_context
     );      = force_one_stream,
-};
+}
 #endif
 
 #if CONFIG_MLP_MUXER
@@ -582,7 +582,7 @@ public class OutputFormat : AVOutputFormat ff_mlp_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_MP2_MUXER
@@ -600,7 +600,7 @@ public class OutputFormat : AVOutputFormat ff_mp2_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_MPEG1VIDEO_MUXER
@@ -622,7 +622,7 @@ public class OutputFormat : AVOutputFormat ff_mpeg1video_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_MPEG2VIDEO_MUXER
@@ -643,7 +643,7 @@ public class OutputFormat : AVOutputFormat ff_mpeg2video_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_RAWVIDEO_MUXER
@@ -660,7 +660,7 @@ public class OutputFormat : AVOutputFormat ff_rawvideo_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_SBC_MUXER
@@ -681,7 +681,7 @@ public class OutputFormat : AVOutputFormat ff_sbc_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_TRUEHD_MUXER
@@ -702,7 +702,7 @@ public class OutputFormat : AVOutputFormat ff_truehd_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif
 
 #if CONFIG_VC1_MUXER
@@ -723,5 +723,5 @@ public class OutputFormat : AVOutputFormat ff_vc1_muxer = {
         int buf_size
     );      = ff_raw_write_packet,
     //  .flags             = AVFMT_NOTIMESTAMPS,
-};
+}
 #endif

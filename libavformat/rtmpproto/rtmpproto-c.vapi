@@ -1,28 +1,28 @@
-/*
- * RTMP network protocol
- * Copyright (c) 2009 Konstantin Shishkov
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+RTMP network protocol
+@copyright 2009 Konstantin Shishkov
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 /**
- * @file
- * RTMP protocol
- */
+@file
+RTMP protocol
+***********************************************************/
 
 #define OFFSET(x) offsetof(RTMPContext, x)
 #define DEC AV_OPT_FLAG_DECODING_PARAM
@@ -50,7 +50,7 @@ static const AVOption rtmp_options[] = {
     {"listen",      "Listen for incoming rtmp connections", OFFSET(listen), AV_OPT_TYPE_INT, {.i64 = 0}, INT_MIN, INT_MAX, DEC, "rtmp_listen" },
     {"timeout", "Maximum timeout (in seconds) to wait for incoming connections. -1 is infinite. Implies -rtmp_listen 1",  OFFSET(listen_timeout), AV_OPT_TYPE_INT, {.i64 = -1}, INT_MIN, INT_MAX, DEC, "rtmp_listen" },
     { NULL },
-};
+}
 
 #define RTMP_PROTOCOL(flavor)                    \
 static const AVClass flavor##_class = {          \
@@ -58,7 +58,7 @@ static const AVClass flavor##_class = {          \
     //  .item_name  = av_default_item_name,          \
     //  .option     = rtmp_options,                  \
     //  .version    = LIBAVUTIL_VERSION_INT,         \
-};                                               \
+}                                               \
                                                  \
 [CCode (cname="ff_##flavor##_protocol", cheader="")]
 public class URLProtocol : URLProtocol ff_##flavor##_protocol = {     \
@@ -101,7 +101,7 @@ public class URLProtocol : URLProtocol ff_##flavor##_protocol = {     \
     //  .priv_data_size = sizeof(RTMPContext),       \
     //  .flags          = URL_PROTOCOL_FLAG_NETWORK, \
     //  .priv_data_class= &flavor##_class,           \
-};
+}
 
 
 RTMP_PROTOCOL(rtmp)

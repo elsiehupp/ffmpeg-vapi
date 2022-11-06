@@ -1,23 +1,23 @@
-/*
- * MPEG-1/2 muxer
- * Copyright (c) 2000, 2001, 2002 Fabrice Bellard
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+MPEG-1/2 muxer
+@copyright 2000, 2001, 2002 Fabrice Bellard
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #define OFFSET(x) offsetof(MpegMuxContext, x)
 #define E AV_OPT_FLAG_ENCODING_PARAM
@@ -25,7 +25,7 @@ static const AVOption options[] = {
     { "muxrate", NULL,                                          OFFSET(user_mux_rate), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, ((1<<22) - 1) * (8 * 50), E },
     { "preload", "Initial demux-decode delay in microseconds.", OFFSET(preload),  AV_OPT_TYPE_INT, { .i64 = 500000 }, 0, INT_MAX, E },
     { NULL },
-};
+}
 
 #define MPEGENC_CLASS(flavor)                   \
 static const AVClass flavor ## _class = {       \
@@ -33,7 +33,7 @@ static const AVClass flavor ## _class = {       \
     //  .item_name  = av_default_item_name,         \
     //  .version    = LIBAVUTIL_VERSION_INT,        \
     //  .option     = options,                      \
-};
+}
 
 #if CONFIG_MPEG1SYSTEM_MUXER
 MPEGENC_CLASS(mpeg)
@@ -60,7 +60,7 @@ public class OutputFormat : AVOutputFormat ff_mpeg1system_muxer = {
         AVFormatContext format_context
     );     = mpeg_mux_end,
     //  .priv_class        = &mpeg_class,
-};
+}
 #endif
 
 #if CONFIG_MPEG1VCD_MUXER
@@ -87,7 +87,7 @@ public class OutputFormat : AVOutputFormat ff_mpeg1vcd_muxer = {
         AVFormatContext format_context
     );     = mpeg_mux_end,
     //  .priv_class        = &vcd_class,
-};
+}
 #endif
 
 #if CONFIG_MPEG2VOB_MUXER
@@ -115,7 +115,7 @@ public class OutputFormat : AVOutputFormat ff_mpeg2vob_muxer = {
         AVFormatContext format_context
     );     = mpeg_mux_end,
     //  .priv_class        = &vob_class,
-};
+}
 #endif
 
 /* Same as mpeg2vob_mux except that the pack size is 2324 */
@@ -144,7 +144,7 @@ public class OutputFormat : AVOutputFormat ff_mpeg2svcd_muxer = {
         AVFormatContext format_context
     );     = mpeg_mux_end,
     //  .priv_class        = &svcd_class,
-};
+}
 #endif
 
 /*  Same as mpeg2vob_mux except the 'is_dvd' flag is set to produce NAV pkts */
@@ -173,5 +173,5 @@ public class OutputFormat : AVOutputFormat ff_mpeg2dvd_muxer = {
         AVFormatContext format_context
     );     = mpeg_mux_end,
     //  .priv_class        = &dvd_class,
-};
+}
 #endif

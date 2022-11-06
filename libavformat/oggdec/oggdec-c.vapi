@@ -1,11 +1,11 @@
-/*
- * Ogg bitstream support
- * Luca Barbato <lu_zero@gentoo.org>
- * Based on tcvp implementation
- */
+/***********************************************************
+Ogg bitstream support
+Luca Barbato <lu_zero@gentoo.org>
+Based on tcvp implementation
+***********************************************************/
 
-/*
-    Copyright (C) 2005  Michael Ahlberg, Måns Rullgård
+/***********************************************************
+    @copyright 2005  Michael Ahlberg, Måns Rullgård
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
@@ -26,7 +26,7 @@
     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
     DEALINGS IN THE SOFTWARE.
- */
+***********************************************************/
 
 [CCode (cname="", cheader="")]
 public class InputFormat : AVInputFormat ff_ogg_demuxer = {
@@ -66,4 +66,4 @@ public class InputFormat : AVInputFormat ff_ogg_demuxer = {
     ); = ogg_read_timestamp,
     //  .extensions     = "ogg",
     //  .flags          = AVFMT_GENERIC_INDEX | AVFMT_TS_DISCONT | AVFMT_NOBINSEARCH,
-};
+}

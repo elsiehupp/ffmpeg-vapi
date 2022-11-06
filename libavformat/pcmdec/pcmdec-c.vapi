@@ -1,29 +1,29 @@
-/*
- * RAW PCM demuxers
- * Copyright (c) 2002 Fabrice Bellard
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+ RAW PCM demuxers
+ @copyright 2002 Fabrice Bellard
+
+ This file is part of FFmpeg.
+
+ FFmpeg is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ FFmpeg is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with FFmpeg; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 static const AVOption pcm_options[] = {
     { "sample_rate", "", offsetof(PCMAudioDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 44100}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
     { "channels",    "", offsetof(PCMAudioDemuxerContext, channels),    AV_OPT_TYPE_INT, {.i64 = 1}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
     { NULL },
-};
+}
 
 #define PCMDEF(name_, long_name_, ext, codec, ...)          \
 static const AVClass name_ ## _demuxer_class = {            \
@@ -31,7 +31,7 @@ static const AVClass name_ ## _demuxer_class = {            \
     //  .item_name  = av_default_item_name,                     \
     //  .option     = pcm_options,                              \
     //  .version    = LIBAVUTIL_VERSION_INT,                    \
-};                                                          \
+}                                                          \
 public class InputFormat : AVInputFormat ff_pcm_ ## name_ ## _demuxer = {              \
     //  .name           = #name_,                               \
     //  .long_name      = NULL_IF_CONFIG_SMALL(long_name_),     \
@@ -57,7 +57,7 @@ public class InputFormat : AVInputFormat ff_pcm_ ## name_ ## _demuxer = {       
     //  .raw_codec_id   = codec,                                \
     //  .priv_class     = &name_ ## _demuxer_class,             \
     __VA_ARGS__                                             \
-};
+}
 
 PCMDEF(f64be, "PCM 64-bit floating-point big-endian",
        NULL, AV_CODEC_ID_PCM_F64BE)
@@ -126,14 +126,14 @@ static const AVOption sln_options[] = {
     { "sample_rate", "", offsetof(PCMAudioDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 8000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
     { "channels",    "", offsetof(PCMAudioDemuxerContext, channels),    AV_OPT_TYPE_INT, {.i64 = 1}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
     { NULL },
-};
+}
 
 static const AVClass sln_demuxer_class = {
     //  .class_name = "sln demuxer",
     //  .item_name  = av_default_item_name,
     //  .option     = sln_options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class InputFormat : AVInputFormat ff_sln_demuxer = {
@@ -160,4 +160,4 @@ public class InputFormat : AVInputFormat ff_sln_demuxer = {
     //  .extensions     = "sln",
     //  .raw_codec_id   = AV_CODEC_ID_PCM_S16LE,
     //  .priv_class     = &sln_demuxer_class,
-};
+}

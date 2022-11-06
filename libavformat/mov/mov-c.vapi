@@ -1,27 +1,27 @@
-/*
- * MOV demuxer
- * Copyright (c) 2001 Fabrice Bellard
- * Copyright (c) 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
- *
- * first version by Francois Revol <revol@free.fr>
- * seek function by Gael Chardon <gael.dev@4now.net>
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+MOV demuxer
+@copyright 2001 Fabrice Bellard
+@copyright 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
+
+first version by Francois Revol <revol@free.fr>
+seek function by Gael Chardon <gael.dev@4now.net>
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #define OFFSET(x) offsetof(MOVContext, x)
 #define FLAGS AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
@@ -68,14 +68,14 @@ static const AVOption mov_options[] = {
         {.i64 = 0}, 0, 1, FLAGS },
 
     { NULL },
-};
+}
 
 static const AVClass mov_class = {
     //  .class_name = "mov,mp4,m4a,3gp,3g2,mj2",
     //  .item_name  = av_default_item_name,
     //  .option     = mov_options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class InputFormat : AVInputFormat ff_mov_demuxer = {
@@ -109,4 +109,4 @@ public class InputFormat : AVInputFormat ff_mov_demuxer = {
         int flags
     );      = mov_read_seek,
     //  .flags          = AVFMT_NO_BYTE_SEEK | AVFMT_SEEK_TO_PTS,
-};
+}

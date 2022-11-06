@@ -1,5 +1,5 @@
-/*
-      Copyright (C) 2008  Reimar Döffinger
+/***********************************************************
+      @copyright 2008  Reimar Döffinger
 
       Permission is hereby granted, free of charge, to any person
       obtaining a copy of this software and associated documentation
@@ -36,4 +36,4 @@ const struct ogg_codec ff_speex_codec = {
         int arg
     ); = speex_packet,
     //  .nb_header = 2,
-};
+}

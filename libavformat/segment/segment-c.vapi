@@ -1,28 +1,28 @@
-/*
- * Copyright (c) 2011, Luca Barbato
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+@copyright 2011, Luca Barbato
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 /**
- * @file generic segmenter
- * M3U8 specification can be find here:
- * @url{http://tools.ietf.org/id/draft-pantos-http-live-streaming}
- */
+@file generic segmenter
+M3U8 specification can be find here:
+@url{http://tools.ietf.org/id/draft-pantos-http-live-streaming}
+***********************************************************/
 
 #define OFFSET(x) offsetof(SegmentContext, x)
 #define E AV_OPT_FLAG_ENCODING_PARAM
@@ -68,7 +68,7 @@ static const AVOption options[] = {
     { "initial_offset", "set initial timestamp offset", OFFSET(initial_offset), AV_OPT_TYPE_DURATION, {.i64 = 0}, -INT64_MAX, INT64_MAX, E },
     { "write_empty_segments", "allow writing empty 'filler' segments", OFFSET(write_empty), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, E },
     { NULL },
-};
+}
 
 #if CONFIG_SEGMENT_MUXER
 static const AVClass seg_class = {
@@ -76,7 +76,7 @@ static const AVClass seg_class = {
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class OutputFormat : AVOutputFormat ff_segment_muxer = {
@@ -112,7 +112,7 @@ public class OutputFormat : AVOutputFormat ff_segment_muxer = {
         LibAVCodec.Packet packet
     ); = seg_check_bitstream,
     //  .priv_class     = &seg_class,
-};
+}
 #endif
 
 #if CONFIG_STREAM_SEGMENT_MUXER
@@ -121,7 +121,7 @@ static const AVClass sseg_class = {
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class OutputFormat : AVOutputFormat ff_stream_segment_muxer = {
@@ -157,5 +157,5 @@ public class OutputFormat : AVOutputFormat ff_stream_segment_muxer = {
         LibAVCodec.Packet packet
     ); = seg_check_bitstream,
     //  .priv_class     = &sseg_class,
-};
+}
 #endif

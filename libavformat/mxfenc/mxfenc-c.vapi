@@ -1,40 +1,40 @@
-/*
- * MXF muxer
- * Copyright (c) 2008 GUCAS, Zhentan Feng <spyfeng at gmail dot com>
- * Copyright (c) 2008 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+ MXF muxer
+ @copyright 2008 GUCAS, Zhentan Feng <spyfeng at gmail dot com>
+ @copyright 2008 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
 
-/*
- * signal_standard, color_siting, store_user_comments, sample rate and klv_fill_key version
- * fixes sponsored by NOA GmbH
- */
+ This file is part of FFmpeg.
 
-/*
- * References
- * SMPTE 336M KLV Data Encoding Protocol Using Key-Length-Value
- * SMPTE 377M MXF File Format Specifications
- * SMPTE 379M MXF Generic Container
- * SMPTE 381M Mapping MPEG Streams into the MXF Generic Container
- * SMPTE 422M Mapping JPEG 2000 Codestreams into the MXF Generic Container
- * SMPTE RP210: SMPTE Metadata Dictionary
- * SMPTE RP224: Registry of SMPTE Universal Labels
- */
+ FFmpeg is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ FFmpeg is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with FFmpeg; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
+
+/***********************************************************
+ signal_standard, color_siting, store_user_comments, sample rate and klv_fill_key version
+ fixes sponsored by NOA GmbH
+***********************************************************/
+
+/***********************************************************
+ References
+ SMPTE 336M KLV Data Encoding Protocol Using Key-Length-Value
+ SMPTE 377M MXF File Format Specifications
+ SMPTE 379M MXF Generic Container
+ SMPTE 381M Mapping MPEG Streams into the MXF Generic Container
+ SMPTE 422M Mapping JPEG 2000 Codestreams into the MXF Generic Container
+ SMPTE RP210: SMPTE Metadata Dictionary
+ SMPTE RP224: Registry of SMPTE Universal Labels
+***********************************************************/
 
 #define MXF_COMMON_OPTIONS \
     { "signal_standard", "Force/set Signal Standard",\
@@ -61,14 +61,14 @@ static const AVOption mxf_options[] = {
     { "store_user_comments", "",
       offsetof(MXFContext, store_user_comments), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
     { NULL },
-};
+}
 
 static const AVClass mxf_muxer_class = {
     //  .class_name     = "MXF muxer",
     //  .item_name      = av_default_item_name,
     //  .option         = mxf_options,
     //  .version        = LIBAVUTIL_VERSION_INT,
-};
+}
 
 static const AVOption d10_options[] = {
     { "d10_channelcount", "Force/set channelcount in generic sound essence descriptor",
@@ -77,14 +77,14 @@ static const AVOption d10_options[] = {
     { "store_user_comments", "",
       offsetof(MXFContext, store_user_comments), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
     { NULL },
-};
+}
 
 static const AVClass mxf_d10_muxer_class = {
     //  .class_name     = "MXF-D10 muxer",
     //  .item_name      = av_default_item_name,
     //  .option         = d10_options,
     //  .version        = LIBAVUTIL_VERSION_INT,
-};
+}
 
 static const AVOption opatom_options[] = {
     { "mxf_audio_edit_rate", "Audio edit rate for timecode",
@@ -93,14 +93,14 @@ static const AVOption opatom_options[] = {
     { "store_user_comments", "",
       offsetof(MXFContext, store_user_comments), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
     { NULL },
-};
+}
 
 static const AVClass mxf_opatom_muxer_class = {
     //  .class_name     = "MXF-OPAtom muxer",
     //  .item_name      = av_default_item_name,
     //  .option         = opatom_options,
     //  .version        = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class OutputFormat : AVOutputFormat ff_mxf_muxer = {
@@ -134,7 +134,7 @@ public class OutputFormat : AVOutputFormat ff_mxf_muxer = {
         int flush
     ); = mxf_interleave,
     //  .priv_class        = &mxf_muxer_class,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class OutputFormat : AVOutputFormat ff_mxf_d10_muxer = {
@@ -167,7 +167,7 @@ public class OutputFormat : AVOutputFormat ff_mxf_d10_muxer = {
         int flush
     ); = mxf_interleave,
     //  .priv_class        = &mxf_d10_muxer_class,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class OutputFormat : AVOutputFormat ff_mxf_opatom_muxer = {
@@ -201,4 +201,4 @@ public class OutputFormat : AVOutputFormat ff_mxf_opatom_muxer = {
         int flush
     ); = mxf_interleave,
     //  .priv_class        = &mxf_opatom_muxer_class,
-};
+}

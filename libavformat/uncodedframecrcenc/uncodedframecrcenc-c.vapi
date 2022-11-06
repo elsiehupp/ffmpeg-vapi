@@ -1,5 +1,5 @@
-/*
-* Copyright (c) 2013 Nicolas George
+/***********************************************************
+* @copyright 2013 Nicolas George
 *
 * This file is part of FFmpeg.
 *
@@ -43,4 +43,4 @@ public class OutputFormat : AVOutputFormat ff_uncodedframecrc_muxer = {
     ); = write_frame,
     //  .flags             = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
                          AVFMT_TS_NEGATIVE,
-};
+}

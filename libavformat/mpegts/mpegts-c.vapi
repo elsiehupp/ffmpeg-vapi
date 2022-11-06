@@ -1,23 +1,23 @@
-/*
- * MPEG-2 transport stream (aka DVB) demuxer
- * Copyright (c) 2002-2003 Fabrice Bellard
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+MPEG-2 transport stream (aka DVB) demuxer
+@copyright 2002-2003 Fabrice Bellard
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #define MPEGTS_OPTIONS \
     { "resync_size",   "set size limit for looking up a new synchronization", offsetof(MpegTSContext, resync_size), AV_OPT_TYPE_INT,  { .i64 =  MAX_RESYNC_SIZE}, 0, INT_MAX,  AV_OPT_FLAG_DECODING_PARAM }
@@ -39,14 +39,14 @@ static const AVOption options[] = {
     {"skip_clear", "skip clearing programs", offsetof(MpegTSContext, skip_clear), AV_OPT_TYPE_BOOL,
      {.i64 = 0}, 0, 1, 0 },
     { NULL },
-};
+}
 
 static const AVClass mpegts_class = {
     //  .class_name = "mpegts demuxer",
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 static const AVOption raw_options[] = {
     MPEGTS_OPTIONS,
@@ -58,14 +58,14 @@ static const AVOption raw_options[] = {
       { .i64 = 0 }, 0, 0,
       AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_EXPORT | AV_OPT_FLAG_READONLY },
     { NULL },
-};
+}
 
 static const AVClass mpegtsraw_class = {
     //  .class_name = "mpegtsraw demuxer",
     //  .item_name  = av_default_item_name,
     //  .option     = raw_options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class InputFormat : AVInputFormat ff_mpegts_demuxer = {
@@ -98,7 +98,7 @@ public class InputFormat : AVInputFormat ff_mpegts_demuxer = {
     ); = mpegts_get_dts,
     //  .flags          = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
     //  .priv_class     = &mpegts_class,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class InputFormat : AVInputFormat ff_mpegtsraw_demuxer = {
@@ -127,4 +127,4 @@ public class InputFormat : AVInputFormat ff_mpegtsraw_demuxer = {
     ); = mpegts_get_dts,
     //  .flags          = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
     //  .priv_class     = &mpegtsraw_class,
-};
+}

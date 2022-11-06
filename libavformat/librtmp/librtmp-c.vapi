@@ -1,28 +1,28 @@
-/*
- * RTMP network protocol
- * Copyright (c) 2010 Howard Chu
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+RTMP network protocol
+@copyright 2010 Howard Chu
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 /**
- * @file
- * RTMP protocol based on http://rtmpdump.mplayerhq.hu/ librtmp
- */
+@file
+RTMP protocol based on http://rtmpdump.mplayerhq.hu/ librtmp
+***********************************************************/
 
 #define OFFSET(x) offsetof(LibRTMPContext, x)
 #define DEC AV_OPT_FLAG_DECODING_PARAM
@@ -46,7 +46,7 @@ static const AVOption options[] = {
     {"rtmp_buffer_size", "set buffer size in bytes", OFFSET(buffer_size), AV_OPT_TYPE_INT, {.i64 = -1}, -1, INT_MAX, DEC|ENC },
 #endif
     { NULL },
-};
+}
 
 #define RTMP_CLASS(flavor)\
 static const AVClass lib ## flavor ## _class = {\
@@ -54,7 +54,7 @@ static const AVClass lib ## flavor ## _class = {\
     //  .item_name  = av_default_item_name,\
     //  .option     = options,\
     //  .version    = LIBAVUTIL_VERSION_INT,\
-};
+}
 
 RTMP_CLASS(rtmp)
 [CCode (cname="ff_librtmp_protocol", cheader="")]
@@ -101,7 +101,7 @@ public class LibRTMPURLProtocol : URLProtocol {
     //  .priv_data_size      = sizeof(LibRTMPContext),
     //  .priv_data_class     = &librtmp_class,
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-};
+}
 
 RTMP_CLASS(rtmpt)
 [CCode (cname="ff_librtmpt_protocol", cheader="")]
@@ -148,7 +148,7 @@ public class URLProtocol : URLProtocol ff_librtmpt_protocol = {
     //  .priv_data_size      = sizeof(LibRTMPContext),
     //  .priv_data_class     = &librtmpt_class,
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-};
+}
 
 RTMP_CLASS(rtmpe)
 [CCode (cname="ff_librtmpe_protocol", cheader="")]
@@ -195,7 +195,7 @@ public class URLProtocol : URLProtocol ff_librtmpe_protocol = {
     //  .priv_data_size      = sizeof(LibRTMPContext),
     //  .priv_data_class     = &librtmpe_class,
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-};
+}
 
 RTMP_CLASS(rtmpte)
 [CCode (cname="ff_librtmpte_protocol", cheader="")]
@@ -242,7 +242,7 @@ public class URLProtocol : URLProtocol ff_librtmpte_protocol = {
     //  .priv_data_size      = sizeof(LibRTMPContext),
     //  .priv_data_class     = &librtmpte_class,
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-};
+}
 
 RTMP_CLASS(rtmps)
 [CCode (cname="ff_librtmps_protocol", cheader="")]
@@ -289,4 +289,4 @@ public class URLProtocol : URLProtocol ff_librtmps_protocol = {
     //  .priv_data_size      = sizeof(LibRTMPContext),
     //  .priv_data_class     = &librtmps_class,
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-};
+}

@@ -1,5 +1,5 @@
 /**
-    Copyright (C) 2005  Michael Ahlberg, Måns Rullgård
+    @copyright 2005  Michael Ahlberg, Måns Rullgård
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
@@ -37,7 +37,7 @@ const struct ogg_codec ff_ogm_video_codec = {
     ); = ogm_packet,
     //  .granule_is_start = 1,
     //  .nb_header = 2,
-};
+}
 
 const struct ogg_codec ff_ogm_audio_codec = {
     //  .magic = "\001audio",
@@ -54,7 +54,7 @@ const struct ogg_codec ff_ogm_audio_codec = {
     ); = ogm_packet,
     //  .granule_is_start = 1,
     //  .nb_header = 2,
-};
+}
 
 const struct ogg_codec ff_ogm_text_codec = {
     //  .magic = "\001text",
@@ -71,7 +71,7 @@ const struct ogg_codec ff_ogm_text_codec = {
     ); = ogm_packet,
     //  .granule_is_start = 1,
     //  .nb_header = 2,
-};
+}
 
 const struct ogg_codec ff_ogm_old_codec = {
     //  .magic = "\001Direct Show Samples embedded in Ogg",
@@ -88,4 +88,4 @@ const struct ogg_codec ff_ogm_old_codec = {
     ); = ogm_packet,
     //  .granule_is_start = 1,
     //  .nb_header = 1,
-};
+}

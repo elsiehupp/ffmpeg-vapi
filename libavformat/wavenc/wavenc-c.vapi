@@ -1,32 +1,32 @@
-/*
- * WAV muxer
- * Copyright (c) 2001, 2002 Fabrice Bellard
- *
- * Sony Wave64 muxer
- * Copyright (c) 2012 Paul B Mahol
- *
- * WAV muxer RF64 support
- * Copyright (c) 2013 Daniel Verkamp <daniel@drv.nu>
- *
- * EBU Tech 3285 - Supplement 3 - Peak Envelope Chunk encoder
- * Copyright (c) 2014 Georg Lippitsch <georg.lippitsch@gmx.at>
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+WAV muxer
+@copyright 2001, 2002 Fabrice Bellard
+
+Sony Wave64 muxer
+@copyright 2012 Paul B Mahol
+
+WAV muxer RF64 support
+@copyright 2013 Daniel Verkamp <daniel@drv.nu>
+
+EBU Tech 3285 - Supplement 3 - Peak Envelope Chunk encoder
+@copyright 2014 Georg Lippitsch <georg.lippitsch@gmx.at>
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 #if CONFIG_WAV_MUXER
 #define OFFSET(x) offsetof(WAVMuxContext, x)
@@ -45,14 +45,14 @@ static const AVOption options[] = {
     { "peak_format",     "The format of the peak envelope data (1: uint8, 2: uint16).", OFFSET(peak_format), AV_OPT_TYPE_INT,     { .i64 = PEAK_FORMAT_UINT16 }, PEAK_FORMAT_UINT8, PEAK_FORMAT_UINT16, ENC },
     { "peak_ppv",        "Number of peak points per peak value (1 or 2).",              OFFSET(peak_ppv), AV_OPT_TYPE_INT, { .i64 = 2 }, 1, 2, ENC },
     { NULL },
-};
+}
 
 static const AVClass wav_muxer_class = {
     //  .class_name = "WAV muxer",
     //  .item_name  = av_default_item_name,
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
-};
+}
 
 [CCode (cname="", cheader="")]
 public class OutputFormat : AVOutputFormat ff_wav_muxer = {
@@ -80,7 +80,7 @@ public class OutputFormat : AVOutputFormat ff_wav_muxer = {
     //  .flags             = AVFMT_TS_NONSTRICT,
     //  .codec_tag         = (const AVCodecTag* const []){ ff_codec_wav_tags, 0 },
     //  .priv_class        = &wav_muxer_class,
-};
+}
 #endif /* CONFIG_WAV_MUXER */
 
 #if CONFIG_W64_MUXER
@@ -107,5 +107,5 @@ public class OutputFormat : AVOutputFormat ff_w64_muxer = {
     );     = w64_write_trailer,
     //  .flags             = AVFMT_TS_NONSTRICT,
     //  .codec_tag         = (const AVCodecTag* const []){ ff_codec_wav_tags, 0 },
-};
+}
 #endif /* CONFIG_W64_MUXER */

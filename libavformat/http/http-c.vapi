@@ -1,26 +1,26 @@
-/*
- * HTTP protocol for ffmpeg client
- * Copyright (c) 2000, 2001 Fabrice Bellard
- *
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+ HTTP protocol for ffmpeg client
+ @copyright 2000, 2001 Fabrice Bellard
+
+ This file is part of FFmpeg.
+
+ FFmpeg is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ FFmpeg is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with FFmpeg; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
 
 /* XXX: POST protocol is not completely implemented because ffmpeg uses
- * only a subset of it. */
+ only a subset of it. */
 
 #define HTTP_CLASS(flavor)                          \
 static const AVClass flavor ## _context_class = {   \
@@ -91,7 +91,7 @@ public class HTTPURLProtocol : URLProtocol {
     //  .priv_data_class     = &http_context_class,
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
     //  .default_whitelist   = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
-};
+}
 #endif /* CONFIG_HTTP_PROTOCOL */
 
 #if CONFIG_HTTPS_PROTOCOL
@@ -146,7 +146,7 @@ public class URLProtocol : URLProtocol ff_https_protocol = {
     //  .priv_data_class     = &https_context_class,
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
     //  .default_whitelist   = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
-};
+}
 #endif /* CONFIG_HTTPS_PROTOCOL */
 
 #if CONFIG_HTTPPROXY_PROTOCOL
@@ -181,5 +181,5 @@ public class URLProtocol : URLProtocol ff_httpproxy_protocol = {
     ); = http_get_file_handle,
     //  .priv_data_size      = sizeof(HTTPContext),
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-};
+}
 #endif /* CONFIG_HTTPPROXY_PROTOCOL */
