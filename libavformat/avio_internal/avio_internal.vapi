@@ -77,7 +77,7 @@ public void ffio_fill (
     int count
 );
 
-public public void ffio_wfourcc (
+public void ffio_wfourcc (
     AVIOContext pb,
     uint8[] io_context
 );

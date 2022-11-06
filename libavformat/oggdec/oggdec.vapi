@@ -34,10 +34,10 @@ public abstract class ogg_codec {
             0 if the packet was not a header (was a data packet)
             -1 if an error occurred or for unsupported stream
     ***********************************************************/
-    public public abstract int header (
+    public abstract int header (
         AVFormatContext context, int arg
     );
-    public public abstract int packet (
+    public abstract int packet (
         AVFormatContext context, int arg
     );
     /***********************************************************
@@ -45,7 +45,7 @@ public abstract class ogg_codec {
     Will set dts if non-null and known.
     @return pts
     ***********************************************************/
-    public public abstract uint64 gptopts (
+    public abstract uint64 gptopts (
         AVFormatContext context,
         int arg1,
         uint64 arg2,

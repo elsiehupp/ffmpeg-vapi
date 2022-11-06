@@ -3160,7 +3160,7 @@ If no codec id is found returns AV_CODEC_ID_NONE.
 in AVInputFormat.codec_tag and AVOutputFormat.codec_tag
 @param tag codec tag to match to a codec ID
 ***********************************************************/
-public public LibAVCodec.CodecID av_codec_get_id (
+public LibAVCodec.CodecID av_codec_get_id (
     AVCodecTag[] tags,
     uint tag
 );
