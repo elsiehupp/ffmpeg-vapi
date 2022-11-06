@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Authentication types, ordered from weakest to strongest.
 ***********************************************************/
@@ -36,28 +38,28 @@ public enum HTTPAuthType {
 }
 
 public struct DigestParams {
-    char nonce[300]; /***********************************************************
+    public char nonce[300]; /***********************************************************
     Server specified nonce
     ***********************************************************/
-    char algorithm[10]; /***********************************************************
+    public char algorithm[10]; /***********************************************************
     Server specified digest algorithm
     ***********************************************************/
-    char qop[30]; /***********************************************************
+    public char qop[30]; /***********************************************************
     Quality of protection, containing the one
     that we've chosen to use, from the
     alternatives that the server offered.
     ***********************************************************/
-    char opaque[300]; /***********************************************************
+    public char opaque[300]; /***********************************************************
     A server-specified string that should be
     included in authentication responses, not
     included in the actual digest calculation.
     ***********************************************************/
-    char stale[10]; /***********************************************************
+    public char stale[10]; /***********************************************************
     The server indicated that the auth was ok,
     but needs to be redone with a new, non-stale
     nonce.
     ***********************************************************/
-    int nc; /***********************************************************
+    public int nc; /***********************************************************
     Nonce count, the number of earlier replies
     where this particular nonce has been used.
     ***********************************************************/
@@ -71,29 +73,32 @@ public struct HTTPAuthState {
     /***********************************************************
     The currently chosen auth type.
     ***********************************************************/
-    int auth_type;
+    public int auth_type;
     /***********************************************************
     Authentication realm
     ***********************************************************/
-    char realm[200];
+    public char realm[200];
     /***********************************************************
     The parameters specific to digest authentication.
     ***********************************************************/
-    DigestParams digest_params;
+    public DigestParams digest_params;
     /***********************************************************
     Auth ok, but needs to be resent with a new nonce.
     ***********************************************************/
-    int stale;
+    public int stale;
 }
 
-void ff_http_auth_handle_header (
+public void ff_http_auth_handle_header (
     HTTPAuthState state,
     string key,
     string value
 );
-string ff_http_auth_create_response (
+
+public string ff_http_auth_create_response (
     HTTPAuthState state,
     string auth,
     string path,
     string method
 );
+
+} // namespace LibAVFormat

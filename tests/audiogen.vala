@@ -118,9 +118,9 @@ public class audiogen {
         fputc ((v >> 24) & 0xff, outfile);
     }
 
-    const uint HEADER_SIZE = 46;
-    const uint FMT_SIZE = 18;
-    const uint SAMPLE_SIZE = 2;
+    const size_t HEADER_SIZE = 46;
+    const size_t FMT_SIZE = 18;
+    const size_t SAMPLE_SIZE = 2;
     const uint WFORMAT_PCM = 0x0001;
 
     static void put_wav_header (

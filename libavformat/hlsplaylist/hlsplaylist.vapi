@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public enum PlaylistType {
     PLAYLIST_TYPE_NONE,
     PLAYLIST_TYPE_EVENT,
@@ -27,11 +29,12 @@ public enum PlaylistType {
     PLAYLIST_TYPE_NB,
 }
 
-void ff_hls_write_playlist_version (
+public void ff_hls_write_playlist_version (
     AVIOContext out,
     int version
 );
-void ff_hls_write_audio_rendition (
+
+public void ff_hls_write_audio_rendition (
     AVIOContext output,
     string agroup,
     string filename,
@@ -39,7 +42,8 @@ void ff_hls_write_audio_rendition (
     int name_id,
     int is_default
 );
-void ff_hls_write_stream_info (
+
+public void ff_hls_write_stream_info (
     AVStream st,
     AVIOContext output,
     int bandwidth,
@@ -48,7 +52,8 @@ void ff_hls_write_stream_info (
     string codecs,
     string ccgroup
 );
-void ff_hls_write_playlist_header (
+
+public void ff_hls_write_playlist_header (
     AVIOContext output,
     int version,
     int allowcache,
@@ -57,14 +62,16 @@ void ff_hls_write_playlist_header (
     uint32 playlist_type,
     int iframe_mode
 );
-void ff_hls_write_init_file (
+
+public void ff_hls_write_init_file (
     AVIOContext output,
     string filename,
     int byterange_mode,
     int64 size,
     int64 pos
 );
-int ff_hls_write_file_entry (
+
+public int ff_hls_write_file_entry (
     AVIOContext output,
     int insert_discont,
     int byterange_mode,
@@ -77,7 +84,11 @@ int ff_hls_write_file_entry (
     out double prog_date_time,
     int64 video_keyframe_size,
     int64 video_keyframe_pos,
-    int iframe_mode);
-void ff_hls_write_end_list (
+    int iframe_mode
+);
+
+public void ff_hls_write_end_list (
     AVIOContext output
 );
+
+} // namespace LibAVFormat

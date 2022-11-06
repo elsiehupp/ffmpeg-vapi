@@ -16,9 +16,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  extern const uint8 ff_w64_guid_riff[16];
 //  extern const uint8 ff_w64_guid_wave[16];
 //  extern const uint8 ff_w64_guid_fmt [16];
 //  extern const uint8 ff_w64_guid_fact[16];
 //  extern const uint8 ff_w64_guid_data[16];
 //  extern const uint8 ff_w64_guid_summarylist[16];
+
+} // namespace LibAVFormat

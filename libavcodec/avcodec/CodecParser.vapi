@@ -75,7 +75,7 @@ public struct CodecParser {
     public ParserSplitDelegate split;
 
     [CCode (cname="next")]
-    public CodecParser next;
+    public CodecParser *next;
 
     /***********************************************************
     @brief Iterate over all registered codec parsers.

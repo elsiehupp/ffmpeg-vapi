@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const uint64 MAIN_STARTCODE;
 public const uint64 STREAM_STARTCODE;
 public const uint64 SYNCPOINT_STARTCODE;
@@ -85,69 +87,84 @@ public enum Flag {
 }
 
 public struct Syncpoint {
-    uint64 pos;
-    uint64 back_ptr;
-//    uint64 global_key_pts;
-    int64 ts;
+    public uint64 pos;
+    public uint64 back_ptr;
+    //  public uint64 global_key_pts;
+    public int64 ts;
 }
 
 public struct FrameCode {
-    uint16 flags;
-    uint8 stream_id;
-    uint16 size_mul;
-    uint16 size_lsb;
-    int16 pts_delta;
-    uint8 reserved_count;
-    uint8 header_idx;
+    public uint16 flags;
+    public uint8 stream_id;
+    public uint16 size_mul;
+    public uint16 size_lsb;
+    public int16 pts_delta;
+    public uint8 reserved_count;
+    public uint8 header_idx;
 }
 
 public struct StreamContext {
-    int last_flags;
-    int skip_until_key_frame;
-    int64 last_pts;
-    int time_base_id;
-    LibAVUtil.Rational time_base;
-    int msb_pts_shift;
-    int max_pts_distance;
-    int decode_delay; //FIXME duplicate of has_b_frames
-    int64[] keyframe_pts;
+    public int last_flags;
+    public int skip_until_key_frame;
+    public int64 last_pts;
+    public int time_base_id;
+    public LibAVUtil.Rational time_base;
+    public int msb_pts_shift;
+    public int max_pts_distance;
+    /***********************************************************
+    FIXME duplicate of has_b_frames
+    ***********************************************************/
+    public int decode_delay;
+    public int64[] keyframe_pts;
 }
 
 public struct ChapterContext {
-    LibAVUtil.Rational time_base;
+    public LibAVUtil.Rational time_base;
 }
 
 public struct NUTContext {
-    LibAVUtil.Class av_class;
-    AVFormatContext avf;
-//    int written_packet_size;
-//    int64 packet_start;
-    FrameCode frame_code[256];
-    uint8 header_len[128];
-    uint8 *header[128];
-    uint64 next_startcode; // stores the next startcode if it has already been parsed but the stream is not seekable
-    StreamContext stream;
-    ChapterContext chapter;
-    uint max_distance;
-    uint time_base_count;
-    int64 last_syncpoint_pos;
-    int64 last_resync_pos;
-    int header_count;
-    LibAVUtil.Rational time_base;
-    LibAVUtil.TreeNode syncpoints;
-    int sp_count;
-    int write_index;
-    int64 max_pts;
-    LibAVUtil.Rational max_pts_tb;
-    NUTFlags flags;
-    int version; // version currently in use
-    int minor_version;
+    public LibAVUtil.Class av_class;
+    public AVFormatContext avf;
+    //  public int written_packet_size;
+    //  public int64 packet_start;
+    public FrameCode frame_code[256];
+    public uint8 header_len[128];
+    public uint8 *header[128];
+    /***********************************************************
+    Stores the next startcode if it has already been parsed but the stream is not seekable
+    ***********************************************************/
+    public uint64 next_startcode;
+    public StreamContext stream;
+    public ChapterContext chapter;
+    public uint max_distance;
+    public uint time_base_count;
+    public int64 last_syncpoint_pos;
+    public int64 last_resync_pos;
+    public int header_count;
+    public LibAVUtil.Rational time_base;
+    public LibAVUtil.TreeNode syncpoints;
+    public int sp_count;
+    public int write_index;
+    public int64 max_pts;
+    public LibAVUtil.Rational max_pts_tb;
+    public NUTFlags flags;
+    /***********************************************************
+    Version currently in use
+    ***********************************************************/
+    public int version;
+    public int minor_version;
 }
 
 [Flags]
 public enum NUTFlags {
-    NUT_BROADCAST, // use extended syncpoints
-    NUT_PIPE, // do not write syncpoints
+    /***********************************************************
+    Use extended syncpoints.
+    ***********************************************************/
+    NUT_BROADCAST,
+    /***********************************************************
+    Do not write syncpoints.
+    ***********************************************************/
+    NUT_PIPE,
 }
 
 //  extern const AVCodecTag ff_nut_subtitle_tags[];
@@ -156,40 +173,47 @@ public enum NUTFlags {
 //  extern const AVCodecTag ff_nut_audio_extra_tags[];
 //  extern const AVCodecTag ff_nut_data_tags[];
 
-//  extern const AVCodecTag * const ff_nut_codec_tags[];
+//  extern const AVCodecTag ff_nut_codec_tags[];
 
 public struct Dispositions {
-    char str[9];
-    int flag;
+    public char str[9];
+    public int flag;
 }
 
-void ff_nut_reset_ts (
+public void ff_nut_reset_ts (
     NUTContext nut,
     LibAVUtil.Rational time_base,
     int64 val
 );
-int64 ff_lsb2full (
+
+public int64 ff_lsb2full (
     StreamContext stream,
     int64 lsb
 );
-int ff_nut_sp_pos_cmp (
+
+public int ff_nut_sp_pos_cmp (
     void *a,
     void *b
 );
-int ff_nut_sp_pts_cmp (
+
+public int ff_nut_sp_pts_cmp (
     void *a,
     void *b
 );
-int ff_nut_add_sp (
+
+public int ff_nut_add_sp (
     NUTContext nut,
     int64 pos,
     int64 back_ptr,
     int64 ts
 );
-void ff_nut_free_sp (
+
+public void ff_nut_free_sp (
     NUTContext nut
 );
 
 //  extern const Dispositions ff_nut_dispositions[];
 
 //  extern const AVMetadataConv ff_nut_metadata_conv[];
+
+} // namespace LibAVFormat

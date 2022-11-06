@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public struct RDTDemuxContext { }
 
 /***********************************************************
@@ -31,13 +33,14 @@ Allocate and init the RDT parsing context.
 @param handler pointer to the parse_packet () payload parsing function
 @return a newly allocated RDTDemuxContext. Free with ff_rdt_parse_close ().
 ***********************************************************/
-RDTDemuxContext ff_rdt_parse_open (
+public RDTDemuxContext ff_rdt_parse_open (
     AVFormatContext ic,
     int first_stream_of_set_idx,
     void *priv_data,
     RTPDynamicProtocolHandler handler
 );
-void ff_rdt_parse_close (
+
+public void ff_rdt_parse_close (
     RDTDemuxContext demux_context
 );
 
@@ -53,7 +56,7 @@ server), which is used as some sort of client validation.
 @param challenge pointer to the RealChallenge1 value provided by the
                  server.
 ***********************************************************/
-void ff_rdt_calc_response_and_checksum (
+public void ff_rdt_calc_response_and_checksum (
     char response[41],
     char chksum[9],
     string challenge
@@ -67,7 +70,7 @@ Add subscription information to Subscribe parameter string.
 @param stream_nr stream number.
 @param rule_nr rule number to conform to.
 ***********************************************************/
-void ff_rdt_subscribe_rule (
+public void ff_rdt_subscribe_rule (
     string cmd,
     int size,
     int stream_nr,
@@ -86,7 +89,7 @@ Parse RDT-style packet header.
 @param ptimestamp will be set to the timestamp of the packet
 @return the amount of bytes consumed, or negative on error
 ***********************************************************/
-int ff_rdt_parse_header (
+public int ff_rdt_parse_header (
     uint8[] buf,
     int len,
     int[] pset_id,
@@ -100,7 +103,7 @@ int ff_rdt_parse_header (
 Parse RDT-style packet data (header + media data).
 Usage similar to rtp_parse_packet ().
 ***********************************************************/
-int ff_rdt_parse_packet (
+public int ff_rdt_parse_packet (
     RDTDemuxContext demux_context,
     LibAVCodec.Packet packet,
     out uint8[] buf,
@@ -115,8 +118,10 @@ Parse a server-related SDP line.
               by the SDP m= line (in format_context.streams)
 @param buf the SDP line
 ***********************************************************/
-void ff_real_parse_sdp_a_line (
+public void ff_real_parse_sdp_a_line (
     AVFormatContext format_context,
     int stream_index,
     string buf
 );
+
+} // namespace LibAVFormat

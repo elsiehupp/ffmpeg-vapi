@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 // See ISO/IEC 23009-1:2014 5.3.9.4.4
 public enum DASHTmplId {
     DASH_TMPL_ID_UNDEFINED = -1,
@@ -30,7 +32,7 @@ public enum DASHTmplId {
 }
 
 
-void ff_dash_fill_tmpl_params (
+public void ff_dash_fill_tmpl_params (
     string dst,
     size_t buffer_size,
     string template,
@@ -39,3 +41,5 @@ void ff_dash_fill_tmpl_params (
     int bit_rate,
     int64 time
 );
+
+} // namespace LibAVFormat

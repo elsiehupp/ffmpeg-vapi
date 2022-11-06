@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const string APE_TAG_PREAMBLE;
 public const int APE_TAG_VERSION;
 public const size_t APE_TAG_FOOTER_BYTES;
@@ -30,13 +32,15 @@ Read and parse an APE tag
 
 @return offset of the tag start in the file
 ***********************************************************/
-int64 ff_ape_parse_tag (
+public int64 ff_ape_parse_tag (
     AVFormatContext format_context
 );
 
 /***********************************************************
 Write an APE tag into a file.
 ***********************************************************/
-int ff_ape_write_tag (
+public int ff_ape_write_tag (
     AVFormatContext format_context
 );
+
+} // namespace LibAVFormat

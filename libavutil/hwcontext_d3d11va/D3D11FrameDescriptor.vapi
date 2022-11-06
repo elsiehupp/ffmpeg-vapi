@@ -64,7 +64,7 @@ public struct D3D11FrameDescriptor {
     Normally stored in Frame.data[1] (cast from intptr_t).
     ***********************************************************/
     [CCode (cname="index")]
-    public int* index;
+    public int index;
 }
 
 } // namespace LibAVUtil

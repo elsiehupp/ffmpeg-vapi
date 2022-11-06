@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 maximum possible number of different RTMP channels
 ***********************************************************/
@@ -114,8 +116,6 @@ public enum RTMPPacketType {
 }
 
 /***********************************************************
-***********************************************************/
-/***********************************************************
 possible RTMP packet header sizes
 ***********************************************************/
 public enum RTMPPacketSize {
@@ -191,7 +191,7 @@ Create new RTMP packet with given attributes.
 @param size packet size
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_create (
+public int ff_rtmp_packet_create (
     RTMPPacket packet,
     int channel_id,
     RTMPPacketType type,
@@ -204,7 +204,7 @@ Free RTMP packet.
 
 @param packet packet
 ***********************************************************/
-void ff_rtmp_packet_destroy (
+public void ff_rtmp_packet_destroy (
     RTMPPacket packet
 );
 
@@ -219,13 +219,14 @@ Read RTMP packet sent by the server.
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_read (
+public int ff_rtmp_packet_read (
     URLContext h,
     RTMPPacket packet,
     int chunk_size,
     out RTMPPacket prev_pkt,
     int[] nb_prev_pkt
 );
+
 /***********************************************************
 Read internal RTMP packet sent by the server.
 
@@ -238,7 +239,7 @@ Read internal RTMP packet sent by the server.
 @param c the first byte already read
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_read_internal (
+public int ff_rtmp_packet_read_internal (
     URLContext h,
     RTMPPacket packet,
     int chunk_size,
@@ -258,7 +259,7 @@ Send RTMP packet to the server.
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes written on success, negative value otherwise
 ***********************************************************/
-int ff_rtmp_packet_write (
+public int ff_rtmp_packet_write (
     URLContext h,
     RTMPPacket packet,
     int chunk_size,
@@ -272,7 +273,7 @@ Print information and contents of RTMP packet.
 @param opaque_context output context
 @param packet packet to dump
 ***********************************************************/
-void ff_rtmp_packet_dump (
+public void ff_rtmp_packet_dump (
     void *opaque_context,
     RTMPPacket packet
 );
@@ -284,7 +285,7 @@ Enlarge the prev_pkt array to fit the given channel
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @param channel the channel number that needs to be allocated
 ***********************************************************/
-int ff_rtmp_check_alloc_array (
+public int ff_rtmp_check_alloc_array (
     out RTMPPacket prev_pkt,
     out int nb_prev_pkt,
     int channel
@@ -303,7 +304,7 @@ Calculate number of bytes taken by first AMF entry in data.
 @param data_end input buffer end
 @return number of bytes used by first AMF entry
 ***********************************************************/
-int ff_amf_tag_size (
+public int ff_amf_tag_size (
     uint8[] data,
     uint8[] data_end
 );
@@ -318,7 +319,7 @@ Retrieve value of given AMF object field in string form.
 @param dst_size output buffer size
 @return 0 if search and retrieval succeeded, negative value otherwise
 ***********************************************************/
-int ff_amf_get_field_value (
+public int ff_amf_get_field_value (
     uint8[] data,
     uint8[] data_end,
     uint8[] name,
@@ -332,7 +333,7 @@ Write boolean value in AMF format to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param val value to write
 ***********************************************************/
-void ff_amf_write_bool (
+public void ff_amf_write_bool (
     out uint8[] dst,
     int val
 );
@@ -343,7 +344,7 @@ Write number in AMF format to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param num value to write
 ***********************************************************/
-void ff_amf_write_number (
+public void ff_amf_write_number (
     out uint8[] dst,
     double num
 );
@@ -354,7 +355,7 @@ Write string in AMF format to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-void ff_amf_write_string (
+public void ff_amf_write_string (
     out uint8[] dst,
     string str
 );
@@ -366,7 +367,7 @@ Write a string consisting of two parts in AMF format to a buffer.
 @param str1 first string to write, may be null
 @param str2 second string to write, may be null
 ***********************************************************/
-void ff_amf_write_string2 (
+public void ff_amf_write_string2 (
     out uint8[] dst,
     string str1,
     string str2
@@ -377,7 +378,7 @@ Write AMF NULL value to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-void ff_amf_write_null (
+public void ff_amf_write_null (
     out uint8[] dst
 );
 
@@ -386,7 +387,7 @@ Write marker for AMF object to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-void ff_amf_write_object_start (
+public void ff_amf_write_object_start (
     out uint8[] dst
 );
 
@@ -396,7 +397,7 @@ Write string used as field name in AMF object to buffer.
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-void ff_amf_write_field_name (
+public void ff_amf_write_field_name (
     out uint8[] dst,
     string str
 );
@@ -406,7 +407,7 @@ Write marker for end of AMF object to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-void ff_amf_write_object_end (
+public void ff_amf_write_object_end (
     out uint8[] dst
 );
 
@@ -417,7 +418,7 @@ Read AMF boolean value.
 @param[out]    val 0 or 1
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-int ff_amf_read_bool (
+public int ff_amf_read_bool (
     GetByteContext gbc,
     out int val
 );
@@ -429,7 +430,7 @@ Read AMF number value.
 @param[out]    val read value
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-int ff_amf_read_number (
+public int ff_amf_read_number (
     GetByteContext gbc,
     out double val
 );
@@ -448,7 +449,7 @@ ease later parsing.
 @param[out]    length read string length
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-int ff_amf_get_string (
+public int ff_amf_get_string (
     GetByteContext bc,
     uint8[] str,
     int strsize,
@@ -467,7 +468,7 @@ ease later parsing.
 @param[out]    length read string length
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-int ff_amf_read_string (
+public int ff_amf_read_string (
     GetByteContext gbc,
     uint8[] str,
     int strsize,
@@ -480,7 +481,7 @@ Read AMF NULL value.
 @param[in,out] gbc GetByteContext initialized with AMF-formatted data
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-int ff_amf_read_null (
+public int ff_amf_read_null (
     GetByteContext gbc
 );
 
@@ -489,8 +490,7 @@ Match AMF string with a NULL-terminated string.
 
 @return 0 if the strings do not match.
 ***********************************************************/
-
-int ff_amf_match_string (
+public int ff_amf_match_string (
     uint8[] data,
     int size,
     string str
@@ -499,3 +499,5 @@ int ff_amf_match_string (
 /***********************************************************
 AMF funcs
 ***********************************************************/
+
+} // namespace LibAVFormat

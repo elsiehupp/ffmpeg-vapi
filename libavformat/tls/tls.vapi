@@ -19,19 +19,21 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public struct TLSShared {
-    string ca_file;
-    int verify;
-    string cert_file;
-    string key_file;
-    int listen;
+    public string ca_file;
+    public int verify;
+    public string cert_file;
+    public string key_file;
+    public int listen;
 
-    string host;
+    public string host;
 
-    char underlying_host[200];
-    int numerichost;
+    public char underlying_host[200];
+    public int numerichost;
 
-    URLContext tcp;
+    public URLContext tcp;
 }
 
 //  #define TLS_OPTFL (AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_ENCODING_PARAM)
@@ -44,15 +46,17 @@ public struct TLSShared {
 //      {"listen", "Listen for incoming connections", offsetof (pstruct, options_field . listen), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 1, .flags = TLS_OPTFL }, \
 //      {"verifyhost", "Verify against a specific hostname", offsetof (pstruct, options_field . host), AV_OPT_TYPE_STRING, .flags = TLS_OPTFL }
 
-int ff_tls_open_underlying (
+public int ff_tls_open_underlying (
     TLSShared *tls_shared,
     URLContext parent,
     string uri,
     out LibAVUtil.Dictionary options
 );
 
-void ff_gnutls_init ();
-void ff_gnutls_deinit ();
+public void ff_gnutls_init ();
+public void ff_gnutls_deinit ();
 
-int ff_openssl_init ();
-void ff_openssl_deinit ();
+public int ff_openssl_init ();
+public void ff_openssl_deinit ();
+
+} // namespace LibAVFormat

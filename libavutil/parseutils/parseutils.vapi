@@ -70,8 +70,8 @@ width x height or a valid video size abbreviation.
 ***********************************************************/
 [CCode (cname="av_parse_video_size", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_parse_video_size (
-    out int* width_ptr,
-    out int* height_ptr,
+    out int width_ptr,
+    out int height_ptr,
     string str
 );
 

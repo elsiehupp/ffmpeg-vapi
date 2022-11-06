@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET (x) offsetof (AVFormatContext,x)
 //  #define DEFAULT 0 //should be NAN but it does not work as it is not a constant in glibc as required by ANSI/ISO C
 //  //these names are too long to be readable
@@ -108,3 +110,5 @@ public const LibAVUtil.Option avformat_options[];
 //  {"skip_estimate_duration_from_pts", "skip duration calculation in estimate_timings_from_pts", OFFSET (skip_estimate_duration_from_pts), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, D},
 //  {NULL},
 //  }
+
+} // namespace LibAVFormat

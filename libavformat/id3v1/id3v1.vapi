@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const size_t ID3v1_TAG_SIZE;
 
 public const size_t ID3v1_GENRE_MAX;
@@ -31,6 +33,8 @@ ID3v1 genres
 /***********************************************************
 Read an ID3v1 tag
 ***********************************************************/
-void ff_id3v1_read (
+public void ff_id3v1_read (
     AVFormatContext format_context
 );
+
+} // namespace LibAVFormat

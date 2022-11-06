@@ -19,43 +19,50 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct SRTPContext {
-    LibAVUtil.Crypto.AESContext aes;
-    LibAVUtil.Crypto.HMACContext hmac;
-    int rtp_hmac_size;
-    int rtcp_hmac_size;
-    uint8 master_key[16];
-    uint8 master_salt[14];
-    uint8 rtp_key[16];
-    uint8 rtcp_key[16];
-    uint8 rtp_salt[14];
-    uint8 rtcp_salt[14];
-    uint8 rtp_auth[20];
-    uint8 rtcp_auth[20];
-    int seq_largest;
-    int seq_initialized;
-    uint32 roc;
+namespace LibAVFormat {
 
-    uint32 rtcp_index;
+public struct SRTPContext {
+    public LibAVUtil.Crypto.AESContext aes;
+    public LibAVUtil.Crypto.HMACContext hmac;
+    public int rtp_hmac_size;
+    public int rtcp_hmac_size;
+    public uint8 master_key[16];
+    public uint8 master_salt[14];
+    public uint8 rtp_key[16];
+    public uint8 rtcp_key[16];
+    public uint8 rtp_salt[14];
+    public uint8 rtcp_salt[14];
+    public uint8 rtp_auth[20];
+    public uint8 rtcp_auth[20];
+    public int seq_largest;
+    public int seq_initialized;
+    public uint32 roc;
+
+    public uint32 rtcp_index;
 }
 
-int ff_srtp_set_crypto (
+public int ff_srtp_set_crypto (
     SRTPContext srtp_context,
     string suite,
     string params
 );
-void ff_srtp_free (
+
+public void ff_srtp_free (
     SRTPContext srtp_context
 );
-int ff_srtp_decrypt (
+
+public int ff_srtp_decrypt (
     SRTPContext srtp_context,
     uint8[] buf,
     out int lenptr
 );
-int ff_srtp_encrypt (
+
+public int ff_srtp_encrypt (
     SRTPContext srtp_context,
     uint8[] input_buffer,
     int len,
     out uint8[] output_buffer,
     int outlen
 );
+
+} // namespace LibAVFormat

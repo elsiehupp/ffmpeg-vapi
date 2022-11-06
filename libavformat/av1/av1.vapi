@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public struct AV1SequenceParameters {
     uint8 profile;
     uint8 level;
@@ -46,7 +48,7 @@ the resulting bitstream to the provided AVIOContext.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure
 ***********************************************************/
-int ff_av1_filter_obus (
+public int ff_av1_filter_obus (
     AVIOContext pb,
     uint8[] buf,
     int size
@@ -66,7 +68,7 @@ the resulting bitstream to a newly allocated data buffer.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure. On failure, out and size are unchanged
 ***********************************************************/
-int ff_av1_filter_obus_buf (
+public int ff_av1_filter_obus_buf (
     uint8[] input_buffer,
     out uint8[] output_buffer,
     out int size
@@ -82,7 +84,7 @@ Parses a Sequence Header from the the provided buffer.
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int ff_av1_parse_seq_header (
+public int ff_av1_parse_seq_header (
     AV1SequenceParameters seq,
     uint8[] buf,
     int size
@@ -98,8 +100,10 @@ AVIOContext.
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int ff_isom_write_av1c (
+public int ff_isom_write_av1c (
     AVIOContext pb,
     uint8[] buf,
     int size
 );
+
+} // namespace LibAVFormat

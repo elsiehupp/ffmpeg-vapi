@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const size_t HTTP_HEADERS_SIZE;
 
 /***********************************************************
@@ -30,7 +32,7 @@ request just to get the parameters.
 @param dest URL context whose authentication state gets updated
 @param src URL context whose authentication state gets copied
 ***********************************************************/
-void ff_http_init_auth_state (
+public void ff_http_init_auth_state (
     URLContext dest,
     URLContext src
 );
@@ -43,12 +45,14 @@ Send a new HTTP request, reusing the old connection.
 @return a negative value if an error condition occurred, 0
 otherwise
 ***********************************************************/
-int ff_http_do_new_request (
+public int ff_http_do_new_request (
     URLContext h,
     string uri
 );
 
-int ff_http_averror (
+public int ff_http_averror (
     int status_code,
     int default_averror
 );
+
+} // namespace LibAVFormat

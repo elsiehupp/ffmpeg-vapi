@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public struct AudioInterleaveContext {
     LibAVUtil.FifoBuffer fifo;
     /***********************************************************
@@ -48,12 +50,13 @@ public struct AudioInterleaveContext {
     LibAVUtil.Rational time_base;
 }
 
-int ff_audio_interleave_init (
+public int ff_audio_interleave_init (
     AVFormatContext format_context,
     int[] samples_per_frame,
     LibAVUtil.Rational time_base
 );
-void ff_audio_interleave_close (
+
+public void ff_audio_interleave_close (
     AVFormatContext format_context
 );
 
@@ -63,6 +66,7 @@ public delegate int GetPacketDelegate (
     LibAVCodec.Packet packet_2,
     int arg
 );
+
 public delegate int CompareTimeStampDelegate (
     AVFormatContext format_context,
     LibAVCodec.Packet packet_1,
@@ -78,8 +82,13 @@ when using this function.
 @param get_packet function will output a packet when streams are correctly interleaved.
 @param compare_ts function will compare AVPackets and decide interleaving order.
 ***********************************************************/
-int ff_audio_rechunk_interleave (
+public int ff_audio_rechunk_interleave (
     AVFormatContext format_context,
-    LibAVCodec.Packet out, LibAVCodec.Packet packet, int flush,
+    LibAVCodec.Packet out,
+    LibAVCodec.Packet packet,
+    int flush,
     GetPacketDelegate get_packet,
-    CompareTimeStampDelegate compare_ts);
+    CompareTimeStampDelegate compare_ts
+);
+
+} // namespace LibAVFormat

@@ -19,36 +19,44 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_avc_parse_nal_units (
+namespace LibAVFormat {
+
+public int ff_avc_parse_nal_units (
     AVIOContext io_context,
     uint8[] buf,
     int size
 );
-int ff_avc_parse_nal_units_buf (
+
+public int ff_avc_parse_nal_units_buf (
     uint8[] buf_in,
     out uint8[] buf_out,
     int[] size
 );
-int ff_isom_write_avcc (
+
+public int ff_isom_write_avcc (
     AVIOContext pb,
     uint8[] data,
     int len
 );
-uint8[] ff_avc_find_startcode (
+
+public uint8[] ff_avc_find_startcode (
     uint8[] pointer,
     uint8[] end
 );
-int ff_avc_write_annexb_extradata (
+
+public int ff_avc_write_annexb_extradata (
     uint8[] buf_in,
     out uint8[] buf_out,
     int[] size
 );
-uint8[] ff_avc_mp4_find_startcode (
+
+public uint8[] ff_avc_mp4_find_startcode (
     uint8[] start,
     uint8[] end,
     int nal_length_size
 );
-uint8[] ff_nal_unit_extract_rbsp (
+
+public uint8[] ff_nal_unit_extract_rbsp (
     uint8[] src,
     uint32 src_len,
     out uint32 dst_len,
@@ -66,8 +74,10 @@ public struct H264SPS {
     LibAVUtil.Rational sar;
 }
 
-int ff_avc_decode_sps (
+public int ff_avc_decode_sps (
     H264SPS sps,
     uint8[] buf,
     int buf_size
 );
+
+} // namespace LibAVFormat

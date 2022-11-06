@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Return the payload type for a given stream used in the given format context.
 Static payload types are derived from the codec.
@@ -124,3 +126,5 @@ public static bool RTP_PT_IS_RTCP (
 );
 
 //  #define NTP_TO_RTP_FORMAT (x) av_rescale ((x), INT64_C (1) << 32, 1000000)
+
+} // namespace LibAVFormat

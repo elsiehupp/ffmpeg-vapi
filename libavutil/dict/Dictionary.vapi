@@ -45,7 +45,7 @@ public struct Dictionary  {
         the next. If set to null the first matching element is
         returned.
     @param key matching key
-    @param flags a collection of AVDictionaryFlags.* flags controlling how
+    @param flags a collection of AVDictionaryFlags flags controlling how
         the entry is retrieved
     @return found entry or null in case no matching entry was
         found in the dictionary

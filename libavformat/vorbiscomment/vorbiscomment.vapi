@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Calculate the length in bytes of a VorbisComment. This is the minimum
 size required by ff_vorbiscomment_write ().
@@ -28,7 +30,7 @@ size required by ff_vorbiscomment_write ().
 For no string, set to an empty string.
 @return The length in bytes.
 ***********************************************************/
-int64 ff_vorbiscomment_length (
+public int64 ff_vorbiscomment_length (
     LibAVUtil.Dictionary m,
     string vendor_string,
     AVChapter[] chapters,
@@ -47,7 +49,7 @@ ff_vorbiscomment_length ()
 @param chapters The chapters to write.
 @param nb_chapters The number of chapters to write.
 ***********************************************************/
-int ff_vorbiscomment_write (
+public int ff_vorbiscomment_write (
     out uint8[] p,
     out LibAVUtil.Dictionary m,
     string vendor_string,
@@ -56,3 +58,5 @@ int ff_vorbiscomment_write (
 );
 
 //  extern const AVMetadataConv ff_vorbiscomment_metadata_conv[];
+
+} // namespace LibAVFormat

@@ -16,6 +16,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file
 unbuffered private I/O API
@@ -63,7 +65,7 @@ public struct URLContext {
 }
 
 public abstract class URLProtocol {
-    string name;
+    public string name;
     public abstract int url_open (
         URLContext h,
         string url,
@@ -143,9 +145,9 @@ public abstract class URLProtocol {
         URLContext h,
         int flags
     );
-    int priv_data_size;
-    LibAVUtil.Class priv_data_class;
-    int flags;
+    public int priv_data_size;
+    public LibAVUtil.Class priv_data_class;
+    public int flags;
     public abstract int url_check (
         URLContext h,
         int mask
@@ -167,7 +169,7 @@ public abstract class URLProtocol {
         URLContext h_src,
         URLContext h_dst
     );
-    string default_whitelist;
+    public string default_whitelist;
 }
 
 /***********************************************************
@@ -183,7 +185,7 @@ NULL
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int ffurl_alloc (
+public int ffurl_alloc (
     out URLContext puc,
     string filename,
     int flags,
@@ -198,7 +200,7 @@ i.e. it will be passed to url_open2 () for protocols implementing it.
 This parameter will be destroyed and replaced with a dict containing options
 that were not found. May be NULL.
 ***********************************************************/
-int ffurl_connect (
+public int ffurl_connect (
     URLContext uc,
     out LibAVUtil.Dictionary options
 );
@@ -221,7 +223,7 @@ that were not found. May be NULL.
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int ffurl_open_whitelist (
+public int ffurl_open_whitelist (
     out URLContext puc,
     string filename,
     int flags,
@@ -232,7 +234,7 @@ int ffurl_open_whitelist (
     URLContext parent
 );
 
-int ffurl_open (
+public int ffurl_open (
     out URLContext puc,
     string filename,
     int flags,
@@ -247,7 +249,7 @@ Accept an URLContext client_url_context on an URLContext server_url_context
 @param client_url_context client context, must be unallocated.
 @return >= 0 on success, ff_neterrno () on failure.
 ***********************************************************/
-int ffurl_accept (
+public int ffurl_accept (
     URLContext server_url_context,
     out URLContext client_url_context
 );
@@ -264,7 +266,7 @@ usually the first step, and the return value can be:
 @return >= 0 on success or a negative value corresponding
         to an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-int ffurl_handshake (
+public int ffurl_handshake (
     URLContext client_url_context
 );
 
@@ -277,7 +279,7 @@ corresponding to an LibAVUtil.ErrorCode code in case of error. A value of zero
 indicates that it is not possible to read more from the accessed
 resource (except if the value of the size argument is also zero).
 ***********************************************************/
-int ffurl_read (
+public int ffurl_read (
     URLContext h,
     uchar[] buf,
     int size
@@ -290,7 +292,7 @@ This makes special short-read handling in applications
 unnecessary, if the return value is < size then it is
 certain there was either an error or the end of file was reached.
 ***********************************************************/
-int ffurl_read_complete (
+public int ffurl_read_complete (
     URLContext h,
     uchar[] buf,
     int size
@@ -302,7 +304,7 @@ Write size bytes from buf to the resource accessed by h.
 @return the number of bytes actually written, or a negative value
 corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int ffurl_write (
+public int ffurl_write (
     URLContext h,
     uchar[] buf,
     int size
@@ -322,7 +324,7 @@ of failure, or the resulting file position, measured in bytes from
 the beginning of the file. You can use this feature together with
 SEEK_CUR to read the current file position.
 ***********************************************************/
-int64 ffurl_seek (
+public int64 ffurl_seek (
     URLContext h,
     int64 pos,
     int whence
@@ -335,10 +337,11 @@ memory used by it. Also set the URLContext pointer to NULL.
 @return a negative value if an error condition occurred, 0
 otherwise
 ***********************************************************/
-int ffurl_closep (
+public int ffurl_closep (
     out URLContext h
 );
-int ffurl_close (
+
+public int ffurl_close (
     URLContext h
 );
 
@@ -347,7 +350,7 @@ Return the filesize of the resource accessed by h, LibAVUtil.ErrorCode (ENOSYS)
 if the operation is not supported by h, or another negative value
 corresponding to an LibAVUtil.ErrorCode error code in case of failure.
 ***********************************************************/
-int64 ffurl_size (
+public int64 ffurl_size (
     URLContext h
 );
 
@@ -357,7 +360,7 @@ will return only the RTP file descriptor, not the RTCP file descriptor.
 
 @return the file descriptor associated with this URL, or <0 on error.
 ***********************************************************/
-int ffurl_get_file_handle (
+public int ffurl_get_file_handle (
     URLContext h
 );
 
@@ -366,7 +369,7 @@ Return the file descriptors associated with this URL.
 
 @return 0 on success or <0 on error.
 ***********************************************************/
-int ffurl_get_multi_file_handle (
+public int ffurl_get_multi_file_handle (
     URLContext h,
     out int[] handles,
     out int numhandles
@@ -377,7 +380,7 @@ Return the current short seek threshold value for this URL.
 
 @return threshold (>0) on success or <=0 on error.
 ***********************************************************/
-int ffurl_get_short_seek (
+public int ffurl_get_short_seek (
     URLContext h
 );
 
@@ -391,7 +394,7 @@ is to be shutdown
 @return a negative value if an error condition occurred, 0
 otherwise
 ***********************************************************/
-int ffurl_shutdown (
+public int ffurl_shutdown (
     URLContext h,
     int flags
 );
@@ -400,18 +403,19 @@ int ffurl_shutdown (
 Check if the user has requested to interrupt a blocking function
 associated with cb.
 ***********************************************************/
-int ff_check_interrupt (
+public int ff_check_interrupt (
     AVIOInterruptCB cb
 );
 
 /***********************************************************
 udp.c
 ***********************************************************/
-int ff_udp_set_remote_url (
+public int ff_udp_set_remote_url (
     URLContext h,
     string uri
 );
-int ff_udp_get_local_port (
+
+public int ff_udp_get_local_port (
     URLContext h
 );
 
@@ -436,7 +440,7 @@ ensure ff_network_init has been called.
            host/port, may be null
 @return the number of characters written to the destination buffer
 ***********************************************************/
-int ff_url_join (
+public int ff_url_join (
     string str,
     int size,
     string proto,
@@ -455,7 +459,7 @@ Convert a relative url into an absolute url, given a base url.
 @param base the base url, may be equal to buf.
 @param rel the new url, which is interpreted relative to base
 ***********************************************************/
-void ff_make_absolute_url (
+public void ff_make_absolute_url (
     string buf,
     int size,
     string base_url,
@@ -467,9 +471,9 @@ Allocate directory entry with default values.
 
 @return entry or NULL on error
 ***********************************************************/
-AVIODirEntry ff_alloc_dir_entry ();
+public AVIODirEntry ff_alloc_dir_entry ();
 
-LibAVUtil.Class ff_urlcontext_child_class_next (
+public LibAVUtil.Class ff_urlcontext_child_class_next (
     LibAVUtil.Class prev
 );
 
@@ -486,7 +490,9 @@ Construct a list of protocols matching a given whitelist and/or blacklist.
 @return a NULL-terminated array of matching protocols. The array must be
 freed by the caller.
 ***********************************************************/
-URLProtocol[] ffurl_get_protocols (
+public URLProtocol[] ffurl_get_protocols (
     string whitelist,
     string blacklist
 );
+
+} // namespace LibAVFormat

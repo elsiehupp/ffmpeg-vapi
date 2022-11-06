@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 EBML version supported
 ***********************************************************/
@@ -389,7 +391,7 @@ public enum MatroskaVideoProjectionType {
 Matroska Codec IDs, strings
 ***********************************************************/
 
-public struct CodecTags{
+public struct CodecTags {
     char str[22];
     LibAVCodec.CodecID id;
 }
@@ -423,7 +425,9 @@ public const string CUE_TIMESTAMPS; // "webm_dash_manifest_cue_timestamps"
 public const string TRACK_NUMBER; // "webm_dash_manifest_track_number"
 public const string CODEC_PRIVATE_SIZE; // "webm_dash_manifest_codec_priv_size"
 
-int ff_mkv_stereo3d_conv (
+public int ff_mkv_stereo3d_conv (
     AVStream st,
     MatroskaVideoStereoModeType stereo_mode
 );
+
+} // namespace LibAVFormat

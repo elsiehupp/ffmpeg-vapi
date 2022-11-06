@@ -19,7 +19,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_rtp_chain_mux_open (
+namespace LibAVFormat {
+
+public int ff_rtp_chain_mux_open (
     out AVFormatContext output,
     AVFormatContext format_context,
     AVStream st,
@@ -27,3 +29,5 @@ int ff_rtp_chain_mux_open (
     int packet_size,
     int id
 );
+
+} // namespace LibAVFormat

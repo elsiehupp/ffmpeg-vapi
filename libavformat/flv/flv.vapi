@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file
 FLV common header
@@ -56,14 +58,14 @@ public const string KEYFRAMES_BYTEOFFSET_TAG;
 
 [Flags]
 public enum FLVHeaderFlags {
-    FLV_HEADER_FLAG_HASVIDEO = 1,
-    FLV_HEADER_FLAG_HASAUDIO = 4,
+    FLV_HEADER_FLAG_HASVIDEO,
+    FLV_HEADER_FLAG_HASAUDIO,
 }
 
 public enum FlvTagType {
-    FLV_TAG_TYPE_AUDIO = 0x08,
-    FLV_TAG_TYPE_VIDEO = 0x09,
-    FLV_TAG_TYPE_META = 0x12,
+    FLV_TAG_TYPE_AUDIO,
+    FLV_TAG_TYPE_VIDEO,
+    FLV_TAG_TYPE_META,
 }
 
 public enum FLVStreamType {
@@ -157,3 +159,5 @@ public enum AMFDataType {
     AMF_DATA_TYPE_LONG_STRING,
     AMF_DATA_TYPE_UNSUPPORTED,
 }
+
+} // namespace LibAVFormat

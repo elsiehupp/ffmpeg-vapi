@@ -16,6 +16,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  extern const LibAVUtil.Class ff_avio_class;
 
 public delegate int ReadPacketDelegate (
@@ -23,18 +25,20 @@ public delegate int ReadPacketDelegate (
     uint8[] buf,
     int buf_size
 );
+
 public delegate int WritePacketDelegate (
     void *opaque,
     uint8[] buf,
     int buf_size
 );
+
 public delegate int64 SeekDelegate (
     void *opaque,
     int64 offset,
     int whence
 );
 
-int ffio_init_context (
+public int ffio_init_context (
     AVIOContext io_context,
     uchar[] buffer,
     int buffer_size,
@@ -60,20 +64,20 @@ valid until the next call that references the same IO context.
     will be a copy of buf
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
-int ffio_read_indirect (
+public int ffio_read_indirect (
     AVIOContext io_context,
     uchar[] buf,
     int size,
     out uchar[] data
 );
 
-void ffio_fill (
+public void ffio_fill (
     AVIOContext io_context,
     int b,
     int count
 );
 
-public void ffio_wfourcc (
+public public void ffio_wfourcc (
     AVIOContext pb,
     uint8[] io_context
 );
@@ -90,13 +94,13 @@ Joins buf and io_context.buffer, taking any overlap into consideration.
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int ffio_rewind_with_probe_data (
+public int ffio_rewind_with_probe_data (
     AVIOContext io_context,
     out uchar[] buf,
     int buf_size
 );
 
-uint64 ffio_read_varlen (
+public uint64 ffio_read_varlen (
     AVIOContext bc
 );
 
@@ -105,7 +109,7 @@ Read size bytes from AVIOContext into buf.
 Check that exactly size bytes have been read.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
-int ffio_read_size (
+public int ffio_read_size (
     AVIOContext io_context,
     uchar[] buf,
     int size
@@ -114,7 +118,7 @@ int ffio_read_size (
 /***********************************************************
 @warning must be called before any I/O
 ***********************************************************/
-int ffio_set_buf_size (
+public int ffio_set_buf_size (
     AVIOContext io_context,
     int buf_size
 );
@@ -126,12 +130,12 @@ Will ensure that when reading sequentially up to buf_size, seeking
 within the current pos and pos+buf_size is possible.
 Once the stream position moves outside this window this guarantee is lost.
 ***********************************************************/
-int ffio_ensure_seekback (
+public int ffio_ensure_seekback (
     AVIOContext io_context,
     int64 buf_size
 );
 
-int ffio_limit (
+public int ffio_limit (
     AVIOContext io_context,
     int size
 );
@@ -141,25 +145,30 @@ public delegate ulong UpdateChecksumDelegate (
     uint8[] p,
     uint len
 );
-void ffio_init_checksum (
+
+public void ffio_init_checksum (
     AVIOContext io_context,
     UpdateChecksumDelegate update_checksum,
     ulong checksum
 );
-ulong ffio_get_checksum (
+
+public ulong ffio_get_checksum (
     AVIOContext io_context
 );
-ulong ff_crc04C11DB7_update (
+
+public ulong ff_crc04C11DB7_update (
     ulong checksum,
     uint8[] buf,
     uint len
 );
-ulong ff_crcEDB88320_update (
+
+public ulong ff_crcEDB88320_update (
     ulong checksum,
     uint8[] buf,
     uint len
 );
-ulong ff_crcA001_update (
+
+public ulong ff_crcA001_update (
     ulong checksum,
     uint8[] buf,
     uint len
@@ -174,7 +183,7 @@ with a big-endian 4 byte header giving the packet size in bytes.
 @param max_packet_size maximum packet size (must be > 0)
 @return zero if no error.
 ***********************************************************/
-int ffio_open_dyn_packet_buf (
+public int ffio_open_dyn_packet_buf (
     out AVIOContext io_context,
     int max_packet_size
 );
@@ -190,7 +199,7 @@ In case of failure the pointed to value is set to NULL.
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int ffio_fdopen (
+public int ffio_fdopen (
     out AVIOContext io_context,
     URLContext h
 );
@@ -201,7 +210,7 @@ Return the URLContext associated with the AVIOContext
 @param io_context IO context
 @return pointer to URLContext or NULL.
 ***********************************************************/
-URLContext ffio_geturlcontext (
+public URLContext ffio_geturlcontext (
     AVIOContext io_context
 );
 
@@ -213,11 +222,11 @@ written.
 @param io_context new IO context
 @return zero if no error.
 ***********************************************************/
-int ffio_open_null_buf (
+public int ffio_open_null_buf (
     out AVIOContext io_context
 );
 
-int ffio_open_whitelist (
+public int ffio_open_whitelist (
     out AVIOContext io_context,
     string url,
     int flags,
@@ -233,7 +242,7 @@ Close a null buffer.
 @param io_context an IO context opened by ffio_open_null_buf
 @return the number of bytes written to the null buffer
 ***********************************************************/
-int ffio_close_null_buf (
+public int ffio_close_null_buf (
     AVIOContext io_context
 );
 
@@ -242,6 +251,8 @@ Free a dynamic buffer.
 
 @param io_context a pointer to an IO context opened by avio_open_dyn_buf ()
 ***********************************************************/
-void ffio_free_dyn_buf (
+public void ffio_free_dyn_buf (
     out AVIOContext io_context
 );
+
+} // namespace LibAVFormat

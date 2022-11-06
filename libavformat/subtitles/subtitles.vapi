@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="enum sub_sort")]
 public enum sub_sort {
     /***********************************************************
@@ -41,12 +43,12 @@ public enum ff_utf_type {
 }
 
 public struct FFTextReader {
-    int type;
-    AVIOContext pb;
-    uchar buf[8];
-    int buf_pos;
-    int buf_len;
-    AVIOContext buf_pb;
+    public int type;
+    public AVIOContext pb;
+    public uchar buf[8];
+    public int buf_pos;
+    public int buf_len;
+    public AVIOContext buf_pb;
 }
 
 /***********************************************************
@@ -62,7 +64,7 @@ if the stream had a UTF-16 BOM.
 @param text_reader object which will be initialized
 @param pb stream to read from (referenced as long as FFTextReader is in use)
 ***********************************************************/
-void ff_text_init_avio (
+public void ff_text_init_avio (
     void *void_context,
     FFTextReader text_reader,
     AVIOContext pb
@@ -75,7 +77,7 @@ Similar to ff_text_init_avio (), but sets it up to read from a bounded buffer.
 @param buf buffer to read from (referenced as long as FFTextReader is in use)
 @param size size of buf
 ***********************************************************/
-void ff_text_init_buf (
+public void ff_text_init_buf (
     FFTextReader text_reader,
     void *buf,
     size_t size
@@ -86,7 +88,7 @@ Return the byte position of the next byte returned by ff_text_r8 (). For
 UTF-16 source streams, this will return the original position, but it will
 be incorrect if a codepoint was only partially read with ff_text_r8 ().
 ***********************************************************/
-int64 ff_text_pos (
+public int64 ff_text_pos (
     FFTextReader text_reader
 );
 
@@ -95,21 +97,21 @@ Return the next byte. The return value is always 0 - 255. Returns 0 on EOF.
 If the source stream is UTF-16, this reads from the stream converted to
 UTF-8. On invalid UTF-16, 0 is returned.
 ***********************************************************/
-int ff_text_r8 (
+public int ff_text_r8 (
     FFTextReader text_reader
 );
 
 /***********************************************************
 Return non-zero if EOF was reached.
 ***********************************************************/
-int ff_text_eof (
+public int ff_text_eof (
     FFTextReader text_reader
 );
 
 /***********************************************************
 Like ff_text_r8 (), but don't remove the byte from the buffer.
 ***********************************************************/
-int ff_text_peek_r8 (
+public int ff_text_peek_r8 (
     FFTextReader text_reader
 );
 
@@ -117,7 +119,7 @@ int ff_text_peek_r8 (
 Read the given number of bytes (in UTF-8). On error or EOF, \0 bytes are
 written.
 ***********************************************************/
-void ff_text_read (
+public void ff_text_read (
     FFTextReader text_reader,
     string buf,
     size_t size
@@ -127,27 +129,27 @@ public struct FFDemuxSubtitlesQueue {
     /***********************************************************
     Array of subtitles packets
     ***********************************************************/
-    LibAVCodec.Packet[] subs;
+    public LibAVCodec.Packet[] subs;
     /***********************************************************
     Number of subtitles packets
     ***********************************************************/
-    int nb_subs;
+    public int nb_subs;
     /***********************************************************
     Allocated size for subs
     ***********************************************************/
-    int allocated_size;
+    public int allocated_size;
     /***********************************************************
     Current position for the read packet callback
     ***********************************************************/
-    int current_sub_idx;
+    public int current_sub_idx;
     /***********************************************************
     Sort method to use when finalizing subtitles
     ***********************************************************/
-    sub_sort sort;
+    public sub_sort sort;
     /***********************************************************
     Set to 1 to keep duplicated subtitle events
     ***********************************************************/
-    int keep_duplicates;
+    public int keep_duplicates;
 }
 
 /***********************************************************
@@ -158,7 +160,7 @@ Insert a new subtitle event.
 @param merge set to 1 if the current event should be concatenated with the
              previous one instead of adding a new entry, 0 otherwise
 ***********************************************************/
-LibAVCodec.Packet ff_subtitles_queue_insert (
+public LibAVCodec.Packet ff_subtitles_queue_insert (
     FFDemuxSubtitlesQueue queue,
     uint8[] event,
     size_t len,
@@ -169,7 +171,7 @@ LibAVCodec.Packet ff_subtitles_queue_insert (
 Set missing durations, sort subtitles by PTS (and then byte position), and
 drop duplicated events.
 ***********************************************************/
-void ff_subtitles_queue_finalize (
+public void ff_subtitles_queue_finalize (
     void *log_ctx,
     FFDemuxSubtitlesQueue queue
 );
@@ -178,7 +180,7 @@ void ff_subtitles_queue_finalize (
 Generic read_packet () callback for subtitles demuxers using this queue
 system.
 ***********************************************************/
-int ff_subtitles_queue_read_packet (
+public int ff_subtitles_queue_read_packet (
     FFDemuxSubtitlesQueue queue,
     LibAVCodec.Packet packet
 );
@@ -187,7 +189,7 @@ int ff_subtitles_queue_read_packet (
 Update current_sub_idx to emulate a seek. Except the first parameter, it
 matches AVInputFormat.read_seek2 prototypes.
 ***********************************************************/
-int ff_subtitles_queue_seek (
+public int ff_subtitles_queue_seek (
     FFDemuxSubtitlesQueue queue,
     AVFormatContext format_context,
     int stream_index,
@@ -200,7 +202,7 @@ int ff_subtitles_queue_seek (
 /***********************************************************
 Remove and destroy all the subtitles packets.
 ***********************************************************/
-void ff_subtitles_queue_clean (
+public void ff_subtitles_queue_clean (
     FFDemuxSubtitlesQueue queue
 );
 
@@ -209,7 +211,7 @@ SMIL helper to load next chunk ("<...>" or untagged content) in buf.
 
 @param cached cached character, to avoid a backward seek
 ***********************************************************/
-int ff_smil_extract_next_text_chunk (
+public int ff_smil_extract_next_text_chunk (
     FFTextReader tr,
     LibAVUtil.BPrintBuffer buf,
     string cached
@@ -221,7 +223,7 @@ SMIL helper to point on the value of an attribute in the given tag.
 @param s SMIL tag ("<...>")
 @param attr the attribute to look for
 ***********************************************************/
-string ff_smil_get_attr_ptr (
+public string ff_smil_get_attr_ptr (
     string s,
     string attr
 );
@@ -229,7 +231,7 @@ string ff_smil_get_attr_ptr (
 /***********************************************************
 @brief Same as ff_subtitles_read_text_chunk (), but read from an AVIOContext.
 ***********************************************************/
-void ff_subtitles_read_chunk (
+public void ff_subtitles_read_chunk (
     AVIOContext pb,
     LibAVUtil.BPrintBuffer buf
 );
@@ -247,7 +249,7 @@ will focus on the 'n' of the "next" string.
 
 @note buf is cleared before writing into it.
 ***********************************************************/
-void ff_subtitles_read_text_chunk (
+public void ff_subtitles_read_text_chunk (
     FFTextReader tr,
     LibAVUtil.BPrintBuffer buf
 );
@@ -258,7 +260,7 @@ the end of the string.
 The function handles the following line breaks schemes:
 LF, CRLF (MS), or standalone CR (old MacOS).
 ***********************************************************/
-static int ff_subtitles_next_line (
+public static int ff_subtitles_next_line (
     string ptr
 );
 
@@ -272,8 +274,10 @@ similar as with snprintf.
 
 @note returns a negative error code if a \0 byte is found
 ***********************************************************/
-size_t ff_subtitles_read_line (
+public size_t ff_subtitles_read_line (
     FFTextReader tr,
     string buf,
     size_t size
 );
+
+} // namespace LibAVFormat

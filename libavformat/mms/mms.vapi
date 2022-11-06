@@ -19,16 +19,18 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public struct MMSStream {
-    int id;
+    public int id;
 }
 
 public struct MMSContext {
     /***********************************************************
     TCP connection handle
     ***********************************************************/
-    URLContext mms_hd;
-    MMSStream streams;
+    public URLContext mms_hd;
+    public MMSStream streams;
 
     /***********************************************************
     ***********************************************************/
@@ -39,11 +41,11 @@ public struct MMSContext {
     /***********************************************************
     Pointer for writing the buffer.
     ***********************************************************/
-    uint8[] write_out_ptr;
+    public uint8[] write_out_ptr;
     /***********************************************************
     Buffer for outgoing packet.
     ***********************************************************/
-    uint8 out_buffer[512];
+    public uint8 out_buffer[512];
     /*@}*/
 
     /***********************************************************
@@ -53,15 +55,15 @@ public struct MMSContext {
     /***********************************************************
     Buffer for incoming packets.
     ***********************************************************/
-    uint8 in_buffer[65536];
+    public uint8 in_buffer[65536];
     /***********************************************************
     Pointer for reading from incoming buffer.
     ***********************************************************/
-    uint8[] read_in_ptr;
+    public uint8[] read_in_ptr;
     /***********************************************************
     Reading length from incoming buffer.
     ***********************************************************/
-    int remaining_in_len;
+    public int remaining_in_len;
     /*@}*/
 
     /***********************************************************
@@ -71,39 +73,43 @@ public struct MMSContext {
     /***********************************************************
     Stored ASF header.
     ***********************************************************/
-    uint8[] asf_header;
+    public uint8[] asf_header;
     /***********************************************************
     Size of stored ASF header.
     ***********************************************************/
-    int asf_header_size;
+    public int asf_header_size;
     /***********************************************************
     The header has been received and parsed.
     ***********************************************************/
-    int header_parsed;
-    int asf_packet_len;
-    int asf_header_read_size;
+    public int header_parsed;
+    public int asf_packet_len;
+    public int asf_header_read_size;
     /*@}*/
 
     /***********************************************************
     stream numbers.
     ***********************************************************/
-    int stream_num;
+    public int stream_num;
     /***********************************************************
     allocated size of streams
     ***********************************************************/
-    uint nb_streams_allocated;
+    public uint nb_streams_allocated;
 }
 
-int ff_mms_asf_header_parser (
+public int ff_mms_asf_header_parser (
     MMSContext mms
 );
-int ff_mms_read_data (
+
+public int ff_mms_read_data (
     MMSContext mms,
     uint8[] buf,
     int size
 );
-int ff_mms_read_header (
+
+public int ff_mms_read_header (
     MMSContext mms,
     uint8[] buf,
     int size
 );
+
+} // namespace LibAVFormat

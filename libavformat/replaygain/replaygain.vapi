@@ -16,10 +16,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Parse replaygain tags and export them as per-stream side data.
 ***********************************************************/
-int ff_replaygain_export (
+public int ff_replaygain_export (
     AVStream st,
     LibAVUtil.Dictionary metadata
 );
@@ -28,10 +30,12 @@ int ff_replaygain_export (
 /***********************************************************
 Export already decoded replaygain values as per-stream side data.
 ***********************************************************/
-int ff_replaygain_export_raw (
+public int ff_replaygain_export_raw (
     AVStream st,
     int32 tg,
     uint32 tp,
     int32 ag,
     uint32 ap
 );
+
+} // namespace LibAVFormat

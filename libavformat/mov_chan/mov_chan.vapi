@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 mov 'chan' tag reading/writing.
 @author Justin Ruggles
@@ -30,7 +32,7 @@ Get the channel layout for the specified channel layout tag.
 @param[out] bitmap channel bitmap (only used if needed)
 @return channel layout
 ***********************************************************/
-uint64 ff_mov_get_channel_layout (
+public uint64 ff_mov_get_channel_layout (
     uint32 tag,
     uint32 bitmap
 );
@@ -44,10 +46,10 @@ If the layout tag was not found, use a channel bitmap if possible.
 @param[out] bitmap channel bitmap
 @return channel layout tag
 ***********************************************************/
-uint32 ff_mov_get_channel_layout_tag (
+public uint32 ff_mov_get_channel_layout_tag (
     LibAVCodec.CodecID codec_id,
     uint64 channel_layout,
-    uint32[] bitmap
+    out uint32 bitmap
 );
 
 /***********************************************************
@@ -59,9 +61,11 @@ Read 'chan' tag from the input stream.
 @param size Remaining size in the 'chan' tag
 @return 0 if ok, or negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-int ff_mov_read_chan (
+public int ff_mov_read_chan (
     AVFormatContext format_context,
     AVIOContext pb,
     AVStream st,
     int64 size
 );
+
+} // namespace LibAVFormat

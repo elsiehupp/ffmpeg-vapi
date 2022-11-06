@@ -19,7 +19,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_raw_write_packet (
+namespace LibAVFormat {
+
+public int ff_raw_write_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
+
+} // namespace LibAVFormat

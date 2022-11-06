@@ -64,7 +64,7 @@ public enum ClassCategory {
     ***********************************************************/
     [CCode (cname="av_default_item_name", cheader_filename="ffmpeg/libavutil/log.h")]
     public static string av_default_item_name (
-        void* class_context
+        void *class_context
     );
 
     [CCode (cname="av_default_get_category", cheader_filename="ffmpeg/libavutil/log.h")]

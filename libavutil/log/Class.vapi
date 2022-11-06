@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 public delegate string ItemNameDelegate (
-    void* class_context
+    void *class_context
 );
 public delegate void *ChildNextDelegate (
     void *obj,
@@ -31,7 +31,7 @@ public delegate Class ChildClassNextDelegate (
     Class prev
 );
 public delegate ClassCategory GetCategoryDelegate (
-    void* class_context
+    void *class_context
 );
 public delegate int QueryRangesDelegate (
     out OptionRangeList ranges,

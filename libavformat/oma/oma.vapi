@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const size_t EA3_HEADER_SIZE;
 public const string ID3v2_EA3_MAGIC;
 public const size_t OMA_ENC_HEADER_SIZE;
@@ -38,3 +40,5 @@ public enum OMACodecID {
 
 //  extern const uint64 ff_oma_chid_to_native_layout[7];
 //  extern const int ff_oma_chid_to_num_channels[7];
+
+} // namespace LibAVFormat

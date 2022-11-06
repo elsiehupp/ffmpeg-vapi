@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public enum ASFDataType {
     ASF_UNICODE,
     ASF_BYTE_ARRAY,
@@ -135,7 +137,8 @@ public enum ASFPacketFlags {
     ASF_PACKET_FLAG_ERROR_CORRECTION_PRESENT; //1000 0000
 }
 
-
+/***********************************************************
+***********************************************************/
 //   ASF data packet structure
 //   =========================
 //
@@ -151,7 +154,9 @@ public enum ASFPacketFlags {
 //  -----------------------------------
 
 
-// PPI_FLAG - Payload parsing information flags
+/***********************************************************
+PPI_FLAG - Payload parsing information flags
+***********************************************************/
 public enum ASFPayloadParsingFlags {
     ASF_PPI_FLAG_MULTIPLE_PAYLOADS_PRESENT,
 
@@ -171,7 +176,9 @@ public enum ASFPayloadParsingFlags {
     ASF_PPI_MASK_PACKET_LENGTH_FIELD_SIZE, //0110 0000
 }
 
-// PL_FLAG - Payload flags
+/***********************************************************
+PL_FLAG - Payload flags
+***********************************************************/
 public enum ASFPayloadFlags {
     ASF_PL_FLAG_REPLICATED_DATA_LENGTH_FIELD_IS_BYTE, //0000 0001
     ASF_PL_FLAG_REPLICATED_DATA_LENGTH_FIELD_IS_WORD, //0000 0010
@@ -197,3 +204,5 @@ public enum ASFPayloadFlags {
 
     ASF_PL_FLAG_KEY_FRAME; //1000 0000
 }
+
+} // namespace LibAVFormat

@@ -19,17 +19,19 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file
 internal header for VPx codec configuration utilities.
 ***********************************************************/
 
 public struct VPCC {
-    int profile;
-    int level;
-    int bitdepth;
-    int chroma_subsampling;
-    int full_range_flag;
+    public int profile;
+    public int level;
+    public int bitdepth;
+    public int chroma_subsampling;
+    public int full_range_flag;
 }
 
 /***********************************************************
@@ -41,15 +43,17 @@ Writes VP codec configuration to the provided AVIOContext.
 @return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
         code in case of failure
 ***********************************************************/
-int ff_isom_write_vpcc (
+public int ff_isom_write_vpcc (
     AVFormatContext format_context,
     AVIOContext pb,
     LibAVCodec.CodecParameters par
 );
 
-int ff_isom_get_vpcc_features (
+public int ff_isom_get_vpcc_features (
     AVFormatContext format_context,
     LibAVCodec.CodecParameters par,
     LibAVUtil.Rational frame_rate,
     VPCC vpcc
 );
+
+} // namespace LibAVFormat

@@ -19,29 +19,33 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public enum GXFPktType {
-    PKT_MAP = 0xbc,
-    PKT_MEDIA = 0xbf,
-    PKT_EOS = 0xfb,
-    PKT_FLT = 0xfc,
-    PKT_UMF = 0xfd,
+    PKT_MAP,
+    PKT_MEDIA,
+    PKT_EOS,
+    PKT_FLT,
+    PKT_UMF,
 }
 
 public enum GXFMatTag {
-    MAT_NAME = 0x40,
-    MAT_FIRST_FIELD = 0x41,
-    MAT_LAST_FIELD = 0x42,
-    MAT_MARK_IN = 0x43,
-    MAT_MARK_OUT = 0x44,
-    MAT_SIZE = 0x45,
+    MAT_NAME,
+    MAT_FIRST_FIELD,
+    MAT_LAST_FIELD,
+    MAT_MARK_IN,
+    MAT_MARK_OUT,
+    MAT_SIZE,
 }
 
 public enum GXFTrackTag {
-    TRACK_NAME = 0x4c,
-    TRACK_AUX = 0x4d,
-    TRACK_VER = 0x4e,
-    TRACK_MPG_AUX = 0x4f,
-    TRACK_FPS = 0x50,
-    TRACK_LINES = 0x51,
-    TRACK_FPF = 0x52,
+    TRACK_NAME,
+    TRACK_AUX,
+    TRACK_VER,
+    TRACK_MPG_AUX,
+    TRACK_FPS,
+    TRACK_LINES,
+    TRACK_FPF,
 }
+
+} // namespace LibAVFormat

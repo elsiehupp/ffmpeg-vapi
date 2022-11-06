@@ -19,9 +19,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const size_t RSO_HEADER_SIZE;
 
 /***********************************************************
 The libavcodec codecs we support, and the IDs they have in the file
 ***********************************************************/
 //  extern const AVCodecTag ff_codec_rso_tags[];
+
+} // namespace LibAVFormat

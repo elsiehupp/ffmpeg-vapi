@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Initialize the Diffie-Hellmann context and generate the public key.
 
@@ -26,7 +28,7 @@ Initialize the Diffie-Hellmann context and generate the public key.
 @param buf handshake data (1536 bytes)
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_rtmpe_gen_pub_key (
+public int ff_rtmpe_gen_pub_key (
     URLContext h,
     uint8[] buf
 );
@@ -40,7 +42,7 @@ Compute the shared secret key and initialize the RC4 encryption.
 @param type the position of the server digest
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_rtmpe_compute_secret_key (
+public int ff_rtmpe_compute_secret_key (
     URLContext h,
     uint8[] serverdata,
     uint8[] clientdata,
@@ -55,7 +57,7 @@ Encrypt the signature.
 @param digest the digest used for finding the encryption key
 @param type type of encryption (8 for XTEA, 9 for Blowfish)
 ***********************************************************/
-void ff_rtmpe_encrypt_sig (
+public void ff_rtmpe_encrypt_sig (
     URLContext h,
     uint8[] signature,
     uint8[] digest,
@@ -68,6 +70,8 @@ Update the keystream and set RC4 keys for encryption.
 @param h an URLContext
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_rtmpe_update_keystream (
+public int ff_rtmpe_update_keystream (
     URLContext h
 );
+
+} // namespace LibAVFormat

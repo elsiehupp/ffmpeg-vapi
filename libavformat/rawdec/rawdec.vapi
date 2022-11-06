@@ -19,50 +19,52 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public struct FFRawVideoDemuxerContext {
-    LibAVUtil.Class class; /***********************************************************
-Class for private options.
+    public LibAVUtil.Class class; /***********************************************************
+    Class for private options.
     ***********************************************************/
-    int raw_packet_size;
-    string video_size; /***********************************************************
-String describing video size, set by a private option.
+    public int raw_packet_size;
+    public string video_size; /***********************************************************
+    String describing video size, set by a private option.
     ***********************************************************/
-    string pixel_format; /***********************************************************
-Set by a private option.
+    public string pixel_format; /***********************************************************
+    Set by a private option.
     ***********************************************************/
-    LibAVUtil.Rational framerate; /***********************************************************
-LibAVUtil.Rational describing framerate, set by a private option.
+    public LibAVUtil.Rational framerate; /***********************************************************
+    LibAVUtil.Rational describing framerate, set by a private option.
     ***********************************************************/
 }
 
 public struct FFRawDemuxerContext {
-    LibAVUtil.Class class; /***********************************************************
+    public LibAVUtil.Class class; /***********************************************************
     Class for private options.
     ***********************************************************/
-    int raw_packet_size;
+    public int raw_packet_size;
 }
 
 //  extern const LibAVUtil.Option ff_rawvideo_options[];
 //  extern const LibAVUtil.Option ff_raw_options[];
 
-int ff_raw_read_partial_packet (
+public int ff_raw_read_partial_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
 
-int ff_raw_audio_read_header (
+public int ff_raw_audio_read_header (
     AVFormatContext format_context
 );
 
-int ff_raw_video_read_header (
+public int ff_raw_video_read_header (
     AVFormatContext format_context
 );
 
-int ff_raw_subtitle_read_header (
+public int ff_raw_subtitle_read_header (
     AVFormatContext format_context
 );
 
-int ff_raw_data_read_header (
+public int ff_raw_data_read_header (
     AVFormatContext format_context
 );
 
@@ -122,3 +124,5 @@ int ff_raw_data_read_header (
 //      .priv_data_size = sizeof (FFRawDemuxerContext),\
 //      .priv_class = &shortname ## _demuxer_class,\
 //  }
+
+} // namespace LibAVFormat

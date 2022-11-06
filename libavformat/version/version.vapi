@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file
 @ingroup libavf
@@ -107,3 +109,4 @@ at once through the bump. This improves the git bisect-ability of the change.
 //  #define FF_API_R_FRAME_RATE 1
 //  #endif
 
+} // namespace LibAVFormat

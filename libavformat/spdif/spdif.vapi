@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const int SYNCWORD1;
 public const int SYNCWORD2;
 public const size_t BURST_HEADER_SIZE;
@@ -112,17 +114,21 @@ public enum IEC61937DataType {
 //      { 1536, 4608, 4608 }, // MPEG-1
 //  }
 
-void ff_spdif_bswap_buf16 (
+public void ff_spdif_bswap_buf16 (
     out uint16 dst,
     out uint16 src,
     int w
 );
-int ff_spdif_read_packet (
+
+public int ff_spdif_read_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
-int ff_spdif_probe (
+
+public int ff_spdif_probe (
     uint8[] probe_buf,
     int buf_size,
     LibAVCodec.CodecID codec
 );
+
+} // namespace LibAVFormat

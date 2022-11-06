@@ -19,42 +19,49 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Parse a Windows Media Server-specific SDP line
 
 @param format_context RTSP demux context
 ***********************************************************/
-int ff_wms_parse_sdp_a_line (
+public int ff_wms_parse_sdp_a_line (
     AVFormatContext format_context,
     string p
 );
 
-int ff_h263_handle_packet (
+public int ff_h263_handle_packet (
     AVFormatContext format_context,
     PayloadContext data,
     AVStream st,
-    LibAVCodec.Packet packet, uint32[] timestamp,
+    LibAVCodec.Packet packet,
+    out uint32 timestamp,
     uint8[] buf,
     int len,
     uint16 seq,
     int flags
 );
 
-int ff_h264_parse_sprop_parameter_sets (
+public int ff_h264_parse_sprop_parameter_sets (
     AVFormatContext format_context,
     out uint8[] data_ptr,
-    int[] size_ptr,
+    out int size_ptr,
     string value
 );
-int ff_h264_handle_aggregated_packet (
+
+public int ff_h264_handle_aggregated_packet (
     AVFormatContext format_context,
     PayloadContext data,
     LibAVCodec.Packet packet,
-    uint8[] buf, int len,
-    int start_skip, int[] nal_counters,
+    uint8[] buf,
+    int len,
+    int start_skip,
+    int[] nal_counters,
     int nal_mask
 );
-int ff_h264_handle_frag_packet (
+
+public int ff_h264_handle_frag_packet (
     LibAVCodec.Packet packet,
     uint8[] buf,
     int len,
@@ -62,7 +69,8 @@ int ff_h264_handle_frag_packet (
     uint8[] nal_header,
     int nal_header_len
 );
-void ff_h264_parse_framesize (
+
+public void ff_h264_parse_framesize (
     LibAVCodec.CodecParameters par,
     string p
 );
@@ -109,3 +117,5 @@ void ff_h264_parse_framesize (
 //  extern const RTPDynamicProtocolHandler ff_vorbis_dynamic_handler;
 //  extern const RTPDynamicProtocolHandler ff_vp8_dynamic_handler;
 //  extern const RTPDynamicProtocolHandler ff_vp9_dynamic_handler;
+
+} // namespace LibAVFormat

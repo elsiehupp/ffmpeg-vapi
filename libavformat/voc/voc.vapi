@@ -19,32 +19,36 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="struct voc_dec_context")]
 public struct VocDecContext {
-    int64 remaining_size;
-    int64 pts;
+    public int64 remaining_size;
+    public int64 pts;
 }
 
 [CCode (cname="enum voc_type")]
 public enum VocType {
-    VOC_TYPE_EOF = 0x00,
-    VOC_TYPE_VOICE_DATA = 0x01,
-    VOC_TYPE_VOICE_DATA_CONT = 0x02,
-    VOC_TYPE_SILENCE = 0x03,
-    VOC_TYPE_MARKER = 0x04,
-    VOC_TYPE_ASCII = 0x05,
-    VOC_TYPE_REPETITION_START = 0x06,
-    VOC_TYPE_REPETITION_END = 0x07,
-    VOC_TYPE_EXTENDED = 0x08,
-    VOC_TYPE_NEW_VOICE_DATA = 0x09,
+    VOC_TYPE_EOF,
+    VOC_TYPE_VOICE_DATA,
+    VOC_TYPE_VOICE_DATA_CONT,
+    VOC_TYPE_SILENCE,
+    VOC_TYPE_MARKER,
+    VOC_TYPE_ASCII,
+    VOC_TYPE_REPETITION_START,
+    VOC_TYPE_REPETITION_END,
+    VOC_TYPE_EXTENDED,
+    VOC_TYPE_NEW_VOICE_DATA,
 }
 
 //  extern const uchar ff_voc_magic[21];
 //  extern const AVCodecTag ff_voc_codec_tags[];
 
-int ff_voc_get_packet (
+public int ff_voc_get_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet,
     AVStream st,
     int max_size
 );
+
+} // namespace LibAVFormat

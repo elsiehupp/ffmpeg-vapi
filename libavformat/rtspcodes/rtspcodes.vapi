@@ -21,6 +21,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 RTSP handling
 ***********************************************************/
@@ -141,3 +143,5 @@ public static int ff_rtsp_averror (
     RTSPStatusCode status_code,
     int default_averror
 );
+
+} // namespace LibAVFormat

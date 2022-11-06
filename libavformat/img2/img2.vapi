@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public enum PatternType {
     PT_GLOB_SEQUENCE,
     PT_GLOB,
@@ -28,59 +30,61 @@ public enum PatternType {
 }
 
 public struct VideoDemuxData {
-    LibAVUtil.Class class; /***********************************************************
+    public LibAVUtil.Class class; /***********************************************************
     Class for private options.
     ***********************************************************/
-    int img_first;
-    int img_last;
-    int img_number;
-    int64 pts;
-    int img_count;
-    int is_pipe;
-    int split_planes; /***********************************************************
+    public int img_first;
+    public int img_last;
+    public int img_number;
+    public int64 pts;
+    public int img_count;
+    public int is_pipe;
+    public int split_planes; /***********************************************************
     use independent file for each Y, U, V plane
     ***********************************************************/
-    char path[1024];
-    string pixel_format; /***********************************************************
+    public char path[1024];
+    public string pixel_format; /***********************************************************
     Set by a private option.
     ***********************************************************/
-    int width; /***********************************************************
+    public int width; /***********************************************************
     Set by a private option.
     ***********************************************************/
-    int height; /***********************************************************
+    public int height; /***********************************************************
     Set by a private option.
     ***********************************************************/
-    LibAVUtil.Rational framerate; /***********************************************************
+    public LibAVUtil.Rational framerate; /***********************************************************
     Set by a private option.
     ***********************************************************/
-    int loop;
-    int pattern_type; /***********************************************************
+    public int loop;
+    public int pattern_type; /***********************************************************
     PatternType
     ***********************************************************/
-    int use_glob;
+    public int use_glob;
 #if HAVE_GLOB
-    glob_t globstate;
+    public glob_t globstate;
 #endif
-    int start_number;
-    int start_number_range;
-    int frame_size;
-    int ts_from_file;
+    public int start_number;
+    public int start_number_range;
+    public int frame_size;
+    public int ts_from_file;
 }
 
 public struct IdStrMap {
-    LibAVCodec.CodecID id;
-    string str;
+    public LibAVCodec.CodecID id;
+    public string str;
 }
 
 //  extern const IdStrMap ff_img_tags[];
 
 //  extern const LibAVUtil.Option ff_img_options[];
 
-int ff_img_read_header (
+public int ff_img_read_header (
     AVFormatContext s1
 );
 
-int ff_img_read_packet (
+public int ff_img_read_packet (
     AVFormatContext s1,
     LibAVCodec.Packet packet
 );
+
+} // namespace LibAVFormat

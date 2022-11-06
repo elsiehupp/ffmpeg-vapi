@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file
 miscellaneous OS support macros and functions.
@@ -53,9 +55,9 @@ miscellaneous OS support macros and functions.
 //  #endif
 
 // int is 1 for true and 0 for false
-static int is_dos_path (
-    string path
-);
+//  public static int is_dos_path (
+//      string path
+//  );
 
 //  #if defined (_WIN32)
 //  #if! S_IRUSR
@@ -109,32 +111,43 @@ most of the time closing a socket is just closing an fd
 
 [Flags]
 public enum PollEvent {
-
     /***********************************************************
     events & revents
     ***********************************************************/
-    POLLIN, /* any readable data available
+    POLLIN, /***********************************************************
+    any readable data available
     ***********************************************************/
-    POLLOUT, /* file descriptor is writeable
+    POLLOUT, /***********************************************************
+    file descriptor is writeable
     ***********************************************************/
-    POLLRDNORM, // POLLIN
-    POLLWRNORM, // POLLOUT
-    POLLRDBAND, /* priority readable data
+    POLLRDNORM, /***********************************************************
+    = POLLIN
     ***********************************************************/
-    POLLWRBAND, /* priority data can be written
+    POLLWRNORM, /***********************************************************
+    = POLLOUT
     ***********************************************************/
-    POLLPRI, /* high priority readable data
+    POLLRDBAND, /***********************************************************
+    priority readable data
+    ***********************************************************/
+    POLLWRBAND, /***********************************************************
+    priority data can be written
+    ***********************************************************/
+    POLLPRI, /***********************************************************
+    high priority readable data
     ***********************************************************/
 
 
     /***********************************************************
     revents only
     ***********************************************************/
-    POLLERR, /* errors pending
+    POLLERR, /***********************************************************
+    errors pending
     ***********************************************************/
-    POLLHUP, /* disconnected
+    POLLHUP, /***********************************************************
+    disconnected
     ***********************************************************/
-    POLLNVAL, /* invalid file descriptor
+    POLLNVAL, /***********************************************************
+    invalid file descriptor
     ***********************************************************/
 }
 //  #endif
@@ -263,3 +276,5 @@ public enum PollEvent {
 //  #define access win32_access
 
 //  #endif
+
+} // namespace LibAVFormat

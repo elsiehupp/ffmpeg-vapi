@@ -19,14 +19,19 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
+/***********************************************************
+Platform-specific
+***********************************************************/
 public struct FFBigNum { }
 
 public struct FF_DH {
-    FFBigNum p;
-    FFBigNum g;
-    FFBigNum pub_key;
-    FFBigNum priv_key;
-    long length;
+    public FFBigNum p;
+    public FFBigNum g;
+    public FFBigNum pub_key;
+    public FFBigNum priv_key;
+    public long length;
 }
 
 
@@ -36,7 +41,7 @@ Initialize a Diffie-Hellmann context.
 @param key_len length of the key
 @return a new Diffie-Hellmann context on success, NULL otherwise
 ***********************************************************/
-FF_DH ff_dh_init (
+public FF_DH ff_dh_init (
     int key_len
 );
 
@@ -45,7 +50,7 @@ Free a Diffie-Hellmann context.
 
 @param dh a Diffie-Hellmann context to free
 ***********************************************************/
-void ff_dh_free (
+public void ff_dh_free (
     FF_DH dh
 );
 
@@ -55,7 +60,7 @@ Generate a public key.
 @param dh a Diffie-Hellmann context
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_dh_generate_public_key (
+public int ff_dh_generate_public_key (
     FF_DH dh
 );
 
@@ -67,7 +72,7 @@ Write the public key into the given buffer.
 @param pub_key_len the length of the buffer
 @return zero on success, negative value otherwise
 ***********************************************************/
-int ff_dh_write_public_key (
+public int ff_dh_write_public_key (
     FF_DH dh,
     uint8[] pub_key,
     int pub_key_len
@@ -84,10 +89,12 @@ other party's public value.
 @param secret_key_len the length of the secret key buffer
 @return length of the shared secret key on success, negative value otherwise
 ***********************************************************/
-int ff_dh_compute_shared_secret_key (
+public int ff_dh_compute_shared_secret_key (
     FF_DH dh,
     uint8[] pub_key,
     int pub_key_len,
     uint8[] secret_key,
     int secret_key_len
 );
+
+} // namespace LibAVFormat

@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file
 @ingroup lavf_io
@@ -40,6 +42,7 @@ public enum AVIOSeekableFlags {
 public delegate int InterruptCallbackDelegate (
     void *opaque
 );
+
 /***********************************************************
 Callback for checking whether to abort blocking functions.
 AVERROR_EXIT is returned in this case by the interrupted
@@ -52,8 +55,8 @@ new elements have been added after this struct in AVFormatContext
 or AVIOContext.
 ***********************************************************/
 public struct AVIOInterruptCB {
-    InterruptCallbackDelegate callback;
-    void *opaque;
+    public InterruptCallbackDelegate callback;
+    public void *opaque;
 }
 
 /***********************************************************
@@ -80,44 +83,44 @@ Only name and type fields are guaranteed be set.
 Rest of fields are protocol or/and platform dependent and might be unknown.
 ***********************************************************/
 public struct AVIODirEntry {
-    string name; /***********************************************************
+    public string name; /***********************************************************
     Filename
     ***********************************************************/
-    int type; /***********************************************************
+    public int type; /***********************************************************
     Type of the entry
     ***********************************************************/
-    int utf8; /***********************************************************
+    public int utf8; /***********************************************************
     Set to 1 when name is encoded with UTF-8, 0 otherwise.
     Name can be encoded with UTF-8 even though 0 is set.
     ***********************************************************/
-    int64 size; /***********************************************************
+    public int64 size; /***********************************************************
     File size in bytes, -1 if unknown.
     ***********************************************************/
-    int64 modification_timestamp; /***********************************************************
+    public int64 modification_timestamp; /***********************************************************
     Time of last modification in microseconds since unix
     epoch, -1 if unknown.
     ***********************************************************/
-    int64 access_timestamp; /***********************************************************
+    public int64 access_timestamp; /***********************************************************
     Time of last access in microseconds since unix epoch,
     -1 if unknown.
     ***********************************************************/
-    int64 status_change_timestamp; /***********************************************************
+    public int64 status_change_timestamp; /***********************************************************
     Time of last status change in microseconds since unix
     epoch, -1 if unknown.
     ***********************************************************/
-    int64 user_id; /***********************************************************
+    public int64 user_id; /***********************************************************
     User ID of owner, -1 if unknown.
     ***********************************************************/
-    int64 group_id; /***********************************************************
+    public int64 group_id; /***********************************************************
     Group ID of owner, -1 if unknown.
     ***********************************************************/
-    int64 filemode; /***********************************************************
+    public int64 filemode; /***********************************************************
     Unix file mode, -1 if unknown.
     ***********************************************************/
 }
 
 public struct AVIODirContext {
-    URLContext url_context;
+    public URLContext url_context;
 }
 
 /***********************************************************
@@ -187,7 +190,7 @@ public abstract class AVIOContext {
     warning -- this field can be NULL, be sure to not pass this AVIOContext
     to any av_opt_* functions in that case.
     ***********************************************************/
-    LibAVUtil.Class av_class;
+    public LibAVUtil.Class av_class;
 
     /***********************************************************
     The following shows the relationship between buffer, buf_ptr,
@@ -239,22 +242,22 @@ public abstract class AVIOContext {
                   +-------------+----------------------------------------------+
 
     ***********************************************************/
-    uchar[] buffer; /***********************************************************
+    public uchar[] buffer; /***********************************************************
     Start of the buffer.
     ***********************************************************/
-    int buffer_size; /***********************************************************
+    public int buffer_size; /***********************************************************
     Maximum buffer size
     ***********************************************************/
-    uchar[] buf_ptr; /***********************************************************
+    public uchar[] buf_ptr; /***********************************************************
     Current position in the buffer
     ***********************************************************/
-    uchar[] buf_end; /***********************************************************
+    public uchar[] buf_end; /***********************************************************
     End of the data, may be less than
                                  buffer+buffer_size if the read function returned
                                  less data than requested, e.g. for streams where
                                  no more data has been received yet.
     ***********************************************************/
-    void *opaque; /***********************************************************
+    public void *opaque; /***********************************************************
     A private pointer, passed to the read/write/seek/...
     functions.
     ***********************************************************/
@@ -273,18 +276,18 @@ public abstract class AVIOContext {
         int64 offset,
         int whence
     );
-    int64 pos; /***********************************************************
+    public int64 pos; /***********************************************************
     position in the file of the current buffer
     ***********************************************************/
-    int eof_reached; /***********************************************************
+    public int eof_reached; /***********************************************************
     true if was unable to read due to error or eof
     ***********************************************************/
-    int write_flag; /***********************************************************
+    public int write_flag; /***********************************************************
     true if open for writing
     ***********************************************************/
-    int max_packet_size;
-    ulong checksum;
-    uchar[] checksum_ptr;
+    public int max_packet_size;
+    public ulong checksum;
+    public uchar *checksum_ptr;
     public abstract ulong update_checksum (
         ulong checksum,
         uint8[] buf,
@@ -314,61 +317,61 @@ public abstract class AVIOContext {
     /***********************************************************
     A combination of AVIO_SEEKABLE_ flags or 0 when the stream is not seekable.
     ***********************************************************/
-    int seekable;
+    public int seekable;
 
     /***********************************************************
     max filesize, used to limit allocations
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    int64 maxsize;
+    public int64 maxsize;
 
     /***********************************************************
     avio_read and avio_write should if possible be satisfied directly
     instead of going through a buffer, and avio_seek will always
     call the underlying seek function directly.
     ***********************************************************/
-    int direct;
+    public int direct;
 
     /***********************************************************
     Bytes read statistic
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    int64 bytes_read;
+    public int64 bytes_read;
 
     /***********************************************************
     seek statistic
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    int seek_count;
+    public int seek_count;
 
     /***********************************************************
     writeout statistic
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    int writeout_count;
+    public int writeout_count;
 
     /***********************************************************
     Original buffer size
     used internally after probing and ensure seekback to reset the buffer size
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    int orig_buffer_size;
+    public int orig_buffer_size;
 
     /***********************************************************
     Threshold to favor readahead over seek.
     This is current internal only, do not use from outside.
     ***********************************************************/
-    int short_seek_threshold;
+    public int short_seek_threshold;
 
     /***********************************************************
     ',' separated list of allowed protocols.
     ***********************************************************/
-    string protocol_whitelist;
+    public string protocol_whitelist;
 
     /***********************************************************
     ',' separated list of disallowed protocols.
     ***********************************************************/
-    string protocol_blacklist;
+    public string protocol_blacklist;
 
     /***********************************************************
     A callback that is used instead of write_packet.
@@ -385,13 +388,13 @@ public abstract class AVIOContext {
     but ignore them and treat them as AVIO_DATA_MARKER_UNKNOWN (to avoid needlessly
     small chunks of data returned from the callback).
     ***********************************************************/
-    int ignore_boundary_point;
+    public int ignore_boundary_point;
 
     /***********************************************************
     Internal, not meant to be used from outside of AVIOContext.
     ***********************************************************/
-    AVIODataMarkerType current_type;
-    int64 last_time;
+    public AVIODataMarkerType current_type;
+    public int64 last_time;
 
     /***********************************************************
     A callback that is used instead of short_seek_threshold.
@@ -401,18 +404,18 @@ public abstract class AVIOContext {
         void *opaque
     );
 
-    int64 written;
+    public int64 written;
 
     /***********************************************************
     Maximum reached position before a backward seek in the write buffer,
     used keeping track of already written data for a later flush.
     ***********************************************************/
-    uchar[] buf_ptr_max;
+    public uchar *buf_ptr_max;
 
     /***********************************************************
     Try to buffer at least this amount of data before flushing it
     ***********************************************************/
-    int min_packet_size;
+    public int min_packet_size;
 }
 
 /***********************************************************
@@ -422,7 +425,7 @@ NULL is returned if no protocol could be found for the given URL.
 
 @return Name of the protocol or NULL.
 ***********************************************************/
-string avio_find_protocol_name (
+public string avio_find_protocol_name (
     string url
 );
 
@@ -438,7 +441,7 @@ one call to another. Thus you should not trust the returned value,
 unless you are sure that no other processes are accessing the
 checked resource.
 ***********************************************************/
-int avio_check (
+public int avio_check (
     string url,
     int flags
 );
@@ -452,7 +455,7 @@ Move or rename a resource.
 @param url_dst new url to resource if the operation succeeded
 @return >=0 on success or negative on error.
 ***********************************************************/
-int avpriv_io_move (
+public int avpriv_io_move (
     string url_src,
     string url_dst
 );
@@ -463,7 +466,7 @@ Delete a resource.
 @param url resource to be deleted.
 @return >=0 on success or negative on error.
 ***********************************************************/
-int avpriv_io_delete (
+public int avpriv_io_delete (
     string url
 );
 
@@ -477,7 +480,7 @@ Open directory for reading.
                containing options that were not found. May be NULL.
 @return >=0 on success or negative on error.
 ***********************************************************/
-int avio_open_dir (
+public int avio_open_dir (
     out AVIODirContext io_dir_context,
     string url,
     out LibAVUtil.Dictionary options
@@ -494,7 +497,7 @@ it may outlive AVIODirContext.
 @return >=0 on success or negative on error. End of list is not considered an
             error.
 ***********************************************************/
-int avio_read_dir (
+public int avio_read_dir (
     AVIODirContext io_dir_context,
     out AVIODirEntry next
 );
@@ -508,7 +511,7 @@ freeded with avio_free_directory_entry ().
 @param io_dir_context directory read context.
 @return >=0 on success or negative on error.
 ***********************************************************/
-int avio_close_dir (
+public int avio_close_dir (
     out AVIODirContext io_dir_context
 );
 
@@ -517,7 +520,7 @@ Free entry allocated by avio_read_dir ().
 
 @param entry entry to be freed.
 ***********************************************************/
-void avio_free_directory_entry (
+public void avio_free_directory_entry (
     out AVIODirEntry entry
 );
 
@@ -560,7 +563,7 @@ freed with avio_context_free ().
 
 @return Allocated AVIOContext or NULL on failure.
 ***********************************************************/
-AVIOContext avio_alloc_context (
+public AVIOContext avio_alloc_context (
     uchar[] buffer,
     int buffer_size,
     int write_flag,
@@ -576,48 +579,57 @@ Free the supplied IO context and everything associated with it.
 @param io_context Double pointer to the IO context. This function will write NULL
 into io_context.
 ***********************************************************/
-void avio_context_free (
+public void avio_context_free (
     out AVIOContext io_context
 );
 
-void avio_w8 (
+public void avio_w8 (
     AVIOContext io_context,
     int b
 );
-void avio_write (
+
+public void avio_write (
     AVIOContext io_context,
     uchar[] buf,
     int size
 );
-void avio_wl64 (
+
+public void avio_wl64 (
     AVIOContext io_context,
     uint64 val
 );
-void avio_wb64 (
+
+public void avio_wb64 (
     AVIOContext io_context,
     uint64 val
 );
-void avio_wl32 (
+
+public void avio_wl32 (
     AVIOContext io_context,
     uint val
 );
-void avio_wb32 (
+
+public void avio_wb32 (
     AVIOContext io_context,
     uint val
 );
-void avio_wl24 (
+
+public void avio_wl24 (
     AVIOContext io_context,
     uint val
 );
-void avio_wb24 (
+
+public void avio_wb24 (
     AVIOContext io_context,
     uint val
 );
-void avio_wl16 (
+
+public void avio_wl16 (
     AVIOContext io_context,
     uint val
 );
-void avio_wb16 (
+
+public void avio_wb16 (
     AVIOContext io_context,
     uint val
 );
@@ -626,7 +638,7 @@ void avio_wb16 (
 Write a NULL-terminated string.
 @return number of bytes written.
 ***********************************************************/
-int avio_put_str (
+public int avio_put_str (
     AVIOContext io_context,
     string str
 );
@@ -638,7 +650,7 @@ Convert an UTF-8 string to UTF-16LE and write it.
 
 @return number of bytes written.
 ***********************************************************/
-int avio_put_str16le (
+public int avio_put_str16le (
     AVIOContext io_context,
     string str
 );
@@ -650,7 +662,7 @@ Convert an UTF-8 string to UTF-16BE and write it.
 
 @return number of bytes written.
 ***********************************************************/
-int avio_put_str16be (
+public int avio_put_str16be (
     AVIOContext io_context,
     string str
 );
@@ -665,7 +677,7 @@ Zero-length ranges are omitted from the output.
             applicable
 @param type the kind of data written starting at the current pos
 ***********************************************************/
-void avio_write_marker (
+public void avio_write_marker (
     AVIOContext io_context,
     int64 time,
     AVIODataMarkerType type
@@ -693,7 +705,7 @@ public enum AVSeekWhence {
 fseek () equivalent for AVIOContext.
 @return new position or LibAVUtil.ErrorCode.
 ***********************************************************/
-int64 avio_seek (
+public int64 avio_seek (
     AVIOContext io_context,
     int64 offset,
     int whence
@@ -703,7 +715,7 @@ int64 avio_seek (
 Skip given number of bytes forward
 @return new position or LibAVUtil.ErrorCode.
 ***********************************************************/
-int64 avio_skip (
+public int64 avio_skip (
     AVIOContext io_context,
     int64 offset
 );
@@ -712,7 +724,7 @@ int64 avio_skip (
 ftell () equivalent for AVIOContext.
 @return position or LibAVUtil.ErrorCode.
 ***********************************************************/
-public static int64 avio_tell (
+public int64 avio_tell (
     AVIOContext io_context
 );
 
@@ -720,7 +732,7 @@ public static int64 avio_tell (
 Get the filesize.
 @return filesize or LibAVUtil.ErrorCode
 ***********************************************************/
-int64 avio_size (
+public int64 avio_size (
     AVIOContext io_context
 );
 
@@ -728,14 +740,14 @@ int64 avio_size (
 Similar to feof () but also returns nonzero on read errors.
 @return non zero if and only if at end of file or a read error happened when reading.
 ***********************************************************/
-int avio_feof (
+public int avio_feof (
     AVIOContext io_context
 );
 
 /***********************************************************
 @warning Writes up to 4 KiB per call
 ***********************************************************/
-int avio_printf (
+public int avio_printf (
     AVIOContext io_context,
     string fmt,
     ...
@@ -751,7 +763,7 @@ For read streams, discard all currently buffered data, and advance the
 reported file position to that of the underlying stream. This does not
 read new data, and does not perform any seeks.
 ***********************************************************/
-void avio_flush (
+public void avio_flush (
     AVIOContext io_context
 );
 
@@ -759,7 +771,7 @@ void avio_flush (
 Read size bytes from AVIOContext into buf.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
-int avio_read (
+public int avio_read (
     AVIOContext io_context,
     uchar[] buf,
     int size
@@ -772,7 +784,7 @@ call. This always tries to read at least 1 byte.
 Useful to reduce latency in certain cases.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
-int avio_read_partial (
+public int avio_read_partial (
     AVIOContext io_context,
     uchar[] buf,
     int size
@@ -785,33 +797,42 @@ int avio_read_partial (
 @note return 0 if EOF, so you cannot use it if EOF handling is
       necessary
 ***********************************************************/
-int avio_r8 (
+public int avio_r8 (
     AVIOContext io_context
 );
-uint avio_rl16 (
+
+public uint avio_rl16 (
     AVIOContext io_context
 );
-uint avio_rl24 (
+
+public uint avio_rl24 (
     AVIOContext io_context
 );
-uint avio_rl32 (
+
+public uint avio_rl32 (
     AVIOContext io_context
 );
-uint64 avio_rl64 (
+
+public uint64 avio_rl64 (
     AVIOContext io_context
 );
-uint avio_rb16 (
+
+public uint avio_rb16 (
     AVIOContext io_context
 );
-uint avio_rb24 (
+
+public uint avio_rb24 (
     AVIOContext io_context
 );
-uint avio_rb32 (
+
+public uint avio_rb32 (
     AVIOContext io_context
 );
-uint64 avio_rb64 (
+
+public uint64 avio_rb64 (
     AVIOContext io_context
 );
+
 /***********************************************************
 @}
 ***********************************************************/
@@ -828,7 +849,7 @@ might get truncated in the middle of a sequence for multi-byte encodings.
 If reading ends on EOF or error, the return value will be one more than
 bytes actually read.
 ***********************************************************/
-int avio_get_str (
+public int avio_get_str (
     AVIOContext pb,
     int maxlen,
     string buf,
@@ -841,13 +862,14 @@ The reading will terminate when either a null or invalid character was
 encountered or maxlen bytes have been read.
 @return number of bytes read (is always <= maxlen)
 ***********************************************************/
-int avio_get_str16le (
+public int avio_get_str16le (
     AVIOContext pb,
     int maxlen,
     string buf,
     int buflen
 );
-int avio_get_str16be (
+
+public int avio_get_str16be (
     AVIOContext pb,
     int maxlen,
     string buf,
@@ -913,7 +935,7 @@ is to be opened
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int avio_open (
+public int avio_open (
     out AVIOContext io_context,
     string url,
     int flags
@@ -937,7 +959,7 @@ that were not found. May be NULL.
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int avio_open2 (
+public int avio_open2 (
     out AVIOContext io_context,
     string url,
     int flags,
@@ -955,7 +977,7 @@ resource.
 @return 0 on success, an LibAVUtil.ErrorCode < 0 on error.
 @see avio_closep
 ***********************************************************/
-int avio_close (
+public int avio_close (
     AVIOContext io_context
 );
 
@@ -970,7 +992,7 @@ resource.
 @return 0 on success, an LibAVUtil.ErrorCode < 0 on error.
 @see avio_close
 ***********************************************************/
-int avio_closep (
+public int avio_closep (
     out AVIOContext io_context
 );
 
@@ -981,7 +1003,7 @@ Open a write only memory stream.
 @param io_context new IO context
 @return zero if no error.
 ***********************************************************/
-int avio_open_dyn_buf (
+public int avio_open_dyn_buf (
     out AVIOContext io_context
 );
 
@@ -995,7 +1017,7 @@ No padding is added to the buffer.
 @param pbuffer pointer to a byte buffer
 @return the length of the byte buffer
 ***********************************************************/
-int avio_get_dyn_buf (
+public int avio_get_dyn_buf (
     AVIOContext io_context,
     out uint8[] pbuffer
 );
@@ -1009,7 +1031,7 @@ Padding of AV_INPUT_BUFFER_PADDING_SIZE is added to the buffer.
 @param pbuffer pointer to a byte buffer
 @return the length of the byte buffer
 ***********************************************************/
-int avio_close_dyn_buf (
+public int avio_close_dyn_buf (
     AVIOContext io_context,
     out uint8[] pbuffer
 );
@@ -1025,7 +1047,7 @@ Iterate through names of available protocols.
 
 @return A static string containing the name of current protocol or NULL
 ***********************************************************/
-string avio_enum_protocols (
+public string avio_enum_protocols (
     out void *opaque,
     int output
 );
@@ -1037,7 +1059,7 @@ protocol (e.g. MMS).
 @param h IO context from which to call the read_pause function pointer
 @param pause 1 for pause, 0 for resume
 ***********************************************************/
-int avio_pause (
+public int avio_pause (
     AVIOContext h,
     int pause
 );
@@ -1061,7 +1083,7 @@ Only meaningful if using a network streaming protocol (e.g. MMS.).
 @return >= 0 on success
 @see AVInputFormat::read_seek
 ***********************************************************/
-int64 avio_seek_time (
+public int64 avio_seek_time (
     AVIOContext h,
     int stream_index,
     int64 timestamp,
@@ -1074,7 +1096,7 @@ Read contents of h into print buffer, up to max_size bytes, or up to EOF.
 @return 0 for success (max_size bytes read or EOF reached), negative error
 code otherwise
 ***********************************************************/
-int avio_read_to_bprint (
+public int avio_read_to_bprint (
     AVIOContext h,
     LibAVUtil.BPrintBuffer pb,
     size_t max_size
@@ -1082,14 +1104,14 @@ int avio_read_to_bprint (
 
 /***********************************************************
 Accept and allocate a client context on a server context.
-@param io_context the server context
-@param io_context the client context, must be unallocated
+@param server_io_context the server context
+@param client_io_context the client context, must be unallocated
 @return   >= 0 on success or a negative value corresponding
           to an LibAVUtil.ErrorCode on failure
 ***********************************************************/
-int avio_accept (
-    AVIOContext io_context,
-    out AVIOContext io_context
+public int avio_accept (
+    AVIOContext server_io_context,
+    out AVIOContext client_io_context
 );
 
 /***********************************************************
@@ -1106,11 +1128,13 @@ chunk of the request can constitute a step.
 If the handshake is already finished, avio_handshake () does nothing and
 returns 0 immediately.
 
-@param io_context the client context to perform the handshake on
+@param client_io_context the client context to perform the handshake on
 @return 0 on a complete and successful handshake
           > 0 if the handshake progressed, but is not complete
           < 0 for an LibAVUtil.ErrorCode code
 ***********************************************************/
-int avio_handshake (
-    AVIOContext io_context
+public int avio_handshake (
+    AVIOContext client_io_context
 );
+
+} // namespace LibAVFormat

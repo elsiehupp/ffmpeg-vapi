@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const size_t WTV_SECTOR_BITS; // 12
 public const size_t WTV_SECTOR_SIZE; // (1 << WTV_SECTOR_BITS)
 public const size_t WTV_BIGSECTOR_BITS; // 18
@@ -50,3 +52,5 @@ public size_t WTV_PAD8 (size_t x); // (((x) + 7) & ~7)
 //  extern const ff_asf_guid ff_format_waveformatex;
 //  extern const ff_asf_guid ff_format_mpeg2_video;
 //  extern const ff_asf_guid ff_format_videoinfo2;
+
+} // namespace LibAVFormat

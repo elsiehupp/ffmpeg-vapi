@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public struct PayloadContext { }
 
 public const size_t RTP_MIN_PACKET_LENGTH;
@@ -40,7 +42,7 @@ isn't a standardized procedure, but it works in many cases in practice.
 The same routine is used with RDT too, even if RDT doesn't use normal
 RTP packets otherwise.
 ***********************************************************/
-void ff_rtp_send_punch_packets (
+public void ff_rtp_send_punch_packets (
     URLContext* rtp_handle
 );
 
@@ -49,13 +51,14 @@ some rtp servers assume client is dead if they don't hear from them...
 so we send a Receiver Report to the provided URLContext or AVIOContext
 (we don't have access to the rtcp handle from here)
 ***********************************************************/
-int ff_rtp_check_and_send_back_rr (
+public int ff_rtp_check_and_send_back_rr (
     RTPDemuxContext rtp_demux_context,
     URLContext fd,
     AVIOContext avio,
     int count
 );
-int ff_rtp_send_rtcp_feedback (
+
+public int ff_rtp_send_rtcp_feedback (
     RTPDemuxContext rtp_demux_context,
     URLContext fd,
     AVIOContext avio
@@ -68,43 +71,43 @@ public struct RTPStatistics {
     /***********************************************************
     Highest sequence number seen
     ***********************************************************/
-    uint16 max_seq;
+    public uint16 max_seq;
     /***********************************************************
     Shifted count of sequence number cycles
     ***********************************************************/
-    uint32 cycles;
+    public uint32 cycles;
     /***********************************************************
     Base sequence number
     ***********************************************************/
-    uint32 base_seq;
+    public uint32 base_seq;
     /***********************************************************
     Last bad sequence number + 1
     ***********************************************************/
-    uint32 bad_seq;
+    public uint32 bad_seq;
     /***********************************************************
     Sequence packets till source is valid
     ***********************************************************/
-    int probation;
+    public int probation;
     /***********************************************************
     Packets received
     ***********************************************************/
-    uint32 received;
+    public uint32 received;
     /***********************************************************
     Packets expected in last interval
     ***********************************************************/
-    uint32 expected_prior;
+    public uint32 expected_prior;
     /***********************************************************
     Packets received in last interval
     ***********************************************************/
-    uint32 received_prior;
+    public uint32 received_prior;
     /***********************************************************
     Relative transit time for previous packet
     ***********************************************************/
-    uint32 transit;
+    public uint32 transit;
     /***********************************************************
     Estimated jitter
     ***********************************************************/
-    uint32 jitter;
+    public uint32 jitter;
 }
 
 [Flags]
@@ -146,16 +149,16 @@ public delegate int DynamicPayloadPacketHandlerProc (
 );
 
 public abstract class RTPDynamicProtocolHandler {
-    string enc_name;
-    LibAVUtil.MediaType codec_type;
-    LibAVCodec.CodecID codec_id;
-    AVStreamParseType need_parsing;
-    int static_payload_id; /***********************************************************
+    public string enc_name;
+    public LibAVUtil.MediaType codec_type;
+    public LibAVCodec.CodecID codec_id;
+    public AVStreamParseType need_parsing;
+    public int static_payload_id; /***********************************************************
     0 means no payload id is set. 0 is a valid
     payload ID (PCMU), too, but that format doesn't
     require any custom depacketization code.
     ***********************************************************/
-    int priv_data_size;
+    public int priv_data_size;
 
     /***********************************************************
     Initialize dynamic protocol handler, called after the full rtpmap line is parsed, may be null
@@ -185,47 +188,45 @@ public abstract class RTPDynamicProtocolHandler {
     /***********************************************************
     Parse handler for this dynamic packet
     ***********************************************************/
-    DynamicPayloadPacketHandlerProc parse_packet;
+    public DynamicPayloadPacketHandlerProc parse_packet;
     public abstract int need_keyframe (
         PayloadContext context
     );
 
-    RTPDynamicProtocolHandler next;
+    public RTPDynamicProtocolHandler next;
 }
 
 public struct RTPPacket {
-    uint16 seq;
-    uint8[] buf;
-    int len;
-    int64 recvtime;
-    RTPPacket next;
+    public uint16 seq;
+    public uint8[] buf;
+    public int len;
+    public int64 recvtime;
+    public RTPPacket *next;
 }
 
 public struct RTPDemuxContext {
-    AVFormatContext ic;
-    AVStream st;
-    int payload_type;
-    uint32 ssrc;
-    uint16 seq;
-    uint32 timestamp;
-    uint32 base_timestamp;
-    int64 unwrapped_timestamp;
-    int64 range_start_offset;
-    int max_payload_size;
+    public AVFormatContext ic;
+    public AVStream st;
+    public int payload_type;
+    public uint32 ssrc;
+    public uint16 seq;
+    public uint32 timestamp;
+    public uint32 base_timestamp;
+    public int64 unwrapped_timestamp;
+    public int64 range_start_offset;
+    public int max_payload_size;
     /***********************************************************
     used to send back RTCP RR
     ***********************************************************/
-    char hostname[256];
+    public char hostname[256];
 
-    int srtp_enabled;
-    SRTPContext srtp;
+    public int srtp_enabled;
+    public SRTPContext srtp;
 
-/***********************************************************
-***********************************************************/
     /***********************************************************
     Statistics for this stream (used by RTCP receiver reports)
     ***********************************************************/
-    RTPStatistics statistics;
+    public RTPStatistics statistics;
 
     /***********************************************************
     Fields for packet reordering @{
@@ -233,73 +234,73 @@ public struct RTPDemuxContext {
     /***********************************************************
     The return value of the actual parsing of the previous packet
     ***********************************************************/
-    int prev_ret;
+    public int prev_ret;
     /***********************************************************
     A sorted queue of buffered packets not yet returned
     ***********************************************************/
-    RTPPacket[] queue;
+    public RTPPacket[] queue;
     /***********************************************************
     The number of packets in queue
     ***********************************************************/
-    int queue_len;
+    public int queue_len;
     /***********************************************************
     The size of queue, or 0 if reordering is disabled
     ***********************************************************/
-    int queue_size;
+    public int queue_size;
     /*@}*/
 
     /***********************************************************
     rtcp sender statistics receive
     ***********************************************************/
-    uint64 last_rtcp_ntp_time;
-    int64 last_rtcp_reception_time;
-    uint64 first_rtcp_ntp_time;
-    uint32 last_rtcp_timestamp;
-    int64 rtcp_ts_offset;
+    public uint64 last_rtcp_ntp_time;
+    public int64 last_rtcp_reception_time;
+    public uint64 first_rtcp_ntp_time;
+    public uint32 last_rtcp_timestamp;
+    public int64 rtcp_ts_offset;
 
     /***********************************************************
     rtcp sender statistics
     ***********************************************************/
-    uint packet_count;
-    uint octet_count;
-    uint last_octet_count;
-    int64 last_feedback_time;
+    public uint packet_count;
+    public uint octet_count;
+    public uint last_octet_count;
+    public int64 last_feedback_time;
 
     /***********************************************************
     dynamic payload stuff
     ***********************************************************/
-    RTPDynamicProtocolHandler handler;
-    PayloadContext dynamic_protocol_context;
+    public RTPDynamicProtocolHandler handler;
+    public PayloadContext dynamic_protocol_context;
 
-    RTPDemuxContext ff_rtp_parse_open (
+    public RTPDemuxContext ff_rtp_parse_open (
         AVFormatContext s1,
         AVStream st,
         int payload_type,
         int queue_size
     );
-    void ff_rtp_parse_set_dynamic_protocol (
+    public void ff_rtp_parse_set_dynamic_protocol (
         RTPDemuxContext rtp_demux_context,
         PayloadContext payload_context,
         RTPDynamicProtocolHandler handler
     );
-    void ff_rtp_parse_set_crypto (
+    public void ff_rtp_parse_set_crypto (
         RTPDemuxContext rtp_demux_context,
         string suite,
         string params
     );
-    int ff_rtp_parse_packet (
+    public int ff_rtp_parse_packet (
         RTPDemuxContext rtp_demux_context,
         LibAVCodec.Packet packet,
         out uint8[] buf,
         int len
     );
-    void ff_rtp_parse_close (
+    public void ff_rtp_parse_close (
         RTPDemuxContext rtp_demux_context
     );
-    int64 ff_rtp_queued_packet_time (
+    public int64 ff_rtp_queued_packet_time (
         RTPDemuxContext rtp_demux_context
     );
-    void ff_rtp_reset_packet_queue (
+    public void ff_rtp_reset_packet_queue (
         RTPDemuxContext rtp_demux_context
     );
 }
@@ -313,7 +314,7 @@ Iterate over all registered rtp dynamic protocol handlers.
 @return the next registered rtp dynamic protocol handler or NULL when the iteration is
         finished
 ***********************************************************/
-RTPDynamicProtocolHandler ff_rtp_handler_iterate (
+public RTPDynamicProtocolHandler ff_rtp_handler_iterate (
     out void *opaque
 );
 
@@ -323,17 +324,18 @@ Find a registered rtp dynamic protocol handler with the specified name.
 @param name name of the requested rtp dynamic protocol handler
 @return A rtp dynamic protocol handler if one was found, NULL otherwise.
 ***********************************************************/
-RTPDynamicProtocolHandler ff_rtp_handler_find_by_name (
+public RTPDynamicProtocolHandler ff_rtp_handler_find_by_name (
     string name,
     LibAVUtil.MediaType codec_type
 );
+
 /***********************************************************
 Find a registered rtp dynamic protocol handler with a matching codec ID.
 
 @param id LibAVCodec.CodecID of the requested rtp dynamic protocol handler.
 @return A rtp dynamic protocol handler if one was found, NULL otherwise.
 ***********************************************************/
-RTPDynamicProtocolHandler ff_rtp_handler_find_by_id (
+public RTPDynamicProtocolHandler ff_rtp_handler_find_by_id (
     int id,
     LibAVUtil.MediaType codec_type
 );
@@ -341,7 +343,7 @@ RTPDynamicProtocolHandler ff_rtp_handler_find_by_id (
 /***********************************************************
 from rtsp.c, but used by rtp dynamic protocol handlers.
 ***********************************************************/
-int ff_rtsp_next_attr_and_value (
+public int ff_rtsp_next_attr_and_value (
     string[] p,
     string attr,
     int attr_size,
@@ -357,7 +359,7 @@ public delegate int ParseFMTPDelegate (
     string value
 );
 
-int ff_parse_fmtp (
+public int ff_parse_fmtp (
     AVFormatContext format_context,
     AVStream stream,
     PayloadContext data,
@@ -368,8 +370,10 @@ int ff_parse_fmtp (
 /***********************************************************
 Close the dynamic buffer and make a packet from it.
 ***********************************************************/
-int ff_rtp_finalize_packet (
+public int ff_rtp_finalize_packet (
     LibAVCodec.Packet packet,
     out AVIOContext dyn_buf,
     int stream_idx
 );
+
+} // namespace LibAVFormat

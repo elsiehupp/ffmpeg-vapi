@@ -21,6 +21,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const size_t MOV_FRAG_INFO_ALLOC_INCREMENT;
 public const size_t MOV_INDEX_CLUSTER_SIZE;
 public const int MOV_TIMESCALE;
@@ -40,18 +42,18 @@ public enum Mode {
 }
 
 public struct MOVIentry {
-    uint64 pos;
-    int64 dts;
-    int64 pts;
-    uint size;
-    uint samples_in_chunk;
+    public uint64 pos;
+    public int64 dts;
+    public int64 pts;
+    public uint size;
+    public uint samples_in_chunk;
     /***********************************************************
     Chunk number if the current entry is a chunk start otherwise 0
     ***********************************************************/
-    uint chunkNum;
-    uint entries;
-    int cts;
-    MOVSampleFlags flags;
+    public uint chunkNum;
+    public uint entries;
+    public int cts;
+    public MOVSampleFlags flags;
 }
 
 [Flags]
@@ -62,25 +64,25 @@ public enum MOVSampleFlags {
 }
 
 public struct HintSample {
-    uint8[] data;
-    int size;
-    int sample_number;
-    int offset;
-    int own_data;
+    public uint8[] data;
+    public int size;
+    public int sample_number;
+    public int offset;
+    public int own_data;
 }
 
 public struct HintSampleQueue {
-    int size;
-    int len;
-    HintSample samples;
+    public int size;
+    public int len;
+    public HintSample samples;
 }
 
 public struct MOVFragmentInfo {
-    int64 offset;
-    int64 time;
-    int64 duration;
-    int64 tfrf_offset;
-    int size;
+    public int64 offset;
+    public int64 time;
+    public int64 duration;
+    public int64 tfrf_offset;
+    public int size;
 }
 
 [Flags]
@@ -98,103 +100,103 @@ public enum MOVETimeCodeFlags {
 }
 
 public struct MOVTrack {
-    int mode;
-    int entry;
-    uint timescale;
-    uint64 time;
-    int64 track_duration;
-    int last_sample_is_subtitle_end;
-    long sample_count;
-    long sample_size;
-    long chunkCount;
-    int has_keyframes;
-    int has_disposable;
-    MOVTrackFlags flags;
-    MOVETimeCodeFlags timecode_flags;
-    int language;
-    int track_id;
+    public int mode;
+    public int entry;
+    public uint timescale;
+    public uint64 time;
+    public int64 track_duration;
+    public int last_sample_is_subtitle_end;
+    public long sample_count;
+    public long sample_size;
+    public long chunkCount;
+    public int has_keyframes;
+    public int has_disposable;
+    public MOVTrackFlags flags;
+    public MOVETimeCodeFlags timecode_flags;
+    public int language;
+    public int track_id;
     /***********************************************************
     stsd fourcc
     ***********************************************************/
-    int tag;
-    AVStream st;
-    LibAVCodec.CodecParameters par;
-    int multichannel_as_mono;
+    public int tag;
+    public AVStream st;
+    public LibAVCodec.CodecParameters par;
+    public int multichannel_as_mono;
 
-    int vos_len;
-    uint8 *vos_data;
-    MOVIentry cluster;
-    uint cluster_capacity;
-    int audio_vbr;
+    public int vos_len;
+    public uint8[] vos_data;
+    public MOVIentry cluster;
+    public uint cluster_capacity;
+    public int audio_vbr;
     /***********************************************************
     active picture (w/o VBI) height for D-10/IMX
     ***********************************************************/
-    int height;
-    uint32 tref_tag;
+    public int height;
+    public uint32 tref_tag;
     /***********************************************************
     trackID of the referenced track
     ***********************************************************/
-    int tref_id;
-    int64 start_dts;
-    int64 start_cts;
-    int64 end_pts;
-    int end_reliable;
-    int64 dts_shift;
+    public int tref_id;
+    public int64 start_dts;
+    public int64 start_cts;
+    public int64 end_pts;
+    public int end_reliable;
+    public int64 dts_shift;
 
     /***********************************************************
     the track that hints this track, -1 if no hint track is set
     ***********************************************************/
-    int hint_track;
+    public int hint_track;
 
     /***********************************************************
     the track that this hint (or tmcd) track describes
     ***********************************************************/
-    int src_track;
+    public int src_track;
     /***********************************************************
     the format context for the hinting rtp muxer
     ***********************************************************/
-    AVFormatContext rtp_ctx;
-    uint32 prev_rtp_ts;
-    int64 cur_rtp_ts_unwrapped;
-    uint32 max_packet_size;
+    public AVFormatContext rtp_ctx;
+    public uint32 prev_rtp_ts;
+    public int64 cur_rtp_ts_unwrapped;
+    public uint32 max_packet_size;
 
-    int64 default_duration;
-    uint32 default_sample_flags;
-    uint32 default_size;
+    public int64 default_duration;
+    public uint32 default_sample_flags;
+    public uint32 default_size;
 
-    HintSampleQueue sample_queue;
-    LibAVCodec.Packet cover_image;
+    public HintSampleQueue sample_queue;
+    public LibAVCodec.Packet cover_image;
 
-    AVIOContext mdat_buf;
-    int64 data_offset;
-    int64 frag_start;
-    int frag_discont;
-    int entries_flushed;
+    public AVIOContext mdat_buf;
+    public int64 data_offset;
+    public int64 frag_start;
+    public int frag_discont;
+    public int entries_flushed;
 
-    int nb_frag_info;
-    MOVFragmentInfo frag_info;
-    uint frag_info_capacity;
+    public int nb_frag_info;
+    public MOVFragmentInfo frag_info;
+    public uint frag_info_capacity;
 
-    VC1Info vc1_info;
+    public VC1Info vc1_info;
 
-    void *eac3_priv;
+    public void *eac3_priv;
 
-    MOVMuxCencContext cenc;
+    public MOVMuxCencContext cenc;
 
-    uint32 palette[LibAVUtil.AVPALETTE_COUNT];
-    int pal_done;
+    public uint32 palette[LibAVUtil.AVPALETTE_COUNT];
+    public int pal_done;
 
-    int is_unaligned_qt_rgb;
+    public int is_unaligned_qt_rgb;
 }
 
 public struct VC1Info {
-    int first_packet_seq;
-    int first_packet_entry;
-    int first_packet_seen;
-    int first_frag_written;
-    int packet_seq;
-    int packet_entry;
-    int slices;
+    public int first_packet_seq;
+    public int first_packet_entry;
+    public int first_packet_seen;
+    public int first_frag_written;
+    public int packet_seq;
+    public int packet_entry;
+    public int slices;
 }
 
 public enum MOVEncryptionScheme {
@@ -203,78 +205,78 @@ public enum MOVEncryptionScheme {
 }
 
 public enum MOVPrftBox {
-    MOV_PRFT_NONE = 0,
+    MOV_PRFT_NONE,
     MOV_PRFT_SRC_WALLCLOCK,
     MOV_PRFT_SRC_PTS,
     MOV_PRFT_NB
 }
 
 public struct MOVMuxContext {
-    LibAVUtil.Class av_class;
-    int mode;
-    int64 time;
-    int nb_streams;
+    public LibAVUtil.Class av_class;
+    public int mode;
+    public int64 time;
+    public int nb_streams;
     /***********************************************************\
     number of new created tmcd track based on metadata (aka not data copy)
     ***********************************************************/
-    int nb_meta_tmcd;
+    public int nb_meta_tmcd;
     /***********************************************************
     qt chapter track number
     ***********************************************************/
-    int chapter_track;
-    int64 mdat_pos;
-    uint64 mdat_size;
-    MOVTrack tracks;
+    public int chapter_track;
+    public int64 mdat_pos;
+    public uint64 mdat_size;
+    public MOVTrack tracks;
 
-    int flags;
-    int rtp_flags;
+    public int flags;
+    public int rtp_flags;
 
-    int iods_skip;
-    int iods_video_profile;
-    int iods_audio_profile;
+    public int iods_skip;
+    public int iods_video_profile;
+    public int iods_audio_profile;
 
-    int moov_written;
-    int fragments;
-    int max_fragment_duration;
-    int min_fragment_duration;
-    int max_fragment_size;
-    int ism_lookahead;
-    AVIOContext mdat_buf;
-    int first_trun;
+    public int moov_written;
+    public int fragments;
+    public int max_fragment_duration;
+    public int min_fragment_duration;
+    public int max_fragment_size;
+    public int ism_lookahead;
+    public AVIOContext mdat_buf;
+    public int first_trun;
 
-    int video_track_timescale;
+    public int video_track_timescale;
 
     /***********************************************************
     0 for disabled, -1 for automatic, size otherwise
     ***********************************************************/
-    int reserved_moov_size;
-    int64 reserved_header_pos;
+    public int reserved_moov_size;
+    public int64 reserved_header_pos;
 
-    string major_brand;
+    public string major_brand;
 
-    int per_stream_grouping;
-    AVFormatContext fc;
+    public int per_stream_grouping;
+    public AVFormatContext fc;
 
-    int use_editlist;
-    float gamma;
+    public int use_editlist;
+    public float gamma;
 
-    int frag_interleave;
-    int missing_duration_warned;
+    public int frag_interleave;
+    public int missing_duration_warned;
 
-    string encryption_scheme_str;
-    MOVEncryptionScheme encryption_scheme;
-    uint8[] encryption_key;
-    int encryption_key_len;
-    uint8[] encryption_kid;
-    int encryption_kid_len;
+    public string encryption_scheme_str;
+    public MOVEncryptionScheme encryption_scheme;
+    public uint8[] encryption_key;
+    public int encryption_key_len;
+    public uint8[] encryption_kid;
+    public int encryption_kid_len;
 
-    int need_rewrite_extradata;
+    public int need_rewrite_extradata;
 
-    int use_stream_ids_as_track_ids;
-    int track_ids_ok;
-    int write_tmcd;
-    MOVPrftBox write_prft;
-    int empty_hdlr_name;
+    public int use_stream_ids_as_track_ids;
+    public int track_ids_ok;
+    public int write_tmcd;
+    public MOVPrftBox write_prft;
+    public int empty_hdlr_name;
 }
 
 [Flags]
@@ -303,17 +305,18 @@ public enum MOVFlags {
     FF_MOV_FLAG_SKIP_SIDX,
 }
 
-int ff_mov_write_packet (
+public int ff_mov_write_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
 
-int ff_mov_init_hinting (
+public int ff_mov_init_hinting (
     AVFormatContext format_context,
     int index,
     int src_index
 );
-int ff_mov_add_hinted_packet (
+
+public int ff_mov_add_hinted_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet,
     int track_index,
@@ -321,6 +324,9 @@ int ff_mov_add_hinted_packet (
     uint8[] sample_data,
     int sample_size
 );
-void ff_mov_close_hinting (
+
+public void ff_mov_close_hinting (
     MOVTrack track
 );
+
+} // namespace LibAVFormat

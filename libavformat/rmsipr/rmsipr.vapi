@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  extern const uchar ff_sipr_subpk_size[4];
 
 /***********************************************************
@@ -25,8 +27,10 @@ Perform 4-bit block reordering for SIPR data.
 
 @param buf SIPR data
 ***********************************************************/
-void ff_rm_reorder_sipr_data (
+public void ff_rm_reorder_sipr_data (
     uint8[] buf,
     int sub_packet_h,
     int framesize
 );
+
+} // namespace LibAVFormat

@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const int RTMP_DEFAULT_PORT; // 1935
 public const int RTMPS_DEFAULT_PORT; // 443
 
@@ -46,7 +48,7 @@ Calculate HMAC-SHA2 digest for RTMP handshake packets.
 @param keylen digest key length
 @param dst buffer where calculated digest will be stored (32 bytes)
 ***********************************************************/
-int ff_rtmp_calc_digest (
+public int ff_rtmp_calc_digest (
     uint8[] src,
     int len,
     int gap,
@@ -63,9 +65,11 @@ Calculate digest position for RTMP handshake packets.
 @param mod_val value used for computing modulo
 @param add_val value added at the end (after computing modulo)
 ***********************************************************/
-int ff_rtmp_calc_digest_pos (
+public int ff_rtmp_calc_digest_pos (
     uint8[] buf,
     int off,
     int mod_val,
     int add_val
 );
+
+} // namespace LibAVFormat

@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file
 internal header for RIFF based (de)muxers
@@ -27,11 +29,12 @@ do NOT include this in end user applications
 
 //  extern const AVMetadataConv ff_riff_info_conv[];
 
-int64 ff_start_tag (
+public int64 ff_start_tag (
     AVIOContext pb,
     string tag
 );
-void ff_end_tag (
+
+public void ff_end_tag (
     AVIOContext pb,
     int64 start
 );
@@ -42,13 +45,13 @@ bits_per_encoded_sample fields. Does not read extradata.
 Writes the size of the BMP file to size.
 @return codec tag
 ***********************************************************/
-int ff_get_bmp_header (
+public int ff_get_bmp_header (
     AVIOContext pb,
     AVStream st,
     uint32[] size
 );
 
-void ff_put_bmp_header (
+public void ff_put_bmp_header (
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
     int for_asf,
@@ -75,7 +78,7 @@ Write WAVEFORMAT header structure.
 
 @return the size or -1 on error
 ***********************************************************/
-int ff_put_wav_header (
+public int ff_put_wav_header (
     AVFormatContext format_context,
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
@@ -86,7 +89,8 @@ public LibAVCodec.CodecID ff_wav_codec_get_id (
     uint tag,
     int bps
 );
-int ff_get_wav_header (
+
+public int ff_get_wav_header (
     AVFormatContext format_context,
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
@@ -99,14 +103,14 @@ int ff_get_wav_header (
 
 //  extern const AVCodecTag ff_codec_bmp_tags_unofficial[];
 
-void ff_parse_specific_params (
+public void ff_parse_specific_params (
     AVStream st,
     out int au_rate,
     out int au_ssize,
     out int au_scale
 );
 
-int ff_read_riff_info (
+public int ff_read_riff_info (
     AVFormatContext format_context,
     int64 size
 );
@@ -114,14 +118,14 @@ int ff_read_riff_info (
 /***********************************************************
 Write all recognized RIFF tags from format_context.metadata
 ***********************************************************/
-void ff_riff_write_info (
+public void ff_riff_write_info (
     AVFormatContext format_context
 );
 
 /***********************************************************
 Write a single RIFF info tag
 ***********************************************************/
-void ff_riff_write_info_tag (
+public void ff_riff_write_info_tag (
     AVIOContext pb,
     string tag,
     string str
@@ -130,8 +134,8 @@ void ff_riff_write_info_tag (
 public struct ff_asf_guid { }
 
 public struct AVCodecGuid {
-    LibAVCodec.CodecID id;
-    ff_asf_guid guid;
+    public LibAVCodec.CodecID id;
+    public ff_asf_guid guid;
 }
 
 //  extern const AVCodecGuid ff_codec_wav_guids[];
@@ -153,20 +157,22 @@ public struct AVCodecGuid {
 //  #define FF_BROKEN_BASE_GUID \
 //      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0xAA
 
-static int ff_guidcmp (
+public static int ff_guidcmp (
     void *g1,
     void *g2
 );
 
-int ff_get_guid (
+public int ff_get_guid (
     AVIOContext io_context,
     ff_asf_guid *g
 );
-void ff_put_guid (
+
+public void ff_put_guid (
     AVIOContext io_context,
     ff_asf_guid *g
 );
-ff_asf_guid *ff_get_codec_guid (
+
+public ff_asf_guid *ff_get_codec_guid (
     LibAVCodec.CodecID id,
     AVCodecGuid *av_guid
 );
@@ -175,3 +181,5 @@ public LibAVCodec.CodecID ff_codec_guid_get_id (
     AVCodecGuid *guids,
     ff_asf_guid guid
 );
+
+} // namespace LibAVFormat

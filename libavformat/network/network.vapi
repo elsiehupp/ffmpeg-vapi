@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if HAVE_WINSOCK2_H
 
 #if !EPROTONOSUPPORT
@@ -39,25 +41,27 @@ public const int ENOTCONN; // WSAENOTCONN
 //  #define getsockopt (a, b, c, d, e) getsockopt (a, b, c, (char*) d, e)
 //  #define setsockopt (a, b, c, d, e) setsockopt (a, b, c, (char*) d, e)
 
-int ff_neterrno ();
+public int ff_neterrno ();
 #else
 
 public LibAVUtil.ErrorCode ff_neterrno (); // LibAVUtil.ErrorCode (errno)
 #endif /* HAVE_WINSOCK2_H
 ***********************************************************/
 
-int ff_socket_nonblock (
+public int ff_socket_nonblock (
     int socket,
     int enable
 );
 
-int ff_network_init ();
-void ff_network_close ();
+public int ff_network_init ();
 
-int ff_tls_init ();
-void ff_tls_deinit ();
+public void ff_network_close ();
 
-int ff_network_wait_fd (
+public int ff_tls_init ();
+
+public void ff_tls_deinit ();
+
+public int ff_network_wait_fd (
     int fd,
     int write
 );
@@ -72,7 +76,7 @@ Uses ff_network_wait_fd in a loop
 @param int_cb Interrupt callback, is checked before each ff_network_wait_fd call
 @return 0 if data can be read/written, LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expired, or negative error code
 ***********************************************************/
-int ff_network_wait_fd_timeout (
+public int ff_network_wait_fd_timeout (
     int fd,
     int write,
     int64 timeout,
@@ -86,7 +90,7 @@ triggered, return before that.
 @param int_cb Interrupt callback, is checked regularly.
 @return LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expirted, AVERROR_EXIT if interrupted by int_cb
 ***********************************************************/
-int ff_network_sleep_interruptible (
+public int ff_network_sleep_interruptible (
     int64 timeout,
     AVIOInterruptCB int_cb
 );
@@ -94,24 +98,24 @@ int ff_network_sleep_interruptible (
 #if !HAVE_STRUCT_SOCKADDR_STORAGE
 public struct sockaddr_storage {
 #if HAVE_STRUCT_SOCKADDR_SA_LEN
-    uint8 ss_len;
-    uint8 ss_family;
+    public uint8 ss_len;
+    public uint8 ss_family;
 #else
-    uint16 ss_family;
+    public uint16 ss_family;
 #endif /* HAVE_STRUCT_SOCKADDR_SA_LEN
     ***********************************************************/
-char ss_pad1[6];
-    int64 ss_align;
-    char ss_pad2[112];
+    public char ss_pad1[6];
+    public int64 ss_align;
+    public char ss_pad2[112];
 }
 #endif /* !HAVE_STRUCT_SOCKADDR_STORAGE
 ***********************************************************/
 
 public struct sockaddr_union {
-    sockaddr_storage storage;
-    Posix.SockAddrIn in;
+    public sockaddr_storage storage;
+    public Posix.SockAddrIn in;
 #if HAVE_STRUCT_SOCKADDR_IN6
-    Posix.SockAddrIn6 in6;
+    public Posix.SockAddrIn6 in6;
 #endif
 }
 
@@ -121,14 +125,14 @@ public const int MSG_NOSIGNAL; // 0
 
 #if !HAVE_STRUCT_ADDRINFO
 public struct addrinfo {
-    int ai_flags;
-    int ai_family;
-    int ai_socktype;
-    int ai_protocol;
-    int ai_addrlen;
-    Posix.SockAddr ai_addr;
-    string ai_canonname;
-    addrinfo ai_next;
+    public int ai_flags;
+    public int ai_family;
+    public int ai_socktype;
+    public int ai_protocol;
+    public int ai_addrlen;
+    public Posix.SockAddr ai_addr;
+    public string ai_canonname;
+    public addrinfo *ai_next;
 }
 #endif /* !HAVE_STRUCT_ADDRINFO
 ***********************************************************/
@@ -197,16 +201,18 @@ public const int NI_DGRAM; // 16
 #endif
 
 #if !HAVE_GETADDRINFO
-int ff_getaddrinfo (
+public int ff_getaddrinfo (
     string node,
     string service,
     addrinfo hints,
     out addrinfo res
 );
-void ff_freeaddrinfo (
+
+public void ff_freeaddrinfo (
     addrinfo res
 );
-int ff_getnameinfo (
+
+public int ff_getnameinfo (
     Posix.SockAddr sa,
     int salen,
     string host,
@@ -219,7 +225,7 @@ int ff_getnameinfo (
 ***********************************************************/
 
 #if !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
-string ff_gai_strerror (
+public string ff_gai_strerror (
     int ecode
 );
 #endif /* !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
@@ -244,7 +250,7 @@ public uint32 IN_MULTICAST (uint32 a); // ((((uint32)(a)) & 0xf0000000) == 0xe00
 public bool IN6_IS_ADDR_MULTICAST (uint8[] a); // (((uint8[] ) (a))[0] == 0xff)
 #endif
 
-int ff_is_multicast_address (
+public int ff_is_multicast_address (
     Posix.SockAddr addr
 );
 
@@ -265,7 +271,7 @@ Bind to a file descriptor and poll for a connection.
 @return A non-blocking file descriptor on success
                or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-int ff_listen_bind (
+public int ff_listen_bind (
     int fd,
     Posix.SockAddr addr,
     Posix.socklen_t addrlen,
@@ -280,7 +286,7 @@ Bind to a file descriptor to an address without accepting connections.
 @param addrlen Third argument of bind ().
 @return 0 on success or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-int ff_listen (
+public int ff_listen (
     int fd,
     Posix.SockAddr addr,
     Posix.socklen_t addrlen
@@ -295,7 +301,7 @@ Poll for a single connection on the passed file descriptor.
 @return A non-blocking file descriptor on success
                or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-int ff_accept (
+public int ff_accept (
     int fd,
     int timeout,
     URLContext h
@@ -316,7 +322,7 @@ Connect to a file descriptor and poll for result.
                 logged errors.
 @return 0 on success, LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-int ff_listen_connect (
+public int ff_listen_connect (
     int fd,
     Posix.SockAddr addr,
     Posix.socklen_t addrlen,
@@ -325,21 +331,21 @@ int ff_listen_connect (
     int will_try_next
 );
 
-int ff_http_match_no_proxy (
+public int ff_http_match_no_proxy (
     string no_proxy,
     string hostname
 );
 
-int ff_socket (
+public int ff_socket (
     int domain,
     int type,
     int protocol
 );
 
-void ff_log_net_error (
+public void ff_log_net_error (
     void *opaque_context,
     int level,
-    char* prefix
+    string prefix
 );
 
 /***********************************************************
@@ -366,7 +372,7 @@ running in parallel.
 @param customize_ctx Context parameter passed to customize_fd.
 @return 0 on success, LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-int ff_connect_parallel (
+public int ff_connect_parallel (
     addrinfo[] addrs,
     int timeout_ms_per_address,
     int parallel,
@@ -375,4 +381,10 @@ int ff_connect_parallel (
     CustomizeFileDescriptorDelegate customize_fd,
     void *customize_ctx
 );
-public delegate void CustomizeFileDescriptorDelegate (void *opaque, int arg);
+
+public delegate void CustomizeFileDescriptorDelegate (
+    void *opaque,
+    int arg
+);
+
+} // namespace LibAVFormat

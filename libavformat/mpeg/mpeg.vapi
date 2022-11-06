@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const uint PACK_START_CODE;
 public const uint SYSTEM_HEADER_START_CODE;
 public const uint SEQUENCE_END_CODE;
@@ -67,3 +69,5 @@ Parse MPEG-PES five-byte timestamp
 public static int64 ff_parse_pes_pts (
     uint8[] buf
 );
+
+} // namespace LibAVFormat

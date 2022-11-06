@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Known language codespaces
 ***********************************************************/
@@ -40,7 +42,9 @@ public enum AVLangCodespace {
 Convert a language code to a target codespace. The source codespace is guessed.
 @return NULL if the provided lang is null or invalid.
 ***********************************************************/
-string ff_convert_lang_to (
+public string ff_convert_lang_to (
     string lang,
     AVLangCodespace target_codespace
 );
+
+} // namespace LibAVFormat

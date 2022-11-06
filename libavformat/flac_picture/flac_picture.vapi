@@ -19,10 +19,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define RETURN_ERROR (code) do { ret = (code); goto fail; } while (0)
 
-int ff_flac_parse_picture (
+public int ff_flac_parse_picture (
     AVFormatContext format_context,
     uint8[] buf,
     int buf_size
 );
+
+} // namespace LibAVFormat

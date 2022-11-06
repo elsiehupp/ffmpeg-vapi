@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const size_t WV_HEADER_SIZE; // 32
 
 [Flags]
@@ -35,28 +37,28 @@ public struct WvHeader {
     /***********************************************************
     Size of the block data (excluding the header)
     ***********************************************************/
-    uint32 blocksize;
+    public uint32 blocksize;
     /***********************************************************
     Bitstream version
     ***********************************************************/
-    uint16 version;
+    public uint16 version;
     /***********************************************************
     Total number of samples in the stream
     ***********************************************************/
-    uint32 total_samples;
+    public uint32 total_samples;
     /***********************************************************
     Index of the first sample in this block
     ***********************************************************/
-    uint32 block_idx;
+    public uint32 block_idx;
     /***********************************************************
     Number of samples in this block
     ***********************************************************/
-    uint32 samples;
-    BlockFlags flags;
-    uint32 crc;
+    public uint32 samples;
+    public BlockFlags flags;
+    public uint32 crc;
 
-    int initial;
-    int final;
+    public int initial;
+    public int final;
 }
 
 /***********************************************************
@@ -67,7 +69,9 @@ Parse a WavPack block header.
 
 @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-int ff_wv_parse_header (
+public int ff_wv_parse_header (
     WvHeader wv,
     uint8[] data
 );
+
+} // namespace LibAVFormat

@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public struct UID { } // uint8[16]
 
 public enum MXFMetadataSetType {
@@ -54,10 +56,10 @@ public enum MXFFrameLayout {
 }
 
 public struct KLVPacket {
-    UID key;
-    int64 offset;
-    uint64 length;
-    int64 next_klv;
+    public UID key;
+    public int64 offset;
+    public uint64 length;
+    public int64 next_klv;
 }
 
 public enum MXFWrappingIndicatorType {
@@ -68,17 +70,17 @@ public enum MXFWrappingIndicatorType {
 }
 
 public struct MXFCodecUL {
-    UID uid;
-    uint matching_len;
-    int id;
-    string desc;
-    uint wrapping_indicator_pos;
-    MXFWrappingIndicatorType wrapping_indicator_type;
+    public UID uid;
+    public uint matching_len;
+    public int id;
+    public string desc;
+    public uint wrapping_indicator_pos;
+    public MXFWrappingIndicatorType wrapping_indicator_type;
 }
 
 public struct MXFSamplesPerFrame {
-    LibAVUtil.Rational time_base;
-    int samples_per_frame[6];
+    public LibAVUtil.Rational time_base;
+    public int samples_per_frame[6];
 }
 
 //  extern const MXFCodecUL ff_mxf_data_definition_uls[];
@@ -86,18 +88,19 @@ public struct MXFSamplesPerFrame {
 //  extern const MXFCodecUL ff_mxf_pixel_format_uls[];
 //  extern const MXFCodecUL ff_mxf_codec_tag_uls[];
 
-int ff_mxf_decode_pixel_layout (
+public int ff_mxf_decode_pixel_layout (
     char pixel_layout[16],
     LibAVUtil.PixelFormat pix_fmt
 );
-MXFSamplesPerFrame ff_mxf_get_samples_per_frame (
+
+public MXFSamplesPerFrame ff_mxf_get_samples_per_frame (
     AVFormatContext format_context,
     LibAVUtil.Rational time_base
 );
-int ff_mxf_get_content_package_rate (
+
+public int ff_mxf_get_content_package_rate (
     LibAVUtil.Rational time_base
 );
-
 
 public const string PRIxUID;
 
@@ -134,3 +137,5 @@ public const string PRIxUID;
 //              s, UID_ARG (x)); \
 //      }while (0)
 //  #endif
+
+} // namespace LibAVFormat

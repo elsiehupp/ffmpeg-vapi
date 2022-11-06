@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file
 SAUCE header parser
@@ -30,9 +32,11 @@ SAUCE header parser
 @param[out] got_width set to non-zero if SAUCE header reported height
 @param get_height Tell SAUCE header to parse height
 ***********************************************************/
-int ff_sauce_read (
+public int ff_sauce_read (
     AVFormatContext avctx,
     uint64[] fsize,
     out int got_width,
     int get_height
 );
+
+} // namespace LibAVFormat

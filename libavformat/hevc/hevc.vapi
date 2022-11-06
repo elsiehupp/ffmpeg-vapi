@@ -18,6 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file
 internal header for HEVC (de)muxer utilities
@@ -42,7 +44,7 @@ discarded, and *ps_count will be set to the number of discarded PS NAL units.
 @return the amount (in bytes) of data written in case of success, a negative
     value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int ff_hevc_annexb2mp4 (
+public int ff_hevc_annexb2mp4 (
     AVIOContext pb,
     uint8[] buf_in,
     int size,
@@ -73,7 +75,7 @@ On output, *size holds the size (in bytes) of the output data buffer.
 @return the amount (in bytes) of data written in case of success, a negative
      value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-int ff_hevc_annexb2mp4_buf (
+public int ff_hevc_annexb2mp4_buf (
     uint8[] buf_in,
     out uint8[] buf_out,
     int[] size,
@@ -96,9 +98,11 @@ writing.
 @return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
      code in case of failure
 ***********************************************************/
-int ff_isom_write_hvcc (
+public int ff_isom_write_hvcc (
     AVIOContext pb,
     uint8[] data,
     int size,
     int ps_array_completeness
 );
+
+} // namespace LibAVFormat

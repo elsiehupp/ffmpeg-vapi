@@ -22,20 +22,22 @@
     DEALINGS IN THE SOFTWARE.
 **/
 
+namespace LibAVFormat {
+
 public abstract class ogg_codec {
-    int8[] magic;
-    uint8 magicsize;
-    int8[] name;
+    public int8[] magic;
+    public uint8 magicsize;
+    public int8[] name;
     /***********************************************************
     Attempt to process a packet as a header
     @return 1 if the packet was a valid header,
             0 if the packet was not a header (was a data packet)
             -1 if an error occurred or for unsupported stream
     ***********************************************************/
-    public abstract int header (
+    public public abstract int header (
         AVFormatContext context, int arg
     );
-    public abstract int packet (
+    public public abstract int packet (
         AVFormatContext context, int arg
     );
     /***********************************************************
@@ -43,7 +45,7 @@ public abstract class ogg_codec {
     Will set dts if non-null and known.
     @return pts
     ***********************************************************/
-    public abstract uint64 gptopts (
+    public public abstract uint64 gptopts (
         AVFormatContext context,
         int arg1,
         uint64 arg2,
@@ -53,11 +55,11 @@ public abstract class ogg_codec {
     1 if granule is the start time of the associated packet.
     0 if granule is the end time of the associated packet.
     ***********************************************************/
-    int granule_is_start;
+    public int granule_is_start;
     /***********************************************************
     Number of expected headers
     ***********************************************************/
-    int nb_header;
+    public int nb_header;
     public abstract void cleanup (
         AVFormatContext format_context,
         int idx
@@ -65,77 +67,77 @@ public abstract class ogg_codec {
 }
 
 public struct ogg_stream {
-    uint8[] buf;
-    uint bufsize;
-    uint bufpos;
-    uint pstart;
-    uint psize;
-    uint pflags;
-    uint pduration;
-    uint32 serial;
-    uint64 granule;
-    uint64 start_granule;
-    int64 lastpts;
-    int64 lastdts;
+    public uint8[] buf;
+    public uint bufsize;
+    public uint bufpos;
+    public uint pstart;
+    public uint psize;
+    public uint pflags;
+    public uint pduration;
+    public uint32 serial;
+    public uint64 granule;
+    public uint64 start_granule;
+    public int64 lastpts;
+    public int64 lastdts;
     /***********************************************************
     file offset of the first page needed to reconstruct the current packet
     ***********************************************************/
-    int64 sync_pos;
+    public int64 sync_pos;
     /***********************************************************
     file offset of the current page
     ***********************************************************/
-    int64 page_pos;
-    int flags;
-    ogg_codec codec;
-    int header;
-    int nsegs;
-    int segp;
-    uint8 segments[255];
+    public int64 page_pos;
+    public int flags;
+    public ogg_codec codec;
+    public int header;
+    public int nsegs;
+    public int segp;
+    public uint8 segments[255];
     /***********************************************************
     whether we're expecting a continuation in the next page
     ***********************************************************/
-    int incomplete;
+    public int incomplete;
     /***********************************************************
     current packet is the last one completed in the page
     ***********************************************************/
-    int page_end;
-    int keyframe_seek;
-    int got_start;
+    public int page_end;
+    public int keyframe_seek;
+    public int got_start;
     /***********************************************************
     1 if the stream got some data (non-initial packets), 0 otherwise
     ***********************************************************/
-    int got_data;
+    public int got_data;
     /***********************************************************
     set to the number of parsed headers
     ***********************************************************/
-    int nb_header;
+    public int nb_header;
     /***********************************************************
     set the number of packets to drop from the end
     ***********************************************************/
-    int end_trimming;
-    uint8[] new_metadata;
-    uint new_metadata_size;
-    void *private;
+    public int end_trimming;
+    public uint8[] new_metadata;
+    public uint new_metadata_size;
+    public void *private;
 }
 
 public struct ogg_state {
-    uint64 pos;
-    int curidx;
-    ogg_state next;
-    int nstreams;
-    ogg_stream streams[1];
+    public uint64 pos;
+    public int curidx;
+    public ogg_state *next;
+    public int nstreams;
+    public ogg_stream streams[1];
 }
 
 public struct ogg {
-    ogg_stream streams;
-    int nstreams;
-    int headers;
-    int curidx;
+    public ogg_stream[] streams;
+    public int nstreams;
+    public int headers;
+    public int curidx;
     /***********************************************************
     file offset of the current page
     ***********************************************************/
-    int64 page_pos;
-    ogg_state state;
+    public int64 page_pos;
+    public ogg_state state;
 }
 
 [Flags]
@@ -164,7 +166,7 @@ public const uint64 OGG_NOGRANULE_VALUE;
 //  extern const struct ogg_codec ff_vorbis_codec;
 //  extern const struct ogg_codec ff_vp8_codec;
 
-int ff_vorbis_comment (
+public int ff_vorbis_comment (
     AVFormatContext ms,
     out LibAVUtil.Dictionary m,
     uint8[] buf,
@@ -172,21 +174,23 @@ int ff_vorbis_comment (
     int parse_picture
 );
 
-int ff_vorbis_stream_comment (
+public int ff_vorbis_stream_comment (
     AVFormatContext as,
     AVStream st,
     uint8[] buf,
     int size
 );
 
-static int ogg_find_stream (
+public static int ogg_find_stream (
     ogg ogg,
     int serial
 );
 
-static uint64 ogg_gptopts (
+public static uint64 ogg_gptopts (
     AVFormatContext format_context,
     int i,
     uint64 gp,
     out int64 dts
 );
+
+} // namespace LibAVFormat

@@ -15,14 +15,18 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
+along with FFmpeg; if not, write to the Free Software
+Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_tee_parse_slave_options (
+namespace LibAVFormat {
+
+public int ff_tee_parse_slave_options (
     void *log,
     string slave,
     out LibAVUtil.Dictionary options,
-    string[] filename
+    out string filename
 );
 
+} // namespace LibAVFormat

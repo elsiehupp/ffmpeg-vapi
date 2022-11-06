@@ -19,9 +19,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Size of fixed header without magic
 ***********************************************************/
-const size_t SOX_FIXED_HDR;
+public const size_t SOX_FIXED_HDR;
 
-//  #define SOX_TAG MKTAG ('.', 'S', 'o', 'X')
+public const uint32 SOX_TAG; // MKTAG ('.', 'S', 'o', 'X')
+
+} // namespace LibAVFormat

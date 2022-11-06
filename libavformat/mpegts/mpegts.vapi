@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const size_t TS_FEC_PACKET_SIZE;
 public const size_t TS_DVHS_PACKET_SIZE;
 public const size_t TS_PACKET_SIZE;
@@ -69,42 +71,42 @@ public enum MpegTransportStreamType {
 }
 
 public struct MpegTSContext {
-    MpegTSContext avpriv_mpegts_parse_open (
+    public MpegTSContext avpriv_mpegts_parse_open (
         AVFormatContext format_context
     );
-    int avpriv_mpegts_parse_packet (
+    public int avpriv_mpegts_parse_packet (
         MpegTSContext ts,
         LibAVCodec.Packet packet,
         uint8[] buf,
         int len
     );
-    void avpriv_mpegts_parse_close (
+    public void avpriv_mpegts_parse_close (
         MpegTSContext ts
     );
 }
 
 public struct SLConfigDescr {
-    int use_au_start;
-    int use_au_end;
-    int use_rand_acc_pt;
-    int use_padding;
-    int use_timestamps;
-    int use_idle;
-    int timestamp_res;
-    int timestamp_len;
-    int ocr_len;
-    int au_len;
-    int inst_bitrate_len;
-    int degr_prior_len;
-    int au_seq_num_len;
-    int packet_seq_num_len;
+    public int use_au_start;
+    public int use_au_end;
+    public int use_rand_acc_pt;
+    public int use_padding;
+    public int use_timestamps;
+    public int use_idle;
+    public int timestamp_res;
+    public int timestamp_len;
+    public int ocr_len;
+    public int au_len;
+    public int inst_bitrate_len;
+    public int degr_prior_len;
+    public int au_seq_num_len;
+    public int packet_seq_num_len;
 }
 
 public struct Mp4Descr {
-    int es_id;
-    int dec_config_descr_len;
-    uint8[] dec_config_descr;
-    SLConfigDescr sl;
+    public int es_id;
+    public int dec_config_descr_len;
+    public uint8[] dec_config_descr;
+    public SLConfigDescr sl;
 }
 
 /***********************************************************
@@ -116,7 +118,7 @@ Parse an MPEG-2 descriptor
 @param desc_list_end End of buffer
 @return <0 to stop processing
 ***********************************************************/
-int ff_parse_mpeg2_descriptor (
+public int ff_parse_mpeg2_descriptor (
     AVFormatContext fc,
     AVStream st,
     int stream_type,
@@ -132,8 +134,10 @@ int ff_parse_mpeg2_descriptor (
 Check presence of H264 startcode
 @return <0 to stop processing
 ***********************************************************/
-int ff_check_h264_startcode (
+public int ff_check_h264_startcode (
     AVFormatContext format_context,
     AVStream st,
     LibAVCodec.Packet packet
 );
+
+} // namespace LibAVFormat

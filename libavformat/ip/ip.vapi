@@ -14,9 +14,12 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
+along with FFmpeg; if not, write to the Free Software
+Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+
+namespace LibAVFormat {
 
 /***********************************************************
 Structure for storing IP (UDP) source filters or block lists.
@@ -33,7 +36,7 @@ Checks the source address against a given IP source filter.
 @return 0 if packet should be processed based on the filter, 1 if the packet
     can be dropped.
 ***********************************************************/
-int ff_ip_check_source_lists (
+public int ff_ip_check_source_lists (
     sockaddr_storage source_addr_ptr,
     IPSourceFilters source_filters
 );
@@ -54,7 +57,7 @@ Parses the address[,address] source list in buf and adds it to the filters
 in the IPSourceFilters structure.
 @return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
-int ff_ip_parse_sources (
+public int ff_ip_parse_sources (
     void *log_ctx,
     string buf,
     IPSourceFilters filters
@@ -65,7 +68,7 @@ Parses the address[,address] source block list in buf and adds it to the
 filters in the IPSourceFilters structure.
 @return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
-int ff_ip_parse_blocks (
+public int ff_ip_parse_blocks (
     void *log_ctx,
     string buf,
     IPSourceFilters filters
@@ -75,6 +78,8 @@ int ff_ip_parse_blocks (
 Resets the IP filter list and frees the internal fields of an
 IPSourceFilters structure.
 ***********************************************************/
-void ff_ip_reset_filters (
+public void ff_ip_reset_filters (
     IPSourceFilters filters
 );
+
+} // namespace LibAVFormat

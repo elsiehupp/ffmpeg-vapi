@@ -64,9 +64,9 @@ public struct Expression {
         string[] const_names,
         double[] const_values,
         string[] func1_names,
-        OneArgumentDelegate* funcs1,
+        OneArgumentDelegate *funcs1,
         string[] func2_names,
-        TwoArgumentDelegate* funcs2,
+        TwoArgumentDelegate *funcs2,
         void *opaque,
         int log_offset,
         void *log_ctx

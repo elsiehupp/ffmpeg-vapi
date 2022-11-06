@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 should have a generic way to indicate probable size
 ***********************************************************/
@@ -120,26 +122,28 @@ public const int VIDEO_ID;
 public const int SHAPE_ID;
 
 public struct SWFContext {
-    int64 duration_pos;
-    int64 tag_pos;
-    int64 vframes_pos;
-    int samples_per_frame;
-    int sound_samples;
-    int swf_frame_number;
-    int video_frame_number;
-    int frame_rate;
-    int tag;
-    LibAVUtil.FifoBuffer audio_fifo;
-    LibAVCodec.CodecParameters audio_par;
-    LibAVCodec.CodecParameters video_par;
-    AVStream video_st;
+    public int64 duration_pos;
+    public int64 tag_pos;
+    public int64 vframes_pos;
+    public int samples_per_frame;
+    public int sound_samples;
+    public int swf_frame_number;
+    public int video_frame_number;
+    public int frame_rate;
+    public int tag;
+    public LibAVUtil.FifoBuffer audio_fifo;
+    public LibAVCodec.CodecParameters audio_par;
+    public LibAVCodec.CodecParameters video_par;
+    public AVStream video_st;
 #if CONFIG_ZLIB
-    const size_t ZBUF_SIZE;
-    AVIOContext zpb;
-    uint8[] zbuf_in;
-    uint8[] zbuf_out;
-    z_stream zstream;
+    public const size_t ZBUF_SIZE;
+    public AVIOContext zpb;
+    public uint8[] zbuf_in;
+    public uint8[] zbuf_out;
+    public z_stream zstream;
 #endif
 }
 
 //  extern const AVCodecTag ff_swf_codec_tags[];
+
+} // namespace LibAVFormat

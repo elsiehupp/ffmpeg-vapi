@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public const size_t ID3v2_HEADER_SIZE; // 10
 
 /***********************************************************
@@ -47,49 +49,49 @@ public struct ID3v2EncContext {
     /***********************************************************
     ID3v2 minor version, either 3 or 4
     ***********************************************************/
-    int version;
+    public int version;
     /***********************************************************
     offset of the tag total size
     ***********************************************************/
-    int64 size_pos;
+    public int64 size_pos;
     /***********************************************************
     size of the tag written so far
     ***********************************************************/
-    int len;
+    public int len;
 }
 
 public struct ID3v2ExtraMeta {
-    string tag;
-    void *data;
-    ID3v2ExtraMeta next;
+    public string tag;
+    public void *data;
+    public ID3v2ExtraMeta *next;
 }
 
 public struct ID3v2ExtraMetaGEOB {
-    uint32 datasize;
-    uint8[] mime_type;
-    uint8[] file_name;
-    uint8[] description;
-    uint8[] data;
+    public uint32 datasize;
+    public uint8[] mime_type;
+    public uint8[] file_name;
+    public uint8[] description;
+    public uint8[] data;
 }
 
 public struct ID3v2ExtraMetaAPIC {
-    LibAVUtil.BufferRef buf;
-    string type;
-    string description;
-    LibAVCodec.CodecID id;
+    public LibAVUtil.BufferRef buf;
+    public string type;
+    public string description;
+    public LibAVCodec.CodecID id;
 }
 
 public struct ID3v2ExtraMetaPRIV {
-    uint8[] owner;
-    uint8[] data;
-    uint32 datasize;
+    public uint8[] owner;
+    public uint8[] data;
+    public uint32 datasize;
 }
 
 public struct ID3v2ExtraMetaCHAP {
-    uint8[] element_id;
-    uint32 start;
-    uint32 end;
-    LibAVUtil.Dictionary meta;
+    public uint8[] element_id;
+    public uint32 start;
+    public uint32 end;
+    public LibAVUtil.Dictionary meta;
 }
 
 
@@ -99,7 +101,7 @@ Detect ID3v2 Header.
 @param magic magic bytes to identify the header.
 If in doubt, use ID3v2_DEFAULT_MAGIC.
 ***********************************************************/
-int ff_id3v2_match (
+public int ff_id3v2_match (
     uint8[] buf,
     string magic
 );
@@ -109,7 +111,7 @@ Get the length of an ID3v2 tag.
 @param buf must be ID3v2_HEADER_SIZE bytes long and point to the start of an
 already detected ID3v2 tag
 ***********************************************************/
-int ff_id3v2_tag_len (
+public int ff_id3v2_tag_len (
     uint8[] buf
 );
 
@@ -120,7 +122,7 @@ Read an ID3v2 tag into specified dictionary and retrieve supported extra metadat
 @param extra_meta If not NULL, extra metadata is parsed into a list of
 ID3v2ExtraMeta structs and *extra_meta points to the head of the list
 ***********************************************************/
-void ff_id3v2_read_dict (
+public void ff_id3v2_read_dict (
     AVIOContext pb,
     out LibAVUtil.Dictionary metadata,
     string magic,
@@ -136,7 +138,7 @@ Data is read from and stored to AVFormatContext.
 ID3v2ExtraMeta structs and *extra_meta points to the head of the list
 @param[opt] max_search_search restrict ID3 magic number search (bytes from start)
 ***********************************************************/
-void ff_id3v2_read (
+public void ff_id3v2_read (
     AVFormatContext format_context,
     string magic,
     out ID3v2ExtraMeta extra_meta,
@@ -146,7 +148,7 @@ void ff_id3v2_read (
 /***********************************************************
 Initialize an ID3v2 tag.
 ***********************************************************/
-void ff_id3v2_start (
+public void ff_id3v2_start (
     ID3v2EncContext id3,
     AVIOContext pb,
     int id3v2_version,
@@ -156,7 +158,7 @@ void ff_id3v2_start (
 /***********************************************************
 Convert and write all global metadata from format_context into an ID3v2 tag.
 ***********************************************************/
-int ff_id3v2_write_metadata (
+public int ff_id3v2_write_metadata (
     AVFormatContext format_context,
     ID3v2EncContext id3
 );
@@ -164,7 +166,7 @@ int ff_id3v2_write_metadata (
 /***********************************************************
 Write an attached picture from packet into an ID3v2 tag.
 ***********************************************************/
-int ff_id3v2_write_apic (
+public int ff_id3v2_write_apic (
     AVFormatContext format_context,
     ID3v2EncContext id3,
     LibAVCodec.Packet packet
@@ -173,7 +175,7 @@ int ff_id3v2_write_apic (
 /***********************************************************
 Finalize an opened ID3v2 tag.
 ***********************************************************/
-void ff_id3v2_finish (
+public void ff_id3v2_finish (
     ID3v2EncContext id3,
     AVIOContext pb,
     int padding_bytes
@@ -185,7 +187,7 @@ Write an ID3v2 tag containing all global metadata from format_context.
 @param magic magic bytes to identify the header
 If in doubt, use ID3v2_DEFAULT_MAGIC.
 ***********************************************************/
-int ff_id3v2_write_simple (
+public int ff_id3v2_write_simple (
     AVFormatContext format_context,
     int id3v2_version,
     string magic
@@ -195,7 +197,7 @@ int ff_id3v2_write_simple (
 Free memory allocated parsing special (non-text) metadata.
 @param extra_meta Pointer to a pointer to the head of a ID3v2ExtraMeta list, *extra_meta is set to NULL.
 ***********************************************************/
-void ff_id3v2_free_extra_meta (
+public void ff_id3v2_free_extra_meta (
     out ID3v2ExtraMeta extra_meta
 );
 
@@ -203,7 +205,7 @@ void ff_id3v2_free_extra_meta (
 Create a stream for each APIC (attached picture) extracted from the
 ID3v2 header.
 ***********************************************************/
-int ff_id3v2_parse_apic (
+public int ff_id3v2_parse_apic (
     AVFormatContext format_context,
     out ID3v2ExtraMeta extra_meta
 );
@@ -211,7 +213,7 @@ int ff_id3v2_parse_apic (
 /***********************************************************
 Create chapters for all CHAP tags found in the ID3v2 header.
 ***********************************************************/
-int ff_id3v2_parse_chapters (
+public int ff_id3v2_parse_chapters (
     AVFormatContext format_context,
     out ID3v2ExtraMeta extra_meta
 );
@@ -220,7 +222,7 @@ int ff_id3v2_parse_chapters (
 Parse PRIV tags into a dictionary. The PRIV owner is the metadata key. The
 PRIV data is the value, with non-printable characters escaped.
 ***********************************************************/
-int ff_id3v2_parse_priv_dict (
+public int ff_id3v2_parse_priv_dict (
     out LibAVUtil.Dictionary dictionary,
     out ID3v2ExtraMeta extra_meta
 );
@@ -230,7 +232,7 @@ Add metadata for all PRIV tags in the ID3v2 header. The PRIV owner is the
 metadata key. The PRIV data is the value, with non-printable characters
 escaped.
 ***********************************************************/
-int ff_id3v2_parse_priv (
+public int ff_id3v2_parse_priv (
     AVFormatContext format_context,
     out ID3v2ExtraMeta extra_meta
 );
@@ -258,3 +260,5 @@ ID3v2.3-only text information frames.
 //  extern const CodecMime ff_id3v2_mime_tags[];
 
 //  extern string const ff_id3v2_picture_types[21];
+
+} // namespace LibAVFormat

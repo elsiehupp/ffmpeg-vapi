@@ -19,47 +19,50 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 public struct RTPMuxContext {
-    LibAVUtil.Class av_class;
-    AVFormatContext ic;
-    AVStream st;
-    int payload_type;
-    uint32 ssrc;
-    string cname;
-    int seq;
-    uint32 timestamp;
-    uint32 base_timestamp;
-    uint32 cur_timestamp;
-    int max_payload_size;
-    int num_frames;
+    public LibAVUtil.Class av_class;
+    public AVFormatContext ic;
+    public AVStream st;
+    public int payload_type;
+    public uint32 ssrc;
+    public string cname;
+    public int seq;
+    public uint32 timestamp;
+    public uint32 base_timestamp;
+    public uint32 cur_timestamp;
+    public int max_payload_size;
+    public int num_frames;
 
     /***********************************************************
     rtcp sender statistics
     ***********************************************************/
-    int64 last_rtcp_ntp_time;
-    int64 first_rtcp_ntp_time;
-    uint packet_count;
-    uint octet_count;
-    uint last_octet_count;
-    int first_packet;
+    public int64 last_rtcp_ntp_time;
+    public int64 first_rtcp_ntp_time;
+    public uint packet_count;
+    public uint octet_count;
+    public uint last_octet_count;
+    public int first_packet;
+
     /***********************************************************
     buffer for output
     ***********************************************************/
-    uint8[] buf;
-    uint8[] buf_ptr;
+    public uint8[] buf;
+    public uint8 *buf_ptr;
 
-    int max_frames_per_packet;
+    public int max_frames_per_packet;
 
     /***********************************************************
     Number of bytes used for H.264 NAL length, if the MP4 syntax is used
     (1, 2 or 4)
     ***********************************************************/
-    int nal_length_size;
-    int buffered_nals;
+    public int nal_length_size;
+    public int buffered_nals;
 
-    int flags;
+    public int flags;
 
-    uint frame_count;
+    public uint frame_count;
 }
 
 [Flags]
@@ -79,83 +82,97 @@ public enum RTPEncoderFlags {
 //      { "h264_mode0", "Use mode 0 for H.264 in RTP", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_H264_MODE0}, INT_MIN, int.MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }, \
 //      { "send_bye", "Send RTCP BYE packets when finishing", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_SEND_BYE}, INT_MIN, int.MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" } \
 
-void ff_rtp_send_data (
+public void ff_rtp_send_data (
     AVFormatContext s1,
     uint8[] buf1,
     int len,
     int m
 );
 
-void ff_rtp_send_h264_hevc (
+public void ff_rtp_send_h264_hevc (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
-void ff_rtp_send_h261 (
+
+public void ff_rtp_send_h261 (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
-void ff_rtp_send_h263 (
+
+public void ff_rtp_send_h263 (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
-void ff_rtp_send_h263_rfc2190 (
+
+public void ff_rtp_send_h263_rfc2190 (
     AVFormatContext s1,
     uint8[] buf1,
     int size,
     uint8[] mb_info,
     int mb_info_size
 );
-void ff_rtp_send_aac (
-    AVFormatContext s1,
-    uint8[] buff,
-    int size
-);
-void ff_rtp_send_latm (
-    AVFormatContext s1,
-    uint8[] buff,
-    int size
-);
-void ff_rtp_send_amr (
-    AVFormatContext s1,
-    uint8[] buff,
-    int size
-);
-void ff_rtp_send_mpegvideo (
-    AVFormatContext s1,
-    uint8[] buf1,
-    int size
-);
-void ff_rtp_send_xiph (
-    AVFormatContext s1,
-    uint8[] buff,
-    int size
-);
-void ff_rtp_send_vc2hq (
-    AVFormatContext s1,
-    uint8[] buf,
-    int size,
-    int interlaced
-);
-void ff_rtp_send_vp8 (
-    AVFormatContext s1,
-    uint8[] buff,
-    int size
-);
-void ff_rtp_send_vp9 (
-    AVFormatContext s1,
-    uint8[] buff,
-    int size
-);
-void ff_rtp_send_jpeg (
+
+public void ff_rtp_send_aac (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
-uint8[] ff_h263_find_resync_marker_reverse (
+public void ff_rtp_send_latm (
+    AVFormatContext s1,
+    uint8[] buff,
+    int size
+);
+
+public void ff_rtp_send_amr (
+    AVFormatContext s1,
+    uint8[] buff,
+    int size
+);
+
+public void ff_rtp_send_mpegvideo (
+    AVFormatContext s1,
+    uint8[] buf1,
+    int size
+);
+
+public void ff_rtp_send_xiph (
+    AVFormatContext s1,
+    uint8[] buff,
+    int size
+);
+
+public void ff_rtp_send_vc2hq (
+    AVFormatContext s1,
+    uint8[] buf,
+    int size,
+    int interlaced
+);
+
+public void ff_rtp_send_vp8 (
+    AVFormatContext s1,
+    uint8[] buff,
+    int size
+);
+
+public void ff_rtp_send_vp9 (
+    AVFormatContext s1,
+    uint8[] buff,
+    int size
+);
+
+public void ff_rtp_send_jpeg (
+    AVFormatContext s1,
+    uint8[] buff,
+    int size
+);
+
+public uint8[] ff_h263_find_resync_marker_reverse (
     uint8[] start, // av_restrict
     uint8[] end // av_restrict
 );
+
+} // namespace LibAVFormat

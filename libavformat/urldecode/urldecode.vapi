@@ -16,6 +16,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Decodes an URL from its percent-encoded form back into normal
 representation. This function returns the decoded URL in a string.
@@ -27,6 +29,8 @@ in that case the original string is duplicated.
 Note that the returned string should be explicitly freed when not
 used anymore.
 ***********************************************************/
-static string ff_urldecode (
+public static string ff_urldecode (
     string url
 );
+
+} // namespace LibAVFormat
