@@ -25,12 +25,22 @@
  */
 
 AVInputFormat ff_smjpeg_demuxer = {
-    .name           = "smjpeg",
-    .long_name      = NULL_IF_CONFIG_SMALL("Loki SDL MJPEG"),
-    .priv_data_size = sizeof(SMJPEGContext),
-    .read_probe     = smjpeg_probe,
-    .read_header    = smjpeg_read_header,
-    .read_packet    = smjpeg_read_packet,
-    .extensions     = "mjpg",
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "smjpeg",
+    //  .long_name      = "Loki SDL MJPEG",
+    //  .priv_data_size = sizeof(SMJPEGContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = smjpeg_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = smjpeg_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = smjpeg_read_packet,
+    //  .extensions     = "mjpg",
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

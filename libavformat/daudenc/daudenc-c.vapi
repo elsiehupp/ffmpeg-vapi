@@ -20,12 +20,20 @@
  */
 
 AVOutputFormat ff_daud_muxer = {
-    .name         = "daud",
-    .long_name    = NULL_IF_CONFIG_SMALL("D-Cinema audio"),
-    .extensions   = "302",
-    .audio_codec  = AV_CODEC_ID_PCM_S24DAUD,
-    .video_codec  = AV_CODEC_ID_NONE,
-    .write_header = daud_write_header,
-    .write_packet = daud_write_packet,
-    .flags        = AVFMT_NOTIMESTAMPS,
+    //  .name         = "daud",
+    //  .long_name    = "D-Cinema audio",
+    //  .extensions   = "302",
+    //  .audio_codec  = AV_CODEC_ID_PCM_S24DAUD,
+    //  .video_codec  = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    ); = daud_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    ); = daud_write_packet,
+    //  .flags        = AVFMT_NOTIMESTAMPS,
 };

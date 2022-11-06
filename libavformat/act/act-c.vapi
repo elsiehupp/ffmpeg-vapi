@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_act_demuxer = {
-    .name           = "act",
-    .long_name      = "ACT Voice file format",
-    .priv_data_size = sizeof(ACTContext),
-    .read_probe     = probe,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
+    //  .name           = "act",
+    //  .long_name      = "ACT Voice file format",
+    //  .priv_data_size = sizeof(ACTContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
 };

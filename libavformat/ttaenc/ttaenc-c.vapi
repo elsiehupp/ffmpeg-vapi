@@ -20,15 +20,29 @@
  */
 
 AVOutputFormat ff_tta_muxer = {
-    .name              = "tta",
-    .long_name         = NULL_IF_CONFIG_SMALL("TTA (True Audio)"),
-    .mime_type         = "audio/x-tta",
-    .extensions        = "tta",
-    .priv_data_size    = sizeof(TTAMuxContext),
-    .audio_codec       = AV_CODEC_ID_TTA,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .init              = tta_init,
-    .write_header      = tta_write_header,
-    .write_packet      = tta_write_packet,
-    .write_trailer     = tta_write_trailer,
+    //  .name              = "tta",
+    //  .long_name         = "TTA (True Audio)",
+    //  .mime_type         = "audio/x-tta",
+    //  .extensions        = "tta",
+    //  .priv_data_size    = sizeof(TTAMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_TTA,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = tta_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = tta_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = tta_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = tta_write_trailer,
 };

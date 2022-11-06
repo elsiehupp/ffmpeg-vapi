@@ -20,12 +20,20 @@
  */
 
 AVOutputFormat ff_sup_muxer = {
-    .name           = "sup",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw HDMV Presentation Graphic Stream subtitles"),
-    .extensions     = "sup",
-    .mime_type      = "application/x-pgs",
-    .subtitle_codec = AV_CODEC_ID_HDMV_PGS_SUBTITLE,
-    .write_header   = sup_write_header,
-    .write_packet   = sup_write_packet,
-    .flags          = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
+    //  .name           = "sup",
+    //  .long_name      = "raw HDMV Presentation Graphic Stream subtitles",
+    //  .extensions     = "sup",
+    //  .mime_type      = "application/x-pgs",
+    //  .subtitle_codec = AV_CODEC_ID_HDMV_PGS_SUBTITLE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = sup_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = sup_write_packet,
+    //  .flags          = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
 };

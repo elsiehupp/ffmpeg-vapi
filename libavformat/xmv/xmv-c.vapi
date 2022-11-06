@@ -26,12 +26,25 @@
  */
 
 AVInputFormat ff_xmv_demuxer = {
-    .name           = "xmv",
-    .long_name      = NULL_IF_CONFIG_SMALL("Microsoft XMV"),
-    .extensions     = "xmv",
-    .priv_data_size = sizeof(XMVDemuxContext),
-    .read_probe     = xmv_probe,
-    .read_header    = xmv_read_header,
-    .read_packet    = xmv_read_packet,
-    .read_close     = xmv_read_close,
+    //  .name           = "xmv",
+    //  .long_name      = "Microsoft XMV",
+    //  .extensions     = "xmv",
+    //  .priv_data_size = sizeof(XMVDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = xmv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = xmv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = xmv_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = xmv_read_close,
 };

@@ -20,14 +20,39 @@
  */
 
 AVInputFormat ff_asf_o_demuxer = {
-    .name           = "asf_o",
-    .long_name      = NULL_IF_CONFIG_SMALL("ASF (Advanced / Active Streaming Format)"),
-    .priv_data_size = sizeof(ASFContext),
-    .read_probe     = asf_probe,
-    .read_header    = asf_read_header,
-    .read_packet    = asf_read_packet,
-    .read_close     = asf_read_close,
-    .read_timestamp = asf_read_timestamp,
-    .read_seek      = asf_read_seek,
-    .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH,
+    //  .name           = "asf_o",
+    //  .long_name      = "ASF (Advanced / Active Streaming Format)",
+    //  .priv_data_size = sizeof(ASFContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = asf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = asf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = asf_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = asf_read_close,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = asf_read_timestamp,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = asf_read_seek,
+    //  .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH,
 };

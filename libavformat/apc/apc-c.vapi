@@ -20,9 +20,19 @@
  */
 
 AVInputFormat ff_apc_demuxer = {
-    .name           = "apc",
-    .long_name      = NULL_IF_CONFIG_SMALL("CRYO APC"),
-    .read_probe     = apc_probe,
-    .read_header    = apc_read_header,
-    .read_packet    = apc_read_packet,
+    //  .name           = "apc",
+    //  .long_name      = "CRYO APC",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = apc_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = apc_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = apc_read_packet,
 };

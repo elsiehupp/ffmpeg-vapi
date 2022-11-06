@@ -25,22 +25,41 @@ static const AVOption options[] = {
 };
 
 static const AVClass demuxer_class = {
-    .class_name = "avi",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
-    .category   = AV_CLASS_CATEGORY_DEMUXER,
+    //  .class_name = "avi",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
+    //  .category   = AV_CLASS_CATEGORY_DEMUXER,
 };
 
 AVInputFormat ff_avi_demuxer = {
-    .name           = "avi",
-    .long_name      = NULL_IF_CONFIG_SMALL("AVI (Audio Video Interleaved)"),
-    .priv_data_size = sizeof(AVIContext),
-    .extensions     = "avi",
-    .read_probe     = avi_probe,
-    .read_header    = avi_read_header,
-    .read_packet    = avi_read_packet,
-    .read_close     = avi_read_close,
-    .read_seek      = avi_read_seek,
-    .priv_class = &demuxer_class,
+    //  .name           = "avi",
+    //  .long_name      = "AVI (Audio Video Interleaved)",
+    //  .priv_data_size = sizeof(AVIContext),
+    //  .extensions     = "avi",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = avi_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = avi_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = avi_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = avi_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = avi_read_seek,
+    //  .priv_class = &demuxer_class,
 };

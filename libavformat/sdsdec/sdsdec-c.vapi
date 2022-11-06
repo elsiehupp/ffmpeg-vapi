@@ -20,12 +20,22 @@
  */
 
 AVInputFormat ff_sds_demuxer = {
-    .name           = "sds",
-    .long_name      = NULL_IF_CONFIG_SMALL("MIDI Sample Dump Standard"),
-    .priv_data_size = sizeof(SDSContext),
-    .read_probe     = sds_probe,
-    .read_header    = sds_read_header,
-    .read_packet    = sds_read_packet,
-    .extensions     = "sds",
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "sds",
+    //  .long_name      = "MIDI Sample Dump Standard",
+    //  .priv_data_size = sizeof(SDSContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = sds_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = sds_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = sds_read_packet,
+    //  .extensions     = "sds",
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

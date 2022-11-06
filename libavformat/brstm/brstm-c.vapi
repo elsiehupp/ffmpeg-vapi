@@ -20,25 +20,63 @@
  */
 
 AVInputFormat ff_brstm_demuxer = {
-    .name           = "brstm",
-    .long_name      = NULL_IF_CONFIG_SMALL("BRSTM (Binary Revolution Stream)"),
-    .priv_data_size = sizeof(BRSTMDemuxContext),
-    .read_probe     = probe,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .read_close     = read_close,
-    .read_seek      = read_seek,
-    .extensions     = "brstm",
+    //  .name           = "brstm",
+    //  .long_name      = "BRSTM (Binary Revolution Stream)",
+    //  .priv_data_size = sizeof(BRSTMDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek,
+    //  .extensions     = "brstm",
 };
 
 AVInputFormat ff_bfstm_demuxer = {
-    .name           = "bfstm",
-    .long_name      = NULL_IF_CONFIG_SMALL("BFSTM (Binary Cafe Stream)"),
-    .priv_data_size = sizeof(BRSTMDemuxContext),
-    .read_probe     = probe_bfstm,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .read_close     = read_close,
-    .read_seek      = read_seek,
-    .extensions     = "bfstm,bcstm",
+    //  .name           = "bfstm",
+    //  .long_name      = "BFSTM (Binary Cafe Stream)",
+    //  .priv_data_size = sizeof(BRSTMDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe_bfstm,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek,
+    //  .extensions     = "bfstm,bcstm",
 };

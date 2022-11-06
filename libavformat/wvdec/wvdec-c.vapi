@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_wv_demuxer = {
-    .name           = "wv",
-    .long_name      = NULL_IF_CONFIG_SMALL("WavPack"),
-    .priv_data_size = sizeof(WVContext),
-    .read_probe     = wv_probe,
-    .read_header    = wv_read_header,
-    .read_packet    = wv_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "wv",
+    //  .long_name      = "WavPack",
+    //  .priv_data_size = sizeof(WVContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = wv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = wv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = wv_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

@@ -25,11 +25,24 @@
  */
 
 AVInputFormat ff_filmstrip_demuxer = {
-    .name           = "filmstrip",
-    .long_name      = NULL_IF_CONFIG_SMALL("Adobe Filmstrip"),
-    .priv_data_size = sizeof(FilmstripDemuxContext),
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .read_seek      = read_seek,
-    .extensions     = "flm",
+    //  .name           = "filmstrip",
+    //  .long_name      = "Adobe Filmstrip",
+    //  .priv_data_size = sizeof(FilmstripDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek,
+    //  .extensions     = "flm",
 };

@@ -38,13 +38,20 @@ const AVOption ff_raw_options[] = {
 FF_RAW_DEMUXER_CLASS(raw_data)
 
 AVInputFormat ff_data_demuxer = {
-    .name           = "data",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw data"),
-    .read_header    = ff_raw_data_read_header,
-    .read_packet    = ff_raw_read_partial_packet,
-    .raw_codec_id   = AV_CODEC_ID_NONE,
-    .flags          = AVFMT_NOTIMESTAMPS,
-    .priv_data_size = sizeof(FFRawDemuxerContext),\
-    .priv_class     = &raw_data_demuxer_class,\
+    //  .name           = "data",
+    //  .long_name      = "raw data",
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ff_raw_data_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_raw_read_partial_packet,
+    //  .raw_codec_id   = AV_CODEC_ID_NONE,
+    //  .flags          = AVFMT_NOTIMESTAMPS,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),\
+    //  .priv_class     = &raw_data_demuxer_class,\
 };
 #endif

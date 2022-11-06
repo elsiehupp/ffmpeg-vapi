@@ -20,11 +20,22 @@
  */
 
 AVOutputFormat ff_ffmetadata_muxer = {
-    .name          = "ffmetadata",
-    .long_name     = NULL_IF_CONFIG_SMALL("FFmpeg metadata in text"),
-    .extensions    = "ffmeta",
-    .write_header  = write_header,
-    .write_packet  = write_packet,
-    .write_trailer = write_trailer,
-    .flags         = AVFMT_NOTIMESTAMPS | AVFMT_NOSTREAMS,
+    //  .name          = "ffmetadata",
+    //  .long_name     = "FFmpeg metadata in text",
+    //  .extensions    = "ffmeta",
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );  = write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );  = write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    ); = write_trailer,
+    //  .flags         = AVFMT_NOTIMESTAMPS | AVFMT_NOSTREAMS,
 };

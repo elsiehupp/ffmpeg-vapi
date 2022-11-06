@@ -20,10 +20,24 @@
  */
 
 const struct ogg_codec ff_vp8_codec = {
-    .magic     = "OVP80",
-    .magicsize = 5,
-    .header    = vp8_header,
-    .packet    = vp8_packet,
-    .gptopts   = vp8_gptopts,
-    .nb_header = 1,
+    //  .magic     = "OVP80",
+    //  .magicsize = 5,
+    [CCode (cname="", cheader="")]
+    public override int header (
+        AVFormatContext context,
+        int arg
+    );    = vp8_header,
+    [CCode (cname="", cheader="")]
+    public override int packet (
+        AVFormatContext context,
+        int arg
+    );    = vp8_packet,
+    [CCode (cname="", cheader="")]
+    public override uint64 gptopts (
+        AVFormatContext context,
+        int arg1,
+        uint64 arg2,
+        out int64 dts
+    );   = vp8_gptopts,
+    //  .nb_header = 1,
 };

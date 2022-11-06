@@ -20,11 +20,19 @@
  */
 
 AVOutputFormat ff_roq_muxer = {
-    .name         = "roq",
-    .long_name    = NULL_IF_CONFIG_SMALL("raw id RoQ"),
-    .extensions   = "roq",
-    .audio_codec  = AV_CODEC_ID_ROQ_DPCM,
-    .video_codec  = AV_CODEC_ID_ROQ,
-    .write_header = roq_write_header,
-    .write_packet = ff_raw_write_packet,
+    //  .name         = "roq",
+    //  .long_name    = "raw id RoQ",
+    //  .extensions   = "roq",
+    //  .audio_codec  = AV_CODEC_ID_ROQ_DPCM,
+    //  .video_codec  = AV_CODEC_ID_ROQ,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    ); = roq_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    ); = ff_raw_write_packet,
 };

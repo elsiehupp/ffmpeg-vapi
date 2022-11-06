@@ -66,10 +66,10 @@ public const Option test_options[] = {
 }
 
 public const Class test_class = {
-    .class_name = "test class",
-    .item_name = av_default_item_name,
-    .option = test_options,
-    .version = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "test class",
+    //  .item_name = av_default_item_name,
+    //  .option = test_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 @endcode
 
@@ -118,10 +118,10 @@ void free_test_struct (out test_struct foo) {
         { null },
     }
     public const Class child_class = {
-        .class_name = "child class",
-        .item_name = av_default_item_name,
-        .option = child_opts,
-        .version = LIBAVUTIL_VERSION_INT,
+        //  .class_name = "child class",
+        //  .item_name = av_default_item_name,
+        //  .option = child_opts,
+        //  .version = LIBAVUTIL_VERSION_INT,
     }
 
     void *child_next (void *obj, void *prev) {

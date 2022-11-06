@@ -25,11 +25,24 @@
  */
 
 AVInputFormat ff_tiertexseq_demuxer = {
-    .name           = "tiertexseq",
-    .long_name      = NULL_IF_CONFIG_SMALL("Tiertex Limited SEQ"),
-    .priv_data_size = sizeof(SeqDemuxContext),
-    .read_probe     = seq_probe,
-    .read_header    = seq_read_header,
-    .read_packet    = seq_read_packet,
-    .read_close     = seq_read_close,
+    //  .name           = "tiertexseq",
+    //  .long_name      = "Tiertex Limited SEQ",
+    //  .priv_data_size = sizeof(SeqDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = seq_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = seq_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = seq_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = seq_read_close,
 };

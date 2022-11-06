@@ -20,11 +20,29 @@
  */
 
 const RTPDynamicProtocolHandler ff_vp9_dynamic_handler = {
-    .enc_name         = "VP9",
-    .codec_type       = AVMEDIA_TYPE_VIDEO,
-    .codec_id         = AV_CODEC_ID_VP9,
-    .priv_data_size   = sizeof(PayloadContext),
-    .init             = vp9_init,
-    .close            = vp9_close_context,
-    .parse_packet     = vp9_handle_packet
+    //  .enc_name         = "VP9",
+    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id         = AV_CODEC_ID_VP9,
+    //  .priv_data_size   = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );             = vp9_init,
+    [CCode (cname="", cheader="")]
+    public override void close (
+        PayloadContext protocol_data
+    );            = vp9_close_context,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = vp9_handle_packet
 };

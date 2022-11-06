@@ -20,11 +20,29 @@
  */
 
 const RTPDynamicProtocolHandler ff_hevc_dynamic_handler = {
-    .enc_name         = "H265",
-    .codec_type       = AVMEDIA_TYPE_VIDEO,
-    .codec_id         = AV_CODEC_ID_HEVC,
-    .need_parsing     = AVSTREAM_PARSE_FULL,
-    .priv_data_size   = sizeof(PayloadContext),
-    .parse_sdp_a_line = hevc_parse_sdp_line,
-    .parse_packet     = hevc_handle_packet,
+    //  .enc_name         = "H265",
+    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id         = AV_CODEC_ID_HEVC,
+    //  .need_parsing     = AVSTREAM_PARSE_FULL,
+    //  .priv_data_size   = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override int parse_sdp_a_line (
+        AVFormatContext format_context,
+        int st_index,
+        PayloadContext priv_data,
+        string line
+    ); = hevc_parse_sdp_line,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = hevc_handle_packet,
 };

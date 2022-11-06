@@ -20,41 +20,67 @@
  */
 
 static const AVClass sdp_demuxer_class = {
-    .class_name     = "SDP demuxer",
-    .item_name      = av_default_item_name,
-    .option         = sdp_options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "SDP demuxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = sdp_options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_sdp_demuxer = {
-    .name           = "sdp",
-    .long_name      = NULL_IF_CONFIG_SMALL("SDP"),
-    .priv_data_size = sizeof(RTSPState),
-    .read_probe     = sdp_probe,
-    .read_header    = sdp_read_header,
-    .read_packet    = ff_rtsp_fetch_packet,
-    .read_close     = sdp_read_close,
-    .priv_class     = &sdp_demuxer_class,
+    //  .name           = "sdp",
+    //  .long_name      = "SDP",
+    //  .priv_data_size = sizeof(RTSPState),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = sdp_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = sdp_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_rtsp_fetch_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = sdp_read_close,
+    //  .priv_class     = &sdp_demuxer_class,
 };
 #endif /* CONFIG_SDP_DEMUXER */
 
 #if CONFIG_RTP_DEMUXER
 static const AVClass rtp_demuxer_class = {
-    .class_name     = "RTP demuxer",
-    .item_name      = av_default_item_name,
-    .option         = rtp_options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "RTP demuxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = rtp_options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_rtp_demuxer = {
-    .name           = "rtp",
-    .long_name      = NULL_IF_CONFIG_SMALL("RTP input"),
-    .priv_data_size = sizeof(RTSPState),
-    .read_probe     = rtp_probe,
-    .read_header    = rtp_read_header,
-    .read_packet    = ff_rtsp_fetch_packet,
-    .read_close     = sdp_read_close,
-    .flags          = AVFMT_NOFILE,
-    .priv_class     = &rtp_demuxer_class,
+    //  .name           = "rtp",
+    //  .long_name      = "RTP input",
+    //  .priv_data_size = sizeof(RTSPState),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = rtp_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = rtp_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_rtsp_fetch_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = sdp_read_close,
+    //  .flags          = AVFMT_NOFILE,
+    //  .priv_class     = &rtp_demuxer_class,
 };
 #endif /* CONFIG_RTP_DEMUXER */

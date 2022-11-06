@@ -34,12 +34,33 @@
  */
 
 const RTPDynamicProtocolHandler ff_h264_dynamic_handler = {
-    .enc_name         = "H264",
-    .codec_type       = AVMEDIA_TYPE_VIDEO,
-    .codec_id         = AV_CODEC_ID_H264,
-    .need_parsing     = AVSTREAM_PARSE_FULL,
-    .priv_data_size   = sizeof(PayloadContext),
-    .parse_sdp_a_line = parse_h264_sdp_line,
-    .close            = h264_close_context,
-    .parse_packet     = h264_handle_packet,
+    //  .enc_name         = "H264",
+    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id         = AV_CODEC_ID_H264,
+    //  .need_parsing     = AVSTREAM_PARSE_FULL,
+    //  .priv_data_size   = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override int parse_sdp_a_line (
+        AVFormatContext format_context,
+        int st_index,
+        PayloadContext priv_data,
+        string line
+    ); = parse_h264_sdp_line,
+    [CCode (cname="", cheader="")]
+    public override void close (
+        PayloadContext protocol_data
+    );            = h264_close_context,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = h264_handle_packet,
 };

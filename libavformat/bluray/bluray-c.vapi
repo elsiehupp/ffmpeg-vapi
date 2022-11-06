@@ -30,18 +30,36 @@ static const AVOption options[] = {
 };
 
 static const AVClass bluray_context_class = {
-    .class_name     = "bluray",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "bluray",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_bluray_protocol = {
-    .name            = "bluray",
-    .url_close       = bluray_close,
-    .url_open        = bluray_open,
-    .url_read        = bluray_read,
-    .url_seek        = bluray_seek,
-    .priv_data_size  = sizeof(BlurayContext),
-    .priv_data_class = &bluray_context_class,
+    //  .name            = "bluray",
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );       = bluray_close,
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );        = bluray_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );        = bluray_read,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );        = bluray_seek,
+    //  .priv_data_size  = sizeof(BlurayContext),
+    //  .priv_data_class = &bluray_context_class,
 };

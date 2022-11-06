@@ -24,20 +24,39 @@
 */
 
 static const AVClass class_vs = {
-    .class_name = "VapourSynth demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "VapourSynth demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_vapoursynth_demuxer = {
-    .name           = "vapoursynth",
-    .long_name      = NULL_IF_CONFIG_SMALL("VapourSynth demuxer"),
-    .priv_data_size = sizeof(VSContext),
-    .read_probe     = probe_vs,
-    .read_header    = read_header_vs,
-    .read_packet    = read_packet_vs,
-    .read_close     = read_close_vs,
-    .read_seek      = read_seek_vs,
-    .priv_class     = &class_vs,
+    //  .name           = "vapoursynth",
+    //  .long_name      = "VapourSynth demuxer",
+    //  .priv_data_size = sizeof(VSContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe_vs,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header_vs,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet_vs,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = read_close_vs,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek_vs,
+    //  .priv_class     = &class_vs,
 };

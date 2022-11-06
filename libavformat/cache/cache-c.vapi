@@ -36,18 +36,37 @@ static const AVOption options[] = {
 };
 
 static const AVClass cache_context_class = {
-    .class_name = "Cache",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "Cache",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_cache_protocol = {
-    .name                = "cache",
-    .url_open2           = cache_open,
-    .url_read            = cache_read,
-    .url_seek            = cache_seek,
-    .url_close           = cache_close,
-    .priv_data_size      = sizeof(Context),
-    .priv_data_class     = &cache_context_class,
+    //  .name                = "cache",
+    [CCode (cname="", cheader="")]
+    public override int url_open2 (
+        URLContext h,
+        string url,
+        int flags,
+        out LibAVUtil.Dictionary options
+    );           = cache_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = cache_read,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = cache_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = cache_close,
+    //  .priv_data_size      = sizeof(Context),
+    //  .priv_data_class     = &cache_context_class,
 };

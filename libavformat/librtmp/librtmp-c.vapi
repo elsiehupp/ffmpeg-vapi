@@ -50,83 +50,238 @@ static const AVOption options[] = {
 
 #define RTMP_CLASS(flavor)\
 static const AVClass lib ## flavor ## _class = {\
-    .class_name = "lib" #flavor " protocol",\
-    .item_name  = av_default_item_name,\
-    .option     = options,\
-    .version    = LIBAVUTIL_VERSION_INT,\
+    //  .class_name = "lib" #flavor " protocol",\
+    //  .item_name  = av_default_item_name,\
+    //  .option     = options,\
+    //  .version    = LIBAVUTIL_VERSION_INT,\
 };
 
 RTMP_CLASS(rtmp)
 const URLProtocol ff_librtmp_protocol = {
-    .name                = "rtmp",
-    .url_open            = rtmp_open,
-    .url_read            = rtmp_read,
-    .url_write           = rtmp_write,
-    .url_close           = rtmp_close,
-    .url_read_pause      = rtmp_read_pause,
-    .url_read_seek       = rtmp_read_seek,
-    .url_get_file_handle = rtmp_get_file_handle,
-    .priv_data_size      = sizeof(LibRTMPContext),
-    .priv_data_class     = &librtmp_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                = "rtmp",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = rtmp_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = rtmp_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = rtmp_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = rtmp_close,
+    [CCode (cname="", cheader="")]
+    public override int url_read_pause (
+        URLContext h,
+        int pause
+    );      = rtmp_read_pause,
+    [CCode (cname="", cheader="")]
+    public override int64 url_read_seek (
+        URLContext h,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );       = rtmp_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = rtmp_get_file_handle,
+    //  .priv_data_size      = sizeof(LibRTMPContext),
+    //  .priv_data_class     = &librtmp_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };
 
 RTMP_CLASS(rtmpt)
 const URLProtocol ff_librtmpt_protocol = {
-    .name                = "rtmpt",
-    .url_open            = rtmp_open,
-    .url_read            = rtmp_read,
-    .url_write           = rtmp_write,
-    .url_close           = rtmp_close,
-    .url_read_pause      = rtmp_read_pause,
-    .url_read_seek       = rtmp_read_seek,
-    .url_get_file_handle = rtmp_get_file_handle,
-    .priv_data_size      = sizeof(LibRTMPContext),
-    .priv_data_class     = &librtmpt_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                = "rtmpt",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = rtmp_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = rtmp_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = rtmp_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = rtmp_close,
+    [CCode (cname="", cheader="")]
+    public override int url_read_pause (
+        URLContext h,
+        int pause
+    );      = rtmp_read_pause,
+    [CCode (cname="", cheader="")]
+    public override int64 url_read_seek (
+        URLContext h,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );       = rtmp_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = rtmp_get_file_handle,
+    //  .priv_data_size      = sizeof(LibRTMPContext),
+    //  .priv_data_class     = &librtmpt_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };
 
 RTMP_CLASS(rtmpe)
 const URLProtocol ff_librtmpe_protocol = {
-    .name                = "rtmpe",
-    .url_open            = rtmp_open,
-    .url_read            = rtmp_read,
-    .url_write           = rtmp_write,
-    .url_close           = rtmp_close,
-    .url_read_pause      = rtmp_read_pause,
-    .url_read_seek       = rtmp_read_seek,
-    .url_get_file_handle = rtmp_get_file_handle,
-    .priv_data_size      = sizeof(LibRTMPContext),
-    .priv_data_class     = &librtmpe_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                = "rtmpe",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = rtmp_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = rtmp_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = rtmp_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = rtmp_close,
+    [CCode (cname="", cheader="")]
+    public override int url_read_pause (
+        URLContext h,
+        int pause
+    );      = rtmp_read_pause,
+    [CCode (cname="", cheader="")]
+    public override int64 url_read_seek (
+        URLContext h,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );       = rtmp_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = rtmp_get_file_handle,
+    //  .priv_data_size      = sizeof(LibRTMPContext),
+    //  .priv_data_class     = &librtmpe_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };
 
 RTMP_CLASS(rtmpte)
 const URLProtocol ff_librtmpte_protocol = {
-    .name                = "rtmpte",
-    .url_open            = rtmp_open,
-    .url_read            = rtmp_read,
-    .url_write           = rtmp_write,
-    .url_close           = rtmp_close,
-    .url_read_pause      = rtmp_read_pause,
-    .url_read_seek       = rtmp_read_seek,
-    .url_get_file_handle = rtmp_get_file_handle,
-    .priv_data_size      = sizeof(LibRTMPContext),
-    .priv_data_class     = &librtmpte_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                = "rtmpte",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = rtmp_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = rtmp_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = rtmp_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = rtmp_close,
+    [CCode (cname="", cheader="")]
+    public override int url_read_pause (
+        URLContext h,
+        int pause
+    );      = rtmp_read_pause,
+    [CCode (cname="", cheader="")]
+    public override int64 url_read_seek (
+        URLContext h,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );       = rtmp_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = rtmp_get_file_handle,
+    //  .priv_data_size      = sizeof(LibRTMPContext),
+    //  .priv_data_class     = &librtmpte_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };
 
 RTMP_CLASS(rtmps)
 const URLProtocol ff_librtmps_protocol = {
-    .name                = "rtmps",
-    .url_open            = rtmp_open,
-    .url_read            = rtmp_read,
-    .url_write           = rtmp_write,
-    .url_close           = rtmp_close,
-    .url_read_pause      = rtmp_read_pause,
-    .url_read_seek       = rtmp_read_seek,
-    .url_get_file_handle = rtmp_get_file_handle,
-    .priv_data_size      = sizeof(LibRTMPContext),
-    .priv_data_class     = &librtmps_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                = "rtmps",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = rtmp_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = rtmp_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = rtmp_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = rtmp_close,
+    [CCode (cname="", cheader="")]
+    public override int url_read_pause (
+        URLContext h,
+        int pause
+    );      = rtmp_read_pause,
+    [CCode (cname="", cheader="")]
+    public override int64 url_read_seek (
+        URLContext h,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );       = rtmp_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = rtmp_get_file_handle,
+    //  .priv_data_size      = sizeof(LibRTMPContext),
+    //  .priv_data_class     = &librtmps_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };

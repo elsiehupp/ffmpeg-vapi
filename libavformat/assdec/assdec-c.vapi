@@ -21,12 +21,33 @@
  */
 
 AVInputFormat ff_ass_demuxer = {
-    .name           = "ass",
-    .long_name      = NULL_IF_CONFIG_SMALL("SSA (SubStation Alpha) subtitle"),
-    .priv_data_size = sizeof(ASSContext),
-    .read_probe     = ass_probe,
-    .read_header    = ass_read_header,
-    .read_packet    = ass_read_packet,
-    .read_close     = ass_read_close,
-    .read_seek2     = ass_read_seek,
+    //  .name           = "ass",
+    //  .long_name      = "SSA (SubStation Alpha) subtitle",
+    //  .priv_data_size = sizeof(ASSContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ass_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ass_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ass_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = ass_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = ass_read_seek,
 };

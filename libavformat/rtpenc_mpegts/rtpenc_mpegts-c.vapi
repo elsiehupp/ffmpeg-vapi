@@ -20,12 +20,23 @@
  */
 
 AVOutputFormat ff_rtp_mpegts_muxer = {
-    .name              = "rtp_mpegts",
-    .long_name         = NULL_IF_CONFIG_SMALL("RTP/mpegts output format"),
-    .priv_data_size    = sizeof(struct MuxChain),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = AV_CODEC_ID_MPEG4,
-    .write_header      = rtp_mpegts_write_header,
-    .write_packet      = rtp_mpegts_write_packet,
-    .write_trailer     = rtp_mpegts_write_close,
+    //  .name              = "rtp_mpegts",
+    //  .long_name         = "RTP/mpegts output format",
+    //  .priv_data_size    = sizeof(struct MuxChain),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = AV_CODEC_ID_MPEG4,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = rtp_mpegts_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = rtp_mpegts_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = rtp_mpegts_write_close,
 };

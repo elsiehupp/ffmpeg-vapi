@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_vag_demuxer = {
-    .name           = "vag",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sony PS2 VAG"),
-    .read_probe     = vag_probe,
-    .read_header    = vag_read_header,
-    .read_packet    = vag_read_packet,
-    .extensions     = "vag",
+    //  .name           = "vag",
+    //  .long_name      = "Sony PS2 VAG",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = vag_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = vag_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = vag_read_packet,
+    //  .extensions     = "vag",
 };

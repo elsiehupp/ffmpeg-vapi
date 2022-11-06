@@ -20,12 +20,20 @@
  */
 
 AVOutputFormat ff_microdvd_muxer = {
-    .name           = "microdvd",
-    .long_name      = NULL_IF_CONFIG_SMALL("MicroDVD subtitle format"),
-    .mime_type      = "text/x-microdvd",
-    .extensions     = "sub",
-    .write_header   = microdvd_write_header,
-    .write_packet   = microdvd_write_packet,
-    .flags          = AVFMT_NOTIMESTAMPS,
-    .subtitle_codec = AV_CODEC_ID_MICRODVD,
+    //  .name           = "microdvd",
+    //  .long_name      = "MicroDVD subtitle format",
+    //  .mime_type      = "text/x-microdvd",
+    //  .extensions     = "sub",
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = microdvd_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = microdvd_write_packet,
+    //  .flags          = AVFMT_NOTIMESTAMPS,
+    //  .subtitle_codec = AV_CODEC_ID_MICRODVD,
 };

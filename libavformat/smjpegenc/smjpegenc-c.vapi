@@ -25,14 +25,25 @@
  */
 
 AVOutputFormat ff_smjpeg_muxer = {
-    .name           = "smjpeg",
-    .long_name      = NULL_IF_CONFIG_SMALL("Loki SDL MJPEG"),
-    .priv_data_size = sizeof(SMJPEGMuxContext),
-    .audio_codec    = AV_CODEC_ID_PCM_S16LE,
-    .video_codec    = AV_CODEC_ID_MJPEG,
-    .write_header   = smjpeg_write_header,
-    .write_packet   = smjpeg_write_packet,
-    .write_trailer  = smjpeg_write_trailer,
-    .flags          = AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT,
-    .codec_tag      = (const AVCodecTag *const []){ ff_codec_smjpeg_video_tags, ff_codec_smjpeg_audio_tags, 0 },
+    //  .name           = "smjpeg",
+    //  .long_name      = "Loki SDL MJPEG",
+    //  .priv_data_size = sizeof(SMJPEGMuxContext),
+    //  .audio_codec    = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec    = AV_CODEC_ID_MJPEG,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = smjpeg_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = smjpeg_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = smjpeg_write_trailer,
+    //  .flags          = AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT,
+    //  .codec_tag      = (const AVCodecTag *const []){ ff_codec_smjpeg_video_tags, ff_codec_smjpeg_audio_tags, 0 },
 };

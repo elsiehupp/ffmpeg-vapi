@@ -28,11 +28,24 @@
  */
 
 AVInputFormat ff_fourxm_demuxer = {
-    .name           = "4xm",
-    .long_name      = NULL_IF_CONFIG_SMALL("4X Technologies"),
-    .priv_data_size = sizeof(FourxmDemuxContext),
-    .read_probe     = fourxm_probe,
-    .read_header    = fourxm_read_header,
-    .read_packet    = fourxm_read_packet,
-    .read_close     = fourxm_read_close,
+    //  .name           = "4xm",
+    //  .long_name      = "4X Technologies",
+    //  .priv_data_size = sizeof(FourxmDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = fourxm_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = fourxm_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = fourxm_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = fourxm_read_close,
 };

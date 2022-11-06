@@ -24,13 +24,34 @@
  */
 
 AVInputFormat ff_vplayer_demuxer = {
-    .name           = "vplayer",
-    .long_name      = NULL_IF_CONFIG_SMALL("VPlayer subtitles"),
-    .priv_data_size = sizeof(VPlayerContext),
-    .read_probe     = vplayer_probe,
-    .read_header    = vplayer_read_header,
-    .read_packet    = vplayer_read_packet,
-    .read_seek2     = vplayer_read_seek,
-    .read_close     = vplayer_read_close,
-    .extensions     = "txt",
+    //  .name           = "vplayer",
+    //  .long_name      = "VPlayer subtitles",
+    //  .priv_data_size = sizeof(VPlayerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = vplayer_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = vplayer_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = vplayer_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = vplayer_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = vplayer_read_close,
+    //  .extensions     = "txt",
 };

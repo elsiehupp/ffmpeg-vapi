@@ -20,13 +20,32 @@
  */
 
 AVInputFormat ff_dss_demuxer = {
-    .name           = "dss",
-    .long_name      = NULL_IF_CONFIG_SMALL("Digital Speech Standard (DSS)"),
-    .priv_data_size = sizeof(DSSDemuxContext),
-    .read_probe     = dss_probe,
-    .read_header    = dss_read_header,
-    .read_packet    = dss_read_packet,
-    .read_close     = dss_read_close,
-    .read_seek      = dss_read_seek,
-    .extensions     = "dss"
+    //  .name           = "dss",
+    //  .long_name      = "Digital Speech Standard (DSS)",
+    //  .priv_data_size = sizeof(DSSDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dss_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = dss_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = dss_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = dss_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = dss_read_seek,
+    //  .extensions     = "dss"
 };

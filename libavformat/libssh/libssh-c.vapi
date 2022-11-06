@@ -29,25 +29,65 @@ static const AVOption options[] = {
 };
 
 static const AVClass libssh_context_class = {
-    .class_name     = "libssh",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "libssh",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_libssh_protocol = {
-    .name                = "sftp",
-    .url_open            = libssh_open,
-    .url_read            = libssh_read,
-    .url_write           = libssh_write,
-    .url_seek            = libssh_seek,
-    .url_close           = libssh_close,
-    .url_delete          = libssh_delete,
-    .url_move            = libssh_move,
-    .url_open_dir        = libssh_open_dir,
-    .url_read_dir        = libssh_read_dir,
-    .url_close_dir       = libssh_close_dir,
-    .priv_data_size      = sizeof(LIBSSHContext),
-    .priv_data_class     = &libssh_context_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                = "sftp",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = libssh_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = libssh_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = libssh_write,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = libssh_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = libssh_close,
+    [CCode (cname="", cheader="")]
+    public override int url_delete (
+        URLContext h
+    );          = libssh_delete,
+    [CCode (cname="", cheader="")]
+    public override int url_move (
+        URLContext h_src,
+        URLContext h_dst
+    );            = libssh_move,
+    [CCode (cname="", cheader="")]
+    public override int url_open_dir (
+        URLContext h
+    );        = libssh_open_dir,
+    [CCode (cname="", cheader="")]
+    public override int url_read_dir (
+        URLContext h,
+        out AVIODirEntry next
+    );        = libssh_read_dir,
+    [CCode (cname="", cheader="")]
+    public override int url_close_dir (
+        URLContext h
+    );       = libssh_close_dir,
+    //  .priv_data_size      = sizeof(LIBSSHContext),
+    //  .priv_data_class     = &libssh_context_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };

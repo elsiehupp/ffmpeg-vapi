@@ -32,35 +32,67 @@ static const AVOption demux_options[] = {
 };
 
 static const AVClass wav_demuxer_class = {
-    .class_name = "WAV demuxer",
-    .item_name  = av_default_item_name,
-    .option     = demux_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "WAV demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = demux_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 AVInputFormat ff_wav_demuxer = {
-    .name           = "wav",
-    .long_name      = NULL_IF_CONFIG_SMALL("WAV / WAVE (Waveform Audio)"),
-    .priv_data_size = sizeof(WAVDemuxContext),
-    .read_probe     = wav_probe,
-    .read_header    = wav_read_header,
-    .read_packet    = wav_read_packet,
-    .read_seek      = wav_read_seek,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .codec_tag      = (const AVCodecTag * const []) { ff_codec_wav_tags,  0 },
-    .priv_class     = &wav_demuxer_class,
+    //  .name           = "wav",
+    //  .long_name      = "WAV / WAVE (Waveform Audio)",
+    //  .priv_data_size = sizeof(WAVDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = wav_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = wav_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = wav_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = wav_read_seek,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .codec_tag      = (const AVCodecTag * const []) { ff_codec_wav_tags,  0 },
+    //  .priv_class     = &wav_demuxer_class,
 };
 #endif /* CONFIG_WAV_DEMUXER */
 
 #if CONFIG_W64_DEMUXER
 AVInputFormat ff_w64_demuxer = {
-    .name           = "w64",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sony Wave64"),
-    .priv_data_size = sizeof(WAVDemuxContext),
-    .read_probe     = w64_probe,
-    .read_header    = w64_read_header,
-    .read_packet    = wav_read_packet,
-    .read_seek      = wav_read_seek,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .codec_tag      = (const AVCodecTag * const []) { ff_codec_wav_tags, 0 },
+    //  .name           = "w64",
+    //  .long_name      = "Sony Wave64",
+    //  .priv_data_size = sizeof(WAVDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = w64_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = w64_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = wav_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = wav_read_seek,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .codec_tag      = (const AVCodecTag * const []) { ff_codec_wav_tags, 0 },
 };
 #endif /* CONFIG_W64_DEMUXER */

@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_voc_demuxer = {
-    .name           = "voc",
-    .long_name      = NULL_IF_CONFIG_SMALL("Creative Voice"),
-    .priv_data_size = sizeof(VocDecContext),
-    .read_probe     = voc_probe,
-    .read_header    = voc_read_header,
-    .read_packet    = voc_read_packet,
-    .read_seek      = voc_read_seek,
-    .codec_tag      = (const AVCodecTag* const []){ ff_voc_codec_tags, 0 },
+    //  .name           = "voc",
+    //  .long_name      = "Creative Voice",
+    //  .priv_data_size = sizeof(VocDecContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = voc_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = voc_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = voc_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = voc_read_seek,
+    //  .codec_tag      = (const AVCodecTag* const []){ ff_voc_codec_tags, 0 },
 };

@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_xvag_demuxer = {
-    .name           = "xvag",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sony PS3 XVAG"),
-    .read_probe     = xvag_probe,
-    .read_header    = xvag_read_header,
-    .read_packet    = xvag_read_packet,
-    .extensions     = "xvag",
+    //  .name           = "xvag",
+    //  .long_name      = "Sony PS3 XVAG",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = xvag_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = xvag_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = xvag_read_packet,
+    //  .extensions     = "xvag",
 };

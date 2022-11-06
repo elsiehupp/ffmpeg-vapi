@@ -19,9 +19,22 @@
  */
 
 const URLProtocol ff_data_protocol = {
-    .name           = "data",
-    .url_open       = data_open,
-    .url_close      = data_close,
-    .url_read       = data_read,
-    .priv_data_size = sizeof(DataContext),
+    //  .name           = "data",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );       = data_open,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );      = data_close,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = data_read,
+    //  .priv_data_size = sizeof(DataContext),
 };

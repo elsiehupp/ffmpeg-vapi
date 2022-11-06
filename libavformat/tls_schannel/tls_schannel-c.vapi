@@ -26,20 +26,42 @@ static const AVOption options[] = {
 };
 
 static const AVClass tls_class = {
-    .class_name = "tls",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "tls",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_tls_protocol = {
-    .name           = "tls",
-    .url_open2      = tls_open,
-    .url_read       = tls_read,
-    .url_write      = tls_write,
-    .url_close      = tls_close,
-    .url_get_file_handle = tls_get_file_handle,
-    .priv_data_size = sizeof(TLSContext),
-    .flags          = URL_PROTOCOL_FLAG_NETWORK,
-    .priv_data_class = &tls_class,
+    //  .name           = "tls",
+    [CCode (cname="", cheader="")]
+    public override int url_open2 (
+        URLContext h,
+        string url,
+        int flags,
+        out LibAVUtil.Dictionary options
+    );      = tls_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = tls_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );      = tls_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );      = tls_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = tls_get_file_handle,
+    //  .priv_data_size = sizeof(TLSContext),
+    //  .flags          = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class = &tls_class,
 };

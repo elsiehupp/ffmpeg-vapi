@@ -26,13 +26,34 @@
  */
 
 AVInputFormat ff_pjs_demuxer = {
-    .name           = "pjs",
-    .long_name      = NULL_IF_CONFIG_SMALL("PJS (Phoenix Japanimation Society) subtitles"),
-    .priv_data_size = sizeof(PJSContext),
-    .read_probe     = pjs_probe,
-    .read_header    = pjs_read_header,
-    .read_packet    = pjs_read_packet,
-    .read_seek2     = pjs_read_seek,
-    .read_close     = pjs_read_close,
-    .extensions     = "pjs",
+    //  .name           = "pjs",
+    //  .long_name      = "PJS (Phoenix Japanimation Society) subtitles",
+    //  .priv_data_size = sizeof(PJSContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = pjs_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = pjs_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = pjs_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = pjs_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = pjs_read_close,
+    //  .extensions     = "pjs",
 };

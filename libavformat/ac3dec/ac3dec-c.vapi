@@ -27,16 +27,26 @@ static int ac3_probe(const AVProbeData *p)
 
 FF_RAW_DEMUXER_CLASS(ac3)
 AVInputFormat ff_ac3_demuxer = {
-    .name           = "ac3",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw AC-3"),
-    .read_probe     = ac3_probe,
-    .read_header    = ff_raw_audio_read_header,
-    .read_packet    = ff_raw_read_partial_packet,
-    .flags= AVFMT_GENERIC_INDEX,
-    .extensions = "ac3",
-    .raw_codec_id   = AV_CODEC_ID_AC3,
-    .priv_data_size = sizeof(FFRawDemuxerContext),
-    .priv_class     = &ac3_demuxer_class,
+    //  .name           = "ac3",
+    //  .long_name      = "raw AC-3",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ac3_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ff_raw_audio_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_raw_read_partial_packet,
+    //  .flags = AVFMT_GENERIC_INDEX,
+    //  .extensions = "ac3",
+    //  .raw_codec_id   = AV_CODEC_ID_AC3,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),
+    //  .priv_class     = &ac3_demuxer_class,
 };
 #endif
 
@@ -48,15 +58,25 @@ static int eac3_probe(const AVProbeData *p)
 
 FF_RAW_DEMUXER_CLASS(eac3)
 AVInputFormat ff_eac3_demuxer = {
-    .name           = "eac3",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw E-AC-3"),
-    .read_probe     = eac3_probe,
-    .read_header    = ff_raw_audio_read_header,
-    .read_packet    = ff_raw_read_partial_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "eac3",
-    .raw_codec_id   = AV_CODEC_ID_EAC3,
-    .priv_data_size = sizeof(FFRawDemuxerContext),
-    .priv_class     = &eac3_demuxer_class,
+    //  .name           = "eac3",
+    //  .long_name      = "raw E-AC-3",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = eac3_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ff_raw_audio_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_raw_read_partial_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "eac3",
+    //  .raw_codec_id   = AV_CODEC_ID_EAC3,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),
+    //  .priv_class     = &eac3_demuxer_class,
 };
 #endif

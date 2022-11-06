@@ -26,13 +26,21 @@
  */
 
 AVOutputFormat ff_srt_muxer = {
-    .name           = "srt",
-    .long_name      = NULL_IF_CONFIG_SMALL("SubRip subtitle"),
-    .mime_type      = "application/x-subrip",
-    .extensions     = "srt",
-    .priv_data_size = sizeof(SRTContext),
-    .write_header   = srt_write_header,
-    .write_packet   = srt_write_packet,
-    .flags          = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
-    .subtitle_codec = AV_CODEC_ID_SUBRIP,
+    //  .name           = "srt",
+    //  .long_name      = "SubRip subtitle",
+    //  .mime_type      = "application/x-subrip",
+    //  .extensions     = "srt",
+    //  .priv_data_size = sizeof(SRTContext),
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = srt_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = srt_write_packet,
+    //  .flags          = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
+    //  .subtitle_codec = AV_CODEC_ID_SUBRIP,
 };

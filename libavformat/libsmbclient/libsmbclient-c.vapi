@@ -29,25 +29,65 @@ static const AVOption options[] = {
 };
 
 static const AVClass libsmbclient_context_class = {
-    .class_name     = "libsmbc",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "libsmbc",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_libsmbclient_protocol = {
-    .name                = "smb",
-    .url_open            = libsmbc_open,
-    .url_read            = libsmbc_read,
-    .url_write           = libsmbc_write,
-    .url_seek            = libsmbc_seek,
-    .url_close           = libsmbc_close,
-    .url_delete          = libsmbc_delete,
-    .url_move            = libsmbc_move,
-    .url_open_dir        = libsmbc_open_dir,
-    .url_read_dir        = libsmbc_read_dir,
-    .url_close_dir       = libsmbc_close_dir,
-    .priv_data_size      = sizeof(LIBSMBContext),
-    .priv_data_class     = &libsmbclient_context_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                = "smb",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = libsmbc_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = libsmbc_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = libsmbc_write,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = libsmbc_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = libsmbc_close,
+    [CCode (cname="", cheader="")]
+    public override int url_delete (
+        URLContext h
+    );          = libsmbc_delete,
+    [CCode (cname="", cheader="")]
+    public override int url_move (
+        URLContext h_src,
+        URLContext h_dst
+    );            = libsmbc_move,
+    [CCode (cname="", cheader="")]
+    public override int url_open_dir (
+        URLContext h
+    );        = libsmbc_open_dir,
+    [CCode (cname="", cheader="")]
+    public override int url_read_dir (
+        URLContext h,
+        out AVIODirEntry next
+    );        = libsmbc_read_dir,
+    [CCode (cname="", cheader="")]
+    public override int url_close_dir (
+        URLContext h
+    );       = libsmbc_close_dir,
+    //  .priv_data_size      = sizeof(LIBSMBContext),
+    //  .priv_data_class     = &libsmbclient_context_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };

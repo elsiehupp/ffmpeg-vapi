@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_rpl_demuxer = {
-    .name           = "rpl",
-    .long_name      = NULL_IF_CONFIG_SMALL("RPL / ARMovie"),
-    .priv_data_size = sizeof(RPLContext),
-    .read_probe     = rpl_probe,
-    .read_header    = rpl_read_header,
-    .read_packet    = rpl_read_packet,
+    //  .name           = "rpl",
+    //  .long_name      = "RPL / ARMovie",
+    //  .priv_data_size = sizeof(RPLContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = rpl_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = rpl_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = rpl_read_packet,
 };

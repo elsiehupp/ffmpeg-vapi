@@ -25,12 +25,20 @@
  */
 
 AVOutputFormat ff_webvtt_muxer = {
-    .name              = "webvtt",
-    .long_name         = NULL_IF_CONFIG_SMALL("WebVTT subtitle"),
-    .extensions        = "vtt",
-    .mime_type         = "text/vtt",
-    .flags             = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
-    .subtitle_codec    = AV_CODEC_ID_WEBVTT,
-    .write_header      = webvtt_write_header,
-    .write_packet      = webvtt_write_packet,
+    //  .name              = "webvtt",
+    //  .long_name         = "WebVTT subtitle",
+    //  .extensions        = "vtt",
+    //  .mime_type         = "text/vtt",
+    //  .flags             = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
+    //  .subtitle_codec    = AV_CODEC_ID_WEBVTT,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = webvtt_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = webvtt_write_packet,
 };

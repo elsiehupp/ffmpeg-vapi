@@ -25,13 +25,34 @@
  */
 
 AVInputFormat ff_subviewer_demuxer = {
-    .name           = "subviewer",
-    .long_name      = NULL_IF_CONFIG_SMALL("SubViewer subtitle format"),
-    .priv_data_size = sizeof(SubViewerContext),
-    .read_probe     = subviewer_probe,
-    .read_header    = subviewer_read_header,
-    .read_packet    = subviewer_read_packet,
-    .read_seek2     = subviewer_read_seek,
-    .read_close     = subviewer_read_close,
-    .extensions     = "sub",
+    //  .name           = "subviewer",
+    //  .long_name      = "SubViewer subtitle format",
+    //  .priv_data_size = sizeof(SubViewerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = subviewer_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = subviewer_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = subviewer_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = subviewer_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = subviewer_read_close,
+    //  .extensions     = "sub",
 };

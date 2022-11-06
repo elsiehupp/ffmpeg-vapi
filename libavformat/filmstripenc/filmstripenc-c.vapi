@@ -25,13 +25,24 @@
  */
 
 AVOutputFormat ff_filmstrip_muxer = {
-    .name              = "filmstrip",
-    .long_name         = NULL_IF_CONFIG_SMALL("Adobe Filmstrip"),
-    .extensions        = "flm",
-    .priv_data_size    = sizeof(FilmstripMuxContext),
-    .audio_codec       = AV_CODEC_ID_NONE,
-    .video_codec       = AV_CODEC_ID_RAWVIDEO,
-    .write_header      = write_header,
-    .write_packet      = write_packet,
-    .write_trailer     = write_trailer,
+    //  .name              = "filmstrip",
+    //  .long_name         = "Adobe Filmstrip",
+    //  .extensions        = "flm",
+    //  .priv_data_size    = sizeof(FilmstripMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_NONE,
+    //  .video_codec       = AV_CODEC_ID_RAWVIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = write_trailer,
 };

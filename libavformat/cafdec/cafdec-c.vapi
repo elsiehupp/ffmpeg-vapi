@@ -26,12 +26,28 @@
  */
 
 AVInputFormat ff_caf_demuxer = {
-    .name           = "caf",
-    .long_name      = NULL_IF_CONFIG_SMALL("Apple CAF (Core Audio Format)"),
-    .priv_data_size = sizeof(CafContext),
-    .read_probe     = probe,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .read_seek      = read_seek,
-    .codec_tag      = (const AVCodecTag* const []){ ff_codec_caf_tags, 0 },
+    //  .name           = "caf",
+    //  .long_name      = "Apple CAF (Core Audio Format)",
+    //  .priv_data_size = sizeof(CafContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek,
+    //  .codec_tag      = (const AVCodecTag* const []){ ff_codec_caf_tags, 0 },
 };

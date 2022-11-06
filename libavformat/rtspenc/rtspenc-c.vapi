@@ -20,21 +20,32 @@
  */
 
 static const AVClass rtsp_muxer_class = {
-    .class_name = "RTSP muxer",
-    .item_name  = av_default_item_name,
-    .option     = ff_rtsp_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "RTSP muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = ff_rtsp_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_rtsp_muxer = {
-    .name              = "rtsp",
-    .long_name         = NULL_IF_CONFIG_SMALL("RTSP output"),
-    .priv_data_size    = sizeof(RTSPState),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = AV_CODEC_ID_MPEG4,
-    .write_header      = rtsp_write_header,
-    .write_packet      = rtsp_write_packet,
-    .write_trailer     = rtsp_write_close,
-    .flags             = AVFMT_NOFILE | AVFMT_GLOBALHEADER,
-    .priv_class        = &rtsp_muxer_class,
+    //  .name              = "rtsp",
+    //  .long_name         = "RTSP output",
+    //  .priv_data_size    = sizeof(RTSPState),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = AV_CODEC_ID_MPEG4,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = rtsp_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = rtsp_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = rtsp_write_close,
+    //  .flags             = AVFMT_NOFILE | AVFMT_GLOBALHEADER,
+    //  .priv_class        = &rtsp_muxer_class,
 };

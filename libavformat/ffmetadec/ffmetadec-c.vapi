@@ -20,9 +20,19 @@
  */
 
 AVInputFormat ff_ffmetadata_demuxer = {
-    .name        = "ffmetadata",
-    .long_name   = NULL_IF_CONFIG_SMALL("FFmpeg metadata in text"),
-    .read_probe  = probe,
-    .read_header = read_header,
-    .read_packet = read_packet,
+    //  .name        = "ffmetadata",
+    //  .long_name   = "FFmpeg metadata in text",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );  = probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    ); = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = read_packet,
 };

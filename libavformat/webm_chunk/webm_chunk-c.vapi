@@ -35,23 +35,34 @@ static const AVOption options[] = {
 
 #if CONFIG_WEBM_CHUNK_MUXER
 static const AVClass webm_chunk_class = {
-    .class_name = "WebM Chunk Muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "WebM Chunk Muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_webm_chunk_muxer = {
-    .name           = "webm_chunk",
-    .long_name      = NULL_IF_CONFIG_SMALL("WebM Chunk Muxer"),
-    .mime_type      = "video/webm",
-    .extensions     = "chk",
-    .flags          = AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_NEEDNUMBER |
+    //  .name           = "webm_chunk",
+    //  .long_name      = "WebM Chunk Muxer",
+    //  .mime_type      = "video/webm",
+    //  .extensions     = "chk",
+    //  .flags          = AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_NEEDNUMBER |
                       AVFMT_TS_NONSTRICT,
-    .priv_data_size = sizeof(WebMChunkContext),
-    .write_header   = webm_chunk_write_header,
-    .write_packet   = webm_chunk_write_packet,
-    .write_trailer  = webm_chunk_write_trailer,
-    .priv_class     = &webm_chunk_class,
+    //  .priv_data_size = sizeof(WebMChunkContext),
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = webm_chunk_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = webm_chunk_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = webm_chunk_write_trailer,
+    //  .priv_class     = &webm_chunk_class,
 };
 #endif

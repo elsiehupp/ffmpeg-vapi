@@ -26,54 +26,76 @@ static const AVOption asf_options[] = {
 
 #if CONFIG_ASF_MUXER
 static const AVClass asf_muxer_class = {
-    .class_name     = "ASF muxer",
-    .item_name      = av_default_item_name,
-    .option         = asf_options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "ASF muxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = asf_options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_asf_muxer = {
-    .name           = "asf",
-    .long_name      = NULL_IF_CONFIG_SMALL("ASF (Advanced / Active Streaming Format)"),
-    .mime_type      = "video/x-ms-asf",
-    .extensions     = "asf,wmv,wma",
-    .priv_data_size = sizeof(ASFContext),
-    .audio_codec    = AV_CODEC_ID_WMAV2,
-    .video_codec    = AV_CODEC_ID_MSMPEG4V3,
-    .write_header   = asf_write_header,
-    .write_packet   = asf_write_packet,
-    .write_trailer  = asf_write_trailer,
-    .flags          = AVFMT_GLOBALHEADER,
-    .codec_tag      = (const AVCodecTag * const []) {
+    //  .name           = "asf",
+    //  .long_name      = "ASF (Advanced / Active Streaming Format)",
+    //  .mime_type      = "video/x-ms-asf",
+    //  .extensions     = "asf,wmv,wma",
+    //  .priv_data_size = sizeof(ASFContext),
+    //  .audio_codec    = AV_CODEC_ID_WMAV2,
+    //  .video_codec    = AV_CODEC_ID_MSMPEG4V3,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = asf_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = asf_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = asf_write_trailer,
+    //  .flags          = AVFMT_GLOBALHEADER,
+    //  .codec_tag      = (const AVCodecTag * const []) {
         codec_asf_bmp_tags, ff_codec_bmp_tags, ff_codec_wav_tags, 0
     },
-    .priv_class        = &asf_muxer_class,
+    //  .priv_class        = &asf_muxer_class,
 };
 #endif /* CONFIG_ASF_MUXER */
 
 #if CONFIG_ASF_STREAM_MUXER
 static const AVClass asf_stream_muxer_class = {
-    .class_name     = "ASF stream muxer",
-    .item_name      = av_default_item_name,
-    .option         = asf_options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "ASF stream muxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = asf_options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_asf_stream_muxer = {
-    .name           = "asf_stream",
-    .long_name      = NULL_IF_CONFIG_SMALL("ASF (Advanced / Active Streaming Format)"),
-    .mime_type      = "video/x-ms-asf",
-    .extensions     = "asf,wmv,wma",
-    .priv_data_size = sizeof(ASFContext),
-    .audio_codec    = AV_CODEC_ID_WMAV2,
-    .video_codec    = AV_CODEC_ID_MSMPEG4V3,
-    .write_header   = asf_write_stream_header,
-    .write_packet   = asf_write_packet,
-    .write_trailer  = asf_write_trailer,
-    .flags          = AVFMT_GLOBALHEADER,
-    .codec_tag      = (const AVCodecTag * const []) {
+    //  .name           = "asf_stream",
+    //  .long_name      = "ASF (Advanced / Active Streaming Format)",
+    //  .mime_type      = "video/x-ms-asf",
+    //  .extensions     = "asf,wmv,wma",
+    //  .priv_data_size = sizeof(ASFContext),
+    //  .audio_codec    = AV_CODEC_ID_WMAV2,
+    //  .video_codec    = AV_CODEC_ID_MSMPEG4V3,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = asf_write_stream_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = asf_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = asf_write_trailer,
+    //  .flags          = AVFMT_GLOBALHEADER,
+    //  .codec_tag      = (const AVCodecTag * const []) {
         codec_asf_bmp_tags, ff_codec_bmp_tags, ff_codec_wav_tags, 0
     },
-    .priv_class        = &asf_stream_muxer_class,
+    //  .priv_class        = &asf_stream_muxer_class,
 };
 #endif /* CONFIG_ASF_STREAM_MUXER */

@@ -21,12 +21,28 @@
  */
 
 AVInputFormat ff_ifv_demuxer = {
-    .name           = "ifv",
-    .long_name      = NULL_IF_CONFIG_SMALL("IFV CCTV DVR"),
-    .priv_data_size = sizeof(IFVContext),
-    .extensions     = "ifv",
-    .read_probe     = ifv_probe,
-    .read_header    = ifv_read_header,
-    .read_packet    = ifv_read_packet,
-    .read_seek      = ifv_read_seek,
+    //  .name           = "ifv",
+    //  .long_name      = "IFV CCTV DVR",
+    //  .priv_data_size = sizeof(IFVContext),
+    //  .extensions     = "ifv",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ifv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ifv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ifv_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = ifv_read_seek,
 };

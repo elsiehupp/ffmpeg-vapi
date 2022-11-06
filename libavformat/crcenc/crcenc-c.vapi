@@ -20,13 +20,24 @@
  */
 
 AVOutputFormat ff_crc_muxer = {
-    .name              = "crc",
-    .long_name         = NULL_IF_CONFIG_SMALL("CRC testing"),
-    .priv_data_size    = sizeof(CRCState),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_RAWVIDEO,
-    .write_header      = crc_write_header,
-    .write_packet      = crc_write_packet,
-    .write_trailer     = crc_write_trailer,
-    .flags             = AVFMT_NOTIMESTAMPS,
+    //  .name              = "crc",
+    //  .long_name         = "CRC testing",
+    //  .priv_data_size    = sizeof(CRCState),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_RAWVIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = crc_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = crc_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = crc_write_trailer,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
 };

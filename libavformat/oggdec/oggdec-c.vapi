@@ -9,7 +9,7 @@
 
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
-    files (the "Software"), to deal in the Software without
+    files (the "Software", to deal in the Software without
     restriction, including without limitation the rights to use, copy,
     modify, merge, publish, distribute, sublicense, and/or sell copies
     of the Software, and to permit persons to whom the Software is
@@ -29,15 +29,40 @@
  */
 
 AVInputFormat ff_ogg_demuxer = {
-    .name           = "ogg",
-    .long_name      = NULL_IF_CONFIG_SMALL("Ogg"),
-    .priv_data_size = sizeof(struct ogg),
-    .read_probe     = ogg_probe,
-    .read_header    = ogg_read_header,
-    .read_packet    = ogg_read_packet,
-    .read_close     = ogg_read_close,
-    .read_seek      = ogg_read_seek,
-    .read_timestamp = ogg_read_timestamp,
-    .extensions     = "ogg",
-    .flags          = AVFMT_GENERIC_INDEX | AVFMT_TS_DISCONT | AVFMT_NOBINSEARCH,
+    //  .name           = "ogg",
+    //  .long_name      = "Ogg",
+    //  .priv_data_size = sizeof(struct ogg),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ogg_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ogg_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ogg_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = ogg_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = ogg_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = ogg_read_timestamp,
+    //  .extensions     = "ogg",
+    //  .flags          = AVFMT_GENERIC_INDEX | AVFMT_TS_DISCONT | AVFMT_NOBINSEARCH,
 };

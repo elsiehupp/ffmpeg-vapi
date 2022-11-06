@@ -20,15 +20,26 @@
  */
 
 AVOutputFormat ff_rm_muxer = {
-    .name              = "rm",
-    .long_name         = NULL_IF_CONFIG_SMALL("RealMedia"),
-    .mime_type         = "application/vnd.rn-realmedia",
-    .extensions        = "rm,ra",
-    .priv_data_size    = sizeof(RMMuxContext),
-    .audio_codec       = AV_CODEC_ID_AC3,
-    .video_codec       = AV_CODEC_ID_RV10,
-    .write_header      = rm_write_header,
-    .write_packet      = rm_write_packet,
-    .write_trailer     = rm_write_trailer,
-    .codec_tag         = (const AVCodecTag* const []){ ff_rm_codec_tags, 0 },
+    //  .name              = "rm",
+    //  .long_name         = "RealMedia",
+    //  .mime_type         = "application/vnd.rn-realmedia",
+    //  .extensions        = "rm,ra",
+    //  .priv_data_size    = sizeof(RMMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_AC3,
+    //  .video_codec       = AV_CODEC_ID_RV10,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = rm_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = rm_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = rm_write_trailer,
+    //  .codec_tag         = (const AVCodecTag* const []){ ff_rm_codec_tags, 0 },
 };

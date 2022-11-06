@@ -163,14 +163,24 @@ static int wsd_read_header(AVFormatContext *s)
 
 FF_RAW_DEMUXER_CLASS(wsd)
 AVInputFormat ff_wsd_demuxer = {
-    .name         = "wsd",
-    .long_name    = NULL_IF_CONFIG_SMALL("Wideband Single-bit Data (WSD)"),
-    .read_probe   = wsd_probe,
-    .read_header  = wsd_read_header,
-    .read_packet  = ff_raw_read_partial_packet,
-    .extensions   = "wsd",
-    .flags        = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
-    .raw_codec_id = AV_CODEC_ID_DSD_MSBF,
-    .priv_data_size = sizeof(FFRawDemuxerContext),
-    .priv_class     = &wsd_demuxer_class,
+    //  .name         = "wsd",
+    //  .long_name    = "Wideband Single-bit Data (WSD)",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );   = wsd_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );  = wsd_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );  = ff_raw_read_partial_packet,
+    //  .extensions   = "wsd",
+    //  .flags        = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
+    //  .raw_codec_id = AV_CODEC_ID_DSD_MSBF,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),
+    //  .priv_class     = &wsd_demuxer_class,
 };

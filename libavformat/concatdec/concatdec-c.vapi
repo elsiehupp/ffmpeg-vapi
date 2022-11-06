@@ -32,21 +32,42 @@ static const AVOption options[] = {
 };
 
 static const AVClass concat_class = {
-    .class_name = "concat demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "concat demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 
 AVInputFormat ff_concat_demuxer = {
-    .name           = "concat",
-    .long_name      = NULL_IF_CONFIG_SMALL("Virtual concatenation script"),
-    .priv_data_size = sizeof(ConcatContext),
-    .read_probe     = concat_probe,
-    .read_header    = concat_read_header,
-    .read_packet    = concat_read_packet,
-    .read_close     = concat_read_close,
-    .read_seek2     = concat_seek,
-    .priv_class     = &concat_class,
+    //  .name           = "concat",
+    //  .long_name      = "Virtual concatenation script",
+    //  .priv_data_size = sizeof(ConcatContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = concat_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = concat_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = concat_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = concat_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = concat_seek,
+    //  .priv_class     = &concat_class,
 };

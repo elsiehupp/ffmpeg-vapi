@@ -33,20 +33,44 @@ static const AVOption options[] = {
 };
 
 static const AVClass crypto_class = {
-    .class_name     = "crypto",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "crypto",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_crypto_protocol = {
-    .name            = "crypto",
-    .url_open2       = crypto_open2,
-    .url_seek        = crypto_seek,
-    .url_read        = crypto_read,
-    .url_write       = crypto_write,
-    .url_close       = crypto_close,
-    .priv_data_size  = sizeof(CryptoContext),
-    .priv_data_class = &crypto_class,
-    .flags           = URL_PROTOCOL_FLAG_NESTED_SCHEME,
+    //  .name            = "crypto",
+    [CCode (cname="", cheader="")]
+    public override int url_open2 (
+        URLContext h,
+        string url,
+        int flags,
+        out LibAVUtil.Dictionary options
+    );       = crypto_open2,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );        = crypto_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );        = crypto_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = crypto_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );       = crypto_close,
+    //  .priv_data_size  = sizeof(CryptoContext),
+    //  .priv_data_class = &crypto_class,
+    //  .flags           = URL_PROTOCOL_FLAG_NESTED_SCHEME,
 };

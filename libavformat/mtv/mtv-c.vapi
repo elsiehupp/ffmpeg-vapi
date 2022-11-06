@@ -25,10 +25,20 @@
  */
 
 AVInputFormat ff_mtv_demuxer = {
-    .name           = "mtv",
-    .long_name      = NULL_IF_CONFIG_SMALL("MTV"),
-    .priv_data_size = sizeof(MTVDemuxContext),
-    .read_probe     = mtv_probe,
-    .read_header    = mtv_read_header,
-    .read_packet    = mtv_read_packet,
+    //  .name           = "mtv",
+    //  .long_name      = "MTV",
+    //  .priv_data_size = sizeof(MTVDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mtv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mtv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mtv_read_packet,
 };

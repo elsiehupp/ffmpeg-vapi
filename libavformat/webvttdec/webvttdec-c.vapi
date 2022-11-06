@@ -37,21 +37,42 @@ static const AVOption options[] = {
 };
 
 static const AVClass webvtt_demuxer_class = {
-    .class_name  = "WebVTT demuxer",
-    .item_name   = av_default_item_name,
-    .option      = options,
-    .version     = LIBAVUTIL_VERSION_INT,
+    //  .class_name  = "WebVTT demuxer",
+    //  .item_name   = av_default_item_name,
+    //  .option      = options,
+    //  .version     = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_webvtt_demuxer = {
-    .name           = "webvtt",
-    .long_name      = NULL_IF_CONFIG_SMALL("WebVTT subtitle"),
-    .priv_data_size = sizeof(WebVTTContext),
-    .read_probe     = webvtt_probe,
-    .read_header    = webvtt_read_header,
-    .read_packet    = webvtt_read_packet,
-    .read_seek2     = webvtt_read_seek,
-    .read_close     = webvtt_read_close,
-    .extensions     = "vtt",
-    .priv_class     = &webvtt_demuxer_class,
+    //  .name           = "webvtt",
+    //  .long_name      = "WebVTT subtitle",
+    //  .priv_data_size = sizeof(WebVTTContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = webvtt_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = webvtt_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = webvtt_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = webvtt_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = webvtt_read_close,
+    //  .extensions     = "vtt",
+    //  .priv_class     = &webvtt_demuxer_class,
 };

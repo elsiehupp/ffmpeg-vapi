@@ -28,20 +28,31 @@ static const AVOption options[] = {
 };
 
 static const AVClass webp_muxer_class = {
-    .class_name = "WebP muxer",
-    .item_name  = av_default_item_name,
-    .version    = LIBAVUTIL_VERSION_INT,
-    .option     = options,
+    //  .class_name = "WebP muxer",
+    //  .item_name  = av_default_item_name,
+    //  .version    = LIBAVUTIL_VERSION_INT,
+    //  .option     = options,
 };
 AVOutputFormat ff_webp_muxer = {
-    .name           = "webp",
-    .long_name      = NULL_IF_CONFIG_SMALL("WebP"),
-    .extensions     = "webp",
-    .priv_data_size = sizeof(WebpContext),
-    .video_codec    = AV_CODEC_ID_WEBP,
-    .write_header   = webp_write_header,
-    .write_packet   = webp_write_packet,
-    .write_trailer  = webp_write_trailer,
-    .priv_class     = &webp_muxer_class,
-    .flags          = AVFMT_VARIABLE_FPS,
+    //  .name           = "webp",
+    //  .long_name      = "WebP",
+    //  .extensions     = "webp",
+    //  .priv_data_size = sizeof(WebpContext),
+    //  .video_codec    = AV_CODEC_ID_WEBP,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = webp_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = webp_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = webp_write_trailer,
+    //  .priv_class     = &webp_muxer_class,
+    //  .flags          = AVFMT_VARIABLE_FPS,
 };

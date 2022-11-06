@@ -27,26 +27,44 @@ Only mono files are supported.
 */
 
 AVInputFormat ff_amrwb_demuxer = {
-    .name           = "amrwb",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw AMR-WB"),
-    .priv_data_size = sizeof(AMRContext),
-    .read_probe     = amrwb_probe,
-    .read_header    = amrwb_read_header,
-    .read_packet    = amr_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "amrwb",
+    //  .long_name      = "raw AMR-WB",
+    //  .priv_data_size = sizeof(AMRContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = amrwb_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = amrwb_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = amr_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };
 #endif
 
 #if CONFIG_AMR_MUXER
 AVOutputFormat ff_amr_muxer = {
-    .name              = "amr",
-    .long_name         = NULL_IF_CONFIG_SMALL("3GPP AMR"),
-    .mime_type         = "audio/amr",
-    .extensions        = "amr",
-    .audio_codec       = AV_CODEC_ID_AMR_NB,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .write_header      = amr_write_header,
-    .write_packet      = amr_write_packet,
-    .flags             = AVFMT_NOTIMESTAMPS,
+    //  .name              = "amr",
+    //  .long_name         = "3GPP AMR",
+    //  .mime_type         = "audio/amr",
+    //  .extensions        = "amr",
+    //  .audio_codec       = AV_CODEC_ID_AMR_NB,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="amr_write_header", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );
+    [CCode (cname="amr_write_packet", cheader="")]
+    public abstract int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );
+    //  .flags             = AVFMT_NOTIMESTAMPS,
 };
 #endif

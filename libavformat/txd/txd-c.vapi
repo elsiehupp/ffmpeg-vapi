@@ -20,9 +20,19 @@
  */
 
 AVInputFormat ff_txd_demuxer = {
-    .name        = "txd",
-    .long_name   = NULL_IF_CONFIG_SMALL("Renderware TeXture Dictionary"),
-    .read_probe  = txd_probe,
-    .read_header = txd_read_header,
-    .read_packet = txd_read_packet,
+    //  .name        = "txd",
+    //  .long_name   = "Renderware TeXture Dictionary",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );  = txd_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    ); = txd_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = txd_read_packet,
 };

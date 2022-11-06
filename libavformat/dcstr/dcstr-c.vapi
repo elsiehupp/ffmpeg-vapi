@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_dcstr_demuxer = {
-    .name           = "dcstr",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sega DC STR"),
-    .read_probe     = dcstr_probe,
-    .read_header    = dcstr_read_header,
-    .read_packet    = dcstr_read_packet,
-    .extensions     = "str",
-    .flags          = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK | AVFMT_NOBINSEARCH,
+    //  .name           = "dcstr",
+    //  .long_name      = "Sega DC STR",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dcstr_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = dcstr_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = dcstr_read_packet,
+    //  .extensions     = "str",
+    //  .flags          = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK | AVFMT_NOBINSEARCH,
 };

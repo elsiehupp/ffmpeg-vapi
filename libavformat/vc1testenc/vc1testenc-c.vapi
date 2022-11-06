@@ -20,13 +20,24 @@
  */
 
 AVOutputFormat ff_vc1t_muxer = {
-    .name              = "vc1test",
-    .long_name         = NULL_IF_CONFIG_SMALL("VC-1 test bitstream"),
-    .extensions        = "rcv",
-    .priv_data_size    = sizeof(RCVContext),
-    .audio_codec       = AV_CODEC_ID_NONE,
-    .video_codec       = AV_CODEC_ID_WMV3,
-    .write_header      = vc1test_write_header,
-    .write_packet      = vc1test_write_packet,
-    .write_trailer     = vc1test_write_trailer,
+    //  .name              = "vc1test",
+    //  .long_name         = "VC-1 test bitstream",
+    //  .extensions        = "rcv",
+    //  .priv_data_size    = sizeof(RCVContext),
+    //  .audio_codec       = AV_CODEC_ID_NONE,
+    //  .video_codec       = AV_CODEC_ID_WMV3,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = vc1test_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = vc1test_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = vc1test_write_trailer,
 };

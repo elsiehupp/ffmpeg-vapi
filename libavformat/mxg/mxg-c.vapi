@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_mxg_demuxer = {
-    .name           = "mxg",
-    .long_name      = NULL_IF_CONFIG_SMALL("MxPEG clip"),
-    .priv_data_size = sizeof(MXGContext),
-    .read_header    = mxg_read_header,
-    .read_packet    = mxg_read_packet,
-    .read_close     = mxg_close,
-    .extensions     = "mxg",
+    //  .name           = "mxg",
+    //  .long_name      = "MxPEG clip",
+    //  .priv_data_size = sizeof(MXGContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mxg_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mxg_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = mxg_close,
+    //  .extensions     = "mxg",
 };

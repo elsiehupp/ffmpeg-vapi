@@ -20,10 +20,15 @@
  */
 
 AVOutputFormat ff_null_muxer = {
-    .name              = "null",
-    .long_name         = NULL_IF_CONFIG_SMALL("raw null video"),
-    .audio_codec       = AV_NE(AV_CODEC_ID_PCM_S16BE, AV_CODEC_ID_PCM_S16LE),
-    .video_codec       = AV_CODEC_ID_WRAPPED_AVFRAME,
-    .write_packet      = null_write_packet,
-    .flags             = AVFMT_VARIABLE_FPS | AVFMT_NOFILE | AVFMT_NOTIMESTAMPS,
+    //  .name              = "null",
+    //  .long_name         = "raw null video",
+    //  .audio_codec       = AV_NE(AV_CODEC_ID_PCM_S16BE, AV_CODEC_ID_PCM_S16LE),
+    //  .video_codec       = AV_CODEC_ID_WRAPPED_AVFRAME,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = null_write_packet,
+    //  .flags             = AVFMT_VARIABLE_FPS | AVFMT_NOFILE | AVFMT_NOTIMESTAMPS,
 };

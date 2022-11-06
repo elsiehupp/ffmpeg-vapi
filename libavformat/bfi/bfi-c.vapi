@@ -27,10 +27,20 @@
  */
 
 AVInputFormat ff_bfi_demuxer = {
-    .name           = "bfi",
-    .long_name      = NULL_IF_CONFIG_SMALL("Brute Force & Ignorance"),
-    .priv_data_size = sizeof(BFIContext),
-    .read_probe     = bfi_probe,
-    .read_header    = bfi_read_header,
-    .read_packet    = bfi_read_packet,
+    //  .name           = "bfi",
+    //  .long_name      = "Brute Force & Ignorance",
+    //  .priv_data_size = sizeof(BFIContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = bfi_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = bfi_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = bfi_read_packet,
 };

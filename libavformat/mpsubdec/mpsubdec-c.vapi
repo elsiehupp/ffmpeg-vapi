@@ -24,13 +24,34 @@
  */
 
 AVInputFormat ff_mpsub_demuxer = {
-    .name           = "mpsub",
-    .long_name      = NULL_IF_CONFIG_SMALL("MPlayer subtitles"),
-    .priv_data_size = sizeof(MPSubContext),
-    .read_probe     = mpsub_probe,
-    .read_header    = mpsub_read_header,
-    .read_packet    = mpsub_read_packet,
-    .read_seek2     = mpsub_read_seek,
-    .read_close     = mpsub_read_close,
-    .extensions     = "sub",
+    //  .name           = "mpsub",
+    //  .long_name      = "MPlayer subtitles",
+    //  .priv_data_size = sizeof(MPSubContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mpsub_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mpsub_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mpsub_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = mpsub_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = mpsub_read_close,
+    //  .extensions     = "sub",
 };

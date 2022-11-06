@@ -91,18 +91,31 @@ static const AVOption options[] = {
 };
 
 static const AVClass prompeg_class = {
-    .class_name = "prompeg",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "prompeg",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_prompeg_protocol = {
-    .name                      = "prompeg",
-    .url_open                  = prompeg_open,
-    .url_write                 = prompeg_write,
-    .url_close                 = prompeg_close,
-    .priv_data_size            = sizeof(PrompegContext),
-    .flags                     = URL_PROTOCOL_FLAG_NETWORK,
-    .priv_data_class           = &prompeg_class,
+    //  .name                      = "prompeg",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );                  = prompeg_open,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );                 = prompeg_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );                 = prompeg_close,
+    //  .priv_data_size            = sizeof(PrompegContext),
+    //  .flags                     = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class           = &prompeg_class,
 };

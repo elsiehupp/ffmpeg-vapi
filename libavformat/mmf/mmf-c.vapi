@@ -21,27 +21,48 @@
 
 #if CONFIG_MMF_DEMUXER
 AVInputFormat ff_mmf_demuxer = {
-    .name           = "mmf",
-    .long_name      = NULL_IF_CONFIG_SMALL("Yamaha SMAF"),
-    .priv_data_size = sizeof(MMFContext),
-    .read_probe     = mmf_probe,
-    .read_header    = mmf_read_header,
-    .read_packet    = mmf_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "mmf",
+    //  .long_name      = "Yamaha SMAF",
+    //  .priv_data_size = sizeof(MMFContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mmf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mmf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mmf_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };
 #endif
 
 #if CONFIG_MMF_MUXER
 AVOutputFormat ff_mmf_muxer = {
-    .name           = "mmf",
-    .long_name      = NULL_IF_CONFIG_SMALL("Yamaha SMAF"),
-    .mime_type      = "application/vnd.smaf",
-    .extensions     = "mmf",
-    .priv_data_size = sizeof(MMFContext),
-    .audio_codec    = AV_CODEC_ID_ADPCM_YAMAHA,
-    .video_codec    = AV_CODEC_ID_NONE,
-    .write_header   = mmf_write_header,
-    .write_packet   = ff_raw_write_packet,
-    .write_trailer  = mmf_write_trailer,
+    //  .name           = "mmf",
+    //  .long_name      = "Yamaha SMAF",
+    //  .mime_type      = "application/vnd.smaf",
+    //  .extensions     = "mmf",
+    //  .priv_data_size = sizeof(MMFContext),
+    //  .audio_codec    = AV_CODEC_ID_ADPCM_YAMAHA,
+    //  .video_codec    = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = mmf_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = ff_raw_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = mmf_write_trailer,
 };
 #endif

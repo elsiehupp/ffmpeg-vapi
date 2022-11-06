@@ -20,17 +20,41 @@
  */
 
 const RTPDynamicProtocolHandler ff_mpeg_audio_dynamic_handler = {
-    .codec_type        = AVMEDIA_TYPE_AUDIO,
-    .codec_id          = AV_CODEC_ID_MP3,
-    .need_parsing      = AVSTREAM_PARSE_FULL,
-    .parse_packet      = mpeg_parse_packet,
-    .static_payload_id = 14,
+    //  .codec_type        = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id          = AV_CODEC_ID_MP3,
+    //  .need_parsing      = AVSTREAM_PARSE_FULL,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );      = mpeg_parse_packet,
+    //  .static_payload_id = 14,
 };
 
 const RTPDynamicProtocolHandler ff_mpeg_video_dynamic_handler = {
-    .codec_type        = AVMEDIA_TYPE_VIDEO,
-    .codec_id          = AV_CODEC_ID_MPEG2VIDEO,
-    .need_parsing      = AVSTREAM_PARSE_FULL,
-    .parse_packet      = mpeg_parse_packet,
-    .static_payload_id = 32,
+    //  .codec_type        = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id          = AV_CODEC_ID_MPEG2VIDEO,
+    //  .need_parsing      = AVSTREAM_PARSE_FULL,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );      = mpeg_parse_packet,
+    //  .static_payload_id = 32,
 };

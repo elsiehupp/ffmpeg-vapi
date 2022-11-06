@@ -20,33 +20,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-public delegate string ItemNameDelegate (
-    void *class_context
-);
-public delegate void *ChildNextDelegate (
-    void *obj,
-    void *prev
-);
-public delegate Class ChildClassNextDelegate (
-    Class prev
-);
-public delegate ClassCategory GetCategoryDelegate (
-    void *class_context
-);
-public delegate int QueryRangesDelegate (
-    out OptionRangeList ranges,
-    void *obj,
-    string key,
-    int flags
-);
-
 /***********************************************************
 @brief Describe the class of an Class context structure. That is an
 arbitrary struct of which the first field is a pointer to an
 Class struct (e.g. LibAVCodec.CodecContext, AVFormatContext etc.).
 ***********************************************************/
 [CCode (cname="struct AVClass", cheader_filename="ffmpeg/libavutil/log.h")]
-public struct Class {
+public abstract class Class {
     /***********************************************************
     @brief The name of the class; usually it is the same name as the
     context structure type to which the Class is associated.
@@ -59,7 +39,9 @@ public struct Class {
     instance class_context associated with the class.
     ***********************************************************/
     [CCode (cname="item_name")]
-    public ItemNameDelegate item_name;
+    public abstract string item_name (
+        void *class_context
+    );
 
     /***********************************************************
     @brief A pointer to the first option specified in the class if any or null
@@ -98,7 +80,10 @@ public struct Class {
     @brief Return next LibAVUtil.Options-enabled child or null
     ***********************************************************/
     [CCode (cname="child_next")]
-    public ChildNextDelegate child_next;
+    public abstract void *child_next (
+        void *obj,
+        void *prev
+    );
 
     /***********************************************************
     @brief Return an Class corresponding to the next potential
@@ -109,7 +94,9 @@ public struct Class {
     child_class_next iterates over _all possible_ children.
     ***********************************************************/
     [CCode (cname="child_class_next")]
-    public ChildClassNextDelegate child_class_next;
+    public abstract Class child_class_next (
+        Class prev
+    );
 
     /***********************************************************
     @brief Category used for visualization (like color)
@@ -124,14 +111,21 @@ public struct Class {
     available since version (51 << 16 | 59 << 8 | 100)
     ***********************************************************/
     [CCode (cname="get_category")]
-    public GetCategoryDelegate get_category;
+    public abstract ClassCategory get_category (
+        void *class_context
+    );
 
     /***********************************************************
     @brief Callback to return the supported/allowed ranges.
     available since version (52.12)
     ***********************************************************/
     [CCode (cname="query_ranges")]
-    public QueryRangesDelegate query_ranges;
+    public abstract int query_ranges (
+        out OptionRangeList ranges,
+        void *obj,
+        string key,
+        int flags
+    );
 }
 
 /***********************************************************

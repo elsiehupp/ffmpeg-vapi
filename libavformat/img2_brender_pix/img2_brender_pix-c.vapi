@@ -20,19 +20,29 @@
  */
 
 static const AVClass image2_brender_pix_class = {
-    .class_name = "brender_pix demuxer",
-    .item_name  = av_default_item_name,
-    .option     = ff_img_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "brender_pix demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = ff_img_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_image2_brender_pix_demuxer = {
-    .name           = "brender_pix",
-    .long_name      = NULL_IF_CONFIG_SMALL("BRender PIX image"),
-    .priv_data_size = sizeof(VideoDemuxData),
-    .read_probe     = brender_read_probe,
-    .read_header    = ff_img_read_header,
-    .read_packet    = ff_img_read_packet,
-    .raw_codec_id   = AV_CODEC_ID_BRENDER_PIX,
-    .priv_class     = &image2_brender_pix_class,
+    //  .name           = "brender_pix",
+    //  .long_name      = "BRender PIX image",
+    //  .priv_data_size = sizeof(VideoDemuxData),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = brender_read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ff_img_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_img_read_packet,
+    //  .raw_codec_id   = AV_CODEC_ID_BRENDER_PIX,
+    //  .priv_class     = &image2_brender_pix_class,
 };

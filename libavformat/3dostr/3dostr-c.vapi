@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_threedostr_demuxer = {
-    .name           = "3dostr",
-    .long_name      = NULL_IF_CONFIG_SMALL("3DO STR"),
-    .read_probe     = threedostr_probe,
-    .read_header    = threedostr_read_header,
-    .read_packet    = threedostr_read_packet,
-    .extensions     = "str",
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "3dostr",
+    //  .long_name      = "3DO STR",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = threedostr_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = threedostr_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = threedostr_read_packet,
+    //  .extensions     = "str",
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

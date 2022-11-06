@@ -23,14 +23,33 @@
  */
 
 AVInputFormat ff_yop_demuxer = {
-    .name           = "yop",
-    .long_name      = NULL_IF_CONFIG_SMALL("Psygnosis YOP"),
-    .priv_data_size = sizeof(YopDecContext),
-    .read_probe     = yop_probe,
-    .read_header    = yop_read_header,
-    .read_packet    = yop_read_packet,
-    .read_close     = yop_read_close,
-    .read_seek      = yop_read_seek,
-    .extensions     = "yop",
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "yop",
+    //  .long_name      = "Psygnosis YOP",
+    //  .priv_data_size = sizeof(YopDecContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = yop_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = yop_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = yop_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = yop_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = yop_read_seek,
+    //  .extensions     = "yop",
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

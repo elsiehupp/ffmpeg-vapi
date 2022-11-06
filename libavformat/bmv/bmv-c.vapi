@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_bmv_demuxer = {
-    .name           = "bmv",
-    .long_name      = NULL_IF_CONFIG_SMALL("Discworld II BMV"),
-    .priv_data_size = sizeof(BMVContext),
-    .read_header    = bmv_read_header,
-    .read_packet    = bmv_read_packet,
-    .read_close     = bmv_read_close,
-    .extensions     = "bmv",
+    //  .name           = "bmv",
+    //  .long_name      = "Discworld II BMV",
+    //  .priv_data_size = sizeof(BMVContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = bmv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = bmv_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = bmv_read_close,
+    //  .extensions     = "bmv",
 };

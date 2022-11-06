@@ -30,39 +30,53 @@ static const AVOption options[] = {
 
 #if CONFIG_G726_DEMUXER
 static const AVClass g726le_demuxer_class = {
-    .class_name     = "G.726 big-endian demuxer",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "G.726 big-endian demuxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_g726_demuxer = {
-    .name           = "g726",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw big-endian G.726 (\"left aligned\")"),
-    .read_header    = g726_read_header,
-    .read_packet    = g726_read_packet,
-    .priv_data_size = sizeof(G726Context),
-    .priv_class     = &g726le_demuxer_class,
-    .raw_codec_id   = AV_CODEC_ID_ADPCM_G726,
+    //  .name           = "g726",
+    //  .long_name      = "raw big-endian G.726 (\"left aligned\")",
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = g726_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = g726_read_packet,
+    //  .priv_data_size = sizeof(G726Context),
+    //  .priv_class     = &g726le_demuxer_class,
+    //  .raw_codec_id   = AV_CODEC_ID_ADPCM_G726,
 };
 #endif
 
 #if CONFIG_G726LE_DEMUXER
 static const AVClass g726_demuxer_class = {
-    .class_name     = "G.726 little-endian demuxer",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "G.726 little-endian demuxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_g726le_demuxer = {
-    .name           = "g726le",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw little-endian G.726 (\"right aligned\")"),
-    .read_header    = g726_read_header,
-    .read_packet    = g726_read_packet,
-    .priv_data_size = sizeof(G726Context),
-    .priv_class     = &g726_demuxer_class,
-    .raw_codec_id   = AV_CODEC_ID_ADPCM_G726LE,
+    //  .name           = "g726le",
+    //  .long_name      = "raw little-endian G.726 (\"right aligned\")",
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = g726_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = g726_read_packet,
+    //  .priv_data_size = sizeof(G726Context),
+    //  .priv_class     = &g726_demuxer_class,
+    //  .raw_codec_id   = AV_CODEC_ID_ADPCM_G726LE,
 };
 #endif
 

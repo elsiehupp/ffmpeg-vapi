@@ -32,10 +32,20 @@
  */
 
 AVInputFormat ff_flic_demuxer = {
-    .name           = "flic",
-    .long_name      = NULL_IF_CONFIG_SMALL("FLI/FLC/FLX animation"),
-    .priv_data_size = sizeof(FlicDemuxContext),
-    .read_probe     = flic_probe,
-    .read_header    = flic_read_header,
-    .read_packet    = flic_read_packet,
+    //  .name           = "flic",
+    //  .long_name      = "FLI/FLC/FLX animation",
+    //  .priv_data_size = sizeof(FlicDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = flic_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = flic_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = flic_read_packet,
 };

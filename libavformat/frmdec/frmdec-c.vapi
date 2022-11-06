@@ -25,10 +25,20 @@
  */
 
 AVInputFormat ff_frm_demuxer = {
-    .name           = "frm",
-    .priv_data_size = sizeof(FrmContext),
-    .long_name      = NULL_IF_CONFIG_SMALL("Megalux Frame"),
-    .read_probe     = frm_read_probe,
-    .read_header    = frm_read_header,
-    .read_packet    = frm_read_packet,
+    //  .name           = "frm",
+    //  .priv_data_size = sizeof(FrmContext),
+    //  .long_name      = "Megalux Frame",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = frm_read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = frm_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = frm_read_packet,
 };

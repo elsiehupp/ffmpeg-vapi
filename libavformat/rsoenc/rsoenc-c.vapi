@@ -21,14 +21,25 @@
  */
 
 AVOutputFormat ff_rso_muxer = {
-    .name           =   "rso",
-    .long_name      =   NULL_IF_CONFIG_SMALL("Lego Mindstorms RSO"),
-    .extensions     =   "rso",
-    .audio_codec    =   AV_CODEC_ID_PCM_U8,
-    .video_codec    =   AV_CODEC_ID_NONE,
-    .write_header   =   rso_write_header,
-    .write_packet   =   rso_write_packet,
-    .write_trailer  =   rso_write_trailer,
-    .codec_tag      =   (const AVCodecTag* const []){ff_codec_rso_tags, 0},
-    .flags          =   AVFMT_NOTIMESTAMPS,
+    //  .name           =   "rso",
+    //  .long_name      =   "Lego Mindstorms RSO",
+    //  .extensions     =   "rso",
+    //  .audio_codec    =   AV_CODEC_ID_PCM_U8,
+    //  .video_codec    =   AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   =   rso_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   =   rso_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  =   rso_write_trailer,
+    //  .codec_tag      =   (const AVCodecTag* const []){ff_codec_rso_tags, 0},
+    //  .flags          =   AVFMT_NOTIMESTAMPS,
 };

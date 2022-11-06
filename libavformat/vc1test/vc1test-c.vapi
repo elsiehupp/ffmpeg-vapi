@@ -27,11 +27,21 @@
  */
 
 AVInputFormat ff_vc1t_demuxer = {
-    .name           = "vc1test",
-    .long_name      = NULL_IF_CONFIG_SMALL("VC-1 test bitstream"),
-    .read_probe     = vc1t_probe,
-    .read_header    = vc1t_read_header,
-    .read_packet    = vc1t_read_packet,
-    .extensions     = "rcv",
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "vc1test",
+    //  .long_name      = "VC-1 test bitstream",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = vc1t_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = vc1t_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = vc1t_read_packet,
+    //  .extensions     = "rcv",
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

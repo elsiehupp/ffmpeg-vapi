@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_dsf_demuxer = {
-    .name           = "dsf",
-    .long_name      = NULL_IF_CONFIG_SMALL("DSD Stream File (DSF)"),
-    .priv_data_size = sizeof(DSFContext),
-    .read_probe     = dsf_probe,
-    .read_header    = dsf_read_header,
-    .read_packet    = dsf_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
+    //  .name           = "dsf",
+    //  .long_name      = "DSD Stream File (DSF)",
+    //  .priv_data_size = sizeof(DSFContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dsf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = dsf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = dsf_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
 };

@@ -28,20 +28,41 @@ static const AVOption tedcaptions_options[] = {
 };
 
 static const AVClass tedcaptions_demuxer_class = {
-    .class_name = "tedcaptions_demuxer",
-    .item_name  = av_default_item_name,
-    .option     = tedcaptions_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "tedcaptions_demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = tedcaptions_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_tedcaptions_demuxer = {
-    .name           = "tedcaptions",
-    .long_name      = NULL_IF_CONFIG_SMALL("TED Talks captions"),
-    .priv_data_size = sizeof(TEDCaptionsDemuxer),
-    .priv_class     = &tedcaptions_demuxer_class,
-    .read_header    = tedcaptions_read_header,
-    .read_packet    = tedcaptions_read_packet,
-    .read_close     = tedcaptions_read_close,
-    .read_probe     = tedcaptions_read_probe,
-    .read_seek2     = tedcaptions_read_seek,
+    //  .name           = "tedcaptions",
+    //  .long_name      = "TED Talks captions",
+    //  .priv_data_size = sizeof(TEDCaptionsDemuxer),
+    //  .priv_class     = &tedcaptions_demuxer_class,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = tedcaptions_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = tedcaptions_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = tedcaptions_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = tedcaptions_read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = tedcaptions_read_seek,
 };

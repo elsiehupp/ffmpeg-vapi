@@ -37,20 +37,30 @@ static const AVOption options[] = {
 };
 
 static const AVClass demuxer_class = {
-    .class_name = "APNG demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
-    .category   = AV_CLASS_CATEGORY_DEMUXER,
+    //  .class_name = "APNG demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
+    //  .category   = AV_CLASS_CATEGORY_DEMUXER,
 };
 
 AVInputFormat ff_apng_demuxer = {
-    .name           = "apng",
-    .long_name      = NULL_IF_CONFIG_SMALL("Animated Portable Network Graphics"),
-    .priv_data_size = sizeof(APNGDemuxContext),
-    .read_probe     = apng_probe,
-    .read_header    = apng_read_header,
-    .read_packet    = apng_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .priv_class     = &demuxer_class,
+    //  .name           = "apng",
+    //  .long_name      = "Animated Portable Network Graphics",
+    //  .priv_data_size = sizeof(APNGDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = apng_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = apng_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = apng_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .priv_class     = &demuxer_class,
 };

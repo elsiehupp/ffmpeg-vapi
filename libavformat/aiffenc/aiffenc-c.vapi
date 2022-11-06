@@ -30,23 +30,34 @@ static const AVOption options[] = {
 };
 
 static const AVClass aiff_muxer_class = {
-    .class_name     = "AIFF muxer",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "AIFF muxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_aiff_muxer = {
-    .name              = "aiff",
-    .long_name         = NULL_IF_CONFIG_SMALL("Audio IFF"),
-    .mime_type         = "audio/aiff",
-    .extensions        = "aif,aiff,afc,aifc",
-    .priv_data_size    = sizeof(AIFFOutputContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S16BE,
-    .video_codec       = AV_CODEC_ID_PNG,
-    .write_header      = aiff_write_header,
-    .write_packet      = aiff_write_packet,
-    .write_trailer     = aiff_write_trailer,
-    .codec_tag         = (const AVCodecTag* const []){ ff_codec_aiff_tags, 0 },
-    .priv_class        = &aiff_muxer_class,
+    //  .name              = "aiff",
+    //  .long_name         = "Audio IFF",
+    //  .mime_type         = "audio/aiff",
+    //  .extensions        = "aif,aiff,afc,aifc",
+    //  .priv_data_size    = sizeof(AIFFOutputContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16BE,
+    //  .video_codec       = AV_CODEC_ID_PNG,
+    [CCode (cname="aiff_write_header", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );
+    [CCode (cname="aiff_write_packet", cheader="")]
+    public abstract int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = aiff_write_trailer,
+    //  .codec_tag         = (const AVCodecTag* const []){ ff_codec_aiff_tags, 0 },
+    //  .priv_class        = &aiff_muxer_class,
 };

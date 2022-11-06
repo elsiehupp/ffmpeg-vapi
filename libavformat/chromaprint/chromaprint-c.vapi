@@ -32,20 +32,31 @@ static const AVOption options[] = {
 };
 
 static const AVClass chromaprint_class = {
-    .class_name = "chromaprint muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "chromaprint muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_chromaprint_muxer = {
-    .name              = "chromaprint",
-    .long_name         = NULL_IF_CONFIG_SMALL("Chromaprint"),
-    .priv_data_size    = sizeof(ChromaprintMuxContext),
-    .audio_codec       = AV_NE(AV_CODEC_ID_PCM_S16BE, AV_CODEC_ID_PCM_S16LE),
-    .write_header      = write_header,
-    .write_packet      = write_packet,
-    .write_trailer     = write_trailer,
-    .flags             = AVFMT_NOTIMESTAMPS,
-    .priv_class        = &chromaprint_class,
+    //  .name              = "chromaprint",
+    //  .long_name         = "Chromaprint",
+    //  .priv_data_size    = sizeof(ChromaprintMuxContext),
+    //  .audio_codec       = AV_NE(AV_CODEC_ID_PCM_S16BE, AV_CODEC_ID_PCM_S16LE),
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = write_trailer,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
+    //  .priv_class        = &chromaprint_class,
 };

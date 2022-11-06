@@ -20,12 +20,33 @@
  */
 
 const RTPDynamicProtocolHandler ff_dv_dynamic_handler = {
-    .enc_name         = "DV",
-    .codec_type       = AVMEDIA_TYPE_VIDEO,
-    .codec_id         = AV_CODEC_ID_DVVIDEO,
-    .need_parsing     = AVSTREAM_PARSE_FULL,
-    .parse_sdp_a_line = dv_parse_sdp_line,
-    .priv_data_size   = sizeof(PayloadContext),
-    .close             = dv_close_context,
-    .parse_packet     = dv_handle_packet,
+    //  .enc_name         = "DV",
+    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id         = AV_CODEC_ID_DVVIDEO,
+    //  .need_parsing     = AVSTREAM_PARSE_FULL,
+    [CCode (cname="", cheader="")]
+    public override int parse_sdp_a_line (
+        AVFormatContext format_context,
+        int st_index,
+        PayloadContext priv_data,
+        string line
+    ); = dv_parse_sdp_line,
+    //  .priv_data_size   = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override void close (
+        PayloadContext protocol_data
+    );             = dv_close_context,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = dv_handle_packet,
 };

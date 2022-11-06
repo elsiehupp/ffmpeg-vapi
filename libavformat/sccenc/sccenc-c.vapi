@@ -20,12 +20,20 @@
  */
 
 AVOutputFormat ff_scc_muxer = {
-    .name           = "scc",
-    .long_name      = NULL_IF_CONFIG_SMALL("Scenarist Closed Captions"),
-    .extensions     = "scc",
-    .priv_data_size = sizeof(SCCContext),
-    .write_header   = scc_write_header,
-    .write_packet   = scc_write_packet,
-    .flags          = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
-    .subtitle_codec = AV_CODEC_ID_EIA_608,
+    //  .name           = "scc",
+    //  .long_name      = "Scenarist Closed Captions",
+    //  .extensions     = "scc",
+    //  .priv_data_size = sizeof(SCCContext),
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = scc_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = scc_write_packet,
+    //  .flags          = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
+    //  .subtitle_codec = AV_CODEC_ID_EIA_608,
 };

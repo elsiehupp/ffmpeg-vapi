@@ -92,25 +92,39 @@ static const AVOption options[] = {
 };
 
 static const AVClass hls_class = {
-    .class_name = "hls muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "hls muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 
 AVOutputFormat ff_hls_muxer = {
-    .name           = "hls",
-    .long_name      = NULL_IF_CONFIG_SMALL("Apple HTTP Live Streaming"),
-    .extensions     = "m3u8",
-    .priv_data_size = sizeof(HLSContext),
-    .audio_codec    = AV_CODEC_ID_AAC,
-    .video_codec    = AV_CODEC_ID_H264,
-    .subtitle_codec = AV_CODEC_ID_WEBVTT,
-    .flags          = AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_NODIMENSIONS,
-    .init           = hls_init,
-    .write_header   = hls_write_header,
-    .write_packet   = hls_write_packet,
-    .write_trailer  = hls_write_trailer,
-    .priv_class     = &hls_class,
+    //  .name           = "hls",
+    //  .long_name      = "Apple HTTP Live Streaming",
+    //  .extensions     = "m3u8",
+    //  .priv_data_size = sizeof(HLSContext),
+    //  .audio_codec    = AV_CODEC_ID_AAC,
+    //  .video_codec    = AV_CODEC_ID_H264,
+    //  .subtitle_codec = AV_CODEC_ID_WEBVTT,
+    //  .flags          = AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_NODIMENSIONS,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = hls_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = hls_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = hls_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = hls_write_trailer,
+    //  .priv_class     = &hls_class,
 };

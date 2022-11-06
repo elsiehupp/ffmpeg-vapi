@@ -29,10 +29,20 @@
  */
 
 AVInputFormat ff_wsvqa_demuxer = {
-    .name           = "wsvqa",
-    .long_name      = NULL_IF_CONFIG_SMALL("Westwood Studios VQA"),
-    .priv_data_size = sizeof(WsVqaDemuxContext),
-    .read_probe     = wsvqa_probe,
-    .read_header    = wsvqa_read_header,
-    .read_packet    = wsvqa_read_packet,
+    //  .name           = "wsvqa",
+    //  .long_name      = "Westwood Studios VQA",
+    //  .priv_data_size = sizeof(WsVqaDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = wsvqa_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = wsvqa_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = wsvqa_read_packet,
 };

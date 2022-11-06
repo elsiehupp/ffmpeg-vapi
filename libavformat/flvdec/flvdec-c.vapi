@@ -35,62 +35,119 @@ static const AVOption options[] = {
 };
 
 static const AVClass flv_class = {
-    .class_name = "flvdec",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "flvdec",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_flv_demuxer = {
-    .name           = "flv",
-    .long_name      = NULL_IF_CONFIG_SMALL("FLV (Flash Video)"),
-    .priv_data_size = sizeof(FLVContext),
-    .read_probe     = flv_probe,
-    .read_header    = flv_read_header,
-    .read_packet    = flv_read_packet,
-    .read_seek      = flv_read_seek,
-    .read_close     = flv_read_close,
-    .extensions     = "flv",
-    .priv_class     = &flv_class,
+    //  .name           = "flv",
+    //  .long_name      = "FLV (Flash Video)",
+    //  .priv_data_size = sizeof(FLVContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = flv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = flv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = flv_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = flv_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = flv_read_close,
+    //  .extensions     = "flv",
+    //  .priv_class     = &flv_class,
 };
 
 static const AVClass live_flv_class = {
-    .class_name = "live_flvdec",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "live_flvdec",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_live_flv_demuxer = {
-    .name           = "live_flv",
-    .long_name      = NULL_IF_CONFIG_SMALL("live RTMP FLV (Flash Video)"),
-    .priv_data_size = sizeof(FLVContext),
-    .read_probe     = live_flv_probe,
-    .read_header    = flv_read_header,
-    .read_packet    = flv_read_packet,
-    .read_seek      = flv_read_seek,
-    .read_close     = flv_read_close,
-    .extensions     = "flv",
-    .priv_class     = &live_flv_class,
-    .flags          = AVFMT_TS_DISCONT
+    //  .name           = "live_flv",
+    //  .long_name      = "live RTMP FLV (Flash Video)",
+    //  .priv_data_size = sizeof(FLVContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = live_flv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = flv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = flv_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = flv_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = flv_read_close,
+    //  .extensions     = "flv",
+    //  .priv_class     = &live_flv_class,
+    //  .flags          = AVFMT_TS_DISCONT
 };
 
 static const AVClass kux_class = {
-    .class_name = "kuxdec",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "kuxdec",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_kux_demuxer = {
-    .name           = "kux",
-    .long_name      = NULL_IF_CONFIG_SMALL("KUX (YouKu)"),
-    .priv_data_size = sizeof(FLVContext),
-    .read_probe     = kux_probe,
-    .read_header    = flv_read_header,
-    .read_packet    = flv_read_packet,
-    .read_seek      = flv_read_seek,
-    .read_close     = flv_read_close,
-    .extensions     = "kux",
-    .priv_class     = &kux_class,
+    //  .name           = "kux",
+    //  .long_name      = "KUX (YouKu)",
+    //  .priv_data_size = sizeof(FLVContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = kux_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = flv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = flv_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = flv_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = flv_read_close,
+    //  .extensions     = "kux",
+    //  .priv_class     = &kux_class,
 };

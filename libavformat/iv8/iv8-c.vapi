@@ -19,10 +19,20 @@
  */
 
 AVInputFormat ff_iv8_demuxer = {
-    .name           = "iv8",
-    .long_name      = NULL_IF_CONFIG_SMALL("IndigoVision 8000 video"),
-    .read_probe     = probe,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "iv8",
+    //  .long_name      = "IndigoVision 8000 video",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

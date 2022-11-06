@@ -33,20 +33,38 @@ static const AVOption ffrtmphttp_options[] = {
 };
 
 static const AVClass ffrtmphttp_class = {
-    .class_name = "ffrtmphttp",
-    .item_name  = av_default_item_name,
-    .option     = ffrtmphttp_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "ffrtmphttp",
+    //  .item_name  = av_default_item_name,
+    //  .option     = ffrtmphttp_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_ffrtmphttp_protocol = {
-    .name           = "ffrtmphttp",
-    .url_open       = rtmp_http_open,
-    .url_read       = rtmp_http_read,
-    .url_write      = rtmp_http_write,
-    .url_close      = rtmp_http_close,
-    .priv_data_size = sizeof(RTMP_HTTPContext),
-    .flags          = URL_PROTOCOL_FLAG_NETWORK,
-    .priv_data_class= &ffrtmphttp_class,
-    .default_whitelist = "https,http,tcp,tls",
+    //  .name           = "ffrtmphttp",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );       = rtmp_http_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = rtmp_http_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );      = rtmp_http_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );      = rtmp_http_close,
+    //  .priv_data_size = sizeof(RTMP_HTTPContext),
+    //  .flags          = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class= &ffrtmphttp_class,
+    //  .default_whitelist = "https,http,tcp,tls",
 };

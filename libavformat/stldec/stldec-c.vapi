@@ -25,13 +25,34 @@
  */
 
 AVInputFormat ff_stl_demuxer = {
-    .name           = "stl",
-    .long_name      = NULL_IF_CONFIG_SMALL("Spruce subtitle format"),
-    .priv_data_size = sizeof(STLContext),
-    .read_probe     = stl_probe,
-    .read_header    = stl_read_header,
-    .read_packet    = stl_read_packet,
-    .read_seek2     = stl_read_seek,
-    .read_close     = stl_read_close,
-    .extensions     = "stl",
+    //  .name           = "stl",
+    //  .long_name      = "Spruce subtitle format",
+    //  .priv_data_size = sizeof(STLContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = stl_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = stl_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = stl_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = stl_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = stl_read_close,
+    //  .extensions     = "stl",
 };

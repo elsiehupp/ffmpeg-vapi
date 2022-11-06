@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_avisynth_demuxer = {
-    .name           = "avisynth",
-    .long_name      = NULL_IF_CONFIG_SMALL("AviSynth script"),
-    .priv_data_size = sizeof(AviSynthContext),
-    .read_header    = avisynth_read_header,
-    .read_packet    = avisynth_read_packet,
-    .read_close     = avisynth_read_close,
-    .read_seek      = avisynth_read_seek,
-    .extensions     = "avs",
+    //  .name           = "avisynth",
+    //  .long_name      = "AviSynth script",
+    //  .priv_data_size = sizeof(AviSynthContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = avisynth_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = avisynth_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = avisynth_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = avisynth_read_seek,
+    //  .extensions     = "avs",
 };

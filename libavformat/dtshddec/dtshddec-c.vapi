@@ -20,13 +20,23 @@
  */
 
 AVInputFormat ff_dtshd_demuxer = {
-    .name           = "dtshd",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw DTS-HD"),
-    .priv_data_size = sizeof(DTSHDDemuxContext),
-    .read_probe     = dtshd_probe,
-    .read_header    = dtshd_read_header,
-    .read_packet    = raw_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "dtshd",
-    .raw_codec_id   = AV_CODEC_ID_DTS,
+    //  .name           = "dtshd",
+    //  .long_name      = "raw DTS-HD",
+    //  .priv_data_size = sizeof(DTSHDDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dtshd_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = dtshd_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = raw_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "dtshd",
+    //  .raw_codec_id   = AV_CODEC_ID_DTS,
 };

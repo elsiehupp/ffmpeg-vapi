@@ -24,10 +24,20 @@
  */
 
 AVInputFormat ff_xwma_demuxer = {
-    .name           = "xwma",
-    .long_name      = NULL_IF_CONFIG_SMALL("Microsoft xWMA"),
-    .priv_data_size = sizeof(XWMAContext),
-    .read_probe     = xwma_probe,
-    .read_header    = xwma_read_header,
-    .read_packet    = xwma_read_packet,
+    //  .name           = "xwma",
+    //  .long_name      = "Microsoft xWMA",
+    //  .priv_data_size = sizeof(XWMAContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = xwma_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = xwma_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = xwma_read_packet,
 };

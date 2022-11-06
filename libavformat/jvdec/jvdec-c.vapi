@@ -26,12 +26,31 @@
  */
 
 AVInputFormat ff_jv_demuxer = {
-    .name           = "jv",
-    .long_name      = NULL_IF_CONFIG_SMALL("Bitmap Brothers JV"),
-    .priv_data_size = sizeof(JVDemuxContext),
-    .read_probe     = read_probe,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .read_seek      = read_seek,
-    .read_close     = read_close,
+    //  .name           = "jv",
+    //  .long_name      = "Bitmap Brothers JV",
+    //  .priv_data_size = sizeof(JVDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = read_close,
 };

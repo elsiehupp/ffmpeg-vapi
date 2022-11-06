@@ -19,8 +19,12 @@
  */
 
 const struct ogg_codec ff_skeleton_codec = {
-    .magic = "fishead",
-    .magicsize = 8,
-    .header = skeleton_header,
-    .nb_header = 0,
+    //  .magic = "fishead",
+    //  .magicsize = 8,
+    [CCode (cname="", cheader="")]
+    public override int header (
+        AVFormatContext context,
+        int arg
+    ); = skeleton_header,
+    //  .nb_header = 0,
 };

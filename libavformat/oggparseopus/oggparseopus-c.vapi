@@ -20,10 +20,18 @@
  */
 
 const struct ogg_codec ff_opus_codec = {
-    .name             = "Opus",
-    .magic            = "OpusHead",
-    .magicsize        = 8,
-    .header           = opus_header,
-    .packet           = opus_packet,
-    .nb_header        = 1,
+    //  .name             = "Opus",
+    //  .magic            = "OpusHead",
+    //  .magicsize        = 8,
+    [CCode (cname="", cheader="")]
+    public override int header (
+        AVFormatContext context,
+        int arg
+    );           = opus_header,
+    [CCode (cname="", cheader="")]
+    public override int packet (
+        AVFormatContext context,
+        int arg
+    );           = opus_packet,
+    //  .nb_header        = 1,
 };

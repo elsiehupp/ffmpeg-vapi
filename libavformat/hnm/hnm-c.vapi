@@ -21,12 +21,25 @@
  */
 
 AVInputFormat ff_hnm_demuxer = {
-    .name           = "hnm",
-    .long_name      = NULL_IF_CONFIG_SMALL("Cryo HNM v4"),
-    .priv_data_size = sizeof(Hnm4DemuxContext),
-    .read_probe     = hnm_probe,
-    .read_header    = hnm_read_header,
-    .read_packet    = hnm_read_packet,
-    .read_close     = hnm_read_close,
-    .flags          = AVFMT_NO_BYTE_SEEK | AVFMT_NOGENSEARCH | AVFMT_NOBINSEARCH
+    //  .name           = "hnm",
+    //  .long_name      = "Cryo HNM v4",
+    //  .priv_data_size = sizeof(Hnm4DemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = hnm_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = hnm_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = hnm_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = hnm_read_close,
+    //  .flags          = AVFMT_NO_BYTE_SEEK | AVFMT_NOGENSEARCH | AVFMT_NOBINSEARCH
 };

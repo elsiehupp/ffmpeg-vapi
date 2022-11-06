@@ -30,12 +30,25 @@
  */
 
 AVInputFormat ff_str_demuxer = {
-    .name           = "psxstr",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sony Playstation STR"),
-    .priv_data_size = sizeof(StrDemuxContext),
-    .read_probe     = str_probe,
-    .read_header    = str_read_header,
-    .read_packet    = str_read_packet,
-    .read_close     = str_read_close,
-    .flags          = AVFMT_NO_BYTE_SEEK,
+    //  .name           = "psxstr",
+    //  .long_name      = "Sony Playstation STR",
+    //  .priv_data_size = sizeof(StrDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = str_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = str_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = str_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = str_read_close,
+    //  .flags          = AVFMT_NO_BYTE_SEEK,
 };

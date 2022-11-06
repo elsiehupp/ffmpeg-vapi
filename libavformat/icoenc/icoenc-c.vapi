@@ -25,15 +25,26 @@
  */
 
 AVOutputFormat ff_ico_muxer = {
-    .name           = "ico",
-    .long_name      = NULL_IF_CONFIG_SMALL("Microsoft Windows ICO"),
-    .priv_data_size = sizeof(IcoMuxContext),
-    .mime_type      = "image/vnd.microsoft.icon",
-    .extensions     = "ico",
-    .audio_codec    = AV_CODEC_ID_NONE,
-    .video_codec    = AV_CODEC_ID_BMP,
-    .write_header   = ico_write_header,
-    .write_packet   = ico_write_packet,
-    .write_trailer  = ico_write_trailer,
-    .flags          = AVFMT_NOTIMESTAMPS,
+    //  .name           = "ico",
+    //  .long_name      = "Microsoft Windows ICO",
+    //  .priv_data_size = sizeof(IcoMuxContext),
+    //  .mime_type      = "image/vnd.microsoft.icon",
+    //  .extensions     = "ico",
+    //  .audio_codec    = AV_CODEC_ID_NONE,
+    //  .video_codec    = AV_CODEC_ID_BMP,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = ico_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = ico_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = ico_write_trailer,
+    //  .flags          = AVFMT_NOTIMESTAMPS,
 };

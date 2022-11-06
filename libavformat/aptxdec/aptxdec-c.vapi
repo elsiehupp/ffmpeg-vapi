@@ -27,40 +27,54 @@ static const AVOption aptx_options[] = {
 
 #if CONFIG_APTX_DEMUXER
 static const AVClass aptx_demuxer_class = {
-    .class_name = "aptx demuxer",
-    .item_name  = av_default_item_name,
-    .option     = aptx_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "aptx demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = aptx_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_aptx_demuxer = {
-    .name           = "aptx",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw aptX"),
-    .extensions     = "aptx",
-    .priv_data_size = sizeof(AptXDemuxerContext),
-    .read_header    = aptx_read_header,
-    .read_packet    = aptx_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .priv_class     = &aptx_demuxer_class,
+    //  .name           = "aptx",
+    //  .long_name      = "raw aptX",
+    //  .extensions     = "aptx",
+    //  .priv_data_size = sizeof(AptXDemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = aptx_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = aptx_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .priv_class     = &aptx_demuxer_class,
 };
 #endif
 
 #if CONFIG_APTX_HD_DEMUXER
 static const AVClass aptx_hd_demuxer_class = {
-    .class_name = "aptx hd demuxer",
-    .item_name  = av_default_item_name,
-    .option     = aptx_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "aptx hd demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = aptx_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_aptx_hd_demuxer = {
-    .name           = "aptx_hd",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw aptX HD"),
-    .extensions     = "aptxhd",
-    .priv_data_size = sizeof(AptXDemuxerContext),
-    .read_header    = aptx_hd_read_header,
-    .read_packet    = aptx_hd_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .priv_class     = &aptx_hd_demuxer_class,
+    //  .name           = "aptx_hd",
+    //  .long_name      = "raw aptX HD",
+    //  .extensions     = "aptxhd",
+    //  .priv_data_size = sizeof(AptXDemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = aptx_hd_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = aptx_hd_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .priv_class     = &aptx_hd_demuxer_class,
 };
 #endif

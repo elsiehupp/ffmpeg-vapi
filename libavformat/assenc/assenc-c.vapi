@@ -27,22 +27,33 @@ static const AVOption options[] = {
 };
 
 static const AVClass ass_class = {
-    .class_name = "ass muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "ass muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_ass_muxer = {
-    .name           = "ass",
-    .long_name      = NULL_IF_CONFIG_SMALL("SSA (SubStation Alpha) subtitle"),
-    .mime_type      = "text/x-ass",
-    .extensions     = "ass,ssa",
-    .priv_data_size = sizeof(ASSContext),
-    .subtitle_codec = AV_CODEC_ID_ASS,
-    .write_header   = write_header,
-    .write_packet   = write_packet,
-    .write_trailer  = write_trailer,
-    .flags          = AVFMT_GLOBALHEADER | AVFMT_NOTIMESTAMPS | AVFMT_TS_NONSTRICT,
-    .priv_class     = &ass_class,
+    //  .name           = "ass",
+    //  .long_name      = "SSA (SubStation Alpha) subtitle",
+    //  .mime_type      = "text/x-ass",
+    //  .extensions     = "ass,ssa",
+    //  .priv_data_size = sizeof(ASSContext),
+    //  .subtitle_codec = AV_CODEC_ID_ASS,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = write_trailer,
+    //  .flags          = AVFMT_GLOBALHEADER | AVFMT_NOTIMESTAMPS | AVFMT_TS_NONSTRICT,
+    //  .priv_class     = &ass_class,
 };

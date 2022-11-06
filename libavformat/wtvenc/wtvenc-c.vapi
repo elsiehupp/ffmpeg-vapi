@@ -26,15 +26,26 @@
  */
 
 AVOutputFormat ff_wtv_muxer = {
-    .name           = "wtv",
-    .long_name      = NULL_IF_CONFIG_SMALL("Windows Television (WTV)"),
-    .extensions     = "wtv",
-    .priv_data_size = sizeof(WtvContext),
-    .audio_codec    = AV_CODEC_ID_AC3,
-    .video_codec    = AV_CODEC_ID_MPEG2VIDEO,
-    .write_header   = write_header,
-    .write_packet   = write_packet,
-    .write_trailer  = write_trailer,
-    .codec_tag      = (const AVCodecTag* const []){ ff_codec_bmp_tags,
+    //  .name           = "wtv",
+    //  .long_name      = "Windows Television (WTV)",
+    //  .extensions     = "wtv",
+    //  .priv_data_size = sizeof(WtvContext),
+    //  .audio_codec    = AV_CODEC_ID_AC3,
+    //  .video_codec    = AV_CODEC_ID_MPEG2VIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = write_trailer,
+    //  .codec_tag      = (const AVCodecTag* const []){ ff_codec_bmp_tags,
                                                     ff_codec_wav_tags, 0 },
 };

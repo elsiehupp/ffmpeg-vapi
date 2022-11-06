@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_thp_demuxer = {
-    .name           = "thp",
-    .long_name      = NULL_IF_CONFIG_SMALL("THP"),
-    .priv_data_size = sizeof(ThpDemuxContext),
-    .read_probe     = thp_probe,
-    .read_header    = thp_read_header,
-    .read_packet    = thp_read_packet
+    //  .name           = "thp",
+    //  .long_name      = "THP",
+    //  .priv_data_size = sizeof(ThpDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = thp_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = thp_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = thp_read_packet
 };

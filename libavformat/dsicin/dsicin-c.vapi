@@ -25,10 +25,20 @@
  */
 
 AVInputFormat ff_dsicin_demuxer = {
-    .name           = "dsicin",
-    .long_name      = NULL_IF_CONFIG_SMALL("Delphine Software International CIN"),
-    .priv_data_size = sizeof(CinDemuxContext),
-    .read_probe     = cin_probe,
-    .read_header    = cin_read_header,
-    .read_packet    = cin_read_packet,
+    //  .name           = "dsicin",
+    //  .long_name      = "Delphine Software International CIN",
+    //  .priv_data_size = sizeof(CinDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = cin_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = cin_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = cin_read_packet,
 };

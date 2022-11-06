@@ -22,20 +22,41 @@
  */
 
 static const AVClass libsrt_class = {
-    .class_name = "libsrt",
-    .item_name  = av_default_item_name,
-    .option     = libsrt_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "libsrt",
+    //  .item_name  = av_default_item_name,
+    //  .option     = libsrt_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_libsrt_protocol = {
-    .name                = "srt",
-    .url_open            = libsrt_open,
-    .url_read            = libsrt_read,
-    .url_write           = libsrt_write,
-    .url_close           = libsrt_close,
-    .url_get_file_handle = libsrt_get_file_handle,
-    .priv_data_size      = sizeof(SRTContext),
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    .priv_data_class     = &libsrt_class,
+    //  .name                = "srt",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = libsrt_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = libsrt_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = libsrt_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = libsrt_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = libsrt_get_file_handle,
+    //  .priv_data_size      = sizeof(SRTContext),
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class     = &libsrt_class,
 };

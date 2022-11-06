@@ -763,7 +763,7 @@ public abstract class AVOutputFormat {
 @addtogroup lavf_decoding
 @{
 ***********************************************************/
-public struct AVInputFormat {
+public abstract class AVInputFormat {
     /***********************************************************
     A comma separated list of short names for the format. New names
     may be appended with a minor bump.
@@ -805,147 +805,147 @@ public struct AVInputFormat {
     ***********************************************************/
     public string mime_type;
 
-    //  /***********************************************************
-    //  No fields below this line are part of the public API. They
-    //  may not be used outside of libavformat and can be changed and
-    //  removed at will.
-    //  New public fields should be added right above.
-    //  ***********************************************************/
-    //  public AVInputFormat next;
+    /***********************************************************
+    No fields below this line are part of the public API. They
+    may not be used outside of libavformat and can be changed and
+    removed at will.
+    New public fields should be added right above.
+    ***********************************************************/
+    public AVInputFormat next;
 
-    //  /***********************************************************
-    //  Raw demuxers store their codec ID here.
-    //  ***********************************************************/
-    //  public int raw_codec_id;
+    /***********************************************************
+    Raw demuxers store their codec ID here.
+    ***********************************************************/
+    public int raw_codec_id;
 
-    //  /***********************************************************
-    //  Size of private data so that it can be allocated in the wrapper.
-    //  ***********************************************************/
-    //  public int priv_data_size;
+    /***********************************************************
+    Size of private data so that it can be allocated in the wrapper.
+    ***********************************************************/
+    public int priv_data_size;
 
-    //  /***********************************************************
-    //  Tell if a given file has a chance of being parsed as this format.
-    //  The buffer provided is guaranteed to be AVPROBE_PADDING_SIZE bytes
-    //  big so you do not have to check for that unless you need more.
-    //  ***********************************************************/
-    //  public int (*read_probe)(
-    //      AVProbeData *
-    //  );
+    /***********************************************************
+    Tell if a given file has a chance of being parsed as this format.
+    The buffer provided is guaranteed to be AVPROBE_PADDING_SIZE bytes
+    big so you do not have to check for that unless you need more.
+    ***********************************************************/
+    public abstract int read_probe (
+        AVProbeData format_context
+    );
 
-    //  /***********************************************************
-    //  Read the format header and initialize the AVFormatContext
-    //  structure. Return 0 if OK. 'avformat_new_stream' should be
-    //  called to create new streams.
-    //  ***********************************************************/
-    //  public int (*read_header)(
-    //      AVFormatContext *
-    //  );
+    /***********************************************************
+    Read the format header and initialize the AVFormatContext
+    structure. Return 0 if OK. 'avformat_new_stream' should be
+    called to create new streams.
+    ***********************************************************/
+    public abstract int read_header (
+        AVFormatContext format_context
+    );
 
-    //  /***********************************************************
-    //  Read one packet and put it in 'packet'. pts and flags are also
-    //  set. 'avformat_new_stream' can be called only if the flag
-    //  AVFMTCTX_NOHEADER is used and only in the calling thread (not in a
-    //  background thread).
-    //  @return 0 on success, < 0 on error.
-    //          When returning an error, packet must not have been allocated
-    //          or must be freed before returning
-    //  ***********************************************************/
-    //  public int (*read_packet)(
-    //      AVFormatContext *,
-    //      LibAVCodec.Packet packet
-    //  );
+    /***********************************************************
+    Read one packet and put it in 'packet'. pts and flags are also
+    set. 'avformat_new_stream' can be called only if the flag
+    AVFMTCTX_NOHEADER is used and only in the calling thread (not in a
+    background thread).
+    @return 0 on success, < 0 on error.
+            When returning an error, packet must not have been allocated
+            or must be freed before returning
+    ***********************************************************/
+    public abstract int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );
 
-    //  /***********************************************************
-    //  Close the stream. The AVFormatContext and AVStreams are not
-    //  freed by this function
-    //  ***********************************************************/
-    //  public int (*read_close)(
-    //      AVFormatContext *
-    //  );
+    /***********************************************************
+    Close the stream. The AVFormatContext and AVStreams are not
+    freed by this function
+    ***********************************************************/
+    public abstract int read_close (
+        AVFormatContext format_context
+    );
 
-    //  /***********************************************************
-    //  Seek to a given timestamp relative to the frames in
-    //  stream component stream_index.
-    //  @param stream_index Must not be -1.
-    //  @param flags Selects which direction should be preferred if no exact
-    //               match is available.
-    //  @return >= 0 on success (but not necessarily the new offset)
-    //  ***********************************************************/
-    //  public int (*read_seek)(
-    //      AVFormatContext *,
-    //      int stream_index,
-    //      int64 timestamp,
-    //      int flags
-    //  );
+    /***********************************************************
+    Seek to a given timestamp relative to the frames in
+    stream component stream_index.
+    @param stream_index Must not be -1.
+    @param flags Selects which direction should be preferred if no exact
+                 match is available.
+    @return >= 0 on success (but not necessarily the new offset)
+    ***********************************************************/
+    public abstract int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );
 
-    //  /***********************************************************
-    //  Get the next timestamp in stream[stream_index].time_base units.
-    //  @return the timestamp or AV_NOPTS_VALUE if an error occurred
-    //  ***********************************************************/
-    //  public int64 (*read_timestamp)(
-    //      AVFormatContext format_context,
-    //      int stream_index,
-    //      int64[] pos,
-    //      int64 pos_limit
-    //  );
+    /***********************************************************
+    Get the next timestamp in stream[stream_index].time_base units.
+    @return the timestamp or AV_NOPTS_VALUE if an error occurred
+    ***********************************************************/
+    public abstract int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    );
 
-    //  /***********************************************************
-    //  Start/resume playing - only meaningful if using a network-based format
-    //  (RTSP).
-    //  ***********************************************************/
-    //  public int (*read_play)(
-    //      AVFormatContext *
-    //  );
+    /***********************************************************
+    Start/resume playing - only meaningful if using a network-based format
+    (RTSP).
+    ***********************************************************/
+    public abstract int read_play (
+        AVFormatContext format_context
+    );
 
-    //  /***********************************************************
-    //  Pause playing - only meaningful if using a network-based format
-    //  (RTSP).
-    //  ***********************************************************/
-    //  public int (*read_pause)(
-    //      AVFormatContext *
-    //  );
+    /***********************************************************
+    Pause playing - only meaningful if using a network-based format
+    (RTSP).
+    ***********************************************************/
+    public abstract int read_pause (
+        AVFormatContext format_context
+    );
 
-    //  /***********************************************************
-    //  Seek to timestamp ts.
-    //  Seeking will be done so that the point from which all active streams
-    //  can be presented successfully will be closest to ts and within min/max_ts.
-    //  Active streams are all streams that have AVStream.discard < AVDISCARD_ALL.
-    //  ***********************************************************/
-    //  public int (*read_seek2)(
-    //      AVFormatContext format_context,
-    //      int stream_index,
-    //      int64 min_ts,
-    //      int64 ts,
-    //      int64 max_ts,
-    //      int flags
-    //  );
+    /***********************************************************
+    Seek to timestamp ts.
+    Seeking will be done so that the point from which all active streams
+    can be presented successfully will be closest to ts and within min/max_ts.
+    Active streams are all streams that have AVStream.discard < AVDISCARD_ALL.
+    ***********************************************************/
+    public abstract int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );
 
-    //  /***********************************************************
-    //  Returns device list with it properties.
-    //  @see avdevice_list_devices () for more details.
-    //  ***********************************************************/
-    //  public int (*get_device_list)(
-    //      AVFormatContext format_context,
-    //      AVDeviceInfoList device_list
-    //  );
+    /***********************************************************
+    Returns device list with it properties.
+    @see avdevice_list_devices () for more details.
+    ***********************************************************/
+    public abstract int get_device_list (
+        AVFormatContext format_context,
+        AVDeviceInfoList device_list
+    );
 
-    //  /***********************************************************
-    //  Initialize device capabilities submodule.
-    //  @see avdevice_capabilities_create () for more details.
-    //  ***********************************************************/
-    //  public int (*create_device_capabilities)(
-    //      AVFormatContext format_context,
-    //      AVDeviceCapabilitiesQuery caps
-    //  );
+    /***********************************************************
+    Initialize device capabilities submodule.
+    @see avdevice_capabilities_create () for more details.
+    ***********************************************************/
+    public abstract int create_device_capabilities (
+        AVFormatContext format_context,
+        AVDeviceCapabilitiesQuery caps
+    );
 
-    //  /***********************************************************
-    //  Free device capabilities submodule.
-    //  @see avdevice_capabilities_free () for more details.
-    //  ***********************************************************/
-    //  public int (*free_device_capabilities)(
-    //      AVFormatContext format_context,
-    //      AVDeviceCapabilitiesQuery caps
-    //  );
+    /***********************************************************
+    Free device capabilities submodule.
+    @see avdevice_capabilities_free () for more details.
+    ***********************************************************/
+    public abstract int free_device_capabilities (
+        AVFormatContext format_context,
+        AVDeviceCapabilitiesQuery caps
+    );
 }
 /***********************************************************
 @}
@@ -1260,7 +1260,7 @@ public struct AVStream {
     //      public int duration_count;
     //      public int64 rfps_duration_sum;
     //      public public const int MAX_STD_TIMEBASES;
-    //      public double (*duration_error)[2][MAX_STD_TIMEBASES];
+    //      public double duration_error)[2][MAX_STD_TIMEBASES];
     //      public int64 codec_info_duration;
     //      public int64 codec_info_duration_fields;
     //      public int frame_delay_evidence;

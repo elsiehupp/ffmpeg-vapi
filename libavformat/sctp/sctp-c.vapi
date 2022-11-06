@@ -37,13 +37,34 @@
  */
 
 const URLProtocol ff_sctp_protocol = {
-    .name                = "sctp",
-    .url_open            = sctp_open,
-    .url_read            = sctp_read,
-    .url_write           = sctp_write,
-    .url_close           = sctp_close,
-    .url_get_file_handle = sctp_get_file_handle,
-    .priv_data_size      = sizeof(SCTPContext),
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    .priv_data_class     = &sctp_class,
+    //  .name                = "sctp",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = sctp_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = sctp_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = sctp_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = sctp_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = sctp_get_file_handle,
+    //  .priv_data_size      = sizeof(SCTPContext),
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class     = &sctp_class,
 };

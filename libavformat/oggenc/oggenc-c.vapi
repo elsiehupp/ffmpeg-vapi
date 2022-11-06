@@ -36,19 +36,19 @@ static const AVOption options[] = {
 
 #define OGG_CLASS(flavor, name)\
 static const AVClass flavor ## _muxer_class = {\
-    .class_name = #name " muxer",\
-    .item_name  = av_default_item_name,\
-    .option     = options,\
-    .version    = LIBAVUTIL_VERSION_INT,\
+    //  .class_name = #name " muxer",\
+    //  .item_name  = av_default_item_name,\
+    //  .option     = options,\
+    //  .version    = LIBAVUTIL_VERSION_INT,\
 };
 
 #if CONFIG_OGG_MUXER
 OGG_CLASS(ogg, Ogg)
 AVOutputFormat ff_ogg_muxer = {
-    .name              = "ogg",
-    .long_name         = NULL_IF_CONFIG_SMALL("Ogg"),
-    .mime_type         = "application/ogg",
-    .extensions        = "ogg"
+    //  .name              = "ogg",
+    //  .long_name         = "Ogg",
+    //  .mime_type         = "application/ogg",
+    //  .extensions        = "ogg"
 #if !CONFIG_OGV_MUXER
                          ",ogv"
 #endif
@@ -59,95 +59,180 @@ AVOutputFormat ff_ogg_muxer = {
                          ",opus"
 #endif
                          ,
-    .priv_data_size    = sizeof(OGGContext),
-    .audio_codec       = CONFIG_LIBVORBIS_ENCODER ?
+    //  .priv_data_size    = sizeof(OGGContext),
+    //  .audio_codec       = CONFIG_LIBVORBIS_ENCODER ?
                          AV_CODEC_ID_VORBIS : AV_CODEC_ID_FLAC,
-    .video_codec       = AV_CODEC_ID_THEORA,
-    .init              = ogg_init,
-    .write_header      = ogg_write_header,
-    .write_packet      = ogg_write_packet,
-    .write_trailer     = ogg_write_trailer,
-    .deinit            = ogg_free,
-    .flags             = AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
-    .priv_class        = &ogg_muxer_class,
+    //  .video_codec       = AV_CODEC_ID_THEORA,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = ogg_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = ogg_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = ogg_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = ogg_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = ogg_free,
+    //  .flags             = AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
+    //  .priv_class        = &ogg_muxer_class,
 };
 #endif
 
 #if CONFIG_OGA_MUXER
 OGG_CLASS(oga, Ogg audio)
 AVOutputFormat ff_oga_muxer = {
-    .name              = "oga",
-    .long_name         = NULL_IF_CONFIG_SMALL("Ogg Audio"),
-    .mime_type         = "audio/ogg",
-    .extensions        = "oga",
-    .priv_data_size    = sizeof(OGGContext),
-    .audio_codec       = AV_CODEC_ID_FLAC,
-    .init              = ogg_init,
-    .write_header      = ogg_write_header,
-    .write_packet      = ogg_write_packet,
-    .write_trailer     = ogg_write_trailer,
-    .deinit            = ogg_free,
-    .flags             = AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH,
-    .priv_class        = &oga_muxer_class,
+    //  .name              = "oga",
+    //  .long_name         = "Ogg Audio",
+    //  .mime_type         = "audio/ogg",
+    //  .extensions        = "oga",
+    //  .priv_data_size    = sizeof(OGGContext),
+    //  .audio_codec       = AV_CODEC_ID_FLAC,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = ogg_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = ogg_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = ogg_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = ogg_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = ogg_free,
+    //  .flags             = AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH,
+    //  .priv_class        = &oga_muxer_class,
 };
 #endif
 
 #if CONFIG_OGV_MUXER
 OGG_CLASS(ogv, Ogg video)
 AVOutputFormat ff_ogv_muxer = {
-    .name              = "ogv",
-    .long_name         = NULL_IF_CONFIG_SMALL("Ogg Video"),
-    .mime_type         = "video/ogg",
-    .extensions        = "ogv",
-    .priv_data_size    = sizeof(OGGContext),
-    .audio_codec       = CONFIG_LIBVORBIS_ENCODER ?
+    //  .name              = "ogv",
+    //  .long_name         = "Ogg Video",
+    //  .mime_type         = "video/ogg",
+    //  .extensions        = "ogv",
+    //  .priv_data_size    = sizeof(OGGContext),
+    //  .audio_codec       = CONFIG_LIBVORBIS_ENCODER ?
                          AV_CODEC_ID_VORBIS : AV_CODEC_ID_FLAC,
-    .video_codec       = CONFIG_LIBTHEORA_ENCODER ?
+    //  .video_codec       = CONFIG_LIBTHEORA_ENCODER ?
                          AV_CODEC_ID_THEORA : AV_CODEC_ID_VP8,
-    .init              = ogg_init,
-    .write_header      = ogg_write_header,
-    .write_packet      = ogg_write_packet,
-    .write_trailer     = ogg_write_trailer,
-    .deinit            = ogg_free,
-    .flags             = AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
-    .priv_class        = &ogv_muxer_class,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = ogg_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = ogg_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = ogg_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = ogg_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = ogg_free,
+    //  .flags             = AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
+    //  .priv_class        = &ogv_muxer_class,
 };
 #endif
 
 #if CONFIG_SPX_MUXER
 OGG_CLASS(spx, Ogg Speex)
 AVOutputFormat ff_spx_muxer = {
-    .name              = "spx",
-    .long_name         = NULL_IF_CONFIG_SMALL("Ogg Speex"),
-    .mime_type         = "audio/ogg",
-    .extensions        = "spx",
-    .priv_data_size    = sizeof(OGGContext),
-    .audio_codec       = AV_CODEC_ID_SPEEX,
-    .init              = ogg_init,
-    .write_header      = ogg_write_header,
-    .write_packet      = ogg_write_packet,
-    .write_trailer     = ogg_write_trailer,
-    .deinit            = ogg_free,
-    .flags             = AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH,
-    .priv_class        = &spx_muxer_class,
+    //  .name              = "spx",
+    //  .long_name         = "Ogg Speex",
+    //  .mime_type         = "audio/ogg",
+    //  .extensions        = "spx",
+    //  .priv_data_size    = sizeof(OGGContext),
+    //  .audio_codec       = AV_CODEC_ID_SPEEX,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = ogg_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = ogg_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = ogg_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = ogg_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = ogg_free,
+    //  .flags             = AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH,
+    //  .priv_class        = &spx_muxer_class,
 };
 #endif
 
 #if CONFIG_OPUS_MUXER
 OGG_CLASS(opus, Ogg Opus)
 AVOutputFormat ff_opus_muxer = {
-    .name              = "opus",
-    .long_name         = NULL_IF_CONFIG_SMALL("Ogg Opus"),
-    .mime_type         = "audio/ogg",
-    .extensions        = "opus",
-    .priv_data_size    = sizeof(OGGContext),
-    .audio_codec       = AV_CODEC_ID_OPUS,
-    .init              = ogg_init,
-    .write_header      = ogg_write_header,
-    .write_packet      = ogg_write_packet,
-    .write_trailer     = ogg_write_trailer,
-    .deinit            = ogg_free,
-    .flags             = AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH,
-    .priv_class        = &opus_muxer_class,
+    //  .name              = "opus",
+    //  .long_name         = "Ogg Opus",
+    //  .mime_type         = "audio/ogg",
+    //  .extensions        = "opus",
+    //  .priv_data_size    = sizeof(OGGContext),
+    //  .audio_codec       = AV_CODEC_ID_OPUS,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = ogg_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = ogg_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = ogg_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = ogg_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = ogg_free,
+    //  .flags             = AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH,
+    //  .priv_class        = &opus_muxer_class,
 };
 #endif

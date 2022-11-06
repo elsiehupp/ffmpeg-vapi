@@ -20,11 +20,27 @@
  */
 
 AVInputFormat ff_yuv4mpegpipe_demuxer = {
-    .name           = "yuv4mpegpipe",
-    .long_name      = NULL_IF_CONFIG_SMALL("YUV4MPEG pipe"),
-    .read_probe     = yuv4_probe,
-    .read_header    = yuv4_read_header,
-    .read_packet    = yuv4_read_packet,
-    .read_seek      = yuv4_read_seek,
-    .extensions     = "y4m",
+    //  .name           = "yuv4mpegpipe",
+    //  .long_name      = "YUV4MPEG pipe",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = yuv4_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = yuv4_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = yuv4_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = yuv4_read_seek,
+    //  .extensions     = "y4m",
 };

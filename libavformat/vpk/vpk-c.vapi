@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_vpk_demuxer = {
-    .name           = "vpk",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sony PS2 VPK"),
-    .priv_data_size = sizeof(VPKDemuxContext),
-    .read_probe     = vpk_probe,
-    .read_header    = vpk_read_header,
-    .read_packet    = vpk_read_packet,
-    .extensions     = "vpk",
+    //  .name           = "vpk",
+    //  .long_name      = "Sony PS2 VPK",
+    //  .priv_data_size = sizeof(VPKDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = vpk_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = vpk_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = vpk_read_packet,
+    //  .extensions     = "vpk",
 };

@@ -19,15 +19,23 @@
  */
 
 const struct ogg_codec ff_flac_codec = {
-    .magic = "\177FLAC",
-    .magicsize = 5,
-    .header = flac_header,
-    .nb_header = 2,
+    //  .magic = "\177FLAC",
+    //  .magicsize = 5,
+    [CCode (cname="", cheader="")]
+    public override int header (
+        AVFormatContext context,
+        int arg
+    ); = flac_header,
+    //  .nb_header = 2,
 };
 
 const struct ogg_codec ff_old_flac_codec = {
-    .magic = "fLaC",
-    .magicsize = 4,
-    .header = old_flac_header,
-    .nb_header = 0,
+    //  .magic = "fLaC",
+    //  .magicsize = 4,
+    [CCode (cname="", cheader="")]
+    public override int header (
+        AVFormatContext context,
+        int arg
+    ); = old_flac_header,
+    //  .nb_header = 0,
 };

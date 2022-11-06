@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_gdv_demuxer = {
-    .name           = "gdv",
-    .long_name      = NULL_IF_CONFIG_SMALL("Gremlin Digital Video"),
-    .priv_data_size = sizeof(GDVContext),
-    .read_probe     = gdv_read_probe,
-    .read_header    = gdv_read_header,
-    .read_packet    = gdv_read_packet,
+    //  .name           = "gdv",
+    //  .long_name      = "Gremlin Digital Video",
+    //  .priv_data_size = sizeof(GDVContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = gdv_read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = gdv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = gdv_read_packet,
 };

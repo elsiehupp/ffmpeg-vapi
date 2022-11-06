@@ -20,11 +20,18 @@
  */
 
 AVInputFormat ff_cdg_demuxer = {
-    .name           = "cdg",
-    .long_name      = NULL_IF_CONFIG_SMALL("CD Graphics"),
-    .priv_data_size = sizeof(CDGContext),
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "cdg",
+    //  .name           = "cdg",
+    //  .long_name      = "CD Graphics",
+    //  .priv_data_size = sizeof(CDGContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "cdg",
 };

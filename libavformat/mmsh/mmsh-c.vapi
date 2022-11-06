@@ -26,13 +26,37 @@
  */
 
 const URLProtocol ff_mmsh_protocol = {
-    .name           = "mmsh",
-    .url_open       = mmsh_open,
-    .url_read       = mmsh_read,
-    .url_seek       = mmsh_seek,
-    .url_close      = mmsh_close,
-    .url_read_seek  = mmsh_read_seek,
-    .priv_data_size = sizeof(MMSHContext),
-    .flags          = URL_PROTOCOL_FLAG_NETWORK,
-    .default_whitelist = "http,tcp",
+    //  .name           = "mmsh",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );       = mmsh_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = mmsh_read,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );       = mmsh_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );      = mmsh_close,
+    [CCode (cname="", cheader="")]
+    public override int64 url_read_seek (
+        URLContext h,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );  = mmsh_read_seek,
+    //  .priv_data_size = sizeof(MMSHContext),
+    //  .flags          = URL_PROTOCOL_FLAG_NETWORK,
+    //  .default_whitelist = "http,tcp",
 };

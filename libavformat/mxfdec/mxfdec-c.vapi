@@ -51,22 +51,41 @@ static const AVOption options[] = {
 };
 
 static const AVClass demuxer_class = {
-    .class_name = "mxf",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
-    .category   = AV_CLASS_CATEGORY_DEMUXER,
+    //  .class_name = "mxf",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
+    //  .category   = AV_CLASS_CATEGORY_DEMUXER,
 };
 
 AVInputFormat ff_mxf_demuxer = {
-    .name           = "mxf",
-    .long_name      = NULL_IF_CONFIG_SMALL("MXF (Material eXchange Format)"),
-    .flags          = AVFMT_SEEK_TO_PTS,
-    .priv_data_size = sizeof(MXFContext),
-    .read_probe     = mxf_probe,
-    .read_header    = mxf_read_header,
-    .read_packet    = mxf_read_packet,
-    .read_close     = mxf_read_close,
-    .read_seek      = mxf_read_seek,
-    .priv_class     = &demuxer_class,
+    //  .name           = "mxf",
+    //  .long_name      = "MXF (Material eXchange Format)",
+    //  .flags          = AVFMT_SEEK_TO_PTS,
+    //  .priv_data_size = sizeof(MXFContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mxf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mxf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mxf_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = mxf_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = mxf_read_seek,
+    //  .priv_class     = &demuxer_class,
 };

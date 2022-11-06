@@ -20,17 +20,41 @@
  */
 
 const RTPDynamicProtocolHandler ff_h263_1998_dynamic_handler = {
-    .enc_name         = "H263-1998",
-    .codec_type       = AVMEDIA_TYPE_VIDEO,
-    .codec_id         = AV_CODEC_ID_H263,
-    .need_parsing     = AVSTREAM_PARSE_FULL,
-    .parse_packet     = ff_h263_handle_packet,
+    //  .enc_name         = "H263-1998",
+    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id         = AV_CODEC_ID_H263,
+    //  .need_parsing     = AVSTREAM_PARSE_FULL,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = ff_h263_handle_packet,
 };
 
 const RTPDynamicProtocolHandler ff_h263_2000_dynamic_handler = {
-    .enc_name         = "H263-2000",
-    .codec_type       = AVMEDIA_TYPE_VIDEO,
-    .codec_id         = AV_CODEC_ID_H263,
-    .need_parsing     = AVSTREAM_PARSE_FULL,
-    .parse_packet     = ff_h263_handle_packet,
+    //  .enc_name         = "H263-2000",
+    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id         = AV_CODEC_ID_H263,
+    //  .need_parsing     = AVSTREAM_PARSE_FULL,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = ff_h263_handle_packet,
 };

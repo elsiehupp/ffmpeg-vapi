@@ -38,20 +38,41 @@ static const AVOption unix_options[] = {
 };
 
 static const AVClass unix_class = {
-    .class_name = "unix",
-    .item_name  = av_default_item_name,
-    .option     = unix_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "unix",
+    //  .item_name  = av_default_item_name,
+    //  .option     = unix_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_unix_protocol = {
-    .name                = "unix",
-    .url_open            = unix_open,
-    .url_read            = unix_read,
-    .url_write           = unix_write,
-    .url_close           = unix_close,
-    .url_get_file_handle = unix_get_file_handle,
-    .priv_data_size      = sizeof(UnixContext),
-    .priv_data_class     = &unix_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                = "unix",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = unix_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = unix_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = unix_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = unix_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = unix_get_file_handle,
+    //  .priv_data_size      = sizeof(UnixContext),
+    //  .priv_data_class     = &unix_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };

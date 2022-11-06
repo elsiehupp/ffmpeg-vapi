@@ -41,15 +41,34 @@
  */
 
 AVInputFormat ff_oma_demuxer = {
-    .name           = "oma",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sony OpenMG audio"),
-    .priv_data_size = sizeof(OMAContext),
-    .read_probe     = oma_read_probe,
-    .read_header    = oma_read_header,
-    .read_packet    = oma_read_packet,
-    .read_seek      = oma_read_seek,
-    .read_close     = oma_read_close,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "oma,omg,aa3",
-    .codec_tag      = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
+    //  .name           = "oma",
+    //  .long_name      = "Sony OpenMG audio",
+    //  .priv_data_size = sizeof(OMAContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = oma_read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = oma_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = oma_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = oma_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = oma_read_close,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "oma,omg,aa3",
+    //  .codec_tag      = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
 };

@@ -62,7 +62,7 @@ static const AVOption mov_options[] = {
     { "audible_fixed_key", // extracted from libAAX_SDK.so and AAXSDKWin.dll files!
         "Fixed key used for handling Audible AAX files", OFFSET(audible_fixed_key),
         AV_OPT_TYPE_BINARY, {.str="77214d4b196a87cd520045fd20a51d67"},
-        .flags = AV_OPT_FLAG_DECODING_PARAM },
+        //  .flags = AV_OPT_FLAG_DECODING_PARAM },
     { "decryption_key", "The media decryption key (hex)", OFFSET(decryption_key), AV_OPT_TYPE_BINARY, .flags = AV_OPT_FLAG_DECODING_PARAM },
     { "enable_drefs", "Enable external track support.", OFFSET(enable_drefs), AV_OPT_TYPE_BOOL,
         {.i64 = 0}, 0, 1, FLAGS },
@@ -71,22 +71,41 @@ static const AVOption mov_options[] = {
 };
 
 static const AVClass mov_class = {
-    .class_name = "mov,mp4,m4a,3gp,3g2,mj2",
-    .item_name  = av_default_item_name,
-    .option     = mov_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "mov,mp4,m4a,3gp,3g2,mj2",
+    //  .item_name  = av_default_item_name,
+    //  .option     = mov_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_mov_demuxer = {
-    .name           = "mov,mp4,m4a,3gp,3g2,mj2",
-    .long_name      = NULL_IF_CONFIG_SMALL("QuickTime / MOV"),
-    .priv_class     = &mov_class,
-    .priv_data_size = sizeof(MOVContext),
-    .extensions     = "mov,mp4,m4a,3gp,3g2,mj2",
-    .read_probe     = mov_probe,
-    .read_header    = mov_read_header,
-    .read_packet    = mov_read_packet,
-    .read_close     = mov_read_close,
-    .read_seek      = mov_read_seek,
-    .flags          = AVFMT_NO_BYTE_SEEK | AVFMT_SEEK_TO_PTS,
+    //  .name           = "mov,mp4,m4a,3gp,3g2,mj2",
+    //  .long_name      = "QuickTime / MOV",
+    //  .priv_class     = &mov_class,
+    //  .priv_data_size = sizeof(MOVContext),
+    //  .extensions     = "mov,mp4,m4a,3gp,3g2,mj2",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mov_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mov_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mov_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = mov_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = mov_read_seek,
+    //  .flags          = AVFMT_NO_BYTE_SEEK | AVFMT_SEEK_TO_PTS,
 };

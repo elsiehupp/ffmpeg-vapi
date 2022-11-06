@@ -24,32 +24,52 @@
 #if CONFIG_MLP_DEMUXER
 FF_RAW_DEMUXER_CLASS(mlp)
 AVInputFormat ff_mlp_demuxer = {
-    .name           = "mlp",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw MLP"),
-    .read_probe     = mlp_probe,
-    .read_header    = ff_raw_audio_read_header,
-    .read_packet    = ff_raw_read_partial_packet,
-    .flags          = AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS,
-    .extensions     = "mlp",
-    .raw_codec_id   = AV_CODEC_ID_MLP,
-    .priv_data_size = sizeof(FFRawDemuxerContext),
-    .priv_class     = &mlp_demuxer_class,
+    //  .name           = "mlp",
+    //  .long_name      = "raw MLP",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mlp_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ff_raw_audio_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_raw_read_partial_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS,
+    //  .extensions     = "mlp",
+    //  .raw_codec_id   = AV_CODEC_ID_MLP,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),
+    //  .priv_class     = &mlp_demuxer_class,
 };
 #endif
 
 #if CONFIG_TRUEHD_DEMUXER
 FF_RAW_DEMUXER_CLASS(truehd)
 AVInputFormat ff_truehd_demuxer = {
-    .name           = "truehd",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw TrueHD"),
-    .read_probe     = thd_probe,
-    .read_header    = ff_raw_audio_read_header,
-    .read_packet    = ff_raw_read_partial_packet,
-    .flags          = AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS,
-    .extensions     = "thd",
-    .raw_codec_id   = AV_CODEC_ID_TRUEHD,
-    .priv_data_size = sizeof(FFRawDemuxerContext),
-    .priv_class     = &truehd_demuxer_class,
+    //  .name           = "truehd",
+    //  .long_name      = "raw TrueHD",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = thd_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ff_raw_audio_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_raw_read_partial_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS,
+    //  .extensions     = "thd",
+    //  .raw_codec_id   = AV_CODEC_ID_TRUEHD,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),
+    //  .priv_class     = &truehd_demuxer_class,
 };
 #endif
 

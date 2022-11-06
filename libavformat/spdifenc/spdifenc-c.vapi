@@ -53,22 +53,33 @@ static const AVOption options[] = {
 };
 
 static const AVClass spdif_class = {
-    .class_name     = "spdif",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "spdif",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_spdif_muxer = {
-    .name              = "spdif",
-    .long_name         = NULL_IF_CONFIG_SMALL("IEC 61937 (used on S/PDIF - IEC958)"),
-    .extensions        = "spdif",
-    .priv_data_size    = sizeof(IEC61937Context),
-    .audio_codec       = AV_CODEC_ID_AC3,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .write_header      = spdif_write_header,
-    .write_packet      = spdif_write_packet,
-    .write_trailer     = spdif_write_trailer,
-    .flags             = AVFMT_NOTIMESTAMPS,
-    .priv_class        = &spdif_class,
+    //  .name              = "spdif",
+    //  .long_name         = "IEC 61937 (used on S/PDIF - IEC958)",
+    //  .extensions        = "spdif",
+    //  .priv_data_size    = sizeof(IEC61937Context),
+    //  .audio_codec       = AV_CODEC_ID_AC3,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = spdif_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = spdif_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = spdif_write_trailer,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
+    //  .priv_class        = &spdif_class,
 };

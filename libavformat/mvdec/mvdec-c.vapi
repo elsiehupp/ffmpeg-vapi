@@ -25,11 +25,27 @@
  */
 
 AVInputFormat ff_mv_demuxer = {
-    .name           = "mv",
-    .long_name      = NULL_IF_CONFIG_SMALL("Silicon Graphics Movie"),
-    .priv_data_size = sizeof(MvContext),
-    .read_probe     = mv_probe,
-    .read_header    = mv_read_header,
-    .read_packet    = mv_read_packet,
-    .read_seek      = mv_read_seek,
+    //  .name           = "mv",
+    //  .long_name      = "Silicon Graphics Movie",
+    //  .priv_data_size = sizeof(MvContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mv_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = mv_read_seek,
 };

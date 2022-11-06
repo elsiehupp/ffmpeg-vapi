@@ -26,10 +26,20 @@
  */
 
 AVInputFormat ff_spdif_demuxer = {
-    .name           = "spdif",
-    .long_name      = NULL_IF_CONFIG_SMALL("IEC 61937 (compressed data in S/PDIF)"),
-    .read_probe     = spdif_probe,
-    .read_header    = spdif_read_header,
-    .read_packet    = ff_spdif_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "spdif",
+    //  .long_name      = "IEC 61937 (compressed data in S/PDIF)",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = spdif_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = spdif_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_spdif_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

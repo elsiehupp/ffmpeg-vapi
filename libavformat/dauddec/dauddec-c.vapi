@@ -20,9 +20,16 @@
  */
 
 AVInputFormat ff_daud_demuxer = {
-    .name           = "daud",
-    .long_name      = NULL_IF_CONFIG_SMALL("D-Cinema audio"),
-    .read_header    = daud_header,
-    .read_packet    = daud_packet,
-    .extensions     = "302,daud",
+    //  .name           = "daud",
+    //  .long_name      = "D-Cinema audio",
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = daud_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = daud_packet,
+    //  .extensions     = "302,daud",
 };

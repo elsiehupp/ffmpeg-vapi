@@ -22,20 +22,39 @@
 */
 
 static const AVClass class_gme = {
-    .class_name = "Game Music Emu demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "Game Music Emu demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_libgme_demuxer = {
-    .name           = "libgme",
-    .long_name      = NULL_IF_CONFIG_SMALL("Game Music Emu demuxer"),
-    .priv_data_size = sizeof(GMEContext),
-    .read_probe     = probe_gme,
-    .read_header    = read_header_gme,
-    .read_packet    = read_packet_gme,
-    .read_close     = read_close_gme,
-    .read_seek      = read_seek_gme,
-    .priv_class     = &class_gme,
+    //  .name           = "libgme",
+    //  .long_name      = "Game Music Emu demuxer",
+    //  .priv_data_size = sizeof(GMEContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe_gme,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header_gme,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet_gme,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = read_close_gme,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek_gme,
+    //  .priv_class     = &class_gme,
 };

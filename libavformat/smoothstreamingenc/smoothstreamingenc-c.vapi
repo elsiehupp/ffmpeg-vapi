@@ -31,22 +31,33 @@ static const AVOption options[] = {
 };
 
 static const AVClass ism_class = {
-    .class_name = "smooth streaming muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "smooth streaming muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 
 AVOutputFormat ff_smoothstreaming_muxer = {
-    .name           = "smoothstreaming",
-    .long_name      = NULL_IF_CONFIG_SMALL("Smooth Streaming Muxer"),
-    .priv_data_size = sizeof(SmoothStreamingContext),
-    .audio_codec    = AV_CODEC_ID_AAC,
-    .video_codec    = AV_CODEC_ID_H264,
-    .flags          = AVFMT_GLOBALHEADER | AVFMT_NOFILE,
-    .write_header   = ism_write_header,
-    .write_packet   = ism_write_packet,
-    .write_trailer  = ism_write_trailer,
-    .priv_class     = &ism_class,
+    //  .name           = "smoothstreaming",
+    //  .long_name      = "Smooth Streaming Muxer",
+    //  .priv_data_size = sizeof(SmoothStreamingContext),
+    //  .audio_codec    = AV_CODEC_ID_AAC,
+    //  .video_codec    = AV_CODEC_ID_H264,
+    //  .flags          = AVFMT_GLOBALHEADER | AVFMT_NOFILE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = ism_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = ism_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = ism_write_trailer,
+    //  .priv_class     = &ism_class,
 };

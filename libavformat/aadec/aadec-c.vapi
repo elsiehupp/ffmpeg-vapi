@@ -24,22 +24,41 @@
  */
 
 static const AVClass aa_class = {
-    .class_name = "aa",
-    .item_name  = av_default_item_name,
-    .option     = aa_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "aa",
+    //  .item_name  = av_default_item_name,
+    //  .option     = aa_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_aa_demuxer = {
-    .name           = "aa",
-    .long_name      = NULL_IF_CONFIG_SMALL("Audible AA format files"),
-    .priv_class     = &aa_class,
-    .priv_data_size = sizeof(AADemuxContext),
-    .extensions     = "aa",
-    .read_probe     = aa_probe,
-    .read_header    = aa_read_header,
-    .read_packet    = aa_read_packet,
-    .read_seek      = aa_read_seek,
-    .read_close     = aa_read_close,
-    .flags          = AVFMT_NO_BYTE_SEEK | AVFMT_NOGENSEARCH,
+    //  .name           = "aa",
+    //  .long_name      = "Audible AA format files",
+    //  .priv_class     = &aa_class,
+    //  .priv_data_size = sizeof(AADemuxContext),
+    //  .extensions     = "aa",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = aa_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = aa_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = aa_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = aa_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = aa_read_close,
+    //  .flags          = AVFMT_NO_BYTE_SEEK | AVFMT_NOGENSEARCH,
 };

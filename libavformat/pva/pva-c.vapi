@@ -20,11 +20,27 @@
  */
 
 AVInputFormat ff_pva_demuxer = {
-    .name           = "pva",
-    .long_name      = NULL_IF_CONFIG_SMALL("TechnoTrend PVA"),
-    .priv_data_size = sizeof(PVAContext),
-    .read_probe     = pva_probe,
-    .read_header    = pva_read_header,
-    .read_packet    = pva_read_packet,
-    .read_timestamp = pva_read_timestamp,
+    //  .name           = "pva",
+    //  .long_name      = "TechnoTrend PVA",
+    //  .priv_data_size = sizeof(PVAContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = pva_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = pva_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = pva_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = pva_read_timestamp,
 };

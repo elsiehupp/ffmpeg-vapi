@@ -26,19 +26,26 @@ static const AVOption g729_options[] = {
 };
 
 static const AVClass g729_demuxer_class = {
-    .class_name = "g729 demuxer",
-    .item_name  = av_default_item_name,
-    .option     = g729_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "g729 demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = g729_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_g729_demuxer = {
-    .name           = "g729",
-    .long_name      = NULL_IF_CONFIG_SMALL("G.729 raw format demuxer"),
-    .priv_data_size = sizeof(G729DemuxerContext),
-    .read_header    = g729_read_header,
-    .read_packet    = g729_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "g729",
-    .priv_class     = &g729_demuxer_class,
+    //  .name           = "g729",
+    //  .long_name      = "G.729 raw format demuxer",
+    //  .priv_data_size = sizeof(G729DemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = g729_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = g729_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "g729",
+    //  .priv_class     = &g729_demuxer_class,
 };

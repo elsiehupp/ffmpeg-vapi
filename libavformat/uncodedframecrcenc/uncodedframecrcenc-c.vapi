@@ -19,13 +19,27 @@
 */
 
 AVOutputFormat ff_uncodedframecrc_muxer = {
-    .name              = "uncodedframecrc",
-    .long_name         = NULL_IF_CONFIG_SMALL("uncoded framecrc testing"),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_RAWVIDEO,
-    .write_header      = write_header,
-    .write_packet      = write_packet,
-    .write_uncoded_frame = write_frame,
-    .flags             = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
+    //  .name              = "uncodedframecrc",
+    //  .long_name         = "uncoded framecrc testing",
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_RAWVIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_uncoded_frame (
+        AVFormatContext format_context,
+        int stream_index,
+        LibAVUtil.Frame frame,
+        uint flags
+    ); = write_frame,
+    //  .flags             = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
                          AVFMT_TS_NEGATIVE,
 };

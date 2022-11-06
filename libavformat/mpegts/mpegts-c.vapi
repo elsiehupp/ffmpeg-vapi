@@ -42,10 +42,10 @@ static const AVOption options[] = {
 };
 
 static const AVClass mpegts_class = {
-    .class_name = "mpegts demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "mpegts demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 static const AVOption raw_options[] = {
@@ -61,33 +61,68 @@ static const AVOption raw_options[] = {
 };
 
 static const AVClass mpegtsraw_class = {
-    .class_name = "mpegtsraw demuxer",
-    .item_name  = av_default_item_name,
-    .option     = raw_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "mpegtsraw demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = raw_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_mpegts_demuxer = {
-    .name           = "mpegts",
-    .long_name      = NULL_IF_CONFIG_SMALL("MPEG-TS (MPEG-2 Transport Stream)"),
-    .priv_data_size = sizeof(MpegTSContext),
-    .read_probe     = mpegts_probe,
-    .read_header    = mpegts_read_header,
-    .read_packet    = mpegts_read_packet,
-    .read_close     = mpegts_read_close,
-    .read_timestamp = mpegts_get_dts,
-    .flags          = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
-    .priv_class     = &mpegts_class,
+    //  .name           = "mpegts",
+    //  .long_name      = "MPEG-TS (MPEG-2 Transport Stream)",
+    //  .priv_data_size = sizeof(MpegTSContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mpegts_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mpegts_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mpegts_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = mpegts_read_close,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = mpegts_get_dts,
+    //  .flags          = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
+    //  .priv_class     = &mpegts_class,
 };
 
 AVInputFormat ff_mpegtsraw_demuxer = {
-    .name           = "mpegtsraw",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw MPEG-TS (MPEG-2 Transport Stream)"),
-    .priv_data_size = sizeof(MpegTSContext),
-    .read_header    = mpegts_read_header,
-    .read_packet    = mpegts_raw_read_packet,
-    .read_close     = mpegts_read_close,
-    .read_timestamp = mpegts_get_dts,
-    .flags          = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
-    .priv_class     = &mpegtsraw_class,
+    //  .name           = "mpegtsraw",
+    //  .long_name      = "raw MPEG-TS (MPEG-2 Transport Stream)",
+    //  .priv_data_size = sizeof(MpegTSContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mpegts_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mpegts_raw_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = mpegts_read_close,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = mpegts_get_dts,
+    //  .flags          = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
+    //  .priv_class     = &mpegtsraw_class,
 };

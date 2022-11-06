@@ -20,12 +20,33 @@
  */
 
 AVInputFormat ff_lrc_demuxer = {
-    .name           = "lrc",
-    .long_name      = NULL_IF_CONFIG_SMALL("LRC lyrics"),
-    .priv_data_size = sizeof (LRCContext),
-    .read_probe     = lrc_probe,
-    .read_header    = lrc_read_header,
-    .read_packet    = lrc_read_packet,
-    .read_close     = lrc_read_close,
-    .read_seek2     = lrc_read_seek
+    //  .name           = "lrc",
+    //  .long_name      = "LRC lyrics",
+    //  .priv_data_size = sizeof (LRCContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = lrc_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = lrc_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = lrc_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = lrc_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = lrc_read_seek
 };

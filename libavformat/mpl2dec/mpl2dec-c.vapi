@@ -24,13 +24,34 @@
  */
 
 AVInputFormat ff_mpl2_demuxer = {
-    .name           = "mpl2",
-    .long_name      = NULL_IF_CONFIG_SMALL("MPL2 subtitles"),
-    .priv_data_size = sizeof(MPL2Context),
-    .read_probe     = mpl2_probe,
-    .read_header    = mpl2_read_header,
-    .read_packet    = mpl2_read_packet,
-    .read_seek2     = mpl2_read_seek,
-    .read_close     = mpl2_read_close,
-    .extensions     = "txt,mpl2",
+    //  .name           = "mpl2",
+    //  .long_name      = "MPL2 subtitles",
+    //  .priv_data_size = sizeof(MPL2Context),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mpl2_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mpl2_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mpl2_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = mpl2_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = mpl2_read_close,
+    //  .extensions     = "txt,mpl2",
 };

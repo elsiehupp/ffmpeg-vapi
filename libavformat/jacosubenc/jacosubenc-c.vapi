@@ -17,12 +17,20 @@
  */
 
 AVOutputFormat ff_jacosub_muxer = {
-    .name           = "jacosub",
-    .long_name      = NULL_IF_CONFIG_SMALL("JACOsub subtitle format"),
-    .mime_type      = "text/x-jacosub",
-    .extensions     = "jss,js",
-    .write_header   = jacosub_write_header,
-    .write_packet   = ff_raw_write_packet,
-    .flags          = AVFMT_TS_NONSTRICT,
-    .subtitle_codec = AV_CODEC_ID_JACOSUB,
+    //  .name           = "jacosub",
+    //  .long_name      = "JACOsub subtitle format",
+    //  .mime_type      = "text/x-jacosub",
+    //  .extensions     = "jss,js",
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = jacosub_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = ff_raw_write_packet,
+    //  .flags          = AVFMT_TS_NONSTRICT,
+    //  .subtitle_codec = AV_CODEC_ID_JACOSUB,
 };

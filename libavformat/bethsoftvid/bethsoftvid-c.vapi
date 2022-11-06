@@ -28,11 +28,24 @@
  */
 
 AVInputFormat ff_bethsoftvid_demuxer = {
-    .name           = "bethsoftvid",
-    .long_name      = NULL_IF_CONFIG_SMALL("Bethesda Softworks VID"),
-    .priv_data_size = sizeof(BVID_DemuxContext),
-    .read_probe     = vid_probe,
-    .read_header    = vid_read_header,
-    .read_packet    = vid_read_packet,
-    .read_close     = vid_read_close,
+    //  .name           = "bethsoftvid",
+    //  .long_name      = "Bethesda Softworks VID",
+    //  .priv_data_size = sizeof(BVID_DemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = vid_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = vid_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = vid_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = vid_read_close,
 };

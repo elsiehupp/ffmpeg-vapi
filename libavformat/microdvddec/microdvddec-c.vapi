@@ -28,20 +28,41 @@ static const AVOption microdvd_options[] = {
 };
 
 static const AVClass microdvd_class = {
-    .class_name = "microdvddec",
-    .item_name  = av_default_item_name,
-    .option     = microdvd_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "microdvddec",
+    //  .item_name  = av_default_item_name,
+    //  .option     = microdvd_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_microdvd_demuxer = {
-    .name           = "microdvd",
-    .long_name      = NULL_IF_CONFIG_SMALL("MicroDVD subtitle format"),
-    .priv_data_size = sizeof(MicroDVDContext),
-    .read_probe     = microdvd_probe,
-    .read_header    = microdvd_read_header,
-    .read_packet    = microdvd_read_packet,
-    .read_seek2     = microdvd_read_seek,
-    .read_close     = microdvd_read_close,
-    .priv_class     = &microdvd_class,
+    //  .name           = "microdvd",
+    //  .long_name      = "MicroDVD subtitle format",
+    //  .priv_data_size = sizeof(MicroDVDContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = microdvd_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = microdvd_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = microdvd_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = microdvd_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = microdvd_read_close,
+    //  .priv_class     = &microdvd_class,
 };

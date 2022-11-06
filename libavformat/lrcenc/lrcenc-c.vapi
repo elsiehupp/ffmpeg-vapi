@@ -20,13 +20,21 @@
  */
 
 AVOutputFormat ff_lrc_muxer = {
-    .name           = "lrc",
-    .long_name      = NULL_IF_CONFIG_SMALL("LRC lyrics"),
-    .extensions     = "lrc",
-    .priv_data_size = 0,
-    .write_header   = lrc_write_header,
-    .write_packet   = lrc_write_packet,
-    .flags          = AVFMT_VARIABLE_FPS | AVFMT_GLOBALHEADER |
+    //  .name           = "lrc",
+    //  .long_name      = "LRC lyrics",
+    //  .extensions     = "lrc",
+    //  .priv_data_size = 0,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = lrc_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = lrc_write_packet,
+    //  .flags          = AVFMT_VARIABLE_FPS | AVFMT_GLOBALHEADER |
                       AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT,
-    .subtitle_codec = AV_CODEC_ID_SUBRIP
+    //  .subtitle_codec = AV_CODEC_ID_SUBRIP
 };

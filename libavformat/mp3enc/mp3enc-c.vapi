@@ -30,24 +30,39 @@ static const AVOption options[] = {
 };
 
 static const AVClass mp3_muxer_class = {
-    .class_name     = "MP3 muxer",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "MP3 muxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_mp3_muxer = {
-    .name              = "mp3",
-    .long_name         = NULL_IF_CONFIG_SMALL("MP3 (MPEG audio layer 3)"),
-    .mime_type         = "audio/mpeg",
-    .extensions        = "mp3",
-    .priv_data_size    = sizeof(MP3Context),
-    .audio_codec       = AV_CODEC_ID_MP3,
-    .video_codec       = AV_CODEC_ID_PNG,
-    .write_header      = mp3_write_header,
-    .write_packet      = mp3_write_packet,
-    .write_trailer     = mp3_write_trailer,
-    .query_codec       = query_codec,
-    .flags             = AVFMT_NOTIMESTAMPS,
-    .priv_class        = &mp3_muxer_class,
+    //  .name              = "mp3",
+    //  .long_name         = "MP3 (MPEG audio layer 3)",
+    //  .mime_type         = "audio/mpeg",
+    //  .extensions        = "mp3",
+    //  .priv_data_size    = sizeof(MP3Context),
+    //  .audio_codec       = AV_CODEC_ID_MP3,
+    //  .video_codec       = AV_CODEC_ID_PNG,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mp3_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mp3_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mp3_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override int query_codec (
+        LibAVCodec.CodecID id,
+        int std_compliance
+    );       = query_codec,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
+    //  .priv_class        = &mp3_muxer_class,
 };

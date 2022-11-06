@@ -27,22 +27,33 @@ static const AVOption options[] = {
 };
 
 static const AVClass ast_muxer_class = {
-    .class_name = "AST muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "AST muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_ast_muxer = {
-    .name              = "ast",
-    .long_name         = NULL_IF_CONFIG_SMALL("AST (Audio Stream)"),
-    .extensions        = "ast",
-    .priv_data_size    = sizeof(ASTMuxContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S16BE_PLANAR,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .write_header      = ast_write_header,
-    .write_packet      = ast_write_packet,
-    .write_trailer     = ast_write_trailer,
-    .priv_class        = &ast_muxer_class,
-    .codec_tag         = (const AVCodecTag* const []){ff_codec_ast_tags, 0},
+    //  .name              = "ast",
+    //  .long_name         = "AST (Audio Stream)",
+    //  .extensions        = "ast",
+    //  .priv_data_size    = sizeof(ASTMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16BE_PLANAR,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = ast_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = ast_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = ast_write_trailer,
+    //  .priv_class        = &ast_muxer_class,
+    //  .codec_tag         = (const AVCodecTag* const []){ff_codec_ast_tags, 0},
 };

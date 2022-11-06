@@ -20,12 +20,20 @@
  */
 
 AVOutputFormat ff_yuv4mpegpipe_muxer = {
-    .name              = "yuv4mpegpipe",
-    .long_name         = NULL_IF_CONFIG_SMALL("YUV4MPEG pipe"),
-    .extensions        = "y4m",
-    .priv_data_size    = sizeof(int),
-    .audio_codec       = AV_CODEC_ID_NONE,
-    .video_codec       = AV_CODEC_ID_WRAPPED_AVFRAME,
-    .write_header      = yuv4_write_header,
-    .write_packet      = yuv4_write_packet,
+    //  .name              = "yuv4mpegpipe",
+    //  .long_name         = "YUV4MPEG pipe",
+    //  .extensions        = "y4m",
+    //  .priv_data_size    = sizeof(int),
+    //  .audio_codec       = AV_CODEC_ID_NONE,
+    //  .video_codec       = AV_CODEC_ID_WRAPPED_AVFRAME,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = yuv4_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = yuv4_write_packet,
 };

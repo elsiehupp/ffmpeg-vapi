@@ -24,13 +24,23 @@
  */
 
 AVInputFormat ff_adx_demuxer = {
-    .name           = "adx",
-    .long_name      = NULL_IF_CONFIG_SMALL("CRI ADX"),
-    .read_probe     = adx_probe,
-    .priv_data_size = sizeof(ADXDemuxerContext),
-    .read_header    = adx_read_header,
-    .read_packet    = adx_read_packet,
-    .extensions     = "adx",
-    .raw_codec_id   = AV_CODEC_ID_ADPCM_ADX,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "adx",
+    //  .long_name      = "CRI ADX",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = adx_probe,
+    //  .priv_data_size = sizeof(ADXDemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = adx_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = adx_read_packet,
+    //  .extensions     = "adx",
+    //  .raw_codec_id   = AV_CODEC_ID_ADPCM_ADX,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

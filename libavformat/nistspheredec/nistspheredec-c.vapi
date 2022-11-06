@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_nistsphere_demuxer = {
-    .name           = "nistsphere",
-    .long_name      = NULL_IF_CONFIG_SMALL("NIST SPeech HEader REsources"),
-    .read_probe     = nist_probe,
-    .read_header    = nist_read_header,
-    .read_packet    = ff_pcm_read_packet,
-    .read_seek      = ff_pcm_read_seek,
-    .extensions     = "nist,sph",
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "nistsphere",
+    //  .long_name      = "NIST SPeech HEader REsources",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = nist_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = nist_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_pcm_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = ff_pcm_read_seek,
+    //  .extensions     = "nist,sph",
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

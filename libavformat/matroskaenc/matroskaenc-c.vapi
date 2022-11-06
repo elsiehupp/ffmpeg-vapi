@@ -65,94 +65,156 @@ static const AVOption options[] = {
 
 #if CONFIG_MATROSKA_MUXER
 static const AVClass matroska_class = {
-    .class_name = "matroska muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "matroska muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_matroska_muxer = {
-    .name              = "matroska",
-    .long_name         = NULL_IF_CONFIG_SMALL("Matroska"),
-    .mime_type         = "video/x-matroska",
-    .extensions        = "mkv",
-    .priv_data_size    = sizeof(MatroskaMuxContext),
-    .audio_codec       = CONFIG_LIBVORBIS_ENCODER ?
+    //  .name              = "matroska",
+    //  .long_name         = "Matroska",
+    //  .mime_type         = "video/x-matroska",
+    //  .extensions        = "mkv",
+    //  .priv_data_size    = sizeof(MatroskaMuxContext),
+    //  .audio_codec       = CONFIG_LIBVORBIS_ENCODER ?
                          AV_CODEC_ID_VORBIS : AV_CODEC_ID_AC3,
-    .video_codec       = CONFIG_LIBX264_ENCODER ?
+    //  .video_codec       = CONFIG_LIBX264_ENCODER ?
                          AV_CODEC_ID_H264 : AV_CODEC_ID_MPEG4,
-    .init              = mkv_init,
-    .write_header      = mkv_write_header,
-    .write_packet      = mkv_write_flush_packet,
-    .write_trailer     = mkv_write_trailer,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mkv_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mkv_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mkv_write_flush_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mkv_write_trailer,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
                          AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
-    .codec_tag         = (const AVCodecTag* const []){
+    //  .codec_tag         = (const AVCodecTag* const []){
          ff_codec_bmp_tags, ff_codec_wav_tags,
          additional_audio_tags, additional_video_tags, additional_subtitle_tags, 0
     },
-    .subtitle_codec    = AV_CODEC_ID_ASS,
-    .query_codec       = mkv_query_codec,
-    .check_bitstream   = mkv_check_bitstream,
-    .priv_class        = &matroska_class,
+    //  .subtitle_codec    = AV_CODEC_ID_ASS,
+    [CCode (cname="", cheader="")]
+    public override int query_codec (
+        LibAVCodec.CodecID id,
+        int std_compliance
+    );       = mkv_query_codec,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mkv_check_bitstream,
+    //  .priv_class        = &matroska_class,
 };
 #endif
 
 #if CONFIG_WEBM_MUXER
 static const AVClass webm_class = {
-    .class_name = "webm muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "webm muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_webm_muxer = {
-    .name              = "webm",
-    .long_name         = NULL_IF_CONFIG_SMALL("WebM"),
-    .mime_type         = "video/webm",
-    .extensions        = "webm",
-    .priv_data_size    = sizeof(MatroskaMuxContext),
-    .audio_codec       = CONFIG_LIBOPUS_ENCODER ? AV_CODEC_ID_OPUS : AV_CODEC_ID_VORBIS,
-    .video_codec       = CONFIG_LIBVPX_VP9_ENCODER? AV_CODEC_ID_VP9 : AV_CODEC_ID_VP8,
-    .subtitle_codec    = AV_CODEC_ID_WEBVTT,
-    .init              = mkv_init,
-    .write_header      = mkv_write_header,
-    .write_packet      = mkv_write_flush_packet,
-    .write_trailer     = mkv_write_trailer,
-    .query_codec       = webm_query_codec,
-    .check_bitstream   = mkv_check_bitstream,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
+    //  .name              = "webm",
+    //  .long_name         = "WebM",
+    //  .mime_type         = "video/webm",
+    //  .extensions        = "webm",
+    //  .priv_data_size    = sizeof(MatroskaMuxContext),
+    //  .audio_codec       = CONFIG_LIBOPUS_ENCODER ? AV_CODEC_ID_OPUS : AV_CODEC_ID_VORBIS,
+    //  .video_codec       = CONFIG_LIBVPX_VP9_ENCODER? AV_CODEC_ID_VP9 : AV_CODEC_ID_VP8,
+    //  .subtitle_codec    = AV_CODEC_ID_WEBVTT,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mkv_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mkv_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mkv_write_flush_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mkv_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override int query_codec (
+        LibAVCodec.CodecID id,
+        int std_compliance
+    );       = webm_query_codec,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mkv_check_bitstream,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
                          AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
-    .priv_class        = &webm_class,
+    //  .priv_class        = &webm_class,
 };
 #endif
 
 #if CONFIG_MATROSKA_AUDIO_MUXER
 static const AVClass mka_class = {
-    .class_name = "matroska audio muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "matroska audio muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 AVOutputFormat ff_matroska_audio_muxer = {
-    .name              = "matroska",
-    .long_name         = NULL_IF_CONFIG_SMALL("Matroska Audio"),
-    .mime_type         = "audio/x-matroska",
-    .extensions        = "mka",
-    .priv_data_size    = sizeof(MatroskaMuxContext),
-    .audio_codec       = CONFIG_LIBVORBIS_ENCODER ?
+    //  .name              = "matroska",
+    //  .long_name         = "Matroska Audio",
+    //  .mime_type         = "audio/x-matroska",
+    //  .extensions        = "mka",
+    //  .priv_data_size    = sizeof(MatroskaMuxContext),
+    //  .audio_codec       = CONFIG_LIBVORBIS_ENCODER ?
                          AV_CODEC_ID_VORBIS : AV_CODEC_ID_AC3,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .init              = mkv_init,
-    .write_header      = mkv_write_header,
-    .write_packet      = mkv_write_flush_packet,
-    .write_trailer     = mkv_write_trailer,
-    .check_bitstream   = mkv_check_bitstream,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT |
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mkv_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mkv_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mkv_write_flush_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mkv_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mkv_check_bitstream,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT |
                          AVFMT_ALLOW_FLUSH,
-    .codec_tag         = (const AVCodecTag* const []){
+    //  .codec_tag         = (const AVCodecTag* const []){
         ff_codec_wav_tags, additional_audio_tags, 0
     },
-    .priv_class        = &mka_class,
+    //  .priv_class        = &mka_class,
 };
 #endif

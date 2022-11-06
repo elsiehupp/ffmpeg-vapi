@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_msf_demuxer = {
-    .name           = "msf",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sony PS3 MSF"),
-    .read_probe     = msf_probe,
-    .read_header    = msf_read_header,
-    .read_packet    = msf_read_packet,
-    .extensions     = "msf",
+    //  .name           = "msf",
+    //  .long_name      = "Sony PS3 MSF",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = msf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = msf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = msf_read_packet,
+    //  .extensions     = "msf",
 };

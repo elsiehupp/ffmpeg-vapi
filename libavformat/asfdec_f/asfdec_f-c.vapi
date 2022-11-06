@@ -20,22 +20,47 @@
  */
 
 static const AVClass asf_class = {
-    .class_name = "asf demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "asf demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_asf_demuxer = {
-    .name           = "asf",
-    .long_name      = NULL_IF_CONFIG_SMALL("ASF (Advanced / Active Streaming Format)"),
-    .priv_data_size = sizeof(ASFContext),
-    .read_probe     = asf_probe,
-    .read_header    = asf_read_header,
-    .read_packet    = asf_read_packet,
-    .read_close     = asf_read_close,
-    .read_seek      = asf_read_seek,
-    .read_timestamp = asf_read_pts,
-    .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH,
-    .priv_class     = &asf_class,
+    //  .name           = "asf",
+    //  .long_name      = "ASF (Advanced / Active Streaming Format)",
+    //  .priv_data_size = sizeof(ASFContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = asf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = asf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = asf_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = asf_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = asf_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = asf_read_pts,
+    //  .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH,
+    //  .priv_class     = &asf_class,
 };

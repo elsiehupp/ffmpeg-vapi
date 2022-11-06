@@ -27,32 +27,73 @@
 #define DEINT_ID_VBRS MKTAG('v', 'b', 'r', 's') ///< VBR case for AAC
 
 AVInputFormat ff_rm_demuxer = {
-    .name           = "rm",
-    .long_name      = NULL_IF_CONFIG_SMALL("RealMedia"),
-    .priv_data_size = sizeof(RMDemuxContext),
-    .read_probe     = rm_probe,
-    .read_header    = rm_read_header,
-    .read_packet    = rm_read_packet,
-    .read_close     = rm_read_close,
-    .read_timestamp = rm_read_dts,
-    .read_seek      = rm_read_seek,
+    //  .name           = "rm",
+    //  .long_name      = "RealMedia",
+    //  .priv_data_size = sizeof(RMDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = rm_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = rm_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = rm_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = rm_read_close,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = rm_read_dts,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = rm_read_seek,
 };
 
 AVInputFormat ff_rdt_demuxer = {
-    .name           = "rdt",
-    .long_name      = NULL_IF_CONFIG_SMALL("RDT demuxer"),
-    .priv_data_size = sizeof(RMDemuxContext),
-    .read_close     = rm_read_close,
-    .flags          = AVFMT_NOFILE,
+    //  .name           = "rdt",
+    //  .long_name      = "RDT demuxer",
+    //  .priv_data_size = sizeof(RMDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = rm_read_close,
+    //  .flags          = AVFMT_NOFILE,
 };
 
 AVInputFormat ff_ivr_demuxer = {
-    .name           = "ivr",
-    .long_name      = NULL_IF_CONFIG_SMALL("IVR (Internet Video Recording)"),
-    .priv_data_size = sizeof(RMDemuxContext),
-    .read_probe     = ivr_probe,
-    .read_header    = ivr_read_header,
-    .read_packet    = ivr_read_packet,
-    .read_close     = rm_read_close,
-    .extensions     = "ivr",
+    //  .name           = "ivr",
+    //  .long_name      = "IVR (Internet Video Recording)",
+    //  .priv_data_size = sizeof(RMDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ivr_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ivr_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ivr_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = rm_read_close,
+    //  .extensions     = "ivr",
 };

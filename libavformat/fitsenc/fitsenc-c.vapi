@@ -25,12 +25,20 @@
  */
 
 AVOutputFormat ff_fits_muxer = {
-    .name         = "fits",
-    .long_name    = NULL_IF_CONFIG_SMALL("Flexible Image Transport System"),
-    .extensions   = "fits",
-    .priv_data_size = sizeof(FITSContext),
-    .audio_codec  = AV_CODEC_ID_NONE,
-    .video_codec  = AV_CODEC_ID_FITS,
-    .write_header = fits_write_header,
-    .write_packet = fits_write_packet,
+    //  .name         = "fits",
+    //  .long_name    = "Flexible Image Transport System",
+    //  .extensions   = "fits",
+    //  .priv_data_size = sizeof(FITSContext),
+    //  .audio_codec  = AV_CODEC_ID_NONE,
+    //  .video_codec  = AV_CODEC_ID_FITS,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    ); = fits_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    ); = fits_write_packet,
 };

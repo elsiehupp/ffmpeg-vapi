@@ -21,10 +21,20 @@
  */
 
 AVInputFormat ff_nc_demuxer = {
-    .name           = "nc",
-    .long_name      = NULL_IF_CONFIG_SMALL("NC camera feed"),
-    .read_probe     = nc_probe,
-    .read_header    = nc_read_header,
-    .read_packet    = nc_read_packet,
-    .extensions     = "v",
+    //  .name           = "nc",
+    //  .long_name      = "NC camera feed",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = nc_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = nc_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = nc_read_packet,
+    //  .extensions     = "v",
 };

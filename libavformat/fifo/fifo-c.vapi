@@ -55,21 +55,38 @@ static const AVOption options[] = {
 };
 
 static const AVClass fifo_muxer_class = {
-    .class_name = "Fifo muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "Fifo muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_fifo_muxer = {
-    .name           = "fifo",
-    .long_name      = NULL_IF_CONFIG_SMALL("FIFO queue pseudo-muxer"),
-    .priv_data_size = sizeof(FifoContext),
-    .init           = fifo_init,
-    .write_header   = fifo_write_header,
-    .write_packet   = fifo_write_packet,
-    .write_trailer  = fifo_write_trailer,
-    .deinit         = fifo_deinit,
-    .priv_class     = &fifo_muxer_class,
-    .flags          = AVFMT_NOFILE | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
+    //  .name           = "fifo",
+    //  .long_name      = "FIFO queue pseudo-muxer",
+    //  .priv_data_size = sizeof(FifoContext),
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = fifo_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = fifo_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = fifo_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = fifo_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );         = fifo_deinit,
+    //  .priv_class     = &fifo_muxer_class,
+    //  .flags          = AVFMT_NOFILE | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
 };

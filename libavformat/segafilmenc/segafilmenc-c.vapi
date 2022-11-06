@@ -30,20 +30,31 @@
  */
 
 static const AVClass film_muxer_class = {
-    .class_name     = "Sega FILM muxer",
-    .item_name      = av_default_item_name,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "Sega FILM muxer",
+    //  .item_name      = av_default_item_name,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_segafilm_muxer = {
-    .name           = "film_cpk",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sega FILM / CPK"),
-    .extensions     = "cpk",
-    .priv_data_size = sizeof(FILMOutputContext),
-    .audio_codec    = AV_CODEC_ID_PCM_S16BE_PLANAR,
-    .video_codec    = AV_CODEC_ID_CINEPAK,
-    .init           = film_init,
-    .write_trailer  = film_write_header,
-    .write_packet   = film_write_packet,
-    .priv_class     = &film_muxer_class,
+    //  .name           = "film_cpk",
+    //  .long_name      = "Sega FILM / CPK",
+    //  .extensions     = "cpk",
+    //  .priv_data_size = sizeof(FILMOutputContext),
+    //  .audio_codec    = AV_CODEC_ID_PCM_S16BE_PLANAR,
+    //  .video_codec    = AV_CODEC_ID_CINEPAK,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = film_init,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = film_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = film_write_packet,
+    //  .priv_class     = &film_muxer_class,
 };

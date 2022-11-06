@@ -29,11 +29,21 @@
  */
 
 AVInputFormat ff_ea_cdata_demuxer = {
-    .name           = "ea_cdata",
-    .long_name      = NULL_IF_CONFIG_SMALL("Electronic Arts cdata"),
-    .priv_data_size = sizeof(CdataDemuxContext),
-    .read_probe     = cdata_probe,
-    .read_header    = cdata_read_header,
-    .read_packet    = cdata_read_packet,
-    .extensions = "cdata",
+    //  .name           = "ea_cdata",
+    //  .long_name      = "Electronic Arts cdata",
+    //  .priv_data_size = sizeof(CdataDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = cdata_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = cdata_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = cdata_read_packet,
+    //  .extensions = "cdata",
 };

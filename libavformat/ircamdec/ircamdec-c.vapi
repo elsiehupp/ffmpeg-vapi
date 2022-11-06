@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_ircam_demuxer = {
-    .name           = "ircam",
-    .long_name      = NULL_IF_CONFIG_SMALL("Berkeley/IRCAM/CARL Sound Format"),
-    .read_probe     = ircam_probe,
-    .read_header    = ircam_read_header,
-    .read_packet    = ff_pcm_read_packet,
-    .read_seek      = ff_pcm_read_seek,
-    .extensions     = "sf,ircam",
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "ircam",
+    //  .long_name      = "Berkeley/IRCAM/CARL Sound Format",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ircam_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ircam_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_pcm_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = ff_pcm_read_seek,
+    //  .extensions     = "sf,ircam",
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

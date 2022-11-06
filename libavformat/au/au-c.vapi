@@ -28,18 +28,29 @@
  */
 
 AVOutputFormat ff_au_muxer = {
-    .name          = "au",
-    .long_name     = NULL_IF_CONFIG_SMALL("Sun AU"),
-    .mime_type     = "audio/basic",
-    .extensions    = "au",
-    .priv_data_size = sizeof(AUContext),
-    .audio_codec   = AV_CODEC_ID_PCM_S16BE,
-    .video_codec   = AV_CODEC_ID_NONE,
-    .write_header  = au_write_header,
-    .write_packet  = ff_raw_write_packet,
-    .write_trailer = au_write_trailer,
-    .codec_tag     = (const AVCodecTag* const []) { codec_au_tags, 0 },
-    .flags         = AVFMT_NOTIMESTAMPS,
+    //  .name          = "au",
+    //  .long_name     = "Sun AU",
+    //  .mime_type     = "audio/basic",
+    //  .extensions    = "au",
+    //  .priv_data_size = sizeof(AUContext),
+    //  .audio_codec   = AV_CODEC_ID_PCM_S16BE,
+    //  .video_codec   = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );  = au_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );  = ff_raw_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    ); = au_write_trailer,
+    //  .codec_tag     = (const AVCodecTag* const []) { codec_au_tags, 0 },
+    //  .flags         = AVFMT_NOTIMESTAMPS,
 };
 
 #endif /* CONFIG_AU_MUXER */

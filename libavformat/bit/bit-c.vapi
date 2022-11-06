@@ -21,13 +21,21 @@
 
 #if CONFIG_BIT_MUXER
 AVOutputFormat ff_bit_muxer = {
-    .name         = "bit",
-    .long_name    = NULL_IF_CONFIG_SMALL("G.729 BIT file format"),
-    .mime_type    = "audio/bit",
-    .extensions   = "bit",
-    .audio_codec  = AV_CODEC_ID_G729,
-    .video_codec  = AV_CODEC_ID_NONE,
-    .write_header = write_header,
-    .write_packet = write_packet,
+    //  .name         = "bit",
+    //  .long_name    = "G.729 BIT file format",
+    //  .mime_type    = "audio/bit",
+    //  .extensions   = "bit",
+    //  .audio_codec  = AV_CODEC_ID_G729,
+    //  .video_codec  = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    ); = write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    ); = write_packet,
 };
 #endif

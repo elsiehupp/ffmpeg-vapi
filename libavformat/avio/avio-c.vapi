@@ -33,11 +33,18 @@ static const AVOption options[] = {
 };
 
 const AVClass ffurl_context_class = {
-    .class_name       = "URLContext",
-    .item_name        = urlcontext_to_name,
-    .option           = options,
-    .version          = LIBAVUTIL_VERSION_INT,
-    .child_next       = urlcontext_child_next,
-    .child_class_next = ff_urlcontext_child_class_next,
+    //  .class_name       = "URLContext",
+    //  .item_name        = urlcontext_to_name,
+    //  .option           = options,
+    //  .version          = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="", cheader="")]
+    public override void *child_next (
+        void *obj,
+        void *prev
+    );       = urlcontext_child_next,
+    [CCode (cname="", cheader="")]
+    public override Class child_class_next (
+        Class prev
+    ); = ff_urlcontext_child_class_next,
 };
 /*@}*/

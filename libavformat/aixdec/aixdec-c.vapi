@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_aix_demuxer = {
-    .name        = "aix",
-    .long_name   = NULL_IF_CONFIG_SMALL("CRI AIX"),
-    .read_probe  = aix_probe,
-    .read_header = aix_read_header,
-    .read_packet = aix_read_packet,
-    .extensions  = "aix",
-    .flags       = AVFMT_GENERIC_INDEX,
+    //  .name        = "aix",
+    //  .long_name   = "CRI AIX",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );  = aix_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    ); = aix_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = aix_read_packet,
+    //  .extensions  = "aix",
+    //  .flags       = AVFMT_GENERIC_INDEX,
 };

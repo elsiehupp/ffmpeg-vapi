@@ -24,12 +24,22 @@
  */
 
 static const AVClass av_format_context_class = {
-    .class_name     = "AVFormatContext",
-    .item_name      = format_to_name,
-    .option         = avformat_options,
-    .version        = LIBAVUTIL_VERSION_INT,
-    .child_next     = format_child_next,
-    .child_class_next = format_child_class_next,
-    .category       = AV_CLASS_CATEGORY_MUXER,
-    .get_category   = get_category,
+    //  .class_name     = "AVFormatContext",
+    //  .item_name      = format_to_name,
+    //  .option         = avformat_options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="", cheader="")]
+    public override void *child_next (
+        void *obj,
+        void *prev
+    );     = format_child_next,
+    [CCode (cname="", cheader="")]
+    public override Class child_class_next (
+        Class prev
+    ); = format_child_class_next,
+    //  .category       = AV_CLASS_CATEGORY_MUXER,
+    [CCode (cname="", cheader="")]
+    public override ClassCategory get_category (
+        void *class_context
+    );   = get_category,
 };

@@ -26,11 +26,27 @@
  */
 
 AVInputFormat ff_cine_demuxer = {
-    .name           = "cine",
-    .long_name      = NULL_IF_CONFIG_SMALL("Phantom Cine"),
-    .priv_data_size = sizeof(CineDemuxContext),
-    .read_probe     = cine_read_probe,
-    .read_header    = cine_read_header,
-    .read_packet    = cine_read_packet,
-    .read_seek      = cine_read_seek,
+    //  .name           = "cine",
+    //  .long_name      = "Phantom Cine",
+    //  .priv_data_size = sizeof(CineDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = cine_read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = cine_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = cine_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = cine_read_seek,
 };

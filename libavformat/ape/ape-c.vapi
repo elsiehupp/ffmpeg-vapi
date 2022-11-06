@@ -21,13 +21,32 @@
  */
 
 AVInputFormat ff_ape_demuxer = {
-    .name           = "ape",
-    .long_name      = NULL_IF_CONFIG_SMALL("Monkey's Audio"),
-    .priv_data_size = sizeof(APEContext),
-    .read_probe     = ape_probe,
-    .read_header    = ape_read_header,
-    .read_packet    = ape_read_packet,
-    .read_close     = ape_read_close,
-    .read_seek      = ape_read_seek,
-    .extensions     = "ape,apl,mac",
+    //  .name           = "ape",
+    //  .long_name      = "Monkey's Audio",
+    //  .priv_data_size = sizeof(APEContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ape_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ape_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ape_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = ape_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = ape_read_seek,
+    //  .extensions     = "ape,apl,mac",
 };

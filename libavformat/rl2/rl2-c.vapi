@@ -33,11 +33,27 @@
  */
 
 AVInputFormat ff_rl2_demuxer = {
-    .name           = "rl2",
-    .long_name      = NULL_IF_CONFIG_SMALL("RL2"),
-    .priv_data_size = sizeof(Rl2DemuxContext),
-    .read_probe     = rl2_probe,
-    .read_header    = rl2_read_header,
-    .read_packet    = rl2_read_packet,
-    .read_seek      = rl2_read_seek,
+    //  .name           = "rl2",
+    //  .long_name      = "RL2",
+    //  .priv_data_size = sizeof(Rl2DemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = rl2_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = rl2_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = rl2_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = rl2_read_seek,
 };

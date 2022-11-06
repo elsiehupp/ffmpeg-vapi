@@ -187,9 +187,30 @@ public abstract class RTPDynamicProtocolHandler {
         PayloadContext protocol_data
     );
     /***********************************************************
-    Parse handler for this dynamic packet
+    Packet parsing for "private" payloads in the RTP specs.
+
+    @param format_context RTSP demuxer context
+    @param payload_context stream context
+    @param st stream that this packet belongs to
+    @param packet packet in which to write the parsed data
+    @param timestamp pointer to the RTP timestamp of the input data, can be
+                    updated by the function if returning older, buffered data
+    @param buf pointer to raw RTP packet data
+    @param len length of buf
+    @param seq RTP sequence number of the packet
+    @param flags flags from the RTP packet header (RTP_FLAG_*)
     ***********************************************************/
-    public DynamicPayloadPacketHandlerProc parse_packet;
+    public abstract int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );
     public abstract int need_keyframe (
         PayloadContext context
     );

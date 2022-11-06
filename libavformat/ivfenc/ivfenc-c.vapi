@@ -26,15 +26,30 @@ static const AVCodecTag codec_ivf_tags[] = {
 };
 
 AVOutputFormat ff_ivf_muxer = {
-    .priv_data_size = sizeof(IVFEncContext),
-    .name         = "ivf",
-    .long_name    = NULL_IF_CONFIG_SMALL("On2 IVF"),
-    .extensions   = "ivf",
-    .audio_codec  = AV_CODEC_ID_NONE,
-    .video_codec  = AV_CODEC_ID_VP8,
-    .write_header = ivf_write_header,
-    .write_packet = ivf_write_packet,
-    .write_trailer = ivf_write_trailer,
-    .check_bitstream = ivf_check_bitstream,
-    .codec_tag    = (const AVCodecTag* const []){ codec_ivf_tags, 0 },
+    //  .priv_data_size = sizeof(IVFEncContext),
+    //  .name         = "ivf",
+    //  .long_name    = "On2 IVF",
+    //  .extensions   = "ivf",
+    //  .audio_codec  = AV_CODEC_ID_NONE,
+    //  .video_codec  = AV_CODEC_ID_VP8,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    ); = ivf_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    ); = ivf_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    ); = ivf_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = ivf_check_bitstream,
+    //  .codec_tag    = (const AVCodecTag* const []){ codec_ivf_tags, 0 },
 };

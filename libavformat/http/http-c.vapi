@@ -24,31 +24,72 @@
 
 #define HTTP_CLASS(flavor)                          \
 static const AVClass flavor ## _context_class = {   \
-    .class_name = # flavor,                         \
-    .item_name  = av_default_item_name,             \
-    .option     = options,                          \
-    .version    = LIBAVUTIL_VERSION_INT,            \
+    //  .class_name = # flavor,                         \
+    //  .item_name  = av_default_item_name,             \
+    //  .option     = options,                          \
+    //  .version    = LIBAVUTIL_VERSION_INT,            \
 }
 
 #if CONFIG_HTTP_PROTOCOL
 HTTP_CLASS(http);
 
 const URLProtocol ff_http_protocol = {
-    .name                = "http",
-    .url_open2           = http_open,
-    .url_accept          = http_accept,
-    .url_handshake       = http_handshake,
-    .url_read            = http_read,
-    .url_write           = http_write,
-    .url_seek            = http_seek,
-    .url_close           = http_close,
-    .url_get_file_handle = http_get_file_handle,
-    .url_get_short_seek  = http_get_short_seek,
-    .url_shutdown        = http_shutdown,
-    .priv_data_size      = sizeof(HTTPContext),
-    .priv_data_class     = &http_context_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    .default_whitelist   = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
+    //  .name                = "http",
+    [CCode (cname="", cheader="")]
+    public override int url_open2 (
+        URLContext h,
+        string url,
+        int flags,
+        out LibAVUtil.Dictionary options
+    );           = http_open,
+    [CCode (cname="", cheader="")]
+    public override int url_accept (
+        URLContext server_url_context,
+        out URLContext client_url_context
+    );          = http_accept,
+    [CCode (cname="", cheader="")]
+    public override int url_handshake (
+        URLContext client_url_context
+    );       = http_handshake,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = http_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = http_write,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = http_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = http_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = http_get_file_handle,
+    [CCode (cname="", cheader="")]
+    public override int url_get_short_seek (
+        URLContext h
+    );  = http_get_short_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_shutdown (
+        URLContext h,
+        int flags
+    );        = http_shutdown,
+    //  .priv_data_size      = sizeof(HTTPContext),
+    //  .priv_data_class     = &http_context_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .default_whitelist   = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
 };
 #endif /* CONFIG_HTTP_PROTOCOL */
 
@@ -56,31 +97,86 @@ const URLProtocol ff_http_protocol = {
 HTTP_CLASS(https);
 
 const URLProtocol ff_https_protocol = {
-    .name                = "https",
-    .url_open2           = http_open,
-    .url_read            = http_read,
-    .url_write           = http_write,
-    .url_seek            = http_seek,
-    .url_close           = http_close,
-    .url_get_file_handle = http_get_file_handle,
-    .url_get_short_seek  = http_get_short_seek,
-    .url_shutdown        = http_shutdown,
-    .priv_data_size      = sizeof(HTTPContext),
-    .priv_data_class     = &https_context_class,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    .default_whitelist   = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
+    //  .name                = "https",
+    [CCode (cname="", cheader="")]
+    public override int url_open2 (
+        URLContext h,
+        string url,
+        int flags,
+        out LibAVUtil.Dictionary options
+    );           = http_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = http_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = http_write,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = http_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = http_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = http_get_file_handle,
+    [CCode (cname="", cheader="")]
+    public override int url_get_short_seek (
+        URLContext h
+    );  = http_get_short_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_shutdown (
+        URLContext h,
+        int flags
+    );        = http_shutdown,
+    //  .priv_data_size      = sizeof(HTTPContext),
+    //  .priv_data_class     = &https_context_class,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .default_whitelist   = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
 };
 #endif /* CONFIG_HTTPS_PROTOCOL */
 
 #if CONFIG_HTTPPROXY_PROTOCOL
 const URLProtocol ff_httpproxy_protocol = {
-    .name                = "httpproxy",
-    .url_open            = http_proxy_open,
-    .url_read            = http_buf_read,
-    .url_write           = http_proxy_write,
-    .url_close           = http_proxy_close,
-    .url_get_file_handle = http_get_file_handle,
-    .priv_data_size      = sizeof(HTTPContext),
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                = "httpproxy",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = http_proxy_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = http_buf_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = http_proxy_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = http_proxy_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = http_get_file_handle,
+    //  .priv_data_size      = sizeof(HTTPContext),
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };
 #endif /* CONFIG_HTTPPROXY_PROTOCOL */

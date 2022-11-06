@@ -26,10 +26,23 @@
  */
 
 const URLProtocol ff_hls_protocol = {
-    .name           = "hls",
-    .url_open       = hls_open,
-    .url_read       = hls_read,
-    .url_close      = hls_close,
-    .flags          = URL_PROTOCOL_FLAG_NESTED_SCHEME,
-    .priv_data_size = sizeof(HLSContext),
+    //  .name           = "hls",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );       = hls_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = hls_read,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );      = hls_close,
+    //  .flags          = URL_PROTOCOL_FLAG_NESTED_SCHEME,
+    //  .priv_data_size = sizeof(HLSContext),
 };

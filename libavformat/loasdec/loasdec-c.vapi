@@ -21,13 +21,23 @@
 
 FF_RAW_DEMUXER_CLASS(loas)
 AVInputFormat ff_loas_demuxer = {
-    .name           = "loas",
-    .long_name      = NULL_IF_CONFIG_SMALL("LOAS AudioSyncStream"),
-    .read_probe     = loas_probe,
-    .read_header    = loas_read_header,
-    .read_packet    = ff_raw_read_partial_packet,
-    .flags= AVFMT_GENERIC_INDEX,
-    .raw_codec_id = AV_CODEC_ID_AAC_LATM,
-    .priv_data_size = sizeof(FFRawDemuxerContext),
-    .priv_class     = &loas_demuxer_class,
+    //  .name           = "loas",
+    //  .long_name      = "LOAS AudioSyncStream",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = loas_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = loas_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_raw_read_partial_packet,
+    //  .flags= AVFMT_GENERIC_INDEX,
+    //  .raw_codec_id = AV_CODEC_ID_AAC_LATM,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),
+    //  .priv_class     = &loas_demuxer_class,
 };

@@ -34,9 +34,19 @@
  */
 
 AVInputFormat ff_wsaud_demuxer = {
-    .name           = "wsaud",
-    .long_name      = NULL_IF_CONFIG_SMALL("Westwood Studios audio"),
-    .read_probe     = wsaud_probe,
-    .read_header    = wsaud_read_header,
-    .read_packet    = wsaud_read_packet,
+    //  .name           = "wsaud",
+    //  .long_name      = "Westwood Studios audio",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = wsaud_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = wsaud_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = wsaud_read_packet,
 };

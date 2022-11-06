@@ -24,18 +24,31 @@ static const AVOption tee_options[] = {
 };
 
 static const AVClass tee_class = {
-    .class_name = "tee",
-    .item_name  = av_default_item_name,
-    .option     = tee_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "tee",
+    //  .item_name  = av_default_item_name,
+    //  .option     = tee_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_tee_protocol = {
-    .name                = "tee",
-    .url_open            = tee_open,
-    .url_write           = tee_write,
-    .url_close           = tee_close,
-    .priv_data_size      = sizeof(TeeContext),
-    .priv_data_class     = &tee_class,
-    .default_whitelist   = "crypto,file,http,https,httpproxy,rtmp,tcp,tls"
+    //  .name                = "tee",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = tee_open,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = tee_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = tee_close,
+    //  .priv_data_size      = sizeof(TeeContext),
+    //  .priv_data_class     = &tee_class,
+    //  .default_whitelist   = "crypto,file,http,https,httpproxy,rtmp,tcp,tls"
 };

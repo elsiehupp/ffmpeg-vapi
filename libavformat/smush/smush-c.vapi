@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_smush_demuxer = {
-    .name           = "smush",
-    .long_name      = NULL_IF_CONFIG_SMALL("LucasArts Smush"),
-    .priv_data_size = sizeof(SMUSHContext),
-    .read_probe     = smush_read_probe,
-    .read_header    = smush_read_header,
-    .read_packet    = smush_read_packet,
+    //  .name           = "smush",
+    //  .long_name      = "LucasArts Smush",
+    //  .priv_data_size = sizeof(SMUSHContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = smush_read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = smush_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = smush_read_packet,
 };

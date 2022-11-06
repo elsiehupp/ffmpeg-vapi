@@ -21,14 +21,24 @@
 
 FF_RAW_DEMUXER_CLASS(tak)
 AVInputFormat ff_tak_demuxer = {
-    .name           = "tak",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw TAK"),
-    .priv_data_size = sizeof(TAKDemuxContext),
-    .read_probe     = tak_probe,
-    .read_header    = tak_read_header,
-    .read_packet    = raw_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "tak",
-    .raw_codec_id   = AV_CODEC_ID_TAK,
-    .priv_class     = &tak_demuxer_class,
+    //  .name           = "tak",
+    //  .long_name      = "raw TAK",
+    //  .priv_data_size = sizeof(TAKDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = tak_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = tak_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = raw_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "tak",
+    //  .raw_codec_id   = AV_CODEC_ID_TAK,
+    //  .priv_class     = &tak_demuxer_class,
 };

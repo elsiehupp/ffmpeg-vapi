@@ -20,12 +20,31 @@
  */
 
 AVInputFormat ff_pmp_demuxer = {
-    .name           = "pmp",
-    .long_name      = NULL_IF_CONFIG_SMALL("Playstation Portable PMP"),
-    .priv_data_size = sizeof(PMPContext),
-    .read_probe     = pmp_probe,
-    .read_header    = pmp_header,
-    .read_packet    = pmp_packet,
-    .read_seek      = pmp_seek,
-    .read_close     = pmp_close,
+    //  .name           = "pmp",
+    //  .long_name      = "Playstation Portable PMP",
+    //  .priv_data_size = sizeof(PMPContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = pmp_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = pmp_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = pmp_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = pmp_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = pmp_close,
 };

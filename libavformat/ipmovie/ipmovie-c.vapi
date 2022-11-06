@@ -33,10 +33,20 @@
  */
 
 AVInputFormat ff_ipmovie_demuxer = {
-    .name           = "ipmovie",
-    .long_name      = NULL_IF_CONFIG_SMALL("Interplay MVE"),
-    .priv_data_size = sizeof(IPMVEContext),
-    .read_probe     = ipmovie_probe,
-    .read_header    = ipmovie_read_header,
-    .read_packet    = ipmovie_read_packet,
+    //  .name           = "ipmovie",
+    //  .long_name      = "Interplay MVE",
+    //  .priv_data_size = sizeof(IPMVEContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ipmovie_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ipmovie_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ipmovie_read_packet,
 };

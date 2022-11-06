@@ -29,10 +29,23 @@
  */
 
 const URLProtocol ff_mmst_protocol = {
-    .name           = "mmst",
-    .url_open       = mms_open,
-    .url_read       = mms_read,
-    .url_close      = mms_close,
-    .priv_data_size = sizeof(MMSTContext),
-    .flags          = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name           = "mmst",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );       = mms_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = mms_read,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );      = mms_close,
+    //  .priv_data_size = sizeof(MMSTContext),
+    //  .flags          = URL_PROTOCOL_FLAG_NETWORK,
 };

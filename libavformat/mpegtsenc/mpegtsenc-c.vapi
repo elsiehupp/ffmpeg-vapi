@@ -115,25 +115,43 @@ static const AVOption options[] = {
 };
 
 static const AVClass mpegts_muxer_class = {
-    .class_name = "MPEGTS muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "MPEGTS muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_mpegts_muxer = {
-    .name           = "mpegts",
-    .long_name      = NULL_IF_CONFIG_SMALL("MPEG-TS (MPEG-2 Transport Stream)"),
-    .mime_type      = "video/MP2T",
-    .extensions     = "ts,m2t,m2ts,mts",
-    .priv_data_size = sizeof(MpegTSWrite),
-    .audio_codec    = AV_CODEC_ID_MP2,
-    .video_codec    = AV_CODEC_ID_MPEG2VIDEO,
-    .init           = mpegts_init,
-    .write_packet   = mpegts_write_packet,
-    .write_trailer  = mpegts_write_end,
-    .deinit         = mpegts_deinit,
-    .check_bitstream = mpegts_check_bitstream,
-    .flags          = AVFMT_ALLOW_FLUSH | AVFMT_VARIABLE_FPS | AVFMT_NODIMENSIONS,
-    .priv_class     = &mpegts_muxer_class,
+    //  .name           = "mpegts",
+    //  .long_name      = "MPEG-TS (MPEG-2 Transport Stream)",
+    //  .mime_type      = "video/MP2T",
+    //  .extensions     = "ts,m2t,m2ts,mts",
+    //  .priv_data_size = sizeof(MpegTSWrite),
+    //  .audio_codec    = AV_CODEC_ID_MP2,
+    //  .video_codec    = AV_CODEC_ID_MPEG2VIDEO,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = mpegts_init,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = mpegts_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = mpegts_write_end,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );         = mpegts_deinit,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = mpegts_check_bitstream,
+    //  .flags          = AVFMT_ALLOW_FLUSH | AVFMT_VARIABLE_FPS | AVFMT_NODIMENSIONS,
+    //  .priv_class     = &mpegts_muxer_class,
 };

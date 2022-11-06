@@ -21,14 +21,24 @@
 
 FF_RAW_DEMUXER_CLASS(acm)
 AVInputFormat ff_acm_demuxer = {
-    .name           = "acm",
-    .long_name      = NULL_IF_CONFIG_SMALL("Interplay ACM"),
-    .read_probe     = acm_probe,
-    .read_header    = acm_read_header,
-    .read_packet    = ff_raw_read_partial_packet,
-    .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS,
-    .extensions     = "acm",
-    .raw_codec_id   = AV_CODEC_ID_INTERPLAY_ACM,
-    .priv_data_size = sizeof(FFRawDemuxerContext),
-    .priv_class     = &acm_demuxer_class,
+    //  .name           = "acm",
+    //  .long_name      = "Interplay ACM",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = acm_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = acm_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_raw_read_partial_packet,
+    //  .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS,
+    //  .extensions     = "acm",
+    //  .raw_codec_id   = AV_CODEC_ID_INTERPLAY_ACM,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),
+    //  .priv_class     = &acm_demuxer_class,
 };

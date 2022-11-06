@@ -54,23 +54,52 @@ static const AVOption rtmp_options[] = {
 
 #define RTMP_PROTOCOL(flavor)                    \
 static const AVClass flavor##_class = {          \
-    .class_name = #flavor,                       \
-    .item_name  = av_default_item_name,          \
-    .option     = rtmp_options,                  \
-    .version    = LIBAVUTIL_VERSION_INT,         \
+    //  .class_name = #flavor,                       \
+    //  .item_name  = av_default_item_name,          \
+    //  .option     = rtmp_options,                  \
+    //  .version    = LIBAVUTIL_VERSION_INT,         \
 };                                               \
                                                  \
 const URLProtocol ff_##flavor##_protocol = {     \
-    .name           = #flavor,                   \
-    .url_open2      = rtmp_open,                 \
-    .url_read       = rtmp_read,                 \
-    .url_read_seek  = rtmp_seek,                 \
-    .url_read_pause = rtmp_pause,                \
-    .url_write      = rtmp_write,                \
-    .url_close      = rtmp_close,                \
-    .priv_data_size = sizeof(RTMPContext),       \
-    .flags          = URL_PROTOCOL_FLAG_NETWORK, \
-    .priv_data_class= &flavor##_class,           \
+    //  .name           = #flavor,                   \
+    [CCode (cname="", cheader="")]
+    public override int url_open2 (
+        URLContext h,
+        string url,
+        int flags,
+        out LibAVUtil.Dictionary options
+    );      = rtmp_open,                 \
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = rtmp_read,                 \
+    [CCode (cname="", cheader="")]
+    public override int64 url_read_seek (
+        URLContext h,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );  = rtmp_seek,                 \
+    [CCode (cname="", cheader="")]
+    public override int url_read_pause (
+        URLContext h,
+        int pause
+    ); = rtmp_pause,                \
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );      = rtmp_write,                \
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );      = rtmp_close,                \
+    //  .priv_data_size = sizeof(RTMPContext),       \
+    //  .flags          = URL_PROTOCOL_FLAG_NETWORK, \
+    //  .priv_data_class= &flavor##_class,           \
 };
 
 

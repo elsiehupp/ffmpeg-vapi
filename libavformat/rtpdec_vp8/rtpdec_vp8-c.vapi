@@ -28,12 +28,33 @@
  */
 
 const RTPDynamicProtocolHandler ff_vp8_dynamic_handler = {
-    .enc_name       = "VP8",
-    .codec_type     = AVMEDIA_TYPE_VIDEO,
-    .codec_id       = AV_CODEC_ID_VP8,
-    .priv_data_size = sizeof(PayloadContext),
-    .init           = vp8_init,
-    .close          = vp8_close_context,
-    .parse_packet   = vp8_handle_packet,
-    .need_keyframe  = vp8_need_keyframe,
+    //  .enc_name       = "VP8",
+    //  .codec_type     = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id       = AV_CODEC_ID_VP8,
+    //  .priv_data_size = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = vp8_init,
+    [CCode (cname="", cheader="")]
+    public override void close (
+        PayloadContext protocol_data
+    );          = vp8_close_context,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );   = vp8_handle_packet,
+    [CCode (cname="", cheader="")]
+    public override int need_keyframe (
+        PayloadContext context
+    );  = vp8_need_keyframe,
 };

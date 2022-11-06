@@ -23,11 +23,29 @@
  */
 
 const URLProtocol ff_gopher_protocol = {
-    .name           = "gopher",
-    .url_open       = gopher_open,
-    .url_read       = gopher_read,
-    .url_write      = gopher_write,
-    .url_close      = gopher_close,
-    .priv_data_size = sizeof(GopherContext),
-    .flags          = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name           = "gopher",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );       = gopher_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = gopher_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );      = gopher_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );      = gopher_close,
+    //  .priv_data_size = sizeof(GopherContext),
+    //  .flags          = URL_PROTOCOL_FLAG_NETWORK,
 };

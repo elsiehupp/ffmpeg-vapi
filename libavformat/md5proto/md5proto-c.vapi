@@ -19,9 +19,22 @@
  */
 
 const URLProtocol ff_md5_protocol = {
-    .name                = "md5",
-    .url_open            = md5_open,
-    .url_write           = md5_write,
-    .url_close           = md5_close,
-    .priv_data_size      = sizeof(struct MD5Context),
+    //  .name                = "md5",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = md5_open,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = md5_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = md5_close,
+    //  .priv_data_size      = sizeof(struct MD5Context),
 };

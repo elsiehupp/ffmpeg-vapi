@@ -20,12 +20,34 @@
  */
 
 AVInputFormat ff_gxf_demuxer = {
-    .name           = "gxf",
-    .long_name      = NULL_IF_CONFIG_SMALL("GXF (General eXchange Format)"),
-    .priv_data_size = sizeof(struct gxf_stream_info),
-    .read_probe     = gxf_probe,
-    .read_header    = gxf_header,
-    .read_packet    = gxf_packet,
-    .read_seek      = gxf_seek,
-    .read_timestamp = gxf_read_timestamp,
+    //  .name           = "gxf",
+    //  .long_name      = "GXF (General eXchange Format)",
+    //  .priv_data_size = sizeof(struct gxf_stream_info),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = gxf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = gxf_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = gxf_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = gxf_seek,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = gxf_read_timestamp,
 };

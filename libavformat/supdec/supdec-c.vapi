@@ -17,12 +17,22 @@
  */
 
 AVInputFormat ff_sup_demuxer = {
-    .name           = "sup",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw HDMV Presentation Graphic Stream subtitles"),
-    .extensions     = "sup",
-    .mime_type      = "application/x-pgs",
-    .read_probe     = sup_probe,
-    .read_header    = sup_read_header,
-    .read_packet    = sup_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "sup",
+    //  .long_name      = "raw HDMV Presentation Graphic Stream subtitles",
+    //  .extensions     = "sup",
+    //  .mime_type      = "application/x-pgs",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = sup_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = sup_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = sup_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

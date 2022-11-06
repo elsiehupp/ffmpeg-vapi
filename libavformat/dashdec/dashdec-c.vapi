@@ -31,21 +31,40 @@ static const AVOption dash_options[] = {
 };
 
 static const AVClass dash_class = {
-    .class_name = "dash",
-    .item_name  = av_default_item_name,
-    .option     = dash_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "dash",
+    //  .item_name  = av_default_item_name,
+    //  .option     = dash_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_dash_demuxer = {
-    .name           = "dash",
-    .long_name      = NULL_IF_CONFIG_SMALL("Dynamic Adaptive Streaming over HTTP"),
-    .priv_class     = &dash_class,
-    .priv_data_size = sizeof(DASHContext),
-    .read_probe     = dash_probe,
-    .read_header    = dash_read_header,
-    .read_packet    = dash_read_packet,
-    .read_close     = dash_close,
-    .read_seek      = dash_read_seek,
-    .flags          = AVFMT_NO_BYTE_SEEK,
+    //  .name           = "dash",
+    //  .long_name      = "Dynamic Adaptive Streaming over HTTP",
+    //  .priv_class     = &dash_class,
+    //  .priv_data_size = sizeof(DASHContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dash_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = dash_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = dash_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = dash_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = dash_read_seek,
+    //  .flags          = AVFMT_NO_BYTE_SEEK,
 };

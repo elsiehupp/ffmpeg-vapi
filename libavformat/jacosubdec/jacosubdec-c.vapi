@@ -26,12 +26,33 @@
  */
 
 AVInputFormat ff_jacosub_demuxer = {
-    .name           = "jacosub",
-    .long_name      = NULL_IF_CONFIG_SMALL("JACOsub subtitle format"),
-    .priv_data_size = sizeof(JACOsubContext),
-    .read_probe     = jacosub_probe,
-    .read_header    = jacosub_read_header,
-    .read_packet    = jacosub_read_packet,
-    .read_seek2     = jacosub_read_seek,
-    .read_close     = jacosub_read_close,
+    //  .name           = "jacosub",
+    //  .long_name      = "JACOsub subtitle format",
+    //  .priv_data_size = sizeof(JACOsubContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = jacosub_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = jacosub_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = jacosub_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = jacosub_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = jacosub_read_close,
 };

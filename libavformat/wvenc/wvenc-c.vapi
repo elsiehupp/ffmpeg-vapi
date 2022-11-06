@@ -21,15 +21,26 @@
  */
 
 AVOutputFormat ff_wv_muxer = {
-    .name              = "wv",
-    .long_name         = NULL_IF_CONFIG_SMALL("raw WavPack"),
-    .mime_type         = "audio/x-wavpack",
-    .extensions        = "wv",
-    .priv_data_size    = sizeof(WvMuxContext),
-    .audio_codec       = AV_CODEC_ID_WAVPACK,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .write_header      = wv_write_header,
-    .write_packet      = wv_write_packet,
-    .write_trailer     = wv_write_trailer,
-    .flags             = AVFMT_NOTIMESTAMPS,
+    //  .name              = "wv",
+    //  .long_name         = "raw WavPack",
+    //  .mime_type         = "audio/x-wavpack",
+    //  .extensions        = "wv",
+    //  .priv_data_size    = sizeof(WvMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_WAVPACK,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = wv_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = wv_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = wv_write_trailer,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
 };

@@ -20,15 +20,26 @@
  */
 
 AVOutputFormat ff_caf_muxer = {
-    .name           = "caf",
-    .long_name      = NULL_IF_CONFIG_SMALL("Apple CAF (Core Audio Format)"),
-    .mime_type      = "audio/x-caf",
-    .extensions     = "caf",
-    .priv_data_size = sizeof(CAFContext),
-    .audio_codec    = AV_CODEC_ID_PCM_S16BE,
-    .video_codec    = AV_CODEC_ID_NONE,
-    .write_header   = caf_write_header,
-    .write_packet   = caf_write_packet,
-    .write_trailer  = caf_write_trailer,
-    .codec_tag      = (const AVCodecTag* const []){ff_codec_caf_tags, 0},
+    //  .name           = "caf",
+    //  .long_name      = "Apple CAF (Core Audio Format)",
+    //  .mime_type      = "audio/x-caf",
+    //  .extensions     = "caf",
+    //  .priv_data_size = sizeof(CAFContext),
+    //  .audio_codec    = AV_CODEC_ID_PCM_S16BE,
+    //  .video_codec    = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = caf_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = caf_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = caf_write_trailer,
+    //  .codec_tag      = (const AVCodecTag* const []){ff_codec_caf_tags, 0},
 };

@@ -30,19 +30,29 @@ static const AVOption fits_options[] = {
 };
 
 static const AVClass fits_demuxer_class = {
-    .class_name = "FITS demuxer",
-    .item_name  = av_default_item_name,
-    .option     = fits_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "FITS demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = fits_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_fits_demuxer = {
-    .name           = "fits",
-    .long_name      = NULL_IF_CONFIG_SMALL("Flexible Image Transport System"),
-    .priv_data_size = sizeof(FITSContext),
-    .read_probe     = fits_probe,
-    .read_header    = fits_read_header,
-    .read_packet    = fits_read_packet,
-    .priv_class     = &fits_demuxer_class,
-    .raw_codec_id   = AV_CODEC_ID_FITS,
+    //  .name           = "fits",
+    //  .long_name      = "Flexible Image Transport System",
+    //  .priv_data_size = sizeof(FITSContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = fits_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = fits_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = fits_read_packet,
+    //  .priv_class     = &fits_demuxer_class,
+    //  .raw_codec_id   = AV_CODEC_ID_FITS,
 };

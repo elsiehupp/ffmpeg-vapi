@@ -30,21 +30,47 @@ static const AVOption options[] = {
 };
 
 static const AVClass srtp_context_class = {
-    .class_name     = "srtp",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "srtp",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_srtp_protocol = {
-    .name                      = "srtp",
-    .url_open                  = srtp_open,
-    .url_read                  = srtp_read,
-    .url_write                 = srtp_write,
-    .url_close                 = srtp_close,
-    .url_get_file_handle       = srtp_get_file_handle,
-    .url_get_multi_file_handle = srtp_get_multi_file_handle,
-    .priv_data_size            = sizeof(SRTPProtoContext),
-    .priv_data_class           = &srtp_context_class,
-    .flags                     = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name                      = "srtp",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );                  = srtp_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );                  = srtp_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );                 = srtp_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );                 = srtp_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    );       = srtp_get_file_handle,
+    [CCode (cname="", cheader="")]
+    public override int url_get_multi_file_handle (
+        URLContext h,
+        out int[] handles,
+        out int numhandles
+    ); = srtp_get_multi_file_handle,
+    //  .priv_data_size            = sizeof(SRTPProtoContext),
+    //  .priv_data_class           = &srtp_context_class,
+    //  .flags                     = URL_PROTOCOL_FLAG_NETWORK,
 };

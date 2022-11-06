@@ -21,12 +21,19 @@
 
 FF_RAW_DEMUXER_CLASS(g722)
 AVInputFormat ff_g722_demuxer = {
-    .name           = "g722",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw G.722"),
-    .read_header    = g722_read_header,
-    .read_packet    = ff_raw_read_partial_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "g722,722",
-    .raw_codec_id   = AV_CODEC_ID_ADPCM_G722,
-    .priv_data_size = sizeof(FFRawDemuxerContext),
-    .priv_class     = &g722_demuxer_class,};
+    //  .name           = "g722",
+    //  .long_name      = "raw G.722",
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = g722_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_raw_read_partial_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "g722,722",
+    //  .raw_codec_id   = AV_CODEC_ID_ADPCM_G722,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),
+    //  .priv_class     = &g722_demuxer_class,};

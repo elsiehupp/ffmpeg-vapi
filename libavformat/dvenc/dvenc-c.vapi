@@ -29,13 +29,24 @@
  */
 
 AVOutputFormat ff_dv_muxer = {
-    .name              = "dv",
-    .long_name         = NULL_IF_CONFIG_SMALL("DV (Digital Video)"),
-    .extensions        = "dv",
-    .priv_data_size    = sizeof(DVMuxContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_DVVIDEO,
-    .write_header      = dv_write_header,
-    .write_packet      = dv_write_packet,
-    .write_trailer     = dv_write_trailer,
+    //  .name              = "dv",
+    //  .long_name         = "DV (Digital Video)",
+    //  .extensions        = "dv",
+    //  .priv_data_size    = sizeof(DVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_DVVIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = dv_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = dv_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = dv_write_trailer,
 };

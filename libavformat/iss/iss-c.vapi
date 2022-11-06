@@ -27,10 +27,20 @@
  */
 
 AVInputFormat ff_iss_demuxer = {
-    .name           = "iss",
-    .long_name      = NULL_IF_CONFIG_SMALL("Funcom ISS"),
-    .priv_data_size = sizeof(IssDemuxContext),
-    .read_probe     = iss_probe,
-    .read_header    = iss_read_header,
-    .read_packet    = iss_read_packet,
+    //  .name           = "iss",
+    //  .long_name      = "Funcom ISS",
+    //  .priv_data_size = sizeof(IssDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = iss_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = iss_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = iss_read_packet,
 };

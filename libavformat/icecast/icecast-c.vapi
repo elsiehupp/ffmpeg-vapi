@@ -20,18 +20,31 @@
  */
 
 static const AVClass icecast_context_class = {
-    .class_name     = "icecast",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "icecast",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_icecast_protocol = {
-    .name            = "icecast",
-    .url_open        = icecast_open,
-    .url_write       = icecast_write,
-    .url_close       = icecast_close,
-    .priv_data_size  = sizeof(IcecastContext),
-    .priv_data_class = &icecast_context_class,
-    .flags           = URL_PROTOCOL_FLAG_NETWORK,
+    //  .name            = "icecast",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );        = icecast_open,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = icecast_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );       = icecast_close,
+    //  .priv_data_size  = sizeof(IcecastContext),
+    //  .priv_data_class = &icecast_context_class,
+    //  .flags           = URL_PROTOCOL_FLAG_NETWORK,
 };

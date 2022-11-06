@@ -19,19 +19,39 @@
  */
 
 const struct ogg_codec ff_dirac_codec = {
-    .magic = "BBCD\0",
-    .magicsize = 5,
-    .header = dirac_header,
-    .gptopts = dirac_gptopts,
-    .granule_is_start = 1,
-    .nb_header = 1,
+    //  .magic = "BBCD\0",
+    //  .magicsize = 5,
+    [CCode (cname="", cheader="")]
+    public override int header (
+        AVFormatContext context,
+        int arg
+    ); = dirac_header,
+    [CCode (cname="", cheader="")]
+    public override uint64 gptopts (
+        AVFormatContext context,
+        int arg1,
+        uint64 arg2,
+        out int64 dts
+    ); = dirac_gptopts,
+    //  .granule_is_start = 1,
+    //  .nb_header = 1,
 };
 
 const struct ogg_codec ff_old_dirac_codec = {
-    .magic = "KW-DIRAC",
-    .magicsize = 8,
-    .header = old_dirac_header,
-    .gptopts = old_dirac_gptopts,
-    .granule_is_start = 1,
-    .nb_header = 1,
+    //  .magic = "KW-DIRAC",
+    //  .magicsize = 8,
+    [CCode (cname="", cheader="")]
+    public override int header (
+        AVFormatContext context,
+        int arg
+    ); = old_dirac_header,
+    [CCode (cname="", cheader="")]
+    public override uint64 gptopts (
+        AVFormatContext context,
+        int arg1,
+        uint64 arg2,
+        out int64 dts
+    ); = old_dirac_gptopts,
+    //  .granule_is_start = 1,
+    //  .nb_header = 1,
 };

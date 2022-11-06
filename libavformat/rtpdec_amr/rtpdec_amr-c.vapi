@@ -20,21 +20,63 @@
  */
 
 const RTPDynamicProtocolHandler ff_amr_nb_dynamic_handler = {
-    .enc_name         = "AMR",
-    .codec_type       = AVMEDIA_TYPE_AUDIO,
-    .codec_id         = AV_CODEC_ID_AMR_NB,
-    .priv_data_size   = sizeof(PayloadContext),
-    .init             = amr_init,
-    .parse_sdp_a_line = amr_parse_sdp_line,
-    .parse_packet     = amr_handle_packet,
+    //  .enc_name         = "AMR",
+    //  .codec_type       = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id         = AV_CODEC_ID_AMR_NB,
+    //  .priv_data_size   = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );             = amr_init,
+    [CCode (cname="", cheader="")]
+    public override int parse_sdp_a_line (
+        AVFormatContext format_context,
+        int st_index,
+        PayloadContext priv_data,
+        string line
+    ); = amr_parse_sdp_line,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = amr_handle_packet,
 };
 
 const RTPDynamicProtocolHandler ff_amr_wb_dynamic_handler = {
-    .enc_name         = "AMR-WB",
-    .codec_type       = AVMEDIA_TYPE_AUDIO,
-    .codec_id         = AV_CODEC_ID_AMR_WB,
-    .priv_data_size   = sizeof(PayloadContext),
-    .init             = amr_init,
-    .parse_sdp_a_line = amr_parse_sdp_line,
-    .parse_packet     = amr_handle_packet,
+    //  .enc_name         = "AMR-WB",
+    //  .codec_type       = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id         = AV_CODEC_ID_AMR_WB,
+    //  .priv_data_size   = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );             = amr_init,
+    [CCode (cname="", cheader="")]
+    public override int parse_sdp_a_line (
+        AVFormatContext format_context,
+        int st_index,
+        PayloadContext priv_data,
+        string line
+    ); = amr_parse_sdp_line,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = amr_handle_packet,
 };

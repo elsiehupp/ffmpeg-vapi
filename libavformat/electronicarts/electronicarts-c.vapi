@@ -26,10 +26,20 @@
  */
 
 AVInputFormat ff_ea_demuxer = {
-    .name           = "ea",
-    .long_name      = NULL_IF_CONFIG_SMALL("Electronic Arts Multimedia"),
-    .priv_data_size = sizeof(EaDemuxContext),
-    .read_probe     = ea_probe,
-    .read_header    = ea_read_header,
-    .read_packet    = ea_read_packet,
+    //  .name           = "ea",
+    //  .long_name      = "Electronic Arts Multimedia",
+    //  .priv_data_size = sizeof(EaDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ea_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ea_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ea_read_packet,
 };

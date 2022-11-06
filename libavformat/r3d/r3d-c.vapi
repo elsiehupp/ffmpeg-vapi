@@ -20,12 +20,31 @@
  */
 
 AVInputFormat ff_r3d_demuxer = {
-    .name           = "r3d",
-    .long_name      = NULL_IF_CONFIG_SMALL("REDCODE R3D"),
-    .priv_data_size = sizeof(R3DContext),
-    .read_probe     = r3d_probe,
-    .read_header    = r3d_read_header,
-    .read_packet    = r3d_read_packet,
-    .read_close     = r3d_close,
-    .read_seek      = r3d_seek,
+    //  .name           = "r3d",
+    //  .long_name      = "REDCODE R3D",
+    //  .priv_data_size = sizeof(R3DContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = r3d_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = r3d_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = r3d_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = r3d_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = r3d_seek,
 };

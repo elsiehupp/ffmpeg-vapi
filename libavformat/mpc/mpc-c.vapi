@@ -20,13 +20,32 @@
  */
 
 AVInputFormat ff_mpc_demuxer = {
-    .name           = "mpc",
-    .long_name      = NULL_IF_CONFIG_SMALL("Musepack"),
-    .priv_data_size = sizeof(MPCContext),
-    .read_probe     = mpc_probe,
-    .read_header    = mpc_read_header,
-    .read_packet    = mpc_read_packet,
-    .read_close     = mpc_read_close,
-    .read_seek      = mpc_read_seek,
-    .extensions     = "mpc",
+    //  .name           = "mpc",
+    //  .long_name      = "Musepack",
+    //  .priv_data_size = sizeof(MPCContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mpc_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mpc_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mpc_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = mpc_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = mpc_read_seek,
+    //  .extensions     = "mpc",
 };

@@ -25,10 +25,17 @@
  */
 
 AVInputFormat ff_g723_1_demuxer = {
-    .name        = "g723_1",
-    .long_name   = NULL_IF_CONFIG_SMALL("G.723.1"),
-    .read_header = g723_1_init,
-    .read_packet = g723_1_read_packet,
-    .extensions  = "tco,rco,g723_1",
-    .flags       = AVFMT_GENERIC_INDEX
+    //  .name        = "g723_1",
+    //  .long_name   = "G.723.1",
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    ); = g723_1_init,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = g723_1_read_packet,
+    //  .extensions  = "tco,rco,g723_1",
+    //  .flags       = AVFMT_GENERIC_INDEX
 };

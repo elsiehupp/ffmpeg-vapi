@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_avr_demuxer = {
-    .name           = "avr",
-    .long_name      = NULL_IF_CONFIG_SMALL("AVR (Audio Visual Research)"),
-    .read_probe     = avr_probe,
-    .read_header    = avr_read_header,
-    .read_packet    = ff_pcm_read_packet,
-    .read_seek      = ff_pcm_read_seek,
-    .extensions     = "avr",
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "avr",
+    //  .long_name      = "AVR (Audio Visual Research)",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = avr_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = avr_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_pcm_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = ff_pcm_read_seek,
+    //  .extensions     = "avr",
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

@@ -64,10 +64,10 @@ static const AVOption mxf_options[] = {
 };
 
 static const AVClass mxf_muxer_class = {
-    .class_name     = "MXF muxer",
-    .item_name      = av_default_item_name,
-    .option         = mxf_options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "MXF muxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = mxf_options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 static const AVOption d10_options[] = {
@@ -80,10 +80,10 @@ static const AVOption d10_options[] = {
 };
 
 static const AVClass mxf_d10_muxer_class = {
-    .class_name     = "MXF-D10 muxer",
-    .item_name      = av_default_item_name,
-    .option         = d10_options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "MXF-D10 muxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = d10_options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 static const AVOption opatom_options[] = {
@@ -96,55 +96,106 @@ static const AVOption opatom_options[] = {
 };
 
 static const AVClass mxf_opatom_muxer_class = {
-    .class_name     = "MXF-OPAtom muxer",
-    .item_name      = av_default_item_name,
-    .option         = opatom_options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "MXF-OPAtom muxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = opatom_options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_mxf_muxer = {
-    .name              = "mxf",
-    .long_name         = NULL_IF_CONFIG_SMALL("MXF (Material eXchange Format)"),
-    .mime_type         = "application/mxf",
-    .extensions        = "mxf",
-    .priv_data_size    = sizeof(MXFContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
-    .write_header      = mxf_write_header,
-    .write_packet      = mxf_write_packet,
-    .write_trailer     = mxf_write_footer,
-    .flags             = AVFMT_NOTIMESTAMPS,
-    .interleave_packet = mxf_interleave,
-    .priv_class        = &mxf_muxer_class,
+    //  .name              = "mxf",
+    //  .long_name         = "MXF (Material eXchange Format)",
+    //  .mime_type         = "application/mxf",
+    //  .extensions        = "mxf",
+    //  .priv_data_size    = sizeof(MXFContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mxf_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mxf_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mxf_write_footer,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="", cheader="")]
+    public override int interleave_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet output,
+        LibAVCodec.Packet input,
+        int flush
+    ); = mxf_interleave,
+    //  .priv_class        = &mxf_muxer_class,
 };
 
 AVOutputFormat ff_mxf_d10_muxer = {
-    .name              = "mxf_d10",
-    .long_name         = NULL_IF_CONFIG_SMALL("MXF (Material eXchange Format) D-10 Mapping"),
-    .mime_type         = "application/mxf",
-    .priv_data_size    = sizeof(MXFContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
-    .write_header      = mxf_write_header,
-    .write_packet      = mxf_write_packet,
-    .write_trailer     = mxf_write_footer,
-    .flags             = AVFMT_NOTIMESTAMPS,
-    .interleave_packet = mxf_interleave,
-    .priv_class        = &mxf_d10_muxer_class,
+    //  .name              = "mxf_d10",
+    //  .long_name         = "MXF (Material eXchange Format) D-10 Mapping",
+    //  .mime_type         = "application/mxf",
+    //  .priv_data_size    = sizeof(MXFContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mxf_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mxf_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mxf_write_footer,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="", cheader="")]
+    public override int interleave_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet output,
+        LibAVCodec.Packet input,
+        int flush
+    ); = mxf_interleave,
+    //  .priv_class        = &mxf_d10_muxer_class,
 };
 
 AVOutputFormat ff_mxf_opatom_muxer = {
-    .name              = "mxf_opatom",
-    .long_name         = NULL_IF_CONFIG_SMALL("MXF (Material eXchange Format) Operational Pattern Atom"),
-    .mime_type         = "application/mxf",
-    .extensions        = "mxf",
-    .priv_data_size    = sizeof(MXFContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_DNXHD,
-    .write_header      = mxf_write_header,
-    .write_packet      = mxf_write_packet,
-    .write_trailer     = mxf_write_footer,
-    .flags             = AVFMT_NOTIMESTAMPS,
-    .interleave_packet = mxf_interleave,
-    .priv_class        = &mxf_opatom_muxer_class,
+    //  .name              = "mxf_opatom",
+    //  .long_name         = "MXF (Material eXchange Format) Operational Pattern Atom",
+    //  .mime_type         = "application/mxf",
+    //  .extensions        = "mxf",
+    //  .priv_data_size    = sizeof(MXFContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_DNXHD,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mxf_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mxf_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mxf_write_footer,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="", cheader="")]
+    public override int interleave_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet output,
+        LibAVCodec.Packet input,
+        int flush
+    ); = mxf_interleave,
+    //  .priv_class        = &mxf_opatom_muxer_class,
 };

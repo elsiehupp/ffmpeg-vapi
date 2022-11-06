@@ -28,10 +28,20 @@
  */
 
 AVInputFormat ff_xa_demuxer = {
-    .name           = "xa",
-    .long_name      = NULL_IF_CONFIG_SMALL("Maxis XA"),
-    .priv_data_size = sizeof(MaxisXADemuxContext),
-    .read_probe     = xa_probe,
-    .read_header    = xa_read_header,
-    .read_packet    = xa_read_packet,
+    //  .name           = "xa",
+    //  .long_name      = "Maxis XA",
+    //  .priv_data_size = sizeof(MaxisXADemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = xa_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = xa_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = xa_read_packet,
 };

@@ -20,13 +20,34 @@
  */
 
 AVInputFormat ff_scc_demuxer = {
-    .name           = "scc",
-    .long_name      = NULL_IF_CONFIG_SMALL("Scenarist Closed Captions"),
-    .priv_data_size = sizeof(SCCContext),
-    .read_probe     = scc_probe,
-    .read_header    = scc_read_header,
-    .read_packet    = scc_read_packet,
-    .read_seek2     = scc_read_seek,
-    .read_close     = scc_read_close,
-    .extensions     = "scc",
+    //  .name           = "scc",
+    //  .long_name      = "Scenarist Closed Captions",
+    //  .priv_data_size = sizeof(SCCContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = scc_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = scc_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = scc_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = scc_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = scc_read_close,
+    //  .extensions     = "scc",
 };

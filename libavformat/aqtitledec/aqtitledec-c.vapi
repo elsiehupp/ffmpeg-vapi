@@ -34,21 +34,42 @@ static const AVOption aqt_options[] = {
 };
 
 static const AVClass aqt_class = {
-    .class_name = "aqtdec",
-    .item_name  = av_default_item_name,
-    .option     = aqt_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "aqtdec",
+    //  .item_name  = av_default_item_name,
+    //  .option     = aqt_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_aqtitle_demuxer = {
-    .name           = "aqtitle",
-    .long_name      = NULL_IF_CONFIG_SMALL("AQTitle subtitles"),
-    .priv_data_size = sizeof(AQTitleContext),
-    .read_probe     = aqt_probe,
-    .read_header    = aqt_read_header,
-    .read_packet    = aqt_read_packet,
-    .read_seek2     = aqt_read_seek,
-    .read_close     = aqt_read_close,
-    .extensions     = "aqt",
-    .priv_class     = &aqt_class,
+    //  .name           = "aqtitle",
+    //  .long_name      = "AQTitle subtitles",
+    //  .priv_data_size = sizeof(AQTitleContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = aqt_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = aqt_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = aqt_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = aqt_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = aqt_read_close,
+    //  .extensions     = "aqt",
+    //  .priv_class     = &aqt_class,
 };

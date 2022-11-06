@@ -21,15 +21,34 @@
  */
 
 AVInputFormat ff_nut_demuxer = {
-    .name           = "nut",
-    .long_name      = NULL_IF_CONFIG_SMALL("NUT"),
-    .flags          = AVFMT_SEEK_TO_PTS,
-    .priv_data_size = sizeof(NUTContext),
-    .read_probe     = nut_probe,
-    .read_header    = nut_read_header,
-    .read_packet    = nut_read_packet,
-    .read_close     = nut_read_close,
-    .read_seek      = read_seek,
-    .extensions     = "nut",
-    .codec_tag      = ff_nut_codec_tags,
+    //  .name           = "nut",
+    //  .long_name      = "NUT",
+    //  .flags          = AVFMT_SEEK_TO_PTS,
+    //  .priv_data_size = sizeof(NUTContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = nut_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = nut_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = nut_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = nut_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek,
+    //  .extensions     = "nut",
+    //  .codec_tag      = ff_nut_codec_tags,
 };

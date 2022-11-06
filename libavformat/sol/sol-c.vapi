@@ -24,10 +24,26 @@
  */
 
 AVInputFormat ff_sol_demuxer = {
-    .name           = "sol",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sierra SOL"),
-    .read_probe     = sol_probe,
-    .read_header    = sol_read_header,
-    .read_packet    = sol_read_packet,
-    .read_seek      = ff_pcm_read_seek,
+    //  .name           = "sol",
+    //  .long_name      = "Sierra SOL",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = sol_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = sol_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = sol_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = ff_pcm_read_seek,
 };

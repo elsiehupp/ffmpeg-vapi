@@ -20,12 +20,25 @@
  */
 
 AVInputFormat ff_sap_demuxer = {
-    .name           = "sap",
-    .long_name      = NULL_IF_CONFIG_SMALL("SAP input"),
-    .priv_data_size = sizeof(struct SAPState),
-    .read_probe     = sap_probe,
-    .read_header    = sap_read_header,
-    .read_packet    = sap_fetch_packet,
-    .read_close     = sap_read_close,
-    .flags          = AVFMT_NOFILE,
+    //  .name           = "sap",
+    //  .long_name      = "SAP input",
+    //  .priv_data_size = sizeof(struct SAPState),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = sap_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = sap_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = sap_fetch_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = sap_read_close,
+    //  .flags          = AVFMT_NOFILE,
 };

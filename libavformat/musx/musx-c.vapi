@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_musx_demuxer = {
-    .name           = "musx",
-    .long_name      = NULL_IF_CONFIG_SMALL("Eurocom MUSX"),
-    .read_probe     = musx_probe,
-    .read_header    = musx_read_header,
-    .read_packet    = musx_read_packet,
-    .extensions     = "musx",
+    //  .name           = "musx",
+    //  .long_name      = "Eurocom MUSX",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = musx_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = musx_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = musx_read_packet,
+    //  .extensions     = "musx",
 };

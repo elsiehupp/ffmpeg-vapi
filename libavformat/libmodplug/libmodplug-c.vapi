@@ -23,21 +23,40 @@
 */
 
 static const AVClass modplug_class = {
-    .class_name = "ModPlug demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "ModPlug demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_libmodplug_demuxer = {
-    .name           = "libmodplug",
-    .long_name      = NULL_IF_CONFIG_SMALL("ModPlug demuxer"),
-    .priv_data_size = sizeof(ModPlugContext),
-    .read_probe     = modplug_probe,
-    .read_header    = modplug_read_header,
-    .read_packet    = modplug_read_packet,
-    .read_close     = modplug_read_close,
-    .read_seek      = modplug_read_seek,
-    .extensions     = modplug_extensions,
-    .priv_class     = &modplug_class,
+    //  .name           = "libmodplug",
+    //  .long_name      = "ModPlug demuxer",
+    //  .priv_data_size = sizeof(ModPlugContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = modplug_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = modplug_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = modplug_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = modplug_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = modplug_read_seek,
+    //  .extensions     = modplug_extensions,
+    //  .priv_class     = &modplug_class,
 };

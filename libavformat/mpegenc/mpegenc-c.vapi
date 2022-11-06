@@ -29,59 +29,92 @@ static const AVOption options[] = {
 
 #define MPEGENC_CLASS(flavor)                   \
 static const AVClass flavor ## _class = {       \
-    .class_name = #flavor " muxer",             \
-    .item_name  = av_default_item_name,         \
-    .version    = LIBAVUTIL_VERSION_INT,        \
-    .option     = options,                      \
+    //  .class_name = #flavor " muxer",             \
+    //  .item_name  = av_default_item_name,         \
+    //  .version    = LIBAVUTIL_VERSION_INT,        \
+    //  .option     = options,                      \
 };
 
 #if CONFIG_MPEG1SYSTEM_MUXER
 MPEGENC_CLASS(mpeg)
 AVOutputFormat ff_mpeg1system_muxer = {
-    .name              = "mpeg",
-    .long_name         = NULL_IF_CONFIG_SMALL("MPEG-1 Systems / MPEG program stream"),
-    .mime_type         = "video/mpeg",
-    .extensions        = "mpg,mpeg",
-    .priv_data_size    = sizeof(MpegMuxContext),
-    .audio_codec       = AV_CODEC_ID_MP2,
-    .video_codec       = AV_CODEC_ID_MPEG1VIDEO,
-    .write_header      = mpeg_mux_init,
-    .write_packet      = mpeg_mux_write_packet,
-    .write_trailer     = mpeg_mux_end,
-    .priv_class        = &mpeg_class,
+    //  .name              = "mpeg",
+    //  .long_name         = "MPEG-1 Systems / MPEG program stream",
+    //  .mime_type         = "video/mpeg",
+    //  .extensions        = "mpg,mpeg",
+    //  .priv_data_size    = sizeof(MpegMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_MP2,
+    //  .video_codec       = AV_CODEC_ID_MPEG1VIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mpeg_mux_init,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mpeg_mux_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mpeg_mux_end,
+    //  .priv_class        = &mpeg_class,
 };
 #endif
 
 #if CONFIG_MPEG1VCD_MUXER
 MPEGENC_CLASS(vcd)
 AVOutputFormat ff_mpeg1vcd_muxer = {
-    .name              = "vcd",
-    .long_name         = NULL_IF_CONFIG_SMALL("MPEG-1 Systems / MPEG program stream (VCD)"),
-    .mime_type         = "video/mpeg",
-    .priv_data_size    = sizeof(MpegMuxContext),
-    .audio_codec       = AV_CODEC_ID_MP2,
-    .video_codec       = AV_CODEC_ID_MPEG1VIDEO,
-    .write_header      = mpeg_mux_init,
-    .write_packet      = mpeg_mux_write_packet,
-    .write_trailer     = mpeg_mux_end,
-    .priv_class        = &vcd_class,
+    //  .name              = "vcd",
+    //  .long_name         = "MPEG-1 Systems / MPEG program stream (VCD)",
+    //  .mime_type         = "video/mpeg",
+    //  .priv_data_size    = sizeof(MpegMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_MP2,
+    //  .video_codec       = AV_CODEC_ID_MPEG1VIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mpeg_mux_init,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mpeg_mux_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mpeg_mux_end,
+    //  .priv_class        = &vcd_class,
 };
 #endif
 
 #if CONFIG_MPEG2VOB_MUXER
 MPEGENC_CLASS(vob)
 AVOutputFormat ff_mpeg2vob_muxer = {
-    .name              = "vob",
-    .long_name         = NULL_IF_CONFIG_SMALL("MPEG-2 PS (VOB)"),
-    .mime_type         = "video/mpeg",
-    .extensions        = "vob",
-    .priv_data_size    = sizeof(MpegMuxContext),
-    .audio_codec       = AV_CODEC_ID_MP2,
-    .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
-    .write_header      = mpeg_mux_init,
-    .write_packet      = mpeg_mux_write_packet,
-    .write_trailer     = mpeg_mux_end,
-    .priv_class        = &vob_class,
+    //  .name              = "vob",
+    //  .long_name         = "MPEG-2 PS (VOB)",
+    //  .mime_type         = "video/mpeg",
+    //  .extensions        = "vob",
+    //  .priv_data_size    = sizeof(MpegMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_MP2,
+    //  .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mpeg_mux_init,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mpeg_mux_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mpeg_mux_end,
+    //  .priv_class        = &vob_class,
 };
 #endif
 
@@ -89,17 +122,28 @@ AVOutputFormat ff_mpeg2vob_muxer = {
 #if CONFIG_MPEG2SVCD_MUXER
 MPEGENC_CLASS(svcd)
 AVOutputFormat ff_mpeg2svcd_muxer = {
-    .name              = "svcd",
-    .long_name         = NULL_IF_CONFIG_SMALL("MPEG-2 PS (SVCD)"),
-    .mime_type         = "video/mpeg",
-    .extensions        = "vob",
-    .priv_data_size    = sizeof(MpegMuxContext),
-    .audio_codec       = AV_CODEC_ID_MP2,
-    .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
-    .write_header      = mpeg_mux_init,
-    .write_packet      = mpeg_mux_write_packet,
-    .write_trailer     = mpeg_mux_end,
-    .priv_class        = &svcd_class,
+    //  .name              = "svcd",
+    //  .long_name         = "MPEG-2 PS (SVCD)",
+    //  .mime_type         = "video/mpeg",
+    //  .extensions        = "vob",
+    //  .priv_data_size    = sizeof(MpegMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_MP2,
+    //  .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mpeg_mux_init,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mpeg_mux_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mpeg_mux_end,
+    //  .priv_class        = &svcd_class,
 };
 #endif
 
@@ -107,16 +151,27 @@ AVOutputFormat ff_mpeg2svcd_muxer = {
 #if CONFIG_MPEG2DVD_MUXER
 MPEGENC_CLASS(dvd)
 AVOutputFormat ff_mpeg2dvd_muxer = {
-    .name              = "dvd",
-    .long_name         = NULL_IF_CONFIG_SMALL("MPEG-2 PS (DVD VOB)"),
-    .mime_type         = "video/mpeg",
-    .extensions        = "dvd",
-    .priv_data_size    = sizeof(MpegMuxContext),
-    .audio_codec       = AV_CODEC_ID_MP2,
-    .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
-    .write_header      = mpeg_mux_init,
-    .write_packet      = mpeg_mux_write_packet,
-    .write_trailer     = mpeg_mux_end,
-    .priv_class        = &dvd_class,
+    //  .name              = "dvd",
+    //  .long_name         = "MPEG-2 PS (DVD VOB)",
+    //  .mime_type         = "video/mpeg",
+    //  .extensions        = "dvd",
+    //  .priv_data_size    = sizeof(MpegMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_MP2,
+    //  .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mpeg_mux_init,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mpeg_mux_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mpeg_mux_end,
+    //  .priv_class        = &dvd_class,
 };
 #endif

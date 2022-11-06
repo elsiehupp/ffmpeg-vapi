@@ -22,14 +22,24 @@
 FF_RAWVIDEO_DEMUXER_CLASS(ingenient)
 
 AVInputFormat ff_ingenient_demuxer = {
-    .name           = "ingenient",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw Ingenient MJPEG"),
-    .priv_data_size = sizeof(FFRawVideoDemuxerContext),
-    .read_probe     = ingenient_probe,
-    .read_header    = ff_raw_video_read_header,
-    .read_packet    = ingenient_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "cgi", // FIXME
-    .raw_codec_id   = AV_CODEC_ID_MJPEG,
-    .priv_class     = &ingenient_demuxer_class,
+    //  .name           = "ingenient",
+    //  .long_name      = "raw Ingenient MJPEG",
+    //  .priv_data_size = sizeof(FFRawVideoDemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ingenient_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ff_raw_video_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ingenient_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "cgi", // FIXME
+    //  .raw_codec_id   = AV_CODEC_ID_MJPEG,
+    //  .priv_class     = &ingenient_demuxer_class,
 };

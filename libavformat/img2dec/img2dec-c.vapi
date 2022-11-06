@@ -22,21 +22,31 @@
 
 #define IMAGEAUTO_DEMUXER(imgname, codecid)\
 static const AVClass imgname ## _class = {\
-    .class_name = AV_STRINGIFY(imgname) " demuxer",\
-    .item_name  = av_default_item_name,\
-    .option     = ff_img2pipe_options,\
-    .version    = LIBAVUTIL_VERSION_INT,\
+    //  .class_name = AV_STRINGIFY(imgname) " demuxer",\
+    //  .item_name  = av_default_item_name,\
+    //  .option     = ff_img2pipe_options,\
+    //  .version    = LIBAVUTIL_VERSION_INT,\
 };\
 AVInputFormat ff_image_ ## imgname ## _pipe_demuxer = {\
-    .name           = AV_STRINGIFY(imgname) "_pipe",\
-    .long_name      = NULL_IF_CONFIG_SMALL("piped " AV_STRINGIFY(imgname) " sequence"),\
-    .priv_data_size = sizeof(VideoDemuxData),\
-    .read_probe     = imgname ## _probe,\
-    .read_header    = ff_img_read_header,\
-    .read_packet    = ff_img_read_packet,\
-    .priv_class     = & imgname ## _class,\
-    .flags          = AVFMT_GENERIC_INDEX, \
-    .raw_codec_id   = codecid,\
+    //  .name           = AV_STRINGIFY(imgname) "_pipe",\
+    //  .long_name      = "piped " AV_STRINGIFY(imgname) " sequence",\
+    //  .priv_data_size = sizeof(VideoDemuxData),\
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = imgname ## _probe,\
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ff_img_read_header,\
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_img_read_packet,\
+    //  .priv_class     = & imgname ## _class,\
+    //  .flags          = AVFMT_GENERIC_INDEX, \
+    //  .raw_codec_id   = codecid,\
 };
 
 IMAGEAUTO_DEMUXER(bmp,     AV_CODEC_ID_BMP)

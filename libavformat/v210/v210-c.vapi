@@ -29,42 +29,56 @@ static const AVOption v210_options[] = {
 
 #if CONFIG_V210_DEMUXER
 static const AVClass v210_demuxer_class = {
-    .class_name = "v210 demuxer",
-    .item_name  = av_default_item_name,
-    .option     = v210_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "v210 demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = v210_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_v210_demuxer = {
-    .name           = "v210",
-    .long_name      = NULL_IF_CONFIG_SMALL("Uncompressed 4:2:2 10-bit"),
-    .priv_data_size = sizeof(V210DemuxerContext),
-    .read_header    = v210_read_header,
-    .read_packet    = v210_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "v210",
-    .raw_codec_id   = AV_CODEC_ID_V210,
-    .priv_class     = &v210_demuxer_class,
+    //  .name           = "v210",
+    //  .long_name      = "Uncompressed 4:2:2 10-bit",
+    //  .priv_data_size = sizeof(V210DemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = v210_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = v210_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "v210",
+    //  .raw_codec_id   = AV_CODEC_ID_V210,
+    //  .priv_class     = &v210_demuxer_class,
 };
 #endif // CONFIG_V210_DEMUXER
 
 #if CONFIG_V210X_DEMUXER
 static const AVClass v210x_demuxer_class = {
-    .class_name = "v210x demuxer",
-    .item_name  = av_default_item_name,
-    .option     = v210_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "v210x demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = v210_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_v210x_demuxer = {
-    .name           = "v210x",
-    .long_name      = NULL_IF_CONFIG_SMALL("Uncompressed 4:2:2 10-bit"),
-    .priv_data_size = sizeof(V210DemuxerContext),
-    .read_header    = v210_read_header,
-    .read_packet    = v210_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "yuv10",
-    .raw_codec_id   = AV_CODEC_ID_V210X,
-    .priv_class     = &v210x_demuxer_class,
+    //  .name           = "v210x",
+    //  .long_name      = "Uncompressed 4:2:2 10-bit",
+    //  .priv_data_size = sizeof(V210DemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = v210_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = v210_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "yuv10",
+    //  .raw_codec_id   = AV_CODEC_ID_V210X,
+    //  .priv_class     = &v210x_demuxer_class,
 };
 #endif // CONFIG_V210X_DEMUXER

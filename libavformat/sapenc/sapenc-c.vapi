@@ -20,13 +20,24 @@
  */
 
 AVOutputFormat ff_sap_muxer = {
-    .name              = "sap",
-    .long_name         = NULL_IF_CONFIG_SMALL("SAP output"),
-    .priv_data_size    = sizeof(struct SAPState),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = AV_CODEC_ID_MPEG4,
-    .write_header      = sap_write_header,
-    .write_packet      = sap_write_packet,
-    .write_trailer     = sap_write_close,
-    .flags             = AVFMT_NOFILE | AVFMT_GLOBALHEADER,
+    //  .name              = "sap",
+    //  .long_name         = "SAP output",
+    //  .priv_data_size    = sizeof(struct SAPState),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = AV_CODEC_ID_MPEG4,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = sap_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = sap_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = sap_write_close,
+    //  .flags             = AVFMT_NOFILE | AVFMT_GLOBALHEADER,
 };

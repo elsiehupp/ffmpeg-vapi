@@ -20,10 +20,18 @@
  */
 
 AVOutputFormat ff_a64_muxer = {
-    .name           = "a64",
-    .long_name      = NULL_IF_CONFIG_SMALL("a64 - video for Commodore 64"),
-    .extensions     = "a64, A64",
-    .video_codec    = AV_CODEC_ID_A64_MULTI,
-    .write_header   = a64_write_header,
-    .write_packet   = ff_raw_write_packet,
+    //  .name           = "a64",
+    //  .long_name      = "a64 - video for Commodore 64",
+    //  .extensions     = "a64, A64",
+    //  .video_codec    = AV_CODEC_ID_A64_MULTI,
+    [CCode (cname="a64_write_header", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );
+    [CCode (cname="ff_raw_write_packet", cheader="")]
+    public abstract int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );
 };

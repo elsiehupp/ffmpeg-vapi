@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_tta_demuxer = {
-    .name           = "tta",
-    .long_name      = NULL_IF_CONFIG_SMALL("TTA (True Audio)"),
-    .priv_data_size = sizeof(TTAContext),
-    .read_probe     = tta_probe,
-    .read_header    = tta_read_header,
-    .read_packet    = tta_read_packet,
-    .read_seek      = tta_read_seek,
-    .extensions     = "tta",
+    //  .name           = "tta",
+    //  .long_name      = "TTA (True Audio)",
+    //  .priv_data_size = sizeof(TTAContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = tta_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = tta_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = tta_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = tta_read_seek,
+    //  .extensions     = "tta",
 };

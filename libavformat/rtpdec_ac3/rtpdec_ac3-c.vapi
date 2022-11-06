@@ -20,11 +20,26 @@
  */
 
 const RTPDynamicProtocolHandler ff_ac3_dynamic_handler = {
-    .enc_name           = "ac3",
-    .codec_type         = AVMEDIA_TYPE_AUDIO,
-    .codec_id           = AV_CODEC_ID_AC3,
-    .need_parsing       = AVSTREAM_PARSE_FULL,
-    .priv_data_size     = sizeof(PayloadContext),
-    .close              = ac3_close_context,
-    .parse_packet       = ac3_handle_packet,
+    //  .enc_name           = "ac3",
+    //  .codec_type         = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id           = AV_CODEC_ID_AC3,
+    //  .need_parsing       = AVSTREAM_PARSE_FULL,
+    //  .priv_data_size     = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override void close (
+        PayloadContext protocol_data
+    );              = ac3_close_context,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );       = ac3_handle_packet,
 };

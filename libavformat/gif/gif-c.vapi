@@ -32,23 +32,34 @@ static const AVOption options[] = {
 };
 
 static const AVClass gif_muxer_class = {
-    .class_name = "GIF muxer",
-    .item_name  = av_default_item_name,
-    .version    = LIBAVUTIL_VERSION_INT,
-    .option     = options,
+    //  .class_name = "GIF muxer",
+    //  .item_name  = av_default_item_name,
+    //  .version    = LIBAVUTIL_VERSION_INT,
+    //  .option     = options,
 };
 
 AVOutputFormat ff_gif_muxer = {
-    .name           = "gif",
-    .long_name      = NULL_IF_CONFIG_SMALL("CompuServe Graphics Interchange Format (GIF)"),
-    .mime_type      = "image/gif",
-    .extensions     = "gif",
-    .priv_data_size = sizeof(GIFContext),
-    .audio_codec    = AV_CODEC_ID_NONE,
-    .video_codec    = AV_CODEC_ID_GIF,
-    .write_header   = gif_write_header,
-    .write_packet   = gif_write_packet,
-    .write_trailer  = gif_write_trailer,
-    .priv_class     = &gif_muxer_class,
-    .flags          = AVFMT_VARIABLE_FPS,
+    //  .name           = "gif",
+    //  .long_name      = "CompuServe Graphics Interchange Format (GIF)",
+    //  .mime_type      = "image/gif",
+    //  .extensions     = "gif",
+    //  .priv_data_size = sizeof(GIFContext),
+    //  .audio_codec    = AV_CODEC_ID_NONE,
+    //  .video_codec    = AV_CODEC_ID_GIF,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = gif_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = gif_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = gif_write_trailer,
+    //  .priv_class     = &gif_muxer_class,
+    //  .flags          = AVFMT_VARIABLE_FPS,
 };

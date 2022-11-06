@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_genh_demuxer = {
-    .name           = "genh",
-    .long_name      = NULL_IF_CONFIG_SMALL("GENeric Header"),
-    .priv_data_size = sizeof(GENHDemuxContext),
-    .read_probe     = genh_probe,
-    .read_header    = genh_read_header,
-    .read_packet    = genh_read_packet,
-    .extensions     = "genh",
+    //  .name           = "genh",
+    //  .long_name      = "GENeric Header",
+    //  .priv_data_size = sizeof(GENHDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = genh_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = genh_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = genh_read_packet,
+    //  .extensions     = "genh",
 };

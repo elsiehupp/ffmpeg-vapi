@@ -28,10 +28,20 @@
  */
 
 AVInputFormat ff_roq_demuxer = {
-    .name           = "roq",
-    .long_name      = NULL_IF_CONFIG_SMALL("id RoQ"),
-    .priv_data_size = sizeof(RoqDemuxContext),
-    .read_probe     = roq_probe,
-    .read_header    = roq_read_header,
-    .read_packet    = roq_read_packet,
+    //  .name           = "roq",
+    //  .long_name      = "id RoQ",
+    //  .priv_data_size = sizeof(RoqDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = roq_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = roq_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = roq_read_packet,
 };

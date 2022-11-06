@@ -27,20 +27,30 @@ static const AVOption cdxl_options[] = {
 };
 
 static const AVClass cdxl_demuxer_class = {
-    .class_name = "CDXL demuxer",
-    .item_name  = av_default_item_name,
-    .option     = cdxl_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "CDXL demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = cdxl_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_cdxl_demuxer = {
-    .name           = "cdxl",
-    .long_name      = NULL_IF_CONFIG_SMALL("Commodore CDXL video"),
-    .priv_data_size = sizeof(CDXLDemuxContext),
-    .read_probe     = cdxl_read_probe,
-    .read_header    = cdxl_read_header,
-    .read_packet    = cdxl_read_packet,
-    .extensions     = "cdxl,xl",
-    .flags          = AVFMT_GENERIC_INDEX,
-    .priv_class     = &cdxl_demuxer_class,
+    //  .name           = "cdxl",
+    //  .long_name      = "Commodore CDXL video",
+    //  .priv_data_size = sizeof(CDXLDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = cdxl_read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = cdxl_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = cdxl_read_packet,
+    //  .extensions     = "cdxl,xl",
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .priv_class     = &cdxl_demuxer_class,
 };

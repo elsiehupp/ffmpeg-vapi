@@ -20,10 +20,28 @@
  */
 
 const RTPDynamicProtocolHandler ff_mpegts_dynamic_handler = {
-    .codec_type        = AVMEDIA_TYPE_DATA,
-    .priv_data_size    = sizeof(PayloadContext),
-    .parse_packet      = mpegts_handle_packet,
-    .init              = mpegts_init,
-    .close             = mpegts_close_context,
-    .static_payload_id = 33,
+    //  .codec_type        = AVMEDIA_TYPE_DATA,
+    //  .priv_data_size    = sizeof(PayloadContext),
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );      = mpegts_handle_packet,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mpegts_init,
+    [CCode (cname="", cheader="")]
+    public override void close (
+        PayloadContext protocol_data
+    );             = mpegts_close_context,
+    //  .static_payload_id = 33,
 };

@@ -28,11 +28,24 @@
  */
 
 AVInputFormat ff_vmd_demuxer = {
-    .name           = "vmd",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sierra VMD"),
-    .priv_data_size = sizeof(VmdDemuxContext),
-    .read_probe     = vmd_probe,
-    .read_header    = vmd_read_header,
-    .read_packet    = vmd_read_packet,
-    .read_close     = vmd_read_close,
+    //  .name           = "vmd",
+    //  .long_name      = "Sierra VMD",
+    //  .priv_data_size = sizeof(VmdDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = vmd_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = vmd_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = vmd_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = vmd_read_close,
 };

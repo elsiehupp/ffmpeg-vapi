@@ -20,9 +20,19 @@
  */
 
 AVInputFormat ff_hcom_demuxer = {
-    .name           = "hcom",
-    .long_name      = NULL_IF_CONFIG_SMALL("Macintosh HCOM"),
-    .read_probe     = hcom_probe,
-    .read_header    = hcom_read_header,
-    .read_packet    = ff_pcm_read_packet,
+    //  .name           = "hcom",
+    //  .long_name      = "Macintosh HCOM",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = hcom_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = hcom_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_pcm_read_packet,
 };

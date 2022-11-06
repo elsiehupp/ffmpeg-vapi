@@ -73,10 +73,10 @@ static const AVOption options[] = {
 
 #define MOV_CLASS(flavor)\
 static const AVClass flavor ## _muxer_class = {\
-    .class_name = #flavor " muxer",\
-    .item_name  = av_default_item_name,\
-    .option     = options,\
-    .version    = LIBAVUTIL_VERSION_INT,\
+    //  .class_name = #flavor " muxer",\
+    //  .item_name  = av_default_item_name,\
+    //  .option     = options,\
+    //  .version    = LIBAVUTIL_VERSION_INT,\
 };
 
 static const AVCodecTag codec_3gp_tags[] = {
@@ -152,170 +152,338 @@ static const AVCodecTag codec_f4v_tags[] = {
 #if CONFIG_MOV_MUXER
 MOV_CLASS(mov)
 AVOutputFormat ff_mov_muxer = {
-    .name              = "mov",
-    .long_name         = NULL_IF_CONFIG_SMALL("QuickTime / MOV"),
-    .extensions        = "mov",
-    .priv_data_size    = sizeof(MOVMuxContext),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = CONFIG_LIBX264_ENCODER ?
+    //  .name              = "mov",
+    //  .long_name         = "QuickTime / MOV",
+    //  .extensions        = "mov",
+    //  .priv_data_size    = sizeof(MOVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = CONFIG_LIBX264_ENCODER ?
                          AV_CODEC_ID_H264 : AV_CODEC_ID_MPEG4,
-    .init              = mov_init,
-    .write_header      = mov_write_header,
-    .write_packet      = mov_write_packet,
-    .write_trailer     = mov_write_trailer,
-    .deinit            = mov_free,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    .codec_tag         = (const AVCodecTag* const []){
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mov_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mov_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mov_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mov_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = mov_free,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
+    //  .codec_tag         = (const AVCodecTag* const []){
         ff_codec_movvideo_tags, ff_codec_movaudio_tags, ff_codec_movsubtitle_tags, 0
     },
-    .check_bitstream   = mov_check_bitstream,
-    .priv_class        = &mov_muxer_class,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mov_check_bitstream,
+    //  .priv_class        = &mov_muxer_class,
 };
 #endif
 #if CONFIG_TGP_MUXER
 MOV_CLASS(tgp)
 AVOutputFormat ff_tgp_muxer = {
-    .name              = "3gp",
-    .long_name         = NULL_IF_CONFIG_SMALL("3GP (3GPP file format)"),
-    .extensions        = "3gp",
-    .priv_data_size    = sizeof(MOVMuxContext),
-    .audio_codec       = AV_CODEC_ID_AMR_NB,
-    .video_codec       = AV_CODEC_ID_H263,
-    .init              = mov_init,
-    .write_header      = mov_write_header,
-    .write_packet      = mov_write_packet,
-    .write_trailer     = mov_write_trailer,
-    .deinit            = mov_free,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    .codec_tag         = (const AVCodecTag* const []){ codec_3gp_tags, 0 },
-    .check_bitstream   = mov_check_bitstream,
-    .priv_class        = &tgp_muxer_class,
+    //  .name              = "3gp",
+    //  .long_name         = "3GP (3GPP file format)",
+    //  .extensions        = "3gp",
+    //  .priv_data_size    = sizeof(MOVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_AMR_NB,
+    //  .video_codec       = AV_CODEC_ID_H263,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mov_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mov_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mov_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mov_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = mov_free,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
+    //  .codec_tag         = (const AVCodecTag* const []){ codec_3gp_tags, 0 },
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mov_check_bitstream,
+    //  .priv_class        = &tgp_muxer_class,
 };
 #endif
 #if CONFIG_MP4_MUXER
 MOV_CLASS(mp4)
 AVOutputFormat ff_mp4_muxer = {
-    .name              = "mp4",
-    .long_name         = NULL_IF_CONFIG_SMALL("MP4 (MPEG-4 Part 14)"),
-    .mime_type         = "video/mp4",
-    .extensions        = "mp4",
-    .priv_data_size    = sizeof(MOVMuxContext),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = CONFIG_LIBX264_ENCODER ?
+    //  .name              = "mp4",
+    //  .long_name         = "MP4 (MPEG-4 Part 14)",
+    //  .mime_type         = "video/mp4",
+    //  .extensions        = "mp4",
+    //  .priv_data_size    = sizeof(MOVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = CONFIG_LIBX264_ENCODER ?
                          AV_CODEC_ID_H264 : AV_CODEC_ID_MPEG4,
-    .init              = mov_init,
-    .write_header      = mov_write_header,
-    .write_packet      = mov_write_packet,
-    .write_trailer     = mov_write_trailer,
-    .deinit            = mov_free,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    .codec_tag         = (const AVCodecTag* const []){ codec_mp4_tags, 0 },
-    .check_bitstream   = mov_check_bitstream,
-    .priv_class        = &mp4_muxer_class,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mov_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mov_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mov_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mov_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = mov_free,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
+    //  .codec_tag         = (const AVCodecTag* const []){ codec_mp4_tags, 0 },
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mov_check_bitstream,
+    //  .priv_class        = &mp4_muxer_class,
 };
 #endif
 #if CONFIG_PSP_MUXER
 MOV_CLASS(psp)
 AVOutputFormat ff_psp_muxer = {
-    .name              = "psp",
-    .long_name         = NULL_IF_CONFIG_SMALL("PSP MP4 (MPEG-4 Part 14)"),
-    .extensions        = "mp4,psp",
-    .priv_data_size    = sizeof(MOVMuxContext),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = CONFIG_LIBX264_ENCODER ?
+    //  .name              = "psp",
+    //  .long_name         = "PSP MP4 (MPEG-4 Part 14)",
+    //  .extensions        = "mp4,psp",
+    //  .priv_data_size    = sizeof(MOVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = CONFIG_LIBX264_ENCODER ?
                          AV_CODEC_ID_H264 : AV_CODEC_ID_MPEG4,
-    .init              = mov_init,
-    .write_header      = mov_write_header,
-    .write_packet      = mov_write_packet,
-    .write_trailer     = mov_write_trailer,
-    .deinit            = mov_free,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    .codec_tag         = (const AVCodecTag* const []){ codec_mp4_tags, 0 },
-    .check_bitstream   = mov_check_bitstream,
-    .priv_class        = &psp_muxer_class,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mov_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mov_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mov_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mov_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = mov_free,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
+    //  .codec_tag         = (const AVCodecTag* const []){ codec_mp4_tags, 0 },
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mov_check_bitstream,
+    //  .priv_class        = &psp_muxer_class,
 };
 #endif
 #if CONFIG_TG2_MUXER
 MOV_CLASS(tg2)
 AVOutputFormat ff_tg2_muxer = {
-    .name              = "3g2",
-    .long_name         = NULL_IF_CONFIG_SMALL("3GP2 (3GPP2 file format)"),
-    .extensions        = "3g2",
-    .priv_data_size    = sizeof(MOVMuxContext),
-    .audio_codec       = AV_CODEC_ID_AMR_NB,
-    .video_codec       = AV_CODEC_ID_H263,
-    .init              = mov_init,
-    .write_header      = mov_write_header,
-    .write_packet      = mov_write_packet,
-    .write_trailer     = mov_write_trailer,
-    .deinit            = mov_free,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    .codec_tag         = (const AVCodecTag* const []){ codec_3gp_tags, 0 },
-    .check_bitstream   = mov_check_bitstream,
-    .priv_class        = &tg2_muxer_class,
+    //  .name              = "3g2",
+    //  .long_name         = "3GP2 (3GPP2 file format)",
+    //  .extensions        = "3g2",
+    //  .priv_data_size    = sizeof(MOVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_AMR_NB,
+    //  .video_codec       = AV_CODEC_ID_H263,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mov_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mov_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mov_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mov_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = mov_free,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
+    //  .codec_tag         = (const AVCodecTag* const []){ codec_3gp_tags, 0 },
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mov_check_bitstream,
+    //  .priv_class        = &tg2_muxer_class,
 };
 #endif
 #if CONFIG_IPOD_MUXER
 MOV_CLASS(ipod)
 AVOutputFormat ff_ipod_muxer = {
-    .name              = "ipod",
-    .long_name         = NULL_IF_CONFIG_SMALL("iPod H.264 MP4 (MPEG-4 Part 14)"),
-    .mime_type         = "video/mp4",
-    .extensions        = "m4v,m4a,m4b",
-    .priv_data_size    = sizeof(MOVMuxContext),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = AV_CODEC_ID_H264,
-    .init              = mov_init,
-    .write_header      = mov_write_header,
-    .write_packet      = mov_write_packet,
-    .write_trailer     = mov_write_trailer,
-    .deinit            = mov_free,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    .codec_tag         = (const AVCodecTag* const []){ codec_ipod_tags, 0 },
-    .check_bitstream   = mov_check_bitstream,
-    .priv_class        = &ipod_muxer_class,
+    //  .name              = "ipod",
+    //  .long_name         = "iPod H.264 MP4 (MPEG-4 Part 14)",
+    //  .mime_type         = "video/mp4",
+    //  .extensions        = "m4v,m4a,m4b",
+    //  .priv_data_size    = sizeof(MOVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = AV_CODEC_ID_H264,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mov_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mov_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mov_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mov_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = mov_free,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
+    //  .codec_tag         = (const AVCodecTag* const []){ codec_ipod_tags, 0 },
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mov_check_bitstream,
+    //  .priv_class        = &ipod_muxer_class,
 };
 #endif
 #if CONFIG_ISMV_MUXER
 MOV_CLASS(ismv)
 AVOutputFormat ff_ismv_muxer = {
-    .name              = "ismv",
-    .long_name         = NULL_IF_CONFIG_SMALL("ISMV/ISMA (Smooth Streaming)"),
-    .mime_type         = "video/mp4",
-    .extensions        = "ismv,isma",
-    .priv_data_size    = sizeof(MOVMuxContext),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = AV_CODEC_ID_H264,
-    .init              = mov_init,
-    .write_header      = mov_write_header,
-    .write_packet      = mov_write_packet,
-    .write_trailer     = mov_write_trailer,
-    .deinit            = mov_free,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    .codec_tag         = (const AVCodecTag* const []){
+    //  .name              = "ismv",
+    //  .long_name         = "ISMV/ISMA (Smooth Streaming)",
+    //  .mime_type         = "video/mp4",
+    //  .extensions        = "ismv,isma",
+    //  .priv_data_size    = sizeof(MOVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = AV_CODEC_ID_H264,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mov_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mov_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mov_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mov_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = mov_free,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
+    //  .codec_tag         = (const AVCodecTag* const []){
         codec_mp4_tags, codec_ism_tags, 0 },
-    .check_bitstream   = mov_check_bitstream,
-    .priv_class        = &ismv_muxer_class,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mov_check_bitstream,
+    //  .priv_class        = &ismv_muxer_class,
 };
 #endif
 #if CONFIG_F4V_MUXER
 MOV_CLASS(f4v)
 AVOutputFormat ff_f4v_muxer = {
-    .name              = "f4v",
-    .long_name         = NULL_IF_CONFIG_SMALL("F4V Adobe Flash Video"),
-    .mime_type         = "application/f4v",
-    .extensions        = "f4v",
-    .priv_data_size    = sizeof(MOVMuxContext),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = AV_CODEC_ID_H264,
-    .init              = mov_init,
-    .write_header      = mov_write_header,
-    .write_packet      = mov_write_packet,
-    .write_trailer     = mov_write_trailer,
-    .deinit            = mov_free,
-    .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH,
-    .codec_tag         = (const AVCodecTag* const []){ codec_f4v_tags, 0 },
-    .check_bitstream   = mov_check_bitstream,
-    .priv_class        = &f4v_muxer_class,
+    //  .name              = "f4v",
+    //  .long_name         = "F4V Adobe Flash Video",
+    //  .mime_type         = "application/f4v",
+    //  .extensions        = "f4v",
+    //  .priv_data_size    = sizeof(MOVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = AV_CODEC_ID_H264,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = mov_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = mov_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = mov_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = mov_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );            = mov_free,
+    //  .flags             = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH,
+    //  .codec_tag         = (const AVCodecTag* const []){ codec_f4v_tags, 0 },
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );   = mov_check_bitstream,
+    //  .priv_class        = &f4v_muxer_class,
 };
 #endif

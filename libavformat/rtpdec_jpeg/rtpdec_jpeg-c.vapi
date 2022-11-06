@@ -20,11 +20,26 @@
  */
 
 const RTPDynamicProtocolHandler ff_jpeg_dynamic_handler = {
-    .enc_name          = "JPEG",
-    .codec_type        = AVMEDIA_TYPE_VIDEO,
-    .codec_id          = AV_CODEC_ID_MJPEG,
-    .priv_data_size    = sizeof(PayloadContext),
-    .close             = jpeg_close_context,
-    .parse_packet      = jpeg_parse_packet,
-    .static_payload_id = 26,
+    //  .enc_name          = "JPEG",
+    //  .codec_type        = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id          = AV_CODEC_ID_MJPEG,
+    //  .priv_data_size    = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override void close (
+        PayloadContext protocol_data
+    );             = jpeg_close_context,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );      = jpeg_parse_packet,
+    //  .static_payload_id = 26,
 };

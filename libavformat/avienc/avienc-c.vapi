@@ -28,26 +28,40 @@ static const AVOption options[] = {
 };
 
 static const AVClass avi_muxer_class = {
-    .class_name = "AVI muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "AVI muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_avi_muxer = {
-    .name           = "avi",
-    .long_name      = NULL_IF_CONFIG_SMALL("AVI (Audio Video Interleaved)"),
-    .mime_type      = "video/x-msvideo",
-    .extensions     = "avi",
-    .priv_data_size = sizeof(AVIContext),
-    .audio_codec    = CONFIG_LIBMP3LAME ? AV_CODEC_ID_MP3 : AV_CODEC_ID_AC3,
-    .video_codec    = AV_CODEC_ID_MPEG4,
-    .init           = avi_init,
-    .write_header   = avi_write_header,
-    .write_packet   = avi_write_packet,
-    .write_trailer  = avi_write_trailer,
-    .codec_tag      = (const AVCodecTag * const []) {
+    //  .name           = "avi",
+    //  .long_name      = "AVI (Audio Video Interleaved)",
+    //  .mime_type      = "video/x-msvideo",
+    //  .extensions     = "avi",
+    //  .priv_data_size = sizeof(AVIContext),
+    //  .audio_codec    = CONFIG_LIBMP3LAME ? AV_CODEC_ID_MP3 : AV_CODEC_ID_AC3,
+    //  .video_codec    = AV_CODEC_ID_MPEG4,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = avi_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = avi_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = avi_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = avi_write_trailer,
+    //  .codec_tag      = (const AVCodecTag * const []) {
         ff_codec_bmp_tags, ff_codec_wav_tags, 0
     },
-    .priv_class     = &avi_muxer_class,
+    //  .priv_class     = &avi_muxer_class,
 };

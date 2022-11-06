@@ -69,12 +69,28 @@
  */
 
 AVInputFormat ff_idcin_demuxer = {
-    .name           = "idcin",
-    .long_name      = NULL_IF_CONFIG_SMALL("id Cinematic"),
-    .priv_data_size = sizeof(IdcinDemuxContext),
-    .read_probe     = idcin_probe,
-    .read_header    = idcin_read_header,
-    .read_packet    = idcin_read_packet,
-    .read_seek      = idcin_read_seek,
-    .flags          = AVFMT_NO_BYTE_SEEK,
+    //  .name           = "idcin",
+    //  .long_name      = "id Cinematic",
+    //  .priv_data_size = sizeof(IdcinDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = idcin_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = idcin_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = idcin_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = idcin_read_seek,
+    //  .flags          = AVFMT_NO_BYTE_SEEK,
 };

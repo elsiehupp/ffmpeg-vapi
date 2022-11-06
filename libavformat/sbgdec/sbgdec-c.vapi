@@ -33,21 +33,45 @@ static const AVOption sbg_options[] = {
 };
 
 static const AVClass sbg_demuxer_class = {
-    .class_name = "sbg_demuxer",
-    .item_name  = av_default_item_name,
-    .option     = sbg_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "sbg_demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = sbg_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_sbg_demuxer = {
-    .name           = "sbg",
-    .long_name      = NULL_IF_CONFIG_SMALL("SBaGen binaural beats script"),
-    .priv_data_size = sizeof(struct sbg_demuxer),
-    .read_probe     = sbg_read_probe,
-    .read_header    = sbg_read_header,
-    .read_packet    = sbg_read_packet,
-    .read_seek      = sbg_read_seek,
-    .read_seek2     = sbg_read_seek2,
-    .extensions     = "sbg",
-    .priv_class     = &sbg_demuxer_class,
+    //  .name           = "sbg",
+    //  .long_name      = "SBaGen binaural beats script",
+    //  .priv_data_size = sizeof(struct sbg_demuxer),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = sbg_read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = sbg_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = sbg_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = sbg_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = sbg_read_seek2,
+    //  .extensions     = "sbg",
+    //  .priv_class     = &sbg_demuxer_class,
 };

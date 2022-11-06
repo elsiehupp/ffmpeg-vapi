@@ -21,13 +21,26 @@
  */
 
 AVInputFormat ff_swf_demuxer = {
-    .name           = "swf",
-    .long_name      = NULL_IF_CONFIG_SMALL("SWF (ShockWave Flash)"),
-    .priv_data_size = sizeof(SWFContext),
-    .read_probe     = swf_probe,
-    .read_header    = swf_read_header,
-    .read_packet    = swf_read_packet,
+    //  .name           = "swf",
+    //  .long_name      = "SWF (ShockWave Flash)",
+    //  .priv_data_size = sizeof(SWFContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = swf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = swf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = swf_read_packet,
 #if CONFIG_ZLIB
-    .read_close     = swf_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = swf_read_close,
 #endif
 };

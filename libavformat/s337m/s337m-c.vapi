@@ -19,10 +19,20 @@
  */
 
 AVInputFormat ff_s337m_demuxer = {
-    .name           = "s337m",
-    .long_name      = NULL_IF_CONFIG_SMALL("SMPTE 337M"),
-    .read_probe     = s337m_probe,
-    .read_header    = s337m_read_header,
-    .read_packet    = s337m_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "s337m",
+    //  .long_name      = "SMPTE 337M",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = s337m_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = s337m_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = s337m_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

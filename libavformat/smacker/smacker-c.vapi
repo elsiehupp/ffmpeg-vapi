@@ -24,11 +24,24 @@
  */
 
 AVInputFormat ff_smacker_demuxer = {
-    .name           = "smk",
-    .long_name      = NULL_IF_CONFIG_SMALL("Smacker"),
-    .priv_data_size = sizeof(SmackerContext),
-    .read_probe     = smacker_probe,
-    .read_header    = smacker_read_header,
-    .read_packet    = smacker_read_packet,
-    .read_close     = smacker_read_close,
+    //  .name           = "smk",
+    //  .long_name      = "Smacker",
+    //  .priv_data_size = sizeof(SmackerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = smacker_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = smacker_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = smacker_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = smacker_read_close,
 };

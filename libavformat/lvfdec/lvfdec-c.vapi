@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_lvf_demuxer = {
-    .name        = "lvf",
-    .long_name   = NULL_IF_CONFIG_SMALL("LVF"),
-    .read_probe  = lvf_probe,
-    .read_header = lvf_read_header,
-    .read_packet = lvf_read_packet,
-    .extensions  = "lvf",
-    .flags       = AVFMT_GENERIC_INDEX,
+    //  .name        = "lvf",
+    //  .long_name   = "LVF",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );  = lvf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    ); = lvf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = lvf_read_packet,
+    //  .extensions  = "lvf",
+    //  .flags       = AVFMT_GENERIC_INDEX,
 };

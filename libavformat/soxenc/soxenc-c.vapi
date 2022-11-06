@@ -30,14 +30,25 @@
  */
 
 AVOutputFormat ff_sox_muxer = {
-    .name              = "sox",
-    .long_name         = NULL_IF_CONFIG_SMALL("SoX native"),
-    .extensions        = "sox",
-    .priv_data_size    = sizeof(SoXContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S32LE,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .write_header      = sox_write_header,
-    .write_packet      = ff_raw_write_packet,
-    .write_trailer     = sox_write_trailer,
-    .flags             = AVFMT_NOTIMESTAMPS,
+    //  .name              = "sox",
+    //  .long_name         = "SoX native",
+    //  .extensions        = "sox",
+    //  .priv_data_size    = sizeof(SoXContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S32LE,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = sox_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = ff_raw_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = sox_write_trailer,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
 };

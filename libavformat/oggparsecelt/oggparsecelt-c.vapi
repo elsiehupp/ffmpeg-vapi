@@ -20,8 +20,12 @@
  */
 
 const struct ogg_codec ff_celt_codec = {
-    .magic     = "CELT    ",
-    .magicsize = 8,
-    .header    = celt_header,
-    .nb_header = 2,
+    //  .magic     = "CELT    ",
+    //  .magicsize = 8,
+    [CCode (cname="", cheader="")]
+    public override int header (
+        AVFormatContext context,
+        int arg
+    );    = celt_header,
+    //  .nb_header = 2,
 };

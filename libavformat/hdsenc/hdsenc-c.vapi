@@ -30,21 +30,32 @@ static const AVOption options[] = {
 };
 
 static const AVClass hds_class = {
-    .class_name = "HDS muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "HDS muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_hds_muxer = {
-    .name           = "hds",
-    .long_name      = NULL_IF_CONFIG_SMALL("HDS Muxer"),
-    .priv_data_size = sizeof(HDSContext),
-    .audio_codec    = AV_CODEC_ID_AAC,
-    .video_codec    = AV_CODEC_ID_H264,
-    .flags          = AVFMT_GLOBALHEADER | AVFMT_NOFILE,
-    .write_header   = hds_write_header,
-    .write_packet   = hds_write_packet,
-    .write_trailer  = hds_write_trailer,
-    .priv_class     = &hds_class,
+    //  .name           = "hds",
+    //  .long_name      = "HDS Muxer",
+    //  .priv_data_size = sizeof(HDSContext),
+    //  .audio_codec    = AV_CODEC_ID_AAC,
+    //  .video_codec    = AV_CODEC_ID_H264,
+    //  .flags          = AVFMT_GLOBALHEADER | AVFMT_NOFILE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = hds_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = hds_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = hds_write_trailer,
+    //  .priv_class     = &hds_class,
 };

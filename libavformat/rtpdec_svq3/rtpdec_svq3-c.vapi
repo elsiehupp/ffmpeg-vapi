@@ -27,10 +27,25 @@
  */
 
 const RTPDynamicProtocolHandler ff_svq3_dynamic_handler = {
-    .enc_name         = "X-SV3V-ES",
-    .codec_type       = AVMEDIA_TYPE_VIDEO,
-    .codec_id         = AV_CODEC_ID_NONE,      // see if (config_packet) above
-    .priv_data_size   = sizeof(PayloadContext),
-    .close            = svq3_close_context,
-    .parse_packet     = svq3_parse_packet,
+    //  .enc_name         = "X-SV3V-ES",
+    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id         = AV_CODEC_ID_NONE,      // see if (config_packet) above
+    //  .priv_data_size   = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override void close (
+        PayloadContext protocol_data
+    );            = svq3_close_context,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = svq3_parse_packet,
 };

@@ -20,12 +20,20 @@
  */
 
 AVOutputFormat ff_framecrc_muxer = {
-    .name              = "framecrc",
-    .long_name         = NULL_IF_CONFIG_SMALL("framecrc testing"),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_RAWVIDEO,
-    .write_header      = framecrc_write_header,
-    .write_packet      = framecrc_write_packet,
-    .flags             = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
+    //  .name              = "framecrc",
+    //  .long_name         = "framecrc testing",
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_RAWVIDEO,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = framecrc_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = framecrc_write_packet,
+    //  .flags             = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
                          AVFMT_TS_NEGATIVE,
 };

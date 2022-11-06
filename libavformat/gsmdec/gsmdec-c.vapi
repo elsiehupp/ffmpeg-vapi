@@ -27,21 +27,31 @@ static const AVOption options[] = {
 };
 
 static const AVClass gsm_class = {
-    .class_name = "gsm demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "gsm demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_gsm_demuxer = {
-    .name           = "gsm",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw GSM"),
-    .priv_data_size = sizeof(GSMDemuxerContext),
-    .read_probe     = gsm_probe,
-    .read_header    = gsm_read_header,
-    .read_packet    = gsm_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "gsm",
-    .raw_codec_id   = AV_CODEC_ID_GSM,
-    .priv_class     = &gsm_class,
+    //  .name           = "gsm",
+    //  .long_name      = "raw GSM",
+    //  .priv_data_size = sizeof(GSMDemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = gsm_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = gsm_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = gsm_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "gsm",
+    //  .raw_codec_id   = AV_CODEC_ID_GSM,
+    //  .priv_class     = &gsm_class,
 };

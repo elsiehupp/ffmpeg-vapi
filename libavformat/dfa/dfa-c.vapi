@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_dfa_demuxer = {
-    .name           = "dfa",
-    .long_name      = NULL_IF_CONFIG_SMALL("Chronomaster DFA"),
-    .read_probe     = dfa_probe,
-    .read_header    = dfa_read_header,
-    .read_packet    = dfa_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "dfa",
+    //  .long_name      = "Chronomaster DFA",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dfa_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = dfa_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = dfa_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

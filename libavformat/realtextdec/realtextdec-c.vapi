@@ -25,13 +25,34 @@
  */
 
 AVInputFormat ff_realtext_demuxer = {
-    .name           = "realtext",
-    .long_name      = NULL_IF_CONFIG_SMALL("RealText subtitle format"),
-    .priv_data_size = sizeof(RealTextContext),
-    .read_probe     = realtext_probe,
-    .read_header    = realtext_read_header,
-    .read_packet    = realtext_read_packet,
-    .read_seek2     = realtext_read_seek,
-    .read_close     = realtext_read_close,
-    .extensions     = "rt",
+    //  .name           = "realtext",
+    //  .long_name      = "RealText subtitle format",
+    //  .priv_data_size = sizeof(RealTextContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = realtext_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = realtext_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = realtext_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = realtext_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = realtext_read_close,
+    //  .extensions     = "rt",
 };

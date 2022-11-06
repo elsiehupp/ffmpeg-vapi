@@ -29,24 +29,38 @@ static const AVOption options[] = {
 };
 
 static const AVClass adts_muxer_class = {
-    .class_name     = "ADTS muxer",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "ADTS muxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_adts_muxer = {
-    .name              = "adts",
-    .long_name         = NULL_IF_CONFIG_SMALL("ADTS AAC (Advanced Audio Coding)"),
-    .mime_type         = "audio/aac",
-    .extensions        = "aac,adts",
-    .priv_data_size    = sizeof(ADTSContext),
-    .audio_codec       = AV_CODEC_ID_AAC,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .init              = adts_init,
-    .write_header      = adts_write_header,
-    .write_packet      = adts_write_packet,
-    .write_trailer     = adts_write_trailer,
-    .priv_class        = &adts_muxer_class,
-    .flags             = AVFMT_NOTIMESTAMPS,
+    //  .name              = "adts",
+    //  .long_name         = "ADTS AAC (Advanced Audio Coding)",
+    //  .mime_type         = "audio/aac",
+    //  .extensions        = "aac,adts",
+    //  .priv_data_size    = sizeof(ADTSContext),
+    //  .audio_codec       = AV_CODEC_ID_AAC,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = adts_init,
+    [CCode (cname="adts_write_header", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );
+    [CCode (cname="adts_write_packet", cheader="")]
+    public abstract int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = adts_write_trailer,
+    //  .priv_class        = &adts_muxer_class,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
 };

@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_siff_demuxer = {
-    .name           = "siff",
-    .long_name      = NULL_IF_CONFIG_SMALL("Beam Software SIFF"),
-    .priv_data_size = sizeof(SIFFContext),
-    .read_probe     = siff_probe,
-    .read_header    = siff_read_header,
-    .read_packet    = siff_read_packet,
-    .extensions     = "vb,son",
+    //  .name           = "siff",
+    //  .long_name      = "Beam Software SIFF",
+    //  .priv_data_size = sizeof(SIFFContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = siff_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = siff_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = siff_read_packet,
+    //  .extensions     = "vb,son",
 };

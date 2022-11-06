@@ -27,21 +27,31 @@ static const AVOption ser_options[] = {
 };
 
 static const AVClass ser_demuxer_class = {
-    .class_name = "ser demuxer",
-    .item_name  = av_default_item_name,
-    .option     = ser_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "ser demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = ser_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_ser_demuxer = {
-    .name           = "ser",
-    .long_name      = NULL_IF_CONFIG_SMALL("SER (Simple uncompressed video format for astronomical capturing)"),
-    .priv_data_size = sizeof(SERDemuxerContext),
-    .read_probe     = ser_probe,
-    .read_header    = ser_read_header,
-    .read_packet    = ser_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "ser",
-    .raw_codec_id   = AV_CODEC_ID_RAWVIDEO,
-    .priv_class     = &ser_demuxer_class,
+    //  .name           = "ser",
+    //  .long_name      = "SER (Simple uncompressed video format for astronomical capturing)",
+    //  .priv_data_size = sizeof(SERDemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ser_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ser_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ser_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "ser",
+    //  .raw_codec_id   = AV_CODEC_ID_RAWVIDEO,
+    //  .priv_class     = &ser_demuxer_class,
 };

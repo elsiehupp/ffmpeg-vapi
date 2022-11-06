@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_lxf_demuxer = {
-    .name           = "lxf",
-    .long_name      = NULL_IF_CONFIG_SMALL("VR native stream (LXF)"),
-    .priv_data_size = sizeof(LXFDemuxContext),
-    .read_probe     = lxf_probe,
-    .read_header    = lxf_read_header,
-    .read_packet    = lxf_read_packet,
-    .codec_tag      = (const AVCodecTag* const []){lxf_tags, 0},
+    //  .name           = "lxf",
+    //  .long_name      = "VR native stream (LXF)",
+    //  .priv_data_size = sizeof(LXFDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = lxf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = lxf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = lxf_read_packet,
+    //  .codec_tag      = (const AVCodecTag* const []){lxf_tags, 0},
 };

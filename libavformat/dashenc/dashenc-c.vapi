@@ -58,25 +58,46 @@ static const AVOption options[] = {
 };
 
 static const AVClass dash_class = {
-    .class_name = "dash muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "dash muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_dash_muxer = {
-    .name           = "dash",
-    .long_name      = NULL_IF_CONFIG_SMALL("DASH Muxer"),
-    .extensions     = "mpd",
-    .priv_data_size = sizeof(DASHContext),
-    .audio_codec    = AV_CODEC_ID_AAC,
-    .video_codec    = AV_CODEC_ID_H264,
-    .flags          = AVFMT_GLOBALHEADER | AVFMT_NOFILE | AVFMT_TS_NEGATIVE,
-    .init           = dash_init,
-    .write_header   = dash_write_header,
-    .write_packet   = dash_write_packet,
-    .write_trailer  = dash_write_trailer,
-    .deinit         = dash_free,
-    .check_bitstream = dash_check_bitstream,
-    .priv_class     = &dash_class,
+    //  .name           = "dash",
+    //  .long_name      = "DASH Muxer",
+    //  .extensions     = "mpd",
+    //  .priv_data_size = sizeof(DASHContext),
+    //  .audio_codec    = AV_CODEC_ID_AAC,
+    //  .video_codec    = AV_CODEC_ID_H264,
+    //  .flags          = AVFMT_GLOBALHEADER | AVFMT_NOFILE | AVFMT_TS_NEGATIVE,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = dash_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = dash_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = dash_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = dash_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );         = dash_free,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = dash_check_bitstream,
+    //  .priv_class     = &dash_class,
 };

@@ -31,21 +31,35 @@ static const AVOption options[] = {
     };
 
 static const AVClass failing_muxer_class = {
-    .class_name = "Fifo test muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "Fifo test muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_fifo_test_muxer = {
-    .name           = "fifo_test",
-    .long_name      = NULL_IF_CONFIG_SMALL("Fifo test muxer"),
-    .priv_data_size = sizeof(FailingMuxerContext),
-    .write_header   = failing_write_header,
-    .write_packet   = failing_write_packet,
-    .write_trailer  = failing_write_trailer,
-    .deinit         = failing_deinit,
-    .priv_class     = &failing_muxer_class,
-    .flags          = AVFMT_NOFILE | AVFMT_ALLOW_FLUSH,
+    //  .name           = "fifo_test",
+    //  .long_name      = "Fifo test muxer",
+    //  .priv_data_size = sizeof(FailingMuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = failing_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = failing_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = failing_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );         = failing_deinit,
+    //  .priv_class     = &failing_muxer_class,
+    //  .flags          = AVFMT_NOFILE | AVFMT_ALLOW_FLUSH,
 };
 

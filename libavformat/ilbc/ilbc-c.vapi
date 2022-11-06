@@ -20,21 +20,39 @@
  */
 
 AVInputFormat ff_ilbc_demuxer = {
-    .name         = "ilbc",
-    .long_name    = NULL_IF_CONFIG_SMALL("iLBC storage"),
-    .read_probe   = ilbc_probe,
-    .read_header  = ilbc_read_header,
-    .read_packet  = ilbc_read_packet,
-    .flags        = AVFMT_GENERIC_INDEX,
+    //  .name         = "ilbc",
+    //  .long_name    = "iLBC storage",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );   = ilbc_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );  = ilbc_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );  = ilbc_read_packet,
+    //  .flags        = AVFMT_GENERIC_INDEX,
 };
 
 AVOutputFormat ff_ilbc_muxer = {
-    .name         = "ilbc",
-    .long_name    = NULL_IF_CONFIG_SMALL("iLBC storage"),
-    .mime_type    = "audio/iLBC",
-    .extensions   = "lbc",
-    .audio_codec  = AV_CODEC_ID_ILBC,
-    .write_header = ilbc_write_header,
-    .write_packet = ilbc_write_packet,
-    .flags        = AVFMT_NOTIMESTAMPS,
+    //  .name         = "ilbc",
+    //  .long_name    = "iLBC storage",
+    //  .mime_type    = "audio/iLBC",
+    //  .extensions   = "lbc",
+    //  .audio_codec  = AV_CODEC_ID_ILBC,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    ); = ilbc_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    ); = ilbc_write_packet,
+    //  .flags        = AVFMT_NOTIMESTAMPS,
 };

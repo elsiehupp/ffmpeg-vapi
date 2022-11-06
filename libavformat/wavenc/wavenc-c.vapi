@@ -48,41 +48,63 @@ static const AVOption options[] = {
 };
 
 static const AVClass wav_muxer_class = {
-    .class_name = "WAV muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "WAV muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_wav_muxer = {
-    .name              = "wav",
-    .long_name         = NULL_IF_CONFIG_SMALL("WAV / WAVE (Waveform Audio)"),
-    .mime_type         = "audio/x-wav",
-    .extensions        = "wav",
-    .priv_data_size    = sizeof(WAVMuxContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .write_header      = wav_write_header,
-    .write_packet      = wav_write_packet,
-    .write_trailer     = wav_write_trailer,
-    .flags             = AVFMT_TS_NONSTRICT,
-    .codec_tag         = (const AVCodecTag* const []){ ff_codec_wav_tags, 0 },
-    .priv_class        = &wav_muxer_class,
+    //  .name              = "wav",
+    //  .long_name         = "WAV / WAVE (Waveform Audio)",
+    //  .mime_type         = "audio/x-wav",
+    //  .extensions        = "wav",
+    //  .priv_data_size    = sizeof(WAVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = wav_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = wav_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = wav_write_trailer,
+    //  .flags             = AVFMT_TS_NONSTRICT,
+    //  .codec_tag         = (const AVCodecTag* const []){ ff_codec_wav_tags, 0 },
+    //  .priv_class        = &wav_muxer_class,
 };
 #endif /* CONFIG_WAV_MUXER */
 
 #if CONFIG_W64_MUXER
 AVOutputFormat ff_w64_muxer = {
-    .name              = "w64",
-    .long_name         = NULL_IF_CONFIG_SMALL("Sony Wave64"),
-    .extensions        = "w64",
-    .priv_data_size    = sizeof(WAVMuxContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .write_header      = w64_write_header,
-    .write_packet      = wav_write_packet,
-    .write_trailer     = w64_write_trailer,
-    .flags             = AVFMT_TS_NONSTRICT,
-    .codec_tag         = (const AVCodecTag* const []){ ff_codec_wav_tags, 0 },
+    //  .name              = "w64",
+    //  .long_name         = "Sony Wave64",
+    //  .extensions        = "w64",
+    //  .priv_data_size    = sizeof(WAVMuxContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = w64_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = wav_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = w64_write_trailer,
+    //  .flags             = AVFMT_TS_NONSTRICT,
+    //  .codec_tag         = (const AVCodecTag* const []){ ff_codec_wav_tags, 0 },
 };
 #endif /* CONFIG_W64_MUXER */

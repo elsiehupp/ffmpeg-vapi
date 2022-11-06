@@ -20,12 +20,22 @@
  */
 
 AVInputFormat ff_rsd_demuxer = {
-    .name           =   "rsd",
-    .long_name      =   NULL_IF_CONFIG_SMALL("GameCube RSD"),
-    .read_probe     =   rsd_probe,
-    .read_header    =   rsd_read_header,
-    .read_packet    =   rsd_read_packet,
-    .extensions     =   "rsd",
-    .codec_tag      =   (const AVCodecTag* const []){rsd_tags, 0},
-    .flags          =   AVFMT_GENERIC_INDEX,
+    //  .name           =   "rsd",
+    //  .long_name      =   "GameCube RSD",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     =   rsd_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    =   rsd_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    =   rsd_read_packet,
+    //  .extensions     =   "rsd",
+    //  .codec_tag      =   (const AVCodecTag* const []){rsd_tags, 0},
+    //  .flags          =   AVFMT_GENERIC_INDEX,
 };

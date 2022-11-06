@@ -29,12 +29,31 @@
  */
 
 AVInputFormat ff_vividas_demuxer = {
-    .name           = "vividas",
-    .long_name      = NULL_IF_CONFIG_SMALL("Vividas VIV"),
-    .priv_data_size = sizeof(VividasDemuxContext),
-    .read_probe     = viv_probe,
-    .read_header    = viv_read_header,
-    .read_packet    = viv_read_packet,
-    .read_close     = viv_read_close,
-    .read_seek      = viv_read_seek,
+    //  .name           = "vividas",
+    //  .long_name      = "Vividas VIV",
+    //  .priv_data_size = sizeof(VividasDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = viv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = viv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = viv_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = viv_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = viv_read_seek,
 };

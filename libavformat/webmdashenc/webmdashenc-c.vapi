@@ -41,21 +41,32 @@ static const AVOption options[] = {
 
 #if CONFIG_WEBM_DASH_MANIFEST_MUXER
 static const AVClass webm_dash_class = {
-    .class_name = "WebM DASH Manifest muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "WebM DASH Manifest muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_webm_dash_manifest_muxer = {
-    .name              = "webm_dash_manifest",
-    .long_name         = NULL_IF_CONFIG_SMALL("WebM DASH Manifest"),
-    .mime_type         = "application/xml",
-    .extensions        = "xml",
-    .priv_data_size    = sizeof(WebMDashMuxContext),
-    .write_header      = webm_dash_manifest_write_header,
-    .write_packet      = webm_dash_manifest_write_packet,
-    .write_trailer     = webm_dash_manifest_write_trailer,
-    .priv_class        = &webm_dash_class,
+    //  .name              = "webm_dash_manifest",
+    //  .long_name         = "WebM DASH Manifest",
+    //  .mime_type         = "application/xml",
+    //  .extensions        = "xml",
+    //  .priv_data_size    = sizeof(WebMDashMuxContext),
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = webm_dash_manifest_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = webm_dash_manifest_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = webm_dash_manifest_write_trailer,
+    //  .priv_class        = &webm_dash_class,
 };
 #endif

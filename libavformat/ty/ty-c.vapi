@@ -24,13 +24,26 @@
  */
 
 AVInputFormat ff_ty_demuxer = {
-    .name           = "ty",
-    .long_name      = NULL_IF_CONFIG_SMALL("TiVo TY Stream"),
-    .priv_data_size = sizeof(TYDemuxContext),
-    .read_probe     = ty_probe,
-    .read_header    = ty_read_header,
-    .read_packet    = ty_read_packet,
-    .read_close     = ty_read_close,
-    .extensions     = "ty,ty+",
-    .flags          = AVFMT_TS_DISCONT,
+    //  .name           = "ty",
+    //  .long_name      = "TiVo TY Stream",
+    //  .priv_data_size = sizeof(TYDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ty_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ty_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ty_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = ty_read_close,
+    //  .extensions     = "ty,ty+",
+    //  .flags          = AVFMT_TS_DISCONT,
 };

@@ -38,20 +38,39 @@ static const AVOption options[] = {
 #undef OFFSET
 
 static const AVClass async_context_class = {
-    .class_name = "Async",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "Async",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_async_protocol = {
-    .name                = "async",
-    .url_open2           = async_open,
-    .url_read            = async_read,
-    .url_seek            = async_seek,
-    .url_close           = async_close,
-    .priv_data_size      = sizeof(Context),
-    .priv_data_class     = &async_context_class,
+    //  .name                = "async",
+    [CCode (cname="", cheader="")]
+    public override int url_open2 (
+        URLContext h,
+        string url,
+        int flags,
+        out LibAVUtil.Dictionary options
+    );           = async_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = async_read,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = async_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = async_close,
+    //  .priv_data_size      = sizeof(Context),
+    //  .priv_data_class     = &async_context_class,
 };
 
 #if 0
@@ -69,20 +88,39 @@ static const AVOption async_test_options[] = {
 #undef OFFSET
 
 static const AVClass async_test_context_class = {
-    .class_name = "Async-Test",
-    .item_name  = av_default_item_name,
-    .option     = async_test_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "Async-Test",
+    //  .item_name  = av_default_item_name,
+    //  .option     = async_test_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_async_test_protocol = {
-    .name                = "async-test",
-    .url_open2           = async_test_open,
-    .url_read            = async_test_read,
-    .url_seek            = async_test_seek,
-    .url_close           = async_test_close,
-    .priv_data_size      = sizeof(TestContext),
-    .priv_data_class     = &async_test_context_class,
+    //  .name                = "async-test",
+    [CCode (cname="", cheader="")]
+    public override int url_open2 (
+        URLContext h,
+        string url,
+        int flags,
+        out LibAVUtil.Dictionary options
+    );           = async_test_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = async_test_read,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = async_test_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = async_test_close,
+    //  .priv_data_size      = sizeof(TestContext),
+    //  .priv_data_class     = &async_test_context_class,
 };
 
 #endif

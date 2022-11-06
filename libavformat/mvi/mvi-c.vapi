@@ -20,10 +20,17 @@
  */
 
 AVInputFormat ff_mvi_demuxer = {
-    .name           = "mvi",
-    .long_name      = NULL_IF_CONFIG_SMALL("Motion Pixels MVI"),
-    .priv_data_size = sizeof(MviDemuxContext),
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .extensions     = "mvi",
+    //  .name           = "mvi",
+    //  .long_name      = "Motion Pixels MVI",
+    //  .priv_data_size = sizeof(MviDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    //  .extensions     = "mvi",
 };

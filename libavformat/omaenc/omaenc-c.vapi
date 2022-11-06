@@ -21,13 +21,21 @@
  */
 
 AVOutputFormat ff_oma_muxer = {
-    .name              = "oma",
-    .long_name         = NULL_IF_CONFIG_SMALL("Sony OpenMG audio"),
-    .mime_type         = "audio/x-oma",
-    .extensions        = "oma",
-    .audio_codec       = AV_CODEC_ID_ATRAC3,
-    .write_header      = oma_write_header,
-    .write_packet      = ff_raw_write_packet,
-    .codec_tag         = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
-    .flags             = AVFMT_NOTIMESTAMPS,
+    //  .name              = "oma",
+    //  .long_name         = "Sony OpenMG audio",
+    //  .mime_type         = "audio/x-oma",
+    //  .extensions        = "oma",
+    //  .audio_codec       = AV_CODEC_ID_ATRAC3,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = oma_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = ff_raw_write_packet,
+    //  .codec_tag         = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
+    //  .flags             = AVFMT_NOTIMESTAMPS,
 };

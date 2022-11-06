@@ -26,11 +26,26 @@
  */
 
 const RTPDynamicProtocolHandler ff_h263_rfc2190_dynamic_handler = {
-    .codec_type        = AVMEDIA_TYPE_VIDEO,
-    .codec_id          = AV_CODEC_ID_H263,
-    .need_parsing      = AVSTREAM_PARSE_FULL,
-    .parse_packet      = h263_handle_packet,
-    .priv_data_size    = sizeof(PayloadContext),
-    .close             = h263_close_context,
-    .static_payload_id = 34,
+    //  .codec_type        = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id          = AV_CODEC_ID_H263,
+    //  .need_parsing      = AVSTREAM_PARSE_FULL,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );      = h263_handle_packet,
+    //  .priv_data_size    = sizeof(PayloadContext),
+    [CCode (cname="", cheader="")]
+    public override void close (
+        PayloadContext protocol_data
+    );             = h263_close_context,
+    //  .static_payload_id = 34,
 };

@@ -21,10 +21,20 @@
 
 
 AVInputFormat ff_mgsts_demuxer = {
-    .name        = "mgsts",
-    .long_name   = NULL_IF_CONFIG_SMALL("Metal Gear Solid: The Twin Snakes"),
-    .read_probe  = read_probe,
-    .read_header = read_header,
-    .read_packet = read_packet,
-    .flags       = AVFMT_GENERIC_INDEX,
+    //  .name        = "mgsts",
+    //  .long_name   = "Metal Gear Solid: The Twin Snakes",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );  = read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    ); = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = read_packet,
+    //  .flags       = AVFMT_GENERIC_INDEX,
 };

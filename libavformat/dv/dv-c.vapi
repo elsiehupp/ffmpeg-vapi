@@ -30,13 +30,32 @@
  */
 
 AVInputFormat ff_dv_demuxer = {
-    .name           = "dv",
-    .long_name      = NULL_IF_CONFIG_SMALL("DV (Digital Video)"),
-    .priv_data_size = sizeof(RawDVContext),
-    .read_probe     = dv_probe,
-    .read_header    = dv_read_header,
-    .read_packet    = dv_read_packet,
-    .read_close     = dv_read_close,
-    .read_seek      = dv_read_seek,
-    .extensions     = "dv,dif",
+    //  .name           = "dv",
+    //  .long_name      = "DV (Digital Video)",
+    //  .priv_data_size = sizeof(RawDVContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = dv_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = dv_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = dv_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = dv_read_seek,
+    //  .extensions     = "dv,dif",
 };

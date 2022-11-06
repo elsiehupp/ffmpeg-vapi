@@ -28,10 +28,17 @@ static const AVOption ff_avio_options[] = {
 };
 
 const AVClass ff_avio_class = {
-    .class_name = "AVIOContext",
-    .item_name  = av_default_item_name,
-    .version    = LIBAVUTIL_VERSION_INT,
-    .option     = ff_avio_options,
-    .child_next = ff_avio_child_next,
-    .child_class_next = ff_avio_child_class_next,
+    //  .class_name = "AVIOContext",
+    //  .item_name  = av_default_item_name,
+    //  .version    = LIBAVUTIL_VERSION_INT,
+    //  .option     = ff_avio_options,
+    [CCode (cname="", cheader="")]
+    public override void *child_next (
+        void *obj,
+        void *prev
+    ); = ff_avio_child_next,
+    [CCode (cname="", cheader="")]
+    public override Class child_class_next (
+        Class prev
+    ); = ff_avio_child_class_next,
 };

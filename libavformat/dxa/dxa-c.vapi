@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_dxa_demuxer = {
-    .name           = "dxa",
-    .long_name      = NULL_IF_CONFIG_SMALL("DXA"),
-    .priv_data_size = sizeof(DXAContext),
-    .read_probe     = dxa_probe,
-    .read_header    = dxa_read_header,
-    .read_packet    = dxa_read_packet,
+    //  .name           = "dxa",
+    //  .long_name      = "DXA",
+    //  .priv_data_size = sizeof(DXAContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dxa_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = dxa_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = dxa_read_packet,
 };

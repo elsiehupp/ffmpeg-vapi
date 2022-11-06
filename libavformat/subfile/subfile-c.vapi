@@ -31,19 +31,38 @@ static const AVOption subfile_options[] = {
 #undef D
 
 static const AVClass subfile_class = {
-    .class_name = "subfile",
-    .item_name  = av_default_item_name,
-    .option     = subfile_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "subfile",
+    //  .item_name  = av_default_item_name,
+    //  .option     = subfile_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_subfile_protocol = {
-    .name                = "subfile",
-    .url_open2           = subfile_open,
-    .url_read            = subfile_read,
-    .url_seek            = subfile_seek,
-    .url_close           = subfile_close,
-    .priv_data_size      = sizeof(SubfileContext),
-    .priv_data_class     = &subfile_class,
-    .default_whitelist   = "file",
+    //  .name                = "subfile",
+    [CCode (cname="", cheader="")]
+    public override int url_open2 (
+        URLContext h,
+        string url,
+        int flags,
+        out LibAVUtil.Dictionary options
+    );           = subfile_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = subfile_read,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = subfile_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = subfile_close,
+    //  .priv_data_size      = sizeof(SubfileContext),
+    //  .priv_data_class     = &subfile_class,
+    //  .default_whitelist   = "file",
 };

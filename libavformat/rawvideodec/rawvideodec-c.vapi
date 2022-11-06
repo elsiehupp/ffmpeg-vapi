@@ -29,20 +29,27 @@ static const AVOption rawvideo_options[] = {
 };
 
 static const AVClass rawvideo_demuxer_class = {
-    .class_name = "rawvideo demuxer",
-    .item_name  = av_default_item_name,
-    .option     = rawvideo_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "rawvideo demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = rawvideo_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_rawvideo_demuxer = {
-    .name           = "rawvideo",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw video"),
-    .priv_data_size = sizeof(RawVideoDemuxerContext),
-    .read_header    = rawvideo_read_header,
-    .read_packet    = rawvideo_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "yuv,cif,qcif,rgb",
-    .raw_codec_id   = AV_CODEC_ID_RAWVIDEO,
-    .priv_class     = &rawvideo_demuxer_class,
+    //  .name           = "rawvideo",
+    //  .long_name      = "raw video",
+    //  .priv_data_size = sizeof(RawVideoDemuxerContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = rawvideo_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = rawvideo_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "yuv,cif,qcif,rgb",
+    //  .raw_codec_id   = AV_CODEC_ID_RAWVIDEO,
+    //  .priv_class     = &rawvideo_demuxer_class,
 };

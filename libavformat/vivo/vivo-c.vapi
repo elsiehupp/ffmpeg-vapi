@@ -27,11 +27,21 @@
  */
 
 AVInputFormat ff_vivo_demuxer = {
-    .name           = "vivo",
-    .long_name      = NULL_IF_CONFIG_SMALL("Vivo"),
-    .priv_data_size = sizeof(VivoContext),
-    .read_probe     = vivo_probe,
-    .read_header    = vivo_read_header,
-    .read_packet    = vivo_read_packet,
-    .extensions     = "viv",
+    //  .name           = "vivo",
+    //  .long_name      = "Vivo",
+    //  .priv_data_size = sizeof(VivoContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = vivo_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = vivo_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = vivo_read_packet,
+    //  .extensions     = "viv",
 };

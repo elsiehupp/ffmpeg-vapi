@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_sdr2_demuxer = {
-    .name        = "sdr2",
-    .long_name   = NULL_IF_CONFIG_SMALL("SDR2"),
-    .read_probe  = sdr2_probe,
-    .read_header = sdr2_read_header,
-    .read_packet = sdr2_read_packet,
-    .extensions  = "sdr2",
-    .flags       = AVFMT_GENERIC_INDEX,
+    //  .name        = "sdr2",
+    //  .long_name   = "SDR2",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );  = sdr2_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    ); = sdr2_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = sdr2_read_packet,
+    //  .extensions  = "sdr2",
+    //  .flags       = AVFMT_GENERIC_INDEX,
 };

@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_adp_demuxer = {
-    .name           = "adp",
-    .long_name      = NULL_IF_CONFIG_SMALL("ADP"),
-    .read_probe     = adp_probe,
-    .read_header    = adp_read_header,
-    .read_packet    = adp_read_packet,
-    .extensions     = "adp,dtk",
+    //  .name           = "adp",
+    //  .long_name      = "ADP",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = adp_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = adp_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = adp_read_packet,
+    //  .extensions     = "adp,dtk",
 };

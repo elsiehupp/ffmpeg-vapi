@@ -33,38 +33,85 @@ static const AVOption pipe_options[] = {
 };
 
 static const AVClass file_class = {
-    .class_name = "file",
-    .item_name  = av_default_item_name,
-    .option     = file_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "file",
+    //  .item_name  = av_default_item_name,
+    //  .option     = file_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 static const AVClass pipe_class = {
-    .class_name = "pipe",
-    .item_name  = av_default_item_name,
-    .option     = pipe_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "pipe",
+    //  .item_name  = av_default_item_name,
+    //  .option     = pipe_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 #if CONFIG_FILE_PROTOCOL
 
 const URLProtocol ff_file_protocol = {
-    .name                = "file",
-    .url_open            = file_open,
-    .url_read            = file_read,
-    .url_write           = file_write,
-    .url_seek            = file_seek,
-    .url_close           = file_close,
-    .url_get_file_handle = file_get_handle,
-    .url_check           = file_check,
-    .url_delete          = file_delete,
-    .url_move            = file_move,
-    .priv_data_size      = sizeof(FileContext),
-    .priv_data_class     = &file_class,
-    .url_open_dir        = file_open_dir,
-    .url_read_dir        = file_read_dir,
-    .url_close_dir       = file_close_dir,
-    .default_whitelist   = "file,crypto"
+    //  .name                = "file",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = file_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = file_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = file_write,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = file_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = file_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = file_get_handle,
+    [CCode (cname="", cheader="")]
+    public override int url_check (
+        URLContext h,
+        int mask
+    );           = file_check,
+    [CCode (cname="", cheader="")]
+    public override int url_delete (
+        URLContext h
+    );          = file_delete,
+    [CCode (cname="", cheader="")]
+    public override int url_move (
+        URLContext h_src,
+        URLContext h_dst
+    );            = file_move,
+    //  .priv_data_size      = sizeof(FileContext),
+    //  .priv_data_class     = &file_class,
+    [CCode (cname="", cheader="")]
+    public override int url_open_dir (
+        URLContext h
+    );        = file_open_dir,
+    [CCode (cname="", cheader="")]
+    public override int url_read_dir (
+        URLContext h,
+        out AVIODirEntry next
+    );        = file_read_dir,
+    [CCode (cname="", cheader="")]
+    public override int url_close_dir (
+        URLContext h
+    );       = file_close_dir,
+    //  .default_whitelist   = "file,crypto"
 };
 
 #endif /* CONFIG_FILE_PROTOCOL */
@@ -72,15 +119,37 @@ const URLProtocol ff_file_protocol = {
 #if CONFIG_PIPE_PROTOCOL
 
 const URLProtocol ff_pipe_protocol = {
-    .name                = "pipe",
-    .url_open            = pipe_open,
-    .url_read            = file_read,
-    .url_write           = file_write,
-    .url_get_file_handle = file_get_handle,
-    .url_check           = file_check,
-    .priv_data_size      = sizeof(FileContext),
-    .priv_data_class     = &pipe_class,
-    .default_whitelist   = "crypto"
+    //  .name                = "pipe",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = pipe_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = file_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = file_write,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = file_get_handle,
+    [CCode (cname="", cheader="")]
+    public override int url_check (
+        URLContext h,
+        int mask
+    );           = file_check,
+    //  .priv_data_size      = sizeof(FileContext),
+    //  .priv_data_class     = &pipe_class,
+    //  .default_whitelist   = "crypto"
 };
 
 #endif /* CONFIG_PIPE_PROTOCOL */

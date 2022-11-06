@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_nuv_demuxer = {
-    .name           = "nuv",
-    .long_name      = NULL_IF_CONFIG_SMALL("NuppelVideo"),
-    .priv_data_size = sizeof(NUVContext),
-    .read_probe     = nuv_probe,
-    .read_header    = nuv_header,
-    .read_packet    = nuv_packet,
-    .read_timestamp = nuv_read_dts,
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "nuv",
+    //  .long_name      = "NuppelVideo",
+    //  .priv_data_size = sizeof(NUVContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = nuv_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = nuv_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = nuv_packet,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = nuv_read_dts,
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

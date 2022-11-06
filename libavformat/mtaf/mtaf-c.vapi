@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_mtaf_demuxer = {
-    .name           = "mtaf",
-    .long_name      = NULL_IF_CONFIG_SMALL("Konami PS2 MTAF"),
-    .read_probe     = mtaf_probe,
-    .read_header    = mtaf_read_header,
-    .read_packet    = mtaf_read_packet,
-    .extensions     = "mtaf",
+    //  .name           = "mtaf",
+    //  .long_name      = "Konami PS2 MTAF",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mtaf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mtaf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mtaf_read_packet,
+    //  .extensions     = "mtaf",
 };

@@ -25,24 +25,38 @@ static const AVOption flacenc_options[] = {
 };
 
 static const AVClass flac_muxer_class = {
-    .class_name = "flac muxer",
-    .item_name  = av_default_item_name,
-    .option     = flacenc_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "flac muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = flacenc_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_flac_muxer = {
-    .name              = "flac",
-    .long_name         = NULL_IF_CONFIG_SMALL("raw FLAC"),
-    .priv_data_size    = sizeof(FlacMuxerContext),
-    .mime_type         = "audio/x-flac",
-    .extensions        = "flac",
-    .audio_codec       = AV_CODEC_ID_FLAC,
-    .video_codec       = AV_CODEC_ID_PNG,
-    .init              = flac_init,
-    .write_header      = flac_write_header,
-    .write_packet      = flac_write_packet,
-    .write_trailer     = flac_write_trailer,
-    .flags             = AVFMT_NOTIMESTAMPS,
-    .priv_class        = &flac_muxer_class,
+    //  .name              = "flac",
+    //  .long_name         = "raw FLAC",
+    //  .priv_data_size    = sizeof(FlacMuxerContext),
+    //  .mime_type         = "audio/x-flac",
+    //  .extensions        = "flac",
+    //  .audio_codec       = AV_CODEC_ID_FLAC,
+    //  .video_codec       = AV_CODEC_ID_PNG,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );              = flac_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = flac_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = flac_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = flac_write_trailer,
+    //  .flags             = AVFMT_NOTIMESTAMPS,
+    //  .priv_class        = &flac_muxer_class,
 };

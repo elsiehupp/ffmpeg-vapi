@@ -22,11 +22,29 @@
  */
 
 const URLProtocol ff_concat_protocol = {
-    .name           = "concat",
-    .url_open       = concat_open,
-    .url_read       = concat_read,
-    .url_seek       = concat_seek,
-    .url_close      = concat_close,
-    .priv_data_size = sizeof(struct concat_data),
-    .default_whitelist = "concat,file,subfile",
+    //  .name           = "concat",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );       = concat_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = concat_read,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );       = concat_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );      = concat_close,
+    //  .priv_data_size = sizeof(struct concat_data),
+    //  .default_whitelist = "concat,file,subfile",
 };

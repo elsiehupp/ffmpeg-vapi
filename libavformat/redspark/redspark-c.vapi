@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_redspark_demuxer = {
-    .name           =   "redspark",
-    .long_name      =   NULL_IF_CONFIG_SMALL("RedSpark"),
-    .priv_data_size =   sizeof(RedSparkContext),
-    .read_probe     =   redspark_probe,
-    .read_header    =   redspark_read_header,
-    .read_packet    =   redspark_read_packet,
-    .extensions     =   "rsd",
+    //  .name           =   "redspark",
+    //  .long_name      =   "RedSpark",
+    //  .priv_data_size =   sizeof(RedSparkContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     =   redspark_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    =   redspark_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    =   redspark_read_packet,
+    //  .extensions     =   "rsd",
 };

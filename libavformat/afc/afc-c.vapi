@@ -20,11 +20,18 @@
  */
 
 AVInputFormat ff_afc_demuxer = {
-    .name           = "afc",
-    .long_name      = NULL_IF_CONFIG_SMALL("AFC"),
-    .priv_data_size = sizeof(AFCDemuxContext),
-    .read_header    = afc_read_header,
-    .read_packet    = afc_read_packet,
-    .extensions     = "afc",
-    .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK,
+    //  .name           = "afc",
+    //  .long_name      = "AFC",
+    //  .priv_data_size = sizeof(AFCDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = afc_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = afc_read_packet,
+    //  .extensions     = "afc",
+    //  .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK,
 };

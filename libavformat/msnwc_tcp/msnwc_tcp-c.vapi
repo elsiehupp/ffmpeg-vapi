@@ -19,9 +19,19 @@
  */
 
 AVInputFormat ff_msnwc_tcp_demuxer = {
-    .name        = "msnwctcp",
-    .long_name   = NULL_IF_CONFIG_SMALL("MSN TCP Webcam stream"),
-    .read_probe  = msnwc_tcp_probe,
-    .read_header = msnwc_tcp_read_header,
-    .read_packet = msnwc_tcp_read_packet,
+    //  .name        = "msnwctcp",
+    //  .long_name   = "MSN TCP Webcam stream",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );  = msnwc_tcp_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    ); = msnwc_tcp_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = msnwc_tcp_read_packet,
 };

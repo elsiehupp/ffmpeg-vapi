@@ -20,16 +20,27 @@
  */
 
 AVOutputFormat ff_voc_muxer = {
-    .name              = "voc",
-    .long_name         = NULL_IF_CONFIG_SMALL("Creative Voice"),
-    .mime_type         = "audio/x-voc",
-    .extensions        = "voc",
-    .priv_data_size    = sizeof(VocEncContext),
-    .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    .video_codec       = AV_CODEC_ID_NONE,
-    .write_header      = voc_write_header,
-    .write_packet      = voc_write_packet,
-    .write_trailer     = voc_write_trailer,
-    .codec_tag         = (const AVCodecTag* const []){ ff_voc_codec_tags, 0 },
-    .flags             = AVFMT_NOTIMESTAMPS,
+    //  .name              = "voc",
+    //  .long_name         = "Creative Voice",
+    //  .mime_type         = "audio/x-voc",
+    //  .extensions        = "voc",
+    //  .priv_data_size    = sizeof(VocEncContext),
+    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
+    //  .video_codec       = AV_CODEC_ID_NONE,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = voc_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = voc_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = voc_write_trailer,
+    //  .codec_tag         = (const AVCodecTag* const []){ ff_voc_codec_tags, 0 },
+    //  .flags             = AVFMT_NOTIMESTAMPS,
 };

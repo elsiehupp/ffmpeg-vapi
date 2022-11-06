@@ -19,21 +19,68 @@
  */
 
 const URLProtocol ff_ftp_protocol = {
-    .name                = "ftp",
-    .url_open            = ftp_open,
-    .url_read            = ftp_read,
-    .url_write           = ftp_write,
-    .url_seek            = ftp_seek,
-    .url_close           = ftp_close,
-    .url_get_file_handle = ftp_get_file_handle,
-    .url_shutdown        = ftp_shutdown,
-    .priv_data_size      = sizeof(FTPContext),
-    .priv_data_class     = &ftp_context_class,
-    .url_open_dir        = ftp_open_dir,
-    .url_read_dir        = ftp_read_dir,
-    .url_close_dir       = ftp_close_dir,
-    .url_delete          = ftp_delete,
-    .url_move            = ftp_move,
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    .default_whitelist   = "tcp",
+    //  .name                = "ftp",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = ftp_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = ftp_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = ftp_write,
+    [CCode (cname="", cheader="")]
+    public override int64 url_seek (
+        URLContext h,
+        int64 pos,
+        int whence
+    );            = ftp_seek,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = ftp_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = ftp_get_file_handle,
+    [CCode (cname="", cheader="")]
+    public override int url_shutdown (
+        URLContext h,
+        int flags
+    );        = ftp_shutdown,
+    //  .priv_data_size      = sizeof(FTPContext),
+    //  .priv_data_class     = &ftp_context_class,
+    [CCode (cname="", cheader="")]
+    public override int url_open_dir (
+        URLContext h
+    );        = ftp_open_dir,
+    [CCode (cname="", cheader="")]
+    public override int url_read_dir (
+        URLContext h,
+        out AVIODirEntry next
+    );        = ftp_read_dir,
+    [CCode (cname="", cheader="")]
+    public override int url_close_dir (
+        URLContext h
+    );       = ftp_close_dir,
+    [CCode (cname="", cheader="")]
+    public override int url_delete (
+        URLContext h
+    );          = ftp_delete,
+    [CCode (cname="", cheader="")]
+    public override int url_move (
+        URLContext h_src,
+        URLContext h_dst
+    );            = ftp_move,
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .default_whitelist   = "tcp",
 };

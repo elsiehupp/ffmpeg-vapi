@@ -31,26 +31,40 @@ static const AVOption options[] = {
 };
 
 static const AVClass class = {
-    .class_name = "nutenc",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "nutenc",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_nut_muxer = {
-    .name           = "nut",
-    .long_name      = NULL_IF_CONFIG_SMALL("NUT"),
-    .mime_type      = "video/x-nut",
-    .extensions     = "nut",
-    .priv_data_size = sizeof(NUTContext),
-    .audio_codec    = CONFIG_LIBVORBIS ? AV_CODEC_ID_VORBIS :
+    //  .name           = "nut",
+    //  .long_name      = "NUT",
+    //  .mime_type      = "video/x-nut",
+    //  .extensions     = "nut",
+    //  .priv_data_size = sizeof(NUTContext),
+    //  .audio_codec    = CONFIG_LIBVORBIS ? AV_CODEC_ID_VORBIS :
                       CONFIG_LIBMP3LAME ? AV_CODEC_ID_MP3 : AV_CODEC_ID_MP2,
-    .video_codec    = AV_CODEC_ID_MPEG4,
-    .write_header   = nut_write_header,
-    .write_packet   = nut_write_packet,
-    .write_trailer  = nut_write_trailer,
-    .deinit         = nut_write_deinit,
-    .flags          = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS,
-    .codec_tag      = ff_nut_codec_tags,
-    .priv_class     = &class,
+    //  .video_codec    = AV_CODEC_ID_MPEG4,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = nut_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = nut_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = nut_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );         = nut_write_deinit,
+    //  .flags          = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS,
+    //  .codec_tag      = ff_nut_codec_tags,
+    //  .priv_class     = &class,
 };

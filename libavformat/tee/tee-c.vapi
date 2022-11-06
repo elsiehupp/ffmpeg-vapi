@@ -29,19 +29,30 @@ static const AVOption options[] = {
 };
 
 static const AVClass tee_muxer_class = {
-    .class_name = "Tee muxer",
-    .item_name  = av_default_item_name,
-    .option = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "Tee muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_tee_muxer = {
-    .name              = "tee",
-    .long_name         = NULL_IF_CONFIG_SMALL("Multiple muxer tee"),
-    .priv_data_size    = sizeof(TeeContext),
-    .write_header      = tee_write_header,
-    .write_trailer     = tee_write_trailer,
-    .write_packet      = tee_write_packet,
-    .priv_class        = &tee_muxer_class,
-    .flags             = AVFMT_NOFILE | AVFMT_ALLOW_FLUSH,
+    //  .name              = "tee",
+    //  .long_name         = "Multiple muxer tee",
+    //  .priv_data_size    = sizeof(TeeContext),
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = tee_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = tee_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = tee_write_packet,
+    //  .priv_class        = &tee_muxer_class,
+    //  .flags             = AVFMT_NOFILE | AVFMT_ALLOW_FLUSH,
 };

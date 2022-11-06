@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_c93_demuxer = {
-    .name           = "c93",
-    .long_name      = NULL_IF_CONFIG_SMALL("Interplay C93"),
-    .priv_data_size = sizeof(C93DemuxContext),
-    .read_probe     = probe,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
+    //  .name           = "c93",
+    //  .long_name      = "Interplay C93",
+    //  .priv_data_size = sizeof(C93DemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
 };

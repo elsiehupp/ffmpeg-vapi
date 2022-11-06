@@ -33,36 +33,60 @@ static const AVOption muxoptions[] = {
 
 #if CONFIG_IMAGE2_MUXER
 static const AVClass img2mux_class = {
-    .class_name = "image2 muxer",
-    .item_name  = av_default_item_name,
-    .option     = muxoptions,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "image2 muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = muxoptions,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_image2_muxer = {
-    .name           = "image2",
-    .long_name      = NULL_IF_CONFIG_SMALL("image2 sequence"),
-    .extensions     = "bmp,dpx,jls,jpeg,jpg,ljpg,pam,pbm,pcx,pgm,pgmyuv,png,"
+    //  .name           = "image2",
+    //  .long_name      = "image2 sequence",
+    //  .extensions     = "bmp,dpx,jls,jpeg,jpg,ljpg,pam,pbm,pcx,pgm,pgmyuv,png,"
                       "ppm,sgi,tga,tif,tiff,jp2,j2c,j2k,xwd,sun,ras,rs,im1,im8,im24,"
                       "sunras,xbm,xface,pix,y",
-    .priv_data_size = sizeof(VideoMuxData),
-    .video_codec    = AV_CODEC_ID_MJPEG,
-    .write_header   = write_header,
-    .write_packet   = write_packet,
-    .query_codec    = query_codec,
-    .flags          = AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS | AVFMT_NOFILE,
-    .priv_class     = &img2mux_class,
+    //  .priv_data_size = sizeof(VideoMuxData),
+    //  .video_codec    = AV_CODEC_ID_MJPEG,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = write_packet,
+    [CCode (cname="", cheader="")]
+    public override int query_codec (
+        LibAVCodec.CodecID id,
+        int std_compliance
+    );    = query_codec,
+    //  .flags          = AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS | AVFMT_NOFILE,
+    //  .priv_class     = &img2mux_class,
 };
 #endif
 #if CONFIG_IMAGE2PIPE_MUXER
 AVOutputFormat ff_image2pipe_muxer = {
-    .name           = "image2pipe",
-    .long_name      = NULL_IF_CONFIG_SMALL("piped image2 sequence"),
-    .priv_data_size = sizeof(VideoMuxData),
-    .video_codec    = AV_CODEC_ID_MJPEG,
-    .write_header   = write_header,
-    .write_packet   = write_packet,
-    .query_codec    = query_codec,
-    .flags          = AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS
+    //  .name           = "image2pipe",
+    //  .long_name      = "piped image2 sequence",
+    //  .priv_data_size = sizeof(VideoMuxData),
+    //  .video_codec    = AV_CODEC_ID_MJPEG,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = write_packet,
+    [CCode (cname="", cheader="")]
+    public override int query_codec (
+        LibAVCodec.CodecID id,
+        int std_compliance
+    );    = query_codec,
+    //  .flags          = AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS
 };
 #endif

@@ -22,30 +22,52 @@
 
 #if CONFIG_SWF_MUXER
 AVOutputFormat ff_swf_muxer = {
-    .name              = "swf",
-    .long_name         = NULL_IF_CONFIG_SMALL("SWF (ShockWave Flash)"),
-    .mime_type         = "application/x-shockwave-flash",
-    .extensions        = "swf",
-    .priv_data_size    = sizeof(SWFContext),
-    .audio_codec       = AV_CODEC_ID_MP3,
-    .video_codec       = AV_CODEC_ID_FLV1,
-    .write_header      = swf_write_header,
-    .write_packet      = swf_write_packet,
-    .write_trailer     = swf_write_trailer,
-    .flags             = AVFMT_TS_NONSTRICT,
+    //  .name              = "swf",
+    //  .long_name         = "SWF (ShockWave Flash)",
+    //  .mime_type         = "application/x-shockwave-flash",
+    //  .extensions        = "swf",
+    //  .priv_data_size    = sizeof(SWFContext),
+    //  .audio_codec       = AV_CODEC_ID_MP3,
+    //  .video_codec       = AV_CODEC_ID_FLV1,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = swf_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = swf_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = swf_write_trailer,
+    //  .flags             = AVFMT_TS_NONSTRICT,
 };
 #endif
 #if CONFIG_AVM2_MUXER
 AVOutputFormat ff_avm2_muxer = {
-    .name              = "avm2",
-    .long_name         = NULL_IF_CONFIG_SMALL("SWF (ShockWave Flash) (AVM2)"),
-    .mime_type         = "application/x-shockwave-flash",
-    .priv_data_size    = sizeof(SWFContext),
-    .audio_codec       = AV_CODEC_ID_MP3,
-    .video_codec       = AV_CODEC_ID_FLV1,
-    .write_header      = swf_write_header,
-    .write_packet      = swf_write_packet,
-    .write_trailer     = swf_write_trailer,
-    .flags             = AVFMT_TS_NONSTRICT,
+    //  .name              = "avm2",
+    //  .long_name         = "SWF (ShockWave Flash) (AVM2)",
+    //  .mime_type         = "application/x-shockwave-flash",
+    //  .priv_data_size    = sizeof(SWFContext),
+    //  .audio_codec       = AV_CODEC_ID_MP3,
+    //  .video_codec       = AV_CODEC_ID_FLV1,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );      = swf_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );      = swf_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );     = swf_write_trailer,
+    //  .flags             = AVFMT_TS_NONSTRICT,
 };
 #endif

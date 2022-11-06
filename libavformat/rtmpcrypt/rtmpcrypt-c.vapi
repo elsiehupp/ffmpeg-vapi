@@ -35,19 +35,37 @@ static const AVOption ffrtmpcrypt_options[] = {
 };
 
 static const AVClass ffrtmpcrypt_class = {
-    .class_name = "ffrtmpcrypt",
-    .item_name  = av_default_item_name,
-    .option     = ffrtmpcrypt_options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "ffrtmpcrypt",
+    //  .item_name  = av_default_item_name,
+    //  .option     = ffrtmpcrypt_options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_ffrtmpcrypt_protocol = {
-    .name            = "ffrtmpcrypt",
-    .url_open        = rtmpe_open,
-    .url_read        = rtmpe_read,
-    .url_write       = rtmpe_write,
-    .url_close       = rtmpe_close,
-    .priv_data_size  = sizeof(RTMPEContext),
-    .flags           = URL_PROTOCOL_FLAG_NETWORK,
-    .priv_data_class = &ffrtmpcrypt_class,
+    //  .name            = "ffrtmpcrypt",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );        = rtmpe_open,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );        = rtmpe_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );       = rtmpe_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );       = rtmpe_close,
+    //  .priv_data_size  = sizeof(RTMPEContext),
+    //  .flags           = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class = &ffrtmpcrypt_class,
 };

@@ -21,13 +21,23 @@
  */
 
 AVInputFormat ff_aac_demuxer = {
-    .name         = "aac",
-    .long_name    = NULL_IF_CONFIG_SMALL("raw ADTS AAC (Advanced Audio Coding)"),
-    .read_probe   = adts_aac_probe,
-    .read_header  = adts_aac_read_header,
-    .read_packet  = adts_aac_read_packet,
-    .flags        = AVFMT_GENERIC_INDEX,
-    .extensions   = "aac",
-    .mime_type    = "audio/aac,audio/aacp,audio/x-aac",
-    .raw_codec_id = AV_CODEC_ID_AAC,
+    //  .name         = "aac",
+    //  .long_name    = "raw ADTS AAC (Advanced Audio Coding)",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );   = adts_aac_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );  = adts_aac_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );  = adts_aac_read_packet,
+    //  .flags        = AVFMT_GENERIC_INDEX,
+    //  .extensions   = "aac",
+    //  .mime_type    = "audio/aac,audio/aacp,audio/x-aac",
+    //  .raw_codec_id = AV_CODEC_ID_AAC,
 };

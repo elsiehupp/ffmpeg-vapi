@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_nsp_demuxer = {
-    .name           = "nsp",
-    .long_name      = NULL_IF_CONFIG_SMALL("Computerized Speech Lab NSP"),
-    .read_probe     = nsp_probe,
-    .read_header    = nsp_read_header,
-    .read_packet    = ff_pcm_read_packet,
-    .read_seek      = ff_pcm_read_seek,
-    .extensions     = "nsp",
-    .flags          = AVFMT_GENERIC_INDEX,
+    //  .name           = "nsp",
+    //  .long_name      = "Computerized Speech Lab NSP",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = nsp_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = nsp_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_pcm_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = ff_pcm_read_seek,
+    //  .extensions     = "nsp",
+    //  .flags          = AVFMT_GENERIC_INDEX,
 };

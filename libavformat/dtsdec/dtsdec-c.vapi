@@ -21,13 +21,23 @@
 
 FF_RAW_DEMUXER_CLASS(dts)
 AVInputFormat ff_dts_demuxer = {
-    .name           = "dts",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw DTS"),
-    .read_probe     = dts_probe,
-    .read_header    = ff_raw_audio_read_header,
-    .read_packet    = ff_raw_read_partial_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .extensions     = "dts",
-    .raw_codec_id   = AV_CODEC_ID_DTS,
-    .priv_data_size = sizeof(FFRawDemuxerContext),
-    .priv_class     = &dts_demuxer_class,};
+    //  .name           = "dts",
+    //  .long_name      = "raw DTS",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dts_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ff_raw_audio_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ff_raw_read_partial_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .extensions     = "dts",
+    //  .raw_codec_id   = AV_CODEC_ID_DTS,
+    //  .priv_data_size = sizeof(FFRawDemuxerContext),
+    //  .priv_class     = &dts_demuxer_class,};

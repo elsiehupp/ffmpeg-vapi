@@ -20,23 +20,48 @@
  */
 
 static const AVClass rtsp_demuxer_class = {
-    .class_name     = "RTSP demuxer",
-    .item_name      = av_default_item_name,
-    .option         = ff_rtsp_options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "RTSP demuxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = ff_rtsp_options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_rtsp_demuxer = {
-    .name           = "rtsp",
-    .long_name      = NULL_IF_CONFIG_SMALL("RTSP input"),
-    .priv_data_size = sizeof(RTSPState),
-    .read_probe     = rtsp_probe,
-    .read_header    = rtsp_read_header,
-    .read_packet    = rtsp_read_packet,
-    .read_close     = rtsp_read_close,
-    .read_seek      = rtsp_read_seek,
-    .flags          = AVFMT_NOFILE,
-    .read_play      = rtsp_read_play,
-    .read_pause     = rtsp_read_pause,
-    .priv_class     = &rtsp_demuxer_class,
+    //  .name           = "rtsp",
+    //  .long_name      = "RTSP input",
+    //  .priv_data_size = sizeof(RTSPState),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = rtsp_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = rtsp_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = rtsp_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = rtsp_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = rtsp_read_seek,
+    //  .flags          = AVFMT_NOFILE,
+    [CCode (cname="", cheader="")]
+    public override int read_play (
+        AVFormatContext format_context
+    );      = rtsp_read_play,
+    [CCode (cname="", cheader="")]
+    public override int read_pause (
+        AVFormatContext format_context
+    );     = rtsp_read_pause,
+    //  .priv_class     = &rtsp_demuxer_class,
 };

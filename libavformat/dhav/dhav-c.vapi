@@ -21,13 +21,29 @@
  */
 
 AVInputFormat ff_dhav_demuxer = {
-    .name           = "dhav",
-    .long_name      = NULL_IF_CONFIG_SMALL("Video DAV"),
-    .priv_data_size = sizeof(DHAVContext),
-    .read_probe     = dhav_probe,
-    .read_header    = dhav_read_header,
-    .read_packet    = dhav_read_packet,
-    .read_seek      = dhav_read_seek,
-    .extensions     = "dav",
-    .flags          = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
+    //  .name           = "dhav",
+    //  .long_name      = "Video DAV",
+    //  .priv_data_size = sizeof(DHAVContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = dhav_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = dhav_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = dhav_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = dhav_read_seek,
+    //  .extensions     = "dav",
+    //  .flags          = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
 };

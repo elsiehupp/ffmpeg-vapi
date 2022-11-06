@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_ads_demuxer = {
-    .name           = "ads",
-    .long_name      = NULL_IF_CONFIG_SMALL("Sony PS2 ADS"),
-    .read_probe     = ads_probe,
-    .read_header    = ads_read_header,
-    .read_packet    = ads_read_packet,
-    .extensions     = "ads,ss2",
+    //  .name           = "ads",
+    //  .long_name      = "Sony PS2 ADS",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ads_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ads_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ads_read_packet,
+    //  .extensions     = "ads,ss2",
 };

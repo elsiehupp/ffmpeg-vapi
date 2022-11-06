@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_aiff_demuxer = {
-    .name           = "aiff",
-    .long_name      = NULL_IF_CONFIG_SMALL("Audio IFF"),
-    .priv_data_size = sizeof(AIFFInputContext),
-    .read_probe     = aiff_probe,
-    .read_header    = aiff_read_header,
-    .read_packet    = aiff_read_packet,
-    .read_seek      = ff_pcm_read_seek,
-    .codec_tag      = (const AVCodecTag* const []){ ff_codec_aiff_tags, 0 },
+    //  .name           = "aiff",
+    //  .long_name      = "Audio IFF",
+    //  .priv_data_size = sizeof(AIFFInputContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = aiff_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = aiff_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = aiff_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = ff_pcm_read_seek,
+    //  .codec_tag      = (const AVCodecTag* const []){ ff_codec_aiff_tags, 0 },
 };

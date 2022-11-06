@@ -20,25 +20,44 @@
  */
 
 static const AVClass class_openmpt = {
-    .class_name = "libopenmpt",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "libopenmpt",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_libopenmpt_demuxer = {
-    .name           = "libopenmpt",
-    .long_name      = NULL_IF_CONFIG_SMALL("Tracker formats (libopenmpt)"),
-    .priv_data_size = sizeof(OpenMPTContext),
-    .read_probe     = read_probe_openmpt,
-    .read_header    = read_header_openmpt,
-    .read_packet    = read_packet_openmpt,
-    .read_close     = read_close_openmpt,
-    .read_seek      = read_seek_openmpt,
-    .priv_class     = &class_openmpt,
+    //  .name           = "libopenmpt",
+    //  .long_name      = "Tracker formats (libopenmpt)",
+    //  .priv_data_size = sizeof(OpenMPTContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = read_probe_openmpt,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header_openmpt,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet_openmpt,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = read_close_openmpt,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek_openmpt,
+    //  .priv_class     = &class_openmpt,
 #if OPENMPT_API_VERSION_AT_LEAST(0,3,0)
-    .extensions     = "669,amf,ams,dbm,digi,dmf,dsm,dtm,far,gdm,ice,imf,it,j2b,m15,mdl,med,mmcmp,mms,mo3,mod,mptm,mt2,mtm,nst,okt,plm,ppm,psm,pt36,ptm,s3m,sfx,sfx2,st26,stk,stm,stp,ult,umx,wow,xm,xpk",
+    //  .extensions     = "669,amf,ams,dbm,digi,dmf,dsm,dtm,far,gdm,ice,imf,it,j2b,m15,mdl,med,mmcmp,mms,mo3,mod,mptm,mt2,mtm,nst,okt,plm,ppm,psm,pt36,ptm,s3m,sfx,sfx2,st26,stk,stm,stp,ult,umx,wow,xm,xpk",
 #else
-    .extensions     = "669,amf,ams,dbm,digi,dmf,dsm,far,gdm,ice,imf,it,j2b,m15,mdl,med,mmcmp,mms,mo3,mod,mptm,mt2,mtm,nst,okt,plm,ppm,psm,pt36,ptm,s3m,sfx,sfx2,st26,stk,stm,ult,umx,wow,xm,xpk",
+    //  .extensions     = "669,amf,ams,dbm,digi,dmf,dsm,far,gdm,ice,imf,it,j2b,m15,mdl,med,mmcmp,mms,mo3,mod,mptm,mt2,mtm,nst,okt,plm,ppm,psm,pt36,ptm,s3m,sfx,sfx2,st26,stk,stm,ult,umx,wow,xm,xpk",
 #endif
 };

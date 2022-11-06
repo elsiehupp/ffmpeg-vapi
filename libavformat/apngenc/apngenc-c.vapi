@@ -32,24 +32,38 @@ static const AVOption options[] = {
 };
 
 static const AVClass apng_muxer_class = {
-    .class_name = "APNG muxer",
-    .item_name  = av_default_item_name,
-    .version    = LIBAVUTIL_VERSION_INT,
-    .option     = options,
+    //  .class_name = "APNG muxer",
+    //  .item_name  = av_default_item_name,
+    //  .version    = LIBAVUTIL_VERSION_INT,
+    //  .option     = options,
 };
 
 AVOutputFormat ff_apng_muxer = {
-    .name           = "apng",
-    .long_name      = NULL_IF_CONFIG_SMALL("Animated Portable Network Graphics"),
-    .mime_type      = "image/png",
-    .extensions     = "apng",
-    .priv_data_size = sizeof(APNGMuxContext),
-    .audio_codec    = AV_CODEC_ID_NONE,
-    .video_codec    = AV_CODEC_ID_APNG,
-    .write_header   = apng_write_header,
-    .write_packet   = apng_write_packet,
-    .write_trailer  = apng_write_trailer,
-    .deinit         = apng_deinit,
-    .priv_class     = &apng_muxer_class,
-    .flags          = AVFMT_VARIABLE_FPS,
+    //  .name           = "apng",
+    //  .long_name      = "Animated Portable Network Graphics",
+    //  .mime_type      = "image/png",
+    //  .extensions     = "apng",
+    //  .priv_data_size = sizeof(APNGMuxContext),
+    //  .audio_codec    = AV_CODEC_ID_NONE,
+    //  .video_codec    = AV_CODEC_ID_APNG,
+    [CCode (cname="apng_write_header", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );
+    [CCode (cname="apng_write_packet", cheader="")]
+    public abstract int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = apng_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );         = apng_deinit,
+    //  .priv_class     = &apng_muxer_class,
+    //  .flags          = AVFMT_VARIABLE_FPS,
 };

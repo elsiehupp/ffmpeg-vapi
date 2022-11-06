@@ -29,11 +29,21 @@
  */
 
 AVInputFormat ff_iff_demuxer = {
-    .name           = "iff",
-    .long_name      = NULL_IF_CONFIG_SMALL("IFF (Interchange File Format)"),
-    .priv_data_size = sizeof(IffDemuxContext),
-    .read_probe     = iff_probe,
-    .read_header    = iff_read_header,
-    .read_packet    = iff_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
+    //  .name           = "iff",
+    //  .long_name      = "IFF (Interchange File Format)",
+    //  .priv_data_size = sizeof(IffDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = iff_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = iff_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = iff_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
 };

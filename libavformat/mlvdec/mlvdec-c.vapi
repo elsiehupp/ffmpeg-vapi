@@ -25,12 +25,31 @@
  */
 
 AVInputFormat ff_mlv_demuxer = {
-    .name           = "mlv",
-    .long_name      = NULL_IF_CONFIG_SMALL("Magic Lantern Video (MLV)"),
-    .priv_data_size = sizeof(MlvContext),
-    .read_probe     = probe,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .read_close     = read_close,
-    .read_seek      = read_seek,
+    //  .name           = "mlv",
+    //  .long_name      = "Magic Lantern Video (MLV)",
+    //  .priv_data_size = sizeof(MlvContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = read_seek,
 };

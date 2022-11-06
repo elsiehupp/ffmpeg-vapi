@@ -36,31 +36,60 @@ static const AVOption options[] = {
 };
 
 static const AVClass webm_dash_class = {
-    .class_name = "WebM DASH Manifest demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "WebM DASH Manifest demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_matroska_demuxer = {
-    .name           = "matroska,webm",
-    .long_name      = NULL_IF_CONFIG_SMALL("Matroska / WebM"),
-    .extensions     = "mkv,mk3d,mka,mks",
-    .priv_data_size = sizeof(MatroskaDemuxContext),
-    .read_probe     = matroska_probe,
-    .read_header    = matroska_read_header,
-    .read_packet    = matroska_read_packet,
-    .read_close     = matroska_read_close,
-    .read_seek      = matroska_read_seek,
-    .mime_type      = "audio/webm,audio/x-matroska,video/webm,video/x-matroska"
+    //  .name           = "matroska,webm",
+    //  .long_name      = "Matroska / WebM",
+    //  .extensions     = "mkv,mk3d,mka,mks",
+    //  .priv_data_size = sizeof(MatroskaDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = matroska_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = matroska_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = matroska_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = matroska_read_close,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = matroska_read_seek,
+    //  .mime_type      = "audio/webm,audio/x-matroska,video/webm,video/x-matroska"
 };
 
 AVInputFormat ff_webm_dash_manifest_demuxer = {
-    .name           = "webm_dash_manifest",
-    .long_name      = NULL_IF_CONFIG_SMALL("WebM DASH Manifest"),
-    .priv_data_size = sizeof(MatroskaDemuxContext),
-    .read_header    = webm_dash_manifest_read_header,
-    .read_packet    = webm_dash_manifest_read_packet,
-    .read_close     = matroska_read_close,
-    .priv_class     = &webm_dash_class,
+    //  .name           = "webm_dash_manifest",
+    //  .long_name      = "WebM DASH Manifest",
+    //  .priv_data_size = sizeof(MatroskaDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = webm_dash_manifest_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = webm_dash_manifest_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = matroska_read_close,
+    //  .priv_class     = &webm_dash_class,
 };

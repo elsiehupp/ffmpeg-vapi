@@ -20,14 +20,30 @@
  */
 
 AVInputFormat ff_mpegps_demuxer = {
-    .name           = "mpeg",
-    .long_name      = NULL_IF_CONFIG_SMALL("MPEG-PS (MPEG-2 Program Stream)"),
-    .priv_data_size = sizeof(MpegDemuxContext),
-    .read_probe     = mpegps_probe,
-    .read_header    = mpegps_read_header,
-    .read_packet    = mpegps_read_packet,
-    .read_timestamp = mpegps_read_dts,
-    .flags          = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
+    //  .name           = "mpeg",
+    //  .long_name      = "MPEG-PS (MPEG-2 Program Stream)",
+    //  .priv_data_size = sizeof(MpegDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = mpegps_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = mpegps_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = mpegps_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int64 read_timestamp (
+        AVFormatContext format_context,
+        int stream_index,
+        int64[] pos,
+        int64 pos_limit
+    ); = mpegps_read_dts,
+    //  .flags          = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
 };
 
 #if CONFIG_VOBSUB_DEMUXER
@@ -37,23 +53,44 @@ static const AVOption options[] = {
 };
 
 static const AVClass vobsub_demuxer_class = {
-    .class_name = "vobsub",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "vobsub",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_vobsub_demuxer = {
-    .name           = "vobsub",
-    .long_name      = NULL_IF_CONFIG_SMALL("VobSub subtitle format"),
-    .priv_data_size = sizeof(MpegDemuxContext),
-    .read_probe     = vobsub_probe,
-    .read_header    = vobsub_read_header,
-    .read_packet    = vobsub_read_packet,
-    .read_seek2     = vobsub_read_seek,
-    .read_close     = vobsub_read_close,
-    .flags          = AVFMT_SHOW_IDS,
-    .extensions     = "idx",
-    .priv_class     = &vobsub_demuxer_class,
+    //  .name           = "vobsub",
+    //  .long_name      = "VobSub subtitle format",
+    //  .priv_data_size = sizeof(MpegDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = vobsub_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = vobsub_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = vobsub_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek2 (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 min_ts,
+        int64 ts,
+        int64 max_ts,
+        int flags
+    );     = vobsub_read_seek,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = vobsub_read_close,
+    //  .flags          = AVFMT_SHOW_IDS,
+    //  .extensions     = "idx",
+    //  .priv_class     = &vobsub_demuxer_class,
 };
 #endif

@@ -23,7 +23,7 @@
 #define D AV_OPT_FLAG_DECODING_PARAM
 #define E AV_OPT_FLAG_ENCODING_PARAM
 static const AVOption options[] = {
-    { "listen",          "Listen for incoming connections",  OFFSET(listen),         AV_OPT_TYPE_INT, { .i64 = 0 },     0,       2,       .flags = D|E },
+    { "listen",          "Listen for incoming connections",  OFFSET(listen),         AV_OPT_TYPE_INT, { .i64 = 0 },     0,       2,       //  .flags = D|E },
     { "timeout",     "set timeout (in microseconds) of socket I/O operations", OFFSET(rw_timeout),     AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
     { "listen_timeout",  "Connection awaiting timeout (in milliseconds)",      OFFSET(listen_timeout), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
     { "send_buffer_size", "Socket send buffer size (in bytes)",                OFFSET(send_buffer_size), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
@@ -36,23 +36,55 @@ static const AVOption options[] = {
 };
 
 static const AVClass tcp_class = {
-    .class_name = "tcp",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "tcp",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 const URLProtocol ff_tcp_protocol = {
-    .name                = "tcp",
-    .url_open            = tcp_open,
-    .url_accept          = tcp_accept,
-    .url_read            = tcp_read,
-    .url_write           = tcp_write,
-    .url_close           = tcp_close,
-    .url_get_file_handle = tcp_get_file_handle,
-    .url_get_short_seek  = tcp_get_window_size,
-    .url_shutdown        = tcp_shutdown,
-    .priv_data_size      = sizeof(TCPContext),
-    .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    .priv_data_class     = &tcp_class,
+    //  .name                = "tcp",
+    [CCode (cname="", cheader="")]
+    public override int url_open (
+        URLContext h,
+        string url,
+        int flags
+    );            = tcp_open,
+    [CCode (cname="", cheader="")]
+    public override int url_accept (
+        URLContext server_url_context,
+        out URLContext client_url_context
+    );          = tcp_accept,
+    [CCode (cname="", cheader="")]
+    public override int url_read (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );            = tcp_read,
+    [CCode (cname="", cheader="")]
+    public override int url_write (
+        URLContext h,
+        uchar[] buf,
+        int size
+    );           = tcp_write,
+    [CCode (cname="", cheader="")]
+    public override int url_close (
+        URLContext h
+    );           = tcp_close,
+    [CCode (cname="", cheader="")]
+    public override int url_get_file_handle (
+        URLContext h
+    ); = tcp_get_file_handle,
+    [CCode (cname="", cheader="")]
+    public override int url_get_short_seek (
+        URLContext h
+    );  = tcp_get_window_size,
+    [CCode (cname="", cheader="")]
+    public override int url_shutdown (
+        URLContext h,
+        int flags
+    );        = tcp_shutdown,
+    //  .priv_data_size      = sizeof(TCPContext),
+    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class     = &tcp_class,
 };

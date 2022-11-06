@@ -20,12 +20,22 @@
  */
 
 AVInputFormat ff_ast_demuxer = {
-    .name           = "ast",
-    .long_name      = NULL_IF_CONFIG_SMALL("AST (Audio Stream)"),
-    .read_probe     = ast_probe,
-    .read_header    = ast_read_header,
-    .read_packet    = ast_read_packet,
-    .extensions     = "ast",
-    .flags          = AVFMT_GENERIC_INDEX,
-    .codec_tag      = (const AVCodecTag* const []){ff_codec_ast_tags, 0},
+    //  .name           = "ast",
+    //  .long_name      = "AST (Audio Stream)",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = ast_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = ast_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = ast_read_packet,
+    //  .extensions     = "ast",
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .codec_tag      = (const AVCodecTag* const []){ff_codec_ast_tags, 0},
 };

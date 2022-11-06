@@ -20,12 +20,28 @@
  */
 
 AVInputFormat ff_vqf_demuxer = {
-    .name           = "vqf",
-    .long_name      = NULL_IF_CONFIG_SMALL("Nippon Telegraph and Telephone Corporation (NTT) TwinVQ"),
-    .priv_data_size = sizeof(VqfContext),
-    .read_probe     = vqf_probe,
-    .read_header    = vqf_read_header,
-    .read_packet    = vqf_read_packet,
-    .read_seek      = vqf_read_seek,
-    .extensions     = "vqf,vql,vqe",
+    //  .name           = "vqf",
+    //  .long_name      = "Nippon Telegraph and Telephone Corporation (NTT) TwinVQ",
+    //  .priv_data_size = sizeof(VqfContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = vqf_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = vqf_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = vqf_read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_seek (
+        AVFormatContext format_context,
+        int stream_index,
+        int64 timestamp,
+        int flags
+    );      = vqf_read_seek,
+    //  .extensions     = "vqf,vql,vqe",
 };

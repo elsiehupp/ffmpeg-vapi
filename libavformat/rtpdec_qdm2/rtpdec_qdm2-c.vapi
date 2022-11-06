@@ -26,9 +26,21 @@
  */
 
 const RTPDynamicProtocolHandler ff_qdm2_dynamic_handler = {
-    .enc_name         = "X-QDM",
-    .codec_type       = AVMEDIA_TYPE_AUDIO,
-    .codec_id         = AV_CODEC_ID_NONE,
-    .priv_data_size   = sizeof(PayloadContext),
-    .parse_packet     = qdm2_parse_packet,
+    //  .enc_name         = "X-QDM",
+    //  .codec_type       = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id         = AV_CODEC_ID_NONE,
+    //  .priv_data_size   = sizeof(PayloadContext),
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = qdm2_parse_packet,
 };

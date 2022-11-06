@@ -34,19 +34,29 @@ static const AVOption options[] = {
 };
 
 static const AVClass tty_demuxer_class = {
-    .class_name     = "TTY demuxer",
-    .item_name      = av_default_item_name,
-    .option         = options,
-    .version        = LIBAVUTIL_VERSION_INT,
+    //  .class_name     = "TTY demuxer",
+    //  .item_name      = av_default_item_name,
+    //  .option         = options,
+    //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
 AVInputFormat ff_tty_demuxer = {
-    .name           = "tty",
-    .long_name      = NULL_IF_CONFIG_SMALL("Tele-typewriter"),
-    .priv_data_size = sizeof(TtyDemuxContext),
-    .read_probe     = read_probe,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .extensions     = tty_extensions,
-    .priv_class     = &tty_demuxer_class,
+    //  .name           = "tty",
+    //  .long_name      = "Tele-typewriter",
+    //  .priv_data_size = sizeof(TtyDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = read_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    //  .extensions     = tty_extensions,
+    //  .priv_class     = &tty_demuxer_class,
 };

@@ -72,46 +72,88 @@ static const AVOption options[] = {
 
 #if CONFIG_SEGMENT_MUXER
 static const AVClass seg_class = {
-    .class_name = "segment muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "segment muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_segment_muxer = {
-    .name           = "segment",
-    .long_name      = NULL_IF_CONFIG_SMALL("segment"),
-    .priv_data_size = sizeof(SegmentContext),
-    .flags          = AVFMT_NOFILE|AVFMT_GLOBALHEADER,
-    .init           = seg_init,
-    .write_header   = seg_write_header,
-    .write_packet   = seg_write_packet,
-    .write_trailer  = seg_write_trailer,
-    .deinit         = seg_free,
-    .check_bitstream = seg_check_bitstream,
-    .priv_class     = &seg_class,
+    //  .name           = "segment",
+    //  .long_name      = "segment",
+    //  .priv_data_size = sizeof(SegmentContext),
+    //  .flags          = AVFMT_NOFILE|AVFMT_GLOBALHEADER,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = seg_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = seg_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = seg_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = seg_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );         = seg_free,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = seg_check_bitstream,
+    //  .priv_class     = &seg_class,
 };
 #endif
 
 #if CONFIG_STREAM_SEGMENT_MUXER
 static const AVClass sseg_class = {
-    .class_name = "stream_segment muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "stream_segment muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_stream_segment_muxer = {
-    .name           = "stream_segment,ssegment",
-    .long_name      = NULL_IF_CONFIG_SMALL("streaming segment muxer"),
-    .priv_data_size = sizeof(SegmentContext),
-    .flags          = AVFMT_NOFILE,
-    .init           = seg_init,
-    .write_header   = seg_write_header,
-    .write_packet   = seg_write_packet,
-    .write_trailer  = seg_write_trailer,
-    .deinit         = seg_free,
-    .check_bitstream = seg_check_bitstream,
-    .priv_class     = &sseg_class,
+    //  .name           = "stream_segment,ssegment",
+    //  .long_name      = "streaming segment muxer",
+    //  .priv_data_size = sizeof(SegmentContext),
+    //  .flags          = AVFMT_NOFILE,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = seg_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = seg_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = seg_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = seg_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override void deinit (
+        AVFormatContext format_context
+    );         = seg_free,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = seg_check_bitstream,
+    //  .priv_class     = &sseg_class,
 };
 #endif

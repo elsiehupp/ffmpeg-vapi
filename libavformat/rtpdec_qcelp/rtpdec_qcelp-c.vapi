@@ -20,10 +20,22 @@
  */
 
 const RTPDynamicProtocolHandler ff_qcelp_dynamic_handler = {
-    .enc_name           = "x-Purevoice",
-    .codec_type         = AVMEDIA_TYPE_AUDIO,
-    .codec_id           = AV_CODEC_ID_QCELP,
-    .priv_data_size     = sizeof(PayloadContext),
-    .static_payload_id  = 12,
-    .parse_packet       = qcelp_parse_packet,
+    //  .enc_name           = "x-Purevoice",
+    //  .codec_type         = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id           = AV_CODEC_ID_QCELP,
+    //  .priv_data_size     = sizeof(PayloadContext),
+    //  .static_payload_id  = 12,
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );       = qcelp_parse_packet,
 };

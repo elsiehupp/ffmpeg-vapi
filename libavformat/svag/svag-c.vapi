@@ -20,10 +20,20 @@
  */
 
 AVInputFormat ff_svag_demuxer = {
-    .name           = "svag",
-    .long_name      = NULL_IF_CONFIG_SMALL("Konami PS2 SVAG"),
-    .read_probe     = svag_probe,
-    .read_header    = svag_read_header,
-    .read_packet    = svag_read_packet,
-    .extensions     = "svag",
+    //  .name           = "svag",
+    //  .long_name      = "Konami PS2 SVAG",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = svag_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = svag_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = svag_read_packet,
+    //  .extensions     = "svag",
 };

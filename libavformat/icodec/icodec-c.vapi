@@ -25,12 +25,25 @@
  */
 
 AVInputFormat ff_ico_demuxer = {
-    .name           = "ico",
-    .long_name      = NULL_IF_CONFIG_SMALL("Microsoft Windows ICO"),
-    .priv_data_size = sizeof(IcoDemuxContext),
-    .read_probe     = probe,
-    .read_header    = read_header,
-    .read_packet    = read_packet,
-    .read_close     = ico_read_close,
-    .flags          = AVFMT_NOTIMESTAMPS,
+    //  .name           = "ico",
+    //  .long_name      = "Microsoft Windows ICO",
+    //  .priv_data_size = sizeof(IcoDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = read_packet,
+    [CCode (cname="", cheader="")]
+    public override int read_close (
+        AVFormatContext format_context
+    );     = ico_read_close,
+    //  .flags          = AVFMT_NOTIMESTAMPS,
 };

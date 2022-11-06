@@ -30,29 +30,47 @@ static const AVOption options[] = {
 };
 
 static const AVClass flv_muxer_class = {
-    .class_name = "flv muxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
+    //  .class_name = "flv muxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
 AVOutputFormat ff_flv_muxer = {
-    .name           = "flv",
-    .long_name      = NULL_IF_CONFIG_SMALL("FLV (Flash Video)"),
-    .mime_type      = "video/x-flv",
-    .extensions     = "flv",
-    .priv_data_size = sizeof(FLVContext),
-    .audio_codec    = CONFIG_LIBMP3LAME ? AV_CODEC_ID_MP3 : AV_CODEC_ID_ADPCM_SWF,
-    .video_codec    = AV_CODEC_ID_FLV1,
-    .init           = flv_init,
-    .write_header   = flv_write_header,
-    .write_packet   = flv_write_packet,
-    .write_trailer  = flv_write_trailer,
-    .check_bitstream= flv_check_bitstream,
-    .codec_tag      = (const AVCodecTag* const []) {
+    //  .name           = "flv",
+    //  .long_name      = "FLV (Flash Video)",
+    //  .mime_type      = "video/x-flv",
+    //  .extensions     = "flv",
+    //  .priv_data_size = sizeof(FLVContext),
+    //  .audio_codec    = CONFIG_LIBMP3LAME ? AV_CODEC_ID_MP3 : AV_CODEC_ID_ADPCM_SWF,
+    //  .video_codec    = AV_CODEC_ID_FLV1,
+    [CCode (cname="", cheader="")]
+    public override int init (
+        AVFormatContext format_context
+    );           = flv_init,
+    [CCode (cname="", cheader="")]
+    public override int write_header (
+        AVFormatContext format_context
+    );   = flv_write_header,
+    [CCode (cname="", cheader="")]
+    public override int write_packet (
+        void *opaque,
+        uint8[] buf,
+        int buf_size
+    );   = flv_write_packet,
+    [CCode (cname="", cheader="")]
+    public override int write_trailer (
+        AVFormatContext format_context
+    );  = flv_write_trailer,
+    [CCode (cname="", cheader="")]
+    public override int check_bitstream (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );= flv_check_bitstream,
+    //  .codec_tag      = (const AVCodecTag* const []) {
                           flv_video_codec_ids, flv_audio_codec_ids, 0
                       },
-    .flags          = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
+    //  .flags          = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
                       AVFMT_TS_NONSTRICT,
-    .priv_class     = &flv_muxer_class,
+    //  .priv_class     = &flv_muxer_class,
 };

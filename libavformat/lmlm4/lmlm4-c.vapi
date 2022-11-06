@@ -23,9 +23,19 @@
  */
 
 AVInputFormat ff_lmlm4_demuxer = {
-    .name           = "lmlm4",
-    .long_name      = NULL_IF_CONFIG_SMALL("raw lmlm4"),
-    .read_probe     = lmlm4_probe,
-    .read_header    = lmlm4_read_header,
-    .read_packet    = lmlm4_read_packet,
+    //  .name           = "lmlm4",
+    //  .long_name      = "raw lmlm4",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = lmlm4_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = lmlm4_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = lmlm4_read_packet,
 };

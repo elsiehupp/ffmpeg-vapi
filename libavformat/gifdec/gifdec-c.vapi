@@ -33,20 +33,30 @@ static const AVOption options[] = {
 };
 
 static const AVClass demuxer_class = {
-    .class_name = "GIF demuxer",
-    .item_name  = av_default_item_name,
-    .option     = options,
-    .version    = LIBAVUTIL_VERSION_INT,
-    .category   = AV_CLASS_CATEGORY_DEMUXER,
+    //  .class_name = "GIF demuxer",
+    //  .item_name  = av_default_item_name,
+    //  .option     = options,
+    //  .version    = LIBAVUTIL_VERSION_INT,
+    //  .category   = AV_CLASS_CATEGORY_DEMUXER,
 };
 
 AVInputFormat ff_gif_demuxer = {
-    .name           = "gif",
-    .long_name      = NULL_IF_CONFIG_SMALL("CompuServe Graphics Interchange Format (GIF)"),
-    .priv_data_size = sizeof(GIFDemuxContext),
-    .read_probe     = gif_probe,
-    .read_header    = gif_read_header,
-    .read_packet    = gif_read_packet,
-    .flags          = AVFMT_GENERIC_INDEX,
-    .priv_class     = &demuxer_class,
+    //  .name           = "gif",
+    //  .long_name      = "CompuServe Graphics Interchange Format (GIF)",
+    //  .priv_data_size = sizeof(GIFDemuxContext),
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );     = gif_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );    = gif_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );    = gif_read_packet,
+    //  .flags          = AVFMT_GENERIC_INDEX,
+    //  .priv_class     = &demuxer_class,
 };

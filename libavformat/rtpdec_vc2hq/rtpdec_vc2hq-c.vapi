@@ -20,9 +20,21 @@
  */
 
 const RTPDynamicProtocolHandler ff_vc2hq_dynamic_handler = {
-    .enc_name         = "VC2",
-    .codec_type       = AVMEDIA_TYPE_VIDEO,
-    .codec_id         = AV_CODEC_ID_DIRAC,
-    .priv_data_size   = sizeof(PayloadContext),
-    .parse_packet     = vc2hq_handle_packet
+    //  .enc_name         = "VC2",
+    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id         = AV_CODEC_ID_DIRAC,
+    //  .priv_data_size   = sizeof(PayloadContext),
+
+    [CCode (cname="", cheader="")]
+    public override int parse_packet (
+        AVFormatContext format_context,
+        PayloadContext payload_context,
+        AVStream st,
+        LibAVCodec.Packet packet,
+        uint32[] timestamp,
+        uint8[] buf,
+        int len,
+        uint16 seq,
+        int flags
+    );     = vc2hq_handle_packet
 };

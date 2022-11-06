@@ -20,11 +20,21 @@
  */
 
 AVInputFormat ff_fsb_demuxer = {
-    .name        = "fsb",
-    .long_name   = NULL_IF_CONFIG_SMALL("FMOD Sample Bank"),
-    .read_probe  = fsb_probe,
-    .read_header = fsb_read_header,
-    .read_packet = fsb_read_packet,
-    .extensions  = "fsb",
-    .flags       = AVFMT_GENERIC_INDEX,
+    //  .name        = "fsb",
+    //  .long_name   = "FMOD Sample Bank",
+    [CCode (cname="", cheader="")]
+    public override int read_probe (
+        AVProbeData format_context
+    );  = fsb_probe,
+    [CCode (cname="", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    ); = fsb_read_header,
+    [CCode (cname="", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    ); = fsb_read_packet,
+    //  .extensions  = "fsb",
+    //  .flags       = AVFMT_GENERIC_INDEX,
 };

@@ -20,8 +20,14 @@
  */
 
 const RTPDynamicProtocolHandler ff_ilbc_dynamic_handler = {
-    .enc_name         = "iLBC",
-    .codec_type       = AVMEDIA_TYPE_AUDIO,
-    .codec_id         = AV_CODEC_ID_ILBC,
-    .parse_sdp_a_line = ilbc_parse_sdp_line,
+    //  .enc_name         = "iLBC",
+    //  .codec_type       = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id         = AV_CODEC_ID_ILBC,
+    [CCode (cname="", cheader="")]
+    public override int parse_sdp_a_line (
+        AVFormatContext format_context,
+        int st_index,
+        PayloadContext priv_data,
+        string line
+    ); = ilbc_parse_sdp_line,
 };
