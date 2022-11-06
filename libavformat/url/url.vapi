@@ -37,31 +37,37 @@ public enum URLProtocolFlags {
 //  extern const LibAVUtil.Class ffurl_context_class;
 
 public struct URLContext {
-    LibAVUtil.Class av_class; /***********************************************************
+    /***********************************************************
     information for av_log (). Set by url_open ().
     ***********************************************************/
-    URLProtocol prot;
-    void *priv_data;
-    string filename; /***********************************************************
+    public LibAVUtil.Class av_class;
+    public URLProtocol prot;
+    public void *priv_data;
+    /***********************************************************
     specified URL
     ***********************************************************/
-    int flags;
-    int max_packet_size; /***********************************************************
+    public string filename;
+    public int flags;
+    /***********************************************************
     if non zero, the stream is packetized with this max packet size
     ***********************************************************/
-    int is_streamed; /***********************************************************
+    public int max_packet_size;
+    /***********************************************************
     true if streamed (no seek possible), default = false
     ***********************************************************/
-    int is_connected;
-    AVIOInterruptCB interrupt_callback;
-    int64 rw_timeout; /***********************************************************
+    public int is_streamed;
+    public int is_connected;
+    public AVIOInterruptCB interrupt_callback;
+    /***********************************************************
     maximum time to wait for (network) read/write operation completion, in mcs
     ***********************************************************/
-    string protocol_whitelist;
-    string protocol_blacklist;
-    int min_packet_size; /***********************************************************
+    public int64 rw_timeout;
+    public string protocol_whitelist;
+    public string protocol_blacklist;
+    /***********************************************************
     if non zero, the stream is packetized with this min packet size
     ***********************************************************/
+    public int min_packet_size;
 }
 
 public abstract class URLProtocol {

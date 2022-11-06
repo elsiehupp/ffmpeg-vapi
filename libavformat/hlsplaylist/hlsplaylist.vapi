@@ -78,7 +78,11 @@ public int ff_hls_write_file_entry (
     double duration,
     int round_duration,
     int64 size,
+    /***********************************************************
+    ***********************************************************/
     int64 pos, //Used only if HLS_SINGLE_FILE flag is set
+    /***********************************************************
+    ***********************************************************/
     string baseurl, //Ignored if NULL
     string filename,
     out double prog_date_time,

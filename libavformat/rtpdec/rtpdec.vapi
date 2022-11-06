@@ -153,11 +153,12 @@ public abstract class RTPDynamicProtocolHandler {
     public LibAVUtil.MediaType codec_type;
     public LibAVCodec.CodecID codec_id;
     public AVStreamParseType need_parsing;
-    public int static_payload_id; /***********************************************************
+    /***********************************************************
     0 means no payload id is set. 0 is a valid
     payload ID (PCMU), too, but that format doesn't
     require any custom depacketization code.
     ***********************************************************/
+    public int static_payload_id;
     public int priv_data_size;
 
     /***********************************************************

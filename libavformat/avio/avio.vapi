@@ -83,40 +83,50 @@ Only name and type fields are guaranteed be set.
 Rest of fields are protocol or/and platform dependent and might be unknown.
 ***********************************************************/
 public struct AVIODirEntry {
-    public string name; /***********************************************************
+    /***********************************************************
     Filename
     ***********************************************************/
-    public int type; /***********************************************************
+    public string name;
+    /***********************************************************
     Type of the entry
     ***********************************************************/
-    public int utf8; /***********************************************************
+    public int type;
+    /***********************************************************
     Set to 1 when name is encoded with UTF-8, 0 otherwise.
     Name can be encoded with UTF-8 even though 0 is set.
     ***********************************************************/
-    public int64 size; /***********************************************************
+    public int utf8;
+    /***********************************************************
     File size in bytes, -1 if unknown.
     ***********************************************************/
-    public int64 modification_timestamp; /***********************************************************
+    public int64 size;
+    /***********************************************************
     Time of last modification in microseconds since unix
     epoch, -1 if unknown.
     ***********************************************************/
-    public int64 access_timestamp; /***********************************************************
+    public int64 modification_timestamp;
+    /***********************************************************
     Time of last access in microseconds since unix epoch,
     -1 if unknown.
     ***********************************************************/
-    public int64 status_change_timestamp; /***********************************************************
+    public int64 access_timestamp;
+    /***********************************************************
     Time of last status change in microseconds since unix
     epoch, -1 if unknown.
     ***********************************************************/
-    public int64 user_id; /***********************************************************
+    public int64 status_change_timestamp;
+    /***********************************************************
     User ID of owner, -1 if unknown.
     ***********************************************************/
-    public int64 group_id; /***********************************************************
+    public int64 user_id;
+    /***********************************************************
     Group ID of owner, -1 if unknown.
     ***********************************************************/
-    public int64 filemode; /***********************************************************
+    public int64 group_id;
+    /***********************************************************
     Unix file mode, -1 if unknown.
     ***********************************************************/
+    public int64 filemode;
 }
 
 public struct AVIODirContext {
@@ -242,25 +252,30 @@ public abstract class AVIOContext {
                   +-------------+----------------------------------------------+
 
     ***********************************************************/
-    public uchar[] buffer; /***********************************************************
+
+    /***********************************************************
     Start of the buffer.
     ***********************************************************/
-    public int buffer_size; /***********************************************************
+    public uchar[] buffer;
+    /***********************************************************
     Maximum buffer size
     ***********************************************************/
-    public uchar[] buf_ptr; /***********************************************************
+    public int buffer_size;
+    /***********************************************************
     Current position in the buffer
     ***********************************************************/
-    public uchar[] buf_end; /***********************************************************
-    End of the data, may be less than
-                                 buffer+buffer_size if the read function returned
-                                 less data than requested, e.g. for streams where
-                                 no more data has been received yet.
+    public uchar[] buf_ptr;
+    /***********************************************************
+    End of the data, may be less than buffer + buffer_size if
+    the read function returned less data than requested, e.g.
+    for streams where no more data has been received yet.
     ***********************************************************/
-    public void *opaque; /***********************************************************
+    public uchar[] buf_end;
+    /***********************************************************
     A private pointer, passed to the read/write/seek/...
     functions.
     ***********************************************************/
+    public void *opaque;
     public abstract int read_packet (
         void *opaque,
         uint8[] buf,
@@ -276,15 +291,18 @@ public abstract class AVIOContext {
         int64 offset,
         int whence
     );
-    public int64 pos; /***********************************************************
+    /***********************************************************
     position in the file of the current buffer
     ***********************************************************/
-    public int eof_reached; /***********************************************************
+    public int64 pos;
+    /***********************************************************
     true if was unable to read due to error or eof
     ***********************************************************/
-    public int write_flag; /***********************************************************
+    public int eof_reached;
+    /***********************************************************
     true if open for writing
     ***********************************************************/
+    public int write_flag;
     public int max_packet_size;
     public ulong checksum;
     public uchar *checksum_ptr;
@@ -293,9 +311,10 @@ public abstract class AVIOContext {
         uint8[] buf,
         uint size
     );
-    int error; /***********************************************************
+    /***********************************************************
     contains the error code or 0 if no error happened
     ***********************************************************/
+    int error;
     /***********************************************************
     Pause or resume playback for network streaming protocols - e.g. MMS.
     ***********************************************************/
@@ -884,15 +903,19 @@ public enum AVIOOpenFlags {
     constants, optionally ORed with other flags.
     @{
     ***********************************************************/
-    AVIO_FLAG_READ, /***********************************************************
+
+    /***********************************************************
     read-only
     ***********************************************************/
-    AVIO_FLAG_WRITE, /***********************************************************
+    AVIO_FLAG_READ,
+    /***********************************************************
     write-only
     ***********************************************************/
-    AVIO_FLAG_READ_WRITE,  /***********************************************************
+    AVIO_FLAG_WRITE,
+    /***********************************************************
     read-write pseudo flag
     ***********************************************************/
+    AVIO_FLAG_READ_WRITE,
 
     /***********************************************************
     @}

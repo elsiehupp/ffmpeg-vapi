@@ -443,15 +443,18 @@ This structure contains the data a format has to probe a file.
 ***********************************************************/
 public struct AVProbeData {
     string filename;
-    uchar[] buf; /***********************************************************
+    /***********************************************************
     Buffer must have AVPROBE_PADDING_SIZE of extra allocated bytes filled with zero.
     ***********************************************************/
-    int buf_size; /***********************************************************
+    uchar[] buf;
+    /***********************************************************
     Size of buf except extra allocated bytes
     ***********************************************************/
-    string mime_type; /***********************************************************
+    int buf_size;
+    /***********************************************************
     mime_type, when known.
     ***********************************************************/
+    string mime_type;
 }
 
 public const int AVPROBE_SCORE_RETRY;
@@ -480,51 +483,64 @@ public enum AVFormatFlags1 {
     Demuxer will use avio_open, no opened file should be provided by the caller.
     ***********************************************************/
     AVFMT_NOFILE,
-    AVFMT_NEEDNUMBER, /***********************************************************
+    /***********************************************************
     Needs '%d' in filename.
     ***********************************************************/
-    AVFMT_SHOW_IDS, /***********************************************************
+    AVFMT_NEEDNUMBER,
+    /***********************************************************
     Show format stream IDs numbers.
     ***********************************************************/
-    AVFMT_GLOBALHEADER, /***********************************************************
+    AVFMT_SHOW_IDS,
+    /***********************************************************
     Format wants global header.
     ***********************************************************/
-    AVFMT_NOTIMESTAMPS, /***********************************************************
+    AVFMT_GLOBALHEADER,
+    /***********************************************************
     Format does not need / have any timestamps.
     ***********************************************************/
-    AVFMT_GENERIC_INDEX, /***********************************************************
+    AVFMT_NOTIMESTAMPS,
+    /***********************************************************
     Use generic index building code.
     ***********************************************************/
-    AVFMT_TS_DISCONT, /***********************************************************
+    AVFMT_GENERIC_INDEX,
+    /***********************************************************
     Format allows timestamp discontinuities. Note, muxers always require valid (monotone) timestamps
     ***********************************************************/
-    AVFMT_VARIABLE_FPS, /***********************************************************
+    AVFMT_TS_DISCONT,
+    /***********************************************************
     Format allows variable fps.
     ***********************************************************/
-    AVFMT_NODIMENSIONS, /***********************************************************
+    AVFMT_VARIABLE_FPS,
+    /***********************************************************
     Format does not need width/height
     ***********************************************************/
-    AVFMT_NOSTREAMS, /***********************************************************
+    AVFMT_NODIMENSIONS,
+    /***********************************************************
     Format does not require any streams
     ***********************************************************/
-    AVFMT_NOBINSEARCH, /***********************************************************
+    AVFMT_NOSTREAMS,
+    /***********************************************************
     Format does not allow to fall back on binary search via read_timestamp
     ***********************************************************/
-    AVFMT_NOGENSEARCH, /***********************************************************
+    AVFMT_NOBINSEARCH,
+    /***********************************************************
     Format does not allow to fall back on generic search
     ***********************************************************/
-    AVFMT_NO_BYTE_SEEK, /***********************************************************
+    AVFMT_NOGENSEARCH,
+    /***********************************************************
     Format does not allow seeking by bytes
     ***********************************************************/
-    AVFMT_ALLOW_FLUSH, /***********************************************************
+    AVFMT_NO_BYTE_SEEK,
+    /***********************************************************
     Format allows flushing. If not set, the muxer will not receive a NULL packet in the write_packet function.
     ***********************************************************/
-    AVFMT_TS_NONSTRICT, /***********************************************************
-    Format does not require strictly
-    increasing timestamps, but they must
-    still be monotonic
+    AVFMT_ALLOW_FLUSH,
+    /***********************************************************
+    Format does not require strictly increasing timestamps, but
+    they must still be monotonic.
     ***********************************************************/
-    AVFMT_TS_NEGATIVE, /***********************************************************
+    AVFMT_TS_NONSTRICT,
+    /***********************************************************
     Format allows muxing negative
     timestamps. If not set the timestamp
     will be shifted in av_write_frame and
@@ -533,10 +549,11 @@ public enum AVFormatFlags1 {
     The user or muxer can override this through
     AVFormatContext.avoid_negative_ts
     ***********************************************************/
-
-    AVFMT_SEEK_TO_PTS, /***********************************************************
+    AVFMT_TS_NEGATIVE,
+    /***********************************************************
     Seeking is based on PTS
     ***********************************************************/
+    AVFMT_SEEK_TO_PTS,
 }
 
 /***********************************************************
@@ -552,21 +569,27 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     public string long_name;
     public string mime_type;
-    public string extensions; /***********************************************************
+    /***********************************************************
     comma-separated filename extensions
     ***********************************************************/
+    public string extensions;
+
     /***********************************************************
     output support
     ***********************************************************/
-    public LibAVCodec.CodecID audio_codec; /***********************************************************
+
+    /***********************************************************
     default audio codec
     ***********************************************************/
-    public LibAVCodec.CodecID video_codec; /***********************************************************
+    public LibAVCodec.CodecID audio_codec;
+    /***********************************************************
     default video codec
     ***********************************************************/
-    public LibAVCodec.CodecID subtitle_codec; /***********************************************************
+    public LibAVCodec.CodecID video_codec;
+    /***********************************************************
     default subtitle codec
     ***********************************************************/
+    public LibAVCodec.CodecID subtitle_codec;
     /***********************************************************
     can use flags: AVFMT_NOFILE, AVFMT_NEEDNUMBER,
     AVFMT_GLOBALHEADER, AVFMT_NOTIMESTAMPS, AVFMT_VARIABLE_FPS,
@@ -930,23 +953,28 @@ public struct AVInputFormat {
 
 public enum AVStreamParseType {
     AVSTREAM_PARSE_NONE,
-    AVSTREAM_PARSE_FULL, /***********************************************************
+    /***********************************************************
     full parsing and repack
     ***********************************************************/
-    AVSTREAM_PARSE_HEADERS, /***********************************************************
+    AVSTREAM_PARSE_FULL,
+    /***********************************************************
     Only parse headers, do not repack.
     ***********************************************************/
-    AVSTREAM_PARSE_TIMESTAMPS, /***********************************************************
+    AVSTREAM_PARSE_HEADERS,
+    /***********************************************************
     full parsing and interpolation of timestamps for frames not starting on a packet boundary
     ***********************************************************/
-    AVSTREAM_PARSE_FULL_ONCE, /***********************************************************
+    AVSTREAM_PARSE_TIMESTAMPS,
+    /***********************************************************
     full parsing and repack of the first frame only, only implemented for H.264 currently
     ***********************************************************/
-    AVSTREAM_PARSE_FULL_RAW, /***********************************************************
+    AVSTREAM_PARSE_FULL_ONCE,
+    /***********************************************************
     full parsing and repack with timestamp and position generation by parser for raw
     this assumes that each packet in the file contains no demuxer level headers and
     just codec level data, otherwise position generation would fail
     ***********************************************************/
+    AVSTREAM_PARSE_FULL_RAW,
 }
 
 public struct AVIndexEntry {
@@ -974,9 +1002,10 @@ public struct AVIndexEntry {
 [Flags]
 public enum AVIndexEntryFlags {
     AVINDEX_KEYFRAME,
-    AVINDEX_DISCARD_FRAME; /***********************************************************
-        Flag is used to indicate which frame should be discarded after decoding.
-        ***********************************************************/
+    /***********************************************************
+    Flag is used to indicate which frame should be discarded after decoding.
+    ***********************************************************/
+    AVINDEX_DISCARD_FRAME;
 }
 
 [Flags]
@@ -994,15 +1023,18 @@ public enum AVDispositionFlags {
     even when user did not explicitly ask for subtitles.
     ***********************************************************/
     AV_DISPOSITION_FORCED,
-    AV_DISPOSITION_HEARING_IMPAIRED, /***********************************************************
+    /***********************************************************
     stream for hearing impaired audiences
     ***********************************************************/
-    AV_DISPOSITION_VISUAL_IMPAIRED, /***********************************************************
+    AV_DISPOSITION_HEARING_IMPAIRED,
+    /***********************************************************
     stream for visual impaired audiences
     ***********************************************************/
-    AV_DISPOSITION_CLEAN_EFFECTS, /***********************************************************
+    AV_DISPOSITION_VISUAL_IMPAIRED,
+    /***********************************************************
     stream without voice
     ***********************************************************/
+    AV_DISPOSITION_CLEAN_EFFECTS,
     /***********************************************************
     The stream is stored in the file as an attached picture/"cover art" (e.g.
     APIC frame in ID3v2). The first (usually only) packet associated with it
@@ -1067,13 +1099,15 @@ version bump.
 sizeof (AVStream) must not be used outside libav*.
 ***********************************************************/
 public struct AVStream {
-    public int index; /***********************************************************
+    /***********************************************************
     stream index in AVFormatContext
     ***********************************************************/
+    public int index;
     /***********************************************************
     Format-specific stream ID.
-    decoding: set by libavformat
-    encoding: set by the user, replaced by libavformat if left unset
+
+    - decoding: set by libavformat
+    - encoding: set by the user, replaced by libavformat if left unset
     ***********************************************************/
     public int id;
 
@@ -1118,9 +1152,10 @@ public struct AVStream {
     ***********************************************************/
     public int64 nb_frames;
 
-    public int disposition; /***********************************************************
+    /***********************************************************
     AV_DISPOSITION_* bit field
     ***********************************************************/
+    public int disposition;
 
     /***********************************************************
     Selects which packets can be discarded at will and do not need to be demuxed.
@@ -1129,6 +1164,7 @@ public struct AVStream {
 
     /***********************************************************
     sample aspect ratio (0 if unknown)
+
     - encoding: Set by user.
     - decoding: Set by libavformat.
     ***********************************************************/
@@ -1252,9 +1288,10 @@ public struct AVStream {
     //  ***********************************************************/
     //  public StreamInfo info;
 
-    //  public int pts_wrap_bits; /***********************************************************
+    //  /***********************************************************
     //  number of bits in pts (used for wrapping control)
     //  ***********************************************************/
+    //  public int pts_wrap_bits;
 
     //  // Timestamp generation support:
     //  /***********************************************************
@@ -1485,17 +1522,19 @@ public struct AVProgram {
 
 [Flags]
 public enum AVFormatContextFlags {
-    AVFMTCTX_NOHEADER, /***********************************************************
+    /***********************************************************
     signal that no header is present
     (streams are added dynamically)
     ***********************************************************/
-    AVFMTCTX_UNSEEKABLE, /***********************************************************
+    AVFMTCTX_NOHEADER,
+    /***********************************************************
     signal that the stream is definitely
     not seekable, and attempts to call the
     seek function will fail. For some
     network protocols (e.g. HLS), this can
     change dynamically at runtime.
     ***********************************************************/
+    AVFMTCTX_UNSEEKABLE,
 }
 
 public struct AVChapter {

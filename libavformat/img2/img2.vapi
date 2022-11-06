@@ -30,35 +30,42 @@ public enum PatternType {
 }
 
 public struct VideoDemuxData {
-    public LibAVUtil.Class class; /***********************************************************
+    /***********************************************************
     Class for private options.
     ***********************************************************/
+    public LibAVUtil.Class class;
     public int img_first;
     public int img_last;
     public int img_number;
     public int64 pts;
     public int img_count;
     public int is_pipe;
-    public int split_planes; /***********************************************************
+    /***********************************************************
     use independent file for each Y, U, V plane
     ***********************************************************/
+    public int split_planes;
     public char path[1024];
-    public string pixel_format; /***********************************************************
+    /***********************************************************
     Set by a private option.
     ***********************************************************/
-    public int width; /***********************************************************
+    public string pixel_format;
+    /***********************************************************
     Set by a private option.
     ***********************************************************/
-    public int height; /***********************************************************
+    public int width;
+    /***********************************************************
     Set by a private option.
     ***********************************************************/
-    public LibAVUtil.Rational framerate; /***********************************************************
+    public int height;
+    /***********************************************************
     Set by a private option.
     ***********************************************************/
+    public LibAVUtil.Rational framerate;
     public int loop;
-    public int pattern_type; /***********************************************************
+    /***********************************************************
     PatternType
     ***********************************************************/
+    public int pattern_type;
     public int use_glob;
 #if HAVE_GLOB
     public glob_t globstate;

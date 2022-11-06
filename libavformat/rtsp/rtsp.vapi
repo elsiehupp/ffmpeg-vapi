@@ -25,30 +25,36 @@ namespace LibAVFormat {
 Network layer over which RTP/etc packet data will be transported.
 ***********************************************************/
 public enum RTSPLowerTransport {
-    RTSP_LOWER_TRANSPORT_UDP = 0, /***********************************************************
+    /***********************************************************
     UDP/unicast
     ***********************************************************/
-    RTSP_LOWER_TRANSPORT_TCP = 1, /***********************************************************
+    RTSP_LOWER_TRANSPORT_UDP,
+    /***********************************************************
     TCP; interleaved in RTSP
     ***********************************************************/
-    RTSP_LOWER_TRANSPORT_UDP_MULTICAST = 2, /***********************************************************
+    RTSP_LOWER_TRANSPORT_TCP,
+    /***********************************************************
     UDP/multicast
     ***********************************************************/
+    RTSP_LOWER_TRANSPORT_UDP_MULTICAST,
     RTSP_LOWER_TRANSPORT_NB,
-    RTSP_LOWER_TRANSPORT_HTTP = 8, /***********************************************************
+    /***********************************************************
     HTTP tunneled - not a proper
     transport mode as such,
     only for use via AVOptions
     ***********************************************************/
-    RTSP_LOWER_TRANSPORT_HTTPS, /***********************************************************
+    RTSP_LOWER_TRANSPORT_HTTP,
+    /***********************************************************
     HTTPS tunneled
     ***********************************************************/
-    RTSP_LOWER_TRANSPORT_CUSTOM = 16, /***********************************************************
+    RTSP_LOWER_TRANSPORT_HTTPS,
+    /***********************************************************
     Custom IO - not a public
     option for lower_transport_mask,
     but set in the SDP demuxer based
     on a flag.
     ***********************************************************/
+    RTSP_LOWER_TRANSPORT_CUSTOM,
 }
 
 /***********************************************************
@@ -57,15 +63,18 @@ commonly send RDT (although they can sometimes send RTP as well),
 whereas most others will send RTP.
 ***********************************************************/
 public enum RTSPTransport {
-    RTSP_TRANSPORT_RTP, /***********************************************************
+    /***********************************************************
     Standards-compliant RTP
     ***********************************************************/
-    RTSP_TRANSPORT_RDT, /***********************************************************
+    RTSP_TRANSPORT_RTP,
+    /***********************************************************
     Realmedia Data Transport
     ***********************************************************/
-    RTSP_TRANSPORT_RAW, /***********************************************************
+    RTSP_TRANSPORT_RDT,
+    /***********************************************************
     Raw data (over UDP)
     ***********************************************************/
+    RTSP_TRANSPORT_RAW,
     RTSP_TRANSPORT_NB
 }
 
@@ -74,12 +83,14 @@ Transport mode for the RTSP data. This may be plain, or
 tunneled, which is done over HTTP.
 ***********************************************************/
 public enum RTSPControlTransport {
-    RTSP_MODE_PLAIN, /***********************************************************
+    /***********************************************************
     Normal RTSP
     ***********************************************************/
-    RTSP_MODE_TUNNEL /***********************************************************
+    RTSP_MODE_PLAIN,
+    /***********************************************************
     RTSP over HTTP (tunneling)
     ***********************************************************/
+    RTSP_MODE_TUNNEL
 }
 
 public const int RTSP_DEFAULT_PORT; // 554
@@ -140,12 +151,14 @@ public struct RTSPTransportField {
     ***********************************************************/
     public int mode_record;
 
-    public sockaddr_storage destination; /***********************************************************
+    /***********************************************************
     destination IP address
     ***********************************************************/
-    public char source[INET6_ADDRSTRLEN + 1]; /***********************************************************
+    public sockaddr_storage destination;
+    /***********************************************************
     source IP address
     ***********************************************************/
+    public char source[INET6_ADDRSTRLEN + 1];
 
     /***********************************************************
     data/packet transport protocol; e.g. RTP or RDT
@@ -167,9 +180,10 @@ public struct RTSPMessageHeader {
     ***********************************************************/
     public int content_length;
 
-    public RTSPStatusCode status_code; /***********************************************************
+    /***********************************************************
     response code from server
     ***********************************************************/
+    public RTSPStatusCode status_code;
 
     /***********************************************************
     number of items in the 'transports' variable below
@@ -189,9 +203,10 @@ public struct RTSPMessageHeader {
     ***********************************************************/
     public RTSPTransportField transports[RTSP_MAX_TRANSPORTS];
 
-    public int seq; /***********************************************************
+    /***********************************************************
     sequence number
     ***********************************************************/
+    public int seq;
 
     /***********************************************************
     the "Session:" field. This value is initially set by the server and
@@ -255,18 +270,22 @@ setup-but-not-receiving (PAUSED). State can be changed in applications
 by calling av_read_play/pause ().
 ***********************************************************/
 public enum RTSPClientState {
-    RTSP_STATE_IDLE, /***********************************************************
+    /***********************************************************
     not initialized
     ***********************************************************/
-    RTSP_STATE_STREAMING, /***********************************************************
+    RTSP_STATE_IDLE,
+    /***********************************************************
     initialized and sending/receiving data
     ***********************************************************/
-    RTSP_STATE_PAUSED, /***********************************************************
+    RTSP_STATE_STREAMING,
+    /***********************************************************
     initialized, but not receiving data
     ***********************************************************/
-    RTSP_STATE_SEEKING, /***********************************************************
+    RTSP_STATE_PAUSED,
+    /***********************************************************
     initialized, requesting a seek
     ***********************************************************/
+    RTSP_STATE_SEEKING,
 }
 
 /***********************************************************
@@ -274,15 +293,18 @@ Identify particular servers that require special handling, such as
 standards-incompliant "Transport:" lines in the SETUP request.
 ***********************************************************/
 public enum RTSPServerType {
-    RTSP_SERVER_RTP, /***********************************************************
+    /***********************************************************
     Standards-compliant RTP-server
     ***********************************************************/
-    RTSP_SERVER_REAL, /***********************************************************
+    RTSP_SERVER_RTP,
+    /***********************************************************
     Realmedia-style server
     ***********************************************************/
-    RTSP_SERVER_WMS, /***********************************************************
+    RTSP_SERVER_REAL,
+    /***********************************************************
     Windows Media server
     ***********************************************************/
+    RTSP_SERVER_WMS,
     RTSP_SERVER_NB
 }
 
@@ -292,16 +314,19 @@ Private data for the RTSP demuxer.
 @todo Use AVIOContext instead of URLContext
 ***********************************************************/
 public struct RTSPState {
-    public LibAVUtil.Class class; /***********************************************************
+    /***********************************************************
     Class for private options.
     ***********************************************************/
-    public URLContext rtsp_hd; /***********************************************************
+    public LibAVUtil.Class class;
+    /***********************************************************
     RTSP TCP connection handle
     ***********************************************************/
+    public URLContext rtsp_hd;
 
-    public RTSPStream[] rtsp_streams; /***********************************************************
+    /***********************************************************
     streams in this session
     ***********************************************************/
+    public RTSPStream[] rtsp_streams;
 
     /***********************************************************
     number of items in the 'rtsp_streams' variable
@@ -326,9 +351,10 @@ public struct RTSPState {
     ***********************************************************/
     public int64 seek_timestamp;
 
-    public int seq; /***********************************************************
+    /***********************************************************
     RTSP command sequence number
     ***********************************************************/
+    public int seq;
 
     /***********************************************************
     copy of RTSPMessageHeader.session_id, i.e. the server-provided session
@@ -385,10 +411,9 @@ public struct RTSPState {
 
     /***********************************************************
     The last reply of the server to a RTSP command
-    ***********************************************************/
-    public char last_reply[2048]; /***********************************************************
     XXX: allocate ?
     ***********************************************************/
+    public char last_reply[2048];
 
     /***********************************************************
     RTSPStream.transport_priv of the last stream that we read a
@@ -559,30 +584,34 @@ public struct RTSPState {
 
 [Flags]
 public enum RTSPFlags {
-    RTSP_FLAG_FILTER_SRC, /***********************************************************
-    Filter incoming UDP packets -
-        receive packets only from the right
-        source address and port.
+    /***********************************************************
+    Filter incoming UDP packets - receive packets only from the
+    right source address and port.
     ***********************************************************/
-    RTSP_FLAG_LISTEN, /***********************************************************
+    RTSP_FLAG_FILTER_SRC,
+    /***********************************************************
     Wait for incoming connections.
     ***********************************************************/
-    RTSP_FLAG_CUSTOM_IO, /***********************************************************
+    RTSP_FLAG_LISTEN,
+    /***********************************************************
     Do all IO via the AVIOContext.
     ***********************************************************/
-    RTSP_FLAG_RTCP_TO_SOURCE, /***********************************************************
-    Send RTCP packets to the source
-        address of received packets.
+    RTSP_FLAG_CUSTOM_IO,
+    /***********************************************************
+    Send RTCP packets to the source address of received packets.
     ***********************************************************/
-    RTSP_FLAG_PREFER_TCP, /***********************************************************
+    RTSP_FLAG_RTCP_TO_SOURCE,
+    /***********************************************************
     Try RTP via TCP first if possible.
     ***********************************************************/
+    RTSP_FLAG_PREFER_TCP,
 }
 
 public struct RTSPSource {
-    public char addr[128]; /***********************************************************
+    /***********************************************************
     Source-specific multicast include source IP address (from SDP content)
     ***********************************************************/
+    public char addr[128];
 }
 
 /***********************************************************
@@ -592,12 +621,14 @@ AVStreams. In this case, each AVStream in this set has similar content
 (but different codec/bitrate).
 ***********************************************************/
 public struct RTSPStream {
-    public URLContext rtp_handle; /***********************************************************
+    /***********************************************************
     RTP stream handle (if UDP)
     ***********************************************************/
-    public void *transport_priv; /***********************************************************
+    public URLContext rtp_handle;
+    /***********************************************************
     RTP/RDT parse context if input, RTP AVFormatContext if output
     ***********************************************************/
+    public void *transport_priv;
 
     /***********************************************************
     corresponding stream index, if any. -1 if none (MPEG2TS case)
@@ -611,38 +642,47 @@ public struct RTSPStream {
     public int interleaved_min;
     public int interleaved_max;
 
-    public char control_url[1024]; /***********************************************************
+    /***********************************************************
     url for this stream (from SDP)
     ***********************************************************/
+    public char control_url[1024];
 
     /***********************************************************
     The following are used only in SDP, not RTSP
     ***********************************************************/
 //@{
-    public int sdp_port; /***********************************************************
+    /***********************************************************
     port (from SDP content)
     ***********************************************************/
-    public sockaddr_storage sdp_ip; /***********************************************************
+    public int sdp_port;
+    /***********************************************************
     IP address (from SDP content)
     ***********************************************************/
-    public RTSPSource[] include_source_addrs; /***********************************************************
+    public sockaddr_storage sdp_ip;
+    /***********************************************************
     Source-specific multicast include source IP addresses (from SDP content)
     ***********************************************************/
-    public int nb_include_source_addrs; /***********************************************************
+    public RTSPSource[] include_source_addrs;
+    /***********************************************************
     Number of source-specific multicast include source IP addresses (from SDP content)
     ***********************************************************/
-    public RTSPSource[] exclude_source_addrs; /***********************************************************
+    public int nb_include_source_addrs;
+    /***********************************************************
     Source-specific multicast exclude source IP addresses (from SDP content)
     ***********************************************************/
-    public int nb_exclude_source_addrs; /***********************************************************
+    public RTSPSource[] exclude_source_addrs;
+    /***********************************************************
     Number of source-specific multicast exclude source IP addresses (from SDP content)
     ***********************************************************/
-    public int sdp_ttl; /***********************************************************
+    public int nb_exclude_source_addrs;
+    /***********************************************************
     IP Time-To-Live (from SDP content)
     ***********************************************************/
-    public int sdp_payload_type; /***********************************************************
+    public int sdp_ttl;
+    /***********************************************************
     payload type
     ***********************************************************/
+    public int sdp_payload_type;
 //@}
 
     /***********************************************************

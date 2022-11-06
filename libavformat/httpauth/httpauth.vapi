@@ -25,44 +25,53 @@ namespace LibAVFormat {
 Authentication types, ordered from weakest to strongest.
 ***********************************************************/
 public enum HTTPAuthType {
-    HTTP_AUTH_NONE = 0, /***********************************************************
+    /***********************************************************
     No authentication specified
     ***********************************************************/
-    HTTP_AUTH_BASIC, /***********************************************************
+    HTTP_AUTH_NONE,
+    /***********************************************************
     HTTP 1.0 Basic auth from RFC 1945
     (also in RFC 2617)
     ***********************************************************/
-    HTTP_AUTH_DIGEST, /***********************************************************
+    HTTP_AUTH_BASIC,
+    /***********************************************************
     HTTP 1.1 Digest auth from RFC 2617
     ***********************************************************/
+    HTTP_AUTH_DIGEST,
 }
 
 public struct DigestParams {
-    public char nonce[300]; /***********************************************************
+    /***********************************************************
     Server specified nonce
     ***********************************************************/
-    public char algorithm[10]; /***********************************************************
+    public char nonce[300];
+    /***********************************************************
     Server specified digest algorithm
     ***********************************************************/
-    public char qop[30]; /***********************************************************
+    public char algorithm[10];
+    /***********************************************************
     Quality of protection, containing the one
     that we've chosen to use, from the
     alternatives that the server offered.
     ***********************************************************/
-    public char opaque[300]; /***********************************************************
+    public char qop[30];
+    /***********************************************************
     A server-specified string that should be
     included in authentication responses, not
     included in the actual digest calculation.
     ***********************************************************/
-    public char stale[10]; /***********************************************************
+    public char opaque[300];
+    /***********************************************************
     The server indicated that the auth was ok,
     but needs to be redone with a new, non-stale
     nonce.
     ***********************************************************/
-    public int nc; /***********************************************************
+    public char stale[10];
+    /***********************************************************
     Nonce count, the number of earlier replies
     where this particular nonce has been used.
     ***********************************************************/
+    public int nc;
 }
 
 /***********************************************************

@@ -22,9 +22,13 @@ namespace LibAVFormat {
 
 [Flags]
 public enum AVIFlags {
+    /***********************************************************
+    ***********************************************************/
     AVIF_HASINDEX, // Index at end of file?
     AVIF_MUSTUSEINDEX,
     AVIF_ISINTERLEAVED,
+    /***********************************************************
+    ***********************************************************/
     AVIF_TRUSTCKTYPE, // Use CKType to find key frames?
     AVIF_WASCAPTUREFILE,
     AVIF_COPYRIGHTED,

@@ -33,6 +33,8 @@ public enum Mode {
     MODE_MP4,
     MODE_MOV,
     MODE_3GP,
+    /***********************************************************
+    ***********************************************************/
     MODE_PSP, // example working PSP command line:
     // ffmpeg -i testinput.avi -f psp -r 14.985 -s 320x240 -b 768 -ar 24000 -ab 32 M4V00001.MP4
     MODE_3G2,

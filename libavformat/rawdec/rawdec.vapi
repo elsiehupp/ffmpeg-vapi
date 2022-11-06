@@ -22,25 +22,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 public struct FFRawVideoDemuxerContext {
-    public LibAVUtil.Class class; /***********************************************************
+    /***********************************************************
     Class for private options.
     ***********************************************************/
+    public LibAVUtil.Class class;
     public int raw_packet_size;
-    public string video_size; /***********************************************************
-    String describing video size, set by a private option.
+    /***********************************************************
+    string describing video size, set by a private option.
     ***********************************************************/
-    public string pixel_format; /***********************************************************
+    public string video_size;
+    /***********************************************************
     Set by a private option.
     ***********************************************************/
-    public LibAVUtil.Rational framerate; /***********************************************************
+    public string pixel_format;
+    /***********************************************************
     LibAVUtil.Rational describing framerate, set by a private option.
     ***********************************************************/
+    public LibAVUtil.Rational framerate;
 }
 
 public struct FFRawDemuxerContext {
-    public LibAVUtil.Class class; /***********************************************************
+    /***********************************************************
     Class for private options.
     ***********************************************************/
+    public LibAVUtil.Class class;
     public int raw_packet_size;
 }
 

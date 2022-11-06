@@ -87,9 +87,10 @@ public enum FLVSampleSize {
 }
 
 public enum FLVSampleRate {
-    FLV_SAMPLERATE_SPECIAL = 0, /***********************************************************
+    /***********************************************************
     signifies 5512Hz and 8000Hz in the case of NELLYMOSER
     ***********************************************************/
+    FLV_SAMPLERATE_SPECIAL = 0,
     FLV_SAMPLERATE_11025HZ = 1 << FLV_AUDIO_SAMPLERATE_OFFSET,
     FLV_SAMPLERATE_22050HZ = 2 << FLV_AUDIO_SAMPLERATE_OFFSET,
     FLV_SAMPLERATE_44100HZ = 3 << FLV_AUDIO_SAMPLERATE_OFFSET,

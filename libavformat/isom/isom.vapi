@@ -77,9 +77,10 @@ public struct MOVDref {
 
 public struct MOVAtom {
     public uint32 type;
-    public int64 size; /***********************************************************
+    /***********************************************************
     total size (excluding the size and type fields)
     ***********************************************************/
+    public int64 size;
 }
 
 public struct MOVParseTableEntry { }
