@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_yuv4mpegpipe_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_yuv4mpegpipe_muxer = {
     //  .name              = "yuv4mpegpipe",
     //  .long_name         = "YUV4MPEG pipe",
     //  .extensions        = "y4m",

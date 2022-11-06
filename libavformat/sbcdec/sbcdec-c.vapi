@@ -20,7 +20,7 @@
  */
 
 FF_RAW_DEMUXER_CLASS(sbc)
-AVInputFormat ff_sbc_demuxer = {
+public class InputFormat : AVInputFormat ff_sbc_demuxer = {
     //  .name           = "sbc",
     //  .long_name      = "raw SBC (low-complexity subband codec)",
     //  .extensions     = "sbc,msbc",

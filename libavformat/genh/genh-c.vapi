@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_genh_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_genh_demuxer = {
     //  .name           = "genh",
     //  .long_name      = "GENeric Header",
     //  .priv_data_size = sizeof(GENHDemuxContext),

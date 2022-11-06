@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_vqf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_vqf_demuxer = {
     //  .name           = "vqf",
     //  .long_name      = "Nippon Telegraph and Telephone Corporation (NTT) TwinVQ",
     //  .priv_data_size = sizeof(VqfContext),

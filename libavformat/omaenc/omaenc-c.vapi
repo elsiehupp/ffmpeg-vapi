@@ -20,7 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_oma_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_oma_muxer = {
     //  .name              = "oma",
     //  .long_name         = "Sony OpenMG audio",
     //  .mime_type         = "audio/x-oma",

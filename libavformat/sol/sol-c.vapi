@@ -23,7 +23,8 @@
  * Based on documents from Game Audio Player and own research
  */
 
-AVInputFormat ff_sol_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_sol_demuxer = {
     //  .name           = "sol",
     //  .long_name      = "Sierra SOL",
     [CCode (cname="", cheader="")]

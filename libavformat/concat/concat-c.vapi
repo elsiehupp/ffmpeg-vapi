@@ -21,7 +21,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-const URLProtocol ff_concat_protocol = {
+[CCode (cname="ff_concat_protocol", cheader="")]
+public class ConcatURLProtocol : URLProtocol {
     //  .name           = "concat",
     [CCode (cname="", cheader="")]
     public override int url_open (

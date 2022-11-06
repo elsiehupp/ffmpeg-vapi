@@ -19,21 +19,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_ads_demuxer = {
+[CCode (cname="ff_ads_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_ads_demuxer = {
     //  .name           = "ads",
     //  .long_name      = "Sony PS2 ADS",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ads_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = ads_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ads_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = ads_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ads_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ads_read_packet,
+    );
     //  .extensions     = "ads,ss2",
 };

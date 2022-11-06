@@ -37,7 +37,8 @@ const AVOption ff_raw_options[] = {
 #if CONFIG_DATA_DEMUXER
 FF_RAW_DEMUXER_CLASS(raw_data)
 
-AVInputFormat ff_data_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_data_demuxer = {
     //  .name           = "data",
     //  .long_name      = "raw data",
     [CCode (cname="", cheader="")]

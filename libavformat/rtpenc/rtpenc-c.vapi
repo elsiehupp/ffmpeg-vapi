@@ -35,7 +35,8 @@ static const AVClass rtp_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_rtp_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_rtp_muxer = {
     //  .name              = "rtp",
     //  .long_name         = "RTP output",
     //  .priv_data_size    = sizeof(RTPMuxContext),

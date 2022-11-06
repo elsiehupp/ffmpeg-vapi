@@ -32,7 +32,8 @@ static const AVClass demuxer_class = {
     //  .category   = AV_CLASS_CATEGORY_DEMUXER,
 };
 
-AVInputFormat ff_mp3_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mp3_demuxer = {
     //  .name           = "mp3",
     //  .long_name      = "MP2/3 (MPEG audio layer 2/3)",
     [CCode (cname="", cheader="")]

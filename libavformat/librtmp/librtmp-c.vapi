@@ -57,7 +57,8 @@ static const AVClass lib ## flavor ## _class = {\
 };
 
 RTMP_CLASS(rtmp)
-const URLProtocol ff_librtmp_protocol = {
+[CCode (cname="ff_librtmp_protocol", cheader="")]
+public class LibRTMPURLProtocol : URLProtocol {
     //  .name                = "rtmp",
     [CCode (cname="", cheader="")]
     public override int url_open (
@@ -103,7 +104,8 @@ const URLProtocol ff_librtmp_protocol = {
 };
 
 RTMP_CLASS(rtmpt)
-const URLProtocol ff_librtmpt_protocol = {
+[CCode (cname="ff_librtmpt_protocol", cheader="")]
+public class URLProtocol : URLProtocol ff_librtmpt_protocol = {
     //  .name                = "rtmpt",
     [CCode (cname="", cheader="")]
     public override int url_open (
@@ -149,7 +151,8 @@ const URLProtocol ff_librtmpt_protocol = {
 };
 
 RTMP_CLASS(rtmpe)
-const URLProtocol ff_librtmpe_protocol = {
+[CCode (cname="ff_librtmpe_protocol", cheader="")]
+public class URLProtocol : URLProtocol ff_librtmpe_protocol = {
     //  .name                = "rtmpe",
     [CCode (cname="", cheader="")]
     public override int url_open (
@@ -195,7 +198,8 @@ const URLProtocol ff_librtmpe_protocol = {
 };
 
 RTMP_CLASS(rtmpte)
-const URLProtocol ff_librtmpte_protocol = {
+[CCode (cname="ff_librtmpte_protocol", cheader="")]
+public class URLProtocol : URLProtocol ff_librtmpte_protocol = {
     //  .name                = "rtmpte",
     [CCode (cname="", cheader="")]
     public override int url_open (
@@ -241,7 +245,8 @@ const URLProtocol ff_librtmpte_protocol = {
 };
 
 RTMP_CLASS(rtmps)
-const URLProtocol ff_librtmps_protocol = {
+[CCode (cname="ff_librtmps_protocol", cheader="")]
+public class URLProtocol : URLProtocol ff_librtmps_protocol = {
     //  .name                = "rtmps",
     [CCode (cname="", cheader="")]
     public override int url_open (

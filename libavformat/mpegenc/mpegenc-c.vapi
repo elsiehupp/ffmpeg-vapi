@@ -37,7 +37,7 @@ static const AVClass flavor ## _class = {       \
 
 #if CONFIG_MPEG1SYSTEM_MUXER
 MPEGENC_CLASS(mpeg)
-AVOutputFormat ff_mpeg1system_muxer = {
+public class OutputFormat : AVOutputFormat ff_mpeg1system_muxer = {
     //  .name              = "mpeg",
     //  .long_name         = "MPEG-1 Systems / MPEG program stream",
     //  .mime_type         = "video/mpeg",
@@ -65,7 +65,7 @@ AVOutputFormat ff_mpeg1system_muxer = {
 
 #if CONFIG_MPEG1VCD_MUXER
 MPEGENC_CLASS(vcd)
-AVOutputFormat ff_mpeg1vcd_muxer = {
+public class OutputFormat : AVOutputFormat ff_mpeg1vcd_muxer = {
     //  .name              = "vcd",
     //  .long_name         = "MPEG-1 Systems / MPEG program stream (VCD)",
     //  .mime_type         = "video/mpeg",
@@ -92,7 +92,7 @@ AVOutputFormat ff_mpeg1vcd_muxer = {
 
 #if CONFIG_MPEG2VOB_MUXER
 MPEGENC_CLASS(vob)
-AVOutputFormat ff_mpeg2vob_muxer = {
+public class OutputFormat : AVOutputFormat ff_mpeg2vob_muxer = {
     //  .name              = "vob",
     //  .long_name         = "MPEG-2 PS (VOB)",
     //  .mime_type         = "video/mpeg",
@@ -121,7 +121,7 @@ AVOutputFormat ff_mpeg2vob_muxer = {
 /* Same as mpeg2vob_mux except that the pack size is 2324 */
 #if CONFIG_MPEG2SVCD_MUXER
 MPEGENC_CLASS(svcd)
-AVOutputFormat ff_mpeg2svcd_muxer = {
+public class OutputFormat : AVOutputFormat ff_mpeg2svcd_muxer = {
     //  .name              = "svcd",
     //  .long_name         = "MPEG-2 PS (SVCD)",
     //  .mime_type         = "video/mpeg",
@@ -150,7 +150,7 @@ AVOutputFormat ff_mpeg2svcd_muxer = {
 /*  Same as mpeg2vob_mux except the 'is_dvd' flag is set to produce NAV pkts */
 #if CONFIG_MPEG2DVD_MUXER
 MPEGENC_CLASS(dvd)
-AVOutputFormat ff_mpeg2dvd_muxer = {
+public class OutputFormat : AVOutputFormat ff_mpeg2dvd_muxer = {
     //  .name              = "dvd",
     //  .long_name         = "MPEG-2 PS (DVD VOB)",
     //  .mime_type         = "video/mpeg",

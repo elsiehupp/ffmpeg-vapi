@@ -36,7 +36,8 @@
  * @see sctp_write
  */
 
-const URLProtocol ff_sctp_protocol = {
+[CCode (cname="ff_sctp_protocol", cheader="")]
+public class TCTPURLProtocol : URLProtocol {
     //  .name                = "sctp",
     [CCode (cname="", cheader="")]
     public override int url_open (

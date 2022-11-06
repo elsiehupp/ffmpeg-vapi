@@ -25,7 +25,8 @@
  * @author Zhentan Feng <spyfeng at gmail dot com>
  */
 
-AVOutputFormat ff_wtv_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_wtv_muxer = {
     //  .name           = "wtv",
     //  .long_name      = "Windows Television (WTV)",
     //  .extensions     = "wtv",

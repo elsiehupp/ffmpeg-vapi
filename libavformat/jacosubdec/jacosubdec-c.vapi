@@ -25,7 +25,8 @@
  * @todo Support P[ALETTE] directive.
  */
 
-AVInputFormat ff_jacosub_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_jacosub_demuxer = {
     //  .name           = "jacosub",
     //  .long_name      = "JACOsub subtitle format",
     //  .priv_data_size = sizeof(JACOsubContext),

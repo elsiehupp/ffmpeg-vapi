@@ -20,29 +20,30 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_aea_demuxer = {
+[CCode (cname="ff_aea_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_aea_demuxer = {
     //  .name           = "aea",
     //  .long_name      = "MD STUDIO audio",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="aea_read_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = aea_read_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="aea_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = aea_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="aea_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = aea_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_pcm_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = ff_pcm_read_seek,
+    );
     //  .flags          = AVFMT_GENERIC_INDEX,
     //  .extensions     = "aea",
 };

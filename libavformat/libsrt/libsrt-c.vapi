@@ -28,7 +28,8 @@ static const AVClass libsrt_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_libsrt_protocol = {
+[CCode (cname="ff_libsrt_protocol", cheader="")]
+public class LibSRTURLProtocol : URLProtocol {
     //  .name                = "srt",
     [CCode (cname="", cheader="")]
     public override int url_open (

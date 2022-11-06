@@ -45,7 +45,8 @@ static const AVClass hashenc_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_hash_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_hash_muxer = {
     //  .name              = "hash",
     //  .long_name         = "Hash testing",
     //  .priv_data_size    = sizeof(struct HashContext),
@@ -79,7 +80,8 @@ static const AVClass md5enc_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_md5_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_md5_muxer = {
     //  .name              = "md5",
     //  .long_name         = "MD5 testing",
     //  .priv_data_size    = sizeof(struct HashContext),
@@ -113,7 +115,8 @@ static const AVClass framehash_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_framehash_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_framehash_muxer = {
     //  .name              = "framehash",
     //  .long_name         = "Per-frame hash testing",
     //  .priv_data_size    = sizeof(struct HashContext),
@@ -147,7 +150,8 @@ static const AVClass framemd5_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_framemd5_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_framemd5_muxer = {
     //  .name              = "framemd5",
     //  .long_name         = "Per-frame MD5 testing",
     //  .priv_data_size    = sizeof(struct HashContext),

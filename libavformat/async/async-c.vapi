@@ -44,7 +44,8 @@ static const AVClass async_context_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_async_protocol = {
+[CCode (cname="ff_async_protocol", cheader="")]
+public class AsyncURLProtocol : URLProtocol {
     //  .name                = "async",
     [CCode (cname="", cheader="")]
     public override int url_open2 (
@@ -94,7 +95,8 @@ static const AVClass async_test_context_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_async_test_protocol = {
+[CCode (cname="ff_async_test_protocol", cheader="")]
+public class AsyncTestURLProtocol : URLProtocol {
     //  .name                = "async-test",
     [CCode (cname="", cheader="")]
     public override int url_open2 (

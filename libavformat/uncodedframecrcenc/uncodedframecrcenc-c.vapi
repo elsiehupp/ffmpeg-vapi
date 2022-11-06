@@ -18,7 +18,8 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-AVOutputFormat ff_uncodedframecrc_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_uncodedframecrc_muxer = {
     //  .name              = "uncodedframecrc",
     //  .long_name         = "uncoded framecrc testing",
     //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,

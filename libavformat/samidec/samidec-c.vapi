@@ -24,7 +24,8 @@
  * @see http://msdn.microsoft.com/en-us/library/ms971327.aspx
  */
 
-AVInputFormat ff_sami_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_sami_demuxer = {
     //  .name           = "sami",
     //  .long_name      = "SAMI subtitle format",
     //  .priv_data_size = sizeof(SAMIContext),

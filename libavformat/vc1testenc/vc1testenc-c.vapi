@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_vc1t_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_vc1t_muxer = {
     //  .name              = "vc1test",
     //  .long_name         = "VC-1 test bitstream",
     //  .extensions        = "rcv",

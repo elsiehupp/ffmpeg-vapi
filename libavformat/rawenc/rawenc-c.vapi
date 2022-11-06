@@ -21,7 +21,7 @@
  */
 
 #if CONFIG_AC3_MUXER
-AVOutputFormat ff_ac3_muxer = {
+public class OutputFormat : AVOutputFormat ff_ac3_muxer = {
     //  .name              = "ac3",
     //  .long_name         = "raw AC-3",
     //  .mime_type         = "audio/x-ac3",
@@ -44,7 +44,8 @@ AVOutputFormat ff_ac3_muxer = {
 
 #if CONFIG_ADX_MUXER
 
-AVOutputFormat ff_adx_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_adx_muxer = {
     //  .name              = "adx",
     //  .long_name         = "CRI ADX",
     //  .extensions        = "adx",
@@ -69,7 +70,7 @@ AVOutputFormat ff_adx_muxer = {
 #endif
 
 #if CONFIG_APTX_MUXER
-AVOutputFormat ff_aptx_muxer = {
+public class OutputFormat : AVOutputFormat ff_aptx_muxer = {
     //  .name              = "aptx",
     //  .long_name         = "raw aptX (Audio Processing Technology for Bluetooth)",
     //  .extensions        = "aptx",
@@ -90,7 +91,7 @@ AVOutputFormat ff_aptx_muxer = {
 #endif
 
 #if CONFIG_APTX_HD_MUXER
-AVOutputFormat ff_aptx_hd_muxer = {
+public class OutputFormat : AVOutputFormat ff_aptx_hd_muxer = {
     //  .name              = "aptx_hd",
     //  .long_name         = "raw aptX HD (Audio Processing Technology for Bluetooth)",
     //  .extensions        = "aptxhd",
@@ -111,7 +112,7 @@ AVOutputFormat ff_aptx_hd_muxer = {
 #endif
 
 #if CONFIG_AVS2_MUXER
-AVOutputFormat ff_avs2_muxer = {
+public class OutputFormat : AVOutputFormat ff_avs2_muxer = {
     //  .name              = "avs2",
     //  .long_name         = "raw AVS2-P2/IEEE1857.4 video",
     //  .extensions        = "avs,avs2",
@@ -132,7 +133,7 @@ AVOutputFormat ff_avs2_muxer = {
 #endif
 
 #if CONFIG_CAVSVIDEO_MUXER
-AVOutputFormat ff_cavsvideo_muxer = {
+public class OutputFormat : AVOutputFormat ff_cavsvideo_muxer = {
     //  .name              = "cavsvideo",
     //  .long_name         = "raw Chinese AVS (Audio Video Standard) video",
     //  .extensions        = "cavs",
@@ -153,7 +154,7 @@ AVOutputFormat ff_cavsvideo_muxer = {
 #endif
 
 #if CONFIG_CODEC2RAW_MUXER
-AVOutputFormat ff_codec2raw_muxer = {
+public class OutputFormat : AVOutputFormat ff_codec2raw_muxer = {
     //  .name              = "codec2raw",
     //  .long_name         = "raw codec2 muxer",
     //  .audio_codec       = AV_CODEC_ID_CODEC2,
@@ -174,7 +175,7 @@ AVOutputFormat ff_codec2raw_muxer = {
 
 
 #if CONFIG_DATA_MUXER
-AVOutputFormat ff_data_muxer = {
+public class OutputFormat : AVOutputFormat ff_data_muxer = {
     //  .name              = "data",
     //  .long_name         = "raw data",
     [CCode (cname="", cheader="")]
@@ -192,7 +193,7 @@ AVOutputFormat ff_data_muxer = {
 #endif
 
 #if CONFIG_DIRAC_MUXER
-AVOutputFormat ff_dirac_muxer = {
+public class OutputFormat : AVOutputFormat ff_dirac_muxer = {
     //  .name              = "dirac",
     //  .long_name         = "raw Dirac",
     //  .extensions        = "drc,vc2",
@@ -213,7 +214,7 @@ AVOutputFormat ff_dirac_muxer = {
 #endif
 
 #if CONFIG_DNXHD_MUXER
-AVOutputFormat ff_dnxhd_muxer = {
+public class OutputFormat : AVOutputFormat ff_dnxhd_muxer = {
     //  .name              = "dnxhd",
     //  .long_name         = "raw DNxHD (SMPTE VC-3)",
     //  .extensions        = "dnxhd,dnxhr",
@@ -234,7 +235,7 @@ AVOutputFormat ff_dnxhd_muxer = {
 #endif
 
 #if CONFIG_DTS_MUXER
-AVOutputFormat ff_dts_muxer = {
+public class OutputFormat : AVOutputFormat ff_dts_muxer = {
     //  .name              = "dts",
     //  .long_name         = "raw DTS",
     //  .mime_type         = "audio/x-dca",
@@ -256,7 +257,7 @@ AVOutputFormat ff_dts_muxer = {
 #endif
 
 #if CONFIG_EAC3_MUXER
-AVOutputFormat ff_eac3_muxer = {
+public class OutputFormat : AVOutputFormat ff_eac3_muxer = {
     //  .name              = "eac3",
     //  .long_name         = "raw E-AC-3",
     //  .mime_type         = "audio/x-eac3",
@@ -278,7 +279,7 @@ AVOutputFormat ff_eac3_muxer = {
 #endif
 
 #if CONFIG_G722_MUXER
-AVOutputFormat ff_g722_muxer = {
+public class OutputFormat : AVOutputFormat ff_g722_muxer = {
     //  .name              = "g722",
     //  .long_name         = "raw G.722",
     //  .mime_type         = "audio/G722",
@@ -300,7 +301,7 @@ AVOutputFormat ff_g722_muxer = {
 #endif
 
 #if CONFIG_G723_1_MUXER
-AVOutputFormat ff_g723_1_muxer = {
+public class OutputFormat : AVOutputFormat ff_g723_1_muxer = {
     //  .name              = "g723_1",
     //  .long_name         = "raw G.723.1",
     //  .mime_type         = "audio/g723",
@@ -322,7 +323,7 @@ AVOutputFormat ff_g723_1_muxer = {
 #endif
 
 #if CONFIG_G726_MUXER
-AVOutputFormat ff_g726_muxer = {
+public class OutputFormat : AVOutputFormat ff_g726_muxer = {
     //  .name              = "g726",
     //  .long_name         = "raw big-endian G.726 (\"left-justified\")",
     //  .audio_codec       = AV_CODEC_ID_ADPCM_G726,
@@ -342,7 +343,7 @@ AVOutputFormat ff_g726_muxer = {
 #endif
 
 #if CONFIG_G726LE_MUXER
-AVOutputFormat ff_g726le_muxer = {
+public class OutputFormat : AVOutputFormat ff_g726le_muxer = {
     //  .name              = "g726le",
     //  .long_name         = "raw little-endian G.726 (\"right-justified\")",
     //  .audio_codec       = AV_CODEC_ID_ADPCM_G726LE,
@@ -362,7 +363,7 @@ AVOutputFormat ff_g726le_muxer = {
 #endif
 
 #if CONFIG_GSM_MUXER
-AVOutputFormat ff_gsm_muxer = {
+public class OutputFormat : AVOutputFormat ff_gsm_muxer = {
     //  .name              = "gsm",
     //  .long_name         = "raw GSM",
     //  .mime_type         = "audio/x-gsm",
@@ -384,7 +385,7 @@ AVOutputFormat ff_gsm_muxer = {
 #endif
 
 #if CONFIG_H261_MUXER
-AVOutputFormat ff_h261_muxer = {
+public class OutputFormat : AVOutputFormat ff_h261_muxer = {
     //  .name              = "h261",
     //  .long_name         = "raw H.261",
     //  .mime_type         = "video/x-h261",
@@ -406,7 +407,7 @@ AVOutputFormat ff_h261_muxer = {
 #endif
 
 #if CONFIG_H263_MUXER
-AVOutputFormat ff_h263_muxer = {
+public class OutputFormat : AVOutputFormat ff_h263_muxer = {
     //  .name              = "h263",
     //  .long_name         = "raw H.263",
     //  .mime_type         = "video/x-h263",
@@ -437,7 +438,8 @@ static int h264_check_bitstream(struct AVFormatContext *s, const AVPacket *pkt)
     return 1;
 }
 
-AVOutputFormat ff_h264_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_h264_muxer = {
     //  .name              = "h264",
     //  .long_name         = "raw H.264 video",
     //  .extensions        = "h264,264",
@@ -472,7 +474,8 @@ static int hevc_check_bitstream(struct AVFormatContext *s, const AVPacket *pkt)
     return 1;
 }
 
-AVOutputFormat ff_hevc_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_hevc_muxer = {
     //  .name              = "hevc",
     //  .long_name         = "raw HEVC video",
     //  .extensions        = "hevc,h265,265",
@@ -498,7 +501,7 @@ AVOutputFormat ff_hevc_muxer = {
 #endif
 
 #if CONFIG_M4V_MUXER
-AVOutputFormat ff_m4v_muxer = {
+public class OutputFormat : AVOutputFormat ff_m4v_muxer = {
     //  .name              = "m4v",
     //  .long_name         = "raw MPEG-4 video",
     //  .extensions        = "m4v",
@@ -519,7 +522,7 @@ AVOutputFormat ff_m4v_muxer = {
 #endif
 
 #if CONFIG_MJPEG_MUXER
-AVOutputFormat ff_mjpeg_muxer = {
+public class OutputFormat : AVOutputFormat ff_mjpeg_muxer = {
     //  .name              = "mjpeg",
     //  .long_name         = "raw MJPEG video",
     //  .mime_type         = "video/x-mjpeg",
@@ -541,7 +544,7 @@ AVOutputFormat ff_mjpeg_muxer = {
 #endif
 
 #if CONFIG_SINGLEJPEG_MUXER
-AVOutputFormat ff_singlejpeg_muxer = {
+public class OutputFormat : AVOutputFormat ff_singlejpeg_muxer = {
     //  .name              = "singlejpeg",
     //  .long_name         = "JPEG single image",
     //  .mime_type         = "image/jpeg",
@@ -562,7 +565,7 @@ AVOutputFormat ff_singlejpeg_muxer = {
 #endif
 
 #if CONFIG_MLP_MUXER
-AVOutputFormat ff_mlp_muxer = {
+public class OutputFormat : AVOutputFormat ff_mlp_muxer = {
     //  .name              = "mlp",
     //  .long_name         = "raw MLP",
     //  .extensions        = "mlp",
@@ -583,7 +586,7 @@ AVOutputFormat ff_mlp_muxer = {
 #endif
 
 #if CONFIG_MP2_MUXER
-AVOutputFormat ff_mp2_muxer = {
+public class OutputFormat : AVOutputFormat ff_mp2_muxer = {
     //  .name              = "mp2",
     //  .long_name         = "MP2 (MPEG audio layer 2)",
     //  .mime_type         = "audio/mpeg",
@@ -601,7 +604,7 @@ AVOutputFormat ff_mp2_muxer = {
 #endif
 
 #if CONFIG_MPEG1VIDEO_MUXER
-AVOutputFormat ff_mpeg1video_muxer = {
+public class OutputFormat : AVOutputFormat ff_mpeg1video_muxer = {
     //  .name              = "mpeg1video",
     //  .long_name         = "raw MPEG-1 video",
     //  .mime_type         = "video/mpeg",
@@ -623,7 +626,7 @@ AVOutputFormat ff_mpeg1video_muxer = {
 #endif
 
 #if CONFIG_MPEG2VIDEO_MUXER
-AVOutputFormat ff_mpeg2video_muxer = {
+public class OutputFormat : AVOutputFormat ff_mpeg2video_muxer = {
     //  .name              = "mpeg2video",
     //  .long_name         = "raw MPEG-2 video",
     //  .extensions        = "m2v",
@@ -644,7 +647,7 @@ AVOutputFormat ff_mpeg2video_muxer = {
 #endif
 
 #if CONFIG_RAWVIDEO_MUXER
-AVOutputFormat ff_rawvideo_muxer = {
+public class OutputFormat : AVOutputFormat ff_rawvideo_muxer = {
     //  .name              = "rawvideo",
     //  .long_name         = "raw video",
     //  .extensions        = "yuv,rgb",
@@ -661,7 +664,7 @@ AVOutputFormat ff_rawvideo_muxer = {
 #endif
 
 #if CONFIG_SBC_MUXER
-AVOutputFormat ff_sbc_muxer = {
+public class OutputFormat : AVOutputFormat ff_sbc_muxer = {
     //  .name              = "sbc",
     //  .long_name         = "raw SBC",
     //  .mime_type         = "audio/x-sbc",
@@ -682,7 +685,7 @@ AVOutputFormat ff_sbc_muxer = {
 #endif
 
 #if CONFIG_TRUEHD_MUXER
-AVOutputFormat ff_truehd_muxer = {
+public class OutputFormat : AVOutputFormat ff_truehd_muxer = {
     //  .name              = "truehd",
     //  .long_name         = "raw TrueHD",
     //  .extensions        = "thd",
@@ -703,7 +706,7 @@ AVOutputFormat ff_truehd_muxer = {
 #endif
 
 #if CONFIG_VC1_MUXER
-AVOutputFormat ff_vc1_muxer = {
+public class OutputFormat : AVOutputFormat ff_vc1_muxer = {
     //  .name              = "vc1",
     //  .long_name         = "raw VC-1 video",
     //  .extensions        = "vc1",

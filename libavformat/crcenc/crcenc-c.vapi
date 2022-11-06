@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_crc_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_crc_muxer = {
     //  .name              = "crc",
     //  .long_name         = "CRC testing",
     //  .priv_data_size    = sizeof(CRCState),

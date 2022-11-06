@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_ircam_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_ircam_muxer = {
     //  .name           = "ircam",
     //  .extensions     = "sf,ircam",
     //  .long_name      = "Berkeley/IRCAM/CARL Sound Format",

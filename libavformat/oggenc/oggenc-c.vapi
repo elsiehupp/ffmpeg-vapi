@@ -44,7 +44,7 @@ static const AVClass flavor ## _muxer_class = {\
 
 #if CONFIG_OGG_MUXER
 OGG_CLASS(ogg, Ogg)
-AVOutputFormat ff_ogg_muxer = {
+public class OutputFormat : AVOutputFormat ff_ogg_muxer = {
     //  .name              = "ogg",
     //  .long_name         = "Ogg",
     //  .mime_type         = "application/ogg",
@@ -92,7 +92,7 @@ AVOutputFormat ff_ogg_muxer = {
 
 #if CONFIG_OGA_MUXER
 OGG_CLASS(oga, Ogg audio)
-AVOutputFormat ff_oga_muxer = {
+public class OutputFormat : AVOutputFormat ff_oga_muxer = {
     //  .name              = "oga",
     //  .long_name         = "Ogg Audio",
     //  .mime_type         = "audio/ogg",
@@ -128,7 +128,7 @@ AVOutputFormat ff_oga_muxer = {
 
 #if CONFIG_OGV_MUXER
 OGG_CLASS(ogv, Ogg video)
-AVOutputFormat ff_ogv_muxer = {
+public class OutputFormat : AVOutputFormat ff_ogv_muxer = {
     //  .name              = "ogv",
     //  .long_name         = "Ogg Video",
     //  .mime_type         = "video/ogg",
@@ -167,7 +167,7 @@ AVOutputFormat ff_ogv_muxer = {
 
 #if CONFIG_SPX_MUXER
 OGG_CLASS(spx, Ogg Speex)
-AVOutputFormat ff_spx_muxer = {
+public class OutputFormat : AVOutputFormat ff_spx_muxer = {
     //  .name              = "spx",
     //  .long_name         = "Ogg Speex",
     //  .mime_type         = "audio/ogg",
@@ -203,7 +203,7 @@ AVOutputFormat ff_spx_muxer = {
 
 #if CONFIG_OPUS_MUXER
 OGG_CLASS(opus, Ogg Opus)
-AVOutputFormat ff_opus_muxer = {
+public class OutputFormat : AVOutputFormat ff_opus_muxer = {
     //  .name              = "opus",
     //  .long_name         = "Ogg Opus",
     //  .mime_type         = "audio/ogg",

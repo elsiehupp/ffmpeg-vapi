@@ -36,7 +36,8 @@ static const AVClass aiff_muxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_aiff_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_aiff_muxer = {
     //  .name              = "aiff",
     //  .long_name         = "Audio IFF",
     //  .mime_type         = "audio/aiff",

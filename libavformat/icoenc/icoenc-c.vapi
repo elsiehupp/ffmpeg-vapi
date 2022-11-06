@@ -24,7 +24,8 @@
  * Microsoft Windows ICO muxer
  */
 
-AVOutputFormat ff_ico_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_ico_muxer = {
     //  .name           = "ico",
     //  .long_name      = "Microsoft Windows ICO",
     //  .priv_data_size = sizeof(IcoMuxContext),

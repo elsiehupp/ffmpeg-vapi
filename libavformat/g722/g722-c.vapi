@@ -20,7 +20,7 @@
  */
 
 FF_RAW_DEMUXER_CLASS(g722)
-AVInputFormat ff_g722_demuxer = {
+public class InputFormat : AVInputFormat ff_g722_demuxer = {
     //  .name           = "g722",
     //  .long_name      = "raw G.722",
     [CCode (cname="", cheader="")]

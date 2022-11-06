@@ -27,7 +27,8 @@
  *   http://www.pcisys.net/~melanson/codecs/
  */
 
-AVInputFormat ff_vmd_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_vmd_demuxer = {
     //  .name           = "vmd",
     //  .long_name      = "Sierra VMD",
     //  .priv_data_size = sizeof(VmdDemuxContext),

@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_scc_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_scc_muxer = {
     //  .name           = "scc",
     //  .long_name      = "Scenarist Closed Captions",
     //  .extensions     = "scc",

@@ -35,7 +35,8 @@ static const AVClass tee_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_tee_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_tee_muxer = {
     //  .name              = "tee",
     //  .long_name         = "Multiple muxer tee",
     //  .priv_data_size    = sizeof(TeeContext),

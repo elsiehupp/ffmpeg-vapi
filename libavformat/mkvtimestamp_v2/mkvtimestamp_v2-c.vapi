@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_mkvtimestamp_v2_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_mkvtimestamp_v2_muxer = {
     //  .name         = "mkvtimestamp_v2",
     //  .long_name    = "extract pts as timecode v2 format, as defined by mkvtoolnix",
     //  .audio_codec  = AV_CODEC_ID_NONE,

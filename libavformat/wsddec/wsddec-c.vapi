@@ -162,7 +162,7 @@ static int wsd_read_header(AVFormatContext *s)
 }
 
 FF_RAW_DEMUXER_CLASS(wsd)
-AVInputFormat ff_wsd_demuxer = {
+public class InputFormat : AVInputFormat ff_wsd_demuxer = {
     //  .name         = "wsd",
     //  .long_name    = "Wideband Single-bit Data (WSD)",
     [CCode (cname="", cheader="")]

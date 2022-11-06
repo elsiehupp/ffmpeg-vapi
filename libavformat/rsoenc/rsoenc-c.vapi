@@ -20,7 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_rso_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_rso_muxer = {
     //  .name           =   "rso",
     //  .long_name      =   "Lego Mindstorms RSO",
     //  .extensions     =   "rso",

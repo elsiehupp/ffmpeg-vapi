@@ -31,7 +31,8 @@
  * special FLIs from the PC games "Magic Carpet" and "X-COM: Terror from the Deep".
  */
 
-AVInputFormat ff_flic_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_flic_demuxer = {
     //  .name           = "flic",
     //  .long_name      = "FLI/FLC/FLX animation",
     //  .priv_data_size = sizeof(FlicDemuxContext),

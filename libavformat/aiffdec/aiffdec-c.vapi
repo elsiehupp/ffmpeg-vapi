@@ -19,29 +19,30 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_aiff_demuxer = {
+[CCode (cname="ff_aiff_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_aiff_demuxer = {
     //  .name           = "aiff",
     //  .long_name      = "Audio IFF",
     //  .priv_data_size = sizeof(AIFFInputContext),
-    [CCode (cname="", cheader="")]
+    [CCode (cname="aiff_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = aiff_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="aiff_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = aiff_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="aiff_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = aiff_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_pcm_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = ff_pcm_read_seek,
+    );
     //  .codec_tag      = (const AVCodecTag* const []){ ff_codec_aiff_tags, 0 },
 };

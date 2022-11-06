@@ -42,7 +42,8 @@ static const AVClass tcp_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_tcp_protocol = {
+[CCode (cname="ff_tcp_protocol", cheader="")]
+public class TCPURLProtocol : URLProtocol {
     //  .name                = "tcp",
     [CCode (cname="", cheader="")]
     public override int url_open (

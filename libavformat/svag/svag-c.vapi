@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_svag_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_svag_demuxer = {
     //  .name           = "svag",
     //  .long_name      = "Konami PS2 SVAG",
     [CCode (cname="", cheader="")]

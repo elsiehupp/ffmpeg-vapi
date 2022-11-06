@@ -27,7 +27,8 @@
  * http://www.goice.co.jp/member/mo/formats/au.html
  */
 
-AVOutputFormat ff_au_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_au_muxer = {
     //  .name          = "au",
     //  .long_name     = "Sun AU",
     //  .mime_type     = "audio/basic",

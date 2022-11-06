@@ -102,7 +102,8 @@ static const AVClass mxf_opatom_muxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_mxf_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_mxf_muxer = {
     //  .name              = "mxf",
     //  .long_name         = "MXF (Material eXchange Format)",
     //  .mime_type         = "application/mxf",
@@ -135,7 +136,8 @@ AVOutputFormat ff_mxf_muxer = {
     //  .priv_class        = &mxf_muxer_class,
 };
 
-AVOutputFormat ff_mxf_d10_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_mxf_d10_muxer = {
     //  .name              = "mxf_d10",
     //  .long_name         = "MXF (Material eXchange Format) D-10 Mapping",
     //  .mime_type         = "application/mxf",
@@ -167,7 +169,8 @@ AVOutputFormat ff_mxf_d10_muxer = {
     //  .priv_class        = &mxf_d10_muxer_class,
 };
 
-AVOutputFormat ff_mxf_opatom_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_mxf_opatom_muxer = {
     //  .name              = "mxf_opatom",
     //  .long_name         = "MXF (Material eXchange Format) Operational Pattern Atom",
     //  .mime_type         = "application/mxf",

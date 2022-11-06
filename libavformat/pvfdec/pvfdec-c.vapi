@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_pvf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_pvf_demuxer = {
     //  .name           = "pvf",
     //  .long_name      = "PVF (Portable Voice Format)",
     [CCode (cname="", cheader="")]

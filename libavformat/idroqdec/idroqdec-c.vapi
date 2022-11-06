@@ -27,7 +27,8 @@
  *   http://www.csse.monash.edu.au/~timf/
  */
 
-AVInputFormat ff_roq_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_roq_demuxer = {
     //  .name           = "roq",
     //  .long_name      = "id RoQ",
     //  .priv_data_size = sizeof(RoqDemuxContext),

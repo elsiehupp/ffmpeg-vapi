@@ -31,7 +31,8 @@
  *  http://wiki.multimedia.cx/index.php?title=American_Laser_Games_MM
  */
 
-AVInputFormat ff_mm_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mm_demuxer = {
     //  .name           = "mm",
     //  .long_name      = "American Laser Games MM",
     //  .priv_data_size = sizeof(MmDemuxContext),

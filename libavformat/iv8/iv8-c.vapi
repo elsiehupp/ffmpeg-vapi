@@ -18,7 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_iv8_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_iv8_demuxer = {
     //  .name           = "iv8",
     //  .long_name      = "IndigoVision 8000 video",
     [CCode (cname="", cheader="")]

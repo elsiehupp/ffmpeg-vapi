@@ -25,7 +25,8 @@
  * by Robin Kay (komadori at gekkou.co.uk)
  */
 
-AVInputFormat ff_ea_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ea_demuxer = {
     //  .name           = "ea",
     //  .long_name      = "Electronic Arts Multimedia",
     //  .priv_data_size = sizeof(EaDemuxContext),

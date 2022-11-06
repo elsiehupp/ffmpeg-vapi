@@ -34,7 +34,8 @@ static const AVClass mpjpeg_demuxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_mpjpeg_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mpjpeg_demuxer = {
     //  .name              = "mpjpeg",
     //  .long_name         = "MIME multipart JPEG",
     //  .mime_type         = "multipart/x-mixed-replace",

@@ -36,7 +36,8 @@ static const AVClass bluray_context_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_bluray_protocol = {
+[CCode (cname="ff_bluray_protocol", cheader="")]
+public class BluRayURLProtocol : URLProtocol {
     //  .name            = "bluray",
     [CCode (cname="", cheader="")]
     public override int url_close (

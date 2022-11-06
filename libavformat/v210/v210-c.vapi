@@ -35,7 +35,8 @@ static const AVClass v210_demuxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_v210_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_v210_demuxer = {
     //  .name           = "v210",
     //  .long_name      = "Uncompressed 4:2:2 10-bit",
     //  .priv_data_size = sizeof(V210DemuxerContext),
@@ -63,7 +64,8 @@ static const AVClass v210x_demuxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_v210x_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_v210x_demuxer = {
     //  .name           = "v210x",
     //  .long_name      = "Uncompressed 4:2:2 10-bit",
     //  .priv_data_size = sizeof(V210DemuxerContext),

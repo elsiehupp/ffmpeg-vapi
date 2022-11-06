@@ -20,7 +20,7 @@
  */
 
 #if CONFIG_MMF_DEMUXER
-AVInputFormat ff_mmf_demuxer = {
+public class InputFormat : AVInputFormat ff_mmf_demuxer = {
     //  .name           = "mmf",
     //  .long_name      = "Yamaha SMAF",
     //  .priv_data_size = sizeof(MMFContext),
@@ -42,7 +42,7 @@ AVInputFormat ff_mmf_demuxer = {
 #endif
 
 #if CONFIG_MMF_MUXER
-AVOutputFormat ff_mmf_muxer = {
+public class OutputFormat : AVOutputFormat ff_mmf_muxer = {
     //  .name           = "mmf",
     //  .long_name      = "Yamaha SMAF",
     //  .mime_type      = "application/vnd.smaf",

@@ -27,7 +27,8 @@
  * @see http://www.svatopluk.com/andux/docs/dfvid.html
  */
 
-AVInputFormat ff_bethsoftvid_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_bethsoftvid_demuxer = {
     //  .name           = "bethsoftvid",
     //  .long_name      = "Bethesda Softworks VID",
     //  .priv_data_size = sizeof(BVID_DemuxContext),

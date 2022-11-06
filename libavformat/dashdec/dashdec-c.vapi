@@ -37,7 +37,8 @@ static const AVClass dash_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_dash_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_dash_demuxer = {
     //  .name           = "dash",
     //  .long_name      = "Dynamic Adaptive Streaming over HTTP",
     //  .priv_class     = &dash_class,

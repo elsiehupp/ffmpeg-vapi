@@ -24,7 +24,8 @@
  * @see http://service.real.com/help/library/guides/ProductionGuide/prodguide/htmfiles/realtext.htm
  */
 
-AVInputFormat ff_realtext_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_realtext_demuxer = {
     //  .name           = "realtext",
     //  .long_name      = "RealText subtitle format",
     //  .priv_data_size = sizeof(RealTextContext),

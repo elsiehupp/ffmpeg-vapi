@@ -40,7 +40,8 @@ static const AVClass demuxer_class = {
     //  .category   = AV_CLASS_CATEGORY_DEMUXER,
 };
 
-AVInputFormat ff_gif_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_gif_demuxer = {
     //  .name           = "gif",
     //  .long_name      = "CompuServe Graphics Interchange Format (GIF)",
     //  .priv_data_size = sizeof(GIFDemuxContext),

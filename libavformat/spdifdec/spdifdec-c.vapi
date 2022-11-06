@@ -25,7 +25,8 @@
  * @author Anssi Hannula
  */
 
-AVInputFormat ff_spdif_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_spdif_demuxer = {
     //  .name           = "spdif",
     //  .long_name      = "IEC 61937 (compressed data in S/PDIF)",
     [CCode (cname="", cheader="")]

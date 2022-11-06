@@ -24,7 +24,8 @@
  * Delphine Software International CIN file demuxer
  */
 
-AVInputFormat ff_dsicin_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_dsicin_demuxer = {
     //  .name           = "dsicin",
     //  .long_name      = "Delphine Software International CIN",
     //  .priv_data_size = sizeof(CinDemuxContext),

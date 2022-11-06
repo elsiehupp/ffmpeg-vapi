@@ -28,7 +28,8 @@
     DEALINGS IN THE SOFTWARE.
  */
 
-AVInputFormat ff_ogg_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ogg_demuxer = {
     //  .name           = "ogg",
     //  .long_name      = "Ogg",
     //  .priv_data_size = sizeof(struct ogg),

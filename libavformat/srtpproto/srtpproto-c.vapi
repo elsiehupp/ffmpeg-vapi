@@ -36,7 +36,8 @@ static const AVClass srtp_context_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_srtp_protocol = {
+[CCode (cname="ff_srtp_protocol", cheader="")]
+public class SRTPURLProtocol : URLProtocol {
     //  .name                      = "srtp",
     [CCode (cname="", cheader="")]
     public override int url_open (

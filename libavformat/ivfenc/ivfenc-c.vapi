@@ -25,7 +25,8 @@ static const AVCodecTag codec_ivf_tags[] = {
     { AV_CODEC_ID_NONE, 0 }
 };
 
-AVOutputFormat ff_ivf_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_ivf_muxer = {
     //  .priv_data_size = sizeof(IVFEncContext),
     //  .name         = "ivf",
     //  .long_name    = "On2 IVF",

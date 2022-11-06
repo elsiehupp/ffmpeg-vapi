@@ -32,7 +32,8 @@ static const AVClass demuxer_class = {
     //  .category   = AV_CLASS_CATEGORY_DEMUXER,
 };
 
-AVInputFormat ff_avi_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_avi_demuxer = {
     //  .name           = "avi",
     //  .long_name      = "AVI (Audio Video Interleaved)",
     //  .priv_data_size = sizeof(AVIContext),

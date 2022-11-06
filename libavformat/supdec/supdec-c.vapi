@@ -16,7 +16,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_sup_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_sup_demuxer = {
     //  .name           = "sup",
     //  .long_name      = "raw HDMV Presentation Graphic Stream subtitles",
     //  .extensions     = "sup",

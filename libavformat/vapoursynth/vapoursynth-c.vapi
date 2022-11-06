@@ -30,7 +30,8 @@ static const AVClass class_vs = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_vapoursynth_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_vapoursynth_demuxer = {
     //  .name           = "vapoursynth",
     //  .long_name      = "VapourSynth demuxer",
     //  .priv_data_size = sizeof(VSContext),

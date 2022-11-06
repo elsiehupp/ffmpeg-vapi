@@ -39,7 +39,8 @@ static const AVClass concat_class = {
 };
 
 
-AVInputFormat ff_concat_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_concat_demuxer = {
     //  .name           = "concat",
     //  .long_name      = "Virtual concatenation script",
     //  .priv_data_size = sizeof(ConcatContext),

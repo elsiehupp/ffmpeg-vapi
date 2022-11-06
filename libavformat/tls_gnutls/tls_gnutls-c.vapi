@@ -31,7 +31,8 @@ static const AVClass tls_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_tls_protocol = {
+[CCode (cname="ff_tls_protocol", cheader="")]
+public class TLSURLProtocol : URLProtocol {
     //  .name           = "tls",
     [CCode (cname="", cheader="")]
     public override int url_open2 (

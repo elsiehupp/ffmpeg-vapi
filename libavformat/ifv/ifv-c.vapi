@@ -20,7 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_ifv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ifv_demuxer = {
     //  .name           = "ifv",
     //  .long_name      = "IFV CCTV DVR",
     //  .priv_data_size = sizeof(IFVContext),

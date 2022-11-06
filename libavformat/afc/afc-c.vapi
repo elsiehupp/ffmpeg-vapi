@@ -19,19 +19,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_afc_demuxer = {
+[CCode (cname="ff_afc_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_afc_demuxer = {
     //  .name           = "afc",
     //  .long_name      = "AFC",
     //  .priv_data_size = sizeof(AFCDemuxContext),
-    [CCode (cname="", cheader="")]
+    [CCode (cname="afc_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = afc_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="afc_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = afc_read_packet,
+    );
     //  .extensions     = "afc",
     //  .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK,
 };

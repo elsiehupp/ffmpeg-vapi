@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_microdvd_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_microdvd_muxer = {
     //  .name           = "microdvd",
     //  .long_name      = "MicroDVD subtitle format",
     //  .mime_type      = "text/x-microdvd",

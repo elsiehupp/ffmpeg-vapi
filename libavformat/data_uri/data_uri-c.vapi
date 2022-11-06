@@ -18,7 +18,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-const URLProtocol ff_data_protocol = {
+[CCode (cname="ff_data_protocol", cheader="")]
+public class DataURLProtocol : URLProtocol {
     //  .name           = "data",
     [CCode (cname="", cheader="")]
     public override int url_open (

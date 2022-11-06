@@ -50,7 +50,8 @@ static const AVClass rtp_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_rtp_protocol = {
+[CCode (cname="ff_rtp_protocol", cheader="")]
+public class RTPURLProtocol : URLProtocol {
     //  .name                      = "rtp",
     [CCode (cname="", cheader="")]
     public override int url_open (

@@ -20,7 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_dhav_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_dhav_demuxer = {
     //  .name           = "dhav",
     //  .long_name      = "Video DAV",
     //  .priv_data_size = sizeof(DHAVContext),

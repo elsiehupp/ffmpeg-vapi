@@ -29,7 +29,8 @@ static const AVClass modplug_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_libmodplug_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_libmodplug_demuxer = {
     //  .name           = "libmodplug",
     //  .long_name      = "ModPlug demuxer",
     //  .priv_data_size = sizeof(ModPlugContext),

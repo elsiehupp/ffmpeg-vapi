@@ -26,7 +26,8 @@ static const AVClass rtsp_demuxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_rtsp_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_rtsp_demuxer = {
     //  .name           = "rtsp",
     //  .long_name      = "RTSP input",
     //  .priv_data_size = sizeof(RTSPState),

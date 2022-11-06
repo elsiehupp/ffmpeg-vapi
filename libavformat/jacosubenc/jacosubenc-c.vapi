@@ -16,7 +16,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_jacosub_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_jacosub_muxer = {
     //  .name           = "jacosub",
     //  .long_name      = "JACOsub subtitle format",
     //  .mime_type      = "text/x-jacosub",

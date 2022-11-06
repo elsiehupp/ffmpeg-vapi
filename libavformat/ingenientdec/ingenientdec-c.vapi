@@ -21,7 +21,8 @@
 
 FF_RAWVIDEO_DEMUXER_CLASS(ingenient)
 
-AVInputFormat ff_ingenient_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ingenient_demuxer = {
     //  .name           = "ingenient",
     //  .long_name      = "raw Ingenient MJPEG",
     //  .priv_data_size = sizeof(FFRawVideoDemuxerContext),

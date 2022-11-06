@@ -27,7 +27,8 @@
  *   http://wiki.multimedia.cx/index.php?title=Maxis_XA
  */
 
-AVInputFormat ff_xa_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_xa_demuxer = {
     //  .name           = "xa",
     //  .long_name      = "Maxis XA",
     //  .priv_data_size = sizeof(MaxisXADemuxContext),

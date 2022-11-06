@@ -39,7 +39,8 @@ static const AVClass ffrtmphttp_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_ffrtmphttp_protocol = {
+[CCode (cname="ff_ffrtmphttp_protocol", cheader="")]
+public class RTMPHTTPURLProtocol : URLProtocol {
     //  .name           = "ffrtmphttp",
     [CCode (cname="", cheader="")]
     public override int url_open (

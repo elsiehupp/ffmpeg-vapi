@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_sap_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_sap_demuxer = {
     //  .name           = "sap",
     //  .long_name      = "SAP input",
     //  .priv_data_size = sizeof(struct SAPState),

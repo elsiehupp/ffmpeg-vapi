@@ -24,7 +24,8 @@
  * Silicon Graphics Movie demuxer
  */
 
-AVInputFormat ff_mv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mv_demuxer = {
     //  .name           = "mv",
     //  .long_name      = "Silicon Graphics Movie",
     //  .priv_data_size = sizeof(MvContext),

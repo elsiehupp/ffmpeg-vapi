@@ -23,7 +23,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_ty_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ty_demuxer = {
     //  .name           = "ty",
     //  .long_name      = "TiVo TY Stream",
     //  .priv_data_size = sizeof(TYDemuxContext),

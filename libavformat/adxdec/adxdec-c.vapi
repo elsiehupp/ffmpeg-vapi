@@ -23,23 +23,24 @@
  * CRI ADX demuxer
  */
 
-AVInputFormat ff_adx_demuxer = {
+[CCode (cname="ff_adx_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_adx_demuxer = {
     //  .name           = "adx",
     //  .long_name      = "CRI ADX",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="adx_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = adx_probe,
+    );
     //  .priv_data_size = sizeof(ADXDemuxerContext),
-    [CCode (cname="", cheader="")]
+    [CCode (cname="adx_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = adx_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="adx_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = adx_read_packet,
+    );
     //  .extensions     = "adx",
     //  .raw_codec_id   = AV_CODEC_ID_ADPCM_ADX,
     //  .flags          = AVFMT_GENERIC_INDEX,

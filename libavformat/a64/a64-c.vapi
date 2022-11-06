@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_a64_muxer = {
+[CCode (cname="ff_a64_muxer", cheader="")]
+public class OutputFormat : AVOutputFormat ff_a64_muxer = {
     //  .name           = "a64",
     //  .long_name      = "a64 - video for Commodore 64",
     //  .extensions     = "a64, A64",

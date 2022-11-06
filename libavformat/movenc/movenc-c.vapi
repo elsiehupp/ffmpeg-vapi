@@ -151,7 +151,7 @@ static const AVCodecTag codec_f4v_tags[] = {
 
 #if CONFIG_MOV_MUXER
 MOV_CLASS(mov)
-AVOutputFormat ff_mov_muxer = {
+public class OutputFormat : AVOutputFormat ff_mov_muxer = {
     //  .name              = "mov",
     //  .long_name         = "QuickTime / MOV",
     //  .extensions        = "mov",
@@ -195,7 +195,7 @@ AVOutputFormat ff_mov_muxer = {
 #endif
 #if CONFIG_TGP_MUXER
 MOV_CLASS(tgp)
-AVOutputFormat ff_tgp_muxer = {
+public class OutputFormat : AVOutputFormat ff_tgp_muxer = {
     //  .name              = "3gp",
     //  .long_name         = "3GP (3GPP file format)",
     //  .extensions        = "3gp",
@@ -236,7 +236,7 @@ AVOutputFormat ff_tgp_muxer = {
 #endif
 #if CONFIG_MP4_MUXER
 MOV_CLASS(mp4)
-AVOutputFormat ff_mp4_muxer = {
+public class OutputFormat : AVOutputFormat ff_mp4_muxer = {
     //  .name              = "mp4",
     //  .long_name         = "MP4 (MPEG-4 Part 14)",
     //  .mime_type         = "video/mp4",
@@ -279,7 +279,7 @@ AVOutputFormat ff_mp4_muxer = {
 #endif
 #if CONFIG_PSP_MUXER
 MOV_CLASS(psp)
-AVOutputFormat ff_psp_muxer = {
+public class OutputFormat : AVOutputFormat ff_psp_muxer = {
     //  .name              = "psp",
     //  .long_name         = "PSP MP4 (MPEG-4 Part 14)",
     //  .extensions        = "mp4,psp",
@@ -321,7 +321,7 @@ AVOutputFormat ff_psp_muxer = {
 #endif
 #if CONFIG_TG2_MUXER
 MOV_CLASS(tg2)
-AVOutputFormat ff_tg2_muxer = {
+public class OutputFormat : AVOutputFormat ff_tg2_muxer = {
     //  .name              = "3g2",
     //  .long_name         = "3GP2 (3GPP2 file format)",
     //  .extensions        = "3g2",
@@ -362,7 +362,7 @@ AVOutputFormat ff_tg2_muxer = {
 #endif
 #if CONFIG_IPOD_MUXER
 MOV_CLASS(ipod)
-AVOutputFormat ff_ipod_muxer = {
+public class OutputFormat : AVOutputFormat ff_ipod_muxer = {
     //  .name              = "ipod",
     //  .long_name         = "iPod H.264 MP4 (MPEG-4 Part 14)",
     //  .mime_type         = "video/mp4",
@@ -404,7 +404,7 @@ AVOutputFormat ff_ipod_muxer = {
 #endif
 #if CONFIG_ISMV_MUXER
 MOV_CLASS(ismv)
-AVOutputFormat ff_ismv_muxer = {
+public class OutputFormat : AVOutputFormat ff_ismv_muxer = {
     //  .name              = "ismv",
     //  .long_name         = "ISMV/ISMA (Smooth Streaming)",
     //  .mime_type         = "video/mp4",
@@ -447,7 +447,7 @@ AVOutputFormat ff_ismv_muxer = {
 #endif
 #if CONFIG_F4V_MUXER
 MOV_CLASS(f4v)
-AVOutputFormat ff_f4v_muxer = {
+public class OutputFormat : AVOutputFormat ff_f4v_muxer = {
     //  .name              = "f4v",
     //  .long_name         = "F4V Adobe Flash Video",
     //  .mime_type         = "application/f4v",

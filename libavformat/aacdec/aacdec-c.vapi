@@ -20,22 +20,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_aac_demuxer = {
+[CCode (cname="ff_aac_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_aac_demuxer = {
     //  .name         = "aac",
     //  .long_name    = "raw ADTS AAC (Advanced Audio Coding)",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="adts_aac_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );   = adts_aac_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="adts_aac_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );  = adts_aac_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="adts_aac_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );  = adts_aac_read_packet,
+    );
     //  .flags        = AVFMT_GENERIC_INDEX,
     //  .extensions   = "aac",
     //  .mime_type    = "audio/aac,audio/aacp,audio/x-aac",

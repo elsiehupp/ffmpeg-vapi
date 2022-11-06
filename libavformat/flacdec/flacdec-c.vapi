@@ -20,7 +20,7 @@
  */
 
 FF_RAW_DEMUXER_CLASS(flac)
-AVInputFormat ff_flac_demuxer = {
+public class InputFormat : AVInputFormat ff_flac_demuxer = {
     //  .name           = "flac",
     //  .long_name      = "raw FLAC",
     [CCode (cname="", cheader="")]

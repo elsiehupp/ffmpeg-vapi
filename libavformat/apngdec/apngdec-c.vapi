@@ -44,7 +44,8 @@ static const AVClass demuxer_class = {
     //  .category   = AV_CLASS_CATEGORY_DEMUXER,
 };
 
-AVInputFormat ff_apng_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_apng_demuxer = {
     //  .name           = "apng",
     //  .long_name      = "Animated Portable Network Graphics",
     //  .priv_data_size = sizeof(APNGDemuxContext),

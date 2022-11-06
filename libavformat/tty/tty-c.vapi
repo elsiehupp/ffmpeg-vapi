@@ -40,7 +40,8 @@ static const AVClass tty_demuxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_tty_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_tty_demuxer = {
     //  .name           = "tty",
     //  .long_name      = "Tele-typewriter",
     //  .priv_data_size = sizeof(TtyDemuxContext),

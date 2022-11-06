@@ -28,7 +28,8 @@ static const AVClass class_gme = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_libgme_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_libgme_demuxer = {
     //  .name           = "libgme",
     //  .long_name      = "Game Music Emu demuxer",
     //  .priv_data_size = sizeof(GMEContext),

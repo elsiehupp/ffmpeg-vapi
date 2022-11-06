@@ -27,7 +27,8 @@
  *   http://www.pcisys.net/~melanson/codecs/
  */
 
-AVInputFormat ff_wc3_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_wc3_demuxer = {
     //  .name           = "wc3movie",
     //  .long_name      = "Wing Commander III movie",
     //  .priv_data_size = sizeof(Wc3DemuxContext),

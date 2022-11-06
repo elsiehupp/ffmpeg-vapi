@@ -28,7 +28,8 @@
  * http://wiki.multimedia.cx/index.php?title=IFF
  */
 
-AVInputFormat ff_iff_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_iff_demuxer = {
     //  .name           = "iff",
     //  .long_name      = "IFF (Interchange File Format)",
     //  .priv_data_size = sizeof(IffDemuxContext),

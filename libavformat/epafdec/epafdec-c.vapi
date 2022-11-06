@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_epaf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_epaf_demuxer = {
     //  .name           = "epaf",
     //  .long_name      = "Ensoniq Paris Audio File",
     [CCode (cname="", cheader="")]

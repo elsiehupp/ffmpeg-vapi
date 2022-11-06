@@ -26,22 +26,22 @@ static int ac3_probe(const AVProbeData *p)
 }
 
 FF_RAW_DEMUXER_CLASS(ac3)
-AVInputFormat ff_ac3_demuxer = {
+public class InputFormat : AVInputFormat ff_ac3_demuxer = {
     //  .name           = "ac3",
     //  .long_name      = "raw AC-3",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ac3_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = ac3_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_raw_audio_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = ff_raw_audio_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_raw_read_partial_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ff_raw_read_partial_packet,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
     //  .extensions = "ac3",
     //  .raw_codec_id   = AV_CODEC_ID_AC3,
@@ -57,22 +57,22 @@ static int eac3_probe(const AVProbeData *p)
 }
 
 FF_RAW_DEMUXER_CLASS(eac3)
-AVInputFormat ff_eac3_demuxer = {
+public class InputFormat : AVInputFormat ff_eac3_demuxer = {
     //  .name           = "eac3",
     //  .long_name      = "raw E-AC-3",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="eac3_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = eac3_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_raw_audio_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = ff_raw_audio_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_raw_read_partial_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ff_raw_read_partial_packet,
+    );
     //  .flags          = AVFMT_GENERIC_INDEX,
     //  .extensions     = "eac3",
     //  .raw_codec_id   = AV_CODEC_ID_EAC3,

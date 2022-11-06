@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_dss_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_dss_demuxer = {
     //  .name           = "dss",
     //  .long_name      = "Digital Speech Standard (DSS)",
     //  .priv_data_size = sizeof(DSSDemuxContext),

@@ -68,7 +68,8 @@
  *       transmitting them to the video decoder
  */
 
-AVInputFormat ff_idcin_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_idcin_demuxer = {
     //  .name           = "idcin",
     //  .long_name      = "id Cinematic",
     //  .priv_data_size = sizeof(IdcinDemuxContext),

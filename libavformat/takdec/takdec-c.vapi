@@ -20,7 +20,7 @@
  */
 
 FF_RAW_DEMUXER_CLASS(tak)
-AVInputFormat ff_tak_demuxer = {
+public class InputFormat : AVInputFormat ff_tak_demuxer = {
     //  .name           = "tak",
     //  .long_name      = "raw TAK",
     //  .priv_data_size = sizeof(TAKDemuxContext),

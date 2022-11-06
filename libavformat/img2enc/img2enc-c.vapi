@@ -39,7 +39,8 @@ static const AVClass img2mux_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_image2_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_image2_muxer = {
     //  .name           = "image2",
     //  .long_name      = "image2 sequence",
     //  .extensions     = "bmp,dpx,jls,jpeg,jpg,ljpg,pam,pbm,pcx,pgm,pgmyuv,png,"
@@ -67,7 +68,7 @@ AVOutputFormat ff_image2_muxer = {
 };
 #endif
 #if CONFIG_IMAGE2PIPE_MUXER
-AVOutputFormat ff_image2pipe_muxer = {
+public class OutputFormat : AVOutputFormat ff_image2pipe_muxer = {
     //  .name           = "image2pipe",
     //  .long_name      = "piped image2 sequence",
     //  .priv_data_size = sizeof(VideoMuxData),

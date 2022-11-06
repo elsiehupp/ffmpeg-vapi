@@ -121,7 +121,8 @@ static const AVClass mpegts_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_mpegts_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_mpegts_muxer = {
     //  .name           = "mpegts",
     //  .long_name      = "MPEG-TS (MPEG-2 Transport Stream)",
     //  .mime_type      = "video/MP2T",

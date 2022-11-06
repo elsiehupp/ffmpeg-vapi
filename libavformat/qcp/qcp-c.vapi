@@ -27,7 +27,8 @@
  *     http://tools.ietf.org/html/rfc3625
  */
 
-AVInputFormat ff_qcp_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_qcp_demuxer = {
     //  .name           = "qcp",
     //  .long_name      = "QCP",
     //  .priv_data_size = sizeof(QCPContext),

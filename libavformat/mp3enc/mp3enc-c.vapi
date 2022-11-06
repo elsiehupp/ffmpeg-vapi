@@ -36,7 +36,8 @@ static const AVClass mp3_muxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_mp3_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_mp3_muxer = {
     //  .name              = "mp3",
     //  .long_name         = "MP3 (MPEG audio layer 3)",
     //  .mime_type         = "audio/mpeg",

@@ -37,7 +37,7 @@ static const AVClass wav_demuxer_class = {
     //  .option     = demux_options,
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
-AVInputFormat ff_wav_demuxer = {
+public class InputFormat : AVInputFormat ff_wav_demuxer = {
     //  .name           = "wav",
     //  .long_name      = "WAV / WAVE (Waveform Audio)",
     //  .priv_data_size = sizeof(WAVDemuxContext),
@@ -68,7 +68,7 @@ AVInputFormat ff_wav_demuxer = {
 #endif /* CONFIG_WAV_DEMUXER */
 
 #if CONFIG_W64_DEMUXER
-AVInputFormat ff_w64_demuxer = {
+public class InputFormat : AVInputFormat ff_w64_demuxer = {
     //  .name           = "w64",
     //  .long_name      = "Sony Wave64",
     //  .priv_data_size = sizeof(WAVDemuxContext),

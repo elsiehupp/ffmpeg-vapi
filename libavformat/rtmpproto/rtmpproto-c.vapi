@@ -60,7 +60,8 @@ static const AVClass flavor##_class = {          \
     //  .version    = LIBAVUTIL_VERSION_INT,         \
 };                                               \
                                                  \
-const URLProtocol ff_##flavor##_protocol = {     \
+[CCode (cname="ff_##flavor##_protocol", cheader="")]
+public class URLProtocol : URLProtocol ff_##flavor##_protocol = {     \
     //  .name           = #flavor,                   \
     [CCode (cname="", cheader="")]
     public override int url_open2 (

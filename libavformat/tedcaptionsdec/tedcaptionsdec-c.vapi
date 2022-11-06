@@ -34,7 +34,8 @@ static const AVClass tedcaptions_demuxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_tedcaptions_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_tedcaptions_demuxer = {
     //  .name           = "tedcaptions",
     //  .long_name      = "TED Talks captions",
     //  .priv_data_size = sizeof(TEDCaptionsDemuxer),

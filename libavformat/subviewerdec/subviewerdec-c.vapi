@@ -24,7 +24,8 @@
  * @see https://en.wikipedia.org/wiki/SubViewer
  */
 
-AVInputFormat ff_subviewer_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_subviewer_demuxer = {
     //  .name           = "subviewer",
     //  .long_name      = "SubViewer subtitle format",
     //  .priv_data_size = sizeof(SubViewerContext),

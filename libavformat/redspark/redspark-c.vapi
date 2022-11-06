@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_redspark_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_redspark_demuxer = {
     //  .name           =   "redspark",
     //  .long_name      =   "RedSpark",
     //  .priv_data_size =   sizeof(RedSparkContext),

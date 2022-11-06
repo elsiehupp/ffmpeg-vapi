@@ -28,7 +28,8 @@
  *  http://wiki.multimedia.cx/index.php?title=EA_Command_And_Conquer_3_Audio_Codec
  */
 
-AVInputFormat ff_ea_cdata_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ea_cdata_demuxer = {
     //  .name           = "ea_cdata",
     //  .long_name      = "Electronic Arts cdata",
     //  .priv_data_size = sizeof(CdataDemuxContext),

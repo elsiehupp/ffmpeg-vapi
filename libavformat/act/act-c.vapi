@@ -19,21 +19,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_act_demuxer = {
+[CCode (cname="ff_act_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_act_demuxer = {
     //  .name           = "act",
     //  .long_name      = "ACT Voice file format",
     //  .priv_data_size = sizeof(ACTContext),
-    [CCode (cname="", cheader="")]
+    [CCode (cname="probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
+    );
 };

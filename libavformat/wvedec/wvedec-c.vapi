@@ -18,7 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_wve_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_wve_demuxer = {
     //  .name           = "wve",
     //  .long_name      = "Psion 3 audio",
     [CCode (cname="", cheader="")]

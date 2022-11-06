@@ -24,7 +24,8 @@
  * @see https://documentation.apple.com/en/dvdstudiopro/usermanual/index.html#chapter=19%26section=13%26tasks=true
  */
 
-AVInputFormat ff_stl_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_stl_demuxer = {
     //  .name           = "stl",
     //  .long_name      = "Spruce subtitle format",
     //  .priv_data_size = sizeof(STLContext),

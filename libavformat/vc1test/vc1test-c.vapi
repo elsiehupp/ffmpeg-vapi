@@ -26,7 +26,8 @@
  * Format specified in SMPTE standard 421 Annex L
  */
 
-AVInputFormat ff_vc1t_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_vc1t_demuxer = {
     //  .name           = "vc1test",
     //  .long_name      = "VC-1 test bitstream",
     [CCode (cname="", cheader="")]

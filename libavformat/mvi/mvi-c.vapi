@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_mvi_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mvi_demuxer = {
     //  .name           = "mvi",
     //  .long_name      = "Motion Pixels MVI",
     //  .priv_data_size = sizeof(MviDemuxContext),

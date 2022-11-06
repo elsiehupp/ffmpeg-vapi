@@ -29,7 +29,8 @@
  * @see http://wiki.multimedia.cx/index.php?title=SoX_native_intermediate_format
  */
 
-AVOutputFormat ff_sox_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_sox_muxer = {
     //  .name              = "sox",
     //  .long_name         = "SoX native",
     //  .extensions        = "sox",

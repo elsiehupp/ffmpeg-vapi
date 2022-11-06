@@ -33,7 +33,7 @@ static const AVClass webp_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
     //  .option     = options,
 };
-AVOutputFormat ff_webp_muxer = {
+public class OutputFormat : AVOutputFormat ff_webp_muxer = {
     //  .name           = "webp",
     //  .long_name      = "WebP",
     //  .extensions     = "webp",

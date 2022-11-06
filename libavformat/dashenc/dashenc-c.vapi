@@ -64,7 +64,8 @@ static const AVClass dash_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_dash_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_dash_muxer = {
     //  .name           = "dash",
     //  .long_name      = "DASH Muxer",
     //  .extensions     = "mpd",

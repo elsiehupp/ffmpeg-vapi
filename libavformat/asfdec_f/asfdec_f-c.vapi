@@ -26,7 +26,8 @@ static const AVClass asf_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_asf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_asf_demuxer = {
     //  .name           = "asf",
     //  .long_name      = "ASF (Advanced / Active Streaming Format)",
     //  .priv_data_size = sizeof(ASFContext),

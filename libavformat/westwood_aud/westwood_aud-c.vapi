@@ -33,7 +33,8 @@
  * qualify a file. Refer to wsaud_probe() for the precise parameters.
  */
 
-AVInputFormat ff_wsaud_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_wsaud_demuxer = {
     //  .name           = "wsaud",
     //  .long_name      = "Westwood Studios audio",
     [CCode (cname="", cheader="")]

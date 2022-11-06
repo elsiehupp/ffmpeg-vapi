@@ -37,7 +37,8 @@ static const AVClass failing_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_fifo_test_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_fifo_test_muxer = {
     //  .name           = "fifo_test",
     //  .long_name      = "Fifo test muxer",
     //  .priv_data_size = sizeof(FailingMuxerContext),

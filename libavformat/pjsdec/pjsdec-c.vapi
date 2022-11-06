@@ -25,7 +25,8 @@
  * @see http://subs.com.ru/page.php?al=pjs
  */
 
-AVInputFormat ff_pjs_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_pjs_demuxer = {
     //  .name           = "pjs",
     //  .long_name      = "PJS (Phoenix Japanimation Society) subtitles",
     //  .priv_data_size = sizeof(PJSContext),

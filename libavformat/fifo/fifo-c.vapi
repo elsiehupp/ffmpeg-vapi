@@ -61,7 +61,8 @@ static const AVClass fifo_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_fifo_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_fifo_muxer = {
     //  .name           = "fifo",
     //  .long_name      = "FIFO queue pseudo-muxer",
     //  .priv_data_size = sizeof(FifoContext),

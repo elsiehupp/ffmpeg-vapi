@@ -21,7 +21,7 @@
  */
 
 #if CONFIG_SWF_MUXER
-AVOutputFormat ff_swf_muxer = {
+public class OutputFormat : AVOutputFormat ff_swf_muxer = {
     //  .name              = "swf",
     //  .long_name         = "SWF (ShockWave Flash)",
     //  .mime_type         = "application/x-shockwave-flash",
@@ -47,7 +47,7 @@ AVOutputFormat ff_swf_muxer = {
 };
 #endif
 #if CONFIG_AVM2_MUXER
-AVOutputFormat ff_avm2_muxer = {
+public class OutputFormat : AVOutputFormat ff_avm2_muxer = {
     //  .name              = "avm2",
     //  .long_name         = "SWF (ShockWave Flash) (AVM2)",
     //  .mime_type         = "application/x-shockwave-flash",

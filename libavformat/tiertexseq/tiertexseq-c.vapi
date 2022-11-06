@@ -24,7 +24,8 @@
  * Tiertex Limited SEQ file demuxer
  */
 
-AVInputFormat ff_tiertexseq_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_tiertexseq_demuxer = {
     //  .name           = "tiertexseq",
     //  .long_name      = "Tiertex Limited SEQ",
     //  .priv_data_size = sizeof(SeqDemuxContext),

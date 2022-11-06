@@ -32,7 +32,8 @@
  * optional background_frame
  */
 
-AVInputFormat ff_rl2_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_rl2_demuxer = {
     //  .name           = "rl2",
     //  .long_name      = "RL2",
     //  .priv_data_size = sizeof(Rl2DemuxContext),

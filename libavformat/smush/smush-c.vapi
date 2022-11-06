@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_smush_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_smush_demuxer = {
     //  .name           = "smush",
     //  .long_name      = "LucasArts Smush",
     //  .priv_data_size = sizeof(SMUSHContext),

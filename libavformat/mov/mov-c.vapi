@@ -77,7 +77,8 @@ static const AVClass mov_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_mov_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mov_demuxer = {
     //  .name           = "mov,mp4,m4a,3gp,3g2,mj2",
     //  .long_name      = "QuickTime / MOV",
     //  .priv_class     = &mov_class,

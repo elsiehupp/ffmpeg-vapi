@@ -38,7 +38,8 @@ static const AVClass ism_class = {
 };
 
 
-AVOutputFormat ff_smoothstreaming_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_smoothstreaming_muxer = {
     //  .name           = "smoothstreaming",
     //  .long_name      = "Smooth Streaming Muxer",
     //  .priv_data_size = sizeof(SmoothStreamingContext),

@@ -26,7 +26,8 @@ Only mono files are supported.
 
 */
 
-AVInputFormat ff_amrwb_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_amrwb_demuxer = {
     //  .name           = "amrwb",
     //  .long_name      = "raw AMR-WB",
     //  .priv_data_size = sizeof(AMRContext),
@@ -48,7 +49,7 @@ AVInputFormat ff_amrwb_demuxer = {
 #endif
 
 #if CONFIG_AMR_MUXER
-AVOutputFormat ff_amr_muxer = {
+public class OutputFormat : AVOutputFormat ff_amr_muxer = {
     //  .name              = "amr",
     //  .long_name         = "3GPP AMR",
     //  .mime_type         = "audio/amr",

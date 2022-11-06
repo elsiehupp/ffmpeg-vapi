@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_apc_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_apc_demuxer = {
     //  .name           = "apc",
     //  .long_name      = "CRYO APC",
     [CCode (cname="", cheader="")]

@@ -23,7 +23,8 @@
  * Demuxer for xWMA, a Microsoft audio container used by XAudio 2.
  */
 
-AVInputFormat ff_xwma_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_xwma_demuxer = {
     //  .name           = "xwma",
     //  .long_name      = "Microsoft xWMA",
     //  .priv_data_size = sizeof(XWMAContext),

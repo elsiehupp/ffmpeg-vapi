@@ -24,7 +24,8 @@
  * This is a demuxer for Loki SDL Motion JPEG files
  */
 
-AVInputFormat ff_smjpeg_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_smjpeg_demuxer = {
     //  .name           = "smjpeg",
     //  .long_name      = "Loki SDL MJPEG",
     //  .priv_data_size = sizeof(SMJPEGContext),

@@ -20,7 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_srt_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_srt_demuxer = {
     //  .name        = "srt",
     //  .long_name   = "SubRip subtitle",
     //  .priv_data_size = sizeof(SRTContext),

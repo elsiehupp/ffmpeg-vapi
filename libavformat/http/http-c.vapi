@@ -33,7 +33,8 @@ static const AVClass flavor ## _context_class = {   \
 #if CONFIG_HTTP_PROTOCOL
 HTTP_CLASS(http);
 
-const URLProtocol ff_http_protocol = {
+[CCode (cname="ff_http_protocol", cheader="")]
+public class HTTPURLProtocol : URLProtocol {
     //  .name                = "http",
     [CCode (cname="", cheader="")]
     public override int url_open2 (
@@ -96,7 +97,8 @@ const URLProtocol ff_http_protocol = {
 #if CONFIG_HTTPS_PROTOCOL
 HTTP_CLASS(https);
 
-const URLProtocol ff_https_protocol = {
+[CCode (cname="ff_https_protocol", cheader="")]
+public class URLProtocol : URLProtocol ff_https_protocol = {
     //  .name                = "https",
     [CCode (cname="", cheader="")]
     public override int url_open2 (
@@ -148,7 +150,8 @@ const URLProtocol ff_https_protocol = {
 #endif /* CONFIG_HTTPS_PROTOCOL */
 
 #if CONFIG_HTTPPROXY_PROTOCOL
-const URLProtocol ff_httpproxy_protocol = {
+[CCode (cname="", cheader="")]
+public class URLProtocol : URLProtocol ff_httpproxy_protocol = {
     //  .name                = "httpproxy",
     [CCode (cname="", cheader="")]
     public override int url_open (

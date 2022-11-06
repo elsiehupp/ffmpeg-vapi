@@ -63,7 +63,8 @@ static const AVClass udplite_context_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_udp_protocol = {
+[CCode (cname="ff_udp_protocol", cheader="")]
+public class UDPURLProtocol : URLProtocol {
     //  .name                = "udp",
     [CCode (cname="", cheader="")]
     public override int url_open (
@@ -96,7 +97,8 @@ const URLProtocol ff_udp_protocol = {
     //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
 };
 
-const URLProtocol ff_udplite_protocol = {
+[CCode (cname="ff_udplite_protocol", cheader="")]
+public class UDPLiteURLProtocol : URLProtocol {
     //  .name                = "udplite",
     [CCode (cname="", cheader="")]
     public override int url_open (

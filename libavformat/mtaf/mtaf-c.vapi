@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_mtaf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mtaf_demuxer = {
     //  .name           = "mtaf",
     //  .long_name      = "Konami PS2 MTAF",
     [CCode (cname="", cheader="")]

@@ -23,7 +23,7 @@
 
 #if CONFIG_MLP_DEMUXER
 FF_RAW_DEMUXER_CLASS(mlp)
-AVInputFormat ff_mlp_demuxer = {
+public class InputFormat : AVInputFormat ff_mlp_demuxer = {
     //  .name           = "mlp",
     //  .long_name      = "raw MLP",
     [CCode (cname="", cheader="")]
@@ -49,7 +49,7 @@ AVInputFormat ff_mlp_demuxer = {
 
 #if CONFIG_TRUEHD_DEMUXER
 FF_RAW_DEMUXER_CLASS(truehd)
-AVInputFormat ff_truehd_demuxer = {
+public class InputFormat : AVInputFormat ff_truehd_demuxer = {
     //  .name           = "truehd",
     //  .long_name      = "raw TrueHD",
     [CCode (cname="", cheader="")]

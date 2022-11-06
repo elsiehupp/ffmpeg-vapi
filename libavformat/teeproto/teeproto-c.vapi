@@ -30,7 +30,8 @@ static const AVClass tee_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_tee_protocol = {
+[CCode (cname="ff_tee_protocol", cheader="")]
+public class TeeURLProtocol : URLProtocol {
     //  .name                = "tee",
     [CCode (cname="", cheader="")]
     public override int url_open (

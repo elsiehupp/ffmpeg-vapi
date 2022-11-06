@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_ffmetadata_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_ffmetadata_muxer = {
     //  .name          = "ffmetadata",
     //  .long_name     = "FFmpeg metadata in text",
     //  .extensions    = "ffmeta",

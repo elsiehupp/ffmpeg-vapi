@@ -99,7 +99,8 @@ static const AVClass hls_class = {
 };
 
 
-AVOutputFormat ff_hls_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_hls_muxer = {
     //  .name           = "hls",
     //  .long_name      = "Apple HTTP Live Streaming",
     //  .extensions     = "m3u8",

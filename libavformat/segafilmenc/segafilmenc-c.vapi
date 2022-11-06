@@ -35,7 +35,8 @@ static const AVClass film_muxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_segafilm_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_segafilm_muxer = {
     //  .name           = "film_cpk",
     //  .long_name      = "Sega FILM / CPK",
     //  .extensions     = "cpk",

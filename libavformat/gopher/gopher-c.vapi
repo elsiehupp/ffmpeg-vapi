@@ -22,7 +22,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-const URLProtocol ff_gopher_protocol = {
+[CCode (cname="ff_gopher_protocol", cheader="")]
+public class GopherURLProtocol : URLProtocol {
     //  .name           = "gopher",
     [CCode (cname="", cheader="")]
     public override int url_open (

@@ -26,7 +26,8 @@
  * @see http://www.oldskool.org/pc/8088_Corruption
  */
 
-AVInputFormat ff_tmv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_tmv_demuxer = {
     //  .name           = "tmv",
     //  .long_name      = "8088flex TMV",
     //  .priv_data_size = sizeof(TMVContext),

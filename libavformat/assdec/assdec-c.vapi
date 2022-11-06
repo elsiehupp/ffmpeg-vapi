@@ -20,7 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_ass_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ass_demuxer = {
     //  .name           = "ass",
     //  .long_name      = "SSA (SubStation Alpha) subtitle",
     //  .priv_data_size = sizeof(ASSContext),

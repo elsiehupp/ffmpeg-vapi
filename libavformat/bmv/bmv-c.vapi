@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_bmv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_bmv_demuxer = {
     //  .name           = "bmv",
     //  .long_name      = "Discworld II BMV",
     //  .priv_data_size = sizeof(BMVContext),

@@ -24,7 +24,8 @@
  * Adobe Filmstrip demuxer
  */
 
-AVInputFormat ff_filmstrip_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_filmstrip_demuxer = {
     //  .name           = "filmstrip",
     //  .long_name      = "Adobe Filmstrip",
     //  .priv_data_size = sizeof(FilmstripDemuxContext),

@@ -24,7 +24,8 @@
  * Magic Lantern Video (MLV) demuxer
  */
 
-AVInputFormat ff_mlv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mlv_demuxer = {
     //  .name           = "mlv",
     //  .long_name      = "Magic Lantern Video (MLV)",
     //  .priv_data_size = sizeof(MlvContext),

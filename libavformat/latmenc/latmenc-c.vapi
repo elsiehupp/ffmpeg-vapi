@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_latm_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_latm_muxer = {
     //  .name           = "latm",
     //  .long_name      = "LOAS/LATM",
     //  .mime_type      = "audio/MP4A-LATM",

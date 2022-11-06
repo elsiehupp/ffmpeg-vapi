@@ -28,7 +28,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_dv_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_dv_muxer = {
     //  .name              = "dv",
     //  .long_name         = "DV (Digital Video)",
     //  .extensions        = "dv",

@@ -27,7 +27,7 @@ static const AVClass imgname ## _class = {\
     //  .option     = ff_img2pipe_options,\
     //  .version    = LIBAVUTIL_VERSION_INT,\
 };\
-AVInputFormat ff_image_ ## imgname ## _pipe_demuxer = {\
+public class InputFormat : AVInputFormat ff_image_ ## imgname ## _pipe_demuxer = {\
     //  .name           = AV_STRINGIFY(imgname) "_pipe",\
     //  .long_name      = "piped " AV_STRINGIFY(imgname) " sequence",\
     //  .priv_data_size = sizeof(VideoDemuxData),\

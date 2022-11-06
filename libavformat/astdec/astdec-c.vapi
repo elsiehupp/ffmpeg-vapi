@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_ast_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ast_demuxer = {
     //  .name           = "ast",
     //  .long_name      = "AST (Audio Stream)",
     [CCode (cname="", cheader="")]

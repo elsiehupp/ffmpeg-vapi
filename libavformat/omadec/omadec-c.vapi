@@ -40,7 +40,8 @@
  * Supported decoders: ATRAC3, ATRAC3+, MP3, LPCM
  */
 
-AVInputFormat ff_oma_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_oma_demuxer = {
     //  .name           = "oma",
     //  .long_name      = "Sony OpenMG audio",
     //  .priv_data_size = sizeof(OMAContext),

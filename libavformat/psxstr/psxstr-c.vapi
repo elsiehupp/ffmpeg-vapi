@@ -29,7 +29,8 @@
  * RIFF headers, followed by CD sectors.
  */
 
-AVInputFormat ff_str_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_str_demuxer = {
     //  .name           = "psxstr",
     //  .long_name      = "Sony Playstation STR",
     //  .priv_data_size = sizeof(StrDemuxContext),

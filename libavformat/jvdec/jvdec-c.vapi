@@ -25,7 +25,8 @@
  * @author Peter Ross <pross@xvid.org>
  */
 
-AVInputFormat ff_jv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_jv_demuxer = {
     //  .name           = "jv",
     //  .long_name      = "Bitmap Brothers JV",
     //  .priv_data_size = sizeof(JVDemuxContext),

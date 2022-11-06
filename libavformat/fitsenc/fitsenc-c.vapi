@@ -24,7 +24,8 @@
  * FITS muxer.
  */
 
-AVOutputFormat ff_fits_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_fits_muxer = {
     //  .name         = "fits",
     //  .long_name    = "Flexible Image Transport System",
     //  .extensions   = "fits",

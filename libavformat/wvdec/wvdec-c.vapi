@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_wv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_wv_demuxer = {
     //  .name           = "wv",
     //  .long_name      = "WavPack",
     //  .priv_data_size = sizeof(WVContext),

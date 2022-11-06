@@ -24,7 +24,8 @@
  * Adobe Filmstrip muxer
  */
 
-AVOutputFormat ff_filmstrip_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_filmstrip_muxer = {
     //  .name              = "filmstrip",
     //  .long_name         = "Adobe Filmstrip",
     //  .extensions        = "flm",

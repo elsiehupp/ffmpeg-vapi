@@ -24,7 +24,8 @@
  * MTV demuxer.
  */
 
-AVInputFormat ff_mtv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mtv_demuxer = {
     //  .name           = "mtv",
     //  .long_name      = "MTV",
     //  .priv_data_size = sizeof(MTVDemuxContext),

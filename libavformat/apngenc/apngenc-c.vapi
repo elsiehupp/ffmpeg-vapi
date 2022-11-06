@@ -38,7 +38,8 @@ static const AVClass apng_muxer_class = {
     //  .option     = options,
 };
 
-AVOutputFormat ff_apng_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_apng_muxer = {
     //  .name           = "apng",
     //  .long_name      = "Animated Portable Network Graphics",
     //  .mime_type      = "image/png",

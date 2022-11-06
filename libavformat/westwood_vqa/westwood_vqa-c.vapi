@@ -28,7 +28,8 @@
  *   http://www.geocities.com/SiliconValley/8682/aud3.txt
  */
 
-AVInputFormat ff_wsvqa_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_wsvqa_demuxer = {
     //  .name           = "wsvqa",
     //  .long_name      = "Westwood Studios VQA",
     //  .priv_data_size = sizeof(WsVqaDemuxContext),

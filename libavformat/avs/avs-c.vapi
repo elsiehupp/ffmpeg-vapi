@@ -25,7 +25,8 @@
  * @see http://wiki.multimedia.cx/index.php?title=AVS
  */
 
-AVInputFormat ff_avs_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_avs_demuxer = {
     //  .name           = "avs",
     //  .long_name      = "Argonaut Games Creature Shock",
     //  .priv_data_size = sizeof(AvsFormat),

@@ -27,7 +27,8 @@
  *   http://www.pcisys.net/~melanson/codecs/
  */
 
-AVInputFormat ff_segafilm_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_segafilm_demuxer = {
     //  .name           = "film_cpk",
     //  .long_name      = "Sega FILM / CPK",
     //  .priv_data_size = sizeof(FilmDemuxContext),

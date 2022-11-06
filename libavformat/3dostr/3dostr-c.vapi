@@ -19,22 +19,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_threedostr_demuxer = {
+[CCode (cname="ff_threedostr_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_threedostr_demuxer = {
     //  .name           = "3dostr",
     //  .long_name      = "3DO STR",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="threedostr_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = threedostr_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="threedostr_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = threedostr_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="threedostr_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = threedostr_read_packet,
+    );
     //  .extensions     = "str",
     //  .flags          = AVFMT_GENERIC_INDEX,
 };

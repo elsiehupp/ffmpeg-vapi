@@ -97,7 +97,8 @@ static const AVClass prompeg_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_prompeg_protocol = {
+[CCode (cname="ff_prompeg_protocol", cheader="")]
+public class ProMpegURLProtocol : URLProtocol {
     //  .name                      = "prompeg",
     [CCode (cname="", cheader="")]
     public override int url_open (

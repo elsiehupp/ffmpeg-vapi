@@ -33,7 +33,8 @@ static const AVClass ass_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_ass_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_ass_muxer = {
     //  .name           = "ass",
     //  .long_name      = "SSA (SubStation Alpha) subtitle",
     //  .mime_type      = "text/x-ass",

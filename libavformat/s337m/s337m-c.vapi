@@ -18,7 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_s337m_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_s337m_demuxer = {
     //  .name           = "s337m",
     //  .long_name      = "SMPTE 337M",
     [CCode (cname="", cheader="")]

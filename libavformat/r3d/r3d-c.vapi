@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_r3d_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_r3d_demuxer = {
     //  .name           = "r3d",
     //  .long_name      = "REDCODE R3D",
     //  .priv_data_size = sizeof(R3DContext),

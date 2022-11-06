@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_ilbc_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ilbc_demuxer = {
     //  .name         = "ilbc",
     //  .long_name    = "iLBC storage",
     [CCode (cname="", cheader="")]
@@ -38,7 +39,8 @@ AVInputFormat ff_ilbc_demuxer = {
     //  .flags        = AVFMT_GENERIC_INDEX,
 };
 
-AVOutputFormat ff_ilbc_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_ilbc_muxer = {
     //  .name         = "ilbc",
     //  .long_name    = "iLBC storage",
     //  .mime_type    = "audio/iLBC",

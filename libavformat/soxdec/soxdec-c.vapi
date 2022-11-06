@@ -29,7 +29,8 @@
  * @see http://wiki.multimedia.cx/index.php?title=SoX_native_intermediate_format
  */
 
-AVInputFormat ff_sox_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_sox_demuxer = {
     //  .name           = "sox",
     //  .long_name      = "SoX native",
     [CCode (cname="", cheader="")]

@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_tta_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_tta_muxer = {
     //  .name              = "tta",
     //  .long_name         = "TTA (True Audio)",
     //  .mime_type         = "audio/x-tta",

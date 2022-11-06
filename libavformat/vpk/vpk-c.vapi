@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_vpk_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_vpk_demuxer = {
     //  .name           = "vpk",
     //  .long_name      = "Sony PS2 VPK",
     //  .priv_data_size = sizeof(VPKDemuxContext),

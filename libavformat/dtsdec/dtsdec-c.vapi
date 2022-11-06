@@ -20,7 +20,7 @@
  */
 
 FF_RAW_DEMUXER_CLASS(dts)
-AVInputFormat ff_dts_demuxer = {
+public class InputFormat : AVInputFormat ff_dts_demuxer = {
     //  .name           = "dts",
     //  .long_name      = "raw DTS",
     [CCode (cname="", cheader="")]

@@ -26,7 +26,8 @@
  * @see http://wiki.multimedia.cx/index.php?title=BFI
  */
 
-AVInputFormat ff_bfi_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_bfi_demuxer = {
     //  .name           = "bfi",
     //  .long_name      = "Brute Force & Ignorance",
     //  .priv_data_size = sizeof(BFIContext),

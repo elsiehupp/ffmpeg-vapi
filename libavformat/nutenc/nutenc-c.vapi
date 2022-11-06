@@ -37,7 +37,8 @@ static const AVClass class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_nut_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_nut_muxer = {
     //  .name           = "nut",
     //  .long_name      = "NUT",
     //  .mime_type      = "video/x-nut",

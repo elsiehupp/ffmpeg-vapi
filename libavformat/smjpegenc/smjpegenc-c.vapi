@@ -24,7 +24,8 @@
  * This is a muxer for Loki SDL Motion JPEG files
  */
 
-AVOutputFormat ff_smjpeg_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_smjpeg_muxer = {
     //  .name           = "smjpeg",
     //  .long_name      = "Loki SDL MJPEG",
     //  .priv_data_size = sizeof(SMJPEGMuxContext),

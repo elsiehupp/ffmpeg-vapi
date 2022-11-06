@@ -25,7 +25,8 @@
  * http://msdn.microsoft.com/en-us/library/cc251059(PROT.10).aspx
  */
 
-const URLProtocol ff_mmsh_protocol = {
+[CCode (cname="ff_mmsh_protocol", cheader="")]
+public class MMSHURLProtocol : URLProtocol {
     //  .name           = "mmsh",
     [CCode (cname="", cheader="")]
     public override int url_open (

@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_gdv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_gdv_demuxer = {
     //  .name           = "gdv",
     //  .long_name      = "Gremlin Digital Video",
     //  .priv_data_size = sizeof(GDVContext),

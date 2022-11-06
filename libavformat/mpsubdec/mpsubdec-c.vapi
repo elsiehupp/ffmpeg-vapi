@@ -23,7 +23,8 @@
  * MPlayer subtitles format demuxer
  */
 
-AVInputFormat ff_mpsub_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mpsub_demuxer = {
     //  .name           = "mpsub",
     //  .long_name      = "MPlayer subtitles",
     //  .priv_data_size = sizeof(MPSubContext),

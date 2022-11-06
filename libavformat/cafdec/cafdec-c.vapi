@@ -25,7 +25,8 @@
  * Core Audio Format demuxer
  */
 
-AVInputFormat ff_caf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_caf_demuxer = {
     //  .name           = "caf",
     //  .long_name      = "Apple CAF (Core Audio Format)",
     //  .priv_data_size = sizeof(CafContext),

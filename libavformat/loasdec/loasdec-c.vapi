@@ -20,7 +20,7 @@
  */
 
 FF_RAW_DEMUXER_CLASS(loas)
-AVInputFormat ff_loas_demuxer = {
+public class InputFormat : AVInputFormat ff_loas_demuxer = {
     //  .name           = "loas",
     //  .long_name      = "LOAS AudioSyncStream",
     [CCode (cname="", cheader="")]

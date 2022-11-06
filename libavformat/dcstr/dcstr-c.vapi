@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_dcstr_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_dcstr_demuxer = {
     //  .name           = "dcstr",
     //  .long_name      = "Sega DC STR",
     [CCode (cname="", cheader="")]

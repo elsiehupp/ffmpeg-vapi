@@ -26,7 +26,8 @@
  * @sa http://wiki.multimedia.cx/index.php?title=Vivo
  */
 
-AVInputFormat ff_vivo_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_vivo_demuxer = {
     //  .name           = "vivo",
     //  .long_name      = "Vivo",
     //  .priv_data_size = sizeof(VivoContext),

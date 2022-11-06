@@ -20,7 +20,7 @@
  */
 
 #if CONFIG_BIT_MUXER
-AVOutputFormat ff_bit_muxer = {
+public class OutputFormat : AVOutputFormat ff_bit_muxer = {
     //  .name         = "bit",
     //  .long_name    = "G.729 BIT file format",
     //  .mime_type    = "audio/bit",

@@ -44,7 +44,8 @@ static const AVClass unix_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_unix_protocol = {
+[CCode (cname="ff_unix_protocol", cheader="")]
+public class UnixURLProtocol : URLProtocol {
     //  .name                = "unix",
     [CCode (cname="", cheader="")]
     public override int url_open (

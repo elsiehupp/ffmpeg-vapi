@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_gxf_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_gxf_muxer = {
     //  .name              = "gxf",
     //  .long_name         = "GXF (General eXchange Format)",
     //  .extensions        = "gxf",

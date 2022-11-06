@@ -67,7 +67,8 @@ static const AVClass mpegtsraw_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_mpegts_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mpegts_demuxer = {
     //  .name           = "mpegts",
     //  .long_name      = "MPEG-TS (MPEG-2 Transport Stream)",
     //  .priv_data_size = sizeof(MpegTSContext),
@@ -99,7 +100,8 @@ AVInputFormat ff_mpegts_demuxer = {
     //  .priv_class     = &mpegts_class,
 };
 
-AVInputFormat ff_mpegtsraw_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mpegtsraw_demuxer = {
     //  .name           = "mpegtsraw",
     //  .long_name      = "raw MPEG-TS (MPEG-2 Transport Stream)",
     //  .priv_data_size = sizeof(MpegTSContext),

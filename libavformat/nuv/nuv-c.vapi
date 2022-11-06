@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_nuv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_nuv_demuxer = {
     //  .name           = "nuv",
     //  .long_name      = "NuppelVideo",
     //  .priv_data_size = sizeof(NUVContext),

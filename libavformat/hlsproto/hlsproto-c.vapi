@@ -25,7 +25,8 @@
  * http://tools.ietf.org/html/draft-pantos-http-live-streaming
  */
 
-const URLProtocol ff_hls_protocol = {
+[CCode (cname="ff_hls_protocol", cheader="")]
+public class HLSURLProtocol : URLProtocol {
     //  .name           = "hls",
     [CCode (cname="", cheader="")]
     public override int url_open (

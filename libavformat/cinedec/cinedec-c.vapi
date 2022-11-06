@@ -25,7 +25,8 @@
  * @author Peter Ross <pross@xvid.org>
  */
 
-AVInputFormat ff_cine_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_cine_demuxer = {
     //  .name           = "cine",
     //  .long_name      = "Phantom Cine",
     //  .priv_data_size = sizeof(CineDemuxContext),

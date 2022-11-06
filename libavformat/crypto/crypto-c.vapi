@@ -39,7 +39,8 @@ static const AVClass crypto_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_crypto_protocol = {
+[CCode (cname="ff_crypto_protocol", cheader="")]
+public class CryptoURLProtocol : URLProtocol {
     //  .name            = "crypto",
     [CCode (cname="", cheader="")]
     public override int url_open2 (

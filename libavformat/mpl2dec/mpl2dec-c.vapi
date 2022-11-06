@@ -23,7 +23,8 @@
  * MPL2 subtitles format demuxer
  */
 
-AVInputFormat ff_mpl2_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mpl2_demuxer = {
     //  .name           = "mpl2",
     //  .long_name      = "MPL2 subtitles",
     //  .priv_data_size = sizeof(MPL2Context),

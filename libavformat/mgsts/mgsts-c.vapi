@@ -20,7 +20,8 @@
  */
 
 
-AVInputFormat ff_mgsts_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mgsts_demuxer = {
     //  .name        = "mgsts",
     //  .long_name   = "Metal Gear Solid: The Twin Snakes",
     [CCode (cname="", cheader="")]

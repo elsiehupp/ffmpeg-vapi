@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_caf_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_caf_muxer = {
     //  .name           = "caf",
     //  .long_name      = "Apple CAF (Core Audio Format)",
     //  .mime_type      = "audio/x-caf",

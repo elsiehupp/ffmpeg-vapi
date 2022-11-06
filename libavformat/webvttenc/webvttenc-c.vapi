@@ -24,7 +24,8 @@
  * @see http://dev.w3.org/html5/webvtt/
  */
 
-AVOutputFormat ff_webvtt_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_webvtt_muxer = {
     //  .name              = "webvtt",
     //  .long_name         = "WebVTT subtitle",
     //  .extensions        = "vtt",

@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_nsp_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_nsp_demuxer = {
     //  .name           = "nsp",
     //  .long_name      = "Computerized Speech Lab NSP",
     [CCode (cname="", cheader="")]

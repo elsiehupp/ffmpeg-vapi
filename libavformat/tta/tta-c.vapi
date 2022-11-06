@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_tta_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_tta_demuxer = {
     //  .name           = "tta",
     //  .long_name      = "TTA (True Audio)",
     //  .priv_data_size = sizeof(TTAContext),

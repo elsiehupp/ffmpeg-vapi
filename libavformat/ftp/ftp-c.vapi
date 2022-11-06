@@ -18,7 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-const URLProtocol ff_ftp_protocol = {
+[CCode (cname="ff_ftp_protocol", cheader="")]
+public class FTPURLProtocol : URLProtocol {
     //  .name                = "ftp",
     [CCode (cname="", cheader="")]
     public override int url_open (

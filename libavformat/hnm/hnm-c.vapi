@@ -20,7 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_hnm_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_hnm_demuxer = {
     //  .name           = "hnm",
     //  .long_name      = "Cryo HNM v4",
     //  .priv_data_size = sizeof(Hnm4DemuxContext),

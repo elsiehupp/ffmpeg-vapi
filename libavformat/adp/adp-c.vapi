@@ -19,21 +19,22 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_adp_demuxer = {
+[CCode (cname="ff_adp_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_adp_demuxer = {
     //  .name           = "adp",
     //  .long_name      = "ADP",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="adp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = adp_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="adp_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = adp_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="adp_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = adp_read_packet,
+    );
     //  .extensions     = "adp,dtk",
 };

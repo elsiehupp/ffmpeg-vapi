@@ -24,7 +24,8 @@
  * G.723.1 demuxer
  */
 
-AVInputFormat ff_g723_1_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_g723_1_demuxer = {
     //  .name        = "g723_1",
     //  .long_name   = "G.723.1",
     [CCode (cname="", cheader="")]

@@ -47,7 +47,8 @@ static const AVClass webm_dash_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_webm_dash_manifest_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_webm_dash_manifest_muxer = {
     //  .name              = "webm_dash_manifest",
     //  .long_name         = "WebM DASH Manifest",
     //  .mime_type         = "application/xml",

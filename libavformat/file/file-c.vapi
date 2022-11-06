@@ -48,7 +48,8 @@ static const AVClass pipe_class = {
 
 #if CONFIG_FILE_PROTOCOL
 
-const URLProtocol ff_file_protocol = {
+[CCode (cname="ff_file_protocol", cheader="")]
+public class FileURLProtocol : URLProtocol {
     //  .name                = "file",
     [CCode (cname="", cheader="")]
     public override int url_open (
@@ -118,7 +119,8 @@ const URLProtocol ff_file_protocol = {
 
 #if CONFIG_PIPE_PROTOCOL
 
-const URLProtocol ff_pipe_protocol = {
+[CCode (cname="ff_pipe_protocol", cheader="")]
+public class URLProtocol : URLProtocol ff_pipe_protocol = {
     //  .name                = "pipe",
     [CCode (cname="", cheader="")]
     public override int url_open (

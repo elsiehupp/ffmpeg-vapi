@@ -31,7 +31,8 @@ static const AVClass mpjpeg_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_mpjpeg_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_mpjpeg_muxer = {
     //  .name              = "mpjpeg",
     //  .long_name         = "MIME multipart JPEG",
     //  .mime_type         = "multipart/x-mixed-replace;boundary=" BOUNDARY_TAG,

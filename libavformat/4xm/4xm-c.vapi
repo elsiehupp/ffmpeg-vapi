@@ -27,25 +27,26 @@
  *   http://www.pcisys.net/~melanson/codecs/
  */
 
-AVInputFormat ff_fourxm_demuxer = {
+[CCode (cname="ff_fourxm_demuxer", cheader="")]
+public class InputFormat : AVInputFormat ff_fourxm_demuxer = {
     //  .name           = "4xm",
     //  .long_name      = "4X Technologies",
     //  .priv_data_size = sizeof(FourxmDemuxContext),
-    [CCode (cname="", cheader="")]
+    [CCode (cname="fourxm_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = fourxm_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="fourxm_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = fourxm_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="fourxm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = fourxm_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="fourxm_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = fourxm_read_close,
+    );
 };

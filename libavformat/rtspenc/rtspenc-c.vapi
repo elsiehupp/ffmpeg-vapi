@@ -26,7 +26,8 @@ static const AVClass rtsp_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_rtsp_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_rtsp_muxer = {
     //  .name              = "rtsp",
     //  .long_name         = "RTSP output",
     //  .priv_data_size    = sizeof(RTSPState),

@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_mpegps_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mpegps_demuxer = {
     //  .name           = "mpeg",
     //  .long_name      = "MPEG-PS (MPEG-2 Program Stream)",
     //  .priv_data_size = sizeof(MpegDemuxContext),
@@ -59,7 +60,8 @@ static const AVClass vobsub_demuxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_vobsub_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_vobsub_demuxer = {
     //  .name           = "vobsub",
     //  .long_name      = "VobSub subtitle format",
     //  .priv_data_size = sizeof(MpegDemuxContext),

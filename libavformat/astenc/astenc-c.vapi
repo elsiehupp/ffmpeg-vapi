@@ -33,7 +33,8 @@ static const AVClass ast_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_ast_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_ast_muxer = {
     //  .name              = "ast",
     //  .long_name         = "AST (Audio Stream)",
     //  .extensions        = "ast",

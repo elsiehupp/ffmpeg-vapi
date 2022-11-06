@@ -28,7 +28,8 @@
  *  http://wiki.multimedia.cx/index.php?title=Bink_Container
  */
 
-AVInputFormat ff_bink_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_bink_demuxer = {
     //  .name           = "bink",
     //  .long_name      = "Bink",
     //  .priv_data_size = sizeof(BinkDemuxContext),

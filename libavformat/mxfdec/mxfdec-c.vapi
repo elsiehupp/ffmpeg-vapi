@@ -58,7 +58,8 @@ static const AVClass demuxer_class = {
     //  .category   = AV_CLASS_CATEGORY_DEMUXER,
 };
 
-AVInputFormat ff_mxf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_mxf_demuxer = {
     //  .name           = "mxf",
     //  .long_name      = "MXF (Material eXchange Format)",
     //  .flags          = AVFMT_SEEK_TO_PTS,

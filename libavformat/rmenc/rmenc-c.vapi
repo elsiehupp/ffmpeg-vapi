@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_rm_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_rm_muxer = {
     //  .name              = "rm",
     //  .long_name         = "RealMedia",
     //  .mime_type         = "application/vnd.rn-realmedia",

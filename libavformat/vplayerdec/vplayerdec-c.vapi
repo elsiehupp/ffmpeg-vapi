@@ -23,7 +23,8 @@
  * VPlayer subtitles format demuxer
  */
 
-AVInputFormat ff_vplayer_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_vplayer_demuxer = {
     //  .name           = "vplayer",
     //  .long_name      = "VPlayer subtitles",
     //  .priv_data_size = sizeof(VPlayerContext),

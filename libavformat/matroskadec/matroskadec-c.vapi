@@ -42,7 +42,8 @@ static const AVClass webm_dash_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_matroska_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_matroska_demuxer = {
     //  .name           = "matroska,webm",
     //  .long_name      = "Matroska / WebM",
     //  .extensions     = "mkv,mk3d,mka,mks",
@@ -74,7 +75,8 @@ AVInputFormat ff_matroska_demuxer = {
     //  .mime_type      = "audio/webm,audio/x-matroska,video/webm,video/x-matroska"
 };
 
-AVInputFormat ff_webm_dash_manifest_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_webm_dash_manifest_demuxer = {
     //  .name           = "webm_dash_manifest",
     //  .long_name      = "WebM DASH Manifest",
     //  .priv_data_size = sizeof(MatroskaDemuxContext),

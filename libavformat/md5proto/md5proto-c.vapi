@@ -18,7 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-const URLProtocol ff_md5_protocol = {
+[CCode (cname="ff_md5_protocol", cheader="")]
+public class MD5URLProtocol : URLProtocol {
     //  .name                = "md5",
     [CCode (cname="", cheader="")]
     public override int url_open (

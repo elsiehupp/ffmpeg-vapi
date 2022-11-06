@@ -35,7 +35,8 @@ static const AVClass adts_muxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_adts_muxer = {
+[CCode (cname="ff_adts_muxer", cheader="")]
+public class OutputFormat : AVOutputFormat ff_adts_muxer = {
     //  .name              = "adts",
     //  .long_name         = "ADTS AAC (Advanced Audio Coding)",
     //  .mime_type         = "audio/aac",
@@ -43,10 +44,10 @@ AVOutputFormat ff_adts_muxer = {
     //  .priv_data_size    = sizeof(ADTSContext),
     //  .audio_codec       = AV_CODEC_ID_AAC,
     //  .video_codec       = AV_CODEC_ID_NONE,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="adts_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    );              = adts_init,
+    );
     [CCode (cname="adts_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
@@ -57,10 +58,10 @@ AVOutputFormat ff_adts_muxer = {
         uint8[] buf,
         int buf_size
     );
-    [CCode (cname="", cheader="")]
+    [CCode (cname="adts_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = adts_write_trailer,
+    );
     //  .priv_class        = &adts_muxer_class,
     //  .flags             = AVFMT_NOTIMESTAMPS,
 };

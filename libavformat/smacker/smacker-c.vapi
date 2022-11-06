@@ -23,7 +23,8 @@
  * Based on http://wiki.multimedia.cx/index.php?title=Smacker
  */
 
-AVInputFormat ff_smacker_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_smacker_demuxer = {
     //  .name           = "smk",
     //  .long_name      = "Smacker",
     //  .priv_data_size = sizeof(SmackerContext),

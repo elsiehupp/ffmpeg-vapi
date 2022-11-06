@@ -22,7 +22,7 @@
  */
 
 FF_RAW_DEMUXER_CLASS(shorten)
-AVInputFormat ff_shorten_demuxer = {
+public class InputFormat : AVInputFormat ff_shorten_demuxer = {
     //  .name           = "shn",
     //  .long_name      = "raw Shorten",
     [CCode (cname="", cheader="")]

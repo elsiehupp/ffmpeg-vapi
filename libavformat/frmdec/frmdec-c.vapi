@@ -24,7 +24,8 @@
  * Megalux Frame demuxer
  */
 
-AVInputFormat ff_frm_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_frm_demuxer = {
     //  .name           = "frm",
     //  .priv_data_size = sizeof(FrmContext),
     //  .long_name      = "Megalux Frame",

@@ -26,7 +26,8 @@ static const AVClass class_openmpt = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_libopenmpt_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_libopenmpt_demuxer = {
     //  .name           = "libopenmpt",
     //  .long_name      = "Tracker formats (libopenmpt)",
     //  .priv_data_size = sizeof(OpenMPTContext),

@@ -38,7 +38,8 @@ static const AVClass gif_muxer_class = {
     //  .option     = options,
 };
 
-AVOutputFormat ff_gif_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_gif_muxer = {
     //  .name           = "gif",
     //  .long_name      = "CompuServe Graphics Interchange Format (GIF)",
     //  .mime_type      = "image/gif",

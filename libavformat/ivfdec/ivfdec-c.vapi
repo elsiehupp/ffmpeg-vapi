@@ -18,7 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_ivf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ivf_demuxer = {
     //  .name           = "ivf",
     //  .long_name      = "On2 IVF",
     [CCode (cname="", cheader="")]

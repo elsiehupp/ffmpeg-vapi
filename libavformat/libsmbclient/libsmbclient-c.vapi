@@ -35,7 +35,8 @@ static const AVClass libsmbclient_context_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_libsmbclient_protocol = {
+[CCode (cname="ff_libsmbclient_protocol", cheader="")]
+public class LibSMBClientURLProtocol : URLProtocol {
     //  .name                = "smb",
     [CCode (cname="", cheader="")]
     public override int url_open (

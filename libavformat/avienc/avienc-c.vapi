@@ -34,7 +34,8 @@ static const AVClass avi_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_avi_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_avi_muxer = {
     //  .name           = "avi",
     //  .long_name      = "AVI (Audio Video Interleaved)",
     //  .mime_type      = "video/x-msvideo",

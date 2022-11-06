@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_brstm_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_brstm_demuxer = {
     //  .name           = "brstm",
     //  .long_name      = "BRSTM (Binary Revolution Stream)",
     //  .priv_data_size = sizeof(BRSTMDemuxContext),
@@ -50,7 +51,8 @@ AVInputFormat ff_brstm_demuxer = {
     //  .extensions     = "brstm",
 };
 
-AVInputFormat ff_bfstm_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_bfstm_demuxer = {
     //  .name           = "bfstm",
     //  .long_name      = "BFSTM (Binary Cafe Stream)",
     //  .priv_data_size = sizeof(BRSTMDemuxContext),

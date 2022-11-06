@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_ircam_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ircam_demuxer = {
     //  .name           = "ircam",
     //  .long_name      = "Berkeley/IRCAM/CARL Sound Format",
     [CCode (cname="", cheader="")]

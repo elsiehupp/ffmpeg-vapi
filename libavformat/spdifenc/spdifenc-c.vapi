@@ -59,7 +59,8 @@ static const AVClass spdif_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_spdif_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_spdif_muxer = {
     //  .name              = "spdif",
     //  .long_name         = "IEC 61937 (used on S/PDIF - IEC958)",
     //  .extensions        = "spdif",

@@ -40,7 +40,8 @@ static const AVClass aqt_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_aqtitle_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_aqtitle_demuxer = {
     //  .name           = "aqtitle",
     //  .long_name      = "AQTitle subtitles",
     //  .priv_data_size = sizeof(AQTitleContext),

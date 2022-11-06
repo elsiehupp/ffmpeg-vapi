@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_gxf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_gxf_demuxer = {
     //  .name           = "gxf",
     //  .long_name      = "GXF (General eXchange Format)",
     //  .priv_data_size = sizeof(struct gxf_stream_info),

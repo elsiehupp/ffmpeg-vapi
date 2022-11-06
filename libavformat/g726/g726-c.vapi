@@ -36,7 +36,8 @@ static const AVClass g726le_demuxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_g726_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_g726_demuxer = {
     //  .name           = "g726",
     //  .long_name      = "raw big-endian G.726 (\"left aligned\")",
     [CCode (cname="", cheader="")]
@@ -62,7 +63,8 @@ static const AVClass g726_demuxer_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_g726le_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_g726le_demuxer = {
     //  .name           = "g726le",
     //  .long_name      = "raw little-endian G.726 (\"right aligned\")",
     [CCode (cname="", cheader="")]

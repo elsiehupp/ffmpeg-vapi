@@ -28,7 +28,8 @@
  *  [2]http://msdn.microsoft.com/en-us/library/bb643323.aspx
  */
 
-const URLProtocol ff_mmst_protocol = {
+[CCode (cname="ff_mmst_protocol", cheader="")]
+public class MMSTURLProtocol : URLProtocol {
     //  .name           = "mmst",
     [CCode (cname="", cheader="")]
     public override int url_open (

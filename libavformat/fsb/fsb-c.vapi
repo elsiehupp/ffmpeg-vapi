@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_fsb_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_fsb_demuxer = {
     //  .name        = "fsb",
     //  .long_name   = "FMOD Sample Bank",
     [CCode (cname="", cheader="")]

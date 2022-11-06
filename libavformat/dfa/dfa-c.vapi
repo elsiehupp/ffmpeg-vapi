@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_dfa_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_dfa_demuxer = {
     //  .name           = "dfa",
     //  .long_name      = "Chronomaster DFA",
     [CCode (cname="", cheader="")]

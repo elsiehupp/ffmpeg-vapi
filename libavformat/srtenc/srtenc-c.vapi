@@ -25,7 +25,8 @@
    - byte order mark.
  */
 
-AVOutputFormat ff_srt_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_srt_muxer = {
     //  .name           = "srt",
     //  .long_name      = "SubRip subtitle",
     //  .mime_type      = "application/x-subrip",

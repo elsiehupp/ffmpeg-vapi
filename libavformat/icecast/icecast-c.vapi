@@ -26,7 +26,8 @@ static const AVClass icecast_context_class = {
     //  .version        = LIBAVUTIL_VERSION_INT,
 };
 
-const URLProtocol ff_icecast_protocol = {
+[CCode (cname="ff_icecast_protocol", cheader="")]
+public class IceCastURLProtocol : URLProtocol {
     //  .name            = "icecast",
     [CCode (cname="", cheader="")]
     public override int url_open (

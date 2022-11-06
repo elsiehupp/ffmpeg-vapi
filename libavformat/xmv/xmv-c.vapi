@@ -25,7 +25,8 @@
  * Microsoft XMV demuxer
  */
 
-AVInputFormat ff_xmv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_xmv_demuxer = {
     //  .name           = "xmv",
     //  .long_name      = "Microsoft XMV",
     //  .extensions     = "xmv",

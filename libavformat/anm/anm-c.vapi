@@ -24,7 +24,8 @@
  * Deluxe Paint Animation demuxer
  */
 
-AVInputFormat ff_anm_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_anm_demuxer = {
     //  .name           = "anm",
     //  .long_name      = "Deluxe Paint Animation",
     //  .priv_data_size = sizeof(AnmDemuxContext),

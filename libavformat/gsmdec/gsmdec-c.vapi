@@ -33,7 +33,8 @@ static const AVClass gsm_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_gsm_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_gsm_demuxer = {
     //  .name           = "gsm",
     //  .long_name      = "raw GSM",
     //  .priv_data_size = sizeof(GSMDemuxerContext),

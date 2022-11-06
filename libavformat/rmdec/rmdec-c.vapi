@@ -26,7 +26,8 @@
 #define DEINT_ID_VBRF MKTAG('v', 'b', 'r', 'f') ///< VBR case for AAC
 #define DEINT_ID_VBRS MKTAG('v', 'b', 'r', 's') ///< VBR case for AAC
 
-AVInputFormat ff_rm_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_rm_demuxer = {
     //  .name           = "rm",
     //  .long_name      = "RealMedia",
     //  .priv_data_size = sizeof(RMDemuxContext),
@@ -63,7 +64,8 @@ AVInputFormat ff_rm_demuxer = {
     );      = rm_read_seek,
 };
 
-AVInputFormat ff_rdt_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_rdt_demuxer = {
     //  .name           = "rdt",
     //  .long_name      = "RDT demuxer",
     //  .priv_data_size = sizeof(RMDemuxContext),
@@ -74,7 +76,8 @@ AVInputFormat ff_rdt_demuxer = {
     //  .flags          = AVFMT_NOFILE,
 };
 
-AVInputFormat ff_ivr_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ivr_demuxer = {
     //  .name           = "ivr",
     //  .long_name      = "IVR (Internet Video Recording)",
     //  .priv_data_size = sizeof(RMDemuxContext),

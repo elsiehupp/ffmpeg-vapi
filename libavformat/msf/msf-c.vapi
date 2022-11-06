@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_msf_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_msf_demuxer = {
     //  .name           = "msf",
     //  .long_name      = "Sony PS3 MSF",
     [CCode (cname="", cheader="")]

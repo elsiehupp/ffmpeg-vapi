@@ -33,7 +33,8 @@ static const AVClass cdxl_demuxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_cdxl_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_cdxl_demuxer = {
     //  .name           = "cdxl",
     //  .long_name      = "Commodore CDXL video",
     //  .priv_data_size = sizeof(CDXLDemuxContext),

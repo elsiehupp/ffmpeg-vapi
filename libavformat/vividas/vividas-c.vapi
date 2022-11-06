@@ -28,7 +28,8 @@
  * @sa http://wiki.multimedia.cx/index.php?title=Vividas_VIV
  */
 
-AVInputFormat ff_vividas_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_vividas_demuxer = {
     //  .name           = "vividas",
     //  .long_name      = "Vividas VIV",
     //  .priv_data_size = sizeof(VividasDemuxContext),

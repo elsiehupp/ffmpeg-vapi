@@ -25,7 +25,8 @@
  * @author Peter Ross <pross@xvid.org>
  */
 
-AVInputFormat ff_wtv_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_wtv_demuxer = {
     //  .name           = "wtv",
     //  .long_name      = "Windows Television (WTV)",
     //  .priv_data_size = sizeof(WtvContext),

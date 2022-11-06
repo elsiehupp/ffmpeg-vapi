@@ -24,7 +24,8 @@
  * Microsoft Windows ICO demuxer
  */
 
-AVInputFormat ff_ico_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ico_demuxer = {
     //  .name           = "ico",
     //  .long_name      = "Microsoft Windows ICO",
     //  .priv_data_size = sizeof(IcoDemuxContext),

@@ -36,7 +36,8 @@ static const AVClass fits_demuxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_fits_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_fits_demuxer = {
     //  .name           = "fits",
     //  .long_name      = "Flexible Image Transport System",
     //  .priv_data_size = sizeof(FITSContext),

@@ -20,7 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_wv_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_wv_muxer = {
     //  .name              = "wv",
     //  .long_name         = "raw WavPack",
     //  .mime_type         = "audio/x-wavpack",

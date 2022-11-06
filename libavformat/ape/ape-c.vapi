@@ -20,7 +20,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_ape_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ape_demuxer = {
     //  .name           = "ape",
     //  .long_name      = "Monkey's Audio",
     //  .priv_data_size = sizeof(APEContext),

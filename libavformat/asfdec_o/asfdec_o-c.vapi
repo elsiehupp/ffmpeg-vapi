@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVInputFormat ff_asf_o_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_asf_o_demuxer = {
     //  .name           = "asf_o",
     //  .long_name      = "ASF (Advanced / Active Streaming Format)",
     //  .priv_data_size = sizeof(ASFContext),

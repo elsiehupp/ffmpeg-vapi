@@ -26,7 +26,8 @@
  * @see http://wiki.multimedia.cx/index.php?title=FunCom_ISS
  */
 
-AVInputFormat ff_iss_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_iss_demuxer = {
     //  .name           = "iss",
     //  .long_name      = "Funcom ISS",
     //  .priv_data_size = sizeof(IssDemuxContext),

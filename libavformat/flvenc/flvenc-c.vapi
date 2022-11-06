@@ -36,7 +36,8 @@ static const AVClass flv_muxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_flv_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_flv_muxer = {
     //  .name           = "flv",
     //  .long_name      = "FLV (Flash Video)",
     //  .mime_type      = "video/x-flv",

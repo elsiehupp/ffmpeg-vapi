@@ -71,7 +71,8 @@ static const AVClass matroska_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_matroska_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_matroska_muxer = {
     //  .name              = "matroska",
     //  .long_name         = "Matroska",
     //  .mime_type         = "video/x-matroska",
@@ -128,7 +129,8 @@ static const AVClass webm_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVOutputFormat ff_webm_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_webm_muxer = {
     //  .name              = "webm",
     //  .long_name         = "WebM",
     //  .mime_type         = "video/webm",
@@ -178,7 +180,7 @@ static const AVClass mka_class = {
     //  .option     = options,
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
-AVOutputFormat ff_matroska_audio_muxer = {
+public class OutputFormat : AVOutputFormat ff_matroska_audio_muxer = {
     //  .name              = "matroska",
     //  .long_name         = "Matroska Audio",
     //  .mime_type         = "audio/x-matroska",

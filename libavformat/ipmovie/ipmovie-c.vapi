@@ -32,7 +32,8 @@
  * up and sending out the chunks.
  */
 
-AVInputFormat ff_ipmovie_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ipmovie_demuxer = {
     //  .name           = "ipmovie",
     //  .long_name      = "Interplay MVE",
     //  .priv_data_size = sizeof(IPMVEContext),

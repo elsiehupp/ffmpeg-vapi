@@ -33,7 +33,8 @@ static const AVClass ser_demuxer_class = {
     //  .version    = LIBAVUTIL_VERSION_INT,
 };
 
-AVInputFormat ff_ser_demuxer = {
+[CCode (cname="", cheader="")]
+public class InputFormat : AVInputFormat ff_ser_demuxer = {
     //  .name           = "ser",
     //  .long_name      = "SER (Simple uncompressed video format for astronomical capturing)",
     //  .priv_data_size = sizeof(SERDemuxerContext),

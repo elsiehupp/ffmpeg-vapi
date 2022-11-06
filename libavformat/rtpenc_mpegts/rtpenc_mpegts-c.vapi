@@ -19,7 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-AVOutputFormat ff_rtp_mpegts_muxer = {
+[CCode (cname="", cheader="")]
+public class OutputFormat : AVOutputFormat ff_rtp_mpegts_muxer = {
     //  .name              = "rtp_mpegts",
     //  .long_name         = "RTP/mpegts output format",
     //  .priv_data_size    = sizeof(struct MuxChain),
