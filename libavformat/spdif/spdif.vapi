@@ -1,7 +1,8 @@
 /***********************************************************
 IEC 61937 common header
 @copyright 2009 Bartlomiej Wolowiec
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

@@ -1,7 +1,8 @@
 /***********************************************************
 ADS/SS2 demuxer
 @copyright 2015 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,9 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_ads_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_ads_demuxer = {
-    //  .name           = "ads",
-    //  .long_name      = "Sony PS2 ADS",
+public class InputDemuxer : AVInputFormat ff_ads_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "ads";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "Sony PS2 ADS";
+        }
+    }
     [CCode (cname="ads_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -36,5 +47,10 @@ public class InputFormat : AVInputFormat ff_ads_demuxer = {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .extensions     = "ads,ss2",
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "ads,ss2";
+        }
+    }
 }

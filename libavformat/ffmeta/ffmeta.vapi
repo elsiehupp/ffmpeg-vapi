@@ -1,7 +1,8 @@
 /***********************************************************
 Common data for metadata muxer/demuxer
 @copyright 2010 Anton Khirnov
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,6 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define ID_STRING  ";FFMETADATA"
-#define ID_CHAPTER "[CHAPTER]"
-#define ID_STREAM  "[STREAM]"
+[CCode (cname="ID_STRING", cheader="")]
+public const string ID_STRING; // ";FFMETADATA"
+
+[CCode (cname="ID_CHAPTER", cheader="")]
+public const string ID_CHAPTER; // "[CHAPTER]"
+
+[CCode (cname="ID_STREAM", cheader="")]
+public const string ID_STREAM; // "[STREAM]"

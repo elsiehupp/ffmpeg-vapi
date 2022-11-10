@@ -1,7 +1,8 @@
 /***********************************************************
 id Quake II CIN File Demuxer
 @copyright 2003 The FFmpeg project
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,11 +20,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-id Quake II CIN file demuxer by Mike Melanson (melanson@pcisys.net)
+/***********************************************************
+@file id Quake II CIN file demuxer by Mike Melanson (melanson@pcisys.net)
 For more information about the id CIN format, visit:
-  http://www.csse.monash.edu.au/~timf/
+http://www.csse.monash.edu.au/~timf/
 
 CIN is a somewhat quirky and ill-defined format. Here are some notes
 for anyone trying to understand the technical details of this format:
@@ -60,38 +60,53 @@ range from 0..63. Other tools specify the RGB components as full 8-bit
 values that range from 0..255. Since there are no markers in the file to
 differentiate between the two variants, this demuxer uses the following
 heuristic:
-  - load the 768 palette bytes from disk
-  - assume that they will need to be shifted left by 2 bits to
+- load the 768 palette bytes from disk
+- assume that they will need to be shifted left by 2 bits to
     transform them from 6-bit values to 8-bit values
-  - scan through all 768 palette bytes
+- scan through all 768 palette bytes
     - if any bytes exceed 63, do not shift the bytes at all before
-      transmitting them to the video decoder
+        transmitting them to the video decoder
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_idcin_demuxer = {
-    //  .name           = "idcin",
-    //  .long_name      = "id Cinematic",
-    //  .priv_data_size = sizeof(IdcinDemuxContext),
+[CCode (cname="ff_idcin_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "idcin"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "id Cinematic"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (IdcinDemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = idcin_probe,
+    ); // = idcin_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = idcin_read_header,
+    ); // = idcin_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = idcin_read_packet,
+    ); // = idcin_read_packet,
     [CCode (cname="", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = idcin_read_seek,
-    //  .flags          = AVFMT_NO_BYTE_SEEK,
+    ); // = idcin_read_seek,
+    //  .flags = AVFMT_NO_BYTE_SEEK,
 }

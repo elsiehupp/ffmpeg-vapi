@@ -3,7 +3,8 @@ IEC 61937 muxer
 @copyright 2009 Bartlomiej Wolowiec
 @copyright 2010 Anssi Hannula
 @copyright 2010 Carl Eugen Hoyos
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,9 +22,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-IEC-61937 encapsulation of various formats, used by S/PDIF
+/***********************************************************
+@file IEC-61937 encapsulation of various formats, used by S/PDIF
 @author Bartlomiej Wolowiec
 @author Anssi Hannula
 @author Carl Eugen Hoyos
@@ -44,43 +44,79 @@ IEC 61937 frames at normal usage start every specific count of bytes,
      dependent from data-type (spaces between packets are filled by zeros)
 ***********************************************************/
 
-static const AVOption options[] = {
-{ "spdif_flags", "IEC 61937 encapsulation flags", offsetof(IEC61937Context, spdif_flags), AV_OPT_TYPE_FLAGS, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "spdif_flags" },
-{ "be", "output in big-endian format (for use as s16be)", 0, AV_OPT_TYPE_CONST, {.i64 = SPDIF_FLAG_BIGENDIAN},  0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "spdif_flags" },
-{ "dtshd_rate", "mux complete DTS frames in HD mode at the specified IEC958 rate (in Hz, default 0=disabled)", offsetof(IEC61937Context, dtshd_rate), AV_OPT_TYPE_INT, {.i64 = 0}, 0, 768000, AV_OPT_FLAG_ENCODING_PARAM },
-{ "dtshd_fallback_time", "min secs to strip HD for after an overflow (-1: till the end, default 60)", offsetof(IEC61937Context, dtshd_fallback), AV_OPT_TYPE_INT, {.i64 = 60}, -1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
-{ NULL },
+//  static const AVOption options[] = {
+//  { "spdif_flags", "IEC 61937 encapsulation flags", offsetof(IEC61937Context, spdif_flags), AV_OPT_TYPE_FLAGS, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "spdif_flags" },
+//  { "be", "output in big-endian format (for use as s16be)", 0, AV_OPT_TYPE_CONST, {.i64 = SPDIF_FLAG_BIGENDIAN},  0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "spdif_flags" },
+//  { "dtshd_rate", "mux complete DTS frames in HD mode at the specified IEC958 rate (in Hz, default 0=disabled)", offsetof(IEC61937Context, dtshd_rate), AV_OPT_TYPE_INT, {.i64 = 0}, 0, 768000, AV_OPT_FLAG_ENCODING_PARAM },
+//  { "dtshd_fallback_time", "min secs to strip HD for after an overflow (-1: till the end, default 60)", offsetof(IEC61937Context, dtshd_fallback), AV_OPT_TYPE_INT, {.i64 = 60}, -1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
+//  { NULL },
+//  }
+
+[CCode (cname="spdif_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "spdif"
+    //  .item_name = av_default_item_name,
+    //  .option = options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-static const AVClass spdif_class = {
-    //  .class_name     = "spdif",
-    //  .item_name      = av_default_item_name,
-    //  .option         = options,
-    //  .version        = LIBAVUTIL_VERSION_INT,
-}
-
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_spdif_muxer = {
-    //  .name              = "spdif",
-    //  .long_name         = "IEC 61937 (used on S/PDIF - IEC958)",
-    //  .extensions        = "spdif",
-    //  .priv_data_size    = sizeof(IEC61937Context),
-    //  .audio_codec       = AV_CODEC_ID_AC3,
-    //  .video_codec       = AV_CODEC_ID_NONE,
+[CCode (cname="ff_spdif_muxer", cheader="")]
+public class SPIDFOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "spdif"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "IEC 61937 (used on S/PDIF - IEC958)"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "spdif"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (IEC61937Context);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.AC3;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = spdif_write_header,
+    ); // = spdif_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = spdif_write_packet,
+    ); // = spdif_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = spdif_write_trailer,
-    //  .flags             = AVFMT_NOTIMESTAMPS,
-    //  .priv_class        = &spdif_class,
+    ); // = spdif_write_trailer,
+    //  .flags = AVFMT_NOTIMESTAMPS,
+    //  .priv_class = spdif_class,
 }

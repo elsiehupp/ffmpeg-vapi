@@ -1,7 +1,8 @@
 /***********************************************************
 Raw DTS-HD demuxer
 @copyright 2012 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,25 +20,50 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_dtshd_demuxer = {
-    //  .name           = "dtshd",
-    //  .long_name      = "raw DTS-HD",
-    //  .priv_data_size = sizeof(DTSHDDemuxContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_dtshd_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "dtshd"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw DTS-HD"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (DTSHDDemuxContext);
+        }
+    }
+    [CCode (cname="dtshd_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = dtshd_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="dtshd_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = dtshd_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="raw_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = raw_read_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .extensions     = "dtshd",
-    //  .raw_codec_id   = AV_CODEC_ID_DTS,
+    );
+    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "dtshd"
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.DTS;
+        }
+    }
 }

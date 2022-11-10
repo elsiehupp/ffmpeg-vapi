@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2012 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

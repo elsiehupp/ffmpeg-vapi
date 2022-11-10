@@ -1,7 +1,8 @@
 /***********************************************************
 amr file format
 @copyright 2001 FFmpeg project
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -23,39 +24,84 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Write and read amr data according to RFC3267, http://www.ietf.org/rfc/rfc3267.txt?number=3267
 
 Only mono files are supported.
+***********************************************************/
 
-*/
-
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_amrwb_demuxer = {
-    //  .name           = "amrwb",
-    //  .long_name      = "raw AMR-WB",
-    //  .priv_data_size = sizeof(AMRContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_amrwb_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat ff_amrwb_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "amrwb";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "raw AMR-WB";
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (AMRContext);
+        }
+    }
+    [CCode (cname="amrwb_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = amrwb_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="amrwb_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = amrwb_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="amr_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = amr_read_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
+    );
+    //  .flags = AVFMT_GENERIC_INDEX,
 }
 #endif
 
 #if CONFIG_AMR_MUXER
-public class OutputFormat : AVOutputFormat ff_amr_muxer = {
-    //  .name              = "amr",
-    //  .long_name         = "3GPP AMR",
-    //  .mime_type         = "audio/amr",
-    //  .extensions        = "amr",
-    //  .audio_codec       = AV_CODEC_ID_AMR_NB,
-    //  .video_codec       = AV_CODEC_ID_NONE,
+[CCode (cname="ff_amr_muxer", cheader="")]
+public class AmrOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "amr";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "3GPP AMR";
+        }
+    }
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return "audio/amr";
+        }
+    }
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "amr";
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.AMR_NB;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
     [CCode (cname="amr_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
@@ -63,9 +109,9 @@ public class OutputFormat : AVOutputFormat ff_amr_muxer = {
     [CCode (cname="amr_write_packet", cheader="")]
     public abstract int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
     );
-    //  .flags             = AVFMT_NOTIMESTAMPS,
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif

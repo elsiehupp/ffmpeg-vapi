@@ -1,49 +1,85 @@
 /***********************************************************
- True Audio (TTA) muxer
- @copyright 2016 James Almer
+True Audio (TTA) muxer
+@copyright 2016 James Almer
+***********************************************************/
+/***********************************************************
+This file is part of FFmpeg.
 
- This file is part of FFmpeg.
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
- FFmpeg is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License as published by the Free Software Foundation; either
- version 2.1 of the License, or (at your option) any later version.
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
 
- FFmpeg is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
-
- You should have received a copy of the GNU Lesser General Public
- License along with FFmpeg; if not, write to the Free Software
- Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_tta_muxer = {
-    //  .name              = "tta",
-    //  .long_name         = "TTA (True Audio)",
-    //  .mime_type         = "audio/x-tta",
-    //  .extensions        = "tta",
-    //  .priv_data_size    = sizeof(TTAMuxContext),
-    //  .audio_codec       = AV_CODEC_ID_TTA,
-    //  .video_codec       = AV_CODEC_ID_NONE,
+[CCode (cname="ff_tta_muxer", cheader="")]
+public class TrueAudioOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "tta"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "TTA (True Audio)"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "audio/x-tta"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "tta"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (TTAMuxContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.TTA;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int init (
         AVFormatContext format_context
-    );              = tta_init,
+    ); // = tta_init,
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = tta_write_header,
+    ); // = tta_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = tta_write_packet,
+    ); // = tta_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = tta_write_trailer,
+    ); // = tta_write_trailer,
 }

@@ -1,7 +1,8 @@
 /***********************************************************
 CRC encoder (for codec/format testing)
 @copyright 2002 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,26 +20,51 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_crc_muxer = {
-    //  .name              = "crc",
-    //  .long_name         = "CRC testing",
-    //  .priv_data_size    = sizeof(CRCState),
-    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    //  .video_codec       = AV_CODEC_ID_RAWVIDEO,
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_crc_muxer", cheader="")]
+public class CRCOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "crc"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "CRC testing"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (CRCState);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.PCM_S16LE;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.RAWVIDEO;
+        }
+    }
+    [CCode (cname="crc_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = crc_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="crc_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = crc_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="crc_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = crc_write_trailer,
-    //  .flags             = AVFMT_NOTIMESTAMPS,
+    );
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }

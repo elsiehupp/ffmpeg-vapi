@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@ingroup LibAVUtil.Memory
+@file @ingroup LibAVUtil.Memory
 Memory handling functions
 ***********************************************************/
 
@@ -298,8 +298,8 @@ This function does the same thing as av_realloc (), except:
 - It frees the input block in case of failure, thus avoiding the memory
     leak with the classic
     @code{.c}
-    buf = realloc (buf);
-    if (!buf)
+    buffer = realloc (buffer);
+    if (!buffer)
         return -1;
     @endcode
     pattern.
@@ -372,11 +372,11 @@ freed.
 A typical use pattern follows:
 
 @code{.c}
-uint8[] buf = ...;
-uint8[] new_buf = av_fast_realloc (buf, &current_size, size_needed);
+uint8[] buffer = ...;
+uint8[] new_buf = av_fast_realloc (buffer, &current_size, size_needed);
 if (!new_buf) {
     // Allocation failed; clean up original buffer
-    av_freep (&buf);
+    av_freep (&buffer);
     return LibAVUtil.ErrorCode (ENOMEM);
 }
 @endcode
@@ -410,10 +410,10 @@ avoid memleaks is necessary.
 `size_needed` is greater than 0.
 
 @code{.c}
-uint8[] buf = ...;
-av_fast_malloc (&buf, &current_size, size_needed);
-if (!buf) {
-    // Allocation failed; buf already freed
+uint8[] buffer = ...;
+av_fast_malloc (&buffer, &current_size, size_needed);
+if (!buffer) {
+    // Allocation failed; buffer already freed
     return LibAVUtil.ErrorCode (ENOMEM);
 }
 @endcode
@@ -481,15 +481,15 @@ public void av_free (
 or av_realloc () family, and set the pointer pointing to it to `null`.
 
 @code{.c}
-uint8[] buf = av_malloc (16);
-av_free (buf);
-// buf now contains a dangling pointer to freed memory, and accidental
-// dereference of buf will result in a use-after-free, which may be a
+uint8[] buffer = av_malloc (16);
+av_free (buffer);
+// buffer now contains a dangling pointer to freed memory, and accidental
+// dereference of buffer will result in a use-after-free, which may be a
 // security risk.
 
-uint8[] buf = av_malloc (16);
-av_freep (&buf);
-// buf is now null, and accidental dereference will only result in a
+uint8[] buffer = av_malloc (16);
+av_freep (&buffer);
+// buffer is now null, and accidental dereference will only result in a
 // null-pointer dereference.
 @endcode
 

@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2012 Nicolas George
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -18,50 +19,71 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define OFFSET(x) offsetof(ConcatContext, x)
-#define DEC AV_OPT_FLAG_DECODING_PARAM
+//  #define OFFSET(x) offsetof(ConcatContext, x)
+//  #define DEC AV_OPT_FLAG_DECODING_PARAM
+//  static const AVOption options[] = {
+//      { "safe", "enable safe mode"
+//        OFFSET(safe), AV_OPT_TYPE_BOOL, {.i64 = 1}, -1, 1, DEC },
+//      { "auto_convert", "automatically convert bitstream format"
+//        OFFSET(auto_convert), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, DEC },
+//      { "segment_time_metadata", "output file segment start time and duration as packet metadata"
+//        OFFSET(segment_time_metadata), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC },
+//      { NULL }
+//  }
 
-static const AVOption options[] = {
-    { "safe", "enable safe mode",
-      OFFSET(safe), AV_OPT_TYPE_BOOL, {.i64 = 1}, -1, 1, DEC },
-    { "auto_convert", "automatically convert bitstream format",
-      OFFSET(auto_convert), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, DEC },
-    { "segment_time_metadata", "output file segment start time and duration as packet metadata",
-      OFFSET(segment_time_metadata), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC },
-    { NULL }
+[CCode (cname="concat_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "concat demuxer"
+    //  .item_name = av_default_item_name,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-static const AVClass concat_class = {
-    //  .class_name = "concat demuxer",
-    //  .item_name  = av_default_item_name,
-    //  .option     = options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
-}
 
-
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_concat_demuxer = {
-    //  .name           = "concat",
-    //  .long_name      = "Virtual concatenation script",
-    //  .priv_data_size = sizeof(ConcatContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_concat_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "concat"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Virtual concatenation script"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (ConcatContext);
+        }
+    }
+    [CCode (cname="concat_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = concat_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="concat_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = concat_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="concat_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = concat_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="concat_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = concat_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="concat_seek", cheader="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -69,6 +91,6 @@ public class InputFormat : AVInputFormat ff_concat_demuxer = {
         int64 ts,
         int64 max_ts,
         int flags
-    );     = concat_seek,
-    //  .priv_class     = &concat_class,
+    );
+    //  .priv_class = concat_class,
 }

@@ -23,17 +23,17 @@
 **/
 
 const struct ogg_codec ff_speex_codec = {
-    //  .magic = "Speex   ",
+    //  .magic = "Speex   "
     //  .magicsize = 8,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); = speex_header,
+    ); // = speex_header,
     [CCode (cname="", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); = speex_packet,
+    ); // = speex_packet,
     //  .nb_header = 2,
 }

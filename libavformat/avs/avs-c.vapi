@@ -1,7 +1,8 @@
 /***********************************************************
 AVS demuxer.
 @copyright 2006  Aurelien Jacobs <aurel@gnuage.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,32 +20,46 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Argonaut Games' Creature Shock demuxer
+/***********************************************************
+@file Argonaut Games' Creature Shock demuxer
 @see http://wiki.multimedia.cx/index.php?title=AVS
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_avs_demuxer = {
-    //  .name           = "avs",
-    //  .long_name      = "Argonaut Games Creature Shock",
-    //  .priv_data_size = sizeof(AvsFormat),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_avs_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "avs"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "Argonaut Games Creature Shock";
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (AvsFormat);
+        }
+    }
+    [CCode (cname="avs_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = avs_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="avs_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = avs_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="avs_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = avs_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="avs_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = avs_read_close,
+    );
 }

@@ -1,7 +1,4 @@
 /***********************************************************
-@brief LibAVUtil.Options
-@copyright 2005 Michael Niedermayer <michaelni@gmx.at>
-
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -18,12 +15,14 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@brief LibAVUtil.Options
+@copyright 2005 Michael Niedermayer <michaelni@gmx.at>
+***********************************************************/
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-LibAVUtil.Options
+@file LibAVUtil.Options
 ***********************************************************/
 
 /***********************************************************
@@ -66,7 +65,12 @@ public const Option test_options[] = {
 }
 
 public const Class test_class = {
-    //  .class_name = "test class",
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "test class"
     //  .item_name = av_default_item_name,
     //  .option = test_options,
     //  .version = LIBAVUTIL_VERSION_INT,
@@ -86,7 +90,7 @@ Continuing with the above example:
 @code
 test_struct alloc_test_struct () {
     test_struct ret = av_mallocz (sizeof (*ret));
-    ret.class = &test_class;
+    ret.class = test_class;
     av_opt_set_defaults (ret);
     return ret;
 }
@@ -113,12 +117,12 @@ void free_test_struct (out test_struct foo) {
         int flags_opt;
     } child_struct;
     public const Option child_opts[] = {
-        { "test_flags", "This is a test option of flags type.",
+        { "test_flags", "This is a test option of flags type."
         offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, int.MAX },
         { null },
     }
     public const Class child_class = {
-        //  .class_name = "child class",
+        //  .class_name = "child class"
         //  .item_name = av_default_item_name,
         //  .option = child_opts,
         //  .version = LIBAVUTIL_VERSION_INT,
@@ -158,7 +162,7 @@ void free_test_struct (out test_struct foo) {
     For example, to add some named constants for the test_flags option
     above, put the following into the child_opts array:
     @code
-    { "test_flags", "This is a test option of flags type.",
+    { "test_flags", "This is a test option of flags type."
      offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, int.MAX, "test_unit" },
     { "flag1", "This is a flag with value 16", 0, OptionType.CONST, { .i64 = 16 }, 0, 0, "test_unit" },
     @endcode

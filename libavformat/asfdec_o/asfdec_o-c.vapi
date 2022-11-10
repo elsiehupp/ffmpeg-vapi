@@ -1,7 +1,8 @@
 /***********************************************************
 Microsoft Advanced Streaming Format demuxer
 @copyright 2014 Alexandra Hájková
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,41 +20,56 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_asf_o_demuxer = {
-    //  .name           = "asf_o",
-    //  .long_name      = "ASF (Advanced / Active Streaming Format)",
-    //  .priv_data_size = sizeof(ASFContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_asf_o_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "asf_o"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "ASF (Advanced / Active Streaming Format)"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (ASFContext);
+        }
+    }
+    [CCode (cname="asf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = asf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="asf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = asf_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="asf_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = asf_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="asf_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = asf_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="asf_read_timestamp", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); = asf_read_timestamp,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="asf_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = asf_read_seek,
-    //  .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH,
+    );
+    //  .flags = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH,
 }

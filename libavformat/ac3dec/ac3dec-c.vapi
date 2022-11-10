@@ -1,7 +1,8 @@
 /***********************************************************
 RAW AC-3 and E-AC-3 demuxer
 @copyright 2007 Justin Ruggles <justin.ruggles@gmail.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,13 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #if CONFIG_AC3_DEMUXER
 static int ac3_probe(const AVProbeData *p)
 {
-    return ac3_eac3_probe(p, AV_CODEC_ID_AC3);
+    return ac3_eac3_probe(p, LibAVCodec.CodecID.AC3);
 }
 
 FF_RAW_DEMUXER_CLASS(ac3)
-public class InputFormat : AVInputFormat ff_ac3_demuxer = {
-    //  .name           = "ac3",
-    //  .long_name      = "raw AC-3",
+
+[CCode (cname="ff_ac3_demuxer", cheader="")]
+public class AC3InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "ac3";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "raw AC-3";
+        }
+    }
     [CCode (cname="ac3_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -43,23 +56,49 @@ public class InputFormat : AVInputFormat ff_ac3_demuxer = {
         LibAVCodec.Packet packet
     );
     //  .flags = AVFMT_GENERIC_INDEX,
-    //  .extensions = "ac3",
-    //  .raw_codec_id   = AV_CODEC_ID_AC3,
-    //  .priv_data_size = sizeof(FFRawDemuxerContext),
-    //  .priv_class     = &ac3_demuxer_class,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "ac3";
+        }
+    }
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.AC3;
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FFRawDemuxerContext);
+        }
+    }
+    //  .priv_class = ac3_demuxer_class,
 }
 #endif
 
 #if CONFIG_EAC3_DEMUXER
 static int eac3_probe(const AVProbeData *p)
 {
-    return ac3_eac3_probe(p, AV_CODEC_ID_EAC3);
+    return ac3_eac3_probe(p, LibAVCodec.CodecID.EAC3);
 }
 
 FF_RAW_DEMUXER_CLASS(eac3)
-public class InputFormat : AVInputFormat ff_eac3_demuxer = {
-    //  .name           = "eac3",
-    //  .long_name      = "raw E-AC-3",
+[CCode (cname="ff_eac3_demuxer", cheader="")]
+public class EAC3InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "eac3";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "raw E-AC-3";
+        }
+    }
     [CCode (cname="eac3_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -73,10 +112,25 @@ public class InputFormat : AVInputFormat ff_eac3_demuxer = {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .extensions     = "eac3",
-    //  .raw_codec_id   = AV_CODEC_ID_EAC3,
-    //  .priv_data_size = sizeof(FFRawDemuxerContext),
-    //  .priv_class     = &eac3_demuxer_class,
+    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "eac3";
+        }
+    }
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.EAC3;
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FFRawDemuxerContext);
+        }
+    }
+    //  .priv_class = eac3_demuxer_class,
 }
 #endif

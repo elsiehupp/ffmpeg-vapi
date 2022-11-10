@@ -1,7 +1,8 @@
 /***********************************************************
 Session Announcement Protocol (RFC 2974) muxer
 @copyright 2010 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,26 +20,51 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_sap_muxer = {
-    //  .name              = "sap",
-    //  .long_name         = "SAP output",
-    //  .priv_data_size    = sizeof(struct SAPState),
-    //  .audio_codec       = AV_CODEC_ID_AAC,
-    //  .video_codec       = AV_CODEC_ID_MPEG4,
+[CCode (cname="ff_sap_muxer", cheader="")]
+public class SAPOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "sap"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "SAP output"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (SAPState);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.AAC;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.MPEG4;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = sap_write_header,
+    ); // = sap_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = sap_write_packet,
+    ); // = sap_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = sap_write_close,
-    //  .flags             = AVFMT_NOFILE | AVFMT_GLOBALHEADER,
+    ); // = sap_write_close,
+    //  .flags = AVFMT_NOFILE | AVFMT_GLOBALHEADER,
 }

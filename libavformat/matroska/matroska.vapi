@@ -1,7 +1,8 @@
 /***********************************************************
 Matroska constants
 @copyright 2003-2004 The FFmpeg project
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

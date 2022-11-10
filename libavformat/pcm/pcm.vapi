@@ -1,7 +1,8 @@
 /***********************************************************
 PCM common functions
 @copyright 2007 Aurelien Jacobs <aurel@gnuage.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

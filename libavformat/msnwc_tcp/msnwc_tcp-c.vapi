@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2008  Ramiro Polla
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -18,21 +19,31 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_msnwc_tcp_demuxer = {
-    //  .name        = "msnwctcp",
-    //  .long_name   = "MSN TCP Webcam stream",
+[CCode (cname="ff_msnwc_tcp_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "msnwctcp"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MSN TCP Webcam stream"
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );  = msnwc_tcp_probe,
+    ); // = msnwc_tcp_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); = msnwc_tcp_read_header,
+    ); // = msnwc_tcp_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); = msnwc_tcp_read_packet,
+    ); // = msnwc_tcp_read_packet,
 }

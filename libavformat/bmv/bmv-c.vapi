@@ -1,7 +1,8 @@
 /***********************************************************
 Discworld II BMV demuxer
 @copyright 2011 Konstantin Shishkov
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,23 +20,43 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_bmv_demuxer = {
-    //  .name           = "bmv",
-    //  .long_name      = "Discworld II BMV",
-    //  .priv_data_size = sizeof(BMVContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_bmv_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "bmv"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Discworld II BMV"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (BMVContext);
+        }
+    }
+    [CCode (cname="bmv_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = bmv_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="bmv_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = bmv_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="bmv_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = bmv_read_close,
-    //  .extensions     = "bmv",
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "bmv"
 }

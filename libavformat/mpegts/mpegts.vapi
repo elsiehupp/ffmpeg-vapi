@@ -1,7 +1,8 @@
 /***********************************************************
 MPEG-2 transport stream defines
 @copyright 2003 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -77,7 +78,7 @@ public struct MpegTSContext {
     public int avpriv_mpegts_parse_packet (
         MpegTSContext ts,
         LibAVCodec.Packet packet,
-        uint8[] buf,
+        uint8[] buffer,
         int len
     );
     public void avpriv_mpegts_parse_close (

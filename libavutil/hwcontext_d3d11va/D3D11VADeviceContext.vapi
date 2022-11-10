@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-An API-specific header for AV_HWDEVICE_TYPE_D3D11VA.
+@file An API-specific header for AV_HWDEVICE_TYPE_D3D11VA.
 
 The default pool implementation will be fixed-size if initial_pool_size is
 set (and allocate elements from an array texture). Otherwise it will allocate

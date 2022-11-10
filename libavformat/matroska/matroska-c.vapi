@@ -1,7 +1,8 @@
 /***********************************************************
 Matroska common data
 @copyright 2003-2004 The FFmpeg project
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,157 +20,154 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#include "libavutil/stereo3d.h"
+/***********************************************************
+If you add a tag here that is not in ff_codec_bmp_tags[]
+    or ff_codec_wav_tags[], add it also to additional_audio_tags[]
+    or additional_video_tags[] in matroskaenc.c
+***********************************************************/
+//  const CodecTags ff_mkv_codec_tags[] = {
+//      {"A_AAC"            , LibAVCodec.CodecID.AAC},
+//      {"A_AC3"            , LibAVCodec.CodecID.AC3},
+//      {"A_ALAC"           , LibAVCodec.CodecID.ALAC},
+//      {"A_DTS"            , LibAVCodec.CodecID.DTS},
+//      {"A_EAC3"           , LibAVCodec.CodecID.EAC3},
+//      {"A_FLAC"           , LibAVCodec.CodecID.FLAC},
+//      {"A_MLP"            , LibAVCodec.CodecID.MLP},
+//      {"A_MPEG/L2"        , LibAVCodec.CodecID.MP2},
+//      {"A_MPEG/L1"        , LibAVCodec.CodecID.MP1},
+//      {"A_MPEG/L3"        , LibAVCodec.CodecID.MP3},
+//      {"A_OPUS"           , LibAVCodec.CodecID.OPUS},
+//      {"A_OPUS/EXPERIMENTAL",LibAVCodec.CodecID.OPUS},
+//      {"A_PCM/FLOAT/IEEE" , LibAVCodec.CodecID.PCM_F32LE},
+//      {"A_PCM/FLOAT/IEEE" , LibAVCodec.CodecID.PCM_F64LE},
+//      {"A_PCM/INT/BIG"    , LibAVCodec.CodecID.PCM_S16BE},
+//      {"A_PCM/INT/BIG"    , LibAVCodec.CodecID.PCM_S24BE},
+//      {"A_PCM/INT/BIG"    , LibAVCodec.CodecID.PCM_S32BE},
+//      {"A_PCM/INT/LIT"    , LibAVCodec.CodecID.PCM_S16LE},
+//      {"A_PCM/INT/LIT"    , LibAVCodec.CodecID.PCM_S24LE},
+//      {"A_PCM/INT/LIT"    , LibAVCodec.CodecID.PCM_S32LE},
+//      {"A_PCM/INT/LIT"    , LibAVCodec.CodecID.PCM_U8},
+//      {"A_QUICKTIME/QDMC" , LibAVCodec.CodecID.QDMC},
+//      {"A_QUICKTIME/QDM2" , LibAVCodec.CodecID.QDM2},
+//      {"A_REAL/14_4"      , LibAVCodec.CodecID.RA_144},
+//      {"A_REAL/28_8"      , LibAVCodec.CodecID.RA_288},
+//      {"A_REAL/ATRC"      , LibAVCodec.CodecID.ATRAC3},
+//      {"A_REAL/COOK"      , LibAVCodec.CodecID.COOK},
+//      {"A_REAL/SIPR"      , LibAVCodec.CodecID.SIPR},
+//      {"A_TRUEHD"         , LibAVCodec.CodecID.TRUEHD},
+//      {"A_TTA1"           , LibAVCodec.CodecID.TTA},
+//      {"A_VORBIS"         , LibAVCodec.CodecID.VORBIS},
+//      {"A_WAVPACK4"       , LibAVCodec.CodecID.WAVPACK},
 
-#include "matroska.h"
+//      {"D_WEBVTT/SUBTITLES"   , LibAVCodec.CodecID.WEBVTT},
+//      {"D_WEBVTT/CAPTIONS"    , LibAVCodec.CodecID.WEBVTT},
+//      {"D_WEBVTT/DESCRIPTIONS", LibAVCodec.CodecID.WEBVTT},
+//      {"D_WEBVTT/METADATA"    , LibAVCodec.CodecID.WEBVTT},
 
-/* If you add a tag here that is not in ff_codec_bmp_tags[]
-   or ff_codec_wav_tags[], add it also to additional_audio_tags[]
-   or additional_video_tags[] in matroskaenc.c */
-const CodecTags ff_mkv_codec_tags[]={
-    {"A_AAC"            , AV_CODEC_ID_AAC},
-    {"A_AC3"            , AV_CODEC_ID_AC3},
-    {"A_ALAC"           , AV_CODEC_ID_ALAC},
-    {"A_DTS"            , AV_CODEC_ID_DTS},
-    {"A_EAC3"           , AV_CODEC_ID_EAC3},
-    {"A_FLAC"           , AV_CODEC_ID_FLAC},
-    {"A_MLP"            , AV_CODEC_ID_MLP},
-    {"A_MPEG/L2"        , AV_CODEC_ID_MP2},
-    {"A_MPEG/L1"        , AV_CODEC_ID_MP1},
-    {"A_MPEG/L3"        , AV_CODEC_ID_MP3},
-    {"A_OPUS"           , AV_CODEC_ID_OPUS},
-    {"A_OPUS/EXPERIMENTAL",AV_CODEC_ID_OPUS},
-    {"A_PCM/FLOAT/IEEE" , AV_CODEC_ID_PCM_F32LE},
-    {"A_PCM/FLOAT/IEEE" , AV_CODEC_ID_PCM_F64LE},
-    {"A_PCM/INT/BIG"    , AV_CODEC_ID_PCM_S16BE},
-    {"A_PCM/INT/BIG"    , AV_CODEC_ID_PCM_S24BE},
-    {"A_PCM/INT/BIG"    , AV_CODEC_ID_PCM_S32BE},
-    {"A_PCM/INT/LIT"    , AV_CODEC_ID_PCM_S16LE},
-    {"A_PCM/INT/LIT"    , AV_CODEC_ID_PCM_S24LE},
-    {"A_PCM/INT/LIT"    , AV_CODEC_ID_PCM_S32LE},
-    {"A_PCM/INT/LIT"    , AV_CODEC_ID_PCM_U8},
-    {"A_QUICKTIME/QDMC" , AV_CODEC_ID_QDMC},
-    {"A_QUICKTIME/QDM2" , AV_CODEC_ID_QDM2},
-    {"A_REAL/14_4"      , AV_CODEC_ID_RA_144},
-    {"A_REAL/28_8"      , AV_CODEC_ID_RA_288},
-    {"A_REAL/ATRC"      , AV_CODEC_ID_ATRAC3},
-    {"A_REAL/COOK"      , AV_CODEC_ID_COOK},
-    {"A_REAL/SIPR"      , AV_CODEC_ID_SIPR},
-    {"A_TRUEHD"         , AV_CODEC_ID_TRUEHD},
-    {"A_TTA1"           , AV_CODEC_ID_TTA},
-    {"A_VORBIS"         , AV_CODEC_ID_VORBIS},
-    {"A_WAVPACK4"       , AV_CODEC_ID_WAVPACK},
+//      {"S_TEXT/UTF8"      , LibAVCodec.CodecID.SUBRIP},
+//      {"S_TEXT/UTF8"      , LibAVCodec.CodecID.TEXT},
+//      {"S_TEXT/ASCII"     , LibAVCodec.CodecID.TEXT},
+//      {"S_TEXT/ASS"       , LibAVCodec.CodecID.ASS},
+//      {"S_TEXT/SSA"       , LibAVCodec.CodecID.ASS},
+//      {"S_ASS"            , LibAVCodec.CodecID.ASS},
+//      {"S_SSA"            , LibAVCodec.CodecID.ASS},
+//      {"S_VOBSUB"         , LibAVCodec.CodecID.DVD_SUBTITLE},
+//      {"S_DVBSUB"         , LibAVCodec.CodecID.DVB_SUBTITLE},
+//      {"S_HDMV/PGS"       , LibAVCodec.CodecID.HDMV_PGS_SUBTITLE},
+//      {"S_HDMV/TEXTST"    , LibAVCodec.CodecID.HDMV_TEXT_SUBTITLE},
 
-    {"D_WEBVTT/SUBTITLES"   , AV_CODEC_ID_WEBVTT},
-    {"D_WEBVTT/CAPTIONS"    , AV_CODEC_ID_WEBVTT},
-    {"D_WEBVTT/DESCRIPTIONS", AV_CODEC_ID_WEBVTT},
-    {"D_WEBVTT/METADATA"    , AV_CODEC_ID_WEBVTT},
+//      {"V_AV1"            , LibAVCodec.CodecID.AV1},
+//      {"V_DIRAC"          , LibAVCodec.CodecID.DIRAC},
+//      {"V_FFV1"           , LibAVCodec.CodecID.FFV1},
+//      {"V_MJPEG"          , LibAVCodec.CodecID.MJPEG},
+//      {"V_MPEG1"          , LibAVCodec.CodecID.MPEG1VIDEO},
+//      {"V_MPEG2"          , LibAVCodec.CodecID.MPEG2VIDEO},
+//      {"V_MPEG4/ISO/ASP"  , LibAVCodec.CodecID.MPEG4},
+//      {"V_MPEG4/ISO/AP"   , LibAVCodec.CodecID.MPEG4},
+//      {"V_MPEG4/ISO/SP"   , LibAVCodec.CodecID.MPEG4},
+//      {"V_MPEG4/ISO/AVC"  , LibAVCodec.CodecID.H264},
+//      {"V_MPEGH/ISO/HEVC" , LibAVCodec.CodecID.HEVC},
+//      {"V_MPEG4/MS/V3"    , LibAVCodec.CodecID.MSMPEG4V3},
+//      {"V_PRORES"         , LibAVCodec.CodecID.PRORES},
+//      {"V_REAL/RV10"      , LibAVCodec.CodecID.RV10},
+//      {"V_REAL/RV20"      , LibAVCodec.CodecID.RV20},
+//      {"V_REAL/RV30"      , LibAVCodec.CodecID.RV30},
+//      {"V_REAL/RV40"      , LibAVCodec.CodecID.RV40},
+//      {"V_SNOW"           , LibAVCodec.CodecID.SNOW},
+//      {"V_THEORA"         , LibAVCodec.CodecID.THEORA},
+//      {"V_UNCOMPRESSED"   , LibAVCodec.CodecID.RAWVIDEO},
+//      {"V_VP8"            , LibAVCodec.CodecID.VP8},
+//      {"V_VP9"            , LibAVCodec.CodecID.VP9},
 
-    {"S_TEXT/UTF8"      , AV_CODEC_ID_SUBRIP},
-    {"S_TEXT/UTF8"      , AV_CODEC_ID_TEXT},
-    {"S_TEXT/ASCII"     , AV_CODEC_ID_TEXT},
-    {"S_TEXT/ASS"       , AV_CODEC_ID_ASS},
-    {"S_TEXT/SSA"       , AV_CODEC_ID_ASS},
-    {"S_ASS"            , AV_CODEC_ID_ASS},
-    {"S_SSA"            , AV_CODEC_ID_ASS},
-    {"S_VOBSUB"         , AV_CODEC_ID_DVD_SUBTITLE},
-    {"S_DVBSUB"         , AV_CODEC_ID_DVB_SUBTITLE},
-    {"S_HDMV/PGS"       , AV_CODEC_ID_HDMV_PGS_SUBTITLE},
-    {"S_HDMV/TEXTST"    , AV_CODEC_ID_HDMV_TEXT_SUBTITLE},
+//      {""                 , LibAVCodec.CodecID.NONE}
+//  }
 
-    {"V_AV1"            , AV_CODEC_ID_AV1},
-    {"V_DIRAC"          , AV_CODEC_ID_DIRAC},
-    {"V_FFV1"           , AV_CODEC_ID_FFV1},
-    {"V_MJPEG"          , AV_CODEC_ID_MJPEG},
-    {"V_MPEG1"          , AV_CODEC_ID_MPEG1VIDEO},
-    {"V_MPEG2"          , AV_CODEC_ID_MPEG2VIDEO},
-    {"V_MPEG4/ISO/ASP"  , AV_CODEC_ID_MPEG4},
-    {"V_MPEG4/ISO/AP"   , AV_CODEC_ID_MPEG4},
-    {"V_MPEG4/ISO/SP"   , AV_CODEC_ID_MPEG4},
-    {"V_MPEG4/ISO/AVC"  , AV_CODEC_ID_H264},
-    {"V_MPEGH/ISO/HEVC" , AV_CODEC_ID_HEVC},
-    {"V_MPEG4/MS/V3"    , AV_CODEC_ID_MSMPEG4V3},
-    {"V_PRORES"         , AV_CODEC_ID_PRORES},
-    {"V_REAL/RV10"      , AV_CODEC_ID_RV10},
-    {"V_REAL/RV20"      , AV_CODEC_ID_RV20},
-    {"V_REAL/RV30"      , AV_CODEC_ID_RV30},
-    {"V_REAL/RV40"      , AV_CODEC_ID_RV40},
-    {"V_SNOW"           , AV_CODEC_ID_SNOW},
-    {"V_THEORA"         , AV_CODEC_ID_THEORA},
-    {"V_UNCOMPRESSED"   , AV_CODEC_ID_RAWVIDEO},
-    {"V_VP8"            , AV_CODEC_ID_VP8},
-    {"V_VP9"            , AV_CODEC_ID_VP9},
+//  const CodecTags ff_webm_codec_tags[] = {
+//      {"V_VP8"            , LibAVCodec.CodecID.VP8},
+//      {"V_VP9"            , LibAVCodec.CodecID.VP9},
+//      {"V_AV1"            , LibAVCodec.CodecID.AV1},
 
-    {""                 , AV_CODEC_ID_NONE}
-}
+//      {"A_VORBIS"         , LibAVCodec.CodecID.VORBIS},
+//      {"A_OPUS"           , LibAVCodec.CodecID.OPUS},
 
-const CodecTags ff_webm_codec_tags[] = {
-    {"V_VP8"            , AV_CODEC_ID_VP8},
-    {"V_VP9"            , AV_CODEC_ID_VP9},
-    {"V_AV1"            , AV_CODEC_ID_AV1},
+//      {"D_WEBVTT/SUBTITLES"   , LibAVCodec.CodecID.WEBVTT},
+//      {"D_WEBVTT/CAPTIONS"    , LibAVCodec.CodecID.WEBVTT},
+//      {"D_WEBVTT/DESCRIPTIONS", LibAVCodec.CodecID.WEBVTT},
+//      {"D_WEBVTT/METADATA"    , LibAVCodec.CodecID.WEBVTT},
 
-    {"A_VORBIS"         , AV_CODEC_ID_VORBIS},
-    {"A_OPUS"           , AV_CODEC_ID_OPUS},
+//      {""                 , LibAVCodec.CodecID.NONE}
+//  }
 
-    {"D_WEBVTT/SUBTITLES"   , AV_CODEC_ID_WEBVTT},
-    {"D_WEBVTT/CAPTIONS"    , AV_CODEC_ID_WEBVTT},
-    {"D_WEBVTT/DESCRIPTIONS", AV_CODEC_ID_WEBVTT},
-    {"D_WEBVTT/METADATA"    , AV_CODEC_ID_WEBVTT},
+//  const CodecMime ff_mkv_image_mime_tags[] = {
+//      {"image/gif"                  , LibAVCodec.CodecID.GIF},
+//      {"image/jpeg"                 , LibAVCodec.CodecID.MJPEG},
+//      {"image/png"                  , LibAVCodec.CodecID.PNG},
+//      {"image/tiff"                 , LibAVCodec.CodecID.TIFF},
 
-    {""                 , AV_CODEC_ID_NONE}
-}
+//      {""                           , LibAVCodec.CodecID.NONE}
+//  }
 
-const CodecMime ff_mkv_image_mime_tags[] = {
-    {"image/gif"                  , AV_CODEC_ID_GIF},
-    {"image/jpeg"                 , AV_CODEC_ID_MJPEG},
-    {"image/png"                  , AV_CODEC_ID_PNG},
-    {"image/tiff"                 , AV_CODEC_ID_TIFF},
+//  const CodecMime ff_mkv_mime_tags[] = {
+//      {"text/plain"                 , LibAVCodec.CodecID.TEXT},
+//      {"application/x-truetype-font", LibAVCodec.CodecID.TTF},
+//      {"application/x-font"         , LibAVCodec.CodecID.TTF},
+//      {"application/vnd.ms-opentype", LibAVCodec.CodecID.OTF},
+//      {"binary"                     , LibAVCodec.CodecID.BIN_DATA},
 
-    {""                           , AV_CODEC_ID_NONE}
-}
+//      {""                           , LibAVCodec.CodecID.NONE}
+//  }
 
-const CodecMime ff_mkv_mime_tags[] = {
-    {"text/plain"                 , AV_CODEC_ID_TEXT},
-    {"application/x-truetype-font", AV_CODEC_ID_TTF},
-    {"application/x-font"         , AV_CODEC_ID_TTF},
-    {"application/vnd.ms-opentype", AV_CODEC_ID_OTF},
-    {"binary"                     , AV_CODEC_ID_BIN_DATA},
+//  const AVMetadataConv ff_mkv_metadata_conv[] = {
+//      { "LEAD_PERFORMER", "performer" },
+//      { "PART_NUMBER"   , "track"  },
+//      { 0 }
+//  }
 
-    {""                           , AV_CODEC_ID_NONE}
-}
+//  const string const ff_matroska_video_stereo_mode[MATROSKA_VIDEO_STEREOMODE_TYPE_NB] = {
+//      "mono"
+//      "left_right"
+//      "bottom_top"
+//      "top_bottom"
+//      "checkerboard_rl"
+//      "checkerboard_lr"
+//      "row_interleaved_rl"
+//      "row_interleaved_lr"
+//      "col_interleaved_rl"
+//      "col_interleaved_lr"
+//      "anaglyph_cyan_red"
+//      "right_left"
+//      "anaglyph_green_magenta"
+//      "block_lr"
+//      "block_rl"
+//  }
 
-const AVMetadataConv ff_mkv_metadata_conv[] = {
-    { "LEAD_PERFORMER", "performer" },
-    { "PART_NUMBER"   , "track"  },
-    { 0 }
-}
+//  const string ff_matroska_video_stereo_plane[MATROSKA_VIDEO_STEREO_PLANE_COUNT] = {
+//      "left"
+//      "right"
+//      "background"
+//  }
 
-const char * const ff_matroska_video_stereo_mode[MATROSKA_VIDEO_STEREOMODE_TYPE_NB] = {
-    "mono",
-    "left_right",
-    "bottom_top",
-    "top_bottom",
-    "checkerboard_rl",
-    "checkerboard_lr",
-    "row_interleaved_rl",
-    "row_interleaved_lr",
-    "col_interleaved_rl",
-    "col_interleaved_lr",
-    "anaglyph_cyan_red",
-    "right_left",
-    "anaglyph_green_magenta",
-    "block_lr",
-    "block_rl",
-}
-
-const char * const ff_matroska_video_stereo_plane[MATROSKA_VIDEO_STEREO_PLANE_COUNT] = {
-    "left",
-    "right",
-    "background",
-}
-
-int ff_mkv_stereo3d_conv(AVStream *st, MatroskaVideoStereoModeType stereo_mode)
-{
+int ff_mkv_stereo3d_conv(AVStream *st, MatroskaVideoStereoModeType stereo_mode) {
     AVStereo3D *stereo;
     int ret;
 

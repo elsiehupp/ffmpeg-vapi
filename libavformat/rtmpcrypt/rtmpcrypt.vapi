@@ -1,7 +1,8 @@
 /***********************************************************
 RTMPE encryption utilities
 @copyright 2012 Samuel Pitoiset
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -25,12 +26,12 @@ namespace LibAVFormat {
 Initialize the Diffie-Hellmann context and generate the public key.
 
 @param h an URLContext
-@param buf handshake data (1536 bytes)
+@param buffer handshake data (1536 bytes)
 @return zero on success, negative value otherwise
 ***********************************************************/
 public int ff_rtmpe_gen_pub_key (
-    URLContext h,
-    uint8[] buf
+    URLContext url_context,
+    uint8[] buffer
 );
 
 /***********************************************************
@@ -43,7 +44,7 @@ Compute the shared secret key and initialize the RC4 encryption.
 @return zero on success, negative value otherwise
 ***********************************************************/
 public int ff_rtmpe_compute_secret_key (
-    URLContext h,
+    URLContext url_context,
     uint8[] serverdata,
     uint8[] clientdata,
     int type
@@ -58,7 +59,7 @@ Encrypt the signature.
 @param type type of encryption (8 for XTEA, 9 for Blowfish)
 ***********************************************************/
 public void ff_rtmpe_encrypt_sig (
-    URLContext h,
+    URLContext url_context,
     uint8[] signature,
     uint8[] digest,
     int type
@@ -71,7 +72,7 @@ Update the keystream and set RC4 keys for encryption.
 @return zero on success, negative value otherwise
 ***********************************************************/
 public int ff_rtmpe_update_keystream (
-    URLContext h
+    URLContext url_context
 );
 
 } // namespace LibAVFormat

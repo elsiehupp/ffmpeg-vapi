@@ -1,7 +1,8 @@
 /***********************************************************
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
 @copyright 2008 Peter Ross
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-audio channel layout utility functions
+@file audio channel layout utility functions
 ***********************************************************/
 
 /***********************************************************
@@ -163,12 +163,12 @@ public enum ChannelLayoutFlags {
     @brief Return a description of a channel layout.
     If nb_channels is <= 0, it is guessed from the channel_layout.
     
-    @param buf put here the string containing the channel layout
+    @param buffer put here the string containing the channel layout
     @param buf_size size in bytes of the buffer
     ***********************************************************/
     [CCode (cname="av_get_channel_layout_string", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public static void av_get_channel_layout_string (
-        string buf,
+        string buffer,
         int buf_size,
         out int channel_count,
         out ChannelLayoutFlags channel_layout

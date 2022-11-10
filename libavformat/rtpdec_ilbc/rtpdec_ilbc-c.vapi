@@ -1,7 +1,8 @@
 /***********************************************************
 RTP iLBC Depacketizer, RFC 3952
 @copyright 2012 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,14 +21,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_ilbc_dynamic_handler = {
-    //  .enc_name         = "iLBC",
-    //  .codec_type       = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id         = AV_CODEC_ID_ILBC,
+    //  .enc_name = "iLBC"
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.ILBC,
     [CCode (cname="", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); = ilbc_parse_sdp_line,
+    ); // = ilbc_parse_sdp_line,
 }

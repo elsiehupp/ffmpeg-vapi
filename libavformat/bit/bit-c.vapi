@@ -1,7 +1,8 @@
 /***********************************************************
 G.729 bit format muxer and demuxer
 @copyright 2007-2008 Vladimir Voroshilov
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,22 +21,53 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 #if CONFIG_BIT_MUXER
-public class OutputFormat : AVOutputFormat ff_bit_muxer = {
-    //  .name         = "bit",
-    //  .long_name    = "G.729 BIT file format",
-    //  .mime_type    = "audio/bit",
-    //  .extensions   = "bit",
-    //  .audio_codec  = AV_CODEC_ID_G729,
-    //  .video_codec  = AV_CODEC_ID_NONE,
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_bit_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "bit"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "G.729 BIT file format"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "audio/bit"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "bit"
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.G729;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
+    [CCode (cname="write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); = write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    ); = write_packet,
+    );
 }
 #endif

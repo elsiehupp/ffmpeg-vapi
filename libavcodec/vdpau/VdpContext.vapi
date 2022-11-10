@@ -3,7 +3,8 @@
 hardware-accelerated decoding of MPEG-1/2, H.264 and VC-1.
 
 @copyright 2008 NVIDIA
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -25,8 +26,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup lavc_codec_hwaccel_vdpau
+@file @ingroup lavc_codec_hwaccel_vdpau
 Public LibAVCodec VDPAU header.
 ***********************************************************/
 

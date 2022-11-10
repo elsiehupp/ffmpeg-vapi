@@ -1,7 +1,8 @@
 /***********************************************************
 AIFF/AIFF-C demuxer
 @copyright 2006  Patrick Guimond
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,10 +21,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_aiff_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_aiff_demuxer = {
-    //  .name           = "aiff",
-    //  .long_name      = "Audio IFF",
-    //  .priv_data_size = sizeof(AIFFInputContext),
+public class InputDemuxer : AVInputFormat ff_aiff_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "aiff";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "Audio IFF";
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (AIFFInputContext);
+        }
+    }
     [CCode (cname="aiff_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -44,5 +60,5 @@ public class InputFormat : AVInputFormat ff_aiff_demuxer = {
         int64 timestamp,
         int flags
     );
-    //  .codec_tag      = (const AVCodecTag* const []){ ff_codec_aiff_tags, 0 },
+    //  .codec_tag = (const AVCodecTag* const []){ ff_codec_aiff_tags, 0 },
 }

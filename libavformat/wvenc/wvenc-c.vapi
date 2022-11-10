@@ -2,7 +2,8 @@
 WavPack muxer
 @copyright 2013 Konstantin Shishkov <kostya.shishkov@gmail.com>
 @copyright 2012 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,28 +21,63 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_wv_muxer = {
-    //  .name              = "wv",
-    //  .long_name         = "raw WavPack",
-    //  .mime_type         = "audio/x-wavpack",
-    //  .extensions        = "wv",
-    //  .priv_data_size    = sizeof(WvMuxContext),
-    //  .audio_codec       = AV_CODEC_ID_WAVPACK,
-    //  .video_codec       = AV_CODEC_ID_NONE,
+[CCode (cname="ff_wv_muxer", cheader="")]
+public class WavPackOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "wv"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw WavPack"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "audio/x-wavpack"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "wv"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (WvMuxContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.WAVPACK;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = wv_write_header,
+    ); // = wv_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = wv_write_packet,
+    ); // = wv_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = wv_write_trailer,
-    //  .flags             = AVFMT_NOTIMESTAMPS,
+    ); // = wv_write_trailer,
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }

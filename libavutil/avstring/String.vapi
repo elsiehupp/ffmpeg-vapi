@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2007 Mans Rullgard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -203,7 +204,7 @@ The normal \ and ' escaping is supported. Leading and trailing
 whitespaces are removed, unless they are escaped with '\' or are
 enclosed between ''.
 
-@param buf the buffer to parse, buf will be updated to point to the
+@param buffer the buffer to parse, buffer will be updated to point to the
 terminating char
 @param term a 0-terminated list of terminating chars
 @return the malloced unescaped string, which must be av_freed by
@@ -211,7 +212,7 @@ the user, null in case of allocation failure
 ***********************************************************/
 [CCode (cname="av_get_token", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public string av_get_token (
-    out string buf,
+    out string buffer,
     string term
 );
 
@@ -404,7 +405,7 @@ public int av_escape (
 
 /***********************************************************
 @brief Read and decode a single UTF-8 code point (character) from the
-buffer in buf, and update buf to point to the next byte to
+buffer in buffer, and update buffer to point to the next byte to
 decode.
 
 In case of an invalid byte sequence, the pointer will be updated to

@@ -1,7 +1,8 @@
 /***********************************************************
 G.729 raw format demuxer
 @copyright 2011 Vladimir Voroshilov
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,34 +20,60 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define OFFSET(x) offsetof(G729DemuxerContext, x)
-static const AVOption g729_options[] = {
-    { "bit_rate", "", OFFSET(bit_rate), AV_OPT_TYPE_INT, { .i64 = 8000 }, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-    { NULL },
+//  #define OFFSET(x) offsetof(G729DemuxerContext, x)
+//  static const AVOption g729_options[] = {
+//      { "bit_rate", "", OFFSET(bit_rate), AV_OPT_TYPE_INT, { .i64 = 8000 }, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
+//      { NULL },
+//  }
+
+[CCode (cname="g729_demuxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "g729 demuxer"
+    //  .item_name = av_default_item_name,
+    //  .option = g729_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-static const AVClass g729_demuxer_class = {
-    //  .class_name = "g729 demuxer",
-    //  .item_name  = av_default_item_name,
-    //  .option     = g729_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
-}
-
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_g729_demuxer = {
-    //  .name           = "g729",
-    //  .long_name      = "G.729 raw format demuxer",
-    //  .priv_data_size = sizeof(G729DemuxerContext),
+[CCode (cname="ff_g729_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "g729"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "G.729 raw format demuxer"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (G729DemuxerContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = g729_read_header,
+    ); // = g729_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = g729_read_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .extensions     = "g729",
-    //  .priv_class     = &g729_demuxer_class,
+    ); // = g729_read_packet,
+    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "g729"
+    //  .priv_class = g729_demuxer_class,
 }

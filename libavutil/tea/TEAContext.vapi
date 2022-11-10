@@ -1,7 +1,8 @@
 /***********************************************************
 @brief A 32-bit implementation of the TEA algorithm
 @copyright 2015 Vesselin Bontchev
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil.Crypto {
 
 /***********************************************************
-@file
-@brief Public header for libavutil TEA algorithm
+@file @brief Public header for libavutil TEA algorithm
 @defgroup lavu_tea TEA
 ***********************************************************/
 

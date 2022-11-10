@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup libavc
+@file @ingroup libavc
 LibAVCodec external API header
 ***********************************************************/
 

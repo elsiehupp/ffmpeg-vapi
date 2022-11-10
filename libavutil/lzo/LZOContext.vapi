@@ -1,7 +1,8 @@
 /***********************************************************
 @brief LZO 1x decompression
 @copyright 2006 Reimar Doeffinger
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

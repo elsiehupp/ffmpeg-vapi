@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2014 Nicolas George
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -18,52 +19,68 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define OFFSET(field) offsetof(SubfileContext, field)
-#define D AV_OPT_FLAG_DECODING_PARAM
+//  #define OFFSET(field) offsetof(SubfileContext, field)
+//  #define D AV_OPT_FLAG_DECODING_PARAM
 
-static const AVOption subfile_options[] = {
-    { "start", "start offset", OFFSET(start), AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
-    { "end",   "end offset",   OFFSET(end),   AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
-    { NULL }
-}
+//  static const AVOption subfile_options[] = {
+//      { "start", "start offset", OFFSET(start), AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
+//      { "end",   "end offset",   OFFSET(end),   AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
+//      { NULL }
+//  }
 
-#undef OFFSET
-#undef D
+//  #undef OFFSET
+//  #undef D
 
-static const AVClass subfile_class = {
-    //  .class_name = "subfile",
-    //  .item_name  = av_default_item_name,
-    //  .option     = subfile_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="subfile_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "subfile"
+    //  .item_name = av_default_item_name,
+    //  .option = subfile_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
 [CCode (cname="ff_subfile_protocol", cheader="")]
 public class SubFileURLProtocol : URLProtocol {
-    //  .name                = "subfile",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "subfile"
     [CCode (cname="", cheader="")]
     public override int url_open2 (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags,
         out LibAVUtil.Dictionary options
-    );           = subfile_open,
+    ); // = subfile_open,
     [CCode (cname="", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );            = subfile_read,
+    ); // = subfile_read,
     [CCode (cname="", cheader="")]
     public override int64 url_seek (
-        URLContext h,
+        URLContext url_context,
         int64 pos,
         int whence
-    );            = subfile_seek,
+    ); // = subfile_seek,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );           = subfile_close,
-    //  .priv_data_size      = sizeof(SubfileContext),
-    //  .priv_data_class     = &subfile_class,
-    //  .default_whitelist   = "file",
+        URLContext url_context
+    ); // = subfile_close,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (SubfileContext);
+        }
+    }
+    //  .priv_data_class = subfile_class,
+    //  .default_whitelist = "file"
 }

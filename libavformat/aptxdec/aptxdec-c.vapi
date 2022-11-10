@@ -2,7 +2,8 @@
 RAW aptX demuxer
 
 @copyright 2017  Aurelien Jacobs <aurel@gnuage.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,63 +21,115 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static const AVOption aptx_options[] = {
-    { "sample_rate", "", offsetof(AptXDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 48000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-    { NULL },
-}
+//  static const AVOption aptx_options[] = {
+//      { "sample_rate", "", offsetof(AptXDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 48000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
+//      { NULL },
+//  }
 
 #if CONFIG_APTX_DEMUXER
-static const AVClass aptx_demuxer_class = {
-    //  .class_name = "aptx demuxer",
-    //  .item_name  = av_default_item_name,
-    //  .option     = aptx_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="aptx_demuxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "aptx demuxer"
+    //  .item_name = av_default_item_name,
+    //  .option = aptx_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_aptx_demuxer = {
-    //  .name           = "aptx",
-    //  .long_name      = "raw aptX",
-    //  .extensions     = "aptx",
-    //  .priv_data_size = sizeof(AptXDemuxerContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_aptx_demuxer", cheader="")]
+public class APTXInputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "aptx"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw aptX"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "aptx"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (AptXDemuxerContext);
+        }
+    }
+    [CCode (cname="aptx_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = aptx_read_header,
-    [CCode (cname="", cheader="")]
+    )
+    [CCode (cname="aptx_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = aptx_read_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .priv_class     = &aptx_demuxer_class,
+    )
+    //  .flags = AVFMT_GENERIC_INDEX,
+    //  .priv_class = aptx_demuxer_class,
 }
 #endif
 
 #if CONFIG_APTX_HD_DEMUXER
-static const AVClass aptx_hd_demuxer_class = {
-    //  .class_name = "aptx hd demuxer",
-    //  .item_name  = av_default_item_name,
-    //  .option     = aptx_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="aptx_hd_demuxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "aptx hd demuxer"
+    //  .item_name = av_default_item_name,
+    //  .option = aptx_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_aptx_hd_demuxer = {
-    //  .name           = "aptx_hd",
-    //  .long_name      = "raw aptX HD",
-    //  .extensions     = "aptxhd",
-    //  .priv_data_size = sizeof(AptXDemuxerContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_aptx_hd_demuxer", cheader="")]
+public class APTXInputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "aptx_hd"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw aptX HD"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "aptxhd"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (AptXDemuxerContext);
+        }
+    }
+    [CCode (cname="aptx_hd_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = aptx_hd_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="aptx_hd_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = aptx_hd_read_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .priv_class     = &aptx_hd_demuxer_class,
+    );
+    //  .flags = AVFMT_GENERIC_INDEX,
+    //  .priv_class = aptx_hd_demuxer_class,
 }
 #endif

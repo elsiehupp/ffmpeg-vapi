@@ -1,7 +1,8 @@
 /***********************************************************
 HTTP definitions
 @copyright 2010 Josh Allmann
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -46,7 +47,7 @@ Send a new HTTP request, reusing the old connection.
 otherwise
 ***********************************************************/
 public int ff_http_do_new_request (
-    URLContext h,
+    URLContext url_context,
     string uri
 );
 

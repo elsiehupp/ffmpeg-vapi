@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

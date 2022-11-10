@@ -2,7 +2,8 @@
 RTP VP8 Depacketizer
 @copyright 2010 Josh Allmann
 @copyright 2012 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,26 +21,30 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-@brief RTP support for the VP8 payload
+/***********************************************************
+@file @brief RTP support for the VP8 payload
 @author Josh Allmann <joshua.allmann@gmail.com>
 @see http://tools.ietf.org/html/draft-ietf-payload-vp8-05
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_vp8_dynamic_handler = {
-    //  .enc_name       = "VP8",
-    //  .codec_type     = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id       = AV_CODEC_ID_VP8,
-    //  .priv_data_size = sizeof(PayloadContext),
+    //  .enc_name = "VP8"
+    //  .codec_type = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id = LibAVCodec.CodecID.VP8,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int init (
         AVFormatContext format_context
-    );           = vp8_init,
+    ); // = vp8_init,
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );          = vp8_close_context,
+    ); // = vp8_close_context,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -48,13 +53,13 @@ const RTPDynamicProtocolHandler ff_vp8_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );   = vp8_handle_packet,
+    ); // = vp8_handle_packet,
     [CCode (cname="", cheader="")]
     public override int need_keyframe (
         PayloadContext context
-    );  = vp8_need_keyframe,
+    ); // = vp8_need_keyframe,
 }

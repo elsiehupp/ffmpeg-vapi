@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2012 Clément Bœsch
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -45,7 +46,7 @@ public enum ff_utf_type {
 public struct FFTextReader {
     public int type;
     public AVIOContext pb;
-    public uchar buf[8];
+    public uchar buffer[8];
     public int buf_pos;
     public int buf_len;
     public AVIOContext buf_pb;
@@ -74,12 +75,12 @@ public void ff_text_init_avio (
 Similar to ff_text_init_avio (), but sets it up to read from a bounded buffer.
 
 @param text_reader object which will be initialized
-@param buf buffer to read from (referenced as long as FFTextReader is in use)
-@param size size of buf
+@param buffer buffer to read from (referenced as long as FFTextReader is in use)
+@param size size of buffer
 ***********************************************************/
 public void ff_text_init_buf (
     FFTextReader text_reader,
-    void *buf,
+    void *buffer,
     size_t size
 );
 
@@ -121,7 +122,7 @@ written.
 ***********************************************************/
 public void ff_text_read (
     FFTextReader text_reader,
-    string buf,
+    string buffer,
     size_t size
 );
 
@@ -207,13 +208,13 @@ public void ff_subtitles_queue_clean (
 );
 
 /***********************************************************
-SMIL helper to load next chunk ("<...>" or untagged content) in buf.
+SMIL helper to load next chunk ("<...>" or untagged content) in buffer.
 
 @param cached cached character, to avoid a backward seek
 ***********************************************************/
 public int ff_smil_extract_next_text_chunk (
     FFTextReader tr,
-    LibAVUtil.BPrintBuffer buf,
+    LibAVUtil.BPrintBuffer buffer,
     string cached
 );
 
@@ -233,7 +234,7 @@ public string ff_smil_get_attr_ptr (
 ***********************************************************/
 public void ff_subtitles_read_chunk (
     AVIOContext pb,
-    LibAVUtil.BPrintBuffer buf
+    LibAVUtil.BPrintBuffer buffer
 );
 
 /***********************************************************
@@ -241,17 +242,17 @@ public void ff_subtitles_read_chunk (
 
 A chunk is defined by a multiline "event", ending with a second line break.
 The trailing line breaks are trimmed. CRLF are supported.
-Example: "foo\r\nbar\r\n\r\nnext" will print "foo\r\nbar" into buf, and pb
+Example: "foo\r\nbar\r\n\r\nnext" will print "foo\r\nbar" into buffer, and pb
 will focus on the 'n' of the "next" string.
 
 @param tr I/O context
-@param buf an initialized buf where the chunk is written
+@param buffer an initialized buffer where the chunk is written
 
-@note buf is cleared before writing into it.
+@note buffer is cleared before writing into it.
 ***********************************************************/
 public void ff_subtitles_read_text_chunk (
     FFTextReader tr,
-    LibAVUtil.BPrintBuffer buf
+    LibAVUtil.BPrintBuffer buffer
 );
 
 /***********************************************************
@@ -269,14 +270,14 @@ Read a line of text. Discards line ending characters.
 The function handles the following line breaks schemes:
 LF, CRLF (MS), or standalone CR (old MacOS).
 
-Returns the number of bytes written to buf. Always writes a terminating 0,
+Returns the number of bytes written to buffer. Always writes a terminating 0,
 similar as with snprintf.
 
 @note returns a negative error code if a \0 byte is found
 ***********************************************************/
 public size_t ff_subtitles_read_line (
     FFTextReader tr,
-    string buf,
+    string buffer,
     size_t size
 );
 

@@ -69,7 +69,7 @@ public abstract class ogg_codec {
 }
 
 public struct ogg_stream {
-    public uint8[] buf;
+    public uint8[] buffer;
     public uint bufsize;
     public uint bufpos;
     public uint pstart;
@@ -171,7 +171,7 @@ public const uint64 OGG_NOGRANULE_VALUE;
 public int ff_vorbis_comment (
     AVFormatContext ms,
     out LibAVUtil.Dictionary m,
-    uint8[] buf,
+    uint8[] buffer,
     int size,
     int parse_picture
 );
@@ -179,7 +179,7 @@ public int ff_vorbis_comment (
 public int ff_vorbis_stream_comment (
     AVFormatContext as,
     AVStream st,
-    uint8[] buf,
+    uint8[] buffer,
     int size
 );
 

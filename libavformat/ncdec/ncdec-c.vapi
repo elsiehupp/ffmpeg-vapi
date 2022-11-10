@@ -2,7 +2,8 @@
 NC camera feed demuxer
 @copyright 2009  Nicolas Martin (martinic at iro dot umontreal dot ca)
                     Edouard Auvinet
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,22 +21,37 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_nc_demuxer = {
-    //  .name           = "nc",
-    //  .long_name      = "NC camera feed",
+[CCode (cname="ff_nc_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "nc"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "NC camera feed"
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = nc_probe,
+    ); // = nc_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = nc_read_header,
+    ); // = nc_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = nc_read_packet,
-    //  .extensions     = "v",
+    ); // = nc_read_packet,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "v"
 }

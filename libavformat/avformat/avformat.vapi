@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-@ingroup libavf
+@file @ingroup libavf
 Main libavformat public API header
 ***********************************************************/
 
@@ -70,8 +70,8 @@ AVFormatContext, they can be examined from a user program by calling
 av_opt_next () / av_opt_find () on an allocated AVFormatContext (or its LibAVUtil.Class
 from avformat_get_class ()). Private (format-specific) options are provided by
 AVFormatContext.priv_data if and only if AVInputFormat.priv_class /
-public class OutputFormat : AVOutputFormat.priv_class of the corresponding format struct is non-NULL.
-Further options may be provided by the @ref AVFormatContext.pb "I/O context",
+public class OutputMuxer : AVOutputFormat.priv_class of the corresponding format struct is non-NULL.
+Further options may be provided by the @ref AVFormatContext.pb "I/O context"
 if its LibAVUtil.Class is non-NULL, and the protocols layer. See the discussion on
 nesting in @ref avoptions documentation to learn how to access those.
 
@@ -169,9 +169,9 @@ pts/dts, 0 for duration) if the stream does not provide them. The timing
 information will be in AVStream.time_base units, i.e. it has to be
 multiplied by the timebase to convert them to seconds.
 
-If LibAVCodec.Packet.buf is set on the returned packet, then the packet is
+If LibAVCodec.Packet.buffer is set on the returned packet, then the packet is
 allocated dynamically and the user may keep it indefinitely.
-Otherwise, if LibAVCodec.Packet.buf is NULL, the packet data is backed by a
+Otherwise, if LibAVCodec.Packet.buffer is NULL, the packet data is backed by a
 static storage somewhere inside the demuxer and the packet is only valid
 until the next av_read_frame () call or closing the file. If the caller
 requires a longer lifetime, av_packet_make_refcounted () will ensure that
@@ -346,7 +346,7 @@ Important concepts to keep in mind:
       The original/default language is in the unqualified "Author" tag.
       A demuxer should set a default if it sets any translated tag.
    -  sorting -- a modified version of a tag that should be used for
-      sorting will have '-sort' appended. E.g. artist="The Beatles",
+      sorting will have '-sort' appended. E.g. artist="The Beatles"
       artist-sort="Beatles, The".
 - Some protocols and demuxers support metadata updates. After a successful
   call to av_read_packet (), AVFormatContext.event_flags or AVStream.event_flags
@@ -446,9 +446,9 @@ public struct AVProbeData {
     /***********************************************************
     Buffer must have AVPROBE_PADDING_SIZE of extra allocated bytes filled with zero.
     ***********************************************************/
-    uchar[] buf;
+    uchar[] buffer;
     /***********************************************************
-    Size of buf except extra allocated bytes
+    Size of buffer except extra allocated bytes
     ***********************************************************/
     int buf_size;
     /***********************************************************
@@ -561,18 +561,18 @@ public enum AVFormatFlags1 {
 @{
 ***********************************************************/
 public abstract class AVOutputFormat {
-    public string name;
+    public abstract string name { get; }
     /***********************************************************
     Descriptive name for the format, meant to be more human-readable
     than name. You should use the NULL_IF_CONFIG_SMALL () macro
     to define it.
     ***********************************************************/
-    public string long_name;
-    public string mime_type;
+    public abstract string long_name { get; }
+    public abstract string mime_type { get; }
     /***********************************************************
     comma-separated filename extensions
     ***********************************************************/
-    public string extensions;
+    public abstract string extensions { get; }
 
     /***********************************************************
     output support
@@ -581,34 +581,34 @@ public abstract class AVOutputFormat {
     /***********************************************************
     default audio codec
     ***********************************************************/
-    public LibAVCodec.CodecID audio_codec;
+    public abstract LibAVCodec.CodecID audio_codec { public get; }
     /***********************************************************
     default video codec
     ***********************************************************/
-    public LibAVCodec.CodecID video_codec;
+    public abstract LibAVCodec.CodecID video_codec { public get; }
     /***********************************************************
     default subtitle codec
     ***********************************************************/
-    public LibAVCodec.CodecID subtitle_codec;
+    public abstract LibAVCodec.CodecID subtitle_codec { public get; }
     /***********************************************************
     can use flags: AVFMT_NOFILE, AVFMT_NEEDNUMBER,
     AVFMT_GLOBALHEADER, AVFMT_NOTIMESTAMPS, AVFMT_VARIABLE_FPS,
     AVFMT_NODIMENSIONS, AVFMT_NOSTREAMS, AVFMT_ALLOW_FLUSH,
     AVFMT_TS_NONSTRICT, AVFMT_TS_NEGATIVE
     ***********************************************************/
-    public AVFormatFlags1 flags;
+    public abstract AVFormatFlags1 flags { public get; }
 
     /***********************************************************
     List of supported codec_id-codec_tag pairs, ordered by "better
-    choice first". The arrays are all terminated by AV_CODEC_ID_NONE.
+    choice first". The arrays are all terminated by LibAVCodec.CodecID.NONE.
     ***********************************************************/
-    public AVCodecTag[] codec_tag;
+    public abstract AVCodecTag[] codec_tag { public get; }
 
 
     /***********************************************************
     LibAVUtil.Class for the private context
     ***********************************************************/
-    public LibAVUtil.Class priv_class;
+    public abstract LibAVUtil.Class priv_class { public get; }
 
     /***********************************************************
     No fields below this line are part of the public API. They
@@ -620,7 +620,7 @@ public abstract class AVOutputFormat {
     /***********************************************************
     size of private data so that it can be allocated in the wrapper
     ***********************************************************/
-    public int priv_data_size;
+    public abstract size_t priv_data_size { public get; }
 
     public abstract int write_header (
         AVFormatContext format_context
@@ -768,14 +768,14 @@ public abstract class AVInputFormat {
     A comma separated list of short names for the format. New names
     may be appended with a minor bump.
     ***********************************************************/
-    public string name;
+    public abstract string name { get; }
 
     /***********************************************************
     Descriptive name for the format, meant to be more human-readable
     than name. You should use the NULL_IF_CONFIG_SMALL () macro
     to define it.
     ***********************************************************/
-    public string long_name;
+    public abstract string long_name { get; }
 
     /***********************************************************
     Can use flags: AVFMT_NOFILE, AVFMT_NEEDNUMBER, AVFMT_SHOW_IDS,
@@ -789,7 +789,7 @@ public abstract class AVInputFormat {
     usually not use extension format guessing because it is not
     reliable enough
     ***********************************************************/
-    public string extensions;
+    public abstract string extensions { get; }
 
     public AVCodecTag codec_tag;
 
@@ -803,7 +803,7 @@ public abstract class AVInputFormat {
     It is used check for matching mime types while probing.
     @see av_probe_input_format2
     ***********************************************************/
-    public string mime_type;
+    public abstract string mime_type { get; }
 
     /***********************************************************
     No fields below this line are part of the public API. They
@@ -816,12 +816,12 @@ public abstract class AVInputFormat {
     /***********************************************************
     Raw demuxers store their codec ID here.
     ***********************************************************/
-    public int raw_codec_id;
+    public abstract LibAVCodec.CodecID raw_codec_id { public get; }
 
     /***********************************************************
     Size of private data so that it can be allocated in the wrapper.
     ***********************************************************/
-    public int priv_data_size;
+    public abstract int priv_data_size { public get; }
 
     /***********************************************************
     Tell if a given file has a chance of being parsed as this format.
@@ -2695,7 +2695,7 @@ stored in the file into frames and return one for each call. It will not
 omit invalid data between valid frames so as to give the decoder the maximum
 information possible for decoding.
 
-If packet.buf is NULL, then the packet is valid until the next
+If packet.buffer is NULL, then the packet is valid until the next
 av_read_frame () or until avformat_close_input (). Otherwise the packet
 is valid indefinitely. In both cases the packet must be freed with
 av_packet_unref when it is no longer needed. For video, the packet contains
@@ -3126,14 +3126,14 @@ Miscellaneous utility functions related to both muxing and demuxing
 Send a nice hexadecimal dump of a buffer to the specified file stream.
 
 @param f The file stream pointer where the dump should be sent to.
-@param buf buffer
+@param buffer buffer
 @param size buffer size
 
 @see av_hex_dump_log, av_pkt_dump2, av_pkt_dump_log2
 ***********************************************************/
 public void av_hex_dump (
     GLib.File f,
-    uint8[] buf,
+    uint8[] buffer,
     int size
 );
 
@@ -3144,7 +3144,7 @@ Send a nice hexadecimal dump of a buffer to the log.
 pointer to an LibAVUtil.Class struct.
 @param level The importance level of the message, lower values signifying
 higher importance.
-@param buf buffer
+@param buffer buffer
 @param size buffer size
 
 @see av_hex_dump, av_pkt_dump2, av_pkt_dump_log2
@@ -3152,7 +3152,7 @@ higher importance.
 public void av_hex_dump_log (
     void *avcl,
     int level,
-    uint8[] buf,
+    uint8[] buffer,
     int size
 );
 
@@ -3193,7 +3193,7 @@ public void av_pkt_dump_log2 (
 
 /***********************************************************
 Get the LibAVCodec.CodecID for the given codec tag tag.
-If no codec id is found returns AV_CODEC_ID_NONE.
+If no codec id is found returns LibAVCodec.CodecID.NONE.
 
 @param tags list of supported codec_id-codec_tag pairs, as stored
 in AVInputFormat.codec_tag and AVOutputFormat.codec_tag
@@ -3328,12 +3328,12 @@ public enum AVFormatFrameFilenameFlags {
 }
 
 /***********************************************************
-Return in 'buf' the path with '%d' replaced by a number.
+Return in 'buffer' the path with '%d' replaced by a number.
 
 Also handles the '%0nd' format where 'n' is the total number
 of digits and '%%'.
 
-@param buf destination buffer
+@param buffer destination buffer
 @param buf_size destination buffer size
 @param path numbered sequence string
 @param number frame number
@@ -3341,7 +3341,7 @@ of digits and '%%'.
 @return 0 if OK, -1 on format error
 ***********************************************************/
 public int av_get_frame_filename2 (
-    string buf,
+    string buffer,
     int buf_size,
     string path,
     int number,
@@ -3349,7 +3349,7 @@ public int av_get_frame_filename2 (
 );
 
 public int av_get_frame_filename (
-    string buf,
+    string buffer,
     int buf_size,
     string path,
     int number
@@ -3377,7 +3377,7 @@ for getting unique dynamic payload types.
           all the contexts in the array (an LibAVCodec.CodecContext per RTP stream)
           must contain only one AVStream.
 @param n_files number of AVCodecContexts contained in ac
-@param buf buffer where the SDP will be stored (must be allocated by
+@param buffer buffer where the SDP will be stored (must be allocated by
            the caller)
 @param size the size of the buffer
 @return 0 if OK, AVERROR_xxx on error
@@ -3385,7 +3385,7 @@ for getting unique dynamic payload types.
 public int av_sdp_create (
     out AVFormatContext[] ac,
     int n_files,
-    string buf,
+    string buffer,
     int size
 );
 

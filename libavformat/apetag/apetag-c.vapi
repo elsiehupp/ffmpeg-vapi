@@ -2,7 +2,8 @@
 APE tag handling
 @copyright 2007 Benjamin Zores <ben@geexbox.org>
  based upon libdemac from Dave Chapman.
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,7 +21,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define APE_TAG_FLAG_CONTAINS_HEADER  (1U << 31)
-#define APE_TAG_FLAG_LACKS_FOOTER     (1 << 30)
-#define APE_TAG_FLAG_IS_HEADER        (1 << 29)
-#define APE_TAG_FLAG_IS_BINARY        (1 << 1)
+[CCode (cprefix="APE_TAG_FLAG_", cheader="")]
+[Flags]
+public enum ApeTagFlags {
+    CONTAINS_HEADER,
+    LACKS_FOOTER,
+    IS_HEADER,
+    IS_BINARY,
+}

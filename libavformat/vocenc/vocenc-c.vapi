@@ -1,7 +1,8 @@
 /***********************************************************
 Creative Voice File muxer.
 @copyright 2006  Aurelien Jacobs <aurel@gnuage.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,29 +20,64 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_voc_muxer = {
-    //  .name              = "voc",
-    //  .long_name         = "Creative Voice",
-    //  .mime_type         = "audio/x-voc",
-    //  .extensions        = "voc",
-    //  .priv_data_size    = sizeof(VocEncContext),
-    //  .audio_codec       = AV_CODEC_ID_PCM_S16LE,
-    //  .video_codec       = AV_CODEC_ID_NONE,
+[CCode (cname="ff_voc_muxer", cheader="")]
+public class VOCOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "voc"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Creative Voice"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "audio/x-voc"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "voc"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (VocEncContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.PCM_S16LE;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = voc_write_header,
+    ); // = voc_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = voc_write_packet,
+    ); // = voc_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = voc_write_trailer,
-    //  .codec_tag         = (const AVCodecTag* const []){ ff_voc_codec_tags, 0 },
-    //  .flags             = AVFMT_NOTIMESTAMPS,
+    ); // = voc_write_trailer,
+    //  .codec_tag = (const AVCodecTag* const []){ ff_voc_codec_tags, 0 },
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }

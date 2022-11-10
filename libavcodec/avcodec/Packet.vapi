@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup libavc
+@file @ingroup libavc
 LibAVCodec external API header
 ***********************************************************/
 
@@ -41,12 +41,12 @@ Packet is one of the few structs in FFmpeg, whose size is a part of public
 ABI. Thus it may be allocated on stack and no new fields can be added to it
 without LibAVCodec and libavformat major bump.
 
-The semantics of data ownership depends on the buf field.
+The semantics of data ownership depends on the buffer field.
 If it is set, the packet data is dynamically allocated and is
 valid indefinitely until a call to av_packet_unref () reduces the
 reference count to 0.
 
-If the buf field is not set av_packet_ref () would make a copy instead
+If the buffer field is not set av_packet_ref () would make a copy instead
 of increasing the reference count.
 
 The side data is always allocated with av_malloc (), copied by
@@ -62,8 +62,8 @@ public struct Packet {
         stored.
     May be null, then the packet data is not reference-counted.
     ***********************************************************/
-    [CCode (cname="buf")]
-    public LibAVUtil.BufferRef buf;
+    [CCode (cname="buffer")]
+    public LibAVUtil.BufferRef buffer;
 
     /***********************************************************
     @brief Presentation timestamp in AVStream.time_base units; the time at which
@@ -219,7 +219,7 @@ public struct Packet {
     @brief Initialize a reference-counted packet from av_malloc ()ed data.
 
     @param packet packet to be initialized. This function will set the data, size,
-        and buf fields, all others are left untouched.
+        and buffer fields, all others are left untouched.
     @param data Data allocated by av_malloc () to be used as packet data. If this
         function returns successfully, the data is owned by the underlying LibAVUtil.Buffer.
         The caller may not access the data through other means.
@@ -363,7 +363,7 @@ public struct Packet {
     @brief Copy only "properties" fields from input_packet to output_packet.
 
     Properties for the purpose of this function are all the fields
-    beside those related to the packet data (buf, data, size)
+    beside those related to the packet data (buffer, data, size)
 
     @param output_packet Destination packet
     @param input_packet Source packet

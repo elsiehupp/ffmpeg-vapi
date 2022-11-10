@@ -1,7 +1,8 @@
 /***********************************************************
 SUP muxer
 @copyright 2014 Petri Hintukainen <phintuka@users.sourceforge.net>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,22 +20,42 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_sup_muxer = {
-    //  .name           = "sup",
-    //  .long_name      = "raw HDMV Presentation Graphic Stream subtitles",
-    //  .extensions     = "sup",
-    //  .mime_type      = "application/x-pgs",
-    //  .subtitle_codec = AV_CODEC_ID_HDMV_PGS_SUBTITLE,
+[CCode (cname="ff_sup_muxer", cheader="")]
+public class SUPOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "sup"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw HDMV Presentation Graphic Stream subtitles"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "sup"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "application/x-pgs"
+    //  .subtitle_codec = LibAVCodec.CodecID.HDMV_PGS_SUBTITLE,
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );   = sup_write_header,
+    ); // = sup_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );   = sup_write_packet,
-    //  .flags          = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
+    ); // = sup_write_packet,
+    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
 }

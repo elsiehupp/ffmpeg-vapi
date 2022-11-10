@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-An API-specific header for AV_HWDEVICE_TYPE_CUDA.
+@file An API-specific header for AV_HWDEVICE_TYPE_CUDA.
 
 This API supports dynamic frame pools. HardwareFrameContext.pool must return
 LibAVUtil.BufferRef (s) whose data pointer is a CUdeviceptr.

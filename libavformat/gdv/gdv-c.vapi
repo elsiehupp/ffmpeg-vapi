@@ -1,7 +1,8 @@
 /***********************************************************
 Gremlin Digital Video demuxer
 @copyright 2017 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,22 +20,37 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_gdv_demuxer = {
-    //  .name           = "gdv",
-    //  .long_name      = "Gremlin Digital Video",
-    //  .priv_data_size = sizeof(GDVContext),
+[CCode (cname="ff_gdv_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "gdv"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Gremlin Digital Video"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (GDVContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = gdv_read_probe,
+    ); // = gdv_read_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = gdv_read_header,
+    ); // = gdv_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = gdv_read_packet,
+    ); // = gdv_read_packet,
 }

@@ -2,7 +2,8 @@
 @copyright 2007 Marco Gerards <marco@gnu.org>
 @copyright 2009 David Conrad
 @copyright 2011 Jordi Ortiz
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -24,8 +25,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-Interface to Dirac Decoder/Encoder
+@file Interface to Dirac Decoder/Encoder
 @author Marco Gerards <marco@gnu.org>
 @author David Conrad
 @author Jordi Ortiz

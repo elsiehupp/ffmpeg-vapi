@@ -1,7 +1,8 @@
 /***********************************************************
 ACM demuxer
 @copyright 2015 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,9 +23,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 FF_RAW_DEMUXER_CLASS(acm)
 
 [CCode (cname="ff_acm_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_acm_demuxer = {
-    //  .name           = "acm",
-    //  .long_name      = "Interplay ACM",
+public class InputDemuxer : AVInputFormat ff_acm_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "acm";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "Interplay ACM";
+        }
+    }
     [CCode (cname="acm_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -38,9 +49,24 @@ public class InputFormat : AVInputFormat ff_acm_demuxer = {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS,
-    //  .extensions     = "acm",
-    //  .raw_codec_id   = AV_CODEC_ID_INTERPLAY_ACM,
-    //  .priv_data_size = sizeof(FFRawDemuxerContext),
-    //  .priv_class     = &acm_demuxer_class,
+    //  .flags = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "acm";
+        }
+    }
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.INTERPLAY_ACM;
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FFRawDemuxerContext);
+        }
+    }
+    //  .priv_class = acm_demuxer_class,
 }

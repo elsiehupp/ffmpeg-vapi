@@ -2,7 +2,8 @@
 Sony OpenMG (OMA) muxer
 
 @copyright 2011 Michael Karcher
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,23 +21,48 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_oma_muxer = {
-    //  .name              = "oma",
-    //  .long_name         = "Sony OpenMG audio",
-    //  .mime_type         = "audio/x-oma",
-    //  .extensions        = "oma",
-    //  .audio_codec       = AV_CODEC_ID_ATRAC3,
+[CCode (cname="ff_oma_muxer", cheader="")]
+public class OMAOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "oma"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Sony OpenMG audio"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "audio/x-oma"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "oma"
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.ATRAC3;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = oma_write_header,
+    ); // = oma_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = ff_raw_write_packet,
-    //  .codec_tag         = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
-    //  .flags             = AVFMT_NOTIMESTAMPS,
+    ); // = ff_raw_write_packet,
+    //  .codec_tag = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }

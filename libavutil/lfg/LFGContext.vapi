@@ -1,7 +1,8 @@
 /***********************************************************
 @brief Lagged Fibonacci PRNG
 @copyright 2008 Michael Niedermayer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

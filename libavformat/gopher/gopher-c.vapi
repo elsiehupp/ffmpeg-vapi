@@ -4,7 +4,8 @@ Gopher protocol
 @copyright 2009 Toshimitsu Kimura
 
 based on libavformat/http.c, @copyright 2000, 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -24,29 +25,39 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [CCode (cname="ff_gopher_protocol", cheader="")]
 public class GopherURLProtocol : URLProtocol {
-    //  .name           = "gopher",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "gopher"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );       = gopher_open,
+    ); // = gopher_open,
     [CCode (cname="", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );       = gopher_read,
+    ); // = gopher_read,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );      = gopher_write,
+    ); // = gopher_write,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );      = gopher_close,
-    //  .priv_data_size = sizeof(GopherContext),
-    //  .flags          = URL_PROTOCOL_FLAG_NETWORK,
+        URLContext url_context
+    ); // = gopher_close,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (GopherContext);
+        }
+    }
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
 }

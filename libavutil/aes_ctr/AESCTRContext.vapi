@@ -1,7 +1,8 @@
 /***********************************************************
 @brief AES-CTR cipher
 @copyright 2015 Eran Kornblau <erankor at gmail dot com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

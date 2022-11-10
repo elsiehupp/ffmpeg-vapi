@@ -2,7 +2,8 @@
 Xiph RTP Protocols
 @copyright 2009 Colin McQuillian
 @copyright 2010 Josh Allmann
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,29 +21,33 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-@brief Xiph / RTP Code
+/***********************************************************
+@file @brief Xiph / RTP Code
 @author Colin McQuillan <m.niloc@gmail.com>
 @author Josh Allmann <joshua.allmann@gmail.com>
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_theora_dynamic_handler = {
-    //  .enc_name         = "theora",
-    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id         = AV_CODEC_ID_THEORA,
-    //  .priv_data_size   = sizeof(PayloadContext),
+    //  .enc_name = "theora"
+    //  .codec_type = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id = LibAVCodec.CodecID.THEORA,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); = xiph_parse_sdp_line,
+    ); // = xiph_parse_sdp_line,
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );            = xiph_close_context,
+    ); // = xiph_close_context,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -51,30 +56,35 @@ const RTPDynamicProtocolHandler ff_theora_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = xiph_handle_packet,
+    ); // = xiph_handle_packet,
 }
 
 const RTPDynamicProtocolHandler ff_vorbis_dynamic_handler = {
-    //  .enc_name         = "vorbis",
-    //  .codec_type       = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id         = AV_CODEC_ID_VORBIS,
-    //  .need_parsing     = AVSTREAM_PARSE_HEADERS,
-    //  .priv_data_size   = sizeof(PayloadContext),
+    //  .enc_name = "vorbis"
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.VORBIS,
+    //  .need_parsing = AVSTREAM_PARSE_HEADERS,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); = xiph_parse_sdp_line,
+    ); // = xiph_parse_sdp_line,
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );            = xiph_close_context,
+    ); // = xiph_close_context,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -83,9 +93,9 @@ const RTPDynamicProtocolHandler ff_vorbis_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = xiph_handle_packet,
+    ); // = xiph_handle_packet,
 }

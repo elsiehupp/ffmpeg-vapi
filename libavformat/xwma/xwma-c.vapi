@@ -1,7 +1,8 @@
 /***********************************************************
 xWMA demuxer
 @copyright 2011 Max Horn
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -23,22 +24,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Demuxer for xWMA, a Microsoft audio container used by XAudio 2.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_xwma_demuxer = {
-    //  .name           = "xwma",
-    //  .long_name      = "Microsoft xWMA",
-    //  .priv_data_size = sizeof(XWMAContext),
+[CCode (cname="ff_xwma_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "xwma"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Microsoft xWMA"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (XWMAContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = xwma_probe,
+    ); // = xwma_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = xwma_read_header,
+    ); // = xwma_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = xwma_read_packet,
+    ); // = xwma_read_packet,
 }

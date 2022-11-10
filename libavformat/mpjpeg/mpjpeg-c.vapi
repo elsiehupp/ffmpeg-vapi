@@ -1,59 +1,102 @@
 /***********************************************************
- Multipart JPEG format
- @copyright 2000, 2001, 2002, 2003 Fabrice Bellard
+Multipart JPEG format
+@copyright 2000, 2001, 2002, 2003 Fabrice Bellard
+***********************************************************/
+/***********************************************************
+This file is part of FFmpeg.
 
- This file is part of FFmpeg.
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
- FFmpeg is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License as published by the Free Software Foundation; either
- version 2.1 of the License, or (at your option) any later version.
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
 
- FFmpeg is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
-
- You should have received a copy of the GNU Lesser General Public
- License along with FFmpeg; if not, write to the Free Software
- Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static const AVOption options[] = {
-    { "boundary_tag",    "Boundary tag", offsetof(MPJPEGContext, boundary_tag),   AV_OPT_TYPE_STRING, {.str = BOUNDARY_TAG}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
-    { NULL },
+//  static const AVOption options[] = {
+//      { "boundary_tag",    "Boundary tag", offsetof(MPJPEGContext, boundary_tag),   AV_OPT_TYPE_STRING, {.str = BOUNDARY_TAG}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
+//      { NULL },
+//  }
+
+[CCode (cname="mpjpeg_muxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "mpjpeg_muxer"
+    //  .item_name = av_default_item_name,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-static const AVClass mpjpeg_muxer_class = {
-    //  .class_name = "mpjpeg_muxer",
-    //  .item_name  = av_default_item_name,
-    //  .option     = options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
-}
-
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_mpjpeg_muxer = {
-    //  .name              = "mpjpeg",
-    //  .long_name         = "MIME multipart JPEG",
-    //  .mime_type         = "multipart/x-mixed-replace;boundary=" BOUNDARY_TAG,
-    //  .extensions        = "mjpg",
-    //  .priv_data_size    = sizeof(MPJPEGContext),
-    //  .audio_codec       = AV_CODEC_ID_NONE,
-    //  .video_codec       = AV_CODEC_ID_MJPEG,
+[CCode (cname="ff_mpjpeg_muxer", cheader="")]
+public class MultipartJpegOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "mpjpeg"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MIME multipart JPEG"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "multipart/x-mixed-replace;boundary=" BOUNDARY_TAG,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "mjpg"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MPJPEGContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.MJPEG;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = mpjpeg_write_header,
+    ); // = mpjpeg_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = mpjpeg_write_packet,
+    ); // = mpjpeg_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = mpjpeg_write_trailer,
-    //  .flags             = AVFMT_NOTIMESTAMPS,
-    //  .priv_class        = &mpjpeg_muxer_class,
+    ); // = mpjpeg_write_trailer,
+    //  .flags = AVFMT_NOTIMESTAMPS,
+    //  .priv_class = mpjpeg_muxer_class,
 }

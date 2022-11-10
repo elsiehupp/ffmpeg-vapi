@@ -1,7 +1,8 @@
 /***********************************************************
 MicroDVD subtitle muxer
 @copyright 2010  Aurelien Jacobs <aurel@gnuage.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,22 +20,42 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_microdvd_muxer = {
-    //  .name           = "microdvd",
-    //  .long_name      = "MicroDVD subtitle format",
-    //  .mime_type      = "text/x-microdvd",
-    //  .extensions     = "sub",
+[CCode (cname="ff_microdvd_muxer", cheader="")]
+public class MicroDVDOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "microdvd"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MicroDVD subtitle format"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "text/x-microdvd"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "sub"
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );   = microdvd_write_header,
+    ); // = microdvd_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );   = microdvd_write_packet,
-    //  .flags          = AVFMT_NOTIMESTAMPS,
-    //  .subtitle_codec = AV_CODEC_ID_MICRODVD,
+    ); // = microdvd_write_packet,
+    //  .flags = AVFMT_NOTIMESTAMPS,
+    //  .subtitle_codec = LibAVCodec.CodecID.MICRODVD,
 }

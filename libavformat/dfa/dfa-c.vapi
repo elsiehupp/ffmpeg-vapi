@@ -1,7 +1,8 @@
 /***********************************************************
 Chronomaster DFA Format Demuxer
 @copyright 2011 Konstantin Shishkov
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,22 +20,32 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_dfa_demuxer = {
-    //  .name           = "dfa",
-    //  .long_name      = "Chronomaster DFA",
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_dfa_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "dfa"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Chronomaster DFA"
+    [CCode (cname="dfa_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = dfa_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="dfa_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = dfa_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="dfa_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = dfa_read_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
+    );
+    //  .flags = AVFMT_GENERIC_INDEX,
 }

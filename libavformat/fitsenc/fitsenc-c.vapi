@@ -1,7 +1,8 @@
 /***********************************************************
 FITS muxer
 @copyright 2017 Paras Chadha
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,27 +20,56 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-FITS muxer.
+/***********************************************************
+@file FITS muxer.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_fits_muxer = {
-    //  .name         = "fits",
-    //  .long_name    = "Flexible Image Transport System",
-    //  .extensions   = "fits",
-    //  .priv_data_size = sizeof(FITSContext),
-    //  .audio_codec  = AV_CODEC_ID_NONE,
-    //  .video_codec  = AV_CODEC_ID_FITS,
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_fits_muxer", cheader="")]
+public class FITSOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "fits"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Flexible Image Transport System"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "fits"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FITSContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.FITS;
+        }
+    }
+    [CCode (cname="fits_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); = fits_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="fits_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    ); = fits_write_packet,
+    );
 }

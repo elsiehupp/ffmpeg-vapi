@@ -2,7 +2,8 @@
 Flash Compatible Streaming Format common header.
 @copyright 2000 Fabrice Bellard
 @copyright 2003 Tinic Uro
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

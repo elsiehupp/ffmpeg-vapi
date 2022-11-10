@@ -1,7 +1,8 @@
 /***********************************************************
 iLBC storage file format
 @copyright 2012 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,42 +20,77 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_ilbc_demuxer = {
-    //  .name         = "ilbc",
-    //  .long_name    = "iLBC storage",
+[CCode (cname="ff_ilbc_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "ilbc"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "iLBC storage"
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );   = ilbc_probe,
+    ); // = ilbc_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );  = ilbc_read_header,
+    ); // = ilbc_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );  = ilbc_read_packet,
-    //  .flags        = AVFMT_GENERIC_INDEX,
+    ); // = ilbc_read_packet,
+    //  .flags = AVFMT_GENERIC_INDEX,
 }
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_ilbc_muxer = {
-    //  .name         = "ilbc",
-    //  .long_name    = "iLBC storage",
-    //  .mime_type    = "audio/iLBC",
-    //  .extensions   = "lbc",
-    //  .audio_codec  = AV_CODEC_ID_ILBC,
+[CCode (cname="ff_ilbc_muxer", cheader="")]
+public class ILBCOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "ilbc"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "iLBC storage"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "audio/iLBC"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "lbc"
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.ILBC;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); = ilbc_write_header,
+    ); // = ilbc_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    ); = ilbc_write_packet,
-    //  .flags        = AVFMT_NOTIMESTAMPS,
+    ); // = ilbc_write_packet,
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }

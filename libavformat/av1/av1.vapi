@@ -1,6 +1,7 @@
 /***********************************************************
 AV1 helper functions for muxers
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -42,7 +43,7 @@ the resulting bitstream to the provided AVIOContext.
 
 @param pb pointer to the AVIOContext where the filtered bitstream shall be
       written
-@param buf input data buffer
+@param buffer input data buffer
 @param size size of the input data buffer
 
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
@@ -50,7 +51,7 @@ the resulting bitstream to the provided AVIOContext.
 ***********************************************************/
 public int ff_av1_filter_obus (
     AVIOContext pb,
-    uint8[] buf,
+    uint8[] buffer,
     int size
 );
 
@@ -79,14 +80,14 @@ Parses a Sequence Header from the the provided buffer.
 
 @param seq pointer to the AV1SequenceParameters where the parsed values will
     be written
-@param buf input data buffer
+@param buffer input data buffer
 @param size size in bytes of the input data buffer
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 public int ff_av1_parse_seq_header (
     AV1SequenceParameters seq,
-    uint8[] buf,
+    uint8[] buffer,
     int size
 );
 
@@ -95,14 +96,14 @@ Writes AV1 extradata (Sequence Header and Metadata OBUs) to the provided
 AVIOContext.
 
 @param pb pointer to the AVIOContext where the hvcC shall be written
-@param buf input data buffer
+@param buffer input data buffer
 @param size size in bytes of the input data buffer
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 public int ff_isom_write_av1c (
     AVIOContext pb,
-    uint8[] buf,
+    uint8[] buffer,
     int size
 );
 

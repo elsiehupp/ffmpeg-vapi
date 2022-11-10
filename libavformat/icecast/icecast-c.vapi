@@ -1,7 +1,8 @@
 /***********************************************************
 Icecast protocol for FFmpeg
 @copyright 2014 Marvin Scholz
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,33 +20,49 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static const AVClass icecast_context_class = {
-    //  .class_name     = "icecast",
-    //  .item_name      = av_default_item_name,
-    //  .option         = options,
-    //  .version        = LIBAVUTIL_VERSION_INT,
+[CCode (cname="icecast_context_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "icecast"
+    //  .item_name = av_default_item_name,
+    //  .option = options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
 [CCode (cname="ff_icecast_protocol", cheader="")]
 public class IceCastURLProtocol : URLProtocol {
-    //  .name            = "icecast",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "icecast"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );        = icecast_open,
+    ); // = icecast_open,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );       = icecast_write,
+    ); // = icecast_write,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );       = icecast_close,
-    //  .priv_data_size  = sizeof(IcecastContext),
-    //  .priv_data_class = &icecast_context_class,
-    //  .flags           = URL_PROTOCOL_FLAG_NETWORK,
+        URLContext url_context
+    ); // = icecast_close,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (IcecastContext);
+        }
+    }
+    //  .priv_data_class = icecast_context_class,
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
 }

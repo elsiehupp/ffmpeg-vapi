@@ -1,6 +1,7 @@
 /***********************************************************
 @@copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup libavc
+@file @ingroup libavc
 LibAVCodec external API header
 ***********************************************************/
 
@@ -938,9 +938,9 @@ public struct CodecContext {
     @description This callback is called at the beginning of each frame to get data
         buffer (s) for it. There may be one contiguous buffer for all the data or
         there may be a buffer per each data plane or anything in between. What
-        this means is, you may set however many entries in buf[] you feel necessary.
+        this means is, you may set however many entries in buffer[] you feel necessary.
         Each buffer must be reference-counted using the LibAVUtil.Buffer API (see description
-        of buf[] below).
+        of buffer[] below).
 
         The following fields will be set in the frame before this callback is
         called:
@@ -961,14 +961,14 @@ public struct CodecContext {
             extended_data must be allocated with av_malloc () and will be freed in
             av_frame_unref ().
         * otherwise extended_data must point to data
-        - buf[] must contain one or more pointers to LibAVUtil.BufferRef structures. Each of
+        - buffer[] must contain one or more pointers to LibAVUtil.BufferRef structures. Each of
         the frame's data and extended_data pointers must be contained in these. That
         is, one LibAVUtil.BufferRef for each allocated chunk of memory, not necessarily one
         LibAVUtil.BufferRef per data[] entry. See: av_buffer_create (), av_buffer_alloc (),
         and av_buffer_ref ().
         - extended_buf and nb_extended_buf must be allocated with av_malloc () by
         this callback and filled with the extra buffers if there are more
-        buffers than buf[] can hold. extended_buf will be freed in
+        buffers than buffer[] can hold. extended_buf will be freed in
         av_frame_unref ().
 
         If AV_CODEC_CAP_DR1 is not set then get_buffer2 () must call
@@ -1953,7 +1953,7 @@ public struct CodecContext {
     [CCode (cname="avcodec_encode_subtitle", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_encode_subtitle (
         CodecContext codec_context,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size,
         Subtitle sub
     );
@@ -2255,7 +2255,7 @@ public struct CodecContext {
 
     [CCode (cname="v", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_string (
-        string buf,
+        string buffer,
         int buf_size,
         CodecContext enc,
         int encode

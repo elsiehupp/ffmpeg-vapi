@@ -3,7 +3,8 @@ Shorten demuxer
 @copyright 2001 Fabrice Bellard
 @copyright 2005 Alex Beregszaszi
 @copyright 2015 Carl Eugen Hoyos
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,25 +23,51 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 FF_RAW_DEMUXER_CLASS(shorten)
-public class InputFormat : AVInputFormat ff_shorten_demuxer = {
-    //  .name           = "shn",
-    //  .long_name      = "raw Shorten",
+[CCode (cname="ff_shorten_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "shn"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw Shorten"
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = shn_probe,
+    ); // = shn_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = ff_raw_audio_read_header,
+    ); // = ff_raw_audio_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ff_raw_read_partial_packet,
-    //  .flags          = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS,
-    //  .extensions     = "shn",
-    //  .raw_codec_id   = AV_CODEC_ID_SHORTEN,
-    //  .priv_data_size = sizeof(FFRawDemuxerContext),
-    //  .priv_class     = &shorten_demuxer_class,
+    ); // = ff_raw_read_partial_packet,
+    //  .flags = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "shn"
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.SHORTEN;
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FFRawDemuxerContext);
+        }
+    }
+    //  .priv_class = shorten_demuxer_class,
 }

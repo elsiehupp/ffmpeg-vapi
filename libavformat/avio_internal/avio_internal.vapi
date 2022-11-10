@@ -22,13 +22,13 @@ namespace LibAVFormat {
 
 public delegate int ReadPacketDelegate (
     void *opaque,
-    uint8[] buf,
+    uint8[] buffer,
     int buf_size
 );
 
 public delegate int WritePacketDelegate (
     void *opaque,
-    uint8[] buf,
+    uint8[] buffer,
     int buf_size
 );
 
@@ -54,19 +54,19 @@ Read size bytes from AVIOContext, returning a pointer.
 Note that the data pointed at by the returned pointer is only
 valid until the next call that references the same IO context.
 @param io_context IO context
-@param buf pointer to buffer into which to assemble the requested
+@param buffer pointer to buffer into which to assemble the requested
     data if it is not available in contiguous addresses in the
     underlying buffer
 @param size number of bytes requested
 @param data address at which to store pointer: this will be a
     a direct pointer into the underlying buffer if the requested
     number of bytes are available at contiguous addresses, otherwise
-    will be a copy of buf
+    will be a copy of buffer
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
 public int ffio_read_indirect (
     AVIOContext io_context,
-    uchar[] buf,
+    uchar[] buffer,
     int size,
     out uchar[] data
 );
@@ -85,18 +85,18 @@ public void ffio_wfourcc (
 /***********************************************************
 Rewind the AVIOContext using the specified buffer containing the first buf_size bytes of the file.
 Used after probing to avoid seeking.
-Joins buf and io_context.buffer, taking any overlap into consideration.
-@note io_context.buffer must overlap with buf or they can't be joined and the function fails
+Joins buffer and io_context.buffer, taking any overlap into consideration.
+@note io_context.buffer must overlap with buffer or they can't be joined and the function fails
 
 @param io_context The read-only AVIOContext to rewind
-@param buf The probe buffer containing the first buf_size bytes of the file
-@param buf_size The size of buf
+@param buffer The probe buffer containing the first buf_size bytes of the file
+@param buf_size The size of buffer
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 public int ffio_rewind_with_probe_data (
     AVIOContext io_context,
-    out uchar[] buf,
+    out uchar[] buffer,
     int buf_size
 );
 
@@ -105,13 +105,13 @@ public uint64 ffio_read_varlen (
 );
 
 /***********************************************************
-Read size bytes from AVIOContext into buf.
+Read size bytes from AVIOContext into buffer.
 Check that exactly size bytes have been read.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
 public int ffio_read_size (
     AVIOContext io_context,
-    uchar[] buf,
+    uchar[] buffer,
     int size
 );
 
@@ -158,19 +158,19 @@ public ulong ffio_get_checksum (
 
 public ulong ff_crc04C11DB7_update (
     ulong checksum,
-    uint8[] buf,
+    uint8[] buffer,
     uint len
 );
 
 public ulong ff_crcEDB88320_update (
     ulong checksum,
-    uint8[] buf,
+    uint8[] buffer,
     uint len
 );
 
 public ulong ff_crcA001_update (
     ulong checksum,
-    uint8[] buf,
+    uint8[] buffer,
     uint len
 );
 
@@ -190,8 +190,8 @@ public int ffio_open_dyn_packet_buf (
 
 /***********************************************************
 Create and initialize a AVIOContext for accessing the
-resource referenced by the URLContext h.
-@note When the URLContext h has been opened in read+write mode, the
+resource referenced by the URLContext url_context.
+@note When the URLContext url_context has been opened in read+write mode, the
 AVIOContext can be used only for writing.
 
 @param io_context Used to return the pointer to the created AVIOContext.
@@ -201,7 +201,7 @@ LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 public int ffio_fdopen (
     out AVIOContext io_context,
-    URLContext h
+    URLContext url_context
 );
 
 /***********************************************************

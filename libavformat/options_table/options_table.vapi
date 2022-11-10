@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2000, 2001, 2002 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -27,7 +28,7 @@ namespace LibAVFormat {
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 
 public const LibAVUtil.Option avformat_options[];
-//   = {
+// = {
 //  {"avioflags", NULL, OFFSET (avio_flags), AV_OPT_TYPE_FLAGS, {.i64 = DEFAULT }, INT_MIN, int.MAX, D|E, "avioflags"},
 //  {"direct", "reduce buffering", 0, AV_OPT_TYPE_CONST, {.i64 = AVIO_FLAG_DIRECT }, INT_MIN, int.MAX, D|E, "avioflags"},
 //  {"probesize", "set probing size", OFFSET (probesize), AV_OPT_TYPE_INT64, {.i64 = 5000000 }, 32, INT64_MAX, D},

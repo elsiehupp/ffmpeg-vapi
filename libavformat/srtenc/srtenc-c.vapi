@@ -1,47 +1,74 @@
 /***********************************************************
- SubRip subtitle muxer
- @copyright 2012  Nicolas George <nicolas.george@normalesup.org>
+SubRip subtitle muxer
+@copyright 2012  Nicolas George <nicolas.george@normalesup.org>
+***********************************************************/
+/***********************************************************
+This file is part of FFmpeg.
 
- This file is part of FFmpeg.
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
- FFmpeg is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License as published by the Free Software Foundation; either
- version 2.1 of the License, or (at your option) any later version.
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
 
- FFmpeg is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
-
- You should have received a copy of the GNU Lesser General Public
- License along with FFmpeg; if not, write to the Free Software
- Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/* TODO: add options for:
+/***********************************************************
+TODO: add options for:
    - character encoding;
    - LF / CRLF;
    - byte order mark.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_srt_muxer = {
-    //  .name           = "srt",
-    //  .long_name      = "SubRip subtitle",
-    //  .mime_type      = "application/x-subrip",
-    //  .extensions     = "srt",
-    //  .priv_data_size = sizeof(SRTContext),
+[CCode (cname="ff_srt_muxer", cheader="")]
+public class SRTOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "srt"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "SubRip subtitle"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "application/x-subrip"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "srt"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (SRTContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );   = srt_write_header,
+    ); // = srt_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );   = srt_write_packet,
-    //  .flags          = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
-    //  .subtitle_codec = AV_CODEC_ID_SUBRIP,
+    ); // = srt_write_packet,
+    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
+    //  .subtitle_codec = LibAVCodec.CodecID.SUBRIP,
 }

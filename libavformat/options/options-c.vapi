@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2000, 2001, 2002 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -18,28 +19,33 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Options definition for AVFormatContext.
+/***********************************************************
+@file Options definition for AVFormatContext.
 ***********************************************************/
 
-static const AVClass av_format_context_class = {
-    //  .class_name     = "AVFormatContext",
-    //  .item_name      = format_to_name,
-    //  .option         = avformat_options,
-    //  .version        = LIBAVUTIL_VERSION_INT,
+[CCode (cname="av_format_context_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "AVFormatContext"
+    //  .item_name = format_to_name,
+    //  .option = avformat_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
     [CCode (cname="", cheader="")]
     public override void *child_next (
         void *obj,
         void *prev
-    );     = format_child_next,
+    ); // = format_child_next,
     [CCode (cname="", cheader="")]
     public override Class child_class_next (
         Class prev
-    ); = format_child_class_next,
-    //  .category       = AV_CLASS_CATEGORY_MUXER,
+    ); // = format_child_class_next,
+    //  .category = AV_CLASS_CATEGORY_MUXER,
     [CCode (cname="", cheader="")]
     public override ClassCategory get_category (
         void *class_context
-    );   = get_category,
+    ); // = get_category,
 }

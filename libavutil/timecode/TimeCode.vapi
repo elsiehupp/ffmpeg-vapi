@@ -1,7 +1,8 @@
 /***********************************************************
 @copyright 2006 Smartjog S.A.S, Baptiste Coudurier <baptiste.coudurier@gmail.com>
 @copyright 2011-2012 Smartjog S.A.S, Clément Bœsch <clement.boesch@smartjog.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-Timecode helpers header
+@file Timecode helpers header
 ***********************************************************/
 
 [CCode (cname="struct AVTimecode", cheader_filename="ffmpeg/libavutil/timecode.h")]
@@ -89,12 +89,12 @@ public struct TimeCode {
     );
 
     /***********************************************************
-    @brief Load timecode string in buf.
+    @brief Load timecode string in buffer.
 
-    @param buf destination buffer, must be at least AV_TIMECODE_STR_SIZE long
+    @param buffer destination buffer, must be at least AV_TIMECODE_STR_SIZE long
     @param tc timecode data correctly initialized
     @param framenum frame number
-    @return the buf parameter
+    @return the buffer parameter
 
     @note Timecode representation can be a negative timecode and have more than
         24 hours, but will only be honored if the flags are correctly set.
@@ -103,22 +103,22 @@ public struct TimeCode {
     [CCode (cname="av_timecode_make_string", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public string av_timecode_make_string (
         TimeCode tc,
-        out string buf,
+        out string buffer,
         int framenum
     );
 
     /***********************************************************
     @brief Get the timecode string from the SMPTE timecode format.
 
-    @param buf destination buffer, must be at least AV_TIMECODE_STR_SIZE long
+    @param buffer destination buffer, must be at least AV_TIMECODE_STR_SIZE long
     @param tcsmpte the 32-bit SMPTE timecode
     @param prevent_df prevent the use of a drop flag when it is known the DF bit
         is arbitrary
-    @return the buf parameter
+    @return the buffer parameter
     ***********************************************************/
     [CCode (cname="av_timecode_make_smpte_tc_string", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public static string av_timecode_make_smpte_tc_string (
-        out string buf,
+        out string buffer,
         uint32 tcsmpte,
         int prevent_df
     );
@@ -126,13 +126,13 @@ public struct TimeCode {
     /***********************************************************
     @brief Get the timecode string from the 25-bit timecode format (MPEG GOP format).
 
-    @param buf destination buffer, must be at least AV_TIMECODE_STR_SIZE long
+    @param buffer destination buffer, must be at least AV_TIMECODE_STR_SIZE long
     @param tc25bit the 25-bits timecode
-    @return the buf parameter
+    @return the buffer parameter
     ***********************************************************/
     [CCode (cname="av_timecode_make_mpeg_tc_string", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public static string av_timecode_make_mpeg_tc_string (
-        out string buf,
+        out string buffer,
         uint32 tc25bit
     );
 

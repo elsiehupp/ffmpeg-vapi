@@ -1,7 +1,4 @@
 /***********************************************************
-CDXL demuxer
-@copyright 2011-2012 Paul B Mahol
-
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -18,40 +15,69 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+/***********************************************************
+CDXL demuxer
+@copyright 2011-2012 Paul B Mahol
+***********************************************************/
+//  #define OFFSET(x) offsetof(CDXLDemuxContext, x)
+//  static const AVOption cdxl_options[] = {
+//      { "sample_rate", "", OFFSET(sample_rate), AV_OPT_TYPE_INT,    { .i64 = 11025 }, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
+//      { "framerate",   "", OFFSET(framerate),   AV_OPT_TYPE_STRING, { .str = NULL },  0, 0,       AV_OPT_FLAG_DECODING_PARAM },
+//      { NULL },
+//  }
 
-#define OFFSET(x) offsetof(CDXLDemuxContext, x)
-static const AVOption cdxl_options[] = {
-    { "sample_rate", "", OFFSET(sample_rate), AV_OPT_TYPE_INT,    { .i64 = 11025 }, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-    { "framerate",   "", OFFSET(framerate),   AV_OPT_TYPE_STRING, { .str = NULL },  0, 0,       AV_OPT_FLAG_DECODING_PARAM },
-    { NULL },
+[CCode (cname="cdxl_demuxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "CDXL demuxer"
+    //  .item_name = av_default_item_name,
+    //  .option = cdxl_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-static const AVClass cdxl_demuxer_class = {
-    //  .class_name = "CDXL demuxer",
-    //  .item_name  = av_default_item_name,
-    //  .option     = cdxl_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
-}
-
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_cdxl_demuxer = {
-    //  .name           = "cdxl",
-    //  .long_name      = "Commodore CDXL video",
-    //  .priv_data_size = sizeof(CDXLDemuxContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_cdxl_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "cdxl"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Commodore CDXL video"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (CDXLDemuxContext);
+        }
+    }
+    [CCode (cname="cdxl_read_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = cdxl_read_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="cdxl_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = cdxl_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="cdxl_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = cdxl_read_packet,
-    //  .extensions     = "cdxl,xl",
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .priv_class     = &cdxl_demuxer_class,
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "cdxl,xl"
+    //  .flags = AVFMT_GENERIC_INDEX,
+    //  .priv_class = cdxl_demuxer_class,
 }

@@ -1,7 +1,8 @@
 /***********************************************************
 RTSP definitions
 @copyright 2002 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -230,7 +231,7 @@ public struct RTSPMessageHeader {
     Windows Media Server, which has a value "WMServer/v.e.r.sion", where
     version is a sequence of digits (e.g. 9.0.0.3372). Helix/Real servers
     use something like "Helix [..] Server Version v.e.r.sion (platform)
-    (RealServer compatible)" or "RealServer Version v.e.r.sion (platform)",
+    (RealServer compatible)" or "RealServer Version v.e.r.sion (platform)"
     where platform is the output of $uname -msr | sed 's/ /-/g'.
     ***********************************************************/
     public char server[64];
@@ -717,7 +718,7 @@ public struct RTSPStream {
 public void ff_rtsp_parse_line (
     AVFormatContext format_context,
     RTSPMessageHeader reply,
-    string buf,
+    string buffer,
     RTSPState rt,
     string method
 );
@@ -886,7 +887,7 @@ Receive one RTP packet from an TCP interleaved RTSP stream.
 public int ff_rtsp_tcp_read_packet (
     AVFormatContext format_context,
     out RTSPStream prtsp_st,
-    uint8[] buf,
+    uint8[] buffer,
     int buf_size
 );
 

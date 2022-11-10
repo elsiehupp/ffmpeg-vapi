@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup libavc
+@file @ingroup libavc
 LibAVCodec external API header
 ***********************************************************/
 
@@ -280,7 +280,7 @@ public struct CodecParserContext {
     @param avctx codec context.
     @param poutbuf set to pointer to parsed buffer or null if not yet finished.
     @param poutbuf_size set to size of parsed buffer or zero if not yet finished.
-    @param buf input buffer.
+    @param buffer input buffer.
     @param buf_size buffer size in bytes without the padding. I.e. the full buffer
         size is assumed to be buf_size + AV_INPUT_BUFFER_PADDING_SIZE.
         To signal EOF, this should be 0 (so that the last frame
@@ -309,7 +309,7 @@ public struct CodecParserContext {
         CodecParserContext s,
         CodecContext avctx,
         out uint8[] poutbuf, out int poutbuf_size,
-        uint8[] buf, int buf_size,
+        uint8[] buffer, int buf_size,
         int64 pts, int64 dts,
         int64 pos
     );

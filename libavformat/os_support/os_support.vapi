@@ -1,7 +1,8 @@
 /***********************************************************
 various OS-feature replacement utilities
 @copyright 2000, 2001, 2002 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-miscellaneous OS support macros and functions.
+@file miscellaneous OS support macros and functions.
 ***********************************************************/
 
 //  #ifdef _WIN32
@@ -128,11 +128,11 @@ public enum PollEvent {
     ***********************************************************/
     POLLOUT,
     /***********************************************************
-    = POLLIN
+ = POLLIN
     ***********************************************************/
     POLLRDNORM,
     /***********************************************************
-    = POLLOUT
+ = POLLOUT
     ***********************************************************/
     POLLWRNORM,
     /***********************************************************
@@ -185,59 +185,56 @@ public enum PollEvent {
 //  #include <windows.h>
 //  #include "libavutil/wchar_filename.h"
 
-//  #define DEF_FS_FUNCTION (name, wfunc, afunc)               \
-//  static inline int win32_##name (string filename_utf8) \
-//  {                                                         \
-//      wchar_t filename_w; \
-//      int ret; \
-//                                                            \
-//      if (utf8towchar (filename_utf8, &filename_w))          \
-//          return -1; \
-//      if (!filename_w)                                      \
-//          goto fallback; \
-//                                                            \
-//      ret = wfunc (filename_w); \
-//      av_free (filename_w); \
-//      return ret; \
-//                                                            \
-//  fallback:                                                 \
+//  #define DEF_FS_FUNCTION (name, wfunc, afunc)
+//  static inline int win32_##name (string filename_utf8) {
+//      wchar_t filename_w;
+//      int ret;
+//
+//      if (utf8towchar (filename_utf8, &filename_w))
+//          return -1;
+//      if (!filename_w)
+//          goto fallback;
+//
+//      ret = wfunc (filename_w);
+//      av_free (filename_w);
+//      return ret;
+//
+//  fallback:
 //      /***********************************************************
 //      filename may be be in CP_ACP
-//      ***********************************************************/                    \
-//      return afunc (filename_utf8); \
+//      ***********************************************************/
+//      return afunc (filename_utf8);
 //  }
 
 //  DEF_FS_FUNCTION (unlink, _wunlink, _unlink)
 //  DEF_FS_FUNCTION (mkdir, _wmkdir, _mkdir)
 //  DEF_FS_FUNCTION (rmdir, _wrmdir , _rmdir)
 
-//  #define DEF_FS_FUNCTION2 (name, wfunc, afunc, partype)     \
-//  static inline int win32_##name (string filename_utf8, partype par) \
-//  {                                                         \
-//      wchar_t filename_w; \
-//      int ret; \
-//                                                            \
-//      if (utf8towchar (filename_utf8, &filename_w))          \
-//          return -1; \
-//      if (!filename_w)                                      \
-//          goto fallback; \
-//                                                            \
-//      ret = wfunc (filename_w, par); \
-//      av_free (filename_w); \
-//      return ret; \
-//                                                            \
-//  fallback:                                                 \
+//  #define DEF_FS_FUNCTION2 (name, wfunc, afunc, partype)
+//  static inline int win32_##name (string filename_utf8, partype par) {
+//      wchar_t filename_w;
+//      int ret;
+//
+//      if (utf8towchar (filename_utf8, &filename_w))
+//          return -1;
+//      if (!filename_w)
+//          goto fallback;
+//
+//      ret = wfunc (filename_w, par);
+//      av_free (filename_w);
+//      return ret;
+//
+//  fallback:
 //      /***********************************************************
 //      filename may be be in CP_ACP
-//      ***********************************************************/                    \
-//      return afunc (filename_utf8, par); \
+//      ***********************************************************/
+//      return afunc (filename_utf8, par);
 //  }
 
 //  DEF_FS_FUNCTION2 (access, _waccess, _access, int)
 //  DEF_FS_FUNCTION2 (stat, _wstati64, _stati64, stat*)
 
-//  static inline int win32_rename (string src_utf8, string dest_utf8)
-//  {
+//  static inline int win32_rename (string src_utf8, string dest_utf8) {
 //      wchar_t src_w, *dest_w;
 //      int ret;
 

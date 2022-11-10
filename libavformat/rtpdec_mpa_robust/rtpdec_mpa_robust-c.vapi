@@ -1,7 +1,8 @@
 /***********************************************************
 RTP parser for loss tolerant payload format for MP3 audio (RFC 5219)
 @copyright 2015 Gilles Chanteperdrix <gch@xenomai.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,15 +21,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_mpeg_audio_robust_dynamic_handler = {
-    //  .enc_name          = "mpa-robust",
-    //  .codec_type        = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id          = AV_CODEC_ID_MP3ADU,
-    //  .need_parsing      = AVSTREAM_PARSE_HEADERS,
-    //  .priv_data_size    = sizeof(PayloadContext),
+    //  .enc_name = "mpa-robust"
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.MP3ADU,
+    //  .need_parsing = AVSTREAM_PARSE_HEADERS,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );             = mpa_robust_close_context,
+    ); // = mpa_robust_close_context,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -37,9 +43,9 @@ const RTPDynamicProtocolHandler ff_mpeg_audio_robust_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );      = mpa_robust_parse_packet,
+    ); // = mpa_robust_parse_packet,
 }

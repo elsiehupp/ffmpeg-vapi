@@ -1,7 +1,8 @@
 /***********************************************************
 RTP parser for H.261 payload format (RFC 4587)
 @copyright 2014 Thomas Volkert <thomas@homer-conferencing.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,15 +21,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_h261_dynamic_handler = {
-    //  .enc_name          = "H261",
-    //  .codec_type        = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id          = AV_CODEC_ID_H261,
-    //  .need_parsing      = AVSTREAM_PARSE_FULL,
-    //  .priv_data_size    = sizeof(PayloadContext),
+    //  .enc_name = "H261"
+    //  .codec_type = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id = LibAVCodec.CodecID.H261,
+    //  .need_parsing = AVSTREAM_PARSE_FULL,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );             = h261_close_context,
+    ); // = h261_close_context,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -37,10 +43,10 @@ const RTPDynamicProtocolHandler ff_h261_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );      = h261_handle_packet,
+    ); // = h261_handle_packet,
     //  .static_payload_id = 31,
 }

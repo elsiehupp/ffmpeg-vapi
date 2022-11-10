@@ -1,7 +1,8 @@
 /***********************************************************
 Multipart JPEG format
 @copyright 2015 Luca Barbato
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,47 +20,78 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define OFFSET(x) offsetof(MPJPEGDemuxContext, x)
-#define DEC AV_OPT_FLAG_DECODING_PARAM
-static const AVOption mpjpeg_options[] = {
-    { "strict_mime_boundary",  "require MIME boundaries match", OFFSET(strict_mime_boundary), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC },
-    { NULL }
+//  #define OFFSET(x) offsetof(MPJPEGDemuxContext, x)
+//  #define DEC AV_OPT_FLAG_DECODING_PARAM
+//  static const AVOption mpjpeg_options[] = {
+//      { "strict_mime_boundary",  "require MIME boundaries match", OFFSET(strict_mime_boundary), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC },
+//      { NULL }
+//  }
+
+
+[CCode (cname="mpjpeg_demuxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "MPJPEG demuxer"
+    //  .item_name = av_default_item_name,
+    //  .option = mpjpeg_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-
-static const AVClass mpjpeg_demuxer_class = {
-    //  .class_name     = "MPJPEG demuxer",
-    //  .item_name      = av_default_item_name,
-    //  .option         = mpjpeg_options,
-    //  .version        = LIBAVUTIL_VERSION_INT,
-}
-
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_mpjpeg_demuxer = {
-    //  .name              = "mpjpeg",
-    //  .long_name         = "MIME multipart JPEG",
-    //  .mime_type         = "multipart/x-mixed-replace",
-    //  .extensions        = "mjpg",
-    //  .priv_data_size    = sizeof(MPJPEGDemuxContext),
+[CCode (cname="ff_mpjpeg_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "mpjpeg"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MIME multipart JPEG"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "multipart/x-mixed-replace"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "mjpg"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MPJPEGDemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );        = mpjpeg_read_probe,
+    ); // = mpjpeg_read_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );       = mpjpeg_read_header,
+    ); // = mpjpeg_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );       = mpjpeg_read_packet,
+    ); // = mpjpeg_read_packet,
     [CCode (cname="", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );        = mpjpeg_read_close,
-    //  .priv_class        = &mpjpeg_demuxer_class,
-    //  .flags             = AVFMT_NOTIMESTAMPS,
+    ); // = mpjpeg_read_close,
+    //  .priv_class = mpjpeg_demuxer_class,
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }
 
 

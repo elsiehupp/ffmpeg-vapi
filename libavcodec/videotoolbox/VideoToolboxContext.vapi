@@ -2,7 +2,8 @@
 @brief Videotoolbox hardware acceleration
 
 @copyright 2012 Sebastien Zwickert
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -24,8 +25,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup lavc_codec_hwaccel_videotoolbox
+@file @ingroup lavc_codec_hwaccel_videotoolbox
 Public LibAVCodec Videotoolbox header.
 ***********************************************************/
 

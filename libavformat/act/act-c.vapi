@@ -1,7 +1,8 @@
 /***********************************************************
 ACT file format demuxer
 @copyright 2007-2008 Vladimir Voroshilov
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,10 +21,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_act_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_act_demuxer = {
-    //  .name           = "act",
-    //  .long_name      = "ACT Voice file format",
-    //  .priv_data_size = sizeof(ACTContext),
+public class InputDemuxer : AVInputFormat ff_act_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "act";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "ACT Voice file format";
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (ACTContext);
+        }
+    }
     [CCode (cname="probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context

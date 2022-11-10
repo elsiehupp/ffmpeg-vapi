@@ -1,7 +1,8 @@
 /***********************************************************
 American Laser Games MM Format Demuxer
 @copyright 2006 Peter Ross
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,34 +20,48 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-American Laser Games MM Format Demuxer
+/***********************************************************
+@file American Laser Games MM Format Demuxer
 by Peter Ross (pross@xvid.org)
 
 The MM format was used by IBM-PC ports of ALG's "arcade shooter" games,
 including Mad Dog McCree and Crime Patrol.
 
 Technical details here:
- http://wiki.multimedia.cx/index.php?title=American_Laser_Games_MM
+http://wiki.multimedia.cx/index.php?title=American_Laser_Games_MM
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_mm_demuxer = {
-    //  .name           = "mm",
-    //  .long_name      = "American Laser Games MM",
-    //  .priv_data_size = sizeof(MmDemuxContext),
+[CCode (cname="ff_mm_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "mm"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "American Laser Games MM"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MmDemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = probe,
+    ); // = probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = read_header,
+    ); // = read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
+    ); // = read_packet,
 }

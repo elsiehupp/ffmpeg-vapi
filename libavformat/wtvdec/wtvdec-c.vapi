@@ -1,7 +1,8 @@
 /***********************************************************
 Windows Television (WTV) demuxer
 @copyright 2010-2011 Peter Ross <pross@xvid.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,40 +20,54 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Windows Television (WTV) demuxer
+/***********************************************************
+@file Windows Television (WTV) demuxer
 @author Peter Ross <pross@xvid.org>
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_wtv_demuxer = {
-    //  .name           = "wtv",
-    //  .long_name      = "Windows Television (WTV)",
-    //  .priv_data_size = sizeof(WtvContext),
+[CCode (cname="ff_wtv_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "wtv"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Windows Television (WTV)"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (WtvContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = read_probe,
+    ); // = read_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = read_header,
+    ); // = read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
+    ); // = read_packet,
     [CCode (cname="", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = read_seek,
+    ); // = read_seek,
     [CCode (cname="", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = read_close,
-    //  .flags          = AVFMT_SHOW_IDS,
+    ); // = read_close,
+    //  .flags = AVFMT_SHOW_IDS,
 }

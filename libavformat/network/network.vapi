@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2007 The FFmpeg Project
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -25,15 +26,19 @@ namespace LibAVFormat {
 #if !EPROTONOSUPPORT
 public const int EPROTONOSUPPORT; // WSAEPROTONOSUPPORT
 #endif
+
 #if !ETIMEDOUT
 public const int ETIMEDOUT; // WSAETIMEDOUT
 #endif
+
 #if !ECONNREFUSED
 public const int ECONNREFUSED; // WSAECONNREFUSED
 #endif
+
 #if !EINPROGRESS
 public const int EINPROGRESS; // WSAEINPROGRESS
 #endif
+
 #if !ENOTCONN
 public const int ENOTCONN; // WSAENOTCONN
 #endif
@@ -143,27 +148,35 @@ ff_getaddrinfo constants
 #if !EAI_AGAIN
 public const int EAI_AGAIN; // 2
 #endif
+
 #if !EAI_BADFLAGS
 public const int EAI_BADFLAGS; // 3
 #endif
+
 #if !EAI_FAIL
 public const int EAI_FAIL; // 4
 #endif
+
 #if !EAI_FAMILY
 public const int EAI_FAMILY; // 5
 #endif
+
 #if !EAI_MEMORY
 public const int EAI_MEMORY; // 6
 #endif
+
 #if !EAI_NODATA
 public const int EAI_NODATA; // 7
 #endif
+
 #if !EAI_NONAME
 public const int EAI_NONAME; // 8
 #endif
+
 #if !EAI_SERVICE
 public const int EAI_SERVICE; // 9
 #endif
+
 #if !EAI_SOCKTYPE
 public const int EAI_SOCKTYPE; // 10
 #endif
@@ -246,6 +259,7 @@ public const size_t INET6_ADDRSTRLEN; // INET_ADDRSTRLEN
 #if !IN_MULTICAST
 public uint32 IN_MULTICAST (uint32 a); // ((((uint32)(a)) & 0xf0000000) == 0xe0000000)
 #endif
+
 #if !IN6_IS_ADDR_MULTICAST
 public bool IN6_IS_ADDR_MULTICAST (uint8[] a); // (((uint8[] ) (a))[0] == 0xff)
 #endif
@@ -276,7 +290,7 @@ public int ff_listen_bind (
     Posix.SockAddr addr,
     Posix.socklen_t addrlen,
     int timeout,
-    URLContext h
+    URLContext url_context
 );
 
 /***********************************************************
@@ -304,7 +318,7 @@ Poll for a single connection on the passed file descriptor.
 public int ff_accept (
     int fd,
     int timeout,
-    URLContext h
+    URLContext url_context
 );
 
 /***********************************************************
@@ -327,7 +341,7 @@ public int ff_listen_connect (
     Posix.SockAddr addr,
     Posix.socklen_t addrlen,
     int timeout,
-    URLContext h,
+    URLContext url_context,
     int will_try_next
 );
 
@@ -376,7 +390,7 @@ public int ff_connect_parallel (
     addrinfo[] addrs,
     int timeout_ms_per_address,
     int parallel,
-    URLContext h,
+    URLContext url_context,
     out int fd,
     CustomizeFileDescriptorDelegate customize_fd,
     void *customize_ctx

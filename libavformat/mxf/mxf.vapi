@@ -1,7 +1,8 @@
 /***********************************************************
 MXF
 @copyright 2006 SmartJog S.A., Baptiste Coudurier <baptiste dot coudurier at smartjog dot com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -104,37 +105,37 @@ public int ff_mxf_get_content_package_rate (
 
 public const string PRIxUID;
 
-//  #define UID_ARG (x) \
-//      (x)[0], (x)[1], (x)[2], (x)[3], \
-//      (x)[4], (x)[5], (x)[6], (x)[7], \
-//      (x)[8], (x)[9], (x)[10], (x)[11], \
-//      (x)[12], (x)[13], (x)[14], (x)[15]      \
+//  #define UID_ARG (x)
+//      (x)[0], (x)[1], (x)[2], (x)[3],
+//      (x)[4], (x)[5], (x)[6], (x)[7],
+//      (x)[8], (x)[9], (x)[10], (x)[11],
+//      (x)[12], (x)[13], (x)[14], (x)[15]
 
 //  #ifdef DEBUG
-//  #define PRINT_KEY (pc, s, x)                         \
-//      av_log (pc, AV_LOG_VERBOSE, \
-//             "%s "                                    \
-//             "0x%02x,0x%02x,0x%02x,0x%02x,"           \
-//             "0x%02x,0x%02x,0x%02x,0x%02x,"           \
-//             "0x%02x,0x%02x,0x%02x,0x%02x,"           \
-//             "0x%02x,0x%02x,0x%02x,0x%02x ", \
-//              s, UID_ARG (x)); \
-//      av_log (pc, AV_LOG_INFO, \
-//             "%s "                                    \
-//             "%02x.%02x.%02x.%02x."                   \
-//             "%02x.%02x.%02x.%02x."                   \
-//             "%02x.%02x.%02x.%02x."                   \
-//             "%02x.%02x.%02x.%02x\n", \
+//  #define PRINT_KEY (pc, s, x)
+//      av_log (pc, AV_LOG_VERBOSE,
+//             "%s "
+//             "0x%02x,0x%02x,0x%02x,0x%02x,"
+//             "0x%02x,0x%02x,0x%02x,0x%02x,"
+//             "0x%02x,0x%02x,0x%02x,0x%02x,"
+//             "0x%02x,0x%02x,0x%02x,0x%02x ",
+//              s, UID_ARG (x));
+//      av_log (pc, AV_LOG_INFO,
+//             "%s "
+//             "%02x.%02x.%02x.%02x."
+//             "%02x.%02x.%02x.%02x."
+//             "%02x.%02x.%02x.%02x."
+//             "%02x.%02x.%02x.%02x\n",
 //              s, UID_ARG (x))
 //  #else
-//  #define PRINT_KEY (pc, s, x) do { if (0)              \
-//      av_log (pc, AV_LOG_VERBOSE, \
-//             "%s "                                    \
-//             "0x%02x,0x%02x,0x%02x,0x%02x,"           \
-//             "0x%02x,0x%02x,0x%02x,0x%02x,"           \
-//             "0x%02x,0x%02x,0x%02x,0x%02x,"           \
-//             "0x%02x,0x%02x,0x%02x,0x%02x ", \
-//              s, UID_ARG (x)); \
+//  #define PRINT_KEY (pc, s, x) do { if (0)
+//      av_log (pc, AV_LOG_VERBOSE,
+//             "%s "
+//             "0x%02x,0x%02x,0x%02x,0x%02x,"
+//             "0x%02x,0x%02x,0x%02x,0x%02x,"
+//             "0x%02x,0x%02x,0x%02x,0x%02x,"
+//             "0x%02x,0x%02x,0x%02x,0x%02x ",
+//              s, UID_ARG (x));
 //      }while (0)
 //  #endif
 

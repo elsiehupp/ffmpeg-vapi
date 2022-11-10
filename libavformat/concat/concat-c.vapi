@@ -3,7 +3,8 @@ Concat URL protocol
 @copyright 2006 Steve Lhomme
 @copyright 2007 Wolfram Gloger
 @copyright 2010 Michele Orrù
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -23,29 +24,39 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [CCode (cname="ff_concat_protocol", cheader="")]
 public class ConcatURLProtocol : URLProtocol {
-    //  .name           = "concat",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "concat"
+    [CCode (cname="concat_open", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );       = concat_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="concat_read", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );       = concat_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="concat_seek", cheader="")]
     public override int64 url_seek (
-        URLContext h,
+        URLContext url_context,
         int64 pos,
         int whence
-    );       = concat_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="concat_close", cheader="")]
     public override int url_close (
-        URLContext h
-    );      = concat_close,
-    //  .priv_data_size = sizeof(struct concat_data),
-    //  .default_whitelist = "concat,file,subfile",
+        URLContext url_context
+    );
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (concat_data);
+        }
+    }
+    //  .default_whitelist = "concat,file,subfile"
 }

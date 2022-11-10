@@ -2,7 +2,8 @@
 Monkey's Audio APE demuxer
 @copyright 2007 Benjamin Zores <ben@geexbox.org>
  based upon libdemac from Dave Chapman.
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,34 +21,54 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_ape_demuxer = {
-    //  .name           = "ape",
-    //  .long_name      = "Monkey's Audio",
-    //  .priv_data_size = sizeof(APEContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_ape_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat ff_ape_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "ape"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Monkey's Audio"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (APEContext);
+        }
+    }
+    [CCode (cname="ape_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = ape_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ape_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = ape_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ape_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ape_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ape_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = ape_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ape_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = ape_read_seek,
-    //  .extensions     = "ape,apl,mac",
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "ape,apl,mac"
 }

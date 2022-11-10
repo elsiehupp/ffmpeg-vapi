@@ -1,7 +1,8 @@
 /***********************************************************
 MMS protocol common definitions.
 @copyright 2010 Zhentan Feng <spyfeng at gmail dot com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -102,13 +103,13 @@ public int ff_mms_asf_header_parser (
 
 public int ff_mms_read_data (
     MMSContext mms,
-    uint8[] buf,
+    uint8[] buffer,
     int size
 );
 
 public int ff_mms_read_header (
     MMSContext mms,
-    uint8[] buf,
+    uint8[] buffer,
     int size
 );
 

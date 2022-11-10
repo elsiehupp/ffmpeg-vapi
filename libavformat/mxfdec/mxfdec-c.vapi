@@ -1,92 +1,115 @@
 /***********************************************************
- MXF demuxer.
- @copyright 2006 SmartJog S.A., Baptiste Coudurier <baptiste dot coudurier at smartjog dot com>
+MXF demuxer.
+@copyright 2006 SmartJog S.A., Baptiste Coudurier <baptiste dot coudurier at smartjog dot com>
+***********************************************************/
+/***********************************************************
+This file is part of FFmpeg.
 
- This file is part of FFmpeg.
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
- FFmpeg is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License as published by the Free Software Foundation; either
- version 2.1 of the License, or (at your option) any later version.
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
 
- FFmpeg is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
-
- You should have received a copy of the GNU Lesser General Public
- License along with FFmpeg; if not, write to the Free Software
- Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 /***********************************************************
- References
- SMPTE 336M KLV Data Encoding Protocol Using Key-Length-Value
- SMPTE 377M MXF File Format Specifications
- SMPTE 378M Operational Pattern 1a
- SMPTE 379M MXF Generic Container
- SMPTE 381M Mapping MPEG Streams into the MXF Generic Container
- SMPTE 382M Mapping AES3 and Broadcast Wave Audio into the MXF Generic Container
- SMPTE 383M Mapping DV-DIF Data to the MXF Generic Container
+References
+SMPTE 336M KLV Data Encoding Protocol Using Key-Length-Value
+SMPTE 377M MXF File Format Specifications
+SMPTE 378M Operational Pattern 1a
+SMPTE 379M MXF Generic Container
+SMPTE 381M Mapping MPEG Streams into the MXF Generic Container
+SMPTE 382M Mapping AES3 and Broadcast Wave Audio into the MXF Generic Container
+SMPTE 383M Mapping DV-DIF Data to the MXF Generic Container
 
- Principle
- Search for Track numbers which will identify essence element KLV packets.
- Search for SourcePackage which define tracks which contains Track numbers.
- Material Package contains tracks with reference to SourcePackage tracks.
- Search for Descriptors (Picture, Sound) which contains codec info and parameters.
- Assign Descriptors to correct Tracks.
+Principle
+Search for Track numbers which will identify essence element KLV packets.
+Search for SourcePackage which define tracks which contains Track numbers.
+Material Package contains tracks with reference to SourcePackage tracks.
+Search for Descriptors (Picture, Sound) which contains codec info and parameters.
+Assign Descriptors to correct Tracks.
 
- Metadata reading functions read Local Tags, get InstanceUID(0x3C0A) then add MetaDataSet to MXFContext.
- Metadata parsing resolves Strong References to objects.
+Metadata reading functions read Local Tags, get InstanceUID(0x3C0A) then add MetaDataSet to MXFContext.
+Metadata parsing resolves Strong References to objects.
 
- Simple demuxer, only OP1A supported and some files might not work at all.
- Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPTE 377M D.1
+Simple demuxer, only OP1A supported and some files might not work at all.
+Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPTE 377M D.1
 ***********************************************************/
 
-static const AVOption options[] = {
-    { "eia608_extract", "extract eia 608 captions from s436m track",
-      offsetof(MXFContext, eia608_extract), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1,
-      AV_OPT_FLAG_DECODING_PARAM },
-    { NULL },
+//  static const AVOption options[] = {
+//      { "eia608_extract", "extract eia 608 captions from s436m track"
+//        offsetof(MXFContext, eia608_extract), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1,
+//        AV_OPT_FLAG_DECODING_PARAM },
+//      { NULL },
+//  }
+
+[CCode (cname="demuxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "mxf"
+    //  .item_name = av_default_item_name,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+    //  .version = LIBAVUTIL_VERSION_INT,
+    //  .category = AV_CLASS_CATEGORY_DEMUXER,
 }
 
-static const AVClass demuxer_class = {
-    //  .class_name = "mxf",
-    //  .item_name  = av_default_item_name,
-    //  .option     = options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
-    //  .category   = AV_CLASS_CATEGORY_DEMUXER,
-}
-
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_mxf_demuxer = {
-    //  .name           = "mxf",
-    //  .long_name      = "MXF (Material eXchange Format)",
-    //  .flags          = AVFMT_SEEK_TO_PTS,
-    //  .priv_data_size = sizeof(MXFContext),
+[CCode (cname="ff_mxf_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "mxf"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MXF (Material eXchange Format)"
+    //  .flags = AVFMT_SEEK_TO_PTS,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MXFContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = mxf_probe,
+    ); // = mxf_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = mxf_read_header,
+    ); // = mxf_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = mxf_read_packet,
+    ); // = mxf_read_packet,
     [CCode (cname="", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = mxf_read_close,
+    ); // = mxf_read_close,
     [CCode (cname="", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = mxf_read_seek,
-    //  .priv_class     = &demuxer_class,
+    ); // = mxf_read_seek,
+    //  .priv_class = demuxer_class,
 }

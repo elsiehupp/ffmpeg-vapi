@@ -1,7 +1,8 @@
 /***********************************************************
 Realmedia RTSP (RDT) definitions
 @copyright 2007 Ronald S. Bultje <rbultje@ronald.bitfreak.net>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -80,7 +81,7 @@ public void ff_rdt_subscribe_rule (
 /***********************************************************
 Parse RDT-style packet header.
 
-@param buf input buffer
+@param buffer input buffer
 @param len length of input buffer
 @param pset_id will be set to the set ID this packet belongs to
 @param pseq_no will be set to the sequence number of the packet
@@ -90,7 +91,7 @@ Parse RDT-style packet header.
 @return the amount of bytes consumed, or negative on error
 ***********************************************************/
 public int ff_rdt_parse_header (
-    uint8[] buf,
+    uint8[] buffer,
     int len,
     int[] pset_id,
     int[] pseq_no,
@@ -106,7 +107,7 @@ Usage similar to rtp_parse_packet ().
 public int ff_rdt_parse_packet (
     RDTDemuxContext demux_context,
     LibAVCodec.Packet packet,
-    out uint8[] buf,
+    out uint8[] buffer,
     int len
 );
 
@@ -116,12 +117,12 @@ Parse a server-related SDP line.
 @param format_context the RTSP AVFormatContext
 @param stream_index the index of the first stream in the set represented
               by the SDP m= line (in format_context.streams)
-@param buf the SDP line
+@param buffer the SDP line
 ***********************************************************/
 public void ff_real_parse_sdp_a_line (
     AVFormatContext format_context,
     int stream_index,
-    string buf
+    string buffer
 );
 
 } // namespace LibAVFormat

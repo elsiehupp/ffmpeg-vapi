@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2011 Justin Ruggles
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -18,20 +19,34 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-CRI ADX demuxer
+/***********************************************************
+@file CRI ADX demuxer
 ***********************************************************/
 
 [CCode (cname="ff_adx_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_adx_demuxer = {
-    //  .name           = "adx",
-    //  .long_name      = "CRI ADX",
+public class InputDemuxer : AVInputFormat ff_adx_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "adx";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "CRI ADX";
+        }
+    }
     [CCode (cname="adx_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  .priv_data_size = sizeof(ADXDemuxerContext),
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (ADXDemuxerContext);
+        }
+    }
     [CCode (cname="adx_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
@@ -41,7 +56,17 @@ public class InputFormat : AVInputFormat ff_adx_demuxer = {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .extensions     = "adx",
-    //  .raw_codec_id   = AV_CODEC_ID_ADPCM_ADX,
-    //  .flags          = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "adx";
+        }
+    }
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.ADPCM_ADX;
+        }
+    }
+    //  .flags = AVFMT_GENERIC_INDEX,
 }

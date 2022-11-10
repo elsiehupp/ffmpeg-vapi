@@ -1,8 +1,4 @@
 /***********************************************************
-@brief AC-3 parser prototypes
-@copyright 2003 Fabrice Bellard
-@copyright 2003 Michael Niedermayer
-
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,7 +15,11 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@brief AC-3 parser prototypes
+@copyright 2003 Fabrice Bellard
+@copyright 2003 Michael Niedermayer
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -28,7 +28,7 @@ using LibAVUtil;
 ***********************************************************/
 [CCode (cname="av_ac3_parse_header", cheader_filename="ffmpeg/libavcodec/ac3_parser.h")]
 public int av_ac3_parse_header (
-    uint8[] buf,
+    uint8[] buffer,
     size_t size,
     out uint8 bitstream_id,
     out uint16 frame_size

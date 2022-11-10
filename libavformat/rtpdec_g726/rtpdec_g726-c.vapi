@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2011 Miroslav Slugeň <Thunder.m@seznam.cz>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -18,36 +19,36 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define RTP_G726_HANDLER(bitrate) \
-static av_cold int g726_ ## bitrate ##_init(AVFormatContext *s, int st_index, \
-                                            PayloadContext *data) \
-{ \
-    AVStream *stream = s->streams[st_index]; \
-    AVCodecParameters *par = stream->codecpar; \
+#define RTP_G726_HANDLER(bitrate)
+static av_cold int g726_ ## bitrate ##_init(AVFormatContext *s, int st_index,
+                                            PayloadContext *data)
+{
+    AVStream *stream = s->streams[st_index];
+    AVCodecParameters *par = stream->codecpar;
 \
-    par->bits_per_coded_sample = bitrate/8; \
-    par->bit_rate = par->bits_per_coded_sample * par->sample_rate; \
+    par->bits_per_coded_sample = bitrate/8;
+    par->bit_rate = par->bits_per_coded_sample * par->sample_rate;
 \
-    return 0; \
-} \
+    return 0;
+}
 \
-const RTPDynamicProtocolHandler ff_g726_ ## bitrate ## _dynamic_handler = { \
-    //  .enc_name   = "AAL2-G726-" #bitrate, \
-    //  .codec_type = AVMEDIA_TYPE_AUDIO, \
-    //  .codec_id   = AV_CODEC_ID_ADPCM_G726, \
+const RTPDynamicProtocolHandler ff_g726_ ## bitrate ## _dynamic_handler = {
+    //  .enc_name = "AAL2-G726-" #bitrate,
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.ADPCM_G726,
     [CCode (cname="", cheader="")]
     public override int init (
         AVFormatContext format_context
-    );       = g726_ ## bitrate ## _init, \
-} \
-const RTPDynamicProtocolHandler ff_g726le_ ## bitrate ## _dynamic_handler = { \
-    //  .enc_name   = "G726-" #bitrate, \
-    //  .codec_type = AVMEDIA_TYPE_AUDIO, \
-    //  .codec_id   = AV_CODEC_ID_ADPCM_G726LE, \
+    ); // = g726_ ## bitrate ## _init,
+}
+const RTPDynamicProtocolHandler ff_g726le_ ## bitrate ## _dynamic_handler = {
+    //  .enc_name = "G726-" #bitrate,
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.ADPCM_G726LE,
     [CCode (cname="", cheader="")]
     public override int init (
         AVFormatContext format_context
-    );       = g726_ ## bitrate ## _init, \
+    ); // = g726_ ## bitrate ## _init,
 }
 
 RTP_G726_HANDLER(16);

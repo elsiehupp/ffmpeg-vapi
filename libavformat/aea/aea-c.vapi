@@ -2,7 +2,8 @@
 MD STUDIO audio demuxer
 
 @copyright 2009 Benjamin Larsson
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,9 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_aea_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_aea_demuxer = {
-    //  .name           = "aea",
-    //  .long_name      = "MD STUDIO audio",
+public class InputDemuxer : AVInputFormat ff_aea_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "aea";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "MD STUDIO audio";
+        }
+    }
     [CCode (cname="aea_read_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -44,6 +55,11 @@ public class InputFormat : AVInputFormat ff_aea_demuxer = {
         int64 timestamp,
         int flags
     );
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .extensions     = "aea",
+    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "aea";
+        }
+    }
 }

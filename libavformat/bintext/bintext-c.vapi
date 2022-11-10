@@ -1,10 +1,4 @@
 /***********************************************************
-Binary text demuxer
-eXtended BINary text (XBIN) demuxer
-Artworx Data Format demuxer
-iCEDraw File demuxer
-@copyright 2010 Peter Ross <pross@xvid.org>
-
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,113 +15,197 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
-/**
-@file
+/***********************************************************
 Binary text demuxer
+eXtended BINary text (XBIN) demuxer
+Artworx Data Format demuxer
+iCEDraw File demuxer
+@copyright 2010 Peter Ross <pross@xvid.org>
+***********************************************************/
+/***********************************************************
+@file Binary text demuxer
 eXtended BINary text (XBIN) demuxer
 Artworx Data Format demuxer
 iCEDraw File demuxer
 ***********************************************************/
 
-#define OFFSET(x) offsetof(BinDemuxContext, x)
-static const AVOption options[] = {
-    { "linespeed", "set simulated line speed (bytes per second)", OFFSET(chars_per_frame), AV_OPT_TYPE_INT, {.i64 = 6000}, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM},
-    { "video_size", "set video size, such as 640x480 or hd720.", OFFSET(width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, AV_OPT_FLAG_DECODING_PARAM },
-    { "framerate", "set framerate (frames per second)", OFFSET(framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-    { NULL },
-}
+//  #define OFFSET(x) offsetof(BinDemuxContext, x)
+//  static const AVOption options[] = {
+//      { "linespeed", "set simulated line speed (bytes per second)", OFFSET(chars_per_frame), AV_OPT_TYPE_INT, {.i64 = 6000}, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM},
+//      { "video_size", "set video size, such as 640x480 or hd720.", OFFSET(width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, AV_OPT_FLAG_DECODING_PARAM },
+//      { "framerate", "set framerate (frames per second)", OFFSET(framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
+//      { NULL },
+//  }
 
-#define CLASS(name) \
-(const AVClass[1]){{ \
-    //  .class_name     = name, \
-    //  .item_name      = av_default_item_name, \
-    //  .option         = options, \
-    //  .version        = LIBAVUTIL_VERSION_INT, \
+#define CLASS(name)
+(const AVClass[1]){{
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = name,
+    //  .item_name = av_default_item_name,
+    //  .option = options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }}
 
 #if CONFIG_BINTEXT_DEMUXER
-public class InputFormat : AVInputFormat ff_bintext_demuxer = {
-    //  .name           = "bin",
-    //  .long_name      = "Binary text",
-    //  .priv_data_size = sizeof(BinDemuxContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_bintext_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "bin"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Binary text"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (BinDemuxContext);
+        }
+    }
+    [CCode (cname="bin_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = bin_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="bintext_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = bintext_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
-    //  .priv_class     = CLASS("Binary text demuxer",
+    );
+    //  .priv_class = CLASS("Binary text demuxer"
 }
 #endif
 
 #if CONFIG_XBIN_DEMUXER
-public class InputFormat : AVInputFormat ff_xbin_demuxer = {
-    //  .name           = "xbin",
-    //  .long_name      = "eXtended BINary text (XBIN)",
-    //  .priv_data_size = sizeof(BinDemuxContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_xbin_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "xbin"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "eXtended BINary text (XBIN)"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (BinDemuxContext);
+        }
+    }
+    [CCode (cname="xbin_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = xbin_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="xbin_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = xbin_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
-    //  .priv_class     = CLASS("eXtended BINary text (XBIN) demuxer",
+    );
+    //  .priv_class = CLASS("eXtended BINary text (XBIN) demuxer"
 }
 #endif
 
 #if CONFIG_ADF_DEMUXER
-public class InputFormat : AVInputFormat ff_adf_demuxer = {
-    //  .name           = "adf",
-    //  .long_name      = "Artworx Data Format",
-    //  .priv_data_size = sizeof(BinDemuxContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_adf_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "adf"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Artworx Data Format"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (BinDemuxContext);
+        }
+    }
+    [CCode (cname="adf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = adf_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
-    //  .extensions     = "adf",
-    //  .priv_class     = CLASS("Artworx Data Format demuxer",
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "adf"
+    //  .priv_class = CLASS("Artworx Data Format demuxer"
 }
 #endif
 
 #if CONFIG_IDF_DEMUXER
-public class InputFormat : AVInputFormat ff_idf_demuxer = {
-    //  .name           = "idf",
-    //  .long_name      = "iCE Draw File",
-    //  .priv_data_size = sizeof(BinDemuxContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_idf_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "idf"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "iCE Draw File"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (BinDemuxContext);
+        }
+    }
+    [CCode (cname="idf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = idf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="idf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = idf_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
-    //  .extensions     = "idf",
-    //  .priv_class     = CLASS("iCE Draw File demuxer",
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "idf"
+    //  .priv_class = CLASS("iCE Draw File demuxer"
 }
 #endif

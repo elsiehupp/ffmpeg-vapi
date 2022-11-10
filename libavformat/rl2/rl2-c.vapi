@@ -1,7 +1,8 @@
 /***********************************************************
 RL2 Format Demuxer
 @copyright 2008 Sascha Sommer (saschasommer@freenet.de)
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,7 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
+/***********************************************************
 RL2 file demuxer
 @file
 @author Sascha Sommer (saschasommer@freenet.de)
@@ -32,29 +33,44 @@ extradata:
 optional background_frame
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_rl2_demuxer = {
-    //  .name           = "rl2",
-    //  .long_name      = "RL2",
-    //  .priv_data_size = sizeof(Rl2DemuxContext),
+[CCode (cname="ff_rl2_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "rl2"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "RL2"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (Rl2DemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = rl2_probe,
+    ); // = rl2_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = rl2_read_header,
+    ); // = rl2_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = rl2_read_packet,
+    ); // = rl2_read_packet,
     [CCode (cname="", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = rl2_read_seek,
+    ); // = rl2_read_seek,
 }

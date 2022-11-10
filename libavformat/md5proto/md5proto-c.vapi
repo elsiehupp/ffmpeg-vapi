@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2010 Mans Rullgard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,22 +21,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [CCode (cname="ff_md5_protocol", cheader="")]
 public class MD5URLProtocol : URLProtocol {
-    //  .name                = "md5",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "md5"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );            = md5_open,
+    ); // = md5_open,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );           = md5_write,
+    ); // = md5_write,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );           = md5_close,
-    //  .priv_data_size      = sizeof(struct MD5Context),
+        URLContext url_context
+    ); // = md5_close,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MD5Context);
+        }
+    }
 }

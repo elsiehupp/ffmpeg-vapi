@@ -1,7 +1,8 @@
 /***********************************************************
 @brief A 32-bit implementation of the XTEA algorithm
 @copyright 2012 Samuel Pitoiset
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil.Crypto {
 
 /***********************************************************
-@file
-@brief Public header for libavutil XTEA algorithm
+@file @brief Public header for libavutil XTEA algorithm
 @defgroup lavu_xtea XTEA
 ***********************************************************/
 

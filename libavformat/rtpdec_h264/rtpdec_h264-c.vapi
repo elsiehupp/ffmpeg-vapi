@@ -1,7 +1,8 @@
 /***********************************************************
 RTP H.264 Protocol (RFC3984)
 @copyright 2006 Ryan Martell
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,9 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-@brief H.264 / RTP Code (RFC3984)
+/***********************************************************
+@file @brief H.264 / RTP Code (RFC3984)
 @author Ryan Martell <rdm4@martellventures.com>
 
 @note Notes:
@@ -34,22 +34,27 @@ Interleaved Mode (2). (This requires implementing STAP-B, MTAP16, MTAP24,
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_h264_dynamic_handler = {
-    //  .enc_name         = "H264",
-    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id         = AV_CODEC_ID_H264,
-    //  .need_parsing     = AVSTREAM_PARSE_FULL,
-    //  .priv_data_size   = sizeof(PayloadContext),
+    //  .enc_name = "H264"
+    //  .codec_type = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id = LibAVCodec.CodecID.H264,
+    //  .need_parsing = AVSTREAM_PARSE_FULL,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); = parse_h264_sdp_line,
+    ); // = parse_h264_sdp_line,
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );            = h264_close_context,
+    ); // = h264_close_context,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -58,9 +63,9 @@ const RTPDynamicProtocolHandler ff_h264_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = h264_handle_packet,
+    ); // = h264_handle_packet,
 }

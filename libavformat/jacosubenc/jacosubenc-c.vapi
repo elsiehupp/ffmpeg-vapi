@@ -16,22 +16,42 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_jacosub_muxer = {
-    //  .name           = "jacosub",
-    //  .long_name      = "JACOsub subtitle format",
-    //  .mime_type      = "text/x-jacosub",
-    //  .extensions     = "jss,js",
+[CCode (cname="ff_jacosub_muxer", cheader="")]
+public class JacoSubOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "jacosub"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "JACOsub subtitle format"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "text/x-jacosub"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "jss,js"
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );   = jacosub_write_header,
+    ); // = jacosub_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );   = ff_raw_write_packet,
-    //  .flags          = AVFMT_TS_NONSTRICT,
-    //  .subtitle_codec = AV_CODEC_ID_JACOSUB,
+    ); // = ff_raw_write_packet,
+    //  .flags = AVFMT_TS_NONSTRICT,
+    //  .subtitle_codec = LibAVCodec.CodecID.JACOSUB,
 }

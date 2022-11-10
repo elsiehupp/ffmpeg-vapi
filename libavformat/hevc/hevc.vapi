@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2014 Tim Walker <tdskywalker@gmail.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-internal header for HEVC (de)muxer utilities
+@file internal header for HEVC (de)muxer utilities
 ***********************************************************/
 
 /***********************************************************

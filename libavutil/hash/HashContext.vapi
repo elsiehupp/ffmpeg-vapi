@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2013 Reimar Döffinger <Reimar.Doeffinger@gmx.de>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil.Crypto {
 
 /***********************************************************
-@file
-@ingroup lavu_hash_generic
+@file @ingroup lavu_hash_generic
 Generic hashing API
 ***********************************************************/
 

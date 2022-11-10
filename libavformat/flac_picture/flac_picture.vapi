@@ -1,7 +1,8 @@
 /***********************************************************
 Raw FLAC picture parser
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -25,7 +26,7 @@ namespace LibAVFormat {
 
 public int ff_flac_parse_picture (
     AVFormatContext format_context,
-    uint8[] buf,
+    uint8[] buffer,
     int buf_size
 );
 

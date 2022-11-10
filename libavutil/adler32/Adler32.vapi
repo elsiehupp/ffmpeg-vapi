@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2006 Mans Rullgard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ namespace LibAVUtil {
 namespace Adler32 {
 
 /***********************************************************
-@file
-@ingroup lavu_adler32
+@file @ingroup lavu_adler32
 Public header for Adler-32 hash function implementation.
 ***********************************************************/
 
@@ -41,14 +41,14 @@ allows the checksum of multiple buffers to be calculated as though
 they were concatenated.
 
 @param adler initial checksum value
-@param buf pointer to input buffer
+@param buffer pointer to input buffer
 @param len size of input buffer
 @return updated checksum
 ***********************************************************/
 [CCode (cname="av_adler32_update", cheader_filename="ffmpeg/libavutil/adler32.h")]
 public ulong av_adler32_update (
     ulong adler,
-    uint8[] buf,
+    uint8[] buffer,
     uint len
 ); // av_pure;
 

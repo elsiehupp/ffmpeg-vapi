@@ -1,7 +1,8 @@
 /***********************************************************
 RTMP Diffie-Hellmann utilities
 @copyright 2012 Samuel Pitoiset
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

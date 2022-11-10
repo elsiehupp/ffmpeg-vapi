@@ -1,7 +1,8 @@
 /***********************************************************
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
 @copyright 2008 Peter Ross
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-audio channel layout utility functions
+@file audio channel layout utility functions
 ***********************************************************/
 
 /***********************************************************
@@ -47,7 +47,8 @@ public struct BPrintBuffer {
 
 /***********************************************************
 @copyright 2012 Nicolas George
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -72,11 +73,11 @@ namespace LibAVUtil {
 This helps ensuring binary compatibility with future versions.
 ***********************************************************/
 
-//  #define FF_PAD_STRUCTURE (name, size, ...) \
-//  public struct ff_pad_helper_##name { __VA_ARGS__ } \
-//  public struct name { \
-//      __VA_ARGS__ \
-//      char reserved_padding[size - sizeof (ff_pad_helper_##name)]; \
+//  #define FF_PAD_STRUCTURE (name, size, ...)
+//  public struct ff_pad_helper_##name { __VA_ARGS__ }
+//  public struct name {
+//      __VA_ARGS__
+//      char reserved_padding[size - sizeof (ff_pad_helper_##name)];
 //  }
 
 /***********************************************************
@@ -89,13 +90,13 @@ encoding-agnostic and can even hold binary data.
 Small buffers are kept in the structure itself, and thus require no
 memory allocation at all (unless the contents of the buffer is needed
 after the structure goes out of scope). This is almost as lightweight as
-declaring a local "char buf[512]".
+declaring a local "char buffer[512]".
 
 The length of the string can go beyond the allocated size: the buffer is
 then truncated, but the functions still keep account of the actual total
 length.
 
-In other words, buf.len can be greater than buf.size and records the
+In other words, buffer.len can be greater than buffer.size and records the
 total length of what would have been to the buffer if there had been
 enough memory.
 
@@ -143,7 +144,7 @@ such as the current paragraph.
 /***********************************************************
 @brief Init a print buffer.
 
-@param buf buffer to init
+@param buffer buffer to init
 @param size_init initial size (including the final 0)
 @param size_max maximum size;
     0 means do not write anything, just count the length;
@@ -155,7 +156,7 @@ such as the current paragraph.
 ***********************************************************/
 [CCode (cname="av_bprint_init", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_init (
-    BPrintBuffer buf,
+    BPrintBuffer buffer,
     uint size_init,
     uint size_max
 );
@@ -165,13 +166,13 @@ public void av_bprint_init (
 
 The buffer will not be reallocated.
 
-@param buf buffer structure to init
+@param buffer buffer structure to init
 @param buffer byte buffer to use for the string data
 @param size size of buffer
 ***********************************************************/
 [CCode (cname="av_bprint_init_for_buffer", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_init_for_buffer (
-    BPrintBuffer buf,
+    BPrintBuffer buffer,
     string buffer,
     uint size
 );
@@ -181,7 +182,7 @@ public void av_bprint_init_for_buffer (
 ***********************************************************/
 [CCode (cname="av_bprintf", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprintf (
-    BPrintBuffer buf,
+    BPrintBuffer buffer,
     string fmt,
     ...
 ); // av_printf_format (2, 3);
@@ -191,7 +192,7 @@ public void av_bprintf (
 ***********************************************************/
 [CCode (cname="av_vbprintf", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_vbprintf (
-    BPrintBuffer buf,
+    BPrintBuffer buffer,
     string fmt,
     va_list vl_arg
 );
@@ -201,7 +202,7 @@ public void av_vbprintf (
 ***********************************************************/
 [CCode (cname="av_bprint_chars", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_chars (
-    BPrintBuffer buf,
+    BPrintBuffer buffer,
     char c,
     uint n
 );
@@ -209,13 +210,13 @@ public void av_bprint_chars (
 /***********************************************************
 @brief Append data to a print buffer.
 
-param buf bprint buffer to use
+param buffer bprint buffer to use
 param data pointer to data
 param size size of data
 ***********************************************************/
 [CCode (cname="av_bprint_append_data", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_append_data (
-    BPrintBuffer buf,
+    BPrintBuffer buffer,
     string data,
     uint size
 );
@@ -225,7 +226,7 @@ public struct AVTime { }
 /***********************************************************
 @brief Append a formatted date and time to a print buffer.
 
-param buf bprint buffer to use
+param buffer bprint buffer to use
 param fmt date and time format string, see strftime ()
 param tm broken-down time structure to translate
 
@@ -235,7 +236,7 @@ the bprint buffer is near the limit stated by the size_max option.
 ***********************************************************/
 [CCode (cname="av_bprint_strftime", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_strftime (
-    BPrintBuffer buf,
+    BPrintBuffer buffer,
     string fmt,
     AVTime tm
 );
@@ -243,7 +244,7 @@ public void av_bprint_strftime (
 /***********************************************************
 @brief Allocate bytes in the buffer for external use.
 
-@param[in] buf buffer structure
+@param[in] buffer buffer structure
 @param[in] size required size
 @param[out] mem pointer to the memory area
 @param[out] actual_size size of the memory area after allocation;
@@ -251,7 +252,7 @@ public void av_bprint_strftime (
 ***********************************************************/
 [CCode (cname="av_bprint_get_buffer", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_get_buffer (
-    BPrintBuffer buf,
+    BPrintBuffer buffer,
     uint size,
     out uchar[] mem,
     out uint actual_size
@@ -262,7 +263,7 @@ public void av_bprint_get_buffer (
 ***********************************************************/
 [CCode (cname="av_bprint_clear", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_clear (
-    BPrintBuffer buf
+    BPrintBuffer buffer
 );
 
 /***********************************************************
@@ -273,7 +274,7 @@ or the size_max limit (compare size and size_max if necessary).
 ***********************************************************/
 [CCode (cname="av_bprint_is_complete", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public static int av_bprint_is_complete (
-    BPrintBuffer buf
+    BPrintBuffer buffer
 );
 
 /***********************************************************
@@ -289,7 +290,7 @@ but the len and size fields are still valid.
 ***********************************************************/
 [CCode (cname="av_bprint_finalize", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public int av_bprint_finalize (
-    BPrintBuffer buf,
+    BPrintBuffer buffer,
     out string ret_str
 );
 

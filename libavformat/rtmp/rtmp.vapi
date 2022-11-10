@@ -1,7 +1,8 @@
 /***********************************************************
 RTMP definitions
 @copyright 2009 Konstantin Shishkov
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -60,13 +61,13 @@ public int ff_rtmp_calc_digest (
 /***********************************************************
 Calculate digest position for RTMP handshake packets.
 
-@param buf input buffer (should be 1536 bytes)
+@param buffer input buffer (should be 1536 bytes)
 @param off offset in buffer where to start calculating digest position
 @param mod_val value used for computing modulo
 @param add_val value added at the end (after computing modulo)
 ***********************************************************/
 public int ff_rtmp_calc_digest_pos (
-    uint8[] buf,
+    uint8[] buffer,
     int off,
     int mod_val,
     int add_val

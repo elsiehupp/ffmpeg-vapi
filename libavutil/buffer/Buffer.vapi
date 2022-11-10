@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@ingroup LibAVUtil.Buffer
+@file @ingroup LibAVUtil.Buffer
 refcounted data buffer API
 ***********************************************************/
 

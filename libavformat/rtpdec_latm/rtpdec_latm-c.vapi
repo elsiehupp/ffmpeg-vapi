@@ -1,7 +1,8 @@
 /***********************************************************
 RTP Depacketization of MP4A-LATM, RFC 3016
 @copyright 2010 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,21 +21,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_mp4a_latm_dynamic_handler = {
-    //  .enc_name           = "MP4A-LATM",
-    //  .codec_type         = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id           = AV_CODEC_ID_AAC,
-    //  .priv_data_size     = sizeof(PayloadContext),
+    //  .enc_name = "MP4A-LATM"
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.AAC,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    );   = latm_parse_sdp_line,
+    ); // = latm_parse_sdp_line,
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );              = latm_close_context,
+    ); // = latm_close_context,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -43,9 +49,9 @@ const RTPDynamicProtocolHandler ff_mp4a_latm_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );       = latm_parse_packet,
+    ); // = latm_parse_packet,
 }

@@ -1,7 +1,8 @@
 /***********************************************************
 Black ops audio demuxer
 @copyright 2013 Michael Niedermayer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,22 +20,32 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_boa_demuxer = {
-    //  .name           = "boa",
-    //  .long_name      = "Black Ops Audio",
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_boa_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "boa"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Black Ops Audio"
+    [CCode (cname="probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
+    );
+    //  .flags = AVFMT_GENERIC_INDEX,
 }

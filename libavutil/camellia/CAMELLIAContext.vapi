@@ -1,7 +1,8 @@
 /***********************************************************
 @brief An implementation of the CAMELLIA algorithm as mentioned in RFC3713
 @copyright 2014 Supraja Meedinti
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil.Crypto {
 
 /***********************************************************
-@file
-@brief Public header for libavutil CAMELLIA algorithm
+@file @brief Public header for libavutil CAMELLIA algorithm
 @defgroup lavu_camellia CAMELLIA
 ***********************************************************/
 

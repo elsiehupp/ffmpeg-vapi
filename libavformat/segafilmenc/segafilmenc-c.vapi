@@ -2,7 +2,8 @@
 Sega FILM Format (CPK) Muxer
 @copyright 2003 The FFmpeg project
 @copyright 2018 Misty De Meo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,42 +21,77 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Sega FILM (.cpk) file muxer
+/***********************************************************
+@file Sega FILM (.cpk) file muxer
 @author Misty De Meo <misty@brew.sh>
 
 @see For more information regarding the Sega FILM file format, visit:
-  http://wiki.multimedia.cx/index.php?title=Sega_FILM
+    http://wiki.multimedia.cx/index.php?title=Sega_FILM
 ***********************************************************/
 
-static const AVClass film_muxer_class = {
-    //  .class_name     = "Sega FILM muxer",
-    //  .item_name      = av_default_item_name,
-    //  .version        = LIBAVUTIL_VERSION_INT,
+[CCode (cname="film_muxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "Sega FILM muxer"
+    //  .item_name = av_default_item_name,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_segafilm_muxer = {
-    //  .name           = "film_cpk",
-    //  .long_name      = "Sega FILM / CPK",
-    //  .extensions     = "cpk",
-    //  .priv_data_size = sizeof(FILMOutputContext),
-    //  .audio_codec    = AV_CODEC_ID_PCM_S16BE_PLANAR,
-    //  .video_codec    = AV_CODEC_ID_CINEPAK,
+[CCode (cname="ff_segafilm_muxer", cheader="")]
+public class SegaFilmOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "film_cpk"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Sega FILM / CPK"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "cpk"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FILMOutputContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.PCM_S16BE_PLANAR;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.CINEPAK;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int init (
         AVFormatContext format_context
-    );           = film_init,
+    ); // = film_init,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );  = film_write_header,
+    ); // = film_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );   = film_write_packet,
-    //  .priv_class     = &film_muxer_class,
+    ); // = film_write_packet,
+    //  .priv_class = film_muxer_class,
 }

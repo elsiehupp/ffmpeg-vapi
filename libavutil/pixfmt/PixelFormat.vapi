@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-pixel format definitions
+@file pixel format definitions
 ***********************************************************/
 
 [CCode (cname="AVPALETTE_SIZE", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
@@ -1041,7 +1041,7 @@ public enum PixelFormat {
     If there is no pixel format with name name, then looks for a
     pixel format with the name corresponding to the native endian
     format of name.
-    For example in a little-endian system, first looks for "gray16",
+    For example in a little-endian system, first looks for "gray16"
     then for "gray16le".
 
     Finally if no pixel format has been found, returns PixelFormat.NONE.
@@ -1072,18 +1072,18 @@ public enum PixelFormat {
     );
 
     /***********************************************************
-    @brief Print in buf the string corresponding to the pixel format with
+    @brief Print in buffer the string corresponding to the pixel format with
     number pixel_format, or a header if pixel_format is negative.
 
-    @param buf the buffer where to write the string
-    @param buf_size the size of buf
+    @param buffer the buffer where to write the string
+    @param buf_size the size of buffer
     @param pixel_format the number of the pixel format to print the
     corresponding info string, or a negative value to print the
     corresponding header.
     ***********************************************************/
     [CCode (cname="av_get_pix_fmt_string", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static string av_get_pix_fmt_string (
-        string buf,
+        string buffer,
         int buf_size,
         PixelFormat pixel_format
     );

@@ -1,7 +1,8 @@
 /***********************************************************
 Creative Voice File demuxer.
 @copyright 2006 Aurelien Jacobs <aurel@gnuage.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

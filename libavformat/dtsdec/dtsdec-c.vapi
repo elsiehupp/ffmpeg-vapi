@@ -1,7 +1,8 @@
 /***********************************************************
 RAW DTS demuxer
 @copyright 2008 Benjamin Larsson
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,24 +21,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 FF_RAW_DEMUXER_CLASS(dts)
-public class InputFormat : AVInputFormat ff_dts_demuxer = {
-    //  .name           = "dts",
-    //  .long_name      = "raw DTS",
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_dts_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "dts"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw DTS"
+    [CCode (cname="dts_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = dts_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_raw_audio_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = ff_raw_audio_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_raw_read_partial_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ff_raw_read_partial_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .extensions     = "dts",
-    //  .raw_codec_id   = AV_CODEC_ID_DTS,
-    //  .priv_data_size = sizeof(FFRawDemuxerContext),
-    //  .priv_class     = &dts_demuxer_class,}
+    );
+    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "dts"
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.DTS;
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FFRawDemuxerContext);
+        }
+    }
+    //  .priv_class = dts_demuxer_class,}

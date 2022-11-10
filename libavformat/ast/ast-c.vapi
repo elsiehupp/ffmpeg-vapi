@@ -1,7 +1,8 @@
 /***********************************************************
 AST common code
 @copyright 2012 James Almer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,8 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const AVCodecTag ff_codec_ast_tags[] = {
-    { AV_CODEC_ID_ADPCM_AFC,          0 },
-    { AV_CODEC_ID_PCM_S16BE_PLANAR,   1 },
-    { AV_CODEC_ID_NONE,               0 },
-}
+//  const AVCodecTag ff_codec_ast_tags[] = {
+//      { LibAVCodec.CodecID.ADPCM_AFC,          0 },
+//      { LibAVCodec.CodecID.PCM_S16BE_PLANAR,   1 },
+//      { LibAVCodec.CodecID.NONE,               0 },
+//  }

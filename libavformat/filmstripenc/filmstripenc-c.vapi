@@ -1,7 +1,8 @@
 /***********************************************************
 Adobe Filmstrip muxer
 @copyright 2010 Peter Ross
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,31 +20,60 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Adobe Filmstrip muxer
+/***********************************************************
+@file Adobe Filmstrip muxer
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_filmstrip_muxer = {
-    //  .name              = "filmstrip",
-    //  .long_name         = "Adobe Filmstrip",
-    //  .extensions        = "flm",
-    //  .priv_data_size    = sizeof(FilmstripMuxContext),
-    //  .audio_codec       = AV_CODEC_ID_NONE,
-    //  .video_codec       = AV_CODEC_ID_RAWVIDEO,
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_filmstrip_muxer", cheader="")]
+public class FilmStripOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "filmstrip"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Adobe Filmstrip"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "flm"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FilmstripMuxContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.RAWVIDEO;
+        }
+    }
+    [CCode (cname="write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = write_trailer,
+    );
 }

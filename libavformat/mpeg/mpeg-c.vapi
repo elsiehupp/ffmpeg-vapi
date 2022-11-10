@@ -1,83 +1,121 @@
 /***********************************************************
- MPEG-1/2 demuxer
- @copyright 2000, 2001, 2002 Fabrice Bellard
+MPEG-1/2 demuxer
+@copyright 2000, 2001, 2002 Fabrice Bellard
+***********************************************************/
+/***********************************************************
+This file is part of FFmpeg.
 
- This file is part of FFmpeg.
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
- FFmpeg is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License as published by the Free Software Foundation; either
- version 2.1 of the License, or (at your option) any later version.
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
 
- FFmpeg is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
-
- You should have received a copy of the GNU Lesser General Public
- License along with FFmpeg; if not, write to the Free Software
- Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_mpegps_demuxer = {
-    //  .name           = "mpeg",
-    //  .long_name      = "MPEG-PS (MPEG-2 Program Stream)",
-    //  .priv_data_size = sizeof(MpegDemuxContext),
+[CCode (cname="ff_mpegps_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "mpeg"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MPEG-PS (MPEG-2 Program Stream)"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MpegDemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = mpegps_probe,
+    ); // = mpegps_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = mpegps_read_header,
+    ); // = mpegps_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = mpegps_read_packet,
+    ); // = mpegps_read_packet,
     [CCode (cname="", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); = mpegps_read_dts,
-    //  .flags          = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
+    ); // = mpegps_read_dts,
+    //  .flags = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
 }
 
 #if CONFIG_VOBSUB_DEMUXER
-static const AVOption options[] = {
-    { "sub_name", "URI for .sub file", offsetof(MpegDemuxContext, sub_name), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, AV_OPT_FLAG_DECODING_PARAM },
-    { NULL }
+//  static const AVOption options[] = {
+//      { "sub_name", "URI for .sub file", offsetof(MpegDemuxContext, sub_name), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, AV_OPT_FLAG_DECODING_PARAM },
+//      { NULL }
+//  }
+
+[CCode (cname="vobsub_demuxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "vobsub"
+    //  .item_name = av_default_item_name,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-static const AVClass vobsub_demuxer_class = {
-    //  .class_name = "vobsub",
-    //  .item_name  = av_default_item_name,
-    //  .option     = options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
-}
-
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_vobsub_demuxer = {
-    //  .name           = "vobsub",
-    //  .long_name      = "VobSub subtitle format",
-    //  .priv_data_size = sizeof(MpegDemuxContext),
+[CCode (cname="ff_vobsub_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "vobsub"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "VobSub subtitle format"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MpegDemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = vobsub_probe,
+    ); // = vobsub_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = vobsub_read_header,
+    ); // = vobsub_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = vobsub_read_packet,
+    ); // = vobsub_read_packet,
     [CCode (cname="", cheader="")]
     public override int read_seek2 (
         AVFormatContext format_context,
@@ -86,13 +124,18 @@ public class InputFormat : AVInputFormat ff_vobsub_demuxer = {
         int64 ts,
         int64 max_ts,
         int flags
-    );     = vobsub_read_seek,
+    ); // = vobsub_read_seek,
     [CCode (cname="", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = vobsub_read_close,
-    //  .flags          = AVFMT_SHOW_IDS,
-    //  .extensions     = "idx",
-    //  .priv_class     = &vobsub_demuxer_class,
+    ); // = vobsub_read_close,
+    //  .flags = AVFMT_SHOW_IDS,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "idx"
+    //  .priv_class = vobsub_demuxer_class,
 }
 #endif

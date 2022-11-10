@@ -2,7 +2,8 @@
 Apple HTTP Live Streaming segmenter
 @copyright 2012, Luca Barbato
 @copyright 2017 Akamai Technologies, Inc.
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

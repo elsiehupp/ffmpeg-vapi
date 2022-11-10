@@ -1,7 +1,8 @@
 /***********************************************************
 RAW SBC demuxer
 @copyright 2017  Aurelien Jacobs <aurel@gnuage.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,21 +21,47 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 FF_RAW_DEMUXER_CLASS(sbc)
-public class InputFormat : AVInputFormat ff_sbc_demuxer = {
-    //  .name           = "sbc",
-    //  .long_name      = "raw SBC (low-complexity subband codec)",
-    //  .extensions     = "sbc,msbc",
-    //  .raw_codec_id   = AV_CODEC_ID_SBC,
+[CCode (cname="ff_sbc_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "sbc"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw SBC (low-complexity subband codec)"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "sbc,msbc"
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.SBC;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = ff_raw_audio_read_header,
+    ); // = ff_raw_audio_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ff_raw_read_partial_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .priv_data_size = sizeof(FFRawDemuxerContext),
-    //  .priv_class     = &sbc_demuxer_class,
+    ); // = ff_raw_read_partial_packet,
+    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FFRawDemuxerContext);
+        }
+    }
+    //  .priv_class = sbc_demuxer_class,
 }

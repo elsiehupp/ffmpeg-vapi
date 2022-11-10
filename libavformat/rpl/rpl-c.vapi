@@ -1,7 +1,8 @@
 /***********************************************************
 ARMovie/RPL demuxer
 @copyright 2007 Christian Ohm, 2008 Eli Friedman
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,22 +20,37 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_rpl_demuxer = {
-    //  .name           = "rpl",
-    //  .long_name      = "RPL / ARMovie",
-    //  .priv_data_size = sizeof(RPLContext),
+[CCode (cname="ff_rpl_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "rpl"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "RPL / ARMovie"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (RPLContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = rpl_probe,
+    ); // = rpl_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = rpl_read_header,
+    ); // = rpl_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = rpl_read_packet,
+    ); // = rpl_read_packet,
 }

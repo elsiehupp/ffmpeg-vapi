@@ -1,7 +1,8 @@
 /***********************************************************
 Raw TAK demuxer
 @copyright 2012 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,25 +21,51 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 FF_RAW_DEMUXER_CLASS(tak)
-public class InputFormat : AVInputFormat ff_tak_demuxer = {
-    //  .name           = "tak",
-    //  .long_name      = "raw TAK",
-    //  .priv_data_size = sizeof(TAKDemuxContext),
+[CCode (cname="ff_tak_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "tak"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw TAK"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (TAKDemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = tak_probe,
+    ); // = tak_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = tak_read_header,
+    ); // = tak_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = raw_read_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .extensions     = "tak",
-    //  .raw_codec_id   = AV_CODEC_ID_TAK,
-    //  .priv_class     = &tak_demuxer_class,
+    ); // = raw_read_packet,
+    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "tak"
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.TAK;
+        }
+    }
+    //  .priv_class = tak_demuxer_class,
 }

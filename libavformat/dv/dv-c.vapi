@@ -11,7 +11,8 @@ Raw DV format
 50 Mbps (DVCPRO50) and 100 Mbps (DVCPRO HD) support
 @copyright 2006 Daniel Maas <dmaas@maasdigital.com>
 Funded by BBC Research & Development
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -29,34 +30,54 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_dv_demuxer = {
-    //  .name           = "dv",
-    //  .long_name      = "DV (Digital Video)",
-    //  .priv_data_size = sizeof(RawDVContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_dv_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "dv"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "DV (Digital Video)"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (RawDVContext);
+        }
+    }
+    [CCode (cname="dv_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = dv_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="dv_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = dv_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="dv_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = dv_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="dv_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = dv_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="dv_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = dv_read_seek,
-    //  .extensions     = "dv,dif",
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "dv,dif"
 }

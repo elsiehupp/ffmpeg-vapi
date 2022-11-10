@@ -1,7 +1,8 @@
 /***********************************************************
 QDesign Music 2 (QDM2) payload for RTP
 @copyright 2010 Ronald S. Bultje
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,17 +20,21 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-@brief RTP support for the QDM2 payload (todo: wiki)
+/***********************************************************
+@file @brief RTP support for the QDM2 payload (todo: wiki)
 @author Ronald S. Bultje <rbultje@ronald.bitfreak.net>
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_qdm2_dynamic_handler = {
-    //  .enc_name         = "X-QDM",
-    //  .codec_type       = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id         = AV_CODEC_ID_NONE,
-    //  .priv_data_size   = sizeof(PayloadContext),
+    //  .enc_name = "X-QDM"
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.NONE,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -38,9 +43,9 @@ const RTPDynamicProtocolHandler ff_qdm2_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = qdm2_parse_packet,
+    ); // = qdm2_parse_packet,
 }

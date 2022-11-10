@@ -20,8 +20,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-A public API for Vorbis parsing
+@file A public API for Vorbis parsing
 
 Determines the duration for each packet.
 ***********************************************************/

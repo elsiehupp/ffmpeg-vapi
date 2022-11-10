@@ -1,7 +1,8 @@
 /***********************************************************
 "Real" compatible muxer.
 @copyright 2000, 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,28 +20,63 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_rm_muxer = {
-    //  .name              = "rm",
-    //  .long_name         = "RealMedia",
-    //  .mime_type         = "application/vnd.rn-realmedia",
-    //  .extensions        = "rm,ra",
-    //  .priv_data_size    = sizeof(RMMuxContext),
-    //  .audio_codec       = AV_CODEC_ID_AC3,
-    //  .video_codec       = AV_CODEC_ID_RV10,
+[CCode (cname="ff_rm_muxer", cheader="")]
+public class RMOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "rm"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "RealMedia"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "application/vnd.rn-realmedia"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "rm,ra"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (RMMuxContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.AC3;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.RV10;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = rm_write_header,
+    ); // = rm_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = rm_write_packet,
+    ); // = rm_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = rm_write_trailer,
-    //  .codec_tag         = (const AVCodecTag* const []){ ff_rm_codec_tags, 0 },
+    ); // = rm_write_trailer,
+    //  .codec_tag = (const AVCodecTag* const []){ ff_rm_codec_tags, 0 },
 }

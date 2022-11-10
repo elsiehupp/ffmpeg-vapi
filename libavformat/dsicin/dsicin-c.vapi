@@ -1,7 +1,8 @@
 /***********************************************************
 Delphine Software International CIN File Demuxer
 @copyright 2006 Gregory Montoir (cyx@users.sourceforge.net)
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,27 +20,41 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Delphine Software International CIN file demuxer
+/***********************************************************
+@file Delphine Software International CIN file demuxer
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_dsicin_demuxer = {
-    //  .name           = "dsicin",
-    //  .long_name      = "Delphine Software International CIN",
-    //  .priv_data_size = sizeof(CinDemuxContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_dsicin_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "dsicin"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Delphine Software International CIN"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (CinDemuxContext);
+        }
+    }
+    [CCode (cname="cin_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = cin_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="cin_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = cin_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="cin_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = cin_read_packet,
+    );
 }

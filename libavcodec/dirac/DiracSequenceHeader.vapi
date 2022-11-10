@@ -2,7 +2,8 @@
 @copyright 2007 Marco Gerards <marco@gnu.org>
 @copyright 2009 David Conrad
 @copyright 2011 Jordi Ortiz
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -24,8 +25,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-Interface to Dirac Decoder/Encoder
+@file Interface to Dirac Decoder/Encoder
 @author Marco Gerards <marco@gnu.org>
 @author David Conrad
 @author Jordi Ortiz
@@ -132,7 +132,7 @@ public struct DiracSequenceHeader {
     @param dsh this function will allocate and fill an DiracSequenceHeader struct
         and write it into this pointer. The caller must free it with
         av_free ().
-    @param buf the data buffer
+    @param buffer the data buffer
     @param buf_size the size of the data buffer in bytes
     @param log_ctx if non-null, this function will log errors here
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
@@ -140,7 +140,7 @@ public struct DiracSequenceHeader {
     [CCode (cname="av_dirac_parse_sequence_header", cheader_filename="ffmpeg/libavcodec/dirac.h")]
     public int av_dirac_parse_sequence_header (
         out DiracSequenceHeader dsh,
-        uint8[] buf, size_t buf_size,
+        uint8[] buffer, size_t buf_size,
         void *log_ctx
     );
 }

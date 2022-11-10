@@ -1,7 +1,8 @@
 /***********************************************************
 RTP definitions
 @copyright 2002 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -71,13 +72,13 @@ string ff_rtp_enc_name (
 /***********************************************************
 Return the codec id for the given encoding name and codec type.
 
-@param buf A pointer to the string containing the encoding name
+@param buffer A pointer to the string containing the encoding name
 @param codec_type The codec type
-@return In case of unknown encoding name, AV_CODEC_ID_NONE is returned;
+@return In case of unknown encoding name, LibAVCodec.CodecID.NONE is returned;
 otherwise, the codec id is returned
 ***********************************************************/
 public LibAVCodec.CodecID ff_rtp_codec_id (
-    string buf,
+    string buffer,
     LibAVUtil.MediaType codec_type
 );
 

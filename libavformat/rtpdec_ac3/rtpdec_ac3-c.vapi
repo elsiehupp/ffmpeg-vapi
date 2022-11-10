@@ -1,7 +1,8 @@
 /***********************************************************
 RTP parser for AC3 payload format (RFC 4184)
 @copyright 2015 Gilles Chanteperdrix <gch@xenomai.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,15 +21,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_ac3_dynamic_handler = {
-    //  .enc_name           = "ac3",
-    //  .codec_type         = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id           = AV_CODEC_ID_AC3,
-    //  .need_parsing       = AVSTREAM_PARSE_FULL,
-    //  .priv_data_size     = sizeof(PayloadContext),
+    //  .enc_name = "ac3"
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.AC3,
+    //  .need_parsing = AVSTREAM_PARSE_FULL,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );              = ac3_close_context,
+    ); // = ac3_close_context,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -37,9 +43,9 @@ const RTPDynamicProtocolHandler ff_ac3_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );       = ac3_handle_packet,
+    ); // = ac3_handle_packet,
 }

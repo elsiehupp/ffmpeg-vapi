@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-@ingroup lavf_io
+@file @ingroup lavf_io
 Buffered I/O operations
 ***********************************************************/
 
@@ -278,12 +278,12 @@ public abstract class AVIOContext {
     public void *opaque;
     public abstract int read_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
     );
     public abstract int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
     );
     public abstract int64 seek (
@@ -308,7 +308,7 @@ public abstract class AVIOContext {
     public uchar *checksum_ptr;
     public abstract ulong update_checksum (
         ulong checksum,
-        uint8[] buf,
+        uint8[] buffer,
         uint size
     );
     /***********************************************************
@@ -397,7 +397,7 @@ public abstract class AVIOContext {
     ***********************************************************/
     public abstract int write_data_type (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size,
         AVIODataMarkerType type,
         int64 time
@@ -545,12 +545,12 @@ public void avio_free_directory_entry (
 
 //  public delegate int ReadPacketDelegate (
 //      void *opaque,
-//      uint8[] buf,
+//      uint8[] buffer,
 //      int buf_size
 //  );
 //  public delegate int WritePacketDelegate (
 //      void *opaque,
-//      uint8[] buf,
+//      uint8[] buffer,
 //      int buf_size
 //  );
 //  public delegate int64 SeekDelegate (
@@ -609,7 +609,7 @@ public void avio_w8 (
 
 public void avio_write (
     AVIOContext io_context,
-    uchar[] buf,
+    uchar[] buffer,
     int size
 );
 
@@ -787,17 +787,17 @@ public void avio_flush (
 );
 
 /***********************************************************
-Read size bytes from AVIOContext into buf.
+Read size bytes from AVIOContext into buffer.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
 public int avio_read (
     AVIOContext io_context,
-    uchar[] buf,
+    uchar[] buffer,
     int size
 );
 
 /***********************************************************
-Read size bytes from AVIOContext into buf. Unlike avio_read (), this is allowed
+Read size bytes from AVIOContext into buffer. Unlike avio_read (), this is allowed
 to read fewer bytes than requested. The missing bytes can be read in the next
 call. This always tries to read at least 1 byte.
 Useful to reduce latency in certain cases.
@@ -805,7 +805,7 @@ Useful to reduce latency in certain cases.
 ***********************************************************/
 public int avio_read_partial (
     AVIOContext io_context,
-    uchar[] buf,
+    uchar[] buffer,
     int size
 );
 
@@ -857,10 +857,10 @@ public uint64 avio_rb64 (
 ***********************************************************/
 
 /***********************************************************
-Read a string from pb into buf. The reading will terminate when either
+Read a string from pb into buffer. The reading will terminate when either
 a NULL character was encountered, maxlen bytes have been read, or nothing
 more can be read from pb. The result is guaranteed to be NULL-terminated, it
-will be truncated if buf is too small.
+will be truncated if buffer is too small.
 Note that the string is not interpreted or validated in any way, it
 might get truncated in the middle of a sequence for multi-byte encodings.
 
@@ -871,7 +871,7 @@ bytes actually read.
 public int avio_get_str (
     AVIOContext pb,
     int maxlen,
-    string buf,
+    string buffer,
     int buflen
 );
 
@@ -884,14 +884,14 @@ encountered or maxlen bytes have been read.
 public int avio_get_str16le (
     AVIOContext pb,
     int maxlen,
-    string buf,
+    string buffer,
     int buflen
 );
 
 public int avio_get_str16be (
     AVIOContext pb,
     int maxlen,
-    string buf,
+    string buffer,
     int buflen
 );
 

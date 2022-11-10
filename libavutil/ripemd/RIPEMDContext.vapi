@@ -1,7 +1,8 @@
 /***********************************************************
 @copyright 2007 Michael Niedermayer <michaelni@gmx.at>
 @copyright 2013 James Almer <jamrial@gmail.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@ingroup lavu_ripemd
+@file @ingroup lavu_ripemd
 Public header for RIPEMD hash function implementation.
 ***********************************************************/
 

@@ -2,7 +2,8 @@
 RSO muxer
 @copyright 2001 Fabrice Bellard (original AU code)
 @copyright 2010 Rafael Carre
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,27 +21,52 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_rso_muxer = {
-    //  .name           =   "rso",
-    //  .long_name      =   "Lego Mindstorms RSO",
-    //  .extensions     =   "rso",
-    //  .audio_codec    =   AV_CODEC_ID_PCM_U8,
-    //  .video_codec    =   AV_CODEC_ID_NONE,
+[CCode (cname="ff_rso_muxer", cheader="")]
+public class RSOOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "rso"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Lego Mindstorms RSO"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "rso"
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.PCM_U8;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );   =   rso_write_header,
+    ); // = rso_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );   =   rso_write_packet,
+    ); // = rso_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );  =   rso_write_trailer,
-    //  .codec_tag      =   (const AVCodecTag* const []){ff_codec_rso_tags, 0},
-    //  .flags          =   AVFMT_NOTIMESTAMPS,
+    ); // = rso_write_trailer,
+    //  .codec_tag =   (const AVCodecTag* const []){ff_codec_rso_tags, 0},
+    //  .flags =   AVFMT_NOTIMESTAMPS,
 }

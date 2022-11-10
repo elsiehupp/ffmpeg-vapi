@@ -1,7 +1,8 @@
 /***********************************************************
 ID3v2 header parser
 @copyright 2003 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -75,7 +76,7 @@ public struct ID3v2ExtraMetaGEOB {
 }
 
 public struct ID3v2ExtraMetaAPIC {
-    public LibAVUtil.BufferRef buf;
+    public LibAVUtil.BufferRef buffer;
     public string type;
     public string description;
     public LibAVCodec.CodecID id;
@@ -97,22 +98,22 @@ public struct ID3v2ExtraMetaCHAP {
 
 /***********************************************************
 Detect ID3v2 Header.
-@param buf must be ID3v2_HEADER_SIZE byte long
+@param buffer must be ID3v2_HEADER_SIZE byte long
 @param magic magic bytes to identify the header.
 If in doubt, use ID3v2_DEFAULT_MAGIC.
 ***********************************************************/
 public int ff_id3v2_match (
-    uint8[] buf,
+    uint8[] buffer,
     string magic
 );
 
 /***********************************************************
 Get the length of an ID3v2 tag.
-@param buf must be ID3v2_HEADER_SIZE bytes long and point to the start of an
+@param buffer must be ID3v2_HEADER_SIZE bytes long and point to the start of an
 already detected ID3v2 tag
 ***********************************************************/
 public int ff_id3v2_tag_len (
-    uint8[] buf
+    uint8[] buffer
 );
 
 /***********************************************************

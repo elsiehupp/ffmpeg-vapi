@@ -1,7 +1,8 @@
 /***********************************************************
 RTP H.263 Depacketizer, RFC 4629
 @copyright 2010 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,10 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_h263_1998_dynamic_handler = {
-    //  .enc_name         = "H263-1998",
-    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id         = AV_CODEC_ID_H263,
-    //  .need_parsing     = AVSTREAM_PARSE_FULL,
+    //  .enc_name = "H263-1998"
+    //  .codec_type = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id = LibAVCodec.CodecID.H263,
+    //  .need_parsing = AVSTREAM_PARSE_FULL,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -32,18 +33,18 @@ const RTPDynamicProtocolHandler ff_h263_1998_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = ff_h263_handle_packet,
+    ); // = ff_h263_handle_packet,
 }
 
 const RTPDynamicProtocolHandler ff_h263_2000_dynamic_handler = {
-    //  .enc_name         = "H263-2000",
-    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id         = AV_CODEC_ID_H263,
-    //  .need_parsing     = AVSTREAM_PARSE_FULL,
+    //  .enc_name = "H263-2000"
+    //  .codec_type = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id = LibAVCodec.CodecID.H263,
+    //  .need_parsing = AVSTREAM_PARSE_FULL,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -52,9 +53,9 @@ const RTPDynamicProtocolHandler ff_h263_2000_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = ff_h263_handle_packet,
+    ); // = ff_h263_handle_packet,
 }

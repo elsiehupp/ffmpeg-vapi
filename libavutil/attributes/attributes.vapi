@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-Macro definitions for various function/variable attributes
+@file Macro definitions for various function/variable attributes
 ***********************************************************/
 
 //  #ifdef __GNUC__
@@ -104,16 +104,16 @@ scheduled for removal.
 ***********************************************************/
 //  #if !AV_NOWARN_DEPRECATED
 //  #if AV_GCC_VERSION_AT_LEAST (4,6)
-//  #    define AV_NOWARN_DEPRECATED (code) \
-//        _Pragma ("GCC diagnostic push") \
-//        _Pragma ("GCC diagnostic ignored \"-Wdeprecated-declarations\"") \
-//        code \
+//  #    define AV_NOWARN_DEPRECATED (code)
+//        _Pragma ("GCC diagnostic push")
+//        _Pragma ("GCC diagnostic ignored"-Wdeprecated-declarations\"")
+//        code
 //        _Pragma ("GCC diagnostic pop")
 //  #elif defined (_MSC_VER)
-//  #    define AV_NOWARN_DEPRECATED (code) \
-//        __pragma (warning (push)) \
-//        __pragma (warning (disable : 4996)) \
-//        code; \
+//  #    define AV_NOWARN_DEPRECATED (code)
+//        __pragma (warning (push))
+//        __pragma (warning (disable : 4996))
+//        code;
 //        __pragma (warning (pop))
 //  #else
 //  #    define AV_NOWARN_DEPRECATED (code) code

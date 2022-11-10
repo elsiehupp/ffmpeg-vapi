@@ -1,7 +1,8 @@
 /***********************************************************
 SCTP protocol
 @copyright 2012 Luca Barbato
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,9 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-
+/***********************************************************
+@file 
 sctp url_protocol
 
 url syntax: sctp://host:port[?option=val...]
@@ -38,34 +38,44 @@ stream number of the packet being read/written.
 
 [CCode (cname="ff_sctp_protocol", cheader="")]
 public class TCTPURLProtocol : URLProtocol {
-    //  .name                = "sctp",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "sctp"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );            = sctp_open,
+    ); // = sctp_open,
     [CCode (cname="", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );            = sctp_read,
+    ); // = sctp_read,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );           = sctp_write,
+    ); // = sctp_write,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );           = sctp_close,
+        URLContext url_context
+    ); // = sctp_close,
     [CCode (cname="", cheader="")]
     public override int url_get_file_handle (
-        URLContext h
-    ); = sctp_get_file_handle,
-    //  .priv_data_size      = sizeof(SCTPContext),
-    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    //  .priv_data_class     = &sctp_class,
+        URLContext url_context
+    ); // = sctp_get_file_handle,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (SCTPContext);
+        }
+    }
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class = sctp_class,
 }

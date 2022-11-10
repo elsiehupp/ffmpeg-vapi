@@ -1,7 +1,8 @@
 /***********************************************************
 RTP AMR Depacketizer, RFC 3267
 @copyright 2010 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,21 +21,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_amr_nb_dynamic_handler = {
-    //  .enc_name         = "AMR",
-    //  .codec_type       = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id         = AV_CODEC_ID_AMR_NB,
-    //  .priv_data_size   = sizeof(PayloadContext),
+    //  .enc_name = "AMR"
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.AMR_NB,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int init (
         AVFormatContext format_context
-    );             = amr_init,
+    ); // = amr_init,
     [CCode (cname="", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); = amr_parse_sdp_line,
+    ); // = amr_parse_sdp_line,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -43,29 +49,34 @@ const RTPDynamicProtocolHandler ff_amr_nb_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = amr_handle_packet,
+    ); // = amr_handle_packet,
 }
 
 const RTPDynamicProtocolHandler ff_amr_wb_dynamic_handler = {
-    //  .enc_name         = "AMR-WB",
-    //  .codec_type       = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id         = AV_CODEC_ID_AMR_WB,
-    //  .priv_data_size   = sizeof(PayloadContext),
+    //  .enc_name = "AMR-WB"
+    //  .codec_type = AVMEDIA_TYPE_AUDIO,
+    //  .codec_id = LibAVCodec.CodecID.AMR_WB,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int init (
         AVFormatContext format_context
-    );             = amr_init,
+    ); // = amr_init,
     [CCode (cname="", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); = amr_parse_sdp_line,
+    ); // = amr_parse_sdp_line,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -74,9 +85,9 @@ const RTPDynamicProtocolHandler ff_amr_wb_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = amr_handle_packet,
+    ); // = amr_handle_packet,
 }

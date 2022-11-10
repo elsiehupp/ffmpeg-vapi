@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2016 Neil Birkbeck <neil.birkbeck@gmail.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

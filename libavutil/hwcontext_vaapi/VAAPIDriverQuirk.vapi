@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-API-specific header for AV_HWDEVICE_TYPE_VAAPI.
+@file API-specific header for AV_HWDEVICE_TYPE_VAAPI.
 
 Dynamic frame pools are supported, but note that any pool used as a render
 target is required to be of fixed size in order to be be usable as an

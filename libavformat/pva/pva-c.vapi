@@ -1,7 +1,8 @@
 /***********************************************************
 TechnoTrend PVA (.pva) demuxer
 @copyright 2007, 2008 Ivo van Poorten
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,29 +20,44 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_pva_demuxer = {
-    //  .name           = "pva",
-    //  .long_name      = "TechnoTrend PVA",
-    //  .priv_data_size = sizeof(PVAContext),
+[CCode (cname="ff_pva_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "pva"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "TechnoTrend PVA"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PVAContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = pva_probe,
+    ); // = pva_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = pva_read_header,
+    ); // = pva_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = pva_read_packet,
+    ); // = pva_read_packet,
     [CCode (cname="", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); = pva_read_timestamp,
+    ); // = pva_read_timestamp,
 }

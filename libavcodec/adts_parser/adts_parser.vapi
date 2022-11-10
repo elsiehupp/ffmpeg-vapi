@@ -22,14 +22,14 @@ public const size_t AV_AAC_ADTS_HEADER_SIZE;
 
 /***********************************************************
 @brief Extract the number of samples and frames from AAC data.
-@param[in] buf pointer to AAC data buffer
+@param[in] buffer pointer to AAC data buffer
 @param[out] samples Pointer to where number of samples is written
 @param[out] frames Pointer to where number of frames is written
 @return Returns 0 on success, error code on failure.
 ***********************************************************/
 [CCode (cname="av_adts_header_parse", cheader_filename="ffmpeg/libavcodec/adts_parser.h")]
 public int av_adts_header_parse (
-    uint8[] buf,
+    uint8[] buffer,
     uint32[] samples,
     uint8[] frames
 );

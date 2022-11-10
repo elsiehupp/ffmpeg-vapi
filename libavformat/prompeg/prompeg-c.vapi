@@ -1,7 +1,8 @@
 /***********************************************************
 Pro-MPEG Code of Practice #3 Release 2 FEC
 @copyright 2016 Mobibase, France (http://www.mobibase.com)
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,9 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Pro-MPEG Code of Practice #3 Release 2 FEC protocol
+/***********************************************************
+@file Pro-MPEG Code of Practice #3 Release 2 FEC protocol
 @author Vlad Tarca <vlad.tarca@gmail.com>
 ***********************************************************/
 
@@ -77,46 +77,62 @@ Reminder:
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |X|D|type |index|    offset     |      NA       |SNBase ext bits|
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
 ***********************************************************/
 
-#define OFFSET(x) offsetof(PrompegContext, x)
-#define E AV_OPT_FLAG_ENCODING_PARAM
+//  #define OFFSET(x) offsetof(PrompegContext, x)
+//  #define E AV_OPT_FLAG_ENCODING_PARAM
 
-static const AVOption options[] = {
-    { "ttl",   "Time to live (in milliseconds, multicast only)", OFFSET(ttl), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, .flags = E },
-    { "l", "FEC L", OFFSET(l), AV_OPT_TYPE_INT, { .i64 =  5 }, 4, 20, .flags = E },
-    { "d", "FEC D", OFFSET(d), AV_OPT_TYPE_INT, { .i64 =  5 }, 4, 20, .flags = E },
-    { NULL }
-}
+//  static const AVOption options[] = {
+//      { "ttl",   "Time to live (in milliseconds, multicast only)", OFFSET(ttl), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, .flags = E },
+//      { "l", "FEC L", OFFSET(l), AV_OPT_TYPE_INT, { .i64 =  5 }, 4, 20, .flags = E },
+//      { "d", "FEC D", OFFSET(d), AV_OPT_TYPE_INT, { .i64 =  5 }, 4, 20, .flags = E },
+//      { NULL }
+//  }
 
-static const AVClass prompeg_class = {
-    //  .class_name = "prompeg",
-    //  .item_name  = av_default_item_name,
-    //  .option     = options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="prompeg_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "prompeg"
+    //  .item_name = av_default_item_name,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
 [CCode (cname="ff_prompeg_protocol", cheader="")]
 public class ProMpegURLProtocol : URLProtocol {
-    //  .name                      = "prompeg",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "prompeg"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );                  = prompeg_open,
+    ); // = prompeg_open,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );                 = prompeg_write,
+    ); // = prompeg_write,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );                 = prompeg_close,
-    //  .priv_data_size            = sizeof(PrompegContext),
-    //  .flags                     = URL_PROTOCOL_FLAG_NETWORK,
-    //  .priv_data_class           = &prompeg_class,
+        URLContext url_context
+    ); // = prompeg_close,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PrompegContext);
+        }
+    }
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class = prompeg_class,
 }

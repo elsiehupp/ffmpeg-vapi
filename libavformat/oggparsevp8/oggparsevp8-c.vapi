@@ -1,7 +1,8 @@
 /***********************************************************
 On2 VP8 parser for Ogg
 @copyright 2013 James Almer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,24 +21,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const struct ogg_codec ff_vp8_codec = {
-    //  .magic     = "OVP80",
+    //  .magic = "OVP80"
     //  .magicsize = 5,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    );    = vp8_header,
+    ); // = vp8_header,
     [CCode (cname="", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    );    = vp8_packet,
+    ); // = vp8_packet,
     [CCode (cname="", cheader="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
-    );   = vp8_gptopts,
+    ); // = vp8_gptopts,
     //  .nb_header = 1,
 }

@@ -2,7 +2,8 @@
 APE tag handling
 @copyright 2007 Benjamin Zores <ben@geexbox.org>
  based upon libdemac from Dave Chapman.
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

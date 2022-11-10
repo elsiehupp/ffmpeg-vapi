@@ -1,7 +1,8 @@
 /***********************************************************
 MIDI Sample Dump Standard format demuxer
 @copyright 2017 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,24 +20,44 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_sds_demuxer = {
-    //  .name           = "sds",
-    //  .long_name      = "MIDI Sample Dump Standard",
-    //  .priv_data_size = sizeof(SDSContext),
+[CCode (cname="ff_sds_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "sds"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MIDI Sample Dump Standard"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (SDSContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = sds_probe,
+    ); // = sds_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = sds_read_header,
+    ); // = sds_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = sds_read_packet,
-    //  .extensions     = "sds",
-    //  .flags          = AVFMT_GENERIC_INDEX,
+    ); // = sds_read_packet,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "sds"
+    //  .flags = AVFMT_GENERIC_INDEX,
 }

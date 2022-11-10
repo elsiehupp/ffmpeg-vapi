@@ -1,7 +1,8 @@
 /***********************************************************
 CRYO APC audio format demuxer
 @copyright 2007 Anssi Hannula <anssi.hannula@gmail.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,21 +20,31 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_apc_demuxer = {
-    //  .name           = "apc",
-    //  .long_name      = "CRYO APC",
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_apc_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "apc"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "CRYO APC"
+    [CCode (cname="apc_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = apc_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="apc_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = apc_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="apc_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = apc_read_packet,
+    );
 }

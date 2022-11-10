@@ -1,7 +1,8 @@
 /***********************************************************
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
 @copyright 2008 Peter Ross
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-audio channel layout utility functions
+@file audio channel layout utility functions
 ***********************************************************/
 
 /***********************************************************

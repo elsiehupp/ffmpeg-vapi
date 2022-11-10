@@ -20,8 +20,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-A public API for Vorbis parsing
+@file A public API for Vorbis parsing
 
 Determines the duration for each packet.
 ***********************************************************/
@@ -52,14 +51,14 @@ public struct VorbisParseContext {
     special frames are considered invalid.
 
     @param s Vorbis parser context
-    @param buf buffer containing a Vorbis frame
+    @param buffer buffer containing a Vorbis frame
     @param buf_size size of the buffer
     @param flags flags for special frames
     ***********************************************************/
     [CCode (cname="av_vorbis_parse_frame_flags", cheader_filename="ffmpeg/libavcodec/vorbis_parser.h")]
     public int av_vorbis_parse_frame_flags (
         VorbisParseContext s,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size,
         VorbisFlags flags
     );
@@ -68,13 +67,13 @@ public struct VorbisParseContext {
     @brief Get the duration for a Vorbis packet.
 
     @param s Vorbis parser context
-    @param buf buffer containing a Vorbis frame
+    @param buffer buffer containing a Vorbis frame
     @param buf_size size of the buffer
     ***********************************************************/
     [CCode (cname="av_vorbis_parse_frame", cheader_filename="ffmpeg/libavcodec/vorbis_parser.h")]
     public int av_vorbis_parse_frame (
         VorbisParseContext s,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
     );
 

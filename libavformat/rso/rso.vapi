@@ -1,7 +1,8 @@
 /***********************************************************
 RSO format common data
 @copyright 2010 Rafael Carre
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

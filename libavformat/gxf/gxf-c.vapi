@@ -1,7 +1,8 @@
 /***********************************************************
 GXF demuxer.
 @copyright 2006 Reimar Doeffinger
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,36 +20,51 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_gxf_demuxer = {
-    //  .name           = "gxf",
-    //  .long_name      = "GXF (General eXchange Format)",
-    //  .priv_data_size = sizeof(struct gxf_stream_info),
+[CCode (cname="ff_gxf_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "gxf"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "GXF (General eXchange Format)"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (gxf_stream_info);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = gxf_probe,
+    ); // = gxf_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = gxf_header,
+    ); // = gxf_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = gxf_packet,
+    ); // = gxf_packet,
     [CCode (cname="", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = gxf_seek,
+    ); // = gxf_seek,
     [CCode (cname="", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); = gxf_read_timestamp,
+    ); // = gxf_read_timestamp,
 }

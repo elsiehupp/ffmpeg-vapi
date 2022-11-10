@@ -20,8 +20,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup lavc_fft
+@file @ingroup lavc_fft
 FFT functions
 ***********************************************************/
 

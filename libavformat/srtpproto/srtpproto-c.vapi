@@ -1,7 +1,8 @@
 /***********************************************************
 SRTP network protocol
 @copyright 2012 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,59 +20,75 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define D AV_OPT_FLAG_DECODING_PARAM
-#define E AV_OPT_FLAG_ENCODING_PARAM
-static const AVOption options[] = {
-    { "srtp_out_suite", "", offsetof(SRTPProtoContext, out_suite), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, E },
-    { "srtp_out_params", "", offsetof(SRTPProtoContext, out_params), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, E },
-    { "srtp_in_suite", "", offsetof(SRTPProtoContext, in_suite), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, D },
-    { "srtp_in_params", "", offsetof(SRTPProtoContext, in_params), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, D },
-    { NULL }
-}
+//  #define D AV_OPT_FLAG_DECODING_PARAM
+//  #define E AV_OPT_FLAG_ENCODING_PARAM
+//  static const AVOption options[] = {
+//      { "srtp_out_suite", "", offsetof(SRTPProtoContext, out_suite), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, E },
+//      { "srtp_out_params", "", offsetof(SRTPProtoContext, out_params), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, E },
+//      { "srtp_in_suite", "", offsetof(SRTPProtoContext, in_suite), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, D },
+//      { "srtp_in_params", "", offsetof(SRTPProtoContext, in_params), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, D },
+//      { NULL }
+//  }
 
-static const AVClass srtp_context_class = {
-    //  .class_name     = "srtp",
-    //  .item_name      = av_default_item_name,
-    //  .option         = options,
-    //  .version        = LIBAVUTIL_VERSION_INT,
+[CCode (cname="srtp_context_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "srtp"
+    //  .item_name = av_default_item_name,
+    //  .option = options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
 [CCode (cname="ff_srtp_protocol", cheader="")]
 public class SRTPURLProtocol : URLProtocol {
-    //  .name                      = "srtp",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "srtp"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );                  = srtp_open,
+    ); // = srtp_open,
     [CCode (cname="", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );                  = srtp_read,
+    ); // = srtp_read,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );                 = srtp_write,
+    ); // = srtp_write,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );                 = srtp_close,
+        URLContext url_context
+    ); // = srtp_close,
     [CCode (cname="", cheader="")]
     public override int url_get_file_handle (
-        URLContext h
-    );       = srtp_get_file_handle,
+        URLContext url_context
+    ); // = srtp_get_file_handle,
     [CCode (cname="", cheader="")]
     public override int url_get_multi_file_handle (
-        URLContext h,
+        URLContext url_context,
         out int[] handles,
         out int numhandles
-    ); = srtp_get_multi_file_handle,
-    //  .priv_data_size            = sizeof(SRTPProtoContext),
-    //  .priv_data_class           = &srtp_context_class,
-    //  .flags                     = URL_PROTOCOL_FLAG_NETWORK,
+    ); // = srtp_get_multi_file_handle,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (SRTPProtoContext);
+        }
+    }
+    //  .priv_data_class = srtp_context_class,
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
 }

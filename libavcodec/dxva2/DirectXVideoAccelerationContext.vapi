@@ -2,7 +2,8 @@
 @brief DXVA2 Hardware acceleration
 
 @copyright 2009 Laurent Aimar
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -24,8 +25,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup lavc_codec_hwaccel_dxva2
+@file @ingroup lavc_codec_hwaccel_dxva2
 Public LibAVCodec DXVA2 header.
 ***********************************************************/
 

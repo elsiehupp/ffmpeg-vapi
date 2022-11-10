@@ -1,7 +1,8 @@
 /***********************************************************
 AIX demuxer
 @copyright 2016 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,23 +20,38 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_aix_demuxer = {
-    //  .name        = "aix",
-    //  .long_name   = "CRI AIX",
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_aix_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat ff_aix_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "aix";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "CRI AIX";
+        }
+    }
+    [CCode (cname="aix_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );  = aix_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="aix_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); = aix_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="aix_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); = aix_read_packet,
-    //  .extensions  = "aix",
-    //  .flags       = AVFMT_GENERIC_INDEX,
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "aix";
+        }
+    }
+    //  .flags = AVFMT_GENERIC_INDEX,
 }

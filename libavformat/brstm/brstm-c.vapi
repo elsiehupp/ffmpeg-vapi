@@ -1,7 +1,8 @@
 /***********************************************************
 BRSTM demuxer
 @copyright 2012 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,66 +20,106 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_brstm_demuxer = {
-    //  .name           = "brstm",
-    //  .long_name      = "BRSTM (Binary Revolution Stream)",
-    //  .priv_data_size = sizeof(BRSTMDemuxContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_brstm_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "brstm"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "BRSTM (Binary Revolution Stream)"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (BRSTMDemuxContext);
+        }
+    }
+    [CCode (cname="probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = read_seek,
-    //  .extensions     = "brstm",
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "brstm"
 }
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_bfstm_demuxer = {
-    //  .name           = "bfstm",
-    //  .long_name      = "BFSTM (Binary Cafe Stream)",
-    //  .priv_data_size = sizeof(BRSTMDemuxContext),
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_bfstm_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "bfstm"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "BFSTM (Binary Cafe Stream)"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (BRSTMDemuxContext);
+        }
+    }
+    [CCode (cname="probe_bfstm", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = probe_bfstm,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = read_seek,
-    //  .extensions     = "bfstm,bcstm",
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "bfstm,bcstm"
 }

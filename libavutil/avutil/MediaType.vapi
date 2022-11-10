@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@ingroup lavu
+@file @ingroup lavu
 Convenience header that includes @link lavu "libavutil"'s core.
 ***********************************************************/
 
@@ -328,13 +328,13 @@ public string av_fourcc2str (
 @brief Fill the provided buffer with a string containing a FourCC (four-character
 code) representation.
 
-@param buf a buffer with size in bytes of at least AV_FOURCC_MAX_STRING_SIZE
+@param buffer a buffer with size in bytes of at least AV_FOURCC_MAX_STRING_SIZE
 @param fourcc the fourcc to represent
 @return the buffer in input
 ***********************************************************/
 [CCode (cname="av_fourcc_make_string", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public string av_fourcc_make_string (
-    string buf,
+    string buffer,
     uint32 fourcc
 );
 

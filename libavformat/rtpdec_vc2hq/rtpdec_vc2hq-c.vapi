@@ -1,7 +1,8 @@
 /***********************************************************
 RTP parser for VC-2 HQ payload format (draft version 1) - experimental
 @copyright 2016 Thomas Volkert <thomas@netzeal.de>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,10 +21,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_vc2hq_dynamic_handler = {
-    //  .enc_name         = "VC2",
-    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id         = AV_CODEC_ID_DIRAC,
-    //  .priv_data_size   = sizeof(PayloadContext),
+    //  .enc_name = "VC2"
+    //  .codec_type = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id = LibAVCodec.CodecID.DIRAC,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -32,9 +38,9 @@ const RTPDynamicProtocolHandler ff_vc2hq_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = vc2hq_handle_packet
+    ); // = vc2hq_handle_packet
 }

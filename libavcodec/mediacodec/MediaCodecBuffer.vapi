@@ -2,7 +2,8 @@
 @brief Android MediaCodec public API
 
 @copyright 2016 Matthieu Bouron <matthieu.bouron stupeflix.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

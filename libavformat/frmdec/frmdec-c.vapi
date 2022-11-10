@@ -1,45 +1,60 @@
 /***********************************************************
- Megalux Frame demuxer
- @copyright 2010 Peter Ross <pross@xvid.org>
+Megalux Frame demuxer
+@copyright 2010 Peter Ross <pross@xvid.org>
+***********************************************************/
+/***********************************************************
+This file is part of FFmpeg.
 
- This file is part of FFmpeg.
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
- FFmpeg is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License as published by the Free Software Foundation; either
- version 2.1 of the License, or (at your option) any later version.
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
 
- FFmpeg is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
-
- You should have received a copy of the GNU Lesser General Public
- License along with FFmpeg; if not, write to the Free Software
- Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
- @file
- Megalux Frame demuxer
+/***********************************************************
+@file Megalux Frame demuxer
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_frm_demuxer = {
-    //  .name           = "frm",
-    //  .priv_data_size = sizeof(FrmContext),
-    //  .long_name      = "Megalux Frame",
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_frm_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "frm"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FrmContext);
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Megalux Frame"
+    [CCode (cname="frm_read_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = frm_read_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="frm_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = frm_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="frm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = frm_read_packet,
+    );
 }

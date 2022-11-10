@@ -2,7 +2,8 @@
 raw ADTS AAC demuxer
 @copyright 2008 Michael Niedermayer <michaelni@gmx.at>
 @copyright 2009 Robert Swain ( rob opendot cl )
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,9 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_aac_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_aac_demuxer = {
-    //  .name         = "aac",
-    //  .long_name    = "raw ADTS AAC (Advanced Audio Coding)",
+public class AACInputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "aac";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "raw ADTS AAC (Advanced Audio Coding)";
+        }
+    }
     [CCode (cname="adts_aac_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -37,8 +48,23 @@ public class InputFormat : AVInputFormat ff_aac_demuxer = {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags        = AVFMT_GENERIC_INDEX,
-    //  .extensions   = "aac",
-    //  .mime_type    = "audio/aac,audio/aacp,audio/x-aac",
-    //  .raw_codec_id = AV_CODEC_ID_AAC,
+    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "aac";
+        }
+    }
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return "audio/aac,audio/aacp,audio/x-aac";
+        }
+    }
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.AAC;
+        }
+    }
 }

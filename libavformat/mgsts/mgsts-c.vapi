@@ -1,7 +1,8 @@
 /***********************************************************
 Metar Gear Solid: The Twin Snakes demuxer
 @copyright 2012 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,22 +21,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_mgsts_demuxer = {
-    //  .name        = "mgsts",
-    //  .long_name   = "Metal Gear Solid: The Twin Snakes",
+[CCode (cname="ff_mgsts_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "mgsts"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Metal Gear Solid: The Twin Snakes"
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );  = read_probe,
+    ); // = read_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); = read_header,
+    ); // = read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); = read_packet,
-    //  .flags       = AVFMT_GENERIC_INDEX,
+    ); // = read_packet,
+    //  .flags = AVFMT_GENERIC_INDEX,
 }

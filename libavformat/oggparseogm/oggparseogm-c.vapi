@@ -23,69 +23,69 @@
 **/
 
 const struct ogg_codec ff_ogm_video_codec = {
-    //  .magic = "\001video",
+    //  .magic = "\001video"
     //  .magicsize = 6,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); = ogm_header,
+    ); // = ogm_header,
     [CCode (cname="", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); = ogm_packet,
+    ); // = ogm_packet,
     //  .granule_is_start = 1,
     //  .nb_header = 2,
 }
 
 const struct ogg_codec ff_ogm_audio_codec = {
-    //  .magic = "\001audio",
+    //  .magic = "\001audio"
     //  .magicsize = 6,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); = ogm_header,
+    ); // = ogm_header,
     [CCode (cname="", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); = ogm_packet,
+    ); // = ogm_packet,
     //  .granule_is_start = 1,
     //  .nb_header = 2,
 }
 
 const struct ogg_codec ff_ogm_text_codec = {
-    //  .magic = "\001text",
+    //  .magic = "\001text"
     //  .magicsize = 5,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); = ogm_header,
+    ); // = ogm_header,
     [CCode (cname="", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); = ogm_packet,
+    ); // = ogm_packet,
     //  .granule_is_start = 1,
     //  .nb_header = 2,
 }
 
 const struct ogg_codec ff_ogm_old_codec = {
-    //  .magic = "\001Direct Show Samples embedded in Ogg",
+    //  .magic = "\001Direct Show Samples embedded in Ogg"
     //  .magicsize = 35,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); = ogm_dshow_header,
+    ); // = ogm_dshow_header,
     [CCode (cname="", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); = ogm_packet,
+    ); // = ogm_packet,
     //  .granule_is_start = 1,
     //  .nb_header = 1,
 }

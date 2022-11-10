@@ -4,7 +4,8 @@ Psygnosis YOP demuxer
 @copyright 2010 Mohamed Naufal Basheer <naufal11@gmail.com>
 derived from the code by
 @copyright 2009 Thomas P. Higdon <thomas.p.higdon@gmail.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,35 +23,55 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_yop_demuxer = {
-    //  .name           = "yop",
-    //  .long_name      = "Psygnosis YOP",
-    //  .priv_data_size = sizeof(YopDecContext),
+[CCode (cname="ff_yop_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "yop"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Psygnosis YOP"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (YopDecContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = yop_probe,
+    ); // = yop_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = yop_read_header,
+    ); // = yop_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = yop_read_packet,
+    ); // = yop_read_packet,
     [CCode (cname="", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = yop_read_close,
+    ); // = yop_read_close,
     [CCode (cname="", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = yop_read_seek,
-    //  .extensions     = "yop",
-    //  .flags          = AVFMT_GENERIC_INDEX,
+    ); // = yop_read_seek,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "yop"
+    //  .flags = AVFMT_GENERIC_INDEX,
 }

@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2005-2012 Michael Niedermayer <michaelni@gmx.at>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@addtogroup LibAVUtil.Math
+@file @addtogroup LibAVUtil.Math
 Mathematical utilities for working with timestamp and time base.
 ***********************************************************/
 

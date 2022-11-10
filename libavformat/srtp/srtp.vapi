@@ -1,7 +1,8 @@
 /***********************************************************
 SRTP encryption/decryption
 @copyright 2012 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -53,7 +54,7 @@ public void ff_srtp_free (
 
 public int ff_srtp_decrypt (
     SRTPContext srtp_context,
-    uint8[] buf,
+    uint8[] buffer,
     out int lenptr
 );
 

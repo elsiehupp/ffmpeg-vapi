@@ -1,7 +1,8 @@
 /***********************************************************
 @copyright 2016 Google Inc.
 @copyright 2016 KongQun Yang (kqyang@google.com)
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-internal header for VPx codec configuration utilities.
+@file internal header for VPx codec configuration utilities.
 ***********************************************************/
 
 public struct VPCC {

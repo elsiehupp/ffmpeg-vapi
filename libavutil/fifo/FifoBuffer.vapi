@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-a very simple circular buffer FIFO implementation
+@file a very simple circular buffer FIFO implementation
 ***********************************************************/
 
 public delegate void GenericReadDelegate (

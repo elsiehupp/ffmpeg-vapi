@@ -1,7 +1,8 @@
 /***********************************************************
 webp muxer
 @copyright 2014 Michael Niedermayer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,40 +20,72 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define OFFSET(x) offsetof(WebpContext, x)
-#define ENC AV_OPT_FLAG_ENCODING_PARAM
-static const AVOption options[] = {
-    { "loop", "Number of times to loop the output: 0 - infinite loop", OFFSET(loop),
-      AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 65535, ENC },
-    { NULL },
-}
+//  #define OFFSET(x) offsetof(WebpContext, x)
+//  #define ENC AV_OPT_FLAG_ENCODING_PARAM
+//  static const AVOption options[] = {
+//      { "loop", "Number of times to loop the output: 0 - infinite loop", OFFSET(loop),
+//        AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 65535, ENC },
+//      { NULL },
+//  }
 
-static const AVClass webp_muxer_class = {
-    //  .class_name = "WebP muxer",
-    //  .item_name  = av_default_item_name,
-    //  .version    = LIBAVUTIL_VERSION_INT,
-    //  .option     = options,
+[CCode (cname="webp_muxer_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "WebP muxer"
+    //  .item_name = av_default_item_name,
+    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
 }
-public class OutputFormat : AVOutputFormat ff_webp_muxer = {
-    //  .name           = "webp",
-    //  .long_name      = "WebP",
-    //  .extensions     = "webp",
-    //  .priv_data_size = sizeof(WebpContext),
-    //  .video_codec    = AV_CODEC_ID_WEBP,
+public class OutputMuxer : AVOutputFormat ff_webp_muxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "webp"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "WebP"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "webp"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (WebpContext);
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.WEBP;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );   = webp_write_header,
+    ); // = webp_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );   = webp_write_packet,
+    ); // = webp_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );  = webp_write_trailer,
-    //  .priv_class     = &webp_muxer_class,
-    //  .flags          = AVFMT_VARIABLE_FPS,
+    ); // = webp_write_trailer,
+    //  .priv_class = webp_muxer_class,
+    //  .flags = AVFMT_VARIABLE_FPS,
 }

@@ -1,6 +1,7 @@
 /***********************************************************
 Version macros.
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-@ingroup libavf
+@file @ingroup libavf
 Libavformat version macros
 ***********************************************************/
 
@@ -32,11 +32,11 @@ public const int LIBAVFORMAT_VERSION_MAJOR;
 public const int LIBAVFORMAT_VERSION_MINOR;
 public const int LIBAVFORMAT_VERSION_MICRO;
 
-//  #define LIBAVFORMAT_VERSION_INT AV_VERSION_INT (LIBAVFORMAT_VERSION_MAJOR, \
-//                                                 LIBAVFORMAT_VERSION_MINOR, \
+//  #define LIBAVFORMAT_VERSION_INT AV_VERSION_INT (LIBAVFORMAT_VERSION_MAJOR,
+//                                                 LIBAVFORMAT_VERSION_MINOR,
 //                                                 LIBAVFORMAT_VERSION_MICRO)
-//  #define LIBAVFORMAT_VERSION AV_VERSION (LIBAVFORMAT_VERSION_MAJOR, \
-//                                             LIBAVFORMAT_VERSION_MINOR, \
+//  #define LIBAVFORMAT_VERSION AV_VERSION (LIBAVFORMAT_VERSION_MAJOR,
+//                                             LIBAVFORMAT_VERSION_MINOR,
 //                                             LIBAVFORMAT_VERSION_MICRO)
 //  #define LIBAVFORMAT_BUILD LIBAVFORMAT_VERSION_INT
 
@@ -50,7 +50,6 @@ the public API and may change, break or disappear at any time.
 @note, when bumping the major version it is recommended to manually
 disable each FF_API_* in its own commit instead of disabling them all
 at once through the bump. This improves the git bisect-ability of the change.
-
 ***********************************************************/
 //  #ifndef FF_API_COMPUTE_PKT_FIELDS2
 //  #define FF_API_COMPUTE_PKT_FIELDS2 (LIBAVFORMAT_VERSION_MAJOR < 59)

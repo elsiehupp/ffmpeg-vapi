@@ -1,7 +1,8 @@
 /***********************************************************
 @brief An implementation of the TwoFish algorithm
 @copyright 2015 Supraja Meedinti
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil.Crypto {
 
 /***********************************************************
-@file
-@brief Public header for libavutil TWOFISH algorithm
+@file @brief Public header for libavutil TWOFISH algorithm
 @defgroup lavu_twofish TWOFISH
 ***********************************************************/
 

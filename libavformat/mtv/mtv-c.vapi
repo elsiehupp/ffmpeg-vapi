@@ -1,7 +1,8 @@
 /***********************************************************
 mtv demuxer
 @copyright 2006 Reynaldo H. Verdejo Pinochet
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,27 +20,41 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-MTV demuxer.
+/***********************************************************
+@file MTV demuxer.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_mtv_demuxer = {
-    //  .name           = "mtv",
-    //  .long_name      = "MTV",
-    //  .priv_data_size = sizeof(MTVDemuxContext),
+[CCode (cname="ff_mtv_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "mtv"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MTV"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MTVDemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = mtv_probe,
+    ); // = mtv_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = mtv_read_header,
+    ); // = mtv_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = mtv_read_packet,
+    ); // = mtv_read_packet,
 }

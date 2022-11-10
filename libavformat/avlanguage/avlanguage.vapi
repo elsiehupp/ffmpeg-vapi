@@ -1,6 +1,7 @@
 /***********************************************************
 Cyril Comparon, Larbi Joubala, Resonate-MP4 2009
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

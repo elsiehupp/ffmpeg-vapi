@@ -3,7 +3,8 @@ ISO Media common code
 @copyright 2001 Fabrice Bellard
 @copyright 2002 Francois Revol <revol@free.fr>
 @copyright 2006 Baptiste Coudurier <baptiste.coudurier@free.fr>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -471,19 +472,19 @@ public enum MOVSampleDependencyFlags {
 public bool TAG_IS_AVCI (
     uint32 tag
 );
-    //  ((tag) == MKTAG ('a', 'i', '5', 'p') ||  \
-    //   (tag) == MKTAG ('a', 'i', '5', 'q') ||  \
-    //   (tag) == MKTAG ('a', 'i', '5', '2') ||  \
-    //   (tag) == MKTAG ('a', 'i', '5', '3') ||  \
-    //   (tag) == MKTAG ('a', 'i', '5', '5') ||  \
-    //   (tag) == MKTAG ('a', 'i', '5', '6') ||  \
-    //   (tag) == MKTAG ('a', 'i', '1', 'p') ||  \
-    //   (tag) == MKTAG ('a', 'i', '1', 'q') ||  \
-    //   (tag) == MKTAG ('a', 'i', '1', '2') ||  \
-    //   (tag) == MKTAG ('a', 'i', '1', '3') ||  \
-    //   (tag) == MKTAG ('a', 'i', '1', '5') ||  \
-    //   (tag) == MKTAG ('a', 'i', '1', '6') ||  \
-    //   (tag) == MKTAG ('a', 'i', 'v', 'x') ||  \
+    //  ((tag) == MKTAG ('a', 'i', '5', 'p') ||
+    //   (tag) == MKTAG ('a', 'i', '5', 'q') ||
+    //   (tag) == MKTAG ('a', 'i', '5', '2') ||
+    //   (tag) == MKTAG ('a', 'i', '5', '3') ||
+    //   (tag) == MKTAG ('a', 'i', '5', '5') ||
+    //   (tag) == MKTAG ('a', 'i', '5', '6') ||
+    //   (tag) == MKTAG ('a', 'i', '1', 'p') ||
+    //   (tag) == MKTAG ('a', 'i', '1', 'q') ||
+    //   (tag) == MKTAG ('a', 'i', '1', '2') ||
+    //   (tag) == MKTAG ('a', 'i', '1', '3') ||
+    //   (tag) == MKTAG ('a', 'i', '1', '5') ||
+    //   (tag) == MKTAG ('a', 'i', '1', '6') ||
+    //   (tag) == MKTAG ('a', 'i', 'v', 'x') ||
     //   (tag) == MKTAG ('A', 'V', 'i', 'n'))
 
 

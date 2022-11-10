@@ -1,7 +1,8 @@
 /***********************************************************
 MMS protocol over HTTP
 @copyright 2010 Zhentan Feng <spyfeng at gmail dot com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -27,37 +28,47 @@ http://msdn.microsoft.com/en-us/library/cc251059(PROT.10).aspx
 
 [CCode (cname="ff_mmsh_protocol", cheader="")]
 public class MMSHURLProtocol : URLProtocol {
-    //  .name           = "mmsh",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "mmsh"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );       = mmsh_open,
+    ); // = mmsh_open,
     [CCode (cname="", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );       = mmsh_read,
+    ); // = mmsh_read,
     [CCode (cname="", cheader="")]
     public override int64 url_seek (
-        URLContext h,
+        URLContext url_context,
         int64 pos,
         int whence
-    );       = mmsh_seek,
+    ); // = mmsh_seek,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );      = mmsh_close,
+        URLContext url_context
+    ); // = mmsh_close,
     [CCode (cname="", cheader="")]
     public override int64 url_read_seek (
-        URLContext h,
+        URLContext url_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );  = mmsh_read_seek,
-    //  .priv_data_size = sizeof(MMSHContext),
-    //  .flags          = URL_PROTOCOL_FLAG_NETWORK,
-    //  .default_whitelist = "http,tcp",
+    ); // = mmsh_read_seek,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MMSHContext);
+        }
+    }
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    //  .default_whitelist = "http,tcp"
 }

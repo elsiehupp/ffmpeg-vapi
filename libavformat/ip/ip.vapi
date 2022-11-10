@@ -1,6 +1,7 @@
 /***********************************************************
 IP common code
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -53,24 +54,24 @@ public addrinfo ff_ip_resolve_host (
 );
 
 /***********************************************************
-Parses the address[,address] source list in buf and adds it to the filters
+Parses the address[,address] source list in buffer and adds it to the filters
 in the IPSourceFilters structure.
 @return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
 public int ff_ip_parse_sources (
     void *log_ctx,
-    string buf,
+    string buffer,
     IPSourceFilters filters
 );
 
 /***********************************************************
-Parses the address[,address] source block list in buf and adds it to the
+Parses the address[,address] source block list in buffer and adds it to the
 filters in the IPSourceFilters structure.
 @return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
 public int ff_ip_parse_blocks (
     void *log_ctx,
-    string buf,
+    string buffer,
     IPSourceFilters filters
 );
 

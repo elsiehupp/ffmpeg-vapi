@@ -1,7 +1,8 @@
 /***********************************************************
 3DO STR demuxer
 @copyright 2015 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,9 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_threedostr_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_threedostr_demuxer = {
-    //  .name           = "3dostr",
-    //  .long_name      = "3DO STR",
+public class ThreeDOSTRInputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "3dostr";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "3DO STR";
+        }
+    }
     [CCode (cname="threedostr_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -36,6 +47,11 @@ public class InputFormat : AVInputFormat ff_threedostr_demuxer = {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .extensions     = "str",
-    //  .flags          = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "str";
+        }
+    }
+    //  .flags = AVFMT_GENERIC_INDEX,
 }

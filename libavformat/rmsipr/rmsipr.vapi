@@ -1,6 +1,7 @@
 /***********************************************************
 tables and functions for demuxing SIPR audio muxed RealMedia style
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -25,10 +26,10 @@ namespace LibAVFormat {
 /***********************************************************
 Perform 4-bit block reordering for SIPR data.
 
-@param buf SIPR data
+@param buffer SIPR data
 ***********************************************************/
 public void ff_rm_reorder_sipr_data (
-    uint8[] buf,
+    uint8[] buffer,
     int sub_packet_h,
     int framesize
 );

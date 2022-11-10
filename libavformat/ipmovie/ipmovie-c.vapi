@@ -1,7 +1,8 @@
 /***********************************************************
 Interplay MVE File Demuxer
 @copyright 2003 The FFmpeg project
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,9 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Interplay MVE file demuxer
+/***********************************************************
+@file Interplay MVE file demuxer
 by Mike Melanson (melanson@pcisys.net)
 For more information regarding the Interplay MVE file format, visit:
   http://www.pcisys.net/~melanson/codecs/
@@ -32,22 +32,37 @@ to write your own as it uses a rather roundabout approach for splitting
 up and sending out the chunks.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_ipmovie_demuxer = {
-    //  .name           = "ipmovie",
-    //  .long_name      = "Interplay MVE",
-    //  .priv_data_size = sizeof(IPMVEContext),
+[CCode (cname="ff_ipmovie_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "ipmovie"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Interplay MVE"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (IPMVEContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = ipmovie_probe,
+    ); // = ipmovie_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = ipmovie_read_header,
+    ); // = ipmovie_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ipmovie_read_packet,
+    ); // = ipmovie_read_packet,
 }

@@ -1,7 +1,8 @@
 /***********************************************************
 Windows Television (WTV)
 @copyright 2010-2011 Peter Ross <pross@xvid.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

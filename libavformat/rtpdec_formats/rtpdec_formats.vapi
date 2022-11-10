@@ -1,7 +1,8 @@
 /***********************************************************
 RTP depacketizer declarations
 @copyright 2010 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -37,7 +38,7 @@ public int ff_h263_handle_packet (
     AVStream st,
     LibAVCodec.Packet packet,
     out uint32 timestamp,
-    uint8[] buf,
+    uint8[] buffer,
     int len,
     uint16 seq,
     int flags
@@ -54,7 +55,7 @@ public int ff_h264_handle_aggregated_packet (
     AVFormatContext format_context,
     PayloadContext data,
     LibAVCodec.Packet packet,
-    uint8[] buf,
+    uint8[] buffer,
     int len,
     int start_skip,
     int[] nal_counters,
@@ -63,7 +64,7 @@ public int ff_h264_handle_aggregated_packet (
 
 public int ff_h264_handle_frag_packet (
     LibAVCodec.Packet packet,
-    uint8[] buf,
+    uint8[] buffer,
     int len,
     int start_bit,
     uint8[] nal_header,

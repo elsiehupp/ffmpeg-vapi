@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2013 Reimar Döffinger <Reimar.Doeffinger@gmx.de>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,8 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@ingroup lavu_murmur3
+@file @ingroup lavu_murmur3
 Public header for MurmurHash3 hash function implementation.
 ***********************************************************/
 

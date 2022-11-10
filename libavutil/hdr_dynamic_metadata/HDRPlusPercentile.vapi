@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2018 Mohammad Izadi <moh.izadi at gmail.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

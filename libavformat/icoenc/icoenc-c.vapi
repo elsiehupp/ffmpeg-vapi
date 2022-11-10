@@ -1,7 +1,8 @@
 /***********************************************************
 Microsoft Windows ICO muxer
 @copyright 2012 Michael Bradshaw <mjbshaw gmail com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,33 +20,67 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Microsoft Windows ICO muxer
+/***********************************************************
+@file Microsoft Windows ICO muxer
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_ico_muxer = {
-    //  .name           = "ico",
-    //  .long_name      = "Microsoft Windows ICO",
-    //  .priv_data_size = sizeof(IcoMuxContext),
-    //  .mime_type      = "image/vnd.microsoft.icon",
-    //  .extensions     = "ico",
-    //  .audio_codec    = AV_CODEC_ID_NONE,
-    //  .video_codec    = AV_CODEC_ID_BMP,
+[CCode (cname="ff_ico_muxer", cheader="")]
+public class ICOOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "ico"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Microsoft Windows ICO"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (IcoMuxContext);
+        }
+    }
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "image/vnd.microsoft.icon"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "ico"
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.BMP;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );   = ico_write_header,
+    ); // = ico_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );   = ico_write_packet,
+    ); // = ico_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );  = ico_write_trailer,
-    //  .flags          = AVFMT_NOTIMESTAMPS,
+    ); // = ico_write_trailer,
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }

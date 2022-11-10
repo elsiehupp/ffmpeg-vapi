@@ -1,7 +1,8 @@
 /***********************************************************
 VC-1 test bitstreams format muxer.
 @copyright 2008 Konstantin Shishkov
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,26 +20,56 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_vc1t_muxer = {
-    //  .name              = "vc1test",
-    //  .long_name         = "VC-1 test bitstream",
-    //  .extensions        = "rcv",
-    //  .priv_data_size    = sizeof(RCVContext),
-    //  .audio_codec       = AV_CODEC_ID_NONE,
-    //  .video_codec       = AV_CODEC_ID_WMV3,
+[CCode (cname="ff_vc1t_muxer", cheader="")]
+public class VC1TestOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "vc1test"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "VC-1 test bitstream"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "rcv"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (RCVContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.WMV3;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = vc1test_write_header,
+    ); // = vc1test_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = vc1test_write_packet,
+    ); // = vc1test_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = vc1test_write_trailer,
+    ); // = vc1test_write_trailer,
 }

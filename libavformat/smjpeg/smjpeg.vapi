@@ -1,7 +1,8 @@
 /***********************************************************
 SMJPEG common code
 @copyright 2011-2012 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-SMJPEG common code
+@file SMJPEG common code
 ***********************************************************/
 
 public const string SMJPEG_MAGIC;

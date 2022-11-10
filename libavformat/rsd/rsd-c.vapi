@@ -1,7 +1,8 @@
 /***********************************************************
 RSD demuxer
 @copyright 2013 James Almer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,24 +20,39 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_rsd_demuxer = {
-    //  .name           =   "rsd",
-    //  .long_name      =   "GameCube RSD",
+[CCode (cname="ff_rsd_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "rsd"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "GameCube RSD"
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     =   rsd_probe,
+    ); // = rsd_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    =   rsd_read_header,
+    ); // = rsd_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    =   rsd_read_packet,
-    //  .extensions     =   "rsd",
-    //  .codec_tag      =   (const AVCodecTag* const []){rsd_tags, 0},
-    //  .flags          =   AVFMT_GENERIC_INDEX,
+    ); // = rsd_read_packet,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "rsd"
+    //  .codec_tag =   (const AVCodecTag* const []){rsd_tags, 0},
+    //  .flags =   AVFMT_GENERIC_INDEX,
 }

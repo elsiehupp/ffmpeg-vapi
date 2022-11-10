@@ -1,6 +1,7 @@
 /***********************************************************
 RTP network protocol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,12 +22,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 public int ff_rtp_set_remote_url (
-    URLContext h,
+    URLContext url_context,
     string uri
 );
 
 public int ff_rtp_get_local_rtp_port (
-    URLContext h
+    URLContext url_context
 );
 
 } // namespace LibAVFormat

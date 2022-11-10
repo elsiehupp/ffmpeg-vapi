@@ -1,7 +1,8 @@
 /***********************************************************
 unbuffered I/O
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,32 +20,40 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/** @name Logging context. */
+/***********************************************************
+@name Logging context.
+***********************************************************/
 /*@{*/
 
-#define OFFSET(x) offsetof(URLContext,x)
-#define E AV_OPT_FLAG_ENCODING_PARAM
-#define D AV_OPT_FLAG_DECODING_PARAM
-static const AVOption options[] = {
-    {"protocol_whitelist", "List of protocols that are allowed to be used", OFFSET(protocol_whitelist), AV_OPT_TYPE_STRING, { .str = NULL },  CHAR_MIN, CHAR_MAX, D },
-    {"protocol_blacklist", "List of protocols that are not allowed to be used", OFFSET(protocol_blacklist), AV_OPT_TYPE_STRING, { .str = NULL },  CHAR_MIN, CHAR_MAX, D },
-    {"rw_timeout", "Timeout for IO operations (in microseconds)", offsetof(URLContext, rw_timeout), AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT64_MAX, AV_OPT_FLAG_ENCODING_PARAM | AV_OPT_FLAG_DECODING_PARAM },
-    { NULL }
-}
+//  #define OFFSET(x) offsetof(URLContext,x)
+//  #define E AV_OPT_FLAG_ENCODING_PARAM
+//  #define D AV_OPT_FLAG_DECODING_PARAM
+//  static const AVOption options[] = {
+//      {"protocol_whitelist", "List of protocols that are allowed to be used", OFFSET(protocol_whitelist), AV_OPT_TYPE_STRING, { .str = NULL },  CHAR_MIN, CHAR_MAX, D },
+//      {"protocol_blacklist", "List of protocols that are not allowed to be used", OFFSET(protocol_blacklist), AV_OPT_TYPE_STRING, { .str = NULL },  CHAR_MIN, CHAR_MAX, D },
+//      {"rw_timeout", "Timeout for IO operations (in microseconds)", offsetof(URLContext, rw_timeout), AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT64_MAX, AV_OPT_FLAG_ENCODING_PARAM | AV_OPT_FLAG_DECODING_PARAM },
+//      { NULL }
+//  }
 
-const AVClass ffurl_context_class = {
-    //  .class_name       = "URLContext",
-    //  .item_name        = urlcontext_to_name,
-    //  .option           = options,
-    //  .version          = LIBAVUTIL_VERSION_INT,
-    [CCode (cname="", cheader="")]
+[CCode (cname="ffurl_context_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "URLContext"
+    //  .item_name = urlcontext_to_name,
+    //  .option = options,
+    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="urlcontext_child_next", cheader="")]
     public override void *child_next (
         void *obj,
         void *prev
-    );       = urlcontext_child_next,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_urlcontext_child_class_next", cheader="")]
     public override Class child_class_next (
         Class prev
-    ); = ff_urlcontext_child_class_next,
+    );
 }
 /*@}*/

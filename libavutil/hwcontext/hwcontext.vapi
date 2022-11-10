@@ -160,7 +160,7 @@ If output_frame has an HardwareFrameContext attached, then the format of input_f
 of the formats returned by av_hwframe_transfer_get_formats (output_frame,
 AV_HWFRAME_TRANSFER_DIRECTION_TO)
 
-output_frame may be "clean" (i.e. with data/buf pointers unset), in which case the
+output_frame may be "clean" (i.e. with data/buffer pointers unset), in which case the
 data buffers will be allocated by this function using av_frame_get_buffer ().
 If output_frame.format is set, then this format will be used, otherwise (when
 output_frame.format is PixelFormat.NONE) the first acceptable format will be chosen.

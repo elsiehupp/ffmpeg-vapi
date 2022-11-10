@@ -1,7 +1,8 @@
 /***********************************************************
 nut muxer
 @copyright 2004-2007 Michael Niedermayer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,53 +20,94 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define OFFSET(x) offsetof(NUTContext, x)
-#define E AV_OPT_FLAG_ENCODING_PARAM
-static const AVOption options[] = {
-    { "syncpoints",  "NUT syncpoint behaviour",                         OFFSET(flags), AV_OPT_TYPE_FLAGS, {.i64 = 0},             INT_MIN, INT_MAX, E, "syncpoints" },
-    { "default",     "",                                                0,             AV_OPT_TYPE_CONST, {.i64 = 0},             INT_MIN, INT_MAX, E, "syncpoints" },
-    { "none",        "Disable syncpoints, low overhead and unseekable", 0,             AV_OPT_TYPE_CONST, {.i64 = NUT_PIPE},      INT_MIN, INT_MAX, E, "syncpoints" },
-    { "timestamped", "Extend syncpoints with a wallclock timestamp",    0,             AV_OPT_TYPE_CONST, {.i64 = NUT_BROADCAST}, INT_MIN, INT_MAX, E, "syncpoints" },
-    { "write_index", "Write index",                               OFFSET(write_index), AV_OPT_TYPE_BOOL,  {.i64 = 1},                   0,       1, E, },
-    { NULL },
+//  #define OFFSET(x) offsetof(NUTContext, x)
+//  #define E AV_OPT_FLAG_ENCODING_PARAM
+//  static const AVOption options[] = {
+//      { "syncpoints",  "NUT syncpoint behaviour",                         OFFSET(flags), AV_OPT_TYPE_FLAGS, {.i64 = 0},             INT_MIN, INT_MAX, E, "syncpoints" },
+//      { "default",     "",                                                0,             AV_OPT_TYPE_CONST, {.i64 = 0},             INT_MIN, INT_MAX, E, "syncpoints" },
+//      { "none",        "Disable syncpoints, low overhead and unseekable", 0,             AV_OPT_TYPE_CONST, {.i64 = NUT_PIPE},      INT_MIN, INT_MAX, E, "syncpoints" },
+//      { "timestamped", "Extend syncpoints with a wallclock timestamp",    0,             AV_OPT_TYPE_CONST, {.i64 = NUT_BROADCAST}, INT_MIN, INT_MAX, E, "syncpoints" },
+//      { "write_index", "Write index",                               OFFSET(write_index), AV_OPT_TYPE_BOOL,  {.i64 = 1},                   0,       1, E, },
+//      { NULL },
+//  }
+
+[CCode (cname="class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "nutenc"
+    //  .item_name = av_default_item_name,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-static const AVClass class = {
-    //  .class_name = "nutenc",
-    //  .item_name  = av_default_item_name,
-    //  .option     = options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
-}
-
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_nut_muxer = {
-    //  .name           = "nut",
-    //  .long_name      = "NUT",
-    //  .mime_type      = "video/x-nut",
-    //  .extensions     = "nut",
-    //  .priv_data_size = sizeof(NUTContext),
-    //  .audio_codec    = CONFIG_LIBVORBIS ? AV_CODEC_ID_VORBIS :
-                      CONFIG_LIBMP3LAME ? AV_CODEC_ID_MP3 : AV_CODEC_ID_MP2,
-    //  .video_codec    = AV_CODEC_ID_MPEG4,
+[CCode (cname="ff_nut_muxer", cheader="")]
+public class NUTOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "nut"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "NUT"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "video/x-nut"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "nut"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (NUTContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return CONFIG_LIBVORBIS ? LibAVCodec.CodecID.VORBIS : CONFIG_LIBMP3LAME ? LibAVCodec.CodecID.MP3 : LibAVCodec.CodecID.MP2,;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.MPEG4;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );   = nut_write_header,
+    ); // = nut_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );   = nut_write_packet,
+    ); // = nut_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );  = nut_write_trailer,
+    ); // = nut_write_trailer,
     [CCode (cname="", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    );         = nut_write_deinit,
-    //  .flags          = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS,
-    //  .codec_tag      = ff_nut_codec_tags,
-    //  .priv_class     = &class,
+    ); // = nut_write_deinit,
+    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS,
+    //  .codec_tag = ff_nut_codec_tags,
+    //  .priv_class = class,
 }

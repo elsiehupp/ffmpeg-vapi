@@ -1,7 +1,8 @@
 /***********************************************************
 RTMP packet utilities
 @copyright 2009 Konstantin Shishkov
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -220,7 +221,7 @@ Read RTMP packet sent by the server.
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
 public int ff_rtmp_packet_read (
-    URLContext h,
+    URLContext url_context,
     RTMPPacket packet,
     int chunk_size,
     out RTMPPacket prev_pkt,
@@ -240,7 +241,7 @@ Read internal RTMP packet sent by the server.
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
 public int ff_rtmp_packet_read_internal (
-    URLContext h,
+    URLContext url_context,
     RTMPPacket packet,
     int chunk_size,
     out RTMPPacket prev_pkt,
@@ -260,7 +261,7 @@ Send RTMP packet to the server.
 @return number of bytes written on success, negative value otherwise
 ***********************************************************/
 public int ff_rtmp_packet_write (
-    URLContext h,
+    URLContext url_context,
     RTMPPacket packet,
     int chunk_size,
     out RTMPPacket prev_pkt,

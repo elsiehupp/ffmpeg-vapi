@@ -4,7 +4,8 @@ SoX native format muxer
 
 Based on libSoX sox-fmt.c
 @copyright 2008 robs@users.sourceforge.net
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,34 +23,63 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-SoX native format muxer
+/***********************************************************
+@file SoX native format muxer
 @author Daniel Verkamp
 @see http://wiki.multimedia.cx/index.php?title=SoX_native_intermediate_format
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_sox_muxer = {
-    //  .name              = "sox",
-    //  .long_name         = "SoX native",
-    //  .extensions        = "sox",
-    //  .priv_data_size    = sizeof(SoXContext),
-    //  .audio_codec       = AV_CODEC_ID_PCM_S32LE,
-    //  .video_codec       = AV_CODEC_ID_NONE,
+[CCode (cname="ff_sox_muxer", cheader="")]
+public class SoXOutputMuxer : AVOutputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "sox"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "SoX native"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "sox"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (SoXContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.PCM_S32LE;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = sox_write_header,
+    ); // = sox_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = ff_raw_write_packet,
+    ); // = ff_raw_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = sox_write_trailer,
-    //  .flags             = AVFMT_NOTIMESTAMPS,
+    ); // = sox_write_trailer,
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }

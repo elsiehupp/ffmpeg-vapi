@@ -1,6 +1,7 @@
 /***********************************************************
 @brief Intel MediaSDK QSV public API
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

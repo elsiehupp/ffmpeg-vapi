@@ -7,7 +7,8 @@ Copyright 2007 Edward Hervey
 Copyright 2007 Nokia Corporation
 Copyright 2007 Collabora Ltd, Philippe Kalaf
 Copyright 2010 Mark Nauwelaerts
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -26,9 +27,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_h263_rfc2190_dynamic_handler = {
-    //  .codec_type        = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id          = AV_CODEC_ID_H263,
-    //  .need_parsing      = AVSTREAM_PARSE_FULL,
+    //  .codec_type = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id = LibAVCodec.CodecID.H263,
+    //  .need_parsing = AVSTREAM_PARSE_FULL,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -37,15 +38,20 @@ const RTPDynamicProtocolHandler ff_h263_rfc2190_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );      = h263_handle_packet,
-    //  .priv_data_size    = sizeof(PayloadContext),
+    ); // = h263_handle_packet,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );             = h263_close_context,
+    ); // = h263_close_context,
     //  .static_payload_id = 34,
 }

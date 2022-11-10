@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2010 David Conrad
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,12 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const struct ogg_codec ff_skeleton_codec = {
-    //  .magic = "fishead",
+    //  .magic = "fishead"
     //  .magicsize = 8,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); = skeleton_header,
+    ); // = skeleton_header,
     //  .nb_header = 0,
 }

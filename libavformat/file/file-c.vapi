@@ -1,7 +1,8 @@
 /***********************************************************
 buffered file I/O
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,100 +20,122 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static const AVOption file_options[] = {
-    { "truncate", "truncate existing files on write", offsetof(FileContext, trunc), AV_OPT_TYPE_BOOL, { .i64 = 1 }, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },
-    { "blocksize", "set I/O operation maximum block size", offsetof(FileContext, blocksize), AV_OPT_TYPE_INT, { .i64 = INT_MAX }, 1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
-    { "follow", "Follow a file as it is being written", offsetof(FileContext, follow), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 1, AV_OPT_FLAG_DECODING_PARAM },
-    { "seekable", "Sets if the file is seekable", offsetof(FileContext, seekable), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 0, AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_ENCODING_PARAM },
-    { NULL }
+//  static const AVOption file_options[] = {
+//      { "truncate", "truncate existing files on write", offsetof(FileContext, trunc), AV_OPT_TYPE_BOOL, { .i64 = 1 }, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },
+//      { "blocksize", "set I/O operation maximum block size", offsetof(FileContext, blocksize), AV_OPT_TYPE_INT, { .i64 = INT_MAX }, 1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
+//      { "follow", "Follow a file as it is being written", offsetof(FileContext, follow), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 1, AV_OPT_FLAG_DECODING_PARAM },
+//      { "seekable", "Sets if the file is seekable", offsetof(FileContext, seekable), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 0, AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_ENCODING_PARAM },
+//      { NULL }
+//  }
+
+//  static const AVOption pipe_options[] = {
+//      { "blocksize", "set I/O operation maximum block size", offsetof(FileContext, blocksize), AV_OPT_TYPE_INT, { .i64 = INT_MAX }, 1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
+//      { NULL }
+//  }
+
+[CCode (cname="file_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "file"
+    //  .item_name = av_default_item_name,
+    //  .option = file_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-static const AVOption pipe_options[] = {
-    { "blocksize", "set I/O operation maximum block size", offsetof(FileContext, blocksize), AV_OPT_TYPE_INT, { .i64 = INT_MAX }, 1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
-    { NULL }
-}
-
-static const AVClass file_class = {
-    //  .class_name = "file",
-    //  .item_name  = av_default_item_name,
-    //  .option     = file_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
-}
-
-static const AVClass pipe_class = {
-    //  .class_name = "pipe",
-    //  .item_name  = av_default_item_name,
-    //  .option     = pipe_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="pipe_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "pipe"
+    //  .item_name = av_default_item_name,
+    //  .option = pipe_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
 #if CONFIG_FILE_PROTOCOL
 
 [CCode (cname="ff_file_protocol", cheader="")]
 public class FileURLProtocol : URLProtocol {
-    //  .name                = "file",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "file"
+    [CCode (cname="file_open", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );            = file_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="file_read", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );            = file_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="file_write", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );           = file_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="file_seek", cheader="")]
     public override int64 url_seek (
-        URLContext h,
+        URLContext url_context,
         int64 pos,
         int whence
-    );            = file_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="file_close", cheader="")]
     public override int url_close (
-        URLContext h
-    );           = file_close,
-    [CCode (cname="", cheader="")]
+        URLContext url_context
+    );
+    [CCode (cname="file_get_handle", cheader="")]
     public override int url_get_file_handle (
-        URLContext h
-    ); = file_get_handle,
-    [CCode (cname="", cheader="")]
+        URLContext url_context
+    );
+    [CCode (cname="file_check", cheader="")]
     public override int url_check (
-        URLContext h,
+        URLContext url_context,
         int mask
-    );           = file_check,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="file_delete", cheader="")]
     public override int url_delete (
-        URLContext h
-    );          = file_delete,
-    [CCode (cname="", cheader="")]
+        URLContext url_context
+    );
+    [CCode (cname="file_move", cheader="")]
     public override int url_move (
         URLContext h_src,
         URLContext h_dst
-    );            = file_move,
-    //  .priv_data_size      = sizeof(FileContext),
-    //  .priv_data_class     = &file_class,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FileContext);
+        }
+    }
+    //  .priv_data_class = file_class,
+    [CCode (cname="file_open_dir", cheader="")]
     public override int url_open_dir (
-        URLContext h
-    );        = file_open_dir,
-    [CCode (cname="", cheader="")]
+        URLContext url_context
+    );
+    [CCode (cname="file_read_dir", cheader="")]
     public override int url_read_dir (
-        URLContext h,
+        URLContext url_context,
         out AVIODirEntry next
-    );        = file_read_dir,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="file_close_dir", cheader="")]
     public override int url_close_dir (
-        URLContext h
-    );       = file_close_dir,
-    //  .default_whitelist   = "file,crypto"
+        URLContext url_context
+    );
+    //  .default_whitelist = "file,crypto"
 }
 
 #endif /* CONFIG_FILE_PROTOCOL */
@@ -121,37 +144,47 @@ public class FileURLProtocol : URLProtocol {
 
 [CCode (cname="ff_pipe_protocol", cheader="")]
 public class URLProtocol : URLProtocol ff_pipe_protocol = {
-    //  .name                = "pipe",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "pipe"
+    [CCode (cname="pipe_open", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );            = pipe_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="file_read", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );            = file_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="file_write", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );           = file_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="file_get_handle", cheader="")]
     public override int url_get_file_handle (
-        URLContext h
-    ); = file_get_handle,
-    [CCode (cname="", cheader="")]
+        URLContext url_context
+    );
+    [CCode (cname="file_check", cheader="")]
     public override int url_check (
-        URLContext h,
+        URLContext url_context,
         int mask
-    );           = file_check,
-    //  .priv_data_size      = sizeof(FileContext),
-    //  .priv_data_class     = &pipe_class,
-    //  .default_whitelist   = "crypto"
+    );
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FileContext);
+        }
+    }
+    //  .priv_data_class = pipe_class,
+    //  .default_whitelist = "crypto"
 }
 
 #endif /* CONFIG_PIPE_PROTOCOL */

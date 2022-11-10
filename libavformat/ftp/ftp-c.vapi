@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2013 Lukasz Marek <lukasz.m.luki@gmail.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,68 +21,78 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [CCode (cname="ff_ftp_protocol", cheader="")]
 public class FTPURLProtocol : URLProtocol {
-    //  .name                = "ftp",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "ftp"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );            = ftp_open,
+    ); // = ftp_open,
     [CCode (cname="", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );            = ftp_read,
+    ); // = ftp_read,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );           = ftp_write,
+    ); // = ftp_write,
     [CCode (cname="", cheader="")]
     public override int64 url_seek (
-        URLContext h,
+        URLContext url_context,
         int64 pos,
         int whence
-    );            = ftp_seek,
+    ); // = ftp_seek,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );           = ftp_close,
+        URLContext url_context
+    ); // = ftp_close,
     [CCode (cname="", cheader="")]
     public override int url_get_file_handle (
-        URLContext h
-    ); = ftp_get_file_handle,
+        URLContext url_context
+    ); // = ftp_get_file_handle,
     [CCode (cname="", cheader="")]
     public override int url_shutdown (
-        URLContext h,
+        URLContext url_context,
         int flags
-    );        = ftp_shutdown,
-    //  .priv_data_size      = sizeof(FTPContext),
-    //  .priv_data_class     = &ftp_context_class,
+    ); // = ftp_shutdown,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FTPContext);
+        }
+    }
+    //  .priv_data_class = ftp_context_class,
     [CCode (cname="", cheader="")]
     public override int url_open_dir (
-        URLContext h
-    );        = ftp_open_dir,
+        URLContext url_context
+    ); // = ftp_open_dir,
     [CCode (cname="", cheader="")]
     public override int url_read_dir (
-        URLContext h,
+        URLContext url_context,
         out AVIODirEntry next
-    );        = ftp_read_dir,
+    ); // = ftp_read_dir,
     [CCode (cname="", cheader="")]
     public override int url_close_dir (
-        URLContext h
-    );       = ftp_close_dir,
+        URLContext url_context
+    ); // = ftp_close_dir,
     [CCode (cname="", cheader="")]
     public override int url_delete (
-        URLContext h
-    );          = ftp_delete,
+        URLContext url_context
+    ); // = ftp_delete,
     [CCode (cname="", cheader="")]
     public override int url_move (
         URLContext h_src,
         URLContext h_dst
-    );            = ftp_move,
-    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    //  .default_whitelist   = "tcp",
+    ); // = ftp_move,
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    //  .default_whitelist = "tcp"
 }

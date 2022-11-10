@@ -1,7 +1,8 @@
 /***********************************************************
 QCP format (.qcp) demuxer
 @copyright 2009 Kenan Gillet
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,30 +20,44 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-QCP format (.qcp) demuxer
+/***********************************************************
+@file QCP format (.qcp) demuxer
 @author Kenan Gillet
 @see RFC 3625: "The QCP File Format and Media Types for Speech Data"
     http://tools.ietf.org/html/rfc3625
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_qcp_demuxer = {
-    //  .name           = "qcp",
-    //  .long_name      = "QCP",
-    //  .priv_data_size = sizeof(QCPContext),
+[CCode (cname="ff_qcp_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "qcp"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "QCP"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (QCPContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = qcp_probe,
+    ); // = qcp_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = qcp_read_header,
+    ); // = qcp_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = qcp_read_packet,
+    ); // = qcp_read_packet,
 }

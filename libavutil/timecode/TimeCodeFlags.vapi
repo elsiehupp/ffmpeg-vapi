@@ -1,7 +1,8 @@
 /***********************************************************
 @copyright 2006 Smartjog S.A.S, Baptiste Coudurier <baptiste.coudurier@gmail.com>
 @copyright 2011-2012 Smartjog S.A.S, Clément Bœsch <clement.boesch@smartjog.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-Timecode helpers header
+@file Timecode helpers header
 ***********************************************************/
 
 [Flags]

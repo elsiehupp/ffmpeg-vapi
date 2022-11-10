@@ -1,7 +1,8 @@
 /***********************************************************
 Image format
 @copyright 2014 Michael Niedermayer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

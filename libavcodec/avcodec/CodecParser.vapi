@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup libavc
+@file @ingroup libavc
 LibAVCodec external API header
 ***********************************************************/
 
@@ -38,14 +38,14 @@ public delegate int ParserParseDelegate (
     CodecParserContext s,
     CodecContext avctx,
     out uint8[] poutbuf, out int poutbuf_size,
-    uint8[] buf, int buf_size
+    uint8[] buffer, int buf_size
 );
 public delegate void ParserCloseDelegate (
     CodecParserContext s
 );
 public delegate int ParserSplitDelegate (
     CodecContext avctx,
-    uint8[] buf,
+    uint8[] buffer,
     int buf_size
 );
 
@@ -57,7 +57,7 @@ public struct CodecParser {
     [CCode (cname="codec_ids")]
     public int codec_ids[5];
     [CCode (cname="priv_data_size")]
-    public int priv_data_size;
+    public abstract size_t priv_data_size { public get; }
 
     [CCode (cname="parser_init")]
     public ParserInitDelegate parser_init;
@@ -146,7 +146,7 @@ public LibAVUtil.PixelFormat avcodec_find_best_pix_fmt_of_list (
 /***********************************************************
 @brief Fill LibAVUtil.Frame audio data and linesize pointers.
 
-The buffer buf must be a preallocated buffer with a size big enough
+The buffer buffer must be a preallocated buffer with a size big enough
 to contain the specified samples amount. The filled LibAVUtil.Frame data
 pointers will point to this buffer.
 
@@ -159,7 +159,7 @@ planar audio.
     frame.extended_data, frame.linesize[0].
 @param nb_channels channel count
 @param sample_fmt sample format
-@param buf buffer to use for frame data
+@param buffer buffer to use for frame data
 @param buf_size size of buffer
 @param align plane size sample alignment (0 = default)
 @return    >=0 on success, negative error code on failure
@@ -171,7 +171,7 @@ public int avcodec_fill_audio_frame (
     LibAVUtil.Frame frame,
     int nb_channels,
     LibAVUtil.SampleFormat sample_fmt,
-    uint8[] buf,
+    uint8[] buffer,
     int buf_size,
     int align
 );

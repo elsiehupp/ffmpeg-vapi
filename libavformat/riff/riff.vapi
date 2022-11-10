@@ -1,7 +1,8 @@
 /***********************************************************
 RIFF common functions and data
 @copyright 2000 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-internal header for RIFF based (de)muxers
+@file internal header for RIFF based (de)muxers
 do NOT include this in end user applications
 ***********************************************************/
 
@@ -140,21 +140,21 @@ public struct AVCodecGuid {
 
 //  extern const AVCodecGuid ff_codec_wav_guids[];
 
-//  public const string FF_PRI_GUID \
-//      "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x " \
+//  public const string FF_PRI_GUID
+//      "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x "
 //      "{%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x}"
 
-//  #define FF_ARG_GUID (g) \
-//      g[0], g[1], g[2], g[3], g[4], g[5], g[6], g[7], \
-//      g[8], g[9], g[10], g[11], g[12], g[13], g[14], g[15],\
-//      g[3], g[2], g[1], g[0], g[5], g[4], g[7], g[6], \
+//  #define FF_ARG_GUID (g)
+//      g[0], g[1], g[2], g[3], g[4], g[5], g[6], g[7],
+//      g[8], g[9], g[10], g[11], g[12], g[13], g[14], g[15],
+//      g[3], g[2], g[1], g[0], g[5], g[4], g[7], g[6],
 //      g[8], g[9], g[10], g[11], g[12], g[13], g[14], g[15]
 
-//  #define FF_MEDIASUBTYPE_BASE_GUID \
+//  #define FF_MEDIASUBTYPE_BASE_GUID
 //      0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0xAA, 0x00, 0x38, 0x9B, 0x71
-//  #define FF_AMBISONIC_BASE_GUID \
+//  #define FF_AMBISONIC_BASE_GUID
 //      0x21, 0x07, 0xD3, 0x11, 0x86, 0x44, 0xC8, 0xC1, 0xCA, 0x00, 0x00, 0x00
-//  #define FF_BROKEN_BASE_GUID \
+//  #define FF_BROKEN_BASE_GUID
 //      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0xAA
 
 public static int ff_guidcmp (

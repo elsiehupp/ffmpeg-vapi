@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2012 Nicolas George
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,22 +21,32 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 [CCode (cname="ff_data_protocol", cheader="")]
 public class DataURLProtocol : URLProtocol {
-    //  .name           = "data",
-    [CCode (cname="", cheader="")]
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "data"
+    [CCode (cname="data_open", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );       = data_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="data_close", cheader="")]
     public override int url_close (
-        URLContext h
-    );      = data_close,
-    [CCode (cname="", cheader="")]
+        URLContext url_context
+    );
+    [CCode (cname="data_read", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );       = data_read,
-    //  .priv_data_size = sizeof(DataContext),
+    );
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (DataContext);
+        }
+    }
 }

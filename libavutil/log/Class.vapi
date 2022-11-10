@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -32,7 +33,7 @@ public abstract class Class {
     context structure type to which the Class is associated.
     ***********************************************************/
     [CCode (cname="class_name")]
-    public string class_name;
+    public abstract string class_name { public get; }
 
     /***********************************************************
     @brief A pointer to a function which returns the name of a context

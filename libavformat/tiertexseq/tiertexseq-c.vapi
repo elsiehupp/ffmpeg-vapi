@@ -1,7 +1,8 @@
 /***********************************************************
 Tiertex Limited SEQ File Demuxer
 @copyright 2006 Gregory Montoir (cyx@users.sourceforge.net)
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,31 +20,45 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Tiertex Limited SEQ file demuxer
+/***********************************************************
+@file Tiertex Limited SEQ file demuxer
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_tiertexseq_demuxer = {
-    //  .name           = "tiertexseq",
-    //  .long_name      = "Tiertex Limited SEQ",
-    //  .priv_data_size = sizeof(SeqDemuxContext),
+[CCode (cname="ff_tiertexseq_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "tiertexseq"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "Tiertex Limited SEQ"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (SeqDemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = seq_probe,
+    ); // = seq_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = seq_read_header,
+    ); // = seq_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = seq_read_packet,
+    ); // = seq_read_packet,
     [CCode (cname="", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = seq_read_close,
+    ); // = seq_read_close,
 }

@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-Public dictionary API.
+@file Public dictionary API.
 @deprecated
 LibAVUtil.Dictionary is provided for compatibility with libav. It is both in
 implementation as well as API inefficient. It does not scale and is

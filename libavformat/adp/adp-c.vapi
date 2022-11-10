@@ -1,7 +1,8 @@
 /***********************************************************
 ADP demuxer
 @copyright 2013 James Almer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,9 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_adp_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_adp_demuxer = {
-    //  .name           = "adp",
-    //  .long_name      = "ADP",
+public class InputDemuxer : AVInputFormat ff_adp_demuxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "adp";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "ADP";
+        }
+    }
     [CCode (cname="adp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -36,5 +47,10 @@ public class InputFormat : AVInputFormat ff_adp_demuxer = {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .extensions     = "adp,dtk",
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "adp,dtk";
+        }
+    }
 }

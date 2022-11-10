@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2001 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -31,9 +32,9 @@ public const size_t PROBE_BUF_MAX;
 public const size_t MAX_PROBE_PACKETS;
 
 //  #ifdef DEBUG
-//  #    define hex_dump_debug (class, buf, size) av_hex_dump_log (class, AV_LOG_DEBUG, buf, size)
+//  #    define hex_dump_debug (class, buffer, size) av_hex_dump_log (class, AV_LOG_DEBUG, buffer, size)
 //  #else
-//  #    define hex_dump_debug (class, buf, size) do { if (0) av_hex_dump_log (class, AV_LOG_DEBUG, buf, size); } while (0)
+//  #    define hex_dump_debug (class, buffer, size) do { if (0) av_hex_dump_log (class, AV_LOG_DEBUG, buffer, size); } while (0)
 //  #endif
 
 public struct AVCodecTag {
@@ -235,7 +236,7 @@ public int ff_mkdir_p (
 );
 
 public string ff_data_to_hex (
-    string buf,
+    string buffer,
     uint8[] src,
     int size,
     int lowercase
@@ -364,14 +365,14 @@ either a \\n, a \\0 or EOF. The returned string is always \\0-terminated,
 and may be truncated if the buffer is too small.
 
 @param io_context the read-only AVIOContext
-@param buf buffer to store the read line
+@param buffer buffer to store the read line
 @param maxlen size of the buffer
 @return the length of the string written in the buffer, not including the
         final \\0
 ***********************************************************/
 public int ff_get_line (
     AVIOContext io_context,
-    string buf,
+    string buffer,
     int maxlen
 );
 
@@ -379,13 +380,13 @@ public int ff_get_line (
 Same as ff_get_line but strip the white-space characters in the text tail
 
 @param io_context the read-only AVIOContext
-@param buf buffer to store the read line
+@param buffer buffer to store the read line
 @param maxlen size of the buffer
 @return the length of the string written in the buffer
 ***********************************************************/
 public int ff_get_chomp_line (
     AVIOContext io_context,
-    string buf,
+    string buffer,
     int maxlen
 );
 
@@ -530,7 +531,7 @@ public LibAVCodec.CodecID ff_guess_image2_codec (
 
 /***********************************************************
 Perform a binary search using av_index_search_timestamp () and
-public class InputFormat : AVInputFormat.read_timestamp ().
+public class InputDemuxer : AVInputFormat.read_timestamp ().
 
 @param target_ts target timestamp in the time base of the given stream
 @param stream_index stream number
@@ -703,7 +704,7 @@ Select a PCM codec based on the given parameters.
                uint, the 2nd bit indicates if 16-bit should be signed or
                uint, etc... This is useful for formats such as WAVE where
                only 8-bit is uint and all other bit depths are signed.
-@return a PCM codec id or AV_CODEC_ID_NONE
+@return a PCM codec id or LibAVCodec.CodecID.NONE
 ***********************************************************/
 public LibAVCodec.CodecID ff_get_pcm_codec_id (
     int bps,
@@ -948,11 +949,11 @@ public int ff_get_packet_palette (
 );
 
 /***********************************************************
-Finalize buf into extradata and set its size appropriately.
+Finalize buffer into extradata and set its size appropriately.
 ***********************************************************/
 public int ff_bprint_to_codecpar_extradata (
     LibAVCodec.CodecParameters par,
-    LibAVUtil.BPrintBuffer buf
+    LibAVUtil.BPrintBuffer buffer
 );
 
 /***********************************************************

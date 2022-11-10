@@ -1,7 +1,8 @@
 /***********************************************************
 raw FLAC muxer
 @copyright 2009 Justin Ruggles
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

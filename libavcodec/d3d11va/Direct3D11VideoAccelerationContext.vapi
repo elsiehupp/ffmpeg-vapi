@@ -3,7 +3,8 @@
 
 @copyright 2009 Laurent Aimar
 @copyright 2015 Steve Lhomme
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -25,8 +26,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup lavc_codec_hwaccel_d3d11va
+@file @ingroup lavc_codec_hwaccel_d3d11va
 Public LibAVCodec D3D11VA header.
 ***********************************************************/
 

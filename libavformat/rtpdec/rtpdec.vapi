@@ -2,7 +2,8 @@
 RTP demuxer definitions
 @copyright 2002 Fabrice Bellard
 @copyright 2006 Ryan Martell <rdm4@martellventures.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -131,8 +132,8 @@ Packet parsing for "private" payloads in the RTP specs.
 @param packet packet in which to write the parsed data
 @param timestamp pointer to the RTP timestamp of the input data, can be
                  updated by the function if returning older, buffered data
-@param buf pointer to raw RTP packet data
-@param len length of buf
+@param buffer pointer to raw RTP packet data
+@param len length of buffer
 @param seq RTP sequence number of the packet
 @param flags flags from the RTP packet header (RTP_FLAG_*)
 ***********************************************************/
@@ -142,7 +143,7 @@ public delegate int DynamicPayloadPacketHandlerProc (
     AVStream st,
     LibAVCodec.Packet packet,
     uint32[] timestamp,
-    uint8[] buf,
+    uint8[] buffer,
     int len,
     uint16 seq,
     int flags
@@ -195,8 +196,8 @@ public abstract class RTPDynamicProtocolHandler {
     @param packet packet in which to write the parsed data
     @param timestamp pointer to the RTP timestamp of the input data, can be
                     updated by the function if returning older, buffered data
-    @param buf pointer to raw RTP packet data
-    @param len length of buf
+    @param buffer pointer to raw RTP packet data
+    @param len length of buffer
     @param seq RTP sequence number of the packet
     @param flags flags from the RTP packet header (RTP_FLAG_*)
     ***********************************************************/
@@ -206,7 +207,7 @@ public abstract class RTPDynamicProtocolHandler {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
@@ -220,7 +221,7 @@ public abstract class RTPDynamicProtocolHandler {
 
 public struct RTPPacket {
     public uint16 seq;
-    public uint8[] buf;
+    public uint8[] buffer;
     public int len;
     public int64 recvtime;
     public RTPPacket *next;
@@ -313,7 +314,7 @@ public struct RTPDemuxContext {
     public int ff_rtp_parse_packet (
         RTPDemuxContext rtp_demux_context,
         LibAVCodec.Packet packet,
-        out uint8[] buf,
+        out uint8[] buffer,
         int len
     );
     public void ff_rtp_parse_close (

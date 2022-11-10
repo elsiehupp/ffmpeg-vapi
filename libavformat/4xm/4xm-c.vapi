@@ -1,7 +1,8 @@
 /***********************************************************
 4X Technologies .4xm File Demuxer (no muxer)
 @copyright 2003  The FFmpeg project
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,19 +20,33 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-4X Technologies file demuxer
+/***********************************************************
+@file 4X Technologies file demuxer
 by Mike Melanson (melanson@pcisys.net)
 for more information on the .4xm file format, visit:
   http://www.pcisys.net/~melanson/codecs/
 ***********************************************************/
 
 [CCode (cname="ff_fourxm_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_fourxm_demuxer = {
-    //  .name           = "4xm",
-    //  .long_name      = "4X Technologies",
-    //  .priv_data_size = sizeof(FourxmDemuxContext),
+public class FourXMInputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "4xm";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            "4X Technologies";
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FourxmDemuxContext);
+        }
+    }
     [CCode (cname="fourxm_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context

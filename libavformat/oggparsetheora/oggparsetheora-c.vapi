@@ -20,27 +20,27 @@
     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
     DEALINGS IN THE SOFTWARE.
-*/
+***********************************************************/
 
 const struct ogg_codec ff_theora_codec = {
-    //  .magic     = "\200theora",
+    //  .magic = "\200theora"
     //  .magicsize = 7,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    );    = theora_header,
+    ); // = theora_header,
     [CCode (cname="", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    );    = theora_packet,
+    ); // = theora_packet,
     [CCode (cname="", cheader="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
-    );   = theora_gptopts,
+    ); // = theora_gptopts,
     //  .nb_header = 3,
 }

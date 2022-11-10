@@ -23,22 +23,22 @@ furnished to do so, subject to the following conditions:
 ***********************************************************/
 
 const struct ogg_codec ff_vorbis_codec = {
-    //  .magic     = "\001vorbis",
+    //  .magic = "\001vorbis"
     //  .magicsize = 7,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    );    = vorbis_header,
+    ); // = vorbis_header,
     [CCode (cname="", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    );    = vorbis_packet,
+    ); // = vorbis_packet,
     [CCode (cname="", cheader="")]
     public override void cleanup (
         AVFormatContext format_context,
         int idx
-    );   = vorbis_cleanup,
+    ); // = vorbis_cleanup,
     //  .nb_header = 3,
 }

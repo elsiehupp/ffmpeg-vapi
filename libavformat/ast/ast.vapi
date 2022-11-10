@@ -1,7 +1,8 @@
 /***********************************************************
 AST common code
 @copyright 2012 James Almer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

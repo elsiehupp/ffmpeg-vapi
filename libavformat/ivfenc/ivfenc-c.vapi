@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2010 Reimar Döffinger
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -18,39 +19,69 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static const AVCodecTag codec_ivf_tags[] = {
-    { AV_CODEC_ID_VP8,  MKTAG('V', 'P', '8', '0') },
-    { AV_CODEC_ID_VP9,  MKTAG('V', 'P', '9', '0') },
-    { AV_CODEC_ID_AV1,  MKTAG('A', 'V', '0', '1') },
-    { AV_CODEC_ID_NONE, 0 }
-}
+//  static const AVCodecTag codec_ivf_tags[] = {
+//      { LibAVCodec.CodecID.VP8,  MKTAG('V', 'P', '8', '0') },
+//      { LibAVCodec.CodecID.VP9,  MKTAG('V', 'P', '9', '0') },
+//      { LibAVCodec.CodecID.AV1,  MKTAG('A', 'V', '0', '1') },
+//      { LibAVCodec.CodecID.NONE, 0 }
+//  }
 
-[CCode (cname="", cheader="")]
-public class OutputFormat : AVOutputFormat ff_ivf_muxer = {
-    //  .priv_data_size = sizeof(IVFEncContext),
-    //  .name         = "ivf",
-    //  .long_name    = "On2 IVF",
-    //  .extensions   = "ivf",
-    //  .audio_codec  = AV_CODEC_ID_NONE,
-    //  .video_codec  = AV_CODEC_ID_VP8,
+[CCode (cname="ff_ivf_muxer", cheader="")]
+public class IVFOutputMuxer : AVOutputFormat {
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (IVFEncContext);
+        }
+    }
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "ivf"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "On2 IVF"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "ivf"
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.VP8;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); = ivf_write_header,
+    ); // = ivf_write_header,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    ); = ivf_write_packet,
+    ); // = ivf_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); = ivf_write_trailer,
+    ); // = ivf_write_trailer,
     [CCode (cname="", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); = ivf_check_bitstream,
-    //  .codec_tag    = (const AVCodecTag* const []){ codec_ivf_tags, 0 },
+    ); // = ivf_check_bitstream,
+    //  .codec_tag = (const AVCodecTag* const []){ codec_ivf_tags, 0 },
 }

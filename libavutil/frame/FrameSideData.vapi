@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@ingroup lavu_frame
+@file @ingroup lavu_frame
 reference-counted frame API
 ***********************************************************/
 
@@ -40,7 +39,7 @@ public struct FrameSideData {
     public int size;
     [CCode (cname="metadata")]
     public LibAVUtil.Dictionary[] metadata;
-    [CCode (cname="buf")]
+    [CCode (cname="buffer")]
     public LibAVUtil.BufferRef buffer;
 }
 

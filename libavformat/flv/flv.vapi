@@ -2,7 +2,8 @@
 FLV common header
 
 @copyright 2006 The FFmpeg Project
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -23,8 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-FLV common header
+@file FLV common header
 ***********************************************************/
 
 /***********************************************************

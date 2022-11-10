@@ -1,7 +1,8 @@
 /***********************************************************
 MPEG-1/2 muxer and demuxer common defines
 @copyright 2000, 2001, 2002 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -67,7 +68,7 @@ public const int lpcm_freq_tab[4]; // = { 48000, 96000, 44100, 32000 }
 Parse MPEG-PES five-byte timestamp
 ***********************************************************/
 public static int64 ff_parse_pes_pts (
-    uint8[] buf
+    uint8[] buffer
 );
 
 } // namespace LibAVFormat

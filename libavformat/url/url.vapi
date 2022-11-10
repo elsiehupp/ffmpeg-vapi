@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file
-unbuffered private I/O API
+@file unbuffered private I/O API
 ***********************************************************/
 [Flags]
 public enum URLProtocolFlags {
@@ -73,7 +72,7 @@ public struct URLContext {
 public abstract class URLProtocol {
     public string name;
     public abstract int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
     );
@@ -83,7 +82,7 @@ public abstract class URLProtocol {
     for those nested protocols.
     ***********************************************************/
     public abstract int url_open2 (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags,
         out LibAVUtil.Dictionary options
@@ -109,67 +108,67 @@ public abstract class URLProtocol {
     retry_transfer_wrapper in avio.c.
     ***********************************************************/
     public abstract int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
     );
     public abstract int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
     );
     public abstract int64 url_seek (
-        URLContext h,
+        URLContext url_context,
         int64 pos,
         int whence
     );
     public abstract int url_close (
-        URLContext h
+        URLContext url_context
     );
     public abstract int url_read_pause (
-        URLContext h,
+        URLContext url_context,
         int pause
     );
     public abstract int64 url_read_seek (
-        URLContext h,
+        URLContext url_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
     public abstract int url_get_file_handle (
-        URLContext h
+        URLContext url_context
     );
     public abstract int url_get_multi_file_handle (
-        URLContext h,
+        URLContext url_context,
         out int[] handles,
         out int numhandles
     );
     public abstract int url_get_short_seek (
-        URLContext h
+        URLContext url_context
     );
     public abstract int url_shutdown (
-        URLContext h,
+        URLContext url_context,
         int flags
     );
     public int priv_data_size;
     public LibAVUtil.Class priv_data_class;
     public int flags;
     public abstract int url_check (
-        URLContext h,
+        URLContext url_context,
         int mask
     );
     public abstract int url_open_dir (
-        URLContext h
+        URLContext url_context
     );
     public abstract int url_read_dir (
-        URLContext h,
+        URLContext url_context,
         out AVIODirEntry next
     );
     public abstract int url_close_dir (
-        URLContext h
+        URLContext url_context
     );
     public abstract int url_delete (
-        URLContext h
+        URLContext url_context
     );
     public abstract int url_move (
         URLContext h_src,
@@ -278,7 +277,7 @@ public int ffurl_handshake (
 
 /***********************************************************
 Read up to size bytes from the resource accessed by h, and store
-the read bytes in buf.
+the read bytes in buffer.
 
 @return The number of bytes actually read, or a negative value
 corresponding to an LibAVUtil.ErrorCode code in case of error. A value of zero
@@ -286,8 +285,8 @@ indicates that it is not possible to read more from the accessed
 resource (except if the value of the size argument is also zero).
 ***********************************************************/
 public int ffurl_read (
-    URLContext h,
-    uchar[] buf,
+    URLContext url_context,
+    uchar[] buffer,
     int size
 );
 
@@ -299,20 +298,20 @@ unnecessary, if the return value is < size then it is
 certain there was either an error or the end of file was reached.
 ***********************************************************/
 public int ffurl_read_complete (
-    URLContext h,
-    uchar[] buf,
+    URLContext url_context,
+    uchar[] buffer,
     int size
 );
 
 /***********************************************************
-Write size bytes from buf to the resource accessed by h.
+Write size bytes from buffer to the resource accessed by h.
 
 @return the number of bytes actually written, or a negative value
 corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
 public int ffurl_write (
-    URLContext h,
-    uchar[] buf,
+    URLContext url_context,
+    uchar[] buffer,
     int size
 );
 
@@ -331,24 +330,24 @@ the beginning of the file. You can use this feature together with
 SEEK_CUR to read the current file position.
 ***********************************************************/
 public int64 ffurl_seek (
-    URLContext h,
+    URLContext url_context,
     int64 pos,
     int whence
 );
 
 /***********************************************************
-Close the resource accessed by the URLContext h, and free the
+Close the resource accessed by the URLContext url_context, and free the
 memory used by it. Also set the URLContext pointer to NULL.
 
 @return a negative value if an error condition occurred, 0
 otherwise
 ***********************************************************/
 public int ffurl_closep (
-    out URLContext h
+    out URLContext url_context
 );
 
 public int ffurl_close (
-    URLContext h
+    URLContext url_context
 );
 
 /***********************************************************
@@ -357,7 +356,7 @@ if the operation is not supported by h, or another negative value
 corresponding to an LibAVUtil.ErrorCode error code in case of failure.
 ***********************************************************/
 public int64 ffurl_size (
-    URLContext h
+    URLContext url_context
 );
 
 /***********************************************************
@@ -367,7 +366,7 @@ will return only the RTP file descriptor, not the RTCP file descriptor.
 @return the file descriptor associated with this URL, or <0 on error.
 ***********************************************************/
 public int ffurl_get_file_handle (
-    URLContext h
+    URLContext url_context
 );
 
 /***********************************************************
@@ -376,7 +375,7 @@ Return the file descriptors associated with this URL.
 @return 0 on success or <0 on error.
 ***********************************************************/
 public int ffurl_get_multi_file_handle (
-    URLContext h,
+    URLContext url_context,
     out int[] handles,
     out int numhandles
 );
@@ -387,7 +386,7 @@ Return the current short seek threshold value for this URL.
 @return threshold (>0) on success or <=0 on error.
 ***********************************************************/
 public int ffurl_get_short_seek (
-    URLContext h
+    URLContext url_context
 );
 
 /***********************************************************
@@ -401,7 +400,7 @@ is to be shutdown
 otherwise
 ***********************************************************/
 public int ffurl_shutdown (
-    URLContext h,
+    URLContext url_context,
     int flags
 );
 
@@ -417,12 +416,12 @@ public int ff_check_interrupt (
 udp.c
 ***********************************************************/
 public int ff_udp_set_remote_url (
-    URLContext h,
+    URLContext url_context,
     string uri
 );
 
 public int ff_udp_get_local_port (
-    URLContext h
+    URLContext url_context
 );
 
 /***********************************************************
@@ -460,13 +459,13 @@ public int ff_url_join (
 /***********************************************************
 Convert a relative url into an absolute url, given a base url.
 
-@param buf the buffer where output absolute url is written
-@param size the size of buf
-@param base the base url, may be equal to buf.
+@param buffer the buffer where output absolute url is written
+@param size the size of buffer
+@param base the base url, may be equal to buffer.
 @param rel the new url, which is interpreted relative to base
 ***********************************************************/
 public void ff_make_absolute_url (
-    string buf,
+    string buffer,
     int size,
     string base_url,
     string rel

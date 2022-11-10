@@ -1,7 +1,8 @@
 /***********************************************************
 @brief Rational numbers
 @copyright 2003 Michael Niedermayer <michaelni@gmx.at>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -22,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@ingroup lavu_math_rational
+@file @ingroup lavu_math_rational
 Utilties for rational number calculation.
 @author Michael Niedermayer <michaelni@gmx.at>
 ***********************************************************/

@@ -1,7 +1,8 @@
 /***********************************************************
 RTP parser for VP9 payload format (draft version 02) - experimental
 @copyright 2015 Thomas Volkert <thomas@homer-conferencing.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,18 +21,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const RTPDynamicProtocolHandler ff_vp9_dynamic_handler = {
-    //  .enc_name         = "VP9",
-    //  .codec_type       = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id         = AV_CODEC_ID_VP9,
-    //  .priv_data_size   = sizeof(PayloadContext),
+    //  .enc_name = "VP9"
+    //  .codec_type = AVMEDIA_TYPE_VIDEO,
+    //  .codec_id = LibAVCodec.CodecID.VP9,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (PayloadContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int init (
         AVFormatContext format_context
-    );             = vp9_init,
+    ); // = vp9_init,
     [CCode (cname="", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    );            = vp9_close_context,
+    ); // = vp9_close_context,
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (
@@ -40,9 +46,9 @@ const RTPDynamicProtocolHandler ff_vp9_dynamic_handler = {
         AVStream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
-        uint8[] buf,
+        uint8[] buffer,
         int len,
         uint16 seq,
         int flags
-    );     = vp9_handle_packet
+    ); // = vp9_handle_packet
 }

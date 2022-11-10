@@ -1,7 +1,8 @@
 /***********************************************************
 BRender PIX image demuxer
 @copyright 2014 Michael Niedermayer
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,31 +20,57 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static const AVClass image2_brender_pix_class = {
-    //  .class_name = "brender_pix demuxer",
-    //  .item_name  = av_default_item_name,
-    //  .option     = ff_img_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="image2_brender_pix_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "brender_pix demuxer"
+    //  .item_name = av_default_item_name,
+    //  .option = ff_img_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_image2_brender_pix_demuxer = {
-    //  .name           = "brender_pix",
-    //  .long_name      = "BRender PIX image",
-    //  .priv_data_size = sizeof(VideoDemuxData),
+[CCode (cname="ff_image2_brender_pix_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "brender_pix"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "BRender PIX image"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (VideoDemuxData);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = brender_read_probe,
+    ); // = brender_read_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = ff_img_read_header,
+    ); // = ff_img_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ff_img_read_packet,
-    //  .raw_codec_id   = AV_CODEC_ID_BRENDER_PIX,
-    //  .priv_class     = &image2_brender_pix_class,
+    ); // = ff_img_read_packet,
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.BRENDER_PIX;
+        }
+    }
+    //  .priv_class = image2_brender_pix_class,
 }

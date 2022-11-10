@@ -20,8 +20,7 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 /***********************************************************
-@file
-@ingroup libavc
+@file @ingroup libavc
 LibAVCodec version macros.
 ***********************************************************/
 
@@ -34,11 +33,11 @@ public const int LIBAVCODEC_VERSION_MINOR;
 [CCode (cname="LIBAVCODEC_VERSION_MICRO", cheader_filename="ffmpeg/libavcodec/version.h")]
 public const int LIBAVCODEC_VERSION_MICRO;
 
-//  #define LIBAVCODEC_VERSION_INT AV_VERSION_INT (LIBAVCODEC_VERSION_MAJOR, \
-//        LIBAVCODEC_VERSION_MINOR, \
+//  #define LIBAVCODEC_VERSION_INT AV_VERSION_INT (LIBAVCODEC_VERSION_MAJOR,
+//        LIBAVCODEC_VERSION_MINOR,
 //        LIBAVCODEC_VERSION_MICRO)
-//  #define LIBAVCODEC_VERSION AV_VERSION (LIBAVCODEC_VERSION_MAJOR, \
-//        LIBAVCODEC_VERSION_MINOR, \
+//  #define LIBAVCODEC_VERSION AV_VERSION (LIBAVCODEC_VERSION_MAJOR,
+//        LIBAVCODEC_VERSION_MINOR,
 //        LIBAVCODEC_VERSION_MICRO)
 //  #define LIBAVCODEC_BUILD LIBAVCODEC_VERSION_INT
 

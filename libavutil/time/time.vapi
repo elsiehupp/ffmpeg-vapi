@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2000-2003 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

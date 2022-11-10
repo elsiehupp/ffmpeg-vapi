@@ -23,20 +23,46 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ***********************************************************/
 
-static const AVClass aa_class = {
-    //  .class_name = "aa",
-    //  .item_name  = av_default_item_name,
-    //  .option     = aa_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="aa_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return "aa";
+        }
+    }
+    //  .item_name = av_default_item_name,
+    //  .option = aa_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
 [CCode (cname="ff_aa_demuxer", cheader="")]
-public class InputFormat : AVInputFormat ff_aa_demuxer = {
-    //  .name           = "aa",
-    //  .long_name      = "Audible AA format files",
-    //  .priv_class     = &aa_class,
-    //  .priv_data_size = sizeof(AADemuxContext),
-    //  .extensions     = "aa",
+public class AAInputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return "aa";
+        }
+    }
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return "Audible AA format files";
+        }
+    }
+    //  .priv_class = aa_class,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (AADemuxContext);
+        }
+    }
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return "aa";
+        }
+    }
     [CCode (cname="aa_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -61,5 +87,5 @@ public class InputFormat : AVInputFormat ff_aa_demuxer = {
     public override int read_close (
         AVFormatContext format_context
     );
-    //  .flags          = AVFMT_NO_BYTE_SEEK | AVFMT_NOGENSEARCH,
+    //  .flags = AVFMT_NO_BYTE_SEEK | AVFMT_NOGENSEARCH,
 }

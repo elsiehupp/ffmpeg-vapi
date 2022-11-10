@@ -1,6 +1,7 @@
 /***********************************************************
 @copyright 2010 Michael Niedermayer <michaelni@gmx.at>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,20 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-simple assert () macros that are a bit more flexible than ISO C assert ().
+@file simple assert () macros that are a bit more flexible than ISO C assert ().
 @author Michael Niedermayer <michaelni@gmx.at>
 ***********************************************************/
 
 /***********************************************************
 @brief assert () equivalent, that is always enabled.
 ***********************************************************/
-//  #define av_assert0 (cond) do {        \
-//      if (!(cond)) {        \
-//        av_log (null, AV_LOG_PANIC, "Assertion %s failed at %s:%d\n", \
-//        AV_STRINGIFY (cond), __FILE__, __LINE__); \
-//        abort (); \
-//      }        \
+//  #define av_assert0 (cond) do {
+//      if (!(cond)) {
+//        av_log (null, AV_LOG_PANIC, "Assertion %s failed at %s:%d\n",
+//        AV_STRINGIFY (cond), __FILE__, __LINE__);
+//        abort ();
+//      }
 //  } while (0)
 
 /***********************************************************

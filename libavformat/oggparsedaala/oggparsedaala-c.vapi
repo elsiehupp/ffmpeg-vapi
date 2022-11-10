@@ -2,7 +2,8 @@
 Ogg Daala parser
 @copyright 2015 Rostislav Pehlivanov <atomnuker gmail com>
 @copyright 2015 Vittorio Giovara <vittorio.giovara gmail com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -21,26 +22,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 const struct ogg_codec ff_daala_codec = {
-    //  .name             = "Daala",
-    //  .magic            = "\200daala",
-    //  .magicsize        = 6,
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "Daala"
+    //  .magic = "\200daala"
+    //  .magicsize = 6,
     [CCode (cname="", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    );           = daala_header,
+    ); // = daala_header,
     [CCode (cname="", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    );           = daala_packet,
+    ); // = daala_packet,
     [CCode (cname="", cheader="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
-    );          = daala_gptopts,
+    ); // = daala_gptopts,
     //  .granule_is_start = 1,
-    //  .nb_header        = 3,
+    //  .nb_header = 3,
 }

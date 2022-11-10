@@ -16,48 +16,63 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-Haivision Open SRT (Secure Reliable Transport) protocol
+/***********************************************************
+@file Haivision Open SRT (Secure Reliable Transport) protocol
 ***********************************************************/
 
-static const AVClass libsrt_class = {
-    //  .class_name = "libsrt",
-    //  .item_name  = av_default_item_name,
-    //  .option     = libsrt_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="libsrt_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "libsrt"
+    //  .item_name = av_default_item_name,
+    //  .option = libsrt_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
 [CCode (cname="ff_libsrt_protocol", cheader="")]
 public class LibSRTURLProtocol : URLProtocol {
-    //  .name                = "srt",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "srt"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );            = libsrt_open,
+    ); // = libsrt_open,
     [CCode (cname="", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );            = libsrt_read,
+    ); // = libsrt_read,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );           = libsrt_write,
+    ); // = libsrt_write,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );           = libsrt_close,
+        URLContext url_context
+    ); // = libsrt_close,
     [CCode (cname="", cheader="")]
     public override int url_get_file_handle (
-        URLContext h
-    ); = libsrt_get_file_handle,
-    //  .priv_data_size      = sizeof(SRTContext),
-    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    //  .priv_data_class     = &libsrt_class,
+        URLContext url_context
+    ); // = libsrt_get_file_handle,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (SRTContext);
+        }
+    }
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class = libsrt_class,
 }

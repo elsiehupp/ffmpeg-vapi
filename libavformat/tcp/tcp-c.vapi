@@ -1,7 +1,8 @@
 /***********************************************************
 TCP protocol
 @copyright 2002 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,73 +20,90 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define OFFSET(x) offsetof(TCPContext, x)
-#define D AV_OPT_FLAG_DECODING_PARAM
-#define E AV_OPT_FLAG_ENCODING_PARAM
-static const AVOption options[] = {
-    { "listen",          "Listen for incoming connections",  OFFSET(listen),         AV_OPT_TYPE_INT, { .i64 = 0 },     0,       2,       //  .flags = D|E },
-    { "timeout",     "set timeout (in microseconds) of socket I/O operations", OFFSET(rw_timeout),     AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
-    { "listen_timeout",  "Connection awaiting timeout (in milliseconds)",      OFFSET(listen_timeout), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
-    { "send_buffer_size", "Socket send buffer size (in bytes)",                OFFSET(send_buffer_size), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
-    { "recv_buffer_size", "Socket receive buffer size (in bytes)",             OFFSET(recv_buffer_size), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
-    { "tcp_nodelay", "Use TCP_NODELAY to disable nagle's algorithm",           OFFSET(tcp_nodelay), AV_OPT_TYPE_BOOL, { .i64 = 0 },             0, 1, .flags = D|E },
-#if !HAVE_WINSOCK2_H
-    { "tcp_mss",     "Maximum segment size for outgoing TCP packets",          OFFSET(tcp_mss),     AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
-#endif /* !HAVE_WINSOCK2_H */
-    { NULL }
-}
+//  #define OFFSET(x) offsetof(TCPContext, x)
+//  #define D AV_OPT_FLAG_DECODING_PARAM
+//  #define E AV_OPT_FLAG_ENCODING_PARAM
+//  static const AVOption options[] = {
+//      { "listen",          "Listen for incoming connections",  OFFSET(listen),         AV_OPT_TYPE_INT, { .i64 = 0 },     0,       2,       //  .flags = D|E },
+//      { "timeout",     "set timeout (in microseconds) of socket I/O operations", OFFSET(rw_timeout),     AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
+//      { "listen_timeout",  "Connection awaiting timeout (in milliseconds)",      OFFSET(listen_timeout), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
+//      { "send_buffer_size", "Socket send buffer size (in bytes)",                OFFSET(send_buffer_size), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
+//      { "recv_buffer_size", "Socket receive buffer size (in bytes)",             OFFSET(recv_buffer_size), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
+//      { "tcp_nodelay", "Use TCP_NODELAY to disable nagle's algorithm",           OFFSET(tcp_nodelay), AV_OPT_TYPE_BOOL, { .i64 = 0 },             0, 1, .flags = D|E },
+//  #if !HAVE_WINSOCK2_H
+//      { "tcp_mss",     "Maximum segment size for outgoing TCP packets",          OFFSET(tcp_mss),     AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
+//  #endif /* !HAVE_WINSOCK2_H */
+//      { NULL }
+//  }
 
-static const AVClass tcp_class = {
-    //  .class_name = "tcp",
-    //  .item_name  = av_default_item_name,
-    //  .option     = options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="tcp_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "tcp"
+    //  .item_name = av_default_item_name,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
 [CCode (cname="ff_tcp_protocol", cheader="")]
 public class TCPURLProtocol : URLProtocol {
-    //  .name                = "tcp",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "tcp"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );            = tcp_open,
+    ); // = tcp_open,
     [CCode (cname="", cheader="")]
     public override int url_accept (
         URLContext server_url_context,
         out URLContext client_url_context
-    );          = tcp_accept,
+    ); // = tcp_accept,
     [CCode (cname="", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );            = tcp_read,
+    ); // = tcp_read,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );           = tcp_write,
+    ); // = tcp_write,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );           = tcp_close,
+        URLContext url_context
+    ); // = tcp_close,
     [CCode (cname="", cheader="")]
     public override int url_get_file_handle (
-        URLContext h
-    ); = tcp_get_file_handle,
+        URLContext url_context
+    ); // = tcp_get_file_handle,
     [CCode (cname="", cheader="")]
     public override int url_get_short_seek (
-        URLContext h
-    );  = tcp_get_window_size,
+        URLContext url_context
+    ); // = tcp_get_window_size,
     [CCode (cname="", cheader="")]
     public override int url_shutdown (
-        URLContext h,
+        URLContext url_context,
         int flags
-    );        = tcp_shutdown,
-    //  .priv_data_size      = sizeof(TCPContext),
-    //  .flags               = URL_PROTOCOL_FLAG_NETWORK,
-    //  .priv_data_class     = &tcp_class,
+    ); // = tcp_shutdown,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (TCPContext);
+        }
+    }
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class = tcp_class,
 }

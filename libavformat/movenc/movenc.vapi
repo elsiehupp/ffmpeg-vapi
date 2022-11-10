@@ -3,7 +3,8 @@ MOV, 3GP, MP4 muxer
 @copyright 2003 Thomas Raivio
 @copyright 2004 Gildas Bazin <gbazin at videolan dot org>
 @copyright 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

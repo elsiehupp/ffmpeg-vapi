@@ -1,7 +1,8 @@
 /***********************************************************
 D-Cinema audio demuxer
 @copyright 2005 Reimar Döffinger
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,18 +20,33 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_daud_demuxer = {
-    //  .name           = "daud",
-    //  .long_name      = "D-Cinema audio",
-    [CCode (cname="", cheader="")]
+[CCode (cname="ff_daud_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "daud"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "D-Cinema audio"
+    [CCode (cname="daud_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = daud_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="daud_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = daud_packet,
-    //  .extensions     = "302,daud",
+    );
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "302,daud"
 }

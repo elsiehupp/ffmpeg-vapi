@@ -16,48 +16,69 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-* @file
-* VapourSynth demuxer
-*
-* Synthesizes vapour (?)
-*/
+/***********************************************************
+@file VapourSynth demuxer
 
-static const AVClass class_vs = {
-    //  .class_name = "VapourSynth demuxer",
-    //  .item_name  = av_default_item_name,
-    //  .option     = options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+Synthesizes vapour (?)
+***********************************************************/
+
+[CCode (cname="class_vs", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "VapourSynth demuxer"
+    //  .item_name = av_default_item_name,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_vapoursynth_demuxer = {
-    //  .name           = "vapoursynth",
-    //  .long_name      = "VapourSynth demuxer",
-    //  .priv_data_size = sizeof(VSContext),
+[CCode (cname="ff_vapoursynth_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "vapoursynth"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "VapourSynth demuxer"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (VSContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = probe_vs,
+    ); // = probe_vs,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = read_header_vs,
+    ); // = read_header_vs,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = read_packet_vs,
+    ); // = read_packet_vs,
     [CCode (cname="", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    );     = read_close_vs,
+    ); // = read_close_vs,
     [CCode (cname="", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    );      = read_seek_vs,
-    //  .priv_class     = &class_vs,
+    ); // = read_seek_vs,
+    //  .priv_class = class_vs,
 }

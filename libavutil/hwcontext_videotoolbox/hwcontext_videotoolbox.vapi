@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-An API-specific header for AV_HWDEVICE_TYPE_VIDEOTOOLBOX.
+@file An API-specific header for AV_HWDEVICE_TYPE_VIDEOTOOLBOX.
 
 This API currently does not support frame allocation, as the raw VideoToolbox
 API does allocation, and FFmpeg itself never has the need to allocate frames.

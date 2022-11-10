@@ -1,7 +1,8 @@
 /***********************************************************
 LXF demuxer
 @copyright 2010 Tomas Härdin
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,23 +20,38 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_lxf_demuxer = {
-    //  .name           = "lxf",
-    //  .long_name      = "VR native stream (LXF)",
-    //  .priv_data_size = sizeof(LXFDemuxContext),
+[CCode (cname="ff_lxf_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "lxf"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "VR native stream (LXF)"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (LXFDemuxContext);
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );     = lxf_probe,
+    ); // = lxf_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = lxf_read_header,
+    ); // = lxf_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = lxf_read_packet,
-    //  .codec_tag      = (const AVCodecTag* const []){lxf_tags, 0},
+    ); // = lxf_read_packet,
+    //  .codec_tag = (const AVCodecTag* const []){lxf_tags, 0},
 }

@@ -2,7 +2,8 @@
 Bytestream functions
 @copyright 2006 Baptiste Coudurier <baptiste.coudurier@free.fr>
 @copyright 2012 Aneesh Dogra (lionaneesh) <lionaneesh@gmail.com>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -33,49 +34,54 @@ public struct PutByteContext {
     int eof;
 }
 
-//  #define DEF (type, name, bytes, read, write)                                  \
-//  static type bytestream_get_ ## name (out uint8[] b)        \
-//  {                                                                              \
-//      (*b) += bytes;                                                             \
-//      return read (*b - bytes);                                                   \
-//  }                                                                              \
-//  static void bytestream_put_ ## name (out uint8[] b,              \
-//                                                       const type value)         \
-//  {                                                                              \
-//      write (*b, value);                                                          \
-//      (*b) += bytes;                                                             \
-//  }                                                                              \
-//  static void bytestream2_put_ ## name ## u (PutByteContext put_byte_context,  \
-//                                                             const type value)   \
-//  {                                                                              \
-//      bytestream_put_ ## name (&put_byte_context.buffer, value);                                \
-//  }                                                                              \
-//  static void bytestream2_put_ ## name (PutByteContext put_byte_context,       \
-//                                                        const type value)        \
-//  {                                                                              \
-//      if (!put_byte_context.eof && (put_byte_context.buffer_end - put_byte_context.buffer >= bytes)) {                     \
-//          write (put_byte_context.buffer, value);                                               \
-//          put_byte_context.buffer += bytes;                                                    \
-//      } else                                                                     \
-//          put_byte_context.eof = 1;                                                            \
-//  }                                                                              \
-//  static type bytestream2_get_ ## name ## u (GetByteContext get_byte_context)  \
-//  {                                                                              \
-//      return bytestream_get_ ## name (&get_byte_context.buffer);                                \
-//  }                                                                              \
-//  static type bytestream2_get_ ## name (GetByteContext get_byte_context)       \
-//  {                                                                              \
-//      if (get_byte_context.buffer_end - get_byte_context.buffer < bytes) {                                   \
-//          get_byte_context.buffer = get_byte_context.buffer_end;                                             \
-//          return 0;                                                              \
-//      }                                                                          \
-//      return bytestream2_get_ ## name ## u (get_byte_context);                                   \
-//  }                                                                              \
-//  static type bytestream2_peek_ ## name (GetByteContext get_byte_context)      \
-//  {                                                                              \
-//      if (get_byte_context.buffer_end - get_byte_context.buffer < bytes)                                     \
-//          return 0;                                                              \
-//      return read (get_byte_context.buffer);                                                    \
+//  #define DEF (type, name, bytes, read, write)
+//  static type bytestream_get_ ## name (out uint8[] b) {
+//      (*b) += bytes;
+//      return read (*b - bytes); //
+//  }
+//  static void bytestream_put_ ## name (
+//      out uint8[] b,
+//      const type value
+//  ) {
+//      write (*b, value); //
+//      (*b) += bytes;
+//  }
+//  static void bytestream2_put_ ## name ## u (
+//      PutByteContext put_byte_context,
+//      const type value
+//  ) {
+//      bytestream_put_ ## name (&put_byte_context.buffer, value); //
+//  }
+//  static void bytestream2_put_ ## name (
+//      PutByteContext put_byte_context,
+//      const type value
+//  ) {
+//      if (!put_byte_context.eof && (put_byte_context.buffer_end - put_byte_context.buffer >= bytes)) {
+//          write (put_byte_context.buffer, value); //
+//          put_byte_context.buffer += bytes;
+//      } else
+//          put_byte_context.eof = 1;
+//  }
+//  static type bytestream2_get_ ## name ## u (
+//      GetByteContext get_byte_context
+//  ) {
+//      return bytestream_get_ ## name (&get_byte_context.buffer); //
+//  }
+//  static type bytestream2_get_ ## name (
+//      GetByteContext get_byte_context
+//  ) {
+//      if (get_byte_context.buffer_end - get_byte_context.buffer < bytes) {
+//          get_byte_context.buffer = get_byte_context.buffer_end;
+//          return 0;
+//      }
+//      return bytestream2_get_ ## name ## u (get_byte_context); //
+//  }
+//  static type bytestream2_peek_ ## name (
+//      GetByteContext get_byte_context
+//  ) {
+//      if (get_byte_context.buffer_end - get_byte_context.buffer < bytes)
+//          return 0;
+//      return read (get_byte_context.buffer); //
 //  }
 
 //  DEF (uint64_t,     le64, 8, AV_RL64, AV_WL64)
@@ -126,13 +132,13 @@ public struct PutByteContext {
 
 static void bytestream2_init (
     GetByteContext get_byte_context,
-    uint8[] buf,
+    uint8[] buffer,
     int buf_size
 );
 
 static void bytestream2_init_writer (
     PutByteContext put_byte_context,
-    uint8[] buf,
+    uint8[] buffer,
     int buf_size
 );
 

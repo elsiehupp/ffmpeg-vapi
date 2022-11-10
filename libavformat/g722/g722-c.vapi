@@ -1,7 +1,8 @@
 /***********************************************************
 g722 raw demuxer
 @copyright 2010 Martin Storsjo
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -20,20 +21,47 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 FF_RAW_DEMUXER_CLASS(g722)
-public class InputFormat : AVInputFormat ff_g722_demuxer = {
-    //  .name           = "g722",
-    //  .long_name      = "raw G.722",
+[CCode (cname="ff_g722_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "g722"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "raw G.722"
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    );    = g722_read_header,
+    ); // = g722_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    );    = ff_raw_read_partial_packet,
-    //  .flags          = AVFMT_GENERIC_INDEX,
-    //  .extensions     = "g722,722",
-    //  .raw_codec_id   = AV_CODEC_ID_ADPCM_G722,
-    //  .priv_data_size = sizeof(FFRawDemuxerContext),
-    //  .priv_class     = &g722_demuxer_class,}
+    ); // = ff_raw_read_partial_packet,
+    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "g722,722"
+    [CCode (cname="raw_codec_id", cheader="")]
+    public override LibAVCodec.CodecID raw_codec_id {
+        public get {
+            return LibAVCodec.CodecID.ADPCM_G722;
+        }
+    }
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (FFRawDemuxerContext);
+        }
+    }
+    //  .priv_class = g722_demuxer_class,
+}

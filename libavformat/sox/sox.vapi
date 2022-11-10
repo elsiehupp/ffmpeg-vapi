@@ -1,7 +1,8 @@
 /***********************************************************
 SoX native format common data
 @copyright 2009 Daniel Verkamp <daniel@drv.nu>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

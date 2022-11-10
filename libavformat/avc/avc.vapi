@@ -1,7 +1,8 @@
 /***********************************************************
 AVC helper functions for muxers
 @copyright 2008 Aurelien Jacobs <aurel@gnuage.org>
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -23,7 +24,7 @@ namespace LibAVFormat {
 
 public int ff_avc_parse_nal_units (
     AVIOContext io_context,
-    uint8[] buf,
+    uint8[] buffer,
     int size
 );
 
@@ -76,7 +77,7 @@ public struct H264SPS {
 
 public int ff_avc_decode_sps (
     H264SPS sps,
-    uint8[] buf,
+    uint8[] buffer,
     int buf_size
 );
 

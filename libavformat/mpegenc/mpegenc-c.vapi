@@ -1,7 +1,8 @@
 /***********************************************************
 MPEG-1/2 muxer
 @copyright 2000, 2001, 2002 Fabrice Bellard
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,159 +20,391 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define OFFSET(x) offsetof(MpegMuxContext, x)
-#define E AV_OPT_FLAG_ENCODING_PARAM
-static const AVOption options[] = {
-    { "muxrate", NULL,                                          OFFSET(user_mux_rate), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, ((1<<22) - 1) * (8 * 50), E },
-    { "preload", "Initial demux-decode delay in microseconds.", OFFSET(preload),  AV_OPT_TYPE_INT, { .i64 = 500000 }, 0, INT_MAX, E },
-    { NULL },
-}
+//  #define OFFSET(x) offsetof(MpegMuxContext, x)
+//  #define E AV_OPT_FLAG_ENCODING_PARAM
+//  static const AVOption options[] = {
+//      { "muxrate", NULL,                                          OFFSET(user_mux_rate), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, ((1<<22) - 1) * (8 * 50), E },
+//      { "preload", "Initial demux-decode delay in microseconds.", OFFSET(preload),  AV_OPT_TYPE_INT, { .i64 = 500000 }, 0, INT_MAX, E },
+//      { NULL },
+//  }
 
-#define MPEGENC_CLASS(flavor)                   \
-static const AVClass flavor ## _class = {       \
-    //  .class_name = #flavor " muxer",             \
-    //  .item_name  = av_default_item_name,         \
-    //  .version    = LIBAVUTIL_VERSION_INT,        \
-    //  .option     = options,                      \
-}
 
 #if CONFIG_MPEG1SYSTEM_MUXER
-MPEGENC_CLASS(mpeg)
-public class OutputFormat : AVOutputFormat ff_mpeg1system_muxer = {
-    //  .name              = "mpeg",
-    //  .long_name         = "MPEG-1 Systems / MPEG program stream",
-    //  .mime_type         = "video/mpeg",
-    //  .extensions        = "mpg,mpeg",
-    //  .priv_data_size    = sizeof(MpegMuxContext),
-    //  .audio_codec       = AV_CODEC_ID_MP2,
-    //  .video_codec       = AV_CODEC_ID_MPEG1VIDEO,
+[CCode (cname="mpeg_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "mpeg muxer"
+    //  .item_name = av_default_item_name,
+    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+}
+
+public class OutputMuxer : AVOutputFormat ff_mpeg1system_muxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "mpeg"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MPEG-1 Systems / MPEG program stream"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "video/mpeg"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "mpg,mpeg"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MpegMuxContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.MP2;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.MPEG1VIDEO;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = mpeg_mux_init,
+    ); // = mpeg_mux_init,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = mpeg_mux_write_packet,
+    ); // = mpeg_mux_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = mpeg_mux_end,
-    //  .priv_class        = &mpeg_class,
+    ); // = mpeg_mux_end,
+    //  .priv_class = mpeg_class,
 }
 #endif
 
 #if CONFIG_MPEG1VCD_MUXER
-MPEGENC_CLASS(vcd)
-public class OutputFormat : AVOutputFormat ff_mpeg1vcd_muxer = {
-    //  .name              = "vcd",
-    //  .long_name         = "MPEG-1 Systems / MPEG program stream (VCD)",
-    //  .mime_type         = "video/mpeg",
-    //  .priv_data_size    = sizeof(MpegMuxContext),
-    //  .audio_codec       = AV_CODEC_ID_MP2,
-    //  .video_codec       = AV_CODEC_ID_MPEG1VIDEO,
+[CCode (cname="vcd_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "vcd muxer"
+    //  .item_name = av_default_item_name,
+    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+}
+
+public class OutputMuxer : AVOutputFormat ff_mpeg1vcd_muxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "vcd"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MPEG-1 Systems / MPEG program stream (VCD)"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "video/mpeg"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MpegMuxContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.MP2;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.MPEG1VIDEO;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = mpeg_mux_init,
+    ); // = mpeg_mux_init,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = mpeg_mux_write_packet,
+    ); // = mpeg_mux_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = mpeg_mux_end,
-    //  .priv_class        = &vcd_class,
+    ); // = mpeg_mux_end,
+    //  .priv_class = vcd_class,
 }
 #endif
 
 #if CONFIG_MPEG2VOB_MUXER
-MPEGENC_CLASS(vob)
-public class OutputFormat : AVOutputFormat ff_mpeg2vob_muxer = {
-    //  .name              = "vob",
-    //  .long_name         = "MPEG-2 PS (VOB)",
-    //  .mime_type         = "video/mpeg",
-    //  .extensions        = "vob",
-    //  .priv_data_size    = sizeof(MpegMuxContext),
-    //  .audio_codec       = AV_CODEC_ID_MP2,
-    //  .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
+[CCode (cname="vob_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "vob muxer"
+    //  .item_name = av_default_item_name,
+    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+}
+
+public class OutputMuxer : AVOutputFormat ff_mpeg2vob_muxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "vob"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MPEG-2 PS (VOB)"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "video/mpeg"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "vob"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MpegMuxContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.MP2;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.MPEG2VIDEO;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = mpeg_mux_init,
+    ); // = mpeg_mux_init,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = mpeg_mux_write_packet,
+    ); // = mpeg_mux_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = mpeg_mux_end,
-    //  .priv_class        = &vob_class,
+    ); // = mpeg_mux_end,
+    //  .priv_class = vob_class,
 }
 #endif
 
-/* Same as mpeg2vob_mux except that the pack size is 2324 */
+/***********************************************************
+Same as mpeg2vob_mux except that the pack size is 2324
+***********************************************************/
 #if CONFIG_MPEG2SVCD_MUXER
-MPEGENC_CLASS(svcd)
-public class OutputFormat : AVOutputFormat ff_mpeg2svcd_muxer = {
-    //  .name              = "svcd",
-    //  .long_name         = "MPEG-2 PS (SVCD)",
-    //  .mime_type         = "video/mpeg",
-    //  .extensions        = "vob",
-    //  .priv_data_size    = sizeof(MpegMuxContext),
-    //  .audio_codec       = AV_CODEC_ID_MP2,
-    //  .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
+[CCode (cname="svcd_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "svcd muxer"
+    //  .item_name = av_default_item_name,
+    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+}
+
+public class OutputMuxer : AVOutputFormat ff_mpeg2svcd_muxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "svcd"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MPEG-2 PS (SVCD)"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "video/mpeg"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "vob"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MpegMuxContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.MP2;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.MPEG2VIDEO;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = mpeg_mux_init,
+    ); // = mpeg_mux_init,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = mpeg_mux_write_packet,
+    ); // = mpeg_mux_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = mpeg_mux_end,
-    //  .priv_class        = &svcd_class,
+    ); // = mpeg_mux_end,
+    //  .priv_class = svcd_class,
 }
 #endif
 
-/*  Same as mpeg2vob_mux except the 'is_dvd' flag is set to produce NAV pkts */
+/***********************************************************
+Same as mpeg2vob_mux except the 'is_dvd' flag is set to produce NAV pkts
+***********************************************************/
 #if CONFIG_MPEG2DVD_MUXER
-MPEGENC_CLASS(dvd)
-public class OutputFormat : AVOutputFormat ff_mpeg2dvd_muxer = {
-    //  .name              = "dvd",
-    //  .long_name         = "MPEG-2 PS (DVD VOB)",
-    //  .mime_type         = "video/mpeg",
-    //  .extensions        = "dvd",
-    //  .priv_data_size    = sizeof(MpegMuxContext),
-    //  .audio_codec       = AV_CODEC_ID_MP2,
-    //  .video_codec       = AV_CODEC_ID_MPEG2VIDEO,
+[CCode (cname="dvd_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return "dvd muxer";
+        }
+    }
+    //  .item_name = av_default_item_name,
+    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="options", cheader="")]
+    public override AVOption[] option { public get; }
+}
+
+public class OutputMuxer : AVOutputFormat ff_mpeg2dvd_muxer = {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "dvd"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "MPEG-2 PS (DVD VOB)"
+    [CCode (cname="mime_type", cheader="")]
+    public override string mime_type {
+        public get {
+            return ;
+        }
+    } // = "video/mpeg"
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "dvd"
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (MpegMuxContext);
+        }
+    }
+    [CCode (cname="audio_codec", cheader="")]
+    public override LibAVCodec.CodecID audio_codec {
+        public get {
+            return LibAVCodec.CodecID.MP2;
+        }
+    }
+    [CCode (cname="video_codec", cheader="")]
+    public override LibAVCodec.CodecID video_codec {
+        public get {
+            return LibAVCodec.CodecID.MPEG2VIDEO;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    );      = mpeg_mux_init,
+    ); // = mpeg_mux_init,
     [CCode (cname="", cheader="")]
     public override int write_packet (
         void *opaque,
-        uint8[] buf,
+        uint8[] buffer,
         int buf_size
-    );      = mpeg_mux_write_packet,
+    ); // = mpeg_mux_write_packet,
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    );     = mpeg_mux_end,
-    //  .priv_class        = &dvd_class,
+    ); // = mpeg_mux_end,
+    //  .priv_class = dvd_class,
 }
 #endif

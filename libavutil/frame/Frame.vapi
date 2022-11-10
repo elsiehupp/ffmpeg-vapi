@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@ingroup lavu_frame
+@file @ingroup lavu_frame
 reference-counted frame API
 ***********************************************************/
 
@@ -39,11 +38,11 @@ the frame and reset it to its original clean state before it
 is reused again.
 
 The data described by an Frame is usually reference counted through the
-LibAVUtil.Buffer API. The underlying buffer references are stored in Frame.buf /
+LibAVUtil.Buffer API. The underlying buffer references are stored in Frame.buffer /
 Frame.extended_buf. An Frame is considered to be reference counted if at
-least one reference is set, i.e. if Frame.buf[0] != null. In such a case,
+least one reference is set, i.e. if Frame.buffer[0] != null. In such a case,
 every single data plane must be contained in one of the buffers in
-Frame.buf or Frame.extended_buf.
+Frame.buffer or Frame.extended_buf.
 There may be a single buffer for all the data, or one separate buffer for
 each plane, or anything in between.
 
@@ -244,7 +243,7 @@ public struct Frame {
     /***********************************************************
     @brief LibAVUtil.Buffer references backing the data for this frame. If all elements of
     this array are null, then this frame is not reference counted. This array
-    must be filled contiguously -- if buf[i] is non-null then buf[j] must
+    must be filled contiguously -- if buffer[i] is non-null then buffer[j] must
     also be non-null for all j < i.
 
     There may be at most one LibAVUtil.Buffer per data plane, so for video this array
@@ -253,17 +252,17 @@ public struct Frame {
     this array. Then the extra LibAVUtil.BufferRef pointers are stored in the
     extended_buf array.
     ***********************************************************/
-    [CCode (cname="buf")]
-    public LibAVUtil.BufferRef buf[AV_NUM_DATA_POINTERS];
+    [CCode (cname="buffer")]
+    public LibAVUtil.BufferRef buffer[AV_NUM_DATA_POINTERS];
 
     /***********************************************************
     @brief For planar audio which requires more than AV_NUM_DATA_POINTERS
     LibAVUtil.BufferRef pointers, this array will hold all the references which
-    cannot fit into Frame.buf.
+    cannot fit into Frame.buffer.
 
     Note that this is different from Frame.extended_data, which always
     contains all the pointers. This array only contains the extra pointers,
-    which cannot fit into Frame.buf.
+    which cannot fit into Frame.buffer.
 
     This array is always allocated using av_malloc () by whoever constructs
     the frame. It is freed in av_frame_unref ().
@@ -528,7 +527,7 @@ public struct Frame {
     - width and height for video
     - nb_samples and channel_layout for audio
 
-    This function will fill Frame.data and Frame.buf arrays and, if
+    This function will fill Frame.data and Frame.buffer arrays and, if
     necessary, allocate and fill Frame.extended_data and Frame.extended_buf.
     For planar formats, one buffer will be allocated for each plane.
 
@@ -648,7 +647,7 @@ public struct Frame {
 
     @param frame a frame to which the side data should be added
     @param type the type of the added side data
-    @param buf an LibAVUtil.BufferRef to add as side data. The ownership of
+    @param buffer an LibAVUtil.BufferRef to add as side data. The ownership of
         the reference is transferred to the frame.
 
     @return newly added side data on success, null on error. On failure
@@ -659,7 +658,7 @@ public struct Frame {
     public FrameSideData av_frame_new_side_data_from_buf (
         Frame frame,
         FrameSideDataType type,
-        LibAVUtil.BufferRef buf
+        LibAVUtil.BufferRef buffer
     );
 
     /***********************************************************

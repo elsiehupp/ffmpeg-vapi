@@ -2,7 +2,8 @@
 Default Palettes for Quicktime Files
 Automatically generated from a utility derived from XAnim:
 http://xanim.va.pubnix.com/home.html
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or

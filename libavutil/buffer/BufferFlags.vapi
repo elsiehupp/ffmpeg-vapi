@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file
-@ingroup LibAVUtil.Buffer
+@file @ingroup LibAVUtil.Buffer
 refcounted data buffer API
 ***********************************************************/
 
@@ -76,34 +75,34 @@ public void av_buffer_default_free (
 /***********************************************************
 @brief Create a new reference to an LibAVUtil.Buffer.
 
-@return a new LibAVUtil.BufferRef referring to the same LibAVUtil.Buffer as buf or null on
+@return a new LibAVUtil.BufferRef referring to the same LibAVUtil.Buffer as buffer or null on
 failure.
 ***********************************************************/
 [CCode (cname="av_buffer_ref", cheader_filename="buffer.h")]
 public LibAVUtil.BufferRef av_buffer_ref (
-    LibAVUtil.BufferRef buf
+    LibAVUtil.BufferRef buffer
 );
 
 /***********************************************************
 @brief Free a given reference and automatically free the buffer if there are no more
 references to it.
 
-@param buf the reference to be freed. The pointer is set to null on return.
+@param buffer the reference to be freed. The pointer is set to null on return.
 ***********************************************************/
 [CCode (cname="av_buffer_unref", cheader_filename="buffer.h")]
 public void av_buffer_unref (
-    LibAVUtil.BufferRef buf
+    LibAVUtil.BufferRef buffer
 );
 
 /***********************************************************
-@return 1 if the caller may write to the data referred to by buf (which is
-true if and only if buf is the only reference to the underlying LibAVUtil.Buffer).
+@return 1 if the caller may write to the data referred to by buffer (which is
+true if and only if buffer is the only reference to the underlying LibAVUtil.Buffer).
 Return 0 otherwise.
-A positive answer is valid until av_buffer_ref () is called on buf.
+A positive answer is valid until av_buffer_ref () is called on buffer.
 ***********************************************************/
 [CCode (cname="av_buffer_is_writable", cheader_filename="buffer.h")]
 public int av_buffer_is_writable (
-    LibAVUtil.BufferRef buf
+    LibAVUtil.BufferRef buffer
 );
 
 /***********************************************************
@@ -111,34 +110,34 @@ public int av_buffer_is_writable (
 ***********************************************************/
 [CCode (cname="av_buffer_get_opaque", cheader_filename="buffer.h")]
 public void *av_buffer_get_opaque (
-    LibAVUtil.BufferRef buf
+    LibAVUtil.BufferRef buffer
 );
 
 [CCode (cname="av_buffer_get_ref_count", cheader_filename="buffer.h")]
 public int av_buffer_get_ref_count (
-    LibAVUtil.BufferRef buf
+    LibAVUtil.BufferRef buffer
 );
 
 /***********************************************************
 @brief Create a writable reference from a given buffer reference, avoiding data copy
 if possible.
 
-@param buf buffer reference to make writable. On success, buf is either left
+@param buffer buffer reference to make writable. On success, buffer is either left
     untouched, or it is unreferenced and a new writable LibAVUtil.BufferRef is
-    written in its place. On failure, buf is left untouched.
+    written in its place. On failure, buffer is left untouched.
 @return 0 on success, a negative LibAVUtil.ErrorCode on failure.
 ***********************************************************/
 [CCode (cname="av_buffer_make_writable", cheader_filename="buffer.h")]
 public int av_buffer_make_writable (
-    LibAVUtil.BufferRef buf
+    LibAVUtil.BufferRef buffer
 );
 
 /***********************************************************
 @brief Reallocate a given buffer.
 
-@param buf a buffer reference to reallocate. On success, buf will be
+@param buffer a buffer reference to reallocate. On success, buffer will be
     unreferenced and a new reference with the required size will be
-    written in its place. On failure buf will be left untouched. *buf
+    written in its place. On failure buffer will be left untouched. *buffer
     may be null, then a new buffer is allocated.
 @param size required new buffer size.
 @return 0 on success, a negative LibAVUtil.ErrorCode on failure.
@@ -150,7 +149,7 @@ a new buffer is allocated and the data is copied.
 ***********************************************************/
 [CCode (cname="av_buffer_realloc", cheader_filename="buffer.h")]
 public int av_buffer_realloc (
-    LibAVUtil.BufferRef buf,
+    LibAVUtil.BufferRef buffer,
     size_t size
 );
 

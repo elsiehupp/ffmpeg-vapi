@@ -1,7 +1,8 @@
 /***********************************************************
 RTMP HTTP network protocol
 @copyright 2012 Samuel Pitoiset
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,53 +20,68 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/**
-@file
-RTMP HTTP protocol
+/***********************************************************
+@file RTMP HTTP protocol
 ***********************************************************/
 
-#define OFFSET(x) offsetof(RTMP_HTTPContext, x)
-#define DEC AV_OPT_FLAG_DECODING_PARAM
+//  #define OFFSET(x) offsetof(RTMP_HTTPContext, x)
+//  #define DEC AV_OPT_FLAG_DECODING_PARAM
 
-static const AVOption ffrtmphttp_options[] = {
-    {"ffrtmphttp_tls", "Use a HTTPS tunneling connection (RTMPTS).", OFFSET(tls), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC},
-    { NULL },
-}
+//  static const AVOption ffrtmphttp_options[] = {
+//      {"ffrtmphttp_tls", "Use a HTTPS tunneling connection (RTMPTS).", OFFSET(tls), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC},
+//      { NULL },
+//  }
 
-static const AVClass ffrtmphttp_class = {
-    //  .class_name = "ffrtmphttp",
-    //  .item_name  = av_default_item_name,
-    //  .option     = ffrtmphttp_options,
-    //  .version    = LIBAVUTIL_VERSION_INT,
+[CCode (cname="ffrtmphttp_class", cheader="")]
+public class AVClass : AVClass {
+    [CCode (cname="class_name", cheader="")]
+    public override string class_name {
+        public get {
+            return ;
+        }
+    } // = "ffrtmphttp"
+    //  .item_name = av_default_item_name,
+    //  .option = ffrtmphttp_options,
+    //  .version = LIBAVUTIL_VERSION_INT,
 }
 
 [CCode (cname="ff_ffrtmphttp_protocol", cheader="")]
 public class RTMPHTTPURLProtocol : URLProtocol {
-    //  .name           = "ffrtmphttp",
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "ffrtmphttp"
     [CCode (cname="", cheader="")]
     public override int url_open (
-        URLContext h,
+        URLContext url_context,
         string url,
         int flags
-    );       = rtmp_http_open,
+    ); // = rtmp_http_open,
     [CCode (cname="", cheader="")]
     public override int url_read (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );       = rtmp_http_read,
+    ); // = rtmp_http_read,
     [CCode (cname="", cheader="")]
     public override int url_write (
-        URLContext h,
-        uchar[] buf,
+        URLContext url_context,
+        uchar[] buffer,
         int size
-    );      = rtmp_http_write,
+    ); // = rtmp_http_write,
     [CCode (cname="", cheader="")]
     public override int url_close (
-        URLContext h
-    );      = rtmp_http_close,
-    //  .priv_data_size = sizeof(RTMP_HTTPContext),
-    //  .flags          = URL_PROTOCOL_FLAG_NETWORK,
-    //  .priv_data_class= &ffrtmphttp_class,
-    //  .default_whitelist = "https,http,tcp,tls",
+        URLContext url_context
+    ); // = rtmp_http_close,
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (RTMP_HTTPContext);
+        }
+    }
+    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    //  .priv_data_class = ffrtmphttp_class,
+    //  .default_whitelist = "https,http,tcp,tls"
 }

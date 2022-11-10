@@ -1,7 +1,8 @@
 /***********************************************************
 LVF demuxer
 @copyright 2012 Paul B Mahol
-
+***********************************************************/
+/***********************************************************
 This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
@@ -19,23 +20,38 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class InputFormat : AVInputFormat ff_lvf_demuxer = {
-    //  .name        = "lvf",
-    //  .long_name   = "LVF",
+[CCode (cname="ff_lvf_demuxer", cheader="")]
+public class InputDemuxer : AVInputFormat {
+    [CCode (cname="name", cheader="")]
+    public override string name {
+        public get {
+            return ;
+        }
+    } // = "lvf"
+    [CCode (cname="long_name", cheader="")]
+    public override string long_name {
+        public get {
+            return ;
+        }
+    } // = "LVF"
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    );  = lvf_probe,
+    ); // = lvf_probe,
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); = lvf_read_header,
+    ); // = lvf_read_header,
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); = lvf_read_packet,
-    //  .extensions  = "lvf",
-    //  .flags       = AVFMT_GENERIC_INDEX,
+    ); // = lvf_read_packet,
+    [CCode (cname="extensions", cheader="")]
+    public override string extensions {
+        public get {
+            return ;
+        }
+    } // = "lvf"
+    //  .flags = AVFMT_GENERIC_INDEX,
 }
