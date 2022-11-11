@@ -4,8 +4,8 @@ FLV demuxer
 
 This demuxer will generate a 1 byte extradata for VP6F content.
 It is composed of:
- - upper 4 bits: difference between encoded width and visible width
- - lower 4 bits: difference between encoded height and visible height
+- upper 4 bits: difference between encoded width and visible width
+- lower 4 bits: difference between encoded height and visible height
 ***********************************************************/
 /***********************************************************
 This file is part of FFmpeg.
@@ -25,9 +25,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(FLVContext, x)
 //  #define VD AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "flv_metadata", "Allocate streams according to the onMetaData array", OFFSET(trust_metadata), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, VD },
 //      { "flv_full_metadata", "Dump full metadata of the onMetadata", OFFSET(dump_full_metadata), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, VD },
 //      { "flv_ignore_prevtag", "Ignore the Size of previous tag", OFFSET(trust_datasize), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, VD },
@@ -36,7 +38,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="flv_class", cheader="")]
-public class AVClass : AVClass {
+public class FLVDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -52,7 +54,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -62,7 +64,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_flv_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class FLVDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -115,7 +117,7 @@ public class InputDemuxer : AVInputFormat {
 }
 
 [CCode (cname="live_flv_class", cheader="")]
-public class AVClass : AVClass {
+public class LiveFLVDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -131,7 +133,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -141,7 +143,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_live_flv_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class LiveFLVDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -200,7 +202,7 @@ public class InputDemuxer : AVInputFormat {
 }
 
 [CCode (cname="kux_class", cheader="")]
-public class AVClass : AVClass {
+public class KUXDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -216,7 +218,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -226,7 +228,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_kux_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class KUXDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -277,3 +279,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = kux_class,
 }
+
+} // namespace LibAVFormat

@@ -20,12 +20,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file This is a muxer for Loki SDL Motion JPEG files
 ***********************************************************/
 
 [CCode (cname="ff_smjpeg_muxer", cheader="")]
-public class SDLMotionJpegOutputMuxer : AVOutputFormat {
+public class SDLMotionJpegMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -78,3 +80,5 @@ public class SDLMotionJpegOutputMuxer : AVOutputFormat {
     }
     //  .codec_tag = (const AVCodecTag *const []){ ff_codec_smjpeg_video_tags, ff_codec_smjpeg_audio_tags, 0 },
 }
+
+} // namespace LibAVFormat

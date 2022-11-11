@@ -17,25 +17,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 Based on file.c by Fabrice Bellard
 ***********************************************************/
+
+namespace LibAVFormat {
+
 /***********************************************************
 Input cache protocol.
 @copyright 2011, 2014 Michael Niedermayer
 ***********************************************************/
 /***********************************************************
-@TODO
+@todo
     support keeping files
     support filling with a background thread
 ***********************************************************/
 
 //  #define OFFSET(x) offsetof(Context, x)
 //  #define D AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "read_ahead_limit", "Amount in bytes that may be read ahead when seeking isn't supported, -1 for unlimited", OFFSET(read_ahead_limit), AV_OPT_TYPE_INT, { .i64 = 65536 }, -1, INT_MAX, D },
 //      {NULL},
 //  }
 
 [CCode (cname="cache_context_class", cheader="")]
-public class AVClass : AVClass {
+public class CacheContextClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -51,7 +54,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -99,3 +102,5 @@ public class CacheURLProtocol : URLProtocol {
     }
     //  .priv_data_class = cache_context_class,
 }
+
+} // namespace LibAVFormat

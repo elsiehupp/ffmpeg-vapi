@@ -20,12 +20,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption tee_options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option tee_options[] = {
 //      { NULL }
 //  }
 
 [CCode (cname="tee_class", cheader="")]
-public class AVClass : AVClass {
+public class TeeURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -81,6 +83,8 @@ public class TeeURLProtocol : URLProtocol {
     }
     //  .priv_data_class = tee_class,
     //  .default_whitelist = "crypto,file,http,https,httpproxy,rtmp,tcp,tls";
-        }
-    }
+    //      }
+    //  }
 }
+
+} // namespace LibAVFormat

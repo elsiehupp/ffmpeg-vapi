@@ -15,6 +15,8 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+
+namespace LibAVFormat {
 /***********************************************************
 Binary text demuxer
 eXtended BINary text (XBIN) demuxer
@@ -30,7 +32,7 @@ iCEDraw File demuxer
 ***********************************************************/
 
 //  #define OFFSET(x) offsetof(BinDemuxContext, x)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "linespeed", "set simulated line speed (bytes per second)", OFFSET(chars_per_frame), AV_OPT_TYPE_INT, {.i64 = 6000}, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM},
 //      { "video_size", "set video size, such as 640x480 or hd720.", OFFSET(width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, AV_OPT_FLAG_DECODING_PARAM },
 //      { "framerate", "set framerate (frames per second)", OFFSET(framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
@@ -38,7 +40,7 @@ iCEDraw File demuxer
 //  }
 
 //  #define CLASS(name)
-//  (const AVClass[1]){{
+//  (const LibAVUtil.Class[1]){{
 //      [CCode (cname="class_name", cheader="")]
 //      public override string class_name {
 //          public get {
@@ -64,7 +66,7 @@ iCEDraw File demuxer
 
 #if CONFIG_BINTEXT_DEMUXER
 [CCode (cname="ff_bintext_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class BinaryTextDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -102,7 +104,7 @@ public class InputDemuxer : AVInputFormat {
 
 #if CONFIG_XBIN_DEMUXER
 [CCode (cname="ff_xbin_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class XBINDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -140,7 +142,7 @@ public class InputDemuxer : AVInputFormat {
 
 #if CONFIG_ADF_DEMUXER
 [CCode (cname="ff_adf_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class ADFDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -180,7 +182,7 @@ public class InputDemuxer : AVInputFormat {
 
 #if CONFIG_IDF_DEMUXER
 [CCode (cname="ff_idf_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class IDFDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -221,3 +223,5 @@ public class InputDemuxer : AVInputFormat {
     //  .priv_class = CLASS("iCE Draw File demuxer")
 }
 #endif
+
+} // namespace LibAVFormat

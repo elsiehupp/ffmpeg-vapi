@@ -20,9 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(ChromaprintMuxContext, x)
 //  #define FLAGS AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "silence_threshold", "threshold for detecting silence", OFFSET(silence_threshold), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 32767, FLAGS },
 //      { "algorithm", "version of the fingerprint algorithm", OFFSET(algorithm), AV_OPT_TYPE_INT, { .i64 = CHROMAPRINT_ALGORITHM_DEFAULT }, CHROMAPRINT_ALGORITHM_TEST1, INT_MAX, FLAGS },
 //      { "fp_format", "fingerprint format to write", OFFSET(fp_format), AV_OPT_TYPE_INT, { .i64 = FINGERPRINT_BASE64 }, FINGERPRINT_RAW, FINGERPRINT_BASE64, FLAGS },
@@ -33,7 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="chromaprint_class", cheader="")]
-public class AVClass : AVClass {
+public class ChromaPrintMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -49,7 +51,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -59,7 +61,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_chromaprint_muxer", cheader="")]
-public class ChromaPrintOutputMuxer : AVOutputFormat {
+public class ChromaPrintMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -106,3 +108,5 @@ public class ChromaPrintOutputMuxer : AVOutputFormat {
     }
     //  .priv_class = chromaprint_class,
 }
+
+} // namespace LibAVFormat

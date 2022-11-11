@@ -20,10 +20,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(OGGContext, x)
 //  #define PARAM AV_OPT_FLAG_ENCODING_PARAM
 
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "serial_offset", "serial number offset",
 //          OFFSET(serial_offset), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, PARAM },
 //      { "oggpagesize", "Set preferred Ogg page size.",
@@ -37,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 //  #define OGG_CLASS(flavor, name)
 [CCode (cname="flavor ## _muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class FlaverMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -53,7 +55,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -65,7 +67,7 @@ public class AVClass : AVClass {
 #if CONFIG_OGG_MUXER
 //  OGG_CLASS(ogg, Ogg)
 [CCode (cname="ff_ogg_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class OggMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -155,7 +157,7 @@ public class OutputMuxer : AVOutputFormat {
 #if CONFIG_OGA_MUXER
 //  OGG_CLASS(oga, Ogg audio)
 [CCode (cname="ff_oga_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class OggAudioMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -227,7 +229,7 @@ public class OutputMuxer : AVOutputFormat {
 #if CONFIG_OGV_MUXER
 //  OGG_CLASS(ogv, Ogg video)
 [CCode (cname="ff_ogv_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class OggVideoMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -305,7 +307,7 @@ public class OutputMuxer : AVOutputFormat {
 #if CONFIG_SPX_MUXER
 //  OGG_CLASS(spx, Ogg Speex)
 [CCode (cname="ff_spx_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class OggSpeexMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -377,7 +379,7 @@ public class OutputMuxer : AVOutputFormat {
 #if CONFIG_OPUS_MUXER
 //  OGG_CLASS(opus, Ogg Opus)
 [CCode (cname="ff_opus_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class OggOpusMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -445,3 +447,5 @@ public class OutputMuxer : AVOutputFormat {
     //  .priv_class = opus_muxer_class,
 }
 #endif
+
+} // namespace LibAVFormat

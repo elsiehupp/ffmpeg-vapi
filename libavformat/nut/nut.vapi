@@ -28,7 +28,8 @@ public const uint64 SYNCPOINT_STARTCODE;
 public const uint64 INDEX_STARTCODE;
 public const uint64 INFO_STARTCODE;
 
-public const string ID_STRING; // "nut/multimedia container\0"
+[CCode (cname="ID_STRING", cheader="")]
+public const string NUT_ID_STRING; // "nut/multimedia container\0"
 
 public const size_t MAX_DISTANCE; // (1024*32-1)
 

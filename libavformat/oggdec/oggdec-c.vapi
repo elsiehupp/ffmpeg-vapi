@@ -28,8 +28,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_ogg_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class OggDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -92,3 +94,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

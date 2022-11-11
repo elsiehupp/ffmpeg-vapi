@@ -70,7 +70,7 @@ AVFormatContext, they can be examined from a user program by calling
 av_opt_next () / av_opt_find () on an allocated AVFormatContext (or its LibAVUtil.Class
 from avformat_get_class ()). Private (format-specific) options are provided by
 AVFormatContext.priv_data if and only if AVInputFormat.priv_class /
-public class OutputMuxer : AVOutputFormat.priv_class of the corresponding format struct is non-NULL.
+public class Muxer : AVOutputFormat.priv_class of the corresponding format struct is non-NULL.
 Further options may be provided by the @ref AVFormatContext.pb "I/O context"
 if its LibAVUtil.Class is non-NULL, and the protocols layer. See the discussion on
 nesting in @ref avoptions documentation to learn how to access those.
@@ -196,30 +196,30 @@ avformat_alloc_context () to create a muxing context. The caller then sets up
 the muxer by filling the various fields in this context:
 
 - The @ref AVFormatContext.oformat "oformat" field must be set to select the
-  muxer that will be used.
+muxer that will be used.
 - Unless the format is of the AVFMT_NOFILE type, the @ref AVFormatContext.pb
-  "pb" field must be set to an opened IO context, either returned from
-  avio_open2 () or a custom one.
+"pb" field must be set to an opened IO context, either returned from
+avio_open2 () or a custom one.
 - Unless the format is of the AVFMT_NOSTREAMS type, at least one stream must
-  be created with the avformat_new_stream () function. The caller should fill
-  the @ref AVStream.codecpar "stream codec parameters" information, such as the
-  codec @ref LibAVCodec.CodecParameters.codec_type "type", @ref LibAVCodec.CodecParameters.codec_id
-  "id" and other parameters (e.g. width / height, the pixel or sample format,
-  etc.) as known. The @ref AVStream.time_base "stream timebase" should
-  be set to the timebase that the caller desires to use for this stream (note
-  that the timebase actually used by the muxer can be different, as will be
-  described later).
+be created with the avformat_new_stream () function. The caller should fill
+the @ref AVStream.codecpar "stream codec parameters" information, such as the
+codec @ref LibAVCodec.CodecParameters.codec_type "type", @ref LibAVCodec.CodecParameters.codec_id
+"id" and other parameters (e.g. width / height, the pixel or sample format,
+etc.) as known. The @ref AVStream.time_base "stream timebase" should
+be set to the timebase that the caller desires to use for this stream (note
+that the timebase actually used by the muxer can be different, as will be
+described later).
 - It is advised to manually initialize only the relevant fields in
-  LibAVCodec.CodecParameters, rather than using @ref avcodec_parameters_copy () during
-  remuxing: there is no guarantee that the codec context values remain valid
-  for both input and output format contexts.
+LibAVCodec.CodecParameters, rather than using @ref avcodec_parameters_copy () during
+remuxing: there is no guarantee that the codec context values remain valid
+for both input and output format contexts.
 - The caller may fill in additional information, such as @ref
-  AVFormatContext.metadata "global" or @ref AVStream.metadata "per-stream"
-  metadata, @ref AVFormatContext.chapters "chapters", @ref
-  AVFormatContext.programs "programs", etc. as described in the
-  AVFormatContext documentation. Whether such information will actually be
-  stored in the output depends on what the container format and the muxer
-  support.
+AVFormatContext.metadata "global" or @ref AVStream.metadata "per-stream"
+metadata, @ref AVFormatContext.chapters "chapters", @ref
+AVFormatContext.programs "programs", etc. as described in the
+AVFormatContext documentation. Whether such information will actually be
+stored in the output depends on what the container format and the muxer
+support.
 
 When the muxing context is fully set up, the caller must call
 avformat_write_header () to initialize the muxer internals and write the file
@@ -330,62 +330,62 @@ exported by demuxers isn't checked to be valid UTF-8 in most cases.
 
 Important concepts to keep in mind:
 -  Keys are unique; there can never be 2 tags with the same key. This is
-   also meant semantically, i.e., a demuxer should not knowingly produce
-   several keys that are literally different but semantically identical.
-   E.g., key=Author5, key=Author6. In this example, all authors must be
-   placed in the same tag.
+    also meant semantically, i.e., a demuxer should not knowingly produce
+    several keys that are literally different but semantically identical.
+    E.g., key=Author5, key=Author6. In this example, all authors must be
+    placed in the same tag.
 -  Metadata is flat, not hierarchical; there are no subtags. If you
-   want to store, e.g., the email address of the child of producer Alice
-   and actor Bob, that could have key=alice_and_bobs_childs_email_address.
+    want to store, e.g., the email address of the child of producer Alice
+    and actor Bob, that could have key=alice_and_bobs_childs_email_address.
 -  Several modifiers can be applied to the tag name. This is done by
-   appending a dash character ('-') and the modifier name in the order
-   they appear in the list below -- e.g. foo-eng-sort, not foo-sort-eng.
-   -  language -- a tag whose value is localized for a particular language
+    appending a dash character ('-') and the modifier name in the order
+    they appear in the list below -- e.g. foo-eng-sort, not foo-sort-eng.
+    -  language -- a tag whose value is localized for a particular language
       is appended with the ISO 639-2/B 3-letter language code.
       For example: Author-ger=Michael, Author-eng=Mike
       The original/default language is in the unqualified "Author" tag.
       A demuxer should set a default if it sets any translated tag.
-   -  sorting -- a modified version of a tag that should be used for
+    -  sorting -- a modified version of a tag that should be used for
       sorting will have '-sort' appended. E.g. artist="The Beatles"
       artist-sort="Beatles, The".
 - Some protocols and demuxers support metadata updates. After a successful
-  call to av_read_packet (), AVFormatContext.event_flags or AVStream.event_flags
-  will be updated to indicate if metadata changed. In order to detect metadata
-  changes on a stream, you need to loop through all streams in the AVFormatContext
-  and check their individual event_flags.
+call to av_read_packet (), AVFormatContext.event_flags or AVStream.event_flags
+will be updated to indicate if metadata changed. In order to detect metadata
+changes on a stream, you need to loop through all streams in the AVFormatContext
+and check their individual event_flags.
 
 -  Demuxers attempt to export metadata in a generic format, however tags
-   with no generic equivalents are left as they are stored in the container.
-   Follows a list of generic tag names:
+    with no generic equivalents are left as they are stored in the container.
+    Follows a list of generic tag names:
 
- @verbatim
- album -- name of the set this work belongs to
- album_artist -- main creator of the set/album, if different from artist.
+@verbatim
+album -- name of the set this work belongs to
+album_artist -- main creator of the set/album, if different from artist.
                  e.g. "Various Artists" for compilation albums.
- artist -- main creator of the work
- comment -- any additional description of the file.
- composer -- who composed the work, if different from artist.
- copyright -- name of copyright holder.
- creation_time-- date when the file was created, preferably in ISO 8601.
- date -- date when the work was created, preferably in ISO 8601.
- disc -- number of a subset, e.g. disc in a multi-disc collection.
- encoder -- name/settings of the software/hardware that produced the file.
- encoded_by -- person/group who created the file.
- filename -- original name of the file.
- genre -- <self-evident>.
- language -- main language in which the work is performed, preferably
+artist -- main creator of the work
+comment -- any additional description of the file.
+composer -- who composed the work, if different from artist.
+copyright -- name of copyright holder.
+creation_time-- date when the file was created, preferably in ISO 8601.
+date -- date when the work was created, preferably in ISO 8601.
+disc -- number of a subset, e.g. disc in a multi-disc collection.
+encoder -- name/settings of the software/hardware that produced the file.
+encoded_by -- person/group who created the file.
+filename -- original name of the file.
+genre -- <self-evident>.
+language -- main language in which the work is performed, preferably
                  in ISO 639-2 format. Multiple languages can be specified by
                  separating them with commas.
- performer -- artist who performed the work, if different from artist.
+performer -- artist who performed the work, if different from artist.
                  E.g for "Also sprach Zarathustra", artist would be "Richard
                  Strauss" and performer "London Philharmonic Orchestra".
- publisher -- name of the label/publisher.
- service_name -- name of the service in broadcasting (channel name).
- service_provider -- name of the service provider in broadcasting.
- title -- name of the work.
- track -- number of this work in the set, can be in form current/total.
- variant_bitrate -- the total bitrate of the bitrate variant that the current stream is part of
- @endverbatim
+publisher -- name of the label/publisher.
+service_name -- name of the service in broadcasting (channel name).
+service_provider -- name of the service provider in broadcasting.
+title -- name of the work.
+track -- number of this work in the set, can be in form current/total.
+variant_bitrate -- the total bitrate of the bitrate variant that the current stream is part of
+@endverbatim
 
 Look in the examples section for an application example how to use the Metadata API.
 

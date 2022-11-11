@@ -20,8 +20,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_tta_muxer", cheader="")]
-public class TrueAudioOutputMuxer : AVOutputFormat {
+public class TrueAudioMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -83,3 +85,5 @@ public class TrueAudioOutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
 }
+
+} // namespace LibAVFormat

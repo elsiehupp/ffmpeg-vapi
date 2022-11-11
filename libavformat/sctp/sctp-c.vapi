@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file 
 sctp url_protocol
@@ -84,3 +86,5 @@ public class TCTPURLProtocol : URLProtocol {
     }
     //  .priv_data_class = sctp_class,
 }
+
+} // namespace LibAVFormat

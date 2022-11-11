@@ -20,10 +20,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(HashContext, x)
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
 //  #if CONFIG_HASH_MUXER || CONFIG_FRAMEHASH_MUXER
-//  static const AVOption hash_options[] = {
+//  static const LibAVUtil.Option hash_options[] = {
 //      { "hash", "set hash to use", OFFSET(hash_name), AV_OPT_TYPE_STRING, {.str = "sha256"}, 0, 0, ENC },
 //      { "format_version", "file format version", OFFSET(format_version), AV_OPT_TYPE_INT, {.i64 = 2}, 1, 2, ENC },
 //      { NULL },
@@ -31,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #endif
 
 //  #if CONFIG_MD5_MUXER || CONFIG_FRAMEMD5_MUXER
-//  static const AVOption md5_options[] = {
+//  static const LibAVUtil.Option md5_options[] = {
 //      { "hash", "set hash to use", OFFSET(hash_name), AV_OPT_TYPE_STRING, {.str = "md5"}, 0, 0, ENC },
 //      { "format_version", "file format version", OFFSET(format_version), AV_OPT_TYPE_INT, {.i64 = 2}, 1, 2, ENC },
 //      { NULL },
@@ -40,7 +42,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #if CONFIG_HASH_MUXER
 [CCode (cname="hashenc_class", cheader="")]
-public class AVClass : AVClass {
+public class HashMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -65,7 +67,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_hash_muxer", cheader="")]
-public class HashOutputMuxer : AVOutputFormat {
+public class HashMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -122,7 +124,7 @@ public class HashOutputMuxer : AVOutputFormat {
 
 #if CONFIG_MD5_MUXER
 [CCode (cname="md5enc_class", cheader="")]
-public class AVClass : AVClass {
+public class MD5MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -147,7 +149,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_md5_muxer", cheader="")]
-public class MD5OutputMuxer : AVOutputFormat {
+public class MD5Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -204,7 +206,7 @@ public class MD5OutputMuxer : AVOutputFormat {
 
 #if CONFIG_FRAMEHASH_MUXER
 [CCode (cname="framehash_class", cheader="")]
-public class AVClass : AVClass {
+public class FrameHashMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -229,7 +231,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_framehash_muxer", cheader="")]
-public class FrameHashOutputMuxer : AVOutputFormat {
+public class FrameHashMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -286,7 +288,7 @@ public class FrameHashOutputMuxer : AVOutputFormat {
 
 #if CONFIG_FRAMEMD5_MUXER
 [CCode (cname="framemd5_class", cheader="")]
-public class AVClass : AVClass {
+public class FrameMD5MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -311,7 +313,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_framemd5_muxer", cheader="")]
-public class FrameMD5OutputMuxer : AVOutputFormat {
+public class FrameMD5Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -365,3 +367,5 @@ public class FrameMD5OutputMuxer : AVOutputFormat {
     //  .priv_class = framemd5_class,
 }
 #endif
+
+} // namespace LibAVFormat

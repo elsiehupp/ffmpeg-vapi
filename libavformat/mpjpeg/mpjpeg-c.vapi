@@ -20,13 +20,15 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option options[] = {
 //      { "boundary_tag",    "Boundary tag", offsetof(MPJPEGContext, boundary_tag),   AV_OPT_TYPE_STRING, {.str = BOUNDARY_TAG}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
 //      { NULL },
 //  }
 
 [CCode (cname="mpjpeg_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MultipartJpegMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -42,7 +44,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -52,7 +54,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mpjpeg_muxer", cheader="")]
-public class MultipartJpegOutputMuxer : AVOutputFormat {
+public class MultipartJpegMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -117,3 +119,5 @@ public class MultipartJpegOutputMuxer : AVOutputFormat {
     }
     //  .priv_class = mpjpeg_muxer_class,
 }
+
+} // namespace LibAVFormat

@@ -20,8 +20,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="rtsp_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class RTSPMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -46,7 +48,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_rtsp_muxer", cheader="")]
-public class RTSPOutputMuxer : AVOutputFormat {
+public class RTSPMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -99,3 +101,5 @@ public class RTSPOutputMuxer : AVOutputFormat {
     }
     //  .priv_class = rtsp_muxer_class,
 }
+
+} // namespace LibAVFormat

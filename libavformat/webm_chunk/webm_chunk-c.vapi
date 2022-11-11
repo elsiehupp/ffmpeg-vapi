@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file WebM Chunk Muxer
 The chunk muxer enables writing WebM Live chunks where there is a header
@@ -26,7 +28,7 @@ chunk, followed by data chunks where each Cluster is written out as a Chunk.
 ***********************************************************/
 
 //  #define OFFSET(x) offsetof(WebMChunkContext, x)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "chunk_start_index",  "start index of the chunk", OFFSET(chunk_start_index), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
 //      { "header", "filename of the header where the initialization data will be written", OFFSET(header_filename), AV_OPT_TYPE_STRING, { 0 }, 0, 0, AV_OPT_FLAG_ENCODING_PARAM },
 //      { "audio_chunk_duration", "duration of each chunk in milliseconds", OFFSET(chunk_duration), AV_OPT_TYPE_INT, {.i64 = 5000}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
@@ -36,7 +38,7 @@ chunk, followed by data chunks where each Cluster is written out as a Chunk.
 
 #if CONFIG_WEBM_CHUNK_MUXER
 [CCode (cname="webm_chunk_class", cheader="")]
-public class AVClass : AVClass {
+public class WebMChunkMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -52,7 +54,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -62,7 +64,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_webm_chunk_muxer", cheader="")]
-public class WebMChunkOutputMuxer : AVOutputFormat {
+public class WebMChunkMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -116,3 +118,5 @@ public class WebMChunkOutputMuxer : AVOutputFormat {
     //  .priv_class = webm_chunk_class,
 }
 #endif
+
+} // namespace LibAVFormat

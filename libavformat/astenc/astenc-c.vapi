@@ -20,15 +20,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(obj) offsetof(ASTMuxContext, obj)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //    { "loopstart", "Loopstart position in milliseconds.", OFFSET(loopstart), AV_OPT_TYPE_INT64, { .i64 = -1 }, -1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
 //    { "loopend",   "Loopend position in milliseconds.",   OFFSET(loopend),   AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
 //    { NULL },
 //  }
 
 [CCode (cname="ast_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class ASTMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -44,7 +46,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -54,7 +56,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_ast_muxer", cheader="")]
-public class ASTOutputMuxer : AVOutputFormat {
+public class ASTMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -108,3 +110,5 @@ public class ASTOutputMuxer : AVOutputFormat {
     //  .priv_class = ast_muxer_class,
     //  .codec_tag = (AVCodecTag[]){ff_codec_ast_tags, 0},
 }
+
+} // namespace LibAVFormat

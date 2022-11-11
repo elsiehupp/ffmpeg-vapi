@@ -21,6 +21,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file @brief MPEG-4 / RTP Code
 @author Fabrice Bellard
@@ -118,3 +120,5 @@ public class Mpeg4GenericDynamicHandler : RTPDynamicProtocolHandler {
         int flags
     );
 }
+
+} // namespace LibAVFormat

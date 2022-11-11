@@ -19,10 +19,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(LIBSMBContext, x)
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      {"timeout",   "set timeout in ms of socket I/O operations",    OFFSET(timeout), AV_OPT_TYPE_INT, {.i64 = -1}, -1, INT_MAX, D|E },
 //      {"truncate",  "truncate existing files on write",              OFFSET(trunc),   AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 1, E },
 //      {"workgroup", "set the workgroup used for making connections", OFFSET(workgroup), AV_OPT_TYPE_STRING, { 0 }, 0, 0, D|E },
@@ -30,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="libsmbclient_context_class", cheader="")]
-public class AVClass : AVClass {
+public class LibSMBClientURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -126,3 +128,5 @@ public class LibSMBClientURLProtocol : URLProtocol {
         }
     }
 }
+
+} // namespace LibAVFormat

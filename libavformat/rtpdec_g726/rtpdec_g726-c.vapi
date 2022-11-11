@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define RTP_G726_HANDLER(bitrate)
 //  static av_cold int g726_ ## bitrate ##_init(AVFormatContext *s, int st_index,
 //                                              PayloadContext *data)
@@ -83,3 +85,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  RTP_G726_HANDLER(24);
 //  RTP_G726_HANDLER(32);
 //  RTP_G726_HANDLER(40);
+
+} // namespace LibAVFormat

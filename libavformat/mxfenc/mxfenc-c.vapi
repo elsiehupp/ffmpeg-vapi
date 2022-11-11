@@ -21,6 +21,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 signal_standard, color_siting, store_user_comments, sample rate and klv_fill_key version
 fixes sponsored by NOA GmbH
@@ -57,7 +59,7 @@ SMPTE RP224: Registry of SMPTE Universal Labels
 
 
 
-//  static const AVOption mxf_options[] = {
+//  static const LibAVUtil.Option mxf_options[] = {
 //      MXF_COMMON_OPTIONS
 //      { "store_user_comments", "",
 //        offsetof(MXFContext, store_user_comments), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
@@ -65,7 +67,7 @@ SMPTE RP224: Registry of SMPTE Universal Labels
 //  }
 
 [CCode (cname="mxf_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MXFMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -89,7 +91,7 @@ public class AVClass : AVClass {
     }
 }
 
-//  static const AVOption d10_options[] = {
+//  static const LibAVUtil.Option d10_options[] = {
 //      { "d10_channelcount", "Force/set channelcount in generic sound essence descriptor",
 //        offsetof(MXFContext, channel_count), AV_OPT_TYPE_INT, {.i64 = -1}, -1, 8, AV_OPT_FLAG_ENCODING_PARAM},
 //      MXF_COMMON_OPTIONS
@@ -99,7 +101,7 @@ public class AVClass : AVClass {
 //  }
 
 [CCode (cname="mxf_d10_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MXFD10MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -123,7 +125,7 @@ public class AVClass : AVClass {
     }
 }
 
-//  static const AVOption opatom_options[] = {
+//  static const LibAVUtil.Option opatom_options[] = {
 //      { "mxf_audio_edit_rate", "Audio edit rate for timecode",
 //          offsetof(MXFContext, audio_edit_rate), AV_OPT_TYPE_RATIONAL, {.dbl=25}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
 //      MXF_COMMON_OPTIONS
@@ -133,7 +135,7 @@ public class AVClass : AVClass {
 //  }
 
 [CCode (cname="mxf_opatom_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MXFOPAtomMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -158,7 +160,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mxf_muxer", cheader="")]
-public class MXFOPATOMOutputMuxer : AVOutputFormat {
+public class MXFOPATOMMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -232,7 +234,7 @@ public class MXFOPATOMOutputMuxer : AVOutputFormat {
 }
 
 [CCode (cname="ff_mxf_d10_muxer", cheader="")]
-public class MXFD10OutputMuxer : AVOutputFormat {
+public class MXFD10Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -300,7 +302,7 @@ public class MXFD10OutputMuxer : AVOutputFormat {
 }
 
 [CCode (cname="ff_mxf_opatom_muxer", cheader="")]
-public class MXFOutputMuxer : AVOutputFormat {
+public class MXFMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -372,3 +374,5 @@ public class MXFOutputMuxer : AVOutputFormat {
     );
     //  .priv_class = mxf_opatom_muxer_class,
 }
+
+} // namespace LibAVFormat

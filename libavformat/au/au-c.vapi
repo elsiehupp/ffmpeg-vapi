@@ -22,6 +22,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if CONFIG_AU_MUXER
 /***********************************************************
 Reference documents:
@@ -30,7 +32,7 @@ http://www.goice.co.jp/member/mo/formats/au.html
 ***********************************************************/
 
 [CCode (cname="ff_au_muxer", cheader="")]
-public class AUOutputMuxer : AVOutputFormat {
+public class AUMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -97,3 +99,5 @@ public class AUOutputMuxer : AVOutputFormat {
 }
 
 #endif /* CONFIG_AU_MUXER */
+
+} // namespace LibAVFormat

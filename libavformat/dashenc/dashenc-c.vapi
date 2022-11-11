@@ -21,9 +21,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(DASHContext, x)
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "adaptation_sets", "Adaptation sets. Syntax: id=0,streams=0,1,2 id=1,streams=3,4 and so on", OFFSET(adaptation_sets), AV_OPT_TYPE_STRING, { 0 }, 0, 0, AV_OPT_FLAG_ENCODING_PARAM },
 //      { "window_size", "number of segments kept in the manifest", OFFSET(window_size), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, E },
 //      { "extra_window_size", "number of segments kept outside of the manifest before removing from disk", OFFSET(extra_window_size), AV_OPT_TYPE_INT, { .i64 = 5 }, 0, INT_MAX, E },
@@ -59,7 +61,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="dash_class", cheader="")]
-public class AVClass : AVClass {
+public class DashMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -75,7 +77,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -85,7 +87,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_dash_muxer", cheader="")]
-public class DashOutputMuxer : AVOutputFormat {
+public class DashMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -157,3 +159,5 @@ public class DashOutputMuxer : AVOutputFormat {
     );
     //  .priv_class = dash_class,
 }
+
+} // namespace LibAVFormat

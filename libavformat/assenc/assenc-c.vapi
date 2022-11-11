@@ -20,15 +20,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(ASSContext, x)
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "ignore_readorder", "write events immediately, even if they're out-of-order", OFFSET(ignore_readorder), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, E },
 //      { NULL },
 //  }
 
 [CCode (cname="ass_class", cheader="")]
-public class AVClass : AVClass {
+public class ASSClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -44,7 +46,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -54,7 +56,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_ass_muxer", cheader="")]
-public class ASSOutputMuxer : AVOutputFormat {
+public class ASSMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -113,3 +115,5 @@ public class ASSOutputMuxer : AVOutputFormat {
     }
     //  .priv_class = ass_class,
 }
+
+} // namespace LibAVFormat

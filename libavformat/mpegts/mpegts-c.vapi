@@ -20,10 +20,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define MPEGTS_OPTIONS
 //      { "resync_size",   "set size limit for looking up a new synchronization", offsetof(MpegTSContext, resync_size), AV_OPT_TYPE_INT,  { .i64 = MAX_RESYNC_SIZE}, 0, INT_MAX,  AV_OPT_FLAG_DECODING_PARAM }
 
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      MPEGTS_OPTIONS,
 //      {"fix_teletext_pts", "try to fix pts values of dvb teletext streams", offsetof(MpegTSContext, fix_teletext_pts), AV_OPT_TYPE_BOOL,
 //       {.i64 = 1}, 0, 1, AV_OPT_FLAG_DECODING_PARAM },
@@ -43,7 +45,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="mpegts_class", cheader="")]
-public class AVClass : AVClass {
+public class MpegTSDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -59,7 +61,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -68,7 +70,7 @@ public class AVClass : AVClass {
     }
 }
 
-//  static const AVOption raw_options[] = {
+//  static const LibAVUtil.Option raw_options[] = {
 //      MPEGTS_OPTIONS,
 //      { "compute_pcr",   "compute exact PCR for each transport stream packet"
 //            offsetof(MpegTSContext, mpeg2ts_compute_pcr), AV_OPT_TYPE_BOOL,
@@ -81,7 +83,7 @@ public class AVClass : AVClass {
 //  }
 
 [CCode (cname="mpegtsraw_class", cheader="")]
-public class AVClass : AVClass {
+public class MpegTSRawDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -106,7 +108,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mpegts_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class MPEGTSDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -159,7 +161,7 @@ public class InputDemuxer : AVInputFormat {
 }
 
 [CCode (cname="ff_mpegtsraw_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class MpegTSRawDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -206,3 +208,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = mpegtsraw_class,
 }
+
+} // namespace LibAVFormat

@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 References
 SMPTE 336M KLV Data Encoding Protocol Using Key-Length-Value
@@ -44,7 +46,7 @@ Simple demuxer, only OP1A supported and some files might not work at all.
 Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPTE 377M D.1
 ***********************************************************/
 
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "eia608_extract", "extract eia 608 captions from s436m track",
 //        offsetof(MXFContext, eia608_extract), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1,
 //        AV_OPT_FLAG_DECODING_PARAM },
@@ -52,7 +54,7 @@ Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPT
 //  }
 
 [CCode (cname="demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MXFDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -68,7 +70,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -79,7 +81,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mxf_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class MXFDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -130,3 +132,5 @@ public class InputDemuxer : AVInputFormat {
     );
     //  .priv_class = demuxer_class,
 }
+
+} // namespace LibAVFormat

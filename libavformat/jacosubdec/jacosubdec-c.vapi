@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file JACOsub subtitle demuxer
 @see http://unicorn.us.com/jacosub/jscripts.html
@@ -26,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_jacosub_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class JacoSubDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -72,3 +74,5 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context
     );
 }
+
+} // namespace LibAVFormat

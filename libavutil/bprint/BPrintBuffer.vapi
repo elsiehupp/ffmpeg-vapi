@@ -166,13 +166,13 @@ public void av_bprint_init (
 
 The buffer will not be reallocated.
 
-@param buffer buffer structure to init
+@param print_buffer buffer structure to init
 @param buffer byte buffer to use for the string data
 @param size size of buffer
 ***********************************************************/
 [CCode (cname="av_bprint_init_for_buffer", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_init_for_buffer (
-    BPrintBuffer buffer,
+    BPrintBuffer print_buffer,
     string buffer,
     uint size
 );

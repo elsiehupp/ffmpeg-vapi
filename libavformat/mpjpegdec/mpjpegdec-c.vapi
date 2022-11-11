@@ -20,15 +20,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(MPJPEGDemuxContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption mpjpeg_options[] = {
+//  static const LibAVUtil.Option mpjpeg_options[] = {
 //      { "strict_mime_boundary",  "require MIME boundaries match", OFFSET(strict_mime_boundary), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC },
 //      { NULL }
 //  }
 
 [CCode (cname="mpjpeg_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MPJPEGDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -53,7 +55,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mpjpeg_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class MPJPEGDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -111,3 +113,5 @@ public class InputDemuxer : AVInputFormat {
 }
 
 
+
+} // namespace LibAVFormat

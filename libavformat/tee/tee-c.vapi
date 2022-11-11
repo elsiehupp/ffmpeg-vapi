@@ -20,8 +20,10 @@ along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(TeeContext, x)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //          {"use_fifo", "Use fifo pseudo-muxer to separate actual muxers from encoder",
 //           OFFSET(use_fifo), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
 //          {"fifo_options", "fifo pseudo-muxer options", OFFSET(fifo_options_str),
@@ -30,7 +32,7 @@ along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
 //  }
 
 [CCode (cname="tee_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class TeeMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -55,7 +57,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_tee_muxer", cheader="")]
-public class TeeOutputMuxer : AVOutputFormat {
+public class TeeMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -96,3 +98,5 @@ public class TeeOutputMuxer : AVOutputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

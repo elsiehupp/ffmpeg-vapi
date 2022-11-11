@@ -21,8 +21,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_rso_muxer", cheader="")]
-public class RSOOutputMuxer : AVOutputFormat {
+public class RSOMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -75,3 +77,5 @@ public class RSOOutputMuxer : AVOutputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

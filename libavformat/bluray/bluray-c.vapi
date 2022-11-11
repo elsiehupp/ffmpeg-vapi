@@ -15,13 +15,15 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+
+namespace LibAVFormat {
 /***********************************************************
 BluRay (libbluray) protocol
 
 @copyright 2012 Petri Hintukainen <phintuka <at> users.sourceforge.net>
 ***********************************************************/
 //  #define OFFSET(x) offsetof(BlurayContext, x)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      {"playlist", "", OFFSET(playlist), AV_OPT_TYPE_INT, { .i64=-1 }, -1,  99999, AV_OPT_FLAG_DECODING_PARAM },
 //      {"angle",    "", OFFSET(angle),    AV_OPT_TYPE_INT, { .i64=0 },   0,   0xfe, AV_OPT_FLAG_DECODING_PARAM },
 //      {"chapter",  "", OFFSET(chapter),  AV_OPT_TYPE_INT, { .i64=1 },   1, 0xfffe, AV_OPT_FLAG_DECODING_PARAM },
@@ -30,7 +32,7 @@ BluRay (libbluray) protocol
 //  }
 
 [CCode (cname="bluray_context_class", cheader="")]
-public class AVClass : AVClass {
+public class BluRayContextClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -92,3 +94,5 @@ public class BluRayURLProtocol : URLProtocol {
     }
     //  .priv_data_class = bluray_context_class,
 }
+
+} // namespace LibAVFormat

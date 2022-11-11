@@ -21,15 +21,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(MicroDVDContext, x)
 //  #define SD AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption microdvd_options[] = {
+//  static const LibAVUtil.Option microdvd_options[] = {
 //      { "subfps", "set the movie frame rate fallback", OFFSET(frame_rate), AV_OPT_TYPE_RATIONAL, {.dbl=0}, 0, INT_MAX, SD },
 //      { NULL }
 //  }
 
 [CCode (cname="microdvd_class", cheader="")]
-public class AVClass : AVClass {
+public class MicroDVDDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -54,7 +56,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_microdvd_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class MicroDVDDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -101,3 +103,5 @@ public class InputDemuxer : AVInputFormat {
     );
     //  .priv_class = microdvd_class,
 }
+
+} // namespace LibAVFormat

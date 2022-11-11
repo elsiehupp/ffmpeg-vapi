@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file id Quake II CIN file demuxer by Mike Melanson (melanson@pcisys.net)
 For more information about the id CIN format, visit:
@@ -43,15 +45,15 @@ that this demuxer allows.
 Next, each audio and video frame has a duration of 1/14 sec. If the
 audio sample rate is a multiple of the common frequency 22050 Hz it will
 divide evenly by 14. However, if the sample rate is 11025 Hz:
-  11025 (samples/sec) / 14 (frames/sec) = 787.5 (samples/frame)
+11025 (samples/sec) / 14 (frames/sec) = 787.5 (samples/frame)
 The way the CIN stores audio in this case is by storing 787 sample
 frames in the first audio frame and 788 sample frames in the second
 audio frame. Therefore, the total number of bytes in an audio frame
 is given as:
-  audio frame #0: 787 * (bytes/sample) * (# channels) bytes in frame
-  audio frame #1: 788 * (bytes/sample) * (# channels) bytes in frame
-  audio frame #2: 787 * (bytes/sample) * (# channels) bytes in frame
-  audio frame #3: 788 * (bytes/sample) * (# channels) bytes in frame
+audio frame #0: 787 * (bytes/sample) * (# channels) bytes in frame
+audio frame #1: 788 * (bytes/sample) * (# channels) bytes in frame
+audio frame #2: 787 * (bytes/sample) * (# channels) bytes in frame
+audio frame #3: 788 * (bytes/sample) * (# channels) bytes in frame
 
 Finally, not all id CIN creation tools agree on the resolution of the
 color palette, apparently. Some creation tools specify red, green, and
@@ -69,7 +71,7 @@ heuristic:
 ***********************************************************/
 
 [CCode (cname="ff_idcin_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class IDCINDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -115,3 +117,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

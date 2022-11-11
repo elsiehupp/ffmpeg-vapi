@@ -20,7 +20,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option options[] = {
 //      { "sample_rate", "", offsetof(GSMDemuxerContext, sample_rate),
 //         AV_OPT_TYPE_INT, {.i64 = GSM_SAMPLE_RATE}, 1, INT_MAX / GSM_BLOCK_SIZE,
 //         AV_OPT_FLAG_DECODING_PARAM },
@@ -28,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="gsm_class", cheader="")]
-public class AVClass : AVClass {
+public class GSMDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -44,7 +46,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -54,7 +56,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_gsm_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class GSMDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -106,3 +108,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = gsm_class,
 }
+
+} // namespace LibAVFormat

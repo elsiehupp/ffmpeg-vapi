@@ -24,9 +24,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(MOVContext, x)
 //  #define FLAGS AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption mov_options[] = {
+//  static const LibAVUtil.Option mov_options[] = {
 //      {"use_absolute_path",
 //          "allow using absolute path when opening alias, this is a possible security issue",
 //          OFFSET(use_absolute_path), AV_OPT_TYPE_BOOL, {.i64 = 0},
@@ -72,7 +74,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="mov_class", cheader="")]
-public class AVClass : AVClass {
+public class MOVDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -97,7 +99,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mov_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class MOVDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -154,3 +156,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

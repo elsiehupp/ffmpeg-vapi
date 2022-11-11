@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 
 [CCode (cname="l24_dynamic_handler", cheader="")]
 public class L24DynamicHandler : RTPDynamicProtocolHandler {
@@ -227,3 +229,5 @@ public class T140DynamicHandler : RTPDynamicProtocolHandler {
 //      &ff_rdt_live_audio_handler,
 //      NULL,
 //  }
+
+} // namespace LibAVFormat

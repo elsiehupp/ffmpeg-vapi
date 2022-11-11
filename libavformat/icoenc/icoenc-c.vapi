@@ -20,12 +20,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Microsoft Windows ICO muxer
 ***********************************************************/
 
 [CCode (cname="ff_ico_muxer", cheader="")]
-public class ICOOutputMuxer : AVOutputFormat {
+public class ICOMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -89,3 +91,5 @@ public class ICOOutputMuxer : AVOutputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

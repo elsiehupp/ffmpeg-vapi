@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if CONFIG_AC3_DEMUXER
 static int ac3_probe(const AVProbeData *p)
 {
@@ -29,7 +31,7 @@ static int ac3_probe(const AVProbeData *p)
 //  FF_RAW_DEMUXER_CLASS(ac3)
 
 [CCode (cname="ff_ac3_demuxer", cheader="")]
-public class AC3InputDemuxer : AVInputFormat {
+public class AC3Demuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -91,7 +93,7 @@ static int eac3_probe(const AVProbeData *p)
 
 //  FF_RAW_DEMUXER_CLASS(eac3)
 [CCode (cname="ff_eac3_demuxer", cheader="")]
-public class EAC3InputDemuxer : AVInputFormat {
+public class EAC3Demuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -144,3 +146,5 @@ public class EAC3InputDemuxer : AVInputFormat {
     //  .priv_class = eac3_demuxer_class,
 }
 #endif
+
+} // namespace LibAVFormat

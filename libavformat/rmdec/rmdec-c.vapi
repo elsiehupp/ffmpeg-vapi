@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define DEINT_ID_GENR MKTAG('g', 'e', 'n', 'r') ///< interleaving for Cooker/ATRAC
 //  #define DEINT_ID_INT0 MKTAG('I', 'n', 't', '0') ///< no interleaving needed
 //  #define DEINT_ID_INT4 MKTAG('I', 'n', 't', '4') ///< interleaving for 28.8
@@ -28,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define DEINT_ID_VBRS MKTAG('v', 'b', 'r', 's') ///< VBR case for AAC
 
 [CCode (cname="ff_rm_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class RealMediaDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -81,7 +83,7 @@ public class InputDemuxer : AVInputFormat {
 }
 
 [CCode (cname="ff_rdt_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class RDTDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -113,7 +115,7 @@ public class InputDemuxer : AVInputFormat {
 }
 
 [CCode (cname="ff_ivr_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class IVRDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -156,3 +158,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

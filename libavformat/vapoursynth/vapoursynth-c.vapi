@@ -16,6 +16,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file VapourSynth demuxer
 
@@ -23,7 +25,7 @@ Synthesizes vapour (?)
 ***********************************************************/
 
 [CCode (cname="class_vs", cheader="")]
-public class AVClass : AVClass {
+public class VapourSynthDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -39,7 +41,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -49,7 +51,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_vapoursynth_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class VapourSynthDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -94,3 +96,5 @@ public class InputDemuxer : AVInputFormat {
     );
     //  .priv_class = class_vs,
 }
+
+} // namespace LibAVFormat

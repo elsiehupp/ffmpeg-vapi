@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Matroska file demuxer
 @author Ronald Bultje <rbultje@ronald.bitfreak.net>
@@ -29,14 +31,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 //  #define OFFSET(x) offsetof(MatroskaDemuxContext, x)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "live", "flag indicating that the input is a live file that only has the headers.", OFFSET(is_live), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, AV_OPT_FLAG_DECODING_PARAM },
 //      { "bandwidth", "bandwidth of this stream to be specified in the DASH manifest.", OFFSET(bandwidth), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL },
 //  }
 
 [CCode (cname="webm_dash_class", cheader="")]
-public class AVClass : AVClass {
+public class WebMDashManifestDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -52,7 +54,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -62,7 +64,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_matroska_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class MatroskaDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -120,7 +122,7 @@ public class InputDemuxer : AVInputFormat {
 }
 
 [CCode (cname="ff_webm_dash_manifest_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class WebMDashManifestDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -154,3 +156,5 @@ public class InputDemuxer : AVInputFormat {
     ); // = ,
     //  .priv_class = webm_dash_class,
 }
+
+} // namespace LibAVFormat

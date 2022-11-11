@@ -20,7 +20,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption tedcaptions_options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option tedcaptions_options[] = {
 //      { "start_time", "set the start time (offset) of the subtitles, in ms",
 //        offsetof(TEDCaptionsDemuxer, start_time), AV_OPT_TYPE_INT64,
 //        { .i64 = 15000 }, INT64_MIN, INT64_MAX,
@@ -29,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="tedcaptions_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class TedCaptionsDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -54,7 +56,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_tedcaptions_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class TedCaptionsDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -101,3 +103,5 @@ public class InputDemuxer : AVInputFormat {
         int flags
     );
 }
+
+} // namespace LibAVFormat

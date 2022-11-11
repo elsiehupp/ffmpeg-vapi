@@ -20,16 +20,18 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(WebpContext, x)
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "loop", "Number of times to loop the output: 0 - infinite loop", OFFSET(loop),
 //        AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 65535, ENC },
 //      { NULL },
 //  }
 
 [CCode (cname="webp_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class WebPMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -51,11 +53,11 @@ public class AVClass : AVClass {
         }
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_webp_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class WebPMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -108,3 +110,5 @@ public class OutputMuxer : AVOutputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

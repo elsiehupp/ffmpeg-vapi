@@ -19,12 +19,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file SubViewer v1 subtitle demuxer
 ***********************************************************/
 
 [CCode (cname="ff_subviewer1_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class SubViewerV1Demuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -76,3 +78,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

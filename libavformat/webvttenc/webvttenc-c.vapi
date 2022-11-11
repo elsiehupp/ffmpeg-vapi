@@ -19,13 +19,15 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file WebVTT subtitle muxer
 @see http://dev.w3.org/html5/webvtt/
 ***********************************************************/
 
 [CCode (cname="ff_webvtt_muxer", cheader="")]
-public class WebVTTOutputMuxer : AVOutputFormat {
+public class WebVTTMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -73,3 +75,5 @@ public class WebVTTOutputMuxer : AVOutputFormat {
         int buf_size
     );
 }
+
+} // namespace LibAVFormat

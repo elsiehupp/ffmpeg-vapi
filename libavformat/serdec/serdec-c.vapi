@@ -20,15 +20,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(SERDemuxerContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption ser_options[] = {
+//  static const LibAVUtil.Option ser_options[] = {
 //      { "framerate", "set frame rate", OFFSET(framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, DEC },
 //      { NULL },
 //  }
 
 [CCode (cname="ser_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class SERDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -53,7 +55,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_ser_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class SERDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -105,3 +107,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = ser_demuxer_class,
 }
+
+} // namespace LibAVFormat

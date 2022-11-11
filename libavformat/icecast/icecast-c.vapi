@@ -20,8 +20,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="icecast_context_class", cheader="")]
-public class AVClass : AVClass {
+public class IceCastURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -83,3 +85,5 @@ public class IceCastURLProtocol : URLProtocol {
         }
     }
 }
+
+} // namespace LibAVFormat

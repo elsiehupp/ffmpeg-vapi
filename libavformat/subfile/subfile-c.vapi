@@ -19,10 +19,12 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(field) offsetof(SubfileContext, field)
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 
-//  static const AVOption subfile_options[] = {
+//  static const LibAVUtil.Option subfile_options[] = {
 //      { "start", "start offset", OFFSET(start), AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
 //      { "end",   "end offset",   OFFSET(end),   AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
 //      { NULL }
@@ -32,7 +34,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 //  #undef D
 
 [CCode (cname="subfile_class", cheader="")]
-public class AVClass : AVClass {
+public class SubFileURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -95,6 +97,8 @@ public class SubFileURLProtocol : URLProtocol {
     }
     //  .priv_data_class = subfile_class,
     //  .default_whitelist = "file";
-        }
-    }
+    //      }
+    //  }
 }
+
+} // namespace LibAVFormat

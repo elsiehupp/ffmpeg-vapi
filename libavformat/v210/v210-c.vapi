@@ -20,9 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(V210DemuxerContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption v210_options[] = {
+//  static const LibAVUtil.Option v210_options[] = {
 //      { "video_size", "set frame size", OFFSET(width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, DEC },
 //      { "framerate", "set frame rate", OFFSET(framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, DEC },
 //      { NULL },
@@ -30,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #if CONFIG_V210_DEMUXER
 [CCode (cname="v210_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class V210DemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -55,7 +57,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_v210_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class V210Demuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -107,7 +109,7 @@ public class InputDemuxer : AVInputFormat {
 
 #if CONFIG_V210X_DEMUXER
 [CCode (cname="v210x_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class V210XDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -132,7 +134,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_v210x_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class V210XDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -181,3 +183,5 @@ public class InputDemuxer : AVInputFormat {
     //  .priv_class = v210x_demuxer_class,
 }
 #endif // CONFIG_V210X_DEMUXER
+
+} // namespace LibAVFormat

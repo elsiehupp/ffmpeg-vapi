@@ -1,5 +1,5 @@
 /***********************************************************
-   @copyright 2005  Matthieu CASTET
+@copyright 2005  Matthieu CASTET
 ***********************************************************/
 /***********************************************************
 This file is part of FFmpeg.
@@ -19,11 +19,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_flac_codec", cheader="")]
 public class FlacCodec : OggCodec {
     public override int8[] magic {
         public get {
-            return "\177FLAC";
+            return "177FLAC";
         }
     }
     //  .magicsize = 5,
@@ -50,3 +52,5 @@ public class OldFlacCodec : OggCodec {
     );
     //  .nb_header = 0,
 }
+
+} // namespace LibAVFormat

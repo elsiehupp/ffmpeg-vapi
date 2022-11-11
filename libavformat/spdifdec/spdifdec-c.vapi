@@ -20,13 +20,15 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file IEC 61937 demuxer, used for compressed data in S/PDIF
 @author Anssi Hannula
 ***********************************************************/
 
 [CCode (cname="ff_spdif_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class SPDIFDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -59,3 +61,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

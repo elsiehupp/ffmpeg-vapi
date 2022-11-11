@@ -21,9 +21,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if CONFIG_AC3_MUXER
 [CCode (cname="ff_ac3_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class AC3Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -82,7 +84,7 @@ public class OutputMuxer : AVOutputFormat {
 #if CONFIG_ADX_MUXER
 
 [CCode (cname="ff_adx_muxer", cheader="")]
-public class ADXOutputMuxer : AVOutputFormat {
+public class ADXMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -138,7 +140,7 @@ public class ADXOutputMuxer : AVOutputFormat {
 
 #if CONFIG_APTX_MUXER
 [CCode (cname="ff_aptx_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class APTXMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -190,7 +192,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_APTX_HD_MUXER
 [CCode (cname="ff_aptx_hd_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class APTXHDMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -242,7 +244,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_AVS2_MUXER
 [CCode (cname="ff_avs2_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class AVS2Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -294,7 +296,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_CAVSVIDEO_MUXER
 [CCode (cname="ff_cavsvideo_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class CAVSVideoMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -346,7 +348,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_CODEC2RAW_MUXER
 [CCode (cname="ff_codec2raw_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class Codec2RawMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -393,7 +395,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_DATA_MUXER
 [CCode (cname="ff_data_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class DataMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -427,7 +429,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_DIRAC_MUXER
 [CCode (cname="ff_dirac_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class DiracMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -479,7 +481,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_DNXHD_MUXER
 [CCode (cname="ff_dnxhd_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class DNxHDMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -531,7 +533,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_DTS_MUXER
 [CCode (cname="ff_dts_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class DTSMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -589,7 +591,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_EAC3_MUXER
 [CCode (cname="ff_eac3_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class EAC3Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -647,7 +649,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_G722_MUXER
 [CCode (cname="ff_g722_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class G722Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -705,7 +707,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_G723_1_MUXER
 [CCode (cname="ff_g723_1_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class G7231Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -763,7 +765,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_G726_MUXER
 [CCode (cname="ff_g726_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class G726Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -809,7 +811,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_G726LE_MUXER
 [CCode (cname="ff_g726le_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class G726LEMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -855,7 +857,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_GSM_MUXER
 [CCode (cname="ff_gsm_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class GSMMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -913,7 +915,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_H261_MUXER
 [CCode (cname="ff_h261_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class H261Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -971,7 +973,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_H263_MUXER
 [CCode (cname="ff_h263_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class H263Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1030,7 +1032,7 @@ public class OutputMuxer : AVOutputFormat {
 #if CONFIG_H264_MUXER
 
 [CCode (cname="ff_h264_muxer", cheader="")]
-public class H264OutputMuxer : AVOutputFormat {
+public class H264Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1096,7 +1098,7 @@ static int hevc_check_bitstream(AVFormatContext *s, const AVPacket *pkt)
 }
 
 [CCode (cname="ff_hevc_muxer", cheader="")]
-public class HEVCOutputMuxer : AVOutputFormat {
+public class HEVCMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1153,7 +1155,7 @@ public class HEVCOutputMuxer : AVOutputFormat {
 
 #if CONFIG_M4V_MUXER
 [CCode (cname="ff_m4v_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class M4VMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1205,7 +1207,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_MJPEG_MUXER
 [CCode (cname="ff_mjpeg_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class MJEPGMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1263,7 +1265,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_SINGLEJPEG_MUXER
 [CCode (cname="ff_singlejpeg_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class SingleJPEGMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1315,7 +1317,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_MLP_MUXER
 [CCode (cname="ff_mlp_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class MLPMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1367,7 +1369,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_MP2_MUXER
 [CCode (cname="ff_mp2_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class MP2Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1421,7 +1423,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_MPEG1VIDEO_MUXER
 [CCode (cname="ff_mpeg1video_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class Mpeg1VideoMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1479,7 +1481,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_MPEG2VIDEO_MUXER
 [CCode (cname="ff_mpeg2video_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class Mpeg2VideoMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1531,7 +1533,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_RAWVIDEO_MUXER
 [CCode (cname="ff_rawvideo_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class RawVideoMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1579,7 +1581,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_SBC_MUXER
 [CCode (cname="ff_sbc_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class SBCMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1631,7 +1633,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_TRUEHD_MUXER
 [CCode (cname="ff_truehd_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class TrueHDMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1683,7 +1685,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_VC1_MUXER
 [CCode (cname="ff_vc1_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class VC1Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -1732,3 +1734,5 @@ public class OutputMuxer : AVOutputFormat {
     }
 }
 #endif
+
+} // namespace LibAVFormat

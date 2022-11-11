@@ -20,8 +20,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
+[CCode (cname="SAPState", cheader="")]
+public struct SAPDemuxerState { }
+
 [CCode (cname="ff_sap_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class SAPDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -37,7 +42,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (SAPState);
+            return sizeof (SAPDemuxerState);
         }
     }
     [CCode (cname="sap_probe", cheader="")]
@@ -64,3 +69,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

@@ -20,16 +20,18 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(AVIOContext,x)
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
 //  #define D AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption ff_avio_options[] = {
+//  static const LibAVUtil.Option ff_avio_options[] = {
 //      {"protocol_whitelist", "List of protocols that are allowed to be used", OFFSET(protocol_whitelist), AV_OPT_TYPE_STRING, { .str = NULL },  CHAR_MIN, CHAR_MAX, D },
 //      { NULL },
 //  }
 
 [CCode (cname="ff_avio_class", cheader="")]
-public class AVClass : AVClass {
+public class AVIOContextClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -61,3 +63,5 @@ public class AVClass : AVClass {
         Class prev
     );
 }
+
+} // namespace LibAVFormat

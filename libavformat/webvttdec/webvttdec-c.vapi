@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file WebVTT subtitle demuxer
 @see http://dev.w3.org/html5/webvtt/
@@ -27,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define OFFSET(x) offsetof(WebVTTContext, x)
 //  #define KIND_FLAGS AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
 
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "kind", "Set kind of WebVTT track", OFFSET(kind), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, KIND_FLAGS, "webvtt_kind" },
 //          { "subtitles",    "WebVTT subtitles kind",    0, AV_OPT_TYPE_CONST, { .i64 = 0 },                           INT_MIN, INT_MAX, KIND_FLAGS, "webvtt_kind" },
 //          { "captions",     "WebVTT captions kind",     0, AV_OPT_TYPE_CONST, { .i64 = AV_DISPOSITION_CAPTIONS },     INT_MIN, INT_MAX, KIND_FLAGS, "webvtt_kind" },
@@ -37,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="webvtt_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class WebVTTDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -62,7 +64,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_webvtt_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class WebVTTDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -115,3 +117,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = webvtt_demuxer_class,
 }
+
+} // namespace LibAVFormat

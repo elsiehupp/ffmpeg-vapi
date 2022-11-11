@@ -22,6 +22,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file IEC-61937 encapsulation of various formats, used by S/PDIF
 @author Bartlomiej Wolowiec
@@ -44,7 +46,7 @@ IEC 61937 frames at normal usage start every specific count of bytes,
      dependent from data-type (spaces between packets are filled by zeros)
 ***********************************************************/
 
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //  { "spdif_flags", "IEC 61937 encapsulation flags", offsetof(IEC61937Context, spdif_flags), AV_OPT_TYPE_FLAGS, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "spdif_flags" },
 //  { "be", "output in big-endian format (for use as s16be)", 0, AV_OPT_TYPE_CONST, {.i64 = SPDIF_FLAG_BIGENDIAN},  0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "spdif_flags" },
 //  { "dtshd_rate", "mux complete DTS frames in HD mode at the specified IEC958 rate (in Hz, default 0=disabled)", offsetof(IEC61937Context, dtshd_rate), AV_OPT_TYPE_INT, {.i64 = 0}, 0, 768000, AV_OPT_FLAG_ENCODING_PARAM },
@@ -53,7 +55,7 @@ IEC 61937 frames at normal usage start every specific count of bytes,
 //  }
 
 [CCode (cname="spdif_class", cheader="")]
-public class AVClass : AVClass {
+public class SPIDFMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -78,7 +80,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_spdif_muxer", cheader="")]
-public class SPIDFOutputMuxer : AVOutputFormat {
+public class SPIDFMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -137,3 +139,5 @@ public class SPIDFOutputMuxer : AVOutputFormat {
     }
     //  .priv_class = spdif_class,
 }
+
+} // namespace LibAVFormat

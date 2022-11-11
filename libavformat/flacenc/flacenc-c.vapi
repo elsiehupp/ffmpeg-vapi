@@ -20,13 +20,15 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption flacenc_options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option flacenc_options[] = {
 //      { "write_header", "Write the file header", offsetof(FlacMuxerContext, write_header), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },
 //      { NULL },
 //  }
 
 [CCode (cname="flac_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class FLACMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -51,7 +53,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_flac_muxer", cheader="")]
-public class FLACOutputMuxer : AVOutputFormat {
+public class FLACMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -120,3 +122,5 @@ public class FLACOutputMuxer : AVOutputFormat {
     }
     //  .priv_class = flac_muxer_class,
 }
+
+} // namespace LibAVFormat

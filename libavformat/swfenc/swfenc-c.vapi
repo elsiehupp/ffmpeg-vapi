@@ -21,9 +21,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if CONFIG_SWF_MUXER
 [CCode (cname="ff_swf_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class SWFMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -91,7 +93,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_AVM2_MUXER
 [CCode (cname="ff_avm2_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class AVM2Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -150,3 +152,5 @@ public class OutputMuxer : AVOutputFormat {
     }
 }
 #endif
+
+} // namespace LibAVFormat

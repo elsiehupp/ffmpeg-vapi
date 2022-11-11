@@ -20,15 +20,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 TODO: add options for:
-   - character encoding;
-   - LF / CRLF;
-   - byte order mark.
+    - character encoding;
+    - LF / CRLF;
+    - byte order mark.
 ***********************************************************/
 
 [CCode (cname="ff_srt_muxer", cheader="")]
-public class SRTOutputMuxer : AVOutputFormat {
+public class SRTMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -82,3 +84,5 @@ public class SRTOutputMuxer : AVOutputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

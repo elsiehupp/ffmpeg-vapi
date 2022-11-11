@@ -21,9 +21,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(DASHContext, x)
 //  #define FLAGS AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption dash_options[] = {
+//  static const LibAVUtil.Option dash_options[] = {
 //      {"allowed_extensions", "List of file extensions that dash is allowed to access"
 //          OFFSET(allowed_extensions), AV_OPT_TYPE_STRING,
 //          {.str = "aac,m4a,m4s,m4v,mov,mp4,webm"},
@@ -32,7 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="dash_class", cheader="")]
-public class AVClass : AVClass {
+public class DashDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -57,7 +59,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_dash_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class DashDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -108,3 +110,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

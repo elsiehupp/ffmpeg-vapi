@@ -20,19 +20,21 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file FLI/FLC file demuxer
 by Mike Melanson (melanson@pcisys.net)
 for more information on the .fli/.flc file format and all of its many
 variations, visit:
-  http://www.compuphase.com/flic.htm
+http://www.compuphase.com/flic.htm
 
 This demuxer handles standard 0xAF11- and 0xAF12-type FLIs. It also handles
 special FLIs from the PC games "Magic Carpet" and "X-COM: Terror from the Deep".
 ***********************************************************/
 
 [CCode (cname="ff_flic_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class FLICDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -65,3 +67,5 @@ public class InputDemuxer : AVInputFormat {
         LibAVCodec.Packet packet
     );
 }
+
+} // namespace LibAVFormat

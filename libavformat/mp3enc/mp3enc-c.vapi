@@ -20,7 +20,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option options[] = {
 //      { "id3v2_version", "Select ID3v2 version to write. Currently 3 and 4 are supported.",
 //        offsetof(MP3Context, id3v2_version), AV_OPT_TYPE_INT, {.i64 = 4}, 0, 4, AV_OPT_FLAG_ENCODING_PARAM},
 //      { "write_id3v1", "Enable ID3v1 writing. ID3v1 tags are written in UTF-8 which may not be supported by most software.",
@@ -31,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="mp3_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MP3MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -56,7 +58,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mp3_muxer", cheader="")]
-public class MP3OutputMuxer : AVOutputFormat {
+public class MP3Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -126,3 +128,5 @@ public class MP3OutputMuxer : AVOutputFormat {
     }
     //  .priv_class = mp3_muxer_class,
 }
+
+} // namespace LibAVFormat

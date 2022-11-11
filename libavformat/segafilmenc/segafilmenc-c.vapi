@@ -21,6 +21,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Sega FILM (.cpk) file muxer
 @author Misty De Meo <misty@brew.sh>
@@ -30,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="film_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class SegaFilmMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -54,7 +56,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_segafilm_muxer", cheader="")]
-public class SegaFilmOutputMuxer : AVOutputFormat {
+public class SegaFilmMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -107,3 +109,5 @@ public class SegaFilmOutputMuxer : AVOutputFormat {
     );
     //  .priv_class = film_muxer_class,
 }
+
+} // namespace LibAVFormat

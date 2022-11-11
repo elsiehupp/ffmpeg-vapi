@@ -103,7 +103,7 @@ public struct Codec {
     /***********************************************************
     @brief LibAVUtil.Class for the private context
     ***********************************************************/
-    [CCode (cname="priv_class")]
+    //  [CCode (cname="priv_class")]
     public LibAVUtil.Class priv_class;
 
     /***********************************************************

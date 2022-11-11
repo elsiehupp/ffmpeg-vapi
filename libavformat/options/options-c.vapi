@@ -19,12 +19,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Options definition for AVFormatContext.
 ***********************************************************/
 
 [CCode (cname="av_format_context_class", cheader="")]
-public class AVClass : AVClass {
+public class AVFormatContextClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -54,3 +56,5 @@ public class AVClass : AVClass {
         void *class_context
     );
 }
+
+} // namespace LibAVFormat

@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file @brief Realmedia RTSP protocol (RDT) support
 @author Ronald S. Bultje <rbultje@ronald.bitfreak.net>
@@ -86,3 +88,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  RDT_HANDLER(video,      "x-pn-realvideo",                AVMEDIA_TYPE_VIDEO);
 //  RDT_HANDLER(audio,      "x-pn-realaudio",                AVMEDIA_TYPE_AUDIO);
 
+
+} // namespace LibAVFormat

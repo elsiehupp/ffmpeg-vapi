@@ -22,7 +22,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option options[] = {
 //      { "movflags", "MOV muxer flags", offsetof(MOVMuxContext, flags), AV_OPT_TYPE_FLAGS, {.i64 = 0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "movflags" },
 //      { "rtphint", "Add RTP hint tracks", 0, AV_OPT_TYPE_CONST, {.i64 = FF_MOV_FLAG_RTP_HINT}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "movflags" },
 //      { "moov_size", "maximum moov size so it can be placed at the begin", offsetof(MOVMuxContext, reserved_moov_size), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, 0 },
@@ -144,7 +146,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #if CONFIG_MOV_MUXER
 [CCode (cname="mov_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MOVMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -160,7 +162,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -170,7 +172,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mov_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class MOVMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -249,7 +251,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_TGP_MUXER
 [CCode (cname="tgp_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class TGPMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -265,7 +267,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -275,7 +277,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_tgp_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class TGPMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -352,7 +354,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_MP4_MUXER
 [CCode (cname="mp4_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MP4MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -368,7 +370,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -378,7 +380,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mp4_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class MP4Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -461,7 +463,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_PSP_MUXER
 [CCode (cname="psp_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class PSPMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -477,7 +479,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -487,7 +489,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_psp_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class PSPMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -564,7 +566,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_TG2_MUXER
 [CCode (cname="tg2_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class TG2MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -580,7 +582,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -590,7 +592,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_tg2_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class TG2Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -667,7 +669,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_IPOD_MUXER
 [CCode (cname="ipod_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class IPodMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -683,7 +685,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -693,7 +695,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_ipod_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class IPodMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -776,7 +778,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_ISMV_MUXER
 [CCode (cname="ismv_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class ISMVMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -792,7 +794,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -802,7 +804,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_ismv_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class ISMVMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -886,7 +888,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_F4V_MUXER
 [CCode (cname="f4v_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class F4VMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -902,7 +904,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -912,7 +914,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_f4v_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class F4VMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -992,3 +994,5 @@ public class OutputMuxer : AVOutputFormat {
     //  .priv_class = f4v_muxer_class,
 }
 #endif
+
+} // namespace LibAVFormat

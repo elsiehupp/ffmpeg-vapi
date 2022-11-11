@@ -20,17 +20,19 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file FITS demuxer.
 ***********************************************************/
 
-//  static const AVOption fits_options[] = {
+//  static const LibAVUtil.Option fits_options[] = {
 //      { "framerate", "set the framerate", offsetof(FITSContext, framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "1"}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM},
 //      { NULL },
 //  }
 
 [CCode (cname="fits_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class FITSDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -55,7 +57,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_fits_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class FITSDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -95,3 +97,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

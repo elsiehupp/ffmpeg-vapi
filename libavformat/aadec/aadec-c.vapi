@@ -9,7 +9,7 @@ Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
 1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
+    list of conditions and the following disclaimer.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -23,8 +23,10 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="aa_class", cheader="")]
-public class AVClass : AVClass {
+public class AAClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -49,7 +51,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_aa_demuxer", cheader="")]
-public class AAInputDemuxer : AVInputFormat {
+public class AADemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -106,3 +108,5 @@ public class AAInputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

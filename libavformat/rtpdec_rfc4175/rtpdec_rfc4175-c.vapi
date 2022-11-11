@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Development sponsored by CBC/Radio-Canada
 ***********************************************************/
@@ -70,3 +72,5 @@ public class RFC7175DynamicHandler : RTPDynamicProtocolHandler {
         int flags
     );
 }
+
+} // namespace LibAVFormat

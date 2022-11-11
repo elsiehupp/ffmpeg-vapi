@@ -29,10 +29,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if CONFIG_WAV_MUXER
 //  #define OFFSET(x) offsetof(WAVMuxContext, x)
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "write_bext", "Write BEXT chunk.", OFFSET(write_bext), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, ENC },
 //      { "write_peak", "Write Peak Envelope chunk.",            OFFSET(write_peak), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 2, ENC, "peak" },
 //      { "off",        "Do not write peak chunk.",              0,                  AV_OPT_TYPE_CONST, { .i64 = PEAK_OFF  }, 0, 0, ENC, "peak" },
@@ -49,7 +51,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="wav_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class WAVMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -65,7 +67,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -75,7 +77,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_wav_muxer", cheader="")]
-public class WAVOutputMuxer : AVOutputFormat {
+public class WAVMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -145,7 +147,7 @@ public class WAVOutputMuxer : AVOutputFormat {
 
 #if CONFIG_W64_MUXER
 [CCode (cname="ff_w64_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class Wave64Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -205,3 +207,5 @@ public class OutputMuxer : AVOutputFormat {
     //  .codec_tag = (AVCodecTag[]){ ff_codec_wav_tags, 0 },
 }
 #endif /* CONFIG_W64_MUXER */
+
+} // namespace LibAVFormat

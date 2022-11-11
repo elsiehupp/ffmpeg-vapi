@@ -20,11 +20,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Interplay MVE file demuxer
 by Mike Melanson (melanson@pcisys.net)
 For more information regarding the Interplay MVE file format, visit:
-  http://www.pcisys.net/~melanson/codecs/
+http://www.pcisys.net/~melanson/codecs/
 The aforementioned site also contains a command line utility for parsing
 IP MVE files so that you can get a good idea of the typical structure of
 such files. This demuxer is not the best example to use if you are trying
@@ -33,7 +35,7 @@ up and sending out the chunks.
 ***********************************************************/
 
 [CCode (cname="ff_ipmovie_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class InterplayDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -66,3 +68,5 @@ public class InputDemuxer : AVInputFormat {
         LibAVCodec.Packet packet
     );
 }
+
+} // namespace LibAVFormat

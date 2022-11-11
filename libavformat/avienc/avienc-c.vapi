@@ -20,16 +20,18 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(AVIContext, x)
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "reserve_index_space", "reserve space (in bytes) at the beginning of the file for each stream index", OFFSET(reserve_index_space), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, ENC },
 //      { "write_channel_mask", "write channel mask into wave format header", OFFSET(write_channel_mask), AV_OPT_TYPE_BOOL, { .i64 = 1 }, 0, 1, ENC },
 //      { NULL },
 //  }
 
 [CCode (cname="avi_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class AVIMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -45,7 +47,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -55,7 +57,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_avi_muxer", cheader="")]
-public class AVIOutputMuxer : AVOutputFormat {
+public class AVIMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -121,3 +123,5 @@ public class AVIOutputMuxer : AVOutputFormat {
     //  },
     //  .priv_class = avi_muxer_class,
 }
+
+} // namespace LibAVFormat

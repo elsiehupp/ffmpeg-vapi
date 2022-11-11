@@ -20,15 +20,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file 4X Technologies file demuxer
 by Mike Melanson (melanson@pcisys.net)
 for more information on the .4xm file format, visit:
-  http://www.pcisys.net/~melanson/codecs/
+http://www.pcisys.net/~melanson/codecs/
 ***********************************************************/
 
 [CCode (cname="ff_fourxm_demuxer", cheader="")]
-public class FourXMInputDemuxer : AVInputFormat {
+public class FourXMDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -65,3 +67,5 @@ public class FourXMInputDemuxer : AVInputFormat {
         AVFormatContext format_context
     );
 }
+
+} // namespace LibAVFormat

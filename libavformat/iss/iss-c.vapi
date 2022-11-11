@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Funcom ISS file demuxer
 @author Jaikrishnan Menon
@@ -27,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_iss_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class ISSDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -60,3 +62,5 @@ public class InputDemuxer : AVInputFormat {
         LibAVCodec.Packet packet
     );
 }
+
+} // namespace LibAVFormat

@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ID_STRING", cheader="")]
 public const string ID_STRING; // ";FFMETADATA"
 
@@ -28,3 +30,5 @@ public const string ID_CHAPTER; // "[CHAPTER]"
 
 [CCode (cname="ID_STREAM", cheader="")]
 public const string ID_STREAM; // "[STREAM]"
+
+} // namespace LibAVFormat

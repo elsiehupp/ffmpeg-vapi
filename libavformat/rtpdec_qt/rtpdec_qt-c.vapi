@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file @brief Quicktime-style RTP support
 @author Ronald S. Bultje <rbultje@ronald.bitfreak.net>
@@ -74,3 +76,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  RTP_QT_HANDLER(qt,        aud, "X-QT",        AVMEDIA_TYPE_AUDIO);
 //  RTP_QT_HANDLER(quicktime, vid, "X-QUICKTIME", AVMEDIA_TYPE_VIDEO);
 //  RTP_QT_HANDLER(quicktime, aud, "X-QUICKTIME", AVMEDIA_TYPE_AUDIO);
+
+} // namespace LibAVFormat

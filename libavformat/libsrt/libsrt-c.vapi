@@ -16,12 +16,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Haivision Open SRT (Secure Reliable Transport) protocol
 ***********************************************************/
 
 [CCode (cname="libsrt_class", cheader="")]
-public class AVClass : AVClass {
+public class LibSRTURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -93,3 +95,5 @@ public class LibSRTURLProtocol : URLProtocol {
     }
     //  .priv_data_class = libsrt_class,
 }
+
+} // namespace LibAVFormat

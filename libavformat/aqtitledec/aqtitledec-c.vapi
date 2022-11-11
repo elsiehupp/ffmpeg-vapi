@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file AQTitle subtitles format demuxer
 
@@ -28,13 +30,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 //  #define OFFSET(x) offsetof(AQTitleContext, x)
 //  #define SD AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption aqt_options[] = {
+//  static const LibAVUtil.Option aqt_options[] = {
 //      { "subfps", "set the movie frame rate", OFFSET(frame_rate), AV_OPT_TYPE_RATIONAL, {.dbl=25}, 0, INT_MAX, SD },
 //      { NULL }
 //  }
 
 [CCode (cname="aqt_class", cheader="")]
-public class AVClass : AVClass {
+public class AQTitleClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -59,7 +61,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_aqtitle_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class AQTitleDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -112,3 +114,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = aqt_class,
 }
+
+} // namespace LibAVFormat

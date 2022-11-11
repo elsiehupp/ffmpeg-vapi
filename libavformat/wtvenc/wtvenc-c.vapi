@@ -19,13 +19,15 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Windows Television (WTV) demuxer
 @author Zhentan Feng <spyfeng at gmail dot com>
 ***********************************************************/
 
 [CCode (cname="ff_wtv_muxer", cheader="")]
-public class WTVOutputMuxer : AVOutputFormat {
+public class WTVMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -78,3 +80,5 @@ public class WTVOutputMuxer : AVOutputFormat {
     );
     //  .codec_tag = (AVCodecTag[]){ ff_codec_bmp_tags, ff_codec_wav_tags, 0 },
 }
+
+} // namespace LibAVFormat

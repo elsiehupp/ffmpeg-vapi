@@ -16,12 +16,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(FailingMuxerContext, x)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //          {"write_header_ret", "write_header() return value", OFFSET(write_header_ret),
 //           AV_OPT_TYPE_INT, {.i64 = 0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM},
 //          {"write_trailer_ret", "write_trailer() return value", OFFSET(write_trailer_ret),
@@ -32,7 +34,7 @@ along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
 //      }
 
 [CCode (cname="failing_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class FifoTestMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -48,7 +50,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -58,7 +60,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_fifo_test_muxer", cheader="")]
-public class FifoTestOutputMuxer : AVOutputFormat {
+public class FifoTestMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -104,3 +106,4 @@ public class FifoTestOutputMuxer : AVOutputFormat {
     }
 }
 
+} // namespace LibAVFormat

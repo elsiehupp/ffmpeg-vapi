@@ -20,14 +20,16 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option options[] = {
 //      TLS_COMMON_OPTIONS(TLSContext, tls_shared),
 //      {"key_password", "Password for the private key file", OFFSET(priv_key_pw),  AV_OPT_TYPE_STRING, .flags = TLS_OPTFL },
 //      { NULL }
 //  }
 
 [CCode (cname="tls_class", cheader="")]
-public class AVClass : AVClass {
+public class MbedTLSURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -43,7 +45,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -53,7 +55,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_tls_protocol", cheader="")]
-public class TLSURLProtocol : URLProtocol {
+public class MbedTLSURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -101,3 +103,5 @@ public class TLSURLProtocol : URLProtocol {
     }
     //  .priv_data_class = tls_class,
 }
+
+} // namespace LibAVFormat

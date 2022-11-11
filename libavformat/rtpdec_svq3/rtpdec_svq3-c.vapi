@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file @brief RTP support for the SV3V (SVQ3) payload
 @author Ronald S. Bultje <rbultje@ronald.bitfreak.net>
@@ -72,3 +74,5 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
         int flags
     );
 }
+
+} // namespace LibAVFormat

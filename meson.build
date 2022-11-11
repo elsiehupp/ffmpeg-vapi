@@ -136,6 +136,7 @@ srcs = files ([
 
 
     './libavformat/pcmdec/pcmdec-c.vapi',
+    './libavformat/pcmenc/pcmenc-c.vapi',
     './libavformat/avc/avc.vapi',
     './libavformat/webmdashenc/webmdashenc-c.vapi',
     './libavformat/ttaenc/ttaenc-c.vapi',

@@ -22,22 +22,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Based on libavformat/cache.c by Michael Niedermayer
 ***********************************************************/
 
- /**
-@TODO
-     support timeout
-     support work with concatdec, hls
+namespace LibAVFormat {
+
+/***********************************************************
+@todo
+    support timeout
+    support work with concatdec, hls
 ***********************************************************/
 
 //  #define OFFSET(x) offsetof(Context, x)
 //  #define D AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      {NULL},
 //  }
 //  #undef D
 //  #undef OFFSET
 
 [CCode (cname="async_context_class", cheader="")]
-public class AVClass : AVClass {
+public class AsyncContextClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -53,7 +55,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -106,7 +108,7 @@ public class AsyncURLProtocol : URLProtocol {
 
 //  #define OFFSET(x) offsetof(TestContext, x)
 //  #define D AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption async_test_options[] = {
+//  static const LibAVUtil.Option async_test_options[] = {
 //      { "async-test-read-error",      "cause read fail",
 //          OFFSET(opt_read_error),     AV_OPT_TYPE_INT, { .i64 = 0 }, INT_MIN, INT_MAX, .flags = D },
 //      {NULL},
@@ -115,7 +117,7 @@ public class AsyncURLProtocol : URLProtocol {
 //  #undef OFFSET
 
 [CCode (cname="async_test_context_class", cheader="")]
-public class AVClass : AVClass {
+public class AsyncTestContextClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -180,3 +182,5 @@ public class AsyncTestURLProtocol : URLProtocol {
 }
 
 #endif
+
+} // namespace LibAVFormat

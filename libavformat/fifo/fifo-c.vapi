@@ -16,12 +16,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(FifoContext, x)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      {"fifo_format", "Target muxer", OFFSET(format),
 //          AV_OPT_TYPE_STRING, {.str = NULL}, 0, 0, AV_OPT_FLAG_ENCODING_PARAM},
 
@@ -56,7 +58,7 @@ along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
 //  }
 
 [CCode (cname="fifo_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class FifoMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -72,7 +74,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -82,7 +84,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_fifo_muxer", cheader="")]
-public class FifoOutputMuxer : AVOutputFormat {
+public class FifoMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -131,3 +133,5 @@ public class FifoOutputMuxer : AVOutputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

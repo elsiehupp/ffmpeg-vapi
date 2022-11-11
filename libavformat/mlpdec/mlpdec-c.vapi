@@ -22,10 +22,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if CONFIG_MLP_DEMUXER
 //  FF_RAW_DEMUXER_CLASS(mlp)
 [CCode (cname="ff_mlp_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class MLPDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -82,7 +84,7 @@ public class InputDemuxer : AVInputFormat {
 #if CONFIG_TRUEHD_DEMUXER
 //  FF_RAW_DEMUXER_CLASS(truehd)
 [CCode (cname="ff_truehd_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class TrueHDDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -136,3 +138,5 @@ public class InputDemuxer : AVInputFormat {
 }
 #endif
 
+
+} // namespace LibAVFormat

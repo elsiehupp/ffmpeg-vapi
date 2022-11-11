@@ -20,10 +20,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  FF_RAW_DEMUXER_CLASS(acm)
 
 [CCode (cname="ff_acm_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class ACMDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -75,3 +77,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = acm_demuxer_class,
 }
+
+} // namespace LibAVFormat

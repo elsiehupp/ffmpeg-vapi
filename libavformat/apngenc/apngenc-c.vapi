@@ -22,9 +22,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(APNGMuxContext, x)
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "plays", "Number of times to play the output: 0 - infinite loop, 1 - no loop", OFFSET(plays),
 //        AV_OPT_TYPE_INT, { .i64 = 1 }, 0, UINT_MAX, ENC },
 //      { "final_delay", "Force delay after the last frame", OFFSET(last_delay),
@@ -33,7 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="apng_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class APNGMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -55,11 +57,11 @@ public class AVClass : AVClass {
         }
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_apng_muxer", cheader="")]
-public class APNGOutputMuxer : AVOutputFormat {
+public class APNGMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -128,3 +130,5 @@ public class APNGOutputMuxer : AVOutputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

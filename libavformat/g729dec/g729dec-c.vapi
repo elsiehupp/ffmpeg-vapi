@@ -20,14 +20,16 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(G729DemuxerContext, x)
-//  static const AVOption g729_options[] = {
+//  static const LibAVUtil.Option g729_options[] = {
 //      { "bit_rate", "", OFFSET(bit_rate), AV_OPT_TYPE_INT, { .i64 = 8000 }, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL },
 //  }
 
 [CCode (cname="g729_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class G729DemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -52,7 +54,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_g729_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class G729Demuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -94,3 +96,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = g729_demuxer_class,
 }
+
+} // namespace LibAVFormat

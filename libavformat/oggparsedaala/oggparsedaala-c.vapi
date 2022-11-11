@@ -21,6 +21,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_daala_codec", cheader="")]
 public class DaalaCodec : OggCodec {
     [CCode (cname="name", cheader="")]
@@ -31,7 +33,7 @@ public class DaalaCodec : OggCodec {
     }
     public override int8[] magic {
         public get {
-            return "\200daala";
+            return "200daala";
         }
     }
     //  .magicsize = 6,
@@ -55,3 +57,5 @@ public class DaalaCodec : OggCodec {
     //  .granule_is_start = 1,
     //  .nb_header = 3,
 }
+
+} // namespace LibAVFormat

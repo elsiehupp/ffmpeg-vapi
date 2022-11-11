@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 WebM DASH Specification:
 https://sites.google.com/a/webmproject.org/wiki/adaptive-streaming/webm-dash-specification
@@ -28,7 +30,7 @@ http://standards.iso.org/ittf/PubliclyAvailableStandards/c065274_ISO_IEC_23009-1
 ***********************************************************/
 
 //  #define OFFSET(x) offsetof(WebMDashMuxContext, x)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "adaptation_sets", "Adaptation sets. Syntax: id=0,streams=0,1,2 id=1,streams=3,4 and so on", OFFSET(adaptation_sets), AV_OPT_TYPE_STRING, { 0 }, 0, 0, AV_OPT_FLAG_ENCODING_PARAM },
 //      { "debug_mode", "[private option - users should never set this]. Create deterministic output", OFFSET(debug_mode), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },
 //      { "live", "create a live stream manifest", OFFSET(is_live), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },
@@ -42,7 +44,7 @@ http://standards.iso.org/ittf/PubliclyAvailableStandards/c065274_ISO_IEC_23009-1
 
 #if CONFIG_WEBM_DASH_MANIFEST_MUXER
 [CCode (cname="webm_dash_class", cheader="")]
-public class AVClass : AVClass {
+public class WebMDashManifestMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -58,7 +60,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -68,7 +70,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_webm_dash_manifest_muxer", cheader="")]
-public class WebMDashManifestOutputMuxer : AVOutputFormat {
+public class WebMDashManifestMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -116,3 +118,5 @@ public class WebMDashManifestOutputMuxer : AVOutputFormat {
     //  .priv_class = webm_dash_class,
 }
 #endif
+
+} // namespace LibAVFormat

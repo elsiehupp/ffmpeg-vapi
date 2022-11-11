@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_ftp_protocol", cheader="")]
 public class FTPURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
@@ -101,3 +103,5 @@ public class FTPURLProtocol : URLProtocol {
     }
     //  .default_whitelist = "tcp";
 }
+
+} // namespace LibAVFormat

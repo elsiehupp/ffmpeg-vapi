@@ -20,13 +20,15 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Tele-typewriter demuxer
 ***********************************************************/
 
 //  #define OFFSET(x) offsetof(TtyDemuxContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "chars_per_frame", "", offsetof(TtyDemuxContext, chars_per_frame), AV_OPT_TYPE_INT, {.i64 = 6000}, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM},
 //      { "video_size", "A string describing frame size, such as 640x480 or hd720.", OFFSET(width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, DEC },
 //      { "framerate", "", OFFSET(framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, DEC },
@@ -34,7 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="tty_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class TTYDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -59,7 +61,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_tty_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class TTYDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -99,3 +101,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = tty_demuxer_class,
 }
+
+} // namespace LibAVFormat

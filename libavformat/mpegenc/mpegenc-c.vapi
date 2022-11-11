@@ -20,9 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(MpegMuxContext, x)
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "muxrate", NULL,                                          OFFSET(user_mux_rate), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, ((1<<22) - 1) * (8 * 50), E },
 //      { "preload", "Initial demux-decode delay in microseconds.", OFFSET(preload),  AV_OPT_TYPE_INT, { .i64 = 500000 }, 0, INT_MAX, E },
 //      { NULL },
@@ -31,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #if CONFIG_MPEG1SYSTEM_MUXER
 [CCode (cname="mpeg_class", cheader="")]
-public class AVClass : AVClass {
+public class Mpeg2SystemsMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -53,11 +55,11 @@ public class AVClass : AVClass {
         }
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg1system_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class Mpeg2SystemsMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -120,7 +122,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_MPEG1VCD_MUXER
 [CCode (cname="vcd_class", cheader="")]
-public class AVClass : AVClass {
+public class VCDMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -142,11 +144,11 @@ public class AVClass : AVClass {
         }
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg1vcd_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class VCDMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -203,7 +205,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_MPEG2VOB_MUXER
 [CCode (cname="vob_class", cheader="")]
-public class AVClass : AVClass {
+public class VOBMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -225,11 +227,11 @@ public class AVClass : AVClass {
         }
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg2vob_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class VOBMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -295,7 +297,7 @@ Same as mpeg2vob_mux except that the pack size is 2324
 ***********************************************************/
 #if CONFIG_MPEG2SVCD_MUXER
 [CCode (cname="svcd_class", cheader="")]
-public class AVClass : AVClass {
+public class SVCDMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -317,11 +319,11 @@ public class AVClass : AVClass {
         }
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg2svcd_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class SVCDMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -387,7 +389,7 @@ Same as mpeg2vob_mux except the 'is_dvd' flag is set to produce NAV pkts
 ***********************************************************/
 #if CONFIG_MPEG2DVD_MUXER
 [CCode (cname="dvd_class", cheader="")]
-public class AVClass : AVClass {
+public class DVDVOBMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -409,11 +411,11 @@ public class AVClass : AVClass {
         }
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg2dvd_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class DVDVOBMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -473,3 +475,5 @@ public class OutputMuxer : AVOutputFormat {
     //  .priv_class = dvd_class,
 }
 #endif
+
+} // namespace LibAVFormat

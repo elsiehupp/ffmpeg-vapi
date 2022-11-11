@@ -20,9 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(NUTContext, x)
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "syncpoints",  "NUT syncpoint behaviour",                         OFFSET(flags), AV_OPT_TYPE_FLAGS, {.i64 = 0},             INT_MIN, INT_MAX, E, "syncpoints" },
 //      { "default",     "",                                                0,             AV_OPT_TYPE_CONST, {.i64 = 0},             INT_MIN, INT_MAX, E, "syncpoints" },
 //      { "none",        "Disable syncpoints, low overhead and unseekable", 0,             AV_OPT_TYPE_CONST, {.i64 = NUT_PIPE},      INT_MIN, INT_MAX, E, "syncpoints" },
@@ -32,7 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="class", cheader="")]
-public class AVClass : AVClass {
+public class NUTMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -48,7 +50,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -58,7 +60,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_nut_muxer", cheader="")]
-public class NUTOutputMuxer : AVOutputFormat {
+public class NUTMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -128,3 +130,5 @@ public class NUTOutputMuxer : AVOutputFormat {
     //  .codec_tag = ff_nut_codec_tags,
     //  .priv_class = class,
 }
+
+} // namespace LibAVFormat

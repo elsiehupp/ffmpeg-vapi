@@ -22,6 +22,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file RTMPE protocol
 ***********************************************************/
@@ -29,13 +31,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define OFFSET(x) offsetof(RTMPEContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
 
-//  static const AVOption ffrtmpcrypt_options[] = {
+//  static const LibAVUtil.Option ffrtmpcrypt_options[] = {
 //      {"ffrtmpcrypt_tunneling", "Use a HTTP tunneling connection (RTMPTE).", OFFSET(tunneling), AV_OPT_TYPE_INT, {.i64 = 0}, 0, 1, DEC},
 //      { NULL },
 //  }
 
 [CCode (cname="ffrtmpcrypt_class", cheader="")]
-public class AVClass : AVClass {
+public class RTMPCryptURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -103,3 +105,5 @@ public class RTMPCryptURLProtocol : URLProtocol {
     }
     //  .priv_data_class = ffrtmpcrypt_class,
 }
+
+} // namespace LibAVFormat

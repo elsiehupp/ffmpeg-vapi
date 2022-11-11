@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file 
 Unix socket url_protocol
@@ -27,7 +29,7 @@ Unix socket url_protocol
 
 //  #define OFFSET(x) offsetof(UnixContext, x)
 //  #define ED AV_OPT_FLAG_DECODING_PARAM|AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption unix_options[] = {
+//  static const LibAVUtil.Option unix_options[] = {
 //      { "listen",    "Open socket for listening",             OFFSET(listen),  AV_OPT_TYPE_BOOL,  { .i64 = 0 },                    0,       1, ED },
 //      { "timeout",   "Timeout in ms",                         OFFSET(timeout), AV_OPT_TYPE_INT,   { .i64 = -1 },                  -1, INT_MAX, ED },
 //      { "type",      "Socket type",                           OFFSET(type),    AV_OPT_TYPE_INT,   { .i64 = SOCK_STREAM },    INT_MIN, INT_MAX, ED, "type" },
@@ -38,7 +40,7 @@ Unix socket url_protocol
 //  }
 
 [CCode (cname="unix_class", cheader="")]
-public class AVClass : AVClass {
+public class UnixURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -110,3 +112,5 @@ public class UnixURLProtocol : URLProtocol {
         }
     }
 }
+
+} // namespace LibAVFormat

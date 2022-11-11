@@ -55,13 +55,13 @@ public struct test_struct {
 }
 
 public const Option test_options[] = {
-  { "test_int", "This is a test option of int type.", offsetof (test_struct, int_opt),
-    OptionType.INT, { .i64 = -1 }, INT_MIN, int.MAX },
-  { "test_str", "This is a test option of string type.", offsetof (test_struct, str_opt),
-    OptionType.STRING },
-  { "test_bin", "This is a test option of binary type.", offsetof (test_struct, bin_opt),
-    OptionType.BINARY },
-  { null },
+    { "test_int", "This is a test option of int type.", offsetof (test_struct, int_opt),
+        OptionType.INT, { .i64 = -1 }, INT_MIN, int.MAX },
+    { "test_str", "This is a test option of string type.", offsetof (test_struct, str_opt),
+        OptionType.STRING },
+    { "test_bin", "This is a test option of binary type.", offsetof (test_struct, bin_opt),
+        OptionType.BINARY },
+    { null },
 }
 
 public const Class test_class = {

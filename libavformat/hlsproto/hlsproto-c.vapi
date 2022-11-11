@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Apple HTTP Live Streaming Protocol Handler
 http://tools.ietf.org/html/draft-pantos-http-live-streaming
@@ -62,3 +64,5 @@ public class HLSURLProtocol : URLProtocol {
         }
     }
 }
+
+} // namespace LibAVFormat

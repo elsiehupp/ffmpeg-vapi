@@ -20,8 +20,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
+[CCode (cname="struct SAPState", cheader="")]
+public struct SAPMuxerState { }
+
 [CCode (cname="ff_sap_muxer", cheader="")]
-public class SAPOutputMuxer : AVOutputFormat {
+public class SAPMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -37,7 +42,7 @@ public class SAPOutputMuxer : AVOutputFormat {
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (SAPState);
+            return sizeof (SAPMuxerState);
         }
     }
     [CCode (cname="audio_codec", cheader="")]
@@ -73,3 +78,5 @@ public class SAPOutputMuxer : AVOutputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

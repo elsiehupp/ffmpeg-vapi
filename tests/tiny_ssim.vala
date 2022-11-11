@@ -21,8 +21,8 @@ tiny_ssim.c
 Computes the Structural Similarity Metric between two rawYV12 video files.
 original algorithm:
 Z. Wang, A. C. Bovik, H. R. Sheikh and E. P. Simoncelli,
-  "Image quality assessment: From error visibility to structural similarity,"
-  IEEE Transactions on Image Processing, vol. 13, no. 4, pp. 600-612, Apr. 2004.
+"Image quality assessment: From error visibility to structural similarity,"
+IEEE Transactions on Image Processing, vol. 13, no. 4, pp. 600-612, Apr. 2004.
 
 To improve speed, this implementation uses the standard approximation of
 overlapped 8x8 block sums, rather than the original gaussian weights.

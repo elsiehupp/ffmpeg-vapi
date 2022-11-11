@@ -20,9 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(RawVideoDemuxerContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption rawvideo_options[] = {
+//  static const LibAVUtil.Option rawvideo_options[] = {
 //      { "video_size", "set frame size", OFFSET(width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, DEC },
 //      { "pixel_format", "set pixel format", OFFSET(pixel_format), AV_OPT_TYPE_STRING, {.str = "yuv420p"}, 0, 0, DEC },
 //      { "framerate", "set frame rate", OFFSET(framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, DEC },
@@ -30,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="rawvideo_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class RawVideoDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -55,7 +57,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_rawvideo_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class RawVideoDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -103,3 +105,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = rawvideo_demuxer_class,
 }
+
+} // namespace LibAVFormat

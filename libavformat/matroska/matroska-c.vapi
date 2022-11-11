@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 If you add a tag here that is not in ff_codec_bmp_tags[]
     or ff_codec_wav_tags[], add it also to additional_audio_tags[]
@@ -167,10 +169,10 @@ If you add a tag here that is not in ff_codec_bmp_tags[]
 //      "background",
 //  }
 
-public int ff_mkv_stereo3d_conv (
-    AVStream st,
-    MatroskaVideoStereoModeType stereo_mode
-);
+//  public int ff_mkv_stereo3d_conv (
+//      AVStream st,
+//      MatroskaVideoStereoModeType stereo_mode
+//  );
 //  {
 //      AVStereo3D *stereo;
 //      int ret;
@@ -225,3 +227,5 @@ public int ff_mkv_stereo3d_conv (
 
 //      return 0;
 //  }
+
+} // namespace LibAVFormat

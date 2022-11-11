@@ -20,7 +20,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option options[] = {
 //      { "mpegts_transport_stream_id", "Set transport_stream_id field.",
 //        offsetof(MpegTSWrite, transport_stream_id), AV_OPT_TYPE_INT,
 //        { .i64 = 0x0001 }, 0x0001, 0xffff, AV_OPT_FLAG_ENCODING_PARAM },
@@ -116,7 +118,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="mpegts_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class MpegTSMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -132,7 +134,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -142,7 +144,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_mpegts_muxer", cheader="")]
-public class MpegTSOutputMuxer : AVOutputFormat {
+public class MpegTSMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -216,3 +218,5 @@ public class MpegTSOutputMuxer : AVOutputFormat {
     }
     //  .priv_class = mpegts_muxer_class,
 }
+
+} // namespace LibAVFormat

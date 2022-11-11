@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file RTMP protocol
 ***********************************************************/
@@ -28,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
 
-//  static const AVOption rtmp_options[] = {
+//  static const LibAVUtil.Option rtmp_options[] = {
 //      {"rtmp_app", "Name of application to connect to on the RTMP server", OFFSET(app), AV_OPT_TYPE_STRING, {.str = NULL }, 0, 0, DEC|ENC},
 //      {"rtmp_buffer", "Set buffer time in milliseconds. The default is 3000.", OFFSET(client_buffer_time), AV_OPT_TYPE_INT, {.i64 = 3000}, 0, INT_MAX, DEC|ENC},
 //      {"rtmp_conn", "Append arbitrary AMF data to the Connect message", OFFSET(conn), AV_OPT_TYPE_STRING, {.str = NULL }, 0, 0, DEC|ENC},
@@ -53,7 +55,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="rtmp_class", cheader="")]
-public class AVClass : AVClass {
+public class RTMPURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -78,7 +80,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_rtmp_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class RTMPURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -136,7 +138,7 @@ public class URLProtocol : URLProtocol {
 }
 
 [CCode (cname="rtmpe_class", cheader="")]
-public class AVClass : AVClass {
+public class RTMPEURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -161,7 +163,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_rtmpe_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class RTMPEURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -219,7 +221,7 @@ public class URLProtocol : URLProtocol {
 }
 
 [CCode (cname="rtmps_class", cheader="")]
-public class AVClass : AVClass {
+public class RTMPSURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -244,7 +246,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_rtmps_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class RTMPSURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -302,7 +304,7 @@ public class URLProtocol : URLProtocol {
 }
 
 [CCode (cname="rtmpt_class", cheader="")]
-public class AVClass : AVClass {
+public class RTMPTURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -327,7 +329,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_rtmpt_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class RTMPTURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -385,7 +387,7 @@ public class URLProtocol : URLProtocol {
 }
 
 [CCode (cname="rtmpte_class", cheader="")]
-public class AVClass : AVClass {
+public class RTMPTEURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -410,65 +412,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_rtmpte_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
-    public override string name {
-        public get {
-            return "rtmpte";
-        }
-    }
-    [CCode (cname="rtmp_open", cheader="")]
-    public override int url_open2 (
-        URLContext url_context,
-        string url,
-        int flags,
-        out LibAVUtil.Dictionary options
-    );
-    [CCode (cname="rtmp_read", cheader="")]
-    public override int url_read (
-        URLContext url_context,
-        uchar[] buffer,
-        int size
-    );
-    [CCode (cname="rtmp_seek", cheader="")]
-    public override int64 url_read_seek (
-        URLContext url_context,
-        int stream_index,
-        int64 timestamp,
-        int flags
-    );
-    [CCode (cname="rtmp_pause", cheader="")]
-    public override int url_read_pause (
-        URLContext url_context,
-        int pause
-    );
-    [CCode (cname="rtmp_write", cheader="")]
-    public override int url_write (
-        URLContext url_context,
-        uchar[] buffer,
-        int size
-    );
-    [CCode (cname="rtmp_close", cheader="")]
-    public override int url_close (
-        URLContext url_context
-    );
-    [CCode (cname="priv_data_size", cheader="")]
-    public override size_t priv_data_size {
-        public get {
-            return sizeof (RTMPContext);
-        }
-    }
-    [CCode (cname="flags", cheader="")]
-    public override URLProtocolFlags flags {
-        public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
-        }
-    }
-    //  .priv_data_class = rtmpte_class,
-}
-
-[CCode (cname="ff_rtmpte_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class RTMPTEURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -526,7 +470,7 @@ public class URLProtocol : URLProtocol {
 }
 
 [CCode (cname="rtmpts_class", cheader="")]
-public class AVClass : AVClass {
+public class RTMPTSURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -551,7 +495,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_rtmpts_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class RTMPTSURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -608,3 +552,4 @@ public class URLProtocol : URLProtocol {
     //  .priv_data_class = rtmpts_class,
 }
 
+} // namespace LibAVFormat

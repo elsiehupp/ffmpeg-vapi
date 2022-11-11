@@ -24,16 +24,18 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if CONFIG_WAV_DEMUXER
 //  #define OFFSET(x) offsetof(WAVDemuxContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption demux_options[] = {
+//  static const LibAVUtil.Option demux_options[] = {
 //      { "ignore_length", "Ignore length", OFFSET(ignore_length), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, DEC },
 //      { NULL },
 //  }
 
 [CCode (cname="wav_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class WAVDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -58,7 +60,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_wav_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class WAVDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -110,7 +112,7 @@ public class InputDemuxer : AVInputFormat {
 
 #if CONFIG_W64_DEMUXER
 [CCode (cname="ff_w64_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class Wave64Demuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -158,3 +160,5 @@ public class InputDemuxer : AVInputFormat {
     //  .codec_tag = (AVCodecTag[]) { ff_codec_wav_tags, 0 },
 }
 #endif /* CONFIG_W64_DEMUXER */
+
+} // namespace LibAVFormat

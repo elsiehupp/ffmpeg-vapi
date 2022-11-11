@@ -20,8 +20,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_mpegps_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class MPEGPSDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -69,13 +71,13 @@ public class InputDemuxer : AVInputFormat {
 }
 
 #if CONFIG_VOBSUB_DEMUXER
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "sub_name", "URI for .sub file", offsetof(MpegDemuxContext, sub_name), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL }
 //  }
 
 [CCode (cname="vobsub_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class VobSubDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -91,7 +93,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -101,7 +103,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_vobsub_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class VobSubDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -161,3 +163,5 @@ public class InputDemuxer : AVInputFormat {
     //  .priv_class = vobsub_demuxer_class,
 }
 #endif
+
+} // namespace LibAVFormat

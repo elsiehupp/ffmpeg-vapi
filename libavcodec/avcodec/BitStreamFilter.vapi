@@ -52,7 +52,7 @@ public struct BitStreamFilter {
     must be a pointer to LibAVUtil.Class, which will be set by LibAVCodec generic
     code to this class.
     ***********************************************************/
-    [CCode (cname="priv_class")]
+    //  [CCode (cname="priv_class")]
     public LibAVUtil.Class priv_class;
 }
 

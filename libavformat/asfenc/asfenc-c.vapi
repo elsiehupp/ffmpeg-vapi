@@ -20,14 +20,16 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption asf_options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option asf_options[] = {
 //      { "packet_size", "Packet size", offsetof(ASFContext, packet_size), AV_OPT_TYPE_INT, {.i64 = 3200}, PACKET_SIZE_MIN, PACKET_SIZE_MAX, AV_OPT_FLAG_ENCODING_PARAM },
 //      { NULL },
 //  }
 
 #if CONFIG_ASF_MUXER
 [CCode (cname="asf_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class ASFMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -52,7 +54,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_asf_muxer", cheader="")]
-public class AsfOutputMuxer : AVOutputFormat {
+public class AsfMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -124,7 +126,7 @@ public class AsfOutputMuxer : AVOutputFormat {
 
 #if CONFIG_ASF_STREAM_MUXER
 [CCode (cname="asf_stream_muxer_class", cheader="")]
-public class AVClass : AVClass {
+public class ASFStreamMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -149,7 +151,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_asf_stream_muxer", cheader="")]
-public class AsfStreamOutputMuxer : AVOutputFormat {
+public class AsfStreamMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -218,3 +220,5 @@ public class AsfStreamOutputMuxer : AVOutputFormat {
     //  .priv_class = asf_stream_muxer_class,
 }
 #endif /* CONFIG_ASF_STREAM_MUXER */
+
+} // namespace LibAVFormat

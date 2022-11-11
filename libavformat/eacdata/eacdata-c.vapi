@@ -20,16 +20,18 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Electronic Arts cdata Format Demuxer
 by Peter Ross (pross@xvid.org)
 
 Technical details here:
- http://wiki.multimedia.cx/index.php?title=EA_Command_And_Conquer_3_Audio_Codec
+http://wiki.multimedia.cx/index.php?title=EA_Command_And_Conquer_3_Audio_Codec
 ***********************************************************/
 
 [CCode (cname="ff_ea_cdata_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class EACTDATADemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -68,3 +70,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

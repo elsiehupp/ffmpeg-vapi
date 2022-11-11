@@ -21,15 +21,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file Bink demuxer
 
 Technical details here:
- http://wiki.multimedia.cx/index.php?title=Bink_Container
+http://wiki.multimedia.cx/index.php?title=Bink_Container
 ***********************************************************/
 
 [CCode (cname="ff_bink_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class BinkDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -75,3 +77,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

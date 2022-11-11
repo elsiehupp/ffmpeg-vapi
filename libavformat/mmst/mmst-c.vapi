@@ -22,12 +22,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 References
- MMS protocol specification:
-  [1]http://msdn.microsoft.com/en-us/library/cc234711(PROT.10).aspx
- ASF specification. Revision 01.20.03.
-  [2]http://msdn.microsoft.com/en-us/library/bb643323.aspx
+MMS protocol specification:
+[1]http://msdn.microsoft.com/en-us/library/cc234711(PROT.10).aspx
+ASF specification. Revision 01.20.03.
+[2]http://msdn.microsoft.com/en-us/library/bb643323.aspx
 ***********************************************************/
 
 [CCode (cname="ff_mmst_protocol", cheader="")]
@@ -67,3 +69,5 @@ public class MMSTURLProtocol : URLProtocol {
         }
     }
 }
+
+} // namespace LibAVFormat

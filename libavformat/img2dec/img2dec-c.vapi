@@ -21,9 +21,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define IMAGEAUTO_DEMUXER(imgname, codecid)
 
-public abstract class ImageClass : AVClass {
+public abstract class ImageClass : LibAVUtil.Class {
     [CCode (cname="item_name", cheader="")]
     public override string item_name (
         void *class_context
@@ -142,7 +144,7 @@ public class DDSPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = dds_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -186,7 +188,7 @@ public class DPXPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = dpx_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -230,7 +232,7 @@ public class EXRPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = exr_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -274,7 +276,7 @@ public class GIFPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = gif_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -318,7 +320,7 @@ public class J2KPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = j2k_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -362,7 +364,7 @@ public class JPEGPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = jpeg_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -406,7 +408,7 @@ public class JPEGLSPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = jpegls_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -450,7 +452,7 @@ public class PAMPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pam_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -494,7 +496,7 @@ public class PBMPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pbm_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -538,7 +540,7 @@ public class PCXPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pcx_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -582,7 +584,7 @@ public class PGMPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pgm_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -626,7 +628,7 @@ public class PGMYUVPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pgmyuv_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -670,7 +672,7 @@ public class PictorPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pictor_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -714,7 +716,7 @@ public class PNGPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = png_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -758,7 +760,7 @@ public class PPMPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = ppm_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -802,7 +804,7 @@ public class PSDPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = psd_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -846,7 +848,7 @@ public class QDrawPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = qdraw_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -890,7 +892,7 @@ public class SGIPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = sgi_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -934,7 +936,7 @@ public class SunrastPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = sunrast_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -978,7 +980,7 @@ public class SVGPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = svg_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -1022,7 +1024,7 @@ public class TIFFPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = tiff_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -1066,7 +1068,7 @@ public class WebPPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = webp_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -1110,7 +1112,7 @@ public class XPMPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = xpm_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -1154,7 +1156,7 @@ public class XWDPipeDemuxer : ImageDemuxer {
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_class", cheader="")]
+    //  [CCode (cname="priv_class", cheader="")]
     //  .priv_class = xwd_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
@@ -1163,3 +1165,5 @@ public class XWDPipeDemuxer : ImageDemuxer {
         }
     }
 }
+
+} // namespace LibAVFormat

@@ -20,9 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if CONFIG_SDP_DEMUXER
 [CCode (cname="sdp_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class SDPDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -47,7 +49,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_sdp_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class SDPDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -89,7 +91,7 @@ public class InputDemuxer : AVInputFormat {
 
 #if CONFIG_RTP_DEMUXER
 [CCode (cname="rtp_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class RTPDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -114,7 +116,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_rtp_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class RTPDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -159,3 +161,5 @@ public class InputDemuxer : AVInputFormat {
     //  .priv_class = rtp_demuxer_class,
 }
 #endif /* CONFIG_RTP_DEMUXER */
+
+} // namespace LibAVFormat

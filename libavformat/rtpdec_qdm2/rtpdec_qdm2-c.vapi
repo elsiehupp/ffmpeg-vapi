@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file @brief RTP support for the QDM2 payload (todo: wiki)
 @author Ronald S. Bultje <rbultje@ronald.bitfreak.net>
@@ -64,3 +66,5 @@ public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
         int flags
     );
 }
+
+} // namespace LibAVFormat

@@ -21,9 +21,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(VideoMuxData, x)
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption muxoptions[] = {
+//  static const LibAVUtil.Option muxoptions[] = {
 //      { "update",       "continuously overwrite one file", OFFSET(update),  AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0,       1, ENC },
 //      { "start_number", "set first number in the sequence", OFFSET(img_number), AV_OPT_TYPE_INT,  { .i64 = 1 }, 0, INT_MAX, ENC },
 //      { "strftime",     "use strftime for filename", OFFSET(use_strftime),  AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, ENC },
@@ -34,7 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #if CONFIG_IMAGE2_MUXER
 [CCode (cname="img2mux_class", cheader="")]
-public class AVClass : AVClass {
+public class Image2MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -59,7 +61,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_image2_muxer", cheader="")]
-public class Image2OutputMuxer : AVOutputFormat {
+public class Image2Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -119,7 +121,7 @@ public class Image2OutputMuxer : AVOutputFormat {
 
 #if CONFIG_IMAGE2PIPE_MUXER
 [CCode (cname="ff_image2pipe_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class Image2PipeMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -167,3 +169,5 @@ public class OutputMuxer : AVOutputFormat {
     }
 }
 #endif
+
+} // namespace LibAVFormat

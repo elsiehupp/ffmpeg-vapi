@@ -20,9 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 #if CONFIG_MMF_DEMUXER
 [CCode (cname="ff_mmf_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class SMAFDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -65,7 +67,7 @@ public class InputDemuxer : AVInputFormat {
 
 #if CONFIG_MMF_MUXER
 [CCode (cname="ff_mmf_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class MMFMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -124,3 +126,5 @@ public class OutputMuxer : AVOutputFormat {
     );
 }
 #endif
+
+} // namespace LibAVFormat

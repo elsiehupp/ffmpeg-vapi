@@ -20,8 +20,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(G726Context, x)
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "code_size", "Bits per G.726 code",
 //          OFFSET(code_size),   AV_OPT_TYPE_INT, {.i64 = 4}, 2,       5, AV_OPT_FLAG_DECODING_PARAM },
 //      { "sample_rate", "",
@@ -31,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #if CONFIG_G726_DEMUXER
 [CCode (cname="g726le_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class G726LEDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -56,7 +58,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_g726_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class G726Demuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -96,7 +98,7 @@ public class InputDemuxer : AVInputFormat {
 
 #if CONFIG_G726LE_DEMUXER
 [CCode (cname="g726_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class G726DemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -121,7 +123,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_g726le_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class G726LEDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -159,3 +161,4 @@ public class InputDemuxer : AVInputFormat {
 }
 #endif
 
+} // namespace LibAVFormat

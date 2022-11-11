@@ -531,7 +531,7 @@ public LibAVCodec.CodecID ff_guess_image2_codec (
 
 /***********************************************************
 Perform a binary search using av_index_search_timestamp () and
-public class InputDemuxer : AVInputFormat.read_timestamp ().
+public class Demuxer : AVInputFormat.read_timestamp ().
 
 @param target_ts target timestamp in the time base of the given stream
 @param stream_index stream number

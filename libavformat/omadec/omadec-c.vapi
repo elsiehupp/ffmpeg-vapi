@@ -23,25 +23,27 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file This is a demuxer for Sony OpenMG Music files
 
 Known file extensions: ".oma", "aa3"
 The format of such files consists of three parts:
 - "ea3" header carrying overall info and metadata. Except for starting with
-  "ea" instead of "ID", it's an ID3v2 header.
+"ea" instead of "ID", it's an ID3v2 header.
 - "EA3" header is a Sony-specific header containing information about
-  the OpenMG file: codec type (usually ATRAC, can also be MP3 or WMA),
-  codec specific info (packet size, sample rate, channels and so on)
-  and DRM related info (file encryption, content id).
+the OpenMG file: codec type (usually ATRAC, can also be MP3 or WMA),
+codec specific info (packet size, sample rate, channels and so on)
+and DRM related info (file encryption, content id).
 - Sound data organized in packets follow the EA3 header
-  (can be encrypted using the Sony DRM!).
+(can be encrypted using the Sony DRM!).
 
 Supported decoders: ATRAC3, ATRAC3+, MP3, LPCM
 ***********************************************************/
 
 [CCode (cname="ff_oma_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class OMADemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -98,3 +100,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .codec_tag = (AVCodecTag[]){ff_oma_codec_tags, 0},
 }
+
+} // namespace LibAVFormat

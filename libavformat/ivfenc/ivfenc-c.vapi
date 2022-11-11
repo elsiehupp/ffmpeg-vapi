@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  static const AVCodecTag codec_ivf_tags[] = {
 //      { LibAVCodec.CodecID.VP8,  MKTAG('V', 'P', '8', '0') },
 //      { LibAVCodec.CodecID.VP9,  MKTAG('V', 'P', '9', '0') },
@@ -27,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="ff_ivf_muxer", cheader="")]
-public class IVFOutputMuxer : AVOutputFormat {
+public class IVFMuxer : AVOutputFormat {
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -85,3 +87,5 @@ public class IVFOutputMuxer : AVOutputFormat {
     );
     //  .codec_tag = (AVCodecTag[]){ codec_ivf_tags, 0 },
 }
+
+} // namespace LibAVFormat

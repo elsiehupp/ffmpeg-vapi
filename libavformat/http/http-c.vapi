@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 XXX: POST protocol is not completely implemented because ffmpeg uses
 only a subset of it.
@@ -27,7 +29,7 @@ only a subset of it.
 
 #if CONFIG_HTTP_PROTOCOL
 [CCode (cname="http_context_class", cheader="")]
-public class AVClass : AVClass {
+public class HTTPURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -43,7 +45,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -130,7 +132,7 @@ public class HTTPURLProtocol : URLProtocol {
 
 #if CONFIG_HTTPS_PROTOCOL
 [CCode (cname="https_context_class", cheader="")]
-public class AVClass : AVClass {
+public class HTTPSURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -146,7 +148,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -156,7 +158,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_https_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class HTTPSURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -224,7 +226,7 @@ public class URLProtocol : URLProtocol {
 
 #if CONFIG_HTTPPROXY_PROTOCOL
 [CCode (cname="ff_httpproxy_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class HttpProxyURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -271,3 +273,5 @@ public class URLProtocol : URLProtocol {
     }
 }
 #endif /* CONFIG_HTTPPROXY_PROTOCOL */
+
+} // namespace LibAVFormat

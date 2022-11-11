@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_h263_1998_dynamic_handler", cheader="")]
 public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="enc_name", cheader="")]
@@ -99,3 +101,5 @@ public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
         int flags
     );
 }
+
+} // namespace LibAVFormat

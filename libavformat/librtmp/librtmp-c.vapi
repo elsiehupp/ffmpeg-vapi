@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file RTMP protocol based on http://rtmpdump.mplayerhq.hu/ librtmp
 ***********************************************************/
@@ -27,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define OFFSET(x) offsetof(LibRTMPContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      {"rtmp_app", "Name of application to connect to on the RTMP server", OFFSET(app), AV_OPT_TYPE_STRING, {.str = NULL }, 0, 0, DEC|ENC},
 //      {"rtmp_buffer", "Set buffer time in milliseconds. The default is 3000.", OFFSET(client_buffer_time), AV_OPT_TYPE_STRING, {.str = "3000"}, 0, 0, DEC|ENC},
 //      {"rtmp_conn", "Append arbitrary AMF data to the Connect message", OFFSET(conn), AV_OPT_TYPE_STRING, {.str = NULL }, 0, 0, DEC|ENC},
@@ -49,7 +51,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="librtmp_class", cheader="")]
-public class AVClass : AVClass {
+public class LibRTMPURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -65,7 +67,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -136,7 +138,7 @@ public class LibRTMPURLProtocol : URLProtocol {
 }
 
 [CCode (cname="librtmpt_class", cheader="")]
-public class AVClass : AVClass {
+public class LibRTMPTURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -152,7 +154,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -162,7 +164,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_librtmpt_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class LibRTMPTURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -223,7 +225,7 @@ public class URLProtocol : URLProtocol {
 }
 
 [CCode (cname="librtmpe_class", cheader="")]
-public class AVClass : AVClass {
+public class LibRTMPEURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -239,7 +241,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -249,7 +251,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_librtmpe_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class LibRTMPEURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -310,7 +312,7 @@ public class URLProtocol : URLProtocol {
 }
 
 [CCode (cname="librtmpte_class", cheader="")]
-public class AVClass : AVClass {
+public class LibRTMPTEURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -326,7 +328,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -336,7 +338,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_librtmpte_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class LibRTMPTEURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -397,7 +399,7 @@ public class URLProtocol : URLProtocol {
 }
 
 [CCode (cname="librtmps_class", cheader="")]
-public class AVClass : AVClass {
+public class LibRTMPSURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -413,7 +415,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -423,7 +425,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_librtmps_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class LibRTMPSURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -482,3 +484,5 @@ public class URLProtocol : URLProtocol {
         }
     }
 }
+
+} // namespace LibAVFormat

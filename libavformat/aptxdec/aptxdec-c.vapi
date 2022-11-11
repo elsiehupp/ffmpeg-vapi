@@ -21,14 +21,16 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption aptx_options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option aptx_options[] = {
 //      { "sample_rate", "", offsetof(AptXDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 48000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL },
 //  }
 
 #if CONFIG_APTX_DEMUXER
 [CCode (cname="aptx_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class APTXDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -53,7 +55,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_aptx_demuxer", cheader="")]
-public class APTXInputDemuxer : AVInputFormat {
+public class APTXDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -99,7 +101,7 @@ public class APTXInputDemuxer : AVInputFormat {
 
 #if CONFIG_APTX_HD_DEMUXER
 [CCode (cname="aptx_hd_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class APTXHDDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -124,7 +126,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_aptx_hd_demuxer", cheader="")]
-public class APTXInputDemuxer : AVInputFormat {
+public class APTXDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -167,3 +169,5 @@ public class APTXInputDemuxer : AVInputFormat {
     //  .priv_class = aptx_hd_demuxer_class,
 }
 #endif
+
+} // namespace LibAVFormat

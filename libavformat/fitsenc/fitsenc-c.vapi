@@ -20,12 +20,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file FITS muxer.
 ***********************************************************/
 
 [CCode (cname="ff_fits_muxer", cheader="")]
-public class FITSOutputMuxer : AVOutputFormat {
+public class FITSMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -73,3 +75,5 @@ public class FITSOutputMuxer : AVOutputFormat {
         int buf_size
     );
 }
+
+} // namespace LibAVFormat

@@ -21,8 +21,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_rso_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class RSODemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -59,3 +61,5 @@ public class InputDemuxer : AVInputFormat {
     );
     //  .codec_tag = (AVCodecTag[]){ff_codec_rso_tags, 0},
 }
+
+} // namespace LibAVFormat

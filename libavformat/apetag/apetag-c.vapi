@@ -1,7 +1,7 @@
 /***********************************************************
 APE tag handling
 @copyright 2007 Benjamin Zores <ben@geexbox.org>
- based upon libdemac from Dave Chapman.
+based upon libdemac from Dave Chapman.
 ***********************************************************/
 /***********************************************************
 This file is part of FFmpeg.
@@ -21,6 +21,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cprefix="APE_TAG_FLAG_", cheader="")]
 [Flags]
 public enum ApeTagFlags {
@@ -29,3 +31,5 @@ public enum ApeTagFlags {
     IS_HEADER,
     IS_BINARY,
 }
+
+} // namespace LibAVFormat

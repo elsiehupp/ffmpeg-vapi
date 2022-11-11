@@ -20,12 +20,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 Demuxer for xWMA, a Microsoft audio container used by XAudio 2.
 ***********************************************************/
 
 [CCode (cname="ff_xwma_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class XWMADemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -58,3 +60,5 @@ public class InputDemuxer : AVInputFormat {
         LibAVCodec.Packet packet
     );
 }
+
+} // namespace LibAVFormat

@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file @brief Bethesda Softworks VID (.vid) file demuxer
 @author Nicholas Tung [ntung (at. ntung com] (2007-03)
@@ -28,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_bethsoftvid_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class BethSoftVIDDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -65,3 +67,5 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context
     );
 }
+
+} // namespace LibAVFormat

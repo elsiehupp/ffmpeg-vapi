@@ -20,7 +20,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  static const AVOption file_options[] = {
+namespace LibAVFormat {
+
+//  static const LibAVUtil.Option file_options[] = {
 //      { "truncate", "truncate existing files on write", offsetof(FileContext, trunc), AV_OPT_TYPE_BOOL, { .i64 = 1 }, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },
 //      { "blocksize", "set I/O operation maximum block size", offsetof(FileContext, blocksize), AV_OPT_TYPE_INT, { .i64 = INT_MAX }, 1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
 //      { "follow", "Follow a file as it is being written", offsetof(FileContext, follow), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 1, AV_OPT_FLAG_DECODING_PARAM },
@@ -28,13 +30,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //      { NULL }
 //  }
 
-//  static const AVOption pipe_options[] = {
+//  static const LibAVUtil.Option pipe_options[] = {
 //      { "blocksize", "set I/O operation maximum block size", offsetof(FileContext, blocksize), AV_OPT_TYPE_INT, { .i64 = INT_MAX }, 1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
 //      { NULL }
 //  }
 
 [CCode (cname="file_class", cheader="")]
-public class AVClass : AVClass {
+public class FileClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -59,7 +61,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="pipe_class", cheader="")]
-public class AVClass : AVClass {
+public class PipeClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -167,7 +169,7 @@ public class FileURLProtocol : URLProtocol {
 #if CONFIG_PIPE_PROTOCOL
 
 [CCode (cname="ff_pipe_protocol", cheader="")]
-public class URLProtocol : URLProtocol {
+public class PipeURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -212,3 +214,5 @@ public class URLProtocol : URLProtocol {
 }
 
 #endif /* CONFIG_PIPE_PROTOCOL */
+
+} // namespace LibAVFormat

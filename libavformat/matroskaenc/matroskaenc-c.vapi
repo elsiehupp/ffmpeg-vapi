@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  static const AVCodecTag additional_audio_tags[] = {
 //      { LibAVCodec.CodecID.ALAC,      0XFFFFFFFF },
 //      { LibAVCodec.CodecID.MLP,       0xFFFFFFFF },
@@ -52,7 +54,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 //  #define OFFSET(x) offsetof(MatroskaMuxContext, x)
 //  #define FLAGS AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "reserve_index_space", "Reserve a given amount of space (in bytes) at the beginning of the file for the index (cues).", OFFSET(reserve_cues_space), AV_OPT_TYPE_INT,   { .i64 = 0 },   0, INT_MAX,   FLAGS },
 //      { "cluster_size_limit",  "Store at most the provided amount of bytes in a cluster. ",                                     OFFSET(cluster_size_limit), AV_OPT_TYPE_INT  , { .i64 = -1 }, -1, INT_MAX,   FLAGS },
 //      { "cluster_time_limit",  "Store at most the provided number of milliseconds in a cluster.",                               OFFSET(cluster_time_limit), AV_OPT_TYPE_INT64, { .i64 = -1 }, -1, INT64_MAX, FLAGS },
@@ -66,7 +68,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #if CONFIG_MATROSKA_MUXER
 [CCode (cname="matroska_class", cheader="")]
-public class AVClass : AVClass {
+public class MatroskaMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -82,7 +84,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -92,7 +94,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_matroska_muxer", cheader="")]
-public class MatroskaOutputMuxer : AVOutputFormat {
+public class MatroskaMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -185,7 +187,7 @@ public class MatroskaOutputMuxer : AVOutputFormat {
 
 #if CONFIG_WEBM_MUXER
 [CCode (cname="webm_class", cheader="")]
-public class AVClass : AVClass {
+public class WebMMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -201,7 +203,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -211,7 +213,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_webm_muxer", cheader="")]
-public class WebMOutputMuxer : AVOutputFormat {
+public class WebMMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -300,7 +302,7 @@ public class WebMOutputMuxer : AVOutputFormat {
 
 #if CONFIG_MATROSKA_AUDIO_MUXER
 [CCode (cname="mka_class", cheader="")]
-public class AVClass : AVClass {
+public class MatroskaAudioMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -316,7 +318,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -326,7 +328,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_matroska_audio_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class MatroskaAudioMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -405,3 +407,5 @@ public class OutputMuxer : AVOutputFormat {
     //  .priv_class = mka_class,
 }
 #endif
+
+} // namespace LibAVFormat

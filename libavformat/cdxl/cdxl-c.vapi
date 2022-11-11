@@ -15,19 +15,21 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+
+namespace LibAVFormat {
 /***********************************************************
 CDXL demuxer
 @copyright 2011-2012 Paul B Mahol
 ***********************************************************/
 //  #define OFFSET(x) offsetof(CDXLDemuxContext, x)
-//  static const AVOption cdxl_options[] = {
+//  static const LibAVUtil.Option cdxl_options[] = {
 //      { "sample_rate", "", OFFSET(sample_rate), AV_OPT_TYPE_INT,    { .i64 = 11025 }, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
 //      { "framerate",   "", OFFSET(framerate),   AV_OPT_TYPE_STRING, { .str = NULL },  0, 0,       AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL },
 //  }
 
 [CCode (cname="cdxl_demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class CDXLDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -52,7 +54,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_cdxl_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class CDXLDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -98,3 +100,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = cdxl_demuxer_class,
 }
+
+} // namespace LibAVFormat

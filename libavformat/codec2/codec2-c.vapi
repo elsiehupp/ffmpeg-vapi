@@ -15,6 +15,8 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+
+namespace LibAVFormat {
 /***********************************************************
 codec2 muxer and demuxers
 @copyright 2017 Tomas Härdin
@@ -27,19 +29,19 @@ with -frames_per_packet 1000 compared to default, same sha1sum
 //      { "frames_per_packet", "Number of frames to read at a time. Higher = faster decoding, lower granularity",
 //        offsetof(Codec2Context, frames_per_packet), AV_OPT_TYPE_INT, {.i64 = 1}, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM}
 
-//  static const AVOption codec2_options[] = {
+//  static const LibAVUtil.Option codec2_options[] = {
 //      FRAMES_PER_PACKET,
 //      { NULL },
 //  }
 
-//  static const AVOption codec2raw_options[] = {
+//  static const LibAVUtil.Option codec2raw_options[] = {
 //      AVPRIV_CODEC2_AVOPTIONS("codec2 mode [mandatory]", Codec2Context, -1, -1, AV_OPT_FLAG_DECODING_PARAM),
 //      FRAMES_PER_PACKET,
 //      { NULL },
 //  }
 
 [CCode (cname="codec2_mux_class", cheader="")]
-public class AVClass : AVClass {
+public class Codec2MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -64,7 +66,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="codec2_demux_class", cheader="")]
-public class AVClass : AVClass {
+public class Codec2DemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -90,7 +92,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="codec2raw_demux_class", cheader="")]
-public class AVClass : AVClass {
+public class Codec2RawDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -117,7 +119,7 @@ public class AVClass : AVClass {
 
 #if CONFIG_CODEC2_DEMUXER
 [CCode (cname="ff_codec2_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class Codec2Demuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -180,7 +182,7 @@ public class InputDemuxer : AVInputFormat {
 
 #if CONFIG_CODEC2_MUXER
 [CCode (cname="ff_codec2_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class Codec2Muxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -239,7 +241,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_CODEC2RAW_DEMUXER
 [CCode (cname="ff_codec2raw_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class Codec2RawDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -289,3 +291,5 @@ public class InputDemuxer : AVInputFormat {
     //  .priv_class = codec2raw_demux_class,
 }
 #endif
+
+} // namespace LibAVFormat

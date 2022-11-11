@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file RTMP HTTP protocol
 ***********************************************************/
@@ -27,13 +29,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define OFFSET(x) offsetof(RTMP_HTTPContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
 
-//  static const AVOption ffrtmphttp_options[] = {
+//  static const LibAVUtil.Option ffrtmphttp_options[] = {
 //      {"ffrtmphttp_tls", "Use a HTTPS tunneling connection (RTMPTS).", OFFSET(tls), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC},
 //      { NULL },
 //  }
 
 [CCode (cname="ffrtmphttp_class", cheader="")]
-public class AVClass : AVClass {
+public class RTMPHTTPURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -101,6 +103,8 @@ public class RTMPHTTPURLProtocol : URLProtocol {
     }
     //  .priv_data_class = ffrtmphttp_class,
     //  .default_whitelist = "https,http,tcp,tls";
-        }
-    }
+    //      }
+    //  }
 }
+
+} // namespace LibAVFormat

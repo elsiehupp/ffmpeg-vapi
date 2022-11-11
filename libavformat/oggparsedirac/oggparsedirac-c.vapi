@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 [CCode (cname="ff_dirac_codec", cheader="")]
 public class DiracCodec : OggCodec {
     public override int8[] magic {
@@ -66,3 +68,5 @@ public class OldDiracCodec : OggCodec {
     //  .granule_is_start = 1,
     //  .nb_header = 1,
 }
+
+} // namespace LibAVFormat

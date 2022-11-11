@@ -37,7 +37,7 @@ public const size_t AVPALETTE_COUNT;
 @note
 PixelFormat.RGB32 is handled in an endian-specific manner. An RGBA
 color is put together as:
- (A << 24) | (R << 16) | (G << 8) | B
+(A << 24) | (R << 16) | (G << 8) | B
 This is stored as BGRA on little-endian CPU architectures and ARGB on
 big-endian CPUs.
 

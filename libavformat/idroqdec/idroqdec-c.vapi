@@ -20,15 +20,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file id RoQ format file demuxer
 by Mike Melanson (melanson@pcisys.net)
 for more information on the .roq file format, visit:
-  http://www.csse.monash.edu.au/~timf/
+http://www.csse.monash.edu.au/~timf/
 ***********************************************************/
 
 [CCode (cname="ff_roq_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class ROQDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -61,3 +63,5 @@ public class InputDemuxer : AVInputFormat {
         LibAVCodec.Packet packet
     );
 }
+
+} // namespace LibAVFormat

@@ -20,11 +20,13 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file GIF demuxer.
 ***********************************************************/
 
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "min_delay"    , "minimum valid delay between frames (in hundredths of second)", offsetof(GIFDemuxContext, min_delay)    , AV_OPT_TYPE_INT, {.i64 = GIF_MIN_DELAY}    , 0, 100 * 60, AV_OPT_FLAG_DECODING_PARAM },
 //      { "max_gif_delay", "maximum valid delay between frames (in hundredths of seconds)", offsetof(GIFDemuxContext, max_delay)   , AV_OPT_TYPE_INT, {.i64 = 65535}            , 0, 65535   , AV_OPT_FLAG_DECODING_PARAM },
 //      { "default_delay", "default delay between frames (in hundredths of second)"      , offsetof(GIFDemuxContext, default_delay), AV_OPT_TYPE_INT, {.i64 = GIF_DEFAULT_DELAY}, 0, 100 * 60, AV_OPT_FLAG_DECODING_PARAM },
@@ -33,7 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 [CCode (cname="demuxer_class", cheader="")]
-public class AVClass : AVClass {
+public class GIFDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -49,7 +51,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -60,7 +62,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_gif_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class GIFDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -100,3 +102,5 @@ public class InputDemuxer : AVInputFormat {
     }
     //  .priv_class = demuxer_class,
 }
+
+} // namespace LibAVFormat

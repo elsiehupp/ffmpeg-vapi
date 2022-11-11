@@ -20,6 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file VC1 test bitstream file demuxer
 by Konstantin Shishkov
@@ -27,7 +29,7 @@ Format specified in SMPTE standard 421 Annex L
 ***********************************************************/
 
 [CCode (cname="ff_vc1t_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class VC1TestDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -66,3 +68,5 @@ public class InputDemuxer : AVInputFormat {
         }
     }
 }
+
+} // namespace LibAVFormat

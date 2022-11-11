@@ -19,9 +19,11 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 //  #define OFFSET(x) offsetof(ConcatContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "safe", "enable safe mode",
 //        OFFSET(safe), AV_OPT_TYPE_BOOL, {.i64 = 1}, -1, 1, DEC },
 //      { "auto_convert", "automatically convert bitstream format",
@@ -32,7 +34,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 //  }
 
 [CCode (cname="concat_class", cheader="")]
-public class AVClass : AVClass {
+public class ConcatDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -48,7 +50,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -58,7 +60,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_concat_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {
+public class ConcatDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -105,3 +107,5 @@ public class InputDemuxer : AVInputFormat {
     );
     //  .priv_class = concat_class,
 }
+
+} // namespace LibAVFormat

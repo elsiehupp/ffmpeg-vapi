@@ -19,6 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+namespace LibAVFormat {
+
 /***********************************************************
 @file generic segmenter
 M3U8 specification can be find here:
@@ -27,7 +29,7 @@ M3U8 specification can be find here:
 
 //  #define OFFSET(x) offsetof(SegmentContext, x)
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const AVOption options[] = {
+//  static const LibAVUtil.Option options[] = {
 //      { "reference_stream",  "set reference stream", OFFSET(reference_stream_specifier), AV_OPT_TYPE_STRING, {.str = "auto"}, CHAR_MIN, CHAR_MAX, E },
 //      { "segment_format",    "set container format used for the segments", OFFSET(format),  AV_OPT_TYPE_STRING, {.str = NULL},  0, 0,       E },
 //      { "segment_format_options", "set list of options for the container format used for the segments", OFFSET(format_options_str), AV_OPT_TYPE_STRING, {.str = NULL}, 0, 0, E },
@@ -73,7 +75,7 @@ M3U8 specification can be find here:
 
 #if CONFIG_SEGMENT_MUXER
 [CCode (cname="seg_class", cheader="")]
-public class AVClass : AVClass {
+public class SegmentMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -89,7 +91,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -99,7 +101,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_segment_muxer", cheader="")]
-public class OutputMuxer : AVOutputFormat {
+public class SegmentMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -157,7 +159,7 @@ public class OutputMuxer : AVOutputFormat {
 
 #if CONFIG_STREAM_SEGMENT_MUXER
 [CCode (cname="sseg_class", cheader="")]
-public class AVClass : AVClass {
+public class StreamSegmentMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
@@ -173,7 +175,7 @@ public class AVClass : AVClass {
         );
     }
     [CCode (cname="options", cheader="")]
-    public override AVOption[] option { public get; }
+    public override LibAVUtil.Option[] option { public get; }
     [CCode (cname="version", cheader="")]
     public override int version {
         public get {
@@ -183,7 +185,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_stream_segment_muxer", cheader="")]
-public class StreamSegmentOutputMuxer : AVOutputFormat {
+public class StreamSegmentMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -238,3 +240,5 @@ public class StreamSegmentOutputMuxer : AVOutputFormat {
     //  .priv_class = sseg_class,
 }
 #endif
+
+} // namespace LibAVFormat
