@@ -77,27 +77,32 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (WAVDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="wav_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = wav_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wav_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = wav_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wav_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = wav_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wav_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = wav_read_seek,
-    //  .flags = AVFMT_GENERIC_INDEX,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
     //  .codec_tag = (AVCodecTag[]) { ff_codec_wav_tags,  0 },
     //  .priv_class = wav_demuxer_class,
 }
@@ -124,27 +129,32 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (WAVDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="w64_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = w64_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="w64_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = w64_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wav_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = wav_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wav_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = wav_read_seek,
-    //  .flags = AVFMT_GENERIC_INDEX,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
     //  .codec_tag = (AVCodecTag[]) { ff_codec_wav_tags, 0 },
 }
 #endif /* CONFIG_W64_DEMUXER */

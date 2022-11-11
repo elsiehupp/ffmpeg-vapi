@@ -40,8 +40,7 @@ public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
             return AVSTREAM_PARSE_FULL;
         }
     }
-
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpeg_parse_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -52,7 +51,7 @@ public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = mpeg_parse_packet,
+    );
     //  .static_payload_id = 14,
 }
 
@@ -76,8 +75,7 @@ public class MpegVideoDynamicHandler : RTPDynamicProtocolHandler {
             return AVSTREAM_PARSE_FULL;
         }
     }
-
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpeg_parse_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -88,6 +86,6 @@ public class MpegVideoDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = mpeg_parse_packet,
+    );
     //  .static_payload_id = 32,
 }

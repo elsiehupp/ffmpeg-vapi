@@ -27,18 +27,18 @@ public class DiracCodec : OggCodec {
         }
     }
     //  .magicsize = 5,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="dirac_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = dirac_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="dirac_gptopts", cheader="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
-    ); // = dirac_gptopts,
+    );
     //  .granule_is_start = 1,
     //  .nb_header = 1,
 }
@@ -51,18 +51,18 @@ public class OldDiracCodec : OggCodec {
         }
     }
     //  .magicsize = 8,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="old_dirac_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = old_dirac_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="old_dirac_gptopts", cheader="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
-    ); // = old_dirac_gptopts,
+    );
     //  .granule_is_start = 1,
     //  .nb_header = 1,
 }

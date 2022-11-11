@@ -121,5 +121,10 @@ public class APNGOutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .priv_class = apng_muxer_class,
-    //  .flags = AVFMT_VARIABLE_FPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_VARIABLE_FPS;
+        }
+    }
 }

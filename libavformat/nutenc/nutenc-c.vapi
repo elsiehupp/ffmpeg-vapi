@@ -101,25 +101,30 @@ public class NUTOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG4;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="nut_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = nut_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="nut_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = nut_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="nut_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = nut_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="nut_write_deinit", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    ); // = nut_write_deinit,
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS;
+        }
+    }
     //  .codec_tag = ff_nut_codec_tags,
     //  .priv_class = class,
 }

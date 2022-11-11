@@ -51,23 +51,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //              return sizeof (PayloadContext);
 //          }
 //      }
-//      [CCode (cname="", cheader="")]
+//      [CCode (cname="rdt_init", cheader="")]
 //      public override int init (
 //          AVFormatContext format_context
-//      ); // = rdt_init,
-//      [CCode (cname="", cheader="")]
+//      );
+//      [CCode (cname="rdt_parse_sdp_line", cheader="")]
 //      public override int parse_sdp_a_line (
 //          AVFormatContext format_context,
 //          int st_index,
 //          PayloadContext priv_data,
 //          string line
-//      ); // = rdt_parse_sdp_line,
-//      [CCode (cname="", cheader="")]
+//      );
+//      [CCode (cname="rdt_close_context", cheader="")]
 //      public override void close (
 //          PayloadContext protocol_data
-//      ); // = rdt_close_context,
+//      );
 
-//      [CCode (cname="", cheader="")]
+//      [CCode (cname="rdt_parse_packet", cheader="")]
 //      public override int parse_packet (
 //          AVFormatContext format_context,
 //          PayloadContext payload_context,
@@ -78,7 +78,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //          int len,
 //          uint16 seq,
 //          int flags
-//      ); // = rdt_parse_packet
+//      );
 //  }
 
 //  RDT_HANDLER(live_video, "x-pn-multirate-realvideo-live", AVMEDIA_TYPE_VIDEO);

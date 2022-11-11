@@ -156,8 +156,18 @@ public class HLSOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.H264;
         }
     }
-    //  .subtitle_codec = LibAVCodec.CodecID.WEBVTT,
-    //  .flags = AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_NODIMENSIONS,
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.WEBVTT;
+        }
+    }
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_NODIMENSIONS;
+        }
+    }
     [CCode (cname="hls_init", cheader="")]
     public override int init (
         AVFormatContext format_context

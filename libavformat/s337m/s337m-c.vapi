@@ -33,18 +33,23 @@ public class InputDemuxer : AVInputFormat {
             return "SMPTE 337M";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="s337m_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = s337m_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="s337m_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = s337m_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="s337m_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = s337m_read_packet,
-    //  .flags = AVFMT_GENERIC_INDEX,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }

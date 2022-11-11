@@ -18,19 +18,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
+[CCode (cprefix="AV_HWFRAME_TRANSFER_DIRECTION_", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public enum HardwareFrameTransferDirection {
     /***********************************************************
     @brief Transfer the data from the queried hw frame.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_HWFRAME_TRANSFER_DIRECTION_FROM,
+    FROM,
 
     /***********************************************************
     @brief Transfer the data to the queried hw frame.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_HWFRAME_TRANSFER_DIRECTION_TO;
+    TO;
 
     /***********************************************************
     @brief Get a list of possible source or target formats usable in

@@ -52,12 +52,12 @@ public class AC3DynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ac3_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = ac3_close_context,
+    );
 
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ac3_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -68,5 +68,5 @@ public class AC3DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = ac3_handle_packet,
+    );
 }

@@ -46,17 +46,17 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (IssDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="iss_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = iss_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="iss_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = iss_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="iss_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = iss_read_packet,
+    );
 }

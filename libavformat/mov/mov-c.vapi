@@ -123,29 +123,34 @@ public class InputDemuxer : AVInputFormat {
             return "mov,mp4,m4a,3gp,3g2,mj2";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mov_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = mov_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mov_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = mov_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mov_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mov_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mov_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = mov_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mov_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = mov_read_seek,
-    //  .flags = AVFMT_NO_BYTE_SEEK | AVFMT_SEEK_TO_PTS,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NO_BYTE_SEEK | AVFMT_SEEK_TO_PT;
+        }
+    }
 }

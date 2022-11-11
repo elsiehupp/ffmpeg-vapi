@@ -52,12 +52,12 @@ public class H261DynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="h261_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = h261_close_context,
+    );
 
-    [CCode (cname="", cheader="")]
+    [CCode (cname="h261_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -68,6 +68,6 @@ public class H261DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = h261_handle_packet,
+    );
     //  .static_payload_id = 31,
 }

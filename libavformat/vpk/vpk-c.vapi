@@ -40,19 +40,19 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (VPKDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vpk_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = vpk_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vpk_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = vpk_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vpk_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = vpk_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

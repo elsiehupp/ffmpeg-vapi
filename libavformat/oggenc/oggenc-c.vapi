@@ -120,29 +120,34 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.THEORA;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogg_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = ogg_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ogg_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ogg_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = ogg_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_free", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    ); // = ogg_free,
-    //  .flags = AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;
+        }
+    }
     //  .priv_class = ogg_muxer_class,
 }
 #endif
@@ -187,29 +192,34 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.FLAC;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogg_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = ogg_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ogg_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ogg_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = ogg_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_free", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    ); // = ogg_free,
-    //  .flags = AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH;
+        }
+    }
     //  .priv_class = oga_muxer_class,
 }
 #endif
@@ -260,29 +270,34 @@ public class OutputMuxer : AVOutputFormat {
             return CONFIG_LIBTHEORA_ENCODER ? LibAVCodec.CodecID.THEORA : LibAVCodec.CodecID.VP8;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogg_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = ogg_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ogg_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ogg_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = ogg_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_free", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    ); // = ogg_free,
-    //  .flags = AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;
+        }
+    }
     //  .priv_class = ogv_muxer_class,
 }
 #endif
@@ -327,29 +342,34 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.SPEEX;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogg_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = ogg_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ogg_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ogg_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = ogg_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_free", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    ); // = ogg_free,
-    //  .flags = AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH;
+        }
+    }
     //  .priv_class = spx_muxer_class,
 }
 #endif
@@ -394,29 +414,34 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.OPUS;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogg_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = ogg_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ogg_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ogg_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = ogg_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_free", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    ); // = ogg_free,
-    //  .flags = AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH;
+        }
+    }
     //  .priv_class = opus_muxer_class,
 }
 #endif

@@ -62,7 +62,12 @@ public class InputDemuxer : AVInputFormat {
         int64[] pos,
         int64 pos_limit
     );
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

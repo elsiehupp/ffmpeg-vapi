@@ -40,26 +40,26 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (VqfContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vqf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = vqf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vqf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = vqf_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vqf_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = vqf_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vqf_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = vqf_read_seek,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

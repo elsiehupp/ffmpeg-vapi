@@ -67,7 +67,12 @@ public class InputDemuxer : AVInputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

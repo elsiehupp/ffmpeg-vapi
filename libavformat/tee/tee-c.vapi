@@ -74,20 +74,25 @@ public class TeeOutputMuxer : AVOutputFormat {
             return sizeof (TeeContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="tee_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = tee_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tee_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = tee_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tee_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = tee_write_packet,
+    );
     //  .priv_class = tee_muxer_class,
-    //  .flags = AVFMT_NOFILE | AVFMT_ALLOW_FLUSH,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE | AVFMT_ALLOW_FLUSH;
+        }
+    }
 }

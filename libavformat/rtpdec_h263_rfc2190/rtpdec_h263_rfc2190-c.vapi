@@ -46,8 +46,7 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
             return AVSTREAM_PARSE_FULL;
         }
     }
-
-    [CCode (cname="", cheader="")]
+    [CCode (cname="h263_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -58,16 +57,16 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = h263_handle_packet,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="h263_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = h263_close_context,
+    );
     //  .static_payload_id = 34,
 }

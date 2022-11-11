@@ -96,6 +96,11 @@ public class FifoTestOutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .priv_class = failing_muxer_class,
-    //  .flags = AVFMT_NOFILE | AVFMT_ALLOW_FLUSH,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE | AVFMT_ALLOW_FLUSH;
+        }
+    }
 }
 

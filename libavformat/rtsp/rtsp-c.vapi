@@ -66,23 +66,23 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (RTSPState);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sdp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = sdp_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sdp_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = sdp_read_header,
+    );
     [CCode (cname="ff_rtsp_fetch_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sdp_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = sdp_read_close,
+    );
     //  .priv_class = sdp_demuxer_class,
 }
 #endif /* CONFIG_SDP_DEMUXER */
@@ -133,24 +133,29 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (RTSPState);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rtp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = rtp_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtp_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = rtp_read_header,
+    );
     [CCode (cname="ff_rtsp_fetch_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sdp_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = sdp_read_close,
-    //  .flags = AVFMT_NOFILE,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE;
+        }
+    }
     //  .priv_class = rtp_demuxer_class,
 }
 #endif /* CONFIG_RTP_DEMUXER */

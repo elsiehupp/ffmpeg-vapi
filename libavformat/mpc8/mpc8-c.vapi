@@ -40,24 +40,24 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MPCContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpc8_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = mpc8_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpc8_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = mpc8_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpc8_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mpc8_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpc8_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = mpc8_read_seek,
+    );
 }

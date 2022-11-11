@@ -27,10 +27,10 @@ public class SkeletonCodec : OggCodec {
         }
     }
     //  .magicsize = 8,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="skeleton_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = skeleton_header,
+    );
     //  .nb_header = 0,
 }

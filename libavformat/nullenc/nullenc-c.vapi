@@ -46,11 +46,16 @@ public class NullOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.WRAPPED_AVFRAME;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="null_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = null_write_packet,
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_NOFILE | AVFMT_NOTIMESTAMPS,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_VARIABLE_FPS | AVFMT_NOFILE | AVFMT_NOTIMESTAMPS;
+        }
+    }
 }

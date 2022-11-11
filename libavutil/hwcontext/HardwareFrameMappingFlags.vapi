@@ -27,26 +27,24 @@ public enum HardwareFrameMappingFlags {
     /***********************************************************
     @brief The mapping must be readable.
     ***********************************************************/
-    [CCode (cname="")]
     READ,
     /***********************************************************
     @brief The mapping must be writeable.
     ***********************************************************/
-    [CCode (cname="")]
     WRITE,
     /***********************************************************
-    @brief The mapped frame will be overwritten completely in subsequent
-    operations, so the current frame data need not be loaded. Any values
-    which are not overwritten are unspecified.
+    @brief The mapped frame will be overwritten completely in
+        subsequent operations, so the current frame data need
+        not be loaded. Any values which are not overwritten are
+        unspecified.
     ***********************************************************/
-    [CCode (cname="")]
     OVERWRITE,
     /***********************************************************
-    @brief The mapping must be direct. That is, there must not be any copying in
-    the map or unmap steps. Note that performance of direct mappings may
-    be much lower than normal memory.
+    @brief The mapping must be direct. That is, there must not
+        be any copying in the map or unmap steps. Note that
+        performance of direct mappings may be much lower than
+        normal memory.
     ***********************************************************/
-    [CCode (cname="")]
     DIRECT,
 }
 

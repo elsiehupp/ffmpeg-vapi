@@ -40,19 +40,19 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MXGContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mxg_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = mxg_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mxg_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mxg_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mxg_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = mxg_close,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

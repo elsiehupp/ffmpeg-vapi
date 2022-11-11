@@ -33,14 +33,14 @@ public class InputDemuxer : AVInputFormat {
             return "Psion 3 audio";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="wve_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = wve_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wve_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = wve_read_header,
+    );
     [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,

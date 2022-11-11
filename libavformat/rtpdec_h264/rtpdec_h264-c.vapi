@@ -65,19 +65,18 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="parse_h264_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = parse_h264_sdp_line,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="h264_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = h264_close_context,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="h264_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -88,5 +87,5 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = h264_handle_packet,
+    );
 }

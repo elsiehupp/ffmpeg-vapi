@@ -34,19 +34,19 @@ public class InputDemuxer : AVInputFormat {
             return "Sony PS3 MSF";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="msf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = msf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="msf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = msf_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="msf_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = msf_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

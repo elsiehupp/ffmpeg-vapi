@@ -88,7 +88,12 @@ public class HDSOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.H264;
         }
     }
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_NOFILE,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_NOFILE;
+        }
+    }
     [CCode (cname="hds_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context

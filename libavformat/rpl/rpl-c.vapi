@@ -40,17 +40,17 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (RPLContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rpl_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = rpl_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rpl_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = rpl_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rpl_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = rpl_read_packet,
+    );
 }

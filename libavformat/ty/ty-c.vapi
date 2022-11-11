@@ -44,28 +44,33 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (TYDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ty_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = ty_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ty_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = ty_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ty_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ty_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ty_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = ty_read_close,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
             return "ty,ty+";
         }
     }
-    //  .flags = AVFMT_TS_DISCONT,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_DISCONT;
+        }
+    }
 }

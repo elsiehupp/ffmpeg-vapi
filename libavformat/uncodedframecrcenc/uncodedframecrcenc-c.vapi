@@ -45,22 +45,27 @@ public class UncodedFrameCRCOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_frame", cheader="")]
     public override int write_uncoded_frame (
         AVFormatContext format_context,
         int stream_index,
         LibAVUtil.Frame frame,
         uint flags
-    ); // = write_frame,
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE;
+        }
+    }
 }

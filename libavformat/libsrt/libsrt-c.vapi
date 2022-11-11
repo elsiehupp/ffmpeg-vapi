@@ -53,32 +53,32 @@ public class LibSRTURLProtocol : URLProtocol {
             return "srt";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="libsrt_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = libsrt_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsrt_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = libsrt_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsrt_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = libsrt_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsrt_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = libsrt_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsrt_get_file_handle", cheader="")]
     public override int url_get_file_handle (
         URLContext url_context
-    ); // = libsrt_get_file_handle,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

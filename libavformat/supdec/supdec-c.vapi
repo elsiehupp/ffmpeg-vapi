@@ -42,18 +42,23 @@ public class InputDemuxer : AVInputFormat {
             return "application/x-pgs";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sup_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = sup_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sup_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = sup_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sup_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = sup_read_packet,
-    //  .flags = AVFMT_GENERIC_INDEX,
+    ); // = ,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }

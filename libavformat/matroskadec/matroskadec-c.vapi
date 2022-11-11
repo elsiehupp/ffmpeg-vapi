@@ -87,30 +87,30 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MatroskaDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="matroska_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = matroska_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="matroska_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = matroska_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="matroska_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = matroska_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="matroska_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = matroska_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="matroska_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = matroska_read_seek,
+    );
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
@@ -139,18 +139,18 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MatroskaDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="webm_dash_manifest_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = webm_dash_manifest_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="webm_dash_manifest_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = webm_dash_manifest_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="matroska_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = matroska_read_close,
+    ); // = ,
     //  .priv_class = webm_dash_class,
 }

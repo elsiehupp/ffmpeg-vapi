@@ -30,15 +30,15 @@ public class SpeexCodec : OggCodec {
         }
     }
     //  .magicsize = 8,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="speex_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = speex_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="speex_packet", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); // = speex_packet,
+    );
     //  .nb_header = 2,
 }

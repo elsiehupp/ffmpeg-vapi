@@ -27,11 +27,11 @@ public class FlacCodec : OggCodec {
         }
     }
     //  .magicsize = 5,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="flac_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = flac_header,
+    );
     //  .nb_header = 2,
 }
 
@@ -43,10 +43,10 @@ public class OldFlacCodec : OggCodec {
         }
     }
     //  .magicsize = 4,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="old_flac_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = old_flac_header,
+    );
     //  .nb_header = 0,
 }

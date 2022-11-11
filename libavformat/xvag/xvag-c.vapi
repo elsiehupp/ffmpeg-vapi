@@ -34,19 +34,19 @@ public class InputDemuxer : AVInputFormat {
             return "Sony PS3 XVAG";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="xvag_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = xvag_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="xvag_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = xvag_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="xvag_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = xvag_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

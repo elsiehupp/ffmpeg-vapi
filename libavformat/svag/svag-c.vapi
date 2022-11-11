@@ -34,19 +34,19 @@ public class InputDemuxer : AVInputFormat {
             return "Konami PS2 SVAG";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="svag_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = svag_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="svag_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = svag_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="svag_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = svag_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

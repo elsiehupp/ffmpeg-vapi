@@ -46,16 +46,26 @@ public class SUPOutputMuxer : AVOutputFormat {
             return "application/x-pgs";
         }
     }
-    //  .subtitle_codec = LibAVCodec.CodecID.HDMV_PGS_SUBTITLE,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.HDMV_PGS_SUBTITLE;
+        }
+    }
+    [CCode (cname="sup_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = sup_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sup_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = sup_write_packet,
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT;
+        }
+    }
 }

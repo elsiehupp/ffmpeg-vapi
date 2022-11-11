@@ -721,7 +721,7 @@ public abstract class AVOutputFormat {
     /***********************************************************
     default data codec
     ***********************************************************/
-    public LibAVCodec.CodecID data_codec;
+    public abstract LibAVCodec.CodecID data_codec { public get; }
     /***********************************************************
     Initialize format. May allocate data here, and set any AVFormatContext or
     AVStream parameters that need to be set before packets are sent.
@@ -2138,7 +2138,7 @@ public abstract class AVFormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    public LibAVCodec.Codec video_codec;
+    public abstract LibAVCodec.Codec video_codec { public get; }
 
     /***********************************************************
     Forced audio codec.
@@ -2146,7 +2146,7 @@ public abstract class AVFormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    public LibAVCodec.Codec audio_codec;
+    public abstract LibAVCodec.Codec audio_codec { public get; }
 
     /***********************************************************
     Forced subtitle codec.
@@ -2154,7 +2154,7 @@ public abstract class AVFormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    public LibAVCodec.Codec subtitle_codec;
+    public abstract LibAVCodec.Codec subtitle_codec { public get; }
 
     /***********************************************************
     Forced data codec.
@@ -2162,7 +2162,7 @@ public abstract class AVFormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    public LibAVCodec.Codec data_codec;
+    public abstract LibAVCodec.Codec data_codec { public get; }
 
     /***********************************************************
     Number of bytes to be written as padding in a metadata header.

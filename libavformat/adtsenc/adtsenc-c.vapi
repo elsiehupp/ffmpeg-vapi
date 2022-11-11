@@ -117,5 +117,10 @@ public class ADTSOutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .priv_class = adts_muxer_class,
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }

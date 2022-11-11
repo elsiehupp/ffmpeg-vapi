@@ -46,19 +46,19 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (VivoContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vivo_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = vivo_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vivo_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = vivo_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vivo_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = vivo_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

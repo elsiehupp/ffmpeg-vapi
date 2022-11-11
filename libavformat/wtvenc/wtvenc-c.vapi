@@ -62,19 +62,19 @@ public class WTVOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = write_trailer,
+    );
     //  .codec_tag = (AVCodecTag[]){ ff_codec_bmp_tags, ff_codec_wav_tags, 0 },
 }

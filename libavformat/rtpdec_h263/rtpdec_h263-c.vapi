@@ -46,7 +46,6 @@ public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
             return AVSTREAM_PARSE_FULL;
         }
     }
-
     [CCode (cname="ff_h263_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
@@ -87,7 +86,6 @@ public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
             return AVSTREAM_PARSE_FULL;
         }
     }
-
     [CCode (cname="ff_h263_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,

@@ -46,8 +46,7 @@ public class VC2HQDynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vc2hq_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -58,5 +57,5 @@ public class VC2HQDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = vc2hq_handle_packet
+    );
 }

@@ -122,7 +122,12 @@ public class DashOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.H264;
         }
     }
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_NOFILE | AVFMT_TS_NEGATIVE,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_NOFILE | AVFMT_TS_NEGATIVE;
+        }
+    }
     [CCode (cname="dash_init", cheader="")]
     public override int init (
         AVFormatContext format_context

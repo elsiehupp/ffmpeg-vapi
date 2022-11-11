@@ -34,17 +34,17 @@ public class InputDemuxer : AVInputFormat {
             return "Renderware TeXture Dictionary";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="txd_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = txd_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="txd_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = txd_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="txd_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = txd_read_packet,
+    );
 }

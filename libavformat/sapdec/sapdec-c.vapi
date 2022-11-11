@@ -40,22 +40,27 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (SAPState);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sap_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = sap_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sap_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = sap_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sap_fetch_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = sap_fetch_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sap_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = sap_read_close,
-    //  .flags = AVFMT_NOFILE,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE;
+        }
+    }
 }

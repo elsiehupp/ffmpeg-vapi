@@ -64,19 +64,19 @@ public class RMOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.RV10;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rm_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = rm_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rm_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = rm_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rm_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = rm_write_trailer,
+    );
     //  .codec_tag = (AVCodecTag[]){ ff_rm_codec_tags, 0 },
 }

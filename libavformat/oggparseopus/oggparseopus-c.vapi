@@ -34,15 +34,15 @@ public class OpusCodec : OggCodec {
         }
     }
     //  .magicsize = 8,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="opus_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = opus_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="opus_packet", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); // = opus_packet,
+    );
     //  .nb_header = 1,
 }

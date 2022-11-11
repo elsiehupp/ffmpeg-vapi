@@ -64,21 +64,26 @@ public class LATMOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="latm_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = latm_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="latm_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = latm_write_packet,
+    );
     //  .priv_class = latm_muxer_class,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="latm_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = latm_check_bitstream,
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }

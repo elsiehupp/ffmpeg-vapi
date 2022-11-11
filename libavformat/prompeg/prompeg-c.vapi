@@ -123,22 +123,22 @@ public class ProMpegURLProtocol : URLProtocol {
             return "prompeg";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="prompeg_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = prompeg_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="prompeg_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = prompeg_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="prompeg_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = prompeg_close,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

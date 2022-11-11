@@ -47,28 +47,28 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (FilmDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="film_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = film_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="film_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = film_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="film_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = film_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="film_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = film_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="film_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = film_read_seek,
+    );
 }

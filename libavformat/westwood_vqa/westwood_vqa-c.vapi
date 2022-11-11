@@ -48,17 +48,17 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (WsVqaDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="wsvqa_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = wsvqa_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wsvqa_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = wsvqa_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wsvqa_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = wsvqa_read_packet,
+    );
 }

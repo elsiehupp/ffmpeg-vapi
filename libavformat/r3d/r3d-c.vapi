@@ -40,28 +40,28 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (R3DContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="r3d_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = r3d_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="r3d_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = r3d_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="r3d_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = r3d_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="r3d_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = r3d_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="r3d_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = r3d_seek,
+    );
 }

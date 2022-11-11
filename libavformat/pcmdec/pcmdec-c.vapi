@@ -72,10 +72,10 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (PCMAudioDemuxerContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="pcm_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = pcm_read_header,
+    );
     [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
@@ -88,7 +88,12 @@ public class InputDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
@@ -219,10 +224,10 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (PCMAudioDemuxerContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="pcm_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = pcm_read_header,
+    );
     [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
@@ -235,7 +240,12 @@ public class InputDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

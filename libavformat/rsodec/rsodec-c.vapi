@@ -41,10 +41,10 @@ public class InputDemuxer : AVInputFormat {
             return "rso";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rso_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = rso_read_header,
+    );
     [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,

@@ -191,7 +191,12 @@ public class InputDemuxer : AVInputFormat {
         }
     }
     //  .priv_class = live_flv_class,
-    //  .flags = AVFMT_TS_DISCONT
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_DISCONT;
+        }
+    }
 }
 
 [CCode (cname="kux_class", cheader="")]

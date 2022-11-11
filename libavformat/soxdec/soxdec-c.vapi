@@ -43,14 +43,14 @@ public class InputDemuxer : AVInputFormat {
             return "SoX native";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sox_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = sox_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sox_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = sox_read_header,
+    );
     [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,

@@ -43,20 +43,20 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (SubViewer1Context);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="subviewer1_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = subviewer1_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="subviewer1_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = subviewer1_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="subviewer1_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = subviewer1_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="subviewer1_read_seek", cheader="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -64,11 +64,11 @@ public class InputDemuxer : AVInputFormat {
         int64 ts,
         int64 max_ts,
         int flags
-    ); // = subviewer1_read_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="subviewer1_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = subviewer1_read_close,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

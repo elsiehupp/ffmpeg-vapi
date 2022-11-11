@@ -38,10 +38,10 @@ public class InputDemuxer : AVInputFormat {
             return "raw MLP";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mlp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = mlp_probe,
+    );
     [CCode (cname="ff_raw_audio_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
@@ -51,7 +51,12 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS;
+        }
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
@@ -90,10 +95,10 @@ public class InputDemuxer : AVInputFormat {
             return "raw TrueHD";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="thd_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = thd_probe,
+    );
     [CCode (cname="ff_raw_audio_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
@@ -103,7 +108,12 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS;
+        }
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

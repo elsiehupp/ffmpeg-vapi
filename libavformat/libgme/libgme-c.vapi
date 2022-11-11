@@ -66,29 +66,29 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (GMEContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="probe_gme", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = probe_gme,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_header_gme", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = read_header_gme,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet_gme", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = read_packet_gme,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_close_gme", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = read_close_gme,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_seek_gme", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = read_seek_gme,
+    );
     //  .priv_class = class_gme,
 }

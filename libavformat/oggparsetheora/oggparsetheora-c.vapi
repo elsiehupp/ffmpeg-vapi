@@ -30,22 +30,22 @@ public class TheoraCodec : OggCodec {
         }
     }
     //  .magicsize = 7,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="theora_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = theora_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="theora_packet", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); // = theora_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="theora_gptopts", cheader="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
-    ); // = theora_gptopts,
+    );
     //  .nb_header = 3,
 }

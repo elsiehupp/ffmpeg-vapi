@@ -201,28 +201,33 @@ public class MXFOPATOMOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mxf_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mxf_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mxf_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mxf_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mxf_write_footer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mxf_write_footer,
-    //  .flags = AVFMT_NOTIMESTAMPS,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
+    [CCode (cname="mxf_interleave", cheader="")]
     public override int interleave_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet output,
         LibAVCodec.Packet input,
         int flush
-    ); // = mxf_interleave,
+    );
     //  .priv_class = mxf_muxer_class,
 }
 
@@ -264,28 +269,33 @@ public class MXFD10OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mxf_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mxf_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mxf_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mxf_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mxf_write_footer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mxf_write_footer,
-    //  .flags = AVFMT_NOTIMESTAMPS,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
+    [CCode (cname="mxf_interleave", cheader="")]
     public override int interleave_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet output,
         LibAVCodec.Packet input,
         int flush
-    ); // = mxf_interleave,
+    );
     //  .priv_class = mxf_d10_muxer_class,
 }
 
@@ -333,27 +343,32 @@ public class MXFOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.DNXHD;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mxf_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mxf_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mxf_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mxf_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mxf_write_footer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mxf_write_footer,
-    //  .flags = AVFMT_NOTIMESTAMPS,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
+    [CCode (cname="mxf_interleave", cheader="")]
     public override int interleave_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet output,
         LibAVCodec.Packet input,
         int flush
-    ); // = mxf_interleave,
+    );
     //  .priv_class = mxf_opatom_muxer_class,
 }

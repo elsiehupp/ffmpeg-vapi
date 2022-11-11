@@ -98,6 +98,11 @@ public class ChromaPrintOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
     //  .priv_class = chromaprint_class,
 }

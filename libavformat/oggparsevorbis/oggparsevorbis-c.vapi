@@ -30,20 +30,20 @@ public class VorbisCodec : OggCodec {
         }
     }
     //  .magicsize = 7,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vorbis_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = vorbis_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vorbis_packet", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); // = vorbis_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vorbis_cleanup", cheader="")]
     public override void cleanup (
         AVFormatContext format_context,
         int idx
-    ); // = vorbis_cleanup,
+    );
     //  .nb_header = 3,
 }

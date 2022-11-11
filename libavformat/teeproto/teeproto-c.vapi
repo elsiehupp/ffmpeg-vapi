@@ -57,22 +57,22 @@ public class TeeURLProtocol : URLProtocol {
             return "tee";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="tee_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = tee_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tee_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = tee_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tee_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = tee_close,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

@@ -109,7 +109,12 @@ public class AsfOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .flags = AVFMT_GLOBALHEADER,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER;
+        }
+    }
     //  .codec_tag = (AVCodecTag[]) {
     //      codec_asf_bmp_tags, ff_codec_bmp_tags, ff_codec_wav_tags, 0
     //  },
@@ -201,7 +206,12 @@ public class AsfStreamOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .flags = AVFMT_GLOBALHEADER,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER;
+        }
+    }
     //  .codec_tag = (AVCodecTag[]) {
     //      codec_asf_bmp_tags, ff_codec_bmp_tags, ff_codec_wav_tags, 0
     //  },

@@ -71,5 +71,10 @@ public class InputDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
-    //  .flags = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH;
+        }
+    }
 }

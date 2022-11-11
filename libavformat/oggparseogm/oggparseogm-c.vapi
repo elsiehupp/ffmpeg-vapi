@@ -30,16 +30,16 @@ public class OGMVideoCodec : OggCodec {
         }
     }
     //  .magicsize = 6,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogm_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = ogm_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogm_packet", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); // = ogm_packet,
+    );
     //  .granule_is_start = 1,
     //  .nb_header = 2,
 }
@@ -52,16 +52,16 @@ public class OGMAudioCodec : OggCodec {
         }
     }
     //  .magicsize = 6,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogm_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = ogm_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogm_packet", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); // = ogm_packet,
+    );
     //  .granule_is_start = 1,
     //  .nb_header = 2,
 }
@@ -74,16 +74,16 @@ public class OGMTextCodec : OggCodec {
         }
     }
     //  .magicsize = 5,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogm_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = ogm_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogm_packet", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); // = ogm_packet,
+    );
     //  .granule_is_start = 1,
     //  .nb_header = 2,
 }
@@ -96,16 +96,16 @@ public class OGMOldCodec : OggCodec {
         }
     }
     //  .magicsize = 35,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogm_dshow_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = ogm_dshow_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogm_packet", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); // = ogm_packet,
+    );
     //  .granule_is_start = 1,
     //  .nb_header = 1,
 }

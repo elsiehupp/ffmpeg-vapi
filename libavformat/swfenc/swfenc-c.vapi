@@ -66,21 +66,26 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.FLV1;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="swf_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = swf_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="swf_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = swf_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="swf_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = swf_write_trailer,
-    //  .flags = AVFMT_TS_NONSTRICT,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NONSTRICT;
+        }
+    }
 }
 #endif
 
@@ -123,20 +128,25 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.FLV1;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="swf_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = swf_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="swf_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = swf_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="swf_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = swf_write_trailer,
-    //  .flags = AVFMT_TS_NONSTRICT,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NONSTRICT;
+        }
+    }
 }
 #endif

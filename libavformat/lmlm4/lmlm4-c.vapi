@@ -37,17 +37,17 @@ public class InputDemuxer : AVInputFormat {
             return "raw lmlm4";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="lmlm4_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = lmlm4_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="lmlm4_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = lmlm4_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="lmlm4_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = lmlm4_read_packet,
+    );
 }

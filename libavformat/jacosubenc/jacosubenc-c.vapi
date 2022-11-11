@@ -42,16 +42,26 @@ public class JacoSubOutputMuxer : AVOutputFormat {
             return "jss,js";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="jacosub_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = jacosub_write_header,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_TS_NONSTRICT,
-    //  .subtitle_codec = LibAVCodec.CodecID.JACOSUB,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NONSTRICT;
+        }
+    }
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.JACOSUB;
+        }
+    }
 }

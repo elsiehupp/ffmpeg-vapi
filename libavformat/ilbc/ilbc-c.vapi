@@ -47,7 +47,12 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }
 
 [CCode (cname="ff_ilbc_muxer", cheader="")]
@@ -92,5 +97,10 @@ public class ILBCOutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }

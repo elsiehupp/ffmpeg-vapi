@@ -118,21 +118,26 @@ public class WAVOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="wav_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = wav_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wav_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = wav_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wav_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = wav_write_trailer,
-    //  .flags = AVFMT_TS_NONSTRICT,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NONSTRICT;
+        }
+    }
     //  .codec_tag = (AVCodecTag[]){ ff_codec_wav_tags, 0 },
     //  .priv_class = wav_muxer_class,
 }
@@ -177,21 +182,26 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="w64_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = w64_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="wav_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = wav_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="w64_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = w64_write_trailer,
-    //  .flags = AVFMT_TS_NONSTRICT,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_TS_NONSTRICT;
+        }
+    }
     //  .codec_tag = (AVCodecTag[]){ ff_codec_wav_tags, 0 },
 }
 #endif /* CONFIG_W64_MUXER */

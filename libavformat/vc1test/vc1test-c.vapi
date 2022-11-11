@@ -40,24 +40,29 @@ public class InputDemuxer : AVInputFormat {
             return "VC-1 test bitstream";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vc1t_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = vc1t_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vc1t_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = vc1t_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vc1t_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = vc1t_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
             return "rcv";
         }
     }
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }

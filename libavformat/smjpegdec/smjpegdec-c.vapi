@@ -44,24 +44,29 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (SMJPEGContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="smjpeg_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = smjpeg_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="smjpeg_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = smjpeg_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="smjpeg_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = smjpeg_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
             return "mjpg";
         }
     }
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }

@@ -45,28 +45,28 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (JVDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="read_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = read_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = read_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = read_close,
+    );
 }

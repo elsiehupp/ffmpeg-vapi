@@ -52,18 +52,18 @@ public class RTPMpegTimeStampOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG4;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rtp_mpegts_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = rtp_mpegts_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtp_mpegts_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = rtp_mpegts_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtp_mpegts_write_close", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = rtp_mpegts_write_close,
+    );
 }

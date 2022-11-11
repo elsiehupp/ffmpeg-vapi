@@ -89,20 +89,25 @@ public class SmoothStreamingOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.H264;
         }
     }
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_NOFILE,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_NOFILE;
+        }
+    }
+    [CCode (cname="ism_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ism_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ism_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ism_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ism_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = ism_write_trailer,
+    );
     //  .priv_class = ism_class,
 }

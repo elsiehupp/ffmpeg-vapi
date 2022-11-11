@@ -34,35 +34,35 @@ public class MMSHURLProtocol : URLProtocol {
             return "mmsh";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mmsh_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = mmsh_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mmsh_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = mmsh_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mmsh_seek", cheader="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
-    ); // = mmsh_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mmsh_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = mmsh_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mmsh_read_seek", cheader="")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = mmsh_read_seek,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

@@ -62,56 +62,56 @@ public class LibSSHURLProtocol : URLProtocol {
             return "sftp";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="libssh_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = libssh_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libssh_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = libssh_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libssh_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = libssh_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libssh_seek", cheader="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
-    ); // = libssh_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libssh_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = libssh_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libssh_delete", cheader="")]
     public override int url_delete (
         URLContext url_context
-    ); // = libssh_delete,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libssh_move", cheader="")]
     public override int url_move (
         URLContext h_src,
         URLContext h_dst
-    ); // = libssh_move,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libssh_open_dir", cheader="")]
     public override int url_open_dir (
         URLContext url_context
-    ); // = libssh_open_dir,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libssh_read_dir", cheader="")]
     public override int url_read_dir (
         URLContext url_context,
         out AVIODirEntry next
-    ); // = libssh_read_dir,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libssh_close_dir", cheader="")]
     public override int url_close_dir (
         URLContext url_context
-    ); // = libssh_close_dir,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

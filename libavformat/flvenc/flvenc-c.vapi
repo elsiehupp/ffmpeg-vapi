@@ -126,6 +126,11 @@ public class FLVOutputMuxer : AVOutputFormat {
     //  .codec_tag = (AVCodecTag[]) {
                     //        flv_video_codec_ids, flv_audio_codec_ids, 0
                     //    },
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT;
+        }
+    }
     //  .priv_class = flv_muxer_class,
 }

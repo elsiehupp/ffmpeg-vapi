@@ -39,18 +39,18 @@ public class AVClass : AVClass {
             return LIBAVUTIL_VERSION_INT;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="format_child_next", cheader="")]
     public override void *child_next (
         void *obj,
         void *prev
-    ); // = format_child_next,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="format_child_class_next", cheader="")]
     public override Class child_class_next (
         Class prev
-    ); // = format_child_class_next,
+    );
     //  .category = AV_CLASS_CATEGORY_MUXER,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="get_category", cheader="")]
     public override ClassCategory get_category (
         void *class_context
-    ); // = get_category,
+    );
 }

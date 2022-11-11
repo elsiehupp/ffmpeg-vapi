@@ -34,19 +34,19 @@ public class InputDemuxer : AVInputFormat {
             return "GameCube RSD";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rsd_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = rsd_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rsd_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = rsd_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rsd_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = rsd_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
@@ -54,5 +54,10 @@ public class InputDemuxer : AVInputFormat {
         }
     }
     //  .codec_tag = (AVCodecTag[]){rsd_tags, 0},
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }

@@ -20,7 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="ff_musx_demuxer")]
+[CCode (cname="ff_musx_demuxer", cheader="")]
 public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
@@ -34,19 +34,19 @@ public class InputDemuxer : AVInputFormat {
             return "Eurocom MUSX";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="musx_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = musx_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="musx_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = musx_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="musx_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = musx_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

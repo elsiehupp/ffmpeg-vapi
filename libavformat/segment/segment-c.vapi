@@ -118,34 +118,39 @@ public class OutputMuxer : AVOutputFormat {
             return sizeof (SegmentContext);
         }
     }
-    //  .flags = AVFMT_NOFILE|AVFMT_GLOBALHEADER,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE | AVFMT_GLOBALHEADER;
+        }
+    }
+    [CCode (cname="seg_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = seg_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = seg_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = seg_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = seg_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_free", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    ); // = seg_free,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = seg_check_bitstream,
+    );
     //  .priv_class = seg_class,
 }
 #endif
@@ -197,34 +202,39 @@ public class StreamSegmentOutputMuxer : AVOutputFormat {
             return sizeof (SegmentContext);
         }
     }
-    //  .flags = AVFMT_NOFILE,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE;
+        }
+    }
+    [CCode (cname="seg_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = seg_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = seg_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = seg_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = seg_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_free", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    ); // = seg_free,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="seg_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = seg_check_bitstream,
+    );
     //  .priv_class = sseg_class,
 }
 #endif

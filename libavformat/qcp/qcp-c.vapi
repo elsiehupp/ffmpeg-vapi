@@ -47,17 +47,17 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (QCPContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="qcp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = qcp_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="qcp_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = qcp_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="qcp_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = qcp_read_packet,
+    );
 }

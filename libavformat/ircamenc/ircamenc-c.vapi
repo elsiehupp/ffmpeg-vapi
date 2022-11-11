@@ -52,10 +52,10 @@ public class IRCAMOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ircam_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ircam_write_header,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,

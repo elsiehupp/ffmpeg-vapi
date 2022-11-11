@@ -44,21 +44,21 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (SmackerContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="smacker_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = smacker_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="smacker_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = smacker_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="smacker_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = smacker_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="smacker_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = smacker_read_close,
+    );
 }

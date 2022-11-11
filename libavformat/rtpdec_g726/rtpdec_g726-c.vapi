@@ -50,10 +50,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //              return LibAVCodec.CodecID.ADPCM_G726;
 //          }
 //      }
-//      [CCode (cname="", cheader="")]
+//      [CCode (cname="g726_ ## bitrate ## _init", cheader="")]
 //      public override int init (
 //          AVFormatContext format_context
-//      ); // = g726_ ## bitrate ## _init,
+//      );
 //  }
 //  [CCode (cname="ff_g726le_ ## bitrate ## _dynamic_handler", cheader="")]
 //  public class G726LEDynamicHandler : RTPDynamicProtocolHandler {
@@ -73,10 +73,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //              return LibAVCodec.CodecID.ADPCM_G726LE;
 //          }
 //      }
-//      [CCode (cname="", cheader="")]
+//      [CCode (cname="g726_ ## bitrate ## _init", cheader="")]
 //      public override int init (
 //          AVFormatContext format_context
-//      ); // = g726_ ## bitrate ## _init,
+//      );
 //  }
 
 //  RTP_G726_HANDLER(16);

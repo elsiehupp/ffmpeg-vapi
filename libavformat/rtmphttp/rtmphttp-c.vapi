@@ -65,28 +65,28 @@ public class RTMPHTTPURLProtocol : URLProtocol {
             return "ffrtmphttp";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rtmp_http_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = rtmp_http_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtmp_http_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = rtmp_http_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtmp_http_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = rtmp_http_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtmp_http_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = rtmp_http_close,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

@@ -58,14 +58,14 @@ public class YUV4MpegPipeOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.WRAPPED_AVFRAME;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="yuv4_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = yuv4_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="yuv4_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = yuv4_write_packet,
+    );
 }

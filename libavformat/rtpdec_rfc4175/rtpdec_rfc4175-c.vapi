@@ -50,15 +50,14 @@ public class RFC7175DynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rfc4175_parse_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = rfc4175_parse_sdp_line,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rfc4175_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -69,5 +68,5 @@ public class RFC7175DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = rfc4175_handle_packet,
+    );
 }

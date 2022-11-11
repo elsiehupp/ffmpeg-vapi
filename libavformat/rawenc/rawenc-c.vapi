@@ -60,17 +60,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -108,21 +113,26 @@ public class ADXOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="", cheader="")]
+    [CCode (cname="adx_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = adx_write_trailer,
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -159,17 +169,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -206,17 +221,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -253,17 +273,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.AVS2;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -300,17 +325,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.CAVS;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -341,17 +371,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -371,17 +406,22 @@ public class OutputMuxer : AVOutputFormat {
             return "raw data";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -418,17 +458,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.DIRAC;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -465,17 +510,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.DNXHD;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -518,17 +568,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -571,17 +626,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -624,17 +684,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -677,17 +742,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -718,17 +788,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -759,17 +834,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -812,17 +892,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -865,17 +950,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.H261;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -918,17 +1008,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.H263;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -966,22 +1061,27 @@ public class H264OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.H264;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="", cheader="")]
+    [CCode (cname="h264_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = h264_check_bitstream,
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1027,22 +1127,27 @@ public class HEVCOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.HEVC;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="", cheader="")]
+    [CCode (cname="hevc_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = hevc_check_bitstream,
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1079,17 +1184,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG4;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1132,17 +1242,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MJPEG;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1185,11 +1300,16 @@ public class OutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
 }
 #endif
 
@@ -1226,17 +1346,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1285,7 +1410,12 @@ public class OutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1328,17 +1458,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG1VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1375,17 +1510,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1428,7 +1568,12 @@ public class OutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1465,17 +1610,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.SBC;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1512,17 +1662,22 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif
 
@@ -1559,16 +1714,21 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.VC1
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="force_one_stream", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = force_one_stream,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }
 #endif

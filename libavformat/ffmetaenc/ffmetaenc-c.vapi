@@ -54,5 +54,10 @@ public class MetadataOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .flags = AVFMT_NOTIMESTAMPS | AVFMT_NOSTREAMS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS | AVFMT_NOSTREAMS;
+        }
+    }
 }

@@ -46,16 +46,26 @@ public class SCCOutputMuxer : AVOutputFormat {
             return sizeof (SCCContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="scc_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = scc_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="scc_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = scc_write_packet,
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
-    //  .subtitle_codec = LibAVCodec.CodecID.EIA_608,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT;
+        }
+    }
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.EIA_608;
+        }
+    }
 }

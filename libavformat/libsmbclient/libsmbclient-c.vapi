@@ -62,56 +62,56 @@ public class LibSMBClientURLProtocol : URLProtocol {
             return "smb";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="libsmbc_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = libsmbc_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsmbc_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = libsmbc_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsmbc_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = libsmbc_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsmbc_seek", cheader="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
-    ); // = libsmbc_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsmbc_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = libsmbc_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsmbc_delete", cheader="")]
     public override int url_delete (
         URLContext url_context
-    ); // = libsmbc_delete,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsmbc_move", cheader="")]
     public override int url_move (
         URLContext h_src,
         URLContext h_dst
-    ); // = libsmbc_move,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsmbc_open_dir", cheader="")]
     public override int url_open_dir (
         URLContext url_context
-    ); // = libsmbc_open_dir,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsmbc_read_dir", cheader="")]
     public override int url_read_dir (
         URLContext url_context,
         out AVIODirEntry next
-    ); // = libsmbc_read_dir,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="libsmbc_close_dir", cheader="")]
     public override int url_close_dir (
         URLContext url_context
-    ); // = libsmbc_close_dir,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

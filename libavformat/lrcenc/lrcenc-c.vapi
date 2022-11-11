@@ -56,6 +56,16 @@ public class LRCOutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_GLOBALHEADER | AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT,
-    //  .subtitle_codec = LibAVCodec.CodecID.SUBRIP
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_VARIABLE_FPS | AVFMT_GLOBALHEADER | AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT;
+        }
+    }
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.SUBRIP;
+        }
+    }
 }

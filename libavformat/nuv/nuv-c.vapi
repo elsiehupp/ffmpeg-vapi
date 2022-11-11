@@ -40,25 +40,30 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (NUVContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="nuv_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = nuv_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="nuv_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = nuv_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="nuv_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = nuv_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="nuv_read_dts", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); // = nuv_read_dts,
-    //  .flags = AVFMT_GENERIC_INDEX,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }

@@ -68,5 +68,10 @@ public class InputDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
-    //  .flags = AVFMT_SHOW_IDS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_SHOW_IDS;
+        }
+    }
 }

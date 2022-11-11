@@ -47,8 +47,7 @@ public class QCELPDynamicHandler : RTPDynamicProtocolHandler {
         }
     }
     //  .static_payload_id = 12,
-
-    [CCode (cname="", cheader="")]
+    [CCode (cname="qcelp_parse_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -59,5 +58,5 @@ public class QCELPDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = qcelp_parse_packet,
+    );
 }

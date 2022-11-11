@@ -135,41 +135,50 @@ public class MatroskaOutputMuxer : AVOutputFormat {
             return CONFIG_LIBX264_ENCODER ? LibAVCodec.CodecID.H264 : LibAVCodec.CodecID.MPEG4;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mkv_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = mkv_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mkv_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_write_flush_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mkv_write_flush_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mkv_write_trailer,
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
-    //                       AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;
+        }
+    }
     //  .codec_tag = (AVCodecTag[]){
     //       ff_codec_bmp_tags, ff_codec_wav_tags,
     //       additional_audio_tags, additional_video_tags, additional_subtitle_tags, 0
     //  },
-    //  .subtitle_codec = LibAVCodec.CodecID.ASS,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.ASS;
+        }
+    }
+    [CCode (cname="mkv_query_codec", cheader="")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
-    ); // = mkv_query_codec,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mkv_check_bitstream,
+    );
     //  .priv_class = matroska_class,
 }
 #endif
@@ -245,36 +254,46 @@ public class WebMOutputMuxer : AVOutputFormat {
             return CONFIG_LIBVPX_VP9_ENCODER ? LibAVCodec.CodecID.VP9 : LibAVCodec.CodecID.VP8;
         }
     }
-    //  .subtitle_codec = LibAVCodec.CodecID.WEBVTT,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.WEBVTT;
+        }
+    }
+    [CCode (cname="mkv_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = mkv_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mkv_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_write_flush_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mkv_write_flush_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mkv_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="webm_query_codec", cheader="")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
-    ); // = webm_query_codec,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mkv_check_bitstream,
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;
+        }
+    }
     //  .priv_class = webm_class,
 }
 #endif
@@ -351,30 +370,35 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mkv_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = mkv_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mkv_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_write_flush_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mkv_write_flush_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mkv_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mkv_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mkv_check_bitstream,
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;
+        }
+    }
     //  .codec_tag = (AVCodecTag[]){
     //      ff_codec_wav_tags, additional_audio_tags, 0
     //  },

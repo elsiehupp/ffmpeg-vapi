@@ -52,19 +52,24 @@ public class SAPOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG4;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sap_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = sap_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sap_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = sap_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sap_write_close", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = sap_write_close,
-    //  .flags = AVFMT_NOFILE | AVFMT_GLOBALHEADER,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE | AVFMT_GLOBALHEADER;
+        }
+    }
 }

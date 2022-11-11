@@ -30,27 +30,27 @@ namespace LibAVUtil.Crypto {
 @name Error flags returned by av_lzo1x_decode
 **********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/lzo.h")]
+[CCode (cheader_filename="ffmpeg/libavutil/lzo.h")]
 public enum LZOErrorFlags {
     /***********************************************************
     @brief End of the input buffer reached before decoding finished
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="AV_LZO_INPUT_DEPLETED")]
     AV_LZO_INPUT_DEPLETED,
     /***********************************************************
     @brief Decoded data did not fit into output buffer
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="AV_LZO_OUTPUT_FULL")]
     AV_LZO_OUTPUT_FULL,
     /***********************************************************
     @brief A reference to previously decoded data was wrong
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="AV_LZO_INVALID_BACKPTR")]
     AV_LZO_INVALID_BACKPTR,
     /***********************************************************
     @brief A non-specific error in the compressed bitstream
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="AV_LZO_ERROR")]
     AV_LZO_ERROR,
 }
 

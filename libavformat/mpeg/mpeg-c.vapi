@@ -40,27 +40,32 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MpegDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpegps_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = mpegps_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegps_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = mpegps_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegps_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mpegps_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegps_read_dts", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); // = mpegps_read_dts,
-    //  .flags = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_SHOW_IDS | AVFMT_TS_DISCONT;
+        }
+    }
 }
 
 #if CONFIG_VOBSUB_DEMUXER
@@ -115,20 +120,20 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MpegDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vobsub_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = vobsub_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vobsub_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = vobsub_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vobsub_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = vobsub_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vobsub_read_seek", cheader="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -136,12 +141,17 @@ public class InputDemuxer : AVInputFormat {
         int64 ts,
         int64 max_ts,
         int flags
-    ); // = vobsub_read_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vobsub_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = vobsub_read_close,
-    //  .flags = AVFMT_SHOW_IDS,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_SHOW_IDS;
+        }
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

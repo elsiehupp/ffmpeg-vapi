@@ -48,42 +48,47 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (Ogg);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ogg_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = ogg_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = ogg_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ogg_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = ogg_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = ogg_read_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ogg_read_timestamp", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); // = ogg_read_timestamp,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
             return "ogg";
         }
     }
-    //  .flags = AVFMT_GENERIC_INDEX | AVFMT_TS_DISCONT | AVFMT_NOBINSEARCH,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX | AVFMT_TS_DISCONT | AVFMT_NOBINSEARCH;
+        }
+    }
 }

@@ -107,7 +107,12 @@ public class Image2OutputMuxer : AVOutputFormat {
         LibAVCodec.CodecID id,
         int std_compliance
     );
-    //  .flags = AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS | AVFMT_NOFILE,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS | AVFMT_NOFILE;
+        }
+    }
     //  .priv_class = img2mux_class,
 }
 #endif
@@ -154,6 +159,11 @@ public class OutputMuxer : AVOutputFormat {
         LibAVCodec.CodecID id,
         int std_compliance
     );
-    //  .flags = AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS;
+        }
+    }
 }
 #endif

@@ -91,19 +91,19 @@ public class SegaFilmOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.CINEPAK;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="film_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = film_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="film_write_header", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = film_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="film_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = film_write_packet,
+    );
     //  .priv_class = film_muxer_class,
 }

@@ -70,46 +70,46 @@ public class TCPURLProtocol : URLProtocol {
             return "tcp";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="tcp_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = tcp_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tcp_accept", cheader="")]
     public override int url_accept (
         URLContext server_url_context,
         out URLContext client_url_context
-    ); // = tcp_accept,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tcp_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = tcp_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tcp_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = tcp_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tcp_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = tcp_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tcp_get_file_handle", cheader="")]
     public override int url_get_file_handle (
         URLContext url_context
-    ); // = tcp_get_file_handle,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tcp_get_window_size", cheader="")]
     public override int url_get_short_seek (
         URLContext url_context
-    ); // = tcp_get_window_size,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tcp_shutdown", cheader="")]
     public override int url_shutdown (
         URLContext url_context,
         int flags
-    ); // = tcp_shutdown,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

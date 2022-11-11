@@ -65,38 +65,43 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (RTSPState);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rtsp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = rtsp_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtsp_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = rtsp_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtsp_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = rtsp_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtsp_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = rtsp_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtsp_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = rtsp_read_seek,
-    //  .flags = AVFMT_NOFILE,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE;
+        }
+    }
+    [CCode (cname="rtsp_read_play", cheader="")]
     public override int read_play (
         AVFormatContext format_context
-    ); // = rtsp_read_play,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtsp_read_pause", cheader="")]
     public override int read_pause (
         AVFormatContext format_context
-    ); // = rtsp_read_pause,
+    );
     //  .priv_class = rtsp_demuxer_class,
 }

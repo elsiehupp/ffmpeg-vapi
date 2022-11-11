@@ -46,25 +46,24 @@ public class DVDynamicHandler : RTPDynamicProtocolHandler {
             return AVSTREAM_PARSE_FULL;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="dv_parse_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = dv_parse_sdp_line,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="dv_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = dv_close_context,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="dv_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -75,5 +74,5 @@ public class DVDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = dv_handle_packet,
+    );
 }

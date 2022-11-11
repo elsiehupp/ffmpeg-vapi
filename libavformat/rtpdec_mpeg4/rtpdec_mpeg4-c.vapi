@@ -59,13 +59,13 @@ public class MP4VESDynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="parse_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = parse_sdp_line,
+    );
 }
 
 [CCode (cname="ff_mpeg4_generic_dynamic_handler", cheader="")]
@@ -94,19 +94,18 @@ public class Mpeg4GenericDynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="parse_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = parse_sdp_line,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = close_context,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="aac_parse_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -117,5 +116,5 @@ public class Mpeg4GenericDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = aac_parse_packet,
+    );
 }

@@ -40,24 +40,26 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
             return AVMEDIA_TYPE_VIDEO;
         }
     }
+    /***********************************************************
+    @see if (config_packet) above
+    ***********************************************************/
     [CCode (cname="codec_id", cheader="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.NONE;
         }
-    }      // see if (config_packet) above
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="svq3_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = svq3_close_context,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="svq3_parse_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -68,5 +70,5 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = svq3_parse_packet,
+    );
 }

@@ -40,18 +40,18 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (LXFDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="lxf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = lxf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="lxf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = lxf_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="lxf_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = lxf_read_packet,
+    );
     //  .codec_tag = (AVCodecTag[]){lxf_tags, 0},
 }

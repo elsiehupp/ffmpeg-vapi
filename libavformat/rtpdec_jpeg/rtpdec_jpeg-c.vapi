@@ -46,12 +46,11 @@ public class JPEGDynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="jpeg_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = jpeg_close_context,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="jpeg_parse_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -62,6 +61,6 @@ public class JPEGDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = jpeg_parse_packet,
+    );
     //  .static_payload_id = 26,
 }

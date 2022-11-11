@@ -35,20 +35,25 @@ public class InputDemuxer : AVInputFormat {
             return "LOAS AudioSyncStream";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="loas_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = loas_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="loas_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = loas_read_header,
+    );
     [CCode (cname="ff_raw_read_partial_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags= AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

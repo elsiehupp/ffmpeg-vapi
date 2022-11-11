@@ -40,15 +40,15 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MviDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

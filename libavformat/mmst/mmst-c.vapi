@@ -38,22 +38,22 @@ public class MMSTURLProtocol : URLProtocol {
             return "mmst";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mms_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = mms_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mms_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = mms_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mms_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = mms_close,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

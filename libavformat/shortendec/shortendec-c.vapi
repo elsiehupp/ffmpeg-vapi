@@ -37,10 +37,10 @@ public class InputDemuxer : AVInputFormat {
             return "raw Shorten";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="shn_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = shn_probe,
+    );
     [CCode (cname="ff_raw_audio_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
@@ -50,7 +50,12 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS;
+        }
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

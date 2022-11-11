@@ -34,24 +34,29 @@ public class InputDemuxer : AVInputFormat {
             return "SDR2";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sdr2_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = sdr2_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sdr2_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = sdr2_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sdr2_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = sdr2_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
             return "sdr2";
         }
     }
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }

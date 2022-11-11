@@ -58,18 +58,18 @@ public class VC1TestOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.WMV3;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vc1test_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = vc1test_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vc1test_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = vc1test_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vc1test_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = vc1test_write_trailer,
+    );
 }

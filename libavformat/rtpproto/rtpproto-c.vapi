@@ -77,38 +77,38 @@ public class RTPURLProtocol : URLProtocol {
             return "rtp";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rtp_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = rtp_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtp_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = rtp_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtp_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = rtp_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtp_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = rtp_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtp_get_file_handle", cheader="")]
     public override int url_get_file_handle (
         URLContext url_context
-    ); // = rtp_get_file_handle,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rtp_get_multi_file_handle", cheader="")]
     public override int url_get_multi_file_handle (
         URLContext url_context,
         out int[] handles,
         out int numhandles
-    ); // = rtp_get_multi_file_handle,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

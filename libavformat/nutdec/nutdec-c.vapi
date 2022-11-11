@@ -35,37 +35,42 @@ public class InputDemuxer : AVInputFormat {
             return "NUT";
         }
     }
-    //  .flags = AVFMT_SEEK_TO_PTS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_SEEK_TO_PTS;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (NUTContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="nut_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = nut_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="nut_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = nut_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="nut_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = nut_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="nut_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = nut_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = read_seek,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

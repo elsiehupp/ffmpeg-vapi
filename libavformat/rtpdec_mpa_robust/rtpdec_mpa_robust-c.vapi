@@ -52,12 +52,11 @@ public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpa_robust_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = mpa_robust_close_context,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpa_robust_parse_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -68,5 +67,5 @@ public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = mpa_robust_parse_packet,
+    );
 }

@@ -125,31 +125,36 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MpegTSContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpegts_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = mpegts_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = mpegts_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mpegts_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = mpegts_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_get_dts", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); // = mpegts_get_dts,
-    //  .flags = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_SHOW_IDS | AVFMT_TS_DISCONT;
+        }
+    }
     //  .priv_class = mpegts_class,
 }
 
@@ -173,26 +178,31 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MpegTSContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpegts_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = mpegts_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_raw_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mpegts_raw_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = mpegts_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_get_dts", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); // = mpegts_get_dts,
-    //  .flags = AVFMT_SHOW_IDS | AVFMT_TS_DISCONT,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_SHOW_IDS | AVFMT_TS_DISCONT;
+        }
+    }
     //  .priv_class = mpegtsraw_class,
 }

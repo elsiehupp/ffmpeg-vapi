@@ -100,20 +100,20 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG1VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpeg_mux_init", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mpeg_mux_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mpeg_mux_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_end", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mpeg_mux_end,
+    );
     //  .priv_class = mpeg_class,
 }
 #endif
@@ -183,20 +183,20 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG1VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpeg_mux_init", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mpeg_mux_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mpeg_mux_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_end", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mpeg_mux_end,
+    );
     //  .priv_class = vcd_class,
 }
 #endif
@@ -272,20 +272,20 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpeg_mux_init", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mpeg_mux_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mpeg_mux_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_end", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mpeg_mux_end,
+    );
     //  .priv_class = vob_class,
 }
 #endif
@@ -364,20 +364,20 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpeg_mux_init", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mpeg_mux_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mpeg_mux_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_end", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mpeg_mux_end,
+    );
     //  .priv_class = svcd_class,
 }
 #endif
@@ -456,20 +456,20 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpeg_mux_init", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mpeg_mux_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mpeg_mux_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpeg_mux_end", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mpeg_mux_end,
+    );
     //  .priv_class = dvd_class,
 }
 #endif

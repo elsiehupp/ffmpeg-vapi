@@ -162,7 +162,12 @@ public class InputDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -222,7 +227,12 @@ public class OutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
     //  .priv_class = codec2_mux_class,
 }
 #endif
@@ -264,7 +274,12 @@ public class InputDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

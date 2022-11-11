@@ -83,10 +83,10 @@ public class TLSURLProtocol : URLProtocol {
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="", cheader="")]
+    [CCode (cname="tls_get_file_handle", cheader="")]
     public override int url_get_file_handle (
         URLContext url_context
-    ); // = tls_get_file_handle,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

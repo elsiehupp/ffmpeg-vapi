@@ -108,32 +108,32 @@ public class UDPURLProtocol : URLProtocol {
             return "udp";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="udp_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = udp_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="udp_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = udp_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="udp_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = udp_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="udp_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = udp_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="udp_get_file_handle", cheader="")]
     public override int url_get_file_handle (
         URLContext url_context
-    ); // = udp_get_file_handle,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -157,32 +157,32 @@ public class UDPLiteURLProtocol : URLProtocol {
             return "udplite";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="udplite_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = udplite_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="udp_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = udp_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="udp_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = udp_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="udp_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = udp_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="udp_get_file_handle", cheader="")]
     public override int url_get_file_handle (
         URLContext url_context
-    ); // = udp_get_file_handle,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

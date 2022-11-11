@@ -53,16 +53,15 @@ public class VP8DynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vp8_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = vp8_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vp8_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = vp8_close_context,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vp8_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -73,9 +72,9 @@ public class VP8DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = vp8_handle_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vp8_need_keyframe", cheader="")]
     public override int need_keyframe (
         PayloadContext context
-    ); // = vp8_need_keyframe,
+    );
 }

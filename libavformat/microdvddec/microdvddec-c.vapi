@@ -73,20 +73,20 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MicroDVDContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="microdvd_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = microdvd_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="microdvd_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = microdvd_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="microdvd_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = microdvd_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="microdvd_read_seek", cheader="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -94,10 +94,10 @@ public class InputDemuxer : AVInputFormat {
         int64 ts,
         int64 max_ts,
         int flags
-    ); // = microdvd_read_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="microdvd_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = microdvd_read_close,
+    );
     //  .priv_class = microdvd_class,
 }

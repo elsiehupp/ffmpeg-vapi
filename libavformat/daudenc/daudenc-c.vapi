@@ -62,5 +62,10 @@ public class DAUDOutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }

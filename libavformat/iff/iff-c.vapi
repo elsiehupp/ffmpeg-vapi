@@ -61,5 +61,10 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK;
+        }
+    }
 }

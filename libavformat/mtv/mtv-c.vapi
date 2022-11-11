@@ -44,17 +44,17 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MTVDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mtv_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = mtv_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mtv_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = mtv_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mtv_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mtv_read_packet,
+    );
 }

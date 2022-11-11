@@ -97,6 +97,11 @@ public class InputDemuxer : AVInputFormat {
         int64[] pos,
         int64 pos_limit
     );
-    //  .flags = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH;
+        }
+    }
     //  .priv_class = asf_class,
 }

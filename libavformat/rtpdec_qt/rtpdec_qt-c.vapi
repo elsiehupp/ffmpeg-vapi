@@ -51,12 +51,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //              return sizeof (PayloadContext);
 //          }
 //      }
-//      [CCode (cname="", cheader="")]
+//      [CCode (cname="qt_rtp_close", cheader="")]
 //      public override void close (
 //          PayloadContext protocol_data
-//      ); // = qt_rtp_close,
+//      );
 
-//      [CCode (cname="", cheader="")]
+//      [CCode (cname="qt_rtp_parse_packet", cheader="")]
 //      public override int parse_packet (
 //          AVFormatContext format_context,
 //          PayloadContext payload_context,
@@ -67,7 +67,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //          int len,
 //          uint16 seq,
 //          int flags
-//      ); // = qt_rtp_parse_packet,
+//      );
 //  }
 
 //  RTP_QT_HANDLER(qt,        vid, "X-QT",        AVMEDIA_TYPE_VIDEO);

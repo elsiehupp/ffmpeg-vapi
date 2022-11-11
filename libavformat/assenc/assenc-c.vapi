@@ -85,7 +85,12 @@ public class ASSOutputMuxer : AVOutputFormat {
             return sizeof (ASSContext);
         }
     }
-    //  .subtitle_codec = LibAVCodec.CodecID.ASS,
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.ASS;
+        }
+    }
     [CCode (cname="write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
@@ -100,6 +105,11 @@ public class ASSOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_NOTIMESTAMPS | AVFMT_TS_NONSTRICT,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GLOBALHEADER | AVFMT_NOTIMESTAMPS | AVFMT_TS_NONSTRICT;
+        }
+    }
     //  .priv_class = ass_class,
 }

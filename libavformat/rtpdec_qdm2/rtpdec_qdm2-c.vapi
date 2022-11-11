@@ -51,8 +51,7 @@ public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-
-    [CCode (cname="", cheader="")]
+    [CCode (cname="qdm2_parse_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -63,5 +62,5 @@ public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = qdm2_parse_packet,
+    );
 }

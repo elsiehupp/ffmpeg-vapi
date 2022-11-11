@@ -34,19 +34,19 @@ public class InputDemuxer : AVInputFormat {
             return "Sony PS2 VAG";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vag_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = vag_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vag_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = vag_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vag_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = vag_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

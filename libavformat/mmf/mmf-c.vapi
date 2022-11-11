@@ -41,20 +41,25 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MMFContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mmf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = mmf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mmf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = mmf_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mmf_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mmf_read_packet,
-    //  .flags = AVFMT_GENERIC_INDEX,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }
 #endif
 
@@ -103,19 +108,19 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mmf_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = mmf_write_header,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mmf_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mmf_write_trailer,
+    );
 }
 #endif

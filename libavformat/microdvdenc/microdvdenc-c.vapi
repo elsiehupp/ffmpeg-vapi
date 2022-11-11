@@ -56,6 +56,16 @@ public class MicroDVDOutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_NOTIMESTAMPS,
-    //  .subtitle_codec = LibAVCodec.CodecID.MICRODVD,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.MICRODVD;
+        }
+    }
 }

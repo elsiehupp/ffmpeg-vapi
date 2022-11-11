@@ -155,10 +155,10 @@ HardwareFrameContext attached.
 
 If input_frame has an HardwareFrameContext attached, then the format of output_frame (if set)
 must use one of the formats returned by av_hwframe_transfer_get_formats (input_frame,
-AV_HWFRAME_TRANSFER_DIRECTION_FROM).
+HardwareFrameTransferDirection.FROM).
 If output_frame has an HardwareFrameContext attached, then the format of input_frame must use one
 of the formats returned by av_hwframe_transfer_get_formats (output_frame,
-AV_HWFRAME_TRANSFER_DIRECTION_TO)
+HardwareFrameTransferDirection.TO)
 
 output_frame may be "clean" (i.e. with data/buffer pointers unset), in which case the
 data buffers will be allocated by this function using av_frame_get_buffer ().

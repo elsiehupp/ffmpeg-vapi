@@ -46,19 +46,18 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="amr_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = amr_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="amr_parse_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = amr_parse_sdp_line,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="amr_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -69,7 +68,7 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = amr_handle_packet,
+    );
 }
 
 [CCode (cname="ff_amr_wb_dynamic_handler", cheader="")]
@@ -98,19 +97,18 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="amr_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = amr_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="amr_parse_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = amr_parse_sdp_line,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="amr_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -121,5 +119,5 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = amr_handle_packet,
+    );
 }

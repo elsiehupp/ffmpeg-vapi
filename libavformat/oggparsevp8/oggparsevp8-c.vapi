@@ -28,22 +28,22 @@ public class VP8Codec : OggCodec {
         }
     }
     //  .magicsize = 5,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vp8_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = vp8_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vp8_packet", cheader="")]
     public override int packet (
         AVFormatContext context,
         int arg
-    ); // = vp8_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vp8_gptopts", cheader="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
-    ); // = vp8_gptopts,
+    );
     //  .nb_header = 1,
 }

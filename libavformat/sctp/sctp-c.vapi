@@ -44,32 +44,32 @@ public class TCTPURLProtocol : URLProtocol {
             return "sctp";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sctp_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = sctp_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sctp_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = sctp_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sctp_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = sctp_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sctp_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = sctp_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sctp_get_file_handle", cheader="")]
     public override int url_get_file_handle (
         URLContext url_context
-    ); // = sctp_get_file_handle,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

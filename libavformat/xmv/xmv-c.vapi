@@ -51,21 +51,21 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (XMVDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="xmv_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = xmv_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="xmv_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = xmv_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="xmv_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = xmv_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="xmv_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = xmv_read_close,
+    );
 }

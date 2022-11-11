@@ -28,10 +28,10 @@ public class CELTCodec : OggCodec {
         }
     }
     //  .magicsize = 8,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="celt_header", cheader="")]
     public override int header (
         AVFormatContext context,
         int arg
-    ); // = celt_header,
+    );
     //  .nb_header = 2,
 }

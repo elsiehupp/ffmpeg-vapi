@@ -64,29 +64,29 @@ public class SubFileURLProtocol : URLProtocol {
             return "subfile";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="subfile_open", cheader="")]
     public override int url_open2 (
         URLContext url_context,
         string url,
         int flags,
         out LibAVUtil.Dictionary options
-    ); // = subfile_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="subfile_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = subfile_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="subfile_seek", cheader="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
-    ); // = subfile_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="subfile_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = subfile_close,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

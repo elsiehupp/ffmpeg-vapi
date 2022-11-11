@@ -46,19 +46,18 @@ public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="latm_parse_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = latm_parse_sdp_line,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="latm_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = latm_close_context,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="latm_parse_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -69,5 +68,5 @@ public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = latm_parse_packet,
+    );
 }

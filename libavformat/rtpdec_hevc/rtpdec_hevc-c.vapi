@@ -52,15 +52,15 @@ public class H265DynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="hevc_parse_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = hevc_parse_sdp_line,
+    );
 
-    [CCode (cname="", cheader="")]
+    [CCode (cname="hevc_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -71,5 +71,5 @@ public class H265DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = hevc_handle_packet,
+    );
 }

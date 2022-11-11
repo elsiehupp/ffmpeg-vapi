@@ -40,11 +40,11 @@ public class ILBCDynamicHandler : RTPDynamicProtocolHandler {
             return LibAVCodec.CodecID.ILBC;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ilbc_parse_sdp_line", cheader="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
-    ); // = ilbc_parse_sdp_line,
+    );
 }

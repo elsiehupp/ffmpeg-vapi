@@ -47,37 +47,37 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (RMDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rm_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = rm_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rm_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = rm_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = rm_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rm_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = rm_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rm_read_dts", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); // = rm_read_dts,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rm_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = rm_read_seek,
+    );
 }
 
 [CCode (cname="ff_rdt_demuxer", cheader="")]
@@ -100,11 +100,16 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (RMDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="rm_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = rm_read_close,
-    //  .flags = AVFMT_NOFILE,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOFILE;
+        }
+    }
 }
 
 [CCode (cname="ff_ivr_demuxer", cheader="")]
@@ -127,23 +132,23 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (RMDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ivr_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = ivr_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ivr_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = ivr_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ivr_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ivr_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="rm_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = rm_read_close,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

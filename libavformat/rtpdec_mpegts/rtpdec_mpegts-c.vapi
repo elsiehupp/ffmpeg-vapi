@@ -34,8 +34,7 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpegts_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -46,14 +45,14 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = mpegts_handle_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = mpegts_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = mpegts_close_context,
+    );
     //  .static_payload_id = 33,
 }

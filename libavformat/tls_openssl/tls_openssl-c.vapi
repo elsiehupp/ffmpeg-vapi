@@ -73,33 +73,33 @@ public class TLSURLProtocol : URLProtocol {
             return "tls";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="tls_open", cheader="")]
     public override int url_open2 (
         URLContext url_context,
         string url,
         int flags,
         out LibAVUtil.Dictionary options
-    ); // = tls_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tls_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = tls_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tls_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = tls_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tls_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = tls_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tls_get_file_handle", cheader="")]
     public override int url_get_file_handle (
         URLContext url_context
-    ); // = tls_get_file_handle,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

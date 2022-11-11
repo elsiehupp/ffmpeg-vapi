@@ -99,20 +99,20 @@ public class WebMDashManifestOutputMuxer : AVOutputFormat {
             return sizeof (WebMDashMuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="webm_dash_manifest_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = webm_dash_manifest_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="webm_dash_manifest_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = webm_dash_manifest_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="webm_dash_manifest_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = webm_dash_manifest_write_trailer,
+    );
     //  .priv_class = webm_dash_class,
 }
 #endif

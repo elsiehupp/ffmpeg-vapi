@@ -41,23 +41,23 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (SWFContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="swf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = swf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="swf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = swf_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="swf_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = swf_read_packet,
+    );
 #if CONFIG_ZLIB
-    [CCode (cname="", cheader="")]
+    [CCode (cname="swf_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = swf_read_close,
+    );
 #endif
 }

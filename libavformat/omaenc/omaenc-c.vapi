@@ -53,10 +53,10 @@ public class OMAOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.ATRAC3;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="oma_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = oma_write_header,
+    );
     [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
@@ -64,5 +64,10 @@ public class OMAOutputMuxer : AVOutputFormat {
         int buf_size
     );
     //  .codec_tag = (AVCodecTag[]){ff_oma_codec_tags, 0},
-    //  .flags = AVFMT_NOTIMESTAMPS,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_NOTIMESTAMPS;
+        }
+    }
 }

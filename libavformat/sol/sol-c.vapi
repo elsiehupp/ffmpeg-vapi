@@ -38,19 +38,19 @@ public class InputDemuxer : AVInputFormat {
             return "Sierra SOL";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sol_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = sol_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sol_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = sol_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="sol_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = sol_read_packet,
+    );
     [CCode (cname="ff_pcm_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,

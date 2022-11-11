@@ -64,22 +64,22 @@ public class TrueAudioOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="tta_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = tta_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tta_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = tta_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tta_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = tta_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="tta_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = tta_write_trailer,
+    );
 }

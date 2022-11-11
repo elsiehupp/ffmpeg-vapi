@@ -46,16 +46,15 @@ public class VP9DynamicHandler : RTPDynamicProtocolHandler {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="vp9_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = vp9_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vp9_close_context", cheader="")]
     public override void close (
         PayloadContext protocol_data
-    ); // = vp9_close_context,
-
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="vp9_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -66,5 +65,5 @@ public class VP9DynamicHandler : RTPDynamicProtocolHandler {
         int len,
         uint16 seq,
         int flags
-    ); // = vp9_handle_packet
+    );
 }

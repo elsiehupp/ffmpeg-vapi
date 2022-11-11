@@ -43,35 +43,40 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (YopDecContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="yop_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = yop_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="yop_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = yop_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="yop_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = yop_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="yop_read_close", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = yop_read_close,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="yop_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = yop_read_seek,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
             return "yop";
         }
     }
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }

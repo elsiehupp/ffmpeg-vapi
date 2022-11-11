@@ -66,30 +66,30 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (OpenMPTContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="read_probe_openmpt", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = read_probe_openmpt,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_header_openmpt", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = read_header_openmpt,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet_openmpt", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = read_packet_openmpt,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_close_openmpt", cheader="")]
     public override int read_close (
         AVFormatContext format_context
-    ); // = read_close_openmpt,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_seek_openmpt", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = read_seek_openmpt,
+    );
     //  .priv_class = class_openmpt,
     [CCode (cname="extensions", cheader="")]
     public override string extensions {

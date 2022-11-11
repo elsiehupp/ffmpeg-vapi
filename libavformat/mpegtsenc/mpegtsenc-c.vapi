@@ -185,29 +185,34 @@ public class MpegTSOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="mpegts_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = mpegts_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = mpegts_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_write_end", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = mpegts_write_end,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_deinit", cheader="")]
     public override void deinit (
         AVFormatContext format_context
-    ); // = mpegts_deinit,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mpegts_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mpegts_check_bitstream,
-    //  .flags = AVFMT_ALLOW_FLUSH | AVFMT_VARIABLE_FPS | AVFMT_NODIMENSIONS,
+    );
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_ALLOW_FLUSH | AVFMT_VARIABLE_FPS | AVFMT_NODIMENSIONS;
+        }
+    }
     //  .priv_class = mpegts_muxer_class,
 }

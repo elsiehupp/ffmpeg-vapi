@@ -40,17 +40,17 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (ThpDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="thp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = thp_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="thp_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = thp_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="thp_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = thp_read_packet
+    );
 }

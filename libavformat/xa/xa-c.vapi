@@ -47,17 +47,17 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (MaxisXADemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="xa_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = xa_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="xa_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = xa_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="xa_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = xa_read_packet,
+    );
 }

@@ -67,5 +67,10 @@ public class InputDemuxer : AVInputFormat {
             return "dav";
         }
     }
-    //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK;
+        }
+    }
 }

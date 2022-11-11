@@ -50,16 +50,26 @@ public class WebVTTOutputMuxer : AVOutputFormat {
             return "text/vtt";
         }
     }
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
-    //  .subtitle_codec = LibAVCodec.CodecID.WEBVTT,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT;
+        }
+    }
+    [CCode (cname="subtitle_codec", cheader="")]
+    public override LibAVCodec.CodecID subtitle_codec {
+        public get {
+            return LibAVCodec.CodecID.WEBVTT;
+        }
+    }
+    [CCode (cname="webvtt_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = webvtt_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="webvtt_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = webvtt_write_packet,
+    );
 }

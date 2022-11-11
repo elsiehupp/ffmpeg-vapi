@@ -39,18 +39,23 @@ public class InputDemuxer : AVInputFormat {
             return "IEC 61937 (compressed data in S/PDIF)";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="spdif_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = spdif_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="spdif_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = spdif_read_header,
+    );
     [CCode (cname="ff_spdif_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }

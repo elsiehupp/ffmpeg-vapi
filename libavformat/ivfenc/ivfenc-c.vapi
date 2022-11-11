@@ -64,24 +64,24 @@ public class IVFOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.VP8;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ivf_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ivf_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ivf_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ivf_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ivf_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = ivf_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ivf_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ivf_check_bitstream,
+    );
     //  .codec_tag = (AVCodecTag[]){ codec_ivf_tags, 0 },
 }

@@ -53,5 +53,10 @@ public class InputDemuxer : AVInputFormat {
             return "str";
         }
     }
-    //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK | AVFMT_NOBINSEARCH,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK | AVFMT_NOBINSEARCH;
+        }
+    }
 }

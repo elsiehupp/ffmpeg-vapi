@@ -34,14 +34,14 @@ public class InputDemuxer : AVInputFormat {
             return "PVF (Portable Voice Format)";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="pvf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = pvf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="pvf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = pvf_read_header,
+    );
     [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
@@ -60,5 +60,10 @@ public class InputDemuxer : AVInputFormat {
             return "pvf";
         }
     }
-    //  .flags = AVFMT_GENERIC_INDEX,
+    [CCode (cname="flags", cheader="")]
+    public override AVFormatFlags1 flags {
+        public get {
+            return AVFMT_GENERIC_INDEX;
+        }
+    }
 }
