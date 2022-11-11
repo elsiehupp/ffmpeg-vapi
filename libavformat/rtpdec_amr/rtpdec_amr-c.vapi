@@ -20,12 +20,26 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_amr_nb_dynamic_handler = {
-    //  .enc_name = "AMR"
+[CCode (cname="ff_amr_nb_dynamic_handler", cheader="")]
+public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "AMR";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id = LibAVCodec.CodecID.AMR_NB,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_AUDIO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.AMR_NB;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -58,12 +72,26 @@ const RTPDynamicProtocolHandler ff_amr_nb_dynamic_handler = {
     ); // = amr_handle_packet,
 }
 
-const RTPDynamicProtocolHandler ff_amr_wb_dynamic_handler = {
-    //  .enc_name = "AMR-WB"
+[CCode (cname="ff_amr_wb_dynamic_handler", cheader="")]
+public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "AMR-WB";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id = LibAVCodec.CodecID.AMR_WB,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_AUDIO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.AMR_WB;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="ff_aiff_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat ff_aiff_demuxer = {
+public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -60,5 +60,5 @@ public class InputDemuxer : AVInputFormat ff_aiff_demuxer = {
         int64 timestamp,
         int flags
     );
-    //  .codec_tag = (const AVCodecTag* const []){ ff_codec_aiff_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_codec_aiff_tags, 0 },
 }

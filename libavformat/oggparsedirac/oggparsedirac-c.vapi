@@ -19,8 +19,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const struct ogg_codec ff_dirac_codec = {
-    //  .magic = "BBCD\0"
+[CCode (cname="ff_dirac_codec", cheader="")]
+public class DiracCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "BBCD\0";
         }
     }
     //  .magicsize = 5,
@@ -40,8 +43,11 @@ const struct ogg_codec ff_dirac_codec = {
     //  .nb_header = 1,
 }
 
-const struct ogg_codec ff_old_dirac_codec = {
-    //  .magic = "KW-DIRAC"
+[CCode (cname="ff_old_dirac_codec", cheader="")]
+public class OldDiracCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "KW-DIRAC";
         }
     }
     //  .magicsize = 8,

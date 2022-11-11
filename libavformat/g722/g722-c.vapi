@@ -20,7 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-FF_RAW_DEMUXER_CLASS(g722)
+//  FF_RAW_DEMUXER_CLASS(g722)
 [CCode (cname="ff_g722_demuxer", cheader="")]
 public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]

@@ -99,5 +99,5 @@ public class FTPURLProtocol : URLProtocol {
             return URL_PROTOCOL_FLAG_NETWORK;
         }
     }
-    //  .default_whitelist = "tcp"
+    //  .default_whitelist = "tcp";
 }

@@ -27,12 +27,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @author Josh Allmann <joshua.allmann@gmail.com>
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_theora_dynamic_handler = {
-    //  .enc_name = "theora"
+[CCode (cname="ff_theora_dynamic_handler", cheader="")]
+public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "theora";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id = LibAVCodec.CodecID.THEORA,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_VIDEO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.THEORA;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -65,13 +79,32 @@ const RTPDynamicProtocolHandler ff_theora_dynamic_handler = {
     ); // = xiph_handle_packet,
 }
 
-const RTPDynamicProtocolHandler ff_vorbis_dynamic_handler = {
-    //  .enc_name = "vorbis"
+[CCode (cname="ff_vorbis_dynamic_handler", cheader="")]
+public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "vorbis";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id = LibAVCodec.CodecID.VORBIS,
-    //  .need_parsing = AVSTREAM_PARSE_HEADERS,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_AUDIO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.VORBIS;
+        }
+    }
+    [CCode (cname="need_parsing", cheader="")]
+    public override AVStreamParseType need_parsing {
+        public get {
+            return AVSTREAM_PARSE_HEADERS;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

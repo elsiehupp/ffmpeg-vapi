@@ -59,7 +59,7 @@ SMPTE RP224: Registry of SMPTE Universal Labels
 
 //  static const AVOption mxf_options[] = {
 //      MXF_COMMON_OPTIONS
-//      { "store_user_comments", ""
+//      { "store_user_comments", "",
 //        offsetof(MXFContext, store_user_comments), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
 //      { NULL },
 //  }
@@ -90,10 +90,10 @@ public class AVClass : AVClass {
 }
 
 //  static const AVOption d10_options[] = {
-//      { "d10_channelcount", "Force/set channelcount in generic sound essence descriptor"
+//      { "d10_channelcount", "Force/set channelcount in generic sound essence descriptor",
 //        offsetof(MXFContext, channel_count), AV_OPT_TYPE_INT, {.i64 = -1}, -1, 8, AV_OPT_FLAG_ENCODING_PARAM},
 //      MXF_COMMON_OPTIONS
-//      { "store_user_comments", ""
+//      { "store_user_comments", "",
 //        offsetof(MXFContext, store_user_comments), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
 //      { NULL },
 //  }
@@ -124,10 +124,10 @@ public class AVClass : AVClass {
 }
 
 //  static const AVOption opatom_options[] = {
-//      { "mxf_audio_edit_rate", "Audio edit rate for timecode"
+//      { "mxf_audio_edit_rate", "Audio edit rate for timecode",
 //          offsetof(MXFContext, audio_edit_rate), AV_OPT_TYPE_RATIONAL, {.dbl=25}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
 //      MXF_COMMON_OPTIONS
-//      { "store_user_comments", ""
+//      { "store_user_comments", "",
 //        offsetof(MXFContext, store_user_comments), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
 //      { NULL },
 //  }
@@ -290,7 +290,7 @@ public class MXFD10OutputMuxer : AVOutputFormat {
 }
 
 [CCode (cname="ff_mxf_opatom_muxer", cheader="")]
-public class MXFOutputMuxer : AVOutputFormat ff_mxf_opatom_muxer = {
+public class MXFOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {

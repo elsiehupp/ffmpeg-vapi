@@ -22,8 +22,11 @@ furnished to do so, subject to the following conditions:
  DEALINGS IN THE SOFTWARE.
 ***********************************************************/
 
-const struct ogg_codec ff_vorbis_codec = {
-    //  .magic = "\001vorbis"
+[CCode (cname="ff_vorbis_codec", cheader="")]
+public class VorbisCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "\001vorbis";
         }
     }
     //  .magicsize = 7,

@@ -56,7 +56,8 @@ public class AVClass : AVClass {
     public override AVOption[] option { public get; }
 }
 
-public class OutputMuxer : AVOutputFormat ff_mpeg1system_muxer = {
+[CCode (cname="ff_mpeg1system_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -144,7 +145,8 @@ public class AVClass : AVClass {
     public override AVOption[] option { public get; }
 }
 
-public class OutputMuxer : AVOutputFormat ff_mpeg1vcd_muxer = {
+[CCode (cname="ff_mpeg1vcd_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -226,7 +228,8 @@ public class AVClass : AVClass {
     public override AVOption[] option { public get; }
 }
 
-public class OutputMuxer : AVOutputFormat ff_mpeg2vob_muxer = {
+[CCode (cname="ff_mpeg2vob_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -317,7 +320,8 @@ public class AVClass : AVClass {
     public override AVOption[] option { public get; }
 }
 
-public class OutputMuxer : AVOutputFormat ff_mpeg2svcd_muxer = {
+[CCode (cname="ff_mpeg2svcd_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -408,7 +412,8 @@ public class AVClass : AVClass {
     public override AVOption[] option { public get; }
 }
 
-public class OutputMuxer : AVOutputFormat ff_mpeg2dvd_muxer = {
+[CCode (cname="ff_mpeg2dvd_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {

@@ -98,8 +98,8 @@ public class AVClass : AVClass {
     }
 }
 
-[CCode (cname="ff_segment_muxers", cheader="")]
-public class OutputMuxer : AVOutputFormat ff_segment_muxer = {
+[CCode (cname="ff_segment_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {

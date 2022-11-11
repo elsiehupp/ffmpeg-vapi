@@ -78,5 +78,5 @@ public class CAFOutputMuxer : AVOutputFormat  {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (const AVCodecTag* const []){ff_codec_caf_tags, 0},
+    //  .codec_tag = (AVCodecTag[]){ff_codec_caf_tags, 0},
 }

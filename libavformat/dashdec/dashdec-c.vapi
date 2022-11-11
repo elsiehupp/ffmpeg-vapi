@@ -67,7 +67,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return "Dynamic Adaptive Streaming over HTTP"
+            return "Dynamic Adaptive Streaming over HTTP";
         }
     }
     //  .priv_class = dash_class,

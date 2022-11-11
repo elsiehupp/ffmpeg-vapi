@@ -50,9 +50,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "rsd"
+            return "rsd";
         }
     }
-    //  .codec_tag = (const AVCodecTag* const []){rsd_tags, 0},
+    //  .codec_tag = (AVCodecTag[]){rsd_tags, 0},
     //  .flags = AVFMT_GENERIC_INDEX,
 }

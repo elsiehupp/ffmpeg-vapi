@@ -67,6 +67,6 @@ public class RSOOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     ); // = rso_write_trailer,
-    //  .codec_tag = (const AVCodecTag* const []){ff_codec_rso_tags, 0},
+    //  .codec_tag = (AVCodecTag[]){ff_codec_rso_tags, 0},
     //  .flags = AVFMT_NOTIMESTAMPS,
 }

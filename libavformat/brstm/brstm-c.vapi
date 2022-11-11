@@ -67,7 +67,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "brstm"
+            return "brstm";
+        }
+    }
 }
 
 [CCode (cname="ff_bfstm_demuxer", cheader="")]
@@ -117,5 +119,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "bfstm,bcstm"
+            return "bfstm,bcstm";
+        }
+    }
 }

@@ -26,12 +26,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @see http://wiki.multimedia.cx/index.php?title=Sorenson_Video_3#Packetization
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_svq3_dynamic_handler = {
-    //  .enc_name = "X-SV3V-ES"
+[CCode (cname="ff_svq3_dynamic_handler", cheader="")]
+public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "X-SV3V-ES";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id = LibAVCodec.CodecID.NONE,      // see if (config_packet) above
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_VIDEO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }      // see if (config_packet) above
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

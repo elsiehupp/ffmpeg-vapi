@@ -20,13 +20,32 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_h263_1998_dynamic_handler = {
-    //  .enc_name = "H263-1998"
+[CCode (cname="ff_h263_1998_dynamic_handler", cheader="")]
+public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "H263-1998";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id = LibAVCodec.CodecID.H263,
-    //  .need_parsing = AVSTREAM_PARSE_FULL,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_VIDEO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.H263;
+        }
+    }
+    [CCode (cname="need_parsing", cheader="")]
+    public override AVStreamParseType need_parsing {
+        public get {
+            return AVSTREAM_PARSE_FULL;
+        }
+    }
 
     [CCode (cname="ff_h263_handle_packet", cheader="")]
     public override int parse_packet (
@@ -42,13 +61,32 @@ const RTPDynamicProtocolHandler ff_h263_1998_dynamic_handler = {
     );
 }
 
-const RTPDynamicProtocolHandler ff_h263_2000_dynamic_handler = {
-    //  .enc_name = "H263-2000"
+[CCode (cname="ff_h263_2000_dynamic_handler", cheader="")]
+public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "H263-2000";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id = LibAVCodec.CodecID.H263,
-    //  .need_parsing = AVSTREAM_PARSE_FULL,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_VIDEO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.H263;
+        }
+    }
+    [CCode (cname="need_parsing", cheader="")]
+    public override AVStreamParseType need_parsing {
+        public get {
+            return AVSTREAM_PARSE_FULL;
+        }
+    }
 
     [CCode (cname="ff_h263_handle_packet", cheader="")]
     public override int parse_packet (

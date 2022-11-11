@@ -34,14 +34,14 @@ public class InputDemuxer : AVInputFormat {
             return "Berkeley/IRCAM/CARL Sound Format";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ircam_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = ircam_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ircam_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = ircam_read_header,
+    );
     [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
@@ -57,7 +57,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "sf,ircam"
+            return "sf,ircam";
         }
     }
     //  .flags = AVFMT_GENERIC_INDEX,

@@ -37,30 +37,30 @@ iCEDraw File demuxer
 //      { NULL },
 //  }
 
-#define CLASS(name)
-(const AVClass[1]){{
-    [CCode (cname="class_name", cheader="")]
-    public override string class_name {
-        public get {
-            return name;
-        }
-    }
-    [CCode (cname="item_name", cheader="")]
-    public override string item_name (
-        void *class_context
-    ) {
-        return av_default_item_name (
-            class_context
-        );
-    }
-    //  .option = options,
-    [CCode (cname="version", cheader="")]
-    public override int version {
-        public get {
-            return LIBAVUTIL_VERSION_INT;
-        }
-    }
-}}
+//  #define CLASS(name)
+//  (const AVClass[1]){{
+//      [CCode (cname="class_name", cheader="")]
+//      public override string class_name {
+//          public get {
+//              return name;
+//          }
+//      }
+//      [CCode (cname="item_name", cheader="")]
+//      public override string item_name (
+//          void *class_context
+//      ) {
+//          return av_default_item_name (
+//              class_context
+//          );
+//      }
+//      //  .option = options,
+//      [CCode (cname="version", cheader="")]
+//      public override int version {
+//          public get {
+//              return LIBAVUTIL_VERSION_INT;
+//          }
+//      }
+//  }}
 
 #if CONFIG_BINTEXT_DEMUXER
 [CCode (cname="ff_bintext_demuxer", cheader="")]
@@ -96,7 +96,7 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .priv_class = CLASS("Binary text demuxer"
+    //  .priv_class = CLASS("Binary text demuxer")
 }
 #endif
 
@@ -134,7 +134,7 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .priv_class = CLASS("eXtended BINary text (XBIN) demuxer"
+    //  .priv_class = CLASS("eXtended BINary text (XBIN) demuxer")
 }
 #endif
 
@@ -171,10 +171,10 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "adf"
+            return "adf";
         }
     }
-    //  .priv_class = CLASS("Artworx Data Format demuxer"
+    //  .priv_class = CLASS("Artworx Data Format demuxer")
 }
 #endif
 
@@ -215,9 +215,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "idf"
+            return "idf";
         }
     }
-    //  .priv_class = CLASS("iCE Draw File demuxer"
+    //  .priv_class = CLASS("iCE Draw File demuxer")
 }
 #endif

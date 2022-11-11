@@ -53,7 +53,9 @@ public class AVClass : AVClass {
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
 }
-public class OutputMuxer : AVOutputFormat ff_webp_muxer = {
+
+[CCode (cname="ff_webp_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {

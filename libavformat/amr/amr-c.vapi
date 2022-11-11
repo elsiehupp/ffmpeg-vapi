@@ -25,9 +25,9 @@ Write and read amr data according to RFC3267, http://www.ietf.org/rfc/rfc3267.tx
 
 Only mono files are supported.
 ***********************************************************/
-
+#if CONFIG_AMRWB_DEMUXER
 [CCode (cname="ff_amrwb_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat ff_amrwb_demuxer = {
+public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {

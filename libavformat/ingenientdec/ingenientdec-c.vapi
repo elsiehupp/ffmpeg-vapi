@@ -20,7 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-FF_RAWVIDEO_DEMUXER_CLASS(ingenient)
+//  FF_RAWVIDEO_DEMUXER_CLASS(ingenient)
 
 [CCode (cname="ff_ingenient_demuxer", cheader="")]
 public class InputDemuxer : AVInputFormat {
@@ -42,24 +42,26 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (FFRawVideoDemuxerContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ingenient_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = ingenient_probe,
+    );
     [CCode (cname="ff_raw_video_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ingenient_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ingenient_read_packet,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "cgi", // FIXME
+            return "cgi"; // FIXME
+        }
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

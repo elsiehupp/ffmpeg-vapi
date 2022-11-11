@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 #if CONFIG_MLP_DEMUXER
-FF_RAW_DEMUXER_CLASS(mlp)
+//  FF_RAW_DEMUXER_CLASS(mlp)
 [CCode (cname="ff_mlp_demuxer", cheader="")]
 public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
@@ -75,7 +75,7 @@ public class InputDemuxer : AVInputFormat {
 #endif
 
 #if CONFIG_TRUEHD_DEMUXER
-FF_RAW_DEMUXER_CLASS(truehd)
+//  FF_RAW_DEMUXER_CLASS(truehd)
 [CCode (cname="ff_truehd_demuxer", cheader="")]
 public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]

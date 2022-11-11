@@ -47,7 +47,7 @@ public class WebVTTOutputMuxer : AVOutputFormat {
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return "text/vtt"
+            return "text/vtt";
         }
     }
     //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,

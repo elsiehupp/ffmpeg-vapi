@@ -26,15 +26,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //      { NULL },
 //  }
 
-#define PCMDEF(name_, long_name_, ext, codec, ...)
+//  #define PCMDEF(name_, long_name_, ext, codec, ...)
 [CCode (cname="name_ ## _demuxer_class", cheader="")]
 public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
-        }
-    } // = #name_ " demuxer";
+            return "#name_ demuxer";
         }
     }
     [CCode (cname="item_name", cheader="")]
@@ -59,15 +57,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "#name_";
         }
-    } // = #name_,
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return NULL_IF_CONFIG_SMALL(long_name_);
         }
-    } // = NULL_IF_CONFIG_SMALL(long_name_),
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -94,9 +92,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return ext;
         }
-    } // = ext,
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -107,68 +105,68 @@ public class InputDemuxer : AVInputFormat {
     //  __VA_ARGS__
 }
 
-PCMDEF(f64be, "PCM 64-bit floating-point big-endian"
-       NULL, LibAVCodec.CodecID.PCM_F64BE)
+//  PCMDEF(f64be, "PCM 64-bit floating-point big-endian",
+//         NULL, LibAVCodec.CodecID.PCM_F64BE)
 
-PCMDEF(f64le, "PCM 64-bit floating-point little-endian"
-       NULL, LibAVCodec.CodecID.PCM_F64LE)
+//  PCMDEF(f64le, "PCM 64-bit floating-point little-endian",
+//         NULL, LibAVCodec.CodecID.PCM_F64LE)
 
-PCMDEF(f32be, "PCM 32-bit floating-point big-endian"
-       NULL, LibAVCodec.CodecID.PCM_F32BE)
+//  PCMDEF(f32be, "PCM 32-bit floating-point big-endian",
+//         NULL, LibAVCodec.CodecID.PCM_F32BE)
 
-PCMDEF(f32le, "PCM 32-bit floating-point little-endian"
-       NULL, LibAVCodec.CodecID.PCM_F32LE)
+//  PCMDEF(f32le, "PCM 32-bit floating-point little-endian",
+//         NULL, LibAVCodec.CodecID.PCM_F32LE)
 
-PCMDEF(s32be, "PCM signed 32-bit big-endian"
-       NULL, LibAVCodec.CodecID.PCM_S32BE)
+//  PCMDEF(s32be, "PCM signed 32-bit big-endian",
+//         NULL, LibAVCodec.CodecID.PCM_S32BE)
 
-PCMDEF(s32le, "PCM signed 32-bit little-endian"
-       NULL, LibAVCodec.CodecID.PCM_S32LE)
+//  PCMDEF(s32le, "PCM signed 32-bit little-endian",
+//         NULL, LibAVCodec.CodecID.PCM_S32LE)
 
-PCMDEF(s24be, "PCM signed 24-bit big-endian"
-       NULL, LibAVCodec.CodecID.PCM_S24BE)
+//  PCMDEF(s24be, "PCM signed 24-bit big-endian",
+//         NULL, LibAVCodec.CodecID.PCM_S24BE)
 
-PCMDEF(s24le, "PCM signed 24-bit little-endian"
-       NULL, LibAVCodec.CodecID.PCM_S24LE)
+//  PCMDEF(s24le, "PCM signed 24-bit little-endian",
+//         NULL, LibAVCodec.CodecID.PCM_S24LE)
 
-PCMDEF(s16be, "PCM signed 16-bit big-endian"
-       AV_NE("sw", NULL), LibAVCodec.CodecID.PCM_S16BE, .mime_type = "audio/L16")
+//  PCMDEF(s16be, "PCM signed 16-bit big-endian",
+//         AV_NE("sw", NULL), LibAVCodec.CodecID.PCM_S16BE, .mime_type = "audio/L16")
 
-PCMDEF(s16le, "PCM signed 16-bit little-endian"
-       AV_NE(NULL, "sw", LibAVCodec.CodecID.PCM_S16LE)
+//  PCMDEF(s16le, "PCM signed 16-bit little-endian",
+//         AV_NE(NULL, "sw", LibAVCodec.CodecID.PCM_S16LE)
 
-PCMDEF(s8, "PCM signed 8-bit"
-       "sb", LibAVCodec.CodecID.PCM_S8)
+//  PCMDEF(s8, "PCM signed 8-bit",
+//         "sb", LibAVCodec.CodecID.PCM_S8)
 
-PCMDEF(u32be, "PCM unsigned 32-bit big-endian"
-       NULL, LibAVCodec.CodecID.PCM_U32BE)
+//  PCMDEF(u32be, "PCM unsigned 32-bit big-endian",
+//         NULL, LibAVCodec.CodecID.PCM_U32BE)
 
-PCMDEF(u32le, "PCM unsigned 32-bit little-endian"
-       NULL, LibAVCodec.CodecID.PCM_U32LE)
+//  PCMDEF(u32le, "PCM unsigned 32-bit little-endian",
+//         NULL, LibAVCodec.CodecID.PCM_U32LE)
 
-PCMDEF(u24be, "PCM unsigned 24-bit big-endian"
-       NULL, LibAVCodec.CodecID.PCM_U24BE)
+//  PCMDEF(u24be, "PCM unsigned 24-bit big-endian",
+//         NULL, LibAVCodec.CodecID.PCM_U24BE)
 
-PCMDEF(u24le, "PCM unsigned 24-bit little-endian"
-       NULL, LibAVCodec.CodecID.PCM_U24LE)
+//  PCMDEF(u24le, "PCM unsigned 24-bit little-endian",
+//         NULL, LibAVCodec.CodecID.PCM_U24LE)
 
-PCMDEF(u16be, "PCM unsigned 16-bit big-endian"
-       AV_NE("uw", NULL), LibAVCodec.CodecID.PCM_U16BE)
+//  PCMDEF(u16be, "PCM unsigned 16-bit big-endian",
+//         AV_NE("uw", NULL), LibAVCodec.CodecID.PCM_U16BE)
 
-PCMDEF(u16le, "PCM unsigned 16-bit little-endian"
-       AV_NE(NULL, "uw", LibAVCodec.CodecID.PCM_U16LE)
+//  PCMDEF(u16le, "PCM unsigned 16-bit little-endian",
+//         AV_NE(NULL, "uw", LibAVCodec.CodecID.PCM_U16LE)
 
-PCMDEF(u8, "PCM unsigned 8-bit"
-       "ub", LibAVCodec.CodecID.PCM_U8)
+//  PCMDEF(u8, "PCM unsigned 8-bit",
+//         "ub", LibAVCodec.CodecID.PCM_U8)
 
-PCMDEF(alaw, "PCM A-law"
-       "al", LibAVCodec.CodecID.PCM_ALAW)
+//  PCMDEF(alaw, "PCM A-law",
+//         "al", LibAVCodec.CodecID.PCM_ALAW)
 
-PCMDEF(mulaw, "PCM mu-law"
-       "ul", LibAVCodec.CodecID.PCM_MULAW)
+//  PCMDEF(mulaw, "PCM mu-law",
+//         "ul", LibAVCodec.CodecID.PCM_MULAW)
 
-PCMDEF(vidc, "PCM Archimedes VIDC"
-       NULL, LibAVCodec.CodecID.PCM_VIDC)
+//  PCMDEF(vidc, "PCM Archimedes VIDC",
+//         NULL, LibAVCodec.CodecID.PCM_VIDC)
 
 //  static const AVOption sln_options[] = {
 //      { "sample_rate", "", offsetof(PCMAudioDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 8000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },

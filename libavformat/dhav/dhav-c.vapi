@@ -64,7 +64,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "dav"
+            return "dav";
         }
     }
     //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,

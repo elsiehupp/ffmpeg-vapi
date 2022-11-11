@@ -20,8 +20,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_mpegts_dynamic_handler = {
-    //  .codec_type = AVMEDIA_TYPE_DATA,
+[CCode (cname="ff_mpegts_dynamic_handler", cheader="")]
+public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_DATA;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

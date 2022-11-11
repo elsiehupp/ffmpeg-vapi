@@ -22,8 +22,11 @@
       DEALINGS IN THE SOFTWARE.
 **/
 
-const struct ogg_codec ff_speex_codec = {
-    //  .magic = "Speex   "
+[CCode (cname="ff_speex_codec", cheader="")]
+public class SpeexCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "Speex   ";
         }
     }
     //  .magicsize = 8,

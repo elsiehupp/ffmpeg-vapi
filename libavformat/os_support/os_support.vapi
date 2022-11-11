@@ -183,7 +183,6 @@ public enum PollEvent {
 //  #ifdef _WIN32
 //  #include <stdio.h>
 //  #include <windows.h>
-//  #include "libavutil/wchar_filename.h"
 
 //  #define DEF_FS_FUNCTION (name, wfunc, afunc)
 //  static inline int win32_##name (string filename_utf8) {

@@ -26,7 +26,7 @@ static int ac3_probe(const AVProbeData *p)
     return ac3_eac3_probe(p, LibAVCodec.CodecID.AC3);
 }
 
-FF_RAW_DEMUXER_CLASS(ac3)
+//  FF_RAW_DEMUXER_CLASS(ac3)
 
 [CCode (cname="ff_ac3_demuxer", cheader="")]
 public class AC3InputDemuxer : AVInputFormat {
@@ -84,7 +84,7 @@ static int eac3_probe(const AVProbeData *p)
     return ac3_eac3_probe(p, LibAVCodec.CodecID.EAC3);
 }
 
-FF_RAW_DEMUXER_CLASS(eac3)
+//  FF_RAW_DEMUXER_CLASS(eac3)
 [CCode (cname="ff_eac3_demuxer", cheader="")]
 public class EAC3InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]

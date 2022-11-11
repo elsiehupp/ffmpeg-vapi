@@ -162,7 +162,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_librtmpt_protocol", cheader="")]
-public class URLProtocol : URLProtocol ff_librtmpt_protocol = {
+public class URLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -249,7 +249,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_librtmpe_protocol", cheader="")]
-public class URLProtocol : URLProtocol ff_librtmpe_protocol = {
+public class URLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -336,7 +336,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_librtmpte_protocol", cheader="")]
-public class URLProtocol : URLProtocol ff_librtmpte_protocol = {
+public class URLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -423,7 +423,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_librtmps_protocol", cheader="")]
-public class URLProtocol : URLProtocol ff_librtmps_protocol = {
+public class URLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {

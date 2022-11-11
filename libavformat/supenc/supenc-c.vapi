@@ -43,7 +43,7 @@ public class SUPOutputMuxer : AVOutputFormat {
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return "application/x-pgs"
+            return "application/x-pgs";
         }
     }
     //  .subtitle_codec = LibAVCodec.CodecID.HDMV_PGS_SUBTITLE,

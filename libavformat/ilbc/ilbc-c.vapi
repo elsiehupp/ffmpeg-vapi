@@ -34,19 +34,19 @@ public class InputDemuxer : AVInputFormat {
             return "iLBC storage";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ilbc_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = ilbc_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ilbc_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = ilbc_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ilbc_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ilbc_read_packet,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
 }
 
@@ -82,15 +82,15 @@ public class ILBCOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.ILBC;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ilbc_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ilbc_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ilbc_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ilbc_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }

@@ -27,13 +27,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @author Romain Degez
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_mp4v_es_dynamic_handler = {
-    //  .enc_name = "MP4V-ES"
+[CCode (cname="ff_mp4v_es_dynamic_handler", cheader="")]
+public class MP4VESDynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "MP4V-ES";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id = LibAVCodec.CodecID.MPEG4,
-    //  .need_parsing = AVSTREAM_PARSE_FULL,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_VIDEO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.MPEG4;
+        }
+    }
+    [CCode (cname="need_parsing", cheader="")]
+    public override AVStreamParseType need_parsing {
+        public get {
+            return AVSTREAM_PARSE_FULL;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -49,12 +68,26 @@ const RTPDynamicProtocolHandler ff_mp4v_es_dynamic_handler = {
     ); // = parse_sdp_line,
 }
 
-const RTPDynamicProtocolHandler ff_mpeg4_generic_dynamic_handler = {
-    //  .enc_name = "mpeg4-generic"
+[CCode (cname="ff_mpeg4_generic_dynamic_handler", cheader="")]
+public class Mpeg4GenericDynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "mpeg4-generic";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id = LibAVCodec.CodecID.AAC,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_AUDIO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.AAC;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

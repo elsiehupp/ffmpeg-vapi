@@ -65,10 +65,10 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="brender_read_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = brender_read_probe,
+    );
     [CCode (cname="ff_img_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context

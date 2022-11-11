@@ -64,7 +64,7 @@ public class AVClass : AVClass {
 }
 
 [CCode (cname="ff_apng_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat ff_apng_demuxer = {
+public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {

@@ -94,8 +94,8 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return tty_extensions;
         }
-    } // = tty_extensions,
+    }
     //  .priv_class = tty_demuxer_class,
 }

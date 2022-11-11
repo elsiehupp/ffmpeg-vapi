@@ -150,10 +150,10 @@ public delegate int DynamicPayloadPacketHandlerProc (
 );
 
 public abstract class RTPDynamicProtocolHandler {
-    public string enc_name;
-    public LibAVUtil.MediaType codec_type;
-    public LibAVCodec.CodecID codec_id;
-    public AVStreamParseType need_parsing;
+    public abstract string enc_name { public get; }
+    public abstract LibAVUtil.MediaType codec_type { public get; }
+    public abstract LibAVCodec.CodecID codec_id { public get; }
+    public abstract AVStreamParseType need_parsing { public get; }
     /***********************************************************
     0 means no payload id is set. 0 is a valid
     payload ID (PCMU), too, but that format doesn't

@@ -100,5 +100,7 @@ public class RTMPHTTPURLProtocol : URLProtocol {
         }
     }
     //  .priv_data_class = ffrtmphttp_class,
-    //  .default_whitelist = "https,http,tcp,tls"
+    //  .default_whitelist = "https,http,tcp,tls";
+        }
+    }
 }

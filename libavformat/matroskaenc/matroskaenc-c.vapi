@@ -155,7 +155,7 @@ public class MatroskaOutputMuxer : AVOutputFormat {
     ); // = mkv_write_trailer,
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
     //                       AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
-    //  .codec_tag = (const AVCodecTag* const []){
+    //  .codec_tag = (AVCodecTag[]){
     //       ff_codec_bmp_tags, ff_codec_wav_tags,
     //       additional_audio_tags, additional_video_tags, additional_subtitle_tags, 0
     //  },
@@ -305,7 +305,9 @@ public class AVClass : AVClass {
         }
     }
 }
-public class OutputMuxer : AVOutputFormat ff_matroska_audio_muxer = {
+
+[CCode (cname="ff_matroska_audio_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -373,7 +375,7 @@ public class OutputMuxer : AVOutputFormat ff_matroska_audio_muxer = {
         LibAVCodec.Packet packet
     ); // = mkv_check_bitstream,
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
-    //  .codec_tag = (const AVCodecTag* const []){
+    //  .codec_tag = (AVCodecTag[]){
     //      ff_codec_wav_tags, additional_audio_tags, 0
     //  },
     //  .priv_class = mka_class,

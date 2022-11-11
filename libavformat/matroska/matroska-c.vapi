@@ -144,80 +144,84 @@ If you add a tag here that is not in ff_codec_bmp_tags[]
 //  }
 
 //  const string const ff_matroska_video_stereo_mode[MATROSKA_VIDEO_STEREOMODE_TYPE_NB] = {
-//      "mono"
-//      "left_right"
-//      "bottom_top"
-//      "top_bottom"
-//      "checkerboard_rl"
-//      "checkerboard_lr"
-//      "row_interleaved_rl"
-//      "row_interleaved_lr"
-//      "col_interleaved_rl"
-//      "col_interleaved_lr"
-//      "anaglyph_cyan_red"
-//      "right_left"
-//      "anaglyph_green_magenta"
-//      "block_lr"
-//      "block_rl"
+//      "mono",
+//      "left_right",
+//      "bottom_top",
+//      "top_bottom",
+//      "checkerboard_rl",
+//      "checkerboard_lr",
+//      "row_interleaved_rl",
+//      "row_interleaved_lr",
+//      "col_interleaved_rl",
+//      "col_interleaved_lr",
+//      "anaglyph_cyan_red",
+//      "right_left",
+//      "anaglyph_green_magenta",
+//      "block_lr",
+//      "block_rl",
 //  }
 
 //  const string ff_matroska_video_stereo_plane[MATROSKA_VIDEO_STEREO_PLANE_COUNT] = {
-//      "left"
-//      "right"
-//      "background"
+//      "left",
+//      "right",
+//      "background",
 //  }
 
-int ff_mkv_stereo3d_conv(AVStream *st, MatroskaVideoStereoModeType stereo_mode) {
-    AVStereo3D *stereo;
-    int ret;
+public int ff_mkv_stereo3d_conv (
+    AVStream st,
+    MatroskaVideoStereoModeType stereo_mode
+);
+//  {
+//      AVStereo3D *stereo;
+//      int ret;
 
-    stereo = av_stereo3d_alloc();
-    if (!stereo)
-        return AVERROR(ENOMEM);
+//      stereo = av_stereo3d_alloc();
+//      if (!stereo)
+//          return AVERROR(ENOMEM);
 
-    // note: the missing breaks are intentional
-    switch (stereo_mode) {
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_MONO:
-        stereo->type = AV_STEREO3D_2D;
-        break;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_RIGHT_LEFT:
-        stereo->flags |= AV_STEREO3D_FLAG_INVERT;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_LEFT_RIGHT:
-        stereo->type = AV_STEREO3D_SIDEBYSIDE;
-        break;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_BOTTOM_TOP:
-        stereo->flags |= AV_STEREO3D_FLAG_INVERT;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_TOP_BOTTOM:
-        stereo->type = AV_STEREO3D_TOPBOTTOM;
-        break;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_CHECKERBOARD_RL:
-        stereo->flags |= AV_STEREO3D_FLAG_INVERT;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_CHECKERBOARD_LR:
-        stereo->type = AV_STEREO3D_CHECKERBOARD;
-        break;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_ROW_INTERLEAVED_RL:
-        stereo->flags |= AV_STEREO3D_FLAG_INVERT;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_ROW_INTERLEAVED_LR:
-        stereo->type = AV_STEREO3D_LINES;
-        break;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_COL_INTERLEAVED_RL:
-        stereo->flags |= AV_STEREO3D_FLAG_INVERT;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_COL_INTERLEAVED_LR:
-        stereo->type = AV_STEREO3D_COLUMNS;
-        break;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_BOTH_EYES_BLOCK_RL:
-        stereo->flags |= AV_STEREO3D_FLAG_INVERT;
-    case MATROSKA_VIDEO_STEREOMODE_TYPE_BOTH_EYES_BLOCK_LR:
-        stereo->type = AV_STEREO3D_FRAMESEQUENCE;
-        break;
-    }
+//      // note: the missing breaks are intentional
+//      switch (stereo_mode) {
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_MONO:
+//          stereo->type = AV_STEREO3D_2D;
+//          break;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_RIGHT_LEFT:
+//          stereo->flags |= AV_STEREO3D_FLAG_INVERT;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_LEFT_RIGHT:
+//          stereo->type = AV_STEREO3D_SIDEBYSIDE;
+//          break;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_BOTTOM_TOP:
+//          stereo->flags |= AV_STEREO3D_FLAG_INVERT;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_TOP_BOTTOM:
+//          stereo->type = AV_STEREO3D_TOPBOTTOM;
+//          break;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_CHECKERBOARD_RL:
+//          stereo->flags |= AV_STEREO3D_FLAG_INVERT;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_CHECKERBOARD_LR:
+//          stereo->type = AV_STEREO3D_CHECKERBOARD;
+//          break;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_ROW_INTERLEAVED_RL:
+//          stereo->flags |= AV_STEREO3D_FLAG_INVERT;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_ROW_INTERLEAVED_LR:
+//          stereo->type = AV_STEREO3D_LINES;
+//          break;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_COL_INTERLEAVED_RL:
+//          stereo->flags |= AV_STEREO3D_FLAG_INVERT;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_COL_INTERLEAVED_LR:
+//          stereo->type = AV_STEREO3D_COLUMNS;
+//          break;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_BOTH_EYES_BLOCK_RL:
+//          stereo->flags |= AV_STEREO3D_FLAG_INVERT;
+//      case MATROSKA_VIDEO_STEREOMODE_TYPE_BOTH_EYES_BLOCK_LR:
+//          stereo->type = AV_STEREO3D_FRAMESEQUENCE;
+//          break;
+//      }
 
-    ret = av_stream_add_side_data(st, AV_PKT_DATA_STEREO3D, (uint8_t *)stereo,
-                                  sizeof(*stereo));
-    if (ret < 0) {
-        av_freep(&stereo);
-        return ret;
-    }
+//      ret = av_stream_add_side_data(st, AV_PKT_DATA_STEREO3D, (uint8_t *)stereo,
+//                                    sizeof(*stereo));
+//      if (ret < 0) {
+//          av_freep(&stereo);
+//          return ret;
+//      }
 
-    return 0;
-}
+//      return 0;
+//  }

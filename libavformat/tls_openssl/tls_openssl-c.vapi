@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #if OPENSSL_VERSION_NUMBER < 0x1010000fL
 //  static BIO_METHOD url_bio_method = {
 //      //  .type = BIO_TYPE_SOURCE_SINK,
-//      //  .name = "urlprotocol bio"
+//      //  .name = "urlprotocol bio",
 //      //  .bwrite = url_bio_bwrite,
 //      //  .bread = url_bio_bread,
 //      //  .bputs = url_bio_bputs,

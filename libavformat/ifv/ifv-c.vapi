@@ -47,24 +47,24 @@ public class InputDemuxer : AVInputFormat {
             return "ifv";
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ifv_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = ifv_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ifv_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = ifv_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ifv_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ifv_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ifv_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = ifv_read_seek,
+    );
 }

@@ -123,7 +123,7 @@ public class FLVOutputMuxer : AVOutputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .codec_tag = (const AVCodecTag* const []) {
+    //  .codec_tag = (AVCodecTag[]) {
                     //        flv_video_codec_ids, flv_audio_codec_ids, 0
                     //    },
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,

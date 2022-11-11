@@ -22,8 +22,11 @@
     DEALINGS IN THE SOFTWARE.
 ***********************************************************/
 
-const struct ogg_codec ff_theora_codec = {
-    //  .magic = "\200theora"
+[CCode (cname="ff_theora_codec", cheader="")]
+public class TheoraCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "\200theora";
         }
     }
     //  .magicsize = 7,

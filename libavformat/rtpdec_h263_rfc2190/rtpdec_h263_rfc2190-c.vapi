@@ -26,10 +26,26 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_h263_rfc2190_dynamic_handler = {
-    //  .codec_type = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id = LibAVCodec.CodecID.H263,
-    //  .need_parsing = AVSTREAM_PARSE_FULL,
+[CCode (cname="ff_h263_rfc2190_dynamic_handler", cheader="")]
+public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_VIDEO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.H263;
+        }
+    }
+    [CCode (cname="need_parsing", cheader="")]
+    public override AVStreamParseType need_parsing {
+        public get {
+            return AVSTREAM_PARSE_FULL;
+        }
+    }
 
     [CCode (cname="", cheader="")]
     public override int parse_packet (

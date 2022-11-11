@@ -57,7 +57,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "pvf"
+            return "pvf";
         }
     }
     //  .flags = AVFMT_GENERIC_INDEX,

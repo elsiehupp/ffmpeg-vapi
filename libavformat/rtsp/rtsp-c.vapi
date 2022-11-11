@@ -20,6 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+#if CONFIG_SDP_DEMUXER
 [CCode (cname="sdp_demuxer_class", cheader="")]
 public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]

@@ -52,7 +52,6 @@ public class AVClass : AVClass {
     }
 }
 
-
 [CCode (cname="ff_http_protocol", cheader="")]
 public class HTTPURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
@@ -125,7 +124,7 @@ public class HTTPURLProtocol : URLProtocol {
             return URL_PROTOCOL_FLAG_NETWORK;
         }
     }
-    //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
+    //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy";
 }
 #endif /* CONFIG_HTTP_PROTOCOL */
 
@@ -156,9 +155,8 @@ public class AVClass : AVClass {
     }
 }
 
-
 [CCode (cname="ff_https_protocol", cheader="")]
-public class URLProtocol : URLProtocol ff_https_protocol = {
+public class URLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -220,7 +218,7 @@ public class URLProtocol : URLProtocol ff_https_protocol = {
             return URL_PROTOCOL_FLAG_NETWORK;
         }
     }
-    //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
+    //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy";
 }
 #endif /* CONFIG_HTTPS_PROTOCOL */
 

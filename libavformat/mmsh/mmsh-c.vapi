@@ -75,5 +75,5 @@ public class MMSHURLProtocol : URLProtocol {
             return URL_PROTOCOL_FLAG_NETWORK;
         }
     }
-    //  .default_whitelist = "http,tcp"
+    //  .default_whitelist = "http,tcp";
 }

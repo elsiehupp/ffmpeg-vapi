@@ -21,14 +21,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const struct ogg_codec ff_daala_codec = {
+[CCode (cname="ff_daala_codec", cheader="")]
+public class DaalaCodec : OggCodec {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return "Daala"
+            return "Daala";
         }
     }
-    //  .magic = "\200daala"
+    public override int8[] magic {
+        public get {
+            return "\200daala";
         }
     }
     //  .magicsize = 6,

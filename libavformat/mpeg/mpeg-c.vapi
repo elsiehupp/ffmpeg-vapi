@@ -145,7 +145,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "idx"
+            return "idx";
         }
     }
     //  .priv_class = vobsub_demuxer_class,

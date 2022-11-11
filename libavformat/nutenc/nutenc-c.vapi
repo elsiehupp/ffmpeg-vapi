@@ -92,7 +92,7 @@ public class NUTOutputMuxer : AVOutputFormat {
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
-            return CONFIG_LIBVORBIS ? LibAVCodec.CodecID.VORBIS : CONFIG_LIBMP3LAME ? LibAVCodec.CodecID.MP3 : LibAVCodec.CodecID.MP2,;
+            return CONFIG_LIBVORBIS ? LibAVCodec.CodecID.VORBIS : CONFIG_LIBMP3LAME ? LibAVCodec.CodecID.MP3 : LibAVCodec.CodecID.MP2;
         }
     }
     [CCode (cname="video_codec", cheader="")]

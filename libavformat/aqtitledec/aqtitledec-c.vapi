@@ -107,7 +107,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "aqt"
+            return "aqt";
         }
     }
     //  .priv_class = aqt_class,

@@ -1319,7 +1319,7 @@ public struct AVStream {
     //  /***********************************************************
     //  av_read_frame () support
     //  ***********************************************************/
-    //  public AVStreamParseType need_parsing;
+    //  public abstract AVStreamParseType need_parsing { public get; }
     //  public LibAVCodec.CodecParserContext parser;
 
     //  /***********************************************************

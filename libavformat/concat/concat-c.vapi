@@ -58,5 +58,5 @@ public class ConcatURLProtocol : URLProtocol {
             return sizeof (concat_data);
         }
     }
-    //  .default_whitelist = "concat,file,subfile"
+    //  .default_whitelist = "concat,file,subfile";
 }

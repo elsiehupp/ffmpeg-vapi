@@ -106,5 +106,5 @@ public class ASTOutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .priv_class = ast_muxer_class,
-    //  .codec_tag = (const AVCodecTag* const []){ff_codec_ast_tags, 0},
+    //  .codec_tag = (AVCodecTag[]){ff_codec_ast_tags, 0},
 }

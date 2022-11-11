@@ -84,7 +84,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "g729"
+            return "g729";
         }
     }
     //  .priv_class = g729_demuxer_class,

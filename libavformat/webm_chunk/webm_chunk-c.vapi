@@ -84,7 +84,7 @@ public class WebMChunkOutputMuxer : AVOutputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "chk"
+            return "chk";
         }
     }
     //  .flags = AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_NEEDNUMBER | AVFMT_TS_NONSTRICT,

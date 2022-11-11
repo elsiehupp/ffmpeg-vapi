@@ -25,12 +25,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @author Ronald S. Bultje <rbultje@ronald.bitfreak.net>
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_qdm2_dynamic_handler = {
-    //  .enc_name = "X-QDM"
+[CCode (cname="ff_qdm2_dynamic_handler", cheader="")]
+public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "X-QDM";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id = LibAVCodec.CodecID.NONE,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_AUDIO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.NONE;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

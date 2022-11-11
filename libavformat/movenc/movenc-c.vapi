@@ -230,7 +230,7 @@ public class OutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    //  .codec_tag = (const AVCodecTag* const []){
+    //  .codec_tag = (AVCodecTag[]){
     //      ff_codec_movvideo_tags, ff_codec_movaudio_tags, ff_codec_movsubtitle_tags, 0
     //  },
     [CCode (cname="mov_check_bitstream", cheader="")]
@@ -330,7 +330,7 @@ public class OutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    //  .codec_tag = (const AVCodecTag* const []){ codec_3gp_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ codec_3gp_tags, 0 },
     [CCode (cname="mov_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
@@ -434,7 +434,7 @@ public class OutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    //  .codec_tag = (const AVCodecTag* const []){ codec_mp4_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ codec_mp4_tags, 0 },
     [CCode (cname="mov_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
@@ -532,7 +532,7 @@ public class OutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    //  .codec_tag = (const AVCodecTag* const []){ codec_mp4_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ codec_mp4_tags, 0 },
     [CCode (cname="mov_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
@@ -630,7 +630,7 @@ public class OutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    //  .codec_tag = (const AVCodecTag* const []){ codec_3gp_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ codec_3gp_tags, 0 },
     [CCode (cname="mov_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
@@ -734,7 +734,7 @@ public class OutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    //  .codec_tag = (const AVCodecTag* const []){ codec_ipod_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ codec_ipod_tags, 0 },
     [CCode (cname="mov_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
@@ -838,7 +838,7 @@ public class OutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE,
-    //  .codec_tag = (const AVCodecTag* const []){
+    //  .codec_tag = (AVCodecTag[]){
     //      codec_mp4_tags, codec_ism_tags, 0 },
     [CCode (cname="mov_check_bitstream", cheader="")]
     public override int check_bitstream (
@@ -943,7 +943,7 @@ public class OutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH,
-    //  .codec_tag = (const AVCodecTag* const []){ codec_f4v_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ codec_f4v_tags, 0 },
     [CCode (cname="mov_check_bitstream", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,

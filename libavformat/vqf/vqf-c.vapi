@@ -63,5 +63,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "vqf,vql,vqe"
+            return "vqf,vql,vqe";
+        }
+    }
 }

@@ -48,18 +48,18 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (IffDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="iff_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = iff_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="iff_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = iff_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="iff_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = iff_read_packet,
+    );
     //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
 }

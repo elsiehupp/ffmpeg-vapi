@@ -20,7 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-FF_RAW_DEMUXER_CLASS(tak)
+//  FF_RAW_DEMUXER_CLASS(tak)
 [CCode (cname="ff_tak_demuxer", cheader="")]
 public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]

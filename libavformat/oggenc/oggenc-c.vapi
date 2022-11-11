@@ -24,26 +24,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define PARAM AV_OPT_FLAG_ENCODING_PARAM
 
 //  static const AVOption options[] = {
-//      { "serial_offset", "serial number offset"
+//      { "serial_offset", "serial number offset",
 //          OFFSET(serial_offset), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, PARAM },
-//      { "oggpagesize", "Set preferred Ogg page size."
+//      { "oggpagesize", "Set preferred Ogg page size.",
 //        OFFSET(pref_size), AV_OPT_TYPE_INT, {.i64 = 0}, 0, MAX_PAGE_SIZE, PARAM},
-//      { "pagesize", "preferred page size in bytes (deprecated)"
+//      { "pagesize", "preferred page size in bytes (deprecated)",
 //          OFFSET(pref_size), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, MAX_PAGE_SIZE, PARAM },
-//      { "page_duration", "preferred page duration, in microseconds"
+//      { "page_duration", "preferred page duration, in microseconds",
 //          OFFSET(pref_duration), AV_OPT_TYPE_INT64, { .i64 = 1000000 }, 0, INT64_MAX, PARAM },
 //      { NULL },
 //  }
 
-#define OGG_CLASS(flavor, name)
+//  #define OGG_CLASS(flavor, name)
 [CCode (cname="flavor ## _muxer_class", cheader="")]
 public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
-        }
-    } // = #name " muxer";
+            return "#name muxer";
         }
     }
     [CCode (cname="item_name", cheader="")]
@@ -65,7 +63,7 @@ public class AVClass : AVClass {
 }
 
 #if CONFIG_OGG_MUXER
-OGG_CLASS(ogg, Ogg)
+//  OGG_CLASS(ogg, Ogg)
 [CCode (cname="ff_ogg_muxer", cheader="")]
 public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
@@ -89,19 +87,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "ogg"
+            string string_builder = "ogg";
 #if !CONFIG_OGV_MUXER
-                         ",ogv"
+            string_builder += ",ogv";
 #endif
 
 #if !CONFIG_SPX_MUXER
-                         ",spx"
+            string_builder += ",spx";
 #endif
 
 #if !CONFIG_OPUS_MUXER
-                         ",opus"
+            string_builder += ",opus";
 #endif
-                         ,
+            return string_builder;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -148,8 +148,9 @@ public class OutputMuxer : AVOutputFormat {
 #endif
 
 #if CONFIG_OGA_MUXER
-OGG_CLASS(oga, Ogg audio)
-public class OutputMuxer : AVOutputFormat ff_oga_muxer = {
+//  OGG_CLASS(oga, Ogg audio)
+[CCode (cname="ff_oga_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -214,8 +215,9 @@ public class OutputMuxer : AVOutputFormat ff_oga_muxer = {
 #endif
 
 #if CONFIG_OGV_MUXER
-OGG_CLASS(ogv, Ogg video)
-public class OutputMuxer : AVOutputFormat ff_ogv_muxer = {
+//  OGG_CLASS(ogv, Ogg video)
+[CCode (cname="ff_ogv_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -286,8 +288,9 @@ public class OutputMuxer : AVOutputFormat ff_ogv_muxer = {
 #endif
 
 #if CONFIG_SPX_MUXER
-OGG_CLASS(spx, Ogg Speex)
-public class OutputMuxer : AVOutputFormat ff_spx_muxer = {
+//  OGG_CLASS(spx, Ogg Speex)
+[CCode (cname="ff_spx_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -352,8 +355,9 @@ public class OutputMuxer : AVOutputFormat ff_spx_muxer = {
 #endif
 
 #if CONFIG_OPUS_MUXER
-OGG_CLASS(opus, Ogg Opus)
-public class OutputMuxer : AVOutputFormat ff_opus_muxer = {
+//  OGG_CLASS(opus, Ogg Opus)
+[CCode (cname="ff_opus_muxer", cheader="")]
+public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {

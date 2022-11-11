@@ -36,7 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  }
 
 #if CONFIG_DATA_DEMUXER
-FF_RAW_DEMUXER_CLASS(raw_data)
+//  FF_RAW_DEMUXER_CLASS(raw_data)
 
 [CCode (cname="ff_data_demuxer", cheader="")]
 public class InputDemuxer : AVInputFormat {

@@ -28,7 +28,7 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return "AVFormatContext"
+            return "AVFormatContext";
         }
     }
     //  .item_name = format_to_name,

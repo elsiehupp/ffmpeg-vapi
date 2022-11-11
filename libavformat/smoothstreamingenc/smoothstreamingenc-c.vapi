@@ -57,7 +57,6 @@ public class AVClass : AVClass {
     }
 }
 
-
 [CCode (cname="ff_smoothstreaming_muxer", cheader="")]
 public class SmoothStreamingOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]

@@ -32,7 +32,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return "NUT"
+            return "NUT";
         }
     }
     //  .flags = AVFMT_SEEK_TO_PTS,
@@ -69,7 +69,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "nut"
+            return "nut";
         }
     }
     //  .codec_tag = ff_nut_codec_tags,

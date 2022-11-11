@@ -45,7 +45,7 @@ Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPT
 ***********************************************************/
 
 //  static const AVOption options[] = {
-//      { "eia608_extract", "extract eia 608 captions from s436m track"
+//      { "eia608_extract", "extract eia 608 captions from s436m track",
 //        offsetof(MXFContext, eia608_extract), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1,
 //        AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL },
@@ -89,7 +89,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return "MXF (Material eXchange Format)"
+            return "MXF (Material eXchange Format)";
         }
     }
     //  .flags = AVFMT_SEEK_TO_PTS,

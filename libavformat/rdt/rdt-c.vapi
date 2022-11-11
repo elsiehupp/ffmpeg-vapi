@@ -25,49 +25,64 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @author Ronald S. Bultje <rbultje@ronald.bitfreak.net>
 ***********************************************************/
 
-#define RDT_HANDLER(n, s, t)
-RTPDynamicProtocolHandler ff_rdt_ ## n ## _handler = {
-    //  .enc_name = s,
-    //  .codec_type = t,
-    //  .codec_id = LibAVCodec.CodecID.NONE,
-    [CCode (cname="priv_data_size", cheader="")]
-    public override size_t priv_data_size {
-        public get {
-            return sizeof (PayloadContext);
-        }
-    }
-    [CCode (cname="", cheader="")]
-    public override int init (
-        AVFormatContext format_context
-    ); // = rdt_init,
-    [CCode (cname="", cheader="")]
-    public override int parse_sdp_a_line (
-        AVFormatContext format_context,
-        int st_index,
-        PayloadContext priv_data,
-        string line
-    ); // = rdt_parse_sdp_line,
-    [CCode (cname="", cheader="")]
-    public override void close (
-        PayloadContext protocol_data
-    ); // = rdt_close_context,
+//  #define RDT_HANDLER(n, s, t)
+//  RTPDynamicProtocolHandler ff_rdt_ ## n ## _handler = {
+//      [CCode (cname="enc_name", cheader="")]
+//      public override string enc_name {
+//          public get {
+//              return s;
+//          }
+//      }
+//      [CCode (cname="codec_type", cheader="")]
+//      public override LibAVUtil.MediaType codec_type {
+//          public get {
+//              return t;
+//          }
+//      }
+//      [CCode (cname="codec_id", cheader="")]
+//      public override LibAVCodec.CodecID codec_id {
+//          public get {
+//              return LibAVCodec.CodecID.NONE;
+//          }
+//      }
+//      [CCode (cname="priv_data_size", cheader="")]
+//      public override size_t priv_data_size {
+//          public get {
+//              return sizeof (PayloadContext);
+//          }
+//      }
+//      [CCode (cname="", cheader="")]
+//      public override int init (
+//          AVFormatContext format_context
+//      ); // = rdt_init,
+//      [CCode (cname="", cheader="")]
+//      public override int parse_sdp_a_line (
+//          AVFormatContext format_context,
+//          int st_index,
+//          PayloadContext priv_data,
+//          string line
+//      ); // = rdt_parse_sdp_line,
+//      [CCode (cname="", cheader="")]
+//      public override void close (
+//          PayloadContext protocol_data
+//      ); // = rdt_close_context,
 
-    [CCode (cname="", cheader="")]
-    public override int parse_packet (
-        AVFormatContext format_context,
-        PayloadContext payload_context,
-        AVStream st,
-        LibAVCodec.Packet packet,
-        uint32[] timestamp,
-        uint8[] buffer,
-        int len,
-        uint16 seq,
-        int flags
-    ); // = rdt_parse_packet
-}
+//      [CCode (cname="", cheader="")]
+//      public override int parse_packet (
+//          AVFormatContext format_context,
+//          PayloadContext payload_context,
+//          AVStream st,
+//          LibAVCodec.Packet packet,
+//          uint32[] timestamp,
+//          uint8[] buffer,
+//          int len,
+//          uint16 seq,
+//          int flags
+//      ); // = rdt_parse_packet
+//  }
 
-RDT_HANDLER(live_video, "x-pn-multirate-realvideo-live", AVMEDIA_TYPE_VIDEO);
-RDT_HANDLER(live_audio, "x-pn-multirate-realaudio-live", AVMEDIA_TYPE_AUDIO);
-RDT_HANDLER(video,      "x-pn-realvideo",                AVMEDIA_TYPE_VIDEO);
-RDT_HANDLER(audio,      "x-pn-realaudio",                AVMEDIA_TYPE_AUDIO);
+//  RDT_HANDLER(live_video, "x-pn-multirate-realvideo-live", AVMEDIA_TYPE_VIDEO);
+//  RDT_HANDLER(live_audio, "x-pn-multirate-realaudio-live", AVMEDIA_TYPE_AUDIO);
+//  RDT_HANDLER(video,      "x-pn-realvideo",                AVMEDIA_TYPE_VIDEO);
+//  RDT_HANDLER(audio,      "x-pn-realaudio",                AVMEDIA_TYPE_AUDIO);
 

@@ -118,7 +118,6 @@ public class AVClass : AVClass {
     }
 }
 
-
 [CCode (cname="ff_hls_muxer", cheader="")]
 public class HLSOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]

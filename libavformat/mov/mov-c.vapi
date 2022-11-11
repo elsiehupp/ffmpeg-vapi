@@ -27,24 +27,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define OFFSET(x) offsetof(MOVContext, x)
 //  #define FLAGS AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
 //  static const AVOption mov_options[] = {
-//      {"use_absolute_path"
-//          "allow using absolute path when opening alias, this is a possible security issue"
+//      {"use_absolute_path",
+//          "allow using absolute path when opening alias, this is a possible security issue",
 //          OFFSET(use_absolute_path), AV_OPT_TYPE_BOOL, {.i64 = 0},
 //          0, 1, FLAGS},
-//      {"seek_streams_individually"
-//          "Seek each stream individually to the to the closest point"
+//      {"seek_streams_individually",
+//          "Seek each stream individually to the to the closest point",
 //          OFFSET(seek_individually), AV_OPT_TYPE_BOOL, { .i64 = 1 },
 //          0, 1, FLAGS},
 //      {"ignore_editlist", "Ignore the edit list atom.", OFFSET(ignore_editlist), AV_OPT_TYPE_BOOL, {.i64 = 0},
 //          0, 1, FLAGS},
-//      {"advanced_editlist"
-//          "Modify the AVIndex according to the editlists. Use this option to decode in the order specified by the edits."
+//      {"advanced_editlist",
+//          "Modify the AVIndex according to the editlists. Use this option to decode in the order specified by the edits.",
 //          OFFSET(advanced_editlist), AV_OPT_TYPE_BOOL, {.i64 = 1},
 //          0, 1, FLAGS},
 //      {"ignore_chapters", "", OFFSET(ignore_chapters), AV_OPT_TYPE_BOOL, {.i64 = 0},
 //          0, 1, FLAGS},
-//      {"use_mfra_for"
-//          "use mfra for fragment timestamps"
+//      {"use_mfra_for",
+//          "use mfra for fragment timestamps",
 //          OFFSET(use_mfra_for), AV_OPT_TYPE_INT, {.i64 = FF_MOV_FLAG_MFRA_AUTO},
 //          -1, FF_MOV_FLAG_MFRA_PTS, FLAGS,
 //          "use_mfra_for"},
@@ -107,7 +107,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return "QuickTime / MOV"
+            return "QuickTime / MOV";
         }
     }
     //  .priv_class = mov_class,

@@ -20,14 +20,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const struct ogg_codec ff_opus_codec = {
+[CCode (cname="ff_opus_codec", cheader="")]
+public class OpusCodec : OggCodec {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return "Opus"
+            return "Opus";
         }
     }
-    //  .magic = "OpusHead"
+    public override int8[] magic {
+        public get {
+            return "OpusHead";
         }
     }
     //  .magicsize = 8,

@@ -83,5 +83,5 @@ public class IVFOutputMuxer : AVOutputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     ); // = ivf_check_bitstream,
-    //  .codec_tag = (const AVCodecTag* const []){ codec_ivf_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ codec_ivf_tags, 0 },
 }

@@ -19,8 +19,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const struct ogg_codec ff_skeleton_codec = {
-    //  .magic = "fishead"
+[CCode (cname="ff_skeleton_codec", cheader="")]
+public class SkeletonCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "fishead";
         }
     }
     //  .magicsize = 8,

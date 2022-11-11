@@ -87,7 +87,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "cdxl,xl"
+            return "cdxl,xl";
         }
     }
     //  .flags = AVFMT_GENERIC_INDEX,

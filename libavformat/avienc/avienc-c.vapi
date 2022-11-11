@@ -116,7 +116,7 @@ public class AVIOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (const AVCodecTag * const []) {
+    //  .codec_tag = (AVCodecTag[]) {
     //      ff_codec_bmp_tags, ff_codec_wav_tags, 0
     //  },
     //  .priv_class = avi_muxer_class,

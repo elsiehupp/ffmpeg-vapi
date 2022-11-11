@@ -159,7 +159,7 @@ public class FileURLProtocol : URLProtocol {
     public override int url_close_dir (
         URLContext url_context
     );
-    //  .default_whitelist = "file,crypto"
+    //  .default_whitelist = "file,crypto";
 }
 
 #endif /* CONFIG_FILE_PROTOCOL */
@@ -167,7 +167,7 @@ public class FileURLProtocol : URLProtocol {
 #if CONFIG_PIPE_PROTOCOL
 
 [CCode (cname="ff_pipe_protocol", cheader="")]
-public class URLProtocol : URLProtocol ff_pipe_protocol = {
+public class URLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
@@ -208,7 +208,7 @@ public class URLProtocol : URLProtocol ff_pipe_protocol = {
         }
     }
     //  .priv_data_class = pipe_class,
-    //  .default_whitelist = "crypto"
+    //  .default_whitelist = "crypto";
 }
 
 #endif /* CONFIG_PIPE_PROTOCOL */

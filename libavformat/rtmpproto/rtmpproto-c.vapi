@@ -52,7 +52,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //      { NULL },
 //  }
 
-
 [CCode (cname="rtmp_class", cheader="")]
 public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
@@ -135,7 +134,6 @@ public class URLProtocol : URLProtocol {
     }
     //  .priv_data_class = rtmp_class,
 }
-
 
 [CCode (cname="rtmpe_class", cheader="")]
 public class AVClass : AVClass {
@@ -220,7 +218,6 @@ public class URLProtocol : URLProtocol {
     //  .priv_data_class = rtmpe_class,
 }
 
-
 [CCode (cname="rtmps_class", cheader="")]
 public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
@@ -303,7 +300,6 @@ public class URLProtocol : URLProtocol {
     }
     //  .priv_data_class = rtmps_class,
 }
-
 
 [CCode (cname="rtmpt_class", cheader="")]
 public class AVClass : AVClass {

@@ -93,10 +93,14 @@ public class InputDemuxer : AVInputFormat {
         }
     }
     //  .flags = AVFMT_GENERIC_INDEX,
+    /***********************************************************
+    XXX: use probe
+    ***********************************************************/
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "mp2,mp3,m2a,mpa", /* XXX: use probe
-***********************************************************/
+            return "mp2,mp3,m2a,mpa";
+        }
+    }
     //  .priv_class = demuxer_class,
 }

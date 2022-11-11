@@ -20,12 +20,26 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_qcelp_dynamic_handler = {
-    //  .enc_name = "x-Purevoice"
+[CCode (cname="ff_qcelp_dynamic_handler", cheader="")]
+public class QCELPDynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "x-Purevoice";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_AUDIO,
-    //  .codec_id = LibAVCodec.CodecID.QCELP,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_AUDIO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.QCELP;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

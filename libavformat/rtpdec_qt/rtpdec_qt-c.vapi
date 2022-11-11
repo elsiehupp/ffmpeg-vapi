@@ -25,37 +25,52 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @author Ronald S. Bultje <rbultje@ronald.bitfreak.net>
 ***********************************************************/
 
-#define RTP_QT_HANDLER(m, n, s, t)
-RTPDynamicProtocolHandler ff_ ## m ## _rtp_ ## n ## _handler = {
-    //  .enc_name = s,
-    //  .codec_type = t,
-    //  .codec_id = LibAVCodec.CodecID.NONE,
-    [CCode (cname="priv_data_size", cheader="")]
-    public override size_t priv_data_size {
-        public get {
-            return sizeof (PayloadContext);
-        }
-    }
-    [CCode (cname="", cheader="")]
-    public override void close (
-        PayloadContext protocol_data
-    ); // = qt_rtp_close,
+//  #define RTP_QT_HANDLER(m, n, s, t)
+//  RTPDynamicProtocolHandler ff_ ## m ## _rtp_ ## n ## _handler = {
+//      [CCode (cname="enc_name", cheader="")]
+//      public override string enc_name {
+//          public get {
+//              return s;
+//          }
+//      }
+//      [CCode (cname="codec_type", cheader="")]
+//      public override LibAVUtil.MediaType codec_type {
+//          public get {
+//              return t;
+//          }
+//      }
+//      [CCode (cname="codec_id", cheader="")]
+//      public override LibAVCodec.CodecID codec_id {
+//          public get {
+//              return LibAVCodec.CodecID.NONE;
+//          }
+//      }
+//      [CCode (cname="priv_data_size", cheader="")]
+//      public override size_t priv_data_size {
+//          public get {
+//              return sizeof (PayloadContext);
+//          }
+//      }
+//      [CCode (cname="", cheader="")]
+//      public override void close (
+//          PayloadContext protocol_data
+//      ); // = qt_rtp_close,
 
-    [CCode (cname="", cheader="")]
-    public override int parse_packet (
-        AVFormatContext format_context,
-        PayloadContext payload_context,
-        AVStream st,
-        LibAVCodec.Packet packet,
-        uint32[] timestamp,
-        uint8[] buffer,
-        int len,
-        uint16 seq,
-        int flags
-    ); // = qt_rtp_parse_packet,
-}
+//      [CCode (cname="", cheader="")]
+//      public override int parse_packet (
+//          AVFormatContext format_context,
+//          PayloadContext payload_context,
+//          AVStream st,
+//          LibAVCodec.Packet packet,
+//          uint32[] timestamp,
+//          uint8[] buffer,
+//          int len,
+//          uint16 seq,
+//          int flags
+//      ); // = qt_rtp_parse_packet,
+//  }
 
-RTP_QT_HANDLER(qt,        vid, "X-QT",        AVMEDIA_TYPE_VIDEO);
-RTP_QT_HANDLER(qt,        aud, "X-QT",        AVMEDIA_TYPE_AUDIO);
-RTP_QT_HANDLER(quicktime, vid, "X-QUICKTIME", AVMEDIA_TYPE_VIDEO);
-RTP_QT_HANDLER(quicktime, aud, "X-QUICKTIME", AVMEDIA_TYPE_AUDIO);
+//  RTP_QT_HANDLER(qt,        vid, "X-QT",        AVMEDIA_TYPE_VIDEO);
+//  RTP_QT_HANDLER(qt,        aud, "X-QT",        AVMEDIA_TYPE_AUDIO);
+//  RTP_QT_HANDLER(quicktime, vid, "X-QUICKTIME", AVMEDIA_TYPE_VIDEO);
+//  RTP_QT_HANDLER(quicktime, aud, "X-QUICKTIME", AVMEDIA_TYPE_AUDIO);

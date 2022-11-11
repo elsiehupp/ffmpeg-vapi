@@ -40,7 +40,7 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return "URLContext"
+            return "URLContext";
         }
     }
     //  .item_name = urlcontext_to_name,

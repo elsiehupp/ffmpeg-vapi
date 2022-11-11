@@ -68,7 +68,9 @@ public class MultipartJpegOutputMuxer : AVOutputFormat {
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return "multipart/x-mixed-replace;boundary=" BOUNDARY_TAG,
+            return "multipart/x-mixed-replace;boundary=" + BOUNDARY_TAG;
+        }
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {

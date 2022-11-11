@@ -80,5 +80,7 @@ public class TeeURLProtocol : URLProtocol {
         }
     }
     //  .priv_data_class = tee_class,
-    //  .default_whitelist = "crypto,file,http,https,httpproxy,rtmp,tcp,tls"
+    //  .default_whitelist = "crypto,file,http,https,httpproxy,rtmp,tcp,tls";
+        }
+    }
 }

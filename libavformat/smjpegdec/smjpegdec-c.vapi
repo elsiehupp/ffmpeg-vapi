@@ -60,7 +60,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "mjpg"
+            return "mjpg";
         }
     }
     //  .flags = AVFMT_GENERIC_INDEX,

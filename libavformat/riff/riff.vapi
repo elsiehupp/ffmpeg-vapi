@@ -141,8 +141,8 @@ public struct AVCodecGuid {
 //  extern const AVCodecGuid ff_codec_wav_guids[];
 
 //  public const string FF_PRI_GUID
-//      "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x "
-//      "{%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x}"
+//      "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x " +
+//      "{%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x}";
 
 //  #define FF_ARG_GUID (g)
 //      g[0], g[1], g[2], g[3], g[4], g[5], g[6], g[7],

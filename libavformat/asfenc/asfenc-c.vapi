@@ -110,7 +110,7 @@ public class AsfOutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER,
-    //  .codec_tag = (const AVCodecTag * const []) {
+    //  .codec_tag = (AVCodecTag[]) {
     //      codec_asf_bmp_tags, ff_codec_bmp_tags, ff_codec_wav_tags, 0
     //  },
     //  .priv_class = asf_muxer_class,
@@ -202,9 +202,9 @@ public class AsfStreamOutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .flags = AVFMT_GLOBALHEADER,
-    //  .codec_tag = (const AVCodecTag * const []) {
-        codec_asf_bmp_tags, ff_codec_bmp_tags, ff_codec_wav_tags, 0
-    },
+    //  .codec_tag = (AVCodecTag[]) {
+    //      codec_asf_bmp_tags, ff_codec_bmp_tags, ff_codec_wav_tags, 0
+    //  },
     //  .priv_class = asf_stream_muxer_class,
 }
 #endif /* CONFIG_ASF_STREAM_MUXER */

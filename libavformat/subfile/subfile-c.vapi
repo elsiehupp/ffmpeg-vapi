@@ -94,5 +94,7 @@ public class SubFileURLProtocol : URLProtocol {
         }
     }
     //  .priv_data_class = subfile_class,
-    //  .default_whitelist = "file"
+    //  .default_whitelist = "file";
+        }
+    }
 }

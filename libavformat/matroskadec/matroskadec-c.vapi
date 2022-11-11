@@ -114,7 +114,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return "audio/webm,audio/x-matroska,video/webm,video/x-matroska"
+            return "audio/webm,audio/x-matroska,video/webm,video/x-matroska";
+        }
+    }
 }
 
 [CCode (cname="ff_webm_dash_manifest_demuxer", cheader="")]

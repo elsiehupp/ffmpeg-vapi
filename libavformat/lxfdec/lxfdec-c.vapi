@@ -53,5 +53,5 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     ); // = lxf_read_packet,
-    //  .codec_tag = (const AVCodecTag* const []){lxf_tags, 0},
+    //  .codec_tag = (AVCodecTag[]){lxf_tags, 0},
 }

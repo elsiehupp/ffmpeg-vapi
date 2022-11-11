@@ -78,5 +78,5 @@ public class RMOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     ); // = rm_write_trailer,
-    //  .codec_tag = (const AVCodecTag* const []){ ff_rm_codec_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_rm_codec_tags, 0 },
 }

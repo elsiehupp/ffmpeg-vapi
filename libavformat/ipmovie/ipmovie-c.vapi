@@ -52,17 +52,17 @@ public class InputDemuxer : AVInputFormat {
             return sizeof (IPMVEContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ipmovie_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = ipmovie_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ipmovie_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = ipmovie_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ipmovie_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ipmovie_read_packet,
+    );
 }

@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 //  #define OFFSET(x) offsetof(G726Context, x)
 //  static const AVOption options[] = {
-//      { "code_size", "Bits per G.726 code"
+//      { "code_size", "Bits per G.726 code",
 //          OFFSET(code_size),   AV_OPT_TYPE_INT, {.i64 = 4}, 2,       5, AV_OPT_FLAG_DECODING_PARAM },
-//      { "sample_rate", ""
+//      { "sample_rate", "",
 //          OFFSET(sample_rate), AV_OPT_TYPE_INT, {.i64 = 8000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL },
 //  }

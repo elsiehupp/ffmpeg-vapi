@@ -63,6 +63,6 @@ public class OMAOutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .codec_tag = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
+    //  .codec_tag = (AVCodecTag[]){ff_oma_codec_tags, 0},
     //  .flags = AVFMT_NOTIMESTAMPS,
 }

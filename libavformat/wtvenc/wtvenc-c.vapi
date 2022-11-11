@@ -76,6 +76,5 @@ public class WTVOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     ); // = write_trailer,
-    //  .codec_tag = (const AVCodecTag* const []){ ff_codec_bmp_tags,
-                                                    ff_codec_wav_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_codec_bmp_tags, ff_codec_wav_tags, 0 },
 }

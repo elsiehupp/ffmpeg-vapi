@@ -20,7 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-FF_RAW_DEMUXER_CLASS(wsd)
+//  FF_RAW_DEMUXER_CLASS(wsd)
 [CCode (cname="ff_wsd_demuxer", cheader="")]
 public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
@@ -51,7 +51,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "wsd"
+            return "wsd";
         }
     }
     //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,

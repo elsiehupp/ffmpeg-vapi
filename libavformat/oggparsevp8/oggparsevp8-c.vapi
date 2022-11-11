@@ -20,8 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const struct ogg_codec ff_vp8_codec = {
-    //  .magic = "OVP80"
+[CCode (cname="ff_vp8_codec", cheader="")]
+public class VP8Codec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "OVP80";
         }
     }
     //  .magicsize = 5,

@@ -20,13 +20,32 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_h261_dynamic_handler = {
-    //  .enc_name = "H261"
+[CCode (cname="ff_h261_dynamic_handler", cheader="")]
+public class H261DynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "H261";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id = LibAVCodec.CodecID.H261,
-    //  .need_parsing = AVSTREAM_PARSE_FULL,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_VIDEO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.H261;
+        }
+    }
+    [CCode (cname="need_parsing", cheader="")]
+    public override AVStreamParseType need_parsing {
+        public get {
+            return AVSTREAM_PARSE_FULL;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

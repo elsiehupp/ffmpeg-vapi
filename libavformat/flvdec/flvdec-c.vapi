@@ -108,7 +108,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "flv"
+            return "flv";
         }
     }
     //  .priv_class = flv_class,
@@ -187,7 +187,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "flv"
+            return "flv";
         }
     }
     //  .priv_class = live_flv_class,
@@ -267,7 +267,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "kux"
+            return "kux";
         }
     }
     //  .priv_class = kux_class,

@@ -19,8 +19,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const struct ogg_codec ff_flac_codec = {
-    //  .magic = "\177FLAC"
+[CCode (cname="ff_flac_codec", cheader="")]
+public class FlacCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "\177FLAC";
         }
     }
     //  .magicsize = 5,
@@ -32,8 +35,11 @@ const struct ogg_codec ff_flac_codec = {
     //  .nb_header = 2,
 }
 
-const struct ogg_codec ff_old_flac_codec = {
-    //  .magic = "fLaC"
+[CCode (cname="ff_old_flac_codec", cheader="")]
+public class OldFlacCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "fLaC";
         }
     }
     //  .magicsize = 4,

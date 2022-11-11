@@ -22,8 +22,11 @@
     DEALINGS IN THE SOFTWARE.
 **/
 
-const struct ogg_codec ff_ogm_video_codec = {
-    //  .magic = "\001video"
+[CCode (cname="ff_ogm_video_codec", cheader="")]
+public class OGMVideoCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "\001video";
         }
     }
     //  .magicsize = 6,
@@ -41,8 +44,11 @@ const struct ogg_codec ff_ogm_video_codec = {
     //  .nb_header = 2,
 }
 
-const struct ogg_codec ff_ogm_audio_codec = {
-    //  .magic = "\001audio"
+[CCode (cname="ff_ogm_audio_codec", cheader="")]
+public class OGMAudioCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "\001audio";
         }
     }
     //  .magicsize = 6,
@@ -60,8 +66,11 @@ const struct ogg_codec ff_ogm_audio_codec = {
     //  .nb_header = 2,
 }
 
-const struct ogg_codec ff_ogm_text_codec = {
-    //  .magic = "\001text"
+[CCode (cname="ff_ogm_text_codec", cheader="")]
+public class OGMTextCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "\001text";
         }
     }
     //  .magicsize = 5,
@@ -79,8 +88,11 @@ const struct ogg_codec ff_ogm_text_codec = {
     //  .nb_header = 2,
 }
 
-const struct ogg_codec ff_ogm_old_codec = {
-    //  .magic = "\001Direct Show Samples embedded in Ogg"
+[CCode (cname="ff_ogm_old_codec", cheader="")]
+public class OGMOldCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "\001Direct Show Samples embedded in Ogg";
         }
     }
     //  .magicsize = 35,

@@ -38,7 +38,7 @@ public class FourXMInputDemuxer : AVInputFormat {
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            "4X Technologies";
+            return "4X Technologies";
         }
     }
     [CCode (cname="priv_data_size", cheader="")]

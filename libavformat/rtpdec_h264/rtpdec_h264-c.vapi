@@ -33,13 +33,32 @@ Interleaved Mode (2). (This requires implementing STAP-B, MTAP16, MTAP24,
                        FU-B packet types)
 ***********************************************************/
 
-const RTPDynamicProtocolHandler ff_h264_dynamic_handler = {
-    //  .enc_name = "H264"
+[CCode (cname="ff_h264_dynamic_handler", cheader="")]
+public class H264DynamicHandler : RTPDynamicProtocolHandler {
+    [CCode (cname="enc_name", cheader="")]
+    public override string enc_name {
+        public get {
+            return "H264";
         }
     }
-    //  .codec_type = AVMEDIA_TYPE_VIDEO,
-    //  .codec_id = LibAVCodec.CodecID.H264,
-    //  .need_parsing = AVSTREAM_PARSE_FULL,
+    [CCode (cname="codec_type", cheader="")]
+    public override LibAVUtil.MediaType codec_type {
+        public get {
+            return AVMEDIA_TYPE_VIDEO;
+        }
+    }
+    [CCode (cname="codec_id", cheader="")]
+    public override LibAVCodec.CodecID codec_id {
+        public get {
+            return LibAVCodec.CodecID.H264;
+        }
+    }
+    [CCode (cname="need_parsing", cheader="")]
+    public override AVStreamParseType need_parsing {
+        public get {
+            return AVSTREAM_PARSE_FULL;
+        }
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

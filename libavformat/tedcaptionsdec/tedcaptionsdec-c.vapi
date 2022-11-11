@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 //  static const AVOption tedcaptions_options[] = {
-//      { "start_time", "set the start time (offset) of the subtitles, in ms"
+//      { "start_time", "set the start time (offset) of the subtitles, in ms",
 //        offsetof(TEDCaptionsDemuxer, start_time), AV_OPT_TYPE_INT64,
 //        { .i64 = 15000 }, INT64_MIN, INT64_MAX,
 //        AV_OPT_FLAG_SUBTITLE_PARAM | AV_OPT_FLAG_DECODING_PARAM },

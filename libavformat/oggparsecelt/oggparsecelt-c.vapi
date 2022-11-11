@@ -20,8 +20,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const struct ogg_codec ff_celt_codec = {
-    //  .magic = "CELT    "
+[CCode (cname="ff_celt_codec", cheader="")]
+public class CELTCodec : OggCodec {
+    public override int8[] magic {
+        public get {
+            return "CELT    ";
         }
     }
     //  .magicsize = 8,

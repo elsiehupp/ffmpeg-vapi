@@ -46,7 +46,7 @@ along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
 //      {"recovery_wait_time", "Waiting time between recovery attempts", OFFSET(recovery_wait_time),
 //          AV_OPT_TYPE_DURATION, {.i64 = FIFO_DEFAULT_RECOVERY_WAIT_TIME_USEC}, 0, INT64_MAX, AV_OPT_FLAG_ENCODING_PARAM},
 
-//      {"recovery_wait_streamtime", "Use stream time instead of real time while waiting for recovery"
+//      {"recovery_wait_streamtime", "Use stream time instead of real time while waiting for recovery",
 //          OFFSET(recovery_wait_streamtime), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
 
 //      {"recover_any_error", "Attempt recovery regardless of type of the error", OFFSET(recover_any_error),

@@ -22,6 +22,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+#if CONFIG_AU_MUXER
 /***********************************************************
 Reference documents:
 http://www.opengroup.org/public/pubs/external/auformat.html
@@ -86,7 +87,7 @@ public class AUOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (const AVCodecTag* const []) { codec_au_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]) { codec_au_tags, 0 },
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 

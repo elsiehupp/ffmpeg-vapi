@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define OFFSET(x) offsetof(AIFFOutputContext, x)
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
 //  static const AVOption options[] = {
-//      { "write_id3v2", "Enable ID3 tags writing."
+//      { "write_id3v2", "Enable ID3 tags writing.",
 //        OFFSET(write_id3v2), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, ENC },
-//      { "id3v2_version", "Select ID3v2 version to write. Currently 3 and 4 are supported."
+//      { "id3v2_version", "Select ID3v2 version to write. Currently 3 and 4 are supported.",
 //        OFFSET(id3v2_version), AV_OPT_TYPE_INT, {.i64 = 4}, 3, 4, ENC },
 //      { NULL },
 //  }
@@ -113,6 +113,6 @@ public class AiffOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (const AVCodecTag* const []){ ff_codec_aiff_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_codec_aiff_tags, 0 },
     //  .priv_class = aiff_muxer_class,
 }

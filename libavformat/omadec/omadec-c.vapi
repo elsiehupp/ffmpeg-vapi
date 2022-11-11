@@ -88,8 +88,8 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "oma,omg,aa3"
+            return "oma,omg,aa3";
         }
     }
-    //  .codec_tag = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
+    //  .codec_tag = (AVCodecTag[]){ff_oma_codec_tags, 0},
 }

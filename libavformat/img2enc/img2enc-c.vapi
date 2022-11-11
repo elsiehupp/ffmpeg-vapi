@@ -75,8 +75,8 @@ public class Image2OutputMuxer : AVOutputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "bmp,dpx,jls,jpeg,jpg,ljpg,pam,pbm,pcx,pgm,pgmyuv,png,"
-                      "ppm,sgi,tga,tif,tiff,jp2,j2c,j2k,xwd,sun,ras,rs,im1,im8,im24,"
+            return "bmp,dpx,jls,jpeg,jpg,ljpg,pam,pbm,pcx,pgm,pgmyuv,png," +
+                      "ppm,sgi,tga,tif,tiff,jp2,j2c,j2k,xwd,sun,ras,rs,im1,im8,im24," +
                       "sunras,xbm,xface,pix,y";
         }
     }
@@ -92,21 +92,21 @@ public class Image2OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MJPEG;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="query_codec", cheader="")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
-    ); // = query_codec,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS | AVFMT_NOFILE,
     //  .priv_class = img2mux_class,
 }
@@ -139,21 +139,21 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MJPEG;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="query_codec", cheader="")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
-    ); // = query_codec,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS
 }
 #endif

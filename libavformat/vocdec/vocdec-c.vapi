@@ -60,5 +60,5 @@ public class InputDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     ); // = voc_read_seek,
-    //  .codec_tag = (const AVCodecTag* const []){ ff_voc_codec_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_voc_codec_tags, 0 },
 }

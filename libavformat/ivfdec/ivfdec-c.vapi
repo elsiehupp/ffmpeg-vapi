@@ -47,5 +47,5 @@ public class InputDemuxer : AVInputFormat {
         LibAVCodec.Packet packet
     ); // = read_packet,
     //  .flags = AVFMT_GENERIC_INDEX,
-    //  .codec_tag = (const AVCodecTag* const []){ ff_codec_bmp_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_codec_bmp_tags, 0 },
 }

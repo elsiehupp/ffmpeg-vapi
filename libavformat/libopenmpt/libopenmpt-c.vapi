@@ -91,15 +91,14 @@ public class InputDemuxer : AVInputFormat {
         int flags
     ); // = read_seek_openmpt,
     //  .priv_class = class_openmpt,
-#if OPENMPT_API_VERSION_AT_LEAST(0,3,0)
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "669,amf,ams,dbm,digi,dmf,dsm,dtm,far,gdm,ice,imf,it,j2b,m15,mdl,med,mmcmp,mms,mo3,mod,mptm,mt2,mtm,nst,okt,plm,ppm,psm,pt36,ptm,s3m,sfx,sfx2,st26,stk,stm,stp,ult,umx,wow,xm,xpk"
-#else
-    [CCode (cname="extensions", cheader="")]
-    public override string extensions {
-        public get {
-            return "669,amf,ams,dbm,digi,dmf,dsm,far,gdm,ice,imf,it,j2b,m15,mdl,med,mmcmp,mms,mo3,mod,mptm,mt2,mtm,nst,okt,plm,ppm,psm,pt36,ptm,s3m,sfx,sfx2,st26,stk,stm,ult,umx,wow,xm,xpk"
-#endif
+            if (OPENMPT_API_VERSION_AT_LEAST(0,3,0)) {
+                return "669,amf,ams,dbm,digi,dmf,dsm,dtm,far,gdm,ice,imf,it,j2b,m15,mdl,med,mmcmp,mms,mo3,mod,mptm,mt2,mtm,nst,okt,plm,ppm,psm,pt36,ptm,s3m,sfx,sfx2,st26,stk,stm,stp,ult,umx,wow,xm,xpk";
+            } else {
+                return "669,amf,ams,dbm,digi,dmf,dsm,far,gdm,ice,imf,it,j2b,m15,mdl,med,mmcmp,mms,mo3,mod,mptm,mt2,mtm,nst,okt,plm,ppm,psm,pt36,ptm,s3m,sfx,sfx2,st26,stk,stm,ult,umx,wow,xm,xpk";
+            }
+        }
+    }
 }

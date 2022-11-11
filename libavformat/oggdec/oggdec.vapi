@@ -24,7 +24,9 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-public abstract class ogg_codec {
+
+[CCode (cname="struct ogg_codec", cheader="")]
+public abstract class OggCodec {
     public int8[] magic;
     public uint8 magicsize;
     public int8[] name;
@@ -68,7 +70,8 @@ public abstract class ogg_codec {
     );
 }
 
-public struct ogg_stream {
+[CCode (cname="struct ogg_stream", cheader="")]
+public struct OggStream {
     public uint8[] buffer;
     public uint bufsize;
     public uint bufpos;
@@ -90,7 +93,7 @@ public struct ogg_stream {
     ***********************************************************/
     public int64 page_pos;
     public int flags;
-    public ogg_codec codec;
+    public OggCodec codec;
     public int header;
     public int nsegs;
     public int segp;
@@ -122,16 +125,18 @@ public struct ogg_stream {
     public void *private;
 }
 
-public struct ogg_state {
+[CCode (cname="struct ogg_state", cheader="")]
+public struct OggState {
     public uint64 pos;
     public int curidx;
-    public ogg_state *next;
+    public OggState *next;
     public int nstreams;
-    public ogg_stream streams[1];
+    public OggStream streams[1];
 }
 
-public struct ogg {
-    public ogg_stream[] streams;
+[CCode (cname="struct ogg", cheader="")]
+public struct Ogg {
+    public OggStream[] streams;
     public int nstreams;
     public int headers;
     public int curidx;
@@ -139,7 +144,7 @@ public struct ogg {
     file offset of the current page
     ***********************************************************/
     public int64 page_pos;
-    public ogg_state state;
+    public OggState state;
 }
 
 [Flags]
@@ -151,22 +156,22 @@ public enum OggFlags {
 
 public const uint64 OGG_NOGRANULE_VALUE;
 
-//  extern const struct ogg_codec ff_celt_codec;
-//  extern const struct ogg_codec ff_daala_codec;
-//  extern const struct ogg_codec ff_dirac_codec;
-//  extern const struct ogg_codec ff_flac_codec;
-//  extern const struct ogg_codec ff_ogm_audio_codec;
-//  extern const struct ogg_codec ff_ogm_old_codec;
-//  extern const struct ogg_codec ff_ogm_text_codec;
-//  extern const struct ogg_codec ff_ogm_video_codec;
-//  extern const struct ogg_codec ff_old_dirac_codec;
-//  extern const struct ogg_codec ff_old_flac_codec;
-//  extern const struct ogg_codec ff_opus_codec;
-//  extern const struct ogg_codec ff_skeleton_codec;
-//  extern const struct ogg_codec ff_speex_codec;
-//  extern const struct ogg_codec ff_theora_codec;
-//  extern const struct ogg_codec ff_vorbis_codec;
-//  extern const struct ogg_codec ff_vp8_codec;
+//  extern public class OggCodec ff_celt_codec;
+//  extern public class OggCodec ff_daala_codec;
+//  extern public class OggCodec ff_dirac_codec;
+//  extern public class OggCodec ff_flac_codec;
+//  extern public class OggCodec ff_ogm_audio_codec;
+//  extern public class OggCodec ff_ogm_old_codec;
+//  extern public class OggCodec ff_ogm_text_codec;
+//  extern public class OggCodec ff_ogm_video_codec;
+//  extern public class OggCodec ff_old_dirac_codec;
+//  extern public class OggCodec ff_old_flac_codec;
+//  extern public class OggCodec ff_opus_codec;
+//  extern public class OggCodec ff_skeleton_codec;
+//  extern public class OggCodec ff_speex_codec;
+//  extern public class OggCodec ff_theora_codec;
+//  extern public class OggCodec ff_vorbis_codec;
+//  extern public class OggCodec ff_vp8_codec;
 
 public int ff_vorbis_comment (
     AVFormatContext ms,
@@ -184,7 +189,7 @@ public int ff_vorbis_stream_comment (
 );
 
 public static int ogg_find_stream (
-    ogg ogg,
+    Ogg ogg,
     int serial
 );
 

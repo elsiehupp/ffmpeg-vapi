@@ -129,12 +129,12 @@ void free_test_struct (out test_struct foo) {
         int flags_opt;
     } child_struct;
     public const Option child_opts[] = {
-        { "test_flags", "This is a test option of flags type."
+        { "test_flags", "This is a test option of flags type.",
         offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, int.MAX },
         { null },
     }
     public const Class child_class = {
-        //  .class_name = "child class"
+        //  .class_name = "child class";
         //  .item_name = av_default_item_name,
         //  .option = child_opts,
         //  .version = LIBAVUTIL_VERSION_INT,
@@ -174,7 +174,7 @@ void free_test_struct (out test_struct foo) {
     For example, to add some named constants for the test_flags option
     above, put the following into the child_opts array:
     @code
-    { "test_flags", "This is a test option of flags type."
+    { "test_flags", "This is a test option of flags type.",
      offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, int.MAX, "test_unit" },
     { "flag1", "This is a flag with value 16", 0, OptionType.CONST, { .i64 = 16 }, 0, 0, "test_unit" },
     @endcode

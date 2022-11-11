@@ -29,7 +29,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-//  #if CONFIG_WAV_MUXER
+#if CONFIG_WAV_MUXER
 //  #define OFFSET(x) offsetof(WAVMuxContext, x)
 //  #define ENC AV_OPT_FLAG_ENCODING_PARAM
 //  static const AVOption options[] = {
@@ -133,7 +133,7 @@ public class WAVOutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     ); // = wav_write_trailer,
     //  .flags = AVFMT_TS_NONSTRICT,
-    //  .codec_tag = (const AVCodecTag* const []){ ff_codec_wav_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_codec_wav_tags, 0 },
     //  .priv_class = wav_muxer_class,
 }
 #endif /* CONFIG_WAV_MUXER */
@@ -192,6 +192,6 @@ public class OutputMuxer : AVOutputFormat {
         AVFormatContext format_context
     ); // = w64_write_trailer,
     //  .flags = AVFMT_TS_NONSTRICT,
-    //  .codec_tag = (const AVCodecTag* const []){ ff_codec_wav_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_codec_wav_tags, 0 },
 }
 #endif /* CONFIG_W64_MUXER */

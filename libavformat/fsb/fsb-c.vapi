@@ -50,7 +50,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return "fsb"
+            return "fsb";
         }
     }
     //  .flags = AVFMT_GENERIC_INDEX,
