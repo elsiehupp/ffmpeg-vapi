@@ -151,10 +151,22 @@ public class AVClass : AVClass {
             return "mov muxer";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_mov_muxer", cheader="")]
@@ -239,10 +251,22 @@ public class AVClass : AVClass {
             return "tgp muxer";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_tgp_muxer", cheader="")]
@@ -325,10 +349,22 @@ public class AVClass : AVClass {
             return "mp4 muxer";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_mp4_muxer", cheader="")]
@@ -417,10 +453,22 @@ public class AVClass : AVClass {
             return "psp muxer";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_psp_muxer", cheader="")]
@@ -503,10 +551,22 @@ public class AVClass : AVClass {
             return "tg2 muxer";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_tg2_muxer", cheader="")]
@@ -589,10 +649,22 @@ public class AVClass : AVClass {
             return "ipod muxer";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_ipod_muxer", cheader="")]
@@ -681,10 +753,22 @@ public class AVClass : AVClass {
             return "ismv muxer";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_ismv_muxer", cheader="")]
@@ -774,10 +858,22 @@ public class AVClass : AVClass {
             return "f4v muxer";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_f4v_muxer", cheader="")]

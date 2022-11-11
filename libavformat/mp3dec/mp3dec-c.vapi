@@ -30,13 +30,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "mp3";
         }
-    } // = "mp3"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     //  .category = AV_CLASS_CATEGORY_DEMUXER,
 }
 
@@ -45,35 +57,35 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mp3";
         }
-    } // = "mp3"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MP2/3 (MPEG audio layer 2/3)";
         }
-    } // = "MP2/3 (MPEG audio layer 2/3)"
-    [CCode (cname="", cheader="")]
+    }
+    [CCode (cname="mp3_read_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = mp3_read_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mp3_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = mp3_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mp3_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = mp3_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="mp3_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = mp3_seek,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -84,9 +96,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
-        }
-    } // = "mp2,mp3,m2a,mpa", /* XXX: use probe
+            return "mp2,mp3,m2a,mpa", /* XXX: use probe
 ***********************************************************/
     //  .priv_class = demuxer_class,
 }

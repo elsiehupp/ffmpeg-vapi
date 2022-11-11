@@ -25,21 +25,21 @@ public class MetadataOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ffmetadata";
         }
-    } // = "ffmetadata"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "FFmpeg metadata in text";
         }
-    } // = "FFmpeg metadata in text"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "ffmeta";
         }
-    } // = "ffmeta"
+    }
     [CCode (cname="write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context

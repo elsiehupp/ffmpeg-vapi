@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_dv_dynamic_handler = {
     //  .enc_name = "DV"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.DVVIDEO,
     //  .need_parsing = AVSTREAM_PARSE_FULL,

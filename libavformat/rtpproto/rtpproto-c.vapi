@@ -33,8 +33,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //      { "rtcp_port",          "Custom rtcp port",                                                 OFFSET(rtcp_port),       AV_OPT_TYPE_INT,    { .i64 = -1 },    -1, INT_MAX, .flags = D|E },
 //      { "local_rtpport",      "Local rtp port",                                                   OFFSET(local_rtpport),   AV_OPT_TYPE_INT,    { .i64 = -1 },    -1, INT_MAX, .flags = D|E },
 //      { "local_rtcpport",     "Local rtcp port",                                                  OFFSET(local_rtcpport),  AV_OPT_TYPE_INT,    { .i64 = -1 },    -1, INT_MAX, .flags = D|E },
-//      { "connect",            "Connect socket",                                                   OFFSET(connect),         AV_OPT_TYPE_BOOL,   { .i64 =  0 },     0, 1,       //  .flags = D|E },
-//      { "write_to_source",    "Send packets to the source address of the latest received packet", OFFSET(write_to_source), AV_OPT_TYPE_BOOL,   { .i64 =  0 },     0, 1,       //  .flags = D|E },
+//      { "connect",            "Connect socket",                                                   OFFSET(connect),         AV_OPT_TYPE_BOOL,   { .i64 = 0 },     0, 1,       //  .flags = D|E },
+//      { "write_to_source",    "Send packets to the source address of the latest received packet", OFFSET(write_to_source), AV_OPT_TYPE_BOOL,   { .i64 = 0 },     0, 1,       //  .flags = D|E },
 //      { "pkt_size",           "Maximum packet size",                                              OFFSET(pkt_size),        AV_OPT_TYPE_INT,    { .i64 = -1 },    -1, INT_MAX, .flags = D|E },
 //      { "dscp",               "DSCP class",                                                       OFFSET(dscp),            AV_OPT_TYPE_INT,    { .i64 = -1 },    -1, INT_MAX, .flags = D|E },
 //      { "sources",            "Source list",                                                      OFFSET(sources),         AV_OPT_TYPE_STRING, { .str = NULL },               //  .flags = D|E },
@@ -48,13 +48,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "rtp";
         }
-    } // = "rtp"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_rtp_protocol", cheader="")]
@@ -62,9 +74,9 @@ public class RTPURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "rtp";
         }
-    } // = "rtp"
+    }
     [CCode (cname="", cheader="")]
     public override int url_open (
         URLContext url_context,
@@ -103,6 +115,11 @@ public class RTPURLProtocol : URLProtocol {
             return sizeof (RTPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = rtp_class,
 }

@@ -35,9 +35,9 @@ public class MMSTURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mmst";
         }
-    } // = "mmst"
+    }
     [CCode (cname="", cheader="")]
     public override int url_open (
         URLContext url_context,
@@ -60,5 +60,10 @@ public class MMSTURLProtocol : URLProtocol {
             return sizeof (MMSTContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }

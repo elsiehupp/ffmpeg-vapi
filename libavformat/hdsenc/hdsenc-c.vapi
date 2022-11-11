@@ -35,13 +35,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "HDS muxer";
         }
-    } // = "HDS muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_hds_muxer", cheader="")]
@@ -49,15 +61,15 @@ public class HDSOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "hds";
         }
-    } // = "hds"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "HDS Muxer";
         }
-    } // = "HDS Muxer"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -77,19 +89,19 @@ public class HDSOutputMuxer : AVOutputFormat {
         }
     }
     //  .flags = AVFMT_GLOBALHEADER | AVFMT_NOFILE,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="hds_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = hds_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hds_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = hds_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hds_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = hds_write_trailer,
+    );
     //  .priv_class = hds_class,
 }

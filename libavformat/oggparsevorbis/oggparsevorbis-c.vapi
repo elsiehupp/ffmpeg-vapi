@@ -24,6 +24,8 @@ furnished to do so, subject to the following conditions:
 
 const struct ogg_codec ff_vorbis_codec = {
     //  .magic = "\001vorbis"
+        }
+    }
     //  .magicsize = 7,
     [CCode (cname="", cheader="")]
     public override int header (

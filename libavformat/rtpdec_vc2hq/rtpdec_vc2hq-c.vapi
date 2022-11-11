@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_vc2hq_dynamic_handler = {
     //  .enc_name = "VC2"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.DIRAC,
     [CCode (cname="priv_data_size", cheader="")]

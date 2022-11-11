@@ -25,33 +25,33 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "lvf";
         }
-    } // = "lvf"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "LVF";
         }
-    } // = "LVF"
-    [CCode (cname="", cheader="")]
+    }
+    [CCode (cname="lvf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = lvf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="lvf_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = lvf_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="lvf_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = lvf_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "lvf"
         }
-    } // = "lvf"
+    }
     //  .flags = AVFMT_GENERIC_INDEX,
 }

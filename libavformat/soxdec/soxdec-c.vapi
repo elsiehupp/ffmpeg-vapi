@@ -34,15 +34,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sox";
         }
-    } // = "sox"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "SoX native";
         }
-    } // = "SoX native"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -51,16 +51,16 @@ public class InputDemuxer : AVInputFormat {
     public override int read_header (
         AVFormatContext format_context
     ); // = sox_read_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_pcm_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_pcm_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = ff_pcm_read_seek,
+    );
 }

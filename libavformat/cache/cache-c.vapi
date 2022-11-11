@@ -39,13 +39,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "Cache";
         }
-    } // = "Cache"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_cache_protocol", cheader="")]
@@ -53,9 +65,9 @@ public class CacheURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "cache";
         }
-    } // = "cache"
+    }
     [CCode (cname="cache_open", cheader="")]
     public override int url_open2 (
         URLContext url_context,

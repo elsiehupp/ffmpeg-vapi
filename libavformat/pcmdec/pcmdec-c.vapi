@@ -34,11 +34,26 @@ public class AVClass : AVClass {
         public get {
             return ;
         }
-    } // = #name_ " demuxer"
-    //  .item_name = av_default_item_name,
+    } // = #name_ " demuxer";
+        }
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = pcm_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
+
 [CCode (cname="ff_pcm_ ## name_ ## _demuxer", cheader="")]
 public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
@@ -63,18 +78,18 @@ public class InputDemuxer : AVInputFormat {
     public override int read_header (
         AVFormatContext format_context
     ); // = pcm_read_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_pcm_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_pcm_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = ff_pcm_read_seek,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
@@ -166,12 +181,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "sln demuxer";
         }
-    } // = "sln demuxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = sln_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_sln_demuxer", cheader="")]
@@ -179,15 +206,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sln";
         }
-    } // = "sln"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Asterisk raw pcm";
         }
-    } // = "Asterisk raw pcm"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -198,25 +225,25 @@ public class InputDemuxer : AVInputFormat {
     public override int read_header (
         AVFormatContext format_context
     ); // = pcm_read_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_pcm_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_pcm_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = ff_pcm_read_seek,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "sln";
         }
-    } // = "sln"
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

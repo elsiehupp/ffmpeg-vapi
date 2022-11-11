@@ -38,12 +38,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "file";
         }
-    } // = "file"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = file_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="pipe_class", cheader="")]
@@ -51,12 +63,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "pipe";
         }
-    } // = "pipe"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 #if CONFIG_FILE_PROTOCOL
@@ -66,9 +90,9 @@ public class FileURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "file";
         }
-    } // = "file"
+    }
     [CCode (cname="file_open", cheader="")]
     public override int url_open (
         URLContext url_context,
@@ -147,9 +171,9 @@ public class URLProtocol : URLProtocol ff_pipe_protocol = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "pipe";
         }
-    } // = "pipe"
+    }
     [CCode (cname="pipe_open", cheader="")]
     public override int url_open (
         URLContext url_context,

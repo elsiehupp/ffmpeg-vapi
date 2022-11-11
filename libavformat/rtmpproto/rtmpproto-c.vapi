@@ -61,9 +61,21 @@ public class AVClass : AVClass {
             return "rtmp";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = rtmp_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_rtmp_protocol", cheader="")]
@@ -115,7 +127,12 @@ public class URLProtocol : URLProtocol {
             return sizeof (RTMPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = rtmp_class,
 }
 
@@ -128,9 +145,21 @@ public class AVClass : AVClass {
             return "rtmpe";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = rtmp_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_rtmpe_protocol", cheader="")]
@@ -182,7 +211,12 @@ public class URLProtocol : URLProtocol {
             return sizeof (RTMPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = rtmpe_class,
 }
 
@@ -195,9 +229,21 @@ public class AVClass : AVClass {
             return "rtmps";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = rtmp_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_rtmps_protocol", cheader="")]
@@ -249,7 +295,12 @@ public class URLProtocol : URLProtocol {
             return sizeof (RTMPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = rtmps_class,
 }
 
@@ -262,9 +313,21 @@ public class AVClass : AVClass {
             return "rtmpt";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = rtmp_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_rtmpt_protocol", cheader="")]
@@ -316,7 +379,12 @@ public class URLProtocol : URLProtocol {
             return sizeof (RTMPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = rtmpt_class,
 }
 
@@ -328,9 +396,21 @@ public class AVClass : AVClass {
             return "rtmpte";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = rtmp_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_rtmpte_protocol", cheader="")]
@@ -382,7 +462,12 @@ public class URLProtocol : URLProtocol {
             return sizeof (RTMPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = rtmpte_class,
 }
 
@@ -435,7 +520,12 @@ public class URLProtocol : URLProtocol {
             return sizeof (RTMPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = rtmpte_class,
 }
 
@@ -447,9 +537,21 @@ public class AVClass : AVClass {
             return "rtmpts";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = rtmp_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_rtmpts_protocol", cheader="")]
@@ -501,7 +603,12 @@ public class URLProtocol : URLProtocol {
             return sizeof (RTMPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = rtmpts_class,
 }
 

@@ -25,15 +25,15 @@ public class NullOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "null";
         }
-    } // = "null"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw null video";
         }
-    } // = "raw null video"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {

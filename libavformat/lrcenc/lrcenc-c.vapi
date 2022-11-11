@@ -25,38 +25,37 @@ public class LRCOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "lrc";
         }
-    } // = "lrc"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "LRC lyrics";
         }
-    } // = "LRC lyrics"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "lrc";
         }
-    } // = "lrc"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return 0;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="lrc_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = lrc_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="lrc_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = lrc_write_packet,
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_GLOBALHEADER |
-                      AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT,
+    );
+    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_GLOBALHEADER | AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT,
     //  .subtitle_codec = LibAVCodec.CodecID.SUBRIP
 }

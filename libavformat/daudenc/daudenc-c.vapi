@@ -25,21 +25,21 @@ public class DAUDOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "daud";
         }
-    } // = "daud"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "D-Cinema audio";
         }
-    } // = "D-Cinema audio"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "302";
         }
-    } // = "302"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {

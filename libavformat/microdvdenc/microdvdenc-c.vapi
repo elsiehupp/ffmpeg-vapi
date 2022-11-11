@@ -25,37 +25,37 @@ public class MicroDVDOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "microdvd";
         }
-    } // = "microdvd"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MicroDVD subtitle format";
         }
-    } // = "MicroDVD subtitle format"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "text/x-microdvd";
         }
-    } // = "text/x-microdvd"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "sub";
         }
-    } // = "sub"
-    [CCode (cname="", cheader="")]
+    }
+    [CCode (cname="microdvd_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = microdvd_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="microdvd_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = microdvd_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
     //  .subtitle_codec = LibAVCodec.CodecID.MICRODVD,
 }

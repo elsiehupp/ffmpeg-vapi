@@ -76,12 +76,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "mov,mp4,m4a,3gp,3g2,mj2";
         }
-    } // = "mov,mp4,m4a,3gp,3g2,mj2"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = mov_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_mov_demuxer", cheader="")]
@@ -89,15 +101,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mov,mp4,m4a,3gp,3g2,mj2";
         }
-    } // = "mov,mp4,m4a,3gp,3g2,mj2"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "QuickTime / MOV"
         }
-    } // = "QuickTime / MOV"
+    }
     //  .priv_class = mov_class,
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
@@ -108,9 +120,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "mov,mp4,m4a,3gp,3g2,mj2";
         }
-    } // = "mov,mp4,m4a,3gp,3g2,mj2"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context

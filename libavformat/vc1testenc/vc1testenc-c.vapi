@@ -25,21 +25,21 @@ public class VC1TestOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "vc1test";
         }
-    } // = "vc1test"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "VC-1 test bitstream";
         }
-    } // = "VC-1 test bitstream"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "rcv";
         }
-    } // = "rcv"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

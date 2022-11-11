@@ -29,15 +29,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mlv";
         }
-    } // = "mlv"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Magic Lantern Video (MLV)";
         }
-    } // = "Magic Lantern Video (MLV)"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

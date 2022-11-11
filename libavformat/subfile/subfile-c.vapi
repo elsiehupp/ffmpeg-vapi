@@ -36,12 +36,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "subfile";
         }
-    } // = "subfile"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = subfile_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_subfile_protocol", cheader="")]
@@ -49,9 +61,9 @@ public class SubFileURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "subfile";
         }
-    } // = "subfile"
+    }
     [CCode (cname="", cheader="")]
     public override int url_open2 (
         URLContext url_context,

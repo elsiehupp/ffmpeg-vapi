@@ -41,13 +41,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "tcp";
         }
-    } // = "tcp"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_tcp_protocol", cheader="")]
@@ -55,9 +67,9 @@ public class TCPURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "tcp";
         }
-    } // = "tcp"
+    }
     [CCode (cname="", cheader="")]
     public override int url_open (
         URLContext url_context,
@@ -104,6 +116,11 @@ public class TCPURLProtocol : URLProtocol {
             return sizeof (TCPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = tcp_class,
 }

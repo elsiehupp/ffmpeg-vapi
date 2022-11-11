@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_vp9_dynamic_handler = {
     //  .enc_name = "VP9"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.VP9,
     [CCode (cname="priv_data_size", cheader="")]

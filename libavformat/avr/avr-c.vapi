@@ -25,15 +25,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "avr";
         }
-    } // = "avr"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "AVR (Audio Visual Research)";
         }
-    } // = "AVR (Audio Visual Research)"
+    }
     [CCode (cname="avr_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context

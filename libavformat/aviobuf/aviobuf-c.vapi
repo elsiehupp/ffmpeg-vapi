@@ -33,11 +33,23 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "AVIOContext";
         }
-    } // = "AVIOContext"
-    //  .item_name = av_default_item_name,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     //  .option = ff_avio_options,
     [CCode (cname="ff_avio_child_next", cheader="")]
     public override void *child_next (

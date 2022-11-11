@@ -40,7 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //      { "reuse_socket",   "explicitly allow reusing UDP sockets",            OFFSET(reuse_socket),   AV_OPT_TYPE_BOOL,   { .i64 = -1 },    -1, 1,       //  .flags = D|E },
 //      { "broadcast", "explicitly allow or disallow broadcast destination",   OFFSET(is_broadcast),   AV_OPT_TYPE_BOOL,   { .i64 = 0  },     0, 1,       E },
 //      { "ttl",            "Time to live (multicast only)",                   OFFSET(ttl),            AV_OPT_TYPE_INT,    { .i64 = 16 },     0, INT_MAX, E },
-//      { "connect",        "set if connect() should be called on socket",     OFFSET(is_connected),   AV_OPT_TYPE_BOOL,   { .i64 =  0 },     0, 1,       //  .flags = D|E },
+//      { "connect",        "set if connect() should be called on socket",     OFFSET(is_connected),   AV_OPT_TYPE_BOOL,   { .i64 = 0 },     0, 1,       //  .flags = D|E },
 //      { "fifo_size",      "set the UDP receiving circular buffer size, expressed as a number of packets with size of 188 bytes", OFFSET(circular_buffer_size), AV_OPT_TYPE_INT, {.i64 = 7*4096}, 0, INT_MAX, D },
 //      { "overrun_nonfatal", "survive in case of UDP receiving circular buffer overrun", OFFSET(overrun_nonfatal), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1,    D },
 //      { "timeout",        "set raise error timeout (only in read mode)",     OFFSET(timeout),        AV_OPT_TYPE_INT,    { .i64 = 0 },      0, INT_MAX, D },
@@ -54,13 +54,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "udp";
         }
-    } // = "udp"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="udplite_context_class", cheader="")]
@@ -68,12 +80,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "udplite";
         }
-    } // = "udplite"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_udp_protocol", cheader="")]
@@ -81,9 +105,9 @@ public class UDPURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "udp";
         }
-    } // = "udp"
+    }
     [CCode (cname="", cheader="")]
     public override int url_open (
         URLContext url_context,
@@ -117,7 +141,12 @@ public class UDPURLProtocol : URLProtocol {
         }
     }
     //  .priv_data_class = udp_class,
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }
 
 [CCode (cname="ff_udplite_protocol", cheader="")]
@@ -125,9 +154,9 @@ public class UDPLiteURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "udplite";
         }
-    } // = "udplite"
+    }
     [CCode (cname="", cheader="")]
     public override int url_open (
         URLContext url_context,
@@ -161,5 +190,10 @@ public class UDPLiteURLProtocol : URLProtocol {
         }
     }
     //  .priv_data_class = udplite_context_class,
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }

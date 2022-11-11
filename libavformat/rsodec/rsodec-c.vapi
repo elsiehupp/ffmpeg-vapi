@@ -26,36 +26,36 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "rso";
         }
-    } // = "rso"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Lego Mindstorms RSO";
         }
-    } // = "Lego Mindstorms RSO"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "rso";
         }
-    } // = "rso"
+    }
     [CCode (cname="", cheader="")]
     public override int read_header (
         AVFormatContext format_context
     ); // = rso_read_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_pcm_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_pcm_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = ff_pcm_read_seek,
-    //  .codec_tag =   (const AVCodecTag* const []){ff_codec_rso_tags, 0},
+    );
+    //  .codec_tag = (const AVCodecTag* const []){ff_codec_rso_tags, 0},
 }

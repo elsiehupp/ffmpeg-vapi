@@ -32,13 +32,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "gsm demuxer";
         }
-    } // = "gsm demuxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_gsm_demuxer", cheader="")]
@@ -46,41 +58,41 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "gsm";
         }
-    } // = "gsm"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw GSM";
         }
-    } // = "raw GSM"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GSMDemuxerContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="gsm_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = gsm_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gsm_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = gsm_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gsm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = gsm_read_packet,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "gsm";
         }
-    } // = "gsm"
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

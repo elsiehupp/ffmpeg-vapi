@@ -29,15 +29,15 @@ public class ICOOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ico";
         }
-    } // = "ico"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Microsoft Windows ICO";
         }
-    } // = "Microsoft Windows ICO"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -47,15 +47,15 @@ public class ICOOutputMuxer : AVOutputFormat {
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "image/vnd.microsoft.icon";
         }
-    } // = "image/vnd.microsoft.icon"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "ico";
         }
-    } // = "ico"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -68,19 +68,19 @@ public class ICOOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.BMP;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ico_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = ico_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ico_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ico_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ico_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = ico_write_trailer,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }

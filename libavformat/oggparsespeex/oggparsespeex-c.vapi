@@ -24,6 +24,8 @@
 
 const struct ogg_codec ff_speex_codec = {
     //  .magic = "Speex   "
+        }
+    }
     //  .magicsize = 8,
     [CCode (cname="", cheader="")]
     public override int header (

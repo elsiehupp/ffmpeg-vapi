@@ -28,12 +28,17 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "AVFormatContext"
         }
-    } // = "AVFormatContext"
+    }
     //  .item_name = format_to_name,
     //  .option = avformat_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     [CCode (cname="", cheader="")]
     public override void *child_next (
         void *obj,

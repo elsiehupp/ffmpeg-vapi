@@ -25,12 +25,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "SDP demuxer";
         }
-    } // = "SDP demuxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = sdp_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_sdp_demuxer", cheader="")]
@@ -38,15 +50,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sdp";
         }
-    } // = "sdp"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "SDP";
         }
-    } // = "SDP"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -61,11 +73,11 @@ public class InputDemuxer : AVInputFormat {
     public override int read_header (
         AVFormatContext format_context
     ); // = sdp_read_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_rtsp_fetch_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_rtsp_fetch_packet,
+    );
     [CCode (cname="", cheader="")]
     public override int read_close (
         AVFormatContext format_context
@@ -80,12 +92,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "RTP demuxer";
         }
-    } // = "RTP demuxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = rtp_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_rtp_demuxer", cheader="")]
@@ -93,15 +117,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "rtp";
         }
-    } // = "rtp"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "RTP input";
         }
-    } // = "RTP input"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -116,11 +140,11 @@ public class InputDemuxer : AVInputFormat {
     public override int read_header (
         AVFormatContext format_context
     ); // = rtp_read_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_rtsp_fetch_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_rtsp_fetch_packet,
+    );
     [CCode (cname="", cheader="")]
     public override int read_close (
         AVFormatContext format_context

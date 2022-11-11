@@ -26,15 +26,15 @@ public class InputDemuxer : AVInputFormat ff_ape_demuxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ape";
         }
-    } // = "ape"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Monkey's Audio";
         }
-    } // = "Monkey's Audio"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -68,7 +68,7 @@ public class InputDemuxer : AVInputFormat ff_ape_demuxer = {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "ape,apl,mac";
         }
-    } // = "ape,apl,mac"
+    }
 }

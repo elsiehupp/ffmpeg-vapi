@@ -35,11 +35,23 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "mpeg muxer";
         }
-    } // = "mpeg muxer"
-    //  .item_name = av_default_item_name,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
 }
@@ -48,27 +60,27 @@ public class OutputMuxer : AVOutputFormat ff_mpeg1system_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mpeg";
         }
-    } // = "mpeg"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MPEG-1 Systems / MPEG program stream";
         }
-    } // = "MPEG-1 Systems / MPEG program stream"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/mpeg";
         }
-    } // = "video/mpeg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "mpg,mpeg";
         }
-    } // = "mpg,mpeg"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -111,11 +123,23 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "vcd muxer";
         }
-    } // = "vcd muxer"
-    //  .item_name = av_default_item_name,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
 }
@@ -124,21 +148,21 @@ public class OutputMuxer : AVOutputFormat ff_mpeg1vcd_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "vcd";
         }
-    } // = "vcd"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MPEG-1 Systems / MPEG program stream (VCD)";
         }
-    } // = "MPEG-1 Systems / MPEG program stream (VCD)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/mpeg";
         }
-    } // = "video/mpeg"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -181,11 +205,23 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "vob muxer";
         }
-    } // = "vob muxer"
-    //  .item_name = av_default_item_name,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
 }
@@ -194,27 +230,27 @@ public class OutputMuxer : AVOutputFormat ff_mpeg2vob_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "vob";
         }
-    } // = "vob"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MPEG-2 PS (VOB)";
         }
-    } // = "MPEG-2 PS (VOB)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/mpeg";
         }
-    } // = "video/mpeg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "vob";
         }
-    } // = "vob"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -260,11 +296,23 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "svcd muxer";
         }
-    } // = "svcd muxer"
-    //  .item_name = av_default_item_name,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
 }
@@ -273,27 +321,27 @@ public class OutputMuxer : AVOutputFormat ff_mpeg2svcd_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "svcd";
         }
-    } // = "svcd"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MPEG-2 PS (SVCD)";
         }
-    } // = "MPEG-2 PS (SVCD)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/mpeg";
         }
-    } // = "video/mpeg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "vob";
         }
-    } // = "vob"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -342,8 +390,20 @@ public class AVClass : AVClass {
             return "dvd muxer";
         }
     }
-    //  .item_name = av_default_item_name,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
 }
@@ -352,27 +412,27 @@ public class OutputMuxer : AVOutputFormat ff_mpeg2dvd_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "dvd";
         }
-    } // = "dvd"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MPEG-2 PS (DVD VOB)";
         }
-    } // = "MPEG-2 PS (DVD VOB)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/mpeg";
         }
-    } // = "video/mpeg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "dvd";
         }
-    } // = "dvd"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

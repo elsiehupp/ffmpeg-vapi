@@ -25,26 +25,26 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "hcom";
         }
-    } // = "hcom"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Macintosh HCOM";
         }
-    } // = "Macintosh HCOM"
-    [CCode (cname="", cheader="")]
+    }
+    [CCode (cname="hcom_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = hcom_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hcom_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = hcom_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_pcm_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_pcm_read_packet,
+    );
 }

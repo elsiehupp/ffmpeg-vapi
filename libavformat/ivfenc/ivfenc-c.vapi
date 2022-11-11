@@ -37,21 +37,21 @@ public class IVFOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ivf";
         }
-    } // = "ivf"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "On2 IVF";
         }
-    } // = "On2 IVF"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "ivf";
         }
-    } // = "ivf"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {

@@ -21,37 +21,37 @@ public class JacoSubOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "jacosub";
         }
-    } // = "jacosub"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "JACOsub subtitle format";
         }
-    } // = "JACOsub subtitle format"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "text/x-jacosub";
         }
-    } // = "text/x-jacosub"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "jss,js";
         }
-    } // = "jss,js"
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
     ); // = jacosub_write_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_TS_NONSTRICT,
     //  .subtitle_codec = LibAVCodec.CodecID.JACOSUB,
 }

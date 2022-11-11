@@ -30,9 +30,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "avs";
         }
-    } // = "avs"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {

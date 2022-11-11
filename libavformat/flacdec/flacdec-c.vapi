@@ -26,15 +26,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "flac";
         }
-    } // = "flac"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw FLAC";
         }
-    } // = "raw FLAC"
+    }
     [CCode (cname="flac_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -66,9 +66,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "flac";
         }
-    } // = "flac"
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

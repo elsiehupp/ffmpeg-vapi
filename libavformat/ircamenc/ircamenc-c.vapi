@@ -25,21 +25,21 @@ public class IRCAMOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ircam";
         }
-    } // = "ircam"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "sf,ircam";
         }
-    } // = "sf,ircam"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Berkeley/IRCAM/CARL Sound Format";
         }
-    } // = "Berkeley/IRCAM/CARL Sound Format"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -56,11 +56,11 @@ public class IRCAMOutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = ircam_write_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .codec_tag = (const AVCodecTag *const []){ ff_codec_ircam_le_tags, 0 },
 }

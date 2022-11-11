@@ -53,13 +53,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "librtmp protocol";
         }
-    } // = "librtmp protocol"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_librtmp_protocol", cheader="")]
@@ -115,7 +127,12 @@ public class LibRTMPURLProtocol : URLProtocol {
         }
     }
     //  .priv_data_class = librtmp_class,
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }
 
 [CCode (cname="librtmpt_class", cheader="")]
@@ -126,10 +143,22 @@ public class AVClass : AVClass {
             return "librtmpt protocol";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_librtmpt_protocol", cheader="")]
@@ -185,7 +214,12 @@ public class URLProtocol : URLProtocol ff_librtmpt_protocol = {
         }
     }
     //  .priv_data_class = librtmpt_class,
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }
 
 [CCode (cname="librtmpe_class", cheader="")]
@@ -196,10 +230,22 @@ public class AVClass : AVClass {
             return "librtmpe protocol";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_librtmpe_protocol", cheader="")]
@@ -255,7 +301,12 @@ public class URLProtocol : URLProtocol ff_librtmpe_protocol = {
         }
     }
     //  .priv_data_class = librtmpe_class,
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }
 
 [CCode (cname="librtmpte_class", cheader="")]
@@ -266,10 +317,22 @@ public class AVClass : AVClass {
             return "librtmpte protocol";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_librtmpte_protocol", cheader="")]
@@ -325,7 +388,12 @@ public class URLProtocol : URLProtocol ff_librtmpte_protocol = {
         }
     }
     //  .priv_data_class = librtmpte_class,
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }
 
 [CCode (cname="librtmps_class", cheader="")]
@@ -336,10 +404,22 @@ public class AVClass : AVClass {
             return "librtmps protocol";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_librtmps_protocol", cheader="")]
@@ -395,5 +475,10 @@ public class URLProtocol : URLProtocol ff_librtmps_protocol = {
         }
     }
     //  .priv_data_class = librtmps_class,
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }

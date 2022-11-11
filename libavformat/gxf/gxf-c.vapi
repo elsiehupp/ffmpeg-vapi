@@ -25,46 +25,46 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "gxf";
         }
-    } // = "gxf"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "GXF (General eXchange Format)";
         }
-    } // = "GXF (General eXchange Format)"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (gxf_stream_info);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="gxf_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = gxf_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gxf_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = gxf_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gxf_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = gxf_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gxf_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = gxf_seek,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gxf_read_timestamp", cheader="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
-    ); // = gxf_read_timestamp,
+    );
 }

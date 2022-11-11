@@ -70,13 +70,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "matroska muxer";
         }
-    } // = "matroska muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_matroska_muxer", cheader="")]
@@ -84,27 +96,27 @@ public class MatroskaOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "matroska";
         }
-    } // = "matroska"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Matroska";
         }
-    } // = "Matroska"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/x-matroska";
         }
-    } // = "video/x-matroska"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "mkv";
         }
-    } // = "mkv"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -168,13 +180,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "webm muxer";
         }
-    } // = "webm muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_webm_muxer", cheader="")]
@@ -182,27 +206,27 @@ public class WebMOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "webm";
         }
-    } // = "webm"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "WebM";
         }
-    } // = "WebM"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/webm";
         }
-    } // = "video/webm"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "webm";
         }
-    } // = "webm"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -250,8 +274,7 @@ public class WebMOutputMuxer : AVOutputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     ); // = mkv_check_bitstream,
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
-                         AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
+    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
     //  .priv_class = webm_class,
 }
 #endif
@@ -262,39 +285,51 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "matroska audio muxer";
         }
-    } // = "matroska audio muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 public class OutputMuxer : AVOutputFormat ff_matroska_audio_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "matroska";
         }
-    } // = "matroska"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Matroska Audio";
         }
-    } // = "Matroska Audio"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/x-matroska";
         }
-    } // = "audio/x-matroska"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "mka";
         }
-    } // = "mka"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -337,11 +372,10 @@ public class OutputMuxer : AVOutputFormat ff_matroska_audio_muxer = {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     ); // = mkv_check_bitstream,
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT |
-                         AVFMT_ALLOW_FLUSH,
+    //  .flags = AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH,
     //  .codec_tag = (const AVCodecTag* const []){
-        ff_codec_wav_tags, additional_audio_tags, 0
-    },
+    //      ff_codec_wav_tags, additional_audio_tags, 0
+    //  },
     //  .priv_class = mka_class,
 }
 #endif

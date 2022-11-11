@@ -25,15 +25,15 @@ public class FrameCRCOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "framecrc";
         }
-    } // = "framecrc"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "framecrc testing";
         }
-    } // = "framecrc testing"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -56,6 +56,5 @@ public class FrameCRCOutputMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
-                        //   AVFMT_TS_NEGATIVE,
+    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE,
 }

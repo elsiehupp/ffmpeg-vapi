@@ -26,6 +26,8 @@ Development sponsored by CBC/Radio-Canada
 
 const RTPDynamicProtocolHandler ff_rfc4175_rtp_handler = {
     //  .enc_name = "raw"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.BITPACKED,
     [CCode (cname="priv_data_size", cheader="")]

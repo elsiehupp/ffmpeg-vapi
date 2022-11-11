@@ -34,10 +34,22 @@ public class AVClass : AVClass {
             return "http";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 
@@ -107,7 +119,12 @@ public class HTTPURLProtocol : URLProtocol {
         }
     }
     //  .priv_data_class = http_context_class,
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
 }
 #endif /* CONFIG_HTTP_PROTOCOL */
@@ -121,10 +138,22 @@ public class AVClass : AVClass {
             return "https";
         }
     }
-    //  .item_name = av_default_item_name,
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 
@@ -185,7 +214,12 @@ public class URLProtocol : URLProtocol ff_https_protocol = {
         }
     }
     //  .priv_data_class = https_context_class,
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy"
 }
 #endif /* CONFIG_HTTPS_PROTOCOL */
@@ -231,6 +265,11 @@ public class URLProtocol : URLProtocol {
             return sizeof (HTTPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }
 #endif /* CONFIG_HTTPPROXY_PROTOCOL */

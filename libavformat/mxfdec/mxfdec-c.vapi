@@ -56,13 +56,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "mxf";
         }
-    } // = "mxf"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     //  .category = AV_CLASS_CATEGORY_DEMUXER,
 }
 
@@ -71,15 +83,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mxf";
         }
-    } // = "mxf"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MXF (Material eXchange Format)"
         }
-    } // = "MXF (Material eXchange Format)"
+    }
     //  .flags = AVFMT_SEEK_TO_PTS,
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {

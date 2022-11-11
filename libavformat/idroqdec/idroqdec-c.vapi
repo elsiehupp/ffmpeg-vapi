@@ -32,32 +32,32 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "roq";
         }
-    } // = "roq"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "id RoQ";
         }
-    } // = "id RoQ"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RoqDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="roq_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = roq_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="roq_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = roq_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="roq_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = roq_read_packet,
+    );
 }

@@ -24,6 +24,8 @@
 
 const struct ogg_codec ff_theora_codec = {
     //  .magic = "\200theora"
+        }
+    }
     //  .magicsize = 7,
     [CCode (cname="", cheader="")]
     public override int header (

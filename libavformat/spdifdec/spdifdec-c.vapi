@@ -30,15 +30,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "spdif";
         }
-    } // = "spdif"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "IEC 61937 (compressed data in S/PDIF)";
         }
-    } // = "IEC 61937 (compressed data in S/PDIF)"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -47,10 +47,10 @@ public class InputDemuxer : AVInputFormat {
     public override int read_header (
         AVFormatContext format_context
     ); // = spdif_read_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_spdif_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_spdif_read_packet,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
 }

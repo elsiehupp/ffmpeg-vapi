@@ -29,29 +29,29 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "g723_1";
         }
-    } // = "g723_1"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "G.723.1";
         }
-    } // = "G.723.1"
-    [CCode (cname="", cheader="")]
+    }
+    [CCode (cname="g723_1_init", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = g723_1_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="g723_1_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = g723_1_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "tco,rco,g723_1"
         }
-    } // = "tco,rco,g723_1"
+    }
     //  .flags = AVFMT_GENERIC_INDEX
 }

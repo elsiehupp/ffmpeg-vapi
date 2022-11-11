@@ -152,7 +152,7 @@ public abstract class URLProtocol {
     );
     public int priv_data_size;
     public LibAVUtil.Class priv_data_class;
-    public int flags;
+    public URLProtocolFlags flags;
     public abstract int url_check (
         URLContext url_context,
         int mask

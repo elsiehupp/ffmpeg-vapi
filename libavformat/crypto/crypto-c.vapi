@@ -38,12 +38,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "crypto";
         }
-    } // = "crypto"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_crypto_protocol", cheader="")]
@@ -51,9 +63,9 @@ public class CryptoURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "crypto";
         }
-    } // = "crypto"
+    }
     [CCode (cname="crypto_open2", cheader="")]
     public override int url_open2 (
         URLContext url_context,
@@ -90,5 +102,10 @@ public class CryptoURLProtocol : URLProtocol {
         }
     }
     //  .priv_data_class = crypto_class,
-    //  .flags = URL_PROTOCOL_FLAG_NESTED_SCHEME,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NESTED_SCHEME;
+        }
+    }
 }

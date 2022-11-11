@@ -35,6 +35,8 @@ Interleaved Mode (2). (This requires implementing STAP-B, MTAP16, MTAP24,
 
 const RTPDynamicProtocolHandler ff_h264_dynamic_handler = {
     //  .enc_name = "H264"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.H264,
     //  .need_parsing = AVSTREAM_PARSE_FULL,

@@ -29,6 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_theora_dynamic_handler = {
     //  .enc_name = "theora"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.THEORA,
     [CCode (cname="priv_data_size", cheader="")]
@@ -65,6 +67,8 @@ const RTPDynamicProtocolHandler ff_theora_dynamic_handler = {
 
 const RTPDynamicProtocolHandler ff_vorbis_dynamic_handler = {
     //  .enc_name = "vorbis"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.VORBIS,
     //  .need_parsing = AVSTREAM_PARSE_HEADERS,

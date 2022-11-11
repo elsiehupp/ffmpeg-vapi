@@ -26,15 +26,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "dhav";
         }
-    } // = "dhav"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Video DAV";
         }
-    } // = "Video DAV"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -64,8 +64,8 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "dav"
         }
-    } // = "dav"
+    }
     //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
 }

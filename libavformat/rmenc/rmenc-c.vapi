@@ -25,27 +25,27 @@ public class RMOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "rm";
         }
-    } // = "rm"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "RealMedia";
         }
-    } // = "RealMedia"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "application/vnd.rn-realmedia";
         }
-    } // = "application/vnd.rn-realmedia"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "rm,ra";
         }
-    } // = "rm,ra"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

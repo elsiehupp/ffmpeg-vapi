@@ -207,7 +207,7 @@ public struct ExtractExtraData {
 
 //  #ifdef __GNUC__
 //  #define dynarray_add (tab, nb_ptr, elem)\
-//  do {\
+//  do {
 //      __typeof__ (tab) _tab = (tab);\
 //      __typeof__ (elem) _elem = (elem);\
 //      ()sizeof (**_tab == _elem); /* check that types are compatible */\
@@ -215,7 +215,7 @@ public struct ExtractExtraData {
 //  } while (0)
 //  #else
 //  #define dynarray_add (tab, nb_ptr, elem)\
-//  do {\
+//  do {
 //      av_dynarray_add ((tab), nb_ptr, (elem));\
 //  } while (0)
 //  #endif

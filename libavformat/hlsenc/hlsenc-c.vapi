@@ -97,13 +97,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "hls muxer";
         }
-    } // = "hls muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 
@@ -112,21 +124,21 @@ public class HLSOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "hls";
         }
-    } // = "hls"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Apple HTTP Live Streaming";
         }
-    } // = "Apple HTTP Live Streaming"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "m3u8";
         }
-    } // = "m3u8"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -147,23 +159,23 @@ public class HLSOutputMuxer : AVOutputFormat {
     }
     //  .subtitle_codec = LibAVCodec.CodecID.WEBVTT,
     //  .flags = AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_NODIMENSIONS,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="hls_init", cheader="")]
     public override int init (
         AVFormatContext format_context
-    ); // = hls_init,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hls_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = hls_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hls_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = hls_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hls_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = hls_write_trailer,
+    );
     //  .priv_class = hls_class,
 }

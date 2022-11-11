@@ -37,11 +37,23 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "GIF muxer";
         }
-    } // = "GIF muxer"
-    //  .item_name = av_default_item_name,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
 }
@@ -51,27 +63,27 @@ public class GIFOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "gif";
         }
-    } // = "gif"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "CompuServe Graphics Interchange Format (GIF)";
         }
-    } // = "CompuServe Graphics Interchange Format (GIF)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "image/gif";
         }
-    } // = "image/gif"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "gif";
         }
-    } // = "gif"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -90,20 +102,20 @@ public class GIFOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.GIF;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="gif_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = gif_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gif_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = gif_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gif_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = gif_write_trailer,
+    );
     //  .priv_class = gif_muxer_class,
     //  .flags = AVFMT_VARIABLE_FPS,
 }

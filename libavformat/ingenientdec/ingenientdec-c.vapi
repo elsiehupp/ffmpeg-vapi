@@ -27,15 +27,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ingenient";
         }
-    } // = "ingenient"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw Ingenient MJPEG";
         }
-    } // = "raw Ingenient MJPEG"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -46,10 +46,10 @@ public class InputDemuxer : AVInputFormat {
     public override int read_probe (
         AVProbeData format_context
     ); // = ingenient_probe,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_video_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = ff_raw_video_read_header,
+    );
     [CCode (cname="", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
@@ -59,9 +59,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
-        }
-    } // = "cgi", // FIXME
+            return "cgi", // FIXME
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

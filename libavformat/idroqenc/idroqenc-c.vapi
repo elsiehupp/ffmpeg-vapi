@@ -25,21 +25,21 @@ public class ROQOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "roq";
         }
-    } // = "roq"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw id RoQ";
         }
-    } // = "raw id RoQ"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "roq";
         }
-    } // = "roq"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -52,14 +52,14 @@ public class ROQOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.ROQ;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="roq_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = roq_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
 }

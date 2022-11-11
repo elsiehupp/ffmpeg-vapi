@@ -34,21 +34,21 @@ public class SoXOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sox";
         }
-    } // = "sox"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "SoX native";
         }
-    } // = "SoX native"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "sox";
         }
-    } // = "sox"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -71,12 +71,12 @@ public class SoXOutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = sox_write_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context

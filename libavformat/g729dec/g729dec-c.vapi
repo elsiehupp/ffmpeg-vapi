@@ -31,12 +31,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "g729 demuxer";
         }
-    } // = "g729 demuxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = g729_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_g729_demuxer", cheader="")]
@@ -44,36 +56,36 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "g729";
         }
-    } // = "g729"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "G.729 raw format demuxer";
         }
-    } // = "G.729 raw format demuxer"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (G729DemuxerContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="g729_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = g729_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="g729_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = g729_read_packet,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "g729"
         }
-    } // = "g729"
+    }
     //  .priv_class = g729_demuxer_class,
 }

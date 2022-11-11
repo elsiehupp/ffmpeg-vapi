@@ -24,25 +24,25 @@ public class MD5URLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "md5";
         }
-    } // = "md5"
-    [CCode (cname="", cheader="")]
+    }
+    [CCode (cname="md5_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = md5_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="md5_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = md5_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="md5_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = md5_close,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

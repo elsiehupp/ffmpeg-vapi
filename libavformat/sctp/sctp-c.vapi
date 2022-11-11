@@ -41,9 +41,9 @@ public class TCTPURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sctp";
         }
-    } // = "sctp"
+    }
     [CCode (cname="", cheader="")]
     public override int url_open (
         URLContext url_context,
@@ -76,6 +76,11 @@ public class TCTPURLProtocol : URLProtocol {
             return sizeof (SCTPContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = sctp_class,
 }

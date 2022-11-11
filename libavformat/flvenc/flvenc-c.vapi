@@ -35,13 +35,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "flv muxer";
         }
-    } // = "flv muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_flv_muxer", cheader="")]
@@ -49,27 +61,27 @@ public class FLVOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "flv";
         }
-    } // = "flv"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "FLV (Flash Video)";
         }
-    } // = "FLV (Flash Video)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/x-flv";
         }
-    } // = "video/x-flv"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "flv";
         }
-    } // = "flv"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -114,7 +126,6 @@ public class FLVOutputMuxer : AVOutputFormat {
     //  .codec_tag = (const AVCodecTag* const []) {
                     //        flv_video_codec_ids, flv_audio_codec_ids, 0
                     //    },
-    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS |
-                    //    AVFMT_TS_NONSTRICT,
+    //  .flags = AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
     //  .priv_class = flv_muxer_class,
 }

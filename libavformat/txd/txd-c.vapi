@@ -25,15 +25,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "txd";
         }
-    } // = "txd"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Renderware TeXture Dictionary";
         }
-    } // = "Renderware TeXture Dictionary"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context

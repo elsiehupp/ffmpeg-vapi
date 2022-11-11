@@ -31,9 +31,9 @@ public class MMSHURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mmsh";
         }
-    } // = "mmsh"
+    }
     [CCode (cname="", cheader="")]
     public override int url_open (
         URLContext url_context,
@@ -69,6 +69,11 @@ public class MMSHURLProtocol : URLProtocol {
             return sizeof (MMSHContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .default_whitelist = "http,tcp"
 }

@@ -25,33 +25,33 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "fsb";
         }
-    } // = "fsb"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "FMOD Sample Bank";
         }
-    } // = "FMOD Sample Bank"
-    [CCode (cname="", cheader="")]
+    }
+    [CCode (cname="fsb_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = fsb_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="fsb_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = fsb_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="fsb_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = fsb_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "fsb"
         }
-    } // = "fsb"
+    }
     //  .flags = AVFMT_GENERIC_INDEX,
 }

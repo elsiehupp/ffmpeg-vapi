@@ -40,13 +40,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "WebM DASH Manifest demuxer";
         }
-    } // = "WebM DASH Manifest demuxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_matroska_demuxer", cheader="")]
@@ -54,21 +66,21 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "matroska,webm";
         }
-    } // = "matroska,webm"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Matroska / WebM";
         }
-    } // = "Matroska / WebM"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "mkv,mk3d,mka,mks";
         }
-    } // = "mkv,mk3d,mka,mks"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -102,9 +114,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
-        }
-    } // = "audio/webm,audio/x-matroska,video/webm,video/x-matroska"
+            return "audio/webm,audio/x-matroska,video/webm,video/x-matroska"
 }
 
 [CCode (cname="ff_webm_dash_manifest_demuxer", cheader="")]
@@ -112,15 +122,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "webm_dash_manifest";
         }
-    } // = "webm_dash_manifest"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "WebM DASH Manifest";
         }
-    } // = "WebM DASH Manifest"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

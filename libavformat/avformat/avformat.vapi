@@ -1680,6 +1680,7 @@ public enum AVFormatEventFlags {
     ***********************************************************/
     AVFMT_EVENT_FLAG_METADATA_UPDATED
 }
+
 [Flags]
 public enum AVFormatAvoidNegativeTimestampFlags {
     /***********************************************************

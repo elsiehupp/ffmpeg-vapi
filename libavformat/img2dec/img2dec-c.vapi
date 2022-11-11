@@ -21,1459 +21,1140 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define IMAGEAUTO_DEMUXER(imgname, codecid)
-[CCode (cname="imgname ## _class", cheader="")]
-public class AVClass : AVClass {
-    [CCode (cname="class_name", cheader="")]
-    public override string class_name {
-        public get {
-            return ;
-        }
-    } // = AV_STRINGIFY(imgname) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
-}
-[CCode (cname="ff_image_ ## imgname ## _pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
-    [CCode (cname="name", cheader="")]
-    public override string name {
-        public get {
-            return ;
-        }
-    } // = AV_STRINGIFY(imgname) "_pipe",
-    [CCode (cname="long_name", cheader="")]
-    public override string long_name {
-        public get {
-            return ;
-        }
-    } // = "piped " AV_STRINGIFY(imgname) " sequence",
-    [CCode (cname="priv_data_size", cheader="")]
-    public override size_t priv_data_size {
-        public get {
-            return sizeof (VideoDemuxData);
-        }
+//  #define IMAGEAUTO_DEMUXER(imgname, codecid)
+
+public abstract class ImageClass : AVClass {
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
     }
-    [CCode (cname="", cheader="")]
-    public override int read_probe (
-        AVProbeData format_context
-    ); // = imgname ## _probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
-    //  .priv_class =  imgname ## _class,
-    //  .flags = AVFMT_GENERIC_INDEX,
-    [CCode (cname="raw_codec_id", cheader="")]
-    public override LibAVCodec.CodecID raw_codec_id {
+    //  .option = ff_img2pipe_options,
+    [CCode (cname="version", cheader="")]
+    public override int version {
         public get {
-            return codecid;
+            return LIBAVUTIL_VERSION_INT;
         }
     }
 }
 
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.BMP)
-#define IMAGEAUTO_DEMUXER(imgname, codecid)
+public abstract class ImageDemuxer : AVInputFormat {
+    [CCode (cname="priv_data_size", cheader="")]
+    public override size_t priv_data_size {
+        public get {
+            return sizeof (VideoDemuxData);
+        }
+    }
+    [CCode (cname="ff_img_read_header", cheader="")]
+    public override int read_header (
+        AVFormatContext format_context
+    );
+    [CCode (cname="ff_img_read_packet", cheader="")]
+    public override int read_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
+    );
+    //  .flags = AVFMT_GENERIC_INDEX,
+}
+
 [CCode (cname="bmp_class", cheader="")]
-public class AVClass : AVClass {
+public class BMPClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "bmp demuxer";
         }
-    } // = AV_STRINGIFY(bmp) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_bmp_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class BMPPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "bmp_pipe";
         }
-    } // = AV_STRINGIFY(bmp) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped bmp sequence";
         }
-    } // = "piped " AV_STRINGIFY(bmp) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="bmp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = bmp_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
-    //  .priv_class =  bmp_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
+    );
+    //  .priv_class = bmp_class,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.BMP;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.DDS)
-#define IMAGEAUTO_DEMUXER(dds, codecid)
+
 [CCode (cname="dds_class", cheader="")]
-public class AVClass : AVClass {
+public class DDSClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "dds demuxer";
         }
-    } // = AV_STRINGIFY(dds) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_dds_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class DDSPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "dds_pipe";
         }
-    } // = AV_STRINGIFY(dds) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped dds sequence";
         }
-    } // = "piped " AV_STRINGIFY(dds) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="dds_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = dds_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = dds_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.DDS;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.DPX)
-#define IMAGEAUTO_DEMUXER(dpx, codecid)
+
 [CCode (cname="dpx_class", cheader="")]
-public class AVClass : AVClass {
+public class DPXClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "dpx demuxer";
         }
-    } // = AV_STRINGIFY(dpx) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_dpx_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class DPXPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "dpx_pipe";
         }
-    } // = AV_STRINGIFY(dpx) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped dpx sequence";
         }
-    } // = "piped " AV_STRINGIFY(dpx) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="dpx_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = dpx_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = dpx_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.DPX;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.EXR)
-#define IMAGEAUTO_DEMUXER(exr, codecid)
+
 [CCode (cname="exr_class", cheader="")]
-public class AVClass : AVClass {
+public class EXRClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "exr demuxer";
         }
-    } // = AV_STRINGIFY(exr) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_exr_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class EXRPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "exr_pipe";
         }
-    } // = AV_STRINGIFY(exr) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped exr sequence";
         }
-    } // = "piped " AV_STRINGIFY(exr) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="exr_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = exr_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = exr_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.EXR;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.GIF)
-#define IMAGEAUTO_DEMUXER(gif, codecid)
+
 [CCode (cname="gif_class", cheader="")]
-public class AVClass : AVClass {
+public class GIFClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "gif demuxer";
         }
-    } // = AV_STRINGIFY(gif) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_gif_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class GIFPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "gif_pipe";
         }
-    } // = AV_STRINGIFY(gif) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped gif sequence";
         }
-    } // = "piped " AV_STRINGIFY(gif) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="gif_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = gif_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = gif_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.GIF;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.JPEG2000)
-#define IMAGEAUTO_DEMUXER(j2k, codecid)
+
 [CCode (cname="j2k_class", cheader="")]
-public class AVClass : AVClass {
+public class J2KClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "j2k demuxer";
         }
-    } // = AV_STRINGIFY(j2k) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_j2k_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class J2KPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "j2k_pipe";
         }
-    } // = AV_STRINGIFY(j2k) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped j2k sequence";
         }
-    } // = "piped " AV_STRINGIFY(j2k) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="j2k_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = j2k_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = j2k_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.JPEG2000;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,    LibAVCodec.CodecID.MJPEG)
-#define IMAGEAUTO_DEMUXER(jpeg, codecid)
+
 [CCode (cname="jpeg_class", cheader="")]
-public class AVClass : AVClass {
+public class JPEGClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "jpeg demuxer";
         }
-    } // = AV_STRINGIFY(jpeg) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_jpeg_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class JPEGPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "jpeg_pipe";
         }
-    } // = AV_STRINGIFY(jpeg) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped jpeg sequence";
         }
-    } // = "piped " AV_STRINGIFY(jpeg) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="jpeg_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = jpeg_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = jpeg_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.MJPEG;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,  LibAVCodec.CodecID.JPEGLS)
-#define IMAGEAUTO_DEMUXER(jpegls, codecid)
+
 [CCode (cname="jpegls_class", cheader="")]
-public class AVClass : AVClass {
+public class JPEGLSClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "jpegls demuxer";
         }
-    } // = AV_STRINGIFY(jpegls) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_jpegls_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class JPEGLSPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "jpegls_pipe";
         }
-    } // = AV_STRINGIFY(jpegls) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped jpegls sequence";
         }
-    } // = "piped " AV_STRINGIFY(jpegls) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="jpegls_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = jpegls_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = jpegls_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.JPEGLS;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.PAM)
-#define IMAGEAUTO_DEMUXER(pam, codecid)
+
 [CCode (cname="pam_class", cheader="")]
-public class AVClass : AVClass {
+public class PAMClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "pam demuxer";
         }
-    } // = AV_STRINGIFY(pam) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_pam_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class PAMPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "pam_pipe";
         }
-    } // = AV_STRINGIFY(pam) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped pam sequence";
         }
-    } // = "piped " AV_STRINGIFY(pam) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="pam_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = pam_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pam_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.PAM;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.PBM)
-#define IMAGEAUTO_DEMUXER(pbm, codecid)
+
 [CCode (cname="pbm_class", cheader="")]
-public class AVClass : AVClass {
+public class PBMClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "pbm demuxer";
         }
-    } // = AV_STRINGIFY(pbm) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_pbm_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class PBMPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "pbm_pipe";
         }
-    } // = AV_STRINGIFY(pbm) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped pbm sequence";
         }
-    } // = "piped " AV_STRINGIFY(pbm) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="pbm_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = pbm_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pbm_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.PBM;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.PCX)
-#define IMAGEAUTO_DEMUXER(pcx, codecid)
+
 [CCode (cname="pcx_class", cheader="")]
-public class AVClass : AVClass {
+public class PCXClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "pcx demuxer";
         }
-    } // = AV_STRINGIFY(pcx) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_pcx_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class PCXPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "pcx_pipe";
         }
-    } // = AV_STRINGIFY(pcx) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped pcx sequence";
         }
-    } // = "piped " AV_STRINGIFY(pcx) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="pcx_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = pcx_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pcx_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.PCX;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.PGM)
-#define IMAGEAUTO_DEMUXER(pgm, codecid)
+
 [CCode (cname="pgm_class", cheader="")]
-public class AVClass : AVClass {
+public class PGMClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "pgm demuxer";
         }
-    } // = AV_STRINGIFY(pgm) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_pgm_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class PGMPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "pgm_pipe";
         }
-    } // = AV_STRINGIFY(pgm) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped pgm sequence";
         }
-    } // = "piped " AV_STRINGIFY(pgm) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="pgm_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = pgm_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pgm_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.PGM;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,  LibAVCodec.CodecID.PGMYUV)
-#define IMAGEAUTO_DEMUXER(pgmyuv, codecid)
+
 [CCode (cname="pgmyuv_class", cheader="")]
-public class AVClass : AVClass {
+public class PGMYUVClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "pgmyuv demuxer";
         }
-    } // = AV_STRINGIFY(pgmyuv) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_pgmyuv_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class PGMYUVPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "pgmyuv_pipe";
         }
-    } // = AV_STRINGIFY(pgmyuv) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped pgmyuv sequence";
         }
-    } // = "piped " AV_STRINGIFY(pgmyuv) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="pgmyuv_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = pgmyuv_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pgmyuv_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.PGMYUV;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,  LibAVCodec.CodecID.PICTOR)
-#define IMAGEAUTO_DEMUXER(pictor, codecid)
+
 [CCode (cname="pictor_class", cheader="")]
-public class AVClass : AVClass {
+public class PictorClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "pictor demuxer";
         }
-    } // = AV_STRINGIFY(pictor) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_pictor_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class PictorPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "pictor_pipe";
         }
-    } // = AV_STRINGIFY(pictor) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped pictor sequence";
         }
-    } // = "piped " AV_STRINGIFY(pictor) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="pictor_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = pictor_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = pictor_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.PICTOR;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.PNG)
-#define IMAGEAUTO_DEMUXER(png, codecid)
+
 [CCode (cname="png_class", cheader="")]
-public class AVClass : AVClass {
+public class PNGClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "png demuxer";
         }
-    } // = AV_STRINGIFY(png) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_png_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class PNGPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "png_pipe";
         }
-    } // = AV_STRINGIFY(png) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped png sequence";
         }
-    } // = "piped " AV_STRINGIFY(png) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="png_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = png_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = png_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.PNG;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.PPM)
-#define IMAGEAUTO_DEMUXER(ppm, codecid)
+
 [CCode (cname="ppm_class", cheader="")]
-public class AVClass : AVClass {
+public class PPMClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "ppm demuxer";
         }
-    } // = AV_STRINGIFY(ppm) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_ppm_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class PPMPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ppm_pipe";
         }
-    } // = AV_STRINGIFY(ppm) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped ppm sequence";
         }
-    } // = "piped " AV_STRINGIFY(ppm) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ppm_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = ppm_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = ppm_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.PPM;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.PSD)
-#define IMAGEAUTO_DEMUXER(psd, codecid)
+
 [CCode (cname="psd_class", cheader="")]
-public class AVClass : AVClass {
+public class PSDClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "psd demuxer";
         }
-    } // = AV_STRINGIFY(psd) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_psd_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class PSDPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "psd_pipe";
         }
-    } // = AV_STRINGIFY(psd) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped psd sequence";
         }
-    } // = "piped " AV_STRINGIFY(psd) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="psd_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = psd_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = psd_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.PSD;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,   LibAVCodec.CodecID.QDRAW)
-#define IMAGEAUTO_DEMUXER(qdraw, codecid)
+
 [CCode (cname="qdraw_class", cheader="")]
-public class AVClass : AVClass {
+public class QDrawClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "qdraw demuxer";
         }
-    } // = AV_STRINGIFY(qdraw) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_qdraw_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class QDrawPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "qdraw_pipe";
         }
-    } // = AV_STRINGIFY(qdraw) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped qdraw sequence";
         }
-    } // = "piped " AV_STRINGIFY(qdraw) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="qdraw_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = qdraw_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = qdraw_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.QDRAW;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.SGI)
-#define IMAGEAUTO_DEMUXER(sgi, codecid)
+
 [CCode (cname="sgi_class", cheader="")]
-public class AVClass : AVClass {
+public class SGIClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "sgi demuxer";
         }
-    } // = AV_STRINGIFY(sgi) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_sgi_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class SGIPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sgi_pipe";
         }
-    } // = AV_STRINGIFY(sgi) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped sgi sequence";
         }
-    } // = "piped " AV_STRINGIFY(sgi) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sgi_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = sgi_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = sgi_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.SGI;
         }
     }
 }
-IMAGEAUTO_DEMUXER(, LibAVCodec.CodecID.SUNRAST)
-#define IMAGEAUTO_DEMUXER(sunrast, codecid)
+
 [CCode (cname="sunrast_class", cheader="")]
-public class AVClass : AVClass {
+public class SunrastClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "sunrast demuxer";
         }
-    } // = AV_STRINGIFY(sunrast) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_sunrast_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class SunrastPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sunrast_pipe";
         }
-    } // = AV_STRINGIFY(sunrast) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped sunrast sequence";
         }
-    } // = "piped " AV_STRINGIFY(sunrast) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="sunrast_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = sunrast_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = sunrast_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.SUNRAST;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.SVG)
-#define IMAGEAUTO_DEMUXER(svg, codecid)
+
 [CCode (cname="svg_class", cheader="")]
-public class AVClass : AVClass {
+public class SVGClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "svg demuxer";
         }
-    } // = AV_STRINGIFY(svg) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_svg_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class SVGPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "svg_pipe";
         }
-    } // = AV_STRINGIFY(svg) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped svg sequence";
         }
-    } // = "piped " AV_STRINGIFY(svg) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="svg_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = svg_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = svg_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.SVG;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,    LibAVCodec.CodecID.TIFF)
-#define IMAGEAUTO_DEMUXER(tiff, codecid)
+
 [CCode (cname="tiff_class", cheader="")]
-public class AVClass : AVClass {
+public class TIFFClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "tiff demuxer";
         }
-    } // = AV_STRINGIFY(tiff) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_tiff_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class TIFFPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "tiff_pipe";
         }
-    } // = AV_STRINGIFY(tiff) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped tiff sequence";
         }
-    } // = "piped " AV_STRINGIFY(tiff) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="tiff_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = tiff_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = tiff_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.TIFF;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,    LibAVCodec.CodecID.WEBP)
-#define IMAGEAUTO_DEMUXER(webp, codecid)
+
 [CCode (cname="webp_class", cheader="")]
-public class AVClass : AVClass {
+public class WebPClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "webp demuxer";
         }
-    } // = AV_STRINGIFY(webp) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_webp_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class WebPPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "webp_pipe";
         }
-    } // = AV_STRINGIFY(webp) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped webp sequence";
         }
-    } // = "piped " AV_STRINGIFY(webp) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="webp_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = webp_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = webp_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.WEBP;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.XPM)
-#define IMAGEAUTO_DEMUXER(xpm, codecid)
+
 [CCode (cname="xpm_class", cheader="")]
-public class AVClass : AVClass {
+public class XPMClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "xpm demuxer";
         }
-    } // = AV_STRINGIFY(xpm) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_xpm_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class XPMPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "xpm_pipe";
         }
-    } // = AV_STRINGIFY(xpm) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped xpm sequence";
         }
-    } // = "piped " AV_STRINGIFY(xpm) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="xpm_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = xpm_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = xpm_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.XPM;
         }
     }
 }
-IMAGEAUTO_DEMUXER(,     LibAVCodec.CodecID.XWD)
-#define IMAGEAUTO_DEMUXER(xwd, codecid)
+
 [CCode (cname="xwd_class", cheader="")]
-public class AVClass : AVClass {
+public class XWDClass : ImageClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "xwd demuxer";
         }
-    } // = AV_STRINGIFY(xwd) " demuxer"
-    //  .item_name = av_default_item_name,
-    //  .option = ff_img2pipe_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
 }
+
 [CCode (cname="ff_image_xwd_pipe_demuxer", cheader="")]
-public class InputDemuxer : AVInputFormat {\
+public class XWDPipeDemuxer : ImageDemuxer {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "xwd_pipe";
         }
-    } // = AV_STRINGIFY(xwd) "_pipe",
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "piped xwd sequence";
         }
-    } // = "piped " AV_STRINGIFY(xwd) " sequence",
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="xwd_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = xwd_probe,
-    [CCode (cname="", cheader="")]
-    public override int read_header (
-        AVFormatContext format_context
-    ); // = ff_img_read_header,
-    [CCode (cname="", cheader="")]
-    public override int read_packet (
-        AVFormatContext format_context,
-        LibAVCodec.Packet packet
-    ); // = ff_img_read_packet,
+    );
+    [CCode (cname="priv_class", cheader="")]
     //  .priv_class = xwd_class,
-    //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
-            return codecid;
+            return LibAVCodec.CodecID.XWD;
         }
     }
 }

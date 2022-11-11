@@ -22,30 +22,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 static RTPDynamicProtocolHandler l24_dynamic_handler = {
     //  .enc_name = "L24"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.PCM_S24BE,
 }
 
 static RTPDynamicProtocolHandler gsm_dynamic_handler = {
     //  .enc_name = "GSM"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.GSM,
 }
 
 static RTPDynamicProtocolHandler realmedia_mp3_dynamic_handler = {
     //  .enc_name = "X-MP3-draft-00"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.MP3ADU,
 }
 
 static RTPDynamicProtocolHandler speex_dynamic_handler = {
     //  .enc_name = "speex"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.SPEEX,
 }
 
 static RTPDynamicProtocolHandler opus_dynamic_handler = {
     //  .enc_name = "opus"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.OPUS,
 }
@@ -55,6 +65,8 @@ static RTPDynamicProtocolHandler t140_dynamic_handler = {
     RFC 4103
     ***********************************************************/
     //  .enc_name = "t140"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_SUBTITLE,
     //  .codec_id = LibAVCodec.CodecID.TEXT,
 }

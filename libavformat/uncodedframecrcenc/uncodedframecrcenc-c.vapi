@@ -24,15 +24,15 @@ public class UncodedFrameCRCOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "uncodedframecrc";
         }
-    } // = "uncodedframecrc"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "uncoded framecrc testing";
         }
-    } // = "uncoded framecrc testing"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -62,6 +62,5 @@ public class UncodedFrameCRCOutputMuxer : AVOutputFormat {
         LibAVUtil.Frame frame,
         uint flags
     ); // = write_frame,
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
-                         AVFMT_TS_NEGATIVE,
+    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE,
 }

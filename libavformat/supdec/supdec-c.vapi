@@ -21,27 +21,27 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sup";
         }
-    } // = "sup"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw HDMV Presentation Graphic Stream subtitles";
         }
-    } // = "raw HDMV Presentation Graphic Stream subtitles"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "sup";
         }
-    } // = "sup"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "application/x-pgs";
         }
-    } // = "application/x-pgs"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context

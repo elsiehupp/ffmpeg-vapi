@@ -24,15 +24,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "iv8";
         }
-    } // = "iv8"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "IndigoVision 8000 video";
         }
-    } // = "IndigoVision 8000 video"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context

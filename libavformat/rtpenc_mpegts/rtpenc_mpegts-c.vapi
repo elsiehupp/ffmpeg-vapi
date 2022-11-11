@@ -25,15 +25,15 @@ public class RTPMpegTimeStampOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "rtp_mpegts";
         }
-    } // = "rtp_mpegts"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "RTP/mpegts output format";
         }
-    } // = "RTP/mpegts output format"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

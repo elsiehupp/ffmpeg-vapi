@@ -75,7 +75,7 @@ public int ff_raw_data_read_header (
 );
 
 //  #define FF_RAW_DEMUXER_CLASS (name)\
-//  public const LibAVUtil.Class name ## _demuxer_class = {\
+//  public const LibAVUtil.Class name ## _demuxer_class = {
 //      //  .class_name = #name " demuxer",
 //      //  .item_name = av_default_item_name,
 //      //  .option = ff_raw_options,
@@ -83,7 +83,7 @@ public int ff_raw_data_read_header (
 //  }
 
 //  #define FF_RAWVIDEO_DEMUXER_CLASS (name)\
-//  public const LibAVUtil.Class name ## _demuxer_class = {\
+//  public const LibAVUtil.Class name ## _demuxer_class = {
 //      //  .class_name = #name " demuxer",
 //      //  .item_name = av_default_item_name,
 //      //  .option = ff_rawvideo_options,
@@ -92,7 +92,7 @@ public int ff_raw_data_read_header (
 
 //  #define FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, flag)\
 //  FF_RAWVIDEO_DEMUXER_CLASS (shortname)\
-//  AVInputFormat ff_ ## shortname ## _demuxer = {\
+//  AVInputFormat ff_ ## shortname ## _demuxer = {
 //      //  .name = #shortname,
 //      //  .long_name = NULL_IF_CONFIG_SMALL (longname),
 //      //  .read_probe = probe,
@@ -109,7 +109,7 @@ public int ff_raw_data_read_header (
 //  FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, AVFMT_GENERIC_INDEX)
 
 //  #define FF_RAWSUB_DEMUXER_CLASS (name)\
-//  public const LibAVUtil.Class name ## _demuxer_class = {\
+//  public const LibAVUtil.Class name ## _demuxer_class = {
 //      //  .class_name = #name " demuxer",
 //      //  .item_name = av_default_item_name,
 //      //  .option = ff_raw_options,
@@ -118,7 +118,7 @@ public int ff_raw_data_read_header (
 
 //  #define FF_DEF_RAWSUB_DEMUXER (shortname, longname, probe, ext, id, flag)\
 //  FF_RAWSUB_DEMUXER_CLASS (shortname)\
-//  AVInputFormat ff_ ## shortname ## _demuxer = {\
+//  AVInputFormat ff_ ## shortname ## _demuxer = {
 //      //  .name = #shortname,
 //      //  .long_name = NULL_IF_CONFIG_SMALL (longname),
 //      //  .read_probe = probe,

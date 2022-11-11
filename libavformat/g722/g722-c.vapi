@@ -26,31 +26,31 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "g722";
         }
-    } // = "g722"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw G.722";
         }
-    } // = "raw G.722"
-    [CCode (cname="", cheader="")]
+    }
+    [CCode (cname="g722_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = g722_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_raw_read_partial_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_raw_read_partial_packet,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "g722,722";
         }
-    } // = "g722,722"
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

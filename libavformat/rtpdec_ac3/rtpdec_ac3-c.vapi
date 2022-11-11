@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_ac3_dynamic_handler = {
     //  .enc_name = "ac3"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.AC3,
     //  .need_parsing = AVSTREAM_PARSE_FULL,

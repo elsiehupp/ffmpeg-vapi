@@ -29,9 +29,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "frm";
         }
-    } // = "frm"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -41,9 +41,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Megalux Frame";
         }
-    } // = "Megalux Frame"
+    }
     [CCode (cname="frm_read_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context

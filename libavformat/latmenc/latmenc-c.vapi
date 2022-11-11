@@ -25,27 +25,27 @@ public class LATMOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "latm";
         }
-    } // = "latm"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "LOAS/LATM";
         }
-    } // = "LOAS/LATM"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/MP4A-LATM";
         }
-    } // = "audio/MP4A-LATM"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "latm,loas";
         }
-    } // = "latm,loas"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

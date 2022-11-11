@@ -44,12 +44,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "hash muxer";
         }
-    } // = "hash muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = hash_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_hash_muxer", cheader="")]
@@ -57,15 +69,15 @@ public class HashOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "hash";
         }
-    } // = "hash"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Hash testing";
         }
-    } // = "Hash testing"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -84,22 +96,21 @@ public class HashOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="hash_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = hash_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hash_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = hash_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hash_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = hash_write_trailer,
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
-                         AVFMT_TS_NEGATIVE,
+    );
+    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE,
     //  .priv_class = hashenc_class,
 }
 #endif
@@ -110,12 +121,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "MD5 muxer";
         }
-    } // = "MD5 muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = md5_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_md5_muxer", cheader="")]
@@ -123,15 +146,15 @@ public class MD5OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "md5";
         }
-    } // = "md5"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MD5 testing";
         }
-    } // = "MD5 testing"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -150,22 +173,21 @@ public class MD5OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="hash_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = hash_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hash_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = hash_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="hash_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = hash_write_trailer,
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
-                         AVFMT_TS_NEGATIVE,
+    );
+    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE,
     //  .priv_class = md5enc_class,
 }
 #endif
@@ -176,12 +198,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "frame hash muxer";
         }
-    } // = "frame hash muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = hash_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_framehash_muxer", cheader="")]
@@ -189,15 +223,15 @@ public class FrameHashOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "framehash";
         }
-    } // = "framehash"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Per-frame hash testing";
         }
-    } // = "Per-frame hash testing"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -216,22 +250,21 @@ public class FrameHashOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="framehash_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = framehash_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="framehash_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = framehash_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="framehash_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = framehash_write_trailer,
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
-                         AVFMT_TS_NEGATIVE,
+    );
+    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE,
     //  .priv_class = framehash_class,
 }
 #endif
@@ -242,12 +275,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "frame MD5 muxer";
         }
-    } // = "frame MD5 muxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = md5_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_framemd5_muxer", cheader="")]
@@ -255,15 +300,15 @@ public class FrameMD5OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "framemd5";
         }
-    } // = "framemd5"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Per-frame MD5 testing";
         }
-    } // = "Per-frame MD5 testing"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -282,22 +327,21 @@ public class FrameMD5OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="framehash_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = framehash_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="framehash_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = framehash_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="framehash_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = framehash_write_trailer,
-    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT |
-                         AVFMT_TS_NEGATIVE,
+    );
+    //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE,
     //  .priv_class = framemd5_class,
 }
 #endif

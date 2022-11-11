@@ -25,27 +25,27 @@ public class CAFOutputMuxer : AVOutputFormat  {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "caf";
         }
-    } // = "caf"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Apple CAF (Core Audio Format)";
         }
-    } // = "Apple CAF (Core Audio Format)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/x-caf";
         }
-    } // = "audio/x-caf"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "caf";
         }
-    } // = "caf"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

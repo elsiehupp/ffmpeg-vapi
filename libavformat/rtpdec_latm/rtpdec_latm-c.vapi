@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_mp4a_latm_dynamic_handler = {
     //  .enc_name = "MP4A-LATM"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.AAC,
     [CCode (cname="priv_data_size", cheader="")]

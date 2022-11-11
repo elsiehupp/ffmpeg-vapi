@@ -38,15 +38,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "wsaud";
         }
-    } // = "wsaud"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Westwood Studios audio";
         }
-    } // = "Westwood Studios audio"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context

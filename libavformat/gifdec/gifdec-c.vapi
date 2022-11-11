@@ -37,13 +37,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "GIF demuxer";
         }
-    } // = "GIF demuxer"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
     //  .category = AV_CLASS_CATEGORY_DEMUXER,
 }
 
@@ -52,34 +64,34 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "gif";
         }
-    } // = "gif"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "CompuServe Graphics Interchange Format (GIF)";
         }
-    } // = "CompuServe Graphics Interchange Format (GIF)"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GIFDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="gif_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = gif_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gif_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = gif_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gif_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = gif_read_packet,
+    );
     //  .flags = AVFMT_GENERIC_INDEX,
     //  .priv_class = demuxer_class,
 }

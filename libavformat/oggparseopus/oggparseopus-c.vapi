@@ -24,10 +24,12 @@ const struct ogg_codec ff_opus_codec = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "Opus"
         }
-    } // = "Opus"
+    }
     //  .magic = "OpusHead"
+        }
+    }
     //  .magicsize = 8,
     [CCode (cname="", cheader="")]
     public override int header (

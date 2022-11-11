@@ -27,27 +27,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "swf";
         }
-    } // = "swf"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "SWF (ShockWave Flash)";
         }
-    } // = "SWF (ShockWave Flash)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "application/x-shockwave-flash";
         }
-    } // = "application/x-shockwave-flash"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "swf";
         }
-    } // = "swf"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -90,21 +90,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "avm2";
         }
-    } // = "avm2"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "SWF (ShockWave Flash) (AVM2)";
         }
-    } // = "SWF (ShockWave Flash) (AVM2)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "application/x-shockwave-flash";
         }
-    } // = "application/x-shockwave-flash"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

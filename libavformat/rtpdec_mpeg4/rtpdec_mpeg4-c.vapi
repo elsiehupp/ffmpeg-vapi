@@ -29,6 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_mp4v_es_dynamic_handler = {
     //  .enc_name = "MP4V-ES"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.MPEG4,
     //  .need_parsing = AVSTREAM_PARSE_FULL,
@@ -49,6 +51,8 @@ const RTPDynamicProtocolHandler ff_mp4v_es_dynamic_handler = {
 
 const RTPDynamicProtocolHandler ff_mpeg4_generic_dynamic_handler = {
     //  .enc_name = "mpeg4-generic"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.AAC,
     [CCode (cname="priv_data_size", cheader="")]

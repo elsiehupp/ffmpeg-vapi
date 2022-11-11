@@ -25,15 +25,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "brstm";
         }
-    } // = "brstm"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "BRSTM (Binary Revolution Stream)";
         }
-    } // = "BRSTM (Binary Revolution Stream)"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -67,9 +67,7 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
-        }
-    } // = "brstm"
+            return "brstm"
 }
 
 [CCode (cname="ff_bfstm_demuxer", cheader="")]
@@ -77,15 +75,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "bfstm";
         }
-    } // = "bfstm"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "BFSTM (Binary Cafe Stream)";
         }
-    } // = "BFSTM (Binary Cafe Stream)"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -119,7 +117,5 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
-        }
-    } // = "bfstm,bcstm"
+            return "bfstm,bcstm"
 }

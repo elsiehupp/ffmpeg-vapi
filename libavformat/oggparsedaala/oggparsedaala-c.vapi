@@ -25,10 +25,12 @@ const struct ogg_codec ff_daala_codec = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "Daala"
         }
-    } // = "Daala"
+    }
     //  .magic = "\200daala"
+        }
+    }
     //  .magicsize = 6,
     [CCode (cname="", cheader="")]
     public override int header (

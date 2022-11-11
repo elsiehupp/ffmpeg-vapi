@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const struct ogg_codec ff_flac_codec = {
     //  .magic = "\177FLAC"
+        }
+    }
     //  .magicsize = 5,
     [CCode (cname="", cheader="")]
     public override int header (
@@ -32,6 +34,8 @@ const struct ogg_codec ff_flac_codec = {
 
 const struct ogg_codec ff_old_flac_codec = {
     //  .magic = "fLaC"
+        }
+    }
     //  .magicsize = 4,
     [CCode (cname="", cheader="")]
     public override int header (

@@ -24,9 +24,9 @@ public class DataURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "data";
         }
-    } // = "data"
+    }
     [CCode (cname="data_open", cheader="")]
     public override int url_open (
         URLContext url_context,

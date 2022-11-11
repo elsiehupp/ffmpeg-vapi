@@ -45,15 +45,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "oma";
         }
-    } // = "oma"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Sony OpenMG audio";
         }
-    } // = "Sony OpenMG audio"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -88,8 +88,8 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "oma,omg,aa3"
         }
-    } // = "oma,omg,aa3"
+    }
     //  .codec_tag = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
 }

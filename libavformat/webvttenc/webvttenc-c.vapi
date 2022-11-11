@@ -29,27 +29,27 @@ public class WebVTTOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "webvtt";
         }
-    } // = "webvtt"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "WebVTT subtitle";
         }
-    } // = "WebVTT subtitle"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "vtt";
         }
-    } // = "vtt"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "text/vtt"
         }
-    } // = "text/vtt"
+    }
     //  .flags = AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT,
     //  .subtitle_codec = LibAVCodec.CodecID.WEBVTT,
     [CCode (cname="", cheader="")]

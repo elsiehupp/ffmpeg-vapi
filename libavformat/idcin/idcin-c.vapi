@@ -73,40 +73,40 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "idcin";
         }
-    } // = "idcin"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "id Cinematic";
         }
-    } // = "id Cinematic"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (IdcinDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="idcin_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = idcin_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="idcin_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = idcin_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="idcin_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = idcin_read_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="idcin_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = idcin_read_seek,
+    );
     //  .flags = AVFMT_NO_BYTE_SEEK,
 }

@@ -36,32 +36,32 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mm";
         }
-    } // = "mm"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "American Laser Games MM";
         }
-    } // = "American Laser Games MM"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MmDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = read_packet,
+    );
 }

@@ -22,11 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_h263_1998_dynamic_handler = {
     //  .enc_name = "H263-1998"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.H263,
     //  .need_parsing = AVSTREAM_PARSE_FULL,
 
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_h263_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -37,16 +39,18 @@ const RTPDynamicProtocolHandler ff_h263_1998_dynamic_handler = {
         int len,
         uint16 seq,
         int flags
-    ); // = ff_h263_handle_packet,
+    );
 }
 
 const RTPDynamicProtocolHandler ff_h263_2000_dynamic_handler = {
     //  .enc_name = "H263-2000"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.H263,
     //  .need_parsing = AVSTREAM_PARSE_FULL,
 
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_h263_handle_packet", cheader="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -57,5 +61,5 @@ const RTPDynamicProtocolHandler ff_h263_2000_dynamic_handler = {
         int len,
         uint16 seq,
         int flags
-    ); // = ff_h263_handle_packet,
+    );
 }

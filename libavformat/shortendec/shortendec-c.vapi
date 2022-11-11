@@ -28,35 +28,35 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "shn";
         }
-    } // = "shn"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw Shorten";
         }
-    } // = "raw Shorten"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
     ); // = shn_probe,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_audio_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = ff_raw_audio_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="ff_raw_read_partial_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_raw_read_partial_packet,
+    );
     //  .flags = AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS,
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "shn";
         }
-    } // = "shn"
+    }
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

@@ -28,15 +28,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "lmlm4";
         }
-    } // = "lmlm4"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw lmlm4";
         }
-    } // = "raw lmlm4"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context

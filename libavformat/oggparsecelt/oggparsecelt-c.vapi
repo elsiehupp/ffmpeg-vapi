@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const struct ogg_codec ff_celt_codec = {
     //  .magic = "CELT    "
+        }
+    }
     //  .magicsize = 8,
     [CCode (cname="", cheader="")]
     public override int header (

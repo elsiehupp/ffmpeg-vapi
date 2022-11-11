@@ -34,11 +34,23 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "Sega FILM muxer";
         }
-    } // = "Sega FILM muxer"
-    //  .item_name = av_default_item_name,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_segafilm_muxer", cheader="")]
@@ -46,21 +58,21 @@ public class SegaFilmOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "film_cpk";
         }
-    } // = "film_cpk"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Sega FILM / CPK";
         }
-    } // = "Sega FILM / CPK"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "cpk";
         }
-    } // = "cpk"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

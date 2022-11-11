@@ -25,15 +25,15 @@ public class MKVTimeStampV2OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mkvtimestamp_v2";
         }
-    } // = "mkvtimestamp_v2"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "extract pts as timecode v2 format, as defined by mkvtoolnix";
         }
-    } // = "extract pts as timecode v2 format, as defined by mkvtoolnix"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -46,14 +46,14 @@ public class MKVTimeStampV2OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = write_packet,
+    );
 }

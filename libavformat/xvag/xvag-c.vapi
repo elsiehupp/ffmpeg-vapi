@@ -25,15 +25,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "xvag";
         }
-    } // = "xvag"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Sony PS3 XVAG";
         }
-    } // = "Sony PS3 XVAG"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -50,7 +50,5 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
-        }
-    } // = "xvag"
+            return "xvag"
 }

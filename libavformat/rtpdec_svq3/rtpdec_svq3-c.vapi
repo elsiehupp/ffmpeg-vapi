@@ -28,6 +28,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_svq3_dynamic_handler = {
     //  .enc_name = "X-SV3V-ES"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_VIDEO,
     //  .codec_id = LibAVCodec.CodecID.NONE,      // see if (config_packet) above
     [CCode (cname="priv_data_size", cheader="")]

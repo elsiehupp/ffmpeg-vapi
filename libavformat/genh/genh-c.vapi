@@ -25,38 +25,36 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "genh";
         }
-    } // = "genh"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "GENeric Header";
         }
-    } // = "GENeric Header"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GENHDemuxContext);
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="genh_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
-    ); // = genh_probe,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="genh_read_header", cheader="")]
     public override int read_header (
         AVFormatContext format_context
-    ); // = genh_read_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="genh_read_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = genh_read_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
-        }
-    } // = "genh"
+            return "genh"
 }

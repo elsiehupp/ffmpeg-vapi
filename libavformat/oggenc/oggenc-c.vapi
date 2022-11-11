@@ -43,11 +43,25 @@ public class AVClass : AVClass {
         public get {
             return ;
         }
-    } // = #name " muxer"
-    //  .item_name = av_default_item_name,
+    } // = #name " muxer";
+        }
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 #if CONFIG_OGG_MUXER
@@ -57,27 +71,25 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ogg";
         }
-    } // = "ogg"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Ogg";
         }
-    } // = "Ogg"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "application/ogg";
         }
-    } // = "application/ogg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
-        }
-    } // = "ogg"
+            return "ogg"
 #if !CONFIG_OGV_MUXER
                          ",ogv"
 #endif
@@ -141,27 +153,27 @@ public class OutputMuxer : AVOutputFormat ff_oga_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "oga";
         }
-    } // = "oga"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Ogg Audio";
         }
-    } // = "Ogg Audio"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/ogg";
         }
-    } // = "audio/ogg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "oga";
         }
-    } // = "oga"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -207,27 +219,27 @@ public class OutputMuxer : AVOutputFormat ff_ogv_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ogv";
         }
-    } // = "ogv"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Ogg Video";
         }
-    } // = "Ogg Video"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/ogg";
         }
-    } // = "video/ogg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "ogv";
         }
-    } // = "ogv"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -279,27 +291,27 @@ public class OutputMuxer : AVOutputFormat ff_spx_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "spx";
         }
-    } // = "spx"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Ogg Speex";
         }
-    } // = "Ogg Speex"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/ogg";
         }
-    } // = "audio/ogg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "spx";
         }
-    } // = "spx"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -345,27 +357,27 @@ public class OutputMuxer : AVOutputFormat ff_opus_muxer = {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "opus";
         }
-    } // = "opus"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Ogg Opus";
         }
-    } // = "Ogg Opus"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/ogg";
         }
-    } // = "audio/ogg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "opus";
         }
-    } // = "opus"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {

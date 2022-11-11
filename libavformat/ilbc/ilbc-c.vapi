@@ -25,15 +25,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ilbc";
         }
-    } // = "ilbc"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "iLBC storage";
         }
-    } // = "iLBC storage"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -55,27 +55,27 @@ public class ILBCOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ilbc";
         }
-    } // = "ilbc"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "iLBC storage";
         }
-    } // = "iLBC storage"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/iLBC";
         }
-    } // = "audio/iLBC"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "lbc";
         }
-    } // = "lbc"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {

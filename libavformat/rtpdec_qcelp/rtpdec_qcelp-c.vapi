@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const RTPDynamicProtocolHandler ff_qcelp_dynamic_handler = {
     //  .enc_name = "x-Purevoice"
+        }
+    }
     //  .codec_type = AVMEDIA_TYPE_AUDIO,
     //  .codec_id = LibAVCodec.CodecID.QCELP,
     [CCode (cname="priv_data_size", cheader="")]

@@ -29,15 +29,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sol";
         }
-    } // = "sol"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Sierra SOL";
         }
-    } // = "Sierra SOL"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -51,11 +51,11 @@ public class InputDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     ); // = sol_read_packet,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_pcm_read_seek", cheader="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
-    ); // = ff_pcm_read_seek,
+    );
 }

@@ -26,21 +26,21 @@ public class RSOOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "rso";
         }
-    } // = "rso"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Lego Mindstorms RSO";
         }
-    } // = "Lego Mindstorms RSO"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "rso";
         }
-    } // = "rso"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -67,6 +67,6 @@ public class RSOOutputMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     ); // = rso_write_trailer,
-    //  .codec_tag =   (const AVCodecTag* const []){ff_codec_rso_tags, 0},
-    //  .flags =   AVFMT_NOTIMESTAMPS,
+    //  .codec_tag = (const AVCodecTag* const []){ff_codec_rso_tags, 0},
+    //  .flags = AVFMT_NOTIMESTAMPS,
 }

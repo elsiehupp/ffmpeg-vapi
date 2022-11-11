@@ -25,21 +25,21 @@ public class GXFOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "gxf";
         }
-    } // = "gxf"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "GXF (General eXchange Format)";
         }
-    } // = "GXF (General eXchange Format)"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "gxf";
         }
-    } // = "gxf"
+    }
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
@@ -58,25 +58,25 @@ public class GXFOutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="gxf_write_header", cheader="")]
     public override int write_header (
         AVFormatContext format_context
-    ); // = gxf_write_header,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gxf_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = gxf_write_packet,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gxf_write_trailer", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
-    ); // = gxf_write_trailer,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gxf_interleave_packet", cheader="")]
     public override int interleave_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet output,
         LibAVCodec.Packet input,
         int flush
-    ); // = gxf_interleave_packet,
+    );
 }

@@ -84,8 +84,8 @@ Reminder:
 
 //  static const AVOption options[] = {
 //      { "ttl",   "Time to live (in milliseconds, multicast only)", OFFSET(ttl), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, .flags = E },
-//      { "l", "FEC L", OFFSET(l), AV_OPT_TYPE_INT, { .i64 =  5 }, 4, 20, .flags = E },
-//      { "d", "FEC D", OFFSET(d), AV_OPT_TYPE_INT, { .i64 =  5 }, 4, 20, .flags = E },
+//      { "l", "FEC L", OFFSET(l), AV_OPT_TYPE_INT, { .i64 = 5 }, 4, 20, .flags = E },
+//      { "d", "FEC D", OFFSET(d), AV_OPT_TYPE_INT, { .i64 = 5 }, 4, 20, .flags = E },
 //      { NULL }
 //  }
 
@@ -94,13 +94,25 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "prompeg";
         }
-    } // = "prompeg"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     [CCode (cname="options", cheader="")]
     public override AVOption[] option { public get; }
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_prompeg_protocol", cheader="")]
@@ -108,9 +120,9 @@ public class ProMpegURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "prompeg";
         }
-    } // = "prompeg"
+    }
     [CCode (cname="", cheader="")]
     public override int url_open (
         URLContext url_context,
@@ -133,6 +145,11 @@ public class ProMpegURLProtocol : URLProtocol {
             return sizeof (PrompegContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
     //  .priv_data_class = prompeg_class,
 }

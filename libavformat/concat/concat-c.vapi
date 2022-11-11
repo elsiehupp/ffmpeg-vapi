@@ -27,9 +27,9 @@ public class ConcatURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "concat";
         }
-    } // = "concat"
+    }
     [CCode (cname="concat_open", cheader="")]
     public override int url_open (
         URLContext url_context,

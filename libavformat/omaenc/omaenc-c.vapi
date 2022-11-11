@@ -26,27 +26,27 @@ public class OMAOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "oma";
         }
-    } // = "oma"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Sony OpenMG audio";
         }
-    } // = "Sony OpenMG audio"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/x-oma";
         }
-    } // = "audio/x-oma"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "oma";
         }
-    } // = "oma"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -57,12 +57,12 @@ public class OMAOutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = oma_write_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .codec_tag = (const AVCodecTag* const []){ff_oma_codec_tags, 0},
     //  .flags = AVFMT_NOTIMESTAMPS,
 }

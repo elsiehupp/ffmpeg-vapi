@@ -25,15 +25,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ast";
         }
-    } // = "ast"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "AST (Audio Stream)";
         }
-    } // = "AST (Audio Stream)"
+    }
     [CCode (cname="ast_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -50,9 +50,9 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "ast"
         }
-    } // = "ast"
+    }
     //  .flags = AVFMT_GENERIC_INDEX,
     //  .codec_tag = (const AVCodecTag* const []){ff_codec_ast_tags, 0},
 }

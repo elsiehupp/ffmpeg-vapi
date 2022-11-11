@@ -25,15 +25,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "dcstr";
         }
-    } // = "dcstr"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Sega DC STR";
         }
-    } // = "Sega DC STR"
+    }
     [CCode (cname="dcstr_probe", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -50,8 +50,8 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "str"
         }
-    } // = "str"
+    }
     //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK | AVFMT_NOBINSEARCH,
 }

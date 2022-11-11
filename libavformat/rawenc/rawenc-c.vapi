@@ -27,27 +27,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "ac3";
         }
-    } // = "ac3"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw AC-3";
         }
-    } // = "raw AC-3"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/x-ac3";
         }
-    } // = "audio/x-ac3"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "ac3";
         }
-    } // = "ac3"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -64,12 +64,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -81,21 +81,21 @@ public class ADXOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "adx";
         }
-    } // = "adx"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "CRI ADX";
         }
-    } // = "CRI ADX"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "adx";
         }
-    } // = "adx"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -112,12 +112,12 @@ public class ADXOutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     [CCode (cname="", cheader="")]
     public override int write_trailer (
         AVFormatContext format_context
@@ -132,21 +132,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "aptx";
         }
-    } // = "aptx"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw aptX (Audio Processing Technology for Bluetooth)";
         }
-    } // = "raw aptX (Audio Processing Technology for Bluetooth)"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "aptx";
         }
-    } // = "aptx"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -163,12 +163,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -179,21 +179,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "aptx_hd";
         }
-    } // = "aptx_hd"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw aptX HD (Audio Processing Technology for Bluetooth)";
         }
-    } // = "raw aptX HD (Audio Processing Technology for Bluetooth)"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "aptxhd";
         }
-    } // = "aptxhd"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -210,12 +210,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -226,21 +226,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "avs2";
         }
-    } // = "avs2"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw AVS2-P2/IEEE1857.4 video";
         }
-    } // = "raw AVS2-P2/IEEE1857.4 video"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "avs,avs2";
         }
-    } // = "avs,avs2"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -257,12 +257,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -273,21 +273,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "cavsvideo";
         }
-    } // = "cavsvideo"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw Chinese AVS (Audio Video Standard) video";
         }
-    } // = "raw Chinese AVS (Audio Video Standard) video"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "cavs";
         }
-    } // = "cavs"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -304,12 +304,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -320,15 +320,15 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "codec2raw";
         }
-    } // = "codec2raw"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw codec2 muxer";
         }
-    } // = "raw codec2 muxer"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -345,12 +345,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -362,25 +362,25 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "data";
         }
-    } // = "data"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw data";
         }
-    } // = "raw data"
+    }
     [CCode (cname="", cheader="")]
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -391,21 +391,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "dirac";
         }
-    } // = "dirac"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw Dirac";
         }
-    } // = "raw Dirac"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "drc,vc2";
         }
-    } // = "drc,vc2"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -422,12 +422,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -438,21 +438,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "dnxhd";
         }
-    } // = "dnxhd"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw DNxHD (SMPTE VC-3)";
         }
-    } // = "raw DNxHD (SMPTE VC-3)"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "dnxhd,dnxhr";
         }
-    } // = "dnxhd,dnxhr"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -469,12 +469,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -485,27 +485,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "dts";
         }
-    } // = "dts"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw DTS";
         }
-    } // = "raw DTS"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/x-dca";
         }
-    } // = "audio/x-dca"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "dts";
         }
-    } // = "dts"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -522,12 +522,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -538,27 +538,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "eac3";
         }
-    } // = "eac3"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw E-AC-3";
         }
-    } // = "raw E-AC-3"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/x-eac3";
         }
-    } // = "audio/x-eac3"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "eac3";
         }
-    } // = "eac3"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -575,12 +575,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -591,27 +591,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "g722";
         }
-    } // = "g722"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw G.722";
         }
-    } // = "raw G.722"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/G722";
         }
-    } // = "audio/G722"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "g722";
         }
-    } // = "g722"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -628,12 +628,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -644,27 +644,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "g723_1";
         }
-    } // = "g723_1"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw G.723.1";
         }
-    } // = "raw G.723.1"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/g723";
         }
-    } // = "audio/g723"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "tco,rco";
         }
-    } // = "tco,rco"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -681,12 +681,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -697,15 +697,15 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "g726";
         }
-    } // = "g726"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw big-endian G.726 (\"left-justified\")";
         }
-    } // = "raw big-endian G.726 (\"left-justified\")"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -722,12 +722,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -738,15 +738,15 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "g726le";
         }
-    } // = "g726le"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw little-endian G.726 (\"right-justified\")";
         }
-    } // = "raw little-endian G.726 (\"right-justified\")"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -763,12 +763,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -779,27 +779,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "gsm";
         }
-    } // = "gsm"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw GSM";
         }
-    } // = "raw GSM"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/x-gsm";
         }
-    } // = "audio/x-gsm"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "gsm";
         }
-    } // = "gsm"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -816,12 +816,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -832,27 +832,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "h261";
         }
-    } // = "h261"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw H.261";
         }
-    } // = "raw H.261"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/x-h261";
         }
-    } // = "video/x-h261"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "h261";
         }
-    } // = "h261"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -869,12 +869,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -885,27 +885,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "h263";
         }
-    } // = "h263"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw H.263";
         }
-    } // = "raw H.263"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/x-h263";
         }
-    } // = "video/x-h263"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "h263";
         }
-    } // = "h263"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -922,12 +922,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -939,21 +939,21 @@ public class H264OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "h264";
         }
-    } // = "h264"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw H.264 video";
         }
-    } // = "raw H.264 video"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "h264,264";
         }
-    } // = "h264,264"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -970,12 +970,12 @@ public class H264OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     [CCode (cname="", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
@@ -1000,21 +1000,21 @@ public class HEVCOutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "hevc";
         }
-    } // = "hevc"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw HEVC video";
         }
-    } // = "raw HEVC video"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "hevc,h265,265";
         }
-    } // = "hevc,h265,265"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1031,12 +1031,12 @@ public class HEVCOutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     [CCode (cname="", cheader="")]
     public override int check_bitstream (
         AVFormatContext format_context,
@@ -1052,21 +1052,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "m4v";
         }
-    } // = "m4v"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw MPEG-4 video";
         }
-    } // = "raw MPEG-4 video"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "m4v";
         }
-    } // = "m4v"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1083,12 +1083,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -1099,27 +1099,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mjpeg";
         }
-    } // = "mjpeg"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw MJPEG video";
         }
-    } // = "raw MJPEG video"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/x-mjpeg";
         }
-    } // = "video/x-mjpeg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "mjpg,mjpeg";
         }
-    } // = "mjpg,mjpeg"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1136,12 +1136,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -1152,21 +1152,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "singlejpeg";
         }
-    } // = "singlejpeg"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "JPEG single image";
         }
-    } // = "JPEG single image"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "image/jpeg";
         }
-    } // = "image/jpeg"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1179,12 +1179,12 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.MJPEG;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
     [CCode (cname="", cheader="")]
     public override int write_header (
@@ -1199,21 +1199,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mlp";
         }
-    } // = "mlp"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw MLP";
         }
-    } // = "raw MLP"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "mlp";
         }
-    } // = "mlp"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1230,12 +1230,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -1246,27 +1246,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mp2";
         }
-    } // = "mp2"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "MP2 (MPEG audio layer 2)";
         }
-    } // = "MP2 (MPEG audio layer 2)"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/mpeg";
         }
-    } // = "audio/mpeg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "mp2,m2a,mpa";
         }
-    } // = "mp2,m2a,mpa"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1279,12 +1279,12 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -1295,27 +1295,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mpeg1video";
         }
-    } // = "mpeg1video"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw MPEG-1 video";
         }
-    } // = "raw MPEG-1 video"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "video/mpeg";
         }
-    } // = "video/mpeg"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "mpg,mpeg,m1v";
         }
-    } // = "mpg,mpeg,m1v"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1332,12 +1332,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -1348,21 +1348,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "mpeg2video";
         }
-    } // = "mpeg2video"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw MPEG-2 video";
         }
-    } // = "raw MPEG-2 video"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "m2v";
         }
-    } // = "m2v"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1379,12 +1379,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -1395,21 +1395,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "rawvideo";
         }
-    } // = "rawvideo"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw video";
         }
-    } // = "raw video"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "yuv,rgb";
         }
-    } // = "yuv,rgb"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1422,12 +1422,12 @@ public class OutputMuxer : AVOutputFormat {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -1438,27 +1438,27 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "sbc";
         }
-    } // = "sbc"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw SBC";
         }
-    } // = "raw SBC"
+    }
     [CCode (cname="mime_type", cheader="")]
     public override string mime_type {
         public get {
-            return ;
+            return "audio/x-sbc";
         }
-    } // = "audio/x-sbc"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "sbc,msbc";
         }
-    } // = "sbc,msbc"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1469,12 +1469,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -1485,21 +1485,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "truehd";
         }
-    } // = "truehd"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw TrueHD";
         }
-    } // = "raw TrueHD"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "thd";
         }
-    } // = "thd"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1516,12 +1516,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif
@@ -1532,21 +1532,21 @@ public class OutputMuxer : AVOutputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "vc1";
         }
-    } // = "vc1"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "raw VC-1 video";
         }
-    } // = "raw VC-1 video"
+    }
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "vc1";
         }
-    } // = "vc1"
+    }
     [CCode (cname="audio_codec", cheader="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
@@ -1563,12 +1563,12 @@ public class OutputMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     ); // = force_one_stream,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
-    ); // = ff_raw_write_packet,
+    );
     //  .flags = AVFMT_NOTIMESTAMPS,
 }
 #endif

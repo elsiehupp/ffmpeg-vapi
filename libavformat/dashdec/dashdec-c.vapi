@@ -36,12 +36,24 @@ public class AVClass : AVClass {
     [CCode (cname="class_name", cheader="")]
     public override string class_name {
         public get {
-            return ;
+            return "dash";
         }
-    } // = "dash"
-    //  .item_name = av_default_item_name,
+    }
+    [CCode (cname="item_name", cheader="")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return av_default_item_name (
+            class_context
+        );
+    }
     //  .option = dash_options,
-    //  .version = LIBAVUTIL_VERSION_INT,
+    [CCode (cname="version", cheader="")]
+    public override int version {
+        public get {
+            return LIBAVUTIL_VERSION_INT;
+        }
+    }
 }
 
 [CCode (cname="ff_dash_demuxer", cheader="")]
@@ -49,15 +61,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "dash";
         }
-    } // = "dash"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Dynamic Adaptive Streaming over HTTP"
         }
-    } // = "Dynamic Adaptive Streaming over HTTP"
+    }
     //  .priv_class = dash_class,
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {

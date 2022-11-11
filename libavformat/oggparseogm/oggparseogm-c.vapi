@@ -24,6 +24,8 @@
 
 const struct ogg_codec ff_ogm_video_codec = {
     //  .magic = "\001video"
+        }
+    }
     //  .magicsize = 6,
     [CCode (cname="", cheader="")]
     public override int header (
@@ -41,6 +43,8 @@ const struct ogg_codec ff_ogm_video_codec = {
 
 const struct ogg_codec ff_ogm_audio_codec = {
     //  .magic = "\001audio"
+        }
+    }
     //  .magicsize = 6,
     [CCode (cname="", cheader="")]
     public override int header (
@@ -58,6 +62,8 @@ const struct ogg_codec ff_ogm_audio_codec = {
 
 const struct ogg_codec ff_ogm_text_codec = {
     //  .magic = "\001text"
+        }
+    }
     //  .magicsize = 5,
     [CCode (cname="", cheader="")]
     public override int header (
@@ -75,6 +81,8 @@ const struct ogg_codec ff_ogm_text_codec = {
 
 const struct ogg_codec ff_ogm_old_codec = {
     //  .magic = "\001Direct Show Samples embedded in Ogg"
+        }
+    }
     //  .magicsize = 35,
     [CCode (cname="", cheader="")]
     public override int header (

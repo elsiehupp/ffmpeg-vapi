@@ -28,36 +28,41 @@ public class GopherURLProtocol : URLProtocol {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "gopher";
         }
-    } // = "gopher"
-    [CCode (cname="", cheader="")]
+    }
+    [CCode (cname="gopher_open", cheader="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
-    ); // = gopher_open,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gopher_read", cheader="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = gopher_read,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gopher_write", cheader="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
-    ); // = gopher_write,
-    [CCode (cname="", cheader="")]
+    );
+    [CCode (cname="gopher_close", cheader="")]
     public override int url_close (
         URLContext url_context
-    ); // = gopher_close,
+    );
     [CCode (cname="priv_data_size", cheader="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GopherContext);
         }
     }
-    //  .flags = URL_PROTOCOL_FLAG_NETWORK,
+    [CCode (cname="flags", cheader="")]
+    public override URLProtocolFlags flags {
+        public get {
+            return URL_PROTOCOL_FLAG_NETWORK;
+        }
+    }
 }

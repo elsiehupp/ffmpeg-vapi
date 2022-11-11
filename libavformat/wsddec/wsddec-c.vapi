@@ -26,15 +26,15 @@ public class InputDemuxer : AVInputFormat {
     [CCode (cname="name", cheader="")]
     public override string name {
         public get {
-            return ;
+            return "wsd";
         }
-    } // = "wsd"
+    }
     [CCode (cname="long_name", cheader="")]
     public override string long_name {
         public get {
-            return ;
+            return "Wideband Single-bit Data (WSD)";
         }
-    } // = "Wideband Single-bit Data (WSD)"
+    }
     [CCode (cname="", cheader="")]
     public override int read_probe (
         AVProbeData format_context
@@ -43,17 +43,17 @@ public class InputDemuxer : AVInputFormat {
     public override int read_header (
         AVFormatContext format_context
     ); // = wsd_read_header,
-    [CCode (cname="", cheader="")]
+    [CCode (cname="ff_raw_read_partial_packet", cheader="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ff_raw_read_partial_packet,
+    );
     [CCode (cname="extensions", cheader="")]
     public override string extensions {
         public get {
-            return ;
+            return "wsd"
         }
-    } // = "wsd"
+    }
     //  .flags = AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK,
     [CCode (cname="raw_codec_id", cheader="")]
     public override LibAVCodec.CodecID raw_codec_id {
