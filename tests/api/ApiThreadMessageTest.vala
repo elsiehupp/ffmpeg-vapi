@@ -38,14 +38,14 @@ public class ApiThreadMessageTest : GLib.TestCase {
         public static void SPAWN_THREADS (LibAVUtil.ThreadMessageQueue queue) throws Goto {
             for (int i = 0; i < count; i++) {
                 AbstractData td = instance_array[i];
-        
+
                 td.id = i;
                 td.queue = queue;
                 td.workload = get_workload (
                     min_load,
                     max_load
                 );
-        
+
                 ret = pthread_create (
                     out td.tid,
                     null,
@@ -66,11 +66,11 @@ public class ApiThreadMessageTest : GLib.TestCase {
                 }
             }
         }
-        
+
         public static void WAIT_THREADS () throws Goto {
             for (uint i = 0; i < count; i++) {
                 AbstractData td = instance_array[i];
-        
+
                 ret = pthread_join (
                     td.tid,
                     null
@@ -96,8 +96,8 @@ public class ApiThreadMessageTest : GLib.TestCase {
         ) {
             return maxv == minv ? maxv : rand () % (maxv - minv) + minv;
         }
-        
-        
+
+
     }
 
     class SenderData : AbstractData {
@@ -107,7 +107,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
         }
         public override void *thread () {
             uint ret = 0;
-        
+
             av_log (
                 null,
                 AV_LOG_INFO,
@@ -131,16 +131,16 @@ public class ApiThreadMessageTest : GLib.TestCase {
                         magic = MAGIC,
                         frame = av_frame_alloc (),
                     };
-        
+
                     if (msg.frame == null) {
                         ret = AVERROR (ENOMEM);
                         break;
                     }
-        
+
                     /***********************************************************
                     We add some metadata to identify the frames
                     ***********************************************************/
-        
+
                     val = av_asprintf (
                         "frame %d/%d from sender %d",
                         i + 1,
@@ -163,11 +163,11 @@ public class ApiThreadMessageTest : GLib.TestCase {
                         break;
                     }
                     msg.frame.metadata = meta;
-        
+
                     /***********************************************************
                     Allocate a real frame in order to simulate "real" work
                     ***********************************************************/
-        
+
                     msg.frame.format = AV_PIX_FMT_RGBA;
                     msg.frame.width = 320;
                     msg.frame.height = 240;
@@ -179,11 +179,11 @@ public class ApiThreadMessageTest : GLib.TestCase {
                         av_frame_free (out msg.frame);
                         break;
                     }
-        
+
                     /***********************************************************
                     Push the frame in the common queue
                     ***********************************************************/
-        
+
                     av_log (
                         null,
                         AV_LOG_INFO,
@@ -217,7 +217,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
             );
             return null;
         }
-        
+
     }
 
     /***********************************************************
@@ -231,7 +231,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
         }
         public override void *thread () {
             uint ret = 0;
-        
+
             for (uint i = 0; i < this.workload; i++) {
                 if (rand () % this.workload < this.workload / 10) {
                     av_log (
@@ -247,7 +247,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
                     ThreadMessage msg;
                     LibAVUtil.Dictionary meta;
                     LibAVUtil.DictionaryEntry e;
-        
+
                     ret = av_thread_message_queue_recv (
                         this.queue,
                         out msg,
@@ -273,7 +273,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
                     av_frame_free (out msg.frame);
                 }
             }
-        
+
             av_log (
                 null,
                 AV_LOG_INFO,
@@ -284,10 +284,10 @@ public class ApiThreadMessageTest : GLib.TestCase {
                 this.queue,
                 ret < 0 ? ret : AVERROR_EOF
             );
-        
+
             return null;
         }
-        
+
     }
 
     public class ThreadMessage {
@@ -300,7 +300,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
             av_assert0 (msg.magic == MAGIC);
             av_frame_free (out msg.frame);
         }
-        
+
     }
 
     const uint64 MAGIC = 0xdeadc0de;

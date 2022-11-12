@@ -191,8 +191,8 @@ public class tiny_ssim {
         string argv[]
     ) {
         GLib.File f[2];
-        uint8 *buf[2];
-        uint8 *plane[2 * 3]; // [2][3];
+        uint8[] buf[2];
+        uint8[] plane[2 * 3]; // [2][3];
         uint temp;
         uint64 ssd[3] = {0,0,0};
         double ssim[3] = {0,0,0};
@@ -240,7 +240,7 @@ public class tiny_ssim {
 
             GLib.print ("Frame %d | ", frames);
             print_results (ssd_one, ssim_one, 1, width, height);
-            GLib.print ("                \r");
+            GLib.print (" \r");
             fflush (stdout);
         }
 
