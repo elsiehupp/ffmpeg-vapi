@@ -67,95 +67,95 @@ namespace LibAVFormat {
 //  }
 
 #if CONFIG_MATROSKA_MUXER
-[CCode (cname="matroska_class", cheader="")]
+[CCode (cname="matroska_class", cheader_filename="")]
 public class MatroskaMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "matroska muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_matroska_muxer", cheader="")]
+[CCode (cname="ff_matroska_muxer", cheader_filename="")]
 public class MatroskaMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "matroska";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Matroska";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "video/x-matroska";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "mkv";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MatroskaMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return CONFIG_LIBVORBIS_ENCODER ? LibAVCodec.CodecID.VORBIS : LibAVCodec.CodecID.AC3;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBX264_ENCODER ? LibAVCodec.CodecID.H264 : LibAVCodec.CodecID.MPEG4;
         }
     }
-    [CCode (cname="mkv_init", cheader="")]
+    [CCode (cname="mkv_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mkv_write_header", cheader="")]
+    [CCode (cname="mkv_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mkv_write_flush_packet", cheader="")]
+    [CCode (cname="mkv_write_flush_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mkv_write_trailer", cheader="")]
+    [CCode (cname="mkv_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;
@@ -165,18 +165,18 @@ public class MatroskaMuxer : AVOutputFormat {
     //       ff_codec_bmp_tags, ff_codec_wav_tags,
     //       additional_audio_tags, additional_video_tags, additional_subtitle_tags, 0
     //  },
-    [CCode (cname="subtitle_codec", cheader="")]
+    [CCode (cname="subtitle_codec", cheader_filename="")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.ASS;
         }
     }
-    [CCode (cname="mkv_query_codec", cheader="")]
+    [CCode (cname="mkv_query_codec", cheader_filename="")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
     );
-    [CCode (cname="mkv_check_bitstream", cheader="")]
+    [CCode (cname="mkv_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -186,111 +186,111 @@ public class MatroskaMuxer : AVOutputFormat {
 #endif
 
 #if CONFIG_WEBM_MUXER
-[CCode (cname="webm_class", cheader="")]
+[CCode (cname="webm_class", cheader_filename="")]
 public class WebMMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "webm muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_webm_muxer", cheader="")]
+[CCode (cname="ff_webm_muxer", cheader_filename="")]
 public class WebMMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "webm";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "WebM";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "video/webm";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "webm";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MatroskaMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return CONFIG_LIBOPUS_ENCODER ? LibAVCodec.CodecID.OPUS : LibAVCodec.CodecID.VORBIS;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBVPX_VP9_ENCODER ? LibAVCodec.CodecID.VP9 : LibAVCodec.CodecID.VP8;
         }
     }
-    [CCode (cname="subtitle_codec", cheader="")]
+    [CCode (cname="subtitle_codec", cheader_filename="")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.WEBVTT;
         }
     }
-    [CCode (cname="mkv_init", cheader="")]
+    [CCode (cname="mkv_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mkv_write_header", cheader="")]
+    [CCode (cname="mkv_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mkv_write_flush_packet", cheader="")]
+    [CCode (cname="mkv_write_flush_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mkv_write_trailer", cheader="")]
+    [CCode (cname="mkv_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="webm_query_codec", cheader="")]
+    [CCode (cname="webm_query_codec", cheader_filename="")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
     );
-    [CCode (cname="mkv_check_bitstream", cheader="")]
+    [CCode (cname="mkv_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;
@@ -301,101 +301,101 @@ public class WebMMuxer : AVOutputFormat {
 #endif
 
 #if CONFIG_MATROSKA_AUDIO_MUXER
-[CCode (cname="mka_class", cheader="")]
+[CCode (cname="mka_class", cheader_filename="")]
 public class MatroskaAudioMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "matroska audio muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_matroska_audio_muxer", cheader="")]
+[CCode (cname="ff_matroska_audio_muxer", cheader_filename="")]
 public class MatroskaAudioMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "matroska";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Matroska Audio";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "audio/x-matroska";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "mka";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MatroskaMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return CONFIG_LIBVORBIS_ENCODER ?
                          LibAVCodec.CodecID.VORBIS : LibAVCodec.CodecID.AC3;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="mkv_init", cheader="")]
+    [CCode (cname="mkv_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mkv_write_header", cheader="")]
+    [CCode (cname="mkv_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mkv_write_flush_packet", cheader="")]
+    [CCode (cname="mkv_write_flush_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mkv_write_trailer", cheader="")]
+    [CCode (cname="mkv_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mkv_check_bitstream", cheader="")]
+    [CCode (cname="mkv_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;

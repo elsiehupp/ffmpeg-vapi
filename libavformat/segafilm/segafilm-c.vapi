@@ -29,44 +29,47 @@ For more information regarding the Sega FILM file format, visit:
 http://www.pcisys.net/~melanson/codecs/
 ***********************************************************/
 
-[CCode (cname="ff_segafilm_demuxer", cheader="")]
+[CCode (cname="struct FilmDemuxContext", cheader_filename="")]
+public struct SegaFilmDemuxerPrivateData { }
+
+[CCode (cname="ff_segafilm_demuxer", cheader_filename="")]
 public class SegaFilmDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "film_cpk";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Sega FILM / CPK";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (FilmDemuxContext);
+            return sizeof (SegaFilmDemuxerPrivateData);
         }
     }
-    [CCode (cname="film_probe", cheader="")]
+    [CCode (cname="film_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="film_read_header", cheader="")]
+    [CCode (cname="film_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="film_read_packet", cheader="")]
+    [CCode (cname="film_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="film_read_close", cheader="")]
+    [CCode (cname="film_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="film_read_seek", cheader="")]
+    [CCode (cname="film_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

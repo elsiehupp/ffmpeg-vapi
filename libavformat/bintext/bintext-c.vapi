@@ -41,59 +41,59 @@ iCEDraw File demuxer
 
 //  #define CLASS(name)
 //  (const LibAVUtil.Class[1]){{
-//      [CCode (cname="class_name", cheader="")]
+//      [CCode (cname="class_name", cheader_filename="")]
 //      public override string class_name {
 //          public get {
 //              return name;
 //          }
 //      }
-//      [CCode (cname="item_name", cheader="")]
+//      [CCode (cname="item_name", cheader_filename="")]
 //      public override string item_name (
 //          void *class_context
 //      ) {
-//          return av_default_item_name (
+//          return base.item_name (
 //              class_context
 //          );
 //      }
 //      //  .option = options,
-//      [CCode (cname="version", cheader="")]
+//      [CCode (cname="version", cheader_filename="")]
 //      public override int version {
 //          public get {
-//              return LIBAVUTIL_VERSION_INT;
+//              return LibAVUtil.Version.INT;
 //          }
 //      }
 //  }}
 
 #if CONFIG_BINTEXT_DEMUXER
-[CCode (cname="ff_bintext_demuxer", cheader="")]
+[CCode (cname="ff_bintext_demuxer", cheader_filename="")]
 public class BinaryTextDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "bin";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Binary text";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BinDemuxContext);
         }
     }
-    [CCode (cname="bin_probe", cheader="")]
+    [CCode (cname="bin_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="bintext_read_header", cheader="")]
+    [CCode (cname="bintext_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="read_packet", cheader="")]
+    [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -103,35 +103,35 @@ public class BinaryTextDemuxer : AVInputFormat {
 #endif
 
 #if CONFIG_XBIN_DEMUXER
-[CCode (cname="ff_xbin_demuxer", cheader="")]
+[CCode (cname="ff_xbin_demuxer", cheader_filename="")]
 public class XBINDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "xbin";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "eXtended BINary text (XBIN)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BinDemuxContext);
         }
     }
-    [CCode (cname="xbin_probe", cheader="")]
+    [CCode (cname="xbin_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="xbin_read_header", cheader="")]
+    [CCode (cname="xbin_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="read_packet", cheader="")]
+    [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -141,36 +141,36 @@ public class XBINDemuxer : AVInputFormat {
 #endif
 
 #if CONFIG_ADF_DEMUXER
-[CCode (cname="ff_adf_demuxer", cheader="")]
+[CCode (cname="ff_adf_demuxer", cheader_filename="")]
 public class ADFDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "adf";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Artworx Data Format";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BinDemuxContext);
         }
     }
-    [CCode (cname="adf_read_header", cheader="")]
+    [CCode (cname="adf_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="read_packet", cheader="")]
+    [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "adf";
@@ -181,40 +181,40 @@ public class ADFDemuxer : AVInputFormat {
 #endif
 
 #if CONFIG_IDF_DEMUXER
-[CCode (cname="ff_idf_demuxer", cheader="")]
+[CCode (cname="ff_idf_demuxer", cheader_filename="")]
 public class IDFDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "idf";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "iCE Draw File";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BinDemuxContext);
         }
     }
-    [CCode (cname="idf_probe", cheader="")]
+    [CCode (cname="idf_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="idf_read_header", cheader="")]
+    [CCode (cname="idf_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="read_packet", cheader="")]
+    [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "idf";

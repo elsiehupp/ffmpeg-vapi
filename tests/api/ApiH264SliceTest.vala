@@ -20,6 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+[CCode (cname="", cheader="")]
 public class ApiH264SliceTest : GLib.TestCase {
 
     const uint MAX_SLICES = 8;
@@ -110,7 +111,7 @@ public class ApiH264SliceTest : GLib.TestCase {
             throw new Goto.ERROR ("");
         p = nal;
 
-        if (!(codec = avcodec_find_decoder (AV_CODEC_ID_H264))) {
+        if (!(codec = avcodec_find_decoder (LibAVCodec.CodecID.H264))) {
             fprintf (
                 stderr,
                 "Codec not found\n"

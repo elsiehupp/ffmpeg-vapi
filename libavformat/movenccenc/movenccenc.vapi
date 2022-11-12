@@ -22,8 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t CENC_KID_SIZE;
 
+[CCode (cname="struct MOVMuxCencContext", cheader_filename="")]
 public struct MOVMuxCencContext {
     public LibAVUtil.AESCTRContext aes_ctr;
     public uint8[] auxiliary_info;

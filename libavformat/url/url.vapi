@@ -35,6 +35,7 @@ public enum URLProtocolFlags {
 
 //  extern const LibAVUtil.Class ffurl_context_class;
 
+[CCode (cname="struct URLContext", cheader_filename="")]
 public struct URLContext {
     /***********************************************************
     information for av_log (). Set by url_open ().
@@ -69,8 +70,9 @@ public struct URLContext {
     public int min_packet_size;
 }
 
+[CCode (cname="", cheader_filename="")]
 public abstract class URLProtocol {
-    public string name;
+    public abstract string name { public get; }
     public abstract int url_open (
         URLContext url_context,
         string url,
@@ -150,9 +152,9 @@ public abstract class URLProtocol {
         URLContext url_context,
         int flags
     );
-    public int priv_data_size;
-    public LibAVUtil.Class priv_data_class;
-    public URLProtocolFlags flags;
+    public abstract size_t priv_data_size { public get; }
+    public abstract LibAVUtil.Class priv_data_class { public get; }
+    public abstract URLProtocolFlags flags { public get; }
     public abstract int url_check (
         URLContext url_context,
         int mask
@@ -239,6 +241,7 @@ public int ffurl_open_whitelist (
     URLContext parent
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ffurl_open (
     out URLContext puc,
     string filename,
@@ -346,6 +349,7 @@ public int ffurl_closep (
     out URLContext url_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ffurl_close (
     URLContext url_context
 );
@@ -420,6 +424,7 @@ public int ff_udp_set_remote_url (
     string uri
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_udp_get_local_port (
     URLContext url_context
 );
@@ -478,6 +483,7 @@ Allocate directory entry with default values.
 ***********************************************************/
 public AVIODirEntry ff_alloc_dir_entry ();
 
+[CCode (cname="", cheader_filename="")]
 public LibAVUtil.Class ff_urlcontext_child_class_next (
     LibAVUtil.Class prev
 );

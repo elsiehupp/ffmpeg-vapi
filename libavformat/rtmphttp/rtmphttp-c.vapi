@@ -34,68 +34,71 @@ namespace LibAVFormat {
 //      { NULL },
 //  }
 
-[CCode (cname="ffrtmphttp_class", cheader="")]
+[CCode (cname="ffrtmphttp_class", cheader_filename="")]
 public class RTMPHTTPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "ffrtmphttp";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = ffrtmphttp_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_ffrtmphttp_protocol", cheader="")]
+[CCode (cname="struct RTMP_HTTPContext", cheader_filename="")]
+public struct RTMPHTTPPrivateData { }
+
+[CCode (cname="ff_ffrtmphttp_protocol", cheader_filename="")]
 public class RTMPHTTPURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "ffrtmphttp";
         }
     }
-    [CCode (cname="rtmp_http_open", cheader="")]
+    [CCode (cname="rtmp_http_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="rtmp_http_read", cheader="")]
+    [CCode (cname="rtmp_http_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_http_write", cheader="")]
+    [CCode (cname="rtmp_http_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_http_close", cheader="")]
+    [CCode (cname="rtmp_http_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (RTMP_HTTPContext);
+            return sizeof (RTMPHTTPPrivateData);
         }
     }
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;

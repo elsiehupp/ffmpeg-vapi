@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public enum PatternType {
     PT_GLOB_SEQUENCE,
     PT_GLOB,
@@ -30,6 +31,7 @@ public enum PatternType {
     PT_DEFAULT
 }
 
+[CCode (cname="struct VideoDemuxData", cheader_filename="")]
 public struct VideoDemuxData {
     /***********************************************************
     Class for private options.
@@ -77,6 +79,7 @@ public struct VideoDemuxData {
     public int ts_from_file;
 }
 
+[CCode (cname="struct IdStrMap", cheader_filename="")]
 public struct IdStrMap {
     public LibAVCodec.CodecID id;
     public string str;
@@ -86,10 +89,12 @@ public struct IdStrMap {
 
 //  extern const LibAVUtil.Option ff_img_options[];
 
+[CCode (cname="", cheader_filename="")]
 public int ff_img_read_header (
     AVFormatContext s1
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_img_read_packet (
     AVFormatContext s1,
     LibAVCodec.Packet packet

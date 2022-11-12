@@ -29,36 +29,36 @@ namespace LibAVFormat {
 
 //  #define RTP_QT_HANDLER(m, n, s, t)
 //  RTPDynamicProtocolHandler ff_ ## m ## _rtp_ ## n ## _handler = {
-//      [CCode (cname="enc_name", cheader="")]
+//      [CCode (cname="enc_name", cheader_filename="")]
 //      public override string enc_name {
 //          public get {
 //              return s;
 //          }
 //      }
-//      [CCode (cname="codec_type", cheader="")]
+//      [CCode (cname="codec_type", cheader_filename="")]
 //      public override LibAVUtil.MediaType codec_type {
 //          public get {
 //              return t;
 //          }
 //      }
-//      [CCode (cname="codec_id", cheader="")]
+//      [CCode (cname="codec_id", cheader_filename="")]
 //      public override LibAVCodec.CodecID codec_id {
 //          public get {
 //              return LibAVCodec.CodecID.NONE;
 //          }
 //      }
-//      [CCode (cname="priv_data_size", cheader="")]
+//      [CCode (cname="priv_data_size", cheader_filename="")]
 //      public override size_t priv_data_size {
 //          public get {
 //              return sizeof (PayloadContext);
 //          }
 //      }
-//      [CCode (cname="qt_rtp_close", cheader="")]
+//      [CCode (cname="qt_rtp_close", cheader_filename="")]
 //      public override void close (
 //          PayloadContext protocol_data
 //      );
 
-//      [CCode (cname="qt_rtp_parse_packet", cheader="")]
+//      [CCode (cname="qt_rtp_parse_packet", cheader_filename="")]
 //      public override int parse_packet (
 //          AVFormatContext format_context,
 //          PayloadContext payload_context,

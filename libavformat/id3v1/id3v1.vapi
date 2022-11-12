@@ -22,8 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t ID3v1_TAG_SIZE;
 
+[CCode (cname="", cheader_filename="")]
 public const size_t ID3v1_GENRE_MAX;
 
 /***********************************************************

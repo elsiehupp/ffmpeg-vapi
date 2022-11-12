@@ -50,86 +50,89 @@ namespace LibAVFormat {
 //      { NULL },
 //  }
 
-[CCode (cname="librtmp_class", cheader="")]
+[CCode (cname="struct LibRTMPContext", cheader_filename="")]
+public struct LibRTMPPrivateData { }
+
+[CCode (cname="librtmp_class", cheader_filename="")]
 public class LibRTMPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "librtmp protocol";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_librtmp_protocol", cheader="")]
+[CCode (cname="ff_librtmp_protocol", cheader_filename="")]
 public class LibRTMPURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "rtmp";
         }
     }
-    [CCode (cname="rtmp_open", cheader="")]
+    [CCode (cname="rtmp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="rtmp_read", cheader="")]
+    [CCode (cname="rtmp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_write", cheader="")]
+    [CCode (cname="rtmp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_close", cheader="")]
+    [CCode (cname="rtmp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="rtmp_read_pause", cheader="")]
+    [CCode (cname="rtmp_read_pause", cheader_filename="")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
-    [CCode (cname="rtmp_read_seek", cheader="")]
+    [CCode (cname="rtmp_read_seek", cheader_filename="")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="rtmp_get_file_handle", cheader="")]
+    [CCode (cname="rtmp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (LibRTMPContext);
+            return sizeof (LibRTMPPrivateData);
         }
     }
     //  .priv_data_class = librtmp_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
@@ -137,86 +140,86 @@ public class LibRTMPURLProtocol : URLProtocol {
     }
 }
 
-[CCode (cname="librtmpt_class", cheader="")]
+[CCode (cname="librtmpt_class", cheader_filename="")]
 public class LibRTMPTURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "librtmpt protocol";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_librtmpt_protocol", cheader="")]
+[CCode (cname="ff_librtmpt_protocol", cheader_filename="")]
 public class LibRTMPTURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "rtmpt";
         }
     }
-    [CCode (cname="rtmp_open", cheader="")]
+    [CCode (cname="rtmp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="rtmp_read", cheader="")]
+    [CCode (cname="rtmp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_write", cheader="")]
+    [CCode (cname="rtmp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_close", cheader="")]
+    [CCode (cname="rtmp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="rtmp_read_pause", cheader="")]
+    [CCode (cname="rtmp_read_pause", cheader_filename="")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
-    [CCode (cname="rtmp_read_seek", cheader="")]
+    [CCode (cname="rtmp_read_seek", cheader_filename="")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="rtmp_get_file_handle", cheader="")]
+    [CCode (cname="rtmp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (LibRTMPContext);
+            return sizeof (LibRTMPPrivateData);
         }
     }
     //  .priv_data_class = librtmpt_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
@@ -224,86 +227,86 @@ public class LibRTMPTURLProtocol : URLProtocol {
     }
 }
 
-[CCode (cname="librtmpe_class", cheader="")]
+[CCode (cname="librtmpe_class", cheader_filename="")]
 public class LibRTMPEURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "librtmpe protocol";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_librtmpe_protocol", cheader="")]
+[CCode (cname="ff_librtmpe_protocol", cheader_filename="")]
 public class LibRTMPEURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "rtmpe";
         }
     }
-    [CCode (cname="rtmp_open", cheader="")]
+    [CCode (cname="rtmp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="rtmp_read", cheader="")]
+    [CCode (cname="rtmp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_write", cheader="")]
+    [CCode (cname="rtmp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_close", cheader="")]
+    [CCode (cname="rtmp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="rtmp_read_pause", cheader="")]
+    [CCode (cname="rtmp_read_pause", cheader_filename="")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
-    [CCode (cname="rtmp_read_seek", cheader="")]
+    [CCode (cname="rtmp_read_seek", cheader_filename="")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="rtmp_get_file_handle", cheader="")]
+    [CCode (cname="rtmp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (LibRTMPContext);
+            return sizeof (LibRTMPPrivateData);
         }
     }
     //  .priv_data_class = librtmpe_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
@@ -311,86 +314,86 @@ public class LibRTMPEURLProtocol : URLProtocol {
     }
 }
 
-[CCode (cname="librtmpte_class", cheader="")]
+[CCode (cname="librtmpte_class", cheader_filename="")]
 public class LibRTMPTEURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "librtmpte protocol";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_librtmpte_protocol", cheader="")]
+[CCode (cname="ff_librtmpte_protocol", cheader_filename="")]
 public class LibRTMPTEURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "rtmpte";
         }
     }
-    [CCode (cname="rtmp_open", cheader="")]
+    [CCode (cname="rtmp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="rtmp_read", cheader="")]
+    [CCode (cname="rtmp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_write", cheader="")]
+    [CCode (cname="rtmp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_close", cheader="")]
+    [CCode (cname="rtmp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="rtmp_read_pause", cheader="")]
+    [CCode (cname="rtmp_read_pause", cheader_filename="")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
-    [CCode (cname="rtmp_read_seek", cheader="")]
+    [CCode (cname="rtmp_read_seek", cheader_filename="")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="rtmp_get_file_handle", cheader="")]
+    [CCode (cname="rtmp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (LibRTMPContext);
+            return sizeof (LibRTMPPrivateData);
         }
     }
     //  .priv_data_class = librtmpte_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
@@ -398,86 +401,86 @@ public class LibRTMPTEURLProtocol : URLProtocol {
     }
 }
 
-[CCode (cname="librtmps_class", cheader="")]
+[CCode (cname="librtmps_class", cheader_filename="")]
 public class LibRTMPSURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "librtmps protocol";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_librtmps_protocol", cheader="")]
+[CCode (cname="ff_librtmps_protocol", cheader_filename="")]
 public class LibRTMPSURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "rtmps";
         }
     }
-    [CCode (cname="rtmp_open", cheader="")]
+    [CCode (cname="rtmp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="rtmp_read", cheader="")]
+    [CCode (cname="rtmp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_write", cheader="")]
+    [CCode (cname="rtmp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="rtmp_close", cheader="")]
+    [CCode (cname="rtmp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="rtmp_read_pause", cheader="")]
+    [CCode (cname="rtmp_read_pause", cheader_filename="")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
-    [CCode (cname="rtmp_read_seek", cheader="")]
+    [CCode (cname="rtmp_read_seek", cheader_filename="")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="rtmp_get_file_handle", cheader="")]
+    [CCode (cname="rtmp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (LibRTMPContext);
+            return sizeof (LibRTMPPrivateData);
         }
     }
     //  .priv_data_class = librtmps_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;

@@ -22,10 +22,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const int SYNCWORD1;
 public const int SYNCWORD2;
 public const size_t BURST_HEADER_SIZE;
 
+[CCode (cname="", cheader_filename="")]
 public enum IEC61937DataType {
     /***********************************************************
     AC-3 data
@@ -115,17 +117,20 @@ public enum IEC61937DataType {
 //      { 1536, 4608, 4608 }, // MPEG-1
 //  }
 
+[CCode (cname="", cheader_filename="")]
 public void ff_spdif_bswap_buf16 (
     out uint16 dst,
     out uint16 src,
     int w
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_spdif_read_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_spdif_probe (
     uint8[] probe_buf,
     int buf_size,

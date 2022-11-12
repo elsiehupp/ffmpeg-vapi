@@ -311,7 +311,10 @@ for (;;) {
 @}
 ***********************************************************/
 
+[CCode (cname="struct AVDeviceInfoList", cheader_filename="")]
 public struct AVDeviceInfoList { }
+
+[CCode (cname="struct AVDeviceCapabilitiesQuery", cheader_filename="")]
 public struct AVDeviceCapabilitiesQuery { }
 
 /***********************************************************
@@ -457,6 +460,7 @@ public struct AVProbeData {
     string mime_type;
 }
 
+[CCode (cname="", cheader_filename="")]
 public const int AVPROBE_SCORE_RETRY;
 public const int AVPROBE_SCORE_STREAM_RETRY;
 
@@ -478,6 +482,7 @@ extra allocated bytes at the end of the probe buffer
 ***********************************************************/
 public const size_t AVPROBE_PADDING_SIZE;
 
+[CCode (cname="", cheader_filename="")]
 public enum AVFormatFlags1 {
     /***********************************************************
     Demuxer will use avio_open, no opened file should be provided by the caller.
@@ -561,18 +566,18 @@ public enum AVFormatFlags1 {
 @{
 ***********************************************************/
 public abstract class AVOutputFormat {
-    public abstract string name { get; }
+    public abstract string name { public get; }
     /***********************************************************
     Descriptive name for the format, meant to be more human-readable
     than name. You should use the NULL_IF_CONFIG_SMALL () macro
     to define it.
     ***********************************************************/
-    public abstract string long_name { get; }
-    public abstract string mime_type { get; }
+    public abstract string long_name { public get; }
+    public abstract string mime_type { public get; }
     /***********************************************************
     comma-separated filename extensions
     ***********************************************************/
-    public abstract string extensions { get; }
+    public abstract string extensions { public get; }
 
     /***********************************************************
     output support
@@ -633,7 +638,7 @@ public abstract class AVOutputFormat {
     or 1 if everything was flushed and there is no more buffered
     data.
     ***********************************************************/
-    public abstract int write_packet  (
+    public abstract int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
@@ -768,28 +773,28 @@ public abstract class AVInputFormat {
     A comma separated list of short names for the format. New names
     may be appended with a minor bump.
     ***********************************************************/
-    public abstract string name { get; }
+    public abstract string name { public get; }
 
     /***********************************************************
     Descriptive name for the format, meant to be more human-readable
     than name. You should use the NULL_IF_CONFIG_SMALL () macro
     to define it.
     ***********************************************************/
-    public abstract string long_name { get; }
+    public abstract string long_name { public get; }
 
     /***********************************************************
     Can use flags: AVFMT_NOFILE, AVFMT_NEEDNUMBER, AVFMT_SHOW_IDS,
     AVFMT_NOTIMESTAMPS, AVFMT_GENERIC_INDEX, AVFMT_TS_DISCONT, AVFMT_NOBINSEARCH,
     AVFMT_NOGENSEARCH, AVFMT_NO_BYTE_SEEK, AVFMT_SEEK_TO_PTS.
     ***********************************************************/
-    public AVFormatFlags1 flags;
+    public abstract AVFormatFlags1 flags { public get; }
 
     /***********************************************************
     If extensions are defined, then no probe is done. You should
     usually not use extension format guessing because it is not
     reliable enough
     ***********************************************************/
-    public abstract string extensions { get; }
+    public abstract string extensions { public get; }
 
     public AVCodecTag codec_tag;
 
@@ -803,7 +808,7 @@ public abstract class AVInputFormat {
     It is used check for matching mime types while probing.
     @see av_probe_input_format2
     ***********************************************************/
-    public abstract string mime_type { get; }
+    public abstract string mime_type { public get; }
 
     /***********************************************************
     No fields below this line are part of the public API. They
@@ -821,7 +826,7 @@ public abstract class AVInputFormat {
     /***********************************************************
     Size of private data so that it can be allocated in the wrapper.
     ***********************************************************/
-    public abstract int priv_data_size { public get; }
+    public abstract size_t priv_data_size { public get; }
 
     /***********************************************************
     Tell if a given file has a chance of being parsed as this format.
@@ -951,6 +956,7 @@ public abstract class AVInputFormat {
 @}
 ***********************************************************/
 
+[CCode (cname="", cheader_filename="")]
 public enum AVStreamParseType {
     AVSTREAM_PARSE_NONE,
     /***********************************************************
@@ -977,6 +983,7 @@ public enum AVStreamParseType {
     AVSTREAM_PARSE_FULL_RAW,
 }
 
+[CCode (cname="struct AVIndexEntry", cheader_filename="")]
 public struct AVIndexEntry {
     public int64 pos;
     /***********************************************************
@@ -1464,6 +1471,7 @@ public struct AVStream {
     //  public AVStreamInternal internal;
 }
 
+[CCode (cname="", cheader_filename="")]
 public LibAVCodec.CodecParserContext av_stream_get_parser (
     AVStream stream
 );
@@ -1477,6 +1485,7 @@ public int64 av_stream_get_end_pts (
     AVStream st
 );
 
+[CCode (cname="", cheader_filename="")]
 public const int AV_PROGRAM_RUNNING;
 
 /***********************************************************
@@ -1537,6 +1546,7 @@ public enum AVFormatContextFlags {
     AVFMTCTX_UNSEEKABLE,
 }
 
+[CCode (cname="struct AVChapter", cheader_filename="")]
 public struct AVChapter {
     /***********************************************************
     unique ID to identify the chapter
@@ -1569,6 +1579,7 @@ public delegate int AVFormatControlMessage (
     size_t data_size
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int AVOpenCallback (
     AVFormatContext format_context,
     out AVIOContext pb,
@@ -2284,6 +2295,7 @@ public AVDurationEstimationMethod av_fmt_ctx_get_duration_estimation_method (
     AVFormatContext fomat_context
 );
 
+[CCode (cname="struct AVPacketList", cheader_filename="")]
 public struct AVPacketList {
     public LibAVCodec.Packet packet;
     public AVPacketList *next;
@@ -2456,6 +2468,7 @@ public uint8[] av_stream_get_side_data (
     int[] size
 );
 
+[CCode (cname="", cheader_filename="")]
 public AVProgram av_new_program (
     AVFormatContext format_context,
     int id
@@ -2649,6 +2662,7 @@ public AVProgram av_find_program_from_stream (
     int stream_index
 );
 
+[CCode (cname="", cheader_filename="")]
 public void av_program_add_stream_index (
     AVFormatContext ac,
     int progid,
@@ -3233,6 +3247,7 @@ public int av_codec_get_tag2 (
     out uint tag
 );
 
+[CCode (cname="", cheader_filename="")]
 public int av_find_default_stream_index (
     AVFormatContext format_context
 );
@@ -3349,6 +3364,7 @@ public int av_get_frame_filename2 (
     int flags
 );
 
+[CCode (cname="", cheader_filename="")]
 public int av_get_frame_filename (
     string buffer,
     int buf_size,
@@ -3507,10 +3523,12 @@ public int avformat_match_stream_specifier (
     string spec
 );
 
+[CCode (cname="", cheader_filename="")]
 public int avformat_queue_attached_pictures (
     AVFormatContext format_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public enum AVTimebaseSource {
     AVFMT_TBCF_AUTO = -1,
     AVFMT_TBCF_DECODER,

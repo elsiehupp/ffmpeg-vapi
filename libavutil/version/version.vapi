@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-namespace LibAVUtil {
+namespace LibAVUtil.Version {
 
 /***********************************************************
 @file @ingroup lavu
@@ -68,18 +68,18 @@ which version of libavutil is in use.
 ***********************************************************/
 
 [CCode (cname="LIBAVUTIL_VERSION_MAJOR", cheader_filename="ffmpeg/libavutil/version.h")]
-public const int LIBAVUTIL_VERSION_MAJOR;
+public const int MAJOR;
 [CCode (cname="LIBAVUTIL_VERSION_MINOR", cheader_filename="ffmpeg/libavutil/version.h")]
-public const int LIBAVUTIL_VERSION_MINOR;
+public const int MINOR;
 [CCode (cname="LIBAVUTIL_VERSION_MICRO", cheader_filename="ffmpeg/libavutil/version.h")]
-public const int LIBAVUTIL_VERSION_MICRO;
+public const int MICRO;
 
 [CCode (cname="LIBAVUTIL_VERSION_INT", cheader_filename="ffmpeg/libavutil/version.h")]
-public const int LIBAVUTIL_VERSION_INT;
+public const int INT;
 [CCode (cname="LIBAVUTIL_VERSION", cheader_filename="ffmpeg/libavutil/version.h")]
-public const int LIBAVUTIL_VERSION;
+public const int VERSION;
 [CCode (cname="LIBAVUTIL_BUILD", cheader_filename="ffmpeg/libavutil/version.h")]
-public const int LIBAVUTIL_BUILD;
+public const int BUILD;
 
 [CCode (cname="LIBAVUTIL_IDENT", cheader_filename="ffmpeg/libavutil/version.h")]
 public const string LIBAVUTIL_IDENT;

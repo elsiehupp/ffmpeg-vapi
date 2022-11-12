@@ -34,73 +34,79 @@ namespace LibAVFormat {
 //      { NULL },
 //  }
 
-[CCode (cname="chromaprint_class", cheader="")]
+[CCode (cname="chromaprint_class", cheader_filename="")]
 public class ChromaPrintMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "chromaprint muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_chromaprint_muxer", cheader="")]
+[CCode (cname="struct ChromaprintMuxContext", cheader_filename="")]
+public struct ChromaPrintMuxerPrivateData { }
+
+[CCode (cname="ff_chromaprint_muxer", cheader_filename="")]
 public class ChromaPrintMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "chromaprint";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Chromaprint";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (ChromaprintMuxContext);
+            return sizeof (ChromaPrintMuxerPrivateData);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
-            return AV_NE(LibAVCodec.CodecID.PCM_S16BE, LibAVCodec.CodecID.PCM_S16LE);
+        #if AV_HAVE_BIGENDIAN
+            return LibAVCodec.CodecID.PCM_S16BE;
+        #else
+            return LibAVCodec.CodecID.PCM_S16LE;
+        #endif
         }
     }
-    [CCode (cname="write_header", cheader="")]
+    [CCode (cname="write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="write_packet", cheader="")]
+    [CCode (cname="write_packet", cheader_filename="")]
     public override int write_packet (
-        void *opaque,
-        uint8[] buffer,
-        int buf_size
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
     );
-    [CCode (cname="write_trailer", cheader="")]
+    [CCode (cname="write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;

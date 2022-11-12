@@ -20,24 +20,28 @@ namespace LibAVFormat {
 
 //  extern const LibAVUtil.Class ff_avio_class;
 
+[CCode (cname="", cheader_filename="")]
 public delegate int ReadPacketDelegate (
     void *opaque,
     uint8[] buffer,
     int buf_size
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int WritePacketDelegate (
     void *opaque,
     uint8[] buffer,
     int buf_size
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int64 SeekDelegate (
     void *opaque,
     int64 offset,
     int whence
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ffio_init_context (
     AVIOContext io_context,
     uchar[] buffer,
@@ -71,12 +75,14 @@ public int ffio_read_indirect (
     out uchar[] data
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ffio_fill (
     AVIOContext io_context,
     int b,
     int count
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ffio_wfourcc (
     AVIOContext pb,
     uint8[] io_context
@@ -100,6 +106,7 @@ public int ffio_rewind_with_probe_data (
     int buf_size
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint64 ffio_read_varlen (
     AVIOContext bc
 );
@@ -135,39 +142,46 @@ public int ffio_ensure_seekback (
     int64 buf_size
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ffio_limit (
     AVIOContext io_context,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate ulong UpdateChecksumDelegate (
     ulong c,
     uint8[] p,
     uint len
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ffio_init_checksum (
     AVIOContext io_context,
     UpdateChecksumDelegate update_checksum,
     ulong checksum
 );
 
+[CCode (cname="", cheader_filename="")]
 public ulong ffio_get_checksum (
     AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public ulong ff_crc04C11DB7_update (
     ulong checksum,
     uint8[] buffer,
     uint len
 );
 
+[CCode (cname="", cheader_filename="")]
 public ulong ff_crcEDB88320_update (
     ulong checksum,
     uint8[] buffer,
     uint len
 );
 
+[CCode (cname="", cheader_filename="")]
 public ulong ff_crcA001_update (
     ulong checksum,
     uint8[] buffer,
@@ -226,6 +240,7 @@ public int ffio_open_null_buf (
     out AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ffio_open_whitelist (
     out AVIOContext io_context,
     string url,

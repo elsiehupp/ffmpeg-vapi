@@ -22,25 +22,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_vp8_codec", cheader="")]
+[CCode (cname="ff_vp8_codec", cheader_filename="")]
 public class VP8Codec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "OVP80";
+            return "OVP80".data;
         }
     }
     //  .magicsize = 5,
-    [CCode (cname="vp8_header", cheader="")]
+    [CCode (cname="vp8_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="vp8_packet", cheader="")]
+    [CCode (cname="vp8_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="vp8_gptopts", cheader="")]
+    [CCode (cname="vp8_gptopts", cheader_filename="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,

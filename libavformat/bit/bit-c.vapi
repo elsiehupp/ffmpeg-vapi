@@ -23,49 +23,49 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_BIT_MUXER
-[CCode (cname="ff_bit_muxer", cheader="")]
+[CCode (cname="ff_bit_muxer", cheader_filename="")]
 public class G729BitMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "bit";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "G.729 BIT file format";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "audio/bit";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "bit";
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.G729;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="write_header", cheader="")]
+    [CCode (cname="write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="write_packet", cheader="")]
+    [CCode (cname="write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,

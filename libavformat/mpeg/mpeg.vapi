@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const uint PACK_START_CODE;
 public const uint SYSTEM_HEADER_START_CODE;
 public const uint SEQUENCE_END_CODE;
@@ -37,6 +38,7 @@ public const uint PRIVATE_STREAM_1;
 public const uint PADDING_STREAM;
 public const uint PRIVATE_STREAM_2;
 
+[CCode (cname="", cheader_filename="")]
 public enum MpegID {
     AUDIO_ID,
     VIDEO_ID,
@@ -47,6 +49,7 @@ public enum MpegID {
     SUB_ID,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum StreamType {
     STREAM_TYPE_VIDEO_MPEG1,
     STREAM_TYPE_VIDEO_MPEG2,
@@ -62,6 +65,7 @@ public enum StreamType {
     STREAM_TYPE_AUDIO_AC3,
 }
 
+[CCode (cname="", cheader_filename="")]
 public const int lpcm_freq_tab[4]; // = { 48000, 96000, 44100, 32000 }
 
 /***********************************************************

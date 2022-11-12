@@ -22,21 +22,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_mpegts_dynamic_handler", cheader="")]
+[CCode (cname="ff_mpegts_dynamic_handler", cheader_filename="")]
 public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="codec_type", cheader="")]
+    [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_DATA;
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
         }
     }
-    [CCode (cname="mpegts_handle_packet", cheader="")]
+    [CCode (cname="mpegts_handle_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -48,11 +48,13 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
-    [CCode (cname="mpegts_init", cheader="")]
+    [CCode (cname="mpegts_init", cheader_filename="")]
     public override int init (
-        AVFormatContext format_context
+        AVFormatContext format_context,
+        int st_index,
+        PayloadContext priv_data
     );
-    [CCode (cname="mpegts_close_context", cheader="")]
+    [CCode (cname="mpegts_close_context", cheader_filename="")]
     public override void close (
         PayloadContext protocol_data
     );

@@ -39,73 +39,76 @@ Unix socket url_protocol
 //      { NULL }
 //  }
 
-[CCode (cname="unix_class", cheader="")]
+[CCode (cname="unix_class", cheader_filename="")]
 public class UnixURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "unix";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = unix_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_unix_protocol", cheader="")]
+[CCode (cname="struct UnixContext", cheader_filename="")]
+public struct UnixPrivateData { }
+
+[CCode (cname="ff_unix_protocol", cheader_filename="")]
 public class UnixURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "unix";
         }
     }
-    [CCode (cname="unix_open", cheader="")]
+    [CCode (cname="unix_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="unix_read", cheader="")]
+    [CCode (cname="unix_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="unix_write", cheader="")]
+    [CCode (cname="unix_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="unix_close", cheader="")]
+    [CCode (cname="unix_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="unix_get_file_handle", cheader="")]
+    [CCode (cname="unix_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (UnixContext);
+            return sizeof (UnixPrivateData);
         }
     }
     //  .priv_data_class = unix_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;

@@ -22,34 +22,34 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_ads_demuxer", cheader="")]
+[CCode (cname="ff_ads_demuxer", cheader_filename="")]
 public class ADSDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "ads";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Sony PS2 ADS";
         }
     }
-    [CCode (cname="ads_probe", cheader="")]
+    [CCode (cname="ads_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="ads_read_header", cheader="")]
+    [CCode (cname="ads_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="ads_read_packet", cheader="")]
+    [CCode (cname="ads_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "ads,ss2";

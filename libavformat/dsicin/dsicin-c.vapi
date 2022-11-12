@@ -26,35 +26,38 @@ namespace LibAVFormat {
 @file Delphine Software International CIN file demuxer
 ***********************************************************/
 
-[CCode (cname="ff_dsicin_demuxer", cheader="")]
+[CCode (cname="struct CinDemuxContext", cheader_filename="")]
+public struct DSICINDemuxerPrivateData { }
+
+[CCode (cname="ff_dsicin_demuxer", cheader_filename="")]
 public class DSICINDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "dsicin";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Delphine Software International CIN";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (CinDemuxContext);
+            return sizeof (DSICINDemuxerPrivateData);
         }
     }
-    [CCode (cname="cin_probe", cheader="")]
+    [CCode (cname="cin_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="cin_read_header", cheader="")]
+    [CCode (cname="cin_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="cin_read_packet", cheader="")]
+    [CCode (cname="cin_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

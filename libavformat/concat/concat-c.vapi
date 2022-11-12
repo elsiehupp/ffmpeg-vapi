@@ -24,40 +24,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_concat_protocol", cheader="")]
+[CCode (cname="struct concat_data", cheader_filename="")]
+public struct ConcatPrivateData { }
+
+[CCode (cname="ff_concat_protocol", cheader_filename="")]
 public class ConcatURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "concat";
         }
     }
-    [CCode (cname="concat_open", cheader="")]
+    [CCode (cname="concat_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="concat_read", cheader="")]
+    [CCode (cname="concat_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="concat_seek", cheader="")]
+    [CCode (cname="concat_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
-    [CCode (cname="concat_close", cheader="")]
+    [CCode (cname="concat_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (concat_data);
+            return sizeof (ConcatPrivateData);
         }
     }
     //  .default_whitelist = "concat,file,subfile";

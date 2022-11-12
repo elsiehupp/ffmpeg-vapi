@@ -22,21 +22,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const uint64 MAIN_STARTCODE;
 public const uint64 STREAM_STARTCODE;
 public const uint64 SYNCPOINT_STARTCODE;
 public const uint64 INDEX_STARTCODE;
 public const uint64 INFO_STARTCODE;
 
-[CCode (cname="ID_STRING", cheader="")]
+[CCode (cname="ID_STRING", cheader_filename="")]
 public const string NUT_ID_STRING; // "nut/multimedia container\0"
 
+[CCode (cname="", cheader_filename="")]
 public const size_t MAX_DISTANCE; // (1024*32-1)
 
+[CCode (cname="", cheader_filename="")]
 public const int NUT_MAX_VERSION; // 4
 public const int NUT_STABLE_VERSION; // 3
 public const int NUT_MIN_VERSION; // 2
 
+[CCode (cname="", cheader_filename="")]
 public enum Flag {
     /***********************************************************
     If set, frame is keyframe
@@ -88,6 +92,7 @@ public enum Flag {
     FLAG_INVALID,
 }
 
+[CCode (cname="struct Syncpoint", cheader_filename="")]
 public struct Syncpoint {
     public uint64 pos;
     public uint64 back_ptr;
@@ -95,6 +100,7 @@ public struct Syncpoint {
     public int64 ts;
 }
 
+[CCode (cname="struct FrameCode", cheader_filename="")]
 public struct FrameCode {
     public uint16 flags;
     public uint8 stream_id;
@@ -105,6 +111,7 @@ public struct FrameCode {
     public uint8 header_idx;
 }
 
+[CCode (cname="struct StreamContext", cheader_filename="")]
 public struct StreamContext {
     public int last_flags;
     public int skip_until_key_frame;
@@ -120,10 +127,12 @@ public struct StreamContext {
     public int64[] keyframe_pts;
 }
 
+[CCode (cname="struct ChapterContext", cheader_filename="")]
 public struct ChapterContext {
     public LibAVUtil.Rational time_base;
 }
 
+[CCode (cname="struct NUTContext", cheader_filename="")]
 public struct NUTContext {
     public LibAVUtil.Class av_class;
     public AVFormatContext avf;
@@ -177,32 +186,38 @@ public enum NUTFlags {
 
 //  extern const AVCodecTag ff_nut_codec_tags[];
 
+[CCode (cname="struct Dispositions", cheader_filename="")]
 public struct Dispositions {
     public char str[9];
     public int flag;
 }
 
+[CCode (cname="", cheader_filename="")]
 public void ff_nut_reset_ts (
     NUTContext nut,
     LibAVUtil.Rational time_base,
     int64 val
 );
 
+[CCode (cname="", cheader_filename="")]
 public int64 ff_lsb2full (
     StreamContext stream,
     int64 lsb
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_nut_sp_pos_cmp (
     void *a,
     void *b
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_nut_sp_pts_cmp (
     void *a,
     void *b
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_nut_add_sp (
     NUTContext nut,
     int64 pos,
@@ -210,6 +225,7 @@ public int ff_nut_add_sp (
     int64 ts
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_nut_free_sp (
     NUTContext nut
 );

@@ -27,6 +27,7 @@ Platform-specific
 ***********************************************************/
 public struct FFBigNum { }
 
+[CCode (cname="struct FF_DH", cheader_filename="")]
 public struct FF_DH {
     public FFBigNum p;
     public FFBigNum g;

@@ -33,11 +33,13 @@ isom.c
 //  extern const AVCodecTag ff_codec_movsubtitle_tags[];
 //  extern const AVCodecTag ff_codec_movdata_tags[];
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mov_iso639_to_lang (
     char lang[4],
     int mp4
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mov_lang_to_iso639 (
     uint code,
     char to[4]
@@ -49,23 +51,27 @@ it has lots of index tables, each indexing something in another one...
 Here we just use what is needed to read the chunks
 ***********************************************************/
 
+[CCode (cname="struct MOVStts", cheader_filename="")]
 public struct MOVStts {
     public uint count;
     public int duration;
 }
 
+[CCode (cname="struct MOVStsc", cheader_filename="")]
 public struct MOVStsc {
     public int first;
     public int count;
     public int id;
 }
 
+[CCode (cname="struct MOVElst", cheader_filename="")]
 public struct MOVElst {
     public int64 duration;
     public int64 time;
     public float rate;
 }
 
+[CCode (cname="struct MOVDref", cheader_filename="")]
 public struct MOVDref {
     public uint32 type;
     public string path;
@@ -76,6 +82,7 @@ public struct MOVDref {
     public int16 nlvl_from;
 }
 
+[CCode (cname="struct MOVAtom", cheader_filename="")]
 public struct MOVAtom {
     public uint32 type;
     /***********************************************************
@@ -84,8 +91,10 @@ public struct MOVAtom {
     public int64 size;
 }
 
+[CCode (cname="struct MOVParseTableEntry", cheader_filename="")]
 public struct MOVParseTableEntry { }
 
+[CCode (cname="struct MOVFragment", cheader_filename="")]
 public struct MOVFragment {
     public int found_tfhd;
     public uint track_id;
@@ -98,6 +107,7 @@ public struct MOVFragment {
     public uint flags;
 }
 
+[CCode (cname="struct MOVTrackExt", cheader_filename="")]
 public struct MOVTrackExt {
     public uint track_id;
     public uint stsd_id;
@@ -106,11 +116,13 @@ public struct MOVTrackExt {
     public uint flags;
 }
 
+[CCode (cname="struct MOVSbgp", cheader_filename="")]
 public struct MOVSbgp {
     public uint count;
     public uint index;
 }
 
+[CCode (cname="struct MOVEncryptionIndex", cheader_filename="")]
 public struct MOVEncryptionIndex {
     /***********************************************************
     Individual encrypted samples. If there are no elements,
@@ -129,6 +141,7 @@ public struct MOVEncryptionIndex {
     public size_t auxiliary_offsets_count;
 }
 
+[CCode (cname="struct MOVFragmentStreamInfo", cheader_filename="")]
 public struct MOVFragmentStreamInfo {
     public int id;
     public int64 sidx_pts;
@@ -138,6 +151,7 @@ public struct MOVFragmentStreamInfo {
     public MOVEncryptionIndex encryption_index;
 }
 
+[CCode (cname="struct MOVFragmentIndexItem", cheader_filename="")]
 public struct MOVFragmentIndexItem {
     public int64 moof_offset;
     public int headers_read;
@@ -146,6 +160,7 @@ public struct MOVFragmentIndexItem {
     public MOVFragmentStreamInfo stream_info;
 }
 
+[CCode (cname="struct MOVFragmentIndex", cheader_filename="")]
 public struct MOVFragmentIndex {
     public int allocated_size;
     public int complete;
@@ -154,11 +169,13 @@ public struct MOVFragmentIndex {
     public MOVFragmentIndexItem item;
 }
 
+[CCode (cname="struct MOVIndexRange", cheader_filename="")]
 public struct MOVIndexRange {
     public int64 start;
     public int64 end;
 }
 
+[CCode (cname="struct MOVStreamContext", cheader_filename="")]
 public struct MOVStreamContext {
     public AVIOContext pb;
     public int pb_is_copied;
@@ -286,9 +303,11 @@ public struct MOVStreamContext {
     If there is an sidx entry for this stream.
     ***********************************************************/
     public int has_sidx;
+
     public CEnc cenc;
 }
 
+[CCode (cname="struct CEnc", cheader_filename="")]
 public struct CEnc {
     public LibAVUtil.AESCTRContext aes_ctr;
     /***********************************************************
@@ -299,6 +318,7 @@ public struct CEnc {
     public MOVEncryptionIndex encryption_index;
 }
 
+[CCode (cname="struct MOVContext", cheader_filename="")]
 public struct MOVContext {
     /***********************************************************
     class for private options
@@ -388,22 +408,26 @@ public struct MOVContext {
     public int32 movie_display_matrix[3 * 3];
 }
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mp4_read_descr_len (
     AVIOContext pb
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mp4_read_descr (
     AVFormatContext fc,
     AVIOContext pb,
     out int tag
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mp4_read_dec_config_descr (
     AVFormatContext fc,
     AVStream st,
     AVIOContext pb
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_mp4_parse_es_descr (
     AVIOContext pb,
     out int es_id
@@ -469,6 +493,7 @@ public enum MOVSampleDependencyFlags {
 }
 
 
+[CCode (cname="", cheader_filename="")]
 public bool TAG_IS_AVCI (
     uint32 tag
 );
@@ -488,22 +513,26 @@ public bool TAG_IS_AVCI (
     //   (tag) == MKTAG ('A', 'V', 'i', 'n'))
 
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mov_read_esds (
     AVFormatContext fc,
     AVIOContext pb
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mov_read_stsd_entries (
     MOVContext mov_context,
     AVIOContext pb,
     int entries
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_mov_write_chan (
     AVIOContext pb,
     int64 channel_layout
 );
 
+[CCode (cname="", cheader_filename="")]
 public enum FFMOVFlagMfra {
     FF_MOV_FLAG_MFRA_AUTO,
     FF_MOV_FLAG_MFRA_DTS,

@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t HTTP_HEADERS_SIZE;
 
 /***********************************************************
@@ -51,6 +52,7 @@ public int ff_http_do_new_request (
     string uri
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_http_averror (
     int status_code,
     int default_averror

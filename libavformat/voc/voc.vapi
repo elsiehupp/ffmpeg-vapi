@@ -45,6 +45,7 @@ public enum VocType {
 //  extern const uchar ff_voc_magic[21];
 //  extern const AVCodecTag ff_voc_codec_tags[];
 
+[CCode (cname="", cheader_filename="")]
 public int ff_voc_get_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet,

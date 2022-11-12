@@ -26,40 +26,43 @@ namespace LibAVFormat {
 @file Silicon Graphics Movie demuxer
 ***********************************************************/
 
-[CCode (cname="ff_mv_demuxer", cheader="")]
+[CCode (cname="struct MvContext", cheader_filename="")]
+public struct MVDemuxerPrivateData { }
+
+[CCode (cname="ff_mv_demuxer", cheader_filename="")]
 public class MVDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mv";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Silicon Graphics Movie";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (MvContext);
+            return sizeof (MVDemuxerPrivateData);
         }
     }
-    [CCode (cname="mv_probe", cheader="")]
+    [CCode (cname="mv_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="mv_read_header", cheader="")]
+    [CCode (cname="mv_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mv_read_packet", cheader="")]
+    [CCode (cname="mv_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="mv_read_seek", cheader="")]
+    [CCode (cname="mv_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

@@ -36,16 +36,19 @@ Insertion, removal, finding equal, largest which is smaller than and
 smallest which is larger than, all have O (log n) worst-case complexity.
 ***********************************************************/
 
+[CCode (cname="", cheader_filename="")]
 public delegate int TreeFindComparisonDelegate (
     void *key,
     void *b
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int TreeEnumerateComparisonDelegate (
     void *opaque,
     void *elem
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int TreeEnumerateEnumerationDelegate (
     void *opaque,
     void *elem

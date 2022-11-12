@@ -31,95 +31,97 @@ namespace LibAVFormat {
 //      { NULL },
 //  }
 
-[CCode (cname="adts_muxer_class", cheader="")]
+[CCode (cname="adts_muxer_class", cheader_filename="")]
 public class ADTSMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "ADTS muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_adts_muxer", cheader="")]
+[CCode (cname="struct ADTSContext", cheader_filename="")]
+public struct ADTSMuxerPrivateData { }
+
+[CCode (cname="ff_adts_muxer", cheader_filename="")]
 public class ADTSMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "adts";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "ADTS AAC (Advanced Audio Coding)";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "audio/aac";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "aac,adts";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (ADTSContext);
+            return sizeof (ADTSMuxerPrivateData);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="adts_init", cheader="")]
+    [CCode (cname="adts_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="adts_write_header", cheader="")]
+    [CCode (cname="adts_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="adts_write_packet", cheader="")]
-    public abstract int write_packet (
-        void *opaque,
-        uint8[] buffer,
-        int buf_size
+    [CCode (cname="adts_write_packet", cheader_filename="")]
+    public override int write_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
     );
-    [CCode (cname="adts_write_trailer", cheader="")]
+    [CCode (cname="adts_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
     //  .priv_class = adts_muxer_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;

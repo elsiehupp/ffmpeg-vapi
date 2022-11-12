@@ -21,6 +21,7 @@ namespace LibAVUtil {
 [CCode (cname="struct AVHWFramesInternal", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public struct HardwareFrameInternalContext { }
 
+[CCode (cname="", cheader_filename="")]
 public delegate void HardwareFrameContextFreeDelegate (
     HardwareFrameContext hardware_frames_context
 );

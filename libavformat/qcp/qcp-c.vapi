@@ -29,35 +29,38 @@ namespace LibAVFormat {
     http://tools.ietf.org/html/rfc3625
 ***********************************************************/
 
-[CCode (cname="ff_qcp_demuxer", cheader="")]
+[CCode (cname="struct QCPContext", cheader_filename="")]
+public struct QCPDemuxerPrivateData { }
+
+[CCode (cname="ff_qcp_demuxer", cheader_filename="")]
 public class QCPDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "qcp";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "QCP";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (QCPContext);
+            return sizeof (QCPDemuxerPrivateData);
         }
     }
-    [CCode (cname="qcp_probe", cheader="")]
+    [CCode (cname="qcp_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="qcp_read_header", cheader="")]
+    [CCode (cname="qcp_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="qcp_read_packet", cheader="")]
+    [CCode (cname="qcp_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

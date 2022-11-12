@@ -28,6 +28,7 @@ To improve speed, this implementation uses the standard approximation of
 overlapped 8x8 block sums, rather than the original gaussian weights.
 ***********************************************************/
 
+[CCode (cname="", cheader="")]
 public class tiny_ssim {
 
     static void FFSWAP<T> (out T a, out T b) {

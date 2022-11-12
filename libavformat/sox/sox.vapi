@@ -27,6 +27,7 @@ Size of fixed header without magic
 ***********************************************************/
 public const size_t SOX_FIXED_HDR;
 
+[CCode (cname="", cheader_filename="")]
 public const uint32 SOX_TAG; // MKTAG ('.', 'S', 'o', 'X')
 
 } // namespace LibAVFormat

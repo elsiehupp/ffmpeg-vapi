@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="struct TLSShared", cheader_filename="")]
 public struct TLSShared {
     public string ca_file;
     public int verify;
@@ -47,6 +48,7 @@ public struct TLSShared {
 //      {"listen", "Listen for incoming connections", offsetof (pstruct, options_field . listen), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 1, .flags = TLS_OPTFL },
 //      {"verifyhost", "Verify against a specific hostname", offsetof (pstruct, options_field . host), AV_OPT_TYPE_STRING, .flags = TLS_OPTFL }
 
+[CCode (cname="", cheader_filename="")]
 public int ff_tls_open_underlying (
     TLSShared *tls_shared,
     URLContext parent,
@@ -54,9 +56,11 @@ public int ff_tls_open_underlying (
     out LibAVUtil.Dictionary options
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_gnutls_init ();
 public void ff_gnutls_deinit ();
 
+[CCode (cname="", cheader_filename="")]
 public int ff_openssl_init ();
 public void ff_openssl_deinit ();
 

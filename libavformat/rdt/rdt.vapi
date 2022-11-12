@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="struct RDTDemuxContext", cheader_filename="")]
 public struct RDTDemuxContext { }
 
 /***********************************************************
@@ -41,6 +42,7 @@ public RDTDemuxContext ff_rdt_parse_open (
     RTPDynamicProtocolHandler handler
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rdt_parse_close (
     RDTDemuxContext demux_context
 );

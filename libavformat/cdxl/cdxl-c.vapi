@@ -28,71 +28,74 @@ CDXL demuxer
 //      { NULL },
 //  }
 
-[CCode (cname="cdxl_demuxer_class", cheader="")]
+[CCode (cname="cdxl_demuxer_class", cheader_filename="")]
 public class CDXLDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "CDXL demuxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = cdxl_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_cdxl_demuxer", cheader="")]
+[CCode (cname="struct CDXLDemuxContext", cheader_filename="")]
+public struct CDXLDemuxerPrivateData { }
+
+[CCode (cname="ff_cdxl_demuxer", cheader_filename="")]
 public class CDXLDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "cdxl";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Commodore CDXL video";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (CDXLDemuxContext);
+            return sizeof (CDXLDemuxerPrivateData);
         }
     }
-    [CCode (cname="cdxl_read_probe", cheader="")]
+    [CCode (cname="cdxl_read_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="cdxl_read_header", cheader="")]
+    [CCode (cname="cdxl_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="cdxl_read_packet", cheader="")]
+    [CCode (cname="cdxl_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "cdxl,xl";
         }
     }
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;

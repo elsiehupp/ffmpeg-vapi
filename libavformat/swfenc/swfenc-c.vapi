@@ -24,65 +24,65 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_SWF_MUXER
-[CCode (cname="ff_swf_muxer", cheader="")]
+[CCode (cname="ff_swf_muxer", cheader_filename="")]
 public class SWFMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "swf";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "SWF (ShockWave Flash)";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "application/x-shockwave-flash";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "swf";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SWFContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.MP3;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.FLV1;
         }
     }
-    [CCode (cname="swf_write_header", cheader="")]
+    [CCode (cname="swf_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="swf_write_packet", cheader="")]
+    [CCode (cname="swf_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="swf_write_trailer", cheader="")]
+    [CCode (cname="swf_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_TS_NONSTRICT;
@@ -92,59 +92,59 @@ public class SWFMuxer : AVOutputFormat {
 #endif
 
 #if CONFIG_AVM2_MUXER
-[CCode (cname="ff_avm2_muxer", cheader="")]
+[CCode (cname="ff_avm2_muxer", cheader_filename="")]
 public class AVM2Muxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "avm2";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "SWF (ShockWave Flash) (AVM2)";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "application/x-shockwave-flash";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SWFContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.MP3;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.FLV1;
         }
     }
-    [CCode (cname="swf_write_header", cheader="")]
+    [CCode (cname="swf_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="swf_write_packet", cheader="")]
+    [CCode (cname="swf_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="swf_write_trailer", cheader="")]
+    [CCode (cname="swf_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_TS_NONSTRICT;

@@ -47,6 +47,7 @@ and rendering (API calls) are done as part of the VDPAU
 presentation (vo_vdpau.c) module.
 ***********************************************************/
 
+[CCode (cname="", cheader_filename="")]
 public delegate int AVVDPAU_Render2 (
     CodecContext codec_context,
     LibAVUtil.Frame frame,

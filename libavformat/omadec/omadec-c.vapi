@@ -42,57 +42,60 @@ and DRM related info (file encryption, content id).
 Supported decoders: ATRAC3, ATRAC3+, MP3, LPCM
 ***********************************************************/
 
-[CCode (cname="ff_oma_demuxer", cheader="")]
+[CCode (cname="struct OMAContext", cheader_filename="")]
+public struct OMADemuxerPrivateData { }
+
+[CCode (cname="ff_oma_demuxer", cheader_filename="")]
 public class OMADemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "oma";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Sony OpenMG audio";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (OMAContext);
+            return sizeof (OMADemuxerPrivateData);
         }
     }
-    [CCode (cname="oma_read_probe", cheader="")]
+    [CCode (cname="oma_read_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="oma_read_header", cheader="")]
+    [CCode (cname="oma_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="oma_read_packet", cheader="")]
+    [CCode (cname="oma_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="oma_read_seek", cheader="")]
+    [CCode (cname="oma_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="oma_read_close", cheader="")]
+    [CCode (cname="oma_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "oma,omg,aa3";

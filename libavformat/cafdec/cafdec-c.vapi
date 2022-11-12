@@ -27,40 +27,43 @@ namespace LibAVFormat {
 @file Core Audio Format demuxer
 ***********************************************************/
 
-[CCode (cname="ff_caf_demuxer", cheader="")]
+[CCode (cname="struct CafContext", cheader_filename="")]
+public struct CAFDemuxerPrivateData { }
+
+[CCode (cname="ff_caf_demuxer", cheader_filename="")]
 public class CAFDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "caf";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Apple CAF (Core Audio Format)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (CafContext);
+            return sizeof (CAFDemuxerPrivateData);
         }
     }
-    [CCode (cname="probe", cheader="")]
+    [CCode (cname="probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="read_header", cheader="")]
+    [CCode (cname="read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="read_packet", cheader="")]
+    [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="read_seek", cheader="")]
+    [CCode (cname="read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

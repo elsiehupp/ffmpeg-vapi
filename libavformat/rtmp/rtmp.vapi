@@ -22,9 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const int RTMP_DEFAULT_PORT; // 1935
 public const int RTMPS_DEFAULT_PORT; // 443
 
+[CCode (cname="", cheader_filename="")]
 public const size_t RTMP_HANDSHAKE_PACKET_SIZE; // 1536
 
 /***********************************************************

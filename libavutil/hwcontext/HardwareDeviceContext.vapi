@@ -24,6 +24,7 @@ public struct AVHWDeviceInternal { }
 [CCode (cname="struct AVHWContext", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public abstract class AbstractHardwareContext { }
 
+[CCode (cname="", cheader_filename="")]
 public delegate void AVHWDeviceContextFreeDelegate (
     HardwareDeviceContext hardware_device_context
 );

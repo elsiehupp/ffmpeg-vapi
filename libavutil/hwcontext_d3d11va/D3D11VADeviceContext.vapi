@@ -34,6 +34,7 @@ for the LibAVUtil.Dictionary entry. If this is set to any value, the device crea
 code will try to load various supported D3D debugging layers.
 ***********************************************************/
 
+[CCode (cname="", cheader_filename="")]
 public delegate void D3D11VADeviceLockDelegate (
     void *lock_ctx
 );

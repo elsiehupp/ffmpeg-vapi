@@ -1862,7 +1862,7 @@ public struct CodecContext {
     @code
         avcodec_register_all ();
         av_dict_set (&opts, "b", "2.5M", 0);
-        codec = avcodec_find_decoder (AV_CODEC_ID_H264);
+        codec = avcodec_find_decoder (LibAVCodec.CodecID.H264);
         if (codec == null)
             exit (1);
 

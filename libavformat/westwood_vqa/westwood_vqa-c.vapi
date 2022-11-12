@@ -30,35 +30,38 @@ http://www.pcisys.net/~melanson/codecs/
 http://www.geocities.com/SiliconValley/8682/aud3.txt
 ***********************************************************/
 
-[CCode (cname="ff_wsvqa_demuxer", cheader="")]
+[CCode (cname="struct WsVqaDemuxContext", cheader_filename="")]
+public struct WSVQADemuxerPrivateData { }
+
+[CCode (cname="ff_wsvqa_demuxer", cheader_filename="")]
 public class WSVQADemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "wsvqa";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Westwood Studios VQA";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (WsVqaDemuxContext);
+            return sizeof (WSVQADemuxerPrivateData);
         }
     }
-    [CCode (cname="wsvqa_probe", cheader="")]
+    [CCode (cname="wsvqa_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="wsvqa_read_header", cheader="")]
+    [CCode (cname="wsvqa_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="wsvqa_read_packet", cheader="")]
+    [CCode (cname="wsvqa_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

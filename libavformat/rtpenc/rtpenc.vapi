@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="struct RTPMuxContext", cheader_filename="")]
 public struct RTPMuxContext {
     public LibAVUtil.Class av_class;
     public AVFormatContext ic;
@@ -83,6 +84,7 @@ public enum RTPEncoderFlags {
 //      { "h264_mode0", "Use mode 0 for H.264 in RTP", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_H264_MODE0}, INT_MIN, int.MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" },
 //      { "send_bye", "Send RTCP BYE packets when finishing", 0, AV_OPT_TYPE_CONST, {.i64 = FF_RTP_FLAG_SEND_BYE}, INT_MIN, int.MAX, AV_OPT_FLAG_ENCODING_PARAM, "rtpflags" }
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_data (
     AVFormatContext s1,
     uint8[] buf1,
@@ -90,24 +92,28 @@ public void ff_rtp_send_data (
     int m
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_h264_hevc (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_h261 (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_h263 (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_h263_rfc2190 (
     AVFormatContext s1,
     uint8[] buf1,
@@ -116,36 +122,42 @@ public void ff_rtp_send_h263_rfc2190 (
     int mb_info_size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_aac (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_latm (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_amr (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_mpegvideo (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_xiph (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_vc2hq (
     AVFormatContext s1,
     uint8[] buffer,
@@ -153,24 +165,28 @@ public void ff_rtp_send_vc2hq (
     int interlaced
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_vp8 (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_vp9 (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_jpeg (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint8[] ff_h263_find_resync_marker_reverse (
     uint8[] start, // av_restrict
     uint8[] end // av_restrict

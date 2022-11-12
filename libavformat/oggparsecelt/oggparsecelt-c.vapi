@@ -22,15 +22,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_celt_codec", cheader="")]
+[CCode (cname="ff_celt_codec", cheader_filename="")]
 public class CELTCodec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "CELT    ";
+            return "CELT    ".data;
         }
     }
     //  .magicsize = 8,
-    [CCode (cname="celt_header", cheader="")]
+    [CCode (cname="celt_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg

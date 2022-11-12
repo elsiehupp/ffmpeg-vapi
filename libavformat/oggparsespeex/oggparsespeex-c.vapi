@@ -24,20 +24,20 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_speex_codec", cheader="")]
+[CCode (cname="ff_speex_codec", cheader_filename="")]
 public class SpeexCodec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "Speex   ";
+            return "Speex   ".data;
         }
     }
     //  .magicsize = 8,
-    [CCode (cname="speex_header", cheader="")]
+    [CCode (cname="speex_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="speex_packet", cheader="")]
+    [CCode (cname="speex_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg

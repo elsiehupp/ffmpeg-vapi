@@ -23,21 +23,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 
-[CCode (cname="l24_dynamic_handler", cheader="")]
+[CCode (cname="l24_dynamic_handler", cheader_filename="")]
 public class L24DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name", cheader="")]
+    [CCode (cname="enc_name", cheader_filename="")]
     public override string enc_name {
         public get {
             return "L24";
         }
     }
-    [CCode (cname="codec_type", cheader="")]
+    [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
-    [CCode (cname="codec_id", cheader="")]
+    [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S24BE;
@@ -46,21 +46,21 @@ public class L24DynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="gsm_dynamic_handler", cheader="")]
+[CCode (cname="gsm_dynamic_handler", cheader_filename="")]
 public class GSMDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name", cheader="")]
+    [CCode (cname="enc_name", cheader_filename="")]
     public override string enc_name {
         public get {
             return "GSM";
         }
     }
-    [CCode (cname="codec_type", cheader="")]
+    [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
-    [CCode (cname="codec_id", cheader="")]
+    [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.GSM;
@@ -69,21 +69,21 @@ public class GSMDynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="realmedia_mp3_dynamic_handler", cheader="")]
+[CCode (cname="realmedia_mp3_dynamic_handler", cheader_filename="")]
 public class RealMediaMP3DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name", cheader="")]
+    [CCode (cname="enc_name", cheader_filename="")]
     public override string enc_name {
         public get {
             return "X-MP3-draft-00";
         }
     }
-    [CCode (cname="codec_type", cheader="")]
+    [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
-    [CCode (cname="codec_id", cheader="")]
+    [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MP3ADU;
@@ -92,21 +92,21 @@ public class RealMediaMP3DynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="speex_dynamic_handler", cheader="")]
+[CCode (cname="speex_dynamic_handler", cheader_filename="")]
 public class SpeexDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name", cheader="")]
+    [CCode (cname="enc_name", cheader_filename="")]
     public override string enc_name {
         public get {
             return "speex";
         }
     }
-    [CCode (cname="codec_type", cheader="")]
+    [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
-    [CCode (cname="codec_id", cheader="")]
+    [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.SPEEX;
@@ -115,21 +115,21 @@ public class SpeexDynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="opus_dynamic_handler", cheader="")]
+[CCode (cname="opus_dynamic_handler", cheader_filename="")]
 public class OpusDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name", cheader="")]
+    [CCode (cname="enc_name", cheader_filename="")]
     public override string enc_name {
         public get {
             return "opus";
         }
     }
-    [CCode (cname="codec_type", cheader="")]
+    [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
-    [CCode (cname="codec_id", cheader="")]
+    [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.OPUS;
@@ -138,24 +138,24 @@ public class OpusDynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="t140_dynamic_handler", cheader="")]
+[CCode (cname="t140_dynamic_handler", cheader_filename="")]
 public class T140DynamicHandler : RTPDynamicProtocolHandler {
     /***********************************************************
     RFC 4103
     ***********************************************************/
-    [CCode (cname="enc_name", cheader="")]
+    [CCode (cname="enc_name", cheader_filename="")]
     public override string enc_name {
         public get {
             return "t140";
         }
     }
-    [CCode (cname="codec_type", cheader="")]
+    [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_SUBTITLE;
         }
     }
-    [CCode (cname="codec_id", cheader="")]
+    [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.TEXT;

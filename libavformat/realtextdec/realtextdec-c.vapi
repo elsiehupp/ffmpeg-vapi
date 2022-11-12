@@ -26,40 +26,43 @@ namespace LibAVFormat {
 @see http://service.real.com/help/library/guides/ProductionGuide/prodguide/htmfiles/realtext.htm
 ***********************************************************/
 
-[CCode (cname="ff_realtext_demuxer", cheader="")]
+[CCode (cname="struct RealTextContext", cheader_filename="")]
+public struct RealTextDemuxerPrivateData { }
+
+[CCode (cname="ff_realtext_demuxer", cheader_filename="")]
 public class RealTextDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "realtext";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "RealText subtitle format";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (RealTextContext);
+            return sizeof (RealTextDemuxerPrivateData);
         }
     }
-    [CCode (cname="realtext_probe", cheader="")]
+    [CCode (cname="realtext_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="realtext_read_header", cheader="")]
+    [CCode (cname="realtext_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="realtext_read_packet", cheader="")]
+    [CCode (cname="realtext_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="realtext_read_seek", cheader="")]
+    [CCode (cname="realtext_read_seek", cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -68,11 +71,11 @@ public class RealTextDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
-    [CCode (cname="realtext_read_close", cheader="")]
+    [CCode (cname="realtext_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "rt";

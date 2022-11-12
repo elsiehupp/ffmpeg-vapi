@@ -25,9 +25,9 @@ namespace LibAVFormat {
 @file Options definition for AVFormatContext.
 ***********************************************************/
 
-[CCode (cname="av_format_context_class", cheader="")]
+[CCode (cname="av_format_context_class", cheader_filename="")]
 public class AVFormatContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "AVFormatContext";
@@ -35,24 +35,24 @@ public class AVFormatContextClass : LibAVUtil.Class {
     }
     //  .item_name = format_to_name,
     //  .option = avformat_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
-    [CCode (cname="format_child_next", cheader="")]
+    [CCode (cname="format_child_next", cheader_filename="")]
     public override void *child_next (
         void *obj,
         void *prev
     );
-    [CCode (cname="format_child_class_next", cheader="")]
-    public override Class child_class_next (
-        Class prev
+    [CCode (cname="format_child_class_next", cheader_filename="")]
+    public override LibAVUtil.Class child_class_next (
+        LibAVUtil.Class prev
     );
     //  .category = AV_CLASS_CATEGORY_MUXER,
-    [CCode (cname="get_category", cheader="")]
-    public override ClassCategory get_category (
+    [CCode (cname="get_category", cheader_filename="")]
+    public override LibAVUtil.ClassCategory get_category (
         void *class_context
     );
 }

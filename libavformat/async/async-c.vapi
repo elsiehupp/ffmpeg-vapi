@@ -38,67 +38,70 @@ namespace LibAVFormat {
 //  #undef D
 //  #undef OFFSET
 
-[CCode (cname="async_context_class", cheader="")]
+[CCode (cname="async_context_class", cheader_filename="")]
 public class AsyncContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "Async";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_async_protocol", cheader="")]
+[CCode (cname="struct Context", cheader_filename="")]
+public struct AsyncPrivateData { }
+
+[CCode (cname="ff_async_protocol", cheader_filename="")]
 public class AsyncURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "async";
         }
     }
-    [CCode (cname="async_open", cheader="")]
+    [CCode (cname="async_open", cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
         string url,
         int flags,
         out LibAVUtil.Dictionary options
     );
-    [CCode (cname="async_read", cheader="")]
+    [CCode (cname="async_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="async_seek", cheader="")]
+    [CCode (cname="async_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
-    [CCode (cname="async_close", cheader="")]
+    [CCode (cname="async_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (Context);
+            return sizeof (AsyncPrivateData);
         }
     }
     //  .priv_data_class = async_context_class,
@@ -116,63 +119,63 @@ public class AsyncURLProtocol : URLProtocol {
 //  #undef D
 //  #undef OFFSET
 
-[CCode (cname="async_test_context_class", cheader="")]
+[CCode (cname="async_test_context_class", cheader_filename="")]
 public class AsyncTestContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "Async-Test";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = async_test_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_async_test_protocol", cheader="")]
+[CCode (cname="ff_async_test_protocol", cheader_filename="")]
 public class AsyncTestURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "async-test";
         }
     }
-    [CCode (cname="async_test_open", cheader="")]
+    [CCode (cname="async_test_open", cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
         string url,
         int flags,
         out LibAVUtil.Dictionary options
     );
-    [CCode (cname="async_test_read", cheader="")]
+    [CCode (cname="async_test_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="async_test_seek", cheader="")]
+    [CCode (cname="async_test_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
-    [CCode (cname="async_test_close", cheader="")]
+    [CCode (cname="async_test_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TestContext);

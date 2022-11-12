@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="struct FFRawVideoDemuxerContext", cheader_filename="")]
 public struct FFRawVideoDemuxerContext {
     /***********************************************************
     Class for private options.
@@ -42,6 +43,7 @@ public struct FFRawVideoDemuxerContext {
     public LibAVUtil.Rational framerate;
 }
 
+[CCode (cname="struct FFRawDemuxerContext", cheader_filename="")]
 public struct FFRawDemuxerContext {
     /***********************************************************
     Class for private options.
@@ -53,23 +55,28 @@ public struct FFRawDemuxerContext {
 //  extern const LibAVUtil.Option ff_rawvideo_options[];
 //  extern const LibAVUtil.Option ff_raw_options[];
 
+[CCode (cname="", cheader_filename="")]
 public int ff_raw_read_partial_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_raw_audio_read_header (
     AVFormatContext format_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_raw_video_read_header (
     AVFormatContext format_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_raw_subtitle_read_header (
     AVFormatContext format_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_raw_data_read_header (
     AVFormatContext format_context
 );
@@ -77,17 +84,17 @@ public int ff_raw_data_read_header (
 //  #define FF_RAW_DEMUXER_CLASS (name)\
 //  public const LibAVUtil.Class name ## _demuxer_class = {
 //      //  .class_name = #name " demuxer",
-//      //  .item_name = av_default_item_name,
+//      //  .item_name = base.item_name,
 //      //  .option = ff_raw_options,
-//      //  .version = LIBAVUTIL_VERSION_INT,
+//      //  .version = LibAVUtil.Version.INT,
 //  }
 
 //  #define FF_RAWVIDEO_DEMUXER_CLASS (name)\
 //  public const LibAVUtil.Class name ## _demuxer_class = {
 //      //  .class_name = #name " demuxer",
-//      //  .item_name = av_default_item_name,
+//      //  .item_name = base.item_name,
 //      //  .option = ff_rawvideo_options,
-//      //  .version = LIBAVUTIL_VERSION_INT,
+//      //  .version = LibAVUtil.Version.INT,
 //  }
 
 //  #define FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, flag)\
@@ -111,9 +118,9 @@ public int ff_raw_data_read_header (
 //  #define FF_RAWSUB_DEMUXER_CLASS (name)\
 //  public const LibAVUtil.Class name ## _demuxer_class = {
 //      //  .class_name = #name " demuxer",
-//      //  .item_name = av_default_item_name,
+//      //  .item_name = base.item_name,
 //      //  .option = ff_raw_options,
-//      //  .version = LIBAVUTIL_VERSION_INT,
+//      //  .version = LibAVUtil.Version.INT,
 //  }
 
 //  #define FF_DEF_RAWSUB_DEMUXER (shortname, longname, probe, ext, id, flag)\

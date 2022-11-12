@@ -27,6 +27,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="struct FLVContext", cheader_filename="")]
+public struct FLVDemuxerClassPrivateData { }
+
 //  #define OFFSET(x) offsetof(FLVContext, x)
 //  #define VD AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
 //  static const LibAVUtil.Option options[] = {
@@ -37,77 +40,77 @@ namespace LibAVFormat {
 //      { NULL }
 //  }
 
-[CCode (cname="flv_class", cheader="")]
+[CCode (cname="flv_class", cheader_filename="")]
 public class FLVDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "flvdec";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_flv_demuxer", cheader="")]
+[CCode (cname="ff_flv_demuxer", cheader_filename="")]
 public class FLVDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "flv";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "FLV (Flash Video)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (FLVContext);
+            return sizeof (FLVDemuxerClassPrivateData);
         }
     }
-    [CCode (cname="flv_probe", cheader="")]
+    [CCode (cname="flv_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="flv_read_header", cheader="")]
+    [CCode (cname="flv_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="flv_read_packet", cheader="")]
+    [CCode (cname="flv_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="flv_read_seek", cheader="")]
+    [CCode (cname="flv_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="flv_read_close", cheader="")]
+    [CCode (cname="flv_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "flv";
@@ -116,84 +119,84 @@ public class FLVDemuxer : AVInputFormat {
     //  .priv_class = flv_class,
 }
 
-[CCode (cname="live_flv_class", cheader="")]
+[CCode (cname="live_flv_class", cheader_filename="")]
 public class LiveFLVDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "live_flvdec";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_live_flv_demuxer", cheader="")]
+[CCode (cname="ff_live_flv_demuxer", cheader_filename="")]
 public class LiveFLVDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "live_flv";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "live RTMP FLV (Flash Video)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (FLVContext);
+            return sizeof (FLVDemuxerClassPrivateData);
         }
     }
-    [CCode (cname="live_flv_probe", cheader="")]
+    [CCode (cname="live_flv_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="flv_read_header", cheader="")]
+    [CCode (cname="flv_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="flv_read_packet", cheader="")]
+    [CCode (cname="flv_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="flv_read_seek", cheader="")]
+    [CCode (cname="flv_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="flv_read_close", cheader="")]
+    [CCode (cname="flv_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "flv";
         }
     }
     //  .priv_class = live_flv_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_TS_DISCONT;
@@ -201,77 +204,77 @@ public class LiveFLVDemuxer : AVInputFormat {
     }
 }
 
-[CCode (cname="kux_class", cheader="")]
+[CCode (cname="kux_class", cheader_filename="")]
 public class KUXDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "kuxdec";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_kux_demuxer", cheader="")]
+[CCode (cname="ff_kux_demuxer", cheader_filename="")]
 public class KUXDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "kux";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "KUX (YouKu)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (FLVContext);
+            return sizeof (FLVDemuxerClassPrivateData);
         }
     }
-    [CCode (cname="kux_probe", cheader="")]
+    [CCode (cname="kux_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="flv_read_header", cheader="")]
+    [CCode (cname="flv_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="flv_read_packet", cheader="")]
+    [CCode (cname="flv_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="flv_read_seek", cheader="")]
+    [CCode (cname="flv_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="flv_read_close", cheader="")]
+    [CCode (cname="flv_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "kux";

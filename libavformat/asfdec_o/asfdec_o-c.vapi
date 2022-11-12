@@ -22,58 +22,61 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_asf_o_demuxer", cheader="")]
+[CCode (cname="struct ASFContext", cheader_filename="")]
+public struct ASFODemuxerPrivateData { }
+
+[CCode (cname="ff_asf_o_demuxer", cheader_filename="")]
 public class ASFODemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "asf_o";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "ASF (Advanced / Active Streaming Format)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (ASFContext);
+            return sizeof (ASFODemuxerPrivateData);
         }
     }
-    [CCode (cname="asf_probe", cheader="")]
+    [CCode (cname="asf_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="asf_read_header", cheader="")]
+    [CCode (cname="asf_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="asf_read_packet", cheader="")]
+    [CCode (cname="asf_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="asf_read_close", cheader="")]
+    [CCode (cname="asf_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="asf_read_timestamp", cheader="")]
+    [CCode (cname="asf_read_timestamp", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
     );
-    [CCode (cname="asf_read_seek", cheader="")]
+    [CCode (cname="asf_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH;

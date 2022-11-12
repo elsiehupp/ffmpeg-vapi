@@ -50,7 +50,7 @@ public delegate int ParserSplitDelegate (
 );
 
 [CCode (cname="struct AVCodecParser", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct CodecParser {
+public abstract class CodecParser {
     /***********************************************************
     @brief Several codec IDs are permitted
     ***********************************************************/

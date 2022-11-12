@@ -23,6 +23,7 @@ Foundation, Inc.,
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public int ff_tee_parse_slave_options (
     void *log,
     string slave,

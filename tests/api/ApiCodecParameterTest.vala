@@ -20,6 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+[CCode (cname="", cheader="")]
 public class ApiCodecParameterTest : GLib.TestCase {
 
     static uint try_decode_video_frame (

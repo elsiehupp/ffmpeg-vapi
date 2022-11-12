@@ -307,6 +307,7 @@ public enum MatroskaID {
     MATROSKA_ID_CHAPTERPHYSEQUIV,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaTrackType {
     MATROSKA_TRACK_TYPE_NONE,
     MATROSKA_TRACK_TYPE_VIDEO,
@@ -318,6 +319,7 @@ public enum MatroskaTrackType {
     MATROSKA_TRACK_TYPE_METADATA,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaTrackEncodingCompAlgo {
     MATROSKA_TRACK_ENCODING_COMP_ZLIB,
     MATROSKA_TRACK_ENCODING_COMP_BZLIB,
@@ -325,12 +327,14 @@ public enum MatroskaTrackEncodingCompAlgo {
     MATROSKA_TRACK_ENCODING_COMP_HEADERSTRIP,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaVideoInterlaceFlag {
     MATROSKA_VIDEO_INTERLACE_FLAG_UNDETERMINED,
     MATROSKA_VIDEO_INTERLACE_FLAG_INTERLACED,
     MATROSKA_VIDEO_INTERLACE_FLAG_PROGRESSIVE,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaVideoFieldOrder {
     MATROSKA_VIDEO_FIELDORDER_PROGRESSIVE,
     MATROSKA_VIDEO_FIELDORDER_UNDETERMINED,
@@ -340,6 +344,7 @@ public enum MatroskaVideoFieldOrder {
     MATROSKA_VIDEO_FIELDORDER_BT,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaVideoStereoModeType {
     MATROSKA_VIDEO_STEREOMODE_TYPE_MONO,
     MATROSKA_VIDEO_STEREOMODE_TYPE_LEFT_RIGHT,
@@ -359,6 +364,7 @@ public enum MatroskaVideoStereoModeType {
     MATROSKA_VIDEO_STEREOMODE_TYPE_NB,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaVideoDisplayUnit {
     MATROSKA_VIDEO_DISPLAYUNIT_PIXELS,
     MATROSKA_VIDEO_DISPLAYUNIT_CENTIMETERS,
@@ -367,6 +373,7 @@ public enum MatroskaVideoDisplayUnit {
     MATROSKA_VIDEO_DISPLAYUNIT_UNKNOWN,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaColourChromaSitingHorz {
     MATROSKA_COLOUR_CHROMASITINGHORZ_UNDETERMINED,
     MATROSKA_COLOUR_CHROMASITINGHORZ_LEFT,
@@ -374,6 +381,7 @@ public enum MatroskaColourChromaSitingHorz {
     MATROSKA_COLOUR_CHROMASITINGHORZ_NB,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaColourChromaSitingVert {
     MATROSKA_COLOUR_CHROMASITINGVERT_UNDETERMINED,
     MATROSKA_COLOUR_CHROMASITINGVERT_TOP,
@@ -381,6 +389,7 @@ public enum MatroskaColourChromaSitingVert {
     MATROSKA_COLOUR_CHROMASITINGVERT_NB,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaVideoProjectionType {
     MATROSKA_VIDEO_PROJECTION_TYPE_RECTANGULAR,
     MATROSKA_VIDEO_PROJECTION_TYPE_EQUIRECTANGULAR,
@@ -392,6 +401,7 @@ public enum MatroskaVideoProjectionType {
 Matroska Codec IDs, strings
 ***********************************************************/
 
+[CCode (cname="struct CodecTags", cheader_filename="")]
 public struct CodecTags {
     char str[22];
     LibAVCodec.CodecID id;
@@ -402,6 +412,7 @@ max. depth in the EBML tree structure
 ***********************************************************/
 public const int EBML_MAX_DEPTH;
 
+[CCode (cname="", cheader_filename="")]
 public const int MATROSKA_VIDEO_STEREO_PLANE_COUNT;
 
 //  extern const CodecTags ff_mkv_codec_tags[];
@@ -426,6 +437,7 @@ public const string CUE_TIMESTAMPS; // "webm_dash_manifest_cue_timestamps"
 public const string TRACK_NUMBER; // "webm_dash_manifest_track_number"
 public const string CODEC_PRIVATE_SIZE; // "webm_dash_manifest_codec_priv_size"
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mkv_stereo3d_conv (
     AVStream st,
     MatroskaVideoStereoModeType stereo_mode

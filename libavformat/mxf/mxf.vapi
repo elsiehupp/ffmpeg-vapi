@@ -22,8 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="struct UID", cheader_filename="")]
 public struct UID { } // uint8[16]
 
+[CCode (cname="", cheader_filename="")]
 public enum MXFMetadataSetType {
     AnyType,
     MaterialPackage,
@@ -48,6 +50,7 @@ public enum MXFMetadataSetType {
     AVCSubDescriptor,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MXFFrameLayout {
     FullFrame = 0,
     SeparateFields,
@@ -56,6 +59,7 @@ public enum MXFFrameLayout {
     SegmentedFrame,
 }
 
+[CCode (cname="struct KLVPacket", cheader_filename="")]
 public struct KLVPacket {
     public UID key;
     public int64 offset;
@@ -63,6 +67,7 @@ public struct KLVPacket {
     public int64 next_klv;
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MXFWrappingIndicatorType {
     NormalWrap = 0,
     D10D11Wrap,
@@ -70,6 +75,7 @@ public enum MXFWrappingIndicatorType {
     RawVWrap
 }
 
+[CCode (cname="struct MXFCodecUL", cheader_filename="")]
 public struct MXFCodecUL {
     public UID uid;
     public uint matching_len;
@@ -79,6 +85,7 @@ public struct MXFCodecUL {
     public MXFWrappingIndicatorType wrapping_indicator_type;
 }
 
+[CCode (cname="struct MXFSamplesPerFrame", cheader_filename="")]
 public struct MXFSamplesPerFrame {
     public LibAVUtil.Rational time_base;
     public int samples_per_frame[6];
@@ -89,20 +96,24 @@ public struct MXFSamplesPerFrame {
 //  extern const MXFCodecUL ff_mxf_pixel_format_uls[];
 //  extern const MXFCodecUL ff_mxf_codec_tag_uls[];
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mxf_decode_pixel_layout (
     char pixel_layout[16],
     LibAVUtil.PixelFormat pix_fmt
 );
 
+[CCode (cname="", cheader_filename="")]
 public MXFSamplesPerFrame ff_mxf_get_samples_per_frame (
     AVFormatContext format_context,
     LibAVUtil.Rational time_base
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mxf_get_content_package_rate (
     LibAVUtil.Rational time_base
 );
 
+[CCode (cname="", cheader_filename="")]
 public const string PRIxUID;
 
 //  #define UID_ARG (x)

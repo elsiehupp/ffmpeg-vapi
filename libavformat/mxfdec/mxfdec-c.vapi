@@ -53,77 +53,80 @@ Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPT
 //      { NULL },
 //  }
 
-[CCode (cname="demuxer_class", cheader="")]
+[CCode (cname="demuxer_class", cheader_filename="")]
 public class MXFDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "mxf";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
     //  .category = AV_CLASS_CATEGORY_DEMUXER,
 }
 
-[CCode (cname="ff_mxf_demuxer", cheader="")]
+[CCode (cname="struct MXFContext", cheader_filename="")]
+public struct MXFDemuxerPrivateData { }
+
+[CCode (cname="ff_mxf_demuxer", cheader_filename="")]
 public class MXFDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mxf";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MXF (Material eXchange Format)";
         }
     }
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_SEEK_TO_PTS;
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (MXFContext);
+            return sizeof (MXFDemuxerPrivateData);
         }
     }
-    [CCode (cname="mxf_probe", cheader="")]
+    [CCode (cname="mxf_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="mxf_read_header", cheader="")]
+    [CCode (cname="mxf_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mxf_read_packet", cheader="")]
+    [CCode (cname="mxf_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="mxf_read_close", cheader="")]
+    [CCode (cname="mxf_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="mxf_read_seek", cheader="")]
+    [CCode (cname="mxf_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

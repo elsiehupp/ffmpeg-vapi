@@ -145,93 +145,93 @@ namespace LibAVFormat {
 //  }
 
 #if CONFIG_MOV_MUXER
-[CCode (cname="mov_muxer_class", cheader="")]
+[CCode (cname="mov_muxer_class", cheader_filename="")]
 public class MOVMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "mov muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_mov_muxer", cheader="")]
+[CCode (cname="ff_mov_muxer", cheader_filename="")]
 public class MOVMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mov";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "QuickTime / MOV";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "mov";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBX264_ENCODER ? LibAVCodec.CodecID.H264 : LibAVCodec.CodecID.MPEG4;
         }
     }
-    [CCode (cname="mov_init", cheader="")]
+    [CCode (cname="mov_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_header", cheader="")]
+    [CCode (cname="mov_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_packet", cheader="")]
+    [CCode (cname="mov_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mov_write_trailer", cheader="")]
+    [CCode (cname="mov_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_free", cheader="")]
+    [CCode (cname="mov_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE;
@@ -240,7 +240,7 @@ public class MOVMuxer : AVOutputFormat {
     //  .codec_tag = (AVCodecTag[]){
     //      ff_codec_movvideo_tags, ff_codec_movaudio_tags, ff_codec_movsubtitle_tags, 0
     //  },
-    [CCode (cname="mov_check_bitstream", cheader="")]
+    [CCode (cname="mov_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -250,100 +250,100 @@ public class MOVMuxer : AVOutputFormat {
 #endif
 
 #if CONFIG_TGP_MUXER
-[CCode (cname="tgp_muxer_class", cheader="")]
+[CCode (cname="tgp_muxer_class", cheader_filename="")]
 public class TGPMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "tgp muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_tgp_muxer", cheader="")]
+[CCode (cname="ff_tgp_muxer", cheader_filename="")]
 public class TGPMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "3gp";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "3GP (3GPP file format)";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "3gp";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AMR_NB;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H263;
         }
     }
-    [CCode (cname="mov_init", cheader="")]
+    [CCode (cname="mov_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_header", cheader="")]
+    [CCode (cname="mov_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_packet", cheader="")]
+    [CCode (cname="mov_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mov_write_trailer", cheader="")]
+    [CCode (cname="mov_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_free", cheader="")]
+    [CCode (cname="mov_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE;
         }
     }
     //  .codec_tag = (AVCodecTag[]){ codec_3gp_tags, 0 },
-    [CCode (cname="mov_check_bitstream", cheader="")]
+    [CCode (cname="mov_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -353,106 +353,106 @@ public class TGPMuxer : AVOutputFormat {
 #endif
 
 #if CONFIG_MP4_MUXER
-[CCode (cname="mp4_muxer_class", cheader="")]
+[CCode (cname="mp4_muxer_class", cheader_filename="")]
 public class MP4MuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "mp4 muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_mp4_muxer", cheader="")]
+[CCode (cname="ff_mp4_muxer", cheader_filename="")]
 public class MP4Muxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mp4";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MP4 (MPEG-4 Part 14)";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "video/mp4";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "mp4";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBX264_ENCODER ? LibAVCodec.CodecID.H264 : LibAVCodec.CodecID.MPEG4;
         }
     }
-    [CCode (cname="mov_init", cheader="")]
+    [CCode (cname="mov_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_header", cheader="")]
+    [CCode (cname="mov_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_packet", cheader="")]
+    [CCode (cname="mov_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mov_write_trailer", cheader="")]
+    [CCode (cname="mov_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_free", cheader="")]
+    [CCode (cname="mov_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE;
         }
     }
     //  .codec_tag = (AVCodecTag[]){ codec_mp4_tags, 0 },
-    [CCode (cname="mov_check_bitstream", cheader="")]
+    [CCode (cname="mov_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -462,100 +462,100 @@ public class MP4Muxer : AVOutputFormat {
 #endif
 
 #if CONFIG_PSP_MUXER
-[CCode (cname="psp_muxer_class", cheader="")]
+[CCode (cname="psp_muxer_class", cheader_filename="")]
 public class PSPMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "psp muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_psp_muxer", cheader="")]
+[CCode (cname="ff_psp_muxer", cheader_filename="")]
 public class PSPMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "psp";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PSP MP4 (MPEG-4 Part 14)";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "mp4,psp";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBX264_ENCODER ? LibAVCodec.CodecID.H264 : LibAVCodec.CodecID.MPEG4;
         }
     }
-    [CCode (cname="mov_init", cheader="")]
+    [CCode (cname="mov_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_header", cheader="")]
+    [CCode (cname="mov_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_packet", cheader="")]
+    [CCode (cname="mov_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mov_write_trailer", cheader="")]
+    [CCode (cname="mov_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_free", cheader="")]
+    [CCode (cname="mov_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE;
         }
     }
     //  .codec_tag = (AVCodecTag[]){ codec_mp4_tags, 0 },
-    [CCode (cname="mov_check_bitstream", cheader="")]
+    [CCode (cname="mov_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -565,100 +565,100 @@ public class PSPMuxer : AVOutputFormat {
 #endif
 
 #if CONFIG_TG2_MUXER
-[CCode (cname="tg2_muxer_class", cheader="")]
+[CCode (cname="tg2_muxer_class", cheader_filename="")]
 public class TG2MuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "tg2 muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_tg2_muxer", cheader="")]
+[CCode (cname="ff_tg2_muxer", cheader_filename="")]
 public class TG2Muxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "3g2";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "3GP2 (3GPP2 file format)";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "3g2";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AMR_NB;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H263;
         }
     }
-    [CCode (cname="mov_init", cheader="")]
+    [CCode (cname="mov_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_header", cheader="")]
+    [CCode (cname="mov_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_packet", cheader="")]
+    [CCode (cname="mov_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mov_write_trailer", cheader="")]
+    [CCode (cname="mov_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_free", cheader="")]
+    [CCode (cname="mov_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE;
         }
     }
     //  .codec_tag = (AVCodecTag[]){ codec_3gp_tags, 0 },
-    [CCode (cname="mov_check_bitstream", cheader="")]
+    [CCode (cname="mov_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -668,106 +668,106 @@ public class TG2Muxer : AVOutputFormat {
 #endif
 
 #if CONFIG_IPOD_MUXER
-[CCode (cname="ipod_muxer_class", cheader="")]
+[CCode (cname="ipod_muxer_class", cheader_filename="")]
 public class IPodMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "ipod muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_ipod_muxer", cheader="")]
+[CCode (cname="ff_ipod_muxer", cheader_filename="")]
 public class IPodMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "ipod";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "iPod H.264 MP4 (MPEG-4 Part 14)";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "video/mp4";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "m4v,m4a,m4b";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
         }
     }
-    [CCode (cname="mov_init", cheader="")]
+    [CCode (cname="mov_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_header", cheader="")]
+    [CCode (cname="mov_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_packet", cheader="")]
+    [CCode (cname="mov_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mov_write_trailer", cheader="")]
+    [CCode (cname="mov_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_free", cheader="")]
+    [CCode (cname="mov_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE;
         }
     }
     //  .codec_tag = (AVCodecTag[]){ codec_ipod_tags, 0 },
-    [CCode (cname="mov_check_bitstream", cheader="")]
+    [CCode (cname="mov_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -777,99 +777,99 @@ public class IPodMuxer : AVOutputFormat {
 #endif
 
 #if CONFIG_ISMV_MUXER
-[CCode (cname="ismv_muxer_class", cheader="")]
+[CCode (cname="ismv_muxer_class", cheader_filename="")]
 public class ISMVMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "ismv muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_ismv_muxer", cheader="")]
+[CCode (cname="ff_ismv_muxer", cheader_filename="")]
 public class ISMVMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "ismv";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "ISMV/ISMA (Smooth Streaming)";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "video/mp4";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "ismv,isma";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
         }
     }
-    [CCode (cname="mov_init", cheader="")]
+    [CCode (cname="mov_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_header", cheader="")]
+    [CCode (cname="mov_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_packet", cheader="")]
+    [CCode (cname="mov_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mov_write_trailer", cheader="")]
+    [CCode (cname="mov_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_free", cheader="")]
+    [CCode (cname="mov_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE;
@@ -877,7 +877,7 @@ public class ISMVMuxer : AVOutputFormat {
     }
     //  .codec_tag = (AVCodecTag[]){
     //      codec_mp4_tags, codec_ism_tags, 0 },
-    [CCode (cname="mov_check_bitstream", cheader="")]
+    [CCode (cname="mov_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -887,106 +887,106 @@ public class ISMVMuxer : AVOutputFormat {
 #endif
 
 #if CONFIG_F4V_MUXER
-[CCode (cname="f4v_muxer_class", cheader="")]
+[CCode (cname="f4v_muxer_class", cheader_filename="")]
 public class F4VMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "f4v muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_f4v_muxer", cheader="")]
+[CCode (cname="ff_f4v_muxer", cheader_filename="")]
 public class F4VMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "f4v";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "F4V Adobe Flash Video";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "application/f4v";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "f4v";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
         }
     }
-    [CCode (cname="mov_init", cheader="")]
+    [CCode (cname="mov_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_header", cheader="")]
+    [CCode (cname="mov_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_write_packet", cheader="")]
+    [CCode (cname="mov_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="mov_write_trailer", cheader="")]
+    [CCode (cname="mov_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mov_free", cheader="")]
+    [CCode (cname="mov_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH;
         }
     }
     //  .codec_tag = (AVCodecTag[]){ codec_f4v_tags, 0 },
-    [CCode (cname="mov_check_bitstream", cheader="")]
+    [CCode (cname="mov_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

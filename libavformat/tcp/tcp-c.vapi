@@ -38,87 +38,90 @@ namespace LibAVFormat {
 //      { NULL }
 //  }
 
-[CCode (cname="tcp_class", cheader="")]
+[CCode (cname="tcp_class", cheader_filename="")]
 public class TCPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "tcp";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_tcp_protocol", cheader="")]
+[CCode (cname="struct TCPContext", cheader_filename="")]
+public struct TCPPrivateData { }
+
+[CCode (cname="ff_tcp_protocol", cheader_filename="")]
 public class TCPURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "tcp";
         }
     }
-    [CCode (cname="tcp_open", cheader="")]
+    [CCode (cname="tcp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="tcp_accept", cheader="")]
+    [CCode (cname="tcp_accept", cheader_filename="")]
     public override int url_accept (
         URLContext server_url_context,
         out URLContext client_url_context
     );
-    [CCode (cname="tcp_read", cheader="")]
+    [CCode (cname="tcp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="tcp_write", cheader="")]
+    [CCode (cname="tcp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="tcp_close", cheader="")]
+    [CCode (cname="tcp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="tcp_get_file_handle", cheader="")]
+    [CCode (cname="tcp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="tcp_get_window_size", cheader="")]
+    [CCode (cname="tcp_get_window_size", cheader_filename="")]
     public override int url_get_short_seek (
         URLContext url_context
     );
-    [CCode (cname="tcp_shutdown", cheader="")]
+    [CCode (cname="tcp_shutdown", cheader_filename="")]
     public override int url_shutdown (
         URLContext url_context,
         int flags
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (TCPContext);
+            return sizeof (TCPPrivateData);
         }
     }
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;

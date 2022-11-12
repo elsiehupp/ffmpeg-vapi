@@ -21,10 +21,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t EA3_HEADER_SIZE;
 public const string ID3v2_EA3_MAGIC;
 public const size_t OMA_ENC_HEADER_SIZE;
 
+[CCode (cname="", cheader_filename="")]
 public enum OMACodecID {
     OMA_CODECID_ATRAC3,
     OMA_CODECID_ATRAC3P,

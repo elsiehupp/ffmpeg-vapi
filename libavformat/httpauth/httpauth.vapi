@@ -41,6 +41,7 @@ public enum HTTPAuthType {
     HTTP_AUTH_DIGEST,
 }
 
+[CCode (cname="struct DigestParams", cheader_filename="")]
 public struct DigestParams {
     /***********************************************************
     Server specified nonce
@@ -98,12 +99,14 @@ public struct HTTPAuthState {
     public int stale;
 }
 
+[CCode (cname="", cheader_filename="")]
 public void ff_http_auth_handle_header (
     HTTPAuthState state,
     string key,
     string value
 );
 
+[CCode (cname="", cheader_filename="")]
 public string ff_http_auth_create_response (
     HTTPAuthState state,
     string auth,

@@ -121,10 +121,12 @@ public enum RTSPStatusCode {
 //  [RTSP_STATUS_UNSUPPORTED_OPTION]     ="Option not supported",
 //  }
 
+[CCode (cname="", cheader_filename="")]
 public static string RTSP_STATUS_CODE2STRING (
     RTSPStatusCode x
 );
 
+[CCode (cname="", cheader_filename="")]
 public enum RTSPMethod {
     DESCRIBE,
     ANNOUNCE,
@@ -140,6 +142,7 @@ public enum RTSPMethod {
     UNKNOWN,
 }
 
+[CCode (cname="", cheader_filename="")]
 public static int ff_rtsp_averror (
     RTSPStatusCode status_code,
     int default_averror

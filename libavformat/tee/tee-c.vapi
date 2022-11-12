@@ -31,67 +31,69 @@ namespace LibAVFormat {
 //          {NULL}
 //  }
 
-[CCode (cname="tee_muxer_class", cheader="")]
+[CCode (cname="tee_muxer_class", cheader_filename="")]
 public class TeeMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "Tee muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_tee_muxer", cheader="")]
+[CCode (cname="struct TeeContext", cheader_filename="")]
+public struct TeeMuxerPrivateData { }
+
+[CCode (cname="ff_tee_muxer", cheader_filename="")]
 public class TeeMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "tee";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Multiple muxer tee";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (TeeContext);
+            return sizeof (TeeMuxerPrivateData);
         }
     }
-    [CCode (cname="tee_write_header", cheader="")]
+    [CCode (cname="tee_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="tee_write_trailer", cheader="")]
+    [CCode (cname="tee_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="tee_write_packet", cheader="")]
+    [CCode (cname="tee_write_packet", cheader_filename="")]
     public override int write_packet (
-        void *opaque,
-        uint8[] buffer,
-        int buf_size
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
     );
     //  .priv_class = tee_muxer_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOFILE | AVFMT_ALLOW_FLUSH;

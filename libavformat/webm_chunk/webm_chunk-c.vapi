@@ -37,81 +37,81 @@ chunk, followed by data chunks where each Cluster is written out as a Chunk.
 //  }
 
 #if CONFIG_WEBM_CHUNK_MUXER
-[CCode (cname="webm_chunk_class", cheader="")]
+[CCode (cname="webm_chunk_class", cheader_filename="")]
 public class WebMChunkMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "WebM Chunk Muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_webm_chunk_muxer", cheader="")]
+[CCode (cname="ff_webm_chunk_muxer", cheader_filename="")]
 public class WebMChunkMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "webm_chunk";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "WebM Chunk Muxer";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "video/webm";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "chk";
         }
     }
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_NEEDNUMBER | AVFMT_TS_NONSTRICT;
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WebMChunkContext);
         }
     }
-    [CCode (cname="webm_chunk_write_header", cheader="")]
+    [CCode (cname="webm_chunk_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="webm_chunk_write_packet", cheader="")]
+    [CCode (cname="webm_chunk_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="webm_chunk_write_trailer", cheader="")]
+    [CCode (cname="webm_chunk_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );

@@ -27,40 +27,43 @@ namespace LibAVFormat {
 @author Peter Ross <pross@xvid.org>
 ***********************************************************/
 
-[CCode (cname="ff_cine_demuxer", cheader="")]
+[CCode (cname="struct CineDemuxContext", cheader_filename="")]
+public struct CineDemuxerPrivateData { }
+
+[CCode (cname="ff_cine_demuxer", cheader_filename="")]
 public class CineDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "cine";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Phantom Cine";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (CineDemuxContext);
+            return sizeof (CineDemuxerPrivateData);
         }
     }
-    [CCode (cname="cine_read_probe", cheader="")]
+    [CCode (cname="cine_read_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="cine_read_header", cheader="")]
+    [CCode (cname="cine_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="cine_read_packet", cheader="")]
+    [CCode (cname="cine_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="cine_read_seek", cheader="")]
+    [CCode (cname="cine_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

@@ -25,11 +25,11 @@ DEALINGS IN THE SOFTWARE.
 namespace LibAVFormat {
 
 
-[CCode (cname="struct ogg_codec", cheader="")]
+[CCode (cname="struct ogg_codec", cheader_filename="")]
 public abstract class OggCodec {
-    public int8[] magic;
+    public abstract uint8[] magic { public get; }
     public uint8 magicsize;
-    public int8[] name;
+    public abstract uint8[] name { public get; }
     /***********************************************************
     Attempt to process a packet as a header
     @return 1 if the packet was a valid header,
@@ -70,7 +70,7 @@ public abstract class OggCodec {
     );
 }
 
-[CCode (cname="struct ogg_stream", cheader="")]
+[CCode (cname="struct ogg_stream", cheader_filename="")]
 public struct OggStream {
     public uint8[] buffer;
     public uint bufsize;
@@ -125,7 +125,7 @@ public struct OggStream {
     public void *private;
 }
 
-[CCode (cname="struct ogg_state", cheader="")]
+[CCode (cname="struct ogg_state", cheader_filename="")]
 public struct OggState {
     public uint64 pos;
     public int curidx;
@@ -134,7 +134,7 @@ public struct OggState {
     public OggStream streams[1];
 }
 
-[CCode (cname="struct ogg", cheader="")]
+[CCode (cname="struct ogg", cheader_filename="")]
 public struct Ogg {
     public OggStream[] streams;
     public int nstreams;
@@ -154,6 +154,7 @@ public enum OggFlags {
     OGG_FLAG_EOS,
 }
 
+[CCode (cname="", cheader_filename="")]
 public const uint64 OGG_NOGRANULE_VALUE;
 
 //  extern public class OggCodec ff_celt_codec;
@@ -173,6 +174,7 @@ public const uint64 OGG_NOGRANULE_VALUE;
 //  extern public class OggCodec ff_vorbis_codec;
 //  extern public class OggCodec ff_vp8_codec;
 
+[CCode (cname="", cheader_filename="")]
 public int ff_vorbis_comment (
     AVFormatContext ms,
     out LibAVUtil.Dictionary m,
@@ -181,6 +183,7 @@ public int ff_vorbis_comment (
     int parse_picture
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_vorbis_stream_comment (
     AVFormatContext as,
     AVStream st,
@@ -188,11 +191,13 @@ public int ff_vorbis_stream_comment (
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public static int ogg_find_stream (
     Ogg ogg,
     int serial
 );
 
+[CCode (cname="", cheader_filename="")]
 public static uint64 ogg_gptopts (
     AVFormatContext format_context,
     int i,

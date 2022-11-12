@@ -59,6 +59,7 @@ av_buffer_pool_uninit ().
 [CCode (cname="struct AVBufferPool", cheader_filename="buffer.h")]
 public struct BufferPool { }
 
+[CCode (cname="", cheader_filename="")]
 public delegate LibAVUtil.BufferRef AllocDelegate (
     size_t size
 );
@@ -78,11 +79,13 @@ public LibAVUtil.BufferPool av_buffer_pool_init (
     AllocDelegate alloc
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate LibAVUtil.BufferRef AllocDelegate2 (
     void *opaque,
     size_t size
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate void FreeDelegate2 (
     void *opaque
 );

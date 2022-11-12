@@ -23,52 +23,52 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_aac_demuxer", cheader="")]
+[CCode (cname="ff_aac_demuxer", cheader_filename="")]
 public class AACDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "aac";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "raw ADTS AAC (Advanced Audio Coding)";
         }
     }
-    [CCode (cname="adts_aac_probe", cheader="")]
+    [CCode (cname="adts_aac_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="adts_aac_read_header", cheader="")]
+    [CCode (cname="adts_aac_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="adts_aac_read_packet", cheader="")]
+    [CCode (cname="adts_aac_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "aac";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "audio/aac,audio/aacp,audio/x-aac";
         }
     }
-    [CCode (cname="raw_codec_id", cheader="")]
+    [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.AAC;

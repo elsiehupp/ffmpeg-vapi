@@ -22,43 +22,42 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_framecrc_muxer", cheader="")]
+[CCode (cname="ff_framecrc_muxer", cheader_filename="")]
 public class FrameCRCMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "framecrc";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "framecrc testing";
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
-    [CCode (cname="framecrc_write_header", cheader="")]
+    [CCode (cname="framecrc_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="framecrc_write_packet", cheader="")]
+    [CCode (cname="framecrc_write_packet", cheader_filename="")]
     public override int write_packet (
-        void *opaque,
-        uint8[] buffer,
-        int buf_size
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE;

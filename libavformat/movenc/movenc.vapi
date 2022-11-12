@@ -24,12 +24,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t MOV_FRAG_INFO_ALLOC_INCREMENT;
 public const size_t MOV_INDEX_CLUSTER_SIZE;
 public const int MOV_TIMESCALE;
 
+[CCode (cname="", cheader_filename="")]
 public const size_t RTP_MAX_PACKET_SIZE;
 
+[CCode (cname="", cheader_filename="")]
 public enum Mode {
     MODE_MP4,
     MODE_MOV,
@@ -44,6 +47,7 @@ public enum Mode {
     MODE_F4V,
 }
 
+[CCode (cname="struct MOVIentry", cheader_filename="")]
 public struct MOVIentry {
     public uint64 pos;
     public int64 dts;
@@ -66,6 +70,7 @@ public enum MOVSampleFlags {
     MOV_DISPOSABLE_SAMPLE,
 }
 
+[CCode (cname="struct HintSample", cheader_filename="")]
 public struct HintSample {
     public uint8[] data;
     public int size;
@@ -74,12 +79,14 @@ public struct HintSample {
     public int own_data;
 }
 
+[CCode (cname="struct HintSampleQueue", cheader_filename="")]
 public struct HintSampleQueue {
     public int size;
     public int len;
     public HintSample samples;
 }
 
+[CCode (cname="struct MOVFragmentInfo", cheader_filename="")]
 public struct MOVFragmentInfo {
     public int64 offset;
     public int64 time;
@@ -102,6 +109,7 @@ public enum MOVETimeCodeFlags {
     MOV_TIMECODE_FLAG_ALLOWNEGATIVE,
 }
 
+[CCode (cname="struct MOVTrack", cheader_filename="")]
 public struct MOVTrack {
     public int mode;
     public int entry;
@@ -192,6 +200,7 @@ public struct MOVTrack {
     public int is_unaligned_qt_rgb;
 }
 
+[CCode (cname="struct VC1Info", cheader_filename="")]
 public struct VC1Info {
     public int first_packet_seq;
     public int first_packet_entry;
@@ -202,11 +211,13 @@ public struct VC1Info {
     public int slices;
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MOVEncryptionScheme {
     MOV_ENC_NONE,
     MOV_ENC_CENC_AES_CTR,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MOVPrftBox {
     MOV_PRFT_NONE,
     MOV_PRFT_SRC_WALLCLOCK,
@@ -214,6 +225,7 @@ public enum MOVPrftBox {
     MOV_PRFT_NB
 }
 
+[CCode (cname="struct MOVMuxContext", cheader_filename="")]
 public struct MOVMuxContext {
     public LibAVUtil.Class av_class;
     public int mode;
@@ -308,17 +320,20 @@ public enum MOVFlags {
     FF_MOV_FLAG_SKIP_SIDX,
 }
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mov_write_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mov_init_hinting (
     AVFormatContext format_context,
     int index,
     int src_index
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_mov_add_hinted_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet,
@@ -328,6 +343,7 @@ public int ff_mov_add_hinted_packet (
     int sample_size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_mov_close_hinting (
     MOVTrack track
 );

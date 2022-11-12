@@ -33,6 +33,7 @@ public enum BufferFlags {
     AV_BUFFER_FLAG_READONLY;
 }
 
+[CCode (cname="", cheader_filename="")]
 public delegate void FreeDelegate (
     void *opaque,
     uint8[] data

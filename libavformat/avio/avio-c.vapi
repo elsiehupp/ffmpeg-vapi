@@ -37,9 +37,9 @@ namespace LibAVFormat {
 //      { NULL }
 //  }
 
-[CCode (cname="ffurl_context_class", cheader="")]
+[CCode (cname="ffurl_context_class", cheader_filename="")]
 public class URLContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "URLContext";
@@ -47,20 +47,20 @@ public class URLContextClass : LibAVUtil.Class {
     }
     //  .item_name = urlcontext_to_name,
     //  .option = options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
-    [CCode (cname="urlcontext_child_next", cheader="")]
+    [CCode (cname="urlcontext_child_next", cheader_filename="")]
     public override void *child_next (
         void *obj,
         void *prev
     );
-    [CCode (cname="ff_urlcontext_child_class_next", cheader="")]
-    public override Class child_class_next (
-        Class prev
+    [CCode (cname="ff_urlcontext_child_class_next", cheader_filename="")]
+    public override LibAVUtil.Class child_class_next (
+        LibAVUtil.Class prev
     );
 }
 /*@}*/

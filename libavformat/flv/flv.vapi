@@ -34,6 +34,7 @@ public const size_t FLV_AUDIO_SAMPLESSIZE_OFFSET;
 public const size_t FLV_AUDIO_SAMPLERATE_OFFSET;
 public const size_t FLV_AUDIO_CODECID_OFFSET;
 
+[CCode (cname="", cheader_filename="")]
 public const size_t FLV_VIDEO_FRAMETYPE_OFFSET;
 
 /***********************************************************
@@ -50,8 +51,10 @@ public enum FLVAudioMask {
     FLV_VIDEO_FRAMETYPE_MASK,
 }
 
+[CCode (cname="", cheader_filename="")]
 public const uint32 AMF_END_OF_OBJECT;
 
+[CCode (cname="", cheader_filename="")]
 public const string KEYFRAMES_TAG;
 public const string KEYFRAMES_TIMESTAMP_TAG;
 public const string KEYFRAMES_BYTEOFFSET_TAG;
@@ -62,12 +65,14 @@ public enum FLVHeaderFlags {
     FLV_HEADER_FLAG_HASAUDIO,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum FlvTagType {
     FLV_TAG_TYPE_AUDIO,
     FLV_TAG_TYPE_VIDEO,
     FLV_TAG_TYPE_META,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum FLVStreamType {
     FLV_STREAM_TYPE_VIDEO,
     FLV_STREAM_TYPE_AUDIO,
@@ -76,16 +81,19 @@ public enum FLVStreamType {
     FLV_STREAM_TYPE_NB,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum FLVAudioMode {
     FLV_MONO = 0,
     FLV_STEREO = 1,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum FLVSampleSize {
     FLV_SAMPLESSIZE_8BIT = 0,
     FLV_SAMPLESSIZE_16BIT = 1 << FLV_AUDIO_SAMPLESSIZE_OFFSET,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum FLVSampleRate {
     /***********************************************************
     signifies 5512Hz and 8000Hz in the case of NELLYMOSER
@@ -96,6 +104,7 @@ public enum FLVSampleRate {
     FLV_SAMPLERATE_44100HZ = 3 << FLV_AUDIO_SAMPLERATE_OFFSET,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum FLVVCodecIDWithOffset {
     FLV_CODECID_PCM = 0,
     FLV_CODECID_ADPCM = 1 << FLV_AUDIO_CODECID_OFFSET,
@@ -110,6 +119,7 @@ public enum FLVVCodecIDWithOffset {
     FLV_CODECID_SPEEX = 11<< FLV_AUDIO_CODECID_OFFSET,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum FLVVCodecID {
     FLV_CODECID_H263 = 2,
     FLV_CODECID_SCREEN = 3,
@@ -145,6 +155,7 @@ public enum FLVVideoFrameType {
     FLV_FRAME_VIDEO_INFO_CMD;
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum AMFDataType {
     AMF_DATA_TYPE_NUMBER,
     AMF_DATA_TYPE_BOOL,

@@ -39,6 +39,7 @@ public enum AVIOSeekableFlags {
     AVIO_SEEKABLE_TIME,
 }
 
+[CCode (cname="", cheader_filename="")]
 public delegate int InterruptCallbackDelegate (
     void *opaque
 );
@@ -129,6 +130,7 @@ public struct AVIODirEntry {
     public int64 filemode;
 }
 
+[CCode (cname="struct AVIODirContext", cheader_filename="")]
 public struct AVIODirContext {
     public URLContext url_context;
 }
@@ -602,52 +604,62 @@ public void avio_context_free (
     out AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_w8 (
     AVIOContext io_context,
     int b
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_write (
     AVIOContext io_context,
     uchar[] buffer,
     int size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_wl64 (
     AVIOContext io_context,
     uint64 val
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_wb64 (
     AVIOContext io_context,
     uint64 val
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_wl32 (
     AVIOContext io_context,
     uint val
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_wb32 (
     AVIOContext io_context,
     uint val
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_wl24 (
     AVIOContext io_context,
     uint val
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_wb24 (
     AVIOContext io_context,
     uint val
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_wl16 (
     AVIOContext io_context,
     uint val
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avio_wb16 (
     AVIOContext io_context,
     uint val
@@ -820,34 +832,42 @@ public int avio_r8 (
     AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint avio_rl16 (
     AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint avio_rl24 (
     AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint avio_rl32 (
     AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint64 avio_rl64 (
     AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint avio_rb16 (
     AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint avio_rb24 (
     AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint avio_rb32 (
     AVIOContext io_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint64 avio_rb64 (
     AVIOContext io_context
 );
@@ -888,6 +908,7 @@ public int avio_get_str16le (
     int buflen
 );
 
+[CCode (cname="", cheader_filename="")]
 public int avio_get_str16be (
     AVIOContext pb,
     int maxlen,

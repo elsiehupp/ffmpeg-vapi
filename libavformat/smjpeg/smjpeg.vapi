@@ -26,8 +26,10 @@ namespace LibAVFormat {
 @file SMJPEG common code
 ***********************************************************/
 
+[CCode (cname="", cheader_filename="")]
 public const string SMJPEG_MAGIC;
 
+[CCode (cname="", cheader_filename="")]
 public enum SMJPEGTag {
     SMJPEG_DONE, // (uint32)MKTAG ('D', 'O', 'N', 'E')
     SMJPEG_HEND, // (uint32)MKTAG ('H', 'E', 'N', 'D')

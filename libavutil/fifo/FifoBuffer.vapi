@@ -22,6 +22,7 @@ namespace LibAVUtil {
 @file a very simple circular buffer FIFO implementation
 ***********************************************************/
 
+[CCode (cname="", cheader_filename="")]
 public delegate void GenericReadDelegate (
     void *arg0,
     void *arg1,

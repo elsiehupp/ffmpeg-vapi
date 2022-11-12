@@ -35,129 +35,129 @@ namespace LibAVFormat {
 //      { NULL }
 //  }
 
-[CCode (cname="file_class", cheader="")]
+[CCode (cname="file_class", cheader_filename="")]
 public class FileClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "file";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = file_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="pipe_class", cheader="")]
+[CCode (cname="pipe_class", cheader_filename="")]
 public class PipeClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "pipe";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = pipe_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
 #if CONFIG_FILE_PROTOCOL
 
-[CCode (cname="ff_file_protocol", cheader="")]
+[CCode (cname="ff_file_protocol", cheader_filename="")]
 public class FileURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "file";
         }
     }
-    [CCode (cname="file_open", cheader="")]
+    [CCode (cname="file_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="file_read", cheader="")]
+    [CCode (cname="file_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="file_write", cheader="")]
+    [CCode (cname="file_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="file_seek", cheader="")]
+    [CCode (cname="file_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
-    [CCode (cname="file_close", cheader="")]
+    [CCode (cname="file_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="file_get_handle", cheader="")]
+    [CCode (cname="file_get_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="file_check", cheader="")]
+    [CCode (cname="file_check", cheader_filename="")]
     public override int url_check (
         URLContext url_context,
         int mask
     );
-    [CCode (cname="file_delete", cheader="")]
+    [CCode (cname="file_delete", cheader_filename="")]
     public override int url_delete (
         URLContext url_context
     );
-    [CCode (cname="file_move", cheader="")]
+    [CCode (cname="file_move", cheader_filename="")]
     public override int url_move (
         URLContext h_src,
         URLContext h_dst
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FileContext);
         }
     }
     //  .priv_data_class = file_class,
-    [CCode (cname="file_open_dir", cheader="")]
+    [CCode (cname="file_open_dir", cheader_filename="")]
     public override int url_open_dir (
         URLContext url_context
     );
-    [CCode (cname="file_read_dir", cheader="")]
+    [CCode (cname="file_read_dir", cheader_filename="")]
     public override int url_read_dir (
         URLContext url_context,
         out AVIODirEntry next
     );
-    [CCode (cname="file_close_dir", cheader="")]
+    [CCode (cname="file_close_dir", cheader_filename="")]
     public override int url_close_dir (
         URLContext url_context
     );
@@ -168,42 +168,42 @@ public class FileURLProtocol : URLProtocol {
 
 #if CONFIG_PIPE_PROTOCOL
 
-[CCode (cname="ff_pipe_protocol", cheader="")]
+[CCode (cname="ff_pipe_protocol", cheader_filename="")]
 public class PipeURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "pipe";
         }
     }
-    [CCode (cname="pipe_open", cheader="")]
+    [CCode (cname="pipe_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="file_read", cheader="")]
+    [CCode (cname="file_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="file_write", cheader="")]
+    [CCode (cname="file_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="file_get_handle", cheader="")]
+    [CCode (cname="file_get_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="file_check", cheader="")]
+    [CCode (cname="file_check", cheader_filename="")]
     public override int url_check (
         URLContext url_context,
         int mask
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FileContext);

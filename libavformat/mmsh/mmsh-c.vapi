@@ -28,50 +28,53 @@ Windows Media HTTP Streaming Protocol.
 http://msdn.microsoft.com/en-us/library/cc251059(PROT.10).aspx
 ***********************************************************/
 
-[CCode (cname="ff_mmsh_protocol", cheader="")]
+[CCode (cname="struct MMSHContext", cheader_filename="")]
+public struct MMSHPrivateData { }
+
+[CCode (cname="ff_mmsh_protocol", cheader_filename="")]
 public class MMSHURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mmsh";
         }
     }
-    [CCode (cname="mmsh_open", cheader="")]
+    [CCode (cname="mmsh_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="mmsh_read", cheader="")]
+    [CCode (cname="mmsh_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="mmsh_seek", cheader="")]
+    [CCode (cname="mmsh_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
-    [CCode (cname="mmsh_close", cheader="")]
+    [CCode (cname="mmsh_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="mmsh_read_seek", cheader="")]
+    [CCode (cname="mmsh_read_seek", cheader_filename="")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (MMSHContext);
+            return sizeof (MMSHPrivateData);
         }
     }
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;

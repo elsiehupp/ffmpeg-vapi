@@ -25,52 +25,55 @@ namespace LibAVFormat {
 @file CRI ADX demuxer
 ***********************************************************/
 
-[CCode (cname="ff_adx_demuxer", cheader="")]
+[CCode (cname="struct ADXDemuxerContext", cheader_filename="")]
+public struct ADXDemuxerPrivateData { }
+
+[CCode (cname="ff_adx_demuxer", cheader_filename="")]
 public class ADXDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "adx";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "CRI ADX";
         }
     }
-    [CCode (cname="adx_probe", cheader="")]
+    [CCode (cname="adx_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (ADXDemuxerContext);
+            return sizeof (ADXDemuxerPrivateData);
         }
     }
-    [CCode (cname="adx_read_header", cheader="")]
+    [CCode (cname="adx_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="adx_read_packet", cheader="")]
+    [CCode (cname="adx_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "adx";
         }
     }
-    [CCode (cname="raw_codec_id", cheader="")]
+    [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.ADPCM_ADX;
         }
     }
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;

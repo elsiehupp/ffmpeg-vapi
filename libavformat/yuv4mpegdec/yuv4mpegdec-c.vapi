@@ -22,41 +22,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_yuv4mpegpipe_demuxer", cheader="")]
+[CCode (cname="ff_yuv4mpegpipe_demuxer", cheader_filename="")]
 public class YUV4MpegPipeDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "yuv4mpegpipe";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "YUV4MPEG pipe";
         }
     }
-    [CCode (cname="yuv4_probe", cheader="")]
+    [CCode (cname="yuv4_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="yuv4_read_header", cheader="")]
+    [CCode (cname="yuv4_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="yuv4_read_packet", cheader="")]
+    [CCode (cname="yuv4_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="yuv4_read_seek", cheader="")]
+    [CCode (cname="yuv4_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "y4m";

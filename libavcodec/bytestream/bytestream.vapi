@@ -21,12 +21,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="struct GetByteContext", cheader_filename="ffmpeg/libavcodec/bytestream.h")]
 public struct GetByteContext {
     uint8[] buffer;
     uint8 *buffer_end;
     uint8 *buffer_start;
 }
 
+[CCode (cname="struct PutByteContext", cheader_filename="ffmpeg/libavcodec/bytestream.h")]
 public struct PutByteContext {
     uint8[] buffer;
     uint8 *buffer_end;

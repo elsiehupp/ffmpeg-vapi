@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t MAX_URL_SIZE;
 
 /***********************************************************
@@ -29,6 +30,7 @@ size of probe buffer, for guessing file type from file contents
 public const size_t PROBE_BUF_MIN;
 public const size_t PROBE_BUF_MAX;
 
+[CCode (cname="", cheader_filename="")]
 public const size_t MAX_PROBE_PACKETS;
 
 //  #ifdef DEBUG
@@ -37,11 +39,13 @@ public const size_t MAX_PROBE_PACKETS;
 //  #    define hex_dump_debug (class, buffer, size) do { if (0) av_hex_dump_log (class, AV_LOG_DEBUG, buffer, size); } while (0)
 //  #endif
 
+[CCode (cname="struct AVCodecTag", cheader_filename="")]
 public struct AVCodecTag {
     public LibAVCodec.CodecID id;
     public uint tag;
 }
 
+[CCode (cname="struct CodecMime", cheader_filename="")]
 public struct CodecMime {
     public char str[32];
     public LibAVCodec.CodecID id;
@@ -63,6 +67,7 @@ public struct FFFrac {
 }
 
 
+[CCode (cname="struct AVFormatInternal", cheader_filename="")]
 public struct AVFormatInternal {
     /***********************************************************
     Number of streams relevant for interleaving.
@@ -153,6 +158,7 @@ public struct AVFormatInternal {
     public int prefer_codec_framerate;
 }
 
+[CCode (cname="struct AVStreamInternal", cheader_filename="")]
 public struct AVStreamInternal {
     /***********************************************************
     Set to 1 if the codec allows reordering, so pts can be different
@@ -199,6 +205,7 @@ public struct AVStreamInternal {
     public FFFrac priv_pts;
 }
 
+[CCode (cname="struct ExtractExtraData", cheader_filename="")]
 public struct ExtractExtraData {
     public LibAVCodec.BitStreamFilterContext bsf;
     public LibAVCodec.Packet packet;
@@ -235,6 +242,7 @@ public int ff_mkdir_p (
     string path
 );
 
+[CCode (cname="", cheader_filename="")]
 public string ff_data_to_hex (
     string buffer,
     uint8[] src,
@@ -255,6 +263,7 @@ public int ff_hex_to_data (
     string p
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int PacketComparisonDelegate (
     AVFormatContext context,
     LibAVCodec.Packet packet_1,
@@ -272,10 +281,12 @@ public int ff_interleave_add_packet (
     PacketComparisonDelegate compare
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_read_frame_flush (
     AVFormatContext format_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public const uint64 NTP_OFFSET;
 public const uint64 NTP_OFFSET_US;
 
@@ -422,6 +433,7 @@ public int64 ff_read_line_to_bprint_overwrite (
     LibAVUtil.BPrintBuffer bp
 );
 
+[CCode (cname="", cheader_filename="")]
 public const string SPACE_CHARS;
 
 /***********************************************************
@@ -490,6 +502,7 @@ public int ff_add_index_entry (
     int flags
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_configure_buffers_for_index (
     AVFormatContext format_context,
     int64 time_tolerance
@@ -525,6 +538,7 @@ public void ff_reduce_index (
     int stream_index
 );
 
+[CCode (cname="", cheader_filename="")]
 public LibAVCodec.CodecID ff_guess_image2_codec (
     string filename
 );
@@ -557,6 +571,7 @@ public void ff_update_cur_dts (
     int64 timestamp
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int64 ReadTimeStampeDelegate (
     AVFormatContext format_context,
     int arg1,
@@ -564,6 +579,7 @@ public delegate int64 ReadTimeStampeDelegate (
     int64 arg3
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_find_last_ts (
     AVFormatContext format_context,
     int stream_index,
@@ -666,6 +682,7 @@ public int ff_interleave_packet_per_dts (
     int flush
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_free_stream (
     AVFormatContext format_context,
     AVStream st
@@ -683,11 +700,13 @@ public void ff_compute_frame_duration (
     LibAVCodec.Packet packet
 );
 
+[CCode (cname="", cheader_filename="")]
 public uint ff_codec_get_tag (
     AVCodecTag tags,
     LibAVCodec.CodecID id
 );
 
+[CCode (cname="", cheader_filename="")]
 public LibAVCodec.CodecID ff_codec_get_id (
     AVCodecTag tags,
     uint tag
@@ -822,6 +841,7 @@ public int ff_rfps_add_frame (
     int64 dts
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rfps_calculate (
     AVFormatContext ic
 );
@@ -910,6 +930,7 @@ public int ff_standardize_creation_time (
     AVFormatContext format_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public const int CONTAINS_PAL;
 
 /***********************************************************
@@ -972,6 +993,7 @@ public int ff_interleaved_peek (
 );
 
 
+[CCode (cname="", cheader_filename="")]
 public int ff_lock_avformat ();
 public int ff_unlock_avformat ();
 
@@ -1038,6 +1060,7 @@ public void ff_packet_list_free (
     out AVPacketList tail
 );
 
+[CCode (cname="", cheader_filename="")]
 public void avpriv_register_devices (
     AVOutputFormat[] o,
     AVInputFormat[] i

@@ -25,43 +25,46 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_gopher_protocol", cheader="")]
+[CCode (cname="struct GopherContext", cheader_filename="")]
+public struct GopherPrivateData { }
+
+[CCode (cname="ff_gopher_protocol", cheader_filename="")]
 public class GopherURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "gopher";
         }
     }
-    [CCode (cname="gopher_open", cheader="")]
+    [CCode (cname="gopher_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="gopher_read", cheader="")]
+    [CCode (cname="gopher_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="gopher_write", cheader="")]
+    [CCode (cname="gopher_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="gopher_close", cheader="")]
+    [CCode (cname="gopher_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (GopherContext);
+            return sizeof (GopherPrivateData);
         }
     }
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;

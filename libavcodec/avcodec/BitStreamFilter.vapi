@@ -37,7 +37,7 @@ public struct BitStreamFilter {
 
     /***********************************************************
     @brief A list of codec ids supported by the filter, terminated by
-    AV_CODEC_ID_NONE.
+    LibAVCodec.CodecID.NONE.
     May be null, in that case the bitstream filter works with any codec id.
     ***********************************************************/
     [CCode (cname="codec_ids")]

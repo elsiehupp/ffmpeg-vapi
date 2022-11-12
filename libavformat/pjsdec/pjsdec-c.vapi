@@ -27,40 +27,43 @@ namespace LibAVFormat {
 @see http://subs.com.ru/page.php?al=pjs
 ***********************************************************/
 
-[CCode (cname="ff_pjs_demuxer", cheader="")]
+[CCode (cname="struct PJSContext", cheader_filename="")]
+public struct PJSDemuxerPrivateData { }
+
+[CCode (cname="ff_pjs_demuxer", cheader_filename="")]
 public class PJSDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "pjs";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PJS (Phoenix Japanimation Society) subtitles";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (PJSContext);
+            return sizeof (PJSDemuxerPrivateData);
         }
     }
-    [CCode (cname="pjs_probe", cheader="")]
+    [CCode (cname="pjs_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="pjs_read_header", cheader="")]
+    [CCode (cname="pjs_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="pjs_read_packet", cheader="")]
+    [CCode (cname="pjs_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="pjs_read_seek", cheader="")]
+    [CCode (cname="pjs_read_seek", cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -69,11 +72,11 @@ public class PJSDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
-    [CCode (cname="pjs_read_close", cheader="")]
+    [CCode (cname="pjs_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "pjs";

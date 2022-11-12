@@ -28,47 +28,50 @@ namespace LibAVFormat {
 @see http://www.oldskool.org/pc/8088_Corruption
 ***********************************************************/
 
-[CCode (cname="ff_tmv_demuxer", cheader="")]
+[CCode (cname="struct TMVContext", cheader_filename="")]
+public struct TMVDemuxerPrivateData { }
+
+[CCode (cname="ff_tmv_demuxer", cheader_filename="")]
 public class TMVDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "tmv";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "8088flex TMV";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (TMVContext);
+            return sizeof (TMVDemuxerPrivateData);
         }
     }
-    [CCode (cname="tmv_probe", cheader="")]
+    [CCode (cname="tmv_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="tmv_read_header", cheader="")]
+    [CCode (cname="tmv_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="tmv_read_packet", cheader="")]
+    [CCode (cname="tmv_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="tmv_read_seek", cheader="")]
+    [CCode (cname="tmv_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;

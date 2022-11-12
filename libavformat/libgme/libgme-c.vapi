@@ -22,70 +22,73 @@ namespace LibAVFormat {
 @file libgme demuxer
 ***********************************************************/
 
-[CCode (cname="class_gme", cheader="")]
+[CCode (cname="class_gme", cheader_filename="")]
 public class LibGMEDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "Game Music Emu demuxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_libgme_demuxer", cheader="")]
+[CCode (cname="struct GMEContext", cheader_filename="")]
+public struct LibGMEDemuxerPrivateData { }
+
+[CCode (cname="ff_libgme_demuxer", cheader_filename="")]
 public class LibGMEDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "libgme";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Game Music Emu demuxer";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (GMEContext);
+            return sizeof (LibGMEDemuxerPrivateData);
         }
     }
-    [CCode (cname="probe_gme", cheader="")]
+    [CCode (cname="probe_gme", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="read_header_gme", cheader="")]
+    [CCode (cname="read_header_gme", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="read_packet_gme", cheader="")]
+    [CCode (cname="read_packet_gme", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="read_close_gme", cheader="")]
+    [CCode (cname="read_close_gme", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="read_seek_gme", cheader="")]
+    [CCode (cname="read_seek_gme", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

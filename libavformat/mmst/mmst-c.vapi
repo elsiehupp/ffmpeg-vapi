@@ -32,37 +32,40 @@ ASF specification. Revision 01.20.03.
 [2]http://msdn.microsoft.com/en-us/library/bb643323.aspx
 ***********************************************************/
 
-[CCode (cname="ff_mmst_protocol", cheader="")]
+[CCode (cname="struct MMSTContext", cheader_filename="")]
+public struct MMSTPrivateData { }
+
+[CCode (cname="ff_mmst_protocol", cheader_filename="")]
 public class MMSTURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mmst";
         }
     }
-    [CCode (cname="mms_open", cheader="")]
+    [CCode (cname="mms_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="mms_read", cheader="")]
+    [CCode (cname="mms_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="mms_close", cheader="")]
+    [CCode (cname="mms_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (MMSTContext);
+            return sizeof (MMSTPrivateData);
         }
     }
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;

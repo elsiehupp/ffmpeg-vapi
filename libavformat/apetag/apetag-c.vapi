@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cprefix="APE_TAG_FLAG_", cheader="")]
+[CCode (cprefix="APE_TAG_FLAG_", cheader_filename="")]
 [Flags]
 public enum ApeTagFlags {
     CONTAINS_HEADER,

@@ -33,6 +33,7 @@ in seconds
 ***********************************************************/
 public int DUMMY_DURATION;
 
+[CCode (cname="", cheader_filename="")]
 public enum SWFTag {
     TAG_END,
     TAG_SHOWFRAME,
@@ -101,6 +102,7 @@ public enum SWFTag {
     TAG_DEFINEFONT4,
 }
 
+[CCode (cname="", cheader_filename="")]
 public const int TAG_LONG;
 
 /***********************************************************
@@ -113,6 +115,7 @@ public enum ShapeDefinitionFlags {
     FLAG_SETFILL1,
 }
 
+[CCode (cname="", cheader_filename="")]
 public const size_t AUDIO_FIFO_SIZE;
 
 /***********************************************************
@@ -122,6 +125,7 @@ public const int BITMAP_ID;
 public const int VIDEO_ID;
 public const int SHAPE_ID;
 
+[CCode (cname="struct SWFContext", cheader_filename="")]
 public struct SWFContext {
     public int64 duration_pos;
     public int64 tag_pos;

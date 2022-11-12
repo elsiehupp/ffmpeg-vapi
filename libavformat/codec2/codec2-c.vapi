@@ -40,137 +40,137 @@ with -frames_per_packet 1000 compared to default, same sha1sum
 //      { NULL },
 //  }
 
-[CCode (cname="codec2_mux_class", cheader="")]
+[CCode (cname="codec2_mux_class", cheader_filename="")]
 public class Codec2MuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "codec2 muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
     //  .category = AV_CLASS_CATEGORY_DEMUXER,
 }
 
-[CCode (cname="codec2_demux_class", cheader="")]
+[CCode (cname="codec2_demux_class", cheader_filename="")]
 public class Codec2DemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "codec2 demuxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = codec2_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
     //  .category = AV_CLASS_CATEGORY_DEMUXER,
 }
 
-[CCode (cname="codec2raw_demux_class", cheader="")]
+[CCode (cname="codec2raw_demux_class", cheader_filename="")]
 public class Codec2RawDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "codec2raw demuxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = codec2raw_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
     //  .category = AV_CLASS_CATEGORY_DEMUXER,
 }
 
 #if CONFIG_CODEC2_DEMUXER
-[CCode (cname="ff_codec2_demuxer", cheader="")]
+[CCode (cname="ff_codec2_demuxer", cheader_filename="")]
 public class Codec2Demuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "codec2";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "codec2 .c2 demuxer";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (Codec2Context);
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "c2";
         }
     }
-    [CCode (cname="codec2_probe", cheader="")]
+    [CCode (cname="codec2_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="codec2_read_header", cheader="")]
+    [CCode (cname="codec2_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="codec2_read_packet", cheader="")]
+    [CCode (cname="codec2_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="ff_pcm_read_seek", cheader="")]
+    [CCode (cname="ff_pcm_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
         }
     }
-    [CCode (cname="raw_codec_id", cheader="")]
+    [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.CODEC2;
@@ -181,55 +181,55 @@ public class Codec2Demuxer : AVInputFormat {
 #endif
 
 #if CONFIG_CODEC2_MUXER
-[CCode (cname="ff_codec2_muxer", cheader="")]
+[CCode (cname="ff_codec2_muxer", cheader_filename="")]
 public class Codec2Muxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "codec2";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "codec2 .c2 muxer";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (Codec2Context);
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "c2";
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.CODEC2;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
         }
     }
-    [CCode (cname="codec2_write_header", cheader="")]
+    [CCode (cname="codec2_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="ff_raw_write_packet", cheader="")]
+    [CCode (cname="ff_raw_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
@@ -240,49 +240,49 @@ public class Codec2Muxer : AVOutputFormat {
 #endif
 
 #if CONFIG_CODEC2RAW_DEMUXER
-[CCode (cname="ff_codec2raw_demuxer", cheader="")]
+[CCode (cname="ff_codec2raw_demuxer", cheader_filename="")]
 public class Codec2RawDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "codec2raw";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "raw codec2 demuxer";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (Codec2Context);
         }
     }
-    [CCode (cname="codec2raw_read_header", cheader="")]
+    [CCode (cname="codec2raw_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="codec2_read_packet", cheader="")]
+    [CCode (cname="codec2_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="ff_pcm_read_seek", cheader="")]
+    [CCode (cname="ff_pcm_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
         }
     }
-    [CCode (cname="raw_codec_id", cheader="")]
+    [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.CODEC2;

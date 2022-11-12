@@ -35,29 +35,29 @@ entails performing sanity checks on certain header values in order to
 qualify a file. Refer to wsaud_probe() for the precise parameters.
 ***********************************************************/
 
-[CCode (cname="ff_wsaud_demuxer", cheader="")]
+[CCode (cname="ff_wsaud_demuxer", cheader_filename="")]
 public class WSAUDDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "wsaud";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Westwood Studios audio";
         }
     }
-    [CCode (cname="wsaud_probe", cheader="")]
+    [CCode (cname="wsaud_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="wsaud_read_header", cheader="")]
+    [CCode (cname="wsaud_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="wsaud_read_packet", cheader="")]
+    [CCode (cname="wsaud_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

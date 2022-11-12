@@ -88,6 +88,7 @@ public void av_log_set_level (
     int level
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate void CallbackDelegate (
     void *arg0,
     int arg1,

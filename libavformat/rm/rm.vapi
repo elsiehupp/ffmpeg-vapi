@@ -25,10 +25,13 @@ namespace LibAVFormat {
 //  extern string const ff_rm_metadata[4];
 //  extern const AVCodecTag ff_rm_codec_tags[];
 
+[CCode (cname="struct RMStream", cheader_filename="")]
 public struct RMStream { }
 
+[CCode (cname="", cheader_filename="")]
 public RMStream ff_rm_alloc_rmstream ();
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rm_free_rmstream (
     RMStream rms
 );

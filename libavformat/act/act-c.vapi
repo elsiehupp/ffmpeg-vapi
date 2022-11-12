@@ -22,35 +22,38 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_act_demuxer", cheader="")]
+[CCode (cname="struct ACTContext", cheader_filename="")]
+public struct ACTDemuxerPrivateData { }
+
+[CCode (cname="ff_act_demuxer", cheader_filename="")]
 public class ACTDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "act";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "ACT Voice file format";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (ACTContext);
+            return sizeof (ACTDemuxerPrivateData);
         }
     }
-    [CCode (cname="probe", cheader="")]
+    [CCode (cname="probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="read_header", cheader="")]
+    [CCode (cname="read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="read_packet", cheader="")]
+    [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

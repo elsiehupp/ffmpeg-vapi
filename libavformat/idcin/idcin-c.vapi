@@ -70,47 +70,50 @@ heuristic:
         transmitting them to the video decoder
 ***********************************************************/
 
-[CCode (cname="ff_idcin_demuxer", cheader="")]
+[CCode (cname="struct IdcinDemuxContext", cheader_filename="")]
+public struct IDCINDemuxerPrivateData { }
+
+[CCode (cname="ff_idcin_demuxer", cheader_filename="")]
 public class IDCINDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "idcin";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "id Cinematic";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (IdcinDemuxContext);
+            return sizeof (IDCINDemuxerPrivateData);
         }
     }
-    [CCode (cname="idcin_probe", cheader="")]
+    [CCode (cname="idcin_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="idcin_read_header", cheader="")]
+    [CCode (cname="idcin_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="idcin_read_packet", cheader="")]
+    [CCode (cname="idcin_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="idcin_read_seek", cheader="")]
+    [CCode (cname="idcin_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NO_BYTE_SEEK;

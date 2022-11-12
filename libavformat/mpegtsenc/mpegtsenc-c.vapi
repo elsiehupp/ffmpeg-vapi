@@ -117,100 +117,102 @@ namespace LibAVFormat {
 //      { NULL },
 //  }
 
-[CCode (cname="mpegts_muxer_class", cheader="")]
+[CCode (cname="mpegts_muxer_class", cheader_filename="")]
 public class MpegTSMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "MPEGTS muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_mpegts_muxer", cheader="")]
+[CCode (cname="struct MpegTSWrite", cheader_filename="")]
+public struct MpegTSMuxerPrivateData { }
+
+[CCode (cname="ff_mpegts_muxer", cheader_filename="")]
 public class MpegTSMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mpegts";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MPEG-TS (MPEG-2 Transport Stream)";
         }
     }
-    [CCode (cname="mime_type", cheader="")]
+    [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "video/MP2T";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "ts,m2t,m2ts,mts";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (MpegTSWrite);
+            return sizeof (MpegTSMuxerPrivateData);
         }
     }
-    [CCode (cname="audio_codec", cheader="")]
+    [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.MP2;
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="mpegts_init", cheader="")]
+    [CCode (cname="mpegts_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="mpegts_write_packet", cheader="")]
+    [CCode (cname="mpegts_write_packet", cheader_filename="")]
     public override int write_packet (
-        void *opaque,
-        uint8[] buffer,
-        int buf_size
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
     );
-    [CCode (cname="mpegts_write_end", cheader="")]
+    [CCode (cname="mpegts_write_end", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="mpegts_deinit", cheader="")]
+    [CCode (cname="mpegts_deinit", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
-    [CCode (cname="mpegts_check_bitstream", cheader="")]
+    [CCode (cname="mpegts_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_ALLOW_FLUSH | AVFMT_VARIABLE_FPS | AVFMT_NODIMENSIONS;

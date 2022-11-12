@@ -82,6 +82,7 @@ public LibAVCodec.CodecID ff_rtp_codec_id (
     LibAVUtil.MediaType codec_type
 );
 
+[CCode (cname="", cheader_filename="")]
 public const int RTP_PT_PRIVATE; // 96
 public const int RTP_VERSION; // 2
 public const size_t RTP_MAX_SDES; // 256 /***********************************************************
@@ -122,6 +123,7 @@ public enum RTCPType {
     RTCP_TOKEN,// 210
 }
 
+[CCode (cname="", cheader_filename="")]
 public static bool RTP_PT_IS_RTCP (
     RTCPType x
 );

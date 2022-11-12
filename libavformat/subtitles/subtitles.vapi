@@ -43,6 +43,7 @@ public enum ff_utf_type {
     FF_UTF16BE,
 }
 
+[CCode (cname="struct FFTextReader", cheader_filename="")]
 public struct FFTextReader {
     public int type;
     public AVIOContext pb;
@@ -126,6 +127,7 @@ public void ff_text_read (
     size_t size
 );
 
+[CCode (cname="struct FFDemuxSubtitlesQueue", cheader_filename="")]
 public struct FFDemuxSubtitlesQueue {
     /***********************************************************
     Array of subtitles packets

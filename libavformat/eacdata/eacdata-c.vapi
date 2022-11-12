@@ -30,40 +30,43 @@ Technical details here:
 http://wiki.multimedia.cx/index.php?title=EA_Command_And_Conquer_3_Audio_Codec
 ***********************************************************/
 
-[CCode (cname="ff_ea_cdata_demuxer", cheader="")]
+[CCode (cname="struct CdataDemuxContext", cheader_filename="")]
+public struct EACTDATADemuxerPrivateData { }
+
+[CCode (cname="ff_ea_cdata_demuxer", cheader_filename="")]
 public class EACTDATADemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "ea_cdata";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Electronic Arts cdata";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (CdataDemuxContext);
+            return sizeof (EACTDATADemuxerPrivateData);
         }
     }
-    [CCode (cname="cdata_probe", cheader="")]
+    [CCode (cname="cdata_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="cdata_read_header", cheader="")]
+    [CCode (cname="cdata_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="cdata_read_packet", cheader="")]
+    [CCode (cname="cdata_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "cdata";

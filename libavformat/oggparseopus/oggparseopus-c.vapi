@@ -22,26 +22,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_opus_codec", cheader="")]
+[CCode (cname="ff_opus_codec", cheader_filename="")]
 public class OpusCodec : OggCodec {
-    [CCode (cname="name", cheader="")]
-    public override string name {
+    [CCode (cname="name", cheader_filename="")]
+    public override uint8[] name {
         public get {
-            return "Opus";
+            return "Opus".data;
         }
     }
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "OpusHead";
+            return "OpusHead".data;
         }
     }
     //  .magicsize = 8,
-    [CCode (cname="opus_header", cheader="")]
+    [CCode (cname="opus_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="opus_packet", cheader="")]
+    [CCode (cname="opus_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg

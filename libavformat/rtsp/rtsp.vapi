@@ -94,6 +94,7 @@ public enum RTSPControlTransport {
     RTSP_MODE_TUNNEL
 }
 
+[CCode (cname="", cheader_filename="")]
 public const int RTSP_DEFAULT_PORT; // 554
 public const int RTSPS_DEFAULT_PORT; // 322
 public const int RTSP_MAX_TRANSPORTS; // 8
@@ -608,6 +609,7 @@ public enum RTSPFlags {
     RTSP_FLAG_PREFER_TCP,
 }
 
+[CCode (cname="struct RTSPSource", cheader_filename="")]
 public struct RTSPSource {
     /***********************************************************
     Source-specific multicast include source IP address (from SDP content)
@@ -715,6 +717,7 @@ public struct RTSPStream {
     public char crypto_params[100];
 }
 
+[CCode (cname="", cheader_filename="")]
 public void ff_rtsp_parse_line (
     AVFormatContext format_context,
     RTSPMessageHeader reply,

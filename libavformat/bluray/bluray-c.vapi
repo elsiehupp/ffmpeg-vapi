@@ -31,65 +31,68 @@ BluRay (libbluray) protocol
 //      {NULL}
 //  }
 
-[CCode (cname="bluray_context_class", cheader="")]
+[CCode (cname="bluray_context_class", cheader_filename="")]
 public class BluRayContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "bluray";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_bluray_protocol", cheader="")]
+[CCode (cname="struct BlurayContext", cheader_filename="")]
+public struct BluRayPrivateData { }
+
+[CCode (cname="ff_bluray_protocol", cheader_filename="")]
 public class BluRayURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "bluray";
         }
     }
-    [CCode (cname="bluray_close", cheader="")]
+    [CCode (cname="bluray_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="bluray_open", cheader="")]
+    [CCode (cname="bluray_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="bluray_read", cheader="")]
+    [CCode (cname="bluray_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="bluray_seek", cheader="")]
+    [CCode (cname="bluray_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (BlurayContext);
+            return sizeof (BluRayPrivateData);
         }
     }
     //  .priv_data_class = bluray_context_class,

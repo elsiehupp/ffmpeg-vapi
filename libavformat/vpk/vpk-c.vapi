@@ -22,40 +22,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_vpk_demuxer", cheader="")]
+[CCode (cname="struct VPKDemuxContext", cheader_filename="")]
+public struct VPKDemuxerPrivateData { }
+
+[CCode (cname="ff_vpk_demuxer", cheader_filename="")]
 public class VPKDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "vpk";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Sony PS2 VPK";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (VPKDemuxContext);
+            return sizeof (VPKDemuxerPrivateData);
         }
     }
-    [CCode (cname="vpk_probe", cheader="")]
+    [CCode (cname="vpk_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="vpk_read_header", cheader="")]
+    [CCode (cname="vpk_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="vpk_read_packet", cheader="")]
+    [CCode (cname="vpk_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "vpk";

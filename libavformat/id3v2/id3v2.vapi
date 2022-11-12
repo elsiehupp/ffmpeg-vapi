@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t ID3v2_HEADER_SIZE; // 10
 
 /***********************************************************
@@ -37,8 +38,10 @@ public enum ID3v2Flags {
     ID3v2_FLAG_COMPRESSION,
 }
 
+[CCode (cname="", cheader_filename="")]
 public const string ID3v2_PRIV_METADATA_PREFIX;
 
+[CCode (cname="", cheader_filename="")]
 public enum ID3v2Encoding {
     ID3v2_ENCODING_ISO8859,
     ID3v2_ENCODING_UTF16BOM,
@@ -46,6 +49,7 @@ public enum ID3v2Encoding {
     ID3v2_ENCODING_UTF8,
 }
 
+[CCode (cname="struct ID3v2EncContext", cheader_filename="")]
 public struct ID3v2EncContext {
     /***********************************************************
     ID3v2 minor version, either 3 or 4
@@ -61,12 +65,14 @@ public struct ID3v2EncContext {
     public int len;
 }
 
+[CCode (cname="struct ID3v2ExtraMeta", cheader_filename="")]
 public struct ID3v2ExtraMeta {
     public string tag;
     public void *data;
     public ID3v2ExtraMeta *next;
 }
 
+[CCode (cname="struct ID3v2ExtraMetaGEOB", cheader_filename="")]
 public struct ID3v2ExtraMetaGEOB {
     public uint32 datasize;
     public uint8[] mime_type;
@@ -75,6 +81,7 @@ public struct ID3v2ExtraMetaGEOB {
     public uint8[] data;
 }
 
+[CCode (cname="struct ID3v2ExtraMetaAPIC", cheader_filename="")]
 public struct ID3v2ExtraMetaAPIC {
     public LibAVUtil.BufferRef buffer;
     public string type;
@@ -82,12 +89,14 @@ public struct ID3v2ExtraMetaAPIC {
     public LibAVCodec.CodecID id;
 }
 
+[CCode (cname="struct ID3v2ExtraMetaPRIV", cheader_filename="")]
 public struct ID3v2ExtraMetaPRIV {
     public uint8[] owner;
     public uint8[] data;
     public uint32 datasize;
 }
 
+[CCode (cname="struct ID3v2ExtraMetaCHAP", cheader_filename="")]
 public struct ID3v2ExtraMetaCHAP {
     public uint8[] element_id;
     public uint32 start;

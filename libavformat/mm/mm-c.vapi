@@ -33,35 +33,38 @@ Technical details here:
 http://wiki.multimedia.cx/index.php?title=American_Laser_Games_MM
 ***********************************************************/
 
-[CCode (cname="ff_mm_demuxer", cheader="")]
+[CCode (cname="struct MmDemuxContext", cheader_filename="")]
+public struct MMDemuxerPrivateData { }
+
+[CCode (cname="ff_mm_demuxer", cheader_filename="")]
 public class MMDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mm";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "American Laser Games MM";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (MmDemuxContext);
+            return sizeof (MMDemuxerPrivateData);
         }
     }
-    [CCode (cname="probe", cheader="")]
+    [CCode (cname="probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="read_header", cheader="")]
+    [CCode (cname="read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="read_packet", cheader="")]
+    [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

@@ -26,17 +26,20 @@ namespace LibAVFormat {
 see avformat.h or the public API!
 ***********************************************************/
 
+[CCode (cname="struct AVMetadataConv", cheader_filename="")]
 public struct AVMetadataConv {
     public string native;
     public string generic;
 }
 
+[CCode (cname="", cheader_filename="")]
 public void ff_metadata_conv (
     out LibAVUtil.Dictionary pm,
     AVMetadataConv d_conv,
     AVMetadataConv s_conv
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_metadata_conv_ctx (
     AVFormatContext fomat_context,
     AVMetadataConv d_conv,

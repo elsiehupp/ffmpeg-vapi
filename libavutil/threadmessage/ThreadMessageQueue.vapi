@@ -18,6 +18,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVUtil {
 
+[CCode (cname="", cheader_filename="")]
 public delegate void ThreadMessageFreeDelegate (
     void *msg
 );

@@ -27,6 +27,7 @@ namespace LibAVFormat {
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 
+[CCode (cname="", cheader_filename="")]
 public const LibAVUtil.Option avformat_options[];
 // = {
 //  {"avioflags", NULL, OFFSET (avio_flags), AV_OPT_TYPE_FLAGS, {.i64 = DEFAULT }, INT_MIN, int.MAX, D|E, "avioflags"},

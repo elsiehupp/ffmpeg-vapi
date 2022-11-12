@@ -46,26 +46,34 @@ public const int ENOTCONN; // WSAENOTCONN
 //  #define getsockopt (a, b, c, d, e) getsockopt (a, b, c, (char*) d, e)
 //  #define setsockopt (a, b, c, d, e) setsockopt (a, b, c, (char*) d, e)
 
+[CCode (cname="", cheader_filename="")]
 public int ff_neterrno ();
 #else
 
+[CCode (cname="", cheader_filename="")]
 public LibAVUtil.ErrorCode ff_neterrno (); // LibAVUtil.ErrorCode (errno)
 #endif /* HAVE_WINSOCK2_H
 ***********************************************************/
 
+[CCode (cname="", cheader_filename="")]
 public int ff_socket_nonblock (
     int socket,
     int enable
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_network_init ();
 
+[CCode (cname="", cheader_filename="")]
 public void ff_network_close ();
 
+[CCode (cname="", cheader_filename="")]
 public int ff_tls_init ();
 
+[CCode (cname="", cheader_filename="")]
 public void ff_tls_deinit ();
 
+[CCode (cname="", cheader_filename="")]
 public int ff_network_wait_fd (
     int fd,
     int write
@@ -116,6 +124,7 @@ public struct sockaddr_storage {
 #endif /* !HAVE_STRUCT_SOCKADDR_STORAGE
 ***********************************************************/
 
+[CCode (cname="struct sockaddr_union", cheader_filename="")]
 public struct sockaddr_union {
     public sockaddr_storage storage;
     public Posix.SockAddrIn in;
@@ -221,10 +230,12 @@ public int ff_getaddrinfo (
     out addrinfo res
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_freeaddrinfo (
     addrinfo res
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_getnameinfo (
     Posix.SockAddr sa,
     int salen,
@@ -264,6 +275,7 @@ public uint32 IN_MULTICAST (uint32 a); // ((((uint32)(a)) & 0xf0000000) == 0xe00
 public bool IN6_IS_ADDR_MULTICAST (uint8[] a); // (((uint8[] ) (a))[0] == 0xff)
 #endif
 
+[CCode (cname="", cheader_filename="")]
 public int ff_is_multicast_address (
     Posix.SockAddr addr
 );
@@ -345,17 +357,20 @@ public int ff_listen_connect (
     int will_try_next
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_http_match_no_proxy (
     string no_proxy,
     string hostname
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_socket (
     int domain,
     int type,
     int protocol
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_log_net_error (
     void *opaque_context,
     int level,
@@ -396,6 +411,7 @@ public int ff_connect_parallel (
     void *customize_ctx
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate void CustomizeFileDescriptorDelegate (
     void *opaque,
     int arg

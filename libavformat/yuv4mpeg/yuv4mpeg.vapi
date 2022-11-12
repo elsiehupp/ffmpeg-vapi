@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const string Y4M_MAGIC; // "YUV4MPEG2"
 public const string Y4M_FRAME_MAGIC; // "FRAME"
 public const size_t Y4M_FRAME_MAGIC_LEN; // 6

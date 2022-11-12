@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="struct AudioInterleaveContext", cheader_filename="")]
 public struct AudioInterleaveContext {
     LibAVUtil.FifoBuffer fifo;
     /***********************************************************
@@ -51,16 +52,19 @@ public struct AudioInterleaveContext {
     LibAVUtil.Rational time_base;
 }
 
+[CCode (cname="", cheader_filename="")]
 public int ff_audio_interleave_init (
     AVFormatContext format_context,
     int[] samples_per_frame,
     LibAVUtil.Rational time_base
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_audio_interleave_close (
     AVFormatContext format_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int GetPacketDelegate (
     AVFormatContext format_context,
     LibAVCodec.Packet packet_1,
@@ -68,6 +72,7 @@ public delegate int GetPacketDelegate (
     int arg
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int CompareTimeStampDelegate (
     AVFormatContext format_context,
     LibAVCodec.Packet packet_1,

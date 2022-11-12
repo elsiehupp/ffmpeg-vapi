@@ -26,6 +26,7 @@ namespace LibAVFormat {
 @file internal header for VPx codec configuration utilities.
 ***********************************************************/
 
+[CCode (cname="struct VPCC", cheader_filename="")]
 public struct VPCC {
     public int profile;
     public int level;
@@ -49,6 +50,7 @@ public int ff_isom_write_vpcc (
     LibAVCodec.CodecParameters par
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_isom_get_vpcc_features (
     AVFormatContext format_context,
     LibAVCodec.CodecParameters par,

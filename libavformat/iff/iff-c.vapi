@@ -30,40 +30,43 @@ for more information on the .iff file format, visit:
 http://wiki.multimedia.cx/index.php?title=IFF
 ***********************************************************/
 
-[CCode (cname="ff_iff_demuxer", cheader="")]
+[CCode (cname="struct IffDemuxContext", cheader_filename="")]
+public struct IFFDemuxerPrivateData { }
+
+[CCode (cname="ff_iff_demuxer", cheader_filename="")]
 public class IFFDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "iff";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "IFF (Interchange File Format)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (IffDemuxContext);
+            return sizeof (IFFDemuxerPrivateData);
         }
     }
-    [CCode (cname="iff_probe", cheader="")]
+    [CCode (cname="iff_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="iff_read_header", cheader="")]
+    [CCode (cname="iff_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="iff_read_packet", cheader="")]
+    [CCode (cname="iff_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK;

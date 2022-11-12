@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const uint8 ff_qt_default_palette_2[2 * 3];
 //  {
 //      0xFF, 0xFF, 0xFF,
@@ -63,6 +64,7 @@ public const uint8 ff_qt_default_palette_16[16 * 3];
 //      0x00, 0x00, 0x00
 //  }
 
+[CCode (cname="", cheader_filename="")]
 public const uint8 ff_qt_default_palette_256[256 * 3];
 //  {
 //      /* 0, 0x00 */ 0xFF, 0xFF, 0xFF,

@@ -33,35 +33,38 @@ This demuxer handles standard 0xAF11- and 0xAF12-type FLIs. It also handles
 special FLIs from the PC games "Magic Carpet" and "X-COM: Terror from the Deep".
 ***********************************************************/
 
-[CCode (cname="ff_flic_demuxer", cheader="")]
+[CCode (cname="struct FlicDemuxContext", cheader_filename="")]
+public struct FLICDemuxerPrivateData { }
+
+[CCode (cname="ff_flic_demuxer", cheader_filename="")]
 public class FLICDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "flic";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "FLI/FLC/FLX animation";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (FlicDemuxContext);
+            return sizeof (FLICDemuxerPrivateData);
         }
     }
-    [CCode (cname="flic_probe", cheader="")]
+    [CCode (cname="flic_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="flic_read_header", cheader="")]
+    [CCode (cname="flic_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="flic_read_packet", cheader="")]
+    [CCode (cname="flic_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

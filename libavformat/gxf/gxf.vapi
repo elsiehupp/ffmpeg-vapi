@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public enum GXFPktType {
     PKT_MAP,
     PKT_MEDIA,
@@ -30,6 +31,7 @@ public enum GXFPktType {
     PKT_UMF,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum GXFMatTag {
     MAT_NAME,
     MAT_FIRST_FIELD,
@@ -39,6 +41,7 @@ public enum GXFMatTag {
     MAT_SIZE,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum GXFTrackTag {
     TRACK_NAME,
     TRACK_AUX,

@@ -26,6 +26,7 @@ namespace LibAVFormat {
 @file common header for AIFF muxer and demuxer
 ***********************************************************/
 
+[CCode (cname="", cheader_filename="")]
 public const AVCodecTag[] ff_codec_aiff_tags;
 //  {
 //      { LibAVCodec.CodecID.PCM_S16BE, MKTAG ('N','O','N','E') },

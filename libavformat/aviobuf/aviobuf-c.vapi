@@ -30,37 +30,37 @@ namespace LibAVFormat {
 //      { NULL },
 //  }
 
-[CCode (cname="ff_avio_class", cheader="")]
+[CCode (cname="ff_avio_class", cheader_filename="")]
 public class AVIOContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "AVIOContext";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
     //  .option = ff_avio_options,
-    [CCode (cname="ff_avio_child_next", cheader="")]
+    [CCode (cname="ff_avio_child_next", cheader_filename="")]
     public override void *child_next (
         void *obj,
         void *prev
     );
-    [CCode (cname="ff_avio_child_class_next", cheader="")]
-    public override Class child_class_next (
-        Class prev
+    [CCode (cname="ff_avio_child_class_next", cheader_filename="")]
+    public override LibAVUtil.Class child_class_next (
+        LibAVUtil.Class prev
     );
 }
 

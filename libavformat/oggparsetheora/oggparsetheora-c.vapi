@@ -24,25 +24,25 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_theora_codec", cheader="")]
+[CCode (cname="ff_theora_codec", cheader_filename="")]
 public class TheoraCodec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "200theora";
+            return "200theora".data;
         }
     }
     //  .magicsize = 7,
-    [CCode (cname="theora_header", cheader="")]
+    [CCode (cname="theora_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="theora_packet", cheader="")]
+    [CCode (cname="theora_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="theora_gptopts", cheader="")]
+    [CCode (cname="theora_gptopts", cheader_filename="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,

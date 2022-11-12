@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const string APE_TAG_PREAMBLE;
 public const int APE_TAG_VERSION;
 public const size_t APE_TAG_FOOTER_BYTES;

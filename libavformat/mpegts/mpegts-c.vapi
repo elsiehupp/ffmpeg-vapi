@@ -44,28 +44,28 @@ namespace LibAVFormat {
 //      { NULL },
 //  }
 
-[CCode (cname="mpegts_class", cheader="")]
+[CCode (cname="mpegts_class", cheader_filename="")]
 public class MpegTSDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "mpegts demuxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
@@ -82,76 +82,76 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
 //      { NULL },
 //  }
 
-[CCode (cname="mpegtsraw_class", cheader="")]
+[CCode (cname="mpegtsraw_class", cheader_filename="")]
 public class MpegTSRawDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "mpegtsraw demuxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = raw_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_mpegts_demuxer", cheader="")]
+[CCode (cname="ff_mpegts_demuxer", cheader_filename="")]
 public class MPEGTSDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mpegts";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MPEG-TS (MPEG-2 Transport Stream)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegTSContext);
         }
     }
-    [CCode (cname="mpegts_probe", cheader="")]
+    [CCode (cname="mpegts_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="mpegts_read_header", cheader="")]
+    [CCode (cname="mpegts_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mpegts_read_packet", cheader="")]
+    [CCode (cname="mpegts_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="mpegts_read_close", cheader="")]
+    [CCode (cname="mpegts_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="mpegts_get_dts", cheader="")]
+    [CCode (cname="mpegts_get_dts", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_SHOW_IDS | AVFMT_TS_DISCONT;
@@ -160,47 +160,47 @@ public class MPEGTSDemuxer : AVInputFormat {
     //  .priv_class = mpegts_class,
 }
 
-[CCode (cname="ff_mpegtsraw_demuxer", cheader="")]
+[CCode (cname="ff_mpegtsraw_demuxer", cheader_filename="")]
 public class MpegTSRawDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mpegtsraw";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "raw MPEG-TS (MPEG-2 Transport Stream)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegTSContext);
         }
     }
-    [CCode (cname="mpegts_read_header", cheader="")]
+    [CCode (cname="mpegts_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mpegts_raw_read_packet", cheader="")]
+    [CCode (cname="mpegts_raw_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="mpegts_read_close", cheader="")]
+    [CCode (cname="mpegts_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="mpegts_get_dts", cheader="")]
+    [CCode (cname="mpegts_get_dts", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_SHOW_IDS | AVFMT_TS_DISCONT;

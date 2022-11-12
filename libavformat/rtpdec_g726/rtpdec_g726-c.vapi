@@ -34,48 +34,48 @@ namespace LibAVFormat {
 //      return 0;
 //  }
 //  \
-//  [CCode (cname="ff_g726_ ## bitrate ## _dynamic_handler", cheader="")]
+//  [CCode (cname="ff_g726_ ## bitrate ## _dynamic_handler", cheader_filename="")]
 //  public class G726DynamicHandler : RTPDynamicProtocolHandler {
-//      [CCode (cname="enc_name", cheader="")]
+//      [CCode (cname="enc_name", cheader_filename="")]
 //      public override string enc_name {
 //          public get {
 //              return "AAL2-G726-" #bitrate,
-//      [CCode (cname="codec_type", cheader="")]
+//      [CCode (cname="codec_type", cheader_filename="")]
 //      public override LibAVUtil.MediaType codec_type {
 //          public get {
 //              return AVMEDIA_TYPE_AUDIO;
 //          }
 //      }
-//      [CCode (cname="codec_id", cheader="")]
+//      [CCode (cname="codec_id", cheader_filename="")]
 //      public override LibAVCodec.CodecID codec_id {
 //          public get {
 //              return LibAVCodec.CodecID.ADPCM_G726;
 //          }
 //      }
-//      [CCode (cname="g726_ ## bitrate ## _init", cheader="")]
+//      [CCode (cname="g726_ ## bitrate ## _init", cheader_filename="")]
 //      public override int init (
 //          AVFormatContext format_context
 //      );
 //  }
-//  [CCode (cname="ff_g726le_ ## bitrate ## _dynamic_handler", cheader="")]
+//  [CCode (cname="ff_g726le_ ## bitrate ## _dynamic_handler", cheader_filename="")]
 //  public class G726LEDynamicHandler : RTPDynamicProtocolHandler {
-//      [CCode (cname="enc_name", cheader="")]
+//      [CCode (cname="enc_name", cheader_filename="")]
 //      public override string enc_name {
 //          public get {
 //              return "G726-" #bitrate,
-//      [CCode (cname="codec_type", cheader="")]
+//      [CCode (cname="codec_type", cheader_filename="")]
 //      public override LibAVUtil.MediaType codec_type {
 //          public get {
 //              return AVMEDIA_TYPE_AUDIO;
 //          }
 //      }
-//      [CCode (cname="codec_id", cheader="")]
+//      [CCode (cname="codec_id", cheader_filename="")]
 //      public override LibAVCodec.CodecID codec_id {
 //          public get {
 //              return LibAVCodec.CodecID.ADPCM_G726LE;
 //          }
 //      }
-//      [CCode (cname="g726_ ## bitrate ## _init", cheader="")]
+//      [CCode (cname="g726_ ## bitrate ## _init", cheader_filename="")]
 //      public override int init (
 //          AVFormatContext format_context
 //      );

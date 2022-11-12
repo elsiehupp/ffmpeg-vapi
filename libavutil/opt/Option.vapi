@@ -54,6 +54,7 @@ public struct test_struct {
     int bin_len;
 }
 
+[CCode (cname="", cheader_filename="")]
 public const Option test_options[] = {
     { "test_int", "This is a test option of int type.", offsetof (test_struct, int_opt),
         OptionType.INT, { .i64 = -1 }, INT_MIN, int.MAX },
@@ -64,26 +65,27 @@ public const Option test_options[] = {
     { null },
 }
 
+[CCode (cname="", cheader_filename="")]
 public const Class test_class = {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "test class";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = test_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
@@ -135,9 +137,9 @@ void free_test_struct (out test_struct foo) {
     }
     public const Class child_class = {
         //  .class_name = "child class";
-        //  .item_name = av_default_item_name,
+        //  .item_name = base.item_name,
         //  .option = child_opts,
-        //  .version = LIBAVUTIL_VERSION_INT,
+        //  .version = LibAVUtil.Version.INT,
     }
 
     void *child_next (void *obj, void *prev) {

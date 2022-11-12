@@ -21,15 +21,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_flac_codec", cheader="")]
+[CCode (cname="ff_flac_codec", cheader_filename="")]
 public class FlacCodec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "177FLAC";
+            return "177FLAC".data;
         }
     }
     //  .magicsize = 5,
-    [CCode (cname="flac_header", cheader="")]
+    [CCode (cname="flac_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
@@ -37,15 +37,15 @@ public class FlacCodec : OggCodec {
     //  .nb_header = 2,
 }
 
-[CCode (cname="ff_old_flac_codec", cheader="")]
+[CCode (cname="ff_old_flac_codec", cheader_filename="")]
 public class OldFlacCodec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "fLaC";
+            return "fLaC".data;
         }
     }
     //  .magicsize = 4,
-    [CCode (cname="old_flac_header", cheader="")]
+    [CCode (cname="old_flac_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg

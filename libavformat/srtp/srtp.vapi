@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="struct SRTPContext", cheader_filename="")]
 public struct SRTPContext {
     public LibAVUtil.Crypto.AESContext aes;
     public LibAVUtil.Crypto.HMACContext hmac;
@@ -42,22 +43,26 @@ public struct SRTPContext {
     public uint32 rtcp_index;
 }
 
+[CCode (cname="", cheader_filename="")]
 public int ff_srtp_set_crypto (
     SRTPContext srtp_context,
     string suite,
     string params
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_srtp_free (
     SRTPContext srtp_context
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_srtp_decrypt (
     SRTPContext srtp_context,
     uint8[] buffer,
     out int lenptr
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_srtp_encrypt (
     SRTPContext srtp_context,
     uint8[] input_buffer,

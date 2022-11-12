@@ -35,6 +35,7 @@ public enum AVIFlags {
     AVIF_COPYRIGHTED,
 }
 
+[CCode (cname="", cheader_filename="")]
 public const uint64 AVI_MAX_RIFF_SIZE;
 public const int AVI_MAX_STREAM_COUNT;
 

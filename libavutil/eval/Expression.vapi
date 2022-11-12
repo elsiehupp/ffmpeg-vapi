@@ -25,11 +25,13 @@ namespace LibAVUtil {
 @file simple arithmetic expression evaluator
 ***********************************************************/
 
+[CCode (cname="", cheader_filename="")]
 public delegate double OneArgumentDelegate (
     void *arg0,
     double arg1
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate double TwoArgumentDelegate (
     void *arg0,
     double arg1,

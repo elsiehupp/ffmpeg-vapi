@@ -135,7 +135,7 @@ brings in most of the "core" components.
 ***********************************************************/
 
 /***********************************************************
-@brief Return the LIBAVUTIL_VERSION_INT constant.
+@brief Return the LibAVUtil.Version.INT constant.
 ***********************************************************/
 [CCode (cname="avutil_version", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public uint avutil_version ();

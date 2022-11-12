@@ -29,11 +29,13 @@ do NOT include this in end user applications
 
 //  extern const AVMetadataConv ff_riff_info_conv[];
 
+[CCode (cname="", cheader_filename="")]
 public int64 ff_start_tag (
     AVIOContext pb,
     string tag
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_end_tag (
     AVIOContext pb,
     int64 start
@@ -51,6 +53,7 @@ public int ff_get_bmp_header (
     uint32[] size
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_put_bmp_header (
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
@@ -85,11 +88,13 @@ public int ff_put_wav_header (
     int flags
 );
 
+[CCode (cname="", cheader_filename="")]
 public LibAVCodec.CodecID ff_wav_codec_get_id (
     uint tag,
     int bps
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_get_wav_header (
     AVFormatContext format_context,
     AVIOContext pb,
@@ -103,6 +108,7 @@ public int ff_get_wav_header (
 
 //  extern const AVCodecTag ff_codec_bmp_tags_unofficial[];
 
+[CCode (cname="", cheader_filename="")]
 public void ff_parse_specific_params (
     AVStream st,
     out int au_rate,
@@ -110,6 +116,7 @@ public void ff_parse_specific_params (
     out int au_scale
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_read_riff_info (
     AVFormatContext format_context,
     int64 size
@@ -131,8 +138,10 @@ public void ff_riff_write_info_tag (
     string str
 );
 
+[CCode (cname="struct ff_asf_guid", cheader_filename="")]
 public struct ff_asf_guid { }
 
+[CCode (cname="struct AVCodecGuid", cheader_filename="")]
 public struct AVCodecGuid {
     public LibAVCodec.CodecID id;
     public ff_asf_guid guid;
@@ -157,26 +166,31 @@ public struct AVCodecGuid {
 //  #define FF_BROKEN_BASE_GUID
 //      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0xAA
 
+[CCode (cname="", cheader_filename="")]
 public static int ff_guidcmp (
     void *g1,
     void *g2
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_get_guid (
     AVIOContext io_context,
     ff_asf_guid *g
 );
 
+[CCode (cname="", cheader_filename="")]
 public void ff_put_guid (
     AVIOContext io_context,
     ff_asf_guid *g
 );
 
+[CCode (cname="", cheader_filename="")]
 public ff_asf_guid *ff_get_codec_guid (
     LibAVCodec.CodecID id,
     AVCodecGuid *av_guid
 );
 
+[CCode (cname="", cheader_filename="")]
 public LibAVCodec.CodecID ff_codec_guid_get_id (
     AVCodecGuid *guids,
     ff_asf_guid guid

@@ -22,47 +22,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_mpegps_demuxer", cheader="")]
+[CCode (cname="struct MpegDemuxContext", cheader_filename="")]
+public struct MPEGPSDemuxerPrivateData { }
+
+[CCode (cname="ff_mpegps_demuxer", cheader_filename="")]
 public class MPEGPSDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "mpeg";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MPEG-PS (MPEG-2 Program Stream)";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (MpegDemuxContext);
+            return sizeof (MPEGPSDemuxerPrivateData);
         }
     }
-    [CCode (cname="mpegps_probe", cheader="")]
+    [CCode (cname="mpegps_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="mpegps_read_header", cheader="")]
+    [CCode (cname="mpegps_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="mpegps_read_packet", cheader="")]
+    [CCode (cname="mpegps_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="mpegps_read_dts", cheader="")]
+    [CCode (cname="mpegps_read_dts", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_SHOW_IDS | AVFMT_TS_DISCONT;
@@ -76,66 +79,66 @@ public class MPEGPSDemuxer : AVInputFormat {
 //      { NULL }
 //  }
 
-[CCode (cname="vobsub_demuxer_class", cheader="")]
+[CCode (cname="vobsub_demuxer_class", cheader_filename="")]
 public class VobSubDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "vobsub";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_vobsub_demuxer", cheader="")]
+[CCode (cname="ff_vobsub_demuxer", cheader_filename="")]
 public class VobSubDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "vobsub";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "VobSub subtitle format";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegDemuxContext);
         }
     }
-    [CCode (cname="vobsub_probe", cheader="")]
+    [CCode (cname="vobsub_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="vobsub_read_header", cheader="")]
+    [CCode (cname="vobsub_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="vobsub_read_packet", cheader="")]
+    [CCode (cname="vobsub_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="vobsub_read_seek", cheader="")]
+    [CCode (cname="vobsub_read_seek", cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -144,17 +147,17 @@ public class VobSubDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
-    [CCode (cname="vobsub_read_close", cheader="")]
+    [CCode (cname="vobsub_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_SHOW_IDS;
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "idx";

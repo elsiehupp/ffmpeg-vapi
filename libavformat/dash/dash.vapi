@@ -33,6 +33,7 @@ public enum DASHTmplId {
 }
 
 
+[CCode (cname="", cheader_filename="")]
 public void ff_dash_fill_tmpl_params (
     string dst,
     size_t buffer_size,

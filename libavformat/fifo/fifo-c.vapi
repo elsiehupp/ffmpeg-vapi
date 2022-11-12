@@ -57,76 +57,78 @@ namespace LibAVFormat {
 //          {NULL},
 //  }
 
-[CCode (cname="fifo_muxer_class", cheader="")]
+[CCode (cname="fifo_muxer_class", cheader_filename="")]
 public class FifoMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "Fifo muxer";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_fifo_muxer", cheader="")]
+[CCode (cname="struct FifoContext", cheader_filename="")]
+public struct FifoMuxerPrivateData { }
+
+[CCode (cname="ff_fifo_muxer", cheader_filename="")]
 public class FifoMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "fifo";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "FIFO queue pseudo-muxer";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (FifoContext);
+            return sizeof (FifoMuxerPrivateData);
         }
     }
-    [CCode (cname="fifo_init", cheader="")]
+    [CCode (cname="fifo_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
-    [CCode (cname="fifo_write_header", cheader="")]
+    [CCode (cname="fifo_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="fifo_write_packet", cheader="")]
+    [CCode (cname="fifo_write_packet", cheader_filename="")]
     public override int write_packet (
-        void *opaque,
-        uint8[] buffer,
-        int buf_size
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
     );
-    [CCode (cname="fifo_write_trailer", cheader="")]
+    [CCode (cname="fifo_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    [CCode (cname="fifo_deinit", cheader="")]
+    [CCode (cname="fifo_deinit", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
     //  .priv_class = fifo_muxer_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOFILE | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE;

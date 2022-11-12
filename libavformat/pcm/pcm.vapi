@@ -22,11 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public int ff_pcm_read_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_pcm_read_seek (
     AVFormatContext format_context,
     int stream_index,

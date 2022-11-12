@@ -24,20 +24,20 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_ogm_video_codec", cheader="")]
+[CCode (cname="ff_ogm_video_codec", cheader_filename="")]
 public class OGMVideoCodec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "\001video";
+            return "\001video".data;
         }
     }
     //  .magicsize = 6,
-    [CCode (cname="ogm_header", cheader="")]
+    [CCode (cname="ogm_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="ogm_packet", cheader="")]
+    [CCode (cname="ogm_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
@@ -46,20 +46,20 @@ public class OGMVideoCodec : OggCodec {
     //  .nb_header = 2,
 }
 
-[CCode (cname="ff_ogm_audio_codec", cheader="")]
+[CCode (cname="ff_ogm_audio_codec", cheader_filename="")]
 public class OGMAudioCodec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "\001audio";
+            return "\001audio".data;
         }
     }
     //  .magicsize = 6,
-    [CCode (cname="ogm_header", cheader="")]
+    [CCode (cname="ogm_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="ogm_packet", cheader="")]
+    [CCode (cname="ogm_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
@@ -68,20 +68,20 @@ public class OGMAudioCodec : OggCodec {
     //  .nb_header = 2,
 }
 
-[CCode (cname="ff_ogm_text_codec", cheader="")]
+[CCode (cname="ff_ogm_text_codec", cheader_filename="")]
 public class OGMTextCodec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "\001text";
+            return "\001text".data;
         }
     }
     //  .magicsize = 5,
-    [CCode (cname="ogm_header", cheader="")]
+    [CCode (cname="ogm_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="ogm_packet", cheader="")]
+    [CCode (cname="ogm_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
@@ -90,20 +90,20 @@ public class OGMTextCodec : OggCodec {
     //  .nb_header = 2,
 }
 
-[CCode (cname="ff_ogm_old_codec", cheader="")]
+[CCode (cname="ff_ogm_old_codec", cheader_filename="")]
 public class OGMOldCodec : OggCodec {
-    public override int8[] magic {
+    public override uint8[] magic {
         public get {
-            return "\001Direct Show Samples embedded in Ogg";
+            return "\001Direct Show Samples embedded in Ogg".data;
         }
     }
     //  .magicsize = 35,
-    [CCode (cname="ogm_dshow_header", cheader="")]
+    [CCode (cname="ogm_dshow_header", cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    [CCode (cname="ogm_packet", cheader="")]
+    [CCode (cname="ogm_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg

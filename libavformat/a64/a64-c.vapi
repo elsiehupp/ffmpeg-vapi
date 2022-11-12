@@ -22,41 +22,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_a64_muxer", cheader="")]
+[CCode (cname="ff_a64_muxer", cheader_filename="")]
 public class A64Muxer : AVOutputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "a64";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "a64 - video for Commodore 64";
         }
     }
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "a64,A64";
         }
     }
-    [CCode (cname="video_codec", cheader="")]
+    [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.A64_MULTI;
         }
     }
-    [CCode (cname="a64_write_header", cheader="")]
+    [CCode (cname="a64_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
-    [CCode (cname="ff_raw_write_packet", cheader="")]
-    public abstract int write_packet (
-        void *opaque,
-        uint8[] buffer,
-        int buf_size
+    [CCode (cname="ff_raw_write_packet", cheader_filename="")]
+    public override int write_packet (
+        AVFormatContext format_context,
+        LibAVCodec.Packet packet
     );
 }
 

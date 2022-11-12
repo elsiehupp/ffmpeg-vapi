@@ -28,40 +28,43 @@ namespace LibAVFormat {
 @sa http://wiki.multimedia.cx/index.php?title=Vivo
 ***********************************************************/
 
-[CCode (cname="ff_vivo_demuxer", cheader="")]
+[CCode (cname="struct VivoContext", cheader_filename="")]
+public struct VivoDemuxerPrivateData { }
+
+[CCode (cname="ff_vivo_demuxer", cheader_filename="")]
 public class VivoDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "vivo";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Vivo";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (VivoContext);
+            return sizeof (VivoDemuxerPrivateData);
         }
     }
-    [CCode (cname="vivo_probe", cheader="")]
+    [CCode (cname="vivo_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="vivo_read_header", cheader="")]
+    [CCode (cname="vivo_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="vivo_read_packet", cheader="")]
+    [CCode (cname="vivo_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "viv";

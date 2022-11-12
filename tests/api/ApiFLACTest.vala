@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+[CCode (cname="", cheader="")]
 public class ApiFLACTest : GLib.TestCase {
 
     /***********************************************************
@@ -357,7 +358,7 @@ public class ApiFLACTest : GLib.TestCase {
         };
         uint cl, sr;
 
-        enc = avcodec_find_encoder (AV_CODEC_ID_FLAC);
+        enc = avcodec_find_encoder (LibAVCodec.CodecID.FLAC);
         if (enc == null) {
             av_log (
                 null,
@@ -367,7 +368,7 @@ public class ApiFLACTest : GLib.TestCase {
             return 1;
         }
 
-        dec = avcodec_find_decoder (AV_CODEC_ID_FLAC);
+        dec = avcodec_find_decoder (LibAVCodec.CodecID.FLAC);
         if (dec == null) {
             av_log (
                 null,

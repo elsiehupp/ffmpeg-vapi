@@ -26,40 +26,43 @@ namespace LibAVFormat {
 @see https://documentation.apple.com/en/dvdstudiopro/usermanual/index.html#chapter=19%26section=13%26tasks=true
 ***********************************************************/
 
-[CCode (cname="ff_stl_demuxer", cheader="")]
+[CCode (cname="struct STLContext", cheader_filename="")]
+public struct STLDemuxerPrivateData { }
+
+[CCode (cname="ff_stl_demuxer", cheader_filename="")]
 public class STLDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "stl";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Spruce subtitle format";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (STLContext);
+            return sizeof (STLDemuxerPrivateData);
         }
     }
-    [CCode (cname="stl_probe", cheader="")]
+    [CCode (cname="stl_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="stl_read_header", cheader="")]
+    [CCode (cname="stl_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="stl_read_packet", cheader="")]
+    [CCode (cname="stl_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="stl_read_seek", cheader="")]
+    [CCode (cname="stl_read_seek", cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -68,11 +71,11 @@ public class STLDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
-    [CCode (cname="stl_read_close", cheader="")]
+    [CCode (cname="stl_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "stl";

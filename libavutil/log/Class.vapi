@@ -39,8 +39,20 @@ public abstract class Class {
     @brief A pointer to a function which returns the name of a context
     instance class_context associated with the class.
     ***********************************************************/
-    [CCode (cname="item_name")]
-    public abstract string item_name (
+    //  [CCode (cname="item_name")]
+    //  public abstract string item_name (
+    //      void *class_context
+    //  );
+
+    /***********************************************************
+    @brief Return the context name
+
+    @param class_context The Class context
+
+    @return The Class class_name
+    ***********************************************************/
+    [CCode (cname="av_default_item_name", cheader_filename="ffmpeg/libavutil/log.h")]
+    public virtual string item_name (
         void *class_context
     );
 
@@ -50,7 +62,7 @@ public abstract class Class {
     @see @link av_set_default_options ()
     ***********************************************************/
     [CCode (cname="option")]
-    public Option option;
+    public abstract Option[] option { public get; }
 
     /***********************************************************
     @brief LIBAVUTIL_VERSION with which this structure was created.
@@ -58,7 +70,7 @@ public abstract class Class {
     version bumps everywhere.
     ***********************************************************/
     [CCode (cname="version")]
-    public int version;
+    public abstract int version { public get; }
 
     /***********************************************************
     @brief Offset in the structure where log_level_offset is stored.

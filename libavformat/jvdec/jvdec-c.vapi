@@ -27,47 +27,50 @@ namespace LibAVFormat {
 @author Peter Ross <pross@xvid.org>
 ***********************************************************/
 
-[CCode (cname="ff_jv_demuxer", cheader="")]
+[CCode (cname="struct JVDemuxContext", cheader_filename="")]
+public struct JVDemuxerPrivateData { }
+
+[CCode (cname="ff_jv_demuxer", cheader_filename="")]
 public class JVDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "jv";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Bitmap Brothers JV";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (JVDemuxContext);
+            return sizeof (JVDemuxerPrivateData);
         }
     }
-    [CCode (cname="read_probe", cheader="")]
+    [CCode (cname="read_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
-    [CCode (cname="read_header", cheader="")]
+    [CCode (cname="read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="read_packet", cheader="")]
+    [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="read_seek", cheader="")]
+    [CCode (cname="read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="read_close", cheader="")]
+    [CCode (cname="read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );

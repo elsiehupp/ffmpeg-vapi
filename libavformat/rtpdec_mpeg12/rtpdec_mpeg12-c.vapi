@@ -22,27 +22,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_mpeg_audio_dynamic_handler", cheader="")]
+[CCode (cname="ff_mpeg_audio_dynamic_handler", cheader_filename="")]
 public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="codec_type", cheader="")]
+    [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
-    [CCode (cname="codec_id", cheader="")]
+    [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MP3;
         }
     }
-    [CCode (cname="need_parsing", cheader="")]
+    [CCode (cname="need_parsing", cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVSTREAM_PARSE_FULL;
         }
     }
-    [CCode (cname="mpeg_parse_packet", cheader="")]
+    [CCode (cname="mpeg_parse_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -57,27 +57,27 @@ public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
     //  .static_payload_id = 14,
 }
 
-[CCode (cname="ff_mpeg_video_dynamic_handler", cheader="")]
+[CCode (cname="ff_mpeg_video_dynamic_handler", cheader_filename="")]
 public class MpegVideoDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="codec_type", cheader="")]
+    [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_VIDEO;
         }
     }
-    [CCode (cname="codec_id", cheader="")]
+    [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
-    [CCode (cname="need_parsing", cheader="")]
+    [CCode (cname="need_parsing", cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVSTREAM_PARSE_FULL;
         }
     }
-    [CCode (cname="mpeg_parse_packet", cheader="")]
+    [CCode (cname="mpeg_parse_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

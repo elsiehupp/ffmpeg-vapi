@@ -22,11 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t TS_FEC_PACKET_SIZE;
 public const size_t TS_DVHS_PACKET_SIZE;
 public const size_t TS_PACKET_SIZE;
 public const size_t TS_MAX_PACKET_SIZE;
 
+[CCode (cname="", cheader_filename="")]
 public const size_t NB_PID_MAX;
 public const size_t MAX_SECTION_SIZE;
 
@@ -48,6 +50,7 @@ public enum MpegTransportStreamTableID {
     SDT_TID,
 }
 
+[CCode (cname="", cheader_filename="")]
 public enum MpegTransportStreamType {
     STREAM_TYPE_VIDEO_MPEG1,
     STREAM_TYPE_VIDEO_MPEG2,
@@ -71,6 +74,7 @@ public enum MpegTransportStreamType {
     STREAM_TYPE_AUDIO_EAC3,
 }
 
+[CCode (cname="struct MpegTSContext", cheader_filename="")]
 public struct MpegTSContext {
     public MpegTSContext avpriv_mpegts_parse_open (
         AVFormatContext format_context
@@ -86,6 +90,7 @@ public struct MpegTSContext {
     );
 }
 
+[CCode (cname="struct SLConfigDescr", cheader_filename="")]
 public struct SLConfigDescr {
     public int use_au_start;
     public int use_au_end;
@@ -103,6 +108,7 @@ public struct SLConfigDescr {
     public int packet_seq_num_len;
 }
 
+[CCode (cname="struct Mp4Descr", cheader_filename="")]
 public struct Mp4Descr {
     public int es_id;
     public int dec_config_descr_len;

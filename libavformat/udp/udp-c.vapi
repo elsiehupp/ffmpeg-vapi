@@ -51,99 +51,102 @@ namespace LibAVFormat {
 //      { NULL }
 //  }
 
-[CCode (cname="udp_class", cheader="")]
+[CCode (cname="udp_class", cheader_filename="")]
 public class UDPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "udp";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
-    [CCode (cname="options", cheader="")]
+    [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="udplite_context_class", cheader="")]
+[CCode (cname="udplite_context_class", cheader_filename="")]
 public class UDPLiteURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "udplite";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_udp_protocol", cheader="")]
+[CCode (cname="struct UDPContext", cheader_filename="")]
+public struct UDPPrivateData { }
+
+[CCode (cname="ff_udp_protocol", cheader_filename="")]
 public class UDPURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "udp";
         }
     }
-    [CCode (cname="udp_open", cheader="")]
+    [CCode (cname="udp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="udp_read", cheader="")]
+    [CCode (cname="udp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="udp_write", cheader="")]
+    [CCode (cname="udp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="udp_close", cheader="")]
+    [CCode (cname="udp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="udp_get_file_handle", cheader="")]
+    [CCode (cname="udp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (UDPContext);
+            return sizeof (UDPPrivateData);
         }
     }
     //  .priv_data_class = udp_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
@@ -151,48 +154,48 @@ public class UDPURLProtocol : URLProtocol {
     }
 }
 
-[CCode (cname="ff_udplite_protocol", cheader="")]
+[CCode (cname="ff_udplite_protocol", cheader_filename="")]
 public class UDPLiteURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "udplite";
         }
     }
-    [CCode (cname="udplite_open", cheader="")]
+    [CCode (cname="udplite_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="udp_read", cheader="")]
+    [CCode (cname="udp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="udp_write", cheader="")]
+    [CCode (cname="udp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="udp_close", cheader="")]
+    [CCode (cname="udp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="udp_get_file_handle", cheader="")]
+    [CCode (cname="udp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (UDPContext);
+            return sizeof (UDPPrivateData);
         }
     }
     //  .priv_data_class = udplite_context_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;

@@ -33,66 +33,69 @@ namespace LibAVFormat {
 //  #undef OFFSET
 //  #undef D
 
-[CCode (cname="subfile_class", cheader="")]
+[CCode (cname="subfile_class", cheader_filename="")]
 public class SubFileURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "subfile";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = subfile_options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_subfile_protocol", cheader="")]
+[CCode (cname="struct SubfileContext", cheader_filename="")]
+public struct SubFilePrivateData { }
+
+[CCode (cname="ff_subfile_protocol", cheader_filename="")]
 public class SubFileURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "subfile";
         }
     }
-    [CCode (cname="subfile_open", cheader="")]
+    [CCode (cname="subfile_open", cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
         string url,
         int flags,
         out LibAVUtil.Dictionary options
     );
-    [CCode (cname="subfile_read", cheader="")]
+    [CCode (cname="subfile_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="subfile_seek", cheader="")]
+    [CCode (cname="subfile_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
-    [CCode (cname="subfile_close", cheader="")]
+    [CCode (cname="subfile_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (SubfileContext);
+            return sizeof (SubFilePrivateData);
         }
     }
     //  .priv_data_class = subfile_class,

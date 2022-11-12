@@ -23,13 +23,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="struct PayloadContext", cheader_filename="")]
 public struct PayloadContext { }
 
+[CCode (cname="", cheader_filename="")]
 public const size_t RTP_MIN_PACKET_LENGTH;
 public const size_t RTP_MAX_PACKET_LENGTH;
 
+[CCode (cname="", cheader_filename="")]
 public const size_t RTP_REORDER_QUEUE_DEFAULT_SIZE;
 
+[CCode (cname="", cheader_filename="")]
 public const uint32 RTP_NOTS_VALUE;
 
 /***********************************************************
@@ -59,6 +63,7 @@ public int ff_rtp_check_and_send_back_rr (
     int count
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_rtp_send_rtcp_feedback (
     RTPDemuxContext rtp_demux_context,
     URLContext fd,
@@ -149,6 +154,7 @@ public delegate int DynamicPayloadPacketHandlerProc (
     int flags
 );
 
+[CCode (cname="", cheader_filename="")]
 public abstract class RTPDynamicProtocolHandler {
     public abstract string enc_name { public get; }
     public abstract LibAVUtil.MediaType codec_type { public get; }
@@ -160,7 +166,7 @@ public abstract class RTPDynamicProtocolHandler {
     require any custom depacketization code.
     ***********************************************************/
     public int static_payload_id;
-    public int priv_data_size;
+    public abstract size_t priv_data_size { public get; }
 
     /***********************************************************
     Initialize dynamic protocol handler, called after the full rtpmap line is parsed, may be null
@@ -219,6 +225,7 @@ public abstract class RTPDynamicProtocolHandler {
     public RTPDynamicProtocolHandler next;
 }
 
+[CCode (cname="struct RTPPacket", cheader_filename="")]
 public struct RTPPacket {
     public uint16 seq;
     public uint8[] buffer;
@@ -227,6 +234,7 @@ public struct RTPPacket {
     public RTPPacket *next;
 }
 
+[CCode (cname="struct RTPDemuxContext", cheader_filename="")]
 public struct RTPDemuxContext {
     public AVFormatContext ic;
     public AVStream st;
@@ -374,6 +382,7 @@ public int ff_rtsp_next_attr_and_value (
     int value_size
 );
 
+[CCode (cname="", cheader_filename="")]
 public delegate int ParseFMTPDelegate (
     AVFormatContext format_context,
     AVStream stream,
@@ -382,6 +391,7 @@ public delegate int ParseFMTPDelegate (
     string value
 );
 
+[CCode (cname="", cheader_filename="")]
 public int ff_parse_fmtp (
     AVFormatContext format_context,
     AVStream stream,

@@ -21,47 +21,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_avisynth_demuxer", cheader="")]
+[CCode (cname="struct AviSynthContext", cheader_filename="")]
+public struct AVISynthDemuxerPrivateData { }
+
+[CCode (cname="ff_avisynth_demuxer", cheader_filename="")]
 public class AVISynthDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "avisynth";
         }
     }
-    [CCode (cname="long_name", cheader="")]
+    [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "AviSynth script";
         }
     }
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (AviSynthContext);
+            return sizeof (AVISynthDemuxerPrivateData);
         }
     }
-    [CCode (cname="avisynth_read_header", cheader="")]
+    [CCode (cname="avisynth_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
-    [CCode (cname="avisynth_read_packet", cheader="")]
+    [CCode (cname="avisynth_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    [CCode (cname="avisynth_read_close", cheader="")]
+    [CCode (cname="avisynth_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
-    [CCode (cname="avisynth_read_seek", cheader="")]
+    [CCode (cname="avisynth_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    [CCode (cname="extensions", cheader="")]
+    [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "avs";

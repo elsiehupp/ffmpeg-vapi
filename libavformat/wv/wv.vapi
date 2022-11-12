@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t WV_HEADER_SIZE; // 32
 
 [Flags]
@@ -34,6 +35,7 @@ Specs say that maximum block size is 1Mb
 ***********************************************************/
 public const size_t WV_BLOCK_LIMIT;
 
+[CCode (cname="struct WvHeader", cheader_filename="")]
 public struct WvHeader {
     /***********************************************************
     Size of the block data (excluding the header)

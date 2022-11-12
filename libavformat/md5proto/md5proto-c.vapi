@@ -21,34 +21,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_md5_protocol", cheader="")]
+[CCode (cname="struct MD5Context", cheader_filename="")]
+public struct MD5PrivateData { }
+
+[CCode (cname="ff_md5_protocol", cheader_filename="")]
 public class MD5URLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "md5";
         }
     }
-    [CCode (cname="md5_open", cheader="")]
+    [CCode (cname="md5_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
-    [CCode (cname="md5_write", cheader="")]
+    [CCode (cname="md5_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="md5_close", cheader="")]
+    [CCode (cname="md5_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (MD5Context);
+            return sizeof (MD5PrivateData);
         }
     }
 }

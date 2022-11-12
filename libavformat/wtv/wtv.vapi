@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+[CCode (cname="", cheader_filename="")]
 public const size_t WTV_SECTOR_BITS; // 12
 public const size_t WTV_SECTOR_SIZE; // (1 << WTV_SECTOR_BITS)
 public const size_t WTV_BIGSECTOR_BITS; // 18

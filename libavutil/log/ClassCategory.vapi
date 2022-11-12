@@ -56,18 +56,6 @@ public enum ClassCategory {
         ClassCategory category
     );
 
-    /***********************************************************
-    @brief Return the context name
-
-    @param class_context The Class context
-
-    @return The Class class_name
-    ***********************************************************/
-    [CCode (cname="av_default_item_name", cheader_filename="ffmpeg/libavutil/log.h")]
-    public static string av_default_item_name (
-        void *class_context
-    );
-
     [CCode (cname="av_default_get_category", cheader_filename="ffmpeg/libavutil/log.h")]
     public static ClassCategory av_default_get_category (
         void *ptr

@@ -35,76 +35,79 @@ namespace LibAVFormat {
 //      { NULL }
 //  }
 
-[CCode (cname="crypto_class", cheader="")]
+[CCode (cname="crypto_class", cheader_filename="")]
 public class CryptoURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader="")]
+    [CCode (cname="class_name", cheader_filename="")]
     public override string class_name {
         public get {
             return "crypto";
         }
     }
-    [CCode (cname="item_name", cheader="")]
+    [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
-        return av_default_item_name (
+        return base.item_name (
             class_context
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader="")]
+    [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
-            return LIBAVUTIL_VERSION_INT;
+            return LibAVUtil.Version.INT;
         }
     }
 }
 
-[CCode (cname="ff_crypto_protocol", cheader="")]
+[CCode (cname="struct CryptoContext", cheader_filename="")]
+public struct CryptoPrivateData { }
+
+[CCode (cname="ff_crypto_protocol", cheader_filename="")]
 public class CryptoURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader="")]
+    [CCode (cname="name", cheader_filename="")]
     public override string name {
         public get {
             return "crypto";
         }
     }
-    [CCode (cname="crypto_open2", cheader="")]
+    [CCode (cname="crypto_open2", cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
         string url,
         int flags,
         out LibAVUtil.Dictionary options
     );
-    [CCode (cname="crypto_seek", cheader="")]
+    [CCode (cname="crypto_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
-    [CCode (cname="crypto_read", cheader="")]
+    [CCode (cname="crypto_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="crypto_write", cheader="")]
+    [CCode (cname="crypto_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
-    [CCode (cname="crypto_close", cheader="")]
+    [CCode (cname="crypto_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
-    [CCode (cname="priv_data_size", cheader="")]
+    [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
-            return sizeof (CryptoContext);
+            return sizeof (CryptoPrivateData);
         }
     }
     //  .priv_data_class = crypto_class,
-    [CCode (cname="flags", cheader="")]
+    [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NESTED_SCHEME;
