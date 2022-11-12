@@ -1,9 +1,9 @@
 /***********************************************************
-RTSP definitions
+@brief RTSP definitions
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,15 +23,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Network layer over which RTP/etc packet data will be transported.
+@brief Network layer over which RTP/etc packet data will be transported.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTSPLowerTransport {
     /***********************************************************
     UDP/unicast
     ***********************************************************/
     RTSP_LOWER_TRANSPORT_UDP,
     /***********************************************************
-    TCP; interleaved in RTSP
+    @brief TCP; interleaved in RTSP
     ***********************************************************/
     RTSP_LOWER_TRANSPORT_TCP,
     /***********************************************************
@@ -40,17 +41,17 @@ public enum RTSPLowerTransport {
     RTSP_LOWER_TRANSPORT_UDP_MULTICAST,
     RTSP_LOWER_TRANSPORT_NB,
     /***********************************************************
-    HTTP tunneled - not a proper
+    @brief HTTP tunneled - not a proper
     transport mode as such,
     only for use via AVOptions
     ***********************************************************/
     RTSP_LOWER_TRANSPORT_HTTP,
     /***********************************************************
-    HTTPS tunneled
+    @brief HTTPS tunneled
     ***********************************************************/
     RTSP_LOWER_TRANSPORT_HTTPS,
     /***********************************************************
-    Custom IO - not a public
+    @brief Custom IO - not a public
     option for lower_transport_mask,
     but set in the SDP demuxer based
     on a flag.
@@ -59,175 +60,216 @@ public enum RTSPLowerTransport {
 }
 
 /***********************************************************
-Packet profile of the data that we will be receiving. Real servers
+@brief Packet profile of the data that we will be receiving. Real servers
 commonly send RDT (although they can sometimes send RTP as well),
 whereas most others will send RTP.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTSPTransport {
     /***********************************************************
-    Standards-compliant RTP
+    @brief Standards-compliant RTP
     ***********************************************************/
     RTSP_TRANSPORT_RTP,
     /***********************************************************
-    Realmedia Data Transport
+    @brief Realmedia Data Transport
     ***********************************************************/
     RTSP_TRANSPORT_RDT,
     /***********************************************************
-    Raw data (over UDP)
+    @brief Raw data (over UDP)
     ***********************************************************/
     RTSP_TRANSPORT_RAW,
     RTSP_TRANSPORT_NB
 }
 
 /***********************************************************
-Transport mode for the RTSP data. This may be plain, or
+@brief Transport mode for the RTSP data. This may be plain, or
 tunneled, which is done over HTTP.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTSPControlTransport {
     /***********************************************************
-    Normal RTSP
+    @brief Normal RTSP
     ***********************************************************/
     RTSP_MODE_PLAIN,
     /***********************************************************
-    RTSP over HTTP (tunneling)
+    @brief RTSP over HTTP (tunneling)
     ***********************************************************/
     RTSP_MODE_TUNNEL
 }
 
 [CCode (cname="", cheader_filename="")]
 public const int RTSP_DEFAULT_PORT; // 554
+[CCode (cname="", cheader_filename="")]
 public const int RTSPS_DEFAULT_PORT; // 322
+[CCode (cname="", cheader_filename="")]
 public const int RTSP_MAX_TRANSPORTS; // 8
+[CCode (cname="", cheader_filename="")]
 public const size_t RTSP_TCP_MAX_PACKET_SIZE; // 1472
+[CCode (cname="", cheader_filename="")]
 public const int RTSP_DEFAULT_NB_AUDIO_CHANNELS; // 1
+[CCode (cname="", cheader_filename="")]
 public const int RTSP_DEFAULT_AUDIO_SAMPLERATE; // 44100
+[CCode (cname="", cheader_filename="")]
 public const int RTSP_RTP_PORT_MIN; // 5000
+[CCode (cname="", cheader_filename="")]
 public const int RTSP_RTP_PORT_MAX; // 65000
 
 /***********************************************************
-This describes a single item in the "Transport:" line of one stream as
+@brief This describes a single item in the "Transport:" line of one stream as
 negotiated by the SETUP RTSP command. Multiple transports are comma-
 separated ("Transport: x-read-rdt/tcp;interleaved=0-1,rtp/avp/udp;
 client_port=1000-1001;server_port=1800-1801") and described in separate
 RTSPTransportFields.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct RTSPTransportField {
     /***********************************************************
-    interleave ids, if TCP transport; each TCP/RTSP data packet starts
+    @brief Interleave ids, if TCP transport; each TCP/RTSP data packet starts
     with a '$', stream length and stream ID. If the stream ID is within
     the range of this interleaved_min-max, then the packet belongs to
     this stream.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int interleaved_min;
+
+    [CCode (cname="", cheader_filename="")]
     public int interleaved_max;
 
     /***********************************************************
     UDP multicast port range; the ports to which we should connect to
     receive multicast UDP data.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int port_min;
+
+    [CCode (cname="", cheader_filename="")]
     public int port_max;
 
     /***********************************************************
     UDP client ports; these should be the local ports of the UDP RTP
     (and RTCP) sockets over which we receive RTP/RTCP data.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int client_port_min;
+
+    [CCode (cname="", cheader_filename="")]
     public int client_port_max;
 
     /***********************************************************
     UDP unicast server port range; the ports to which we should connect
     to receive unicast UDP RTP/RTCP data.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int server_port_min;
+
+    [CCode (cname="", cheader_filename="")]
     public int server_port_max;
 
     /***********************************************************
-    time-to-live value (required for multicast); the amount of HOPs that
+    @brief Time-to-live value (required for multicast); the amount of HOPs that
     packets will be allowed to make before being discarded.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int ttl;
 
     /***********************************************************
-    transport set to record data
+    @brief Transport set to record data
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int mode_record;
 
     /***********************************************************
-    destination IP address
+    @brief Destination IP address
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public sockaddr_storage destination;
+
     /***********************************************************
-    source IP address
+    @brief Source IP address
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char source[INET6_ADDRSTRLEN + 1];
 
     /***********************************************************
-    data/packet transport protocol; e.g. RTP or RDT
+    @brief Data/packet transport protocol; e.g. RTP or RDT
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPTransport transport;
 
     /***********************************************************
-    network layer transport protocol; e.g. TCP or UDP uni-/multicast
+    @brief Network layer transport protocol; e.g. TCP or UDP uni-/multicast
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPLowerTransport lower_transport;
 }
 
 /***********************************************************
-This describes the server response to each RTSP command.
+@brief This describes the server response to each RTSP command.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct RTSPMessageHeader {
     /***********************************************************
-    length of the data following this header
+    @brief Length of the data following this header
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int content_length;
 
     /***********************************************************
-    response code from server
+    @brief Response code from server
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPStatusCode status_code;
 
     /***********************************************************
-    number of items in the 'transports' variable below
+    @brief Number of items in the 'transports' variable below
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int nb_transports;
 
     /***********************************************************
-    Time range of the streams that the server will stream. In
+    @brief Time range of the streams that the server will stream. In
     AV_TIME_BASE unit, AV_NOPTS_VALUE if not used
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 range_start;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 range_end;
 
     /***********************************************************
-    describes the complete "Transport:" line of the server in response
+    @brief Describes the complete "Transport:" line of the server in response
     to a SETUP RTSP command by the client
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPTransportField transports[RTSP_MAX_TRANSPORTS];
 
     /***********************************************************
-    sequence number
+    @brief Sequence number
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int seq;
 
     /***********************************************************
-    the "Session:" field. This value is initially set by the server and
+    @brief The "Session:" field. This value is initially set by the server and
     should be re-transmitted by the client in every RTSP command.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char session_id[512];
 
     /***********************************************************
-    the "Location:" field. This value is used to handle redirection.
+    @brief The "Location:" field. This value is used to handle redirection.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char location[4096];
 
     /***********************************************************
-    the "RealChallenge1:" field from the server
+    @brief The "RealChallenge1:" field from the server
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char real_challenge[64];
 
     /***********************************************************
-    the "Server: field, which can be used to identify some special-case
+    @brief The "Server: field, which can be used to identify some special-case
     servers that are not 100% standards-compliant. We use this to identify
     Windows Media Server, which has a value "WMServer/v.e.r.sion", where
     version is a sequence of digits (e.g. 9.0.0.3372). Helix/Real servers
@@ -235,376 +277,442 @@ public struct RTSPMessageHeader {
     (RealServer compatible)" or "RealServer Version v.e.r.sion (platform)"
     where platform is the output of $uname -msr | sed 's/ /-/g'.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char server[64];
 
     /***********************************************************
-    The "timeout" comes as part of the server response to the "SETUP"
+    @brief The "timeout" comes as part of the server response to the "SETUP"
     command, in the "Session: <xyz>[;timeout=<value>]" line. It is the
     time, in seconds, that the server will go without traffic over the
     RTSP/TCP connection before it closes the connection. To prevent
     this, sent dummy requests (e.g. OPTIONS) with intervals smaller
     than this value.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int timeout;
 
     /***********************************************************
-    The "Notice" or "X-Notice" field value. See
+    @brief The "Notice" or "X-Notice" field value. See
     http://tools.ietf.org/html/draft-stiemerling-rtsp-announce-00
     for a complete list of supported values.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int notice;
 
     /***********************************************************
-    The "reason" is meant to specify better the meaning of the error code
+    @brief The "reason" is meant to specify better the meaning of the error code
     returned
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char reason[256];
 
     /***********************************************************
-    Content type header
+    @brief Content type header
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char content_type[64];
 }
 
 /***********************************************************
-Client state, i.e. whether we are currently receiving data (PLAYING) or
+@brief Client state, i.e. whether we are currently receiving data (PLAYING) or
 setup-but-not-receiving (PAUSED). State can be changed in applications
 by calling av_read_play/pause ().
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTSPClientState {
     /***********************************************************
-    not initialized
+    @brief Not initialized
     ***********************************************************/
     RTSP_STATE_IDLE,
     /***********************************************************
-    initialized and sending/receiving data
+    @brief Initialized and sending/receiving data
     ***********************************************************/
     RTSP_STATE_STREAMING,
     /***********************************************************
-    initialized, but not receiving data
+    @brief Initialized, but not receiving data
     ***********************************************************/
     RTSP_STATE_PAUSED,
     /***********************************************************
-    initialized, requesting a seek
+    @brief Initialized, requesting a seek
     ***********************************************************/
     RTSP_STATE_SEEKING,
 }
 
 /***********************************************************
-Identify particular servers that require special handling, such as
+@brief Identify particular servers that require special handling, such as
 standards-incompliant "Transport:" lines in the SETUP request.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTSPServerType {
     /***********************************************************
-    Standards-compliant RTP-server
+    @brief Standards-compliant RTP-server
     ***********************************************************/
     RTSP_SERVER_RTP,
     /***********************************************************
-    Realmedia-style server
+    @brief Realmedia-style server
     ***********************************************************/
     RTSP_SERVER_REAL,
     /***********************************************************
-    Windows Media server
+    @brief Windows Media server
     ***********************************************************/
     RTSP_SERVER_WMS,
     RTSP_SERVER_NB
 }
 
 /***********************************************************
-Private data for the RTSP demuxer.
+@brief Private data for the RTSP demuxer.
 
 @todo Use AVIOContext instead of URLContext
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct RTSPState {
     /***********************************************************
-    Class for private options.
+    @brief Class for private options.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class class;
+
     /***********************************************************
-    RTSP TCP connection handle
+    @brief RTSP TCP connection handle
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public URLContext rtsp_hd;
 
     /***********************************************************
-    streams in this session
+    @brief Streams in this session
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPStream[] rtsp_streams;
 
     /***********************************************************
-    number of items in the 'rtsp_streams' variable
+    @brief Number of items in the 'rtsp_streams' variable
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int nb_rtsp_streams;
 
     /***********************************************************
-    indicator of whether we are currently receiving data from the
+    @brief Indicator of whether we are currently receiving data from the
     server. Basically this isn't more than a simple cache of the
     last PLAY/PAUSE command sent to the server, to make sure we don't
     send 2x the same unexpectedly or commands in the wrong state.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPClientState state;
 
     /***********************************************************
-    the seek value requested when calling av_seek_frame (). This value
+    @brief The seek value requested when calling av_seek_frame (). This value
     is subsequently used as part of the "Range" parameter when emitting
     the RTSP PLAY command. If we are currently playing, this command is
     called instantly. If we are currently paused, this command is called
     whenever we resume playback. Either way, the value is only used once,
     see rtsp_read_play () and rtsp_read_seek ().
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 seek_timestamp;
 
     /***********************************************************
-    RTSP command sequence number
+    @brief RTSP command sequence number
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int seq;
 
     /***********************************************************
-    copy of RTSPMessageHeader.session_id, i.e. the server-provided session
+    @brief Copy of RTSPMessageHeader.session_id, i.e. the server-provided session
     identifier that the client should re-transmit in each RTSP command
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char session_id[512];
 
     /***********************************************************
-    copy of RTSPMessageHeader.timeout, i.e. the time (in seconds) that
+    @brief Copy of RTSPMessageHeader.timeout, i.e. the time (in seconds) that
     the server will go without traffic on the RTSP/TCP line before it
     closes the connection.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int timeout;
 
     /***********************************************************
-    timestamp of the last RTSP command that we sent to the RTSP server.
+    @brief Timestamp of the last RTSP command that we sent to the RTSP server.
     This is used to calculate when to send dummy commands to keep the
     connection alive, in conjunction with timeout.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 last_cmd_time;
 
     /***********************************************************
-    the negotiated data/packet transport protocol; e.g. RTP or RDT
+    @brief The negotiated data/packet transport protocol; e.g. RTP or RDT
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPTransport transport;
 
     /***********************************************************
-    the negotiated network layer transport protocol; e.g. TCP or UDP
+    @brief The negotiated network layer transport protocol; e.g. TCP or UDP
     uni-/multicast
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPLowerTransport lower_transport;
 
     /***********************************************************
-    brand of server that we're talking to; e.g. WMS, REAL or other.
+    @brief Brand of server that we're talking to; e.g. WMS, REAL or other.
     Detected based on the value of RTSPMessageHeader.server or the presence
     of RTSPMessageHeader.real_challenge
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPServerType server_type;
 
     /***********************************************************
-    the "RealChallenge1:" field from the server
+    @brief The "RealChallenge1:" field from the server
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char real_challenge[64];
 
     /***********************************************************
-    plaintext authorization line (username:password)
+    @brief Plaintext authorization line (username:password)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char auth[128];
 
     /***********************************************************
-    authentication state
+    @brief Authentication state
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public HTTPAuthState auth_state;
 
     /***********************************************************
-    The last reply of the server to a RTSP command
+    @brief The last reply of the server to a RTSP command
     XXX: allocate ?
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char last_reply[2048];
 
     /***********************************************************
-    RTSPStream.transport_priv of the last stream that we read a
+    @brief RTSPStream.transport_priv of the last stream that we read a
     packet from
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public void *cur_transport_priv;
 
     /***********************************************************
-    The following are used for Real stream selection
+    @brief The following are used for Real stream selection
     ***********************************************************/
     //@{
     /***********************************************************
-    whether we need to send a "SET_PARAMETER Subscribe:" command
+    @brief Whether we need to send a "SET_PARAMETER Subscribe:" command
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int need_subscription;
 
     /***********************************************************
-    stream setup during the last frame read. This is used to detect if
+    @brief Stream setup during the last frame read. This is used to detect if
     we need to subscribe or unsubscribe to any new streams.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public LibAVCodec.Discard *real_setup_cache;
 
     /***********************************************************
-    current stream setup. This is a temporary buffer used to compare
+    @brief Current stream setup. This is a temporary buffer used to compare
     current setup to previous frame setup.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public LibAVCodec.Discard *real_setup;
 
     /***********************************************************
-    the last value of the "SET_PARAMETER Subscribe:" RTSP command.
+    @brief The last value of the "SET_PARAMETER Subscribe:" RTSP command.
     this is used to send the same "Unsubscribe:" if stream setup changed,
     before sending a new "Subscribe:" command.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char last_subscription[1024];
     //@}
 
     /***********************************************************
-    The following are used for RTP/ASF streams
+    @brief The following are used for RTP/ASF streams
     ***********************************************************/
     //@{
     /***********************************************************
-    ASF demuxer context for the embedded ASF stream from WMS servers
+    @brief ASF demuxer context for the embedded ASF stream from WMS servers
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public AVFormatContext asf_ctx;
 
     /***********************************************************
-    cache for position of the asf demuxer, since we load a new
+    @brief Cache for position of the asf demuxer, since we load a new
     data packet in the bytecontext for each incoming RTSP packet.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint64 asf_pb_pos;
     //@}
 
     /***********************************************************
-    some MS RTSP streams contain a URL in the SDP that we need to use
+    @brief Some MS RTSP streams contain a URL in the SDP that we need to use
     for all subsequent RTSP requests, rather than the input URI; in
     other cases, this is a copy of AVFormatContext.filename.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char control_uri[1024];
 
     /***********************************************************
-    The following are used for parsing raw mpegts in udp
+    @brief The following are used for parsing raw mpegts in udp
     ***********************************************************/
     //@{
+    [CCode (cname="", cheader_filename="")]
     public MpegTSContext ts;
+
+    [CCode (cname="", cheader_filename="")]
     public int recvbuf_pos;
+
+    [CCode (cname="", cheader_filename="")]
     public int recvbuf_len;
     //@}
 
     /***********************************************************
-    Additional output handle, used when input and output are done
+    @brief Additional output handle, used when input and output are done
     separately, eg for HTTP tunneling.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public URLContext rtsp_hd_out;
 
     /***********************************************************
-    RTSP transport mode, such as plain or tunneled.
+    @brief RTSP transport mode, such as plain or tunneled.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPControlTransport control_transport;
 
     /***********************************************************
-    Number of RTCP BYE packets the RTSP session has received.
+    @brief Number of RTCP BYE packets the RTSP session has received.
     An EOF is propagated back if nb_byes == nb_streams.
     This is reset after a seek.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int nb_byes;
 
     /***********************************************************
-    Reusable buffer for receiving packets
+    @brief Reusable buffer for receiving packets
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint8[] recvbuf;
 
     /***********************************************************
-    A mask with all requested transport methods
+    @brief A mask with all requested transport methods
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int lower_transport_mask;
 
     /***********************************************************
-    The number of returned packets
+    @brief The number of returned packets
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint64 packets;
 
     /***********************************************************
-    Polling array for udp
+    @brief Polling array for udp
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public GLib.PollFD p;
+
+    [CCode (cname="", cheader_filename="")]
     public int max_p;
 
     /***********************************************************
-    Whether the server supports the GET_PARAMETER method.
+    @brief Whether the server supports the GET_PARAMETER method.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int get_parameter_supported;
 
     /***********************************************************
-    Do not begin to play the stream immediately.
+    @brief Do not begin to play the stream immediately.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int initial_pause;
 
     /***********************************************************
-    Option flags for the chained RTP muxer.
+    @brief Option flags for the chained RTP muxer.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int rtp_muxer_flags;
 
     /***********************************************************
-    Whether the server accepts the x-Dynamic-Rate header
+    @brief Whether the server accepts the x-Dynamic-Rate header
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int accept_dynamic_rate;
 
     /***********************************************************
-    Various option flags for the RTSP muxer/demuxer.
+    @brief Various option flags for the RTSP muxer/demuxer.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int rtsp_flags;
 
     /***********************************************************
-    Mask of all requested media types
+    @brief Mask of all requested media types
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int media_type_mask;
 
     /***********************************************************
-    Minimum and maximum local UDP ports.
+    @brief Minimum and maximum local UDP ports.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int rtp_port_min;
+
+    [CCode (cname="", cheader_filename="")]
     public int rtp_port_max;
 
     /***********************************************************
-    Timeout to wait for incoming connections.
+    @brief Timeout to wait for incoming connections.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int initial_timeout;
 
     /***********************************************************
-    timeout of socket i/o operations.
+    @brief Timeout of socket i/o operations.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int stimeout;
 
     /***********************************************************
-    Size of RTP packet reordering queue.
+    @brief Size of RTP packet reordering queue.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int reordering_queue_size;
 
     /***********************************************************
     User-Agent string
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public string user_agent;
 
+    [CCode (cname="", cheader_filename="")]
     public char default_lang[4];
+
+    [CCode (cname="", cheader_filename="")]
     public int buffer_size;
+
+    [CCode (cname="", cheader_filename="")]
     public int pkt_size;
 }
 
 [Flags]
 public enum RTSPFlags {
     /***********************************************************
-    Filter incoming UDP packets - receive packets only from the
+    @brief Filter incoming UDP packets - receive packets only from the
     right source address and port.
     ***********************************************************/
     RTSP_FLAG_FILTER_SRC,
     /***********************************************************
-    Wait for incoming connections.
+    @brief Wait for incoming connections.
     ***********************************************************/
     RTSP_FLAG_LISTEN,
     /***********************************************************
-    Do all IO via the AVIOContext.
+    @brief Do all IO via the AVIOContext.
     ***********************************************************/
     RTSP_FLAG_CUSTOM_IO,
     /***********************************************************
-    Send RTCP packets to the source address of received packets.
+    @brief Send RTCP packets to the source address of received packets.
     ***********************************************************/
     RTSP_FLAG_RTCP_TO_SOURCE,
     /***********************************************************
-    Try RTP via TCP first if possible.
+    @brief Try RTP via TCP first if possible.
     ***********************************************************/
     RTSP_FLAG_PREFER_TCP,
 }
@@ -612,108 +720,140 @@ public enum RTSPFlags {
 [CCode (cname="struct RTSPSource", cheader_filename="")]
 public struct RTSPSource {
     /***********************************************************
-    Source-specific multicast include source IP address (from SDP content)
+    @brief Source-specific multicast include source IP address (from SDP content)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char addr[128];
 }
 
 /***********************************************************
-Describe a single stream, as identified by a single m= line block in the
+@brief Describe a single stream, as identified by a single m= line block in the
 SDP content. In the case of RDT, one RTSPStream can represent multiple
 AVStreams. In this case, each AVStream in this set has similar content
 (but different codec/bitrate).
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct RTSPStream {
     /***********************************************************
-    RTP stream handle (if UDP)
+    @brief RTP stream handle (if UDP)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public URLContext rtp_handle;
+
     /***********************************************************
-    RTP/RDT parse context if input, RTP AVFormatContext if output
+    @brief RTP/RDT parse context if input, RTP AVFormatContext if output
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public void *transport_priv;
 
     /***********************************************************
-    corresponding stream index, if any. -1 if none (MPEG2TS case)
+    @brief Corresponding stream index, if any. -1 if none (MPEG2TS case)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int stream_index;
 
     /***********************************************************
-    interleave IDs; copies of RTSPTransportField.interleaved_min/max
+    @brief Interleave IDs; copies of RTSPTransportField.interleaved_min/max
     for the selected transport. Only used for TCP.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int interleaved_min;
+
+    [CCode (cname="", cheader_filename="")]
     public int interleaved_max;
 
     /***********************************************************
     url for this stream (from SDP)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char control_url[1024];
 
     /***********************************************************
-    The following are used only in SDP, not RTSP
+    @brief The following are used only in SDP, not RTSP
     ***********************************************************/
 //@{
     /***********************************************************
-    port (from SDP content)
+    @brief Port (from SDP content)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int sdp_port;
+
     /***********************************************************
-    IP address (from SDP content)
+    @brief IP address (from SDP content)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public sockaddr_storage sdp_ip;
+
     /***********************************************************
-    Source-specific multicast include source IP addresses (from SDP content)
+    @brief Source-specific multicast include source IP addresses (from SDP content)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPSource[] include_source_addrs;
+
     /***********************************************************
-    Number of source-specific multicast include source IP addresses (from SDP content)
+    @brief Number of source-specific multicast include source IP addresses (from SDP content)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int nb_include_source_addrs;
+
     /***********************************************************
-    Source-specific multicast exclude source IP addresses (from SDP content)
+    @brief Source-specific multicast exclude source IP addresses (from SDP content)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTSPSource[] exclude_source_addrs;
+
     /***********************************************************
-    Number of source-specific multicast exclude source IP addresses (from SDP content)
+    @brief Number of source-specific multicast exclude source IP addresses (from SDP content)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int nb_exclude_source_addrs;
+
     /***********************************************************
-    IP Time-To-Live (from SDP content)
+    @brief IP Time-To-Live (from SDP content)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int sdp_ttl;
+
     /***********************************************************
-    payload type
+    @brief Payload type
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int sdp_payload_type;
 //@}
 
     /***********************************************************
-    The following are used for dynamic protocols (rtpdec_*.c/rdt.c)
+    @brief The following are used for dynamic protocols (rtpdec_*.c/rdt.c)
     ***********************************************************/
     //@{
     /***********************************************************
-    handler structure
+    @brief Handler structure
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public RTPDynamicProtocolHandler dynamic_handler;
 
     /***********************************************************
-    private data associated with the dynamic protocol
+    @brief Private data associated with the dynamic protocol
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public PayloadContext dynamic_protocol_context;
 //@}
 
     /***********************************************************
-    Enable sending RTCP feedback messages according to RFC 4585
+    @brief Enable sending RTCP feedback messages according to RFC 4585
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int feedback;
 
     /***********************************************************
-    SSRC for this stream, to allow identifying RTCP packets before the first RTP packet
+    @brief SSRC for this stream, to allow identifying RTCP packets before the first RTP packet
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint32 ssrc;
 
+    [CCode (cname="", cheader_filename="")]
     public char crypto_suite[40];
+
+    [CCode (cname="", cheader_filename="")]
     public char crypto_params[100];
 }
 
@@ -727,10 +867,11 @@ public void ff_rtsp_parse_line (
 );
 
 /***********************************************************
-Send a command to the RTSP server without waiting for the reply.
+@brief Send a command to the RTSP server without waiting for the reply.
 
 @see rtsp_send_cmd_with_content_async
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_send_cmd_async (
     AVFormatContext format_context,
     string method,
@@ -739,7 +880,7 @@ public int ff_rtsp_send_cmd_async (
 );
 
 /***********************************************************
-Send a command to the RTSP server and wait for the reply.
+@brief Send a command to the RTSP server and wait for the reply.
 
 @param format_context RTSP (de)muxer context
 @param method the method for the request
@@ -754,6 +895,7 @@ Send a command to the RTSP server and wait for the reply.
 
 @return zero if success, nonzero otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_send_cmd_with_content (
     AVFormatContext format_context,
     string method,
@@ -766,10 +908,11 @@ public int ff_rtsp_send_cmd_with_content (
 );
 
 /***********************************************************
-Send a command to the RTSP server and wait for the reply.
+@brief Send a command to the RTSP server and wait for the reply.
 
 @see rtsp_send_cmd_with_content
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_send_cmd (
     AVFormatContext format_context,
     string method,
@@ -780,7 +923,7 @@ public int ff_rtsp_send_cmd (
 );
 
 /***********************************************************
-Read a RTSP message from the server, or prepare to read data
+@brief Read a RTSP message from the server, or prepare to read data
 packets if we're reading data interleaved over the TCP/RTSP
 connection as well.
 
@@ -802,6 +945,7 @@ connection as well.
 @return 1 if a data packets is ready to be received, -1 on error,
          and 0 on success.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_read_reply (
     AVFormatContext format_context,
     RTSPMessageHeader reply,
@@ -811,14 +955,15 @@ public int ff_rtsp_read_reply (
 );
 
 /***********************************************************
-Skip a RTP/TCP interleaved packet.
+@brief Skip a RTP/TCP interleaved packet.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_rtsp_skip_packet (
     AVFormatContext format_context
 );
 
 /***********************************************************
-Connect to the RTSP server and set up the individual media streams.
+@brief Connect to the RTSP server and set up the individual media streams.
 This can be used for both muxers and demuxers.
 
 @param format_context RTSP (de)muxer context
@@ -826,67 +971,75 @@ This can be used for both muxers and demuxers.
 @return 0 on success, < 0 on error. Cleans up all allocations done
          within the function on error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_connect (
     AVFormatContext format_context
 );
 
 /***********************************************************
-Close and free all streams within the RTSP (de)muxer
+@brief Close and free all streams within the RTSP (de)muxer
 
 @param format_context RTSP (de)muxer context
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_rtsp_close_streams (
     AVFormatContext format_context
 );
 
 /***********************************************************
-Close all connection handles within the RTSP (de)muxer
+@brief Close all connection handles within the RTSP (de)muxer
 
 @param format_context RTSP (de)muxer context
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_rtsp_close_connections (
     AVFormatContext format_context
 );
 
 /***********************************************************
-Get the description of the stream and set up the RTSPStream child
+@brief Get the description of the stream and set up the RTSPStream child
 objects.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_setup_input_streams (
     AVFormatContext format_context,
     RTSPMessageHeader reply
 );
 
 /***********************************************************
-Announce the stream to the server and set up the RTSPStream child
+@brief Announce the stream to the server and set up the RTSPStream child
 objects for each media stream.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_setup_output_streams (
     AVFormatContext format_context,
     string addr
 );
 
 /***********************************************************
-Parse RTSP commands (OPTIONS, PAUSE and TEARDOWN) during streaming in
+@brief Parse RTSP commands (OPTIONS, PAUSE and TEARDOWN) during streaming in
 listen mode.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_parse_streaming_commands (
     AVFormatContext format_context
 );
 
 /***********************************************************
-Parse an SDP description of streams by populating an RTSPState struct
+@brief Parse an SDP description of streams by populating an RTSPState struct
 within the AVFormatContext; also allocate the RTP streams and the
 GLib.PollFD array used for UDP streams.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_sdp_parse (
     AVFormatContext format_context,
     string content
 );
 
 /***********************************************************
-Receive one RTP packet from an TCP interleaved RTSP stream.
+@brief Receive one RTP packet from an TCP interleaved RTSP stream.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_tcp_read_packet (
     AVFormatContext format_context,
     out RTSPStream prtsp_st,
@@ -895,27 +1048,30 @@ public int ff_rtsp_tcp_read_packet (
 );
 
 /***********************************************************
-Send buffered packets over TCP.
+@brief Send buffered packets over TCP.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_tcp_write_packet (
     AVFormatContext format_context,
     RTSPStream rtsp_st
 );
 
 /***********************************************************
-Receive one packet from the RTSPStreams set up in the AVFormatContext
+@brief Receive one packet from the RTSPStreams set up in the AVFormatContext
 (which should contain a RTSPState struct as priv_data).
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_fetch_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
 
 /***********************************************************
-Do the SETUP requests for each stream for the chosen
+@brief Do the SETUP requests for each stream for the chosen
 lower transport mode.
 @return 0 on success, <0 on error, 1 if protocol is unavailable
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_make_setup_request (
     AVFormatContext format_context,
     string host,
@@ -925,17 +1081,19 @@ public int ff_rtsp_make_setup_request (
 );
 
 /***********************************************************
-Undo the effect of ff_rtsp_make_setup_request, close the
+@brief Undo the effect of ff_rtsp_make_setup_request, close the
 transport_priv and rtp_handle fields.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_rtsp_undo_setup (
     AVFormatContext format_context,
     int send_packets
 );
 
 /***********************************************************
-Open RTSP transport context.
+@brief Open RTSP transport context.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtsp_open_transport_ctx (
     AVFormatContext format_context,
     RTSPStream rtsp_st

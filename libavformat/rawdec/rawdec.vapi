@@ -1,9 +1,9 @@
 /***********************************************************
-RAW demuxers
+@brief RAW demuxers
 @copyright 2007 Aurelien Jacobs <aurel@gnuage.org>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -25,30 +25,42 @@ namespace LibAVFormat {
 [CCode (cname="struct FFRawVideoDemuxerContext", cheader_filename="")]
 public struct FFRawVideoDemuxerContext {
     /***********************************************************
-    Class for private options.
+    @brief Class for private options.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class class;
+
+    [CCode (cname="", cheader_filename="")]
     public int raw_packet_size;
+
     /***********************************************************
-    string describing video size, set by a private option.
+    @brief String describing video size, set by a private option.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public string video_size;
+
     /***********************************************************
-    Set by a private option.
+    @brief Set by a private option.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public string pixel_format;
+
     /***********************************************************
-    LibAVUtil.Rational describing framerate, set by a private option.
+    @brief LibAVUtil.Rational describing framerate, set by a private option.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Rational framerate;
 }
 
 [CCode (cname="struct FFRawDemuxerContext", cheader_filename="")]
 public struct FFRawDemuxerContext {
     /***********************************************************
-    Class for private options.
+    @brief Class for private options.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class class;
+
+    [CCode (cname="", cheader_filename="")]
     public int raw_packet_size;
 }
 

@@ -1,9 +1,9 @@
 /***********************************************************
-Opus parser for Ogg
+@brief Opus parser for Ogg
 @copyright 2012 Nicolas George
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,6 +30,8 @@ public class OpusCodec : OggCodec {
             return "Opus".data;
         }
     }
+
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "OpusHead".data;
@@ -41,6 +43,7 @@ public class OpusCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="opus_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,

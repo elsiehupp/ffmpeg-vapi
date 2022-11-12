@@ -3,7 +3,7 @@
 @copyright 2012 Samuel Pitoiset
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -34,6 +34,7 @@ public struct BlowfishContext {
 
     [CCode (cname="p")]
     public uint32 p[AV_BF_ROUNDS + 2];
+
     [CCode (cname="s")]
     public uint32 s[4 * 256];
 

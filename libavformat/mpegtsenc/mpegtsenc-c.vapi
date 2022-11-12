@@ -1,9 +1,9 @@
 /***********************************************************
-MPEG-2 transport stream (aka DVB) muxer
+@brief MPEG-2 transport stream (aka DVB) muxer
 @copyright 2003 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -125,6 +125,7 @@ public class MpegTSMuxerClass : LibAVUtil.Class {
             return "MPEGTS muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -133,8 +134,10 @@ public class MpegTSMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -154,64 +157,76 @@ public class MpegTSMuxer : AVOutputFormat {
             return "mpegts";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MPEG-TS (MPEG-2 Transport Stream)";
         }
     }
+
     [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "video/MP2T";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "ts,m2t,m2ts,mts";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegTSMuxerPrivateData);
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.MP2;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
+
     [CCode (cname="mpegts_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
+
     [CCode (cname="mpegts_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="mpegts_write_end", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="mpegts_deinit", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
+
     [CCode (cname="mpegts_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

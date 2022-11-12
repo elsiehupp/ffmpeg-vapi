@@ -2,7 +2,7 @@
 @copyright 2010 David Conrad
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,6 +23,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_skeleton_codec", cheader_filename="")]
 public class SkeletonCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "fishead".data;

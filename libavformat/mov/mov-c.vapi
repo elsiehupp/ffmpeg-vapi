@@ -1,5 +1,5 @@
 /***********************************************************
-MOV demuxer
+@brief MOV demuxer
 @copyright 2001 Fabrice Bellard
 @copyright 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
 
@@ -7,7 +7,7 @@ first version by Francois Revol <revol@free.fr>
 seek function by Gael Chardon <gael.dev@4now.net>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -81,6 +81,7 @@ public class MOVDemuxerClass : LibAVUtil.Class {
             return "mov,mp4,m4a,3gp,3g2,mj2";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -106,6 +107,7 @@ public class MOVDemuxer : AVInputFormat {
             return "mov,mp4,m4a,3gp,3g2,mj2";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
@@ -119,29 +121,35 @@ public class MOVDemuxer : AVInputFormat {
             return sizeof (MOVContext);
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "mov,mp4,m4a,3gp,3g2,mj2";
         }
     }
+
     [CCode (cname="mov_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="mov_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="mov_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="mov_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="mov_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -149,6 +157,7 @@ public class MOVDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

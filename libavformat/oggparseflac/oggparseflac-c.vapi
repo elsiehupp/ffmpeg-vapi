@@ -2,7 +2,7 @@
 @copyright 2005  Matthieu CASTET
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,6 +23,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_flac_codec", cheader_filename="")]
 public class FlacCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "177FLAC".data;
@@ -39,6 +40,7 @@ public class FlacCodec : OggCodec {
 
 [CCode (cname="ff_old_flac_codec", cheader_filename="")]
 public class OldFlacCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "fLaC".data;

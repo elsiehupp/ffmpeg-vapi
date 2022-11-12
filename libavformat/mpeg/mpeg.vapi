@@ -1,9 +1,9 @@
 /***********************************************************
-MPEG-1/2 muxer and demuxer common defines
+@brief MPEG-1/2 muxer and demuxer common defines
 @copyright 2000, 2001, 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,18 +24,35 @@ namespace LibAVFormat {
 
 [CCode (cname="", cheader_filename="")]
 public const uint PACK_START_CODE;
+
+[CCode (cname="", cheader_filename="")]
 public const uint SYSTEM_HEADER_START_CODE;
+
+[CCode (cname="", cheader_filename="")]
 public const uint SEQUENCE_END_CODE;
+
+[CCode (cname="", cheader_filename="")]
 public const uint PACKET_START_CODE_MASK;
+
+[CCode (cname="", cheader_filename="")]
 public const uint PACKET_START_CODE_PREFIX;
+
+[CCode (cname="", cheader_filename="")]
 public const uint ISO_11172_END_CODE;
 
 /***********************************************************
-mpeg2
+@brief Mpeg2
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const uint PROGRAM_STREAM_MAP;
+
+[CCode (cname="", cheader_filename="")]
 public const uint PRIVATE_STREAM_1;
+
+[CCode (cname="", cheader_filename="")]
 public const uint PADDING_STREAM;
+
+[CCode (cname="", cheader_filename="")]
 public const uint PRIVATE_STREAM_2;
 
 [CCode (cname="", cheader_filename="")]
@@ -69,8 +86,9 @@ public enum StreamType {
 public const int lpcm_freq_tab[4]; // = { 48000, 96000, 44100, 32000 }
 
 /***********************************************************
-Parse MPEG-PES five-byte timestamp
+@brief Parse MPEG-PES five-byte timestamp
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public static int64 ff_parse_pes_pts (
     uint8[] buffer
 );

@@ -1,9 +1,9 @@
 /***********************************************************
-RTP definitions
+@brief RTP definitions
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Return the payload type for a given stream used in the given format context.
+@brief Return the payload type for a given stream used in the given format context.
 Static payload types are derived from the codec.
 Dynamic payload type are derived from the id field in AVStream.
 The format context private option payload_type overrides both.
@@ -40,7 +40,7 @@ int ff_rtp_get_payload_type (
 );
 
 /***********************************************************
-Initialize a codec context based on the payload type.
+@brief Initialize a codec context based on the payload type.
 
 Fill the codec_type and codec_id fields of a codec context with
 information depending on the payload type; for audio codecs, the
@@ -57,7 +57,7 @@ int ff_rtp_get_codec_info (
 );
 
 /***********************************************************
-Return the encoding name (as defined in
+@brief Return the encoding name (as defined in
 http://www.iana.org/assignments/rtp-parameters) for a given payload type.
 
 @param payload_type The payload type (the 'PT' field in the RTP header)
@@ -70,13 +70,14 @@ string ff_rtp_enc_name (
 );
 
 /***********************************************************
-Return the codec id for the given encoding name and codec type.
+@brief Return the codec id for the given encoding name and codec type.
 
 @param buffer A pointer to the string containing the encoding name
 @param codec_type The codec type
 @return In case of unknown encoding name, LibAVCodec.CodecID.NONE is returned;
 otherwise, the codec id is returned
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public LibAVCodec.CodecID ff_rtp_codec_id (
     string buffer,
     LibAVUtil.MediaType codec_type
@@ -84,27 +85,33 @@ public LibAVCodec.CodecID ff_rtp_codec_id (
 
 [CCode (cname="", cheader_filename="")]
 public const int RTP_PT_PRIVATE; // 96
+[CCode (cname="", cheader_filename="")]
 public const int RTP_VERSION; // 2
+[CCode (cname="", cheader_filename="")]
 public const size_t RTP_MAX_SDES; // 256 /***********************************************************
 //  maximum text length for SDES
 //  ***********************************************************/
 
 /***********************************************************
-RTCP packets use 0.5% of the bandwidth
+@brief RTCP packets use 0.5% of the bandwidth
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const int RTCP_TX_RATIO_NUM; // 5
+[CCode (cname="", cheader_filename="")]
 public const int RTCP_TX_RATIO_DEN; // 1000
 
 /***********************************************************
-An arbitrary id value for RTP Xiph streams - only relevant to indicate
+@brief An arbitrary id value for RTP Xiph streams - only relevant to indicate
 that the configuration has changed within a stream (by changing the
 ident value sent).
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const uint32 RTP_XIPH_IDENT; // 0xfecdba
 
 /***********************************************************
-RTCP packet types
+@brief RTCP packet types
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTCPType {
     RTCP_FIR, // 192,
     RTCP_NACK, // 193

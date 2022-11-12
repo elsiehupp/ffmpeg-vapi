@@ -1,9 +1,9 @@
 /***********************************************************
-MUSX demuxer
+@brief MUSX demuxer
 @copyright 2016 Paul B Mahol
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,25 +30,30 @@ public class MUSXDemuxer : AVInputFormat {
             return "musx";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Eurocom MUSX";
         }
     }
+
     [CCode (cname="musx_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="musx_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="musx_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

@@ -1,9 +1,9 @@
 /***********************************************************
-MPEG-DASH ISO BMFF segmenter
+@brief MPEG-DASH ISO BMFF segmenter
 @copyright 2014 Martin Storsjo
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 // See ISO/IEC 23009-1:2014 5.3.9.4.4
+[CCode (cname="", cheader_filename="")]
 public enum DASHTmplId {
     DASH_TMPL_ID_UNDEFINED = -1,
     DASH_TMPL_ID_ESCAPE,

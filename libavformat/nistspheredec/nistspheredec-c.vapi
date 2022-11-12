@@ -1,9 +1,9 @@
 /***********************************************************
-NIST Sphere demuxer
+@brief NIST Sphere demuxer
 @copyright 2012 Paul B Mahol
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,25 +30,30 @@ public class NISTSPHEREDemuxer : AVInputFormat {
             return "nistsphere";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "NIST SPeech HEader REsources";
         }
     }
+
     [CCode (cname="nist_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="nist_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="ff_pcm_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="ff_pcm_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -56,12 +61,14 @@ public class NISTSPHEREDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "nist,sph";
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

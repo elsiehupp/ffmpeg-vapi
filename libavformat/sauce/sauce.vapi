@@ -1,9 +1,9 @@
 /***********************************************************
-SAUCE header parser
+@brief SAUCE header parser
 @copyright 2010 Peter Ross <pross@xvid.org>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -32,6 +32,7 @@ namespace LibAVFormat {
 @param[out] got_width set to non-zero if SAUCE header reported height
 @param get_height Tell SAUCE header to parse height
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_sauce_read (
     AVFormatContext avctx,
     uint64[] fsize,

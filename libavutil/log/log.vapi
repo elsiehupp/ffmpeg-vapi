@@ -2,7 +2,7 @@
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -88,7 +88,6 @@ public void av_log_set_level (
     int level
 );
 
-[CCode (cname="", cheader_filename="")]
 public delegate void CallbackDelegate (
     void *arg0,
     int arg1,

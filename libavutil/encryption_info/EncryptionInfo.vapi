@@ -52,6 +52,7 @@ public struct EncryptionInfo {
     ***********************************************************/
     [CCode (cname="key_id")]
     public uint8[] key_id;
+
     [CCode (cname="key_id_size")]
     public uint32 key_id_size;
 
@@ -62,6 +63,7 @@ public struct EncryptionInfo {
     ***********************************************************/
     [CCode (cname="iv", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public uint8[] initialization_vector;
+
     [CCode (cname="iv_size", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public uint32 initialization_vector_size;
 
@@ -72,6 +74,7 @@ public struct EncryptionInfo {
     ***********************************************************/
     [CCode (cname="subsamples")]
     public SubsampleEncryptionInfo[] subsample_list;
+
     [CCode (cname="subsample_count")]
     public uint32 subsample_count;
 

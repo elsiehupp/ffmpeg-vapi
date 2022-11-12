@@ -1,9 +1,9 @@
 /***********************************************************
-Microsoft Advanced Streaming Format demuxer
+@brief Microsoft Advanced Streaming Format demuxer
 @copyright 2014 Alexandra Hájková
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -33,35 +33,42 @@ public class ASFODemuxer : AVInputFormat {
             return "asf_o";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "ASF (Advanced / Active Streaming Format)";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ASFODemuxerPrivateData);
         }
     }
+
     [CCode (cname="asf_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="asf_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="asf_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="asf_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="asf_read_timestamp", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
@@ -69,6 +76,7 @@ public class ASFODemuxer : AVInputFormat {
         int64[] pos,
         int64 pos_limit
     );
+
     [CCode (cname="asf_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -76,6 +84,7 @@ public class ASFODemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

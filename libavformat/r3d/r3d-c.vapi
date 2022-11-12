@@ -1,9 +1,9 @@
 /***********************************************************
-R3D REDCODE demuxer
+@brief R3D REDCODE demuxer
 @copyright 2008 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -33,35 +33,42 @@ public class R3DDemuxer : AVInputFormat {
             return "r3d";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "REDCODE R3D";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (R3DDemuxerPrivateData);
         }
     }
+
     [CCode (cname="r3d_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="r3d_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="r3d_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="r3d_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="r3d_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,

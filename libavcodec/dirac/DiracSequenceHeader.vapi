@@ -1,10 +1,5 @@
 /***********************************************************
-@copyright 2007 Marco Gerards <marco@gnu.org>
-@copyright 2009 David Conrad
-@copyright 2011 Jordi Ortiz
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -20,7 +15,11 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@copyright 2007 Marco Gerards <marco@gnu.org>
+@copyright 2009 David Conrad
+@copyright 2011 Jordi Ortiz
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -57,13 +56,16 @@ public struct DiracSequenceHeader {
 
     [CCode (cname="width")]
     public uint width;
+
     [CCode (cname="height")]
     public uint height;
+
     [CCode (cname="chroma_format")]
     public DiracChromaFormat chroma_format;
 
     [CCode (cname="interlaced")]
     public uint8 interlaced;
+
     [CCode (cname="top_field_first")]
     public uint8 top_field_first;
 
@@ -81,10 +83,13 @@ public struct DiracSequenceHeader {
 
     [CCode (cname="clean_width")]
     public uint16 clean_width;
+
     [CCode (cname="clean_height")]
     public uint16 clean_height;
+
     [CCode (cname="clean_left_offset")]
     public uint16 clean_left_offset;
+
     [CCode (cname="clean_right_offset")]
     public uint16 clean_right_offset;
 
@@ -102,27 +107,34 @@ public struct DiracSequenceHeader {
 
     [CCode (cname="profile")]
     public int profile;
+
     [CCode (cname="level")]
     public int level;
 
     [CCode (cname="framerate")]
     public LibAVUtil.Rational framerate;
+
     [CCode (cname="sample_aspect_ratio")]
     public LibAVUtil.Rational sample_aspect_ratio;
 
     [CCode (cname="pix_fmt")]
     public LibAVUtil.PixelFormat pixel_format;
+
     [CCode (cname="color_range")]
     public LibAVUtil.ColorRange color_range;
+
     [CCode (cname="color_primaries")]
     public LibAVUtil.ColorPrimaries color_primaries;
+
     [CCode (cname="color_trc")]
     public LibAVUtil.ColorTransferCharacteristic color_trc;
+
     [CCode (cname="colorspace")]
     public LibAVUtil.ColorSpace colorspace;
 
     [CCode (cname="version")]
     public DiracVersionInfo version;
+
     [CCode (cname="bit_depth")]
     public int bit_depth;
 

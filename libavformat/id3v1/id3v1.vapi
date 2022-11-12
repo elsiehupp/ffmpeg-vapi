@@ -1,9 +1,9 @@
 /***********************************************************
-ID3v1 header parser
+@brief ID3v1 header parser
 @copyright 2003 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -29,13 +29,14 @@ public const size_t ID3v1_TAG_SIZE;
 public const size_t ID3v1_GENRE_MAX;
 
 /***********************************************************
-ID3v1 genres
+@brief ID3v1 genres
 ***********************************************************/
 //  extern string const ff_id3v1_genre_str[ID3v1_GENRE_MAX + 1];
 
 /***********************************************************
-Read an ID3v1 tag
+@brief Read an ID3v1 tag
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_id3v1_read (
     AVFormatContext format_context
 );

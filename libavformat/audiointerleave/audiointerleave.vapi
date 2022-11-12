@@ -1,10 +1,10 @@
 /***********************************************************
-audio interleaving prototypes and declarations
+@brief Audio interleaving prototypes and declarations
 
 @copyright 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -26,45 +26,50 @@ namespace LibAVFormat {
 [CCode (cname="struct AudioInterleaveContext", cheader_filename="")]
 public struct AudioInterleaveContext {
     LibAVUtil.FifoBuffer fifo;
+
     /***********************************************************
-    size of currently allocated FIFO
+    @brief Size of currently allocated FIFO
     ***********************************************************/
     uint fifo_size;
+
     /***********************************************************
-    current dts
+    @brief Current dts
     ***********************************************************/
     uint64 dts;
+
     /***********************************************************
-    size of one sample all channels included
+    @brief Size of one sample all channels included
     ***********************************************************/
     int sample_size;
+
     /***********************************************************
-    must be 0-terminated
+    @brief Must be 0-terminated
     ***********************************************************/
     int[] samples_per_frame;
+
     /***********************************************************
-    current samples per frame, pointer to samples_per_frame
+    @brief Current samples per frame, pointer to samples_per_frame
     ***********************************************************/
     int[] samples;
+
     /***********************************************************
-    time base of output audio packets
+    @brief Time base of output audio packets
     ***********************************************************/
     LibAVUtil.Rational time_base;
 }
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="ff_audio_interleave_init", cheader_filename="")]
 public int ff_audio_interleave_init (
     AVFormatContext format_context,
     int[] samples_per_frame,
     LibAVUtil.Rational time_base
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="ff_audio_interleave_close", cheader_filename="")]
 public void ff_audio_interleave_close (
     AVFormatContext format_context
 );
 
-[CCode (cname="", cheader_filename="")]
 public delegate int GetPacketDelegate (
     AVFormatContext format_context,
     LibAVCodec.Packet packet_1,
@@ -72,7 +77,6 @@ public delegate int GetPacketDelegate (
     int arg
 );
 
-[CCode (cname="", cheader_filename="")]
 public delegate int CompareTimeStampDelegate (
     AVFormatContext format_context,
     LibAVCodec.Packet packet_1,
@@ -80,7 +84,7 @@ public delegate int CompareTimeStampDelegate (
 );
 
 /***********************************************************
-Rechunk audio PCM packets per AudioInterleaveContext.samples_per_frame
+@brief Rechunk audio PCM packets per AudioInterleaveContext.samples_per_frame
 and interleave them correctly.
 The first element of AVStream.priv_data must be AudioInterleaveContext
 when using this function.
@@ -88,6 +92,7 @@ when using this function.
 @param get_packet function will output a packet when streams are correctly interleaved.
 @param compare_ts function will compare AVPackets and decide interleaving order.
 ***********************************************************/
+[CCode (cname="ff_audio_rechunk_interleave", cheader_filename="")]
 public int ff_audio_rechunk_interleave (
     AVFormatContext format_context,
     LibAVCodec.Packet out,

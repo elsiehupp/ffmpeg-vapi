@@ -1,9 +1,9 @@
 /***********************************************************
-RTP input format
+@brief RTP input format
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -31,12 +31,14 @@ public class L24DynamicHandler : RTPDynamicProtocolHandler {
             return "L24";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
@@ -54,12 +56,14 @@ public class GSMDynamicHandler : RTPDynamicProtocolHandler {
             return "GSM";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
@@ -77,12 +81,14 @@ public class RealMediaMP3DynamicHandler : RTPDynamicProtocolHandler {
             return "X-MP3-draft-00";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
@@ -100,12 +106,14 @@ public class SpeexDynamicHandler : RTPDynamicProtocolHandler {
             return "speex";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
@@ -123,12 +131,14 @@ public class OpusDynamicHandler : RTPDynamicProtocolHandler {
             return "opus";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
@@ -141,7 +151,7 @@ public class OpusDynamicHandler : RTPDynamicProtocolHandler {
 [CCode (cname="t140_dynamic_handler", cheader_filename="")]
 public class T140DynamicHandler : RTPDynamicProtocolHandler {
     /***********************************************************
-    RFC 4103
+    @brief RFC 4103
     ***********************************************************/
     [CCode (cname="enc_name", cheader_filename="")]
     public override string enc_name {
@@ -149,12 +159,14 @@ public class T140DynamicHandler : RTPDynamicProtocolHandler {
             return "t140";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_SUBTITLE;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {

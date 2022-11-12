@@ -1,9 +1,5 @@
 /***********************************************************
-CRYO APC audio format demuxer
-@copyright 2007 Anssi Hannula <anssi.hannula@gmail.com>
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -19,7 +15,10 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@brief CRYO APC audio format demuxer
+@copyright 2007 Anssi Hannula <anssi.hannula@gmail.com>
+***********************************************************/
 namespace LibAVFormat {
 
 [CCode (cname="ff_apc_demuxer", cheader_filename="")]
@@ -30,20 +29,24 @@ public class APCDemuxer : AVInputFormat {
             return "apc";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "CRYO APC";
         }
     }
+
     [CCode (cname="apc_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="apc_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="apc_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,

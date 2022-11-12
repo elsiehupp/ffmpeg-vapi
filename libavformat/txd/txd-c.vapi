@@ -1,9 +1,9 @@
 /***********************************************************
-Renderware TeXture Dictionary (.txd) demuxer
+@brief Renderware TeXture Dictionary (.txd) demuxer
 @copyright 2007 Ivo van Poorten
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,20 +30,24 @@ public class TXDDemuxer : AVInputFormat {
             return "txd";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Renderware TeXture Dictionary";
         }
     }
+
     [CCode (cname="txd_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="txd_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="txd_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,

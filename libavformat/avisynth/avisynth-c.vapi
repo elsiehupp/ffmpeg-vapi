@@ -1,5 +1,5 @@
 /***********************************************************
-AviSynth/AvxSynth support
+@brief AviSynth/AvxSynth support
 @copyright 2012 AvxSynth Team
 
 This file is part of FFmpeg
@@ -32,31 +32,37 @@ public class AVISynthDemuxer : AVInputFormat {
             return "avisynth";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "AviSynth script";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AVISynthDemuxerPrivateData);
         }
     }
+
     [CCode (cname="avisynth_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="avisynth_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="avisynth_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="avisynth_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -64,6 +70,7 @@ public class AVISynthDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

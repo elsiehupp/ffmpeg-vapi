@@ -1,9 +1,9 @@
 /***********************************************************
-Raw FLAC demuxer
+@brief Raw FLAC demuxer
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -34,25 +34,30 @@ public class FLACDemuxer : AVInputFormat {
             return "flac";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "raw FLAC";
         }
     }
+
     [CCode (cname="flac_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="flac_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="ff_raw_read_partial_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="flac_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -60,6 +65,7 @@ public class FLACDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="flac_read_timestamp", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
@@ -67,24 +73,28 @@ public class FLACDemuxer : AVInputFormat {
         int64[] pos,
         int64 pos_limit
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "flac";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.FLAC;
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {

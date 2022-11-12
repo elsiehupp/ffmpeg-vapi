@@ -1,11 +1,11 @@
 /***********************************************************
-MOV, 3GP, MP4 muxer
+@brief MOV, 3GP, MP4 muxer
 @copyright 2003 Thomas Raivio
 @copyright 2004 Gildas Bazin <gbazin at videolan dot org>
 @copyright 2009 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,11 @@ namespace LibAVFormat {
 
 [CCode (cname="", cheader_filename="")]
 public const size_t MOV_FRAG_INFO_ALLOC_INCREMENT;
+
+[CCode (cname="", cheader_filename="")]
 public const size_t MOV_INDEX_CLUSTER_SIZE;
+
+[CCode (cname="", cheader_filename="")]
 public const int MOV_TIMESCALE;
 
 [CCode (cname="", cheader_filename="")]
@@ -49,17 +53,34 @@ public enum Mode {
 
 [CCode (cname="struct MOVIentry", cheader_filename="")]
 public struct MOVIentry {
+    [CCode (cname="", cheader_filename="")]
     public uint64 pos;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 dts;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 pts;
+
+    [CCode (cname="", cheader_filename="")]
     public uint size;
+
+    [CCode (cname="", cheader_filename="")]
     public uint samples_in_chunk;
+
     /***********************************************************
-    Chunk number if the current entry is a chunk start otherwise 0
+    @brief Chunk number if the current entry is a chunk start otherwise 0
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint chunkNum;
+
+    [CCode (cname="", cheader_filename="")]
     public uint entries;
+
+    [CCode (cname="", cheader_filename="")]
     public int cts;
+
+    [CCode (cname="", cheader_filename="")]
     public MOVSampleFlags flags;
 }
 
@@ -72,26 +93,49 @@ public enum MOVSampleFlags {
 
 [CCode (cname="struct HintSample", cheader_filename="")]
 public struct HintSample {
+    [CCode (cname="", cheader_filename="")]
     public uint8[] data;
+
+    [CCode (cname="", cheader_filename="")]
     public int size;
+
+    [CCode (cname="", cheader_filename="")]
     public int sample_number;
+
+    [CCode (cname="", cheader_filename="")]
     public int offset;
+
+    [CCode (cname="", cheader_filename="")]
     public int own_data;
 }
 
 [CCode (cname="struct HintSampleQueue", cheader_filename="")]
 public struct HintSampleQueue {
+    [CCode (cname="", cheader_filename="")]
     public int size;
+
+    [CCode (cname="", cheader_filename="")]
     public int len;
+
+    [CCode (cname="", cheader_filename="")]
     public HintSample samples;
 }
 
 [CCode (cname="struct MOVFragmentInfo", cheader_filename="")]
 public struct MOVFragmentInfo {
+    [CCode (cname="", cheader_filename="")]
     public int64 offset;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 time;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 duration;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 tfrf_offset;
+
+    [CCode (cname="", cheader_filename="")]
     public int size;
 }
 
@@ -111,103 +155,217 @@ public enum MOVETimeCodeFlags {
 
 [CCode (cname="struct MOVTrack", cheader_filename="")]
 public struct MOVTrack {
+    [CCode (cname="", cheader_filename="")]
     public int mode;
+
+    [CCode (cname="", cheader_filename="")]
     public int entry;
+
+    [CCode (cname="", cheader_filename="")]
     public uint timescale;
+
+    [CCode (cname="", cheader_filename="")]
     public uint64 time;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 track_duration;
+
+    [CCode (cname="", cheader_filename="")]
     public int last_sample_is_subtitle_end;
+
+    [CCode (cname="", cheader_filename="")]
     public long sample_count;
+
+    [CCode (cname="", cheader_filename="")]
     public long sample_size;
+
+    [CCode (cname="", cheader_filename="")]
     public long chunkCount;
+
+    [CCode (cname="", cheader_filename="")]
     public int has_keyframes;
+
+    [CCode (cname="", cheader_filename="")]
     public int has_disposable;
+
+    [CCode (cname="", cheader_filename="")]
     public MOVTrackFlags flags;
+
+    [CCode (cname="", cheader_filename="")]
     public MOVETimeCodeFlags timecode_flags;
+
+    [CCode (cname="", cheader_filename="")]
     public int language;
+
+    [CCode (cname="", cheader_filename="")]
     public int track_id;
+
     /***********************************************************
-    stsd fourcc
+    @brief Stsd fourcc
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int tag;
+
+    [CCode (cname="", cheader_filename="")]
     public AVStream st;
+
+    [CCode (cname="", cheader_filename="")]
     public LibAVCodec.CodecParameters par;
+
+    [CCode (cname="", cheader_filename="")]
     public int multichannel_as_mono;
 
+    [CCode (cname="", cheader_filename="")]
     public int vos_len;
+
+    [CCode (cname="", cheader_filename="")]
     public uint8[] vos_data;
+
+    [CCode (cname="", cheader_filename="")]
     public MOVIentry cluster;
+
+    [CCode (cname="", cheader_filename="")]
     public uint cluster_capacity;
+
+    [CCode (cname="", cheader_filename="")]
     public int audio_vbr;
+
     /***********************************************************
-    active picture (w/o VBI) height for D-10/IMX
+    @brief Active picture (w/o VBI) height for D-10/IMX
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int height;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 tref_tag;
+
     /***********************************************************
-    trackID of the referenced track
+    @brief TrackID of the referenced track
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int tref_id;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 start_dts;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 start_cts;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 end_pts;
+
+    [CCode (cname="", cheader_filename="")]
     public int end_reliable;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 dts_shift;
 
     /***********************************************************
-    the track that hints this track, -1 if no hint track is set
+    @brief The track that hints this track, -1 if no hint track is set
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int hint_track;
 
     /***********************************************************
-    the track that this hint (or tmcd) track describes
+    @brief The track that this hint (or tmcd) track describes
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int src_track;
+
     /***********************************************************
-    the format context for the hinting rtp muxer
+    @brief The format context for the hinting rtp muxer
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public AVFormatContext rtp_ctx;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 prev_rtp_ts;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 cur_rtp_ts_unwrapped;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 max_packet_size;
 
+    [CCode (cname="", cheader_filename="")]
     public int64 default_duration;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 default_sample_flags;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 default_size;
 
+    [CCode (cname="", cheader_filename="")]
     public HintSampleQueue sample_queue;
+
+    [CCode (cname="", cheader_filename="")]
     public LibAVCodec.Packet cover_image;
 
+    [CCode (cname="", cheader_filename="")]
     public AVIOContext mdat_buf;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 data_offset;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 frag_start;
+
+    [CCode (cname="", cheader_filename="")]
     public int frag_discont;
+
+    [CCode (cname="", cheader_filename="")]
     public int entries_flushed;
 
+    [CCode (cname="", cheader_filename="")]
     public int nb_frag_info;
+
+    [CCode (cname="", cheader_filename="")]
     public MOVFragmentInfo frag_info;
+
+    [CCode (cname="", cheader_filename="")]
     public uint frag_info_capacity;
 
+    [CCode (cname="", cheader_filename="")]
     public VC1Info vc1_info;
 
+    [CCode (cname="", cheader_filename="")]
     public void *eac3_priv;
 
+    [CCode (cname="", cheader_filename="")]
     public MOVMuxCencContext cenc;
 
+    [CCode (cname="", cheader_filename="")]
     public uint32 palette[LibAVUtil.AVPALETTE_COUNT];
+
+    [CCode (cname="", cheader_filename="")]
     public int pal_done;
 
+    [CCode (cname="", cheader_filename="")]
     public int is_unaligned_qt_rgb;
 }
 
 [CCode (cname="struct VC1Info", cheader_filename="")]
 public struct VC1Info {
+    [CCode (cname="", cheader_filename="")]
     public int first_packet_seq;
+
+    [CCode (cname="", cheader_filename="")]
     public int first_packet_entry;
+
+    [CCode (cname="", cheader_filename="")]
     public int first_packet_seen;
+
+    [CCode (cname="", cheader_filename="")]
     public int first_frag_written;
+
+    [CCode (cname="", cheader_filename="")]
     public int packet_seq;
+
+    [CCode (cname="", cheader_filename="")]
     public int packet_entry;
+
+    [CCode (cname="", cheader_filename="")]
     public int slices;
 }
 
@@ -227,70 +385,145 @@ public enum MOVPrftBox {
 
 [CCode (cname="struct MOVMuxContext", cheader_filename="")]
 public struct MOVMuxContext {
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class av_class;
+
+    [CCode (cname="", cheader_filename="")]
     public int mode;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 time;
+
+    [CCode (cname="", cheader_filename="")]
     public int nb_streams;
+
     /***********************************************************\
     number of new created tmcd track based on metadata (aka not data copy)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int nb_meta_tmcd;
+
     /***********************************************************
-    qt chapter track number
+    @brief Qt chapter track number
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int chapter_track;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 mdat_pos;
+
+    [CCode (cname="", cheader_filename="")]
     public uint64 mdat_size;
+
+    [CCode (cname="", cheader_filename="")]
     public MOVTrack tracks;
 
+    [CCode (cname="", cheader_filename="")]
     public int flags;
+
+    [CCode (cname="", cheader_filename="")]
     public int rtp_flags;
 
+    [CCode (cname="", cheader_filename="")]
     public int iods_skip;
+
+    [CCode (cname="", cheader_filename="")]
     public int iods_video_profile;
+
+    [CCode (cname="", cheader_filename="")]
     public int iods_audio_profile;
 
+    [CCode (cname="", cheader_filename="")]
     public int moov_written;
+
+    [CCode (cname="", cheader_filename="")]
     public int fragments;
+
+    [CCode (cname="", cheader_filename="")]
     public int max_fragment_duration;
+
+    [CCode (cname="", cheader_filename="")]
     public int min_fragment_duration;
+
+    [CCode (cname="", cheader_filename="")]
     public int max_fragment_size;
+
+    [CCode (cname="", cheader_filename="")]
     public int ism_lookahead;
+
+    [CCode (cname="", cheader_filename="")]
     public AVIOContext mdat_buf;
+
+    [CCode (cname="", cheader_filename="")]
     public int first_trun;
 
+    [CCode (cname="", cheader_filename="")]
     public int video_track_timescale;
 
     /***********************************************************
     0 for disabled, -1 for automatic, size otherwise
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int reserved_moov_size;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 reserved_header_pos;
 
+    [CCode (cname="", cheader_filename="")]
     public string major_brand;
 
+    [CCode (cname="", cheader_filename="")]
     public int per_stream_grouping;
+
+    [CCode (cname="", cheader_filename="")]
     public AVFormatContext fc;
 
+    [CCode (cname="", cheader_filename="")]
     public int use_editlist;
+
+    [CCode (cname="", cheader_filename="")]
     public float gamma;
 
+    [CCode (cname="", cheader_filename="")]
     public int frag_interleave;
+
+    [CCode (cname="", cheader_filename="")]
     public int missing_duration_warned;
 
+    [CCode (cname="", cheader_filename="")]
     public string encryption_scheme_str;
+
+    [CCode (cname="", cheader_filename="")]
     public MOVEncryptionScheme encryption_scheme;
+
+    [CCode (cname="", cheader_filename="")]
     public uint8[] encryption_key;
+
+    [CCode (cname="", cheader_filename="")]
     public int encryption_key_len;
+
+    [CCode (cname="", cheader_filename="")]
     public uint8[] encryption_kid;
+
+    [CCode (cname="", cheader_filename="")]
     public int encryption_kid_len;
 
+    [CCode (cname="", cheader_filename="")]
     public int need_rewrite_extradata;
 
+    [CCode (cname="", cheader_filename="")]
     public int use_stream_ids_as_track_ids;
+
+    [CCode (cname="", cheader_filename="")]
     public int track_ids_ok;
+
+    [CCode (cname="", cheader_filename="")]
     public int write_tmcd;
+
+    [CCode (cname="", cheader_filename="")]
     public MOVPrftBox write_prft;
+
+    [CCode (cname="", cheader_filename="")]
     public int empty_hdlr_name;
 }
 

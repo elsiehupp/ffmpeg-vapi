@@ -22,6 +22,7 @@ namespace LibAVUtil {
 public struct ComplexFloat {
     [CCode (cname="re")]
     public float real;
+
     [CCode (cname="im")]
     public float imaginary;
 }

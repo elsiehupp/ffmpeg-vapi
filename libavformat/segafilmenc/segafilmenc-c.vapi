@@ -1,10 +1,10 @@
 /***********************************************************
-Sega FILM Format (CPK) Muxer
+@brief Sega FILM Format (CPK) Muxer
 @copyright 2003 The FFmpeg project
 @copyright 2018 Misty De Meo
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -39,6 +39,7 @@ public class SegaFilmMuxerClass : LibAVUtil.Class {
             return "Sega FILM muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -47,6 +48,7 @@ public class SegaFilmMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -66,44 +68,52 @@ public class SegaFilmMuxer : AVOutputFormat {
             return "film_cpk";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Sega FILM / CPK";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "cpk";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SegaFilmMuxerPrivateData);
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16BE_PLANAR;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.CINEPAK;
         }
     }
+
     [CCode (cname="film_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
+
     [CCode (cname="film_write_header", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="film_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,

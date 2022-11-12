@@ -1,9 +1,9 @@
 /***********************************************************
-SMJPEG muxer
+@brief SMJPEG muxer
 @copyright 2012 Paul B Mahol
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -37,43 +37,51 @@ public class SDLMotionJpegMuxer : AVOutputFormat {
             return "smjpeg";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Loki SDL MJPEG";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SDLMotionJpegMuxerPrivateData);
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MJPEG;
         }
     }
+
     [CCode (cname="smjpeg_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="smjpeg_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="smjpeg_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

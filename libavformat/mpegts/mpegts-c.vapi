@@ -1,9 +1,9 @@
 /***********************************************************
-MPEG-2 transport stream (aka DVB) demuxer
+@brief MPEG-2 transport stream (aka DVB) demuxer
 @copyright 2002-2003 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -52,6 +52,7 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
             return "mpegts demuxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -60,8 +61,10 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -90,6 +93,7 @@ public class MpegTSRawDemuxerClass : LibAVUtil.Class {
             return "mpegtsraw demuxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -115,35 +119,42 @@ public class MPEGTSDemuxer : AVInputFormat {
             return "mpegts";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MPEG-TS (MPEG-2 Transport Stream)";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegTSContext);
         }
     }
+
     [CCode (cname="mpegts_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="mpegts_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="mpegts_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="mpegts_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="mpegts_get_dts", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
@@ -151,6 +162,7 @@ public class MPEGTSDemuxer : AVInputFormat {
         int64[] pos,
         int64 pos_limit
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
@@ -168,31 +180,37 @@ public class MpegTSRawDemuxer : AVInputFormat {
             return "mpegtsraw";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "raw MPEG-TS (MPEG-2 Transport Stream)";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegTSContext);
         }
     }
+
     [CCode (cname="mpegts_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="mpegts_raw_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="mpegts_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="mpegts_get_dts", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
@@ -200,6 +218,7 @@ public class MpegTSRawDemuxer : AVInputFormat {
         int64[] pos,
         int64 pos_limit
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

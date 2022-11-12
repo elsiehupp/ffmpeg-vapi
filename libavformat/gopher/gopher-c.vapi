@@ -1,12 +1,12 @@
 /***********************************************************
-Gopher protocol
+@brief Gopher protocol
 
 @copyright 2009 Toshimitsu Kimura
 
 based on libavformat/http.c, @copyright 2000, 2001 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -36,34 +36,40 @@ public class GopherURLProtocol : URLProtocol {
             return "gopher";
         }
     }
+
     [CCode (cname="gopher_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="gopher_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="gopher_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="gopher_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GopherPrivateData);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {

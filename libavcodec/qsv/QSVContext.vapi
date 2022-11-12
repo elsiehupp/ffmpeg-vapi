@@ -1,8 +1,5 @@
 /***********************************************************
-@brief Intel MediaSDK QSV public API
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -18,7 +15,9 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@brief Intel MediaSDK QSV public API
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -50,6 +49,7 @@ public struct QSVContext {
     ***********************************************************/
     [CCode (cname="ext_buffers")]
     public mfxExtBuffer[] ext_buffers;
+
     [CCode (cname="nb_ext_buffers")]
     public int nb_ext_buffers;
 

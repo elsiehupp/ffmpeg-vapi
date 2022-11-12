@@ -1,11 +1,11 @@
 /***********************************************************
-RTSP definitions
+@brief RTSP definitions
 @copyright 2002 Fabrice Bellard
 @copyright 2014 Samsung Electronics. All rights reserved.
     @Author: Reynaldo H. Verdejo Pinochet <r.verdejo@sisa.samsung.com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -25,8 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-RTSP handling
+@brief RTSP handling
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTSPStatusCode {
     RTSP_STATUS_CONTINUE,
     RTSP_STATUS_OK,

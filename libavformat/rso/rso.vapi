@@ -1,9 +1,9 @@
 /***********************************************************
-RSO format common data
+@brief RSO format common data
 @copyright 2010 Rafael Carre
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@ namespace LibAVFormat {
 public const size_t RSO_HEADER_SIZE;
 
 /***********************************************************
-The libavcodec codecs we support, and the IDs they have in the file
+@brief The libavcodec codecs we support, and the IDs they have in the file
 ***********************************************************/
 //  extern const AVCodecTag ff_codec_rso_tags[];
 

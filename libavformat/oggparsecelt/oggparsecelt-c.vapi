@@ -1,9 +1,9 @@
 /***********************************************************
-Xiph CELT parser for Ogg
+@brief Xiph CELT parser for Ogg
 @copyright 2011 Nicolas George
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,6 +24,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_celt_codec", cheader_filename="")]
 public class CELTCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "CELT    ".data;

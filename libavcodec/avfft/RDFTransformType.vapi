@@ -30,7 +30,7 @@ FFT functions
 ***********************************************************/
 
 /***********************************************************
-Real Discrete Fourier Transform
+@brief Real Discrete Fourier Transform
 ***********************************************************/
 [CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avfft.h")]
 public enum RDFTransformType {

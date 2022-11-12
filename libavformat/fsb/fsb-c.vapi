@@ -1,9 +1,9 @@
 /***********************************************************
-FSB demuxer
+@brief FSB demuxer
 @copyright 2015 Paul B Mahol
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,31 +30,37 @@ public class FSBDemuxer : AVInputFormat {
             return "fsb";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "FMOD Sample Bank";
         }
     }
+
     [CCode (cname="fsb_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="fsb_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="fsb_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "fsb";
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

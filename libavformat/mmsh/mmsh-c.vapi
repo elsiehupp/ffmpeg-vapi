@@ -1,9 +1,9 @@
 /***********************************************************
-MMS protocol over HTTP
+@brief MMS protocol over HTTP
 @copyright 2010 Zhentan Feng <spyfeng at gmail dot com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Reference
+@brief Reference
 Windows Media HTTP Streaming Protocol.
 http://msdn.microsoft.com/en-us/library/cc251059(PROT.10).aspx
 ***********************************************************/
@@ -39,28 +39,33 @@ public class MMSHURLProtocol : URLProtocol {
             return "mmsh";
         }
     }
+
     [CCode (cname="mmsh_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="mmsh_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="mmsh_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
+
     [CCode (cname="mmsh_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="mmsh_read_seek", cheader_filename="")]
     public override int64 url_read_seek (
         URLContext url_context,
@@ -68,12 +73,14 @@ public class MMSHURLProtocol : URLProtocol {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MMSHPrivateData);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {

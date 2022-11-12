@@ -1,8 +1,5 @@
 /***********************************************************
-@copyright 2001 Fabrice Bellard
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -18,7 +15,9 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@copyright 2001 Fabrice Bellard
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -31,8 +30,10 @@ LibAVCodec external API header
 public struct PacketSideData {
     [CCode (cname="data")]
     public uint8[] data;
+
     [CCode (cname="size")]
     public int size;
+
     [CCode (cname="type")]
     public PacketSideDataType type;
 }

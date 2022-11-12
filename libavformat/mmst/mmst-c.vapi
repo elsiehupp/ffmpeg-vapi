@@ -1,11 +1,11 @@
 /***********************************************************
-MMS protocol over TCP
+@brief MMS protocol over TCP
 @copyright 2006,2007 Ryan Martell
 @copyright 2007 Björn Axelsson
 @copyright 2010 Zhentan Feng <spyfeng at gmail dot com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-References
+@brief References
 MMS protocol specification:
 [1]http://msdn.microsoft.com/en-us/library/cc234711(PROT.10).aspx
 ASF specification. Revision 01.20.03.
@@ -43,28 +43,33 @@ public class MMSTURLProtocol : URLProtocol {
             return "mmst";
         }
     }
+
     [CCode (cname="mms_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="mms_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="mms_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MMSTPrivateData);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {

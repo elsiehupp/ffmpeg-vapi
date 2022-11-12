@@ -26,6 +26,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_theora_codec", cheader_filename="")]
 public class TheoraCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "200theora".data;
@@ -37,11 +38,13 @@ public class TheoraCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="theora_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="theora_gptopts", cheader_filename="")]
     public override uint64 gptopts (
         AVFormatContext context,

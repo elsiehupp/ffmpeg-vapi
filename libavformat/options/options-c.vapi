@@ -2,7 +2,7 @@
 @copyright 2000, 2001, 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -41,11 +41,13 @@ public class AVFormatContextClass : LibAVUtil.Class {
             return LibAVUtil.Version.INT;
         }
     }
+
     [CCode (cname="format_child_next", cheader_filename="")]
     public override void *child_next (
         void *obj,
         void *prev
     );
+
     [CCode (cname="format_child_class_next", cheader_filename="")]
     public override LibAVUtil.Class child_class_next (
         LibAVUtil.Class prev

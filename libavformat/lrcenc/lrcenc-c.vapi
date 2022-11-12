@@ -1,9 +1,9 @@
 /***********************************************************
-LRC lyrics file format decoder
+@brief LRC lyrics file format decoder
 @copyright 2014 StarBrilliant <m13253@hotmail.com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,39 +30,46 @@ public class LRCMuxer : AVOutputFormat {
             return "lrc";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "LRC lyrics";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "lrc";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return 0;
         }
     }
+
     [CCode (cname="lrc_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="lrc_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_VARIABLE_FPS | AVFMT_GLOBALHEADER | AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT;
         }
     }
+
     [CCode (cname="subtitle_codec", cheader_filename="")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {

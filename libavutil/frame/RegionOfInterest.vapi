@@ -54,10 +54,13 @@ public struct RegionOfInterest {
     ***********************************************************/
     [CCode (cname="top")]
     public int top;
+
     [CCode (cname="bottom")]
     public int bottom;
+
     [CCode (cname="left")]
     public int left;
+
     [CCode (cname="right")]
     public int right;
 

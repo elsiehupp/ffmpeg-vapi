@@ -1,9 +1,9 @@
 /***********************************************************
-FIFO pseudo-muxer
+@brief FIFO pseudo-muxer
 @copyright 2016 Jan Sebechlebsky
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -65,6 +65,7 @@ public class FifoMuxerClass : LibAVUtil.Class {
             return "Fifo muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -73,8 +74,10 @@ public class FifoMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -94,35 +97,42 @@ public class FifoMuxer : AVOutputFormat {
             return "fifo";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "FIFO queue pseudo-muxer";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FifoMuxerPrivateData);
         }
     }
+
     [CCode (cname="fifo_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
+
     [CCode (cname="fifo_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="fifo_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="fifo_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="fifo_deinit", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context

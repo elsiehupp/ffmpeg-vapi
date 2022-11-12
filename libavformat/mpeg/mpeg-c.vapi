@@ -1,9 +1,9 @@
 /***********************************************************
-MPEG-1/2 demuxer
+@brief MPEG-1/2 demuxer
 @copyright 2000, 2001, 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -33,31 +33,37 @@ public class MPEGPSDemuxer : AVInputFormat {
             return "mpeg";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MPEG-PS (MPEG-2 Program Stream)";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MPEGPSDemuxerPrivateData);
         }
     }
+
     [CCode (cname="mpegps_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="mpegps_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="mpegps_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="mpegps_read_dts", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
@@ -65,6 +71,7 @@ public class MPEGPSDemuxer : AVInputFormat {
         int64[] pos,
         int64 pos_limit
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
@@ -87,6 +94,7 @@ public class VobSubDemuxerClass : LibAVUtil.Class {
             return "vobsub";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -95,8 +103,10 @@ public class VobSubDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -113,31 +123,37 @@ public class VobSubDemuxer : AVInputFormat {
             return "vobsub";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "VobSub subtitle format";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegDemuxContext);
         }
     }
+
     [CCode (cname="vobsub_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="vobsub_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="vobsub_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="vobsub_read_seek", cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
@@ -147,16 +163,19 @@ public class VobSubDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
+
     [CCode (cname="vobsub_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_SHOW_IDS;
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

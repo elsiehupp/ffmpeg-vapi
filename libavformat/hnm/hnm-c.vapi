@@ -1,5 +1,5 @@
 /***********************************************************
-Cryo Interactive Entertainment HNM4 demuxer
+@brief Cryo Interactive Entertainment HNM4 demuxer
 
 @copyright 2012 David Kment
 
@@ -33,35 +33,42 @@ public class HNMDemuxer : AVInputFormat {
             return "hnm";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Cryo HNM v4";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HNMDemuxerPrivateData);
         }
     }
+
     [CCode (cname="hnm_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="hnm_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="hnm_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="hnm_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

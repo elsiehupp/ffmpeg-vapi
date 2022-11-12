@@ -1,5 +1,5 @@
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@ Based on file.c by Fabrice Bellard
 namespace LibAVFormat {
 
 /***********************************************************
-Input cache protocol.
+@brief Input cache protocol.
 @copyright 2011, 2014 Michael Niedermayer
 ***********************************************************/
 /***********************************************************
@@ -48,6 +48,7 @@ public class CacheContextClass : LibAVUtil.Class {
             return "Cache";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -56,8 +57,10 @@ public class CacheContextClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -74,6 +77,7 @@ public class CacheURLProtocol : URLProtocol {
             return "cache";
         }
     }
+
     [CCode (cname="cache_open", cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
@@ -81,22 +85,26 @@ public class CacheURLProtocol : URLProtocol {
         int flags,
         out LibAVUtil.Dictionary options
     );
+
     [CCode (cname="cache_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="cache_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
+
     [CCode (cname="cache_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {

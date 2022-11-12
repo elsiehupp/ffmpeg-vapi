@@ -1,11 +1,5 @@
 /***********************************************************
-@brief The Video Decode and Presentation API for UNIX (VDPAU) is used for
-hardware-accelerated decoding of MPEG-1/2, H.264 and VC-1.
-
-@copyright 2008 NVIDIA
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -21,7 +15,13 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+/***********************************************************
+@brief The Video Decode and Presentation API for UNIX (VDPAU)
+    is used for hardware-accelerated decoding of MPEG-1/2,
+    H.264 and VC-1.
 
+@copyright 2008 NVIDIA
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -47,7 +47,6 @@ and rendering (API calls) are done as part of the VDPAU
 presentation (vo_vdpau.c) module.
 ***********************************************************/
 
-[CCode (cname="", cheader_filename="")]
 public delegate int AVVDPAU_Render2 (
     CodecContext codec_context,
     LibAVUtil.Frame frame,

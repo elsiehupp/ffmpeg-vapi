@@ -1,9 +1,9 @@
 /***********************************************************
-D-Cinema audio muxer
+@brief D-Cinema audio muxer
 @copyright 2005 Reimar Döffinger
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,39 +30,46 @@ public class DAUDMuxer : AVOutputFormat {
             return "daud";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "D-Cinema audio";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "302";
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S24DAUD;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
         }
     }
+
     [CCode (cname="daud_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="daud_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

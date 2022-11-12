@@ -2,7 +2,7 @@
 @copyright 2014 Eejya Singh
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -37,31 +37,37 @@ public class STLDemuxer : AVInputFormat {
             return "stl";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Spruce subtitle format";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (STLDemuxerPrivateData);
         }
     }
+
     [CCode (cname="stl_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="stl_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="stl_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="stl_read_seek", cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
@@ -71,10 +77,12 @@ public class STLDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
+
     [CCode (cname="stl_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

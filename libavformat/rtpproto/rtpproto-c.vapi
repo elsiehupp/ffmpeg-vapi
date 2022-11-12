@@ -1,9 +1,9 @@
 /***********************************************************
-RTP network protocol
+@brief RTP network protocol
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -53,6 +53,7 @@ public class RTPURLProtocolClass : LibAVUtil.Class {
             return "rtp";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -61,8 +62,10 @@ public class RTPURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -82,44 +85,52 @@ public class RTPURLProtocol : URLProtocol {
             return "rtp";
         }
     }
+
     [CCode (cname="rtp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="rtp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="rtp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="rtp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="rtp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="rtp_get_multi_file_handle", cheader_filename="")]
     public override int url_get_multi_file_handle (
         URLContext url_context,
         out int[] handles,
         out int numhandles
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RTPPrivateData);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {

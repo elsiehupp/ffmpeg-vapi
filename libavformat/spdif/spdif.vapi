@@ -1,9 +1,9 @@
 /***********************************************************
-IEC 61937 common header
+@brief IEC 61937 common header
 @copyright 2009 Bartlomiej Wolowiec
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,89 +24,93 @@ namespace LibAVFormat {
 
 [CCode (cname="", cheader_filename="")]
 public const int SYNCWORD1;
+
+[CCode (cname="", cheader_filename="")]
 public const int SYNCWORD2;
+
+[CCode (cname="", cheader_filename="")]
 public const size_t BURST_HEADER_SIZE;
 
 [CCode (cname="", cheader_filename="")]
 public enum IEC61937DataType {
     /***********************************************************
-    AC-3 data
+    @brief AC-3 data
     ***********************************************************/
     IEC61937_AC3,
     /***********************************************************
-    MPEG-1 layer 1
+    @brief MPEG-1 layer 1
     ***********************************************************/
     IEC61937_MPEG1_LAYER1,
     /***********************************************************
-    MPEG-1 layer 2 or 3 data or MPEG-2 without extension
+    @brief MPEG-1 layer 2 or 3 data or MPEG-2 without extension
     ***********************************************************/
     IEC61937_MPEG1_LAYER23,
     /***********************************************************
-    MPEG-2 data with extension
+    @brief MPEG-2 data with extension
     ***********************************************************/
     IEC61937_MPEG2_EXT,
     /***********************************************************
-    MPEG-2 AAC ADTS
+    @brief MPEG-2 AAC ADTS
     ***********************************************************/
     IEC61937_MPEG2_AAC,
     /***********************************************************
-    MPEG-2, layer-1 low sampling frequency
+    @brief MPEG-2, layer-1 low sampling frequency
     ***********************************************************/
     IEC61937_MPEG2_LAYER1_LSF,
     /***********************************************************
-    MPEG-2, layer-2 low sampling frequency
+    @brief MPEG-2, layer-2 low sampling frequency
     ***********************************************************/
     IEC61937_MPEG2_LAYER2_LSF,
     /***********************************************************
-    MPEG-2, layer-3 low sampling frequency
+    @brief MPEG-2, layer-3 low sampling frequency
     ***********************************************************/
     IEC61937_MPEG2_LAYER3_LSF,
     /***********************************************************
-    DTS type I (512 samples)
+    @brief DTS type I (512 samples)
     ***********************************************************/
     IEC61937_DTS1,
     /***********************************************************
-    DTS type II (1024 samples)
+    @brief DTS type II (1024 samples)
     ***********************************************************/
     IEC61937_DTS2,
     /***********************************************************
-    DTS type III (2048 samples)
+    @brief DTS type III (2048 samples)
     ***********************************************************/
     IEC61937_DTS3,
     /***********************************************************
-    ATRAC data
+    @brief ATRAC data
     ***********************************************************/
     IEC61937_ATRAC,
     /***********************************************************
-    ATRAC3 data
+    @brief ATRAC3 data
     ***********************************************************/
     IEC61937_ATRAC3,
     /***********************************************************
-    ATRAC3+ data
+    @brief ATRAC3+ data
     ***********************************************************/
     IEC61937_ATRACX,
     /***********************************************************
-    DTS HD data
+    @brief DTS HD data
     ***********************************************************/
     IEC61937_DTSHD,
     /***********************************************************
-    WMA 9 Professional data
+    @brief WMA 9 Professional data
     ***********************************************************/
     IEC61937_WMAPRO,
     /***********************************************************
-    MPEG-2 AAC ADTS half-rate low sampling frequency
+    @brief MPEG-2 AAC ADTS half-rate low sampling frequency
     ***********************************************************/
     IEC61937_MPEG2_AAC_LSF_2048,
     /***********************************************************
-    MPEG-2 AAC ADTS quarter-rate low sampling frequency
+    @brief MPEG-2 AAC ADTS quarter-rate low sampling frequency
     ***********************************************************/
     IEC61937_MPEG2_AAC_LSF_4096,
     /***********************************************************
-    E-AC-3 data
+    @brief E-AC-3 data
     ***********************************************************/
     IEC61937_EAC3,
     /***********************************************************
-    TrueHD data
+    @brief TrueHD data
     ***********************************************************/
     IEC61937_TRUEHD,
 }

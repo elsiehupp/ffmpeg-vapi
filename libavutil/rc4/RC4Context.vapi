@@ -2,7 +2,7 @@
 @brief RC4 encryption/decryption/pseudo-random number generator
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -29,8 +29,10 @@ namespace LibAVUtil.Crypto {
 public struct RC4Context {
     [CCode (cname="state")]
     public uint8 state[256];
+
     [CCode (cname="x")]
     public int x;
+
     [CCode (cname="y")]
     public int y;
 

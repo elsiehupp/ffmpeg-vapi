@@ -1,9 +1,9 @@
 /***********************************************************
-Image format
+@brief Image format
 @copyright 2014 Michael Niedermayer
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -34,54 +34,96 @@ public enum PatternType {
 [CCode (cname="struct VideoDemuxData", cheader_filename="")]
 public struct VideoDemuxData {
     /***********************************************************
-    Class for private options.
+    @brief Class for private options.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class class;
+
+    [CCode (cname="", cheader_filename="")]
     public int img_first;
+
+    [CCode (cname="", cheader_filename="")]
     public int img_last;
+
+    [CCode (cname="", cheader_filename="")]
     public int img_number;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 pts;
+
+    [CCode (cname="", cheader_filename="")]
     public int img_count;
+
+    [CCode (cname="", cheader_filename="")]
     public int is_pipe;
+
     /***********************************************************
     use independent file for each Y, U, V plane
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int split_planes;
+
+    [CCode (cname="", cheader_filename="")]
     public char path[1024];
+
     /***********************************************************
-    Set by a private option.
+    @brief Set by a private option.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public string pixel_format;
+
     /***********************************************************
-    Set by a private option.
+    @brief Set by a private option.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int width;
+
     /***********************************************************
-    Set by a private option.
+    @brief Set by a private option.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int height;
+
     /***********************************************************
-    Set by a private option.
+    @brief Set by a private option.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Rational framerate;
+
+    [CCode (cname="", cheader_filename="")]
     public int loop;
+
     /***********************************************************
-    PatternType
+    @brief PatternType
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int pattern_type;
+
+    [CCode (cname="", cheader_filename="")]
     public int use_glob;
 #if HAVE_GLOB
+    [CCode (cname="", cheader_filename="")]
     public glob_t globstate;
 #endif
+    [CCode (cname="", cheader_filename="")]
     public int start_number;
+
+    [CCode (cname="", cheader_filename="")]
     public int start_number_range;
+
+    [CCode (cname="", cheader_filename="")]
     public int frame_size;
+
+    [CCode (cname="", cheader_filename="")]
     public int ts_from_file;
 }
 
 [CCode (cname="struct IdStrMap", cheader_filename="")]
 public struct IdStrMap {
+    [CCode (cname="", cheader_filename="")]
     public LibAVCodec.CodecID id;
+
+    [CCode (cname="", cheader_filename="")]
     public string str;
 }
 

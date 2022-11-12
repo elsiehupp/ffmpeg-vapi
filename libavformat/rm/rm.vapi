@@ -3,7 +3,7 @@
 @copyright 2000, 2001 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -41,7 +41,7 @@ public void ff_rm_free_rmstream (
 //  extern AVInputFormat ff_rdt_demuxer;
 
 /***********************************************************
-Read the MDPR chunk, which contains stream-specific codec initialization
+@brief Read the MDPR chunk, which contains stream-specific codec initialization
 parameters.
 
 @param format_context context containing RMContext and AVIOContext for stream reading
@@ -52,6 +52,7 @@ parameters.
 @param codec_data_size size of the MDPR chunk
 @return 0 on success, errno codes on error
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rm_read_mdpr_codecdata (
     AVFormatContext format_context,
     AVIOContext pb,
@@ -61,7 +62,7 @@ public int ff_rm_read_mdpr_codecdata (
 );
 
 /***********************************************************
-Parse one rm-stream packet from the input bytestream.
+@brief Parse one rm-stream packet from the input bytestream.
 
 @param format_context context containing RMContext and AVIOContext for stream reading
 @param pb context to read the data from
@@ -77,6 +78,7 @@ Parse one rm-stream packet from the input bytestream.
     value >0 means that no data was placed in packet, but that cached
     data is available by calling ff_rm_retrieve_cache ().
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rm_parse_packet (
     AVFormatContext format_context,
     AVIOContext pb,
@@ -90,7 +92,7 @@ public int ff_rm_parse_packet (
 );
 
 /***********************************************************
-Retrieve one cached packet from the rm-context. The real container can
+@brief Retrieve one cached packet from the rm-context. The real container can
 store several packets (as interpreted by the codec) in a single container
 packet, which means the demuxer holds some back when the first container
 packet is parsed and returned. The result is that rm.audio_pkt_cnt is
@@ -105,6 +107,7 @@ of those packets can be retrieved sequentially.
 @return the number of samples left for subsequent calls to this same
      function, or 0 if all samples have been retrieved.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rm_retrieve_cache (
     AVFormatContext format_context,
     AVIOContext pb,

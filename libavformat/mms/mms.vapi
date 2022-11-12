@@ -1,9 +1,9 @@
 /***********************************************************
-MMS protocol common definitions.
+@brief MMS protocol common definitions.
 @copyright 2010 Zhentan Feng <spyfeng at gmail dot com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,78 +24,102 @@ namespace LibAVFormat {
 
 [CCode (cname="struct MMSStream", cheader_filename="")]
 public struct MMSStream {
+    [CCode (cname="", cheader_filename="")]
     public int id;
 }
 
 [CCode (cname="struct MMSContext", cheader_filename="")]
 public struct MMSContext {
     /***********************************************************
-    TCP connection handle
+    @brief TCP connection handle
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public URLContext mms_hd;
+
+    [CCode (cname="", cheader_filename="")]
     public MMSStream streams;
 
     /***********************************************************
     ***********************************************************/
     /***********************************************************
-    Buffer for outgoing packets.
+    @brief Buffer for outgoing packets.
     ***********************************************************/
     /*@{*/
     /***********************************************************
-    Pointer for writing the buffer.
+    @brief Pointer for writing the buffer.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint8[] write_out_ptr;
+
     /***********************************************************
-    Buffer for outgoing packet.
+    @brief Buffer for outgoing packet.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint8 out_buffer[512];
     /*@}*/
 
     /***********************************************************
-    Buffer for incoming packets.
+    @brief Buffer for incoming packets.
     ***********************************************************/
     /*@{*/
     /***********************************************************
-    Buffer for incoming packets.
+    @brief Buffer for incoming packets.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint8 in_buffer[65536];
+
     /***********************************************************
-    Pointer for reading from incoming buffer.
+    @brief Pointer for reading from incoming buffer.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint8[] read_in_ptr;
+
     /***********************************************************
-    Reading length from incoming buffer.
+    @brief Reading length from incoming buffer.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int remaining_in_len;
     /*@}*/
 
     /***********************************************************
-    Internal handling of the ASF header
+    @brief Internal handling of the ASF header
     ***********************************************************/
     /*@{*/
     /***********************************************************
-    Stored ASF header.
+    @brief Stored ASF header.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint8[] asf_header;
+
     /***********************************************************
-    Size of stored ASF header.
+    @brief Size of stored ASF header.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int asf_header_size;
+
     /***********************************************************
-    The header has been received and parsed.
+    @brief The header has been received and parsed.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int header_parsed;
+
+    [CCode (cname="", cheader_filename="")]
     public int asf_packet_len;
+
+    [CCode (cname="", cheader_filename="")]
     public int asf_header_read_size;
     /*@}*/
 
     /***********************************************************
-    stream numbers.
+    @brief Stream numbers.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int stream_num;
+
     /***********************************************************
-    allocated size of streams
+    @brief Allocated size of streams
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint nb_streams_allocated;
 }
 

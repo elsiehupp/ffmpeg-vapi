@@ -2,7 +2,7 @@
 @copyright 2009 Michael Niedermayer
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -28,7 +28,10 @@ see avformat.h or the public API!
 
 [CCode (cname="struct AVMetadataConv", cheader_filename="")]
 public struct AVMetadataConv {
+    [CCode (cname="", cheader_filename="")]
     public string native;
+
+    [CCode (cname="", cheader_filename="")]
     public string generic;
 }
 

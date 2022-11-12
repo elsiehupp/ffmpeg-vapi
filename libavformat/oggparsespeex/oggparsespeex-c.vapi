@@ -26,6 +26,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_speex_codec", cheader_filename="")]
 public class SpeexCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "Speex   ".data;
@@ -37,6 +38,7 @@ public class SpeexCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="speex_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,

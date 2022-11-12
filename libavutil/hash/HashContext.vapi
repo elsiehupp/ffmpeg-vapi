@@ -2,7 +2,7 @@
 @copyright 2013 Reimar Döffinger <Reimar.Doeffinger@gmx.de>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -50,6 +50,7 @@ If you just need to use one particular hash function, use the @link lavu_hash
 A basic template for using the Generic Hashing API follows:
 
 @code
+[CCode (cname="", cheader_filename="")]
 public struct HashContext hash_context = null;
 const string hash_name = null;
 uint8[] output_buf = null;

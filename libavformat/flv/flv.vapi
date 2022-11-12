@@ -1,10 +1,10 @@
 /***********************************************************
-FLV common header
+@brief FLV common header
 
 @copyright 2006 The FFmpeg Project
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -28,17 +28,22 @@ namespace LibAVFormat {
 ***********************************************************/
 
 /***********************************************************
-offsets for packed values
+@brief Offsets for packed values
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const size_t FLV_AUDIO_SAMPLESSIZE_OFFSET;
+
+[CCode (cname="", cheader_filename="")]
 public const size_t FLV_AUDIO_SAMPLERATE_OFFSET;
+
+[CCode (cname="", cheader_filename="")]
 public const size_t FLV_AUDIO_CODECID_OFFSET;
 
 [CCode (cname="", cheader_filename="")]
 public const size_t FLV_VIDEO_FRAMETYPE_OFFSET;
 
 /***********************************************************
-bitmasks to isolate specific values
+@brief Bitmasks to isolate specific values
 ***********************************************************/
 [Flags]
 public enum FLVAudioMask {
@@ -56,7 +61,11 @@ public const uint32 AMF_END_OF_OBJECT;
 
 [CCode (cname="", cheader_filename="")]
 public const string KEYFRAMES_TAG;
+
+[CCode (cname="", cheader_filename="")]
 public const string KEYFRAMES_TIMESTAMP_TAG;
+
+[CCode (cname="", cheader_filename="")]
 public const string KEYFRAMES_BYTEOFFSET_TAG;
 
 [Flags]
@@ -96,7 +105,7 @@ public enum FLVSampleSize {
 [CCode (cname="", cheader_filename="")]
 public enum FLVSampleRate {
     /***********************************************************
-    signifies 5512Hz and 8000Hz in the case of NELLYMOSER
+    @brief Signifies 5512Hz and 8000Hz in the case of NELLYMOSER
     ***********************************************************/
     FLV_SAMPLERATE_SPECIAL = 0,
     FLV_SAMPLERATE_11025HZ = 1 << FLV_AUDIO_SAMPLERATE_OFFSET,
@@ -134,23 +143,23 @@ public enum FLVVCodecID {
 [Flags]
 public enum FLVVideoFrameType {
     /***********************************************************
-    Key frame (for AVC, a seekable frame)
+    @brief Key frame (for AVC, a seekable frame)
     ***********************************************************/
     FLV_FRAME_KEY,
     /***********************************************************
-    Inter frame (for AVC, a non-seekable frame)
+    @brief Inter frame (for AVC, a non-seekable frame)
     ***********************************************************/
     FLV_FRAME_INTER,
     /***********************************************************
-    Disposable inter frame (H.263 only)
+    @brief Disposable inter frame (H.263 only)
     ***********************************************************/
     FLV_FRAME_DISP_INTER,
     /***********************************************************
-    Generated key frame (reserved for server use only)
+    @brief Generated key frame (reserved for server use only)
     ***********************************************************/
     FLV_FRAME_GENERATED_KEY,
     /***********************************************************
-    Video info/command frame
+    @brief Video info/command frame
     ***********************************************************/
     FLV_FRAME_VIDEO_INFO_CMD;
 }

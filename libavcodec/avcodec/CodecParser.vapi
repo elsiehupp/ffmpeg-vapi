@@ -1,8 +1,5 @@
 /***********************************************************
-@copyright 2001 Fabrice Bellard
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -18,7 +15,9 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@copyright 2001 Fabrice Bellard
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -56,6 +55,7 @@ public abstract class CodecParser {
     ***********************************************************/
     [CCode (cname="codec_ids")]
     public int codec_ids[5];
+
     [CCode (cname="priv_data_size")]
     public abstract size_t priv_data_size { public get; }
 
@@ -71,6 +71,7 @@ public abstract class CodecParser {
 
     [CCode (cname="parser_close")]
     public ParserCloseDelegate parser_close;
+
     [CCode (cname="split")]
     public ParserSplitDelegate split;
 

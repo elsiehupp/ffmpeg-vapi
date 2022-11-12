@@ -2,7 +2,7 @@
 @copyright 2012 Clément Bœsch
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -46,6 +46,7 @@ public class WebVTTDemuxerClass : LibAVUtil.Class {
             return "WebVTT demuxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -74,31 +75,37 @@ public class WebVTTDemuxer : AVInputFormat {
             return "webvtt";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "WebVTT subtitle";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WebVTTDemuxerPrivateData);
         }
     }
+
     [CCode (cname="webvtt_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="webvtt_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="webvtt_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="webvtt_read_seek", cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
@@ -108,10 +115,12 @@ public class WebVTTDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
+
     [CCode (cname="webvtt_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

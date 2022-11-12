@@ -1,9 +1,9 @@
 /***********************************************************
-Creative Voice File demuxer.
+@brief Creative Voice File demuxer.
 @copyright 2006 Aurelien Jacobs <aurel@gnuage.org>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,10 @@ namespace LibAVFormat {
 
 [CCode (cname="struct voc_dec_context")]
 public struct VocDecContext {
+    [CCode (cname="", cheader_filename="")]
     public int64 remaining_size;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 pts;
 }
 

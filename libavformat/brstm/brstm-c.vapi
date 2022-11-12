@@ -3,7 +3,7 @@ BRSTM demuxer
 @copyright 2012 Paul B Mahol
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -33,35 +33,42 @@ public class BRSTMDemuxer : AVInputFormat {
             return "brstm";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "BRSTM (Binary Revolution Stream)";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BRSTMDemuxerPrivateData);
         }
     }
+
     [CCode (cname="probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -69,6 +76,7 @@ public class BRSTMDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
@@ -85,35 +93,42 @@ public class BFSTMDemuxer : AVInputFormat {
             return "bfstm";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "BFSTM (Binary Cafe Stream)";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BRSTMDemuxerPrivateData);
         }
     }
+
     [CCode (cname="probe_bfstm", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -121,6 +136,7 @@ public class BFSTMDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

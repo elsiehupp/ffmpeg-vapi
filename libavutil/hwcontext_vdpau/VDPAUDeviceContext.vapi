@@ -32,6 +32,7 @@ LibAVUtil.BufferRef (s) whose data pointer is a VdpVideoSurface.
 public class VDPAUDeviceContext : AbstractHardwareContext {
     [CCode (cname="device")]
     public VdpDevice device;
+
     [CCode (cname="get_proc_address")]
     public VdpGetProcAddress[] get_proc_address;
 }

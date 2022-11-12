@@ -1,9 +1,9 @@
 /***********************************************************
-Sorenson-3 (SVQ3/SV3V) payload for RTP
+@brief Sorenson-3 (SVQ3/SV3V) payload for RTP
 @copyright 2010 Ronald S. Bultje
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -36,12 +36,14 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
             return "X-SV3V-ES";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_VIDEO;
         }
     }
+
     /***********************************************************
     @see if (config_packet) above
     ***********************************************************/
@@ -51,16 +53,19 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
             return LibAVCodec.CodecID.NONE;
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
         }
     }
+
     [CCode (cname="svq3_close_context", cheader_filename="")]
     public override void close (
         PayloadContext protocol_data
     );
+
     [CCode (cname="svq3_parse_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,

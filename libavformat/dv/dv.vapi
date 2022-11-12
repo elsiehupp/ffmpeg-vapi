@@ -1,5 +1,5 @@
 /***********************************************************
-General DV muxer/demuxer
+@brief General DV muxer/demuxer
 @copyright 2003 Roman Shaposhnik
 
 Many thanks to Dan Dennedy <dan@dennedy.org> for providing wealth
@@ -9,7 +9,7 @@ Raw DV format
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -31,15 +31,18 @@ namespace LibAVFormat {
 [CCode (cname="struct DVDemuxContext", cheader_filename="")]
 public struct DVDemuxContext {
 
+    [CCode (cname="", cheader_filename="")]
     public DVDemuxContext avpriv_dv_init_demux (
         AVFormatContext format_context
     );
 
+    [CCode (cname="", cheader_filename="")]
     public int avpriv_dv_get_packet (
         DVDemuxContext demux_context,
         LibAVCodec.Packet packet
     );
 
+    [CCode (cname="", cheader_filename="")]
     public int avpriv_dv_produce_packet (
         DVDemuxContext demux_context,
         LibAVCodec.Packet packet,
@@ -48,6 +51,7 @@ public struct DVDemuxContext {
         int64 arg_
     );
 
+    [CCode (cname="", cheader_filename="")]
     public void ff_dv_offset_reset (
         DVDemuxContext demux_context,
         int64 frame_offset

@@ -1,9 +1,9 @@
 /***********************************************************
-UDP prototype streaming system
+@brief UDP prototype streaming system
 @copyright 2000, 2001, 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -59,6 +59,7 @@ public class UDPURLProtocolClass : LibAVUtil.Class {
             return "udp";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -67,8 +68,10 @@ public class UDPURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -85,6 +88,7 @@ public class UDPLiteURLProtocolClass : LibAVUtil.Class {
             return "udplite";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -113,32 +117,38 @@ public class UDPURLProtocol : URLProtocol {
             return "udp";
         }
     }
+
     [CCode (cname="udp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="udp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="udp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="udp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="udp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
@@ -162,32 +172,38 @@ public class UDPLiteURLProtocol : URLProtocol {
             return "udplite";
         }
     }
+
     [CCode (cname="udplite_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="udp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="udp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="udp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="udp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {

@@ -1,5 +1,5 @@
 /***********************************************************
-Audible AA demuxer
+@brief Audible AA demuxer
 @copyright 2015 Vesselin Bontchev
 
 Header parsing is borrowed from https://github.com/jteeuwen/audible project.
@@ -33,6 +33,7 @@ public class AAClass : LibAVUtil.Class {
             return "aa";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -61,6 +62,7 @@ public class AADemuxer : AVInputFormat {
             return "aa";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
@@ -74,25 +76,30 @@ public class AADemuxer : AVInputFormat {
             return sizeof (AADemuxerPrivateData);
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "aa";
         }
     }
+
     [CCode (cname="aa_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="aa_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="aa_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="aa_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -100,10 +107,12 @@ public class AADemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="aa_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

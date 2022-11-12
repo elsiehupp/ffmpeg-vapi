@@ -1,9 +1,9 @@
 /***********************************************************
-RTP muxer definitions
+@brief RTP muxer definitions
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,46 +24,89 @@ namespace LibAVFormat {
 
 [CCode (cname="struct RTPMuxContext", cheader_filename="")]
 public struct RTPMuxContext {
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class av_class;
+
+    [CCode (cname="", cheader_filename="")]
     public AVFormatContext ic;
+
+    [CCode (cname="", cheader_filename="")]
     public AVStream st;
+
+    [CCode (cname="", cheader_filename="")]
     public int payload_type;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 ssrc;
+
+    [CCode (cname="", cheader_filename="")]
     public string cname;
+
+    [CCode (cname="", cheader_filename="")]
     public int seq;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 timestamp;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 base_timestamp;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 cur_timestamp;
+
+    [CCode (cname="", cheader_filename="")]
     public int max_payload_size;
+
+    [CCode (cname="", cheader_filename="")]
     public int num_frames;
 
     /***********************************************************
-    rtcp sender statistics
+    @brief Rtcp sender statistics
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 last_rtcp_ntp_time;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 first_rtcp_ntp_time;
+
+    [CCode (cname="", cheader_filename="")]
     public uint packet_count;
+
+    [CCode (cname="", cheader_filename="")]
     public uint octet_count;
+
+    [CCode (cname="", cheader_filename="")]
     public uint last_octet_count;
+
+    [CCode (cname="", cheader_filename="")]
     public int first_packet;
 
     /***********************************************************
-    buffer for output
+    @brief Buffer for output
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint8[] buffer;
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 *buf_ptr;
 
+    [CCode (cname="", cheader_filename="")]
     public int max_frames_per_packet;
 
     /***********************************************************
-    Number of bytes used for H.264 NAL length, if the MP4 syntax is used
+    @brief Number of bytes used for H.264 NAL length, if the MP4 syntax is used
     (1, 2 or 4)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int nal_length_size;
+
+    [CCode (cname="", cheader_filename="")]
     public int buffered_nals;
 
+    [CCode (cname="", cheader_filename="")]
     public int flags;
 
+    [CCode (cname="", cheader_filename="")]
     public uint frame_count;
 }
 

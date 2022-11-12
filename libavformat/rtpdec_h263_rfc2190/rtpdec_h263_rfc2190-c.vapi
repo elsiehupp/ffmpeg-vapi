@@ -1,5 +1,5 @@
 /***********************************************************
-RTP H.263 Depacketizer, RFC 2190
+@brief RTP H.263 Depacketizer, RFC 2190
 @copyright 2012 Martin Storsjo
 Based on the GStreamer H.263 Depayloder:
 Copyright 2005 Wim Taymans
@@ -9,7 +9,7 @@ Copyright 2007 Collabora Ltd, Philippe Kalaf
 Copyright 2010 Mark Nauwelaerts
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -36,18 +36,21 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
             return AVMEDIA_TYPE_VIDEO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.H263;
         }
     }
+
     [CCode (cname="need_parsing", cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVSTREAM_PARSE_FULL;
         }
     }
+
     [CCode (cname="h263_handle_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,
@@ -60,12 +63,14 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
         }
     }
+
     [CCode (cname="h263_close_context", cheader_filename="")]
     public override void close (
         PayloadContext protocol_data

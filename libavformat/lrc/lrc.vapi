@@ -1,9 +1,9 @@
 /***********************************************************
-LRC lyrics file format decoder
+@brief LRC lyrics file format decoder
 @copyright 2014 StarBrilliant <m13253@hotmail.com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public

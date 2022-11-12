@@ -1,8 +1,8 @@
 /***********************************************************
-Version macros.
+@brief Version macros.
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -28,8 +28,13 @@ Libavformat version macros
 
 // Major bumping may affect Ticket5467, 5421, 5451 (compatibility with Chromium)
 // Also please add any ticket numbers that you believe might be affected here
+[CCode (cname="", cheader_filename="")]
 public const int LIBAVFORMAT_VERSION_MAJOR;
+
+[CCode (cname="", cheader_filename="")]
 public const int LIBAVFORMAT_VERSION_MINOR;
+
+[CCode (cname="", cheader_filename="")]
 public const int LIBAVFORMAT_VERSION_MICRO;
 
 //  #define LIBAVFORMAT_VERSION_INT AV_VERSION_INT (LIBAVFORMAT_VERSION_MAJOR,
@@ -43,7 +48,7 @@ public const int LIBAVFORMAT_VERSION_MICRO;
 //  #define LIBAVFORMAT_IDENT       "Lavf" AV_STRINGIFY (LIBAVFORMAT_VERSION)
 
 /***********************************************************
-FF_API_* defines may be placed below to indicate public API that will be
+@brief FF_API_* defines may be placed below to indicate public API that will be
 dropped at a future version bump. The defines themselves are not part of
 the public API and may change, break or disappear at any time.
 

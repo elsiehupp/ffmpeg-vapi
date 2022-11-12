@@ -1,8 +1,8 @@
 /***********************************************************
-Cyril Comparon, Larbi Joubala, Resonate-MP4 2009
+@brief Cyril Comparon, Larbi Joubala, Resonate-MP4 2009
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -22,8 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Known language codespaces
+@brief Known language codespaces
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum AVLangCodespace {
     /***********************************************************
     3-char bibliographic language codes as per ISO-IEC 639-2
@@ -40,9 +41,10 @@ public enum AVLangCodespace {
 }
 
 /***********************************************************
-Convert a language code to a target codespace. The source codespace is guessed.
+@brief Convert a language code to a target codespace. The source codespace is guessed.
 @return NULL if the provided lang is null or invalid.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public string ff_convert_lang_to (
     string lang,
     AVLangCodespace target_codespace

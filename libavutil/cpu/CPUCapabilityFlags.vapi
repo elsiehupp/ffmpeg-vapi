@@ -2,7 +2,7 @@
 @copyright 2000, 2001, 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -29,7 +29,7 @@ public enum CPUCapabilityFlags {
     FORCE,
 
     /***********************************************************
-    lower 16 bits - CPU features
+    @brief Lower 16 bits - CPU features
 ***********************************************************/
 
     /***********************************************************

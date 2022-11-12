@@ -1,9 +1,9 @@
 /***********************************************************
-raw FLAC muxer
+@brief Raw FLAC muxer
 @copyright 2006-2009 Justin Ruggles
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -38,6 +38,7 @@ public class FLACMuxerClass : LibAVUtil.Class {
             return "flac muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -63,59 +64,70 @@ public class FLACMuxer : AVOutputFormat {
             return "flac";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "raw FLAC";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FLACMuxerPrivateData);
         }
     }
+
     [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "audio/x-flac";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "flac";
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.FLAC;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.PNG;
         }
     }
+
     [CCode (cname="flac_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
+
     [CCode (cname="flac_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="flac_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="flac_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

@@ -1,9 +1,9 @@
 /***********************************************************
-xWMA demuxer
+@brief XWMA demuxer
 @copyright 2011 Max Horn
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Demuxer for xWMA, a Microsoft audio container used by XAudio 2.
+@brief Demuxer for xWMA, a Microsoft audio container used by XAudio 2.
 ***********************************************************/
 
 [CCode (cname="struct XWMAContext", cheader_filename="")]
@@ -37,26 +37,31 @@ public class XWMADemuxer : AVInputFormat {
             return "xwma";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Microsoft xWMA";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (XWMADemuxerPrivateData);
         }
     }
+
     [CCode (cname="xwma_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="xwma_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="xwma_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,

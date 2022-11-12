@@ -2,7 +2,7 @@
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -37,10 +37,12 @@ public enum AVIFlags {
 
 [CCode (cname="", cheader_filename="")]
 public const uint64 AVI_MAX_RIFF_SIZE;
+
+[CCode (cname="", cheader_filename="")]
 public const int AVI_MAX_STREAM_COUNT;
 
 /***********************************************************
-stream header flags
+@brief Stream header flags
 ***********************************************************/
 [Flags]
 public enum AVIStreamHeaderFlags {
@@ -48,7 +50,7 @@ public enum AVIStreamHeaderFlags {
 }
 
 /***********************************************************
-index flags
+@brief Index flags
 ***********************************************************/
 [Flags]
 public enum AVIIndexFlags {

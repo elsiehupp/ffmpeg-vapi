@@ -26,6 +26,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_ogm_video_codec", cheader_filename="")]
 public class OGMVideoCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "\001video".data;
@@ -37,6 +38,7 @@ public class OGMVideoCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="ogm_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
@@ -48,6 +50,7 @@ public class OGMVideoCodec : OggCodec {
 
 [CCode (cname="ff_ogm_audio_codec", cheader_filename="")]
 public class OGMAudioCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "\001audio".data;
@@ -59,6 +62,7 @@ public class OGMAudioCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="ogm_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
@@ -70,6 +74,7 @@ public class OGMAudioCodec : OggCodec {
 
 [CCode (cname="ff_ogm_text_codec", cheader_filename="")]
 public class OGMTextCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "\001text".data;
@@ -81,6 +86,7 @@ public class OGMTextCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="ogm_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
@@ -92,6 +98,7 @@ public class OGMTextCodec : OggCodec {
 
 [CCode (cname="ff_ogm_old_codec", cheader_filename="")]
 public class OGMOldCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "\001Direct Show Samples embedded in Ogg".data;
@@ -103,6 +110,7 @@ public class OGMOldCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="ogm_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,

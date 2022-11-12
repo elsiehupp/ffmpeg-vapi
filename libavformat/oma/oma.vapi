@@ -1,8 +1,8 @@
 /***********************************************************
-Sony OpenMG (OMA) common data
+@brief Sony OpenMG (OMA) common data
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,11 @@ namespace LibAVFormat {
 
 [CCode (cname="", cheader_filename="")]
 public const size_t EA3_HEADER_SIZE;
+
+[CCode (cname="", cheader_filename="")]
 public const string ID3v2_EA3_MAGIC;
+
+[CCode (cname="", cheader_filename="")]
 public const size_t OMA_ENC_HEADER_SIZE;
 
 [CCode (cname="", cheader_filename="")]

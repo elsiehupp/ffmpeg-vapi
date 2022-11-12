@@ -2,7 +2,7 @@
 @copyright 2008 David Conrad
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,6 +23,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_dirac_codec", cheader_filename="")]
 public class DiracCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "BBCD\0".data;
@@ -34,6 +35,7 @@ public class DiracCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="dirac_gptopts", cheader_filename="")]
     public override uint64 gptopts (
         AVFormatContext context,
@@ -47,6 +49,7 @@ public class DiracCodec : OggCodec {
 
 [CCode (cname="ff_old_dirac_codec", cheader_filename="")]
 public class OldDiracCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "KW-DIRAC".data;
@@ -58,6 +61,7 @@ public class OldDiracCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="old_dirac_gptopts", cheader_filename="")]
     public override uint64 gptopts (
         AVFormatContext context,

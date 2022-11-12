@@ -1,9 +1,9 @@
 /***********************************************************
-RTMP packet utilities
+@brief RTMP packet utilities
 @copyright 2009 Konstantin Shishkov
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,47 +23,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-maximum possible number of different RTMP channels
+@brief Maximum possible number of different RTMP channels
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const size_t RTMP_CHANNELS;
 
 /***********************************************************
-channels used to for RTMP packets with different purposes (i.e. data, network
+@brief Channels used to for RTMP packets with different purposes (i.e. data, network
 control, remote procedure calls, etc.)
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTMPChannel {
     /***********************************************************
-    Channel for network-related messages (bandwidth report, ping, etc)
+    @brief Channel for network-related messages (bandwidth report, ping, etc)
     ***********************************************************/
     RTMP_NETWORK_CHANNEL,
     /***********************************************************
-    Channel for sending server control messages
+    @brief Channel for sending server control messages
     ***********************************************************/
     RTMP_SYSTEM_CHANNEL,
     /***********************************************************
-    Channel for audio data
+    @brief Channel for audio data
     ***********************************************************/
     RTMP_AUDIO_CHANNEL,
     /***********************************************************
-    Channel for video data
+    @brief Channel for video data
     ***********************************************************/
     RTMP_VIDEO_CHANNEL,
     /***********************************************************
-    Channel for a/v invokes
+    @brief Channel for a/v invokes
     ***********************************************************/
     RTMP_SOURCE_CHANNEL;
 }
 
 /***********************************************************
-known RTMP packet types
+@brief Known RTMP packet types
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTMPPacketType {
     /***********************************************************
-    Chunk size change
+    @brief Chunk size change
     ***********************************************************/
     RTMP_PT_CHUNK_SIZE,
     /***********************************************************
-    Number of bytes read
+    @brief Number of bytes read
     ***********************************************************/
     RTMP_PT_BYTES_READ,
     /***********************************************************
@@ -71,119 +74,129 @@ public enum RTMPPacketType {
     ***********************************************************/
     RTMP_PT_USER_CONTROL,
     /***********************************************************
-    Window acknowledgement size
+    @brief Window acknowledgement size
     ***********************************************************/
     RTMP_PT_WINDOW_ACK_SIZE,
     /***********************************************************
-    Peer bandwidth
+    @brief Peer bandwidth
     ***********************************************************/
     RTMP_PT_SET_PEER_BW,
     /***********************************************************
-    Audio packet
+    @brief Audio packet
     ***********************************************************/
     RTMP_PT_AUDIO,
     /***********************************************************
-    Video packet
+    @brief Video packet
     ***********************************************************/
     RTMP_PT_VIDEO,
     /***********************************************************
-    Flex shared stream
+    @brief Flex shared stream
     ***********************************************************/
     RTMP_PT_FLEX_STREAM,
     /***********************************************************
-    Flex shared object
+    @brief Flex shared object
     ***********************************************************/
     RTMP_PT_FLEX_OBJECT,
     /***********************************************************
-    Flex shared message
+    @brief Flex shared message
     ***********************************************************/
     RTMP_PT_FLEX_MESSAGE,
     /***********************************************************
-    Some notification
+    @brief Some notification
     ***********************************************************/
     RTMP_PT_NOTIFY,
     /***********************************************************
-    Shared object
+    @brief Shared object
     ***********************************************************/
     RTMP_PT_SHARED_OBJ,
     /***********************************************************
-    Invoke some stream action
+    @brief Invoke some stream action
     ***********************************************************/
     RTMP_PT_INVOKE,
     /***********************************************************
-    FLV metadata
+    @brief FLV metadata
     ***********************************************************/
     RTMP_PT_METADATA;
 }
 
 /***********************************************************
-possible RTMP packet header sizes
+@brief Possible RTMP packet header sizes
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum RTMPPacketSize {
     /***********************************************************
-    Packet has 12-byte header
+    @brief Packet has 12-byte header
     ***********************************************************/
     RTMP_PS_TWELVEBYTES,
     /***********************************************************
-    Packet has 8-byte header
+    @brief Packet has 8-byte header
     ***********************************************************/
     RTMP_PS_EIGHTBYTES,
     /***********************************************************
-    Packet has 4-byte header
+    @brief Packet has 4-byte header
     ***********************************************************/
     RTMP_PS_FOURBYTES,
     /***********************************************************
-    Packet is really a next chunk of a packet
+    @brief Packet is really a next chunk of a packet
     ***********************************************************/
     RTMP_PS_ONEBYTE;
 }
 
 /***********************************************************
-structure for holding RTMP packets
+@brief Structure for holding RTMP packets
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct RTMPPacket {
     /***********************************************************
-    RTMP channel ID (nothing to do with audio/video channels though)
+    @brief RTMP channel ID (nothing to do with audio/video channels though)
     ***********************************************************/
     int channel_id;
+
     /***********************************************************
-    Packet payload type
+    @brief Packet payload type
     ***********************************************************/
     RTMPPacketType type;
+
     /***********************************************************
-    Packet full timestamp
+    @brief Packet full timestamp
     ***********************************************************/
     uint32 timestamp;
+
     /***********************************************************
     24-bit timestamp or increment to the previous one, in
     milliseconds (latter only for media packets). Clipped to a
     maximum of 0xFFFFFF, indicating an extended timestamp field.
     ***********************************************************/
     uint32 ts_field;
+
     /***********************************************************
-    Probably an additional channel ID used during streaming data
+    @brief Probably an additional channel ID used during streaming data
     ***********************************************************/
     uint32 extra;
+
     /***********************************************************
-    Packet payload
+    @brief Packet payload
     ***********************************************************/
     uint8[] data;
+
     /***********************************************************
-    Packet payload size
+    @brief Packet payload size
     ***********************************************************/
     int size;
+
     /***********************************************************
-    Amount of data read so far
+    @brief Amount of data read so far
     ***********************************************************/
     int offset;
+
     /***********************************************************
-    Amount read, including headers
+    @brief Amount read, including headers
     ***********************************************************/
     int read;
 }
 
 /***********************************************************
-Create new RTMP packet with given attributes.
+@brief Create new RTMP packet with given attributes.
 
 @param packet packet
 @param channel_id packet channel ID
@@ -192,6 +205,7 @@ Create new RTMP packet with given attributes.
 @param size packet size
 @return zero on success, negative value otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtmp_packet_create (
     RTMPPacket packet,
     int channel_id,
@@ -201,16 +215,17 @@ public int ff_rtmp_packet_create (
 );
 
 /***********************************************************
-Free RTMP packet.
+@brief Free RTMP packet.
 
 @param packet packet
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_rtmp_packet_destroy (
     RTMPPacket packet
 );
 
 /***********************************************************
-Read RTMP packet sent by the server.
+@brief Read RTMP packet sent by the server.
 
 @param h reader context
 @param packet packet
@@ -220,6 +235,7 @@ Read RTMP packet sent by the server.
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtmp_packet_read (
     URLContext url_context,
     RTMPPacket packet,
@@ -229,7 +245,7 @@ public int ff_rtmp_packet_read (
 );
 
 /***********************************************************
-Read internal RTMP packet sent by the server.
+@brief Read internal RTMP packet sent by the server.
 
 @param h reader context
 @param packet packet
@@ -240,6 +256,7 @@ Read internal RTMP packet sent by the server.
 @param c the first byte already read
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtmp_packet_read_internal (
     URLContext url_context,
     RTMPPacket packet,
@@ -250,7 +267,7 @@ public int ff_rtmp_packet_read_internal (
 );
 
 /***********************************************************
-Send RTMP packet to the server.
+@brief Send RTMP packet to the server.
 
 @param h reader context
 @param packet packet to send
@@ -260,6 +277,7 @@ Send RTMP packet to the server.
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes written on success, negative value otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtmp_packet_write (
     URLContext url_context,
     RTMPPacket packet,
@@ -269,23 +287,25 @@ public int ff_rtmp_packet_write (
 );
 
 /***********************************************************
-Print information and contents of RTMP packet.
+@brief Print information and contents of RTMP packet.
 
 @param opaque_context output context
 @param packet packet to dump
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_rtmp_packet_dump (
     void *opaque_context,
     RTMPPacket packet
 );
 
 /***********************************************************
-Enlarge the prev_pkt array to fit the given channel
+@brief Enlarge the prev_pkt array to fit the given channel
 
 @param prev_pkt array with previously sent packet headers
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @param channel the channel number that needs to be allocated
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtmp_check_alloc_array (
     out RTMPPacket prev_pkt,
     out int nb_prev_pkt,
@@ -299,19 +319,20 @@ public int ff_rtmp_check_alloc_array (
 ***********************************************************/
 
 /***********************************************************
-Calculate number of bytes taken by first AMF entry in data.
+@brief Calculate number of bytes taken by first AMF entry in data.
 
 @param data input data
 @param data_end input buffer end
 @return number of bytes used by first AMF entry
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_amf_tag_size (
     uint8[] data,
     uint8[] data_end
 );
 
 /***********************************************************
-Retrieve value of given AMF object field in string form.
+@brief Retrieve value of given AMF object field in string form.
 
 @param data AMF object data
 @param data_end input buffer end
@@ -320,6 +341,7 @@ Retrieve value of given AMF object field in string form.
 @param dst_size output buffer size
 @return 0 if search and retrieval succeeded, negative value otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_amf_get_field_value (
     uint8[] data,
     uint8[] data_end,
@@ -329,45 +351,49 @@ public int ff_amf_get_field_value (
 );
 
 /***********************************************************
-Write boolean value in AMF format to buffer.
+@brief Write boolean value in AMF format to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 @param val value to write
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_amf_write_bool (
     out uint8[] dst,
     int val
 );
 
 /***********************************************************
-Write number in AMF format to buffer.
+@brief Write number in AMF format to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 @param num value to write
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_amf_write_number (
     out uint8[] dst,
     double num
 );
 
 /***********************************************************
-Write string in AMF format to buffer.
+@brief Write string in AMF format to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_amf_write_string (
     out uint8[] dst,
     string str
 );
 
 /***********************************************************
-Write a string consisting of two parts in AMF format to a buffer.
+@brief Write a string consisting of two parts in AMF format to a buffer.
 
 @param dst pointer to the input buffer (will be modified)
 @param str1 first string to write, may be null
 @param str2 second string to write, may be null
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_amf_write_string2 (
     out uint8[] dst,
     string str1,
@@ -375,69 +401,75 @@ public void ff_amf_write_string2 (
 );
 
 /***********************************************************
-Write AMF NULL value to buffer.
+@brief Write AMF NULL value to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_amf_write_null (
     out uint8[] dst
 );
 
 /***********************************************************
-Write marker for AMF object to buffer.
+@brief Write marker for AMF object to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_amf_write_object_start (
     out uint8[] dst
 );
 
 /***********************************************************
-Write string used as field name in AMF object to buffer.
+@brief Write string used as field name in AMF object to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_amf_write_field_name (
     out uint8[] dst,
     string str
 );
 
 /***********************************************************
-Write marker for end of AMF object to buffer.
+@brief Write marker for end of AMF object to buffer.
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_amf_write_object_end (
     out uint8[] dst
 );
 
 /***********************************************************
-Read AMF boolean value.
+@brief Read AMF boolean value.
 
 @param[in,out] gbc GetByteContext initialized with AMF-formatted data
 @param[out]    val 0 or 1
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_amf_read_bool (
     GetByteContext gbc,
     out int val
 );
 
 /***********************************************************
-Read AMF number value.
+@brief Read AMF number value.
 
 @param[in,out] gbc GetByteContext initialized with AMF-formatted data
 @param[out]    val read value
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_amf_read_number (
     GetByteContext gbc,
     out double val
 );
 
 /***********************************************************
-Get AMF string value.
+@brief Get AMF string value.
 
 This function behaves the same as ff_amf_read_string except that
 it does not expect the AMF type prepended to the actual data.
@@ -450,6 +482,7 @@ ease later parsing.
 @param[out]    length read string length
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_amf_get_string (
     GetByteContext bc,
     uint8[] str,
@@ -458,7 +491,7 @@ public int ff_amf_get_string (
 );
 
 /***********************************************************
-Read AMF string value.
+@brief Read AMF string value.
 
 Appends a trailing null byte to output string in order to
 ease later parsing.
@@ -469,6 +502,7 @@ ease later parsing.
 @param[out]    length read string length
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_amf_read_string (
     GetByteContext gbc,
     uint8[] str,
@@ -477,20 +511,22 @@ public int ff_amf_read_string (
 );
 
 /***********************************************************
-Read AMF NULL value.
+@brief Read AMF NULL value.
 
 @param[in,out] gbc GetByteContext initialized with AMF-formatted data
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_amf_read_null (
     GetByteContext gbc
 );
 
 /***********************************************************
-Match AMF string with a NULL-terminated string.
+@brief Match AMF string with a NULL-terminated string.
 
 @return 0 if the strings do not match.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_amf_match_string (
     uint8[] data,
     int size,
@@ -498,7 +534,7 @@ public int ff_amf_match_string (
 );
 
 /***********************************************************
-AMF funcs
+@brief AMF funcs
 ***********************************************************/
 
 } // namespace LibAVFormat

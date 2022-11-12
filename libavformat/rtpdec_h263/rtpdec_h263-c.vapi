@@ -1,9 +1,9 @@
 /***********************************************************
-RTP H.263 Depacketizer, RFC 4629
+@brief RTP H.263 Depacketizer, RFC 4629
 @copyright 2010 Martin Storsjo
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,24 +30,28 @@ public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
             return "H263-1998";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_VIDEO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.H263;
         }
     }
+
     [CCode (cname="need_parsing", cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVSTREAM_PARSE_FULL;
         }
     }
+
     [CCode (cname="ff_h263_handle_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,
@@ -70,24 +74,28 @@ public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
             return "H263-2000";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_VIDEO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.H263;
         }
     }
+
     [CCode (cname="need_parsing", cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVSTREAM_PARSE_FULL;
         }
     }
+
     [CCode (cname="ff_h263_handle_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,

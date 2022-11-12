@@ -2,7 +2,7 @@
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -70,6 +70,7 @@ FFmpeg versions or to replacing the dynamic FFmpeg libraries that a program
 links against.
 
 However, new public symbols may be added and new members may be appended to
+[CCode (cname="", cheader_filename="")]
 public structs whose size is not part of public ABI (most public structs in
 FFmpeg). New macros and enum values may be added. Behavior in undocumented
 situations may change slightly (and be documented). All those are accompanied
@@ -204,13 +205,16 @@ public enum MediaType {
 
 [CCode (cname="FF_LAMBDA_SHIFT", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int FF_LAMBDA_SHIFT;
+
 [CCode (cname="FF_LAMBDA_SCALE", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int FF_LAMBDA_SCALE;
+
 /***********************************************************
 @brief Factor to convert from H.263 QP to lambda
 ***********************************************************/
 [CCode (cname="FF_QP2LAMBDA", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int FF_QP2LAMBDA;
+
 [CCode (cname="FF_LAMBDA_MAX", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public const int FF_LAMBDA_MAX;
 

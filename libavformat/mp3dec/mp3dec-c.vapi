@@ -1,9 +1,9 @@
 /***********************************************************
-MP3 demuxer
+@brief MP3 demuxer
 @copyright 2003 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -35,6 +35,7 @@ public class MP3DemuxerClass : LibAVUtil.Class {
             return "mp3";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -43,8 +44,10 @@ public class MP3DemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -65,25 +68,30 @@ public class MP3Demuxer : AVInputFormat {
             return "mp3";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MP2/3 (MPEG audio layer 2/3)";
         }
     }
+
     [CCode (cname="mp3_read_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="mp3_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="mp3_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="mp3_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -91,20 +99,23 @@ public class MP3Demuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MP3DemuxerPrivateData);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
         }
     }
+
     /***********************************************************
-    XXX: use probe
+    @brief XXX: use probe
     ***********************************************************/
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {

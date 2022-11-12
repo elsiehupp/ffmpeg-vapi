@@ -1,10 +1,10 @@
 /***********************************************************
-Sony OpenMG (OMA) muxer
+@brief Sony OpenMG (OMA) muxer
 
 @copyright 2011 Michael Karcher
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -31,34 +31,40 @@ public class OMAMuxer : AVOutputFormat {
             return "oma";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Sony OpenMG audio";
         }
     }
+
     [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "audio/x-oma";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "oma";
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.ATRAC3;
         }
     }
+
     [CCode (cname="oma_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="ff_raw_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,

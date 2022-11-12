@@ -1,8 +1,5 @@
 /***********************************************************
-@copyright 2001 Fabrice Bellard
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -18,7 +15,9 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@copyright 2001 Fabrice Bellard
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -35,6 +34,7 @@ LibAVCodec external API header
 public struct CodecParserContext {
     [CCode (cname="priv_data")]
     public void *priv_data;
+
     [CCode (cname="parser")]
     public CodecParser parser;
 
@@ -57,7 +57,7 @@ public struct CodecParserContext {
     public int64 next_frame_offset;
 
     /***********************************************************
-    video info
+    @brief Video info
     ***********************************************************/
 
     /***********************************************************
@@ -97,8 +97,10 @@ public struct CodecParserContext {
     ***********************************************************/
     [CCode (cname="last_pts")]
     public int64 last_pts;
+
     [CCode (cname="last_dts")]
     public int64 last_dts;
+
     [CCode (cname="fetch_timestamp")]
     public int fetch_timestamp;
 
@@ -107,10 +109,13 @@ public struct CodecParserContext {
 
     [CCode (cname="cur_frame_start_index")]
     public int cur_frame_start_index;
+
     [CCode (cname="cur_frame_offset")]
     public int64 cur_frame_offset[AV_PARSER_PTS_NB];
+
     [CCode (cname="cur_frame_pts")]
     public int64 cur_frame_pts[AV_PARSER_PTS_NB];
+
     [CCode (cname="cur_frame_dts")]
     public int64 cur_frame_dts[AV_PARSER_PTS_NB];
 
@@ -136,7 +141,7 @@ public struct CodecParserContext {
     public int key_frame;
 
     /***********************************************************
-    Timestamp generation support
+    @brief Timestamp generation support
 ***********************************************************/
 
     /***********************************************************

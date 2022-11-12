@@ -36,6 +36,7 @@ public struct FFTSample : float { }
 public struct FFTComplex {
     [CCode (cname="re")]
     public FFTSample re;
+
     [CCode (cname="im")]
     public FFTSample im;
 }

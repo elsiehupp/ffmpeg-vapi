@@ -1,9 +1,9 @@
 /***********************************************************
-Pro-MPEG Code of Practice #3 Release 2 FEC
+@brief Pro-MPEG Code of Practice #3 Release 2 FEC
 @copyright 2016 Mobibase, France (http://www.mobibase.com)
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -28,7 +28,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 /***********************************************************
-Reminder:
+@brief Reminder:
 
 [RFC 2733] FEC Packet Structure
 
@@ -99,6 +99,7 @@ public class ProMpegURLProtocolClass : LibAVUtil.Class {
             return "prompeg";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -107,8 +108,10 @@ public class ProMpegURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -128,28 +131,33 @@ public class ProMpegURLProtocol : URLProtocol {
             return "prompeg";
         }
     }
+
     [CCode (cname="prompeg_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="prompeg_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="prompeg_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ProMpegPrivateData);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {

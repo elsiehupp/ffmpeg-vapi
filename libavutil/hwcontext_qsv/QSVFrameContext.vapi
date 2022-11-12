@@ -32,6 +32,7 @@ contain LibAVUtil.BufferRef (s) whose data pointer points to an mfxFrameSurface1
 public class QSVFrameContext : AbstractHardwareContext {
     [CCode (cname="surfaces")]
     public mfxFrameSurface1[] surface_list;
+
     [CCode (cname="nb_surfaces")]
     public int surface_count;
 

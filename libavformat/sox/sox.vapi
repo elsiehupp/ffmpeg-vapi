@@ -1,9 +1,9 @@
 /***********************************************************
-SoX native format common data
+@brief SoX native format common data
 @copyright 2009 Daniel Verkamp <daniel@drv.nu>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,8 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Size of fixed header without magic
+@brief Size of fixed header without magic
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const size_t SOX_FIXED_HDR;
 
 [CCode (cname="", cheader_filename="")]

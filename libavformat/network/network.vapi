@@ -2,7 +2,7 @@
 @copyright 2007 The FFmpeg Project
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,22 +24,27 @@ namespace LibAVFormat {
 #if HAVE_WINSOCK2_H
 
 #if !EPROTONOSUPPORT
+[CCode (cname="", cheader_filename="")]
 public const int EPROTONOSUPPORT; // WSAEPROTONOSUPPORT
 #endif
 
 #if !ETIMEDOUT
+[CCode (cname="", cheader_filename="")]
 public const int ETIMEDOUT; // WSAETIMEDOUT
 #endif
 
 #if !ECONNREFUSED
+[CCode (cname="", cheader_filename="")]
 public const int ECONNREFUSED; // WSAECONNREFUSED
 #endif
 
 #if !EINPROGRESS
+[CCode (cname="", cheader_filename="")]
 public const int EINPROGRESS; // WSAEINPROGRESS
 #endif
 
 #if !ENOTCONN
+[CCode (cname="", cheader_filename="")]
 public const int ENOTCONN; // WSAENOTCONN
 #endif
 
@@ -80,7 +85,7 @@ public int ff_network_wait_fd (
 );
 
 /***********************************************************
-This works similarly to ff_network_wait_fd, but waits up to 'timeout' microseconds
+@brief This works similarly to ff_network_wait_fd, but waits up to 'timeout' microseconds
 Uses ff_network_wait_fd in a loop
 
 @param fd Socket descriptor
@@ -89,6 +94,7 @@ Uses ff_network_wait_fd in a loop
 @param int_cb Interrupt callback, is checked before each ff_network_wait_fd call
 @return 0 if data can be read/written, LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expired, or negative error code
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_network_wait_fd_timeout (
     int fd,
     int write,
@@ -97,28 +103,39 @@ public int ff_network_wait_fd_timeout (
 );
 
 /***********************************************************
-Waits for up to 'timeout' microseconds. If the usert's int_cb is set and
+@brief Waits for up to 'timeout' microseconds. If the usert's int_cb is set and
 triggered, return before that.
 @param timeout Timeout in microseconds. Maybe have lower actual precision.
 @param int_cb Interrupt callback, is checked regularly.
 @return LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expirted, AVERROR_EXIT if interrupted by int_cb
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_network_sleep_interruptible (
     int64 timeout,
     AVIOInterruptCB int_cb
 );
 
 #if !HAVE_STRUCT_SOCKADDR_STORAGE
+[CCode (cname="", cheader_filename="")]
 public struct sockaddr_storage {
 #if HAVE_STRUCT_SOCKADDR_SA_LEN
+    [CCode (cname="", cheader_filename="")]
     public uint8 ss_len;
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 ss_family;
 #else
+    [CCode (cname="", cheader_filename="")]
     public uint16 ss_family;
 #endif /* HAVE_STRUCT_SOCKADDR_SA_LEN
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char ss_pad1[6];
+
+    [CCode (cname="", cheader_filename="")]
     public int64 ss_align;
+
+    [CCode (cname="", cheader_filename="")]
     public char ss_pad2[112];
 }
 #endif /* !HAVE_STRUCT_SOCKADDR_STORAGE
@@ -126,103 +143,142 @@ public struct sockaddr_storage {
 
 [CCode (cname="struct sockaddr_union", cheader_filename="")]
 public struct sockaddr_union {
+    [CCode (cname="", cheader_filename="")]
     public sockaddr_storage storage;
+
+    [CCode (cname="", cheader_filename="")]
     public Posix.SockAddrIn in;
 #if HAVE_STRUCT_SOCKADDR_IN6
+    [CCode (cname="", cheader_filename="")]
     public Posix.SockAddrIn6 in6;
 #endif
 }
 
 #if !MSG_NOSIGNAL
+[CCode (cname="", cheader_filename="")]
 public const int MSG_NOSIGNAL; // 0
 #endif
 
 #if !HAVE_STRUCT_ADDRINFO
+[CCode (cname="", cheader_filename="")]
 public struct addrinfo {
+    [CCode (cname="", cheader_filename="")]
     public int ai_flags;
+
+    [CCode (cname="", cheader_filename="")]
     public int ai_family;
+
+    [CCode (cname="", cheader_filename="")]
     public int ai_socktype;
+
+    [CCode (cname="", cheader_filename="")]
     public int ai_protocol;
+
+    [CCode (cname="", cheader_filename="")]
     public int ai_addrlen;
+
+    [CCode (cname="", cheader_filename="")]
     public Posix.SockAddr ai_addr;
+
+    [CCode (cname="", cheader_filename="")]
     public string ai_canonname;
+
+    [CCode (cname="", cheader_filename="")]
     public addrinfo *ai_next;
 }
 #endif /* !HAVE_STRUCT_ADDRINFO
 ***********************************************************/
 
 /***********************************************************
-ff_getaddrinfo constants
+@brief Ff_getaddrinfo constants
 ***********************************************************/
 #if !EAI_AGAIN
+[CCode (cname="", cheader_filename="")]
 public const int EAI_AGAIN; // 2
 #endif
 
 #if !EAI_BADFLAGS
+[CCode (cname="", cheader_filename="")]
 public const int EAI_BADFLAGS; // 3
 #endif
 
 #if !EAI_FAIL
+[CCode (cname="", cheader_filename="")]
 public const int EAI_FAIL; // 4
 #endif
 
 #if !EAI_FAMILY
+[CCode (cname="", cheader_filename="")]
 public const int EAI_FAMILY; // 5
 #endif
 
 #if !EAI_MEMORY
+[CCode (cname="", cheader_filename="")]
 public const int EAI_MEMORY; // 6
 #endif
 
 #if !EAI_NODATA
+[CCode (cname="", cheader_filename="")]
 public const int EAI_NODATA; // 7
 #endif
 
 #if !EAI_NONAME
+[CCode (cname="", cheader_filename="")]
 public const int EAI_NONAME; // 8
 #endif
 
 #if !EAI_SERVICE
+[CCode (cname="", cheader_filename="")]
 public const int EAI_SERVICE; // 9
 #endif
 
 #if !EAI_SOCKTYPE
+[CCode (cname="", cheader_filename="")]
 public const int EAI_SOCKTYPE; // 10
 #endif
 
 #if !AI_PASSIVE
+[CCode (cname="", cheader_filename="")]
 public const int AI_PASSIVE; // 1
 #endif
 
 #if !AI_CANONNAME
+[CCode (cname="", cheader_filename="")]
 public const int AI_CANONNAME; // 2
 #endif
 
 #if !AI_NUMERICHOST
+[CCode (cname="", cheader_filename="")]
 public const int AI_NUMERICHOST; // 4
 #endif
 
 #if !NI_NOFQDN
+[CCode (cname="", cheader_filename="")]
 public const int NI_NOFQDN; // 1
 #endif
 
 #if !NI_NUMERICHOST
+[CCode (cname="", cheader_filename="")]
 public const int NI_NUMERICHOST; // 2
 #endif
 
 #if !NI_NAMERQD
+[CCode (cname="", cheader_filename="")]
 public const int NI_NAMERQD; // 4
 #endif
 
 #if !NI_NUMERICSERV
+[CCode (cname="", cheader_filename="")]
 public const int NI_NUMERICSERV; // 8
 #endif
 
 #if !NI_DGRAM
+[CCode (cname="", cheader_filename="")]
 public const int NI_DGRAM; // 16
 #endif
 
 #if !HAVE_GETADDRINFO
+[CCode (cname="", cheader_filename="")]
 public int ff_getaddrinfo (
     string node,
     string service,
@@ -249,6 +305,7 @@ public int ff_getnameinfo (
 ***********************************************************/
 
 #if !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
+[CCode (cname="", cheader_filename="")]
 public string ff_gai_strerror (
     int ecode
 );
@@ -256,22 +313,27 @@ public string ff_gai_strerror (
 ***********************************************************/
 
 #if !INADDR_LOOPBACK
+[CCode (cname="", cheader_filename="")]
 public const uint INADDR_LOOPBACK;
 #endif
 
 #if !INET_ADDRSTRLEN
+[CCode (cname="", cheader_filename="")]
 public const size_t INET_ADDRSTRLEN;
 #endif
 
 #if !INET6_ADDRSTRLEN
+[CCode (cname="", cheader_filename="")]
 public const size_t INET6_ADDRSTRLEN; // INET_ADDRSTRLEN
 #endif
 
 #if !IN_MULTICAST
+[CCode (cname="", cheader_filename="")]
 public uint32 IN_MULTICAST (uint32 a); // ((((uint32)(a)) & 0xf0000000) == 0xe0000000)
 #endif
 
 #if !IN6_IS_ADDR_MULTICAST
+[CCode (cname="", cheader_filename="")]
 public bool IN6_IS_ADDR_MULTICAST (uint8[] a); // (((uint8[] ) (a))[0] == 0xff)
 #endif
 
@@ -281,8 +343,9 @@ public int ff_is_multicast_address (
 );
 
 /***********************************************************
-Time in milliseconds between interrupt check
+@brief Time in milliseconds between interrupt check
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const int POLLING_TIME;
 
 /***********************************************************
@@ -297,6 +360,7 @@ Bind to a file descriptor and poll for a connection.
 @return A non-blocking file descriptor on success
                or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_listen_bind (
     int fd,
     Posix.SockAddr addr,
@@ -312,6 +376,7 @@ Bind to a file descriptor to an address without accepting connections.
 @param addrlen Third argument of bind ().
 @return 0 on success or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_listen (
     int fd,
     Posix.SockAddr addr,
@@ -319,7 +384,7 @@ public int ff_listen (
 );
 
 /***********************************************************
-Poll for a single connection on the passed file descriptor.
+@brief Poll for a single connection on the passed file descriptor.
 @param fd The listening socket file descriptor.
 @param timeout Polling timeout in milliseconds.
 @param h URLContext providing interrupt check
@@ -327,6 +392,7 @@ Poll for a single connection on the passed file descriptor.
 @return A non-blocking file descriptor on success
                or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_accept (
     int fd,
     int timeout,
@@ -334,7 +400,7 @@ public int ff_accept (
 );
 
 /***********************************************************
-Connect to a file descriptor and poll for result.
+@brief Connect to a file descriptor and poll for result.
 
 @param fd First argument of connect (),
                 will be set as non-blocking.
@@ -348,6 +414,7 @@ Connect to a file descriptor and poll for result.
                 logged errors.
 @return 0 on success, LibAVUtil.ErrorCode on failure.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_listen_connect (
     int fd,
     Posix.SockAddr addr,
@@ -378,7 +445,7 @@ public void ff_log_net_error (
 );
 
 /***********************************************************
-Connect to any of the given addrinfo addresses, with multiple attempts
+@brief Connect to any of the given addrinfo addresses, with multiple attempts
 running in parallel.
 
 @param addrs The list of addresses to try to connect to.
@@ -401,6 +468,7 @@ running in parallel.
 @param customize_ctx Context parameter passed to customize_fd.
 @return 0 on success, LibAVUtil.ErrorCode on failure.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_connect_parallel (
     addrinfo[] addrs,
     int timeout_ms_per_address,
@@ -411,7 +479,6 @@ public int ff_connect_parallel (
     void *customize_ctx
 );
 
-[CCode (cname="", cheader_filename="")]
 public delegate void CustomizeFileDescriptorDelegate (
     void *opaque,
     int arg

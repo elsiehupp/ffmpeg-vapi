@@ -1,8 +1,8 @@
 /***********************************************************
-IP common code
+@brief IP common code
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -23,8 +23,9 @@ Foundation, Inc.,
 namespace LibAVFormat {
 
 /***********************************************************
-Structure for storing IP (UDP) source filters or block lists.
+@brief Structure for storing IP (UDP) source filters or block lists.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct IPSourceFilters {
     int nb_include_addrs;
     int nb_exclude_addrs;
@@ -33,20 +34,22 @@ public struct IPSourceFilters {
 }
 
 /***********************************************************
-Checks the source address against a given IP source filter.
+@brief Checks the source address against a given IP source filter.
 @return 0 if packet should be processed based on the filter, 1 if the packet
     can be dropped.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_ip_check_source_lists (
     sockaddr_storage source_addr_ptr,
     IPSourceFilters source_filters
 );
 
 /***********************************************************
-Resolves hostname into an addrinfo structure.
+@brief Resolves hostname into an addrinfo structure.
 @return addrinfo structure which should be freed by the user, NULL in case
     of error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public addrinfo ff_ip_resolve_host (
     void *log_ctx,
     string hostname, int port,
@@ -54,10 +57,11 @@ public addrinfo ff_ip_resolve_host (
 );
 
 /***********************************************************
-Parses the address[,address] source list in buffer and adds it to the filters
+@brief Parses the address[,address] source list in buffer and adds it to the filters
 in the IPSourceFilters structure.
 @return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_ip_parse_sources (
     void *log_ctx,
     string buffer,
@@ -65,10 +69,11 @@ public int ff_ip_parse_sources (
 );
 
 /***********************************************************
-Parses the address[,address] source block list in buffer and adds it to the
+@brief Parses the address[,address] source block list in buffer and adds it to the
 filters in the IPSourceFilters structure.
 @return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_ip_parse_blocks (
     void *log_ctx,
     string buffer,
@@ -76,9 +81,10 @@ public int ff_ip_parse_blocks (
 );
 
 /***********************************************************
-Resets the IP filter list and frees the internal fields of an
+@brief Resets the IP filter list and frees the internal fields of an
 IPSourceFilters structure.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_ip_reset_filters (
     IPSourceFilters filters
 );

@@ -1,9 +1,9 @@
 /***********************************************************
-G.726 raw demuxer
+@brief G.726 raw demuxer
 Copyright 2017 Carl Eugen Hoyos
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -40,6 +40,7 @@ public class G726LEDemuxerClass : LibAVUtil.Class {
             return "G.726 big-endian demuxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -65,21 +66,25 @@ public class G726Demuxer : AVInputFormat {
             return "g726";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "raw big-endian G.726 (\"left aligned\")";
         }
     }
+
     [CCode (cname="g726_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="g726_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
@@ -105,6 +110,7 @@ public class G726DemuxerClass : LibAVUtil.Class {
             return "G.726 little-endian demuxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -130,21 +136,25 @@ public class G726LEDemuxer : AVInputFormat {
             return "g726le";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "raw little-endian G.726 (\"right aligned\")";
         }
     }
+
     [CCode (cname="g726_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="g726_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {

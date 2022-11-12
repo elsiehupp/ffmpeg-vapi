@@ -1,9 +1,9 @@
 /***********************************************************
-MXF
+@brief MXF
 @copyright 2006 SmartJog S.A., Baptiste Coudurier <baptiste dot coudurier at smartjog dot com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -61,9 +61,16 @@ public enum MXFFrameLayout {
 
 [CCode (cname="struct KLVPacket", cheader_filename="")]
 public struct KLVPacket {
+    [CCode (cname="", cheader_filename="")]
     public UID key;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 offset;
+
+    [CCode (cname="", cheader_filename="")]
     public uint64 length;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 next_klv;
 }
 
@@ -77,17 +84,31 @@ public enum MXFWrappingIndicatorType {
 
 [CCode (cname="struct MXFCodecUL", cheader_filename="")]
 public struct MXFCodecUL {
+    [CCode (cname="", cheader_filename="")]
     public UID uid;
+
+    [CCode (cname="", cheader_filename="")]
     public uint matching_len;
+
+    [CCode (cname="", cheader_filename="")]
     public int id;
+
+    [CCode (cname="", cheader_filename="")]
     public string desc;
+
+    [CCode (cname="", cheader_filename="")]
     public uint wrapping_indicator_pos;
+
+    [CCode (cname="", cheader_filename="")]
     public MXFWrappingIndicatorType wrapping_indicator_type;
 }
 
 [CCode (cname="struct MXFSamplesPerFrame", cheader_filename="")]
 public struct MXFSamplesPerFrame {
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Rational time_base;
+
+    [CCode (cname="", cheader_filename="")]
     public int samples_per_frame[6];
 }
 

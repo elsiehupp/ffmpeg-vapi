@@ -33,12 +33,16 @@ so new fields may be added to the end with a minor bump.
 public struct FrameSideData {
     [CCode (cname="type")]
     public FrameSideDataType type;
+
     [CCode (cname="data")]
     public uint8[] data;
+
     [CCode (cname="size")]
     public int size;
+
     [CCode (cname="metadata")]
     public LibAVUtil.Dictionary[] metadata;
+
     [CCode (cname="buffer")]
     public LibAVUtil.BufferRef buffer;
 }

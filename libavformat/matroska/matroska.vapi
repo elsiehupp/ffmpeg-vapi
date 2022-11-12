@@ -1,9 +1,9 @@
 /***********************************************************
-Matroska constants
+@brief Matroska constants
 @copyright 2003-2004 The FFmpeg project
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,18 +23,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-EBML version supported
+@brief EBML version supported
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const int EBML_VERSION;
 
 /***********************************************************
-top-level master-IDs
+@brief Top-level master-IDs
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum EBMLID {
     EBML_ID_HEADER,
 
     /***********************************************************
-    IDs in the HEADER master
+    @brief IDs in the HEADER master
     ***********************************************************/
     EBML_ID_EBMLVERSION,
     EBML_ID_EBMLREADVERSION,
@@ -45,23 +47,24 @@ public enum EBMLID {
     EBML_ID_DOCTYPEREADVERSION,
 
     /***********************************************************
-    general EBML types
+    @brief General EBML types
     ***********************************************************/
     EBML_ID_VOID,
     EBML_ID_CRC32,
 }
 
 /***********************************************************
-Matroska element IDs, max. 32 bits
+@brief Matroska element IDs, max. 32 bits
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum MatroskaID {
     /***********************************************************
-    toplevel segment
+    @brief Toplevel segment
     ***********************************************************/
     MATROSKA_ID_SEGMENT,
 
     /***********************************************************
-    Matroska top-level master IDs
+    @brief Matroska top-level master IDs
     ***********************************************************/
     MATROSKA_ID_INFO,
     MATROSKA_ID_TRACKS,
@@ -73,7 +76,7 @@ public enum MatroskaID {
     MATROSKA_ID_CHAPTERS,
 
     /***********************************************************
-    IDs in the info master
+    @brief IDs in the info master
     ***********************************************************/
     MATROSKA_ID_TIMECODESCALE,
     MATROSKA_ID_DURATION,
@@ -84,12 +87,12 @@ public enum MatroskaID {
     MATROSKA_ID_SEGMENTUID,
 
     /***********************************************************
-    ID in the tracks master
+    @brief ID in the tracks master
     ***********************************************************/
     MATROSKA_ID_TRACKENTRY,
 
     /***********************************************************
-    IDs in the trackentry master
+    @brief IDs in the trackentry master
     ***********************************************************/
     MATROSKA_ID_TRACKNUMBER,
     MATROSKA_ID_TRACKUID,
@@ -124,7 +127,7 @@ public enum MatroskaID {
     MATROSKA_ID_TRACKMAXBLKADDID,
 
     /***********************************************************
-    IDs in the trackvideo master
+    @brief IDs in the trackvideo master
     ***********************************************************/
     MATROSKA_ID_VIDEOFRAMERATE,
     MATROSKA_ID_VIDEODISPLAYWIDTH,
@@ -179,7 +182,7 @@ public enum MatroskaID {
     MATROSKA_ID_VIDEOPROJECTIONPOSEROLL,
 
     /***********************************************************
-    IDs in the trackaudio master
+    @brief IDs in the trackaudio master
     ***********************************************************/
     MATROSKA_ID_AUDIOSAMPLINGFREQ,
     MATROSKA_ID_AUDIOOUTSAMPLINGFREQ,
@@ -188,7 +191,7 @@ public enum MatroskaID {
     MATROSKA_ID_AUDIOCHANNELS,
 
     /***********************************************************
-    IDs in the content encoding master
+    @brief IDs in the content encoding master
     ***********************************************************/
     MATROSKA_ID_ENCODINGORDER,
     MATROSKA_ID_ENCODINGSCOPE,
@@ -207,18 +210,18 @@ public enum MatroskaID {
     MATROSKA_ID_ENCODINGSIGNATURE,
 
     /***********************************************************
-    ID in the cues master
+    @brief ID in the cues master
     ***********************************************************/
     MATROSKA_ID_POINTENTRY,
 
     /***********************************************************
-    IDs in the pointentry master
+    @brief IDs in the pointentry master
     ***********************************************************/
     MATROSKA_ID_CUETIME,
     MATROSKA_ID_CUETRACKPOSITION,
 
     /***********************************************************
-    IDs in the cuetrackposition master
+    @brief IDs in the cuetrackposition master
     ***********************************************************/
     MATROSKA_ID_CUETRACK,
     MATROSKA_ID_CUECLUSTERPOSITION,
@@ -227,7 +230,7 @@ public enum MatroskaID {
     MATROSKA_ID_CUEBLOCKNUMBER,
 
     /***********************************************************
-    IDs in the tags master
+    @brief IDs in the tags master
     ***********************************************************/
     MATROSKA_ID_TAG,
     MATROSKA_ID_SIMPLETAG,
@@ -244,18 +247,18 @@ public enum MatroskaID {
     MATROSKA_ID_TAGTARGETS_ATTACHUID,
 
     /***********************************************************
-    IDs in the seekhead master
+    @brief IDs in the seekhead master
     ***********************************************************/
     MATROSKA_ID_SEEKENTRY,
 
     /***********************************************************
-    IDs in the seekpoint master
+    @brief IDs in the seekpoint master
     ***********************************************************/
     MATROSKA_ID_SEEKID,
     MATROSKA_ID_SEEKPOSITION,
 
     /***********************************************************
-    IDs in the cluster master
+    @brief IDs in the cluster master
     ***********************************************************/
     MATROSKA_ID_CLUSTERTIMECODE,
     MATROSKA_ID_CLUSTERPOSITION,
@@ -268,7 +271,7 @@ public enum MatroskaID {
     MATROSKA_ID_SIMPLEBLOCK,
 
     /***********************************************************
-    IDs in the blockgroup master
+    @brief IDs in the blockgroup master
     ***********************************************************/
     MATROSKA_ID_BLOCK,
     MATROSKA_ID_BLOCKDURATION,
@@ -277,7 +280,7 @@ public enum MatroskaID {
     MATROSKA_ID_DISCARDPADDING,
 
     /***********************************************************
-    IDs in the attachments master
+    @brief IDs in the attachments master
     ***********************************************************/
     MATROSKA_ID_ATTACHEDFILE,
     MATROSKA_ID_FILEDESC,
@@ -287,7 +290,7 @@ public enum MatroskaID {
     MATROSKA_ID_FILEUID,
 
     /***********************************************************
-    IDs in the chapters master
+    @brief IDs in the chapters master
     ***********************************************************/
     MATROSKA_ID_EDITIONENTRY,
     MATROSKA_ID_CHAPTERATOM,
@@ -398,7 +401,7 @@ public enum MatroskaVideoProjectionType {
 }
 
 /***********************************************************
-Matroska Codec IDs, strings
+@brief Matroska Codec IDs, strings
 ***********************************************************/
 
 [CCode (cname="struct CodecTags", cheader_filename="")]
@@ -408,8 +411,9 @@ public struct CodecTags {
 }
 
 /***********************************************************
-max. depth in the EBML tree structure
+@brief Max. depth in the EBML tree structure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const int EBML_MAX_DEPTH;
 
 [CCode (cname="", cheader_filename="")]
@@ -424,17 +428,27 @@ public const int MATROSKA_VIDEO_STEREO_PLANE_COUNT;
 //  extern string const ff_matroska_video_stereo_plane[MATROSKA_VIDEO_STEREO_PLANE_COUNT];
 
 /***********************************************************
-AVStream Metadata tag keys for WebM Dash Manifest
+@brief AVStream Metadata tag keys for WebM Dash Manifest
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const string INITIALIZATION_RANGE; // "webm_dash_manifest_initialization_range"
+[CCode (cname="", cheader_filename="")]
 public const string CUES_START; // "webm_dash_manifest_cues_start"
+[CCode (cname="", cheader_filename="")]
 public const string CUES_END; // "webm_dash_manifest_cues_end"
+[CCode (cname="", cheader_filename="")]
 public const string FILENAME; // "webm_dash_manifest_file_name"
+[CCode (cname="", cheader_filename="")]
 public const string BANDWIDTH; // "webm_dash_manifest_bandwidth"
+[CCode (cname="", cheader_filename="")]
 public const string DURATION; // "webm_dash_manifest_duration"
+[CCode (cname="", cheader_filename="")]
 public const string CLUSTER_KEYFRAME; // "webm_dash_manifest_cluster_keyframe"
+[CCode (cname="", cheader_filename="")]
 public const string CUE_TIMESTAMPS; // "webm_dash_manifest_cue_timestamps"
+[CCode (cname="", cheader_filename="")]
 public const string TRACK_NUMBER; // "webm_dash_manifest_track_number"
+[CCode (cname="", cheader_filename="")]
 public const string CODEC_PRIVATE_SIZE; // "webm_dash_manifest_codec_priv_size"
 
 [CCode (cname="", cheader_filename="")]

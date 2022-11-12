@@ -2,7 +2,7 @@
 @copyright 2012 Clément Bœsch
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -36,31 +36,37 @@ public class VPlayerDemuxer : AVInputFormat {
             return "vplayer";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "VPlayer subtitles";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VPlayerDemuxerPrivateData);
         }
     }
+
     [CCode (cname="vplayer_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="vplayer_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="vplayer_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="vplayer_read_seek", cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
@@ -70,10 +76,12 @@ public class VPlayerDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
+
     [CCode (cname="vplayer_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

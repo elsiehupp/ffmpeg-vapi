@@ -1,10 +1,10 @@
 /***********************************************************
-Ogg Daala parser
+@brief Ogg Daala parser
 @copyright 2015 Rostislav Pehlivanov <atomnuker gmail com>
 @copyright 2015 Vittorio Giovara <vittorio.giovara gmail com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -31,6 +31,8 @@ public class DaalaCodec : OggCodec {
             return "Daala".data;
         }
     }
+
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "200daala".data;
@@ -42,11 +44,13 @@ public class DaalaCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="daala_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="daala_gptopts", cheader_filename="")]
     public override uint64 gptopts (
         AVFormatContext context,

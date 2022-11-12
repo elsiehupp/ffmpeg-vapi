@@ -1,9 +1,9 @@
 /***********************************************************
-Raw FLAC picture parser
+@brief Raw FLAC picture parser
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public

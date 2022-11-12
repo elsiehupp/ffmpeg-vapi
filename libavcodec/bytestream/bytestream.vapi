@@ -1,10 +1,5 @@
 /***********************************************************
-Bytestream functions
-@copyright 2006 Baptiste Coudurier <baptiste.coudurier@free.fr>
-@copyright 2012 Aneesh Dogra (lionaneesh) <lionaneesh@gmail.com>
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -20,7 +15,11 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+Bytestream functions
+@copyright 2006 Baptiste Coudurier <baptiste.coudurier@free.fr>
+@copyright 2012 Aneesh Dogra (lionaneesh) <lionaneesh@gmail.com>
+***********************************************************/
 [CCode (cname="struct GetByteContext", cheader_filename="ffmpeg/libavcodec/bytestream.h")]
 public struct GetByteContext {
     uint8[] buffer;

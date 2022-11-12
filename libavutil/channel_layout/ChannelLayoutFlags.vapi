@@ -3,7 +3,7 @@
 @copyright 2008 Peter Ross
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -31,7 +31,7 @@ namespace LibAVUtil {
 ***********************************************************/
 
 /***********************************************************
-public enum ChannelLayoutFlags
+@brief Public enum ChannelLayoutFlags
 
 @description A channel layout is a 64-bit uint integer
     with a bit set for every channel. The number of bits set

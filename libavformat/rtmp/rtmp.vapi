@@ -1,9 +1,9 @@
 /***********************************************************
-RTMP definitions
+@brief RTMP definitions
 @copyright 2009 Konstantin Shishkov
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,24 +24,30 @@ namespace LibAVFormat {
 
 [CCode (cname="", cheader_filename="")]
 public const int RTMP_DEFAULT_PORT; // 1935
+[CCode (cname="", cheader_filename="")]
 public const int RTMPS_DEFAULT_PORT; // 443
 
 [CCode (cname="", cheader_filename="")]
 public const size_t RTMP_HANDSHAKE_PACKET_SIZE; // 1536
 
 /***********************************************************
-emulated Flash client version - 9.0.124.2 on Linux
+@brief Emulated Flash client version - 9.0.124.2 on Linux
 
 version defines
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const string RTMP_CLIENT_PLATFORM; // "LNX"
+[CCode (cname="", cheader_filename="")]
 public const int RTMP_CLIENT_VER1; // 9
+[CCode (cname="", cheader_filename="")]
 public const int RTMP_CLIENT_VER2; // 0
+[CCode (cname="", cheader_filename="")]
 public const int RTMP_CLIENT_VER3; // 124
+[CCode (cname="", cheader_filename="")]
 public const int RTMP_CLIENT_VER4; // 2
 
 /***********************************************************
-Calculate HMAC-SHA2 digest for RTMP handshake packets.
+@brief Calculate HMAC-SHA2 digest for RTMP handshake packets.
 
 @param src input buffer
 @param len input buffer length (should be 1536)
@@ -51,6 +57,7 @@ Calculate HMAC-SHA2 digest for RTMP handshake packets.
 @param keylen digest key length
 @param dst buffer where calculated digest will be stored (32 bytes)
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtmp_calc_digest (
     uint8[] src,
     int len,
@@ -61,13 +68,14 @@ public int ff_rtmp_calc_digest (
 );
 
 /***********************************************************
-Calculate digest position for RTMP handshake packets.
+@brief Calculate digest position for RTMP handshake packets.
 
 @param buffer input buffer (should be 1536 bytes)
 @param off offset in buffer where to start calculating digest position
 @param mod_val value used for computing modulo
 @param add_val value added at the end (after computing modulo)
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_rtmp_calc_digest_pos (
     uint8[] buffer,
     int off,

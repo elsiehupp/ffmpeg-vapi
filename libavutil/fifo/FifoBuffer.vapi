@@ -22,7 +22,6 @@ namespace LibAVUtil {
 @file a very simple circular buffer FIFO implementation
 ***********************************************************/
 
-[CCode (cname="", cheader_filename="")]
 public delegate void GenericReadDelegate (
     void *arg0,
     void *arg1,
@@ -33,14 +32,19 @@ public delegate void GenericReadDelegate (
 public struct FifoBuffer {
     [CCode (cname="buffer")]
     public uint8[] buffer;
+
     [CCode (cname="rptr")]
     public uint8[] r_pointer;
+
     [CCode (cname="wptr")]
     public uint8[] w_pointer;
+
     [CCode (cname="end")]
     public uint8[] end_pointer;
+
     [CCode (cname="rndx")]
     public uint32 r_index;
+
     [CCode (cname="wndx")]
     public uint32 w_index;
 

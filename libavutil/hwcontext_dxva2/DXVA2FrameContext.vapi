@@ -46,6 +46,7 @@ public class DXVA2FrameContext : AbstractHardwareContext {
     ***********************************************************/
     [CCode (cname="surfaces")]
     public IDirect3DSurface9[] surface_list;
+
     [CCode (cname="nb_surfaces")]
     public int surface_count;
 

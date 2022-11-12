@@ -1,5 +1,5 @@
 /***********************************************************
-General DV demuxer
+@brief General DV demuxer
 @copyright 2003 Roman Shaposhnik
 
 Many thanks to Dan Dennedy <dan@dennedy.org> for providing wealth
@@ -13,7 +13,7 @@ Raw DV format
 Funded by BBC Research & Development
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -43,35 +43,42 @@ public class DVDemuxer : AVInputFormat {
             return "dv";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "DV (Digital Video)";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (DVDemuxerPrivateData);
         }
     }
+
     [CCode (cname="dv_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="dv_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="dv_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="dv_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="dv_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -79,6 +86,7 @@ public class DVDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

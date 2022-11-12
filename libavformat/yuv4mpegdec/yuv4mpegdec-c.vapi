@@ -1,9 +1,9 @@
 /***********************************************************
-YUV4MPEG demuxer
+@brief YUV4MPEG demuxer
 @copyright 2001, 2002, 2003 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,25 +30,30 @@ public class YUV4MpegPipeDemuxer : AVInputFormat {
             return "yuv4mpegpipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "YUV4MPEG pipe";
         }
     }
+
     [CCode (cname="yuv4_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="yuv4_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="yuv4_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="yuv4_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -56,6 +61,7 @@ public class YUV4MpegPipeDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

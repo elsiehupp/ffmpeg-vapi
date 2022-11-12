@@ -1,8 +1,8 @@
 /***********************************************************
-WavPack shared functions
+@brief WavPack shared functions
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -31,47 +31,65 @@ public enum BlockFlags {
 }
 
 /***********************************************************
-Specs say that maximum block size is 1Mb
+@brief Specs say that maximum block size is 1Mb
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const size_t WV_BLOCK_LIMIT;
 
 [CCode (cname="struct WvHeader", cheader_filename="")]
 public struct WvHeader {
     /***********************************************************
-    Size of the block data (excluding the header)
+    @brief Size of the block data (excluding the header)
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint32 blocksize;
+
     /***********************************************************
-    Bitstream version
+    @brief Bitstream version
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint16 version;
+
     /***********************************************************
-    Total number of samples in the stream
+    @brief Total number of samples in the stream
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint32 total_samples;
+
     /***********************************************************
-    Index of the first sample in this block
+    @brief Index of the first sample in this block
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint32 block_idx;
+
     /***********************************************************
-    Number of samples in this block
+    @brief Number of samples in this block
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uint32 samples;
+
+    [CCode (cname="", cheader_filename="")]
     public BlockFlags flags;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 crc;
 
+    [CCode (cname="", cheader_filename="")]
     public int initial;
+
+    [CCode (cname="", cheader_filename="")]
     public int final;
 }
 
 /***********************************************************
-Parse a WavPack block header.
+@brief Parse a WavPack block header.
 
 @param wv this struct will be filled with parse header information
 @param data header data, must be WV_HEADER_SIZE bytes long
 
 @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_wv_parse_header (
     WvHeader wv,
     uint8[] data

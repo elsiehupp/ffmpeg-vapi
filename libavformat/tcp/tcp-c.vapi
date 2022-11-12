@@ -1,9 +1,9 @@
 /***********************************************************
-TCP protocol
+@brief TCP protocol
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -46,6 +46,7 @@ public class TCPURLProtocolClass : LibAVUtil.Class {
             return "tcp";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -54,8 +55,10 @@ public class TCPURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -75,52 +78,62 @@ public class TCPURLProtocol : URLProtocol {
             return "tcp";
         }
     }
+
     [CCode (cname="tcp_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="tcp_accept", cheader_filename="")]
     public override int url_accept (
         URLContext server_url_context,
         out URLContext client_url_context
     );
+
     [CCode (cname="tcp_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="tcp_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="tcp_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="tcp_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="tcp_get_window_size", cheader_filename="")]
     public override int url_get_short_seek (
         URLContext url_context
     );
+
     [CCode (cname="tcp_shutdown", cheader_filename="")]
     public override int url_shutdown (
         URLContext url_context,
         int flags
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TCPPrivateData);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {

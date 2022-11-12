@@ -1,10 +1,10 @@
 /***********************************************************
-Image format
+@brief Image format
 @copyright 2000, 2001, 2002 Fabrice Bellard
 @copyright 2004 Michael Niedermayer
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -52,15 +52,18 @@ public abstract class ImageDemuxer : AVInputFormat {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="ff_img_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="ff_img_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
@@ -87,18 +90,21 @@ public class BMPPipeDemuxer : ImageDemuxer {
             return "bmp_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped bmp sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="bmp_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -130,18 +136,21 @@ public class DDSPipeDemuxer : ImageDemuxer {
             return "dds_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped dds sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="dds_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -174,18 +183,21 @@ public class DPXPipeDemuxer : ImageDemuxer {
             return "dpx_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped dpx sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="dpx_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -218,18 +230,21 @@ public class EXRPipeDemuxer : ImageDemuxer {
             return "exr_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped exr sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="exr_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -262,18 +277,21 @@ public class GIFPipeDemuxer : ImageDemuxer {
             return "gif_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped gif sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="gif_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -306,18 +324,21 @@ public class J2KPipeDemuxer : ImageDemuxer {
             return "j2k_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped j2k sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="j2k_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -350,18 +371,21 @@ public class JPEGPipeDemuxer : ImageDemuxer {
             return "jpeg_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped jpeg sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="jpeg_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -394,18 +418,21 @@ public class JPEGLSPipeDemuxer : ImageDemuxer {
             return "jpegls_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped jpegls sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="jpegls_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -438,18 +465,21 @@ public class PAMPipeDemuxer : ImageDemuxer {
             return "pam_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped pam sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="pam_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -482,18 +512,21 @@ public class PBMPipeDemuxer : ImageDemuxer {
             return "pbm_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped pbm sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="pbm_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -526,18 +559,21 @@ public class PCXPipeDemuxer : ImageDemuxer {
             return "pcx_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped pcx sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="pcx_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -570,18 +606,21 @@ public class PGMPipeDemuxer : ImageDemuxer {
             return "pgm_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped pgm sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="pgm_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -614,18 +653,21 @@ public class PGMYUVPipeDemuxer : ImageDemuxer {
             return "pgmyuv_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped pgmyuv sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="pgmyuv_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -658,18 +700,21 @@ public class PictorPipeDemuxer : ImageDemuxer {
             return "pictor_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped pictor sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="pictor_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -702,18 +747,21 @@ public class PNGPipeDemuxer : ImageDemuxer {
             return "png_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped png sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="png_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -746,18 +794,21 @@ public class PPMPipeDemuxer : ImageDemuxer {
             return "ppm_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped ppm sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="ppm_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -790,18 +841,21 @@ public class PSDPipeDemuxer : ImageDemuxer {
             return "psd_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped psd sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="psd_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -834,18 +888,21 @@ public class QDrawPipeDemuxer : ImageDemuxer {
             return "qdraw_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped qdraw sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="qdraw_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -878,18 +935,21 @@ public class SGIPipeDemuxer : ImageDemuxer {
             return "sgi_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped sgi sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="sgi_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -922,18 +982,21 @@ public class SunrastPipeDemuxer : ImageDemuxer {
             return "sunrast_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped sunrast sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="sunrast_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -966,18 +1029,21 @@ public class SVGPipeDemuxer : ImageDemuxer {
             return "svg_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped svg sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="svg_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -1010,18 +1076,21 @@ public class TIFFPipeDemuxer : ImageDemuxer {
             return "tiff_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped tiff sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="tiff_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -1054,18 +1123,21 @@ public class WebPPipeDemuxer : ImageDemuxer {
             return "webp_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped webp sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="webp_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -1098,18 +1170,21 @@ public class XPMPipeDemuxer : ImageDemuxer {
             return "xpm_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped xpm sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="xpm_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
@@ -1142,18 +1217,21 @@ public class XWDPipeDemuxer : ImageDemuxer {
             return "xwd_pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped xwd sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
         }
     }
+
     [CCode (cname="xwd_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context

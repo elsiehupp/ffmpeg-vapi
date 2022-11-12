@@ -1,9 +1,9 @@
 /***********************************************************
-RTP parser for loss tolerant payload format for MP3 audio (RFC 5219)
+@brief RTP parser for loss tolerant payload format for MP3 audio (RFC 5219)
 @copyright 2015 Gilles Chanteperdrix <gch@xenomai.org>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,34 +30,40 @@ public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
             return "mpa-robust";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MP3ADU;
         }
     }
+
     [CCode (cname="need_parsing", cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVSTREAM_PARSE_HEADERS;
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
         }
     }
+
     [CCode (cname="mpa_robust_close_context", cheader_filename="")]
     public override void close (
         PayloadContext protocol_data
     );
+
     [CCode (cname="mpa_robust_parse_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,

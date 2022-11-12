@@ -1,9 +1,9 @@
 /***********************************************************
-VorbisComment writer
+@brief VorbisComment writer
 @copyright 2009 James Darnley
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Calculate the length in bytes of a VorbisComment. This is the minimum
+@brief Calculate the length in bytes of a VorbisComment. This is the minimum
 size required by ff_vorbiscomment_write ().
 
 @param m The metadata structure to be parsed. For no metadata, set to NULL.
@@ -31,6 +31,7 @@ size required by ff_vorbiscomment_write ().
 For no string, set to an empty string.
 @return The length in bytes.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int64 ff_vorbiscomment_length (
     LibAVUtil.Dictionary m,
     string vendor_string,
@@ -39,7 +40,7 @@ public int64 ff_vorbiscomment_length (
 );
 
 /***********************************************************
-Write a VorbisComment into a buffer. The buffer, p, must have enough
+@brief Write a VorbisComment into a buffer. The buffer, p, must have enough
 data to hold the whole VorbisComment. The minimum size required can be
 obtained by passing the same LibAVUtil.Dictionary and vendor_string to
 ff_vorbiscomment_length ()
@@ -50,6 +51,7 @@ ff_vorbiscomment_length ()
 @param chapters The chapters to write.
 @param nb_chapters The number of chapters to write.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_vorbiscomment_write (
     out uint8[] p,
     out LibAVUtil.Dictionary m,

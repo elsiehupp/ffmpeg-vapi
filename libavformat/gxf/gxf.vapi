@@ -1,9 +1,9 @@
 /***********************************************************
-GXF demuxer
+@brief GXF demuxer
 @copyright 2006 Reimar Doeffinger
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public

@@ -1,12 +1,12 @@
 /***********************************************************
-Psygnosis YOP demuxer
+@brief Psygnosis YOP demuxer
 
 @copyright 2010 Mohamed Naufal Basheer <naufal11@gmail.com>
 derived from the code by
 @copyright 2009 Thomas P. Higdon <thomas.p.higdon@gmail.com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -36,35 +36,42 @@ public class YOPDemuxer : AVInputFormat {
             return "yop";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Psygnosis YOP";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (YOPDemuxerPrivateData);
         }
     }
+
     [CCode (cname="yop_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="yop_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="yop_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="yop_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="yop_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -72,12 +79,14 @@ public class YOPDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "yop";
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

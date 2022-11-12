@@ -1,9 +1,9 @@
 /***********************************************************
-RTP MPEG2TS depacketizer
+@brief RTP MPEG2TS depacketizer
 @copyright 2003 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,12 +30,14 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
             return AVMEDIA_TYPE_DATA;
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
         }
     }
+
     [CCode (cname="mpegts_handle_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,
@@ -48,12 +50,14 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
+
     [CCode (cname="mpegts_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );
+
     [CCode (cname="mpegts_close_context", cheader_filename="")]
     public override void close (
         PayloadContext protocol_data

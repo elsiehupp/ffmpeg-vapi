@@ -1,9 +1,5 @@
 /***********************************************************
-AIFF/AIFF-C muxer/demuxer common header
-@copyright 2006 Patrick Guimond
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -19,14 +15,17 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@brief AIFF/AIFF-C muxer/demuxer common header
+@copyright 2006 Patrick Guimond
+***********************************************************/
 namespace LibAVFormat {
 
 /***********************************************************
 @file common header for AIFF muxer and demuxer
 ***********************************************************/
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="ff_codec_aiff_tags", cheader_filename="")]
 public const AVCodecTag[] ff_codec_aiff_tags;
 //  {
 //      { LibAVCodec.CodecID.PCM_S16BE, MKTAG ('N','O','N','E') },

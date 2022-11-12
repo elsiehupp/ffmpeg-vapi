@@ -1,9 +1,9 @@
 /***********************************************************
-RAW muxers
+@brief RAW muxers
 @copyright 2007 Aurelien Jacobs <aurel@gnuage.org>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public

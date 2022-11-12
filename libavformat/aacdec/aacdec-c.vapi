@@ -1,10 +1,5 @@
 /***********************************************************
-raw ADTS AAC demuxer
-@copyright 2008 Michael Niedermayer <michaelni@gmx.at>
-@copyright 2009 Robert Swain ( rob opendot cl )
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -20,7 +15,11 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@brief Raw ADTS AAC demuxer
+@copyright 2008 Michael Niedermayer <michaelni@gmx.at>
+@copyright 2009 Robert Swain ( rob opendot cl )
+***********************************************************/
 namespace LibAVFormat {
 
 [CCode (cname="ff_aac_demuxer", cheader_filename="")]
@@ -31,43 +30,51 @@ public class AACDemuxer : AVInputFormat {
             return "aac";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "raw ADTS AAC (Advanced Audio Coding)";
         }
     }
+
     [CCode (cname="adts_aac_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="adts_aac_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="adts_aac_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "aac";
         }
     }
+
     [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "audio/aac,audio/aacp,audio/x-aac";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

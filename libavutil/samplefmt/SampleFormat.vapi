@@ -110,6 +110,7 @@ public enum SampleFormat {
     ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_S64P")]
     SIGNED_64_BIT_PLANAR;
+
     /***********************************************************
     @brief Number of sample formats. DO NOT USE if linking dynamically
     ***********************************************************/

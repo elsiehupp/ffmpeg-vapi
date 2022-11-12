@@ -1,9 +1,9 @@
 /***********************************************************
-RAW PCM demuxers
+@brief RAW PCM demuxers
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -31,6 +31,7 @@ namespace LibAVFormat {
 [CCode (cname="struct PCMAudioDemuxerContext", cheader_filename="")]
 public struct PCMDemuxerPrivateData { }
 
+[CCode (cname="", cheader_filename="")]
 public abstract class PCMDemuxerClass : LibAVUtil.Class {
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
@@ -49,6 +50,7 @@ public abstract class PCMDemuxerClass : LibAVUtil.Class {
     }
 }
 
+[CCode (cname="", cheader_filename="")]
 public abstract class PCMDemuxer : AVInputFormat {
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
@@ -56,15 +58,18 @@ public abstract class PCMDemuxer : AVInputFormat {
             return sizeof (PCMDemuxerPrivateData);
         }
     }
+
     [CCode (cname="pcm_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="ff_pcm_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="ff_pcm_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -72,6 +77,7 @@ public abstract class PCMDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
@@ -100,18 +106,21 @@ public class PCMF64BEDemuxer : PCMDemuxer {
             return "f64be";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM 64-bit floating-point big-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -140,18 +149,21 @@ public class PCMF64LEDemuxer : PCMDemuxer {
             return "f64le";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM 64-bit floating-point little-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -180,18 +192,21 @@ public class PCMF32BEDemuxer : PCMDemuxer {
             return "f32be";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM 32-bit floating-point big-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -220,18 +235,21 @@ public class PCMF32LEDemuxer : PCMDemuxer {
             return "f32le";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM 32-bit floating-point little-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -260,18 +278,21 @@ public class PCMS32BEDemuxer : PCMDemuxer {
             return "s32be";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM signed 32-bit big-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -300,18 +321,21 @@ public class PCMS32LEDemuxer : PCMDemuxer {
             return "s32le";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM signed 32-bit little-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -340,18 +364,21 @@ public class PCMS24BEDemuxer : PCMDemuxer {
             return "s24be";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM signed 24-bit big-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -380,18 +407,21 @@ public class PCMS24LEDemuxer : PCMDemuxer {
             return "s24le";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM signed 24-bit little-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -420,12 +450,14 @@ public class PCMS16BEDemuxer : PCMDemuxer {
             return "s16be";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM signed 16-bit big-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
@@ -436,6 +468,7 @@ public class PCMS16BEDemuxer : PCMDemuxer {
         #endif
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -465,12 +498,14 @@ public class PCMS16LEDemuxer : PCMDemuxer {
             return "s16le";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM signed 16-bit little-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
@@ -481,6 +516,7 @@ public class PCMS16LEDemuxer : PCMDemuxer {
         #endif
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -509,18 +545,21 @@ public class PCMS8Demuxer : PCMDemuxer {
             return "s8";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM signed 8-bit";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "sb";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -549,18 +588,21 @@ public class PCMU32BEDemuxer : PCMDemuxer {
             return "u32be";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM unsigned 32-bit big-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -589,18 +631,21 @@ public class PCMU32LEDemuxer : PCMDemuxer {
             return "u32le";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM unsigned 32-bit little-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -629,18 +674,21 @@ public class PCMU24BEDemuxer : PCMDemuxer {
             return "u24be";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM unsigned 24-bit big-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -669,18 +717,21 @@ public class PCMU24LEDemuxer : PCMDemuxer {
             return "u24le";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM unsigned 24-bit little-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -709,12 +760,14 @@ public class PCMU16BEDemuxer : PCMDemuxer {
             return "u16be";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM unsigned 16-bit big-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
@@ -725,6 +778,7 @@ public class PCMU16BEDemuxer : PCMDemuxer {
         #endif
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -753,12 +807,14 @@ public class PCMU16LEDemuxer : PCMDemuxer {
             return "u16le";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM unsigned 16-bit little-endian";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
@@ -769,6 +825,7 @@ public class PCMU16LEDemuxer : PCMDemuxer {
         #endif
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -797,18 +854,21 @@ public class PCMU8Demuxer : PCMDemuxer {
             return "u8";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM unsigned 8-bit";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "ub";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -837,18 +897,21 @@ public class PCMALAWDemuxer : PCMDemuxer {
             return "alaw";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM A-law";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "al";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -877,18 +940,21 @@ public class PCMMULAWDemuxer : PCMDemuxer {
             return "mulaw";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM mu-law";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "ul";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -917,18 +983,21 @@ public class PCMVIDCDemuxer : PCMDemuxer {
             return "vidc";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "PCM Archimedes VIDC";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
@@ -963,18 +1032,21 @@ public class SLNDemuxer : AVInputFormat {
             return "sln";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Asterisk raw pcm";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "sln";
         }
     }
+
     [CCode (cname="raw_codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {

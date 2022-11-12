@@ -1,9 +1,9 @@
 /***********************************************************
-HTTP protocol for ffmpeg client
+@brief HTTP protocol for ffmpeg client
 @copyright 2000, 2001 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-XXX: POST protocol is not completely implemented because ffmpeg uses
+@brief XXX: POST protocol is not completely implemented because ffmpeg uses
 only a subset of it.
 ***********************************************************/
 
@@ -36,6 +36,7 @@ public class HTTPURLProtocolClass : LibAVUtil.Class {
             return "http";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -44,8 +45,10 @@ public class HTTPURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -62,6 +65,7 @@ public class HTTPURLProtocol : URLProtocol {
             return "http";
         }
     }
+
     [CCode (cname="http_open", cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
@@ -69,50 +73,60 @@ public class HTTPURLProtocol : URLProtocol {
         int flags,
         out LibAVUtil.Dictionary options
     );
+
     [CCode (cname="http_accept", cheader_filename="")]
     public override int url_accept (
         URLContext server_url_context,
         out URLContext client_url_context
     );
+
     [CCode (cname="http_handshake", cheader_filename="")]
     public override int url_handshake (
         URLContext client_url_context
     );
+
     [CCode (cname="http_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="http_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="http_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
+
     [CCode (cname="http_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="http_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="http_get_short_seek", cheader_filename="")]
     public override int url_get_short_seek (
         URLContext url_context
     );
+
     [CCode (cname="http_shutdown", cheader_filename="")]
     public override int url_shutdown (
         URLContext url_context,
         int flags
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
@@ -139,6 +153,7 @@ public class HTTPSURLProtocolClass : LibAVUtil.Class {
             return "https";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -147,8 +162,10 @@ public class HTTPSURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -165,6 +182,7 @@ public class HTTPSURLProtocol : URLProtocol {
             return "https";
         }
     }
+
     [CCode (cname="http_open", cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
@@ -172,41 +190,49 @@ public class HTTPSURLProtocol : URLProtocol {
         int flags,
         out LibAVUtil.Dictionary options
     );
+
     [CCode (cname="http_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="http_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="http_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
+
     [CCode (cname="http_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="http_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="http_get_short_seek", cheader_filename="")]
     public override int url_get_short_seek (
         URLContext url_context
     );
+
     [CCode (cname="http_shutdown", cheader_filename="")]
     public override int url_shutdown (
         URLContext url_context,
         int flags
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
@@ -233,38 +259,45 @@ public class HttpProxyURLProtocol : URLProtocol {
             return "httpproxy";
         }
     }
+
     [CCode (cname="http_proxy_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="http_buf_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="http_proxy_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="http_proxy_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="http_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HTTPContext);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {

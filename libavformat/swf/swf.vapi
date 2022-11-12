@@ -1,10 +1,10 @@
 /***********************************************************
-Flash Compatible Streaming Format common header.
+@brief Flash Compatible Streaming Format common header.
 @copyright 2000 Fabrice Bellard
 @copyright 2003 Tinic Uro
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,13 +24,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-should have a generic way to indicate probable size
+@brief Should have a generic way to indicate probable size
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const size_t DUMMY_FILE_SIZE;
 
 /***********************************************************
-in seconds
+@brief In seconds
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int DUMMY_DURATION;
 
 [CCode (cname="", cheader_filename="")]
@@ -106,7 +108,7 @@ public enum SWFTag {
 public const int TAG_LONG;
 
 /***********************************************************
-flags for shape definition
+@brief Flags for shape definition
 ***********************************************************/
 [Flags]
 public enum ShapeDefinitionFlags {
@@ -119,32 +121,71 @@ public enum ShapeDefinitionFlags {
 public const size_t AUDIO_FIFO_SIZE;
 
 /***********************************************************
-character id used
+@brief Character id used
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const int BITMAP_ID;
+
+[CCode (cname="", cheader_filename="")]
 public const int VIDEO_ID;
+
+[CCode (cname="", cheader_filename="")]
 public const int SHAPE_ID;
 
 [CCode (cname="struct SWFContext", cheader_filename="")]
 public struct SWFContext {
+    [CCode (cname="", cheader_filename="")]
     public int64 duration_pos;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 tag_pos;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 vframes_pos;
+
+    [CCode (cname="", cheader_filename="")]
     public int samples_per_frame;
+
+    [CCode (cname="", cheader_filename="")]
     public int sound_samples;
+
+    [CCode (cname="", cheader_filename="")]
     public int swf_frame_number;
+
+    [CCode (cname="", cheader_filename="")]
     public int video_frame_number;
+
+    [CCode (cname="", cheader_filename="")]
     public int frame_rate;
+
+    [CCode (cname="", cheader_filename="")]
     public int tag;
+
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.FifoBuffer audio_fifo;
+
+    [CCode (cname="", cheader_filename="")]
     public LibAVCodec.CodecParameters audio_par;
+
+    [CCode (cname="", cheader_filename="")]
     public LibAVCodec.CodecParameters video_par;
+
+    [CCode (cname="", cheader_filename="")]
     public AVStream video_st;
 #if CONFIG_ZLIB
+    [CCode (cname="", cheader_filename="")]
     public const size_t ZBUF_SIZE;
+
+    [CCode (cname="", cheader_filename="")]
     public AVIOContext zpb;
+
+    [CCode (cname="", cheader_filename="")]
     public uint8[] zbuf_in;
+
+    [CCode (cname="", cheader_filename="")]
     public uint8[] zbuf_out;
+
+    [CCode (cname="", cheader_filename="")]
     public z_stream zstream;
 #endif
 }

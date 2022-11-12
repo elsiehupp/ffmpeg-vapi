@@ -2,7 +2,7 @@
 @copyright 2002 Michael Niedermayer <michaelni@gmx.at>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -25,13 +25,11 @@ namespace LibAVUtil {
 @file simple arithmetic expression evaluator
 ***********************************************************/
 
-[CCode (cname="", cheader_filename="")]
 public delegate double OneArgumentDelegate (
     void *arg0,
     double arg1
 );
 
-[CCode (cname="", cheader_filename="")]
 public delegate double TwoArgumentDelegate (
     void *arg0,
     double arg1,

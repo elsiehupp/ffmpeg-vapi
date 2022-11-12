@@ -1,9 +1,9 @@
 /***********************************************************
-HTTP authentication
+@brief HTTP authentication
 @copyright 2010 Martin Storsjo
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,20 +23,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Authentication types, ordered from weakest to strongest.
+@brief Authentication types, ordered from weakest to strongest.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum HTTPAuthType {
     /***********************************************************
-    No authentication specified
+    @brief No authentication specified
     ***********************************************************/
     HTTP_AUTH_NONE,
     /***********************************************************
-    HTTP 1.0 Basic auth from RFC 1945
+    @brief HTTP 1.0 Basic auth from RFC 1945
     (also in RFC 2617)
     ***********************************************************/
     HTTP_AUTH_BASIC,
     /***********************************************************
-    HTTP 1.1 Digest auth from RFC 2617
+    @brief HTTP 1.1 Digest auth from RFC 2617
     ***********************************************************/
     HTTP_AUTH_DIGEST,
 }
@@ -44,58 +45,77 @@ public enum HTTPAuthType {
 [CCode (cname="struct DigestParams", cheader_filename="")]
 public struct DigestParams {
     /***********************************************************
-    Server specified nonce
+    @brief Server specified nonce
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char nonce[300];
+
     /***********************************************************
-    Server specified digest algorithm
+    @brief Server specified digest algorithm
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char algorithm[10];
+
     /***********************************************************
-    Quality of protection, containing the one
+    @brief Quality of protection, containing the one
     that we've chosen to use, from the
     alternatives that the server offered.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char qop[30];
+
     /***********************************************************
-    A server-specified string that should be
+    @brief A server-specified string that should be
     included in authentication responses, not
     included in the actual digest calculation.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char opaque[300];
+
     /***********************************************************
-    The server indicated that the auth was ok,
+    @brief The server indicated that the auth was ok,
     but needs to be redone with a new, non-stale
     nonce.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char stale[10];
+
     /***********************************************************
-    Nonce count, the number of earlier replies
+    @brief Nonce count, the number of earlier replies
     where this particular nonce has been used.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int nc;
 }
 
 /***********************************************************
-HTTP Authentication state structure. Must be zero-initialized
+@brief HTTP Authentication state structure. Must be zero-initialized
 before used with the functions below.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct HTTPAuthState {
     /***********************************************************
-    The currently chosen auth type.
+    @brief The currently chosen auth type.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int auth_type;
+
     /***********************************************************
-    Authentication realm
+    @brief Authentication realm
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public char realm[200];
+
     /***********************************************************
-    The parameters specific to digest authentication.
+    @brief The parameters specific to digest authentication.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public DigestParams digest_params;
+
     /***********************************************************
-    Auth ok, but needs to be resent with a new nonce.
+    @brief Auth ok, but needs to be resent with a new nonce.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int stale;
 }
 

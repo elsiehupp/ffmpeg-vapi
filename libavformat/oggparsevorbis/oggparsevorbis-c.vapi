@@ -26,6 +26,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_vorbis_codec", cheader_filename="")]
 public class VorbisCodec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "\001vorbis".data;
@@ -37,11 +38,13 @@ public class VorbisCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="vorbis_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="vorbis_cleanup", cheader_filename="")]
     public override void cleanup (
         AVFormatContext format_context,

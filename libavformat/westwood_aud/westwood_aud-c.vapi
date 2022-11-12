@@ -1,9 +1,9 @@
 /***********************************************************
-Westwood Studios AUD Format Demuxer
+@brief Westwood Studios AUD Format Demuxer
 @copyright 2003 The FFmpeg project
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -43,20 +43,24 @@ public class WSAUDDemuxer : AVInputFormat {
             return "wsaud";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Westwood Studios audio";
         }
     }
+
     [CCode (cname="wsaud_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="wsaud_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="wsaud_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,

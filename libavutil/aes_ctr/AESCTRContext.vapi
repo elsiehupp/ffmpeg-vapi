@@ -3,7 +3,7 @@
 @copyright 2015 Eran Kornblau <erankor at gmail dot com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -27,6 +27,7 @@ public struct AESCTRContext {
 
     [CCode (cname="AES_CTR_KEY_SIZE", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public const size_t AES_CTR_KEY_SIZE;
+
     [CCode (cname="AES_CTR_IV_SIZE", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public const size_t AES_CTR_IV_SIZE;
 

@@ -1,5 +1,5 @@
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Decodes an URL from its percent-encoded form back into normal
+@brief Decodes an URL from its percent-encoded form back into normal
 representation. This function returns the decoded URL in a string.
 The URL to be decoded does not necessarily have to be encoded but
 in that case the original string is duplicated.
@@ -29,6 +29,7 @@ in that case the original string is duplicated.
 Note that the returned string should be explicitly freed when not
 used anymore.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public static string ff_urldecode (
     string url
 );

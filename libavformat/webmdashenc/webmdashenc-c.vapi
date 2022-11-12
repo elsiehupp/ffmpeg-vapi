@@ -1,9 +1,9 @@
 /***********************************************************
-WebM DASH Manifest XML muxer
+@brief WebM DASH Manifest XML muxer
 @copyright 2014 Vignesh Venkatasubramanian
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-WebM DASH Specification:
+@brief WebM DASH Specification:
 https://sites.google.com/a/webmproject.org/wiki/adaptive-streaming/webm-dash-specification
 ISO DASH Specification:
 http://standards.iso.org/ittf/PubliclyAvailableStandards/c065274_ISO_IEC_23009-1_2014.zip
@@ -51,6 +51,7 @@ public class WebMDashManifestMuxerClass : LibAVUtil.Class {
             return "WebM DASH Manifest muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -59,8 +60,10 @@ public class WebMDashManifestMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -77,40 +80,47 @@ public class WebMDashManifestMuxer : AVOutputFormat {
             return "webm_dash_manifest";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "WebM DASH Manifest";
         }
     }
+
     [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "application/xml";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "xml";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WebMDashMuxContext);
         }
     }
+
     [CCode (cname="webm_dash_manifest_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="webm_dash_manifest_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
+
     [CCode (cname="webm_dash_manifest_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context

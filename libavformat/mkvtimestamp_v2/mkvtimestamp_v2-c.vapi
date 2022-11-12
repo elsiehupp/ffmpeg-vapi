@@ -1,9 +1,9 @@
 /***********************************************************
-extract pts as timecode v2, as defined by mkvtoolnix
+@brief Extract pts as timecode v2, as defined by mkvtoolnix
 @copyright 2009 David Conrad
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,28 +30,33 @@ public class MKVTimeStampV2Muxer : AVOutputFormat {
             return "mkvtimestamp_v2";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "extract pts as timecode v2 format, as defined by mkvtoolnix";
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
+
     [CCode (cname="write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,

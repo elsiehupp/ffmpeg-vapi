@@ -1,8 +1,8 @@
 /***********************************************************
-YUV4MPEG common definitions
+@brief YUV4MPEG common definitions
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,9 @@ namespace LibAVFormat {
 
 [CCode (cname="", cheader_filename="")]
 public const string Y4M_MAGIC; // "YUV4MPEG2"
+[CCode (cname="", cheader_filename="")]
 public const string Y4M_FRAME_MAGIC; // "FRAME"
+[CCode (cname="", cheader_filename="")]
 public const size_t Y4M_FRAME_MAGIC_LEN; // 6
 
 } // namespace LibAVFormat

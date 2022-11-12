@@ -1,8 +1,8 @@
 /***********************************************************
-AV1 helper functions for muxers
+@brief AV1 helper functions for muxers
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -39,7 +39,7 @@ public struct AV1SequenceParameters {
 }
 
 /***********************************************************
-Filter out AV1 OBUs not meant to be present in ISOBMFF sample data and write
+@brief Filter out AV1 OBUs not meant to be present in ISOBMFF sample data and write
 the resulting bitstream to the provided AVIOContext.
 
 @param pb pointer to the AVIOContext where the filtered bitstream shall be
@@ -50,6 +50,7 @@ the resulting bitstream to the provided AVIOContext.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure
 ***********************************************************/
+[CCode (cname="ff_av1_filter_obus", cheader_filename="")]
 public int ff_av1_filter_obus (
     AVIOContext pb,
     uint8[] buffer,
@@ -57,7 +58,7 @@ public int ff_av1_filter_obus (
 );
 
 /***********************************************************
-Filter out AV1 OBUs not meant to be present in ISOBMFF sample data and write
+@brief Filter out AV1 OBUs not meant to be present in ISOBMFF sample data and write
 the resulting bitstream to a newly allocated data buffer.
 
 @param pb pointer to the AVIOContext where the filtered bitstream shall be
@@ -70,6 +71,7 @@ the resulting bitstream to a newly allocated data buffer.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure. On failure, out and size are unchanged
 ***********************************************************/
+[CCode (cname="ff_av1_filter_obus_buf", cheader_filename="")]
 public int ff_av1_filter_obus_buf (
     uint8[] input_buffer,
     out uint8[] output_buffer,
@@ -77,7 +79,7 @@ public int ff_av1_filter_obus_buf (
 );
 
 /***********************************************************
-Parses a Sequence Header from the the provided buffer.
+@brief Parses a Sequence Header from the the provided buffer.
 
 @param seq pointer to the AV1SequenceParameters where the parsed values will
     be written
@@ -86,6 +88,7 @@ Parses a Sequence Header from the the provided buffer.
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
+[CCode (cname="ff_av1_parse_seq_header", cheader_filename="")]
 public int ff_av1_parse_seq_header (
     AV1SequenceParameters seq,
     uint8[] buffer,
@@ -93,7 +96,7 @@ public int ff_av1_parse_seq_header (
 );
 
 /***********************************************************
-Writes AV1 extradata (Sequence Header and Metadata OBUs) to the provided
+@brief Writes AV1 extradata (Sequence Header and Metadata OBUs) to the provided
 AVIOContext.
 
 @param pb pointer to the AVIOContext where the hvcC shall be written
@@ -102,6 +105,7 @@ AVIOContext.
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
+[CCode (cname="ff_isom_write_av1c", cheader_filename="")]
 public int ff_isom_write_av1c (
     AVIOContext pb,
     uint8[] buffer,

@@ -1,8 +1,5 @@
 /***********************************************************
-@copyright 2001 Fabrice Bellard
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -18,7 +15,9 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@copyright 2001 Fabrice Bellard
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -34,6 +33,7 @@ LibAVCodec external API header
 public struct RcOverride {
     [CCode (cname="start_frame")]
     public int start_frame;
+
     [CCode (cname="end_frame")]
     public int end_frame;
 
@@ -42,6 +42,7 @@ public struct RcOverride {
     ***********************************************************/
     [CCode (cname="qscale")]
     public int qscale;
+
     [CCode (cname="quality_factor")]
     public float quality_factor;
 }

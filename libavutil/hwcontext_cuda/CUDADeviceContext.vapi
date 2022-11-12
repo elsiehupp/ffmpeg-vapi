@@ -37,8 +37,10 @@ public struct CUDADeviceContextInternal { }
 public class CUDADeviceContext : AbstractHardwareContext {
     [CCode (cname="cuda_ctx")]
     public CUcontext cuda_ctx;
+
     [CCode (cname="stream")]
     public CUstream stream;
+
     [CCode (cname="internal")]
     public CUDADeviceContextInternal internal;
 }

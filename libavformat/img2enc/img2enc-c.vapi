@@ -1,10 +1,10 @@
 /***********************************************************
-Image format
+@brief Image format
 @copyright 2000, 2001, 2002 Fabrice Bellard
 @copyright 2004 Michael Niedermayer
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -43,6 +43,7 @@ public class Image2MuxerClass : LibAVUtil.Class {
             return "image2 muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -68,12 +69,14 @@ public class Image2Muxer : AVOutputFormat {
             return "image2";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "image2 sequence";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
@@ -82,33 +85,39 @@ public class Image2Muxer : AVOutputFormat {
                       "sunras,xbm,xface,pix,y";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoMuxData);
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MJPEG;
         }
     }
+
     [CCode (cname="write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
+
     [CCode (cname="query_codec", cheader_filename="")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
@@ -128,39 +137,46 @@ public class Image2PipeMuxer : AVOutputFormat {
             return "image2pipe";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "piped image2 sequence";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoMuxData);
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MJPEG;
         }
     }
+
     [CCode (cname="write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
+
     [CCode (cname="query_codec", cheader_filename="")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

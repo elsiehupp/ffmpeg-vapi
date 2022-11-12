@@ -1,8 +1,5 @@
 /***********************************************************
-@copyright 2001 Fabrice Bellard
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -18,7 +15,9 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@copyright 2001 Fabrice Bellard
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -47,7 +46,7 @@ public enum CodecID {
     NONE,
 
     /***********************************************************
-    video codecs
+    @brief Video codecs
     ***********************************************************/
 
     MPEG1VIDEO,
@@ -296,7 +295,7 @@ public enum CodecID {
     VP4,
 
     /***********************************************************
-    various PCM "codecs"
+    @brief Various PCM "codecs"
     ***********************************************************/
 
     /***********************************************************
@@ -342,7 +341,7 @@ public enum CodecID {
     PCM_VIDC,
 
     /***********************************************************
-    various ADPCM codecs
+    @brief Various ADPCM codecs
     ***********************************************************/
     ADPCM_IMA_QT,
     ADPCM_IMA_WAV,
@@ -389,18 +388,18 @@ public enum CodecID {
     ADPCM_AGM,
 
     /***********************************************************
-    AMR
+    @brief AMR
     ***********************************************************/
     AMR_NB,
     AMR_WB,
 
     /***********************************************************
-    RealAudio codecs*/
+    @brief RealAudio codecs*/
     RA_144,
     RA_288,
 
     /***********************************************************
-    various DPCM codecs
+    @brief Various DPCM codecs
     ***********************************************************/
     ROQ_DPCM,
     INTERPLAY_DPCM,
@@ -411,7 +410,7 @@ public enum CodecID {
     GREMLIN_DPCM,
 
     /***********************************************************
-    audio codecs
+    @brief Audio codecs
     ***********************************************************/
 
     MP2,
@@ -516,7 +515,7 @@ public enum CodecID {
     HCOM,
 
     /***********************************************************
-    subtitle codecs
+    @brief Subtitle codecs
 ***********************************************************/
 
     /***********************************************************
@@ -555,7 +554,7 @@ public enum CodecID {
     ARIB_CAPTION,
 
     /***********************************************************
-    other specific kind of codecs (generally used for attachments)
+    @brief Other specific kind of codecs (generally used for attachments)
     ***********************************************************/
 
     /***********************************************************

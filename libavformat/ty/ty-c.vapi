@@ -1,5 +1,5 @@
 /***********************************************************
-TiVo ty stream demuxer
+@brief TiVo ty stream demuxer
 @copyright 2005 VLC authors and VideoLAN
 @copyright 2005 by Neal Symms (tivo@freakinzoo.com) - February 2005
 based on code by Christopher Wingert for tivo-mplayer
@@ -7,7 +7,7 @@ tivo(at)wingert.org, February 2003
 @copyright 2017 Paul B Mahol
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -37,41 +37,49 @@ public class TYDemuxer : AVInputFormat {
             return "ty";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "TiVo TY Stream";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TYDemuxerPrivateData);
         }
     }
+
     [CCode (cname="ty_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="ty_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="ty_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="ty_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "ty,ty+";
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

@@ -1,9 +1,9 @@
 /***********************************************************
-various OS-feature replacement utilities
+@brief Various OS-feature replacement utilities
 @copyright 2000, 2001, 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -88,7 +88,7 @@ namespace LibAVFormat {
 //  #endif
 
 /***********************************************************
-most of the time closing a socket is just closing an fd
+@brief Most of the time closing a socket is just closing an fd
 ***********************************************************/
 //  #if !HAVE_CLOSESOCKET
 //  #define closesocket close
@@ -116,15 +116,15 @@ most of the time closing a socket is just closing an fd
 [Flags]
 public enum PollEvent {
     /***********************************************************
-    events & revents
+    @brief Events & revents
     ***********************************************************/
 
     /***********************************************************
-    any readable data available
+    @brief Any readable data available
     ***********************************************************/
     POLLIN,
     /***********************************************************
-    file descriptor is writeable
+    @brief File descriptor is writeable
     ***********************************************************/
     POLLOUT,
     /***********************************************************
@@ -136,33 +136,33 @@ public enum PollEvent {
     ***********************************************************/
     POLLWRNORM,
     /***********************************************************
-    priority readable data
+    @brief Priority readable data
     ***********************************************************/
     POLLRDBAND,
     /***********************************************************
-    priority data can be written
+    @brief Priority data can be written
     ***********************************************************/
     POLLWRBAND,
     /***********************************************************
-    high priority readable data
+    @brief High priority readable data
     ***********************************************************/
     POLLPRI,
 
 
     /***********************************************************
-    revents only
+    @brief Revents only
     ***********************************************************/
 
     /***********************************************************
-    errors pending
+    @brief Errors pending
     ***********************************************************/
     POLLERR,
     /***********************************************************
-    disconnected
+    @brief Disconnected
     ***********************************************************/
     POLLHUP,
     /***********************************************************
-    invalid file descriptor
+    @brief Invalid file descriptor
     ***********************************************************/
     POLLNVAL,
 }

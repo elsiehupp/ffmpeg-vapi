@@ -1,11 +1,11 @@
 /***********************************************************
-IEC 61937 muxer
+@brief IEC 61937 muxer
 @copyright 2009 Bartlomiej Wolowiec
 @copyright 2010 Anssi Hannula
 @copyright 2010 Carl Eugen Hoyos
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -32,7 +32,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 /***********************************************************
-Terminology used in specification:
+@brief Terminology used in specification:
 data-burst - IEC61937 frame, contains header and encapsuled frame
 burst-preamble - IEC61937 frame header, contains 16-bit words named Pa, Pb, Pc and Pd
 burst-payload - encapsuled frame
@@ -62,6 +62,7 @@ public class SPIDFMuxerClass : LibAVUtil.Class {
             return "spdif";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -90,49 +91,58 @@ public class SPIDFMuxer : AVOutputFormat {
             return "spdif";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "IEC 61937 (used on S/PDIF - IEC958)";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "spdif";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SPIDFMuxerPrivateData);
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AC3;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
         }
     }
+
     [CCode (cname="spdif_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="spdif_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="spdif_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

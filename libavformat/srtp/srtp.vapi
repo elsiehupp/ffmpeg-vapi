@@ -1,9 +1,9 @@
 /***********************************************************
-SRTP encryption/decryption
+@brief SRTP encryption/decryption
 @copyright 2012 Martin Storsjo
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,22 +24,52 @@ namespace LibAVFormat {
 
 [CCode (cname="struct SRTPContext", cheader_filename="")]
 public struct SRTPContext {
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Crypto.AESContext aes;
+
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Crypto.HMACContext hmac;
+
+    [CCode (cname="", cheader_filename="")]
     public int rtp_hmac_size;
+
+    [CCode (cname="", cheader_filename="")]
     public int rtcp_hmac_size;
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 master_key[16];
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 master_salt[14];
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 rtp_key[16];
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 rtcp_key[16];
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 rtp_salt[14];
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 rtcp_salt[14];
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 rtp_auth[20];
+
+    [CCode (cname="", cheader_filename="")]
     public uint8 rtcp_auth[20];
+
+    [CCode (cname="", cheader_filename="")]
     public int seq_largest;
+
+    [CCode (cname="", cheader_filename="")]
     public int seq_initialized;
+
+    [CCode (cname="", cheader_filename="")]
     public uint32 roc;
 
+    [CCode (cname="", cheader_filename="")]
     public uint32 rtcp_index;
 }
 

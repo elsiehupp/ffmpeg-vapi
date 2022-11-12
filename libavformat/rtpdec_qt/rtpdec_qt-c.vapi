@@ -1,9 +1,9 @@
 /***********************************************************
-RTP/Quicktime support.
+@brief RTP/Quicktime support.
 @copyright 2009 Ronald S. Bultje
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public

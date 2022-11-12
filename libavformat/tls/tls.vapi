@@ -1,9 +1,9 @@
 /***********************************************************
-TLS/SSL Protocol
+@brief TLS/SSL Protocol
 @copyright 2011 Martin Storsjo
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,17 +24,31 @@ namespace LibAVFormat {
 
 [CCode (cname="struct TLSShared", cheader_filename="")]
 public struct TLSShared {
+    [CCode (cname="", cheader_filename="")]
     public string ca_file;
+
+    [CCode (cname="", cheader_filename="")]
     public int verify;
+
+    [CCode (cname="", cheader_filename="")]
     public string cert_file;
+
+    [CCode (cname="", cheader_filename="")]
     public string key_file;
+
+    [CCode (cname="", cheader_filename="")]
     public int listen;
 
+    [CCode (cname="", cheader_filename="")]
     public string host;
 
+    [CCode (cname="", cheader_filename="")]
     public char underlying_host[200];
+
+    [CCode (cname="", cheader_filename="")]
     public int numerichost;
 
+    [CCode (cname="", cheader_filename="")]
     public URLContext tcp;
 }
 
@@ -58,10 +72,14 @@ public int ff_tls_open_underlying (
 
 [CCode (cname="", cheader_filename="")]
 public void ff_gnutls_init ();
+
+[CCode (cname="", cheader_filename="")]
 public void ff_gnutls_deinit ();
 
 [CCode (cname="", cheader_filename="")]
 public int ff_openssl_init ();
+
+[CCode (cname="", cheader_filename="")]
 public void ff_openssl_deinit ();
 
 } // namespace LibAVFormat

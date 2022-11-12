@@ -3,7 +3,7 @@
 @copyright 2008 Peter Ross
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -49,7 +49,7 @@ public struct BPrintBuffer {
 @copyright 2012 Nicolas George
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -223,6 +223,7 @@ public void av_bprint_append_data (
 
 [CCode (cname="struct tm", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public struct AVTime { }
+
 /***********************************************************
 @brief Append a formatted date and time to a print buffer.
 

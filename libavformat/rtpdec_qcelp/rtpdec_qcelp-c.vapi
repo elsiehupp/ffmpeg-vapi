@@ -1,9 +1,9 @@
 /***********************************************************
-RTP Depacketization of QCELP/PureVoice, RFC 2658
+@brief RTP Depacketization of QCELP/PureVoice, RFC 2658
 @copyright 2010 Martin Storsjo
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,18 +30,21 @@ public class QCELPDynamicHandler : RTPDynamicProtocolHandler {
             return "x-Purevoice";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.QCELP;
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {

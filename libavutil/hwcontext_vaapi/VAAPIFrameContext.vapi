@@ -31,6 +31,7 @@ public class VAAPIFrameContext : AbstractHardwareContext {
     ***********************************************************/
     [CCode (cname="attributes")]
     public VASurfaceAttribp[] attribute_list;
+
     [CCode (cname="nb_attributes")]
     public int attribute_count;
 
@@ -42,6 +43,7 @@ public class VAAPIFrameContext : AbstractHardwareContext {
     ***********************************************************/
     [CCode (cname="surface_ids")]
     public VASurfaceID[] surface_id_list;
+
     [CCode (cname="nb_surfaces")]
     public int surface_count;
 }

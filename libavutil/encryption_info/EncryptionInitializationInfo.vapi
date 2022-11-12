@@ -32,6 +32,7 @@ public struct EncryptionInitializationInfo {
     ***********************************************************/
     [CCode (cname="system_id")]
     public uint8[] system_id;
+
     [CCode (cname="system_id_size")]
     public uint32 system_id_size;
 
@@ -63,6 +64,7 @@ public struct EncryptionInitializationInfo {
     ***********************************************************/
     [CCode (cname="data")]
     public uint8[] data;
+
     [CCode (cname="data_size")]
     public uint32 data_size;
 

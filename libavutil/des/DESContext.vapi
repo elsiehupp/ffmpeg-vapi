@@ -3,7 +3,7 @@
 @copyright 2007 Reimar Doeffinger
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,6 +30,7 @@ namespace LibAVUtil.Crypto {
 public struct DESContext {
     [CCode (cname="round_keys")]
     public uint64 round_keys[3 * 16];
+
     [CCode (cname="triple_des")]
     public int triple_des;
 

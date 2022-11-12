@@ -1,9 +1,9 @@
 /***********************************************************
-Matroska common data
+@brief Matroska common data
 @copyright 2003-2004 The FFmpeg project
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-If you add a tag here that is not in ff_codec_bmp_tags[]
+@brief If you add a tag here that is not in ff_codec_bmp_tags[]
     or ff_codec_wav_tags[], add it also to additional_audio_tags[]
     or additional_video_tags[] in matroskaenc.c
 ***********************************************************/

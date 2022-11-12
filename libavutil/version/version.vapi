@@ -2,7 +2,7 @@
 @copyright 2003 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -69,15 +69,19 @@ which version of libavutil is in use.
 
 [CCode (cname="LIBAVUTIL_VERSION_MAJOR", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int MAJOR;
+
 [CCode (cname="LIBAVUTIL_VERSION_MINOR", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int MINOR;
+
 [CCode (cname="LIBAVUTIL_VERSION_MICRO", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int MICRO;
 
 [CCode (cname="LIBAVUTIL_VERSION_INT", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int INT;
+
 [CCode (cname="LIBAVUTIL_VERSION", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int VERSION;
+
 [CCode (cname="LIBAVUTIL_BUILD", cheader_filename="ffmpeg/libavutil/version.h")]
 public const int BUILD;
 

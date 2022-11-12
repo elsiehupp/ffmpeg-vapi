@@ -1,9 +1,9 @@
 /***********************************************************
-Common code for the RTP depacketization of MPEG-1/2 formats.
+@brief Common code for the RTP depacketization of MPEG-1/2 formats.
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,18 +30,21 @@ public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MP3;
         }
     }
+
     [CCode (cname="need_parsing", cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVSTREAM_PARSE_FULL;
         }
     }
+
     [CCode (cname="mpeg_parse_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,
@@ -65,18 +68,21 @@ public class MpegVideoDynamicHandler : RTPDynamicProtocolHandler {
             return AVMEDIA_TYPE_VIDEO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
+
     [CCode (cname="need_parsing", cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVSTREAM_PARSE_FULL;
         }
     }
+
     [CCode (cname="mpeg_parse_packet", cheader_filename="")]
     public override int parse_packet (
         AVFormatContext format_context,

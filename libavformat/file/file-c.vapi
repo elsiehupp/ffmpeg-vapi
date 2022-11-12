@@ -1,9 +1,9 @@
 /***********************************************************
-buffered file I/O
+@brief Buffered file I/O
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -43,6 +43,7 @@ public class FileClass : LibAVUtil.Class {
             return "file";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -68,6 +69,7 @@ public class PipeClass : LibAVUtil.Class {
             return "pipe";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -95,52 +97,62 @@ public class FileURLProtocol : URLProtocol {
             return "file";
         }
     }
+
     [CCode (cname="file_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="file_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="file_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="file_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
+
     [CCode (cname="file_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="file_get_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="file_check", cheader_filename="")]
     public override int url_check (
         URLContext url_context,
         int mask
     );
+
     [CCode (cname="file_delete", cheader_filename="")]
     public override int url_delete (
         URLContext url_context
     );
+
     [CCode (cname="file_move", cheader_filename="")]
     public override int url_move (
         URLContext h_src,
         URLContext h_dst
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
@@ -152,11 +164,13 @@ public class FileURLProtocol : URLProtocol {
     public override int url_open_dir (
         URLContext url_context
     );
+
     [CCode (cname="file_read_dir", cheader_filename="")]
     public override int url_read_dir (
         URLContext url_context,
         out AVIODirEntry next
     );
+
     [CCode (cname="file_close_dir", cheader_filename="")]
     public override int url_close_dir (
         URLContext url_context
@@ -176,33 +190,39 @@ public class PipeURLProtocol : URLProtocol {
             return "pipe";
         }
     }
+
     [CCode (cname="pipe_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="file_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="file_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="file_get_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="file_check", cheader_filename="")]
     public override int url_check (
         URLContext url_context,
         int mask
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {

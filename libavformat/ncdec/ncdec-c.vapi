@@ -1,10 +1,10 @@
 /***********************************************************
-NC camera feed demuxer
+@brief NC camera feed demuxer
 @copyright 2009  Nicolas Martin (martinic at iro dot umontreal dot ca)
                     Edouard Auvinet
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -31,25 +31,30 @@ public class NCDemuxer : AVInputFormat {
             return "nc";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "NC camera feed";
         }
     }
+
     [CCode (cname="nc_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="nc_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="nc_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

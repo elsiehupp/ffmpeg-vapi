@@ -3,7 +3,7 @@
 @copyright 2008 Michael Niedermayer
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -32,6 +32,7 @@ to allow easy instantiation.
 public struct LFGContext {
     [CCode (cname="state")]
     public uint state[64];
+
     [CCode (cname="index")]
     public int index;
 

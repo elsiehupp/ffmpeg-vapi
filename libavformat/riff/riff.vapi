@@ -1,9 +1,9 @@
 /***********************************************************
-RIFF common functions and data
+@brief RIFF common functions and data
 @copyright 2000 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -42,11 +42,12 @@ public void ff_end_tag (
 );
 
 /***********************************************************
-Read BITMAPINFOHEADER structure and set AVStream codec width, height and
+@brief Read BITMAPINFOHEADER structure and set AVStream codec width, height and
 bits_per_encoded_sample fields. Does not read extradata.
 Writes the size of the BMP file to size.
 @return codec tag
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_get_bmp_header (
     AVIOContext pb,
     AVStream st,
@@ -64,23 +65,24 @@ public void ff_put_bmp_header (
 [Flags]
 public enum PutWAVHeaderFlags {
     /***********************************************************
-    Tell ff_put_wav_header () to use WAVEFORMATEX even for PCM codecs.
+    @brief Tell ff_put_wav_header () to use WAVEFORMATEX even for PCM codecs.
     ***********************************************************/
     FF_PUT_WAV_HEADER_FORCE_WAVEFORMATEX,
 
     /***********************************************************
-    Tell ff_put_wav_header () to write an empty channel mask.
+    @brief Tell ff_put_wav_header () to write an empty channel mask.
     ***********************************************************/
     FF_PUT_WAV_HEADER_SKIP_CHANNELMASK,
 }
 
 /***********************************************************
-Write WAVEFORMAT header structure.
+@brief Write WAVEFORMAT header structure.
 
 @param flags a combination of FF_PUT_WAV_HEADER_* constants
 
 @return the size or -1 on error
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_put_wav_header (
     AVFormatContext format_context,
     AVIOContext pb,
@@ -123,15 +125,17 @@ public int ff_read_riff_info (
 );
 
 /***********************************************************
-Write all recognized RIFF tags from format_context.metadata
+@brief Write all recognized RIFF tags from format_context.metadata
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_riff_write_info (
     AVFormatContext format_context
 );
 
 /***********************************************************
-Write a single RIFF info tag
+@brief Write a single RIFF info tag
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_riff_write_info_tag (
     AVIOContext pb,
     string tag,
@@ -143,7 +147,10 @@ public struct ff_asf_guid { }
 
 [CCode (cname="struct AVCodecGuid", cheader_filename="")]
 public struct AVCodecGuid {
+    [CCode (cname="", cheader_filename="")]
     public LibAVCodec.CodecID id;
+
+    [CCode (cname="", cheader_filename="")]
     public ff_asf_guid guid;
 }
 

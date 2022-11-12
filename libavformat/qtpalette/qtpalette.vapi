@@ -1,10 +1,10 @@
 /***********************************************************
-Default Palettes for Quicktime Files
+@brief Default Palettes for Quicktime Files
 Automatically generated from a utility derived from XAnim:
 http://xanim.va.pubnix.com/home.html
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -31,8 +31,9 @@ public const uint8 ff_qt_default_palette_2[2 * 3];
 //  }
 
 /***********************************************************
-From a screenshot of the "Monitors & Sound" control panel in Mac OS 7.5.5
+@brief From a screenshot of the "Monitors & Sound" control panel in Mac OS 7.5.5
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const uint8 ff_qt_default_palette_4[4 * 3];
 //  {
 //      0xFF, 0xFF, 0xFF,
@@ -42,8 +43,9 @@ public const uint8 ff_qt_default_palette_4[4 * 3];
 //  }
 
 /***********************************************************
-From a screenshot of the "Monitors & Sound" control panel in Mac OS 7.5.5
+@brief From a screenshot of the "Monitors & Sound" control panel in Mac OS 7.5.5
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public const uint8 ff_qt_default_palette_16[16 * 3];
 //  {
 //      0xFF, 0xFF, 0xFF,
@@ -326,7 +328,7 @@ public const uint8 ff_qt_default_palette_256[256 * 3];
 //  }
 
 /***********************************************************
-Retrieve the palette (or "color table" in QuickTime terms), either
+@brief Retrieve the palette (or "color table" in QuickTime terms), either
 from the video sample description, or from the default Macintosh
 palette.
 
@@ -334,6 +336,7 @@ The file offset of the AVIOContext pointed to by the 'pb' variable
 should be the start of the video sample description (the sample
 description size and the data format).
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_get_qtpalette (
     int codec_id,
     AVIOContext pb,

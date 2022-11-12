@@ -1,9 +1,9 @@
 /***********************************************************
-MicroDVD subtitle muxer
+@brief MicroDVD subtitle muxer
 @copyright 2010  Aurelien Jacobs <aurel@gnuage.org>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,39 +30,46 @@ public class MicroDVDMuxer : AVOutputFormat {
             return "microdvd";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MicroDVD subtitle format";
         }
     }
+
     [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "text/x-microdvd";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "sub";
         }
     }
+
     [CCode (cname="microdvd_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="microdvd_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
         }
     }
+
     [CCode (cname="subtitle_codec", cheader_filename="")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {

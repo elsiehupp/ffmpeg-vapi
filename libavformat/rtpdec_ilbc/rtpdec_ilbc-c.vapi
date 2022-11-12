@@ -1,9 +1,9 @@
 /***********************************************************
-RTP iLBC Depacketizer, RFC 3952
+@brief RTP iLBC Depacketizer, RFC 3952
 @copyright 2012 Martin Storsjo
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,18 +30,21 @@ public class ILBCDynamicHandler : RTPDynamicProtocolHandler {
             return "iLBC";
         }
     }
+
     [CCode (cname="codec_type", cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
         }
     }
+
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.ILBC;
         }
     }
+
     [CCode (cname="ilbc_parse_sdp_line", cheader_filename="")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,

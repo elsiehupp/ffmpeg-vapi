@@ -1,9 +1,9 @@
 /***********************************************************
-TechnoTrend PVA (.pva) demuxer
+@brief TechnoTrend PVA (.pva) demuxer
 @copyright 2007, 2008 Ivo van Poorten
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -33,31 +33,37 @@ public class PVADemuxer : AVInputFormat {
             return "pva";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "TechnoTrend PVA";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PVADemuxerPrivateData);
         }
     }
+
     [CCode (cname="pva_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="pva_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="pva_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="pva_read_timestamp", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,

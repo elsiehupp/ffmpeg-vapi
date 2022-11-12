@@ -3,7 +3,7 @@
 @copyright 2016 KongQun Yang (kqyang@google.com)
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -28,15 +28,24 @@ namespace LibAVFormat {
 
 [CCode (cname="struct VPCC", cheader_filename="")]
 public struct VPCC {
+    [CCode (cname="", cheader_filename="")]
     public int profile;
+
+    [CCode (cname="", cheader_filename="")]
     public int level;
+
+    [CCode (cname="", cheader_filename="")]
     public int bitdepth;
+
+    [CCode (cname="", cheader_filename="")]
     public int chroma_subsampling;
+
+    [CCode (cname="", cheader_filename="")]
     public int full_range_flag;
 }
 
 /***********************************************************
-Writes VP codec configuration to the provided AVIOContext.
+@brief Writes VP codec configuration to the provided AVIOContext.
 
 @param format_context address of the AVFormatContext for the logging context.
 @param pb address of the AVIOContext where the vpcC shall be written.
@@ -44,6 +53,7 @@ Writes VP codec configuration to the provided AVIOContext.
 @return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
         code in case of failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_isom_write_vpcc (
     AVFormatContext format_context,
     AVIOContext pb,

@@ -1,5 +1,5 @@
 /***********************************************************
-Ogg bitstream support
+@brief Ogg bitstream support
 Luca Barbato <lu_zero@gentoo.org>
 Based on tcvp implementation
 ***********************************************************/
@@ -38,35 +38,42 @@ public class OggDemuxer : AVInputFormat {
             return "ogg";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Ogg";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (Ogg);
         }
     }
+
     [CCode (cname="ogg_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="ogg_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="ogg_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="ogg_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="ogg_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -74,6 +81,7 @@ public class OggDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="ogg_read_timestamp", cheader_filename="")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
@@ -81,12 +89,14 @@ public class OggDemuxer : AVInputFormat {
         int64[] pos,
         int64 pos_limit
     );
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "ogg";
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

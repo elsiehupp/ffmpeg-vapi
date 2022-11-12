@@ -2,7 +2,7 @@
 @copyright 2014 Lukasz Marek <lukasz.m.luki@gmail.com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -39,6 +39,7 @@ public class LibSMBClientURLProtocolClass : LibAVUtil.Class {
             return "libsmbc";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -67,56 +68,67 @@ public class LibSMBClientURLProtocol : URLProtocol {
             return "smb";
         }
     }
+
     [CCode (cname="libsmbc_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="libsmbc_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="libsmbc_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="libsmbc_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
+
     [CCode (cname="libsmbc_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="libsmbc_delete", cheader_filename="")]
     public override int url_delete (
         URLContext url_context
     );
+
     [CCode (cname="libsmbc_move", cheader_filename="")]
     public override int url_move (
         URLContext h_src,
         URLContext h_dst
     );
+
     [CCode (cname="libsmbc_open_dir", cheader_filename="")]
     public override int url_open_dir (
         URLContext url_context
     );
+
     [CCode (cname="libsmbc_read_dir", cheader_filename="")]
     public override int url_read_dir (
         URLContext url_context,
         out AVIODirEntry next
     );
+
     [CCode (cname="libsmbc_close_dir", cheader_filename="")]
     public override int url_close_dir (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {

@@ -2,7 +2,7 @@
 @copyright 2011, Luca Barbato
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -82,6 +82,7 @@ public class SegmentMuxerClass : LibAVUtil.Class {
             return "segment muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -90,8 +91,10 @@ public class SegmentMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -108,46 +111,55 @@ public class SegmentMuxer : AVOutputFormat {
             return "segment";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "segment";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SegmentContext);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOFILE | AVFMT_GLOBALHEADER;
         }
     }
+
     [CCode (cname="seg_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
+
     [CCode (cname="seg_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="seg_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
+
     [CCode (cname="seg_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="seg_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
+
     [CCode (cname="seg_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
@@ -166,6 +178,7 @@ public class StreamSegmentMuxerClass : LibAVUtil.Class {
             return "stream_segment muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -174,8 +187,10 @@ public class StreamSegmentMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -192,46 +207,55 @@ public class StreamSegmentMuxer : AVOutputFormat {
             return "stream_segment,ssegment";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "streaming segment muxer";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SegmentContext);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOFILE;
         }
     }
+
     [CCode (cname="seg_init", cheader_filename="")]
     public override int init (
         AVFormatContext format_context
     );
+
     [CCode (cname="seg_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="seg_write_packet", cheader_filename="")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
+
     [CCode (cname="seg_write_trailer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="seg_free", cheader_filename="")]
     public override void deinit (
         AVFormatContext format_context
     );
+
     [CCode (cname="seg_check_bitstream", cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,

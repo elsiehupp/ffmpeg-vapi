@@ -1,9 +1,9 @@
 /***********************************************************
-buffered I/O
+@brief Buffered I/O
 @copyright 2000,2001 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -38,6 +38,7 @@ public class AVIOContextClass : LibAVUtil.Class {
             return "AVIOContext";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -46,6 +47,7 @@ public class AVIOContextClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -58,6 +60,7 @@ public class AVIOContextClass : LibAVUtil.Class {
         void *obj,
         void *prev
     );
+
     [CCode (cname="ff_avio_child_class_next", cheader_filename="")]
     public override LibAVUtil.Class child_class_next (
         LibAVUtil.Class prev

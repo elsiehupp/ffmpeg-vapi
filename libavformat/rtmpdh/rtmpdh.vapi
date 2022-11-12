@@ -1,9 +1,9 @@
 /***********************************************************
-RTMP Diffie-Hellmann utilities
+@brief RTMP Diffie-Hellmann utilities
 @copyright 2012 Samuel Pitoiset
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,57 +23,71 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Platform-specific
+@brief Platform-specific
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct FFBigNum { }
 
 [CCode (cname="struct FF_DH", cheader_filename="")]
 public struct FF_DH {
+    [CCode (cname="", cheader_filename="")]
     public FFBigNum p;
+
+    [CCode (cname="", cheader_filename="")]
     public FFBigNum g;
+
+    [CCode (cname="", cheader_filename="")]
     public FFBigNum pub_key;
+
+    [CCode (cname="", cheader_filename="")]
     public FFBigNum priv_key;
+
+    [CCode (cname="", cheader_filename="")]
     public long length;
 }
 
 
 /***********************************************************
-Initialize a Diffie-Hellmann context.
+@brief Initialize a Diffie-Hellmann context.
 
 @param key_len length of the key
 @return a new Diffie-Hellmann context on success, NULL otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public FF_DH ff_dh_init (
     int key_len
 );
 
 /***********************************************************
-Free a Diffie-Hellmann context.
+@brief Free a Diffie-Hellmann context.
 
 @param dh a Diffie-Hellmann context to free
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void ff_dh_free (
     FF_DH dh
 );
 
 /***********************************************************
-Generate a public key.
+@brief Generate a public key.
 
 @param dh a Diffie-Hellmann context
 @return zero on success, negative value otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_dh_generate_public_key (
     FF_DH dh
 );
 
 /***********************************************************
-Write the public key into the given buffer.
+@brief Write the public key into the given buffer.
 
 @param dh a Diffie-Hellmann context, containing the public key to write
 @param pub_key the buffer where the public key is written
 @param pub_key_len the length of the buffer
 @return zero on success, negative value otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_dh_write_public_key (
     FF_DH dh,
     uint8[] pub_key,
@@ -81,7 +95,7 @@ public int ff_dh_write_public_key (
 );
 
 /***********************************************************
-Compute the shared secret key from the private FF_DH value and the
+@brief Compute the shared secret key from the private FF_DH value and the
 other party's public value.
 
 @param dh a Diffie-Hellmann context, containing the private key
@@ -91,6 +105,7 @@ other party's public value.
 @param secret_key_len the length of the secret key buffer
 @return length of the shared secret key on success, negative value otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_dh_compute_shared_secret_key (
     FF_DH dh,
     uint8[] pub_key,

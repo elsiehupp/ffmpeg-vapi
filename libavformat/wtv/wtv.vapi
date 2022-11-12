@@ -1,9 +1,9 @@
 /***********************************************************
-Windows Television (WTV)
+@brief Windows Television (WTV)
 @copyright 2010-2011 Peter Ross <pross@xvid.org>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,8 +24,11 @@ namespace LibAVFormat {
 
 [CCode (cname="", cheader_filename="")]
 public const size_t WTV_SECTOR_BITS; // 12
+[CCode (cname="", cheader_filename="")]
 public const size_t WTV_SECTOR_SIZE; // (1 << WTV_SECTOR_BITS)
+[CCode (cname="", cheader_filename="")]
 public const size_t WTV_BIGSECTOR_BITS; // 18
+[CCode (cname="", cheader_filename="")]
 public size_t WTV_PAD8 (size_t x); // (((x) + 7) & ~7)
 
 //  extern const uint8 ff_timeline_le16[16];

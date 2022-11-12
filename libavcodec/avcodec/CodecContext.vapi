@@ -1,8 +1,5 @@
 /***********************************************************
-@@copyright 2001 Fabrice Bellard
-***********************************************************/
-/***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -18,7 +15,9 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
+/***********************************************************
+@@copyright 2001 Fabrice Bellard
+***********************************************************/
 namespace LibAVCodec {
 using LibAVUtil;
 
@@ -108,6 +107,7 @@ public struct CodecContext {
     ***********************************************************/
     [CCode (cname="av_class")]
     public LibAVUtil.Class av_class;
+
     [CCode (cname="log_level_offset")]
     public int log_level_offset;
 
@@ -116,6 +116,7 @@ public struct CodecContext {
     ***********************************************************/
     [CCode (cname="codec_type")]
     public LibAVUtil.MediaType codec_type;
+
     [CCode (cname="codec")]
     public Codec codec;
 
@@ -241,6 +242,7 @@ public struct CodecContext {
     ***********************************************************/
     [CCode (cname="extradata")]
     public uint8[] extradata;
+
     [CCode (cname="extradata_size")]
     public int extradata_size;
 
@@ -302,7 +304,7 @@ public struct CodecContext {
     public int delay;
 
     /***********************************************************
-    video only
+    @brief Video only
     ***********************************************************/
 
     /***********************************************************
@@ -320,6 +322,7 @@ public struct CodecContext {
     ***********************************************************/
     [CCode (cname="width")]
     public int width;
+
     [CCode (cname="height")]
     public int height;
 
@@ -338,6 +341,7 @@ public struct CodecContext {
     ***********************************************************/
     [CCode (cname="coded_width")]
     public int coded_width;
+
     [CCode (cname="coded_height")]
     public int coded_height;
 
@@ -855,7 +859,7 @@ public struct CodecContext {
     public LibAVUtil.SampleFormat sample_fmt;
 
     /***********************************************************
-    The following data should not be initialized.
+    @brief The following data should not be initialized.
     ***********************************************************/
 
     /***********************************************************
@@ -1077,6 +1081,7 @@ public struct CodecContext {
     ***********************************************************/
     [CCode (cname="rc_override")]
     public RcOverride[] rc_override;
+
     [CCode (cname="rc_override_count")]
     public int rc_override_count;
 
@@ -1460,6 +1465,7 @@ public struct CodecContext {
     ***********************************************************/
     [CCode (cname="subtitle_header")]
     public uint8[] subtitle_header;
+
     [CCode (cname="subtitle_header_size")]
     public int subtitle_header_size;
 
@@ -1675,6 +1681,7 @@ public struct CodecContext {
     ***********************************************************/
     [CCode (cname="coded_side_data")]
     public PacketSideData[] coded_side_data;
+
     [CCode (cname="nb_coded_side_data")]
     public int nb_coded_side_data;
 

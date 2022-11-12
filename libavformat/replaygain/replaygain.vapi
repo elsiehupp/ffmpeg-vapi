@@ -1,5 +1,5 @@
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -19,8 +19,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Parse replaygain tags and export them as per-stream side data.
+@brief Parse replaygain tags and export them as per-stream side data.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_replaygain_export (
     AVStream st,
     LibAVUtil.Dictionary metadata
@@ -28,8 +29,9 @@ public int ff_replaygain_export (
 
 
 /***********************************************************
-Export already decoded replaygain values as per-stream side data.
+@brief Export already decoded replaygain values as per-stream side data.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_replaygain_export_raw (
     AVStream st,
     int32 tg,

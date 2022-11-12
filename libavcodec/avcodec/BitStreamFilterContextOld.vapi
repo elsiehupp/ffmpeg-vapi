@@ -1,5 +1,5 @@
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -35,10 +35,13 @@ LibAVCodec external API header
 public struct BitStreamFilterContextOld {
     [CCode (cname="priv_data")]
     public void *priv_data;
+
     [CCode (cname="filter")]
     public BitStreamFilter filter;
+
     [CCode (cname="parser")]
     public CodecParserContext[] parser;
+
     [CCode (cname="next")]
     public BitStreamFilterContextOld *next;
 

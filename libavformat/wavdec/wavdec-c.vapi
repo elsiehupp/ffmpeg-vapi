@@ -1,5 +1,5 @@
 /***********************************************************
-WAV demuxer
+@brief WAV demuxer
 @copyright 2001, 2002 Fabrice Bellard
 
 Sony Wave64 demuxer
@@ -7,7 +7,7 @@ RF64 demuxer
 @copyright 2009 Daniel Verkamp
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -42,6 +42,7 @@ public class WAVDemuxerClass : LibAVUtil.Class {
             return "WAV demuxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -67,31 +68,37 @@ public class WAVDemuxer : AVInputFormat {
             return "wav";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "WAV / WAVE (Waveform Audio)";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WAVDemuxContext);
         }
     }
+
     [CCode (cname="wav_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="wav_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="wav_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="wav_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -99,6 +106,7 @@ public class WAVDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
@@ -119,31 +127,37 @@ public class Wave64Demuxer : AVInputFormat {
             return "w64";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "Sony Wave64";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WAVDemuxContext);
         }
     }
+
     [CCode (cname="w64_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="w64_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="wav_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="wav_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -151,6 +165,7 @@ public class Wave64Demuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

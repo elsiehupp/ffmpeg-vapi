@@ -2,7 +2,7 @@
 @copyright 2014 Tim Walker <tdskywalker@gmail.com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 /***********************************************************
-Writes Annex B formatted HEVC NAL units to the provided AVIOContext.
+@brief Writes Annex B formatted HEVC NAL units to the provided AVIOContext.
 
 The NAL units are converted to an MP4-compatible format (start code prefixes
 are replaced by 4-byte size fields, as per ISO/IEC 14496-15).
@@ -44,6 +44,7 @@ discarded, and *ps_count will be set to the number of discarded PS NAL units.
 @return the amount (in bytes) of data written in case of success, a negative
     value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_hevc_annexb2mp4 (
     AVIOContext pb,
     uint8[] buf_in,
@@ -53,7 +54,7 @@ public int ff_hevc_annexb2mp4 (
 );
 
 /***********************************************************
-Writes Annex B formatted HEVC NAL units to a data buffer.
+@brief Writes Annex B formatted HEVC NAL units to a data buffer.
 
 The NAL units are converted to an MP4-compatible format (start code prefixes
 are replaced by 4-byte size fields, as per ISO/IEC 14496-15).
@@ -75,6 +76,7 @@ On output, *size holds the size (in bytes) of the output data buffer.
 @return the amount (in bytes) of data written in case of success, a negative
      value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_hevc_annexb2mp4_buf (
     uint8[] buf_in,
     out uint8[] buf_out,
@@ -84,7 +86,7 @@ public int ff_hevc_annexb2mp4_buf (
 );
 
 /***********************************************************
-Writes HEVC extradata (parameter sets, declarative SEI NAL units) to the
+@brief Writes HEVC extradata (parameter sets, declarative SEI NAL units) to the
 provided AVIOContext.
 
 If the extradata is Annex B format, it gets converted to hvcC format before
@@ -98,6 +100,7 @@ writing.
 @return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
      code in case of failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_isom_write_hvcc (
     AVIOContext pb,
     uint8[] data,

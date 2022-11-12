@@ -1,9 +1,9 @@
 /***********************************************************
-RTP depacketizer declarations
+@brief RTP depacketizer declarations
 @copyright 2010 Martin Storsjo
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -23,10 +23,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-Parse a Windows Media Server-specific SDP line
+@brief Parse a Windows Media Server-specific SDP line
 
 @param format_context RTSP demux context
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_wms_parse_sdp_a_line (
     AVFormatContext format_context,
     string p

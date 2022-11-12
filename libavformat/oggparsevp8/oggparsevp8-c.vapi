@@ -1,9 +1,9 @@
 /***********************************************************
-On2 VP8 parser for Ogg
+@brief On2 VP8 parser for Ogg
 @copyright 2013 James Almer
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,6 +24,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_vp8_codec", cheader_filename="")]
 public class VP8Codec : OggCodec {
+    [CCode (cname="", cheader_filename="")]
     public override uint8[] magic {
         public get {
             return "OVP80".data;
@@ -35,11 +36,13 @@ public class VP8Codec : OggCodec {
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="vp8_packet", cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
+
     [CCode (cname="vp8_gptopts", cheader_filename="")]
     public override uint64 gptopts (
         AVFormatContext context,

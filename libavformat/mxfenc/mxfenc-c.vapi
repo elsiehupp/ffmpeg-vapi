@@ -1,10 +1,10 @@
 /***********************************************************
-MXF muxer
+@brief MXF muxer
 @copyright 2008 GUCAS, Zhentan Feng <spyfeng at gmail dot com>
 @copyright 2008 Baptiste Coudurier <baptiste dot coudurier at gmail dot com>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,12 +24,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-signal_standard, color_siting, store_user_comments, sample rate and klv_fill_key version
+@brief Signal_standard, color_siting, store_user_comments, sample rate and klv_fill_key version
 fixes sponsored by NOA GmbH
 ***********************************************************/
 
 /***********************************************************
-References
+@brief References
 SMPTE 336M KLV Data Encoding Protocol Using Key-Length-Value
 SMPTE 377M MXF File Format Specifications
 SMPTE 379M MXF Generic Container
@@ -77,6 +77,7 @@ public class MXFMuxerClass : LibAVUtil.Class {
             return "MXF muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -111,6 +112,7 @@ public class MXFD10MuxerClass : LibAVUtil.Class {
             return "MXF-D10 muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -145,6 +147,7 @@ public class MXFOPAtomMuxerClass : LibAVUtil.Class {
             return "MXF-OPAtom muxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -170,61 +173,72 @@ public class MXFOPATOMMuxer : AVOutputFormat {
             return "mxf";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MXF (Material eXchange Format)";
         }
     }
+
     [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "application/mxf";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "mxf";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MXFMuxerClassPrivateData);
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
+
     [CCode (cname="mxf_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="mxf_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="mxf_write_footer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
         }
     }
+
     [CCode (cname="mxf_interleave", cheader_filename="")]
     public override int interleave_packet (
         AVFormatContext format_context,
@@ -243,55 +257,65 @@ public class MXFD10Muxer : AVOutputFormat {
             return "mxf_d10";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MXF (Material eXchange Format) D-10 Mapping";
         }
     }
+
     [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "application/mxf";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MXFMuxerClassPrivateData);
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG2VIDEO;
         }
     }
+
     [CCode (cname="mxf_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="mxf_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="mxf_write_footer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
         }
     }
+
     [CCode (cname="mxf_interleave", cheader_filename="")]
     public override int interleave_packet (
         AVFormatContext format_context,
@@ -310,61 +334,72 @@ public class MXFMuxer : AVOutputFormat {
             return "mxf_opatom";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "MXF (Material eXchange Format) Operational Pattern Atom";
         }
     }
+
     [CCode (cname="mime_type", cheader_filename="")]
     public override string mime_type {
         public get {
             return "application/mxf";
         }
     }
+
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {
             return "mxf";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MXFMuxerClassPrivateData);
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.DNXHD;
         }
     }
+
     [CCode (cname="mxf_write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="mxf_write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="mxf_write_footer", cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
         }
     }
+
     [CCode (cname="mxf_interleave", cheader_filename="")]
     public override int interleave_packet (
         AVFormatContext format_context,

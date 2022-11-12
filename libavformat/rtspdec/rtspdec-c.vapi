@@ -1,9 +1,9 @@
 /***********************************************************
-RTSP demuxer
+@brief RTSP demuxer
 @copyright 2002 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,6 +30,7 @@ public class RTSPDemuxerClass : LibAVUtil.Class {
             return "RTSP demuxer";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -55,35 +56,42 @@ public class RTSPDemuxer : AVInputFormat {
             return "rtsp";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "RTSP input";
         }
     }
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RTSPState);
         }
     }
+
     [CCode (cname="rtsp_probe", cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
+
     [CCode (cname="rtsp_read_header", cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="rtsp_read_packet", cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="rtsp_read_close", cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
+
     [CCode (cname="rtsp_read_seek", cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
@@ -91,16 +99,19 @@ public class RTSPDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOFILE;
         }
     }
+
     [CCode (cname="rtsp_read_play", cheader_filename="")]
     public override int read_play (
         AVFormatContext format_context
     );
+
     [CCode (cname="rtsp_read_pause", cheader_filename="")]
     public override int read_pause (
         AVFormatContext format_context

@@ -1,5 +1,5 @@
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -46,6 +46,7 @@ should also be set when applicable, but are not required.
 
 The following example illustrates an LibAVUtil.Options-enabled struct:
 @code
+[CCode (cname="", cheader_filename="")]
 public struct test_struct {
     Class class;
     int int_opt;
@@ -73,6 +74,7 @@ public const Class test_class = {
             return "test class";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -126,15 +128,20 @@ void free_test_struct (out test_struct foo) {
     child_struct field:
 
     @code
+    [CCode (cname="", cheader_filename="")]
     public struct child_struct {
         Class class;
         int flags_opt;
     } child_struct;
+
+    [CCode (cname="", cheader_filename="")]
     public const Option child_opts[] = {
         { "test_flags", "This is a test option of flags type.",
         offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 }, INT_MIN, int.MAX },
         { null },
     }
+
+    [CCode (cname="", cheader_filename="")]
     public const Class child_class = {
         //  .class_name = "child class";
         //  .item_name = base.item_name,
@@ -243,6 +250,7 @@ public struct Option {
     ***********************************************************/
     [CCode (cname="offset")]
     public int offset;
+
     [CCode (cname="type")]
     public OptionType type;
 
@@ -402,6 +410,7 @@ public struct Option {
         string val,
         int search_flags
     );
+
     [CCode (cname="av_opt_set_int", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_int (
         void *obj,
@@ -409,6 +418,7 @@ public struct Option {
         int64 val,
         int search_flags
     );
+
     [CCode (cname="av_opt_set_double", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_double (
         void *obj,
@@ -416,6 +426,7 @@ public struct Option {
         double val,
         int search_flags
     );
+
     [CCode (cname="av_opt_set_q", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_q (
         void *obj,
@@ -423,6 +434,7 @@ public struct Option {
         Rational val,
         int search_flags
     );
+
     [CCode (cname="av_opt_set_bin", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_bin (
         void *obj,
@@ -431,6 +443,7 @@ public struct Option {
         int size,
         int search_flags
     );
+
     [CCode (cname="av_opt_set_image_size", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_image_size (
         void *obj,
@@ -439,12 +452,14 @@ public struct Option {
         int h,
         int search_flags
     );
+
     [CCode (cname="av_opt_set_pixel_fmt", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_pixel_fmt (
         void *obj, string name,
         PixelFormat fmt,
         int search_flags
     );
+
     [CCode (cname="av_opt_set_sample_fmt", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_sample_fmt (
         void *obj,
@@ -452,6 +467,7 @@ public struct Option {
         SampleFormat fmt,
         int search_flags
     );
+
     [CCode (cname="av_opt_set_video_rate", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_video_rate (
         void *obj,
@@ -459,6 +475,7 @@ public struct Option {
         Rational val,
         int search_flags
     );
+
     [CCode (cname="av_opt_set_channel_layout", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_channel_layout (
         void *obj,
@@ -466,6 +483,7 @@ public struct Option {
         int64 ch_layout,
         int search_flags
     );
+
     /***********************************************************
     @note Any old dictionary present is discarded and replaced with a copy of the new one. The
     caller still owns val is and responsible for freeing it.
@@ -523,6 +541,7 @@ public struct Option {
         int search_flags,
         out uint8 out_val
     );
+
     [CCode (cname="av_opt_get_int", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_int (
         void *obj,
@@ -530,6 +549,7 @@ public struct Option {
         int search_flags,
         out int64 out_val
     );
+
     [CCode (cname="av_opt_get_double", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_double (
         void *obj,
@@ -537,6 +557,7 @@ public struct Option {
         int search_flags,
         out double out_val
     );
+
     [CCode (cname="av_opt_get_q", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_q (
         void *obj,
@@ -544,6 +565,7 @@ public struct Option {
         int search_flags,
         out Rational out_val
     );
+
     [CCode (cname="av_opt_get_image_size", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_image_size (
         void *obj,
@@ -552,6 +574,7 @@ public struct Option {
         out int w_out,
         out int h_out
     );
+
     [CCode (cname="av_opt_get_pixel_fmt", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_pixel_fmt (
         void *obj,
@@ -559,6 +582,7 @@ public struct Option {
         int search_flags,
         out PixelFormat out_fmt
     );
+
     [CCode (cname="av_opt_get_sample_fmt", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_sample_fmt (
         void *obj,
@@ -566,6 +590,7 @@ public struct Option {
         int search_flags,
         out SampleFormat out_fmt
     );
+
     [CCode (cname="av_opt_get_video_rate", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_video_rate (
         void *obj,
@@ -573,6 +598,7 @@ public struct Option {
         int search_flags,
         out Rational out_val
     );
+
     [CCode (cname="av_opt_get_channel_layout", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_channel_layout (
         void *obj,
@@ -580,6 +606,7 @@ public struct Option {
         int search_flags,
         out int64 ch_layout
     );
+
     /***********************************************************
     @param[out] out_val The returned dictionary is a copy of the actual value and must
     be freed with av_dict_free () by the caller
@@ -729,6 +756,7 @@ public struct Option {
         string val,
         out int flags_out
     );
+
     [CCode (cname="av_opt_eval_int", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_int (
         void *obj,
@@ -736,6 +764,7 @@ public struct Option {
         string val,
         out int int_out
     );
+
     [CCode (cname="av_opt_eval_int64", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_int64 (
         void *obj,
@@ -743,6 +772,7 @@ public struct Option {
         string val,
         out int64 int64_out
     );
+
     [CCode (cname="av_opt_eval_float", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_float (
         void *obj,
@@ -750,6 +780,7 @@ public struct Option {
         string val,
         out float float_out
     );
+
     [CCode (cname="av_opt_eval_double", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_double (
         void *obj,
@@ -757,6 +788,7 @@ public struct Option {
         string val,
         out double double_out
     );
+
     [CCode (cname="av_opt_eval_q", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_q (
         void *obj,

@@ -2,7 +2,7 @@
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -99,6 +99,7 @@ public enum ColorTransferCharacteristic {
     @brief ARIB STD-B67, known as "Hybrid log-gamma"
     ***********************************************************/
     ARIB_STD_B67;
+
     /***********************************************************
     @brief Not part of ABI
     ***********************************************************/

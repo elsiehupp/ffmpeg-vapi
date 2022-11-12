@@ -1,9 +1,9 @@
 /***********************************************************
-Icecast protocol for FFmpeg
+@brief Icecast protocol for FFmpeg
 @copyright 2014 Marvin Scholz
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -30,6 +30,7 @@ public class IceCastURLProtocolClass : LibAVUtil.Class {
             return "icecast";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -58,22 +59,26 @@ public class IceCastURLProtocol : URLProtocol {
             return "icecast";
         }
     }
+
     [CCode (cname="icecast_open", cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
+
     [CCode (cname="icecast_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="icecast_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {

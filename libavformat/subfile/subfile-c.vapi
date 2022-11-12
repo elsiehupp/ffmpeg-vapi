@@ -2,7 +2,7 @@
 @copyright 2014 Nicolas George
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -41,6 +41,7 @@ public class SubFileURLProtocolClass : LibAVUtil.Class {
             return "subfile";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -69,6 +70,7 @@ public class SubFileURLProtocol : URLProtocol {
             return "subfile";
         }
     }
+
     [CCode (cname="subfile_open", cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
@@ -76,22 +78,26 @@ public class SubFileURLProtocol : URLProtocol {
         int flags,
         out LibAVUtil.Dictionary options
     );
+
     [CCode (cname="subfile_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="subfile_seek", cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
+
     [CCode (cname="subfile_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {

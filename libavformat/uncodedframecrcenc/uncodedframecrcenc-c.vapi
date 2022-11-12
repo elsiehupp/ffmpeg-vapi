@@ -2,7 +2,7 @@
 @copyright 2013 Nicolas George
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -29,33 +29,39 @@ public class UncodedFrameCRCMuxer : AVOutputFormat {
             return "uncodedframecrc";
         }
     }
+
     [CCode (cname="long_name", cheader_filename="")]
     public override string long_name {
         public get {
             return "uncoded framecrc testing";
         }
     }
+
     [CCode (cname="audio_codec", cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
         }
     }
+
     [CCode (cname="video_codec", cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
         }
     }
+
     [CCode (cname="write_header", cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
+
     [CCode (cname="write_packet", cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
     [CCode (cname="write_frame", cheader_filename="")]
     public override int write_uncoded_frame (
         AVFormatContext format_context,
@@ -63,6 +69,7 @@ public class UncodedFrameCRCMuxer : AVOutputFormat {
         LibAVUtil.Frame frame,
         uint flags
     );
+
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

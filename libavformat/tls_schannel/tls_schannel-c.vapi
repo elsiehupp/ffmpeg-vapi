@@ -2,7 +2,7 @@
 @copyright 2015 Hendrik Leppkes
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -38,6 +38,7 @@ public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
             return "tls";
         }
     }
+
     [CCode (cname="item_name", cheader_filename="")]
     public override string item_name (
         void *class_context
@@ -46,8 +47,10 @@ public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
+
     [CCode (cname="options", cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
+
     [CCode (cname="version", cheader_filename="")]
     public override int version {
         public get {
@@ -67,6 +70,7 @@ public class SecureChannelTLSURLProtocol : URLProtocol {
             return "tls";
         }
     }
+
     [CCode (cname="tls_open", cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
@@ -74,32 +78,38 @@ public class SecureChannelTLSURLProtocol : URLProtocol {
         int flags,
         out LibAVUtil.Dictionary options
     );
+
     [CCode (cname="tls_read", cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="tls_write", cheader_filename="")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
+
     [CCode (cname="tls_close", cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
+
     [CCode (cname="tls_get_file_handle", cheader_filename="")]
     public override int url_get_file_handle (
         URLContext url_context
     );
+
     [CCode (cname="priv_data_size", cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SecureChannelTLSPrivateData);
         }
     }
+
     [CCode (cname="flags", cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {

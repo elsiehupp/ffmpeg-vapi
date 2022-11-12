@@ -119,6 +119,7 @@ public struct Frame {
     ***********************************************************/
     [CCode (cname="width")]
     public int width;
+
     [CCode (cname="height")]
     public int height;
 
@@ -278,6 +279,7 @@ public struct Frame {
 
     [CCode (cname="side_data")]
     public FrameSideData[] side_data;
+
     [CCode (cname="nb_side_data")]
     public int nb_side_data;
 
@@ -410,10 +412,13 @@ public struct Frame {
     ***********************************************************/
     [CCode (cname="crop_top")]
     public size_t crop_top;
+
     [CCode (cname="crop_bottom")]
     public size_t crop_bottom;
+
     [CCode (cname="crop_left")]
     public size_t crop_left;
+
     [CCode (cname="crop_right")]
     public size_t crop_right;
 

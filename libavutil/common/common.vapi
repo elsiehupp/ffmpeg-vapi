@@ -2,7 +2,7 @@
 @copyright 2006 Michael Niedermayer <michaelni@gmx.at>
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -37,14 +37,17 @@ namespace LibAVUtil {
 
 //rounded division & shift
 //  #define RSHIFT (a,b);
+
 /***********************************************************
-assume b>0
+@brief Assume b>0
 ***********************************************************/
 //  #define ROUNDED_DIV (a,b);
+
 /***********************************************************
-Fast a/(1<<b) rounded toward +inf. Assume a>=0 and b>=0
+@brief Fast a/(1<<b) rounded toward +inf. Assume a>=0 and b>=0
 ***********************************************************/
 //  #define AV_CEIL_RSHIFT (a,b);
+
 /***********************************************************
 Backwards compat.
     ***********************************************************/
@@ -90,7 +93,7 @@ must not have a side-effect.
 //  #define FF_ARRAY_ELEMS (a) (sizeof (a) / sizeof ((a)[0]))
 
 /***********************************************************
-misc math functions
+@brief Misc math functions
 ***********************************************************/
 
 [CCode (cname="av_log2", cheader_filename="ffmpeg/libavutil/common.h")]

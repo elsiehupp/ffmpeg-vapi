@@ -2,7 +2,7 @@
 @copyright 2011 Justin Ruggles
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -22,24 +22,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-mov 'chan' tag reading/writing.
+@brief Mov 'chan' tag reading/writing.
 @author Justin Ruggles
 ***********************************************************/
 
 /***********************************************************
-Get the channel layout for the specified channel layout tag.
+@brief Get the channel layout for the specified channel layout tag.
 
 @param[in]  tag channel layout tag
 @param[out] bitmap channel bitmap (only used if needed)
 @return channel layout
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public uint64 ff_mov_get_channel_layout (
     uint32 tag,
     uint32 bitmap
 );
 
 /***********************************************************
-Get the channel layout tag for the specified codec id and channel layout.
+@brief Get the channel layout tag for the specified codec id and channel layout.
 If the layout tag was not found, use a channel bitmap if possible.
 
 @param[in]  codec_id codec id
@@ -47,6 +48,7 @@ If the layout tag was not found, use a channel bitmap if possible.
 @param[out] bitmap channel bitmap
 @return channel layout tag
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public uint32 ff_mov_get_channel_layout_tag (
     LibAVCodec.CodecID codec_id,
     uint64 channel_layout,
@@ -54,7 +56,7 @@ public uint32 ff_mov_get_channel_layout_tag (
 );
 
 /***********************************************************
-Read 'chan' tag from the input stream.
+@brief Read 'chan' tag from the input stream.
 
 @param format_context AVFormatContext
 @param pb AVIOContext
@@ -62,6 +64,7 @@ Read 'chan' tag from the input stream.
 @param size Remaining size in the 'chan' tag
 @return 0 if ok, or negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int ff_mov_read_chan (
     AVFormatContext format_context,
     AVIOContext pb,

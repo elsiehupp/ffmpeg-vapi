@@ -2,7 +2,7 @@
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 /***********************************************************
-This file is part of FFmpeg.
+@brief This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -29,23 +29,22 @@ Buffered I/O operations
 [Flags]
 public enum AVIOSeekableFlags {
     /***********************************************************
-    Seeking works like for a local file.
+    @brief Seeking works like for a local file.
     ***********************************************************/
     AVIO_SEEKABLE_NORMAL,
 
     /***********************************************************
-    Seeking by timestamp with avio_seek_time () is possible.
+    @brief Seeking by timestamp with avio_seek_time () is possible.
     ***********************************************************/
     AVIO_SEEKABLE_TIME,
 }
 
-[CCode (cname="", cheader_filename="")]
 public delegate int InterruptCallbackDelegate (
     void *opaque
 );
 
 /***********************************************************
-Callback for checking whether to abort blocking functions.
+@brief Callback for checking whether to abort blocking functions.
 AVERROR_EXIT is returned in this case by the interrupted
 function. During blocking operations, callback is called with
 opaque as parameter. If the callback returns 1, the
@@ -55,14 +54,19 @@ No members can be added to this struct without a major bump, if
 new elements have been added after this struct in AVFormatContext
 or AVIOContext.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct AVIOInterruptCB {
+    [CCode (cname="", cheader_filename="")]
     public InterruptCallbackDelegate callback;
+
+    [CCode (cname="", cheader_filename="")]
     public void *opaque;
 }
 
 /***********************************************************
-Directory entry types.
+@brief Directory entry types.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum AVIODirEntryType {
     AVIO_ENTRY_UNKNOWN,
     AVIO_ENTRY_BLOCK_DEVICE,
@@ -78,99 +82,121 @@ public enum AVIODirEntryType {
 }
 
 /***********************************************************
-Describes single entry of the directory.
+@brief Describes single entry of the directory.
 
 Only name and type fields are guaranteed be set.
 Rest of fields are protocol or/and platform dependent and might be unknown.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public struct AVIODirEntry {
     /***********************************************************
-    Filename
+    @brief Filename
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public string name;
+
     /***********************************************************
-    Type of the entry
+    @brief Type of the entry
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int type;
+
     /***********************************************************
-    Set to 1 when name is encoded with UTF-8, 0 otherwise.
+    @brief Set to 1 when name is encoded with UTF-8, 0 otherwise.
     Name can be encoded with UTF-8 even though 0 is set.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int utf8;
+
     /***********************************************************
-    File size in bytes, -1 if unknown.
+    @brief File size in bytes, -1 if unknown.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 size;
+
     /***********************************************************
-    Time of last modification in microseconds since unix
+    @brief Time of last modification in microseconds since unix
     epoch, -1 if unknown.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 modification_timestamp;
+
     /***********************************************************
-    Time of last access in microseconds since unix epoch,
+    @brief Time of last access in microseconds since unix epoch,
     -1 if unknown.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 access_timestamp;
+
     /***********************************************************
-    Time of last status change in microseconds since unix
+    @brief Time of last status change in microseconds since unix
     epoch, -1 if unknown.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 status_change_timestamp;
+
     /***********************************************************
     User ID of owner, -1 if unknown.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 user_id;
+
     /***********************************************************
-    Group ID of owner, -1 if unknown.
+    @brief Group ID of owner, -1 if unknown.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 group_id;
+
     /***********************************************************
     Unix file mode, -1 if unknown.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 filemode;
 }
 
 [CCode (cname="struct AVIODirContext", cheader_filename="")]
 public struct AVIODirContext {
+    [CCode (cname="", cheader_filename="")]
     public URLContext url_context;
 }
 
 /***********************************************************
-Different data types that can be returned via the AVIO
+@brief Different data types that can be returned via the AVIO
 write_data_type callback.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public enum AVIODataMarkerType {
     /***********************************************************
-    Header data; this needs to be present for the stream to be decodeable.
+    @brief Header data; this needs to be present for the stream to be decodeable.
     ***********************************************************/
     AVIO_DATA_MARKER_HEADER,
     /***********************************************************
-    A point in the output bytestream where a decoder can start decoding
+    @brief A point in the output bytestream where a decoder can start decoding
     (i.e. a keyframe). A demuxer/decoder given the data flagged with
     AVIO_DATA_MARKER_HEADER, followed by any AVIO_DATA_MARKER_SYNC_POINT,
     should give decodeable results.
     ***********************************************************/
     AVIO_DATA_MARKER_SYNC_POINT,
     /***********************************************************
-    A point in the output bytestream where a demuxer can start parsing
+    @brief A point in the output bytestream where a demuxer can start parsing
     (for non self synchronizing bytestream formats). That is, any
     non-keyframe packet start point.
     ***********************************************************/
     AVIO_DATA_MARKER_BOUNDARY_POINT,
     /***********************************************************
-    This is any, unlabelled data. It can either be a muxer not marking
+    @brief This is any, unlabelled data. It can either be a muxer not marking
     any positions at all, it can be an actual boundary/sync point
     that the muxer chooses not to mark, or a later part of a packet/fragment
     that is cut into multiple write callbacks due to limited IO buffer size.
     ***********************************************************/
     AVIO_DATA_MARKER_UNKNOWN,
     /***********************************************************
-    Trailer data, which doesn't contain actual content, but only for
+    @brief Trailer data, which doesn't contain actual content, but only for
     finalizing the output file.
     ***********************************************************/
     AVIO_DATA_MARKER_TRAILER,
     /***********************************************************
-    A point in the output bytestream where the underlying AVIOContext might
+    @brief A point in the output bytestream where the underlying AVIOContext might
     flush the buffer depending on latency or buffering requirements. Typically
     means the end of a packet.
     ***********************************************************/
@@ -189,9 +215,10 @@ sizeof (AVIOContext) must not be used outside libav*.
     when implementing custom I/O. Normally these are set to the
     function pointers specified in avio_alloc_context ()
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public abstract class AVIOContext {
     /***********************************************************
-    A class for private options.
+    @brief A class for private options.
 
     If this AVIOContext is created by avio_open2 (), av_class is set and
     passes the options down to protocols.
@@ -202,10 +229,11 @@ public abstract class AVIOContext {
     warning -- this field can be NULL, be sure to not pass this AVIOContext
     to any av_opt_* functions in that case.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class av_class;
 
     /***********************************************************
-    The following shows the relationship between buffer, buf_ptr,
+    @brief The following shows the relationship between buffer, buf_ptr,
     buf_ptr_max, buf_end, buf_size, and pos, when reading and when writing
     (since AVIOContext is used for both):
 
@@ -256,147 +284,193 @@ public abstract class AVIOContext {
     ***********************************************************/
 
     /***********************************************************
-    Start of the buffer.
+    @brief Start of the buffer.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uchar[] buffer;
+
     /***********************************************************
-    Maximum buffer size
+    @brief Maximum buffer size
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int buffer_size;
+
     /***********************************************************
-    Current position in the buffer
+    @brief Current position in the buffer
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uchar[] buf_ptr;
+
     /***********************************************************
-    End of the data, may be less than buffer + buffer_size if
+    @brief End of the data, may be less than buffer + buffer_size if
     the read function returned less data than requested, e.g.
     for streams where no more data has been received yet.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uchar[] buf_end;
+
     /***********************************************************
-    A private pointer, passed to the read/write/seek/...
+    @brief A private pointer, passed to the read/write/seek/...
     functions.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public void *opaque;
+
+    [CCode (cname="", cheader_filename="")]
     public abstract int read_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
+
+    [CCode (cname="", cheader_filename="")]
     public abstract int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
+
+    [CCode (cname="", cheader_filename="")]
     public abstract int64 seek (
         void *opaque,
         int64 offset,
         int whence
     );
+
     /***********************************************************
-    position in the file of the current buffer
+    @brief Position in the file of the current buffer
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 pos;
+
     /***********************************************************
-    true if was unable to read due to error or eof
+    @brief True if was unable to read due to error or eof
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int eof_reached;
+
     /***********************************************************
-    true if open for writing
+    @brief True if open for writing
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int write_flag;
+
+    [CCode (cname="", cheader_filename="")]
     public int max_packet_size;
+
+    [CCode (cname="", cheader_filename="")]
     public ulong checksum;
+
+    [CCode (cname="", cheader_filename="")]
     public uchar *checksum_ptr;
+
+    [CCode (cname="", cheader_filename="")]
     public abstract ulong update_checksum (
         ulong checksum,
         uint8[] buffer,
         uint size
     );
+
     /***********************************************************
-    contains the error code or 0 if no error happened
+    @brief Contains the error code or 0 if no error happened
     ***********************************************************/
     int error;
+
     /***********************************************************
-    Pause or resume playback for network streaming protocols - e.g. MMS.
+    @brief Pause or resume playback for network streaming protocols - e.g. MMS.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public abstract int read_pause (
         void *opaque,
         int pause
     );
+
     /***********************************************************
-    Seek to a given timestamp in stream with the specified stream_index.
+    @brief Seek to a given timestamp in stream with the specified stream_index.
     Needed for some network streaming protocols which don't support seeking
     to byte position.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public abstract int64 read_seek (
         void *opaque,
         int stream_index,
         int64 timestamp,
         int flags
     );
+
     /***********************************************************
-    A combination of AVIO_SEEKABLE_ flags or 0 when the stream is not seekable.
+    @brief A combination of AVIO_SEEKABLE_ flags or 0 when the stream is not seekable.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int seekable;
 
     /***********************************************************
-    max filesize, used to limit allocations
+    @brief Max filesize, used to limit allocations
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 maxsize;
 
     /***********************************************************
-    avio_read and avio_write should if possible be satisfied directly
+    @brief Avio_read and avio_write should if possible be satisfied directly
     instead of going through a buffer, and avio_seek will always
     call the underlying seek function directly.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int direct;
 
     /***********************************************************
-    Bytes read statistic
+    @brief Bytes read statistic
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int64 bytes_read;
 
     /***********************************************************
-    seek statistic
+    @brief Seek statistic
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int seek_count;
 
     /***********************************************************
-    writeout statistic
+    @brief Writeout statistic
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int writeout_count;
 
     /***********************************************************
-    Original buffer size
+    @brief Original buffer size
     used internally after probing and ensure seekback to reset the buffer size
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int orig_buffer_size;
 
     /***********************************************************
-    Threshold to favor readahead over seek.
+    @brief Threshold to favor readahead over seek.
     This is current internal only, do not use from outside.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int short_seek_threshold;
 
     /***********************************************************
     ',' separated list of allowed protocols.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public string protocol_whitelist;
 
     /***********************************************************
     ',' separated list of disallowed protocols.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public string protocol_blacklist;
 
     /***********************************************************
-    A callback that is used instead of write_packet.
+    @brief A callback that is used instead of write_packet.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public abstract int write_data_type (
         void *opaque,
         uint8[] buffer,
@@ -404,54 +478,64 @@ public abstract class AVIOContext {
         AVIODataMarkerType type,
         int64 time
     );
+
     /***********************************************************
-    If set, don't call write_data_type separately for AVIO_DATA_MARKER_BOUNDARY_POINT,
+    @brief If set, don't call write_data_type separately for AVIO_DATA_MARKER_BOUNDARY_POINT,
     but ignore them and treat them as AVIO_DATA_MARKER_UNKNOWN (to avoid needlessly
     small chunks of data returned from the callback).
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int ignore_boundary_point;
 
     /***********************************************************
-    Internal, not meant to be used from outside of AVIOContext.
+    @brief Internal, not meant to be used from outside of AVIOContext.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public AVIODataMarkerType current_type;
+
+    [CCode (cname="", cheader_filename="")]
     public int64 last_time;
 
     /***********************************************************
-    A callback that is used instead of short_seek_threshold.
+    @brief A callback that is used instead of short_seek_threshold.
     This is current internal only, do not use from outside.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public abstract int short_seek_get (
         void *opaque
     );
 
+    [CCode (cname="", cheader_filename="")]
     public int64 written;
 
     /***********************************************************
-    Maximum reached position before a backward seek in the write buffer,
+    @brief Maximum reached position before a backward seek in the write buffer,
     used keeping track of already written data for a later flush.
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public uchar *buf_ptr_max;
 
     /***********************************************************
-    Try to buffer at least this amount of data before flushing it
+    @brief Try to buffer at least this amount of data before flushing it
     ***********************************************************/
+    [CCode (cname="", cheader_filename="")]
     public int min_packet_size;
 }
 
 /***********************************************************
-Return the name of the protocol that will handle the passed URL.
+@brief Return the name of the protocol that will handle the passed URL.
 
 NULL is returned if no protocol could be found for the given URL.
 
 @return Name of the protocol or NULL.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public string avio_find_protocol_name (
     string url
 );
 
 /***********************************************************
-Return AVIO_FLAG_* access flags corresponding to the access permissions
+@brief Return AVIO_FLAG_* access flags corresponding to the access permissions
 of the resource in url, or a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure. The returned access flags are
 masked by the value in flags.
@@ -462,13 +546,14 @@ one call to another. Thus you should not trust the returned value,
 unless you are sure that no other processes are accessing the
 checked resource.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_check (
     string url,
     int flags
 );
 
 /***********************************************************
-Move or rename a resource.
+@brief Move or rename a resource.
 
 @note url_src and url_dst should share the same protocol and authority.
 
@@ -476,23 +561,25 @@ Move or rename a resource.
 @param url_dst new url to resource if the operation succeeded
 @return >=0 on success or negative on error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avpriv_io_move (
     string url_src,
     string url_dst
 );
 
 /***********************************************************
-Delete a resource.
+@brief Delete a resource.
 
 @param url resource to be deleted.
 @return >=0 on success or negative on error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avpriv_io_delete (
     string url
 );
 
 /***********************************************************
-Open directory for reading.
+@brief Open directory for reading.
 
 @param io_context directory read context. Pointer to a NULL pointer must be passed.
 @param url directory to be listed.
@@ -501,6 +588,7 @@ Open directory for reading.
                containing options that were not found. May be NULL.
 @return >=0 on success or negative on error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_open_dir (
     out AVIODirContext io_dir_context,
     string url,
@@ -508,7 +596,7 @@ public int avio_open_dir (
 );
 
 /***********************************************************
-Get next directory entry.
+@brief Get next directory entry.
 
 Returned entry must be freed with avio_free_directory_entry (). In particular
 it may outlive AVIODirContext.
@@ -518,13 +606,14 @@ it may outlive AVIODirContext.
 @return >=0 on success or negative on error. End of list is not considered an
             error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_read_dir (
     AVIODirContext io_dir_context,
     out AVIODirEntry next
 );
 
 /***********************************************************
-Close directory.
+@brief Close directory.
 
 @note Entries created using avio_read_dir () are not deleted and must be
 freeded with avio_free_directory_entry ().
@@ -532,15 +621,17 @@ freeded with avio_free_directory_entry ().
 @param io_dir_context directory read context.
 @return >=0 on success or negative on error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_close_dir (
     out AVIODirContext io_dir_context
 );
 
 /***********************************************************
-Free entry allocated by avio_read_dir ().
+@brief Free entry allocated by avio_read_dir ().
 
 @param entry entry to be freed.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void avio_free_directory_entry (
     out AVIODirEntry entry
 );
@@ -562,7 +653,7 @@ public void avio_free_directory_entry (
 //  );
 
 /***********************************************************
-Allocate and initialize an AVIOContext for buffered I/O. It must be later
+@brief Allocate and initialize an AVIOContext for buffered I/O. It must be later
 freed with avio_context_free ().
 
 @param buffer Memory block for input/output operations via AVIOContext.
@@ -584,6 +675,7 @@ freed with avio_context_free ().
 
 @return Allocated AVIOContext or NULL on failure.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public AVIOContext avio_alloc_context (
     uchar[] buffer,
     int buffer_size,
@@ -595,11 +687,12 @@ public AVIOContext avio_alloc_context (
 );
 
 /***********************************************************
-Free the supplied IO context and everything associated with it.
+@brief Free the supplied IO context and everything associated with it.
 
 @param io_context Double pointer to the IO context. This function will write NULL
 into io_context.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void avio_context_free (
     out AVIOContext io_context
 );
@@ -666,40 +759,43 @@ public void avio_wb16 (
 );
 
 /***********************************************************
-Write a NULL-terminated string.
+@brief Write a NULL-terminated string.
 @return number of bytes written.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_put_str (
     AVIOContext io_context,
     string str
 );
 
 /***********************************************************
-Convert an UTF-8 string to UTF-16LE and write it.
+@brief Convert an UTF-8 string to UTF-16LE and write it.
 @param io_context the AVIOContext
 @param str NULL-terminated UTF-8 string
 
 @return number of bytes written.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_put_str16le (
     AVIOContext io_context,
     string str
 );
 
 /***********************************************************
-Convert an UTF-8 string to UTF-16BE and write it.
+@brief Convert an UTF-8 string to UTF-16BE and write it.
 @param io_context the AVIOContext
 @param str NULL-terminated UTF-8 string
 
 @return number of bytes written.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_put_str16be (
     AVIOContext io_context,
     string str
 );
 
 /***********************************************************
-Mark the written bytestream as a specific type.
+@brief Mark the written bytestream as a specific type.
 
 Zero-length ranges are omitted from the output.
 
@@ -708,6 +804,7 @@ Zero-length ranges are omitted from the output.
             applicable
 @param type the kind of data written starting at the current pos
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void avio_write_marker (
     AVIOContext io_context,
     int64 time,
@@ -717,14 +814,14 @@ public void avio_write_marker (
 [Flags]
 public enum AVSeekWhence {
     /***********************************************************
-    ORing this as the "whence" parameter to a seek function causes it to
+    @brief ORing this as the "whence" parameter to a seek function causes it to
     return the filesize without seeking anywhere. Supporting this is optional.
     If it is not supported then the seek function will return <0.
     ***********************************************************/
     AVSEEK_SIZE,
 
     /***********************************************************
-    Passing this flag as the "whence" parameter to a seek function causes it to
+    @brief Passing this flag as the "whence" parameter to a seek function causes it to
     seek by any means (like reopening and linear reading) or other normally unreasonable
     means that can be extremely slow.
     This may be ignored by the seek code.
@@ -733,9 +830,10 @@ public enum AVSeekWhence {
 }
 
 /***********************************************************
-fseek () equivalent for AVIOContext.
+@brief Fseek () equivalent for AVIOContext.
 @return new position or LibAVUtil.ErrorCode.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int64 avio_seek (
     AVIOContext io_context,
     int64 offset,
@@ -743,34 +841,38 @@ public int64 avio_seek (
 );
 
 /***********************************************************
-Skip given number of bytes forward
+@brief Skip given number of bytes forward
 @return new position or LibAVUtil.ErrorCode.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int64 avio_skip (
     AVIOContext io_context,
     int64 offset
 );
 
 /***********************************************************
-ftell () equivalent for AVIOContext.
+@brief Ftell () equivalent for AVIOContext.
 @return position or LibAVUtil.ErrorCode.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int64 avio_tell (
     AVIOContext io_context
 );
 
 /***********************************************************
-Get the filesize.
+@brief Get the filesize.
 @return filesize or LibAVUtil.ErrorCode
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int64 avio_size (
     AVIOContext io_context
 );
 
 /***********************************************************
-Similar to feof () but also returns nonzero on read errors.
+@brief Similar to feof () but also returns nonzero on read errors.
 @return non zero if and only if at end of file or a read error happened when reading.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_feof (
     AVIOContext io_context
 );
@@ -778,6 +880,7 @@ public int avio_feof (
 /***********************************************************
 @warning Writes up to 4 KiB per call
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_printf (
     AVIOContext io_context,
     string fmt,
@@ -785,7 +888,7 @@ public int avio_printf (
 ); // av_printf_format (2, 3);
 
 /***********************************************************
-Force flushing of buffered data.
+@brief Force flushing of buffered data.
 
 For write streams, force the buffered data to be immediately written to the output,
 without to wait to fill the internal buffer.
@@ -794,14 +897,16 @@ For read streams, discard all currently buffered data, and advance the
 reported file position to that of the underlying stream. This does not
 read new data, and does not perform any seeks.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public void avio_flush (
     AVIOContext io_context
 );
 
 /***********************************************************
-Read size bytes from AVIOContext into buffer.
+@brief Read size bytes from AVIOContext into buffer.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_read (
     AVIOContext io_context,
     uchar[] buffer,
@@ -809,12 +914,13 @@ public int avio_read (
 );
 
 /***********************************************************
-Read size bytes from AVIOContext into buffer. Unlike avio_read (), this is allowed
+@brief Read size bytes from AVIOContext into buffer. Unlike avio_read (), this is allowed
 to read fewer bytes than requested. The missing bytes can be read in the next
 call. This always tries to read at least 1 byte.
 Useful to reduce latency in certain cases.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_read_partial (
     AVIOContext io_context,
     uchar[] buffer,
@@ -828,6 +934,7 @@ public int avio_read_partial (
 @note return 0 if EOF, so you cannot use it if EOF handling is
       necessary
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_r8 (
     AVIOContext io_context
 );
@@ -877,7 +984,7 @@ public uint64 avio_rb64 (
 ***********************************************************/
 
 /***********************************************************
-Read a string from pb into buffer. The reading will terminate when either
+@brief Read a string from pb into buffer. The reading will terminate when either
 a NULL character was encountered, maxlen bytes have been read, or nothing
 more can be read from pb. The result is guaranteed to be NULL-terminated, it
 will be truncated if buffer is too small.
@@ -888,6 +995,7 @@ might get truncated in the middle of a sequence for multi-byte encodings.
 If reading ends on EOF or error, the return value will be one more than
 bytes actually read.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_get_str (
     AVIOContext pb,
     int maxlen,
@@ -896,11 +1004,12 @@ public int avio_get_str (
 );
 
 /***********************************************************
-Read a UTF-16 string from pb and convert it to UTF-8.
+@brief Read a UTF-16 string from pb and convert it to UTF-8.
 The reading will terminate when either a null or invalid character was
 encountered or maxlen bytes have been read.
 @return number of bytes read (is always <= maxlen)
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_get_str16le (
     AVIOContext pb,
     int maxlen,
@@ -926,15 +1035,15 @@ public enum AVIOOpenFlags {
     ***********************************************************/
 
     /***********************************************************
-    read-only
+    @brief Read-only
     ***********************************************************/
     AVIO_FLAG_READ,
     /***********************************************************
-    write-only
+    @brief Write-only
     ***********************************************************/
     AVIO_FLAG_WRITE,
     /***********************************************************
-    read-write pseudo flag
+    @brief Read-write pseudo flag
     ***********************************************************/
     AVIO_FLAG_READ_WRITE,
 
@@ -966,7 +1075,7 @@ public enum AVIOOpenFlags {
 }
 
 /***********************************************************
-Create and initialize a AVIOContext for accessing the
+@brief Create and initialize a AVIOContext for accessing the
 resource indicated by url.
 @note When the resource indicated by url has been opened in
 read+write mode, the AVIOContext can be used only for writing.
@@ -979,6 +1088,7 @@ is to be opened
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_open (
     out AVIOContext io_context,
     string url,
@@ -986,7 +1096,7 @@ public int avio_open (
 );
 
 /***********************************************************
-Create and initialize a AVIOContext for accessing the
+@brief Create and initialize a AVIOContext for accessing the
 resource indicated by url.
 @note When the resource indicated by url has been opened in
 read+write mode, the AVIOContext can be used only for writing.
@@ -1003,6 +1113,7 @@ that were not found. May be NULL.
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_open2 (
     out AVIOContext io_context,
     string url,
@@ -1012,7 +1123,7 @@ public int avio_open2 (
 );
 
 /***********************************************************
-Close the resource accessed by the AVIOContext io_context and free it.
+@brief Close the resource accessed by the AVIOContext io_context and free it.
 This function can only be used if io_context was opened by avio_open ().
 
 The internal buffer is automatically flushed before closing the
@@ -1021,12 +1132,13 @@ resource.
 @return 0 on success, an LibAVUtil.ErrorCode < 0 on error.
 @see avio_closep
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_close (
     AVIOContext io_context
 );
 
 /***********************************************************
-Close the resource accessed by the AVIOContext io_context, free it
+@brief Close the resource accessed by the AVIOContext io_context, free it
 and set the pointer pointing to it to NULL.
 This function can only be used if io_context was opened by avio_open ().
 
@@ -1036,23 +1148,25 @@ resource.
 @return 0 on success, an LibAVUtil.ErrorCode < 0 on error.
 @see avio_close
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_closep (
     out AVIOContext io_context
 );
 
 
 /***********************************************************
-Open a write only memory stream.
+@brief Open a write only memory stream.
 
 @param io_context new IO context
 @return zero if no error.
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_open_dyn_buf (
     out AVIOContext io_context
 );
 
 /***********************************************************
-Return the written size and a pointer to the buffer.
+@brief Return the written size and a pointer to the buffer.
 The AVIOContext stream is left intact.
 The buffer must NOT be freed.
 No padding is added to the buffer.
@@ -1061,13 +1175,14 @@ No padding is added to the buffer.
 @param pbuffer pointer to a byte buffer
 @return the length of the byte buffer
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_get_dyn_buf (
     AVIOContext io_context,
     out uint8[] pbuffer
 );
 
 /***********************************************************
-Return the written size and a pointer to the buffer. The buffer
+@brief Return the written size and a pointer to the buffer. The buffer
 must be freed with av_free ().
 Padding of AV_INPUT_BUFFER_PADDING_SIZE is added to the buffer.
 
@@ -1075,13 +1190,14 @@ Padding of AV_INPUT_BUFFER_PADDING_SIZE is added to the buffer.
 @param pbuffer pointer to a byte buffer
 @return the length of the byte buffer
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_close_dyn_buf (
     AVIOContext io_context,
     out uint8[] pbuffer
 );
 
 /***********************************************************
-Iterate through names of available protocols.
+@brief Iterate through names of available protocols.
 
 @param opaque A private pointer representing current protocol.
        It must be a pointer to NULL on first iteration and will
@@ -1091,25 +1207,27 @@ Iterate through names of available protocols.
 
 @return A static string containing the name of current protocol or NULL
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public string avio_enum_protocols (
     out void *opaque,
     int output
 );
 
 /***********************************************************
-Pause and resume playing - only meaningful if using a network streaming
+@brief Pause and resume playing - only meaningful if using a network streaming
 protocol (e.g. MMS).
 
 @param h IO context from which to call the read_pause function pointer
 @param pause 1 for pause, 0 for resume
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_pause (
     AVIOContext h,
     int pause
 );
 
 /***********************************************************
-Seek to a given timestamp relative to some component stream.
+@brief Seek to a given timestamp relative to some component stream.
 Only meaningful if using a network streaming protocol (e.g. MMS.).
 
 @param h IO context from which to call the seek function pointers
@@ -1127,6 +1245,7 @@ Only meaningful if using a network streaming protocol (e.g. MMS.).
 @return >= 0 on success
 @see AVInputFormat::read_seek
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int64 avio_seek_time (
     AVIOContext h,
     int stream_index,
@@ -1135,11 +1254,12 @@ public int64 avio_seek_time (
 );
 
 /***********************************************************
-Read contents of h into print buffer, up to max_size bytes, or up to EOF.
+@brief Read contents of h into print buffer, up to max_size bytes, or up to EOF.
 
 @return 0 for success (max_size bytes read or EOF reached), negative error
 code otherwise
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_read_to_bprint (
     AVIOContext h,
     LibAVUtil.BPrintBuffer pb,
@@ -1147,19 +1267,20 @@ public int avio_read_to_bprint (
 );
 
 /***********************************************************
-Accept and allocate a client context on a server context.
+@brief Accept and allocate a client context on a server context.
 @param server_io_context the server context
 @param client_io_context the client context, must be unallocated
 @return   >= 0 on success or a negative value corresponding
           to an LibAVUtil.ErrorCode on failure
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_accept (
     AVIOContext server_io_context,
     out AVIOContext client_io_context
 );
 
 /***********************************************************
-Perform one step of the protocol handshake to accept a new client.
+@brief Perform one step of the protocol handshake to accept a new client.
 This function must be called on a client returned by avio_accept () before
 using it as a read/write context.
 It is separate from avio_accept () because it may block.
@@ -1177,6 +1298,7 @@ returns 0 immediately.
           > 0 if the handshake progressed, but is not complete
           < 0 for an LibAVUtil.ErrorCode code
 ***********************************************************/
+[CCode (cname="", cheader_filename="")]
 public int avio_handshake (
     AVIOContext client_io_context
 );

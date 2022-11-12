@@ -32,6 +32,7 @@ where applicable, which uses AVL trees to achieve O (log n) performance.
 public struct DictionaryEntry {
     [CCode (cname="key")]
     public string key;
+
     [CCode (cname="key")]
     public string value;
 }
