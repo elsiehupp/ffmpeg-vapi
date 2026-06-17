@@ -74,41 +74,81 @@ Postprocessing filter.
 struct PPFilter {
     string shortName;
     string longName;
-    int chromDefault; ///< is chrominance filtering on by default if this filter is manually activated
-    int minLumQuality; ///< minimum quality to turn luminance filtering on
-    int minChromQuality; ///< minimum quality to turn chrominance filtering on
-    int mask; ///< Bitmask to turn this filter on
+    /***********************************************************
+    is chrominance filtering on by default if this filter is manually activated
+    ***********************************************************/
+    int chromDefault; ///<
+    /***********************************************************
+    minimum quality to turn luminance filtering on
+    ***********************************************************/
+    int minLumQuality; ///<
+    /***********************************************************
+    minimum quality to turn chrominance filtering on
+    ***********************************************************/
+    int minChromQuality; ///<
+    /***********************************************************
+    Bitmask to turn this filter on
+    ***********************************************************/
+    int mask; ///<
 };
 
 /***********************************************************
 Postprocessing mode.
 ***********************************************************/
-public struct PPMode {
-    int lumMode; ///< activates filters for luminance
-    int chromMode; ///< activates filters for chrominance
-    int error; ///< non zero on error
+[Compact]
+public class PPMode {
+    /***********************************************************
+    activates filters for luminance
+    ***********************************************************/
+    int lumMode; ///<
+    /***********************************************************
+    activates filters for chrominance
+    ***********************************************************/
+    int chromMode; ///<
+    /***********************************************************
+    non zero on error
+    ***********************************************************/
+    int error; ///<
 
-    int minAllowedY; ///< for brightness correction
-    int maxAllowedY; ///< for brightness correction
-    AVRational maxClippedThreshold; ///< amount of "black" you are willing to lose to get a brightness-corrected picture
+    /***********************************************************
+    for brightness correction
+    ***********************************************************/
+    int minAllowedY; ///<
+    /***********************************************************
+    for brightness correction
+    ***********************************************************/
+    int maxAllowedY; ///<
+    /***********************************************************
+    amount of "black" you are willing to lose to get a brightness-corrected picture
+    ***********************************************************/
+    AVRational maxClippedThreshold; ///<
 
-    int maxTmpNoise[3]; ///< for Temporal Noise Reducing filter (Maximal sum of abs differences)
+    /***********************************************************
+    for Temporal Noise Reducing filter (Maximal sum of abs differences)
+    ***********************************************************/
+    int maxTmpNoise[3]; ///<
 
     int baseDcDiff;
     int flatnessThreshold;
 
-    int forcedQuant; ///< quantizer if FORCE_QUANT is used
+    /***********************************************************
+    quantizer if FORCE_QUANT is used
+    ***********************************************************/
+    int forcedQuant; ///<
 }
 
 /***********************************************************
 postprocess context.
 ***********************************************************/
-public struct PPContext {
+[Compact]
+public class PPContext {
     /***********************************************************
     info on struct for av_log
-        ***********************************************************/
+    ***********************************************************/
     const AVClass *av_class;
 
+    /***********************************************************
+    ***********************************************************/
     uint8 *tempBlocks; ///<used for the horizontal code
 
     /***********************************************************
@@ -142,7 +182,10 @@ public struct PPContext {
     DECLARE_ALIGNED (32, uint64, mmxDcOffset)[64];
     DECLARE_ALIGNED (32, uint64, mmxDcThreshold)[64];
 
-    int8 *stdQPTable; ///< used to fix MPEG2 style qscale
+    /***********************************************************
+    used to fix MPEG2 style qscale
+    ***********************************************************/
+    int8 *stdQPTable; ///<
     int8 *nonBQPTable;
     int8 *forcedQPTable;
 
@@ -156,7 +199,11 @@ public struct PPContext {
 
     int cpuCaps;
 
+    /***********************************************************
+    ***********************************************************/
     int qpStride; ///<size of qp buffers (needed to realloc them if needed)
+    /***********************************************************
+    ***********************************************************/
     int stride; ///<size of some buffers (needed to realloc them if needed)
 
     int hChromaSubSample;

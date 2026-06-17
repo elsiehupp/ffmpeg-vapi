@@ -59,7 +59,8 @@ public class GSMDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct GSMDemuxerContext", cheader_filename="")]
-public struct GSMDemuxerPrivateData { }
+[Compact]
+public class GSMDemuxerPrivateData { }
 
 [CCode (cname="ff_gsm_demuxer", cheader_filename="")]
 public class GSMDemuxer : AVInputFormat {

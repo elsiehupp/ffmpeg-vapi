@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct gxf_stream_info", cheader_filename="")]
-public struct GXFDemuxerPrivateData { }
+[Compact]
+public class GXFDemuxerPrivateData { }
 
 [CCode (cname="ff_gxf_demuxer", cheader_filename="")]
 public class GXFDemuxer : AVInputFormat {

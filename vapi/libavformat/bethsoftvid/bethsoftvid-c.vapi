@@ -30,7 +30,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct BVID_DemuxContext", cheader_filename="")]
-public struct BethSoftVIDDemuxerPrivateData { }
+[Compact]
+public class BethSoftVIDDemuxerPrivateData { }
 
 [CCode (cname="ff_bethsoftvid_demuxer", cheader_filename="")]
 public class BethSoftVIDDemuxer : AVInputFormat {

@@ -50,7 +50,7 @@ static string dup_cfstring_to_utf8 (CFStringRef w)
 #define DECKLINK_STRDUP dup_cfstring_to_utf8
 #define DECKLINK_FREE (s) CFRelease (s)
 #else
-#define DECKLINK_STR    string 
+#define DECKLINK_STR    string
 #define DECKLINK_STRDUP av_strdup
 /***********************************************************
 free () is needed for a string returned by the DeckLink SDL.
@@ -61,7 +61,8 @@ free () is needed for a string returned by the DeckLink SDL.
 class decklink_output_callback;
 class decklink_input_callback;
 
-public struct AVPacketQueue {
+[Compact]
+public class AVPacketQueue {
     AVPacketList *first_pkt, *last_pkt;
     int nb_packets;
     ulong long size;

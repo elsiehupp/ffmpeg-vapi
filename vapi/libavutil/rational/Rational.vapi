@@ -49,7 +49,8 @@ rational numbers.
 @brief Rational number (pair of numerator and denominator).
 ***********************************************************/
 [CCode (cname="struct AVRational", cheader_filename="ffmpeg/libavutil/rational.h")]
-public struct Rational {
+[Compact]
+public class Rational {
     /***********************************************************
     @brief Numerator
         ***********************************************************/
@@ -237,7 +238,7 @@ public struct Rational {
     fixed-point format.
 
     @param q Rational to be converted
-    @return Equivalent floating-point value, expressed as a 
+    @return Equivalent floating-point value, expressed as a
         uint 32-bit integer.
     @note The returned value is platform-indepedant.
         ***********************************************************/

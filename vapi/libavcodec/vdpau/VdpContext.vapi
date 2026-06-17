@@ -70,7 +70,8 @@ be used outside of Use av_vdpau_alloc_context () to allocate an
 VdpContext.
 ***********************************************************/
 [CCode (cname="struct AVVDPAUContext", cheader_filename="ffmpeg/libavcodec/vdpau.h")]
-public struct VdpContext {
+[Compact]
+public class VdpContext {
     /***********************************************************
     @brief VDPAU decoder handle
 

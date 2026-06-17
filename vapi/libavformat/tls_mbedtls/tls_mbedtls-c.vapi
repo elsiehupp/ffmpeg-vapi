@@ -58,7 +58,8 @@ public class MbedTLSURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct TLSContext", cheader_filename="")]
-public struct MbedTLSPrivateData { }
+[Compact]
+public class MbedTLSPrivateData { }
 
 [CCode (cname="ff_tls_protocol", cheader_filename="")]
 public class MbedTLSURLProtocol : URLProtocol {

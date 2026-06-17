@@ -59,7 +59,8 @@ public class ASTMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct ASTMuxContext", cheader_filename="")]
-public struct ASTMuxerPrivateData { }
+[Compact]
+public class ASTMuxerPrivateData { }
 
 [CCode (cname="ff_ast_muxer", cheader_filename="")]
 public class ASTMuxer : AVOutputFormat {

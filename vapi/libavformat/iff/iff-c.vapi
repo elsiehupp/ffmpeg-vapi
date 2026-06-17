@@ -31,7 +31,8 @@ http://wiki.multimedia.cx/index.php?title=IFF
 ***********************************************************/
 
 [CCode (cname="struct IffDemuxContext", cheader_filename="")]
-public struct IFFDemuxerPrivateData { }
+[Compact]
+public class IFFDemuxerPrivateData { }
 
 [CCode (cname="ff_iff_demuxer", cheader_filename="")]
 public class IFFDemuxer : AVInputFormat {

@@ -28,7 +28,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct PJSContext", cheader_filename="")]
-public struct PJSDemuxerPrivateData { }
+[Compact]
+public class PJSDemuxerPrivateData { }
 
 [CCode (cname="ff_pjs_demuxer", cheader_filename="")]
 public class PJSDemuxer : AVInputFormat {

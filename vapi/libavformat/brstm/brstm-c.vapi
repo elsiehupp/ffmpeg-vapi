@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct BRSTMDemuxContext", cheader_filename="")]
-public struct BRSTMDemuxerPrivateData { }
+[Compact]
+public class BRSTMDemuxerPrivateData { }
 
 [CCode (cname="ff_brstm_demuxer", cheader_filename="")]
 public class BRSTMDemuxer : AVInputFormat {

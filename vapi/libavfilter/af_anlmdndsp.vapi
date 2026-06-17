@@ -18,7 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct AudioNLMDNDSPContext {
+[Compact]
+public class AudioNLMDNDSPContext {
     float (*compute_distance_ssd)(const float *f1, float *f2, ptrdiff_t K);
     void (*compute_cache)(float *cache, float *f, ptrdiff_t S, ptrdiff_t K,
                           ptrdiff_t i, ptrdiff_t jj);

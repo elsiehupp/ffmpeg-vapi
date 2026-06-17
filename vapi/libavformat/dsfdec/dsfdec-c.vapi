@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct DSFContext", cheader_filename="")]
-public struct DSFDemuxerPrivateData { }
+[Compact]
+public class DSFDemuxerPrivateData { }
 
 [CCode (cname="ff_dsf_demuxer", cheader_filename="")]
 public class DSFDemuxer : AVInputFormat {

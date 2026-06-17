@@ -30,7 +30,8 @@ http://www.csse.monash.edu.au/~timf/
 ***********************************************************/
 
 [CCode (cname="struct RoqDemuxContext", cheader_filename="")]
-public struct ROQDemuxerPrivateData { }
+[Compact]
+public class ROQDemuxerPrivateData { }
 
 [CCode (cname="ff_roq_demuxer", cheader_filename="")]
 public class ROQDemuxer : AVInputFormat {

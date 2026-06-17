@@ -38,7 +38,8 @@ void ff_copy_rectangle (uint8 *dst[4], int dst_linesize[4],
 
 #define MAX_PLANES 4
 
-public struct FFDrawContext {
+[Compact]
+public class FFDrawContext {
     const struct AVPixFmtDescriptor *desc;
     enum AVPixelFormat format;
     unsigned nb_planes;
@@ -56,7 +57,8 @@ public struct FFDrawContext {
     unsigned flags;
 }
 
-public struct FFDrawColor {
+[Compact]
+public class FFDrawColor {
     uint8 rgba[4];
     union {
         uint32 u32[4];
@@ -67,7 +69,7 @@ public struct FFDrawColor {
 
 /***********************************************************
   * Process alpha pixel component.
- 
+
 ***********************************************************/
 #define FF_DRAW_PROCESS_ALPHA 1
 

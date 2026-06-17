@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 [CCode (cname="struct AVAESCTR", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
-public struct AESCTRContext {
+[Compact]
+public class AESCTRContext {
 
     [CCode (cname="AES_CTR_KEY_SIZE", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public const size_t AES_CTR_KEY_SIZE;

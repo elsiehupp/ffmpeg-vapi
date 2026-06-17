@@ -51,7 +51,8 @@ public enum ID3v2Encoding {
 }
 
 [CCode (cname="struct ID3v2EncContext", cheader_filename="")]
-public struct ID3v2EncContext {
+[Compact]
+public class ID3v2EncContext {
     /***********************************************************
     @brief ID3v2 minor version, either 3 or 4
         ***********************************************************/
@@ -72,7 +73,8 @@ public struct ID3v2EncContext {
 }
 
 [CCode (cname="struct ID3v2ExtraMeta", cheader_filename="")]
-public struct ID3v2ExtraMeta {
+[Compact]
+public class ID3v2ExtraMeta {
     [CCode (cname="", cheader_filename="")]
     public string tag;
 
@@ -84,7 +86,8 @@ public struct ID3v2ExtraMeta {
 }
 
 [CCode (cname="struct ID3v2ExtraMetaGEOB", cheader_filename="")]
-public struct ID3v2ExtraMetaGEOB {
+[Compact]
+public class ID3v2ExtraMetaGEOB {
     [CCode (cname="", cheader_filename="")]
     public uint32 datasize;
 
@@ -102,7 +105,8 @@ public struct ID3v2ExtraMetaGEOB {
 }
 
 [CCode (cname="struct ID3v2ExtraMetaAPIC", cheader_filename="")]
-public struct ID3v2ExtraMetaAPIC {
+[Compact]
+public class ID3v2ExtraMetaAPIC {
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.BufferRef buffer;
 
@@ -117,7 +121,8 @@ public struct ID3v2ExtraMetaAPIC {
 }
 
 [CCode (cname="struct ID3v2ExtraMetaPRIV", cheader_filename="")]
-public struct ID3v2ExtraMetaPRIV {
+[Compact]
+public class ID3v2ExtraMetaPRIV {
     [CCode (cname="", cheader_filename="")]
     public uint8[] owner;
 
@@ -129,7 +134,8 @@ public struct ID3v2ExtraMetaPRIV {
 }
 
 [CCode (cname="struct ID3v2ExtraMetaCHAP", cheader_filename="")]
-public struct ID3v2ExtraMetaCHAP {
+[Compact]
+public class ID3v2ExtraMetaCHAP {
     [CCode (cname="", cheader_filename="")]
     public uint8[] element_id;
 

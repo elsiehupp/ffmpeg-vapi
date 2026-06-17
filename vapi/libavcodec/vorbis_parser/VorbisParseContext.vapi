@@ -26,7 +26,8 @@ Determines the duration for each packet.
 ***********************************************************/
 
 [CCode (cname="struct AVVorbisParseContext", cheader_filename="ffmpeg/libavcodec/vorbis_parser.h")]
-public struct VorbisParseContext {
+[Compact]
+public class VorbisParseContext {
 
     /***********************************************************
     @brief Allocate and initialize the Vorbis parser using headers in the extradata.

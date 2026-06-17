@@ -55,7 +55,8 @@ public class G729DemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct G729DemuxerContext", cheader_filename="")]
-public struct G729DemuxerPrivateData { }
+[Compact]
+public class G729DemuxerPrivateData { }
 
 [CCode (cname="ff_g729_demuxer", cheader_filename="")]
 public class G729Demuxer : AVInputFormat {

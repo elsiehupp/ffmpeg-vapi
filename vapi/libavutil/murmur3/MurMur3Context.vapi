@@ -53,7 +53,8 @@ To make hashes comparable, you should provide the same seed for all calls to
 this hash function -- if you are supplying one yourself, that is.
 ***********************************************************/
 [CCode (cname="AVMurMur3", cheader_filename="ffmpeg/libavutil/murmur3.h")]
-public struct MurMur3Context {
+[Compact]
+public class MurMur3Context {
     /***********************************************************
     @brief Allocate an LibAVUtil.MurMur3Context hash context.
 

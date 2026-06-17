@@ -72,7 +72,8 @@ public uint8[] ff_nal_unit_extract_rbsp (
 );
 
 [CCode (cname="struct H264SPS", cheader_filename="")]
-public struct H264SPS {
+[Compact]
+public class H264SPS {
     uint8 id;
     uint8 profile_idc;
     uint8 level_idc;

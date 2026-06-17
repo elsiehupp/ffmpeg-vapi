@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct SRTPContext", cheader_filename="")]
-public struct SRTPContext {
+[Compact]
+public class SRTPContext {
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Crypto.AESContext aes;
 

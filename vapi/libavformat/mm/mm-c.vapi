@@ -34,7 +34,8 @@ http://wiki.multimedia.cx/index.php?title=American_Laser_Games_MM
 ***********************************************************/
 
 [CCode (cname="struct MmDemuxContext", cheader_filename="")]
-public struct MMDemuxerPrivateData { }
+[Compact]
+public class MMDemuxerPrivateData { }
 
 [CCode (cname="ff_mm_demuxer", cheader_filename="")]
 public class MMDemuxer : AVInputFormat {

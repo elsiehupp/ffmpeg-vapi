@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct RDTDemuxContext", cheader_filename="")]
-public struct RDTDemuxContext { }
+[Compact]
+public class RDTDemuxContext { }
 
 /***********************************************************
 @brief Allocate and init the RDT parsing context.

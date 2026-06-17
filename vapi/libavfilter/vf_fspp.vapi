@@ -45,9 +45,12 @@ static const int16 FIX_2_613125930   = FIX (-2.613125930, 13);
 static const int16 FIX_1_414213562   = FIX (M_SQRT2    , 13);
 static const int16 FIX_1_082392200   = FIX (1.082392200, 13);
 
-public struct FSPPContext {
+[Compact]
+public class FSPPContext {
     AVClass *class;
     uint64 threshold_mtx_noq[8 * 2];
+    /***********************************************************
+    ***********************************************************/
     uint64 threshold_mtx[8 * 2]; // used in both C & MMX (& later SSE2) versions
 
     int log2_count;

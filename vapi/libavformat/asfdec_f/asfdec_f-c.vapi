@@ -52,7 +52,8 @@ public class ASFClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct ASFContext", cheader_filename="")]
-public struct ASFDemuxerPrivateData { }
+[Compact]
+public class ASFDemuxerPrivateData { }
 
 [CCode (cname="ff_asf_demuxer", cheader_filename="")]
 public class ASFDemuxer : AVInputFormat {

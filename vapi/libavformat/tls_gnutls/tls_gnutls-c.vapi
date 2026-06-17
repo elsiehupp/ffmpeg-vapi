@@ -57,7 +57,8 @@ public class GNUTLSURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct TLSContext", cheader_filename="")]
-public struct GNUTLSPrivateData { }
+[Compact]
+public class GNUTLSPrivateData { }
 
 [CCode (cname="ff_tls_protocol", cheader_filename="")]
 public class GNUTLSURLProtocol : URLProtocol {

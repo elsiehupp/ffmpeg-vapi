@@ -56,7 +56,8 @@ enum ReplayGainType {
     REPLAYGAIN_ALBUM,
 }
 
-public struct VolumeContext {
+[Compact]
+public class VolumeContext {
     const AVClass *class;
     AVFloatDSPContext *fdsp;
     int precision;

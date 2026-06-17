@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct MXGContext", cheader_filename="")]
-public struct MXGDemuxerPrivateData { }
+[Compact]
+public class MXGDemuxerPrivateData { }
 
 [CCode (cname="ff_mxg_demuxer", cheader_filename="")]
 public class MXGDemuxer : AVInputFormat {

@@ -26,7 +26,8 @@ and must be freed by
 av_hwframe_constraints_free () after use.
 ***********************************************************/
 [CCode (cname="struct AVHWFramesConstraints", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
-public struct HardwareFrameConstraints {
+[Compact]
+public class HardwareFrameConstraints {
     /***********************************************************
     @brief A list of possible values for format in the hw_frames_ctx,
     terminated by PixelFormat.NONE. This member will always be

@@ -35,7 +35,8 @@ LibAVCodec external API header
 Empty list can be allocated by av_bsf_list_alloc ().
 ***********************************************************/
 [CCode (cname="struct AVBSFList", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct BitStreamFilterList {
+[Compact]
+public class BitStreamFilterList {
 
     /***********************************************************
     @brief Allocate empty list of bitstream filters.

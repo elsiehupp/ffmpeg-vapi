@@ -103,7 +103,8 @@ public enum Flag {
 }
 
 [CCode (cname="struct Syncpoint", cheader_filename="")]
-public struct Syncpoint {
+[Compact]
+public class Syncpoint {
     [CCode (cname="", cheader_filename="")]
     public uint64 pos;
 
@@ -116,7 +117,8 @@ public struct Syncpoint {
 }
 
 [CCode (cname="struct FrameCode", cheader_filename="")]
-public struct FrameCode {
+[Compact]
+public class FrameCode {
     [CCode (cname="", cheader_filename="")]
     public uint16 flags;
 
@@ -140,7 +142,8 @@ public struct FrameCode {
 }
 
 [CCode (cname="struct StreamContext", cheader_filename="")]
-public struct StreamContext {
+[Compact]
+public class StreamContext {
     [CCode (cname="", cheader_filename="")]
     public int last_flags;
 
@@ -173,13 +176,15 @@ public struct StreamContext {
 }
 
 [CCode (cname="struct ChapterContext", cheader_filename="")]
-public struct ChapterContext {
+[Compact]
+public class ChapterContext {
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Rational time_base;
 }
 
 [CCode (cname="struct NUTContext", cheader_filename="")]
-public struct NUTContext {
+[Compact]
+public class NUTContext {
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class av_class;
 
@@ -276,7 +281,8 @@ public enum NUTFlags {
 //  extern const AVCodecTag ff_nut_codec_tags[];
 
 [CCode (cname="struct Dispositions", cheader_filename="")]
-public struct Dispositions {
+[Compact]
+public class Dispositions {
     [CCode (cname="", cheader_filename="")]
     public char str[9];
 

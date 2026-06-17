@@ -31,7 +31,8 @@ appropriate type.
     and its size is not a part of the public ABI.
 ***********************************************************/
 [CCode (cname="struct AVContentLightMetadata", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
-public struct ContentLightMetadata {
+[Compact]
+public class ContentLightMetadata {
     /***********************************************************
     @brief Max content light level (cd/m^2).
         ***********************************************************/

@@ -68,7 +68,8 @@ public class AsyncContextClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct Context", cheader_filename="")]
-public struct AsyncPrivateData { }
+[Compact]
+public class AsyncPrivateData { }
 
 [CCode (cname="ff_async_protocol", cheader_filename="")]
 public class AsyncURLProtocol : URLProtocol {

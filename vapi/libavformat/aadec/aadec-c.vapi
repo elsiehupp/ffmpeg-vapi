@@ -52,7 +52,8 @@ public class AAClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct AADemuxContext", cheader_filename="")]
-public struct AADemuxerPrivateData { }
+[Compact]
+public class AADemuxerPrivateData { }
 
 [CCode (cname="ff_aa_demuxer", cheader_filename="")]
 public class AADemuxer : AVInputFormat {

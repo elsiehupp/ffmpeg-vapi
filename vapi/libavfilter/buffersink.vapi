@@ -57,8 +57,12 @@ but if no frame is present, return AVERROR (EAGAIN).
 /***********************************************************
 Struct to use for initializing a buffersink context.
 ***********************************************************/
-public struct AVBufferSinkParams {
-    const enum AVPixelFormat *pixel_fmts; ///< list of allowed pixel formats, terminated by AV_PIX_FMT_NONE
+[Compact]
+public class AVBufferSinkParams {
+    /***********************************************************
+    list of allowed pixel formats, terminated by AV_PIX_FMT_NONE
+    ***********************************************************/
+    const enum AVPixelFormat *pixel_fmts; ///<
 }
 
 /***********************************************************
@@ -71,12 +75,28 @@ AVBufferSinkParams *av_buffersink_params_alloc ();
 /***********************************************************
 Struct to use for initializing an abuffersink context.
 ***********************************************************/
-public struct AVABufferSinkParams {
-    const enum AVSampleFormat *sample_fmts; ///< list of allowed sample formats, terminated by AV_SAMPLE_FMT_NONE
-    const int64 *channel_layouts; ///< list of allowed channel layouts, terminated by -1
-    int[] channel_counts; ///< list of allowed channel counts, terminated by -1
-    int all_channel_counts; ///< if not 0, accept any channel count or layout
-    int[] sample_rates; ///< list of allowed sample rates, terminated by -1
+[Compact]
+public class AVABufferSinkParams {
+    /***********************************************************
+    list of allowed sample formats, terminated by AV_SAMPLE_FMT_NONE
+    ***********************************************************/
+    const enum AVSampleFormat *sample_fmts; ///<
+    /***********************************************************
+    list of allowed channel layouts, terminated by -1
+    ***********************************************************/
+    const int64 *channel_layouts; ///<
+    /***********************************************************
+    list of allowed channel counts, terminated by -1
+    ***********************************************************/
+    int[] channel_counts; ///<
+    /***********************************************************
+    if not 0, accept any channel count or layout
+    ***********************************************************/
+    int all_channel_counts; ///<
+    /***********************************************************
+    list of allowed sample rates, terminated by -1
+    ***********************************************************/
+    int[] sample_rates; ///<
 }
 
 /***********************************************************

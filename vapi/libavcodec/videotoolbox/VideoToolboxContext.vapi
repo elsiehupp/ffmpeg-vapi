@@ -35,7 +35,8 @@ Its size is not a part of the public ABI, it must be allocated with
 av_videotoolbox_alloc_context () and freed with av_free ().
 ***********************************************************/
 [CCode (cname="struct AVVideotoolboxContext", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
-public struct VideoToolboxContext {
+[Compact]
+public class VideoToolboxContext {
     /***********************************************************
     @brief Videotoolbox decompression session object.
     Created and freed the caller.

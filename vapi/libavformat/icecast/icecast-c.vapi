@@ -49,7 +49,8 @@ public class IceCastURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct IcecastContext", cheader_filename="")]
-public struct IceCastPrivateData { }
+[Compact]
+public class IceCastPrivateData { }
 
 [CCode (cname="ff_icecast_protocol", cheader_filename="")]
 public class IceCastURLProtocol : URLProtocol {

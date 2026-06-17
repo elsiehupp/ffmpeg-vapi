@@ -43,7 +43,8 @@ public enum HTTPAuthType {
 }
 
 [CCode (cname="struct DigestParams", cheader_filename="")]
-public struct DigestParams {
+[Compact]
+public class DigestParams {
     /***********************************************************
     @brief Server specified nonce
         ***********************************************************/
@@ -93,7 +94,8 @@ public struct DigestParams {
 before used with the functions below.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct HTTPAuthState {
+[Compact]
+public class HTTPAuthState {
     /***********************************************************
     @brief The currently chosen auth type.
         ***********************************************************/

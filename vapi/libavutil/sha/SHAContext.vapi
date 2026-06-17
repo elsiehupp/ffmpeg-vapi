@@ -42,7 +42,8 @@ This module supports the following SHA hash functions:
 ***********************************************************/
 
 [CCode (cname="struct AVSHA", cheader_filename="ffmpeg/libavutil/sha.h")]
-public struct SHAContext {
+[Compact]
+public class SHAContext {
     [CCode (cname="av_sha_size", cheader_filename="ffmpeg/libavutil/sha.h")]
     public const size_t SIZE;
 

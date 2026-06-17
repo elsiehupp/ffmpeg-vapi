@@ -26,7 +26,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="struct AVRC4", cheader_filename="ffmpeg/libavutil/rc4.h")]
-public struct RC4Context {
+[Compact]
+public class RC4Context {
     [CCode (cname="state")]
     public uint8 state[256];
 

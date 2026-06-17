@@ -23,7 +23,8 @@ based upon libdemac from Dave Chapman.
 namespace LibAVFormat {
 
 [CCode (cname="struct APEContext", cheader_filename="")]
-public struct APEDemuxerPrivateData { }
+[Compact]
+public class APEDemuxerPrivateData { }
 
 [CCode (cname="ff_ape_demuxer", cheader_filename="")]
 public class APEDemuxer : AVInputFormat {

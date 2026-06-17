@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // it was introduced in OpenCL 2.0.
 #define CL_USE_DEPRECATED_OPENCL_1_2_APIS
 
-public struct OpenCLFilterContext {
+[Compact]
+public class OpenCLFilterContext {
     const AVClass     *class;
 
     AVBufferRef       *device_ref;
@@ -64,7 +65,7 @@ variable err, log error msg, and jump to fail label on error.
     } while (0)
 /***********************************************************
   * release an OpenCL Kernel
- 
+
 ***********************************************************/
 #define CL_RELEASE_KERNEL (k)                                  \
 do {                                                          \
@@ -78,7 +79,7 @@ do {                                                          \
 
 /***********************************************************
   * release an OpenCL Memory Object
- 
+
 ***********************************************************/
 #define CL_RELEASE_MEMORY (m)                                  \
 do {                                                          \
@@ -92,7 +93,7 @@ do {                                                          \
 
 /***********************************************************
   * release an OpenCL Command Queue
- 
+
 ***********************************************************/
 #define CL_RELEASE_QUEUE (q)                                   \
 do {                                                          \

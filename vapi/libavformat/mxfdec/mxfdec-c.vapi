@@ -84,7 +84,8 @@ public class MXFDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct MXFContext", cheader_filename="")]
-public struct MXFDemuxerPrivateData { }
+[Compact]
+public class MXFDemuxerPrivateData { }
 
 [CCode (cname="ff_mxf_demuxer", cheader_filename="")]
 public class MXFDemuxer : AVInputFormat {

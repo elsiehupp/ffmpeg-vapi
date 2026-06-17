@@ -32,7 +32,8 @@ namespace LibAVFormat {
 //  }
 
 [CCode (cname="struct FITSContext", cheader_filename="")]
-public struct FITSDemuxerClassPrivateData { }
+[Compact]
+public class FITSDemuxerClassPrivateData { }
 
 [CCode (cname="fits_demuxer_class", cheader_filename="")]
 public class FITSDemuxerClass : LibAVUtil.Class {

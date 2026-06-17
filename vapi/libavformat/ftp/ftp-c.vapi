@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct FTPContext", cheader_filename="")]
-public struct FTPPrivateData { }
+[Compact]
+public class FTPPrivateData { }
 
 [CCode (cname="ff_ftp_protocol", cheader_filename="")]
 public class FTPURLProtocol : URLProtocol {

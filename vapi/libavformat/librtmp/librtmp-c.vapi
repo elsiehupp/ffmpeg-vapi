@@ -51,7 +51,8 @@ namespace LibAVFormat {
 //  }
 
 [CCode (cname="struct LibRTMPContext", cheader_filename="")]
-public struct LibRTMPPrivateData { }
+[Compact]
+public class LibRTMPPrivateData { }
 
 [CCode (cname="librtmp_class", cheader_filename="")]
 public class LibRTMPURLProtocolClass : LibAVUtil.Class {

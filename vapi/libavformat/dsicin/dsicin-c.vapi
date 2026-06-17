@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct CinDemuxContext", cheader_filename="")]
-public struct DSICINDemuxerPrivateData { }
+[Compact]
+public class DSICINDemuxerPrivateData { }
 
 [CCode (cname="ff_dsicin_demuxer", cheader_filename="")]
 public class DSICINDemuxer : AVInputFormat {

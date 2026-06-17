@@ -18,10 +18,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct AudioData AudioData;
-public struct AudioConvert AudioConvert;
-public struct AudioMix AudioMix;
-public struct ResampleContext ResampleContext;
+[Compact]
+public class AudioData AudioData;
+[Compact]
+public class AudioConvert AudioConvert;
+[Compact]
+public class AudioMix AudioMix;
+[Compact]
+public class ResampleContext ResampleContext;
 
 enum RemapPoint {
     REMAP_NONE,
@@ -31,107 +35,155 @@ enum RemapPoint {
     REMAP_OUT_CONVERT,
 }
 
-public struct ChannelMapInfo {
-    int channel_map[AVRESAMPLE_MAX_CHANNELS]; /**< source index of each output channel, -1 if not remapped
+[Compact]
+public class ChannelMapInfo {
+    int channel_map[AVRESAMPLE_MAX_CHANNELS]; /***********************************************************
+    <source index of each output channel, -1 if not remapped
     ***********************************************************/
-    int do_remap; /**< remap needed
+    int do_remap; /***********************************************************
+    <remap needed
     ***********************************************************/
-    int channel_copy[AVRESAMPLE_MAX_CHANNELS]; /**< dest index to copy from
+    int channel_copy[AVRESAMPLE_MAX_CHANNELS]; /***********************************************************
+    <dest index to copy from
     ***********************************************************/
-    int do_copy; /**< copy needed
+    int do_copy; /***********************************************************
+    <copy needed
     ***********************************************************/
-    int channel_zero[AVRESAMPLE_MAX_CHANNELS]; /**< dest index to zero
+    int channel_zero[AVRESAMPLE_MAX_CHANNELS]; /***********************************************************
+    <dest index to zero
     ***********************************************************/
-    int do_zero; /**< zeroing needed
+    int do_zero; /***********************************************************
+    <zeroing needed
     ***********************************************************/
-    int input_map[AVRESAMPLE_MAX_CHANNELS]; /**< dest index of each input channel
+    int input_map[AVRESAMPLE_MAX_CHANNELS]; /***********************************************************
+    <dest index of each input channel
     ***********************************************************/
 }
 
 struct AVAudioResampleContext {
-    const AVClass *av_class; /**< AVClass for logging and AVOptions 
+    const AVClass *av_class; /***********************************************************
+    <AVClass for logging and AVOptions
     ***********************************************************/
 
-    uint64 in_channel_layout; /**< input channel layout  
+    uint64 in_channel_layout; /***********************************************************
+    <input channel layout
     ***********************************************************/
-    enum AVSampleFormat in_sample_fmt; /**< input sample format   
+    enum AVSampleFormat in_sample_fmt; /***********************************************************
+    <input sample format
     ***********************************************************/
-    int in_sample_rate; /**< input sample rate     
+    int in_sample_rate; /***********************************************************
+    <input sample rate
     ***********************************************************/
-    uint64 out_channel_layout; /**< output channel layout 
+    uint64 out_channel_layout; /***********************************************************
+    <output channel layout
     ***********************************************************/
-    enum AVSampleFormat out_sample_fmt; /**< output sample format  
+    enum AVSampleFormat out_sample_fmt; /***********************************************************
+    <output sample format
     ***********************************************************/
-    int out_sample_rate; /**< output sample rate    
+    int out_sample_rate; /***********************************************************
+    <output sample rate
     ***********************************************************/
-    enum AVSampleFormat internal_sample_fmt; /**< internal sample format
+    enum AVSampleFormat internal_sample_fmt; /***********************************************************
+    <internal sample format
     ***********************************************************/
-    enum AVMixCoeffType mix_coeff_type; /**< mixing coefficient type
+    enum AVMixCoeffType mix_coeff_type; /***********************************************************
+    <mixing coefficient type
     ***********************************************************/
-    double center_mix_level; /**< center mix level      
+    double center_mix_level; /***********************************************************
+    <center mix level
     ***********************************************************/
-    double surround_mix_level; /**< surround mix level    
+    double surround_mix_level; /***********************************************************
+    <surround mix level
     ***********************************************************/
-    double lfe_mix_level; /**< lfe mix level         
+    double lfe_mix_level; /***********************************************************
+    <lfe mix level
     ***********************************************************/
-    int normalize_mix_level; /**< enable mix level normalization
+    int normalize_mix_level; /***********************************************************
+    <enable mix level normalization
     ***********************************************************/
-    int force_resampling; /**< force resampling      
+    int force_resampling; /***********************************************************
+    <force resampling
     ***********************************************************/
-    int filter_size; /**< length of each FIR filter in the resampling filterbank relative to the cutoff frequency
+    int filter_size; /***********************************************************
+    <length of each FIR filter in the resampling filterbank relative to the cutoff frequency
     ***********************************************************/
-    int phase_shift; /**< log2 of the number of entries in the resampling polyphase filterbank
+    int phase_shift; /***********************************************************
+    <log2 of the number of entries in the resampling polyphase filterbank
     ***********************************************************/
-    int linear_interp; /**< if 1 then the resampling FIR filter will be linearly interpolated
+    int linear_interp; /***********************************************************
+    <if 1 then the resampling FIR filter will be linearly interpolated
     ***********************************************************/
-    double cutoff; /**< resampling cutoff frequency. 1.0 corresponds to half the output sample rate
+    double cutoff; /***********************************************************
+    <resampling cutoff frequency. 1.0 corresponds to half the output sample rate
     ***********************************************************/
-    enum AVResampleFilterType filter_type; /**< resampling filter type
+    enum AVResampleFilterType filter_type; /***********************************************************
+    <resampling filter type
     ***********************************************************/
-    int kaiser_beta; /**< beta value for Kaiser window (only applicable if filter_type == AV_FILTER_TYPE_KAISER)
+    int kaiser_beta; /***********************************************************
+    <beta value for Kaiser window (only applicable if filter_type == AV_FILTER_TYPE_KAISER)
     ***********************************************************/
-    enum AVResampleDitherMethod dither_method; /**< dither method         
-    ***********************************************************/
-
-    int in_channels; /**< number of input channels                  
-    ***********************************************************/
-    int out_channels; /**< number of output channels                 
-    ***********************************************************/
-    int resample_channels; /**< number of channels used for resampling    
-    ***********************************************************/
-    int downmix_needed; /**< downmixing is needed                      
-    ***********************************************************/
-    int upmix_needed; /**< upmixing is needed                        
-    ***********************************************************/
-    int mixing_needed; /**< either upmixing or downmixing is needed   
-    ***********************************************************/
-    int resample_needed; /**< resampling is needed                      
-    ***********************************************************/
-    int in_convert_needed; /**< input sample format conversion is needed  
-    ***********************************************************/
-    int out_convert_needed; /**< output sample format conversion is needed 
-    ***********************************************************/
-    int in_copy_needed; /**< input data copy is needed                 
-    ***********************************************************/
-
-    AudioData *in_buffer; /**< buffer for converted input        
-    ***********************************************************/
-    AudioData *resample_out_buffer; /**< buffer for output from resampler  
-    ***********************************************************/
-    AudioData *out_buffer; /**< buffer for converted output       
-    ***********************************************************/
-    AVAudioFifo *out_fifo; /**< FIFO for output samples           
+    enum AVResampleDitherMethod dither_method; /***********************************************************
+    <dither method
     ***********************************************************/
 
-    AudioConvert *ac_in; /**< input sample format conversion context 
+    int in_channels; /***********************************************************
+    <number of input channels
     ***********************************************************/
-    AudioConvert *ac_out; /**< output sample format conversion context
+    int out_channels; /***********************************************************
+    <number of output channels
     ***********************************************************/
-    ResampleContext *resample; /**< resampling context                     
+    int resample_channels; /***********************************************************
+    <number of channels used for resampling
     ***********************************************************/
-    AudioMix *am; /**< channel mixing context                 
+    int downmix_needed; /***********************************************************
+    <downmixing is needed
     ***********************************************************/
-    enum AVMatrixEncoding matrix_encoding; /**< matrixed stereo encoding
+    int upmix_needed; /***********************************************************
+    <upmixing is needed
+    ***********************************************************/
+    int mixing_needed; /***********************************************************
+    <either upmixing or downmixing is needed
+    ***********************************************************/
+    int resample_needed; /***********************************************************
+    <resampling is needed
+    ***********************************************************/
+    int in_convert_needed; /***********************************************************
+    <input sample format conversion is needed
+    ***********************************************************/
+    int out_convert_needed; /***********************************************************
+    <output sample format conversion is needed
+    ***********************************************************/
+    int in_copy_needed; /***********************************************************
+    <input data copy is needed
+    ***********************************************************/
+
+    AudioData *in_buffer; /***********************************************************
+    <buffer for converted input
+    ***********************************************************/
+    AudioData *resample_out_buffer; /***********************************************************
+    <buffer for output from resampler
+    ***********************************************************/
+    AudioData *out_buffer; /***********************************************************
+    <buffer for converted output
+    ***********************************************************/
+    AVAudioFifo *out_fifo; /***********************************************************
+    <FIFO for output samples
+    ***********************************************************/
+
+    AudioConvert *ac_in; /***********************************************************
+    <input sample format conversion context
+    ***********************************************************/
+    AudioConvert *ac_out; /***********************************************************
+    <output sample format conversion context
+    ***********************************************************/
+    ResampleContext *resample; /***********************************************************
+    <resampling context
+    ***********************************************************/
+    AudioMix *am; /***********************************************************
+    <channel mixing context
+    ***********************************************************/
+    enum AVMatrixEncoding matrix_encoding; /***********************************************************
+    <matrixed stereo encoding
     ***********************************************************/
 
     /***********************************************************

@@ -26,7 +26,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct SubViewer1Context", cheader_filename="")]
-public struct SubViewerV1DemuxerPrivateData { }
+[Compact]
+public class SubViewerV1DemuxerPrivateData { }
 
 [CCode (cname="ff_subviewer1_demuxer", cheader_filename="")]
 public class SubViewerV1Demuxer : AVInputFormat {

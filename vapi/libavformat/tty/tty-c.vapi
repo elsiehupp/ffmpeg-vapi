@@ -62,7 +62,8 @@ public class TTYDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct TtyDemuxContext", cheader_filename="")]
-public struct TTYDemuxerPrivateData { }
+[Compact]
+public class TTYDemuxerPrivateData { }
 
 [CCode (cname="ff_tty_demuxer", cheader_filename="")]
 public class TTYDemuxer : AVInputFormat {

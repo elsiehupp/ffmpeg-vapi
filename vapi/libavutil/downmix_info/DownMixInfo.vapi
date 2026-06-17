@@ -40,7 +40,8 @@ All fields are set by the decoder to the value indicated in the audio
 bitstream (if present), or to a "sane" default otherwise.
 ***********************************************************/
 [CCode (cname="struct AVDownmixInfo", cheader_filename="ffmpeg/libavutil/downmix_info.h")]
-public struct DownMixInfo {
+[Compact]
+public class DownMixInfo {
     /***********************************************************
     @brief Type of downmix preferred by the mastering engineer.
         ***********************************************************/

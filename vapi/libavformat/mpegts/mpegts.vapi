@@ -85,7 +85,8 @@ public enum MpegTransportStreamType {
 }
 
 [CCode (cname="struct MpegTSContext", cheader_filename="")]
-public struct MpegTSContext {
+[Compact]
+public class MpegTSContext {
     [CCode (cname="", cheader_filename="")]
     public MpegTSContext avpriv_mpegts_parse_open (
         AVFormatContext format_context
@@ -106,7 +107,8 @@ public struct MpegTSContext {
 }
 
 [CCode (cname="struct SLConfigDescr", cheader_filename="")]
-public struct SLConfigDescr {
+[Compact]
+public class SLConfigDescr {
     [CCode (cname="", cheader_filename="")]
     public int use_au_start;
 
@@ -151,7 +153,8 @@ public struct SLConfigDescr {
 }
 
 [CCode (cname="struct Mp4Descr", cheader_filename="")]
-public struct Mp4Descr {
+[Compact]
+public class Mp4Descr {
     [CCode (cname="", cheader_filename="")]
     public int es_id;
 

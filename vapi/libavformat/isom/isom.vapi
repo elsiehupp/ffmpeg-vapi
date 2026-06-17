@@ -52,7 +52,8 @@ Here we just use what is needed to read the chunks
 ***********************************************************/
 
 [CCode (cname="struct MOVStts", cheader_filename="")]
-public struct MOVStts {
+[Compact]
+public class MOVStts {
     [CCode (cname="", cheader_filename="")]
     public uint count;
 
@@ -61,7 +62,8 @@ public struct MOVStts {
 }
 
 [CCode (cname="struct MOVStsc", cheader_filename="")]
-public struct MOVStsc {
+[Compact]
+public class MOVStsc {
     [CCode (cname="", cheader_filename="")]
     public int first;
 
@@ -73,7 +75,8 @@ public struct MOVStsc {
 }
 
 [CCode (cname="struct MOVElst", cheader_filename="")]
-public struct MOVElst {
+[Compact]
+public class MOVElst {
     [CCode (cname="", cheader_filename="")]
     public int64 duration;
 
@@ -85,7 +88,8 @@ public struct MOVElst {
 }
 
 [CCode (cname="struct MOVDref", cheader_filename="")]
-public struct MOVDref {
+[Compact]
+public class MOVDref {
     [CCode (cname="", cheader_filename="")]
     public uint32 type;
 
@@ -109,7 +113,8 @@ public struct MOVDref {
 }
 
 [CCode (cname="struct MOVAtom", cheader_filename="")]
-public struct MOVAtom {
+[Compact]
+public class MOVAtom {
     [CCode (cname="", cheader_filename="")]
     public uint32 type;
 
@@ -121,10 +126,12 @@ public struct MOVAtom {
 }
 
 [CCode (cname="struct MOVParseTableEntry", cheader_filename="")]
-public struct MOVParseTableEntry { }
+[Compact]
+public class MOVParseTableEntry { }
 
 [CCode (cname="struct MOVFragment", cheader_filename="")]
-public struct MOVFragment {
+[Compact]
+public class MOVFragment {
     [CCode (cname="", cheader_filename="")]
     public int found_tfhd;
 
@@ -154,7 +161,8 @@ public struct MOVFragment {
 }
 
 [CCode (cname="struct MOVTrackExt", cheader_filename="")]
-public struct MOVTrackExt {
+[Compact]
+public class MOVTrackExt {
     [CCode (cname="", cheader_filename="")]
     public uint track_id;
 
@@ -172,7 +180,8 @@ public struct MOVTrackExt {
 }
 
 [CCode (cname="struct MOVSbgp", cheader_filename="")]
-public struct MOVSbgp {
+[Compact]
+public class MOVSbgp {
     [CCode (cname="", cheader_filename="")]
     public uint count;
 
@@ -181,7 +190,8 @@ public struct MOVSbgp {
 }
 
 [CCode (cname="struct MOVEncryptionIndex", cheader_filename="")]
-public struct MOVEncryptionIndex {
+[Compact]
+public class MOVEncryptionIndex {
     /***********************************************************
     @brief Individual encrypted samples. If there are no elements,
     then the default settings will be used.
@@ -212,7 +222,8 @@ public struct MOVEncryptionIndex {
 }
 
 [CCode (cname="struct MOVFragmentStreamInfo", cheader_filename="")]
-public struct MOVFragmentStreamInfo {
+[Compact]
+public class MOVFragmentStreamInfo {
     [CCode (cname="", cheader_filename="")]
     public int id;
 
@@ -233,7 +244,8 @@ public struct MOVFragmentStreamInfo {
 }
 
 [CCode (cname="struct MOVFragmentIndexItem", cheader_filename="")]
-public struct MOVFragmentIndexItem {
+[Compact]
+public class MOVFragmentIndexItem {
     [CCode (cname="", cheader_filename="")]
     public int64 moof_offset;
 
@@ -251,7 +263,8 @@ public struct MOVFragmentIndexItem {
 }
 
 [CCode (cname="struct MOVFragmentIndex", cheader_filename="")]
-public struct MOVFragmentIndex {
+[Compact]
+public class MOVFragmentIndex {
     [CCode (cname="", cheader_filename="")]
     public int allocated_size;
 
@@ -269,7 +282,8 @@ public struct MOVFragmentIndex {
 }
 
 [CCode (cname="struct MOVIndexRange", cheader_filename="")]
-public struct MOVIndexRange {
+[Compact]
+public class MOVIndexRange {
     [CCode (cname="", cheader_filename="")]
     public int64 start;
 
@@ -278,7 +292,8 @@ public struct MOVIndexRange {
 }
 
 [CCode (cname="struct MOVStreamContext", cheader_filename="")]
-public struct MOVStreamContext {
+[Compact]
+public class MOVStreamContext {
     [CCode (cname="", cheader_filename="")]
     public AVIOContext pb;
 
@@ -547,7 +562,8 @@ public struct MOVStreamContext {
 }
 
 [CCode (cname="struct CEnc", cheader_filename="")]
-public struct CEnc {
+[Compact]
+public class CEnc {
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.AESCTRContext aes_ctr;
 
@@ -565,7 +581,8 @@ public struct CEnc {
 }
 
 [CCode (cname="struct MOVContext", cheader_filename="")]
-public struct MOVContext {
+[Compact]
+public class MOVContext {
     /***********************************************************
     @brief Class for private options
         ***********************************************************/

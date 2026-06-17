@@ -31,7 +31,8 @@ http://www.geocities.com/SiliconValley/8682/aud3.txt
 ***********************************************************/
 
 [CCode (cname="struct WsVqaDemuxContext", cheader_filename="")]
-public struct WSVQADemuxerPrivateData { }
+[Compact]
+public class WSVQADemuxerPrivateData { }
 
 [CCode (cname="ff_wsvqa_demuxer", cheader_filename="")]
 public class WSVQADemuxer : AVInputFormat {

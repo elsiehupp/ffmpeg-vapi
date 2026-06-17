@@ -27,7 +27,8 @@ see avformat.h or the public API!
 ***********************************************************/
 
 [CCode (cname="struct AVMetadataConv", cheader_filename="")]
-public struct AVMetadataConv {
+[Compact]
+public class AVMetadataConv {
     [CCode (cname="", cheader_filename="")]
     public string native;
 

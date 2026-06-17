@@ -21,10 +21,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 internal API functions
 ***********************************************************/
 
-public struct AVFilterCommand {
-    double time; ///< time expressed in seconds
-    string command; ///< command
-    string arg; ///< optional argument for the command
+[Compact]
+public class AVFilterCommand {
+    /***********************************************************
+    time expressed in seconds
+    ***********************************************************/
+    double time; ///<
+    /***********************************************************
+    command
+    ***********************************************************/
+    string command; ///<
+    /***********************************************************
+    optional argument for the command
+    ***********************************************************/
+    string arg; ///<
     int flags;
     struct AVFilterCommand *next;
 }

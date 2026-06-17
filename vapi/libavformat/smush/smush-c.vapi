@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct SMUSHContext", cheader_filename="")]
-public struct SmushDemuxerPrivateData { }
+[Compact]
+public class SmushDemuxerPrivateData { }
 
 [CCode (cname="ff_smush_demuxer", cheader_filename="")]
 public class SmushDemuxer : AVInputFormat {

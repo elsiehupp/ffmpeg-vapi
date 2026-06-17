@@ -26,7 +26,8 @@ namespace LibAVFormat {
 public const size_t CENC_KID_SIZE;
 
 [CCode (cname="struct MOVMuxCencContext", cheader_filename="")]
-public struct MOVMuxCencContext {
+[Compact]
+public class MOVMuxCencContext {
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.AESCTRContext aes_ctr;
 

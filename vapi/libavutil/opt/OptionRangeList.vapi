@@ -30,7 +30,8 @@ namespace LibAVUtil {
 @brief List of OptionRange structs.
 ***********************************************************/
 [CCode (cname="struct AVOptionRanges", cheader_filename="ffmpeg/libavutil/opt.h")]
-public struct OptionRangeList {
+[Compact]
+public class OptionRangeList {
     /***********************************************************
     @brief Array of option ranges.
 

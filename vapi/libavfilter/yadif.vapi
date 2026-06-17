@@ -40,12 +40,22 @@ enum YADIFCurrentField {
     YADIF_FIELD_NORMAL   =  1, ///< A normal field in the middle of a sequence
 };
 
-public struct YADIFContext {
+[Compact]
+public class YADIFContext {
     const AVClass *class;
 
-    int mode; ///< YADIFMode
-    int parity; ///< YADIFParity
-    int deint; ///< YADIFDeint
+    /***********************************************************
+    YADIFMode
+    ***********************************************************/
+    int mode; ///<
+    /***********************************************************
+    YADIFParity
+    ***********************************************************/
+    int parity; ///<
+    /***********************************************************
+    YADIFDeint
+    ***********************************************************/
+    int deint; ///<
 
     int frame_pending;
 
@@ -71,12 +81,14 @@ public struct YADIFContext {
     int temp_line_size;
 
     /***********************************************************
+    YADIFCurrentField
+
     An algorithm that treats first and/or last fields in a sequence
     differently can use this to detect those cases. It is the algorithm's
     responsibility to set the value to YADIF_FIELD_NORMAL after processing
     the first field.
     ***********************************************************/
-    int current_field; ///< YADIFCurrentField
+    int current_field; ///<
 }
 
 void ff_yadif_init_x86 (YADIFContext *yadif);

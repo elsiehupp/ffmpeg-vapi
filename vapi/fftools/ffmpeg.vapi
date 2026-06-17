@@ -16,6 +16,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cheader_filename = "subprojects/ffmpeg/fftools/ffmpeg.h")]
+namespace FFmpeg {
+
+[CCode (cname="")]
 #define VSYNC_AUTO       -1
 #define VSYNC_PASSTHROUGH 0
 #define VSYNC_CFR         1
@@ -23,10 +27,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VSYNC_VSCFR       0xfe
 #define VSYNC_DROP        0xff
 
+[CCode (cname="")]
 #define MAX_STREAMS 1024    /***********************************************************
     arbitrary sanity check value
 ***********************************************************/
 
+[CCode (cname="")]
 enum HWAccelID {
     HWACCEL_NONE = 0,
     HWACCEL_AUTO,
@@ -36,14 +42,18 @@ enum HWAccelID {
     HWACCEL_CUVID,
 }
 
-public struct HWAccel {
+[CCode (cname="")]
+[Compact]
+public class HWAccel {
     string name;
     int (*init)(AVCodecContext *s);
     enum HWAccelID id;
     enum AVPixelFormat pix_fmt;
 }
 
-public struct HWDevice {
+[CCode (cname="")]
+[Compact]
+public class HWDevice {
     string name;
     enum AVHWDeviceType type;
     AVBufferRef *device_ref;
@@ -52,25 +62,52 @@ public struct HWDevice {
 /***********************************************************
 select an input stream for an output stream
 ***********************************************************/
-public struct StreamMap {
-    int disabled; /***********************************************************
+[CCode (cname="")]
+[Compact]
+public class StreamMap {
+    /***********************************************************
     1 is this mapping is disabled by a negative map
     ***********************************************************/
-    int file_index;
-    int stream_index;
-    int sync_file_index;
-    int sync_stream_index;
-    string linklabel; /***********************************************************
+    public int disabled;
+    public int file_index;
+    public int stream_index;
+    public int sync_file_index;
+    public int sync_stream_index;
+    /***********************************************************
     name of an output link, for mapping lavfi outputs
-***********************************************************/
+    ***********************************************************/
+    public string linklabel;
 }
 
-public struct AudioChannelMap {
-    int  file_idx,  stream_idx,  channel_idx; // input
-    int ofile_idx, ostream_idx; // output
+[CCode (cname="")]
+[Compact]
+public class AudioChannelMap {
+    /***********************************************************
+    input
+    ***********************************************************/
+    int file_idx;
+    /***********************************************************
+    input
+    ***********************************************************/
+    int stream_idx;
+    /***********************************************************
+    input
+    ***********************************************************/
+    int channel_idx;
+
+    /***********************************************************
+    output
+    ***********************************************************/
+    int ofile_idx;
+    /***********************************************************
+    output
+    ***********************************************************/
+    int ostream_idx;
 }
 
-public struct OptionsContext {
+[CCode (cname="")]
+[Compact]
+public class OptionsContext {
     OptionGroup *g;
 
     /***********************************************************
@@ -121,12 +158,14 @@ public struct OptionsContext {
     ***********************************************************/
     StreamMap *stream_maps;
     int     nb_stream_maps;
-    AudioChannelMap *audio_channel_maps; /***********************************************************
+    /***********************************************************
     one info entry per -map_channel
     ***********************************************************/
-    int           nb_audio_channel_maps; /***********************************************************
+    AudioChannelMap *audio_channel_maps;
+    /***********************************************************
     number of (valid) -map_channel settings
     ***********************************************************/
+    int           nb_audio_channel_maps;
     int metadata_global_manual;
     int metadata_streams_manual;
     int metadata_chapters_manual;
@@ -222,11 +261,15 @@ public struct OptionsContext {
     int        nb_enc_time_bases;
 }
 
-public struct InputFilter {
+[CCode (cname="")]
+[Compact]
+public class InputFilter {
     AVFilterContext    *filter;
-    struct InputStream *ist;
-    struct FilterGraph *graph;
+    InputStream *ist;
+    FilterGraph *graph;
     uint8            *name;
+    /***********************************************************
+    ***********************************************************/
     enum AVMediaType    type; // AVMEDIA_TYPE_SUBTITLE for sub2video
 
     AVFifoBuffer *frame_queue;
@@ -246,10 +289,12 @@ public struct InputFilter {
     int eof;
 }
 
-public struct OutputFilter {
+[CCode (cname="")]
+[Compact]
+public class OutputFilter {
     AVFilterContext     *filter;
-    struct OutputStream *ost;
-    struct FilterGraph  *graph;
+    OutputStream *ost;
+    FilterGraph  *graph;
     uint8             *name;
 
     /***********************************************************
@@ -273,7 +318,9 @@ public struct OutputFilter {
     int[] sample_rates;
 }
 
-public struct FilterGraph {
+[CCode (cname="")]
+[Compact]
+public classFilterGraph {
     int            index;
     const char    *graph_desc;
 
@@ -286,38 +333,53 @@ public struct FilterGraph {
     int         nb_outputs;
 }
 
-public struct InputStream {
+[CCode (cname="")]
+[Compact]
+public classInputStream {
     int file_index;
     AVStream *st;
-    int discard; /***********************************************************
+    /***********************************************************
     true if stream data should be discarded
     ***********************************************************/
+    int discard;
     int user_set_discard;
-    int decoding_needed; /***********************************************************
+    /***********************************************************
     non zero if the packets must be decoded in 'raw_fifo', see DECODING_FOR_*
-***********************************************************/
+    ***********************************************************/
+    int decoding_needed;
 #define DECODING_FOR_OST    1
 #define DECODING_FOR_FILTER 2
 
     AVCodecContext *dec_ctx;
+    /***********************************************************
+    a ref of decoded_frame, to be sent to filters
+    ***********************************************************/
     AVCodec *dec;
     AVFrame *decoded_frame;
-    AVFrame *filter_frame; /***********************************************************
-    a ref of decoded_frame, to be sent to filters
-***********************************************************/
+    AVFrame *filter_frame;
 
-    int64       start; /***********************************************************
+    /***********************************************************
     time when read started
     ***********************************************************/
+    int64       start;
     /***********************************************************
     predicted dts of the next packet read for this stream or (when there are
      * several frames in a packet) of the next frame in current packet (in AV_TIME_BASE units)
     ***********************************************************/
     int64       next_dts;
-    int64       dts; ///< dts of the last packet read for this stream (in AV_TIME_BASE units)
+    /***********************************************************
+    dts of the last packet read for this stream (in AV_TIME_BASE units)
+    ***********************************************************/
+    int64       dts; ///<
 
-    int64       next_pts; ///< synthetic pts for the next decode frame (in AV_TIME_BASE units)
-    int64       pts; ///< current pts of the decoded frame  (in AV_TIME_BASE units)
+    /***********************************************************
+    synthetic pts for the next decode frame (in AV_TIME_BASE units)
+    ***********************************************************/
+    int64       next_pts; ///<
+    /***********************************************************
+    current pts of the decoded frame  (in AV_TIME_BASE units)
+    ***********************************************************/
+    int64       pts; ///<
     int           wrap_correction_done;
 
     int64 filter_in_rescale_delta_last;
@@ -329,13 +391,15 @@ public struct InputStream {
     pts with the higher value in a current stream
 ***********************************************************/
 
+    /***********************************************************
+    ***********************************************************/
     // when forcing constant input framerate through -r,
     // this contains the pts that will be given to the next decoded frame
     int64 cfr_next_pts;
 
     int64 nb_samples; /***********************************************************
     number of samples in the last decoded audio frame before looping
-***********************************************************/
+    ***********************************************************/
 
     double ts_scale;
     int saw_first_ts;
@@ -349,21 +413,32 @@ public struct InputStream {
     int autorotate;
 
     int fix_sub_duration;
-    struct { /***********************************************************
+
+    /***********************************************************
     previous decoded subtitle and related variables
     ***********************************************************/
+    [Compact]
+    public class PrevSub { // not a declared type!!!
         int got_output;
         int ret;
         AVSubtitle subtitle;
-    } prev_sub;
+    }
 
-    struct sub2video {
+    PrevSub prev_sub;
+
+    [Compact]
+    public class sub2video {
         int64 last_pts;
         int64 end_pts;
-        AVFifoBuffer *sub_queue; ///< queue of AVSubtitle* before filter init
+        /***********************************************************
+        queue of AVSubtitle* before filter init
+        ***********************************************************/
+        AVFifoBuffer *sub_queue; ///<
         AVFrame *frame;
-        int w, h;
-    } sub2video;
+        int w;
+        int h;
+    }
+    sub2video sub2video;
 
     int dr1;
 
@@ -414,7 +489,9 @@ public struct InputStream {
     int got_output;
 }
 
-public struct InputFile {
+[CCode (cname="")]
+[Compact]
+public class InputFile {
     AVFormatContext *ctx;
     int eof_reached; /***********************************************************
     true if eof reached
@@ -471,6 +548,7 @@ public struct InputFile {
 #endif
 }
 
+[CCode (cname="")]
 enum forced_keyframes_const {
     FKF_N,
     FKF_N_FORCED,
@@ -480,187 +558,215 @@ enum forced_keyframes_const {
     FKF_NB
 }
 
+[CCode (cname="")]
 #define ABORT_ON_FLAG_EMPTY_OUTPUT (1 <<  0)
 
 //  extern string const forced_keyframes_const_names[];
 
+[CCode (cname="")]
 public enum OSTFinished {
     ENCODER_FINISHED = 1,
     MUXER_FINISHED = 2,
 }
 
-public struct OutputStream {
-    int file_index; /***********************************************************
+[CCode (cname="")]
+[Compact]
+public class OutputStream {
+    /***********************************************************
     file index
     ***********************************************************/
-    int index; /***********************************************************
+    public int file_index;
+    /***********************************************************
     stream index in the output file
     ***********************************************************/
-    int source_index; /***********************************************************
+    public int index;
+    /***********************************************************
     InputStream index
     ***********************************************************/
-    AVStream *st; /***********************************************************
+    public int source_index;
+    /***********************************************************
     stream in the output file
     ***********************************************************/
-    int encoding_needed; /***********************************************************
+    public AVStream *st;
+    /***********************************************************
     true if encoding needed for this stream
     ***********************************************************/
-    int frame_number;
+    public int encoding_needed;
+    public int frame_number;
+
     /***********************************************************
     input pts and corresponding output pts
        for A/V sync
     ***********************************************************/
-    struct InputStream *sync_ist; /***********************************************************
+    /***********************************************************
     input stream to sync against
     ***********************************************************/
-    int64 sync_opts; /***********************************************************
-    output frame counter, could be changed to some true timestamp */ // FIXME look at frame_number
+    public InputStream *sync_ist;
+    /***********************************************************
+    output frame counter, could be changed to some true timestamp
+    // FIXME look at frame_number
+    ***********************************************************/
+    public int64 sync_opts;
     /***********************************************************
     pts of the first frame encoded for this stream, used for limiting
      * recording time
     ***********************************************************/
-    int64 first_pts;
+    public int64 first_pts;
     /***********************************************************
     dts of the last packet sent to the muxer
     ***********************************************************/
-    int64 last_mux_dts;
+    public int64 last_mux_dts;
     // the timebase of the packets sent to the muxer
-    AVRational mux_timebase;
-    AVRational enc_timebase;
+    public AVRational mux_timebase;
+    public AVRational enc_timebase;
 
-    int                    nb_bitstream_filters;
-    AVBSFContext            **bsf_ctx;
+    public int                    nb_bitstream_filters;
+    public AVBSFContext            **bsf_ctx;
 
-    AVCodecContext *enc_ctx;
-    AVCodecParameters *ref_par; /***********************************************************
+    public AVCodecContext *enc_ctx;
+    public AVCodecParameters *ref_par; /***********************************************************
     associated input codec parameters with encoders options applied
     ***********************************************************/
-    AVCodec *enc;
-    int64 max_frames;
-    AVFrame *filtered_frame;
-    AVFrame *last_frame;
-    int last_dropped;
-    int last_nb0_frames[3];
+    public AVCodec *enc;
+    public int64 max_frames;
+    public AVFrame *filtered_frame;
+    public AVFrame *last_frame;
+    public int last_dropped;
+    public int last_nb0_frames[3];
 
-    void  *hwaccel_ctx;
+    public void  *hwaccel_ctx;
 
     /***********************************************************
     video only
     ***********************************************************/
-    AVRational frame_rate;
-    int is_cfr;
-    int force_fps;
-    int top_field_first;
-    int rotate_overridden;
-    double rotate_override_value;
+    public AVRational frame_rate;
+    public int is_cfr;
+    public int force_fps;
+    public int top_field_first;
+    public int rotate_overridden;
+    public double rotate_override_value;
 
-    AVRational frame_aspect_ratio;
+    public AVRational frame_aspect_ratio;
 
     /***********************************************************
     forced key frames
     ***********************************************************/
-    int64 forced_kf_ref_pts;
-    int64 *forced_kf_pts;
-    int forced_kf_count;
-    int forced_kf_index;
-    string forced_keyframes;
-    AVExpr *forced_keyframes_pexpr;
-    double forced_keyframes_expr_const_values[FKF_NB];
+    public int64 forced_kf_ref_pts;
+    public int64 *forced_kf_pts;
+    public int forced_kf_count;
+    public int forced_kf_index;
+    public string forced_keyframes;
+    public AVExpr *forced_keyframes_pexpr;
+    public double forced_keyframes_expr_const_values[FKF_NB];
 
     /***********************************************************
     audio only
     ***********************************************************/
-    int[] audio_channels_map; /***********************************************************
+    public int[] audio_channels_map; /***********************************************************
     list of the channels id to pick from the source stream
     ***********************************************************/
-    int audio_channels_mapped; /***********************************************************
+    public int audio_channels_mapped; /***********************************************************
     number of channels in audio_channels_map
-***********************************************************/
+    ***********************************************************/
 
-    string logfile_prefix;
-    FILE *logfile;
+    public string logfile_prefix;
+    public FILE *logfile;
 
-    OutputFilter *filter;
-    string avfilter;
-    string filters; ///< filtergraph associated to the -filter option
-    string filters_script; ///< filtergraph script associated to the -filter_script option
+    public OutputFilter *filter;
+    public string avfilter;
+    /***********************************************************
+    filtergraph associated to the -filter option
+    ***********************************************************/
+    public string filters; ///<
+    /***********************************************************
+    filtergraph script associated to the -filter_script option
+    ***********************************************************/
+    public string filters_script; ///<
 
-    AVDictionary *encoder_opts;
-    AVDictionary *sws_dict;
-    AVDictionary *swr_opts;
-    AVDictionary *resample_opts;
-    string apad;
-    OSTFinished finished; /***********************************************************
+    public AVDictionary *encoder_opts;
+    public AVDictionary *sws_dict;
+    public AVDictionary *swr_opts;
+    public AVDictionary *resample_opts;
+    public string apad;
+    public OSTFinished finished; /***********************************************************
     no more packets should be written for this stream
     ***********************************************************/
-    int unavailable; /***********************************************************
+    public int unavailable; /***********************************************************
     true if the steram is unavailable (possibly temporarily)
     ***********************************************************/
-    int stream_copy;
+    public int stream_copy;
 
     // init_output_stream () has been called for this stream
     // The encoder and the bitstream filters have been initialized and the stream
     // parameters are set in the AVStream.
-    int initialized;
+    public int initialized;
 
-    int inputs_done;
+    public int inputs_done;
 
-    string attachment_filename;
-    int copy_initial_nonkeyframes;
-    int copy_prior_start;
-    string disposition;
+    public string attachment_filename;
+    public int copy_initial_nonkeyframes;
+    public int copy_prior_start;
+    public string disposition;
 
-    int keep_pix_fmt;
+    public int keep_pix_fmt;
 
     /***********************************************************
     stats
     ***********************************************************/
     // combined size of all the packets written
-    uint64 data_size;
+    public uint64 data_size;
     // number of packets send to the muxer
-    uint64 packets_written;
+    public uint64 packets_written;
     // number of frames/samples sent to the encoder
-    uint64 frames_encoded;
-    uint64 samples_encoded;
+    public uint64 frames_encoded;
+    public uint64 samples_encoded;
 
     /***********************************************************
     packet quality factor
     ***********************************************************/
-    int quality;
+    public int quality;
 
-    int max_muxing_queue_size;
+    public int max_muxing_queue_size;
 
     /***********************************************************
     the packets are buffered here until the muxer is ready to be initialized
     ***********************************************************/
-    AVFifoBuffer *muxing_queue;
+    public AVFifoBuffer *muxing_queue;
 
     /***********************************************************
     packet picture type
     ***********************************************************/
-    int pict_type;
+    public int pict_type;
 
     /***********************************************************
     frame encode sum of squared error values
     ***********************************************************/
-    int64 error[4];
+    public int64 error[4];
 }
 
-public struct OutputFile {
-    AVFormatContext *ctx;
-    AVDictionary *opts;
-    int ost_index; /***********************************************************
+[CCode (cname="")]
+[Compact]
+public class OutputFile {
+    public AVFormatContext *ctx;
+    public AVDictionary *opts;
+    public int ost_index; /***********************************************************
     index of the first stream in output_streams
     ***********************************************************/
-    int64 recording_time; ///< desired length of the resulting file in microseconds == AV_TIME_BASE units
-    int64 start_time; ///< start time in microseconds == AV_TIME_BASE units
-    uint64 limit_filesize; /***********************************************************
+    /***********************************************************
+    desired length of the resulting file in microseconds == AV_TIME_BASE units
+    ***********************************************************/
+    public int64 recording_time; ///<
+    /***********************************************************
+    start time in microseconds == AV_TIME_BASE units
+    ***********************************************************/
+    public int64 start_time; ///<
+    public uint64 limit_filesize; /***********************************************************
     filesize limit expressed in bytes
-***********************************************************/
+    ***********************************************************/
 
-    int shortest;
+    public int shortest;
 
-    int header_written;
+    public int header_written;
 }
 
 //  extern InputStream **input_streams;
@@ -721,45 +827,74 @@ public struct OutputFile {
 //  extern HWDevice *filter_hw_device;
 
 
+[CCode (cname="")]
 void term_init ();
+[CCode (cname="")]
 void term_exit ();
 
+[CCode (cname="")]
 void reset_options (OptionsContext *o, int is_input);
+[CCode (cname="")]
 void show_usage ();
 
+[CCode (cname="")]
 void opt_output_file (void *optctx, string filename);
 
+[CCode (cname="")]
 void remove_avoptions (AVDictionary **a, AVDictionary *b);
+[CCode (cname="")]
 void assert_avoptions (AVDictionary *m);
 
+[CCode (cname="")]
 int guess_input_channel_layout (InputStream *ist);
 
+[CCode (cname="")]
 enum AVPixelFormat choose_pixel_fmt (AVStream *st, AVCodecContext *avctx, AVCodec *codec, AVPixelFormat target);
+[CCode (cname="")]
 void choose_sample_fmt (AVStream *st, AVCodec *codec);
 
+[CCode (cname="")]
 int configure_filtergraph (FilterGraph *fg);
+[CCode (cname="")]
 int configure_output_filter (FilterGraph *fg, OutputFilter *ofilter, AVFilterInOut *out);
+[CCode (cname="")]
 void check_filter_outputs ();
+[CCode (cname="")]
 int ist_in_filtergraph (FilterGraph *fg, InputStream *ist);
+[CCode (cname="")]
 int filtergraph_is_simple (FilterGraph *fg);
+[CCode (cname="")]
 int init_simple_filtergraph (InputStream *ist, OutputStream *ost);
+[CCode (cname="")]
 int init_complex_filtergraph (FilterGraph *fg);
 
+[CCode (cname="")]
 void sub2video_update (InputStream *ist, AVSubtitle *sub);
 
+[CCode (cname="")]
 int ifilter_parameters_from_frame (InputFilter *ifilter, AVFrame *frame);
 
+[CCode (cname="")]
 int ffmpeg_parse_options (int argc, string *argv);
 
+[CCode (cname="")]
 int videotoolbox_init (AVCodecContext *s);
+[CCode (cname="")]
 int qsv_init (AVCodecContext *s);
+[CCode (cname="")]
 int cuvid_init (AVCodecContext *s);
 
+[CCode (cname="")]
 HWDevice *hw_device_get_by_name (string name);
+[CCode (cname="")]
 int hw_device_init_from_string (string arg, HWDevice **dev);
+[CCode (cname="")]
 void hw_device_free_all ();
 
+[CCode (cname="")]
 int hw_device_setup_for_decode (InputStream *ist);
+[CCode (cname="")]
 int hw_device_setup_for_encode (OutputStream *ost);
 
+[CCode (cname="")]
 int hwaccel_decode_init (AVCodecContext *avctx);

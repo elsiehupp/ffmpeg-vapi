@@ -24,7 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct DHAVContext", cheader_filename="")]
-public struct DHAVDemuxerPrivateData { }
+[Compact]
+public class DHAVDemuxerPrivateData { }
 
 [CCode (cname="ff_dhav_demuxer", cheader_filename="")]
 public class DHAVDemuxer : AVInputFormat {

@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct SMJPEGContext", cheader_filename="")]
-public struct SMJPEGDemuxerPrivateData { }
+[Compact]
+public class SMJPEGDemuxerPrivateData { }
 
 [CCode (cname="ff_smjpeg_demuxer", cheader_filename="")]
 public class SMJPEGDemuxer : AVInputFormat {

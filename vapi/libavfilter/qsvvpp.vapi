@@ -32,14 +32,32 @@ Intel Quick Sync Video VPP base function
     ((MFX_VERSION.Major > (MAJOR)) ||                           \
     (MFX_VERSION.Major == (MAJOR) && MFX_VERSION.Minor >= (MINOR)))
 
-public struct QSVVPPContext QSVVPPContext;
+[Compact]
+public class QSVVPPContext QSVVPPContext;
 
-public struct QSVVPPCrop {
-    int in_idx; ///< Input index
-    int x, y, w, h; ///< Crop rectangle
+[Compact]
+public class QSVVPPCrop {
+    /***********************************************************
+    Input index
+    ***********************************************************/
+    int in_idx; ///<
+    /***********************************************************
+    Crop rectangle
+    ***********************************************************/
+    /***********************************************************
+    Crop rectangle
+    ***********************************************************/
+    /***********************************************************
+    Crop rectangle
+    ***********************************************************/
+    /***********************************************************
+    Crop rectangle
+    ***********************************************************/
+    int x, y, w, h; ///<
 }
 
-public struct QSVVPPParam {
+[Compact]
+public class QSVVPPParam {
     /***********************************************************
     default is ff_filter_frame
     ***********************************************************/

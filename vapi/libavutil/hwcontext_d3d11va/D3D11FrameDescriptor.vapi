@@ -45,7 +45,8 @@ This has no use outside of custom allocation, and Frame LibAVUtil.BufferRef do n
 necessarily point to an instance of this struct.
 ***********************************************************/
 [CCode (cname="struct AVD3D11FrameDescriptor", cheader_filename="ffmpeg/libavutil/hwcontext_d3d11va.h")]
-public struct D3D11FrameDescriptor {
+[Compact]
+public class D3D11FrameDescriptor {
     /***********************************************************
     @brief The texture in which the frame is located. The reference count is
     managed by the LibAVUtil.BufferRef, and destroying the reference will release

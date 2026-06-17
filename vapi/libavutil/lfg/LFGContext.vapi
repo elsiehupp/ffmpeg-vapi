@@ -29,7 +29,8 @@ not be accessed directly. Only its sizeof () is guranteed to stay the same
 to allow easy instantiation.
 ***********************************************************/
 [CCode (cname="struct AVLFG", cheader_filename="ffmpeg/libavutil/lfg.h")]
-public struct LFGContext {
+[Compact]
+public class LFGContext {
     [CCode (cname="state")]
     public uint state[64];
 

@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct SCCContext", cheader_filename="")]
-public struct SCCMuxerPrivateData { }
+[Compact]
+public class SCCMuxerPrivateData { }
 
 [CCode (cname="ff_scc_muxer", cheader_filename="")]
 public class SCCMuxer : AVOutputFormat {

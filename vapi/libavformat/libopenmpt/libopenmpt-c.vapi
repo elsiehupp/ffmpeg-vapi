@@ -52,7 +52,8 @@ public class LibOpenMptDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct OpenMPTContext", cheader_filename="")]
-public struct LibOpenMptDemuxerPrivateData { }
+[Compact]
+public class LibOpenMptDemuxerPrivateData { }
 
 [CCode (cname="ff_libopenmpt_demuxer", cheader_filename="")]
 public class LibOpenMptDemuxer : AVInputFormat {

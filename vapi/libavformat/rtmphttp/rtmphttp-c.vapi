@@ -61,7 +61,8 @@ public class RTMPHTTPURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct RTMP_HTTPContext", cheader_filename="")]
-public struct RTMPHTTPPrivateData { }
+[Compact]
+public class RTMPHTTPPrivateData { }
 
 [CCode (cname="ff_ffrtmphttp_protocol", cheader_filename="")]
 public class RTMPHTTPURLProtocol : URLProtocol {

@@ -27,7 +27,8 @@ namespace LibAVUtil {
 ***********************************************************/
 
 [CCode (cname="struct AVTimecode", cheader_filename="ffmpeg/libavutil/timecode.h")]
-public struct TimeCode {
+[Compact]
+public class TimeCode {
     [CCode (cname="AV_TIMECODE_STR_SIZE", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public const size_t SIZE;
 

@@ -41,7 +41,8 @@ VC-2 Specification ->
 ***********************************************************/
 
 [CCode (cname="struct AVDiracSeqHeader", cheader_filename="ffmpeg/libavcodec/dirac.h")]
-public struct DiracSequenceHeader {
+[Compact]
+public class DiracSequenceHeader {
     /***********************************************************
     @brief The spec limits the number of wavelet decompositions to 4 for both
     level 1 (VC-2) and 128 (long-gop default).

@@ -58,7 +58,8 @@ public class SegaFilmMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct FILMOutputContext", cheader_filename="")]
-public struct SegaFilmMuxerPrivateData { }
+[Compact]
+public class SegaFilmMuxerPrivateData { }
 
 [CCode (cname="ff_segafilm_muxer", cheader_filename="")]
 public class SegaFilmMuxer : AVOutputFormat {

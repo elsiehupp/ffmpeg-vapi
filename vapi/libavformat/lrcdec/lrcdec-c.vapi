@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct LRCContext", cheader_filename="")]
-public struct LRCDemuxerPrivateData { }
+[Compact]
+public class LRCDemuxerPrivateData { }
 
 [CCode (cname="ff_lrc_demuxer", cheader_filename="")]
 public class LRCDemuxer : AVInputFormat {

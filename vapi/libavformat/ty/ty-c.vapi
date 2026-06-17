@@ -27,7 +27,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct TYDemuxContext", cheader_filename="")]
-public struct TYDemuxerPrivateData { }
+[Compact]
+public class TYDemuxerPrivateData { }
 
 [CCode (cname="ff_ty_demuxer", cheader_filename="")]
 public class TYDemuxer : AVInputFormat {

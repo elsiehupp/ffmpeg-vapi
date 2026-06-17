@@ -32,7 +32,8 @@ roughly corresponds to a subset the VBV parameters for MPEG-2 or HRD
 parameters for H.264/HEVC.
 ***********************************************************/
 [CCode (cname="struct AVCPBProperties", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct CPBProperties {
+[Compact]
+public class CPBProperties {
     /***********************************************************
     @brief Maximum bitrate of the stream, in bits per second.
     Zero if unknown or unspecified.

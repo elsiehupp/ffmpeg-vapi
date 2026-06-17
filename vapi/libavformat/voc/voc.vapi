@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct voc_dec_context")]
-public struct VocDecContext {
+[Compact]
+public class VocDecContext {
     [CCode (cname="", cheader_filename="")]
     public int64 remaining_size;
 

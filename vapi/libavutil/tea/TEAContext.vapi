@@ -28,7 +28,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="struct AVTEA", cheader_filename="ffmpeg/libavutil/tea.h")]
-public struct TEAContext {
+[Compact]
+public class TEAContext {
     [CCode (cname="av_tea_size", cheader_filename="ffmpeg/libavutil/tea.h")]
     public const size_t SIZE;
 

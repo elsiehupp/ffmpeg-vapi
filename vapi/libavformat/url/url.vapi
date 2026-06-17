@@ -36,7 +36,8 @@ public enum URLProtocolFlags {
 //  extern const LibAVUtil.Class ffurl_context_class;
 
 [CCode (cname="struct URLContext", cheader_filename="")]
-public struct URLContext {
+[Compact]
+public class URLContext {
     /***********************************************************
     @brief Information for av_log (). Set by url_open ().
         ***********************************************************/

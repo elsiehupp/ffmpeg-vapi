@@ -31,7 +31,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct VividasDemuxContext", cheader_filename="")]
-public struct VividasDemuxerPrivateData { }
+[Compact]
+public class VividasDemuxerPrivateData { }
 
 [CCode (cname="ff_vividas_demuxer", cheader_filename="")]
 public class VividasDemuxer : AVInputFormat {

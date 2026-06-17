@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct XWMAContext", cheader_filename="")]
-public struct XWMADemuxerPrivateData { }
+[Compact]
+public class XWMADemuxerPrivateData { }
 
 [CCode (cname="ff_xwma_demuxer", cheader_filename="")]
 public class XWMADemuxer : AVInputFormat {

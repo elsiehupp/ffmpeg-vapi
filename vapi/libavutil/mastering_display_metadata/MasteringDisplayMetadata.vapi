@@ -32,7 +32,8 @@ appropriate type.
       and its size is not a part of the public ABI.
 ***********************************************************/
 [CCode (cname="struct AVMasteringDisplayMetadata", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
-public struct MasteringDisplayMetadata {
+[Compact]
+public class MasteringDisplayMetadata {
     /***********************************************************
     @brief CIE 1931 xy chromaticity coords of color primaries (r, g, b order).
         ***********************************************************/

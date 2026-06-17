@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct GDVContext", cheader_filename="")]
-public struct GDVDemuxerPrivateData { }
+[Compact]
+public class GDVDemuxerPrivateData { }
 
 [CCode (cname="ff_gdv_demuxer", cheader_filename="")]
 public class GDVDemuxer : AVInputFormat {

@@ -53,7 +53,8 @@ public class LibModPlugDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct ModPlugContext", cheader_filename="")]
-public struct LibModPlugDemuxerPrivateData { }
+[Compact]
+public class LibModPlugDemuxerPrivateData { }
 
 [CCode (cname="ff_libmodplug_demuxer", cheader_filename="")]
 public class LibModPlugDemuxer : AVInputFormat {

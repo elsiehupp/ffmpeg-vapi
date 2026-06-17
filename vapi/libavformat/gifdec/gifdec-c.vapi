@@ -65,7 +65,8 @@ public class GIFDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct GIFDemuxContext", cheader_filename="")]
-public struct GIFDemuxerPrivateData { }
+[Compact]
+public class GIFDemuxerPrivateData { }
 
 [CCode (cname="ff_gif_demuxer", cheader_filename="")]
 public class GIFDemuxer : AVInputFormat {

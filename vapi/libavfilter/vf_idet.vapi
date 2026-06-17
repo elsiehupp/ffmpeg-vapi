@@ -33,7 +33,8 @@ public enum RepeatedField {
     REPEAT_BOTTOM,
 }
 
-public struct IDETContext {
+[Compact]
+public class IDETContext {
     const AVClass *class;
     float interlace_threshold;
     float progressive_threshold;

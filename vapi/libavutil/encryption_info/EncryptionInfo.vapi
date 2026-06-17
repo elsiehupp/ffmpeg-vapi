@@ -25,7 +25,8 @@ info for how to decrypt the packet before passing it to the decoder.
 The size of this struct is not part of the public ABI.
 ***********************************************************/
 [CCode (cname="struct AVEncryptionInfo", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
-public struct EncryptionInfo {
+[Compact]
+public class EncryptionInfo {
     /***********************************************************
     @brief The fourcc encryption scheme, in big-endian byte order.
         ***********************************************************/

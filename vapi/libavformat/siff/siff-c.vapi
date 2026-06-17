@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct SIFFContext", cheader_filename="")]
-public struct SIFFDemuxerPrivateData { }
+[Compact]
+public class SIFFDemuxerPrivateData { }
 
 [CCode (cname="ff_siff_demuxer", cheader_filename="")]
 public class SIFFDemuxer : AVInputFormat {

@@ -88,7 +88,8 @@ public abstract class OggCodec {
 }
 
 [CCode (cname="struct ogg_stream", cheader_filename="")]
-public struct OggStream {
+[Compact]
+public class OggStream {
     [CCode (cname="", cheader_filename="")]
     public uint8[] buffer;
 
@@ -202,7 +203,8 @@ public struct OggStream {
 }
 
 [CCode (cname="struct ogg_state", cheader_filename="")]
-public struct OggState {
+[Compact]
+public class OggState {
     [CCode (cname="", cheader_filename="")]
     public uint64 pos;
 
@@ -220,7 +222,8 @@ public struct OggState {
 }
 
 [CCode (cname="struct ogg", cheader_filename="")]
-public struct Ogg {
+[Compact]
+public class Ogg {
     [CCode (cname="", cheader_filename="")]
     public OggStream[] streams;
 

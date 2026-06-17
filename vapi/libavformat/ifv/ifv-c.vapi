@@ -24,7 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct IFVContext", cheader_filename="")]
-public struct IFVDemuxerPrivateData { }
+[Compact]
+public class IFVDemuxerPrivateData { }
 
 [CCode (cname="ff_ifv_demuxer", cheader_filename="")]
 public class IFVDemuxer : AVInputFormat {

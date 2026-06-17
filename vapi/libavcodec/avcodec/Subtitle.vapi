@@ -27,7 +27,8 @@ LibAVCodec external API header
 ***********************************************************/
 
 [CCode (cname="struct AVSubtitle", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct Subtitle {
+[Compact]
+public class Subtitle {
     /***********************************************************
     @brief 0 = graphics
         ***********************************************************/

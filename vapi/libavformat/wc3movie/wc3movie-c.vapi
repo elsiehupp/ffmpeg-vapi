@@ -30,7 +30,8 @@ http://www.pcisys.net/~melanson/codecs/
 ***********************************************************/
 
 [CCode (cname="struct Wc3DemuxContext", cheader_filename="")]
-public struct WC3DemuxerPrivateData { }
+[Compact]
+public class WC3DemuxerPrivateData { }
 
 [CCode (cname="ff_wc3_demuxer", cheader_filename="")]
 public class WC3Demuxer : AVInputFormat {

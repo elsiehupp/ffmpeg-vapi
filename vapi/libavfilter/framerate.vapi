@@ -27,37 +27,95 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 typedef void (*blend_func)(BLEND_FUNC_PARAMS);
 
-public struct FrameRateContext {
+[Compact]
+public class FrameRateContext {
     const AVClass *class;
     // parameters
-    AVRational dest_frame_rate; ///< output frames per second
-    int flags; ///< flags affecting frame rate conversion algorithm
-    double scene_score; ///< score that denotes a scene change has happened
-    int interp_start; ///< start of range to apply linear interpolation
-    int interp_end; ///< end of range to apply linear interpolation
+    /***********************************************************
+    output frames per second
+    ***********************************************************/
+    AVRational dest_frame_rate; ///<
+    /***********************************************************
+    flags affecting frame rate conversion algorithm
+    ***********************************************************/
+    int flags; ///<
+    /***********************************************************
+    score that denotes a scene change has happened
+    ***********************************************************/
+    double scene_score; ///<
+    /***********************************************************
+    start of range to apply linear interpolation
+    ***********************************************************/
+    int interp_start; ///<
+    /***********************************************************
+    end of range to apply linear interpolation
+    ***********************************************************/
+    int interp_end; ///<
 
-    int line_size[4]; ///< bytes of pixel data per line for each plane
+    /***********************************************************
+    bytes of pixel data per line for each plane
+    ***********************************************************/
+    int line_size[4]; ///<
     int vsub;
 
-    AVRational srce_time_base; ///< timebase of source
-    AVRational dest_time_base; ///< timebase of destination
+    /***********************************************************
+    timebase of source
+    ***********************************************************/
+    AVRational srce_time_base; ///<
+    /***********************************************************
+    timebase of destination
+    ***********************************************************/
+    AVRational dest_time_base; ///<
 
-    ff_scene_sad_fn sad; ///< Sum of the absolute difference function (scene detect only)
-    double prev_mafd; ///< previous MAFD                           (scene detect only)
+    /***********************************************************
+    Sum of the absolute difference function (scene detect only)
+    ***********************************************************/
+    ff_scene_sad_fn sad; ///<
+    /***********************************************************
+    previous MAFD                           (scene detect only)
+    ***********************************************************/
+    double prev_mafd; ///<
 
     int blend_factor_max;
     int bitdepth;
     AVFrame *work;
 
-    AVFrame *f0; ///< last frame
-    AVFrame *f1; ///< current frame
-    int64 pts0; ///< last frame pts in dest_time_base
-    int64 pts1; ///< current frame pts in dest_time_base
-    int64 delta; ///< pts1 to pts0 delta
-    double score; ///< scene change score (f0 to f1)
-    int flush; ///< 1 if the filter is being flushed
-    int64 start_pts; ///< pts of the first output frame
-    int64 n; ///< output frame counter
+    /***********************************************************
+    last frame
+    ***********************************************************/
+    AVFrame *f0; ///<
+    /***********************************************************
+    current frame
+    ***********************************************************/
+    AVFrame *f1; ///<
+    /***********************************************************
+    last frame pts in dest_time_base
+    ***********************************************************/
+    int64 pts0; ///<
+    /***********************************************************
+    current frame pts in dest_time_base
+    ***********************************************************/
+    int64 pts1; ///<
+    /***********************************************************
+    pts1 to pts0 delta
+    ***********************************************************/
+    int64 delta; ///<
+    /***********************************************************
+    scene change score (f0 to f1)
+    ***********************************************************/
+    double score; ///<
+    /***********************************************************
+    1 if the filter is being flushed
+    ***********************************************************/
+    int flush; ///<
+    /***********************************************************
+    pts of the first output frame
+    ***********************************************************/
+    int64 start_pts; ///<
+    /***********************************************************
+    output frame counter
+    ***********************************************************/
+    int64 n; ///<
 
     blend_func blend;
 }

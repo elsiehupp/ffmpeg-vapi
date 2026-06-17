@@ -43,7 +43,8 @@ public delegate void GetPixelsDelegate (
     disabled at build time.
 ***********************************************************/
 [CCode (cname="struct AVDCT", cheader_filename="ffmpeg/libavcodec/avdct.h")]
-public struct DCT {
+[Compact]
+public class DCT {
     [CCode (cname="av_class")]
     public LibAVUtil.Class av_class;
 

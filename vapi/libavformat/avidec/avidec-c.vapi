@@ -58,7 +58,8 @@ public class AVIDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct AVIContext", cheader_filename="")]
-public struct AVIDemuxerPrivateData { }
+[Compact]
+public class AVIDemuxerPrivateData { }
 
 [CCode (cname="ff_avi_demuxer", cheader_filename="")]
 public class AVIDemuxer : AVInputFormat {

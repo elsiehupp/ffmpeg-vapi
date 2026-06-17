@@ -62,7 +62,8 @@ public class SBGDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct sbg_demuxer", cheader_filename="")]
-public struct SBGDemuxerPrivateData { }
+[Compact]
+public class SBGDemuxerPrivateData { }
 
 [CCode (cname="ff_sbg_demuxer", cheader_filename="")]
 public class SBGDemuxer : AVInputFormat {

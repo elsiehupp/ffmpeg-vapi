@@ -28,7 +28,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct JACOsubContext", cheader_filename="")]
-public struct JacoSubDemuxerPrivateData { }
+[Compact]
+public class JacoSubDemuxerPrivateData { }
 
 [CCode (cname="ff_jacosub_demuxer", cheader_filename="")]
 public class JacoSubDemuxer : AVInputFormat {

@@ -81,7 +81,8 @@ public class RTMPURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct RTMPContext", cheader_filename="")]
-public struct RTMPPrivateData { }
+[Compact]
+public class RTMPPrivateData { }
 
 [CCode (cname="ff_rtmp_protocol", cheader_filename="")]
 public class RTMPURLProtocol : URLProtocol {

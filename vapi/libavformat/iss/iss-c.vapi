@@ -29,7 +29,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct IssDemuxContext", cheader_filename="")]
-public struct ISSDemuxerPrivateData { }
+[Compact]
+public class ISSDemuxerPrivateData { }
 
 [CCode (cname="ff_iss_demuxer", cheader_filename="")]
 public class ISSDemuxer : AVInputFormat {

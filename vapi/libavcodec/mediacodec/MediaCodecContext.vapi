@@ -28,7 +28,8 @@ using LibAVUtil;
 be used as output by the decoder.
 ***********************************************************/
 [CCode (cname="struct AVMediaCodecContext", cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
-public struct LibAVCodec.MediaCodecContext {
+[Compact]
+public class LibAVCodec.MediaCodecContext {
     /***********************************************************
     @brief Android/view/Surface object reference.
         ***********************************************************/

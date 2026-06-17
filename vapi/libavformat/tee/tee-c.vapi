@@ -58,7 +58,8 @@ public class TeeMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct TeeContext", cheader_filename="")]
-public struct TeeMuxerPrivateData { }
+[Compact]
+public class TeeMuxerPrivateData { }
 
 [CCode (cname="ff_tee_muxer", cheader_filename="")]
 public class TeeMuxer : AVOutputFormat {

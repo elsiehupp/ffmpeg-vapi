@@ -19,7 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // ARGB black, for VAProcPipelineParameterBuffer.output_background_color.
 #define VAAPI_VPP_BACKGROUND_BLACK 0xff000000
 
-public struct VAAPIVPPContext {
+[Compact]
+public class VAAPIVPPContext {
     const AVClass *class;
 
     AVVAAPIDeviceContext *hwctx;
@@ -34,7 +35,11 @@ public struct VAAPIVPPContext {
     VARectangle        input_region;
 
     enum AVPixelFormat output_format;
+    /***********************************************************
+    ***********************************************************/
     int output_width; // computed width
+    /***********************************************************
+    ***********************************************************/
     int output_height; // computed height
 
     VABufferID         filter_buffers[VAProcFilterCount];

@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct VPCC", cheader_filename="")]
-public struct VPCC {
+[Compact]
+public class VPCC {
     [CCode (cname="", cheader_filename="")]
     public int profile;
 

@@ -59,7 +59,8 @@ public class SRTPURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct SRTPProtoContext", cheader_filename="")]
-public struct SRTPPrivateData { }
+[Compact]
+public class SRTPPrivateData { }
 
 [CCode (cname="ff_srtp_protocol", cheader_filename="")]
 public class SRTPURLProtocol : URLProtocol {

@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct RTPMuxContext", cheader_filename="")]
-public struct RTPMuxContext {
+[Compact]
+public class RTPMuxContext {
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class av_class;
 

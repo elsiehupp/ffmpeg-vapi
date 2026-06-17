@@ -33,7 +33,8 @@ DV flavors. For now it's primarily used for differentiating
 DV specs as well (e.g. SMPTE314M vs. IEC 61834).
 ***********************************************************/
 [CCode (cname="struct DVProfile", cheader_filename="ffmpeg/libavcodec/dv_profile.h")]
-public struct DVProfile {
+[Compact]
+public class DVProfile {
     /***********************************************************
     @brief Value of the dsf in the DV header
         ***********************************************************/

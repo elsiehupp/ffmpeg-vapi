@@ -26,7 +26,8 @@ namespace LibAVUtil {
 SMPTE 2094-40.
 ***********************************************************/
 [CCode (cname="struct AVHDRPlusColorTransformParams", cheader_filename="ffmpeg/libavutil/hdr_dynamic_metadata.h")]
-public struct HDRPlusColorTransformParameters {
+[Compact]
+public class HDRPlusColorTransformParameters {
     /***********************************************************
     @brief The relative x coordinate of the top left pixel of the processing
     window. The value shall be in the range of 0 and 1, inclusive and

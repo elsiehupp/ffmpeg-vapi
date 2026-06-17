@@ -29,7 +29,8 @@ http://msdn.microsoft.com/en-us/library/cc251059 (PROT.10).aspx
 ***********************************************************/
 
 [CCode (cname="struct MMSHContext", cheader_filename="")]
-public struct MMSHPrivateData { }
+[Compact]
+public class MMSHPrivateData { }
 
 [CCode (cname="ff_mmsh_protocol", cheader_filename="")]
 public class MMSHURLProtocol : URLProtocol {

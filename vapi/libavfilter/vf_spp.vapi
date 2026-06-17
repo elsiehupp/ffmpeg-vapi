@@ -23,7 +23,8 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
     quality levels
 ***********************************************************/
 
-public struct SPPContext {
+[Compact]
+public class SPPContext {
     const AVClass *av_class;
 
     int log2_count;

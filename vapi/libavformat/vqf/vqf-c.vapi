@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct VqfContext", cheader_filename="")]
-public struct VQFDemuxerPrivateData { }
+[Compact]
+public class VQFDemuxerPrivateData { }
 
 [CCode (cname="ff_vqf_demuxer", cheader_filename="")]
 public class VQFDemuxer : AVInputFormat {

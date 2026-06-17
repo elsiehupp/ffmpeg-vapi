@@ -30,7 +30,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct SRTContext", cheader_filename="")]
-public struct SubRipMuxerPrivateData { }
+[Compact]
+public class SubRipMuxerPrivateData { }
 
 [CCode (cname="ff_srt_muxer", cheader_filename="")]
 public class SubRipMuxer : AVOutputFormat {

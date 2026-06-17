@@ -28,7 +28,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="struct AVCAMELLIA", cheader_filename="ffmpeg/libavutil/camellia.h")]
-public struct CAMELLIAContext {
+[Compact]
+public class CAMELLIAContext {
 
     [CCode (cname="av_camellia_size", cheader_filename="ffmpeg/libavutil/camellia.h")]
     public const size_t SIZE;

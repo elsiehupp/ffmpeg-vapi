@@ -28,7 +28,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="struct AVTWOFISH", cheader_filename="ffmpeg/libavutil/twofish.h")]
-public struct TWOFISHContext {
+[Compact]
+public class TWOFISHContext {
     [CCode (cname="av_twofish_size", cheader_filename="ffmpeg/libavutil/twofish.h")]
     public const size_t SIZE;
 

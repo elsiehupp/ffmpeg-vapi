@@ -30,7 +30,8 @@ sizeof (FrameSideData) is not a part of the public ABI,
 so new fields may be added to the end with a minor bump.
 ***********************************************************/
 [CCode (cname="struct AVFrameSideData", cheader_filename="ffmpeg/libavutil/frame.h")]
-public struct FrameSideData {
+[Compact]
+public class FrameSideData {
     [CCode (cname="type")]
     public FrameSideDataType type;
 

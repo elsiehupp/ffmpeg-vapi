@@ -28,7 +28,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct AvsFormat", cheader_filename="")]
-public struct AVSDemuxerPrivateData { }
+[Compact]
+public class AVSDemuxerPrivateData { }
 
 [CCode (cname="ff_avs_demuxer", cheader_filename="")]
 public class AVSDemuxer : AVInputFormat {

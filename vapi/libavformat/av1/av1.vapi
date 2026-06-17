@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct AV1SequenceParameters", cheader_filename="")]
-public struct AV1SequenceParameters {
+[Compact]
+public class AV1SequenceParameters {
     uint8 profile;
     uint8 level;
     uint8 tier;

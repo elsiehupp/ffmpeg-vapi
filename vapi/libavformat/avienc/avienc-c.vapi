@@ -60,7 +60,8 @@ public class AVIMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct AVIContext", cheader_filename="")]
-public struct AVIMuxerPrivateData { }
+[Compact]
+public class AVIMuxerPrivateData { }
 
 [CCode (cname="ff_avi_muxer", cheader_filename="")]
 public class AVIMuxer : AVOutputFormat {

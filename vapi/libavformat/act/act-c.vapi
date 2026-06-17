@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct ACTContext", cheader_filename="")]
-public struct ACTDemuxerPrivateData { }
+[Compact]
+public class ACTDemuxerPrivateData { }
 
 [CCode (cname="ff_act_demuxer", cheader_filename="")]
 public class ACTDemuxer : AVInputFormat {

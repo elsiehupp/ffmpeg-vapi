@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct IVFEncContext", cheader_filename="")]
-public struct IVFMuxerPrivateData { }
+[Compact]
+public class IVFMuxerPrivateData { }
 
 //  static const AVCodecTag codec_ivf_tags[] = {
 //      { LibAVCodec.CodecID.VP8,  MKTAG ('V', 'P', '8', '0') },

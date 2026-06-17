@@ -38,7 +38,8 @@ enum var_name {
     VAR_NB
 }
 
-public struct EQParameters {
+[Compact]
+public class EQParameters {
     void (*adjust)(EQParameters *eq, uint8 *dst, int dst_stride,
                    uint8 *src, int src_stride, int w, int h);
 
@@ -55,7 +56,8 @@ public enum EvalMode {
     EVAL_MODE_NB
 }
 
-public struct EQContext {
+[Compact]
+public class EQContext {
     const AVClass *class;
 
     EQParameters param[3];

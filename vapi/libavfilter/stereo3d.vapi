@@ -18,7 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct Stereo3DDSPContext {
+[Compact]
+public class Stereo3DDSPContext {
     void (*anaglyph)(uint8 *dst, uint8 *lsrc, uint8 *rsrc,
                      ptrdiff_t dst_linesize, ptrdiff_t l_linesize, ptrdiff_t r_linesize,
                      int width, int height,

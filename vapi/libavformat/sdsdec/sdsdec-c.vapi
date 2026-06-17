@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct SDSContext", cheader_filename="")]
-public struct SDSDemuxerPrivateData { }
+[Compact]
+public class SDSDemuxerPrivateData { }
 
 [CCode (cname="ff_sds_demuxer", cheader_filename="")]
 public class SDSDemuxer : AVInputFormat {

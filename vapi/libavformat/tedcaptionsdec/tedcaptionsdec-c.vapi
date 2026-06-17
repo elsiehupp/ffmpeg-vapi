@@ -57,7 +57,8 @@ public class TedCaptionsDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct TEDCaptionsDemuxer", cheader_filename="")]
-public struct TedCaptionsDemuxerPrivateData { }
+[Compact]
+public class TedCaptionsDemuxerPrivateData { }
 
 [CCode (cname="ff_tedcaptions_demuxer", cheader_filename="")]
 public class TedCaptionsDemuxer : AVInputFormat {

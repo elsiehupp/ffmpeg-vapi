@@ -143,10 +143,12 @@ public void ff_riff_write_info_tag (
 );
 
 [CCode (cname="struct ff_asf_guid", cheader_filename="")]
-public struct ff_asf_guid { }
+[Compact]
+public class ff_asf_guid { }
 
 [CCode (cname="struct AVCodecGuid", cheader_filename="")]
-public struct AVCodecGuid {
+[Compact]
+public class AVCodecGuid {
     [CCode (cname="", cheader_filename="")]
     public LibAVCodec.CodecID id;
 

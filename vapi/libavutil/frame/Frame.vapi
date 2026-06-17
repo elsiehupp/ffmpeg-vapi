@@ -54,7 +54,8 @@ C structure field name for fields accessible through LibAVUtil.Options. The Clas
 for Frame can be obtained from avcodec_get_frame_class ()
 ***********************************************************/
 [CCode (cname="struct AVFrame", cheader_filename="ffmpeg/libavutil/frame.h")]
-public struct Frame {
+[Compact]
+public class Frame {
 
     [CCode (cname="AV_NUM_DATA_POINTERS", cheader_filename="ffmpeg/libavutil/frame.h")]
     public const size_t AV_NUM_DATA_POINTERS;

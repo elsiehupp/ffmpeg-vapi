@@ -18,7 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct FFBoundingBox {
+[Compact]
+public class FFBoundingBox {
     int x1, x2, y1, y2;
 }
 

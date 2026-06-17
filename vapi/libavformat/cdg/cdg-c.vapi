@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct CDGContext", cheader_filename="")]
-public struct CDGDemuxerPrivateData { }
+[Compact]
+public class CDGDemuxerPrivateData { }
 
 [CCode (cname="ff_cdg_demuxer", cheader_filename="")]
 public class CDGDemuxer : AVInputFormat {

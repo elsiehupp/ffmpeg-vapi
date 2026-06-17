@@ -30,7 +30,8 @@ LibAVCodec external API header
 @brief Codec.
 ***********************************************************/
 [CCode (cname="struct AVCodec", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct Codec {
+[Compact]
+public class Codec {
     /***********************************************************
     @brief Name of the codec implementation.
     The name is globally unique among encoders and among decoders (but an

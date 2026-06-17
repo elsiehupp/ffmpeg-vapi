@@ -1,0 +1,12 @@
+[wrap-git]
+url = https://gitlab.freedesktop.org/gstreamer/meson-ports/ffmpeg.git
+revision = meson-8.1
+; url = https://git.ffmpeg.org/ffmpeg.git
+; revision = master
+; method = cmake
+directory = ffmpeg
+depth = 1
+
+[provide]
+; dependency_names = libavcodec libavformat libavutil libavfilter libavdevice libswresample libswscale
+dependency_names = declared_dep

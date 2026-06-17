@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct PAFDemuxContext", cheader_filename="")]
-public struct PAFDemuxerPrivateData { }
+[Compact]
+public class PAFDemuxerPrivateData { }
 
 [CCode (cname="ff_paf_demuxer", cheader_filename="")]
 public class PAFDemuxer : AVInputFormat {

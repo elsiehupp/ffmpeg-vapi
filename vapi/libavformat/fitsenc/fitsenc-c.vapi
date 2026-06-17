@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct FITSContext", cheader_filename="")]
-public struct FITSMuxerPrivateData { }
+[Compact]
+public class FITSMuxerPrivateData { }
 
 [CCode (cname="ff_fits_muxer", cheader_filename="")]
 public class FITSMuxer : AVOutputFormat {

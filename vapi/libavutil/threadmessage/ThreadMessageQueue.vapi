@@ -23,7 +23,8 @@ public delegate void ThreadMessageFreeDelegate (
 );
 
 [CCode (cname="struct AVThreadMessageQueue", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
-public struct ThreadMessageQueue {
+[Compact]
+public class ThreadMessageQueue {
     /***********************************************************
     @brief Allocate a new message queue.
 

@@ -20,7 +20,8 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-public struct HQDN3DContext {
+[Compact]
+public class HQDN3DContext {
     const AVClass *class;
     int16 *coefs[4];
     uint16 *line;

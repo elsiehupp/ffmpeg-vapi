@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct DTSHDDemuxContext", cheader_filename="")]
-public struct DTSHDDemuxerPrivateData { }
+[Compact]
+public class DTSHDDemuxerPrivateData { }
 
 [CCode (cname="ff_dtshd_demuxer", cheader_filename="")]
 public class DTSHDDemuxer : AVInputFormat {

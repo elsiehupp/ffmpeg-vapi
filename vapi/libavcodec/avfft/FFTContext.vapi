@@ -30,7 +30,8 @@ FFT functions
 ***********************************************************/
 
 [CCode (cname="struct FFTContext", cheader_filename="ffmpeg/libavcodec/avfft.h")]
-public struct FFTContext {
+[Compact]
+public class FFTContext {
     /***********************************************************
     @brief Set up a complex FFT.
     @param nbits log2 of the length of the input array

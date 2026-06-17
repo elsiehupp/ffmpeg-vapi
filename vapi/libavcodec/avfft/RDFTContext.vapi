@@ -33,7 +33,8 @@ FFT functions
 @brief Real Discrete Fourier Transform
 ***********************************************************/
 [CCode (cname="struct RDFTContext", cheader_filename="ffmpeg/libavcodec/avfft.h")]
-public struct RDFTContext {
+[Compact]
+public class RDFTContext {
     /***********************************************************
     @brief Set up a real FFT.
     @param nbits log2 of the length of the input array

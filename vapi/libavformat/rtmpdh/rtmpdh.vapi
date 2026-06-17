@@ -26,10 +26,12 @@ namespace LibAVFormat {
 @brief Platform-specific
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct FFBigNum { }
+[Compact]
+public class FFBigNum { }
 
 [CCode (cname="struct FF_DH", cheader_filename="")]
-public struct FF_DH {
+[Compact]
+public class FF_DH {
     [CCode (cname="", cheader_filename="")]
     public FFBigNum p;
 

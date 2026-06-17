@@ -29,7 +29,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct BFIContext", cheader_filename="")]
-public struct BFIDemuxerPrivateData { }
+[Compact]
+public class BFIDemuxerPrivateData { }
 
 [CCode (cname="ff_bfi_demuxer", cheader_filename="")]
 public class BFIDemuxer : AVInputFormat {

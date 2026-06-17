@@ -149,9 +149,11 @@ enum SwrDitherType {
 /** Resampling Engines
 ***********************************************************/
 enum SwrEngine {
-    SWR_ENGINE_SWR,             /**< SW Resampler
+    SWR_ENGINE_SWR,             /***********************************************************
+    <SW Resampler
     ***********************************************************/
-    SWR_ENGINE_SOXR,            /**< SoX Resampler
+    SWR_ENGINE_SOXR,            /***********************************************************
+    <SoX Resampler
     ***********************************************************/
     SWR_ENGINE_NB,              ///< not part of API/ABI
 };
@@ -159,11 +161,14 @@ enum SwrEngine {
 /** Resampling Filter Types
 ***********************************************************/
 enum SwrFilterType {
-    SWR_FILTER_TYPE_CUBIC,              /**< Cubic
+    SWR_FILTER_TYPE_CUBIC,              /***********************************************************
+    <Cubic
     ***********************************************************/
-    SWR_FILTER_TYPE_BLACKMAN_NUTTALL,   /**< Blackman Nuttall windowed sinc
+    SWR_FILTER_TYPE_BLACKMAN_NUTTALL,   /***********************************************************
+    <Blackman Nuttall windowed sinc
     ***********************************************************/
-    SWR_FILTER_TYPE_KAISER,             /**< Kaiser windowed sinc
+    SWR_FILTER_TYPE_KAISER,             /***********************************************************
+    <Kaiser windowed sinc
 ***********************************************************/
 };
 
@@ -177,7 +182,8 @@ is opaque. This means that if you would like to set options, you must use
 the @ref avoptions API and cannot directly set values to members of the
 structure.
 ***********************************************************/
-public struct SwrContext SwrContext;
+[Compact]
+public class SwrContext SwrContext;
 
 /***********************************************************
 Get the AVClass for SwrContext. It can be used in combination with

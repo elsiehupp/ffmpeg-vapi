@@ -26,7 +26,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="struct AVHMAC", cheader_filename="ffmpeg/libavutil/hmac.h")]
-public struct HMACContext {
+[Compact]
+public class HMACContext {
 
     /***********************************************************
     @brief Allocate an HMACContext context.

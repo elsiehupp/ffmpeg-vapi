@@ -65,7 +65,8 @@ public class WebVTTDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct WebVTTContext", cheader_filename="")]
-public struct WebVTTDemuxerPrivateData { }
+[Compact]
+public class WebVTTDemuxerPrivateData { }
 
 [CCode (cname="ff_webvtt_demuxer", cheader_filename="")]
 public class WebVTTDemuxer : AVInputFormat {

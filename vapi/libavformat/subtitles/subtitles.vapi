@@ -44,7 +44,8 @@ public enum ff_utf_type {
 }
 
 [CCode (cname="struct FFTextReader", cheader_filename="")]
-public struct FFTextReader {
+[Compact]
+public class FFTextReader {
     [CCode (cname="", cheader_filename="")]
     public int type;
 
@@ -146,7 +147,8 @@ public void ff_text_read (
 );
 
 [CCode (cname="struct FFDemuxSubtitlesQueue", cheader_filename="")]
-public struct FFDemuxSubtitlesQueue {
+[Compact]
+public class FFDemuxSubtitlesQueue {
     /***********************************************************
     @brief Array of subtitles packets
         ***********************************************************/

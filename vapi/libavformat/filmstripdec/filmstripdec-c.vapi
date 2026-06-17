@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct FilmstripDemuxContext", cheader_filename="")]
-public struct FilmstripDemuxerPrivateData { }
+[Compact]
+public class FilmstripDemuxerPrivateData { }
 
 [CCode (cname="ff_filmstrip_demuxer", cheader_filename="")]
 public class FilmstripDemuxer : AVInputFormat {

@@ -43,7 +43,8 @@ public const size_t MAX_PROBE_PACKETS;
 //  #endif
 
 [CCode (cname="struct AVCodecTag", cheader_filename="")]
-public struct AVCodecTag {
+[Compact]
+public class AVCodecTag {
     [CCode (cname="", cheader_filename="")]
     public LibAVCodec.CodecID id;
 
@@ -52,7 +53,8 @@ public struct AVCodecTag {
 }
 
 [CCode (cname="struct CodecMime", cheader_filename="")]
-public struct CodecMime {
+[Compact]
+public class CodecMime {
     [CCode (cname="", cheader_filename="")]
     public char str[32];
 
@@ -70,7 +72,8 @@ public struct CodecMime {
 num is assumed to be 0 <= num < den.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct FFFrac {
+[Compact]
+public class FFFrac {
     [CCode (cname="", cheader_filename="")]
     public int64 val;
 
@@ -83,7 +86,8 @@ public struct FFFrac {
 
 
 [CCode (cname="struct AVFormatInternal", cheader_filename="")]
-public struct AVFormatInternal {
+[Compact]
+public class AVFormatInternal {
     /***********************************************************
     @brief Number of streams relevant for interleaving.
     Muxing only.
@@ -199,7 +203,8 @@ public struct AVFormatInternal {
 }
 
 [CCode (cname="struct AVStreamInternal", cheader_filename="")]
-public struct AVStreamInternal {
+[Compact]
+public class AVStreamInternal {
     /***********************************************************
     @brief Set to 1 if the codec allows reordering, so pts can be different
     from dts.
@@ -258,7 +263,8 @@ public struct AVStreamInternal {
 }
 
 [CCode (cname="struct ExtractExtraData", cheader_filename="")]
-public struct ExtractExtraData {
+[Compact]
+public class ExtractExtraData {
     [CCode (cname="", cheader_filename="")]
     public LibAVCodec.BitStreamFilterContext bsf;
 

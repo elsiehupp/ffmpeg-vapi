@@ -39,7 +39,8 @@ public delegate void TransformDelegate (
 );
 
 [CCode (cname="struct AVTXContext", cheader_filename="ffmpeg/libavutil/tx.h")]
-public struct TransformContext {
+[Compact]
+public class TransformContext {
     /***********************************************************
     @brief Initialize a transform context with the given configuration
     Currently power of two lengths from 4 to 131072 are supported, along with

@@ -31,7 +31,8 @@ namespace LibAVUtil {
 ***********************************************************/
 
 [CCode (cname="struct AVBPrint", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
-public struct BPrintBuffer {
+[Compact]
+public class BPrintBuffer {
     /***********************************************************
     @brief Append a description of a channel layout to a bprint buffer.
         ***********************************************************/
@@ -222,7 +223,8 @@ public void av_bprint_append_data (
 );
 
 [CCode (cname="struct tm", cheader_filename="ffmpeg/libavutil/bprint.h")]
-public struct AVTime { }
+[Compact]
+public class AVTime { }
 
 /***********************************************************
 @brief Append a formatted date and time to a print buffer.

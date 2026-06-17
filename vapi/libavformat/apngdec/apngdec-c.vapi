@@ -68,7 +68,8 @@ public class APNGDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct APNGDemuxContext", cheader_filename="")]
-public struct APNGDemuxerPrivateData { }
+[Compact]
+public class APNGDemuxerPrivateData { }
 
 [CCode (cname="ff_apng_demuxer", cheader_filename="")]
 public class APNGDemuxer : AVInputFormat {

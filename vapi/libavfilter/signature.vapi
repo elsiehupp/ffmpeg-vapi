@@ -43,17 +43,20 @@ enum formats {
     NB_FORMATS
 }
 
-public struct Point {
+[Compact]
+public class Point {
     uint8 x;
     uint8 y;
 }
 
-public struct Block {
+[Compact]
+public class Block {
     Point up;
     Point to;
 }
 
-public struct ElemCat {
+[Compact]
+public class ElemCat {
     int av_elem; /***********************************************************
     average element category
     ***********************************************************/
@@ -67,7 +70,8 @@ public struct ElemCat {
     const Block* blocks;
 }
 
-public struct FineSignature {
+[Compact]
+public class FineSignature {
     struct FineSignature* next;
     struct FineSignature* prev;
     uint64 pts;
@@ -79,7 +83,8 @@ public struct FineSignature {
     uint8 framesig[SIGELEM_SIZE/5];
 }
 
-public struct CoarseSignature {
+[Compact]
+public class CoarseSignature {
     uint8 data[5][31]; /***********************************************************
     5 words with min. 243 bit
     ***********************************************************/
@@ -93,7 +98,8 @@ public struct CoarseSignature {
 /***********************************************************
 lookup types
 ***********************************************************/
-public struct MatchingInfo {
+[Compact]
+public class MatchingInfo {
     double meandist;
     double framerateratio; /***********************************************************
     second/first
@@ -109,7 +115,8 @@ public struct MatchingInfo {
     struct MatchingInfo* next;
 }
 
-public struct StreamContext {
+[Compact]
+public class StreamContext {
     AVRational time_base;
     /***********************************************************
     needed for xml_export
@@ -154,7 +161,8 @@ public struct StreamContext {
     ***********************************************************/
 }
 
-public struct SignatureContext {
+[Compact]
+public class SignatureContext {
     const AVClass *class;
     /***********************************************************
     input parameters

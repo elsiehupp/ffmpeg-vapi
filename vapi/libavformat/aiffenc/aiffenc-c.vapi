@@ -58,7 +58,8 @@ public class AIFFMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct AIFFOutputContext", cheader_filename="")]
-public struct AIFFMuxerPrivateData { }
+[Compact]
+public class AIFFMuxerPrivateData { }
 
 [CCode (cname="ff_aiff_muxer", cheader_filename="")]
 public class AIFFMuxer : AVOutputFormat {

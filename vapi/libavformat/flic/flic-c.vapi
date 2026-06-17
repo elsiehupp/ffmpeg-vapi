@@ -34,7 +34,8 @@ special FLIs from the PC games "Magic Carpet" and "X-COM: Terror from the Deep".
 ***********************************************************/
 
 [CCode (cname="struct FlicDemuxContext", cheader_filename="")]
-public struct FLICDemuxerPrivateData { }
+[Compact]
+public class FLICDemuxerPrivateData { }
 
 [CCode (cname="ff_flic_demuxer", cheader_filename="")]
 public class FLICDemuxer : AVInputFormat {

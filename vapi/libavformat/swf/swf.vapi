@@ -133,7 +133,8 @@ public const int VIDEO_ID;
 public const int SHAPE_ID;
 
 [CCode (cname="struct SWFContext", cheader_filename="")]
-public struct SWFContext {
+[Compact]
+public class SWFContext {
     [CCode (cname="", cheader_filename="")]
     public int64 duration_pos;
 

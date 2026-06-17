@@ -312,10 +312,12 @@ for (;;) {
 ***********************************************************/
 
 [CCode (cname="struct AVDeviceInfoList", cheader_filename="")]
-public struct AVDeviceInfoList { }
+[Compact]
+public class AVDeviceInfoList { }
 
 [CCode (cname="struct AVDeviceCapabilitiesQuery", cheader_filename="")]
-public struct AVDeviceCapabilitiesQuery { }
+[Compact]
+public class AVDeviceCapabilitiesQuery { }
 
 /***********************************************************
 @defgroup metadata_api Public Metadata API
@@ -447,7 +449,8 @@ public int av_append_packet (
 @brief This structure contains the data a format has to probe a file.
 ***********************************************************/
 [CCode (cname="struct AVProbeData", cheader_filename="")]
-public struct AVProbeData {
+[Compact]
+public class AVProbeData {
     [CCode (cname="filename")]
     public string filename;
 
@@ -1087,7 +1090,8 @@ public enum AVStreamParseType {
 }
 
 [CCode (cname="struct AVIndexEntry", cheader_filename="")]
-public struct AVIndexEntry {
+[Compact]
+public class AVIndexEntry {
     [CCode (cname="", cheader_filename="")]
     public int64 pos;
 
@@ -1218,7 +1222,8 @@ version bump.
 sizeof (AVStream) must not be used outside libav*.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct AVStream {
+[Compact]
+public class AVStream {
     /***********************************************************
     @brief Stream index in AVFormatContext
         ***********************************************************/
@@ -1629,7 +1634,8 @@ version bump.
 sizeof (AVProgram) must not be used outside libav*.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct AVProgram {
+[Compact]
+public class AVProgram {
     [CCode (cname="", cheader_filename="")]
     public int id;
 
@@ -1700,7 +1706,8 @@ public enum AVFormatContextFlags {
 }
 
 [CCode (cname="struct AVChapter", cheader_filename="")]
-public struct AVChapter {
+[Compact]
+public class AVChapter {
     /***********************************************************
     unique ID to identify the chapter
         ***********************************************************/
@@ -2537,7 +2544,8 @@ public AVDurationEstimationMethod av_fmt_ctx_get_duration_estimation_method (
 );
 
 [CCode (cname="struct AVPacketList", cheader_filename="")]
-public struct AVPacketList {
+[Compact]
+public class AVPacketList {
     [CCode (cname="", cheader_filename="")]
     public LibAVCodec.Packet packet;
 

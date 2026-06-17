@@ -28,7 +28,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct WtvContext", cheader_filename="")]
-public struct WTVDemuxerPrivateData { }
+[Compact]
+public class WTVDemuxerPrivateData { }
 
 [CCode (cname="ff_wtv_demuxer", cheader_filename="")]
 public class WTVDemuxer : AVInputFormat {

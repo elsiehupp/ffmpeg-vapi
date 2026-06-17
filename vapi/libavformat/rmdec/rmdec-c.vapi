@@ -30,7 +30,8 @@ namespace LibAVFormat {
 //  #define DEINT_ID_VBRS MKTAG ('v', 'b', 'r', 's') ///< VBR case for AAC
 
 [CCode (cname="struct RMDemuxContext", cheader_filename="")]
-public struct RealMediaDemuxerPrivateData { }
+[Compact]
+public class RealMediaDemuxerPrivateData { }
 
 [CCode (cname="ff_rm_demuxer", cheader_filename="")]
 public class RealMediaDemuxer : AVInputFormat {

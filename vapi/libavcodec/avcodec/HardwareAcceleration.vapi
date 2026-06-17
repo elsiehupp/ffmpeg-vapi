@@ -33,7 +33,8 @@ LibAVCodec external API header
        point in future it will not be externally visible at all.
 ***********************************************************/
 [CCode (cname="struct AVHWAccel", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct HardwareAcceleration {
+[Compact]
+public class HardwareAcceleration {
     /***********************************************************
     @brief Name of the hardware accelerated codec.
     The name is globally unique among encoders and among decoders (but an
@@ -68,7 +69,7 @@ public struct HardwareAcceleration {
 
     /***********************************************************
     @brief Hardware accelerated codec capabilities.
-    
+
     @see @link HardwareAccelerationCapabilities
         ***********************************************************/
     [CCode (cname="capabilities")]

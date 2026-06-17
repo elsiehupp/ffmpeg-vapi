@@ -30,7 +30,8 @@ stamps that can be compared to wall clock time, especially when dealing
 with two clocks: the system clock and a hardware device clock, such as
 a soundcard.
 ***********************************************************/
-public struct TimeFilter TimeFilter;
+[Compact]
+public class TimeFilter TimeFilter;
 
 
 /***********************************************************

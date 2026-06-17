@@ -40,19 +40,38 @@ typedef void (*ff_reorder_func)(const void *, void *, int);
 
 #define ALSA_BUFFER_SIZE_MAX 131072
 
-public struct AlsaData {
+[Compact]
+public class AlsaData {
     AVClass *class;
     snd_pcm_t *h;
-    int frame_size; ///< bytes per sample * channels
-    int period_size; ///< preferred size for reads and writes, in frames
-    int sample_rate; ///< sample rate set by user
-    int channels; ///< number of channels set by user
+    /***********************************************************
+    bytes per sample * channels
+    ***********************************************************/
+    int frame_size; ///<
+    /***********************************************************
+    preferred size for reads and writes, in frames
+    ***********************************************************/
+    int period_size; ///<
+    /***********************************************************
+    sample rate set by user
+    ***********************************************************/
+    int sample_rate; ///<
+    /***********************************************************
+    number of channels set by user
+    ***********************************************************/
+    int channels; ///<
     int last_period;
     TimeFilter *timefilter;
     void (*reorder_func)(const void *, void *, int);
     void *reorder_buf;
-    int reorder_buf_size; ///< in frames
-    int64 timestamp; ///< current timestamp, without latency applied.
+    /***********************************************************
+    in frames
+    ***********************************************************/
+    int reorder_buf_size; ///<
+    /***********************************************************
+    current timestamp, without latency applied.
+    ***********************************************************/
+    int64 timestamp; ///<
 }
 
 /***********************************************************

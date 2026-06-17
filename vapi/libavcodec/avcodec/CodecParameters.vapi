@@ -34,7 +34,8 @@ be allocated with avcodec_parameters_alloc () and freed with
 avcodec_parameters_free ().
 ***********************************************************/
 [CCode (cname="struct AVCodecParameters", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct CodecParameters {
+[Compact]
+public class CodecParameters {
     /***********************************************************
     @brief General type of the encoded data.
         ***********************************************************/

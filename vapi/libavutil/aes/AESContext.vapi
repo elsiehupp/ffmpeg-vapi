@@ -26,7 +26,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="struct AVAES", cheader_filename="ffmpeg/libavutil/aes.h")]
-public struct AESContext {
+[Compact]
+public class AESContext {
 
     [CCode (cname="av_aes_size", cheader_filename="ffmpeg/libavutil/aes.h")]
     public const size_t SIZE;

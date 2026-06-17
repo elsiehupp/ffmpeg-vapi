@@ -26,7 +26,8 @@ namespace LibAVUtil {
 a distribution.
 ***********************************************************/
 [CCode (cname="struct AVHDRPlusPercentile", cheader_filename="ffmpeg/libavutil/hdr_dynamic_metadata.h")]
-public struct HDRPlusPercentile {
+[Compact]
+public class HDRPlusPercentile {
     /***********************************************************
     @brief The percentage value corresponding to a specific percentile linearized
     RGB value in the processing window in the scene. The value shall be in

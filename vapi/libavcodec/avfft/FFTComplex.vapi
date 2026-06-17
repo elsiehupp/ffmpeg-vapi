@@ -30,10 +30,12 @@ FFT functions
 ***********************************************************/
 
 [CCode (cname="struct FFTSample", cheader_filename="ffmpeg/libavcodec/avfft.h")]
-public struct FFTSample : float { }
+[Compact]
+public class FFTSample : float { }
 
 [CCode (cname="struct FFTComplex", cheader_filename="ffmpeg/libavcodec/avfft.h")]
-public struct FFTComplex {
+[Compact]
+public class FFTComplex {
     [CCode (cname="re")]
     public FFTSample re;
 

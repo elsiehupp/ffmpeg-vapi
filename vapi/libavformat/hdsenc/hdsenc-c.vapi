@@ -62,7 +62,8 @@ public class HDSMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct HDSContext", cheader_filename="")]
-public struct HDSMuxerPrivateData { }
+[Compact]
+public class HDSMuxerPrivateData { }
 
 [CCode (cname="ff_hds_muxer", cheader_filename="")]
 public class HDSMuxer : AVOutputFormat {

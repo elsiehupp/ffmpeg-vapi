@@ -62,7 +62,8 @@ public class CryptoURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct CryptoContext", cheader_filename="")]
-public struct CryptoPrivateData { }
+[Compact]
+public class CryptoPrivateData { }
 
 [CCode (cname="ff_crypto_protocol", cheader_filename="")]
 public class CryptoURLProtocol : URLProtocol {

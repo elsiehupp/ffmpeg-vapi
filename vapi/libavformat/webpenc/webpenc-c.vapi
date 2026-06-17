@@ -60,7 +60,8 @@ public class WebPMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct WebpContext", cheader_filename="")]
-public struct WebPMuxerPrivateData { }
+[Compact]
+public class WebPMuxerPrivateData { }
 
 [CCode (cname="ff_webp_muxer", cheader_filename="")]
 public class WebPMuxer : AVOutputFormat {

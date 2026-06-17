@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct FilmstripMuxContext", cheader_filename="")]
-public struct FilmstripMuxerPrivateData { }
+[Compact]
+public class FilmstripMuxerPrivateData { }
 
 [CCode (cname="ff_filmstrip_muxer", cheader_filename="")]
 public class FilmstripMuxer : AVOutputFormat {

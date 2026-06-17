@@ -60,7 +60,8 @@ public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct TLSContext", cheader_filename="")]
-public struct SecureChannelTLSPrivateData { }
+[Compact]
+public class SecureChannelTLSPrivateData { }
 
 [CCode (cname="ff_tls_protocol", cheader_filename="")]
 public class SecureChannelTLSURLProtocol : URLProtocol {

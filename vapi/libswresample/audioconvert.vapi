@@ -28,14 +28,18 @@ Audio format conversion routines
 typedef void (conv_func_type)(uint8 *po, uint8 *pi, int is, int os, uint8 *end);
 typedef void (simd_func_type)(uint8 **dst, uint8 **src, int len);
 
-public struct AudioConvert {
+[Compact]
+public class AudioConvert {
     int channels;
     int  in_simd_align_mask;
     int out_simd_align_mask;
     conv_func_type *conv_f;
     simd_func_type *simd_f;
     int[] ch_map;
-    uint8 silence[8]; ///< silence input sample
+    /***********************************************************
+    silence input sample
+    ***********************************************************/
+    uint8 silence[8]; ///<
 }AudioConvert;
 
 /***********************************************************

@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct RCVContext", cheader_filename="")]
-public struct VC1TestMuxerPrivateData { }
+[Compact]
+public class VC1TestMuxerPrivateData { }
 
 [CCode (cname="ff_vc1t_muxer", cheader_filename="")]
 public class VC1TestMuxer : AVOutputFormat {

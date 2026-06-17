@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct AIFFInputContext", cheader_filename="")]
-public struct AIFFDemuxerPrivateData { }
+[Compact]
+public class AIFFDemuxerPrivateData { }
 
 [CCode (cname="ff_aiff_demuxer", cheader_filename="")]
 public class AIFFDemuxer : AVInputFormat {

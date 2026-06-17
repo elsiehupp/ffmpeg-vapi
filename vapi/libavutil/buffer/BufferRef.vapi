@@ -30,7 +30,8 @@ The size of this struct is not a part of the public ABI and it is not meant
 to be allocated directly.
 ***********************************************************/
 [CCode (cname="struct AVBufferRef", cheader_filename="buffer.h")]
-public struct BufferRef {
+[Compact]
+public class BufferRef {
     [CCode (cname="buffer")]
     public LibAVUtil.Buffer buffer;
 

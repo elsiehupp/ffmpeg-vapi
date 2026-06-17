@@ -31,7 +31,8 @@ http://wiki.multimedia.cx/index.php?title=EA_Command_And_Conquer_3_Audio_Codec
 ***********************************************************/
 
 [CCode (cname="struct CdataDemuxContext", cheader_filename="")]
-public struct EACTDATADemuxerPrivateData { }
+[Compact]
+public class EACTDATADemuxerPrivateData { }
 
 [CCode (cname="ff_ea_cdata_demuxer", cheader_filename="")]
 public class EACTDATADemuxer : AVInputFormat {

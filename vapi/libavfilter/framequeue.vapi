@@ -26,7 +26,8 @@ Note: this API is not thread-safe. Concurrent access to the same queue
 must be protected by a mutex or any synchronization mechanism.
 ***********************************************************/
 
-public struct FFFrameBucket {
+[Compact]
+public class FFFrameBucket {
     AVFrame *frame;
 }
 
@@ -38,7 +39,8 @@ frame queues, including memory consumption caps.
 
 It is currently empty.
 ***********************************************************/
-public struct FFFrameQueueGlobal {
+[Compact]
+public class FFFrameQueueGlobal {
     char dummy; /***********************************************************
     C does not allow empty structs
 ***********************************************************/
@@ -47,7 +49,8 @@ public struct FFFrameQueueGlobal {
 /***********************************************************
 Queue of AVFrame pointers.
 ***********************************************************/
-public struct FFFrameQueue {
+[Compact]
+public class FFFrameQueue {
 
     /***********************************************************
     Array of allocated buckets, used as a circular buffer.
@@ -83,7 +86,7 @@ public struct FFFrameQueue {
     /***********************************************************
     Total number of frames dequeued from the queue.
     queued = total_frames_head - total_frames_tail
-    
+
     ***********************************************************/
     uint64 total_frames_tail;
 
@@ -95,13 +98,13 @@ public struct FFFrameQueue {
     /***********************************************************
     Total number of samples dequeued from the queue.
     queued_samples = total_samples_head - total_samples_tail
-    
+
     ***********************************************************/
     uint64 total_samples_tail;
 
     /***********************************************************
     Indicate that samples are skipped
-    
+
     ***********************************************************/
     int samples_skipped;
 

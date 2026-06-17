@@ -67,7 +67,8 @@ SMPTE RP224: Registry of SMPTE Universal Labels
 //  }
 
 [CCode (cname="struct MXFContext", cheader_filename="")]
-public struct MXFMuxerClassPrivateData { }
+[Compact]
+public class MXFMuxerClassPrivateData { }
 
 [CCode (cname="mxf_muxer_class", cheader_filename="")]
 public class MXFMuxerClass : LibAVUtil.Class {

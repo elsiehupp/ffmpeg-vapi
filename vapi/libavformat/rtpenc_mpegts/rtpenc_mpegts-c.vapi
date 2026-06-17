@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct MuxChain", cheader_filename="")]
-public struct RTPMpegTSMuxerPrivateData { }
+[Compact]
+public class RTPMpegTSMuxerPrivateData { }
 
 [CCode (cname="ff_rtp_mpegts_muxer", cheader_filename="")]
 public class RTPMpegTSMuxer : AVOutputFormat {

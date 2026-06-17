@@ -58,7 +58,8 @@ public class MP3DemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct MP3DecContext", cheader_filename="")]
-public struct MP3DemuxerPrivateData { }
+[Compact]
+public class MP3DemuxerPrivateData { }
 
 [CCode (cname="ff_mp3_demuxer", cheader_filename="")]
 public class MP3Demuxer : AVInputFormat {

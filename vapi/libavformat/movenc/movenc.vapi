@@ -52,7 +52,8 @@ public enum Mode {
 }
 
 [CCode (cname="struct MOVIentry", cheader_filename="")]
-public struct MOVIentry {
+[Compact]
+public class MOVIentry {
     [CCode (cname="", cheader_filename="")]
     public uint64 pos;
 
@@ -92,7 +93,8 @@ public enum MOVSampleFlags {
 }
 
 [CCode (cname="struct HintSample", cheader_filename="")]
-public struct HintSample {
+[Compact]
+public class HintSample {
     [CCode (cname="", cheader_filename="")]
     public uint8[] data;
 
@@ -110,7 +112,8 @@ public struct HintSample {
 }
 
 [CCode (cname="struct HintSampleQueue", cheader_filename="")]
-public struct HintSampleQueue {
+[Compact]
+public class HintSampleQueue {
     [CCode (cname="", cheader_filename="")]
     public int size;
 
@@ -122,7 +125,8 @@ public struct HintSampleQueue {
 }
 
 [CCode (cname="struct MOVFragmentInfo", cheader_filename="")]
-public struct MOVFragmentInfo {
+[Compact]
+public class MOVFragmentInfo {
     [CCode (cname="", cheader_filename="")]
     public int64 offset;
 
@@ -154,7 +158,8 @@ public enum MOVETimeCodeFlags {
 }
 
 [CCode (cname="struct MOVTrack", cheader_filename="")]
-public struct MOVTrack {
+[Compact]
+public class MOVTrack {
     [CCode (cname="", cheader_filename="")]
     public int mode;
 
@@ -346,7 +351,8 @@ public struct MOVTrack {
 }
 
 [CCode (cname="struct VC1Info", cheader_filename="")]
-public struct VC1Info {
+[Compact]
+public class VC1Info {
     [CCode (cname="", cheader_filename="")]
     public int first_packet_seq;
 
@@ -384,7 +390,8 @@ public enum MOVPrftBox {
 }
 
 [CCode (cname="struct MOVMuxContext", cheader_filename="")]
-public struct MOVMuxContext {
+[Compact]
+public class MOVMuxContext {
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class av_class;
 

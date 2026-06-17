@@ -56,7 +56,8 @@ public class SERDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct SERDemuxerContext", cheader_filename="")]
-public struct SERDemuxerPrivateData { }
+[Compact]
+public class SERDemuxerPrivateData { }
 
 [CCode (cname="ff_ser_demuxer", cheader_filename="")]
 public class SERDemuxer : AVInputFormat {

@@ -28,7 +28,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NOISE_AVERAGED 8
 #define NOISE_PATTERN  16
 
-public struct FilterParams {
+[Compact]
+public class FilterParams {
     int strength;
     unsigned flags;
     AVLFG lfg;
@@ -39,7 +40,8 @@ public struct FilterParams {
     int rand_shift_init;
 }
 
-public struct NoiseContext {
+[Compact]
+public class NoiseContext {
     const AVClass *class;
     int nb_planes;
     int bytewidth[4];

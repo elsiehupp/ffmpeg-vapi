@@ -59,7 +59,8 @@ public class MP3MuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct MP3Context", cheader_filename="")]
-public struct MP3MuxerPrivateData { }
+[Compact]
+public class MP3MuxerPrivateData { }
 
 [CCode (cname="ff_mp3_muxer", cheader_filename="")]
 public class MP3Muxer : AVOutputFormat {

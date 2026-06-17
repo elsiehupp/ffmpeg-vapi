@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct LATMContext", cheader_filename="")]
-public struct LATMMuxerPrivateData { }
+[Compact]
+public class LATMMuxerPrivateData { }
 
 [CCode (cname="ff_latm_muxer", cheader_filename="")]
 public class LATMMuxer : AVOutputFormat {

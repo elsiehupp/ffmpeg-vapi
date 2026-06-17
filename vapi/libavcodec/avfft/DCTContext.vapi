@@ -33,7 +33,8 @@ FFT functions
 @brief Discrete Cosine Transform
 ***********************************************************/
 [CCode (cname="struct DCTContext", cheader_filename="ffmpeg/libavcodec/avfft.h")]
-public struct DCTContext {
+[Compact]
+public class DCTContext {
 
     /***********************************************************
     @brief Set up DCT.

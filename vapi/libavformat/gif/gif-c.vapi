@@ -64,7 +64,8 @@ public class GIFMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct GIFContext", cheader_filename="")]
-public struct GIFMuxerPrivateData { }
+[Compact]
+public class GIFMuxerPrivateData { }
 
 [CCode (cname="ff_gif_muxer", cheader_filename="")]
 public class GIFMuxer : AVOutputFormat {

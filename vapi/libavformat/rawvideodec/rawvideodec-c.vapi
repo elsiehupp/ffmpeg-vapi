@@ -58,7 +58,8 @@ public class RawVideoDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct RawVideoDemuxerContext", cheader_filename="")]
-public struct RawVideoDemuxerPrivateData { }
+[Compact]
+public class RawVideoDemuxerPrivateData { }
 
 [CCode (cname="ff_rawvideo_demuxer", cheader_filename="")]
 public class RawVideoDemuxer : AVInputFormat {

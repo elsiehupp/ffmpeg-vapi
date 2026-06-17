@@ -40,7 +40,8 @@ namespace LibAVUtil {
 - Automatic reallocation when writing to a full buffer.
 ***********************************************************/
 [CCode (cname="struct AVAudioFifo", cheader_filename="ffmpeg/libavutil/audio_fifo.h")]
-public struct AudioFifo {
+[Compact]
+public class AudioFifo {
 
     /***********************************************************
     @brief Free an AudioFifo.

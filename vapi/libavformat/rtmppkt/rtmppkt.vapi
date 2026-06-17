@@ -146,7 +146,8 @@ public enum RTMPPacketSize {
 @brief Structure for holding RTMP packets
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct RTMPPacket {
+[Compact]
+public class RTMPPacket {
     /***********************************************************
     @brief RTMP channel ID (nothing to do with audio/video channels though)
         ***********************************************************/

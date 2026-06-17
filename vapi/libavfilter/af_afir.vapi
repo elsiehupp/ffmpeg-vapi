@@ -18,7 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct AudioFIRSegment {
+[Compact]
+public class AudioFIRSegment {
     int nb_partitions;
     int part_size;
     int block_size;
@@ -40,12 +41,14 @@ public struct AudioFIRSegment {
     RDFTContext **rdft, **irdft;
 }
 
-public struct AudioFIRDSPContext {
+[Compact]
+public class AudioFIRDSPContext {
     void (*fcmul_add)(float *sum, float *t, float *c,
                       ptrdiff_t len);
 }
 
-public struct AudioFIRContext {
+[Compact]
+public class AudioFIRContext {
     const AVClass *class;
 
     float wet_gain;

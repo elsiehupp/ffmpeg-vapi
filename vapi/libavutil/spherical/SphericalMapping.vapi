@@ -47,7 +47,8 @@ information about projection, initial layout, and any other view modifier.
       its size is not a part of the public ABI.
 ***********************************************************/
 [CCode (cname="struct AVSphericalMapping", cheader_filename="ffmpeg/libavutil/spherical.h")]
-public struct SphericalMapping {
+[Compact]
+public class SphericalMapping {
     /***********************************************************
     @brief Projection type.
         ***********************************************************/

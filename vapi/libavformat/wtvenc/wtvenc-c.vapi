@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct WtvContext", cheader_filename="")]
-public struct WTVMuxerPrivateData { }
+[Compact]
+public class WTVMuxerPrivateData { }
 
 [CCode (cname="ff_wtv_muxer", cheader_filename="")]
 public class WTVMuxer : AVOutputFormat {

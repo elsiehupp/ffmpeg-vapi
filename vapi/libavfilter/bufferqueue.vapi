@@ -43,7 +43,8 @@ Structure holding the queue
 struct FFBufQueue {
     AVFrame *queue[FF_BUFQUEUE_SIZE];
     ushort head;
-    ushort available; /**< number of available buffers
+    ushort available; /***********************************************************
+    <number of available buffers
 ***********************************************************/
 }
 

@@ -107,7 +107,8 @@ public class UDPLiteURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct UDPContext", cheader_filename="")]
-public struct UDPPrivateData { }
+[Compact]
+public class UDPPrivateData { }
 
 [CCode (cname="ff_udp_protocol", cheader_filename="")]
 public class UDPURLProtocol : URLProtocol {

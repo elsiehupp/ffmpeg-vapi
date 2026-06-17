@@ -16,7 +16,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct BWDIFContext {
+[Compact]
+public class BWDIFContext {
     YADIFContext yadif;
 
     void (*filter_intra)(void *dst1, void *cur1, int w, int prefs, int mrefs,

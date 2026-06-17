@@ -35,7 +35,8 @@ up and sending out the chunks.
 ***********************************************************/
 
 [CCode (cname="struct IPMVEContext", cheader_filename="")]
-public struct InterplayDemuxerPrivateData { }
+[Compact]
+public class InterplayDemuxerPrivateData { }
 
 [CCode (cname="ff_ipmovie_demuxer", cheader_filename="")]
 public class InterplayDemuxer : AVInputFormat {

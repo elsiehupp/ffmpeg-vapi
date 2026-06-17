@@ -31,7 +31,8 @@ LibAVCodec external API header
 ***********************************************************/
 
 [CCode (cname="struct AVBitStreamFilter", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct BitStreamFilter {
+[Compact]
+public class BitStreamFilter {
     [CCode (cname="name")]
     public string name;
 

@@ -37,7 +37,8 @@ polynomials.
 ***********************************************************/
 
 [CCode (cname="struct AVCRC", cheader_filename="ffmpeg/libavutil/crc.h")]
-public struct CRCContext {
+[Compact]
+public class CRCContext {
 
     /***********************************************************
     @brief Initialize a CRC table.
@@ -80,7 +81,7 @@ public struct CRCContext {
     @return CRC updated with the data from the given block
 
     @see @link av_crc_init () "le" parameter
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_crc", cheader_filename="ffmpeg/libavutil/crc.h")]
     public uint32 av_crc (
         CRCContext crc_context,

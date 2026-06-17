@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct VPKDemuxContext", cheader_filename="")]
-public struct VPKDemuxerPrivateData { }
+[Compact]
+public class VPKDemuxerPrivateData { }
 
 [CCode (cname="ff_vpk_demuxer", cheader_filename="")]
 public class VPKDemuxer : AVInputFormat {

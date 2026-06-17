@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct RPLContext", cheader_filename="")]
-public struct RPLDemuxerPrivateData { }
+[Compact]
+public class RPLDemuxerPrivateData { }
 
 [CCode (cname="ff_rpl_demuxer", cheader_filename="")]
 public class RPLDemuxer : AVInputFormat {

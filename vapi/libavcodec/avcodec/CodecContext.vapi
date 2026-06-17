@@ -27,7 +27,8 @@ LibAVCodec external API header
 ***********************************************************/
 
 [CCode (cname="struct AVCodecInternal", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct AVCodecInternal { }
+[Compact]
+public class AVCodecInternal { }
 
 [CCode (cname="AV_NUM_DATA_POINTERS", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public const size_t AV_NUM_DATA_POINTERS;
@@ -99,7 +100,8 @@ structure field names for historic reasons or brevity.
 sizeof (CodecContext) must not be used outside libav*.
 ***********************************************************/
 [CCode (cname="struct AVCodecContext", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct CodecContext {
+[Compact]
+public class CodecContext {
     /***********************************************************
     @brief Information on struct for av_log
 
@@ -227,7 +229,7 @@ public struct CodecContext {
 
     /***********************************************************
     @description Some codecs need / can use extradata like Huffman tables.
-        
+
         - MJPEG: Huffman tables
         - rv10: additional flags
         - MPEG-4: global headers (they can be in the bitstream or here)
@@ -237,7 +239,7 @@ public struct CodecContext {
         The bytewise contents of extradata must not depend on the architecture or CPU endianness.
         Must be allocated with the av_malloc () family of functions.
 
-    - encoding: Set/allocated/freed by 
+    - encoding: Set/allocated/freed by
     - decoding: Set/allocated/freed by user.
         ***********************************************************/
     [CCode (cname="extradata")]
@@ -297,8 +299,8 @@ public struct CodecContext {
         output before the decoder's output is valid. When seeking, you should
         start decoding this many samples prior to your desired seek point.
 
-    - encoding: Set by 
-    - decoding: Set by 
+    - encoding: Set by
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="delay")]
     public int delay;
@@ -452,18 +454,18 @@ public struct CodecContext {
 
     /***********************************************************
     @brief Size of the frame reordering buffer in the decoder.
-    
+
     @note For MPEG-2 it is 1 IPB or 0 low delay IP.
 
-    - encoding: Set by 
-    - decoding: Set by 
+    - encoding: Set by
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="has_b_frames")]
     public int has_b_frames;
 
     /***********************************************************
     @brief Qscale factor between P- and I-frames
-    
+
     @note If > 0 then the last P-frame quantizer will be used (q = lastp_q * factor + offset).
     @note If < 0 then normal ratecontrol will be done (q= -normal_q*factor+offset).
 
@@ -530,7 +532,7 @@ public struct CodecContext {
     /***********************************************************
     @brief Slice count
 
-    - encoding: Set by 
+    - encoding: Set by
     - decoding: Set by user (or 0).
         ***********************************************************/
     [CCode (cname="slice_count")]
@@ -539,7 +541,7 @@ public struct CodecContext {
     /***********************************************************
     @brief Slice offsets in the frame in bytes
 
-    - encoding: Set/allocated by 
+    - encoding: Set/allocated by
     - decoding: Set/allocated by user (or null).
         ***********************************************************/
     [CCode (cname="slice_offset")]
@@ -547,12 +549,12 @@ public struct CodecContext {
 
     /***********************************************************
     @brief Sample aspect ratio (0 if unknown)
-    
+
     @description That is the width of a pixel divided by the height of the pixel.
         Numerator and denominator must be relatively prime and smaller than 256 for some video standards.
 
     - encoding: Set by user.
-    - decoding: Set by 
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="sample_aspect_ratio")]
     public LibAVUtil.Rational sample_aspect_ratio;
@@ -668,24 +670,24 @@ public struct CodecContext {
 
     /***********************************************************
     @brief Custom intra quantization matrix
-    
+
     @note Must be allocated with the av_malloc () family of functions, and will be freed in
         avcodec_free_context ().
 
     - encoding: Set/allocated by user, freed by Can be null.
-    - decoding: Set/allocated/freed by 
+    - decoding: Set/allocated/freed by
         ***********************************************************/
     [CCode (cname="intra_matrix")]
     public uint16[] intra_matrix;
 
     /***********************************************************
     @brief Custom inter quantization matrix
-    
+
     @note Must be allocated with the av_malloc () family of functions, and will be freed in
         avcodec_free_context ().
 
     - encoding: Set/allocated by user, freed by Can be null.
-    - decoding: Set/allocated/freed by 
+    - decoding: Set/allocated/freed by
         ***********************************************************/
     [CCode (cname="inter_matrix")]
     public uint16[] inter_matrix;
@@ -853,7 +855,7 @@ public struct CodecContext {
     @brief Audio sample format
 
     - encoding: Set by user.
-    - decoding: Set by 
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="sample_fmt")]
     public LibAVUtil.SampleFormat sample_fmt;
@@ -875,7 +877,7 @@ public struct CodecContext {
     public int frame_size;
 
     /***********************************************************
-    @brief Frame counter, set by 
+    @brief Frame counter, set by
 
     - encoding: total number of frames passed to the encoder so far.
     - decoding: total number of frames returned from the decoder so far.
@@ -906,7 +908,7 @@ public struct CodecContext {
     @brief Audio channel layout.
 
     - encoding: set by user.
-    - decoding: set by user, may be overwritten by 
+    - decoding: set by user, may be overwritten by
         ***********************************************************/
     [CCode (cname="channel_layout")]
     public uint64 channel_layout;
@@ -924,7 +926,7 @@ public struct CodecContext {
     @brief Type of service that the audio stream conveys.
 
     - encoding: Set by user.
-    - decoding: Set by 
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="audio_service_type")]
     public AudioServiceType audio_service_type;
@@ -987,7 +989,7 @@ public struct CodecContext {
         Video:
 
         If AV_GET_BUFFER_FLAG_REF is set in flags then the frame may be reused
-        (read and/or written to if it is writable) later by 
+        (read and/or written to if it is writable) later by
 
         avcodec_align_dimensions2 () should be used to find the required width and
         height, as they normally need to be rounded up to the next multiple of 16.
@@ -1089,7 +1091,7 @@ public struct CodecContext {
     @brief Maximum bitrate
 
     - encoding: Set by user.
-    - decoding: Set by user, may be overwritten by 
+    - decoding: Set by user, may be overwritten by
         ***********************************************************/
     [CCode (cname="rc_max_rate")]
     public int64 rc_max_rate;
@@ -1142,7 +1144,7 @@ public struct CodecContext {
     /***********************************************************
     @brief Pass1 encoding statistics output buffer
 
-    - encoding: Set by 
+    - encoding: Set by
     - decoding: unused
         ***********************************************************/
     [CCode (cname="stats_out")]
@@ -1150,7 +1152,7 @@ public struct CodecContext {
 
     /***********************************************************
     @brief Pass2 encoding statistics input buffer
-    
+
     @note Concatenated stuff from stats_out of pass1 should be placed here.
 
     - encoding: Allocated/set/freed by user.
@@ -1290,7 +1292,7 @@ public struct CodecContext {
     /***********************************************************
     @brief Bits per sample/pixel from the demuxer (needed for huffyuv).
 
-    - encoding: Set by 
+    - encoding: Set by
     - decoding: Set by user.
         ***********************************************************/
     [CCode (cname="bits_per_coded_sample")]
@@ -1300,7 +1302,7 @@ public struct CodecContext {
     @brief Bits per sample/pixel of internal LibAVCodec pixel/sample format.
 
     - encoding: set by user.
-    - decoding: set by 
+    - decoding: set by
         ***********************************************************/
     [CCode (cname="bits_per_raw_sample")]
     public int bits_per_raw_sample;
@@ -1342,8 +1344,8 @@ public struct CodecContext {
     /***********************************************************
     @brief Which multithreading methods are in use by the codec.
 
-    - encoding: Set by 
-    - decoding: Set by 
+    - encoding: Set by
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="active_thread_type")]
     public int active_thread_type;
@@ -1410,7 +1412,7 @@ public struct CodecContext {
     @brief ProfileType
 
     - encoding: Set by user.
-    - decoding: Set by 
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="profile")]
     public ProfileType profile;
@@ -1419,7 +1421,7 @@ public struct CodecContext {
     @brief Level
 
     - encoding: Set by user.
-    - decoding: Set by 
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="level")]
     public int level;
@@ -1523,7 +1525,7 @@ public struct CodecContext {
     @brief CodecDescriptor
 
     - encoding: unused.
-    - decoding: set by 
+    - decoding: set by
         ***********************************************************/
     [CCode (cname="codec_descriptor")]
     public CodecDescriptor codec_descriptor;
@@ -1590,7 +1592,7 @@ public struct CodecContext {
 
     /***********************************************************
     @brief Subtitles character encoding mode.
-    
+
     @description Formats or codecs might be adjusting this
         setting (if they are doing the conversion themselves,
         for instance).
@@ -1743,7 +1745,7 @@ public struct CodecContext {
     /***********************************************************
     @description A reference to the LibAVUtil.HardwareDeviceContext describing the device which will
         be used by a hardware encoder/decoder. The reference is set by the
-        caller and afterwards owned (and freed) by 
+        caller and afterwards owned (and freed) by
 
         This should be used if either the codec device does not require
         hardware frames or any that are used are to be allocated internally by
@@ -1777,7 +1779,7 @@ public struct CodecContext {
     /***********************************************************
     @description Video decoding only. Certain video codecs support cropping, meaning that
         only a sub-rectangle of the decoded frame is intended for display. This
-        option controls how cropping is handled by 
+        option controls how cropping is handled by
 
         When set to 1 (the default), LibAVCodec will apply cropping internally.
         I.e. it will modify the output frame width/height fields and offset the

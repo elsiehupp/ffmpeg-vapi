@@ -36,7 +36,8 @@ optional background_frame
 ***********************************************************/
 
 [CCode (cname="struct Rl2DemuxContext", cheader_filename="")]
-public struct RL2DemuxerPrivateData { }
+[Compact]
+public class RL2DemuxerPrivateData { }
 
 [CCode (cname="ff_rl2_demuxer", cheader_filename="")]
 public class RL2Demuxer : AVInputFormat {

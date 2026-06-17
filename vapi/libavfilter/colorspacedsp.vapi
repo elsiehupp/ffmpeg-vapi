@@ -50,7 +50,8 @@ enum ChromaSubsamplingIndex {
     NB_SS,
 }
 
-public struct ColorSpaceDSPContext {
+[Compact]
+public class ColorSpaceDSPContext {
     /***********************************************************
     Convert input YUV pixel buffer from a user into an internal, 15bpp array
      * of intermediate RGB data.

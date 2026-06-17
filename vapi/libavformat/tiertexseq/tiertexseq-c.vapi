@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct SeqDemuxContext", cheader_filename="")]
-public struct TiertexSEQDemuxerPrivateData { }
+[Compact]
+public class TiertexSEQDemuxerPrivateData { }
 
 [CCode (cname="ff_tiertexseq_demuxer", cheader_filename="")]
 public class TiertexSEQDemuxer : AVInputFormat {

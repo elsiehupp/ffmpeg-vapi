@@ -28,7 +28,8 @@ http://tools.ietf.org/html/draft-pantos-http-live-streaming
 ***********************************************************/
 
 [CCode (cname="struct HLSContext", cheader_filename="")]
-public struct HLSPrivateData { }
+[Compact]
+public class HLSPrivateData { }
 
 [CCode (cname="ff_hls_protocol", cheader_filename="")]
 public class HLSURLProtocol : URLProtocol {

@@ -122,7 +122,8 @@ client_port=1000-1001;server_port=1800-1801") and described in separate
 RTSPTransportFields.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct RTSPTransportField {
+[Compact]
+public class RTSPTransportField {
     /***********************************************************
     @brief Interleave ids, if TCP transport; each TCP/RTSP data packet starts
     with a '$', stream length and stream ID. If the stream ID is within
@@ -207,7 +208,8 @@ public struct RTSPTransportField {
 @brief This describes the server response to each RTSP command.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct RTSPMessageHeader {
+[Compact]
+public class RTSPMessageHeader {
     /***********************************************************
     @brief Length of the data following this header
         ***********************************************************/
@@ -365,7 +367,8 @@ public enum RTSPServerType {
 @todo Use AVIOContext instead of URLContext
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct RTSPState {
+[Compact]
+public class RTSPState {
     /***********************************************************
     @brief Class for private options.
         ***********************************************************/
@@ -718,7 +721,8 @@ public enum RTSPFlags {
 }
 
 [CCode (cname="struct RTSPSource", cheader_filename="")]
-public struct RTSPSource {
+[Compact]
+public class RTSPSource {
     /***********************************************************
     @brief Source-specific multicast include source IP address (from SDP content)
         ***********************************************************/
@@ -733,7 +737,8 @@ AVStreams. In this case, each AVStream in this set has similar content
 (but different codec/bitrate).
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct RTSPStream {
+[Compact]
+public class RTSPStream {
     /***********************************************************
     @brief RTP stream handle (if UDP)
         ***********************************************************/

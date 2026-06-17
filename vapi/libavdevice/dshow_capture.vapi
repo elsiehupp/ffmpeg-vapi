@@ -143,11 +143,16 @@ fail:                                                                        \
 /*****************************************************************************
 Forward Declarations
  ****************************************************************************/
-public struct libAVPin libAVPin;
-public struct libAVMemInputPin libAVMemInputPin;
-public struct libAVEnumPins libAVEnumPins;
-public struct libAVEnumMediaTypes libAVEnumMediaTypes;
-public struct libAVFilter libAVFilter;
+[Compact]
+public class libAVPin libAVPin;
+[Compact]
+public class libAVMemInputPin libAVMemInputPin;
+[Compact]
+public class libAVEnumPins libAVEnumPins;
+[Compact]
+public class libAVEnumMediaTypes libAVEnumMediaTypes;
+[Compact]
+public class libAVFilter libAVFilter;
 
 /*****************************************************************************
 libAVPin

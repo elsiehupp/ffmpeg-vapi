@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct FlacMuxerContext", cheader_filename="")]
-public struct FLACMuxerPrivateData { }
+[Compact]
+public class FLACMuxerPrivateData { }
 
 //  static const LibAVUtil.Option flacenc_options[] = {
 //      { "write_header", "Write the file header", offsetof (FlacMuxerContext, write_header), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },

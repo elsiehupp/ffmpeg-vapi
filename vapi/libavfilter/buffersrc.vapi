@@ -65,11 +65,12 @@ passed to this filter.
 It should be allocated with av_buffersrc_parameters_alloc () and freed with
 av_free (). All the allocated fields in it remain owned by the caller.
 ***********************************************************/
-public struct AVBufferSrcParameters {
+[Compact]
+public class AVBufferSrcParameters {
     /***********************************************************
     video: the pixel format, value corresponds to enum AVPixelFormat
      * audio: the sample format, value corresponds to enum AVSampleFormat
-    
+
     ***********************************************************/
     int format;
     /***********************************************************
@@ -108,7 +109,7 @@ public struct AVBufferSrcParameters {
 
     /***********************************************************
     Audio only, the audio channel layout
-    
+
     ***********************************************************/
     uint64 channel_layout;
 }

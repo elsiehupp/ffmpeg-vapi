@@ -25,7 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct concat_data", cheader_filename="")]
-public struct ConcatPrivateData { }
+[Compact]
+public class ConcatPrivateData { }
 
 [CCode (cname="ff_concat_protocol", cheader_filename="")]
 public class ConcatURLProtocol : URLProtocol {

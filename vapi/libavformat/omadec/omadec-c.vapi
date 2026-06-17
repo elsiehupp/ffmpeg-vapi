@@ -43,7 +43,8 @@ Supported decoders: ATRAC3, ATRAC3+, MP3, LPCM
 ***********************************************************/
 
 [CCode (cname="struct OMAContext", cheader_filename="")]
-public struct OMADemuxerPrivateData { }
+[Compact]
+public class OMADemuxerPrivateData { }
 
 [CCode (cname="ff_oma_demuxer", cheader_filename="")]
 public class OMADemuxer : AVInputFormat {

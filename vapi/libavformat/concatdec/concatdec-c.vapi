@@ -63,7 +63,8 @@ public class ConcatDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct ConcatContext", cheader_filename="")]
-public struct ConcatDemuxerPrivateData { }
+[Compact]
+public class ConcatDemuxerPrivateData { }
 
 [CCode (cname="ff_concat_demuxer", cheader_filename="")]
 public class ConcatDemuxer : AVInputFormat {

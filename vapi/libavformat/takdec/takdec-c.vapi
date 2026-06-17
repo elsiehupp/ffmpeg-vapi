@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct TAKDemuxContext", cheader_filename="")]
-public struct TAKDemuxerPrivateData { }
+[Compact]
+public class TAKDemuxerPrivateData { }
 
 //  FF_RAW_DEMUXER_CLASS (tak)
 [CCode (cname="ff_tak_demuxer", cheader_filename="")]

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file 
+@file
 Unix socket url_protocol
 ***********************************************************/
 
@@ -66,7 +66,8 @@ public class UnixURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct UnixContext", cheader_filename="")]
-public struct UnixPrivateData { }
+[Compact]
+public class UnixPrivateData { }
 
 [CCode (cname="ff_unix_protocol", cheader_filename="")]
 public class UnixURLProtocol : URLProtocol {

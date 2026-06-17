@@ -71,7 +71,8 @@ public class OpenTLSURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct TLSContext", cheader_filename="")]
-public struct OpenTLSPrivateData { }
+[Compact]
+public class OpenTLSPrivateData { }
 
 [CCode (cname="ff_tls_protocol", cheader_filename="")]
 public class OpenTLSURLProtocol : URLProtocol {

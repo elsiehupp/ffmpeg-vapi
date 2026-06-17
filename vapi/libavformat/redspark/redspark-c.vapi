@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct RedSparkContext", cheader_filename="")]
-public struct RedSparkDemuxerPrivateData { }
+[Compact]
+public class RedSparkDemuxerPrivateData { }
 
 [CCode (cname="ff_redspark_demuxer", cheader_filename="")]
 public class RedSparkDemuxer : AVInputFormat {

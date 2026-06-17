@@ -57,7 +57,8 @@ directly. It is allocated with av_buffer_pool_init () and freed with
 av_buffer_pool_uninit ().
 ***********************************************************/
 [CCode (cname="struct AVBufferPool", cheader_filename="buffer.h")]
-public struct BufferPool { }
+[Compact]
+public class BufferPool { }
 
 public delegate LibAVUtil.BufferRef AllocDelegate (
     size_t size

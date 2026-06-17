@@ -70,7 +70,8 @@ public class TCPURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct TCPContext", cheader_filename="")]
-public struct TCPPrivateData { }
+[Compact]
+public class TCPPrivateData { }
 
 [CCode (cname="ff_tcp_protocol", cheader_filename="")]
 public class TCPURLProtocol : URLProtocol {

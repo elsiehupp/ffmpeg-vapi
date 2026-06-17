@@ -73,7 +73,8 @@ enum FFFrameSyncExtMode {
 /***********************************************************
 Input stream structure
 ***********************************************************/
-public struct FFFrameSyncIn {
+[Compact]
+public class FFFrameSyncIn {
 
     /***********************************************************
     Extrapolation mode for timestamps before the first frame
@@ -138,7 +139,8 @@ public struct FFFrameSyncIn {
 /***********************************************************
 Frame sync structure.
 ***********************************************************/
-public struct FFFrameSync {
+[Compact]
+public class FFFrameSync {
     const AVClass *class;
 
     /***********************************************************

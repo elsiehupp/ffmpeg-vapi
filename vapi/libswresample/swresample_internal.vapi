@@ -37,13 +37,33 @@ typedef void (mix_2_1_func_type)(void *out, void *in1, void *in2, void *coeffp, 
 
 typedef void (mix_any_func_type)(uint8 **out, uint8 **in1, void *coeffp, integer len);
 
-public struct AudioData {
-    uint8 *ch[SWR_CH_MAX]; ///< samples buffer per channel
-    uint8 *data; ///< samples buffer
-    int ch_count; ///< number of channels
-    int bps; ///< bytes per sample
-    int count; ///< number of samples
+[Compact]
+public class AudioData {
+    /***********************************************************
+    samples buffer per channel
+    ***********************************************************/
+    uint8 *ch[SWR_CH_MAX]; ///<
+    /***********************************************************
+    samples buffer
+    ***********************************************************/
+    uint8 *data; ///<
+    /***********************************************************
+    number of channels
+    ***********************************************************/
+    int ch_count; ///<
+    /***********************************************************
+    bytes per sample
+    ***********************************************************/
+    int bps; ///<
+    /***********************************************************
+    number of samples
+    ***********************************************************/
+    int count; ///<
+    /***********************************************************
+    ***********************************************************/
     int planar; ///< 1 if planar audio, 0 otherwise
+    /***********************************************************
+    ***********************************************************/
     enum AVSampleFormat fmt; ///< sample format
 }
 
@@ -51,19 +71,38 @@ struct DitherContext {
     int method;
     int noise_pos;
     float scale;
+    /***********************************************************
+    ***********************************************************/
     float noise_scale; ///< Noise scale
+    /***********************************************************
+    ***********************************************************/
     int ns_taps; ///< Noise shaping dither taps
+    /***********************************************************
+    ***********************************************************/
     float ns_scale; ///< Noise shaping dither scale
+    /***********************************************************
+    ***********************************************************/
     float ns_scale_1; ///< Noise shaping dither scale^-1
+    /***********************************************************
+    ***********************************************************/
     int ns_pos; ///< Noise shaping dither position
+    /***********************************************************
+    ***********************************************************/
     float ns_coeffs[NS_TAPS]; ///< Noise shaping filter coefficients
     float ns_errors[SWR_CH_MAX][2*NS_TAPS];
+    /***********************************************************
+    ***********************************************************/
     AudioData noise; ///< noise used for dithering
+    /***********************************************************
+    ***********************************************************/
     AudioData temp; ///< temporary storage when writing into the input buffer isn't possible
+    /***********************************************************
+    ***********************************************************/
     int output_sample_bits; ///< the number of used output bits, needed to scale dither correctly
 };
 
-public struct ResampleContext * (* resample_init_func)(ResampleContext *c, int out_rate, int in_rate, int filter_size, int phase_shift, int linear,
+[Compact]
+public class ResampleContext * (* resample_init_func)(ResampleContext *c, int out_rate, int in_rate, int filter_size, int phase_shift, int linear,
                                     double cutoff, AVSampleFormat format, SwrFilterType filter_type, double kaiser_beta, double precision, int cheby, int exact_rational);
 typedef void    (* resample_free_func)(ResampleContext **c);
 typedef int     (* multiple_resample_func)(ResampleContext *c, AudioData *dst, int dst_size, AudioData *src, int src_size, int *consumed);
@@ -88,98 +127,228 @@ struct Resampler {
 //  extern struct Resampler const swri_soxr_resampler;
 
 struct SwrContext {
+    /***********************************************************
+    ***********************************************************/
     const AVClass *av_class; ///< AVClass used for AVOption and av_log ()
+    /***********************************************************
+    ***********************************************************/
     int log_level_offset; ///< logging level offset
+    /***********************************************************
+    ***********************************************************/
     void *log_ctx; ///< parent logging context
+    /***********************************************************
+    ***********************************************************/
     enum AVSampleFormat  in_sample_fmt; ///< input sample format
+    /***********************************************************
+    ***********************************************************/
     enum AVSampleFormat int_sample_fmt; ///< internal sample format (AV_SAMPLE_FMT_FLTP or AV_SAMPLE_FMT_S16P)
+    /***********************************************************
+    ***********************************************************/
     enum AVSampleFormat out_sample_fmt; ///< output sample format
+    /***********************************************************
+    ***********************************************************/
     int64  in_ch_layout; ///< input channel layout
+    /***********************************************************
+    ***********************************************************/
     int64 out_ch_layout; ///< output channel layout
+    /***********************************************************
+    ***********************************************************/
     int      in_sample_rate; ///< input sample rate
+    /***********************************************************
+    ***********************************************************/
     int     out_sample_rate; ///< output sample rate
+    /***********************************************************
+    ***********************************************************/
     int flags; ///< miscellaneous flags such as SWR_FLAG_RESAMPLE
+    /***********************************************************
+    ***********************************************************/
     float slev; ///< surround mixing level
+    /***********************************************************
+    ***********************************************************/
     float clev; ///< center mixing level
+    /***********************************************************
+    ***********************************************************/
     float lfe_mix_level; ///< LFE mixing level
+    /***********************************************************
+    ***********************************************************/
     float rematrix_volume; ///< rematrixing volume coefficient
+    /***********************************************************
+    ***********************************************************/
     float rematrix_maxval; ///< maximum value for rematrixing output
-    int matrix_encoding; /**< matrixed stereo encoding
+    /***********************************************************
+    ***********************************************************/
+    int matrix_encoding; /***********************************************************
+    <matrixed stereo encoding
+    ***********************************************************/
+    /***********************************************************
     ***********************************************************/
     int[] channel_map; ///< channel index (or -1 if muted channel) map
+    /***********************************************************
+    ***********************************************************/
     int used_ch_count; ///< number of used input channels (mapped channel count if channel_map, otherwise in.ch_count)
     int engine;
 
+    /***********************************************************
+    ***********************************************************/
     int user_in_ch_count; ///< User set input channel count
+    /***********************************************************
+    ***********************************************************/
     int user_out_ch_count; ///< User set output channel count
+    /***********************************************************
+    ***********************************************************/
     int user_used_ch_count; ///< User set used channel count
+    /***********************************************************
+    ***********************************************************/
     int64 user_in_ch_layout; ///< User set input channel layout
+    /***********************************************************
+    ***********************************************************/
     int64 user_out_ch_layout; ///< User set output channel layout
+    /***********************************************************
+    ***********************************************************/
     enum AVSampleFormat user_int_sample_fmt; ///< User set internal sample format
+    /***********************************************************
+    ***********************************************************/
     int user_dither_method; ///< User set dither method
 
     struct DitherContext dither;
 
-    int filter_size; /**< length of each FIR filter in the resampling filterbank relative to the cutoff frequency
+    int filter_size; /***********************************************************
+    < length of each FIR filter in the resampling filterbank relative to the cutoff frequency
     ***********************************************************/
-    int phase_shift; /**< log2 of the number of entries in the resampling polyphase filterbank
+    int phase_shift; /***********************************************************
+    <log2 of the number of entries in the resampling polyphase filterbank
     ***********************************************************/
-    int linear_interp; /**< if 1 then the resampling FIR filter will be linearly interpolated
+    int linear_interp; /***********************************************************
+    <if 1 then the resampling FIR filter will be linearly interpolated
     ***********************************************************/
-    int exact_rational; /**< if 1 then enable non power of 2 phase_count
+    int exact_rational; /***********************************************************
+    <if 1 then enable non power of 2 phase_count
     ***********************************************************/
-    double cutoff; /**< resampling cutoff frequency (swr: 6dB point; soxr: 0dB point). 1.0 corresponds to half the output sample rate
+    double cutoff; /***********************************************************
+    <resampling cutoff frequency (swr: 6dB point; soxr: 0dB point). 1.0 corresponds to half the output sample rate
     ***********************************************************/
-    int filter_type; /**< swr resampling filter type
+    int filter_type; /***********************************************************
+    <swr resampling filter type
     ***********************************************************/
-    double kaiser_beta; /**< swr beta value for Kaiser window (only applicable if filter_type == AV_FILTER_TYPE_KAISER)
+    double kaiser_beta; /***********************************************************
+    <swr beta value for Kaiser window (only applicable if filter_type == AV_FILTER_TYPE_KAISER)
     ***********************************************************/
-    double precision; /**< soxr resampling precision (in bits)
+    double precision; /***********************************************************
+    <soxr resampling precision (in bits)
     ***********************************************************/
-    int cheby; /**< soxr: if 1 then passband rolloff will be none (Chebyshev) & irrational ratio approximation precision will be higher
+    int cheby; /***********************************************************
+    <soxr: if 1 then passband rolloff will be none (Chebyshev) & irrational ratio approximation precision will be higher
     ***********************************************************/
 
+    /***********************************************************
+    ***********************************************************/
     float min_compensation; ///< swr minimum below which no compensation will happen
+    /***********************************************************
+    ***********************************************************/
     float min_hard_compensation; ///< swr minimum below which no silence inject / sample drop will happen
+    /***********************************************************
+    ***********************************************************/
     float soft_compensation_duration; ///< swr duration over which soft compensation is applied
+    /***********************************************************
+    ***********************************************************/
     float max_soft_compensation; ///< swr maximum soft compensation in seconds over soft_compensation_duration
+    /***********************************************************
+    ***********************************************************/
     float async; ///< swr simple 1 parameter async, similar to ffmpegs -async
+    /***********************************************************
+    ***********************************************************/
     int64 firstpts_in_samples; ///< swr first pts in samples
 
+    /***********************************************************
+    ***********************************************************/
     int resample_first; ///< 1 if resampling must come first, 0 if rematrixing
+    /***********************************************************
+    ***********************************************************/
     int rematrix; ///< flag to indicate if rematrixing is needed (basically if input and output layouts mismatch)
+    /***********************************************************
+    ***********************************************************/
     int rematrix_custom; ///< flag to indicate that a custom matrix has been defined
 
+    /***********************************************************
+    ***********************************************************/
     AudioData in; ///< input audio data
+    /***********************************************************
+    ***********************************************************/
     AudioData postin; ///< post-input audio data: used for rematrix/resample
+    /***********************************************************
+    ***********************************************************/
     AudioData midbuf; ///< intermediate audio data (postin/preout)
+    /***********************************************************
+    ***********************************************************/
     AudioData preout; ///< pre-output audio data: used for rematrix/resample
+    /***********************************************************
+    ***********************************************************/
     AudioData out; ///< converted output audio data
+    /***********************************************************
+    ***********************************************************/
     AudioData in_buffer; ///< cached audio data (convert and resample purpose)
+    /***********************************************************
+    ***********************************************************/
     AudioData silence; ///< temporary with silence
+    /***********************************************************
+    ***********************************************************/
     AudioData drop_temp; ///< temporary used to discard output
+    /***********************************************************
+    ***********************************************************/
     int in_buffer_index; ///< cached buffer position
+    /***********************************************************
+    ***********************************************************/
     int in_buffer_count; ///< cached buffer length
+    /***********************************************************
+    ***********************************************************/
     int resample_in_constraint; ///< 1 if the input end was reach before the output end, 0 otherwise
+    /***********************************************************
+    ***********************************************************/
     int flushed; ///< 1 if data is to be flushed and no further input is expected
+    /***********************************************************
+    ***********************************************************/
     int64 outpts; ///< output PTS
+    /***********************************************************
+    ***********************************************************/
     int64 firstpts; ///< first PTS
+    /***********************************************************
+    ***********************************************************/
     int drop_output; ///< number of output samples to drop
+    /***********************************************************
+    ***********************************************************/
     double delayed_samples_fixup; ///< soxr 0.1.1: needed to fixup delayed_samples after flush has been called.
 
+    /***********************************************************
+    ***********************************************************/
     struct AudioConvert *in_convert; ///< input conversion context
+    /***********************************************************
+    ***********************************************************/
     struct AudioConvert *out_convert; ///< output conversion context
+    /***********************************************************
+    ***********************************************************/
     struct AudioConvert *full_convert; ///< full conversion context (single conversion for input and output)
+    /***********************************************************
+    ***********************************************************/
     struct ResampleContext *resample; ///< resampling context
+    /***********************************************************
+    ***********************************************************/
     struct Resampler const *resampler; ///< resampler virtual function table
 
+    /***********************************************************
+    ***********************************************************/
     double matrix[SWR_CH_MAX][SWR_CH_MAX]; ///< floating point rematrixing coefficients
+    /***********************************************************
+    ***********************************************************/
     float matrix_flt[SWR_CH_MAX][SWR_CH_MAX]; ///< single precision floating point rematrixing coefficients
     uint8 *native_matrix;
     uint8 *native_one;
     uint8 *native_simd_one;
     uint8 *native_simd_matrix;
+    /***********************************************************
+    ***********************************************************/
     int32 matrix32[SWR_CH_MAX][SWR_CH_MAX]; ///< 17.15 fixed point rematrixing coefficients
+    /***********************************************************
+    ***********************************************************/
     uint8 matrix_ch[SWR_CH_MAX][SWR_CH_MAX+1]; ///< Lists of input channels per output channel that have non zero rematrixing coefficients
     mix_1_1_func_type *mix_1_1_f;
     mix_1_1_func_type *mix_1_1_simd;
@@ -191,7 +360,7 @@ struct SwrContext {
 
     /***********************************************************
     TODO: callbacks for ASM optimizations
-***********************************************************/
+    ***********************************************************/
 };
 
 av_warn_unused_result

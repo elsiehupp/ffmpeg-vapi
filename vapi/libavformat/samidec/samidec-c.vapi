@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct SAMIContext", cheader_filename="")]
-public struct SAMIDemuxerPrivateData { }
+[Compact]
+public class SAMIDemuxerPrivateData { }
 
 [CCode (cname="ff_sami_demuxer", cheader_filename="")]
 public class SAMIDemuxer : AVInputFormat {

@@ -26,7 +26,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct VPlayerContext", cheader_filename="")]
-public struct VPlayerDemuxerPrivateData { }
+[Compact]
+public class VPlayerDemuxerPrivateData { }
 
 [CCode (cname="ff_vplayer_demuxer", cheader_filename="")]
 public class VPlayerDemuxer : AVInputFormat {

@@ -37,7 +37,8 @@ public delegate double TwoArgumentDelegate (
 );
 
 [CCode (cname="struct AVExpr", cheader_filename="ffmpeg/libavutil/eval.h")]
-public struct Expression {
+[Compact]
+public class Expression {
 
     /***********************************************************
     @brief Parse and evaluate an expression.

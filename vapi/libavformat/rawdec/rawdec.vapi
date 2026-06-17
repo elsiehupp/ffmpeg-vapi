@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct FFRawVideoDemuxerContext", cheader_filename="")]
-public struct FFRawVideoDemuxerContext {
+[Compact]
+public class FFRawVideoDemuxerContext {
     /***********************************************************
     @brief Class for private options.
         ***********************************************************/
@@ -53,7 +54,8 @@ public struct FFRawVideoDemuxerContext {
 }
 
 [CCode (cname="struct FFRawDemuxerContext", cheader_filename="")]
-public struct FFRawDemuxerContext {
+[Compact]
+public class FFRawDemuxerContext {
     /***********************************************************
     @brief Class for private options.
         ***********************************************************/

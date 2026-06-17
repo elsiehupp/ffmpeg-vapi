@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct IcoMuxContext", cheader_filename="")]
-public struct ICOMuxerPrivateData { }
+[Compact]
+public class ICOMuxerPrivateData { }
 
 [CCode (cname="ff_ico_muxer", cheader_filename="")]
 public class ICOMuxer : AVOutputFormat {

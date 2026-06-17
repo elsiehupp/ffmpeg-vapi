@@ -24,7 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct PayloadContext", cheader_filename="")]
-public struct PayloadContext { }
+[Compact]
+public class PayloadContext { }
 
 [CCode (cname="", cheader_filename="")]
 public const size_t RTP_MIN_PACKET_LENGTH;
@@ -78,7 +79,8 @@ public int ff_rtp_send_rtcp_feedback (
 @brief Phese statistics are used for rtcp receiver reports...
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct RTPStatistics {
+[Compact]
+public class RTPStatistics {
     /***********************************************************
     @brief Highest sequence number seen
         ***********************************************************/
@@ -271,7 +273,8 @@ public abstract class RTPDynamicProtocolHandler {
 }
 
 [CCode (cname="struct RTPPacket", cheader_filename="")]
-public struct RTPPacket {
+[Compact]
+public class RTPPacket {
     [CCode (cname="", cheader_filename="")]
     public uint16 seq;
 
@@ -289,7 +292,8 @@ public struct RTPPacket {
 }
 
 [CCode (cname="struct RTPDemuxContext", cheader_filename="")]
-public struct RTPDemuxContext {
+[Compact]
+public class RTPDemuxContext {
     [CCode (cname="", cheader_filename="")]
     public AVFormatContext ic;
 

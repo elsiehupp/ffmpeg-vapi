@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct AviSynthContext", cheader_filename="")]
-public struct AVISynthDemuxerPrivateData { }
+[Compact]
+public class AVISynthDemuxerPrivateData { }
 
 [CCode (cname="ff_avisynth_demuxer", cheader_filename="")]
 public class AVISynthDemuxer : AVInputFormat {

@@ -29,7 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct DVDemuxContext", cheader_filename="")]
-public struct DVDemuxContext {
+[Compact]
+public class DVDemuxContext {
 
     [CCode (cname="", cheader_filename="")]
     public DVDemuxContext avpriv_dv_init_demux (
@@ -59,6 +60,7 @@ public struct DVDemuxContext {
 }
 
 [CCode (cname="struct DVMuxContext", cheader_filename="")]
-public struct DVMuxContext { }
+[Compact]
+public class DVMuxContext { }
 
 } // namespace LibAVFormat

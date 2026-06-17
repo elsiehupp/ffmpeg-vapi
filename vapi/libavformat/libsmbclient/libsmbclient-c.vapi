@@ -58,7 +58,8 @@ public class LibSMBClientURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct LIBSMBContext", cheader_filename="")]
-public struct LibSMBClientPrivateData { }
+[Compact]
+public class LibSMBClientPrivateData { }
 
 [CCode (cname="ff_libsmbclient_protocol", cheader_filename="")]
 public class LibSMBClientURLProtocol : URLProtocol {

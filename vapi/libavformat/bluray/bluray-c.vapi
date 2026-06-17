@@ -58,7 +58,8 @@ public class BluRayContextClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct BlurayContext", cheader_filename="")]
-public struct BluRayPrivateData { }
+[Compact]
+public class BluRayPrivateData { }
 
 [CCode (cname="ff_bluray_protocol", cheader_filename="")]
 public class BluRayURLProtocol : URLProtocol {

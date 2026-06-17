@@ -33,7 +33,8 @@ MD5 hash function implementation.
 ***********************************************************/
 
 [CCode (cname="struct AVMD5", cheader_filename="ffmpeg/libavutil/md5.h")]
-public struct MD5Context {
+[Compact]
+public class MD5Context {
     [CCode (cname="av_md5_size", cheader_filename="ffmpeg/libavutil/md5.h")]
     public const size_t SIZE;
 

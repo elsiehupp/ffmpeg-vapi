@@ -23,13 +23,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct MMSStream", cheader_filename="")]
-public struct MMSStream {
+[Compact]
+public class MMSStream {
     [CCode (cname="", cheader_filename="")]
     public int id;
 }
 
 [CCode (cname="struct MMSContext", cheader_filename="")]
-public struct MMSContext {
+[Compact]
+public class MMSContext {
     /***********************************************************
     @brief TCP connection handle
         ***********************************************************/

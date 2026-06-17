@@ -18,7 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct SSIMDSPContext {
+[Compact]
+public class SSIMDSPContext {
     void (*ssim_4x4_line)(const uint8 *buf, ptrdiff_t buf_stride,
                           uint8 *ref, ptrdiff_t ref_stride,
                           int (*sums)[4], int w);

@@ -27,7 +27,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="struct AVBlowfish", cheader_filename="ffmpeg/libavutil/blowfish.h")]
-public struct BlowfishContext {
+[Compact]
+public class BlowfishContext {
 
     [CCode (cname="AV_BF_ROUNDS", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public const int AV_BF_ROUNDS;

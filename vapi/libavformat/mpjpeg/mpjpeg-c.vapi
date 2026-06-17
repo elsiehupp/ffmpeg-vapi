@@ -60,7 +60,8 @@ public class MultipartJpegMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct MPJPEGContext", cheader_filename="")]
-public struct MultipartJpegMuxerPrivateData { }
+[Compact]
+public class MultipartJpegMuxerPrivateData { }
 
 [CCode (cname="ff_mpjpeg_muxer", cheader_filename="")]
 public class MultipartJpegMuxer : AVOutputFormat {

@@ -29,7 +29,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct VivoContext", cheader_filename="")]
-public struct VivoDemuxerPrivateData { }
+[Compact]
+public class VivoDemuxerPrivateData { }
 
 [CCode (cname="ff_vivo_demuxer", cheader_filename="")]
 public class VivoDemuxer : AVInputFormat {

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file 
+@file
 sctp url_protocol
 
 url syntax: sctp://host:port[?option=val...]
@@ -39,7 +39,8 @@ stream number of the packet being read/written.
 ***********************************************************/
 
 [CCode (cname="struct SCTPContext", cheader_filename="")]
-public struct TCTPPrivateData { }
+[Compact]
+public class TCTPPrivateData { }
 
 [CCode (cname="ff_sctp_protocol", cheader_filename="")]
 public class TCTPURLProtocol : URLProtocol {

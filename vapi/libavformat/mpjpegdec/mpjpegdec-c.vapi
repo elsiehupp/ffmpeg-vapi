@@ -56,7 +56,8 @@ public class MPJPEGDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct MPJPEGDemuxContext", cheader_filename="")]
-public struct MultipartJPEGDemuxerPrivateData { }
+[Compact]
+public class MultipartJPEGDemuxerPrivateData { }
 
 [CCode (cname="ff_mpjpeg_demuxer", cheader_filename="")]
 public class MultipartJPEGDemuxer : AVInputFormat {

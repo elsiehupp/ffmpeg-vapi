@@ -54,7 +54,8 @@ public class VapourSynthDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct VSContext", cheader_filename="")]
-public struct VapourSynthDemuxerPrivateData { }
+[Compact]
+public class VapourSynthDemuxerPrivateData { }
 
 [CCode (cname="ff_vapoursynth_demuxer", cheader_filename="")]
 public class VapourSynthDemuxer : AVInputFormat {

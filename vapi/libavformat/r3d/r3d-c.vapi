@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct R3DContext", cheader_filename="")]
-public struct R3DDemuxerPrivateData { }
+[Compact]
+public class R3DDemuxerPrivateData { }
 
 [CCode (cname="ff_r3d_demuxer", cheader_filename="")]
 public class R3DDemuxer : AVInputFormat {

@@ -28,7 +28,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="struct AVCAST5", cheader_filename="ffmpeg/libavutil/cast5.h")]
-public struct CAST5Context {
+[Compact]
+public class CAST5Context {
 
     [CCode (cname="av_cast5_size", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public const size_t SIZE;

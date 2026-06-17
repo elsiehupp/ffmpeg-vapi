@@ -19,7 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct VMAFMotionDSPContext {
+[Compact]
+public class VMAFMotionDSPContext {
     uint64 (*sad)(const uint16 *img1, uint16 *img2, int w, int h,
                     ptrdiff_t img1_stride, ptrdiff_t img2_stride);
     void (*convolution_x)(const uint16 *filter, int filt_w, uint16 *src,
@@ -32,7 +33,8 @@ public struct VMAFMotionDSPContext {
 
 void ff_vmafmotion_init_x86 (VMAFMotionDSPContext *dsp);
 
-public struct VMAFMotionData {
+[Compact]
+public class VMAFMotionData {
     uint16 filter[5];
     int width;
     int height;

@@ -43,13 +43,15 @@ public enum DNNConvPaddingParam {
     SAME_CLAMP_TO_EDGE
 }
 
-public struct Layer {
+[Compact]
+public class Layer {
     DNNLayerType type;
     float *output;
     void *params;
 }
 
-public struct ConvolutionalParams {
+[Compact]
+public class ConvolutionalParams {
     int32 input_num, output_num, kernel_size;
     DNNActivationFunc activation;
     DNNConvPaddingParam padding_method;
@@ -58,16 +60,19 @@ public struct ConvolutionalParams {
     float *biases;
 }
 
-public struct InputParams {
+[Compact]
+public class InputParams {
     int height, width, channels;
 }
 
-public struct DepthToSpaceParams {
+[Compact]
+public class DepthToSpaceParams {
     int block_size;
 }
 
 // Represents simple feed-forward convolutional network.
-public struct ConvolutionalNetwork {
+[Compact]
+public class ConvolutionalNetwork {
     Layer *layers;
     int32 layers_num;
 }

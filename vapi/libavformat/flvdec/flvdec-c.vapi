@@ -28,7 +28,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct FLVContext", cheader_filename="")]
-public struct FLVDemuxerClassPrivateData { }
+[Compact]
+public class FLVDemuxerClassPrivateData { }
 
 //  #define OFFSET (x) offsetof (FLVContext, x)
 //  #define VD AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM

@@ -52,7 +52,8 @@ public class LibGMEDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct GMEContext", cheader_filename="")]
-public struct LibGMEDemuxerPrivateData { }
+[Compact]
+public class LibGMEDemuxerPrivateData { }
 
 [CCode (cname="ff_libgme_demuxer", cheader_filename="")]
 public class LibGMEDemuxer : AVInputFormat {

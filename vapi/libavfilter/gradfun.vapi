@@ -20,17 +20,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 /// Holds instance-specific information for gradfun.
-public struct GradFunContext {
+[Compact]
+public class GradFunContext {
     const AVClass *class;
     float strength;
-    int thresh; ///< threshold for gradient algorithm
-    int radius; ///< blur radius
-    int chroma_w; ///< width of the chroma planes
-    int chroma_h; ///< weight of the chroma planes
-    int chroma_r; ///< blur radius for the chroma planes
-    uint16 *buf; ///< holds image data for blur algorithm passed into filter.
-    /// DSP functions.
+    /***********************************************************
+    threshold for gradient algorithm
+    ***********************************************************/
+    int thresh; ///<
+    /***********************************************************
+    blur radius
+    ***********************************************************/
+    int radius; ///<
+    /***********************************************************
+    width of the chroma planes
+    ***********************************************************/
+    int chroma_w; ///<
+    /***********************************************************
+    weight of the chroma planes
+    ***********************************************************/
+    int chroma_h; ///<
+    /***********************************************************
+    blur radius for the chroma planes
+    ***********************************************************/
+    int chroma_r; ///<
+    /***********************************************************
+    holds image data for blur algorithm passed into filter.
+    ***********************************************************/
+    uint16 *buf; ///<
+    /***********************************************************
+    DSP function.
+    ***********************************************************/
     void (*filter_line) (uint8 *dst, uint8 *src, uint16 *dc, int width, int thresh, uint16 *dithers);
+    /***********************************************************
+    DSP function.
+    ***********************************************************/
     void (*blur_line) (uint16 *dc, uint16 *buf, uint16 *buf1, uint8 *src, int src_linesize, int width);
 }
 

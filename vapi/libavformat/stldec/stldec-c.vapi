@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct STLContext", cheader_filename="")]
-public struct STLDemuxerPrivateData { }
+[Compact]
+public class STLDemuxerPrivateData { }
 
 [CCode (cname="ff_stl_demuxer", cheader_filename="")]
 public class STLDemuxer : AVInputFormat {

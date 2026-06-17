@@ -38,7 +38,8 @@ namespace LibAVFormat {
 //  }
 
 [CCode (cname="struct Context", cheader_filename="")]
-public struct CachePrivateData { }
+[Compact]
+public class CachePrivateData { }
 
 [CCode (cname="cache_context_class", cheader_filename="")]
 public class CacheContextClass : LibAVUtil.Class {

@@ -26,7 +26,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct MPL2Context", cheader_filename="")]
-public struct MPL2DemuxerPrivateData { }
+[Compact]
+public class MPL2DemuxerPrivateData { }
 
 [CCode (cname="ff_mpl2_demuxer", cheader_filename="")]
 public class MPL2Demuxer : AVInputFormat {

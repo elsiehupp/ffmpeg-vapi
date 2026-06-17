@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="SAPState", cheader_filename="")]
-public struct SAPDemuxerState { }
+[Compact]
+public class SAPDemuxerState { }
 
 [CCode (cname="ff_sap_demuxer", cheader_filename="")]
 public class SAPDemuxer : AVInputFormat {

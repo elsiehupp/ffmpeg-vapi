@@ -405,7 +405,8 @@ public enum MatroskaVideoProjectionType {
 ***********************************************************/
 
 [CCode (cname="struct CodecTags", cheader_filename="")]
-public struct CodecTags {
+[Compact]
+public class CodecTags {
     char str[22];
     LibAVCodec.CodecID id;
 }

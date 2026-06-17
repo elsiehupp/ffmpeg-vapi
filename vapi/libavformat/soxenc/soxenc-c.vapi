@@ -32,7 +32,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct SoXContext", cheader_filename="")]
-public struct SoXMuxerPrivateData { }
+[Compact]
+public class SoXMuxerPrivateData { }
 
 [CCode (cname="ff_sox_muxer", cheader_filename="")]
 public class SoXMuxer : AVOutputFormat {

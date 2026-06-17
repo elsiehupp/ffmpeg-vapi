@@ -16,12 +16,14 @@ with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct PullupBuffer {
+[Compact]
+public class PullupBuffer {
     int lock[2];
     uint8 *planes[4];
 }
 
-public struct PullupField {
+[Compact]
+public class PullupField {
     int parity;
     PullupBuffer *buffer;
     unsigned flags;
@@ -33,7 +35,8 @@ public struct PullupField {
     struct PullupField *prev, *next;
 }
 
-public struct PullupFrame {
+[Compact]
+public class PullupFrame {
     int lock;
     int length;
     int parity;
@@ -41,7 +44,8 @@ public struct PullupFrame {
     PullupBuffer *buffer;
 }
 
-public struct PullupContext {
+[Compact]
+public class PullupContext {
     const AVClass *class;
     int junk_left, junk_right, junk_top, junk_bottom;
     int metric_plane;

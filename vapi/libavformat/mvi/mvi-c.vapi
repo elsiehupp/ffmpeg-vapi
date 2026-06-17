@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct MviDemuxContext", cheader_filename="")]
-public struct MVIDemuxerPrivateData { }
+[Compact]
+public class MVIDemuxerPrivateData { }
 
 [CCode (cname="ff_mvi_demuxer", cheader_filename="")]
 public class MVIDemuxer : AVInputFormat {

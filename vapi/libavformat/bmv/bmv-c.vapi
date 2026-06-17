@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct BMVContext", cheader_filename="")]
-public struct BMVDemuxerPrivateData { }
+[Compact]
+public class BMVDemuxerPrivateData { }
 
 [CCode (cname="ff_bmv_demuxer", cheader_filename="")]
 public class BMVDemuxer : AVInputFormat {

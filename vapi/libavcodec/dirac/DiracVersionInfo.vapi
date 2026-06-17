@@ -41,7 +41,8 @@ VC-2 Specification ->
 ***********************************************************/
 
 [CCode (cname="struct DiracVersionInfo", cheader_filename="ffmpeg/libavcodec/dirac.h")]
-public struct DiracVersionInfo {
+[Compact]
+public class DiracVersionInfo {
     [CCode (cname="major")]
     public int major;
 

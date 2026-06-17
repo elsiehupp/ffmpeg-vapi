@@ -48,7 +48,8 @@ increasing plane index must be the same as the order which would
 be used for the data pointers in the equivalent software format.
 ***********************************************************/
 [CCode (cname="struct AVDRMFrameDescriptor", cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
-public struct DRMFrameDescriptor {
+[Compact]
+public class DRMFrameDescriptor {
     /***********************************************************
     @brief The maximum number of layers/planes in a DRM frame.
         ***********************************************************/

@@ -71,7 +71,8 @@ heuristic:
 ***********************************************************/
 
 [CCode (cname="struct IdcinDemuxContext", cheader_filename="")]
-public struct IDCINDemuxerPrivateData { }
+[Compact]
+public class IDCINDemuxerPrivateData { }
 
 [CCode (cname="ff_idcin_demuxer", cheader_filename="")]
 public class IDCINDemuxer : AVInputFormat {

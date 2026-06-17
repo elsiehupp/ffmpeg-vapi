@@ -1,2 +1,4 @@
 build
 Build
+subprojects/glib-*
+subprojects/packagecache

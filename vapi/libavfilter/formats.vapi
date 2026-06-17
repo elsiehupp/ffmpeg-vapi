@@ -57,11 +57,23 @@ get updated as well. Therefore, we have the format list structure store a
 pointer to each of the pointers to itself.
 ***********************************************************/
 struct AVFilterFormats {
-    unsigned nb_formats; ///< number of formats
-    int[] formats; ///< list of media formats
+    /***********************************************************
+    number of formats
+    ***********************************************************/
+    unsigned nb_formats; ///<
+    /***********************************************************
+    list of media formats
+    ***********************************************************/
+    int[] formats; ///<
 
-    unsigned refcount; ///< number of references to this list
-    struct AVFilterFormats ***refs; ///< references to this list
+    /***********************************************************
+    number of references to this list
+    ***********************************************************/
+    unsigned refcount; ///<
+    /***********************************************************
+    references to this list
+    ***********************************************************/
+    struct AVFilterFormats ***refs; ///<
 }
 
 /***********************************************************
@@ -77,14 +89,33 @@ differences:
   channel count with unknown disposition with the same number of channels
   (e.g. AV_CH_LAYOUT_STEREO and FF_COUNT2LAYOUT (2).
 ***********************************************************/
-public struct AVFilterChannelLayouts {
-    uint64 *channel_layouts; ///< list of channel layouts
-    int    nb_channel_layouts; ///< number of channel layouts
-    char all_layouts; ///< accept any known channel layout
-    char all_counts; ///< accept any channel layout or count
+[Compact]
+public class AVFilterChannelLayouts {
+    /***********************************************************
+    list of channel layouts
+    ***********************************************************/
+    uint64 *channel_layouts; ///<
+    /***********************************************************
+    number of channel layouts
+    ***********************************************************/
+    int    nb_channel_layouts; ///<
+    /***********************************************************
+    accept any known channel layout
+    ***********************************************************/
+    char all_layouts; ///<
+    /***********************************************************
+    accept any channel layout or count
+    ***********************************************************/
+    char all_counts; ///<
 
-    unsigned refcount; ///< number of references to this list
-    struct AVFilterChannelLayouts ***refs; ///< references to this list
+    /***********************************************************
+    number of references to this list
+    ***********************************************************/
+    unsigned refcount; ///<
+    /***********************************************************
+    references to this list
+    ***********************************************************/
+    struct AVFilterChannelLayouts ***refs; ///<
 }
 
 /***********************************************************

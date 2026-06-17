@@ -24,7 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct ASSContext", cheader_filename="")]
-public struct ASSDemuxerPrivateData { }
+[Compact]
+public class ASSDemuxerPrivateData { }
 
 [CCode (cname="ff_ass_demuxer", cheader_filename="")]
 public class ASSDemuxer : AVInputFormat {

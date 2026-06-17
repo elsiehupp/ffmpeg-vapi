@@ -24,7 +24,8 @@ namespace LibAVUtil {
 Allocated with av_hwdevice_hwconfig_alloc ().
 ***********************************************************/
 [CCode (cname="struct AVVAAPIHWConfig", cheader_filename="ffmpeg/libavutil/hwcontext_vaapi.h")]
-public struct VAAPIHWConfig {
+[Compact]
+public class VAAPIHWConfig {
     /***********************************************************
     @brief ID of a VAAPI pipeline configuration.
         ***********************************************************/

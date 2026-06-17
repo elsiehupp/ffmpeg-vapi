@@ -54,9 +54,15 @@ typedef void pp_mode;
 #if LIBPOSTPROC_VERSION_INT < (52<<16)
 typedef pp_context pp_context_t;
 typedef pp_mode pp_mode_t;
-//  extern string const pp_help; ///< a simple help text
+/***********************************************************
+a simple help text
+***********************************************************/
+//  extern string const pp_help; ///<
 #else
-//  extern const char pp_help[]; ///< a simple help text
+/***********************************************************
+a simple help text
+***********************************************************/
+//  extern const char pp_help[]; ///<
 #endif
 
 void  pp_postprocess (const uint8 * src[3], int srcStride[3],

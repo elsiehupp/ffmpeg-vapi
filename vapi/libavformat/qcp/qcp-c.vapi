@@ -30,7 +30,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct QCPContext", cheader_filename="")]
-public struct QCPDemuxerPrivateData { }
+[Compact]
+public class QCPDemuxerPrivateData { }
 
 [CCode (cname="ff_qcp_demuxer", cheader_filename="")]
 public class QCPDemuxer : AVInputFormat {

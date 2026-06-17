@@ -18,7 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct MaskedMergeContext {
+[Compact]
+public class MaskedMergeContext {
     const AVClass *class;
     int width[4], height[4];
     int linesize[4];

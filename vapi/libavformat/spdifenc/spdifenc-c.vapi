@@ -81,7 +81,8 @@ public class SPIDFMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct IEC61937Context", cheader_filename="")]
-public struct SPIDFMuxerPrivateData { }
+[Compact]
+public class SPIDFMuxerPrivateData { }
 
 [CCode (cname="ff_spdif_muxer", cheader_filename="")]
 public class SPIDFMuxer : AVOutputFormat {

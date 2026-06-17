@@ -24,7 +24,8 @@ http://wiki.hydrogenaudio.org/index.php?title=ReplayGain_1.0_specification).
 The size of this struct is a part of the public ABI.
 ***********************************************************/
 [CCode (cname="struct AVReplayGain", cheader_filename="ffmpeg/libavutil/replaygain.h")]
-public struct ReplayGain {
+[Compact]
+public class ReplayGain {
     /***********************************************************
     @brief Track replay gain in microbels (divide by 100000 to get the value in dB).
     Should be set to INT32_MIN when unknown.

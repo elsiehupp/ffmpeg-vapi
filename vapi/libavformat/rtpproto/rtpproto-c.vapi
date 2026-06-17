@@ -75,7 +75,8 @@ public class RTPURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct RTPContext", cheader_filename="")]
-public struct RTPPrivateData { }
+[Compact]
+public class RTPPrivateData { }
 
 [CCode (cname="ff_rtp_protocol", cheader_filename="")]
 public class RTPURLProtocol : URLProtocol {

@@ -24,7 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct WvMuxContext", cheader_filename="")]
-public struct WavPackMuxerPrivateData { }
+[Compact]
+public class WavPackMuxerPrivateData { }
 
 [CCode (cname="ff_wv_muxer", cheader_filename="")]
 public class WavPackMuxer : AVOutputFormat {

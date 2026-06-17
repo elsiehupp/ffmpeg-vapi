@@ -29,7 +29,8 @@ http://www.pcisys.net/~melanson/codecs/
 ***********************************************************/
 
 [CCode (cname="struct FourxmDemuxContext", cheader_filename="")]
-public struct FourXMDemuxerPrivateData { }
+[Compact]
+public class FourXMDemuxerPrivateData { }
 
 [CCode (cname="ff_fourxm_demuxer", cheader_filename="")]
 public class FourXMDemuxer : AVInputFormat {

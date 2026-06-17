@@ -46,7 +46,8 @@ within a single video surface, with additional information as needed.
       its size is not a part of the public ABI.
 ***********************************************************/
 [CCode (cname="struct AVStereo3D", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
-public struct Stereo3D {
+[Compact]
+public class Stereo3D {
     /***********************************************************
     @brief How views are packed within the video.
         ***********************************************************/

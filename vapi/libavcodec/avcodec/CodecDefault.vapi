@@ -27,6 +27,7 @@ LibAVCodec external API header
 ***********************************************************/
 
 [CCode (cname="struct AVCodecDefault", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct CodecDefault { }
+[Compact]
+public class CodecDefault { }
 
 } // namespace LibAVCodec

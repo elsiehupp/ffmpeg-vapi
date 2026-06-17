@@ -53,7 +53,8 @@ public class TeeURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct TeeContext", cheader_filename="")]
-public struct TeePrivateData { }
+[Compact]
+public class TeePrivateData { }
 
 [CCode (cname="ff_tee_protocol", cheader_filename="")]
 public class TeeURLProtocol : URLProtocol {

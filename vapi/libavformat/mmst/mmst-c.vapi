@@ -33,7 +33,8 @@ ASF specification. Revision 01.20.03.
 ***********************************************************/
 
 [CCode (cname="struct MMSTContext", cheader_filename="")]
-public struct MMSTPrivateData { }
+[Compact]
+public class MMSTPrivateData { }
 
 [CCode (cname="ff_mmst_protocol", cheader_filename="")]
 public class MMSTURLProtocol : URLProtocol {

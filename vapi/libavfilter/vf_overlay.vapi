@@ -41,9 +41,16 @@ enum OverlayFormat {
     OVERLAY_FORMAT_NB
 }
 
-public struct OverlayContext {
+[Compact]
+public class OverlayContext {
     const AVClass *class;
-    int x, y; ///< position of overlaid picture
+    /***********************************************************
+    position of overlaid picture
+    ***********************************************************/
+    /***********************************************************
+    position of overlaid picture
+    ***********************************************************/
+    int x, y; ///<
 
     uint8 main_is_packed_rgb;
     uint8 main_rgba_map[4];
@@ -51,16 +58,37 @@ public struct OverlayContext {
     uint8 overlay_is_packed_rgb;
     uint8 overlay_rgba_map[4];
     uint8 overlay_has_alpha;
-    int format; ///< OverlayFormat
+    /***********************************************************
+    OverlayFormat
+    ***********************************************************/
+    int format; ///<
     int alpha_format;
-    int eval_mode; ///< EvalMode
+    /***********************************************************
+    EvalMode
+    ***********************************************************/
+    int eval_mode; ///<
 
     FFFrameSync fs;
 
-    int main_pix_step[4]; ///< steps per pixel for each plane of the main output
-    int overlay_pix_step[4]; ///< steps per pixel for each plane of the overlay
-    int hsub, vsub; ///< chroma subsampling values
-    const AVPixFmtDescriptor *main_desc; ///< format descriptor for main input
+    /***********************************************************
+    steps per pixel for each plane of the main output
+    ***********************************************************/
+    int main_pix_step[4]; ///<
+    /***********************************************************
+    steps per pixel for each plane of the overlay
+    ***********************************************************/
+    int overlay_pix_step[4]; ///<
+    /***********************************************************
+    chroma subsampling values
+    ***********************************************************/
+    /***********************************************************
+    chroma subsampling values
+    ***********************************************************/
+    int hsub, vsub; ///<
+    /***********************************************************
+    format descriptor for main input
+    ***********************************************************/
+    const AVPixFmtDescriptor *main_desc; ///<
 
     double var_values[VAR_VARS_NB];
     string x_expr, *y_expr;

@@ -25,46 +25,113 @@ enum SearchMethod {
     SEARCH_COUNT
 }
 
-public struct IntMotionVector {
-    int x; ///< Horizontal shift
-    int y; ///< Vertical shift
+[Compact]
+public class IntMotionVector {
+    /***********************************************************
+    Horizontal shift
+    ***********************************************************/
+    int x; ///<
+    /***********************************************************
+    Vertical shift
+    ***********************************************************/
+    int y; ///<
 }
 
-public struct MotionVector {
-    double x; ///< Horizontal shift
-    double y; ///< Vertical shift
+[Compact]
+public class MotionVector {
+    /***********************************************************
+    Horizontal shift
+    ***********************************************************/
+    double x; ///<
+    /***********************************************************
+    Vertical shift
+    ***********************************************************/
+    double y; ///<
 }
 
-public struct Transform {
-    MotionVector vec; ///< Motion vector
-    double angle; ///< Angle of rotation
-    double zoom; ///< Zoom percentage
+[Compact]
+public class Transform {
+    /***********************************************************
+    Motion vector
+    ***********************************************************/
+    MotionVector vec; ///<
+    /***********************************************************
+    Angle of rotation
+    ***********************************************************/
+    double angle; ///<
+    /***********************************************************
+    Zoom percentage
+    ***********************************************************/
+    double zoom; ///<
 }
 
 #define MAX_R 64
 
-public struct DeshakeContext {
+[Compact]
+public class DeshakeContext {
     const AVClass *class;
-    int counts[2*MAX_R+1][2*MAX_R+1]; /// < Scratch buffer for motion search
-    double[] angles; ///< Scratch buffer for block angles
+    /***********************************************************
+    Scratch buffer for motion search
+    ***********************************************************/
+    int counts[2*MAX_R+1][2*MAX_R+1]; ///<
+    /***********************************************************
+    Scratch buffer for block angles
+    ***********************************************************/
+    double[] angles; ///<
     unsigned angles_size;
-    AVFrame *ref; ///< Previous frame
-    int rx; ///< Maximum horizontal shift
-    int ry; ///< Maximum vertical shift
-    int edge; ///< Edge fill method
-    int blocksize; ///< Size of blocks to compare
-    int contrast; ///< Contrast threshold
-    int search; ///< Motion search method
-    av_pixelutils_sad_fn sad; ///< Sum of the absolute difference function
-    Transform last; ///< Transform from last frame
-    int refcount; ///< Number of reference frames (defines averaging window)
+    /***********************************************************
+    Previous frame
+    ***********************************************************/
+    AVFrame *ref; ///<
+    /***********************************************************
+    Maximum horizontal shift
+    ***********************************************************/
+    int rx; ///<
+    /***********************************************************
+    Maximum vertical shift
+    ***********************************************************/
+    int ry; ///<
+    /***********************************************************
+    Edge fill method
+    ***********************************************************/
+    int edge; ///<
+    /***********************************************************
+    Size of blocks to compare
+    ***********************************************************/
+    int blocksize; ///<
+    /***********************************************************
+    Contrast threshold
+    ***********************************************************/
+    int contrast; ///<
+    /***********************************************************
+    Motion search method
+    ***********************************************************/
+    int search; ///<
+    /***********************************************************
+    Sum of the absolute difference function
+    ***********************************************************/
+    av_pixelutils_sad_fn sad; ///<
+    /***********************************************************
+    Transform from last frame
+    ***********************************************************/
+    Transform last; ///<
+    /***********************************************************
+    Number of reference frames (defines averaging window)
+    ***********************************************************/
+    int refcount; ///<
     FILE *fp;
     Transform avg;
-    int cw; ///< Crop motion search to this box
+    /***********************************************************
+    Crop motion search to this box
+    ***********************************************************/
+    int cw; ///<
     int ch;
     int cx;
     int cy;
-    string filename; ///< Motion search detailed log filename
+    /***********************************************************
+    Motion search detailed log filename
+    ***********************************************************/
+    string filename; ///<
     int opencl;
     int (* transform)(AVFilterContext *ctx, int width, int height, int cw, int ch,
                       float *matrix_y, float *matrix_uv, InterpolateMethod interpolate,

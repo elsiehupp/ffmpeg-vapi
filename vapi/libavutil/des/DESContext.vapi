@@ -27,7 +27,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="struct AVDES", cheader_filename="ffmpeg/libavutil/des.h")]
-public struct DESContext {
+[Compact]
+public class DESContext {
     [CCode (cname="round_keys")]
     public uint64 round_keys[3 * 16];
 

@@ -118,7 +118,8 @@ public int ff_network_sleep_interruptible (
 
 #if !HAVE_STRUCT_SOCKADDR_STORAGE
 [CCode (cname="", cheader_filename="")]
-public struct sockaddr_storage {
+[Compact]
+public class sockaddr_storage {
 #if HAVE_STRUCT_SOCKADDR_SA_LEN
     [CCode (cname="", cheader_filename="")]
     public uint8 ss_len;
@@ -145,7 +146,8 @@ public struct sockaddr_storage {
 ***********************************************************/
 
 [CCode (cname="struct sockaddr_union", cheader_filename="")]
-public struct sockaddr_union {
+[Compact]
+public class sockaddr_union {
     [CCode (cname="", cheader_filename="")]
     public sockaddr_storage storage;
 
@@ -164,7 +166,8 @@ public const int MSG_NOSIGNAL; // 0
 
 #if !HAVE_STRUCT_ADDRINFO
 [CCode (cname="", cheader_filename="")]
-public struct addrinfo {
+[Compact]
+public class addrinfo {
     [CCode (cname="", cheader_filename="")]
     public int ai_flags;
 

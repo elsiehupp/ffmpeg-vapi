@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct PVAContext", cheader_filename="")]
-public struct PVADemuxerPrivateData { }
+[Compact]
+public class PVADemuxerPrivateData { }
 
 [CCode (cname="ff_pva_demuxer", cheader_filename="")]
 public class PVADemuxer : AVInputFormat {

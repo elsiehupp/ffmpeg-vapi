@@ -66,6 +66,7 @@ parts of the buffer (i.e. their LibAVUtil.BufferRef.data will not be equal).
 references (LibAVUtil.BufferRef).
 ***********************************************************/
 [CCode (cname="struct AVBuffer", cheader_filename="buffer.h")]
-public struct Buffer { }
+[Compact]
+public class Buffer { }
 
 } // namespace LibAVUtil

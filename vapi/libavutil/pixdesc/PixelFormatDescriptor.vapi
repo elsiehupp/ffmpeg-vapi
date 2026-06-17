@@ -32,7 +32,8 @@ subsampling factors and number of components.
     are stored not what these values represent.
 ***********************************************************/
 [CCode (cname="struct AVPixFmtDescriptor", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
-public struct PixelFormatDescriptor {
+[Compact]
+public class PixelFormatDescriptor {
     [CCode (cname="name")]
     public string name;
 

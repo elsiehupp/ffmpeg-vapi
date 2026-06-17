@@ -90,7 +90,8 @@ public class DashMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct DASHContext", cheader_filename="")]
-public struct DashMuxerPrivateData { }
+[Compact]
+public class DashMuxerPrivateData { }
 
 [CCode (cname="ff_dash_muxer", cheader_filename="")]
 public class DashMuxer : AVOutputFormat {

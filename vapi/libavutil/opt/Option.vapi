@@ -47,7 +47,8 @@ should also be set when applicable, but are not required.
 The following example illustrates an LibAVUtil.Options-enabled struct:
 @code
 [CCode (cname="", cheader_filename="")]
-public struct test_struct {
+[Compact]
+public class test_struct {
     Class class;
     int int_opt;
     char str_opt;
@@ -233,7 +234,8 @@ before the file is actually opened.
 @brief Option
 ***********************************************************/
 [CCode (cname="struct AVOption", cheader_filename="ffmpeg/libavutil/opt.h")]
-public struct Option {
+[Compact]
+public class Option {
     [CCode (cname="name")]
     public string name;
 

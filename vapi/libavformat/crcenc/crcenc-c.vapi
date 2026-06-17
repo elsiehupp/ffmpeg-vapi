@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct CRCState", cheader_filename="")]
-public struct CRCMuxerPrivateData { }
+[Compact]
+public class CRCMuxerPrivateData { }
 
 [CCode (cname="ff_crc_muxer", cheader_filename="")]
 public class CRCMuxer : AVOutputFormat {

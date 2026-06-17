@@ -33,7 +33,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct RawDVContext", cheader_filename="")]
-public struct DVDemuxerPrivateData { }
+[Compact]
+public class DVDemuxerPrivateData { }
 
 [CCode (cname="ff_dv_demuxer", cheader_filename="")]
 public class DVDemuxer : AVInputFormat {

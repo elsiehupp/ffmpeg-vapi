@@ -18,7 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct PSNRDSPContext {
+[Compact]
+public class PSNRDSPContext {
     uint64 (*sse_line)(const uint8 *buf, uint8 *ref, int w);
 }
 

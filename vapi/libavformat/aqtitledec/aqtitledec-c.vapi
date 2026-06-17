@@ -62,7 +62,8 @@ public class AQTitleClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct AQTitleContext", cheader_filename="")]
-public struct AQTitleDemuxerPrivateData { }
+[Compact]
+public class AQTitleDemuxerPrivateData { }
 
 [CCode (cname="ff_aqtitle_demuxer", cheader_filename="")]
 public class AQTitleDemuxer : AVInputFormat {

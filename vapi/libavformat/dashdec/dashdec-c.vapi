@@ -60,7 +60,8 @@ public class DashDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct DASHContext", cheader_filename="")]
-public struct DashDemuxerPrivateData { }
+[Compact]
+public class DashDemuxerPrivateData { }
 
 [CCode (cname="ff_dash_demuxer", cheader_filename="")]
 public class DashDemuxer : AVInputFormat {

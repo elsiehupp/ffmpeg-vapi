@@ -30,7 +30,8 @@ for more information on the Sierra VMD file format, visit:
 ***********************************************************/
 
 [CCode (cname="struct VmdDemuxContext", cheader_filename="")]
-public struct VMDDemuxerPrivateData { }
+[Compact]
+public class VMDDemuxerPrivateData { }
 
 [CCode (cname="ff_vmd_demuxer", cheader_filename="")]
 public class VMDDemuxer : AVInputFormat {

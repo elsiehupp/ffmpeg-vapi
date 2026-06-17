@@ -26,7 +26,8 @@ namespace LibAVFormat {
 @brief Structure for storing IP (UDP) source filters or block lists.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct IPSourceFilters {
+[Compact]
+public class IPSourceFilters {
     int nb_include_addrs;
     int nb_exclude_addrs;
     sockaddr_storage include_addrs;

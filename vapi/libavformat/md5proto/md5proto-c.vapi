@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct MD5Context", cheader_filename="")]
-public struct MD5PrivateData { }
+[Compact]
+public class MD5PrivateData { }
 
 [CCode (cname="ff_md5_protocol", cheader_filename="")]
 public class MD5URLProtocol : URLProtocol {

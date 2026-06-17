@@ -32,7 +32,8 @@ RIFF headers, followed by CD sectors.
 ***********************************************************/
 
 [CCode (cname="struct StrDemuxContext", cheader_filename="")]
-public struct STRDemuxerPrivateData { }
+[Compact]
+public class STRDemuxerPrivateData { }
 
 [CCode (cname="ff_str_demuxer", cheader_filename="")]
 public class STRDemuxer : AVInputFormat {

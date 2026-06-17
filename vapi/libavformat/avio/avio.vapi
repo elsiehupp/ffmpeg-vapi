@@ -55,7 +55,8 @@ new elements have been added after this struct in AVFormatContext
 or AVIOContext.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct AVIOInterruptCB {
+[Compact]
+public class AVIOInterruptCB {
     [CCode (cname="", cheader_filename="")]
     public InterruptCallbackDelegate callback;
 
@@ -88,7 +89,8 @@ Only name and type fields are guaranteed be set.
 Rest of fields are protocol or/and platform dependent and might be unknown.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public struct AVIODirEntry {
+[Compact]
+public class AVIODirEntry {
     /***********************************************************
     @brief Filename
         ***********************************************************/
@@ -155,7 +157,8 @@ public struct AVIODirEntry {
 }
 
 [CCode (cname="struct AVIODirContext", cheader_filename="")]
-public struct AVIODirContext {
+[Compact]
+public class AVIODirContext {
     [CCode (cname="", cheader_filename="")]
     public URLContext url_context;
 }

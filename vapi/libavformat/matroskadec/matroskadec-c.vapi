@@ -31,7 +31,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct MatroskaDemuxContext", cheader_filename="")]
-public struct MatroskaDemuxerPrivateData { }
+[Compact]
+public class MatroskaDemuxerPrivateData { }
 
 //  #define OFFSET (x) offsetof (MatroskaDemuxContext, x)
 //  static const LibAVUtil.Option options[] = {

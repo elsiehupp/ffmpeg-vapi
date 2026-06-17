@@ -91,7 +91,8 @@ while (get_input (&input, &in_linesize, &in_samples)) {
 
 #define AVRESAMPLE_MAX_CHANNELS 32
 
-public struct AVAudioResampleContext AVAudioResampleContext;
+[Compact]
+public class AVAudioResampleContext AVAudioResampleContext;
 
 /***********************************************************
 @deprecated use libswresample
@@ -99,13 +100,13 @@ public struct AVAudioResampleContext AVAudioResampleContext;
 Mixing Coefficient Types
 ***********************************************************/
 enum attribute_deprecated AVMixCoeffType {
-    AV_MIX_COEFF_TYPE_Q8,   /** 16-bit 8.8 fixed-point                     
+    AV_MIX_COEFF_TYPE_Q8,   /** 16-bit 8.8 fixed-point
     ***********************************************************/
-    AV_MIX_COEFF_TYPE_Q15,  /** 32-bit 17.15 fixed-point                   
+    AV_MIX_COEFF_TYPE_Q15,  /** 32-bit 17.15 fixed-point
     ***********************************************************/
-    AV_MIX_COEFF_TYPE_FLT,  /** floating-point                             
+    AV_MIX_COEFF_TYPE_FLT,  /** floating-point
     ***********************************************************/
-    AV_MIX_COEFF_TYPE_NB,   /** Number of coeff types. Not part of ABI     
+    AV_MIX_COEFF_TYPE_NB,   /** Number of coeff types. Not part of ABI
 ***********************************************************/
 };
 
@@ -115,11 +116,14 @@ enum attribute_deprecated AVMixCoeffType {
 Resampling Filter Types
 ***********************************************************/
 enum attribute_deprecated AVResampleFilterType {
-    AV_RESAMPLE_FILTER_TYPE_CUBIC,              /**< Cubic
+    AV_RESAMPLE_FILTER_TYPE_CUBIC,              /***********************************************************
+    <Cubic
     ***********************************************************/
-    AV_RESAMPLE_FILTER_TYPE_BLACKMAN_NUTTALL,   /**< Blackman Nuttall Windowed Sinc
+    AV_RESAMPLE_FILTER_TYPE_BLACKMAN_NUTTALL,   /***********************************************************
+    <Blackman Nuttall Windowed Sinc
     ***********************************************************/
-    AV_RESAMPLE_FILTER_TYPE_KAISER,             /**< Kaiser Windowed Sinc
+    AV_RESAMPLE_FILTER_TYPE_KAISER,             /***********************************************************
+    <Kaiser Windowed Sinc
 ***********************************************************/
 };
 
@@ -127,16 +131,22 @@ enum attribute_deprecated AVResampleFilterType {
 @deprecated use libswresample
 ***********************************************************/
 enum attribute_deprecated AVResampleDitherMethod {
-    AV_RESAMPLE_DITHER_NONE,            /**< Do not use dithering
+    AV_RESAMPLE_DITHER_NONE,            /***********************************************************
+    <Do not use dithering
     ***********************************************************/
-    AV_RESAMPLE_DITHER_RECTANGULAR,     /**< Rectangular Dither
+    AV_RESAMPLE_DITHER_RECTANGULAR,     /***********************************************************
+    <Rectangular Dither
     ***********************************************************/
-    AV_RESAMPLE_DITHER_TRIANGULAR,      /**< Triangular Dither*/
-    AV_RESAMPLE_DITHER_TRIANGULAR_HP,   /**< Triangular Dither with High Pass
+    AV_RESAMPLE_DITHER_TRIANGULAR,      /***********************************************************
+    <Triangular Dither*/
+    AV_RESAMPLE_DITHER_TRIANGULAR_HP,   /***********************************************************
+    <Triangular Dither with High Pass
     ***********************************************************/
-    AV_RESAMPLE_DITHER_TRIANGULAR_NS,   /**< Triangular Dither with Noise Shaping
+    AV_RESAMPLE_DITHER_TRIANGULAR_NS,   /***********************************************************
+    <Triangular Dither with Noise Shaping
     ***********************************************************/
-    AV_RESAMPLE_DITHER_NB,              /**< Number of dither types. Not part of ABI.
+    AV_RESAMPLE_DITHER_NB,              /***********************************************************
+    <Number of dither types. Not part of ABI.
 ***********************************************************/
 };
 

@@ -124,7 +124,8 @@ public class HLSMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct HLSContext", cheader_filename="")]
-public struct HLSMuxerPrivateData { }
+[Compact]
+public class HLSMuxerPrivateData { }
 
 [CCode (cname="ff_hls_muxer", cheader_filename="")]
 public class HLSMuxer : AVOutputFormat {

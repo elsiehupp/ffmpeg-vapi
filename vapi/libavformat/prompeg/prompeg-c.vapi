@@ -121,7 +121,8 @@ public class ProMpegURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct PrompegContext", cheader_filename="")]
-public struct ProMpegPrivateData { }
+[Compact]
+public class ProMpegPrivateData { }
 
 [CCode (cname="ff_prompeg_protocol", cheader_filename="")]
 public class ProMpegURLProtocol : URLProtocol {

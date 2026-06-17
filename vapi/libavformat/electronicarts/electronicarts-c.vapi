@@ -28,7 +28,8 @@ by Robin Kay (komadori at gekkou.co.uk)
 ***********************************************************/
 
 [CCode (cname="struct EaDemuxContext", cheader_filename="")]
-public struct EADemuxerPrivateData { }
+[Compact]
+public class EADemuxerPrivateData { }
 
 [CCode (cname="ff_ea_demuxer", cheader_filename="")]
 public class EADemuxer : AVInputFormat {

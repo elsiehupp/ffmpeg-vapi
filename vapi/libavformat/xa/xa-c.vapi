@@ -30,7 +30,8 @@ http://wiki.multimedia.cx/index.php?title=Maxis_XA
 ***********************************************************/
 
 [CCode (cname="struct MaxisXADemuxContext", cheader_filename="")]
-public struct XADemuxerPrivateData { }
+[Compact]
+public class XADemuxerPrivateData { }
 
 [CCode (cname="ff_xa_demuxer", cheader_filename="")]
 public class XADemuxer : AVInputFormat {

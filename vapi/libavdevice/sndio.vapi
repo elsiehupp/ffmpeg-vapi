@@ -19,7 +19,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct SndioData {
+[Compact]
+public class SndioData {
     AVClass *class;
     struct sio_hdl *hdl;
     enum AVCodecID codec_id;

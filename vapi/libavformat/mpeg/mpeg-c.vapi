@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct MpegDemuxContext", cheader_filename="")]
-public struct MPEGPSDemuxerPrivateData { }
+[Compact]
+public class MPEGPSDemuxerPrivateData { }
 
 [CCode (cname="ff_mpegps_demuxer", cheader_filename="")]
 public class MPEGPSDemuxer : AVInputFormat {

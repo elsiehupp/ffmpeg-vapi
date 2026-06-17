@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct WVContext", cheader_filename="")]
-public struct WVDemuxerPrivateData { }
+[Compact]
+public class WVDemuxerPrivateData { }
 
 [CCode (cname="ff_wv_demuxer", cheader_filename="")]
 public class WVDemuxer : AVInputFormat {

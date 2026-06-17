@@ -21,14 +21,16 @@ Bytestream functions
 @copyright 2012 Aneesh Dogra (lionaneesh) <lionaneesh@gmail.com>
 ***********************************************************/
 [CCode (cname="struct GetByteContext", cheader_filename="ffmpeg/libavcodec/bytestream.h")]
-public struct GetByteContext {
+[Compact]
+public class GetByteContext {
     uint8[] buffer;
     uint8 *buffer_end;
     uint8 *buffer_start;
 }
 
 [CCode (cname="struct PutByteContext", cheader_filename="ffmpeg/libavcodec/bytestream.h")]
-public struct PutByteContext {
+[Compact]
+public class PutByteContext {
     uint8[] buffer;
     uint8 *buffer_end;
     uint8 *buffer_start;

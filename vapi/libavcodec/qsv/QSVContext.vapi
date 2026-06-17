@@ -30,7 +30,8 @@ CodecContext.hwaccel_context.
 - encoding: hwaccel_context must be set before avcodec_open2 ()
 ***********************************************************/
 [CCode (cname="struct AVQSVContext", cheader_filename="ffmpeg/libavcodec/qsv.h")]
-public struct QSVContext {
+[Compact]
+public class QSVContext {
     /***********************************************************
     @brief If non-null, the session to use for encoding or decoding.
     Otherwise, LibAVCodec will try to create an internal session.

@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct FLVContext", cheader_filename="")]
-public struct FLVMuxerPrivateClass { }
+[Compact]
+public class FLVMuxerPrivateClass { }
 
 //  static const LibAVUtil.Option options[] = {
 //      { "flvflags", "FLV muxer flags", offsetof (FLVContext, flags), AV_OPT_TYPE_FLAGS, {.i64 = 0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM, "flvflags" },
@@ -106,7 +107,7 @@ public class FLVMuxer : AVOutputFormat {
         public get {
         #if CONFIG_LIBMP3LAME
             return LibAVCodec.CodecID.MP3;
-        #else 
+        #else
             return LibAVCodec.CodecID.ADPCM_SWF;
         #endif
         }

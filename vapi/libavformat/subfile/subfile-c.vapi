@@ -60,7 +60,8 @@ public class SubFileURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct SubfileContext", cheader_filename="")]
-public struct SubFilePrivateData { }
+[Compact]
+public class SubFilePrivateData { }
 
 [CCode (cname="ff_subfile_protocol", cheader_filename="")]
 public class SubFileURLProtocol : URLProtocol {

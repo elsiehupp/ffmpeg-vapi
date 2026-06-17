@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct TLSShared", cheader_filename="")]
-public struct TLSShared {
+[Compact]
+public class TLSShared {
     [CCode (cname="", cheader_filename="")]
     public string ca_file;
 

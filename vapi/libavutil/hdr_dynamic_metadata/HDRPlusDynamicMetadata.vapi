@@ -33,7 +33,8 @@ av_dynamic_hdr_plus_alloc () and its size is not a part of
 the public ABI.
 ***********************************************************/
 [CCode (cname="struct AVDynamicHDRPlus", cheader_filename="ffmpeg/libavutil/hdr_dynamic_metadata.h")]
-public struct HDRPlusDynamicMetadata {
+[Compact]
+public class HDRPlusDynamicMetadata {
     /***********************************************************
     @brief Country code by Rec. ITU-T T.35 Annex A. The value shall be 0xB5.
         ***********************************************************/

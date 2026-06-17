@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct RMMuxContext", cheader_filename="")]
-public struct RealMediaMuxerPrivateData { }
+[Compact]
+public class RealMediaMuxerPrivateData { }
 
 [CCode (cname="ff_rm_muxer", cheader_filename="")]
 public class RealMediaMuxer : AVOutputFormat {

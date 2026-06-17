@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct SAPState", cheader_filename="")]
-public struct SAPMuxerState { }
+[Compact]
+public class SAPMuxerState { }
 
 [CCode (cname="ff_sap_muxer", cheader_filename="")]
 public class SAPMuxer : AVOutputFormat {

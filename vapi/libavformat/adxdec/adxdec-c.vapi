@@ -25,7 +25,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct ADXDemuxerContext", cheader_filename="")]
-public struct ADXDemuxerPrivateData { }
+[Compact]
+public class ADXDemuxerPrivateData { }
 
 [CCode (cname="ff_adx_demuxer", cheader_filename="")]
 public class ADXDemuxer : AVInputFormat {

@@ -23,7 +23,8 @@ Frame pool. This structure is opaque and not meant to be accessed
 directly. It is allocated with ff_frame_pool_init () and freed with
 ff_frame_pool_uninit ().
 ***********************************************************/
-public struct FFFramePool FFFramePool;
+[Compact]
+public class FFFramePool FFFramePool;
 
 /***********************************************************
 Allocate and initialize a video frame pool.

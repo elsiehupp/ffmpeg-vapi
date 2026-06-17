@@ -34,7 +34,8 @@ RIPEMD hash function implementation.
 ***********************************************************/
 
 [CCode (cname="struct AVRIPEMD", cheader_filename="ffmpeg/libavutil/ripemd.h")]
-public struct RIPEMDContext {
+[Compact]
+public class RIPEMDContext {
     [CCode (cname="av_ripemd_size", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public const size_t SIZE;
 

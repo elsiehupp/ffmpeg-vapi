@@ -32,7 +32,8 @@ CodecID.
 @see @link avcodec_descriptor_get ()
 ***********************************************************/
 [CCode (cname="struct AVCodecDescriptor", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct CodecDescriptor {
+[Compact]
+public class CodecDescriptor {
     [CCode (cname="id")]
     public CodecID id;
 
@@ -83,7 +84,7 @@ public struct CodecDescriptor {
     );
 
     /***********************************************************
-    @brief Iterate over all codec descriptors known to 
+    @brief Iterate over all codec descriptors known to
 
     @param prev previous descriptor. null to get the first descriptor.
 

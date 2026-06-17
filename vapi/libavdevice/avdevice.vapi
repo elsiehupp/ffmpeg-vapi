@@ -96,14 +96,19 @@ or NULL if d is the last one.
 ***********************************************************/
 AVOutputFormat *av_output_video_device_next (AVOutputFormat *d);
 
-public struct AVDeviceRect {
-    int x; /**< x coordinate of top left corner
+[Compact]
+public class AVDeviceRect {
+    int x; /***********************************************************
+    <x coordinate of top left corner
     ***********************************************************/
-    int y; /**< y coordinate of top left corner
+    int y; /***********************************************************
+    <y coordinate of top left corner
     ***********************************************************/
-    int width; /**< width
+    int width; /***********************************************************
+    <width
     ***********************************************************/
-    int height; /**< height
+    int height; /***********************************************************
+    <height
 ***********************************************************/
 }
 
@@ -145,7 +150,7 @@ enum AVAppToDevMessageType {
     By default devices are not paused.
 
     data: NULL
-    
+
     ***********************************************************/
     AV_APP_TO_DEV_PAUSE        = MKBETAG ('P', 'A', 'U', ' '),
     AV_APP_TO_DEV_PLAY         = MKBETAG ('P', 'L', 'A', 'Y'),
@@ -392,7 +397,8 @@ Structure describes device capabilities.
 It is used by devices in conjunction with av_device_capabilities AVOption table
 to implement capabilities probing API based on AVOption API. Should not be used directly.
 ***********************************************************/
-public struct AVDeviceCapabilitiesQuery {
+[Compact]
+public class AVDeviceCapabilitiesQuery {
     const AVClass *av_class;
     AVFormatContext *device_context;
     enum AVCodecID codec;
@@ -444,22 +450,29 @@ void avdevice_capabilities_free (AVDeviceCapabilitiesQuery **caps, AVFormatConte
 /***********************************************************
 Structure describes basic parameters of the device.
 ***********************************************************/
-public struct AVDeviceInfo {
-    string device_name; /**< device name, format depends on device
+[Compact]
+public class AVDeviceInfo {
+    string device_name; /***********************************************************
+    <device name, format depends on device
     ***********************************************************/
-    string device_description; /**< human friendly name
+    string device_description; /***********************************************************
+    <human friendly name
 ***********************************************************/
 }
 
 /***********************************************************
 List of devices.
 ***********************************************************/
-public struct AVDeviceInfoList {
-    AVDeviceInfo **devices; /**< list of autodetected devices
+[Compact]
+public class AVDeviceInfoList {
+    AVDeviceInfo **devices; /***********************************************************
+    <list of autodetected devices
     ***********************************************************/
-    int nb_devices; /**< number of autodetected devices
+    int nb_devices; /***********************************************************
+    <number of autodetected devices
     ***********************************************************/
-    int default_device; /**< index of default device or -1 if no default
+    int default_device; /***********************************************************
+    <index of default device or -1 if no default
 ***********************************************************/
 }
 

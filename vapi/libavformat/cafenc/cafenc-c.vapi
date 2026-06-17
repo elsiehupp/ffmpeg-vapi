@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct CAFContext", cheader_filename="")]
-public struct CAFMuxerPrivateData { }
+[Compact]
+public class CAFMuxerPrivateData { }
 
 [CCode (cname="ff_caf_muxer", cheader_filename="")]
 public class CAFMuxer : AVOutputFormat  {

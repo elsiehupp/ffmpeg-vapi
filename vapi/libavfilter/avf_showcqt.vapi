@@ -18,16 +18,19 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct Coeffs {
+[Compact]
+public class Coeffs {
     FFTSample *val;
     int start, len;
 }
 
-public struct RGBFloat {
+[Compact]
+public class RGBFloat {
     float r, g, b;
 }
 
-public struct YUVFloat {
+[Compact]
+public class YUVFloat {
     float y, u, v;
 }
 
@@ -36,7 +39,8 @@ typedef union ColorFloat {
     YUVFloat yuv;
 }
 
-public struct ShowCQTContext {
+[Compact]
+public class ShowCQTContext {
     const AVClass       *class;
     AVFilterContext     *ctx;
     AVFrame             *axis_frame;

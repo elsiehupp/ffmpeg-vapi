@@ -35,7 +35,8 @@ When overlapping regions are defined, the first region containing a given
 area of the frame applies.
 ***********************************************************/
 [CCode (cname="struct AVRegionOfInterest", cheader_filename="ffmpeg/libavutil/frame.h")]
-public struct RegionOfInterest {
+[Compact]
+public class RegionOfInterest {
     /***********************************************************
     @brief Must be set to the size of this data structure (that is,
     sizeof (RegionOfInterest)).

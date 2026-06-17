@@ -28,7 +28,8 @@ namespace LibAVUtil.Crypto {
 ***********************************************************/
 
 [CCode (cname="public struct AVXTEA", cheader_filename="ffmpeg/libavutil/xtea.h")]
-public struct XTEAContext {
+[Compact]
+public class XTEAContext {
     [CCode (cname="key")]
     public uint32 key[16];
 

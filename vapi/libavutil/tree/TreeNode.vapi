@@ -52,7 +52,8 @@ public delegate int TreeEnumerateEnumerationDelegate (
 );
 
 [CCode (cname="struct AVTreeNode", cheader_filename="ffmpeg/libavutil/tree.h")]
-public struct TreeNode {
+[Compact]
+public class TreeNode {
     [CCode (cname="av_tree_node_size", cheader_filename="ffmpeg/libavutil/tree.h")]
     public const size_t SIZE;
 

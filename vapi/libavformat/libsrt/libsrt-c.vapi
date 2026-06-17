@@ -49,7 +49,8 @@ public class LibSRTURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct SRTContext", cheader_filename="")]
-public struct LibSRTPrivateData { }
+[Compact]
+public class LibSRTPrivateData { }
 
 [CCode (cname="ff_libsrt_protocol", cheader_filename="")]
 public class LibSRTURLProtocol : URLProtocol {

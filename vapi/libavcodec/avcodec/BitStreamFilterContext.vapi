@@ -31,7 +31,8 @@ LibAVCodec external API header
 ***********************************************************/
 
 [CCode (cname="struct AVBSFInternal", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct BSFInternal { }
+[Compact]
+public class BSFInternal { }
 
 /***********************************************************
 @brief The bitstream filter state.
@@ -44,7 +45,8 @@ filter) as described in their documentation, and are to be considered
 immutable otherwise.
 ***********************************************************/
 [CCode (cname="struct AVBSFContext", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct BitStreamFilterContext {
+[Compact]
+public class BitStreamFilterContext {
     /***********************************************************
     @brief A class for logging and LibAVUtil.Options
         ***********************************************************/

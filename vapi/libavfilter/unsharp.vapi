@@ -23,24 +23,59 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MAX_MATRIX_SIZE 63
 
 
-public struct UnsharpFilterParam {
-    int msize_x; ///< matrix width
-    int msize_y; ///< matrix height
-    int amount; ///< effect amount
-    int steps_x; ///< horizontal step count
-    int steps_y; ///< vertical step count
-    int scalebits; ///< bits to shift pixel
-    int32 halfscale; ///< amount to add to pixel
-    uint32 *sr; ///< finite state machine storage within a row
-    uint32 **sc; ///< finite state machine storage across rows
+[Compact]
+public class UnsharpFilterParam {
+    /***********************************************************
+    matrix width
+    ***********************************************************/
+    int msize_x; ///<
+    /***********************************************************
+    matrix height
+    ***********************************************************/
+    int msize_y; ///<
+    /***********************************************************
+    effect amount
+    ***********************************************************/
+    int amount; ///<
+    /***********************************************************
+    horizontal step count
+    ***********************************************************/
+    int steps_x; ///<
+    /***********************************************************
+    vertical step count
+    ***********************************************************/
+    int steps_y; ///<
+    /***********************************************************
+    bits to shift pixel
+    ***********************************************************/
+    int scalebits; ///<
+    /***********************************************************
+    amount to add to pixel
+    ***********************************************************/
+    int32 halfscale; ///<
+    /***********************************************************
+    finite state machine storage within a row
+    ***********************************************************/
+    uint32 *sr; ///<
+    /***********************************************************
+    finite state machine storage across rows
+    ***********************************************************/
+    uint32 **sc; ///<
 }
 
-public struct UnsharpContext {
+[Compact]
+public class UnsharpContext {
     const AVClass *class;
     int lmsize_x, lmsize_y, cmsize_x, cmsize_y;
     float lamount, camount;
-    UnsharpFilterParam luma; ///< luma parameters (width, height, amount)
-    UnsharpFilterParam chroma; ///< chroma parameters (width, height, amount)
+    /***********************************************************
+    luma parameters (width, height, amount)
+    ***********************************************************/
+    UnsharpFilterParam luma; ///<
+    /***********************************************************
+    chroma parameters (width, height, amount)
+    ***********************************************************/
+    UnsharpFilterParam chroma; ///<
     int hsub, vsub;
     int nb_threads;
     int opencl;

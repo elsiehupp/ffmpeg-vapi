@@ -29,7 +29,8 @@ where applicable, which uses AVL trees to achieve O (log n) performance.
 ***********************************************************/
 
 [CCode (cname="struct AVDictionaryEntry", cheader_filename="dict.h")]
-public struct DictionaryEntry {
+[Compact]
+public class DictionaryEntry {
     [CCode (cname="key")]
     public string key;
 

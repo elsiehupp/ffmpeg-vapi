@@ -31,7 +31,8 @@ http://wiki.multimedia.cx/index.php?title=Bink_Container
 ***********************************************************/
 
 [CCode (cname="struct BinkDemuxContext", cheader_filename="")]
-public struct BinkDemuxerPrivateData { }
+[Compact]
+public class BinkDemuxerPrivateData { }
 
 [CCode (cname="ff_bink_demuxer", cheader_filename="")]
 public class BinkDemuxer : AVInputFormat {

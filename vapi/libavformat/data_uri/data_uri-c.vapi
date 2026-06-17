@@ -22,7 +22,8 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 namespace LibAVFormat {
 
 [CCode (cname="struct DataContext", cheader_filename="")]
-public struct DataPrivateData { }
+[Compact]
+public class DataPrivateData { }
 
 [CCode (cname="ff_data_protocol", cheader_filename="")]
 public class DataURLProtocol : URLProtocol {

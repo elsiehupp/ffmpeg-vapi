@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct TTAMuxContext", cheader_filename="")]
-public struct TrueAudioMuxerPrivateData { }
+[Compact]
+public class TrueAudioMuxerPrivateData { }
 
 [CCode (cname="ff_tta_muxer", cheader_filename="")]
 public class TrueAudioMuxer : AVOutputFormat {

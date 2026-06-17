@@ -26,7 +26,8 @@ LibAVUtil.BufferRef (s) whose data pointer is a CUdeviceptr.
 ***********************************************************/
 
 [CCode (cname="struct AVCUDADeviceContextInternal", cheader_filename="ffmpeg/libavutil/hwcontext_cuda.h")]
-public struct CUDADeviceContextInternal { }
+[Compact]
+public class CUDADeviceContextInternal { }
 
 /***********************************************************
 @brief This struct is allocated as HardwareDeviceContext.hwctx

@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct RealTextContext", cheader_filename="")]
-public struct RealTextDemuxerPrivateData { }
+[Compact]
+public class RealTextDemuxerPrivateData { }
 
 [CCode (cname="ff_realtext_demuxer", cheader_filename="")]
 public class RealTextDemuxer : AVInputFormat {

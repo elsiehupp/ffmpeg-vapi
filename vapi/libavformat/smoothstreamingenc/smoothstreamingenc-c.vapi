@@ -63,7 +63,8 @@ public class SmoothStreamingMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct SmoothStreamingContext", cheader_filename="")]
-public struct SmoothStreamingMuxerPrivateData { }
+[Compact]
+public class SmoothStreamingMuxerPrivateData { }
 
 [CCode (cname="ff_smoothstreaming_muxer", cheader_filename="")]
 public class SmoothStreamingMuxer : AVOutputFormat {

@@ -147,7 +147,8 @@ public class MpegTSMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct MpegTSWrite", cheader_filename="")]
-public struct MpegTSMuxerPrivateData { }
+[Compact]
+public class MpegTSMuxerPrivateData { }
 
 [CCode (cname="ff_mpegts_muxer", cheader_filename="")]
 public class MpegTSMuxer : AVOutputFormat {

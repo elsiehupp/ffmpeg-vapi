@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct VocEncContext", cheader_filename="")]
-public struct VOCMuxerPrivateData { }
+[Compact]
+public class VOCMuxerPrivateData { }
 
 [CCode (cname="ff_voc_muxer", cheader_filename="")]
 public class VOCMuxer : AVOutputFormat {

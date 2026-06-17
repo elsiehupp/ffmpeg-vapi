@@ -27,7 +27,8 @@ LibAVCodec external API header
 ***********************************************************/
 
 [CCode (cname="struct AVPacketSideData", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct PacketSideData {
+[Compact]
+public class PacketSideData {
     [CCode (cname="data")]
     public uint8[] data;
 

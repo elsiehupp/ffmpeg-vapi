@@ -25,7 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct NSVContext", cheader_filename="")]
-public struct NSVDemuxerPrivateData { }
+[Compact]
+public class NSVDemuxerPrivateData { }
 
 [CCode (cname="ff_nsv_demuxer", cheader_filename="")]
 public class NSVDemuxer : AVInputFormat {

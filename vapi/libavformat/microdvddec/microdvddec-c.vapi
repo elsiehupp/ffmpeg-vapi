@@ -57,7 +57,8 @@ public class MicroDVDDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct MicroDVDContext", cheader_filename="")]
-public struct MicroDVDDemuxerPrivateData { }
+[Compact]
+public class MicroDVDDemuxerPrivateData { }
 
 [CCode (cname="ff_microdvd_demuxer", cheader_filename="")]
 public class MicroDVDDemuxer : AVInputFormat {

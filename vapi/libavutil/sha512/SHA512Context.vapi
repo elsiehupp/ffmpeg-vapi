@@ -43,7 +43,8 @@ This module supports the following SHA-2 hash functions:
 ***********************************************************/
 
 [CCode (cname="struct AVSHA512", cheader_filename="ffmpeg/libavutil/sha512.h")]
-public struct SHA512Context {
+[Compact]
+public class SHA512Context {
     [CCode (cname="av_sha512_size", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public const size_t SIZE;
 

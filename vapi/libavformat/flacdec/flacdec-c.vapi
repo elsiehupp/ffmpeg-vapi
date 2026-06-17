@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct FLACDecContext", cheader_filename="")]
-public struct FLACDemuxerPrivateData { }
+[Compact]
+public class FLACDemuxerPrivateData { }
 
 //  FF_RAW_DEMUXER_CLASS (flac)
 [CCode (cname="ff_flac_demuxer", cheader_filename="")]

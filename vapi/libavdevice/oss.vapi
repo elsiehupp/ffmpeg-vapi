@@ -18,7 +18,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define OSS_AUDIO_BLOCK_SIZE 4096
 
-public struct OSSAudioData {
+[Compact]
+public class OSSAudioData {
     AVClass *class;
     int fd;
     int sample_rate;

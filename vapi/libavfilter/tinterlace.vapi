@@ -46,16 +46,32 @@ enum InterlaceScanMode {
     MODE_BFF,
 }
 
-public struct TInterlaceContext {
+[Compact]
+public class TInterlaceContext {
     const AVClass *class;
-    int mode; ///< TInterlaceMode, interlace mode selected
+    /***********************************************************
+    TInterlaceMode, interlace mode selected
+    ***********************************************************/
+    int mode; ///<
     AVRational preout_time_base;
-    int flags; ///< flags affecting interlacing algorithm
-    int frame; ///< number of the output frame
-    int vsub; ///< chroma vertical subsampling
+    /***********************************************************
+    flags affecting interlacing algorithm
+    ***********************************************************/
+    int flags; ///<
+    /***********************************************************
+    number of the output frame
+    ***********************************************************/
+    int frame; ///<
+    /***********************************************************
+    chroma vertical subsampling
+    ***********************************************************/
+    int vsub; ///<
     AVFrame *cur;
     AVFrame *next;
-    uint8 *black_data[4]; ///< buffer used to fill padded lines
+    /***********************************************************
+    buffer used to fill padded lines
+    ***********************************************************/
+    uint8 *black_data[4]; ///<
     int black_linesize[4];
     FFDrawContext draw;
     FFDrawColor color;

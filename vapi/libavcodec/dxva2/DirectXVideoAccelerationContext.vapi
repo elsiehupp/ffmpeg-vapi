@@ -40,7 +40,8 @@ to the DXVA2 FFmpeg HWAccel implementation.
 The application must make it available as CodecContext.hwaccel_context.
 ***********************************************************/
 [CCode (cname="struct dxva_context", cheader_filename="ffmpeg/libavcodec/dxva2.h")]
-public struct DirectXVideoAccelerationContext {
+[Compact]
+public class DirectXVideoAccelerationContext {
     /***********************************************************
     @brief DXVA2 decoder object
         ***********************************************************/

@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct FrmContext", cheader_filename="")]
-public struct FRMDemuxerPrivateData { }
+[Compact]
+public class FRMDemuxerPrivateData { }
 
 /***********************************************************
 @file Megalux Frame demuxer

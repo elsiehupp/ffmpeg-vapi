@@ -18,7 +18,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct W3FDIFDSPContext {
+[Compact]
+public class W3FDIFDSPContext {
     void (*filter_simple_low)(int32 *work_line,
                               uint8 *in_lines_cur[2],
                               int16 *coef, int linesize);

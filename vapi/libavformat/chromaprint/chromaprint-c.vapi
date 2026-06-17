@@ -64,7 +64,8 @@ public class ChromaPrintMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct ChromaprintMuxContext", cheader_filename="")]
-public struct ChromaPrintMuxerPrivateData { }
+[Compact]
+public class ChromaPrintMuxerPrivateData { }
 
 [CCode (cname="ff_chromaprint_muxer", cheader_filename="")]
 public class ChromaPrintMuxer : AVOutputFormat {

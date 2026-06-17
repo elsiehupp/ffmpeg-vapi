@@ -34,7 +34,8 @@ Describes a single layer within a frame. This has the structure
 defined by its format, and will contain one or more planes.
 ***********************************************************/
 [CCode (cname="struct AVDRMLayerDescriptor", cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
-public struct DRMLayerDescriptor {
+[Compact]
+public class DRMLayerDescriptor {
     /***********************************************************
     @brief Format of the layer (DRM_FORMAT_*).
         ***********************************************************/

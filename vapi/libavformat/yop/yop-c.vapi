@@ -26,7 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct YopDecContext", cheader_filename="")]
-public struct YOPDemuxerPrivateData { }
+[Compact]
+public class YOPDemuxerPrivateData { }
 
 [CCode (cname="ff_yop_demuxer", cheader_filename="")]
 public class YOPDemuxer : AVInputFormat {

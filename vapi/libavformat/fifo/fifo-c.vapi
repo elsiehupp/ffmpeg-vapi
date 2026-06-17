@@ -87,7 +87,8 @@ public class FifoMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct FifoContext", cheader_filename="")]
-public struct FifoMuxerPrivateData { }
+[Compact]
+public class FifoMuxerPrivateData { }
 
 [CCode (cname="ff_fifo_muxer", cheader_filename="")]
 public class FifoMuxer : AVOutputFormat {

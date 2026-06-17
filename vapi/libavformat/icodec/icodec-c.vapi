@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct IcoDemuxContext", cheader_filename="")]
-public struct ICODemuxerPrivateData { }
+[Compact]
+public class ICODemuxerPrivateData { }
 
 [CCode (cname="ff_ico_demuxer", cheader_filename="")]
 public class ICODemuxer : AVInputFormat {

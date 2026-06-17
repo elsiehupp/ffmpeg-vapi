@@ -33,7 +33,8 @@ using LibAVUtil;
 @brief Opaque structure representing a MediaCodec buffer to render.
 ***********************************************************/
 [CCode (cname="struct AVMediaCodecBuffer", cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
-public struct MediaCodecBuffer {
+[Compact]
+public class MediaCodecBuffer {
 
     /***********************************************************
     @brief Release a MediaCodec buffer and render it to the surface that is associated

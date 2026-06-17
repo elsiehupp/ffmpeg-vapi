@@ -63,7 +63,8 @@ public class APNGMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct APNGMuxContext", cheader_filename="")]
-public struct APNGMuxerPrivateData { }
+[Compact]
+public class APNGMuxerPrivateData { }
 
 [CCode (cname="ff_apng_muxer", cheader_filename="")]
 public class APNGMuxer : AVOutputFormat {

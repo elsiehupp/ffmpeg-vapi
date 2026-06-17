@@ -37,7 +37,8 @@ public enum BlockFlags {
 public const size_t WV_BLOCK_LIMIT;
 
 [CCode (cname="struct WvHeader", cheader_filename="")]
-public struct WvHeader {
+[Compact]
+public class WvHeader {
     /***********************************************************
     @brief Size of the block data (excluding the header)
         ***********************************************************/

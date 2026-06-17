@@ -30,7 +30,8 @@ http://www.pcisys.net/~melanson/codecs/
 ***********************************************************/
 
 [CCode (cname="struct FilmDemuxContext", cheader_filename="")]
-public struct SegaFilmDemuxerPrivateData { }
+[Compact]
+public class SegaFilmDemuxerPrivateData { }
 
 [CCode (cname="ff_segafilm_demuxer", cheader_filename="")]
 public class SegaFilmDemuxer : AVInputFormat {

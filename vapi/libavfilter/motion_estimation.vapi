@@ -28,12 +28,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define AV_ME_METHOD_EPZS       8
 #define AV_ME_METHOD_UMH        9
 
-public struct AVMotionEstPredictor {
+[Compact]
+public class AVMotionEstPredictor {
     int mvs[10][2];
     int nb;
 }
 
-public struct AVMotionEstContext {
+[Compact]
+public class AVMotionEstContext {
     uint8 *data_cur, *data_ref;
     int linesize;
 
@@ -48,8 +50,14 @@ public struct AVMotionEstContext {
     int y_min;
     int y_max;
 
-    int pred_x; ///< median predictor x
-    int pred_y; ///< median predictor y
+    /***********************************************************
+    median predictor x
+    ***********************************************************/
+    int pred_x; ///<
+    /***********************************************************
+    median predictor y
+    ***********************************************************/
+    int pred_y; ///<
     AVMotionEstPredictor preds[2];
 
     uint64 (*get_cost)(AVMotionEstContext *me_ctx, int x_mb, int y_mb,

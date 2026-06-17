@@ -32,12 +32,13 @@ This specifies the area which should be displayed.
 Note there may be multiple such areas for one frame.
 ***********************************************************/
 [CCode (cname="struct AVPanScan", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct PanScanArea {
+[Compact]
+public class PanScanArea {
     /***********************************************************
     @brief Id
 
     - encoding: Set by user.
-    - decoding: Set by 
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="id")]
     public int id;
@@ -46,7 +47,7 @@ public struct PanScanArea {
     @brief Width in 1/16 pel
 
     - encoding: Set by user.
-    - decoding: Set by 
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="width")]
     public int width;
@@ -55,7 +56,7 @@ public struct PanScanArea {
     @brief Height in 1/16 pel
 
     - encoding: Set by user.
-    - decoding: Set by 
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="height")]
     public int height;
@@ -64,7 +65,7 @@ public struct PanScanArea {
     @brief Position of the top left corner in 1/16 pel for up to 3 fields/frames
 
     - encoding: Set by user.
-    - decoding: Set by 
+    - decoding: Set by
         ***********************************************************/
     [CCode (cname="position")]
     public int16 position[3 * 2];

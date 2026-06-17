@@ -47,10 +47,14 @@ Return the libavfilter license.
 ***********************************************************/
 string avfilter_license ();
 
-public struct AVFilterContext AVFilterContext;
-public struct AVFilterLink    AVFilterLink;
-public struct AVFilterPad     AVFilterPad;
-public struct AVFilterFormats AVFilterFormats;
+[Compact]
+public class AVFilterContext AVFilterContext;
+[Compact]
+public class AVFilterLink    AVFilterLink;
+[Compact]
+public class AVFilterPad     AVFilterPad;
+[Compact]
+public class AVFilterFormats AVFilterFormats;
 
 /***********************************************************
 Get the number of elements in a NULL-terminated array of AVFilterPads (e.g.
@@ -124,7 +128,8 @@ Handy mask to test whether the filter supports or no the timeline feature
 Filter definition. This defines the pads a filter contains, and all the
 callback functions used to interact with the filter.
 ***********************************************************/
-public struct AVFilter {
+[Compact]
+public class AVFilter {
     /***********************************************************
     Filter name. Must be non-NULL and unique among filters.
         ***********************************************************/
@@ -212,7 +217,7 @@ public struct AVFilter {
      * failure.
 
     @return 0 on success, a negative AVERROR on failure
-    
+
     ***********************************************************/
     int (*init)(AVFilterContext *ctx);
 
@@ -262,18 +267,23 @@ public struct AVFilter {
 
     @return zero on success, a negative value corresponding to an
      * AVERROR code otherwise
-    
+
     ***********************************************************/
     int (*query_formats)(AVFilterContext *);
 
-    int priv_size; ///< size of private data to allocate for the filter
-
-    int flags_internal; ///< Additional flags for avfilter internal use only.
+    /***********************************************************
+    size of private data to allocate for the filter
+    ***********************************************************/
+    int priv_size; ///<
 
     /***********************************************************
-    Used by the filter registration system. Must not be touched by any other
-     * code.
-        ***********************************************************/
+    Additional flags for avfilter internal use only.
+    ***********************************************************/
+    int flags_internal; ///<
+
+    /***********************************************************
+    Used by the filter registration system. Must not be touched by any other code.
+    ***********************************************************/
     struct AVFilter *next;
 
     /***********************************************************
@@ -287,7 +297,7 @@ public struct AVFilter {
      *
     @returns >=0 on success otherwise an error code.
              AVERROR (ENOSYS) on unsupported commands
-    
+
     ***********************************************************/
     int (*process_command)(AVFilterContext *, string cmd, string arg, string res, int res_len, int flags);
 
@@ -318,28 +328,62 @@ Process multiple parts of the frame concurrently.
 ***********************************************************/
 #define AVFILTER_THREAD_SLICE (1 << 0)
 
-public struct AVFilterInternal AVFilterInternal;
+[Compact]
+public class AVFilterInternal AVFilterInternal;
 
 /** An instance of a filter
 ***********************************************************/
 struct AVFilterContext {
-    const AVClass *av_class; ///< needed for av_log () and filters common options
+    /***********************************************************
+    needed for av_log () and filters common options
+    ***********************************************************/
+    const AVClass *av_class; ///<
 
-    const AVFilter *filter; ///< the AVFilter of which this is an instance
+    /***********************************************************
+    the AVFilter of which this is an instance
+    ***********************************************************/
+    const AVFilter *filter; ///<
 
-    string name; ///< name of this filter instance
+    /***********************************************************
+    name of this filter instance
+    ***********************************************************/
+    string name; ///<
 
-    AVFilterPad   *input_pads; ///< array of input pads
-    AVFilterLink **inputs; ///< array of pointers to input links
-    unsigned    nb_inputs; ///< number of input pads
+    /***********************************************************
+    array of input pads
+    ***********************************************************/
+    AVFilterPad   *input_pads; ///<
+    /***********************************************************
+    array of pointers to input links
+    ***********************************************************/
+    AVFilterLink **inputs; ///<
+    /***********************************************************
+    number of input pads
+    ***********************************************************/
+    unsigned    nb_inputs; ///<
 
-    AVFilterPad   *output_pads; ///< array of output pads
-    AVFilterLink **outputs; ///< array of pointers to output links
-    unsigned    nb_outputs; ///< number of output pads
+    /***********************************************************
+    array of output pads
+    ***********************************************************/
+    AVFilterPad   *output_pads; ///<
+    /***********************************************************
+    array of pointers to output links
+    ***********************************************************/
+    AVFilterLink **outputs; ///<
+    /***********************************************************
+    number of output pads
+    ***********************************************************/
+    unsigned    nb_outputs; ///<
 
-    void *priv; ///< private data for use by the filter
+    /***********************************************************
+    private data for use by the filter
+    ***********************************************************/
+    void *priv; ///<
 
-    struct AVFilterGraph *graph; ///< filtergraph this filter belongs to
+    /***********************************************************
+    filtergraph this filter belongs to
+    ***********************************************************/
+    struct AVFilterGraph *graph; ///<
 
     /***********************************************************
     Type of multithreading being allowed/used. A combination of
@@ -356,20 +400,32 @@ struct AVFilterContext {
 
     After the filter is initialized, libavfilter sets this field to the
      * threading type that is actually used (0 for no multithreading).
-        ***********************************************************/
+    ***********************************************************/
     int thread_type;
 
     /***********************************************************
     An opaque struct for libavfilter internal use.
-        ***********************************************************/
+    ***********************************************************/
     AVFilterInternal *internal;
 
     struct AVFilterCommand *command_queue;
 
-    string enable_str; ///< enable expression string
-    void *enable; ///< parsed expression (AVExpr*)
-    double[] var_values; ///< variable values for the enable expression
-    int is_disabled; ///< the enabled state from the last expression evaluation
+    /***********************************************************
+    enable expression string
+    ***********************************************************/
+    string enable_str; ///<
+    /***********************************************************
+    parsed expression (AVExpr*)
+    ***********************************************************/
+    void *enable; ///<
+    /***********************************************************
+    variable values for the enable expression
+    ***********************************************************/
+    double[] var_values; ///<
+    /***********************************************************
+    the enabled state from the last expression evaluation
+    ***********************************************************/
+    int is_disabled; ///<
 
     /***********************************************************
     For filters which will create hardware frames, sets the device the
@@ -424,27 +480,61 @@ In the future, access to the header may be reserved for filters
 implementation.
 ***********************************************************/
 struct AVFilterLink {
-    AVFilterContext *src; ///< source filter
-    AVFilterPad *srcpad; ///< output pad on the source filter
+    /***********************************************************
+    source filter
+    ***********************************************************/
+    AVFilterContext *src; ///<
+    /***********************************************************
+    output pad on the source filter
+    ***********************************************************/
+    AVFilterPad *srcpad; ///<
 
-    AVFilterContext *dst; ///< dest filter
-    AVFilterPad *dstpad; ///< input pad on the dest filter
+    /***********************************************************
+    dest filter
+    ***********************************************************/
+    AVFilterContext *dst; ///<
+    /***********************************************************
+    input pad on the dest filter
+    ***********************************************************/
+    AVFilterPad *dstpad; ///<
 
-    enum AVMediaType type; ///< filter media type
+    /***********************************************************
+    filter media type
+    ***********************************************************/
+    enum AVMediaType type; ///<
 
     /***********************************************************
     These parameters apply only to video
     ***********************************************************/
-    int w; ///< agreed upon image width
-    int h; ///< agreed upon image height
-    AVRational sample_aspect_ratio; ///< agreed upon sample aspect ratio
+    /***********************************************************
+    agreed upon image width
+    ***********************************************************/
+    int w;
+    /***********************************************************
+    agreed upon image height
+    ***********************************************************/
+    int h; ///<
+    /***********************************************************
+    agreed upon sample aspect ratio
+    ***********************************************************/
+    AVRational sample_aspect_ratio; ///<
+
     /***********************************************************
     These parameters apply only to audio
     ***********************************************************/
-    uint64 channel_layout; ///< channel layout of current buffer (see libavutil/channel_layout.h)
-    int sample_rate; ///< samples per second
+    /***********************************************************
+    channel layout of current buffer (see libavutil/channel_layout.h)
+    ***********************************************************/
+    uint64 channel_layout; ///<
+    /***********************************************************
+    samples per second
+    ***********************************************************/
+    int sample_rate; ///<
 
-    int format; ///< agreed upon media format
+    /***********************************************************
+    agreed upon media format
+    ***********************************************************/
+    int format; ///<
 
     /***********************************************************
     Define the time base used by the PTS of the frames/samples
@@ -803,7 +893,8 @@ int avfilter_insert_filter (AVFilterLink *link, AVFilterContext *filt,
 ***********************************************************/
 const AVClass *avfilter_get_class ();
 
-public struct AVFilterGraphInternal AVFilterGraphInternal;
+[Compact]
+public class AVFilterGraphInternal AVFilterGraphInternal;
 
 /***********************************************************
 A function pointer passed to the @ref AVFilterGraph.execute callback to be
@@ -834,14 +925,21 @@ A function executing multiple jobs, possibly in parallel.
 typedef int (avfilter_execute_func)(AVFilterContext *ctx, avfilter_action_func *func,
                                     void *arg, int *ret, int nb_jobs);
 
-public struct AVFilterGraph {
+[Compact]
+public class AVFilterGraph {
     const AVClass *av_class;
     AVFilterContext **filters;
     unsigned nb_filters;
 
-    string scale_sws_opts; ///< sws options to use for the auto-inserted scale filters
+    /***********************************************************
+    sws options to use for the auto-inserted scale filters
+    ***********************************************************/
+    string scale_sws_opts; ///<
 #if FF_API_LAVR_OPTS
-    attribute_deprecated string resample_lavr_opts; ///< libavresample options to use for the auto-inserted resample filters
+    /***********************************************************
+    libavresample options to use for the auto-inserted resample filters
+    ***********************************************************/
+    attribute_deprecated string resample_lavr_opts; ///<
 #endif
 
     /***********************************************************
@@ -891,7 +989,10 @@ public struct AVFilterGraph {
         ***********************************************************/
     avfilter_execute_func *execute;
 
-    string aresample_swr_opts; ///< swr options to use for the auto-inserted aresample filters, Access ONLY through AVOptions
+    /***********************************************************
+    swr options to use for the auto-inserted aresample filters, Access ONLY through AVOptions
+    ***********************************************************/
+    string aresample_swr_opts; ///<
 
     /***********************************************************
     Private fields
@@ -969,9 +1070,11 @@ scale and aresample filters.
 void avfilter_graph_set_auto_convert (AVFilterGraph *graph, unsigned flags);
 
 enum {
-    AVFILTER_AUTO_CONVERT_ALL  =  0, /**< all automatic conversions enabled
+    AVFILTER_AUTO_CONVERT_ALL  =  0, /***********************************************************
+    <all automatic conversions enabled
     ***********************************************************/
-    AVFILTER_AUTO_CONVERT_NONE = -1, /**< all automatic conversions disabled
+    AVFILTER_AUTO_CONVERT_NONE = -1, /***********************************************************
+    <all automatic conversions disabled
 ***********************************************************/
 }
 
@@ -999,7 +1102,8 @@ to the caller.
 This struct specifies, per each not connected pad contained in the graph, the
 filter context and the pad index required for establishing a link.
 ***********************************************************/
-public struct AVFilterInOut {
+[Compact]
+public class AVFilterInOut {
     /** unique name for this input/output in the list
     ***********************************************************/
     string name;

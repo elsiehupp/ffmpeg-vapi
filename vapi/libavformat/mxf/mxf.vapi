@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct UID", cheader_filename="")]
-public struct UID { } // uint8[16]
+[Compact]
+public class UID { } // uint8[16]
 
 [CCode (cname="", cheader_filename="")]
 public enum MXFMetadataSetType {
@@ -60,7 +61,8 @@ public enum MXFFrameLayout {
 }
 
 [CCode (cname="struct KLVPacket", cheader_filename="")]
-public struct KLVPacket {
+[Compact]
+public class KLVPacket {
     [CCode (cname="", cheader_filename="")]
     public UID key;
 
@@ -83,7 +85,8 @@ public enum MXFWrappingIndicatorType {
 }
 
 [CCode (cname="struct MXFCodecUL", cheader_filename="")]
-public struct MXFCodecUL {
+[Compact]
+public class MXFCodecUL {
     [CCode (cname="", cheader_filename="")]
     public UID uid;
 
@@ -104,7 +107,8 @@ public struct MXFCodecUL {
 }
 
 [CCode (cname="struct MXFSamplesPerFrame", cheader_filename="")]
-public struct MXFSamplesPerFrame {
+[Compact]
+public class MXFSamplesPerFrame {
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Rational time_base;
 

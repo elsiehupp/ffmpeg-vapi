@@ -55,7 +55,8 @@ public class CDXLDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct CDXLDemuxContext", cheader_filename="")]
-public struct CDXLDemuxerPrivateData { }
+[Compact]
+public class CDXLDemuxerPrivateData { }
 
 [CCode (cname="ff_cdxl_demuxer", cheader_filename="")]
 public class CDXLDemuxer : AVInputFormat {

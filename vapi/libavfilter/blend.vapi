@@ -56,7 +56,8 @@ enum BlendMode {
     BLEND_NB
 }
 
-public struct FilterParams {
+[Compact]
+public class FilterParams {
     enum BlendMode mode;
     double opacity;
     AVExpr *e;

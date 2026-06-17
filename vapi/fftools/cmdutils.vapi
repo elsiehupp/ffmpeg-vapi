@@ -131,12 +131,17 @@ date
 
 @see av_parse_time ()
 ***********************************************************/
-int64 parse_time_or_die (string context, string timestr,
-                          int is_duration);
+int64 parse_time_or_die (
+    string context, string timestr,
+    int is_duration
+);
 
-public struct SpecifierOpt {
-    string specifier; /**< stream/chapter/program/... specifier
-        ***********************************************************/
+[Compact]
+public class SpecifierOpt {
+    /***********************************************************
+    stream/chapter/program/... specifier
+    ***********************************************************/
+    string specifier;
     union {
         uint8 *str;
         int        i;
@@ -147,7 +152,8 @@ public struct SpecifierOpt {
     } u;
 }
 
-public struct OptionDef {
+[Compact]
+public class OptionDef {
     string name;
     int flags;
 #define HAS_ARG    0x0001
@@ -285,14 +291,17 @@ An option extracted from the commandline.
 Cannot use AVDictionary because of options like -map which can be
 used multiple times.
 ***********************************************************/
-public struct Option {
+[Compact]
+public class Option {
     const OptionDef  *opt;
     const char       *key;
     const char       *val;
 }
 
-public struct OptionGroupDef {
-    /**< group name
+[Compact]
+public class OptionGroupDef {
+    /***********************************************************
+    <group name
     ***********************************************************/
     string name;
     /***********************************************************
@@ -303,12 +312,13 @@ public struct OptionGroupDef {
     /***********************************************************
     Option flags that must be set on each option that is
      * applied to this group
-    
+
     ***********************************************************/
     int flags;
 }
 
-public struct OptionGroup {
+[Compact]
+public class OptionGroup {
     const OptionGroupDef *group_def;
     string arg;
 
@@ -326,14 +336,16 @@ public struct OptionGroup {
 A list of option groups that all have the same group type
 (e.g. input files or output files)
 ***********************************************************/
-public struct OptionGroupList {
+[Compact]
+public class OptionGroupList {
     const OptionGroupDef *group_def;
 
     OptionGroup *groups;
     int       nb_groups;
 }
 
-public struct OptionParseContext {
+[Compact]
+public class OptionParseContext {
     OptionGroup global_opts;
 
     OptionGroupList *groups;

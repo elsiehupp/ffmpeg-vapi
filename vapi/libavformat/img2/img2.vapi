@@ -32,7 +32,8 @@ public enum PatternType {
 }
 
 [CCode (cname="struct VideoDemuxData", cheader_filename="")]
-public struct VideoDemuxData {
+[Compact]
+public class VideoDemuxData {
     /***********************************************************
     @brief Class for private options.
         ***********************************************************/
@@ -119,7 +120,8 @@ public struct VideoDemuxData {
 }
 
 [CCode (cname="struct IdStrMap", cheader_filename="")]
-public struct IdStrMap {
+[Compact]
+public class IdStrMap {
     [CCode (cname="", cheader_filename="")]
     public LibAVCodec.CodecID id;
 

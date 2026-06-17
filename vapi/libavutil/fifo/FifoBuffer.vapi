@@ -29,7 +29,8 @@ public delegate void GenericReadDelegate (
 );
 
 [CCode (cname="struct AVFifoBuffer", cheader_filename="ffmpeg/libavutil/fifo.h")]
-public struct FifoBuffer {
+[Compact]
+public class FifoBuffer {
     [CCode (cname="buffer")]
     public uint8[] buffer;
 

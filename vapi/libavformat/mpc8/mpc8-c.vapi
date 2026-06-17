@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct MPCContext", cheader_filename="")]
-public struct MPC8DemuxerPrivateData { }
+[Compact]
+public class MPC8DemuxerPrivateData { }
 
 [CCode (cname="ff_mpc8_demuxer", cheader_filename="")]
 public class MPC8Demuxer : AVInputFormat {

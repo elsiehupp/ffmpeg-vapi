@@ -63,7 +63,8 @@ public class FifoTestMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct FailingMuxerContext", cheader_filename="")]
-public struct FifoTestMuxerPrivateData { }
+[Compact]
+public class FifoTestMuxerPrivateData { }
 
 [CCode (cname="ff_fifo_test_muxer", cheader_filename="")]
 public class FifoTestMuxer : AVOutputFormat {

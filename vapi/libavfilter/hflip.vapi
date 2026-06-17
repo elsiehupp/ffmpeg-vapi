@@ -19,11 +19,21 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct FlipContext {
+[Compact]
+public class FlipContext {
     const AVClass *class;
-    int max_step[4]; ///< max pixel step for each plane, expressed as a number of bytes
-    int planewidth[4]; ///< width of each plane
-    int planeheight[4]; ///< height of each plane
+    /***********************************************************
+    max pixel step for each plane, expressed as a number of bytes
+    ***********************************************************/
+    int max_step[4]; ///<
+    /***********************************************************
+    width of each plane
+    ***********************************************************/
+    int planewidth[4]; ///<
+    /***********************************************************
+    height of each plane
+    ***********************************************************/
+    int planeheight[4]; ///<
 
     void (*flip_line[4])(const uint8 *src, uint8 *dst, int w);
 }

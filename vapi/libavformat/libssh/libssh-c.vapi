@@ -58,7 +58,8 @@ public class LibSSHURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct LIBSSHContext", cheader_filename="")]
-public struct LibSSHPrivateData { }
+[Compact]
+public class LibSSHPrivateData { }
 
 [CCode (cname="ff_libssh_protocol", cheader_filename="")]
 public class LibSSHURLProtocol : URLProtocol {

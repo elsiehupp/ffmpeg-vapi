@@ -24,7 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="struct AudioInterleaveContext", cheader_filename="")]
-public struct AudioInterleaveContext {
+[Compact]
+public class AudioInterleaveContext {
     LibAVUtil.FifoBuffer fifo;
 
     /***********************************************************

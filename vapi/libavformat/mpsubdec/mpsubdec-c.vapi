@@ -26,7 +26,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct MPSubContext", cheader_filename="")]
-public struct MPSubDemuxerPrivateData { }
+[Compact]
+public class MPSubDemuxerPrivateData { }
 
 [CCode (cname="ff_mpsub_demuxer", cheader_filename="")]
 public class MPSubDemuxer : AVInputFormat {

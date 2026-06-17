@@ -29,7 +29,8 @@ namespace LibAVFormat {
 //  }
 
 [CCode (cname="struct PCMAudioDemuxerContext", cheader_filename="")]
-public struct PCMDemuxerPrivateData { }
+[Compact]
+public class PCMDemuxerPrivateData { }
 
 [CCode (cname="", cheader_filename="")]
 public abstract class PCMDemuxerClass : LibAVUtil.Class {

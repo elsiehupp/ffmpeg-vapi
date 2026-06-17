@@ -26,7 +26,8 @@ namespace LibAVFormat {
 //  extern const AVCodecTag ff_rm_codec_tags[];
 
 [CCode (cname="struct RMStream", cheader_filename="")]
-public struct RMStream { }
+[Compact]
+public class RMStream { }
 
 [CCode (cname="", cheader_filename="")]
 public RMStream ff_rm_alloc_rmstream ();

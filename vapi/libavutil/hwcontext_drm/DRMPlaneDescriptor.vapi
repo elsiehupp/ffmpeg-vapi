@@ -34,7 +34,8 @@ Describes a single plane of a layer, which is contained within
 a single object.
 ***********************************************************/
 [CCode (cname="struct AVDRMPlaneDescriptor", cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
-public struct DRMPlaneDescriptor {
+[Compact]
+public class DRMPlaneDescriptor {
     /***********************************************************
     @brief Index of the object containing this plane in the objects
     array of the enclosing frame descriptor.

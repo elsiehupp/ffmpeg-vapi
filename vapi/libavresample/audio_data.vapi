@@ -24,41 +24,59 @@ int ff_sample_fmt_is_planar (AVSampleFormat sample_fmt, int channels);
 Audio buffer used for intermediate storage between conversion phases.
 ***********************************************************/
 struct AudioData {
-    const AVClass *class; /**< AVClass for logging           
+    const AVClass *class; /***********************************************************
+    <AVClass for logging
     ***********************************************************/
-    uint8 *data[AVRESAMPLE_MAX_CHANNELS]; /**< data plane pointers       
+    uint8 *data[AVRESAMPLE_MAX_CHANNELS]; /***********************************************************
+    <data plane pointers
     ***********************************************************/
-    uint8 *buffer; /**< data buffer                   
+    uint8 *buffer; /***********************************************************
+    <data buffer
     ***********************************************************/
-    uint buffer_size; /**< allocated buffer size         
+    uint buffer_size; /***********************************************************
+    <allocated buffer size
     ***********************************************************/
-    int allocated_samples; /**< number of samples the buffer can hold
+    int allocated_samples; /***********************************************************
+    <number of samples the buffer can hold
     ***********************************************************/
-    int nb_samples; /**< current number of samples     
+    int nb_samples; /***********************************************************
+    <current number of samples
     ***********************************************************/
-    enum AVSampleFormat sample_fmt; /**< sample format                 
+    enum AVSampleFormat sample_fmt; /***********************************************************
+    <sample format
     ***********************************************************/
-    int channels; /**< channel count                 
+    int channels; /***********************************************************
+    <channel count
     ***********************************************************/
-    int allocated_channels; /**< allocated channel count       
+    int allocated_channels; /***********************************************************
+    <allocated channel count
     ***********************************************************/
-    int is_planar; /**< sample format is planar       
+    int is_planar; /***********************************************************
+    <sample format is planar
     ***********************************************************/
-    int planes; /**< number of data planes         
+    int planes; /***********************************************************
+    <number of data planes
     ***********************************************************/
-    int sample_size; /**< bytes per sample              
+    int sample_size; /***********************************************************
+    <bytes per sample
     ***********************************************************/
-    int stride; /**< sample byte offset within a plane
+    int stride; /***********************************************************
+    <sample byte offset within a plane
     ***********************************************************/
-    int read_only; /**< data is read-only             
+    int read_only; /***********************************************************
+    <data is read-only
     ***********************************************************/
-    int allow_realloc; /**< realloc is allowed            
+    int allow_realloc; /***********************************************************
+    <realloc is allowed
     ***********************************************************/
-    int ptr_align; /**< minimum data pointer alignment
+    int ptr_align; /***********************************************************
+    <minimum data pointer alignment
     ***********************************************************/
-    int samples_align; /**< allocated samples alignment   
+    int samples_align; /***********************************************************
+    <allocated samples alignment
     ***********************************************************/
-    string name; /**< name for debug logging        
+    string name; /***********************************************************
+    <name for debug logging
 ***********************************************************/
 };
 

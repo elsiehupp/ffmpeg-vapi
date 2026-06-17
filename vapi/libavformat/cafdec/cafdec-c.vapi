@@ -28,7 +28,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct CafContext", cheader_filename="")]
-public struct CAFDemuxerPrivateData { }
+[Compact]
+public class CAFDemuxerPrivateData { }
 
 [CCode (cname="ff_caf_demuxer", cheader_filename="")]
 public class CAFDemuxer : AVInputFormat {

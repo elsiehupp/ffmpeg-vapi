@@ -24,7 +24,8 @@ namespace LibAVUtil {
 The size of this struct is not part of the public ABI.
 ***********************************************************/
 [CCode (cname="struct AVEncryptionInitInfo", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
-public struct EncryptionInitializationInfo {
+[Compact]
+public class EncryptionInitializationInfo {
     /***********************************************************
     @brief A unique identifier for the key system this is for, can be null if it
     is not known. This should always be 16 bytes, but may change in the

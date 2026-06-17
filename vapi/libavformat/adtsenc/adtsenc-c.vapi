@@ -57,7 +57,8 @@ public class ADTSMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="struct ADTSContext", cheader_filename="")]
-public struct ADTSMuxerPrivateData { }
+[Compact]
+public class ADTSMuxerPrivateData { }
 
 [CCode (cname="ff_adts_muxer", cheader_filename="")]
 public class ADTSMuxer : AVOutputFormat {

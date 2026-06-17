@@ -31,7 +31,8 @@ LibAVCodec external API header
 ***********************************************************/
 
 [CCode (cname="struct AVCodecParserContext", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-public struct CodecParserContext {
+[Compact]
+public class CodecParserContext {
     [CCode (cname="priv_data")]
     public void *priv_data;
 

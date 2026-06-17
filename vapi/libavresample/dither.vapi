@@ -18,9 +18,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public struct DitherContext { }
+[Compact]
+public class DitherContext { }
 
-public struct DitherDSPContext {
+[Compact]
+public class DitherDSPContext {
     /***********************************************************
     Convert samples from flt to s16 with added dither noise.
 
@@ -28,11 +30,17 @@ public struct DitherDSPContext {
     @param src    source int array, range INT_MIN to INT_MAX.
     @param dither float dither noise array
     @param len    number of samples
-        ***********************************************************/
+    ***********************************************************/
     void (*quantize)(int16 *dst, float *src, float *dither, int len);
 
-    int ptr_align; ///< src and dst constraints for quantize ()
-    int samples_align; ///< len constraints for quantize ()
+    /***********************************************************
+    src and dst constraints for quantize ()
+    ***********************************************************/
+    int ptr_align; ///<
+    /***********************************************************
+    len constraints for quantize ()
+    ***********************************************************/
+    int samples_align; ///<
 
     /***********************************************************
     Convert dither noise from int to float with triangular distribution.

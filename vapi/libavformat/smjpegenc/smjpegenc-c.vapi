@@ -27,7 +27,8 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="struct SMJPEGMuxContext", cheader_filename="")]
-public struct SDLMotionJpegMuxerPrivateData { }
+[Compact]
+public class SDLMotionJpegMuxerPrivateData { }
 
 [CCode (cname="ff_smjpeg_muxer", cheader_filename="")]
 public class SDLMotionJpegMuxer : AVOutputFormat {

@@ -51,7 +51,8 @@ A basic template for using the Generic Hashing API follows:
 
 @code
 [CCode (cname="", cheader_filename="")]
-public struct HashContext hash_context = null;
+[Compact]
+public class HashContext hash_context = null;
 const string hash_name = null;
 uint8[] output_buf = null;
 
@@ -106,7 +107,8 @@ initialization, updating, and finalizing.
 ***********************************************************/
 
 [CCode (cname="struct AVHashContext", cheader_filename="ffmpeg/libavutil/hash.h")]
-public struct HashContext {
+[Compact]
+public class HashContext {
 
     /***********************************************************
     @brief Allocate a hash context for the algorithm specified by name.

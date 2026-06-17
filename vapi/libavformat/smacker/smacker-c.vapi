@@ -27,7 +27,8 @@ Based on http://wiki.multimedia.cx/index.php?title=Smacker
 ***********************************************************/
 
 [CCode (cname="struct SmackerContext", cheader_filename="")]
-public struct SmackerDemuxerPrivateData { }
+[Compact]
+public class SmackerDemuxerPrivateData { }
 
 [CCode (cname="ff_smacker_demuxer", cheader_filename="")]
 public class SmackerDemuxer : AVInputFormat {
