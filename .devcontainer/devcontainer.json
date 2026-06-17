@@ -1,6 +1,6 @@
 {
     "name": "elementary stable",
-    "build": { "dockerfile": "Dockerfile" },
+    "build": { "dockerfile": "DockerFile" },
     // Configure tool-specific properties.
     "customizations": {
         // Configure properties specific to VS Code.
