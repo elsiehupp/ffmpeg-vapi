@@ -11,7 +11,7 @@ RUN apt-get update && \
   apt-get update && \
   apt-get -y dist-upgrade && \
   apt-get install --no-install-recommends -y elementary-sdk elementary-icon-theme && \
-  apt-get install -y vala-language-server
+  apt-get install -y vala-language-server && \
   apt-get -y autoremove && \
   apt-get autoclean && \
   rm -rf /var/lib/apt/lists/*
