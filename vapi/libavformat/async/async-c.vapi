@@ -121,8 +121,8 @@ public class AsyncURLProtocol : URLProtocol {
 //  #define OFFSET (x) offsetof (TestContext, x)
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 //  static const LibAVUtil.Option async_test_options[] = {
-//      { "async-test-read-error",      "cause read fail",
-//          OFFSET (opt_read_error),     AV_OPT_TYPE_INT, { .i64 = 0 }, INT_MIN, INT_MAX, .flags = D },
+//      { "async-test-read-error", "cause read fail",
+//          OFFSET (opt_read_error), AV_OPT_TYPE_INT, { .i64 = 0 }, INT_MIN, INT_MAX, .flags = D },
 //      {NULL},
 //  }
 //  #undef D

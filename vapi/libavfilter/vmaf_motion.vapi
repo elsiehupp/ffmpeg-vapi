@@ -21,32 +21,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class VMAFMotionDSPContext {
-    uint64 (*sad)(const uint16 *img1, uint16 *img2, int w, int h,
+    public uint64 (*sad)(const uint16 *img1, uint16 *img2, int w, int h,
                     ptrdiff_t img1_stride, ptrdiff_t img2_stride);
     void (*convolution_x)(const uint16 *filter, int filt_w, uint16 *src,
                           uint16 *dst, int w, int h, ptrdiff_t src_stride,
                           ptrdiff_t dst_stride);
-    void (*convolution_y)(const uint16 *filter, int filt_w, uint8 *src,
+    void (*convolution_y)(const uint16 *filter, int filt_w, uint8[] src,
                           uint16 *dst, int w, int h, ptrdiff_t src_stride,
                           ptrdiff_t dst_stride);
 }
 
-void ff_vmafmotion_init_x86 (VMAFMotionDSPContext *dsp);
+public void ff_vmafmotion_init_x86 (VMAFMotionDSPContext *dsp);
 
 [Compact]
 public class VMAFMotionData {
     uint16 filter[5];
-    int width;
-    int height;
+    public int width;
+    public int height;
     ptrdiff_t stride;
     uint16 *blur_data[2 /***********************************************************
     cur, prev */];
     uint16 *temp_data;
     double motion_sum;
-    uint64 nb_frames;
+    public uint64 nb_frames;
     VMAFMotionDSPContext vmafdsp;
 }
 
-int ff_vmafmotion_init (VMAFMotionData *data, int w, int h, AVPixelFormat fmt);
+public int ff_vmafmotion_init (VMAFMotionData *data, int w, int h, AVPixelFormat fmt);
 double ff_vmafmotion_process (VMAFMotionData *data, AVFrame *frame);
 double ff_vmafmotion_uninit (VMAFMotionData *data);

@@ -35,13 +35,13 @@ appropriate type.
 public class ContentLightMetadata {
     /***********************************************************
     @brief Max content light level (cd/m^2).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="MaxCLL", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public uint max_content_light_level;
 
     /***********************************************************
     @brief Max average light level per frame (cd/m^2).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="MaxFALL", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public uint max_frame_light_level;
 
@@ -51,7 +51,7 @@ public class ContentLightMetadata {
 
     @return An ContentLightMetadata filled with default values or null
         on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_content_light_metadata_alloc", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public ContentLightMetadata av_content_light_metadata_alloc (
         out size_t size
@@ -63,7 +63,7 @@ public class ContentLightMetadata {
     @param frame The frame which side data is added to.
 
     @return The ContentLightMetadata structure to be filled by caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_content_light_metadata_create_side_data", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public ContentLightMetadata av_content_light_metadata_create_side_data (
         Frame frame

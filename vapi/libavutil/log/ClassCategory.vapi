@@ -43,7 +43,7 @@ public enum ClassCategory {
 
     /***********************************************************
     @brief Not part of ABI/API
-        ***********************************************************/
+    ***********************************************************/
     //  AV_CLASS_CATEGORY_NB
 
     [CCode (cname="AV_IS_INPUT_DEVICE", cheader_filename="ffmpeg/libavutil/log.h")]

@@ -24,17 +24,17 @@ Bytestream functions
 [Compact]
 public class GetByteContext {
     uint8[] buffer;
-    uint8 *buffer_end;
-    uint8 *buffer_start;
+    uint8[] buffer_end;
+    uint8[] buffer_start;
 }
 
 [CCode (cname="struct PutByteContext", cheader_filename="ffmpeg/libavcodec/bytestream.h")]
 [Compact]
 public class PutByteContext {
     uint8[] buffer;
-    uint8 *buffer_end;
-    uint8 *buffer_start;
-    int eof;
+    uint8[] buffer_end;
+    uint8[] buffer_start;
+    public int eof;
 }
 
 //  #define DEF (type, name, bytes, read, write)
@@ -87,11 +87,11 @@ public class PutByteContext {
 //      return read (get_byte_context.buffer); //
 //  }
 
-//  DEF (uint64,     le64, 8, AV_RL64, AV_WL64)
+//  DEF (uint64, le64, 8, AV_RL64, AV_WL64)
 //  DEF (uint, le32, 4, AV_RL32, AV_WL32)
 //  DEF (uint, le24, 3, AV_RL24, AV_WL24)
 //  DEF (uint, le16, 2, AV_RL16, AV_WL16)
-//  DEF (uint64,     be64, 8, AV_RB64, AV_WB64)
+//  DEF (uint64, be64, 8, AV_RB64, AV_WB64)
 //  DEF (uint, be32, 4, AV_RB32, AV_WB32)
 //  DEF (uint, be24, 3, AV_RB24, AV_WB24)
 //  DEF (uint, be16, 2, AV_RB16, AV_WB16)
@@ -136,13 +136,13 @@ public class PutByteContext {
 static void bytestream2_init (
     GetByteContext get_byte_context,
     uint8[] buffer,
-    int buf_size
+    public int buf_size
 );
 
 static void bytestream2_init_writer (
     PutByteContext put_byte_context,
     uint8[] buffer,
-    int buf_size
+    public int buf_size
 );
 
 static uint bytestream2_get_bytes_left (
@@ -155,17 +155,17 @@ static uint bytestream2_get_bytes_left_p (
 
 static void bytestream2_skip (
     GetByteContext get_byte_context,
-    uint size
+    public uint size
 );
 
 static void bytestream2_skipu (
     GetByteContext get_byte_context,
-    uint size
+    public uint size
 );
 
 static void bytestream2_skip_p (
     PutByteContext put_byte_context,
-    uint size
+    public uint size
 );
 
 static int bytestream2_tell (
@@ -186,50 +186,50 @@ static int bytestream2_size_p (
 
 static int bytestream2_seek (
     GetByteContext get_byte_context,
-    int offset,
-    int whence
+    public int offset,
+    public int whence
 );
 
 static int bytestream2_seek_p (
     PutByteContext put_byte_context,
-    int offset,
-    int whence
+    public int offset,
+    public int whence
 );
 
 static uint bytestream2_get_buffer (
     GetByteContext get_byte_context,
     uint8[] dst,
-    uint size
+    public uint size
 );
 
 static uint bytestream2_get_bufferu (
     GetByteContext get_byte_context,
     uint8[] dst,
-    uint size
+    public uint size
 );
 
 static uint bytestream2_put_buffer (
     PutByteContext put_byte_context,
     uint8[] src,
-    uint size
+    public uint size
 );
 
 static uint bytestream2_put_bufferu (
     PutByteContext put_byte_context,
     uint8[] src,
-    uint size
+    public uint size
 );
 
 static void bytestream2_set_buffer (
     PutByteContext put_byte_context,
-    uint8 c,
-    uint size
+    public uint8 c,
+    public uint size
 );
 
 static void bytestream2_set_bufferu (
     PutByteContext put_byte_context,
-    uint8 c,
-    uint size
+    public uint8 c,
+    public uint size
 );
 
 static uint bytestream2_get_eof (
@@ -239,23 +239,23 @@ static uint bytestream2_get_eof (
 static uint bytestream2_copy_bufferu (
     PutByteContext put_byte_context,
     GetByteContext get_byte_context,
-    uint size
+    public uint size
 );
 
 static uint bytestream2_copy_buffer (
     PutByteContext put_byte_context,
     GetByteContext get_byte_context,
-    uint size
+    public uint size
 );
 
 static uint bytestream_get_buffer (
     out uint8[] b,
     uint8[] dst,
-    uint size
+    public uint size
 );
 
 static void bytestream_put_buffer (
     out uint8[] b,
     uint8[] src,
-    uint size
+    public uint size
 );

@@ -37,7 +37,8 @@ public void ff_rm_free_rmstream (
     RMStream rms
 );
 
-/*< input format for Realmedia-style RTSP streams
+/***********************************************************
+    input format for Realmedia-style RTSP streams
 ***********************************************************/
 //  extern AVInputFormat ff_rdt_demuxer;
 
@@ -58,7 +59,7 @@ public int ff_rm_read_mdpr_codecdata (
     AVFormatContext format_context,
     AVIOContext pb,
     AVStream st, RMStream rst,
-    uint codec_data_size,
+    public uint codec_data_size,
     uint8[] mime
 );
 
@@ -85,11 +86,11 @@ public int ff_rm_parse_packet (
     AVIOContext pb,
     AVStream st,
     RMStream rst,
-    int len,
+    public int len,
     LibAVCodec.Packet packet,
     out int seq,
-    int flags,
-    int64 ts
+    public int flags,
+    public int64 ts
 );
 
 /***********************************************************

@@ -31,14 +31,14 @@ public abstract class Class {
     /***********************************************************
     @brief The name of the class; usually it is the same name as the
     context structure type to which the Class is associated.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="class_name")]
     public abstract string class_name { public get; }
 
     /***********************************************************
     @brief A pointer to a function which returns the name of a context
     instance class_context associated with the class.
-        ***********************************************************/
+    ***********************************************************/
     //  [CCode (cname="item_name")]
     //  public abstract string item_name (
     //      void *class_context
@@ -50,7 +50,7 @@ public abstract class Class {
     @param class_context The Class context
 
     @return The Class class_name
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_default_item_name", cheader_filename="ffmpeg/libavutil/log.h")]
     public virtual string item_name (
         void *class_context
@@ -60,7 +60,7 @@ public abstract class Class {
     @brief A pointer to the first option specified in the class if any or null
 
     @see @link av_set_default_options ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="option")]
     public abstract Option[] option { public get; }
 
@@ -68,14 +68,14 @@ public abstract class Class {
     @brief LIBAVUTIL_VERSION with which this structure was created.
     This is used to allow fields to be added without requiring major
     version bumps everywhere.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="version")]
     public abstract int version { public get; }
 
     /***********************************************************
     @brief Offset in the structure where log_level_offset is stored.
     0 means there is no such variable
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="log_level_offset_offset")]
     public int log_level_offset_offset;
 
@@ -85,13 +85,13 @@ public abstract class Class {
     to eval as such a parent context, which an av_log () implementation
     could then leverage to display the parent context.
     The offset can be null.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="parent_log_context_offset")]
     public int parent_log_context_offset;
 
     /***********************************************************
     @brief Return next LibAVUtil.Options-enabled child or null
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="child_next")]
     public abstract void *child_next (
         void *obj,
@@ -105,7 +105,7 @@ public abstract class Class {
     The difference between child_next and this is that
     child_next iterates over _already existing_ objects, while
     child_class_next iterates over _all possible_ children.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="child_class_next")]
     public abstract Class child_class_next (
         Class prev
@@ -115,14 +115,14 @@ public abstract class Class {
     @brief Category used for visualization (like color)
     This is only set if the category is equal for all objects using this class.
     available since version (51 << 16 | 56 << 8 | 100)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="category")]
     public ClassCategory category;
 
     /***********************************************************
     @brief Callback to return the category.
     available since version (51 << 16 | 59 << 8 | 100)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="get_category")]
     public abstract ClassCategory get_category (
         void *class_context
@@ -131,7 +131,7 @@ public abstract class Class {
     /***********************************************************
     @brief Callback to return the supported/allowed ranges.
     available since version (52.12)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="query_ranges")]
     public abstract int query_ranges (
         out OptionRangeList ranges,

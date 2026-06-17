@@ -57,7 +57,7 @@ public class FF_DH {
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public FF_DH ff_dh_init (
-    int key_len
+    public int key_len
 );
 
 /***********************************************************
@@ -93,7 +93,7 @@ public int ff_dh_generate_public_key (
 public int ff_dh_write_public_key (
     FF_DH dh,
     uint8[] pub_key,
-    int pub_key_len
+    public int pub_key_len
 );
 
 /***********************************************************
@@ -111,9 +111,9 @@ other party's public value.
 public int ff_dh_compute_shared_secret_key (
     FF_DH dh,
     uint8[] pub_key,
-    int pub_key_len,
+    public int pub_key_len,
     uint8[] secret_key,
-    int secret_key_len
+    public int secret_key_len
 );
 
 } // namespace LibAVFormat

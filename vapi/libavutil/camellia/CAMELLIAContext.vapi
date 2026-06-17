@@ -37,7 +37,7 @@ public class CAMELLIAContext {
     /***********************************************************
     @brief Allocate an CAMELLIAContext context
     To free the struct: av_free (ptr)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_camellia_alloc", cheader_filename="ffmpeg/libavutil/camellia.h")]
     public CAMELLIAContext av_camellia_alloc ();
 
@@ -47,7 +47,7 @@ public class CAMELLIAContext {
     @param camellia an CAMELLIAContext context
     @param key a key of 16, 24, 32 bytes used for encryption/decryption
     @param key_bits number of keybits: possible are 128, 192, 256
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_camellia_init", cheader_filename="ffmpeg/libavutil/camellia.h")]
     public int av_camellia_init (
         CAMELLIAContext camellia,
@@ -64,7 +64,7 @@ public class CAMELLIAContext {
     @param count number of 16 byte blocks
     @paran initialization_vector initialization vector for CBC mode, null for ECB mode
     @param decrypt 0 for encryption, 1 for decryption
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_camellia_crypt", cheader_filename="ffmpeg/libavutil/camellia.h")]
     public void av_camellia_crypt (
         CAMELLIAContext camellia,

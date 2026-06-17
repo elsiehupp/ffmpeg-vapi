@@ -38,12 +38,12 @@ Public LibAVCodec D3D11VA header.
 public enum Direct3D11VideoAccelerationWorkaroundFlags {
     /***********************************************************
     @brief Workaround for Direct3D11 and old UVD/UVD+ ATI video cards
-        ***********************************************************/
+    ***********************************************************/
     FF_DXVA2_WORKAROUND_SCALING_LIST_ZIGZAG,
     /***********************************************************
     @brief Workaround for Direct3D11 and old Intel GPUs with ClearVideo
-    interface
-        ***********************************************************/
+    public interface
+    ***********************************************************/
     FF_DXVA2_WORKAROUND_INTEL_CLEARVIDEO,
 }
 

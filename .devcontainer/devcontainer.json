@@ -19,7 +19,8 @@
             "extensions": [
                 "prince781.vala",
                 "mesonbuild.mesonbuild",
-                "yzhang.markdown-all-in-one"
+                "yzhang.markdown-all-in-one",
+                "ColinKiama.linter-vala"
             ]
             // "devPort": {}
         }

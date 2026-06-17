@@ -32,7 +32,7 @@ public class HardwareFrameConstraints {
     @brief A list of possible values for format in the hw_frames_ctx,
     terminated by PixelFormat.NONE. This member will always be
     filled.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="valid_hw_formats")]
     public PixelFormat[] valid_hw_formats;
 
@@ -40,35 +40,35 @@ public class HardwareFrameConstraints {
     @brief A list of possible values for sw_format in the hw_frames_ctx,
     terminated by PixelFormat.NONE. Can be null if this
     information is not known.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="valid_sw_formats")]
     public PixelFormat[] valid_sw_formats;
 
     /***********************************************************
     @brief The minimum size of frames in this hw_frames_ctx.
     (Zero if not known.)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="min_width")]
     public int min_width;
 
     /***********************************************************
     @brief The minimum size of frames in this hw_frames_ctx.
     (Zero if not known.)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="min_height")]
     public int min_height;
 
     /***********************************************************
     @brief The maximum size of frames in this hw_frames_ctx.
     (int.MAX if not known / no limit.)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="max_width")]
     public int max_width;
 
     /***********************************************************
     @brief The maximum size of frames in this hw_frames_ctx.
     (int.MAX if not known / no limit.)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="max_height")]
     public int max_height;
 
@@ -83,7 +83,7 @@ public class HardwareFrameConstraints {
         to return the maximum possible capabilities of the device.
     @return HardwareFrameConstraints structure describing the constraints
         on the device, or null if not available.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hwdevice_get_hwframe_constraints", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public HardwareFrameConstraints av_hwdevice_get_hwframe_constraints (
         LibAVUtil.BufferRef ref,
@@ -94,7 +94,7 @@ public class HardwareFrameConstraints {
     @brief Free an HardwareFrameConstraints structure.
 
     @param constraints The (filled or unfilled) HardwareFrameConstraints structure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hwframe_constraints_free", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public void av_hwframe_constraints_free (
         HardwareFrameConstraints constraints

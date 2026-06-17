@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class PSNRDSPContext {
-    uint64 (*sse_line)(const uint8 *buf, uint8 *ref, int w);
+    public uint64 (*sse_line)(const uint8[] buf, uint8[] ref, int w);
 }
 
-void ff_psnr_init_x86 (PSNRDSPContext *dsp, int bpp);
+public void ff_psnr_init_x86 (PSNRDSPContext *dsp, int bpp);

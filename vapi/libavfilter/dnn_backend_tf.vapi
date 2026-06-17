@@ -27,6 +27,6 @@ DNNModel *ff_dnn_load_model_tf (string model_filename);
 
 DNNReturnType ff_dnn_execute_model_tf (const DNNModel *model, DNNData *outputs, uint32 nb_output);
 
-void ff_dnn_free_model_tf (DNNModel **model);
+public void ff_dnn_free_model_tf (DNNModel **model);
 
 #endif

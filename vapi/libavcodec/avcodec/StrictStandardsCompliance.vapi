@@ -31,21 +31,21 @@ public enum StrictStandardsCompliance {
     /***********************************************************
     @brief Strictly conform to an older more strict version of the spec
     or reference software.
-        ***********************************************************/
+    ***********************************************************/
     FF_COMPLIANCE_VERY_STRICT,
     /***********************************************************
     @brief Strictly conform to all the things in the spec no matter
     what consequences.
-        ***********************************************************/
+    ***********************************************************/
     FF_COMPLIANCE_STRICT,
     FF_COMPLIANCE_NORMAL,
     /***********************************************************
     @brief Allow unofficial extensions
-        ***********************************************************/
+    ***********************************************************/
     FF_COMPLIANCE_UNOFFICIAL,
     /***********************************************************
     @brief Allow nonstandardized experimental things.
-        ***********************************************************/
+    ***********************************************************/
     FF_COMPLIANCE_EXPERIMENTAL,
 }
 

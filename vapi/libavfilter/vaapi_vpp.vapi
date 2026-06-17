@@ -16,6 +16,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+/***********************************************************
+***********************************************************/
 // ARGB black, for VAProcPipelineParameterBuffer.output_background_color.
 #define VAAPI_VPP_BACKGROUND_BLACK 0xff000000
 
@@ -24,9 +26,9 @@ public class VAAPIVPPContext {
     const AVClass *class;
 
     AVVAAPIDeviceContext *hwctx;
-    AVBufferRef *device_ref;
+    public AVBufferRef device_ref;
 
-    int valid_ids;
+    public int valid_ids;
     VAConfigID  va_config;
     VAContextID va_context;
 
@@ -34,45 +36,47 @@ public class VAAPIVPPContext {
     AVHWFramesContext *input_frames;
     VARectangle        input_region;
 
-    enum AVPixelFormat output_format;
+    public AVPixelFormat output_format;
     /***********************************************************
+    computed width
     ***********************************************************/
-    int output_width; // computed width
+    public int output_width;
     /***********************************************************
+    computed height
     ***********************************************************/
-    int output_height; // computed height
+    public int output_height;
 
     VABufferID         filter_buffers[VAProcFilterCount];
-    int                nb_filter_buffers;
+    public int                nb_filter_buffers;
 
-    int (*build_filter_params)(AVFilterContext *avctx);
+    public int (*build_filter_params)(AVFilterContext *avctx);
 
     void (*pipeline_uninit)(AVFilterContext *avctx);
 }
 
-void ff_vaapi_vpp_ctx_init (AVFilterContext *avctx);
+public void ff_vaapi_vpp_ctx_init (AVFilterContext *avctx);
 
-void ff_vaapi_vpp_ctx_uninit (AVFilterContext *avctx);
+public void ff_vaapi_vpp_ctx_uninit (AVFilterContext *avctx);
 
-int ff_vaapi_vpp_query_formats (AVFilterContext *avctx);
+public int ff_vaapi_vpp_query_formats (AVFilterContext *avctx);
 
-void ff_vaapi_vpp_pipeline_uninit (AVFilterContext *avctx);
+public void ff_vaapi_vpp_pipeline_uninit (AVFilterContext *avctx);
 
-int ff_vaapi_vpp_config_input (AVFilterLink *inlink);
+public int ff_vaapi_vpp_config_input (AVFilterLink *inlink);
 
-int ff_vaapi_vpp_config_output (AVFilterLink *outlink);
+public int ff_vaapi_vpp_config_output (AVFilterLink *outlink);
 
-int ff_vaapi_vpp_init_params (AVFilterContext *avctx,
+public int ff_vaapi_vpp_init_params (AVFilterContext *avctx,
                              VAProcPipelineParameterBuffer *params,
                              AVFrame *input_frame,
                              AVFrame *output_frame);
 
-int ff_vaapi_vpp_make_param_buffers (AVFilterContext *avctx,
+public int ff_vaapi_vpp_make_param_buffers (AVFilterContext *avctx,
                                     int type,
                                     void *data,
                                     size_t size,
                                     int count);
 
-int ff_vaapi_vpp_render_picture (AVFilterContext *avctx,
+public int ff_vaapi_vpp_render_picture (AVFilterContext *avctx,
                                 VAProcPipelineParameterBuffer *params,
                                 AVFrame *output_frame);

@@ -40,7 +40,7 @@ public class RegionOfInterest {
     /***********************************************************
     @brief Must be set to the size of this data structure (that is,
     sizeof (RegionOfInterest)).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="self_size")]
     public uint32 self_size;
 
@@ -52,7 +52,7 @@ public class RegionOfInterest {
     The constraints on a region are encoder dependent, so the region
     actually affected may be slightly larger for alignment or other
     reasons.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="top")]
     public int top;
 
@@ -87,7 +87,7 @@ public class RegionOfInterest {
     An extreme value of -1 would indicate that this region should be
     encoded with the best possible quality regardless of the treatment of
     the rest of the frame - that is, should be encoded at a QP of -12.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="qoffset")]
     public Rational qoffset;
 }

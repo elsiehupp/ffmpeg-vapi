@@ -20,21 +20,21 @@ namespace LibAVCodec {
 using LibAVUtil;
 
 public delegate void IDCTDelegate (
-    int16[] block /***********************************************************
+    public int16[] block /***********************************************************
     align 16
 ***********************************************************/
 );
 public delegate void FDCTDelegate (
-    int16[] block /***********************************************************
+    public int16[] block /***********************************************************
     align 16
 ***********************************************************/
 );
 public delegate void GetPixelsDelegate (
-    int16[] block /***********************************************************
+    public int16[] block /***********************************************************
     align 16 */,
     uint8[] pixels /***********************************************************
     align 8 */,
-    size_t line_size
+    public size_t line_size
 );
 
 /***********************************************************
@@ -64,7 +64,7 @@ public class DCT {
        -> simple_idct_mmx -> x)
     - (-> decode coeffs -> zigzag reorder -> simple_mmx_perm -> dequant
        -> simple_idct_mmx -> ...)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="idct_permutation")]
     public uint8 idct_permutation[64];
 
@@ -74,14 +74,14 @@ public class DCT {
     /***********************************************************
     @brief DCT algorithm.
     must use LibAVUtil.Options to set this field.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="dct_algo")]
     public int dct_algo;
 
     /***********************************************************
     @brief IDCT algorithm.
     must use LibAVUtil.Options to set this field.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="idct_algo")]
     public int idct_algo;
 
@@ -97,7 +97,7 @@ public class DCT {
     configuring it with LibAVUtil.Options.
 
     To free it use av_free ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_dct_alloc", cheader_filename="ffmpeg/libavcodec/avdct.h")]
     public DCT avcodec_dct_alloc ();
 

@@ -6,7 +6,7 @@
 public enum Stereo3DType {
     /***********************************************************
     @brief Video is not stereoscopic (and metadata has to be there).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_STEREO3D_2D")]
     NOT_STEREOSCOPIC,
 
@@ -19,7 +19,7 @@ public enum Stereo3DType {
         LLLLRRRR
         ...
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_STEREO3D_SIDEBYSIDE")]
     SIDE_BY_SIDE,
 
@@ -32,7 +32,7 @@ public enum Stereo3DType {
         RRRRRRRR
         RRRRRRRR
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_STEREO3D_TOPBOTTOM")]
     TOP_AND_BOTTOM,
 
@@ -46,7 +46,7 @@ public enum Stereo3DType {
         LLLLLLLL RRRRRRRR LLLLLLLL
         ...      ...      ...
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_STEREO3D_FRAMESEQUENCE")]
     ALTERNATING_FRAMES,
 
@@ -59,7 +59,7 @@ public enum Stereo3DType {
         LRLRLRLR
         ...
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_STEREO3D_CHECKERBOARD")]
     CHECKERBOARD,
 
@@ -73,7 +73,7 @@ public enum Stereo3DType {
         LLLLRRRR L L L L R R R R
         LLLLRRRR L L L L R R R R
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_STEREO3D_SIDEBYSIDE_QUINCUNX")]
     SIDE_BY_SIDE_QUINCUNX,
 
@@ -86,7 +86,7 @@ public enum Stereo3DType {
         LLLLLLLL
         ...
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_STEREO3D_LINES")]
     ALTERNATING_LINES,
 
@@ -99,7 +99,7 @@ public enum Stereo3DType {
         LRLRLRLR
         ...
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_STEREO3D_COLUMNS")]
     ALTERNATING_COLUMNS,
 }

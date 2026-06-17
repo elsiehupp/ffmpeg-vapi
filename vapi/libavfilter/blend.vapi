@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-enum BlendMode {
+public enum BlendMode {
     BLEND_UNSET = -1,
     BLEND_NORMAL,
     BLEND_ADDITION,
@@ -58,16 +58,16 @@ enum BlendMode {
 
 [Compact]
 public class FilterParams {
-    enum BlendMode mode;
+    public BlendMode mode;
     double opacity;
     AVExpr *e;
     string expr_str;
-    void (*blend)(const uint8 *top, ptrdiff_t top_linesize,
-                  uint8 *bottom, ptrdiff_t bottom_linesize,
-                  uint8 *dst, ptrdiff_t dst_linesize,
+    void (*blend)(const uint8[] top, ptrdiff_t top_linesize,
+                  uint8[] bottom, ptrdiff_t bottom_linesize,
+                  uint8[] dst, ptrdiff_t dst_linesize,
                   ptrdiff_t width, ptrdiff_t height,
                   struct FilterParams *param, double[] values, int starty);
 }
 
-void ff_blend_init (FilterParams *param, int depth);
-void ff_blend_init_x86 (FilterParams *param, int depth);
+public void ff_blend_init (FilterParams *param, int depth);
+public void ff_blend_init_x86 (FilterParams *param, int depth);

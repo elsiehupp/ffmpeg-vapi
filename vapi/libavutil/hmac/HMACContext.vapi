@@ -32,7 +32,7 @@ public class HMACContext {
     /***********************************************************
     @brief Allocate an HMACContext context.
     @param type The hash function used for the HMAC.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hmac_alloc", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public HMACContext av_hmac_alloc (
         HMACType type
@@ -41,7 +41,7 @@ public class HMACContext {
     /***********************************************************
     @brief Free an HMACContext context.
     @param hmac_context The context to free, may be null
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hmac_free", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public void av_hmac_free (
         HMACContext hmac_context
@@ -52,7 +52,7 @@ public class HMACContext {
     @param hmac_context The HMAC context
     @param key The authentication key
     @param keylen The length of the key, in bytes
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hmac_init", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public void av_hmac_init (
         HMACContext hmac_context,
@@ -65,7 +65,7 @@ public class HMACContext {
     @param hmac_context The HMAC context
     @param data The data to hash
     @param len The length of the data, in bytes
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hmac_update", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public void av_hmac_update (
         HMACContext hmac_context,
@@ -79,7 +79,7 @@ public class HMACContext {
     @param output_buffer The output buffer to write the digest into
     @param output_length The length of the out buffer, in bytes
     @return The number of bytes written to output_buffer, or a negative error code.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hmac_final", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public int av_hmac_final (
         HMACContext hmac_context,
@@ -97,7 +97,7 @@ public class HMACContext {
     @param output_buffer The output buffer to write the digest into
     @param output_length The length of the out buffer, in bytes
     @return The number of bytes written to output_buffer, or a negative error code.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hmac_calc", cheader_filename="ffmpeg/libavutil/hmac.h")]
     public int av_hmac_calc (
         HMACContext hmac_context,

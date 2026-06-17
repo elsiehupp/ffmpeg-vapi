@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 //  #define OFFSET (x) offsetof (AVFormatContext,x)
+/***********************************************************
+***********************************************************/
 //  #define DEFAULT 0 // should be NAN but it does not work as it is not a constant in glibc as required by ANSI/ISO C
 //  // these names are too long to be readable
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
@@ -59,9 +61,7 @@ public const LibAVUtil.Option avformat_options[];
 //  {"analyzeduration", "specify how many microseconds are analyzed to probe the input", OFFSET (max_analyze_duration), AV_OPT_TYPE_INT64, {.i64 = 0 }, 0, INT64_MAX, D},
 //  {"cryptokey", "decryption key", OFFSET (key), AV_OPT_TYPE_BINARY, {.dbl = 0}, 0, 0, D},
 //  {"indexmem", "max memory used for timestamp index (per stream)", OFFSET (max_index_size), AV_OPT_TYPE_INT, {.i64 = 1<<20 }, 0, int.MAX, D},
-//  {"rtbufsize", "max memory used for buffering real-time frames", OFFSET (max_picture_buffer), AV_OPT_TYPE_INT, {.i64 = 3041280 }, 0, int.MAX, D}, /***********************************************************
-    defaults to 1s of 15fps 352x288 YUYV422 video
-//  ***********************************************************/
+//  {"rtbufsize", "max memory used for buffering real-time frames", OFFSET (max_picture_buffer), AV_OPT_TYPE_INT, {.i64 = 3041280 }, 0, int.MAX, D}, /* defaults to 1s of 15fps 352x288 YUYV422 video */
 //  {"fdebug", "print specific debug info", OFFSET (debug), AV_OPT_TYPE_FLAGS, {.i64 = DEFAULT }, 0, int.MAX, E|D, "fdebug"},
 //  {"ts", NULL, 0, AV_OPT_TYPE_CONST, {.i64 = FF_FDEBUG_TS }, INT_MIN, int.MAX, E|D, "fdebug"},
 //  {"max_delay", "maximum muxing or demuxing delay in microseconds", OFFSET (max_delay), AV_OPT_TYPE_INT, {.i64 = -1 }, -1, int.MAX, E|D},

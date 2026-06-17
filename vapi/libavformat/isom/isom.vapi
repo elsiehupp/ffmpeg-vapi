@@ -35,14 +35,14 @@ namespace LibAVFormat {
 
 [CCode (cname="", cheader_filename="")]
 public int ff_mov_iso639_to_lang (
-    char lang[4],
-    int mp4
+    public char lang[4],
+    public int mp4
 );
 
 [CCode (cname="", cheader_filename="")]
 public int ff_mov_lang_to_iso639 (
-    uint code,
-    char to[4]
+    public uint code,
+    public char to[4]
 );
 
 /***********************************************************
@@ -120,7 +120,7 @@ public class MOVAtom {
 
     /***********************************************************
     @brief Total size (excluding the size and type fields)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 size;
 }
@@ -195,7 +195,7 @@ public class MOVEncryptionIndex {
     /***********************************************************
     @brief Individual encrypted samples. If there are no elements,
     then the default settings will be used.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.EncryptionInfo[] encrypted_samples;
 
@@ -213,7 +213,7 @@ public class MOVEncryptionIndex {
 
     /***********************************************************
     @brief Absolute seek position
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint64[] auxiliary_offsets;
 
@@ -302,7 +302,7 @@ public class MOVStreamContext {
 
     /***********************************************************
     @brief AVStream index
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int ffindex;
 
@@ -347,7 +347,7 @@ public class MOVStreamContext {
 
     /***********************************************************
     @brief Partial sync sample for mpeg-2 open gop
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint[] stps_data;
 
@@ -365,13 +365,13 @@ public class MOVStreamContext {
 
     /***********************************************************
     @brief May contain value calculated from stsd or value from stsz atom
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint sample_size;
 
     /***********************************************************
     @brief Always contains sample size from stsz atom
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint stsz_sample_size;
 
@@ -395,13 +395,13 @@ public class MOVStreamContext {
 
     /***********************************************************
     @brief Time offset of the edit list entries
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 time_offset;
 
     /***********************************************************
     @brief Minimum Composition time shown by the edits excluding empty edits.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 min_corrected_pts;
 
@@ -428,13 +428,13 @@ public class MOVStreamContext {
 
     /***********************************************************
     -1 means demux all ids
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int pseudo_stream_id;
 
     /***********************************************************
     @brief Stsd audio compression id
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int16 audio_cid;
 
@@ -452,19 +452,19 @@ public class MOVStreamContext {
 
     /***********************************************************
     @brief Tkhd width
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int width;
 
     /***********************************************************
     @brief Tkhd height
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int height;
 
     /***********************************************************
     @brief Dts shift when ctts is negative
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int dts_shift;
 
@@ -479,19 +479,19 @@ public class MOVStreamContext {
 
     /***********************************************************
     @brief Tmcd track flags
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint32 tmcd_flags;
 
     /***********************************************************
     used for dts generation in fragmented movie files
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 track_end;
 
     /***********************************************************
     @brief Amount of samples to skip due to enc-dec delay
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int start_pad;
 
@@ -508,12 +508,10 @@ public class MOVStreamContext {
     public int64 duration_for_fps;
 
     /***********************************************************
-        ***********************************************************/
-    /***********************************************************
     @brief Extradata array (and size) for multiple stsd
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
-    public uint8 **extradata;
+    public uint8[] *extradata;
 
     [CCode (cname="", cheader_filename="")]
     public int[] extradata_size;
@@ -553,7 +551,7 @@ public class MOVStreamContext {
 
     /***********************************************************
     @brief If there is an sidx entry for this stream.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int has_sidx;
 
@@ -569,7 +567,7 @@ public class CEnc {
 
     /***********************************************************
     @brief Either 0, 8, or 16.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint per_sample_iv_size;
 
@@ -585,7 +583,7 @@ public class CEnc {
 public class MOVContext {
     /***********************************************************
     @brief Class for private options
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class class;
 
@@ -597,31 +595,31 @@ public class MOVContext {
 
     /***********************************************************
     @brief Duration of the longest track
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 duration;
 
     /***********************************************************
     'moov' atom has been found
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int found_moov;
 
     /***********************************************************
     'mdat' atom has been found
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int found_mdat;
 
     /***********************************************************
     'hdlr' atom with type 'mdta' has been found
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int found_hdlr_mdta;
 
     /***********************************************************
     @brief Index of the current 'trak'
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int trak_index;
 
@@ -639,13 +637,13 @@ public class MOVContext {
 
     /***********************************************************
     1 if file is ISO Media (mp4/3gp)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int isom;
 
     /***********************************************************
     @brief Current fragment in moof atom
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public MOVFragment fragment;
 
@@ -657,7 +655,7 @@ public class MOVContext {
 
     /***********************************************************
     @brief Metadata are itunes style
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int itunes_metadata;
 
@@ -687,7 +685,7 @@ public class MOVContext {
 
     /***********************************************************
     @brief Offset of the next root atom
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 next_root_atom;
 
@@ -699,7 +697,7 @@ public class MOVContext {
 
     /***********************************************************
     @brief Bitrates read before streams creation
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int[] bitrates;
 
@@ -723,7 +721,7 @@ public class MOVContext {
 
     /***********************************************************
     'aax' file has been detected
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint aax_mode;
 
@@ -759,7 +757,7 @@ public class MOVContext {
 
     /***********************************************************
     @brief Display matrix from mvhd
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int32 movie_display_matrix[3 * 3];
 }
@@ -879,13 +877,13 @@ public int ff_mov_read_esds (
 public int ff_mov_read_stsd_entries (
     MOVContext mov_context,
     AVIOContext pb,
-    int entries
+    public int entries
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_mov_write_chan (
     AVIOContext pb,
-    int64 channel_layout
+    public int64 channel_layout
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -901,15 +899,15 @@ See CoreAudioTypes and AudioStreamBasicDescription at Apple.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public static LibAVCodec.CodecID ff_mov_get_lpcm_codec_id (
-    int bps,
-    int flags
+    public int bps,
+    public int flags
 ) {
     /***********************************************************
     @brief Lpcm flags:
     0x1 = float
     0x2 = big-endian
     0x4 = signed
-        ***********************************************************/
+    ***********************************************************/
     return ff_get_pcm_codec_id (
         bps,
         flags & 1,

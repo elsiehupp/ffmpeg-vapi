@@ -44,7 +44,7 @@ public class BitStreamFilterList {
     or finalized by av_bsf_list_finalize ().
 
     @return Pointer to @link BitStreamFilterList on success, null in case of failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_list_alloc", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public BitStreamFilterList av_bsf_list_alloc ();
 
@@ -52,7 +52,7 @@ public class BitStreamFilterList {
     @brief Free list of bitstream filters.
 
     @param lst Pointer to pointer returned by av_bsf_list_alloc ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_list_free", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_bsf_list_free (
         BitStreamFilterList lst
@@ -65,7 +65,7 @@ public class BitStreamFilterList {
     @param bsf Filter context to be appended
 
     @return >=0 on success, negative LibAVUtil.ErrorCode in case of failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_list_append", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_list_append (
         BitStreamFilterList lst,
@@ -81,7 +81,7 @@ public class BitStreamFilterList {
     @param options Options for the bitstream filter, can be set to null
 
     @return >=0 on success, negative LibAVUtil.ErrorCode in case of failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_list_append2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_list_append2 (
         BitStreamFilterList lst,
@@ -104,7 +104,7 @@ public class BitStreamFilterList {
         representing the chain of bitstream filters
 
     @return >=0 on success, negative LibAVUtil.ErrorCode in case of failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_list_finalize", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_list_finalize (
         BitStreamFilterList lst,

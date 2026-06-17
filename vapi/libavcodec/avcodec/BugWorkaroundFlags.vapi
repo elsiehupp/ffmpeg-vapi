@@ -31,7 +31,7 @@ LibAVCodec external API header
 public enum BugWorkaroundFlags {
     /***********************************************************
     @brief Autodetection
-        ***********************************************************/
+    ***********************************************************/
     FF_BUG_AUTODETECT,
     FF_BUG_XVID_ILACE,
     FF_BUG_UMP4,
@@ -46,7 +46,7 @@ public enum BugWorkaroundFlags {
     FF_BUG_DC_CLIP,
     /***********************************************************
     @brief Workaround various bugs in Microsoft's broken decoders.
-        ***********************************************************/
+    ***********************************************************/
     FF_BUG_MS,
     FF_BUG_TRUNCATED,
     FF_BUG_IEDGE;

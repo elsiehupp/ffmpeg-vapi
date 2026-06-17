@@ -36,13 +36,13 @@ public enum HardwareAccelerationFlags {
 
     It's generally a good idea to pass this flag unless you have a specific
     reason not to, as hardware tends to under-report supported levels.
-        ***********************************************************/
+    ***********************************************************/
     IGNORE_LEVEL,
 
     /***********************************************************
     @brief Hardware acceleration can output YUV pixel formats with a different chroma
     sampling than 4:2:0 and/or other than 8 bits per component.
-        ***********************************************************/
+    ***********************************************************/
     ALLOW_HIGH_DEPTH,
 
     /***********************************************************
@@ -56,7 +56,7 @@ public enum HardwareAccelerationFlags {
     @warning If the stream is actually not supported then the behaviour is
         undefined, and may include returning entirely incorrect output
         while indicating success.
-        ***********************************************************/
+    ***********************************************************/
     ALLOW_PROFILE_MISMATCH,
 }
 

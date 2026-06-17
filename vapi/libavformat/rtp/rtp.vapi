@@ -33,10 +33,10 @@ The format context private option payload_type overrides both.
 @param idx The stream index
 @return The payload type (the 'PT' field in the RTP header).
 ***********************************************************/
-int ff_rtp_get_payload_type (
+public int ff_rtp_get_payload_type (
     AVFormatContext fmt,
     LibAVCodec.CodecParameters par,
-    int idx
+    public int idx
 );
 
 /***********************************************************
@@ -51,9 +51,9 @@ channels and sample_rate fields are also filled.
 @return In case of unknown payload type or dynamic payload type, a
 negative value is returned; otherwise, 0 is returned
 ***********************************************************/
-int ff_rtp_get_codec_info (
+public int ff_rtp_get_codec_info (
     LibAVCodec.CodecParameters par,
-    int payload_type
+    public int payload_type
 );
 
 /***********************************************************
@@ -65,8 +65,8 @@ http://www.iana.org/assignments/rtp-parameters) for a given payload type.
 to an empty string is returned; otherwise, a pointer to a string containing
 the encoding name is returned
 ***********************************************************/
-string ff_rtp_enc_name (
-    int payload_type
+public string ff_rtp_enc_name (
+    public int payload_type
 );
 
 /***********************************************************
@@ -87,10 +87,11 @@ public LibAVCodec.CodecID ff_rtp_codec_id (
 public const int RTP_PT_PRIVATE; // 96
 [CCode (cname="", cheader_filename="")]
 public const int RTP_VERSION; // 2
+/***********************************************************
+maximum text length for SDES
+***********************************************************/
 [CCode (cname="", cheader_filename="")]
-public const size_t RTP_MAX_SDES; // 256 /***********************************************************
-//  maximum text length for SDES
-//  ***********************************************************/
+public const size_t RTP_MAX_SDES; // 256
 
 /***********************************************************
 @brief RTCP packets use 0.5% of the bandwidth

@@ -56,8 +56,8 @@ public int ff_http_do_new_request (
 
 [CCode (cname="", cheader_filename="")]
 public int ff_http_averror (
-    int status_code,
-    int default_averror
+    public int status_code,
+    public int default_averror
 );
 
 } // namespace LibAVFormat

@@ -31,9 +31,9 @@ public int ff_pcm_read_packet (
 [CCode (cname="", cheader_filename="")]
 public int ff_pcm_read_seek (
     AVFormatContext format_context,
-    int stream_index,
-    int64 timestamp,
-    int flags
+    public int stream_index,
+    public int64 timestamp,
+    public int flags
 );
 
 } // namespace LibAVFormat

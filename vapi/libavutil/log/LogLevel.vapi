@@ -31,51 +31,51 @@ namespace LibAVUtil {
 public enum LogLevel {
     /***********************************************************
     @brief Print no output.
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_QUIET,
 
     /***********************************************************
     @brief Something went really wrong and we will crash now.
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_PANIC,
 
     /***********************************************************
     @brief Something went wrong and recovery is not possible.
     For example, no header was found for a format which depends
     on headers or an illegal combination of parameters is used.
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_FATAL,
 
     /***********************************************************
     @brief Something went wrong and cannot losslessly be recovered.
     However, not all future data is affected.
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_ERROR,
 
     /***********************************************************
     @brief Something somehow does not look correct. This may or may not
     lead to problems. An example would be the use of '-vstrict -2'.
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_WARNING,
 
     /***********************************************************
     @brief Standard information.
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_INFO,
 
     /***********************************************************
     @brief Detailed information.
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_VERBOSE,
 
     /***********************************************************
     @brief Stuff which is only useful for libav* developers.
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_DEBUG,
 
     /***********************************************************
     @brief Extremely verbose debugging, useful for libav* development.
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_TRACE;
 
     /***********************************************************
@@ -85,7 +85,7 @@ public enum LogLevel {
        @endcode
     Requires 256color terminal support. Uses outside debugging is not
     recommended.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_LOG_C", cheader_filename="ffmpeg/libavutil/log.h")]
     public static LogLevel AV_LOG_COLOR (
         int color

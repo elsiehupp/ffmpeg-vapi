@@ -35,7 +35,7 @@ public delegate void TransformDelegate (
     TransformContext s,
     out void *output,
     void *input,
-    size_t stride
+    public size_t stride
 );
 
 [CCode (cname="struct AVTXContext", cheader_filename="ffmpeg/libavutil/tx.h")]
@@ -55,7 +55,7 @@ public class TransformContext {
     @param flags currently unused
 
     @return 0 on success, negative error code on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_tx_init", cheader_filename="ffmpeg/libavutil/tx.h")]
     public int av_tx_init (
         TransformContext transform_context,
@@ -69,7 +69,7 @@ public class TransformContext {
 
     /***********************************************************
     @brief Frees a context and sets transform_context to null, does nothing when transform_context == null
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_tx_uninit", cheader_filename="ffmpeg/libavutil/tx.h")]
     public void av_tx_uninit (
         TransformContext transform_context

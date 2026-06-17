@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [Compact]
 public class Coeffs {
     FFTSample *val;
-    int start, len;
+    public int start, len;
 }
 
 [Compact]
@@ -45,15 +45,15 @@ public class ShowCQTContext {
     AVFilterContext     *ctx;
     AVFrame             *axis_frame;
     AVFrame             *sono_frame;
-    enum AVPixelFormat  format;
-    int                 sono_idx;
-    int                 sono_count;
-    int                 step;
-    AVRational          step_frac;
-    int                 remaining_frac;
-    int                 remaining_fill;
-    int                 remaining_fill_max;
-    int64             next_pts;
+    public AVPixelFormat  format;
+    public int                 sono_idx;
+    public int                 sono_count;
+    public int                 step;
+    public AVRational          step_frac;
+    public int                 remaining_frac;
+    public int                 remaining_fill;
+    public int                 remaining_fill_max;
+    public int64             next_pts;
     double              *freq;
     FFTContext          *fft_ctx;
     Coeffs              *coeffs;
@@ -61,10 +61,10 @@ public class ShowCQTContext {
     FFTComplex          *fft_result;
     FFTComplex          *cqt_result;
     float               *attack_data;
-    int                 fft_bits;
-    int                 fft_len;
-    int                 cqt_len;
-    int                 cqt_align;
+    public int                 fft_bits;
+    public int                 fft_len;
+    public int                 cqt_len;
+    public int                 cqt_align;
     ColorFloat          *c_buf;
     float               *h_buf;
     float               *rcp_h_buf;
@@ -86,27 +86,28 @@ public class ShowCQTContext {
     /***********************************************************
     performance debugging
     ***********************************************************/
-    int64             fft_time;
-    int64             cqt_time;
-    int64             process_cqt_time;
-    int64             update_sono_time;
-    int64             alloc_time;
-    int64             bar_time;
-    int64             axis_time;
-    int64             sono_time;
+    public int64             fft_time;
+    public int64             cqt_time;
+    public int64             process_cqt_time;
+    public int64             update_sono_time;
+    public int64             alloc_time;
+    public int64             bar_time;
+    public int64             axis_time;
+    public int64             sono_time;
     /***********************************************************
     option
     ***********************************************************/
-    int                 width, height;
-    AVRational          rate;
-    int                 bar_h;
-    int                 axis_h;
-    int                 sono_h;
-    int                 fullhd; /***********************************************************
+    public int                 width, height;
+    public AVRational          rate;
+    public int                 bar_h;
+    public int                 axis_h;
+    public int                 sono_h;
+    /***********************************************************
     deprecated
     ***********************************************************/
-    char                *sono_v;
-    char                *bar_v;
+    public int                 fullhd;
+    public char                *sono_v;
+    public char                *bar_v;
     float               sono_g;
     float               bar_g;
     float               bar_t;
@@ -114,19 +115,20 @@ public class ShowCQTContext {
     double              attack;
     double              basefreq;
     double              endfreq;
-    float               coeffclamp; /***********************************************************
+    /***********************************************************
     deprecated - ignored
     ***********************************************************/
-    char                *tlength;
-    int                 count;
-    int                 fcount;
-    char                *fontfile;
-    char                *font;
-    char                *fontcolor;
-    char                *axisfile;
-    int                 axis;
-    int                 csp;
-    char                *cscheme;
+    float               coeffclamp;
+    public char                *tlength;
+    public int                 count;
+    public int                 fcount;
+    public char                *fontfile;
+    public char                *font;
+    public char                *fontcolor;
+    public char                *axisfile;
+    public int                 axis;
+    public int                 csp;
+    public char                *cscheme;
 }
 
-void ff_showcqt_init_x86 (ShowCQTContext *s);
+public void ff_showcqt_init_x86 (ShowCQTContext *s);

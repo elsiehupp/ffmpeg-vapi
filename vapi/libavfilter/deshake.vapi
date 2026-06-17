@@ -19,10 +19,16 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-enum SearchMethod {
-    EXHAUSTIVE,        ///< Search all possible positions
-    SMART_EXHAUSTIVE,  ///< Search most possible positions (faster)
-    SEARCH_COUNT
+public enum SearchMethod {
+    /***********************************************************
+    Search all possible positions
+    ***********************************************************/
+    EXHAUSTIVE,
+    /***********************************************************
+    Search most possible positions (faster)
+    ***********************************************************/
+    SMART_EXHAUSTIVE,
+    SEARCH_COUNT;
 }
 
 [Compact]
@@ -30,11 +36,11 @@ public class IntMotionVector {
     /***********************************************************
     Horizontal shift
     ***********************************************************/
-    int x; ///<
+    public int x;
     /***********************************************************
     Vertical shift
     ***********************************************************/
-    int y; ///<
+    public int y;
 }
 
 [Compact]
@@ -42,11 +48,11 @@ public class MotionVector {
     /***********************************************************
     Horizontal shift
     ***********************************************************/
-    double x; ///<
+    double x;
     /***********************************************************
     Vertical shift
     ***********************************************************/
-    double y; ///<
+    double y;
 }
 
 [Compact]
@@ -54,15 +60,15 @@ public class Transform {
     /***********************************************************
     Motion vector
     ***********************************************************/
-    MotionVector vec; ///<
+    MotionVector vec;
     /***********************************************************
     Angle of rotation
     ***********************************************************/
-    double angle; ///<
+    double angle;
     /***********************************************************
     Zoom percentage
     ***********************************************************/
-    double zoom; ///<
+    double zoom;
 }
 
 #define MAX_R 64
@@ -73,67 +79,67 @@ public class DeshakeContext {
     /***********************************************************
     Scratch buffer for motion search
     ***********************************************************/
-    int counts[2*MAX_R+1][2*MAX_R+1]; ///<
+    public int counts[2*MAX_R+1][2*MAX_R+1];
     /***********************************************************
     Scratch buffer for block angles
     ***********************************************************/
-    double[] angles; ///<
-    unsigned angles_size;
+    double[] angles;
+    public uint angles_size;
     /***********************************************************
     Previous frame
     ***********************************************************/
-    AVFrame *ref; ///<
+    AVFrame *ref;
     /***********************************************************
     Maximum horizontal shift
     ***********************************************************/
-    int rx; ///<
+    public int rx;
     /***********************************************************
     Maximum vertical shift
     ***********************************************************/
-    int ry; ///<
+    public int ry;
     /***********************************************************
     Edge fill method
     ***********************************************************/
-    int edge; ///<
+    public int edge;
     /***********************************************************
     Size of blocks to compare
     ***********************************************************/
-    int blocksize; ///<
+    public int blocksize;
     /***********************************************************
     Contrast threshold
     ***********************************************************/
-    int contrast; ///<
+    public int contrast;
     /***********************************************************
     Motion search method
     ***********************************************************/
-    int search; ///<
+    public int search;
     /***********************************************************
     Sum of the absolute difference function
     ***********************************************************/
-    av_pixelutils_sad_fn sad; ///<
+    av_pixelutils_sad_fn sad;
     /***********************************************************
     Transform from last frame
     ***********************************************************/
-    Transform last; ///<
+    Transform last;
     /***********************************************************
     Number of reference frames (defines averaging window)
     ***********************************************************/
-    int refcount; ///<
+    public int refcount;
     FILE *fp;
     Transform avg;
     /***********************************************************
     Crop motion search to this box
     ***********************************************************/
-    int cw; ///<
-    int ch;
-    int cx;
-    int cy;
+    public int cw;
+    public int ch;
+    public int cx;
+    public int cy;
     /***********************************************************
     Motion search detailed log filename
     ***********************************************************/
-    string filename; ///<
-    int opencl;
-    int (* transform)(AVFilterContext *ctx, int width, int height, int cw, int ch,
+    string filename;
+    public int opencl;
+    public int (* transform)(AVFilterContext *ctx, int width, int height, int cw, int ch,
                       float *matrix_y, float *matrix_uv, InterpolateMethod interpolate,
                       FillMethod fill, AVFrame *in, AVFrame *out);
 }

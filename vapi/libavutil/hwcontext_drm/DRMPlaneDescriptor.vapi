@@ -39,19 +39,19 @@ public class DRMPlaneDescriptor {
     /***********************************************************
     @brief Index of the object containing this plane in the objects
     array of the enclosing frame descriptor.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="object_index")]
     public int object_index;
 
     /***********************************************************
     @brief Offset within that object of this plane.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="offset")]
     public size_t offset;
 
     /***********************************************************
     @brief Pitch (linesize) of this plane.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pitch")]
     public size_t pitch;
 }

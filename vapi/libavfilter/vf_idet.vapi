@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HIST_SIZE 4
 
-typedef int (*ff_idet_filter_func)(const uint8 *a, uint8 *b, uint8 *c, int w);
+typedef int (*ff_idet_filter_func)(const uint8[] a, uint8[] b, uint8[] c, int w);
 
 public enum Type {
     TFF,
@@ -40,38 +40,38 @@ public class IDETContext {
     float progressive_threshold;
     float repeat_threshold;
     float half_life;
-    uint64 decay_coefficient;
+    public uint64 decay_coefficient;
 
     Type last_type;
 
-    uint64 repeats[3];
-    uint64 prestat[4];
-    uint64 poststat[4];
-    uint64 total_repeats[3];
-    uint64 total_prestat[4];
-    uint64 total_poststat[4];
+    public uint64 repeats[3];
+    public uint64 prestat[4];
+    public uint64 poststat[4];
+    public uint64 total_repeats[3];
+    public uint64 total_prestat[4];
+    public uint64 total_poststat[4];
 
-    uint8 history[HIST_SIZE];
+    public uint8 history[HIST_SIZE];
 
     AVFrame *cur;
     AVFrame *next;
     AVFrame *prev;
     ff_idet_filter_func filter_line;
 
-    int interlaced_flag_accuracy;
-    int analyze_interlaced_flag;
-    int analyze_interlaced_flag_done;
+    public int interlaced_flag_accuracy;
+    public int analyze_interlaced_flag;
+    public int analyze_interlaced_flag_done;
 
     const AVPixFmtDescriptor *csp;
-    int eof;
+    public int eof;
 }
 
-void ff_idet_init_x86 (IDETContext *idet, int for_16b);
+public void ff_idet_init_x86 (IDETContext *idet, int for_16b);
 
 /***********************************************************
 main fall-back for left-over
 ***********************************************************/
-int ff_idet_filter_line_c (const uint8 *a, uint8 *b, uint8 *c, int w);
-int ff_idet_filter_line_c_16bit (const uint16 *a, uint16 *b, uint16 *c, int w);
+public int ff_idet_filter_line_c (const uint8[] a, uint8[] b, uint8[] c, int w);
+public int ff_idet_filter_line_c_16bit (const uint16 *a, uint16 *b, uint16 *c, int w);
 
 #endif

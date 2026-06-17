@@ -53,7 +53,7 @@ public class D3D11FrameDescriptor {
     the interface.
 
     Normally stored in Frame.data[0].
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="texture")]
     public ID3D11Texture2D texture;
 
@@ -62,7 +62,7 @@ public class D3D11FrameDescriptor {
     if the texture is not an array texture.
 
     Normally stored in Frame.data[1] (cast from intptr_t).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="index")]
     public int index;
 }

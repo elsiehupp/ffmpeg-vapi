@@ -22,12 +22,12 @@ namespace LibAVUtil {
 public enum HardwareFrameTransferDirection {
     /***********************************************************
     @brief Transfer the data from the queried hw frame.
-        ***********************************************************/
+    ***********************************************************/
     FROM,
 
     /***********************************************************
     @brief Transfer the data to the queried hw frame.
-        ***********************************************************/
+    ***********************************************************/
     TO;
 
     /***********************************************************
@@ -44,7 +44,7 @@ public enum HardwareFrameTransferDirection {
         On failure, the contents of this pointer are unspecified.
     @param flags currently unused, should be set to zero
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hwframe_transfer_get_formats", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public int av_hwframe_transfer_get_formats (
         LibAVUtil.BufferRef hwframe_ctx,

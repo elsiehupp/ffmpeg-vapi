@@ -31,7 +31,7 @@ public enum LogFlags {
     bad luck.
     Also to receive the last, "last repeated" line if any, the user app must
     call av_log (null, AV_LOG_QUIET, "%s", ""); at the end
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_SKIP_REPEATED,
 
     /***********************************************************
@@ -39,7 +39,7 @@ public enum LogFlags {
 
     Results in messages such as:
     [rawvideo @ 0xDEADBEEF] [error] encode did not produce valid pts
-        ***********************************************************/
+    ***********************************************************/
     AV_LOG_PRINT_LEVEL;
 
     [CCode (cname="av_log_set_flags", cheader_filename="ffmpeg/libavutil/log.h")]

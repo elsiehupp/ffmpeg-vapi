@@ -55,19 +55,19 @@ public enum ID3v2Encoding {
 public class ID3v2EncContext {
     /***********************************************************
     @brief ID3v2 minor version, either 3 or 4
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int version;
 
     /***********************************************************
     @brief Offset of the tag total size
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 size_pos;
 
     /***********************************************************
     @brief Size of the tag written so far
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int len;
 }
@@ -201,7 +201,7 @@ public void ff_id3v2_read (
     AVFormatContext format_context,
     string magic,
     out ID3v2ExtraMeta extra_meta,
-    uint max_search_size
+    public uint max_search_size
 );
 
 /***********************************************************
@@ -211,7 +211,7 @@ public void ff_id3v2_read (
 public void ff_id3v2_start (
     ID3v2EncContext id3,
     AVIOContext pb,
-    int id3v2_version,
+    public int id3v2_version,
     string magic
 );
 
@@ -241,7 +241,7 @@ public int ff_id3v2_write_apic (
 public void ff_id3v2_finish (
     ID3v2EncContext id3,
     AVIOContext pb,
-    int padding_bytes
+    public int padding_bytes
 );
 
 /***********************************************************
@@ -253,7 +253,7 @@ If in doubt, use ID3v2_DEFAULT_MAGIC.
 [CCode (cname="", cheader_filename="")]
 public int ff_id3v2_write_simple (
     AVFormatContext format_context,
-    int id3v2_version,
+    public int id3v2_version,
     string magic
 );
 

@@ -37,15 +37,15 @@ public enum OptionType {
     RATIONAL,
     /***********************************************************
     @brief Offset must point to a pointer immediately followed by an
-    int for the length
-        ***********************************************************/
+    public int for the length
+    ***********************************************************/
     BINARY,
     DICT,
     UINT64,
     CONST,
     /***********************************************************
     @brief Offset must point to two consecutive integers
-        ***********************************************************/
+    ***********************************************************/
     IMAGE_SIZE,
     [CCode (cname="AV_OPT_TYPE_PIXEL_FMT")]
     PIXEL_FORMAT,
@@ -53,7 +53,7 @@ public enum OptionType {
     SAMPLE_FORMAT,
     /***********************************************************
     @brief Offset must point to Rational
-        ***********************************************************/
+    ***********************************************************/
     VIDEO_RATE,
     DURATION,
     COLOR,

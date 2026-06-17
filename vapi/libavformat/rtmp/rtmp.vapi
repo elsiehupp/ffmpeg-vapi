@@ -60,10 +60,10 @@ public const int RTMP_CLIENT_VER4; // 2
 [CCode (cname="", cheader_filename="")]
 public int ff_rtmp_calc_digest (
     uint8[] src,
-    int len,
-    int gap,
+    public int len,
+    public int gap,
     uint8[] key,
-    int keylen,
+    public int keylen,
     uint8[] dst
 );
 
@@ -78,9 +78,9 @@ public int ff_rtmp_calc_digest (
 [CCode (cname="", cheader_filename="")]
 public int ff_rtmp_calc_digest_pos (
     uint8[] buffer,
-    int off,
-    int mod_val,
-    int add_val
+    public int off,
+    public int mod_val,
+    public int add_val
 );
 
 } // namespace LibAVFormat

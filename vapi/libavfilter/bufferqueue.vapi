@@ -40,12 +40,14 @@ Powers of 2 are recommended.
 /***********************************************************
 Structure holding the queue
 ***********************************************************/
-struct FFBufQueue {
+[Compact]
+public class FFBufQueue {
     AVFrame *queue[FF_BUFQUEUE_SIZE];
     ushort head;
-    ushort available; /***********************************************************
-    <number of available buffers
-***********************************************************/
+    /***********************************************************
+    number of available buffers
+    ***********************************************************/
+    ushort available;
 }
 
 #define BUCKET (i) queue->queue[(queue->head + (i)) % FF_BUFQUEUE_SIZE]
@@ -81,7 +83,7 @@ Buffer with index 0 is the first buffer in the queue.
 Return NULL if the queue has not enough buffers.
 ***********************************************************/
 static inline AVFrame *ff_bufqueue_peek (FFBufQueue *queue,
-                                        unsigned index)
+                                        uint index)
 {
     return index < queue->available ? BUCKET (index) : NULL;
 }

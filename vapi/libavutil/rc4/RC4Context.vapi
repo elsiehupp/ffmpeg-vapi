@@ -39,7 +39,7 @@ public class RC4Context {
 
     /***********************************************************
     @brief Allocate an RC4Context context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_rc4_alloc", cheader_filename="ffmpeg/libavutil/rc4.h")]
     public RC4Context av_rc4_alloc ();
 
@@ -49,7 +49,7 @@ public class RC4Context {
     @param key_bits must be a multiple of 8
     @param decrypt 0 for encryption, 1 for decryption, currently has no effect
     @return zero on success, negative value otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_rc4_init", cheader_filename="ffmpeg/libavutil/rc4.h")]
     public int av_rc4_init (
         RC4Context d,
@@ -66,7 +66,7 @@ public class RC4Context {
     @param input_buffer source array, can be equal to output_buffer, may be null
     @param initialization_vector not (yet) used for RC4, should be null
     @param decrypt 0 for encryption, 1 for decryption, not (yet) used
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_rc4_crypt", cheader_filename="ffmpeg/libavutil/rc4.h")]
     public void av_rc4_crypt (
         RC4Context d,

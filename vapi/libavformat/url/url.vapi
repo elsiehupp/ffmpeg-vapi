@@ -25,11 +25,11 @@ namespace LibAVFormat {
 public enum URLProtocolFlags {
     /***********************************************************
     @brief The protocol name can be the first part of a nested protocol scheme
-        ***********************************************************/
+    ***********************************************************/
     URL_PROTOCOL_FLAG_NESTED_SCHEME,
     /***********************************************************
     @brief The protocol uses network
-        ***********************************************************/
+    ***********************************************************/
     URL_PROTOCOL_FLAG_NETWORK,
 }
 
@@ -40,7 +40,7 @@ public enum URLProtocolFlags {
 public class URLContext {
     /***********************************************************
     @brief Information for av_log (). Set by url_open ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class av_class;
 
@@ -52,7 +52,7 @@ public class URLContext {
 
     /***********************************************************
     @brief Specified URL
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public string filename;
 
@@ -61,13 +61,13 @@ public class URLContext {
 
     /***********************************************************
     @brief If non zero, the stream is packetized with this max packet size
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int max_packet_size;
 
     /***********************************************************
     @brief True if streamed (no seek possible), default = false
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int is_streamed;
 
@@ -79,7 +79,7 @@ public class URLContext {
 
     /***********************************************************
     @brief Maximum time to wait for (network) read/write operation completion, in mcs
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 rw_timeout;
 
@@ -91,7 +91,7 @@ public class URLContext {
 
     /***********************************************************
     @brief If non zero, the stream is packetized with this min packet size
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int min_packet_size;
 }
@@ -112,7 +112,7 @@ public abstract class URLProtocol {
     @brief This callback is to be used by protocols which open further nested
     protocols. options are then to be passed to ffurl_open ()/ffurl_connect ()
     for those nested protocols.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public abstract int url_open2 (
         URLContext url_context,
@@ -143,7 +143,7 @@ public abstract class URLProtocol {
     Checking interrupt_callback, looping on EINTR and EAGAIN and until
     enough data has been read is left to the calling function; see
     retry_transfer_wrapper in avio.c.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public abstract int url_read (
         URLContext url_context,
@@ -270,7 +270,7 @@ LibAVUtil.ErrorCode code in case of failure
 public int ffurl_alloc (
     out URLContext puc,
     string filename,
-    int flags,
+    public int flags,
     AVIOInterruptCB int_cb
 );
 
@@ -310,7 +310,7 @@ LibAVUtil.ErrorCode code in case of failure
 public int ffurl_open_whitelist (
     out URLContext puc,
     string filename,
-    int flags,
+    public int flags,
     AVIOInterruptCB int_cb,
     out LibAVUtil.Dictionary options,
     string whitelist,
@@ -322,7 +322,7 @@ public int ffurl_open_whitelist (
 public int ffurl_open (
     out URLContext puc,
     string filename,
-    int flags,
+    public int flags,
     AVIOInterruptCB int_cb,
     out LibAVUtil.Dictionary options
 );
@@ -370,7 +370,7 @@ resource (except if the value of the size argument is also zero).
 public int ffurl_read (
     URLContext url_context,
     uchar[] buffer,
-    int size
+    public int size
 );
 
 /***********************************************************
@@ -384,7 +384,7 @@ certain there was either an error or the end of file was reached.
 public int ffurl_read_complete (
     URLContext url_context,
     uchar[] buffer,
-    int size
+    public int size
 );
 
 /***********************************************************
@@ -397,7 +397,7 @@ corresponding to an LibAVUtil.ErrorCode code in case of failure
 public int ffurl_write (
     URLContext url_context,
     uchar[] buffer,
-    int size
+    public int size
 );
 
 /***********************************************************
@@ -417,8 +417,8 @@ SEEK_CUR to read the current file position.
 [CCode (cname="", cheader_filename="")]
 public int64 ffurl_seek (
     URLContext url_context,
-    int64 pos,
-    int whence
+    public int64 pos,
+    public int whence
 );
 
 /***********************************************************
@@ -494,7 +494,7 @@ otherwise
 [CCode (cname="", cheader_filename="")]
 public int ffurl_shutdown (
     URLContext url_context,
-    int flags
+    public int flags
 );
 
 /***********************************************************
@@ -544,11 +544,11 @@ ensure ff_network_init has been called.
 [CCode (cname="", cheader_filename="")]
 public int ff_url_join (
     string str,
-    int size,
+    public int size,
     string proto,
     string authorization,
     string hostname,
-    int port,
+    public int port,
     string fmt,
     ...
 ); // av_printf_format (7, 8);
@@ -564,7 +564,7 @@ public int ff_url_join (
 [CCode (cname="", cheader_filename="")]
 public void ff_make_absolute_url (
     string buffer,
-    int size,
+    public int size,
     string base_url,
     string rel
 );

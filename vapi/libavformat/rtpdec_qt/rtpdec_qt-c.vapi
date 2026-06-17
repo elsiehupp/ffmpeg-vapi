@@ -72,8 +72,8 @@ namespace LibAVFormat {
 //      );
 //  }
 
-//  RTP_QT_HANDLER (qt,        vid, "X-QT",        AVMEDIA_TYPE_VIDEO);
-//  RTP_QT_HANDLER (qt,        aud, "X-QT",        AVMEDIA_TYPE_AUDIO);
+//  RTP_QT_HANDLER (qt, vid, "X-QT", AVMEDIA_TYPE_VIDEO);
+//  RTP_QT_HANDLER (qt, aud, "X-QT", AVMEDIA_TYPE_AUDIO);
 //  RTP_QT_HANDLER (quicktime, vid, "X-QUICKTIME", AVMEDIA_TYPE_VIDEO);
 //  RTP_QT_HANDLER (quicktime, aud, "X-QUICKTIME", AVMEDIA_TYPE_AUDIO);
 

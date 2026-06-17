@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 //  static const LibAVUtil.Option pcm_options[] = {
 //      { "sample_rate", "", offsetof (PCMAudioDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 44100}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { "channels",    "", offsetof (PCMAudioDemuxerContext, channels),    AV_OPT_TYPE_INT, {.i64 = 1}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
+//      { "channels", "", offsetof (PCMAudioDemuxerContext, channels), AV_OPT_TYPE_INT, {.i64 = 1}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL },
 //  }
 
@@ -1010,7 +1010,7 @@ public class PCMVIDCDemuxer : PCMDemuxer {
 
 //  static const LibAVUtil.Option sln_options[] = {
 //      { "sample_rate", "", offsetof (PCMAudioDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 8000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { "channels",    "", offsetof (PCMAudioDemuxerContext, channels),    AV_OPT_TYPE_INT, {.i64 = 1}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
+//      { "channels", "", offsetof (PCMAudioDemuxerContext, channels), AV_OPT_TYPE_INT, {.i64 = 1}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL },
 //  }
 

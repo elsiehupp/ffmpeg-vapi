@@ -41,19 +41,19 @@ public class CodecParserContext {
 
     /***********************************************************
     @brief Offset of the current frame
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="frame_offset")]
     public int64 frame_offset;
 
     /***********************************************************
     @brief Current offset (incremented by each av_parser_parse ())
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="cur_offset")]
     public int64 cur_offset;
 
     /***********************************************************
     @brief Affset of the next frame
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="next_frame_offset")]
     public int64 next_frame_offset;
 
@@ -63,7 +63,7 @@ public class CodecParserContext {
 
     /***********************************************************
     @brief XXX: Put it back in CodecContext.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pict_type")]
     public int pict_type;
 
@@ -77,25 +77,25 @@ public class CodecParserContext {
     It is used by codecs like H.264 to display telecined material.
 
     XXX: Put it back in CodecContext.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="repeat_pict")]
     public int repeat_pict;
 
     /***********************************************************
     @brief pts of the current frame
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pts")]
     public int64 pts;
 
     /***********************************************************
     @brief dts of the current frame
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="dts")]
     public int64 dts;
 
     /***********************************************************
     @brief Private data
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="last_pts")]
     public int64 last_pts;
 
@@ -125,7 +125,7 @@ public class CodecParserContext {
 
     /***********************************************************
     @brief Byte offset from starting packet start
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="offset")]
     public int64 offset;
 
@@ -137,7 +137,7 @@ public class CodecParserContext {
     It is initialized to -1, so if the parser doesn't set this flag,
     old-style fallback using AV_PICTURE_TYPE_I picture type as key frames
     will be used.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="key_frame")]
     public int key_frame;
 
@@ -153,7 +153,7 @@ public class CodecParserContext {
 
     For example, this corresponds to presence of H.264 buffering period
     SEI message.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="dts_sync_point")]
     public int dts_sync_point;
 
@@ -169,7 +169,7 @@ public class CodecParserContext {
     the next frame after timestamp sync point will be usually 1.
 
     For example, this corresponds to H.264 cpb_removal_delay.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="dts_ref_dts_delta")]
     public int dts_ref_dts_delta;
 
@@ -184,7 +184,7 @@ public class CodecParserContext {
     time of the frame.
 
     For example, this corresponds to H.264 dpb_output_delay.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pts_dts_delta")]
     public int pts_dts_delta;
 
@@ -192,19 +192,19 @@ public class CodecParserContext {
     @brief Position of the packet in file.
 
     Analogous to cur_frame_pts/dts
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="cur_frame_pos")]
     public int64 cur_frame_pos[AV_PARSER_PTS_NB];
 
     /***********************************************************
     @brief Byte position of currently parsed frame in stream.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pos")]
     public int64 pos;
 
     /***********************************************************
     @brief Previous frame byte position.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="last_pos")]
     public int64 last_pos;
 
@@ -212,7 +212,7 @@ public class CodecParserContext {
     @brief Duration of the current frame.
     For audio, this is in units of 1 / CodecContext.sample_rate.
     For all other types, this is in units of CodecContext.time_base.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="duration")]
     public int duration;
 
@@ -226,7 +226,7 @@ public class CodecParserContext {
     PictureStructure.FRAME. An H.264 picture with field_pic_flag
     equal to 1 and bottom_field_flag equal to 0 corresponds to
     PictureStructure.TOP_FIELD.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="picture_structure")]
     public PictureStructure picture_structure;
 
@@ -235,31 +235,31 @@ public class CodecParserContext {
     This field may be reinitialized at the first picture of a new sequence.
 
     For example, this corresponds to H.264 PicOrderCnt.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="output_picture_number")]
     public int output_picture_number;
 
     /***********************************************************
     @brief Width of the decoded video intended for presentation.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="width")]
     public int width;
 
     /***********************************************************
     @brief Height of the decoded video intended for presentation.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="height")]
     public int height;
 
     /***********************************************************
     @brief Width of the coded video.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="coded_width")]
     public int coded_width;
 
     /***********************************************************
     @brief Height of the coded video.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="coded_height")]
     public int coded_height;
 
@@ -270,7 +270,7 @@ public class CodecParserContext {
     Note that a decoder can have considerable freedom in how exactly it
     decodes the data, so the format reported here might be different from the
     one returned by a decoder.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="format")]
     public int format;
 
@@ -309,7 +309,7 @@ public class CodecParserContext {
         decode_frame (data, size);
     }
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_parser_parse2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_parser_parse2 (
         CodecParserContext s,

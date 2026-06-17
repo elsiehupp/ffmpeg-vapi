@@ -31,14 +31,14 @@ LibAVCodec external API header
 public class CodecHardwareConfig {
     /***********************************************************
     @brief A hardware pixel format which the codec can use.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pix_fmt")]
     public LibAVUtil.PixelFormat pixel_format;
 
     /***********************************************************
     @brief Bit set of CodecHardwareConfigMethod, describing the possible
     setup methods which can be used with this configuration.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="methods")]
     public CodecHardwareConfigMethod methods;
 
@@ -47,7 +47,7 @@ public class CodecHardwareConfig {
 
     Must be set for AV_CODEC_HW_CONFIG_METHOD_HW_DEVICE_CTX and
     AV_CODEC_HW_CONFIG_METHOD_HW_FRAMES_CTX, otherwise unused.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="device_type")]
     public LibAVUtil.HardwareDeviceType device_type;
 }

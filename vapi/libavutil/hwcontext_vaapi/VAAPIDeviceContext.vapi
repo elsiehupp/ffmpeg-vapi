@@ -27,7 +27,7 @@ Allocated as HardwareDeviceContext.hwctx
 public class VAAPIDeviceContext : AbstractHardwareContext {
     /***********************************************************
     @brief The VADisplay handle, to be filled by the user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="display")]
     public VADisplay display;
 
@@ -37,7 +37,7 @@ public class VAAPIDeviceContext : AbstractHardwareContext {
     AV_VAAPI_DRIVER_QUIRK_USER_SET bit is already present. The user
     may need to refer to this field when performing any later
     operations using VAAPI with the same VADisplay.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="driver_quirks")]
     public uint driver_quirks;
 }

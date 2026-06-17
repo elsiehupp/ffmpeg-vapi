@@ -35,7 +35,7 @@ public class DXVA2FrameContext : AbstractHardwareContext {
     /***********************************************************
     @brief The surface type (e.g. DXVA2_VideoProcessorRenderTarget or
     DXVA2_VideoDecoderRenderTarget). Must be set by the caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surface_type")]
     public DWORD surface_type;
 
@@ -43,7 +43,7 @@ public class DXVA2FrameContext : AbstractHardwareContext {
     @brief The surface pool. When an external pool is not provided by the caller,
     this will be managed (allocated and filled on init, freed on uninit) by
     libavutil.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surfaces")]
     public IDirect3DSurface9[] surface_list;
 
@@ -60,7 +60,7 @@ public class DXVA2FrameContext : AbstractHardwareContext {
 
     This is for convenience only. Some code uses other methods to manage the
     decoder reference.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="decoder_to_release")]
     public IDirectXVideoDecoder decoder_to_release;
 }

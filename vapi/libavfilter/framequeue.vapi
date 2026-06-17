@@ -28,7 +28,7 @@ must be protected by a mutex or any synchronization mechanism.
 
 [Compact]
 public class FFFrameBucket {
-    AVFrame *frame;
+    public AVFrame *frame;
 }
 
 /***********************************************************
@@ -41,9 +41,10 @@ It is currently empty.
 ***********************************************************/
 [Compact]
 public class FFFrameQueueGlobal {
-    char dummy; /***********************************************************
+    /***********************************************************
     C does not allow empty structs
-***********************************************************/
+    ***********************************************************/
+    private char dummy;
 }
 
 /***********************************************************
@@ -54,82 +55,79 @@ public class FFFrameQueue {
 
     /***********************************************************
     Array of allocated buckets, used as a circular buffer.
-        ***********************************************************/
-    FFFrameBucket *queue;
+    ***********************************************************/
+    public FFFrameBucket *queue;
 
     /***********************************************************
     Size of the array of buckets.
-        ***********************************************************/
-    size_t allocated;
+    ***********************************************************/
+    public size_t allocated;
 
     /***********************************************************
     Tail of the queue.
     It is the index in the array of the next frame to take.
-        ***********************************************************/
-    size_t tail;
+    ***********************************************************/
+    public size_t tail;
 
     /***********************************************************
     Number of currently queued frames.
-        ***********************************************************/
-    size_t queued;
+    ***********************************************************/
+    public size_t queued;
 
     /***********************************************************
     Pre-allocated bucket for queues of size 1.
-        ***********************************************************/
+    ***********************************************************/
     FFFrameBucket first_bucket;
 
     /***********************************************************
     Total number of frames entered in the queue.
-        ***********************************************************/
-    uint64 total_frames_head;
+    ***********************************************************/
+    public uint64 total_frames_head;
 
     /***********************************************************
     Total number of frames dequeued from the queue.
     queued = total_frames_head - total_frames_tail
-
     ***********************************************************/
-    uint64 total_frames_tail;
+    public uint64 total_frames_tail;
 
     /***********************************************************
     Total number of samples entered in the queue.
-        ***********************************************************/
-    uint64 total_samples_head;
+    ***********************************************************/
+    public uint64 total_samples_head;
 
     /***********************************************************
     Total number of samples dequeued from the queue.
     queued_samples = total_samples_head - total_samples_tail
-
     ***********************************************************/
-    uint64 total_samples_tail;
+    public uint64 total_samples_tail;
 
     /***********************************************************
     Indicate that samples are skipped
-
     ***********************************************************/
-    int samples_skipped;
+    public int samples_skipped;
 
 }
 
 /***********************************************************
 Init a global structure.
 ***********************************************************/
-void ff_framequeue_global_init (FFFrameQueueGlobal *fqg);
+public void ff_framequeue_global_init (FFFrameQueueGlobal *fqg);
 
 /***********************************************************
 Init a frame queue and attach it to a global structure.
 ***********************************************************/
-void ff_framequeue_init (FFFrameQueue *fq, FFFrameQueueGlobal *fqg);
+public void ff_framequeue_init (FFFrameQueue *fq, FFFrameQueueGlobal *fqg);
 
 /***********************************************************
 Free the queue and all queued frames.
 ***********************************************************/
-void ff_framequeue_free (FFFrameQueue *fq);
+public void ff_framequeue_free (FFFrameQueue *fq);
 
 /***********************************************************
 Add a frame.
 @return  >=0 or an AVERROR code.
 ***********************************************************/
-int ff_framequeue_add (FFFrameQueue *fq, AVFrame *frame);
+public int ff_framequeue_add (FFFrameQueue *fq, AVFrame *frame);
 
 /***********************************************************
 Take the first frame in the queue.
@@ -176,4 +174,4 @@ ff_framequeue_peek () and samples were consumed from it.
 It adapts the data pointers and timestamps of the head frame to account
 for the skipped samples.
 ***********************************************************/
-void ff_framequeue_skip_samples (FFFrameQueue *fq, size_t samples, AVRational time_base);
+public void ff_framequeue_skip_samples (FFFrameQueue *fq, size_t samples, AVRational time_base);

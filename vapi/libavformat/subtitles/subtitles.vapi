@@ -25,11 +25,11 @@ namespace LibAVFormat {
 public enum sub_sort {
     /***********************************************************
     @brief Sort by timestamps, then position
-        ***********************************************************/
+    ***********************************************************/
     SUB_SORT_TS_POS,
     /***********************************************************
     @brief Sort by position, then timestamps
-        ***********************************************************/
+    ***********************************************************/
     SUB_SORT_POS_TS,
 }
 
@@ -37,7 +37,7 @@ public enum sub_sort {
 public enum ff_utf_type {
     /***********************************************************
     @brief Or other 8 bit encodings
-        ***********************************************************/
+    ***********************************************************/
     FF_UTF_8,
     FF_UTF16LE,
     FF_UTF16BE,
@@ -96,7 +96,7 @@ public void ff_text_init_avio (
 public void ff_text_init_buf (
     FFTextReader text_reader,
     void *buffer,
-    size_t size
+    public size_t size
 );
 
 /***********************************************************
@@ -143,7 +143,7 @@ written.
 public void ff_text_read (
     FFTextReader text_reader,
     string buffer,
-    size_t size
+    public size_t size
 );
 
 [CCode (cname="struct FFDemuxSubtitlesQueue", cheader_filename="")]
@@ -151,37 +151,37 @@ public void ff_text_read (
 public class FFDemuxSubtitlesQueue {
     /***********************************************************
     @brief Array of subtitles packets
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public LibAVCodec.Packet[] subs;
 
     /***********************************************************
     @brief Number of subtitles packets
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int nb_subs;
 
     /***********************************************************
     @brief Allocated size for subs
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int allocated_size;
 
     /***********************************************************
     @brief Current position for the read packet callback
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int current_sub_idx;
 
     /***********************************************************
     @brief Sort method to use when finalizing subtitles
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public sub_sort sort;
 
     /***********************************************************
     @brief Set to 1 to keep duplicated subtitle events
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int keep_duplicates;
 }
@@ -198,8 +198,8 @@ public class FFDemuxSubtitlesQueue {
 public LibAVCodec.Packet ff_subtitles_queue_insert (
     FFDemuxSubtitlesQueue queue,
     uint8[] event,
-    size_t len,
-    int merge
+    public size_t len,
+    public int merge
 );
 
 /***********************************************************
@@ -230,11 +230,11 @@ matches AVInputFormat.read_seek2 prototypes.
 public int ff_subtitles_queue_seek (
     FFDemuxSubtitlesQueue queue,
     AVFormatContext format_context,
-    int stream_index,
-    int64 min_ts,
-    int64 ts,
-    int64 max_ts,
-    int flags
+    public int stream_index,
+    public int64 min_ts,
+    public int64 ts,
+    public int64 max_ts,
+    public int flags
 );
 
 /***********************************************************
@@ -322,7 +322,7 @@ similar as with snprintf.
 public size_t ff_subtitles_read_line (
     FFTextReader tr,
     string buffer,
-    size_t size
+    public size_t size
 );
 
 } // namespace LibAVFormat

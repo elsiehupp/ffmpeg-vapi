@@ -31,8 +31,8 @@ namespace LibAVFormat {
 [CCode (cname="", cheader_filename="")]
 public void ff_rm_reorder_sipr_data (
     uint8[] buffer,
-    int sub_packet_h,
-    int framesize
+    public int sub_packet_h,
+    public int framesize
 );
 
 } // namespace LibAVFormat

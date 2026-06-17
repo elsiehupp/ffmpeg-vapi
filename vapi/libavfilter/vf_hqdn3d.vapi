@@ -23,13 +23,13 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 [Compact]
 public class HQDN3DContext {
     const AVClass *class;
-    int16 *coefs[4];
+    public int16 *coefs[4];
     uint16 *line;
     uint16 *frame_prev[3];
     double strength[4];
-    int hsub, vsub;
-    int depth;
-    void (*denoise_row[17])(uint8 *src, uint8 *dst, uint16 *line_ant, uint16 *frame_ant, ptrdiff_t w, int16 *spatial, int16 *temporal);
+    public int hsub, vsub;
+    public int depth;
+    void (*denoise_row[17])(uint8[] src, uint8[] dst, uint16 *line_ant, uint16 *frame_ant, ptrdiff_t w, int16 *spatial, int16 *temporal);
 }
 
 #define LUMA_SPATIAL   0
@@ -37,4 +37,4 @@ public class HQDN3DContext {
 #define CHROMA_SPATIAL 2
 #define CHROMA_TMP     3
 
-void ff_hqdn3d_init_x86 (HQDN3DContext *hqdn3d);
+public void ff_hqdn3d_init_x86 (HQDN3DContext *hqdn3d);

@@ -43,7 +43,7 @@ public static uint32 av_bswap32 (
 
 [CCode (cname="av_bswap64", cheader_filename="ffmpeg/libavutil/bswap.h")]
 public static uint64 av_bswap64 (
-    uint64 x
+    public uint64 x
 );
 
 // be2ne ... big-endian to native-endian

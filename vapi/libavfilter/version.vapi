@@ -32,8 +32,8 @@ Libavfilter version macros
 #define LIBAVFILTER_VERSION_INT AV_VERSION_INT (LIBAVFILTER_VERSION_MAJOR, \
                                                LIBAVFILTER_VERSION_MINOR, \
                                                LIBAVFILTER_VERSION_MICRO)
-#define LIBAVFILTER_VERSION     AV_VERSION (LIBAVFILTER_VERSION_MAJOR,   \
-                                           LIBAVFILTER_VERSION_MINOR,   \
+#define LIBAVFILTER_VERSION     AV_VERSION (LIBAVFILTER_VERSION_MAJOR, \
+                                           LIBAVFILTER_VERSION_MINOR, \
                                            LIBAVFILTER_VERSION_MICRO)
 #define LIBAVFILTER_BUILD       LIBAVFILTER_VERSION_INT
 

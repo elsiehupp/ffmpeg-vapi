@@ -23,16 +23,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 public class SndioData {
     AVClass *class;
     struct sio_hdl *hdl;
-    enum AVCodecID codec_id;
-    int64 hwpos;
-    int64 softpos;
-    uint8 *buffer;
-    int bps;
-    int buffer_size;
-    int buffer_offset;
-    int channels;
-    int sample_rate;
+    public AVCodecID codec_id;
+    public int64 hwpos;
+    public int64 softpos;
+    uint8[] buffer;
+    public int bps;
+    public int buffer_size;
+    public int buffer_offset;
+    public int channels;
+    public int sample_rate;
 }
 
-int ff_sndio_open (AVFormatContext *s1, int is_output, string audio_device);
-int ff_sndio_close (SndioData *s);
+public int ff_sndio_open (AVFormatContext *s1, int is_output, string audio_device);
+public int ff_sndio_close (SndioData *s);

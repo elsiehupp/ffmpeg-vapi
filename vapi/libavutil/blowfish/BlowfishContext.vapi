@@ -41,7 +41,7 @@ public class BlowfishContext {
 
     /***********************************************************
     @brief Allocate an BlowfishContext context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_blowfish_alloc", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public BlowfishContext av_blowfish_alloc ();
 
@@ -51,7 +51,7 @@ public class BlowfishContext {
     @param blowfish an BlowfishContext context
     @param key a key
     @param key_len length of the key
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_blowfish_init", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public void av_blowfish_init (
         BlowfishContext blowfish,
@@ -66,7 +66,7 @@ public class BlowfishContext {
     @param xl left four bytes halves of input to be encrypted
     @param xr right four bytes halves of input to be encrypted
     @param decrypt 0 for encryption, 1 for decryption
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_blowfish_crypt_ecb", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public void av_blowfish_crypt_ecb (
         BlowfishContext blowfish,
@@ -84,7 +84,7 @@ public class BlowfishContext {
     @param count number of 8 byte blocks
     @param initialization_vector initialization vector for CBC mode, if null ECB will be used
     @param decrypt 0 for encryption, 1 for decryption
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_blowfish_crypt", cheader_filename="ffmpeg/libavutil/blowfish.h")]
     public void av_blowfish_crypt (
         BlowfishContext blowfish,

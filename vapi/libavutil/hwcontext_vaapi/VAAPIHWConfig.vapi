@@ -28,7 +28,7 @@ Allocated with av_hwdevice_hwconfig_alloc ().
 public class VAAPIHWConfig {
     /***********************************************************
     @brief ID of a VAAPI pipeline configuration.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="config_id")]
     public VAConfigID config_id;
 }

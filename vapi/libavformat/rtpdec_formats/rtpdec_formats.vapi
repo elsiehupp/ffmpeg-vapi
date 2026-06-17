@@ -41,9 +41,9 @@ public int ff_h263_handle_packet (
     LibAVCodec.Packet packet,
     out uint32 timestamp,
     uint8[] buffer,
-    int len,
+    public int len,
     uint16 seq,
-    int flags
+    public int flags
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -60,20 +60,20 @@ public int ff_h264_handle_aggregated_packet (
     PayloadContext data,
     LibAVCodec.Packet packet,
     uint8[] buffer,
-    int len,
-    int start_skip,
-    int[] nal_counters,
-    int nal_mask
+    public int len,
+    public int start_skip,
+    public int[] nal_counters,
+    public int nal_mask
 );
 
 [CCode (cname="", cheader_filename="")]
 public int ff_h264_handle_frag_packet (
     LibAVCodec.Packet packet,
     uint8[] buffer,
-    int len,
-    int start_bit,
+    public int len,
+    public int start_bit,
     uint8[] nal_header,
-    int nal_header_len
+    public int nal_header_len
 );
 
 [CCode (cname="", cheader_filename="")]

@@ -51,7 +51,7 @@ If the layout tag was not found, use a channel bitmap if possible.
 [CCode (cname="", cheader_filename="")]
 public uint32 ff_mov_get_channel_layout_tag (
     LibAVCodec.CodecID codec_id,
-    uint64 channel_layout,
+    public uint64 channel_layout,
     out uint32 bitmap
 );
 
@@ -69,7 +69,7 @@ public int ff_mov_read_chan (
     AVFormatContext format_context,
     AVIOContext pb,
     AVStream st,
-    int64 size
+    public int64 size
 );
 
 } // namespace LibAVFormat

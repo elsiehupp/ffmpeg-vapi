@@ -25,8 +25,8 @@ namespace LibAVFormat {
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
 //  static const LibAVUtil.Option options[] = {
-//      {"timeout",   "set timeout in ms of socket I/O operations",    OFFSET (timeout), AV_OPT_TYPE_INT, {.i64 = -1}, -1, INT_MAX, D|E },
-//      {"truncate",  "truncate existing files on write",              OFFSET (trunc),   AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 1, E },
+//      {"timeout", "set timeout in ms of socket I/O operations", OFFSET (timeout), AV_OPT_TYPE_INT, {.i64 = -1}, -1, INT_MAX, D|E },
+//      {"truncate", "truncate existing files on write", OFFSET (trunc), AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 1, E },
 //      {"workgroup", "set the workgroup used for making connections", OFFSET (workgroup), AV_OPT_TYPE_STRING, { 0 }, 0, 0, D|E },
 //      {NULL}
 //  }

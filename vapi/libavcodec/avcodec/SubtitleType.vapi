@@ -32,19 +32,19 @@ public enum SubtitleType {
 
     /***********************************************************
     @brief A bitmap, pict will be set
-        ***********************************************************/
+    ***********************************************************/
     SUBTITLE_BITMAP,
 
     /***********************************************************
     @brief Plain text, the text field must be set by the decoder and is
     authoritative. ass and pict fields may contain approximations.
-        ***********************************************************/
+    ***********************************************************/
     SUBTITLE_TEXT,
 
     /***********************************************************
     @brief Formatted text, the ass field must be set by the decoder and is
     authoritative. pict and text fields may contain approximations.
-        ***********************************************************/
+    ***********************************************************/
     SUBTITLE_ASS,
 }
 

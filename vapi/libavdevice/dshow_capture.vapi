@@ -36,10 +36,10 @@ EC_DEVICE_LOST is not defined in MinGW dshow headers.
 #endif
 
 long ff_copy_dshow_media_type (AM_MEDIA_TYPE *dst, AM_MEDIA_TYPE *src);
-void ff_print_VIDEO_STREAM_CONFIG_CAPS (const VIDEO_STREAM_CONFIG_CAPS *caps);
-void ff_print_AUDIO_STREAM_CONFIG_CAPS (const AUDIO_STREAM_CONFIG_CAPS *caps);
-void ff_print_AM_MEDIA_TYPE (const AM_MEDIA_TYPE *type);
-void ff_printGUID (const GUID *g);
+public void ff_print_VIDEO_STREAM_CONFIG_CAPS (const VIDEO_STREAM_CONFIG_CAPS *caps);
+public void ff_print_AUDIO_STREAM_CONFIG_CAPS (const AUDIO_STREAM_CONFIG_CAPS *caps);
+public void ff_print_AM_MEDIA_TYPE (const AM_MEDIA_TYPE *type);
+public void ff_printGUID (const GUID *g);
 
 //  extern const AVClass *ff_dshow_context_class_ptr;
 #define dshowdebug (...) ff_dlog (&ff_dshow_context_class_ptr, __VA_ARGS__)
@@ -48,17 +48,18 @@ static inline void nothing (void *foo)
 {
 }
 
-struct GUIDoffset {
+[Compact]
+public class GUIDoffset {
     const GUID *iid;
-    int offset;
+    public int offset;
 }
 
-enum dshowDeviceType {
+public enum dshowDeviceType {
     VideoDevice = 0,
     AudioDevice = 1,
 }
 
-enum dshowSourceFilterType {
+public enum dshowSourceFilterType {
     VideoSourceDevice = 0,
     AudioSourceDevice = 1,
 }
@@ -68,14 +69,14 @@ long WINAPI                                                                  \
 class##_QueryInterface (class *this, GUID *riid, void **ppvObject)      \
 {                                                                            \
     struct GUIDoffset ifaces[] = __VA_ARGS__; \
-    int i; \
+    public int i; \
     dshowdebug (AV_STRINGIFY (class)"_QueryInterface (%p, %p, %p)\n", this, riid, ppvObject); \
     ff_printGUID (riid); \
     if (!ppvObject)                                                          \
         return E_POINTER; \
     for (i = 0; i < sizeof (ifaces)/sizeof (ifaces[0]); i++) {                 \
         if (IsEqualGUID (riid, ifaces[i].iid)) {                              \
-            void *obj = (void *) ((uint8 *) this + ifaces[i].offset); \
+            void *obj = (void *) ((uint8[] ) this + ifaces[i].offset); \
             class##_AddRef (this); \
             dshowdebug ("\tfound %d with offset %d\n", i, ifaces[i].offset); \
             *ppvObject = (void *) obj; \
@@ -105,7 +106,7 @@ class##_Release (class *this)                                                 \
 }
 
 #define DECLARE_DESTROY (class, func)                                         \
-void class##_Destroy (class *this)                                            \
+public void class##_Destroy (class *this)                                            \
 {                                                                            \
     dshowdebug (AV_STRINGIFY (class)"_Destroy (%p)\n", this); \
     func (this); \
@@ -125,7 +126,7 @@ class *class##_Create (__VA_ARGS__)                                           \
         goto fail; \
     ZeroMemory (this, sizeof (class)); \
     ZeroMemory (vtbl, sizeof (*this->vtbl)); \
-    this->ref  = 1; \
+    this->ref = 1; \
     this->vtbl = vtbl; \
     if (!setup)                                                              \
         goto fail; \
@@ -157,7 +158,8 @@ public class libAVFilter libAVFilter;
 /*****************************************************************************
 libAVPin
  ****************************************************************************/
-struct libAVPin {
+[Compact]
+public class libAVPin {
     IPinVtbl *vtbl;
     long ref;
     libAVFilter *filter;
@@ -195,18 +197,19 @@ long          WINAPI libAVMemInputPin_Receive                 (libAVMemInputPin 
 long          WINAPI libAVMemInputPin_ReceiveMultiple         (libAVMemInputPin *, IMediaSample **, long, long *);
 long          WINAPI libAVMemInputPin_ReceiveCanBlock         (libAVMemInputPin *);
 
-void                 libAVPin_Destroy (libAVPin *);
+public void                 libAVPin_Destroy (libAVPin *);
 libAVPin            *libAVPin_Create (libAVFilter *filter);
 
-void                 libAVMemInputPin_Destroy (libAVMemInputPin *);
+public void                 libAVMemInputPin_Destroy (libAVMemInputPin *);
 
 /*****************************************************************************
 libAVEnumPins
  ****************************************************************************/
-struct libAVEnumPins {
+[Compact]
+public class libAVEnumPins {
     IEnumPinsVtbl *vtbl;
     long ref;
-    int pos;
+    public int pos;
     libAVPin *pin;
     libAVFilter *filter;
 }
@@ -219,16 +222,17 @@ long          WINAPI libAVEnumPins_Skip          (libAVEnumPins *, ulong);
 long          WINAPI libAVEnumPins_Reset         (libAVEnumPins *);
 long          WINAPI libAVEnumPins_Clone         (libAVEnumPins *, libAVEnumPins **);
 
-void                 libAVEnumPins_Destroy (libAVEnumPins *);
+public void                 libAVEnumPins_Destroy (libAVEnumPins *);
 libAVEnumPins       *libAVEnumPins_Create (libAVPin *pin, libAVFilter *filter);
 
 /*****************************************************************************
 libAVEnumMediaTypes
  ****************************************************************************/
-struct libAVEnumMediaTypes {
+[Compact]
+public class libAVEnumMediaTypes {
     IEnumMediaTypesVtbl *vtbl;
     long ref;
-    int pos;
+    public int pos;
     AM_MEDIA_TYPE type;
 }
 
@@ -240,13 +244,14 @@ long          WINAPI libAVEnumMediaTypes_Skip          (libAVEnumMediaTypes *, u
 long          WINAPI libAVEnumMediaTypes_Reset         (libAVEnumMediaTypes *);
 long          WINAPI libAVEnumMediaTypes_Clone         (libAVEnumMediaTypes *, libAVEnumMediaTypes **);
 
-void                 libAVEnumMediaTypes_Destroy (libAVEnumMediaTypes *);
+public void                 libAVEnumMediaTypes_Destroy (libAVEnumMediaTypes *);
 libAVEnumMediaTypes *libAVEnumMediaTypes_Create (const AM_MEDIA_TYPE *type);
 
 /*****************************************************************************
 libAVFilter
  ****************************************************************************/
-struct libAVFilter {
+[Compact]
+public class libAVFilter {
     IBaseFilterVtbl *vtbl;
     long ref;
     const wchar_t *name;
@@ -254,11 +259,11 @@ struct libAVFilter {
     FILTER_INFO info;
     FILTER_STATE state;
     IReferenceClock *clock;
-    enum dshowDeviceType type;
+    public dshowDeviceType type;
     void *priv_data;
-    int stream_index;
-    int64 start_time;
-    void (*callback)(void *priv_data, int index, uint8 *buf, int buf_size, int64 time, dshowDeviceType type);
+    public int stream_index;
+    public int64 start_time;
+    void (*callback)(void *priv_data, int index, uint8[] buf, int buf_size, int64 time, dshowDeviceType type);
 }
 
 long          WINAPI libAVFilter_QueryInterface (libAVFilter *, GUID *, void **);
@@ -277,13 +282,14 @@ long          WINAPI libAVFilter_QueryFilterInfo (libAVFilter *, FILTER_INFO *);
 long          WINAPI libAVFilter_JoinFilterGraph (libAVFilter *, IFilterGraph *, wchar_t *);
 long          WINAPI libAVFilter_QueryVendorInfo (libAVFilter *, wchar_t **);
 
-void                 libAVFilter_Destroy (libAVFilter *);
+public void                 libAVFilter_Destroy (libAVFilter *);
 libAVFilter         *libAVFilter_Create (void *, void *, dshowDeviceType);
 
 /*****************************************************************************
 dshow_ctx
  ****************************************************************************/
-struct dshow_ctx {
+[Compact]
+public class dshow_ctx {
     const AVClass *class;
 
     IGraphBuilder *graph;
@@ -291,22 +297,22 @@ struct dshow_ctx {
     string device_name[2];
     string device_unique_name[2];
 
-    int video_device_number;
-    int audio_device_number;
+    public int video_device_number;
+    public int audio_device_number;
 
-    int   list_options;
-    int   list_devices;
-    int   audio_buffer_size;
-    int   crossbar_video_input_pin_number;
-    int   crossbar_audio_input_pin_number;
+    public int   list_options;
+    public int   list_devices;
+    public int   audio_buffer_size;
+    public int   crossbar_video_input_pin_number;
+    public int   crossbar_audio_input_pin_number;
     string video_pin_name;
     string audio_pin_name;
-    int   show_video_device_dialog;
-    int   show_audio_device_dialog;
-    int   show_video_crossbar_connection_dialog;
-    int   show_audio_crossbar_connection_dialog;
-    int   show_analog_tv_tuner_dialog;
-    int   show_analog_tv_tuner_audio_dialog;
+    public int   show_video_device_dialog;
+    public int   show_audio_device_dialog;
+    public int   show_video_crossbar_connection_dialog;
+    public int   show_audio_crossbar_connection_dialog;
+    public int   show_analog_tv_tuner_dialog;
+    public int   show_analog_tv_tuner_audio_dialog;
     string audio_filter_load_file;
     string audio_filter_save_file;
     string video_filter_load_file;
@@ -318,31 +324,32 @@ struct dshow_ctx {
     libAVPin    *capture_pin[2];
 
     HANDLE mutex;
-    HANDLE event[2]; /***********************************************************
+    /***********************************************************
     event[0] is set by DirectShow
-                      * event[1] is set by callback ()
+    event[1] is set by callback ()
     ***********************************************************/
+    HANDLE event[2];
     AVPacketList *pktl;
 
-    int eof;
+    public int eof;
 
-    int64 curbufsize[2];
-    uint video_frame_num;
+    public int64 curbufsize[2];
+    public uint video_frame_num;
 
     IMediaControl *control;
     IMediaEvent *media_event;
 
-    enum AVPixelFormat pixel_format;
-    enum AVCodecID video_codec_id;
+    public AVPixelFormat pixel_format;
+    public AVCodecID video_codec_id;
     string framerate;
 
-    int requested_width;
-    int requested_height;
-    AVRational requested_framerate;
+    public int requested_width;
+    public int requested_height;
+    public AVRational requested_framerate;
 
-    int sample_rate;
-    int sample_size;
-    int channels;
+    public int sample_rate;
+    public int sample_size;
+    public int channels;
 }
 
 /*****************************************************************************
@@ -351,4 +358,4 @@ CrossBar
 HRESULT dshow_try_setup_crossbar_options (ICaptureGraphBuilder2 *graph_builder2,
     IBaseFilter *device_filter, dshowDeviceType devtype, AVFormatContext *avctx);
 
-void dshow_show_filter_properties (IBaseFilter *pFilter, AVFormatContext *avctx);
+public void dshow_show_filter_properties (IBaseFilter *pFilter, AVFormatContext *avctx);

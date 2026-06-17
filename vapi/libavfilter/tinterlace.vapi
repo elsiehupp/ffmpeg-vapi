@@ -29,7 +29,7 @@ temporal field interlace filter, ported from MPlayer/libmpcodecs
 #define TINTERLACE_FLAG_CVLPF 2
 #define TINTERLACE_FLAG_EXACT_TB 4
 
-enum TInterlaceMode {
+public enum TInterlaceMode {
     MODE_MERGE = 0,
     MODE_DROP_EVEN,
     MODE_DROP_ODD,
@@ -41,7 +41,7 @@ enum TInterlaceMode {
     MODE_NB,
 }
 
-enum InterlaceScanMode {
+public enum InterlaceScanMode {
     MODE_TFF = 0,
     MODE_BFF,
 }
@@ -52,32 +52,32 @@ public class TInterlaceContext {
     /***********************************************************
     TInterlaceMode, interlace mode selected
     ***********************************************************/
-    int mode; ///<
-    AVRational preout_time_base;
+    public int mode;
+    public AVRational preout_time_base;
     /***********************************************************
     flags affecting interlacing algorithm
     ***********************************************************/
-    int flags; ///<
+    public int flags;
     /***********************************************************
     number of the output frame
     ***********************************************************/
-    int frame; ///<
+    public int frame;
     /***********************************************************
     chroma vertical subsampling
     ***********************************************************/
-    int vsub; ///<
+    public int vsub;
     AVFrame *cur;
     AVFrame *next;
     /***********************************************************
     buffer used to fill padded lines
     ***********************************************************/
-    uint8 *black_data[4]; ///<
-    int black_linesize[4];
+    uint8[] black_data[4];
+    public int black_linesize[4];
     FFDrawContext draw;
     FFDrawColor color;
     const AVPixFmtDescriptor *csp;
-    void (*lowpass_line)(uint8 *dstp, ptrdiff_t width, uint8 *srcp,
+    void (*lowpass_line)(uint8[] dstp, ptrdiff_t width, uint8[] srcp,
                          ptrdiff_t mref, ptrdiff_t pref, int clip_max);
 }
 
-void ff_tinterlace_init_x86 (TInterlaceContext *interlace);
+public void ff_tinterlace_init_x86 (TInterlaceContext *interlace);

@@ -65,7 +65,7 @@ public int ff_rtp_check_and_send_back_rr (
     RTPDemuxContext rtp_demux_context,
     URLContext fd,
     AVIOContext avio,
-    int count
+    public int count
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -83,61 +83,61 @@ public int ff_rtp_send_rtcp_feedback (
 public class RTPStatistics {
     /***********************************************************
     @brief Highest sequence number seen
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint16 max_seq;
 
     /***********************************************************
     @brief Shifted count of sequence number cycles
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint32 cycles;
 
     /***********************************************************
     @brief Base sequence number
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint32 base_seq;
 
     /***********************************************************
     @brief Last bad sequence number + 1
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint32 bad_seq;
 
     /***********************************************************
     @brief Sequence packets till source is valid
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int probation;
 
     /***********************************************************
     @brief Packets received
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint32 received;
 
     /***********************************************************
     @brief Packets expected in last interval
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint32 expected_prior;
 
     /***********************************************************
     @brief Packets received in last interval
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint32 received_prior;
 
     /***********************************************************
     @brief Relative transit time for previous packet
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint32 transit;
 
     /***********************************************************
     @brief Estimated jitter
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint32 jitter;
 }
@@ -146,11 +146,11 @@ public class RTPStatistics {
 public enum RTPDecoderFlags {
     /***********************************************************
     @brief RTP packet contains a keyframe
-        ***********************************************************/
+    ***********************************************************/
     RTP_FLAG_KEY,
     /***********************************************************
     @brief RTP marker bit was set for this packet
-        ***********************************************************/
+    ***********************************************************/
     RTP_FLAG_MARKER,
 }
 
@@ -175,9 +175,9 @@ public delegate int DynamicPayloadPacketHandlerProc (
     LibAVCodec.Packet packet,
     uint32[] timestamp,
     uint8[] buffer,
-    int len,
+    public int len,
     uint16 seq,
-    int flags
+    public int flags
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -198,7 +198,7 @@ public abstract class RTPDynamicProtocolHandler {
     0 means no payload id is set. 0 is a valid
     payload ID (PCMU), too, but that format doesn't
     require any custom depacketization code.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int static_payload_id;
 
@@ -207,7 +207,7 @@ public abstract class RTPDynamicProtocolHandler {
 
     /***********************************************************
     @brief Initialize dynamic protocol handler, called after the full rtpmap line is parsed, may be null
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public abstract int init (
         AVFormatContext format_context,
@@ -217,7 +217,7 @@ public abstract class RTPDynamicProtocolHandler {
 
     /***********************************************************
     @brief Parse the a= line from the sdp field
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public abstract int parse_sdp_a_line (
         AVFormatContext format_context,
@@ -230,7 +230,7 @@ public abstract class RTPDynamicProtocolHandler {
     @brief Free any data needed by the rtp parsing for this dynamic data.
     Don't free the protocol_data pointer itself, that is freed by the
     caller. This is called even if the init method failed.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public abstract void close (
         PayloadContext protocol_data
@@ -249,7 +249,7 @@ public abstract class RTPDynamicProtocolHandler {
     @param len length of buffer
     @param seq RTP sequence number of the packet
     @param flags flags from the RTP packet header (RTP_FLAG_*)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public abstract int parse_packet (
         AVFormatContext format_context,
@@ -326,7 +326,7 @@ public class RTPDemuxContext {
 
     /***********************************************************
     used to send back RTCP RR
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public char hostname[256];
 
@@ -338,41 +338,41 @@ public class RTPDemuxContext {
 
     /***********************************************************
     @brief Statistics for this stream (used by RTCP receiver reports)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public RTPStatistics statistics;
 
     /***********************************************************
     @brief Fields for packet reordering @{
-        ***********************************************************/
+    ***********************************************************/
     /***********************************************************
     @brief The return value of the actual parsing of the previous packet
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int prev_ret;
 
     /***********************************************************
     @brief A sorted queue of buffered packets not yet returned
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public RTPPacket[] queue;
 
     /***********************************************************
     @brief The number of packets in queue
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int queue_len;
 
     /***********************************************************
     @brief The size of queue, or 0 if reordering is disabled
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int queue_size;
     /*@}*/
 
     /***********************************************************
     @brief Rtcp sender statistics receive
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint64 last_rtcp_ntp_time;
 
@@ -390,7 +390,7 @@ public class RTPDemuxContext {
 
     /***********************************************************
     @brief Rtcp sender statistics
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint packet_count;
 
@@ -405,7 +405,7 @@ public class RTPDemuxContext {
 
     /***********************************************************
     @brief Dynamic payload stuff
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public RTPDynamicProtocolHandler handler;
 
@@ -492,7 +492,7 @@ public RTPDynamicProtocolHandler ff_rtp_handler_find_by_name (
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public RTPDynamicProtocolHandler ff_rtp_handler_find_by_id (
-    int id,
+    public int id,
     LibAVUtil.MediaType codec_type
 );
 
@@ -503,9 +503,9 @@ public RTPDynamicProtocolHandler ff_rtp_handler_find_by_id (
 public int ff_rtsp_next_attr_and_value (
     string[] p,
     string attr,
-    int attr_size,
+    public int attr_size,
     string value,
-    int value_size
+    public int value_size
 );
 
 public delegate int ParseFMTPDelegate (
@@ -532,7 +532,7 @@ public int ff_parse_fmtp (
 public int ff_rtp_finalize_packet (
     LibAVCodec.Packet packet,
     out AVIOContext dyn_buf,
-    int stream_idx
+    public int stream_idx
 );
 
 } // namespace LibAVFormat

@@ -32,7 +32,7 @@ be used as output by the decoder.
 public class LibAVCodec.MediaCodecContext {
     /***********************************************************
     @brief Android/view/Surface object reference.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surface")]
     public void *surface;
 }

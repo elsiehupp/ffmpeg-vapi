@@ -26,7 +26,7 @@ namespace LibAVFormat {
 public const string BOUNDARY_TAG; // "ffmpeg"
 
 //  static const LibAVUtil.Option options[] = {
-//      { "boundary_tag",    "Boundary tag", offsetof (MPJPEGContext, boundary_tag),   AV_OPT_TYPE_STRING, {.str = BOUNDARY_TAG}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
+//      { "boundary_tag", "Boundary tag", offsetof (MPJPEGContext, boundary_tag), AV_OPT_TYPE_STRING, {.str = BOUNDARY_TAG}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
 //      { NULL },
 //  }
 

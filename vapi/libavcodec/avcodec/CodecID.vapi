@@ -52,7 +52,7 @@ public enum CodecID {
     MPEG1VIDEO,
     /***********************************************************
     @brief Preferred ID for MPEG-1/2 video decoding
-        ***********************************************************/
+    ***********************************************************/
     MPEG2VIDEO,
     H261,
     H263,
@@ -300,7 +300,7 @@ public enum CodecID {
 
     /***********************************************************
     @brief A dummy id pointing at the start of audio codecs
-        ***********************************************************/
+    ***********************************************************/
     //  LibAVCodec.CodecID.FIRST_AUDIO,
     PCM_S16LE,
     PCM_S16BE,
@@ -342,7 +342,7 @@ public enum CodecID {
 
     /***********************************************************
     @brief Various ADPCM codecs
-        ***********************************************************/
+    ***********************************************************/
     ADPCM_IMA_QT,
     ADPCM_IMA_WAV,
     ADPCM_IMA_DK3,
@@ -389,7 +389,7 @@ public enum CodecID {
 
     /***********************************************************
     @brief AMR
-        ***********************************************************/
+    ***********************************************************/
     AMR_NB,
     AMR_WB,
 
@@ -400,7 +400,7 @@ public enum CodecID {
 
     /***********************************************************
     @brief Various DPCM codecs
-        ***********************************************************/
+    ***********************************************************/
     ROQ_DPCM,
     INTERPLAY_DPCM,
     XAN_DPCM,
@@ -416,7 +416,7 @@ public enum CodecID {
     MP2,
     /***********************************************************
     @brief Preferred ID for decoding MPEG audio layer 1, 2 or 3
-        ***********************************************************/
+    ***********************************************************/
     MP3,
     AAC,
     AC3,
@@ -436,7 +436,7 @@ public enum CodecID {
     WESTWOOD_SND1,
     /***********************************************************
     @brief As in Berlin toast format
-        ***********************************************************/
+    ***********************************************************/
     GSM,
     QDM2,
     COOK,
@@ -451,7 +451,7 @@ public enum CodecID {
     MLP,
     /***********************************************************
     @brief As found in WAV
-        ***********************************************************/
+    ***********************************************************/
     GSM_MS,
     ATRAC3,
     APE,
@@ -520,13 +520,13 @@ public enum CodecID {
 
     /***********************************************************
     @brief A dummy ID pointing at the start of subtitle codecs.
-        ***********************************************************/
+    ***********************************************************/
     FIRST_SUBTITLE,
     DVD_SUBTITLE,
     DVB_SUBTITLE,
     /***********************************************************
     @brief Raw UTF-8 text
-        ***********************************************************/
+    ***********************************************************/
     TEXT,
     XSUB,
     SSA,
@@ -559,13 +559,13 @@ public enum CodecID {
 
     /***********************************************************
     @brief A dummy ID pointing at the start of various fake codecs.
-        ***********************************************************/
+    ***********************************************************/
     FIRST_UNKNOWN,
     TTF,
 
     /***********************************************************
     @brief Contain timestamp estimated through PCR of program stream.
-        ***********************************************************/
+    ***********************************************************/
     SCTE_35,
     BINTEXT,
     XBIN,
@@ -578,29 +578,29 @@ public enum CodecID {
 
     /***********************************************************
     @brief CodecID is not known (like LibAVCodec.CodecID.NONE) but lavf should attempt to identify it
-        ***********************************************************/
+    ***********************************************************/
     PROBE,
 
     /***********************************************************
     @brief _FAKE_ codec to indicate a raw MPEG-2 TS stream (only used by libavformat)
-        ***********************************************************/
+    ***********************************************************/
     MPEG2TS,
     /***********************************************************
     @brief _FAKE_ codec to indicate a MPEG-4 Systems stream (only used by libavformat)
-        ***********************************************************/
+    ***********************************************************/
     MPEG4SYSTEMS,
     /***********************************************************
     @brief Dummy codec for streams containing only metadata information.
-        ***********************************************************/
+    ***********************************************************/
     FFMETADATA,
     /***********************************************************
     @brief Passthrough codec, AVFrames wrapped in Packet
-        ***********************************************************/
+    ***********************************************************/
     WRAPPED_AVFRAME;
 
     /***********************************************************
     @brief Get the type of the given codec.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_get_type", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public static LibAVUtil.MediaType avcodec_get_type (
         CodecID codec_id
@@ -609,7 +609,7 @@ public enum CodecID {
     /***********************************************************
     @brief Get the name of a codec.
     @return a static string identifying the codec; never null
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_get_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public static string avcodec_get_name (
         CodecID id
@@ -625,7 +625,7 @@ public enum CodecID {
     @note unlike av_get_profile_name (), which searches a list of profiles
         supported by a specific decoder or encoder implementation, this
         function searches the list of profiles from the CodecDescriptor
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_profile_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public static string avcodec_profile_name (
         CodecID codec_id,
@@ -637,7 +637,7 @@ public enum CodecID {
 
     @param[in] codec_id the codec
     @return Number of bits per sample or zero if unknown for the given codec.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_bits_per_sample", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public static int av_get_bits_per_sample (
         CodecID codec_id
@@ -650,7 +650,7 @@ public enum CodecID {
 
     @param[in] codec_id the codec
     @return Number of bits per sample or zero if unknown for the given codec.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_exact_bits_per_sample", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public static int av_get_exact_bits_per_sample (
         CodecID codec_id

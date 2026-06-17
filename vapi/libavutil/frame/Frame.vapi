@@ -71,9 +71,9 @@ public class Frame {
 
     NOTE: Except for hwaccel formats, pointers not needed by the format
     MUST be set to null.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="data")]
-    public uint8 *data[AV_NUM_DATA_POINTERS];
+    public uint8[] data[AV_NUM_DATA_POINTERS];
 
     /***********************************************************
     @brief For video, size in bytes of each picture line.
@@ -89,7 +89,7 @@ public class Frame {
 
     @note The linesize may be larger than the size of usable data -- there
     may be extra padding present for performance reasons.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="linesize")]
     public int linesize[AV_NUM_DATA_POINTERS];
 
@@ -106,7 +106,7 @@ public class Frame {
     @note Both data and extended_data should always be set in a valid frame,
     but for planar audio with more channels that can fit in data,
     extended_data must be used in order to access all channels.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="extended_data")]
     public uint8** extended_data;
 
@@ -117,7 +117,7 @@ public class Frame {
 
     @note The part of the frame intended for display/presentation is further
     restricted by the @link cropping "Cropping rectangle".
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="width")]
     public int width;
 
@@ -126,7 +126,7 @@ public class Frame {
 
     /***********************************************************
     @brief Number of audio samples (per channel) described by this frame
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_samples")]
     public int nb_samples;
 
@@ -134,31 +134,31 @@ public class Frame {
     @brief Format of the frame, -1 if unknown or unset
     Values correspond to enum PixelFormat for video frames,
     enum SampleFormat for audio)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="format")]
     public int format;
 
     /***********************************************************
     @brief 1 -> keyframe, 0-> not
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="key_frame")]
     public int key_frame;
 
     /***********************************************************
     @brief Picture type of the frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pict_type")]
     public PictureType pict_type;
 
     /***********************************************************
     @brief Sample aspect ratio for the video frame, 0/1 if unknown/unspecified.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sample_aspect_ratio")]
     public Rational sample_aspect_ratio;
 
     /***********************************************************
     @brief Presentation timestamp in time_base units (time when frame should be shown to user).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pts")]
     public int64 pts;
 
@@ -166,56 +166,56 @@ public class Frame {
     @brief DTS copied from the LibAVCodec.Packet that triggered returning this frame. (if frame threading isn't used)
     This is also the Presentation time of this Frame calculated from
     only LibAVCodec.Packet.dts values without pts values.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pkt_dts")]
     public int64 packet_dts;
 
     /***********************************************************
     @brief Picture number in bitstream order
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="coded_picture_number")]
     public int coded_picture_number;
 
     /***********************************************************
     @brief Picture number in display order
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="display_picture_number")]
     public int display_picture_number;
 
     /***********************************************************
     @brief Quality (between 1 (good) and FF_LAMBDA_MAX (bad))
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="quality")]
     public int quality;
 
     /***********************************************************
     @brief For some private data of the user
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="opaque")]
     public void *opaque;
 
     /***********************************************************
     @brief When decoding, this signals how much the picture must be delayed.
     extra_delay = repeat_pict / (2 * fps)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="repeat_pict")]
     public int repeat_pict;
 
     /***********************************************************
     @brief The content of the picture is interlaced.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="interlaced_frame")]
     public int interlaced_frame;
 
     /***********************************************************
     @brief If the content is interlaced, is top field displayed first.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="top_field_first")]
     public int top_field_first;
 
     /***********************************************************
     @brief Tell user application that palette has changed from previous frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="palette_has_changed")]
     public int palette_has_changed;
 
@@ -226,19 +226,19 @@ public class Frame {
     that time,
     the decoder reorders values as needed and sets Frame.reordered_opaque
     to exactly one of the values provided by the user through LibAVCodec.CodecContext.reordered_opaque
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="reordered_opaque")]
     public int64 reordered_opaque;
 
     /***********************************************************
     @brief Sample rate of the audio data.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sample_rate")]
     public int sample_rate;
 
     /***********************************************************
     @brief Channel layout of the audio data.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="channel_layout")]
     public uint64 channel_layout;
 
@@ -253,7 +253,7 @@ public class Frame {
     AV_NUM_DATA_POINTERS channels, there may be more buffers than can fit in
     this array. Then the extra LibAVUtil.BufferRef pointers are stored in the
     extended_buf array.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="buffer")]
     public LibAVUtil.BufferRef buffer[AV_NUM_DATA_POINTERS];
 
@@ -268,13 +268,13 @@ public class Frame {
 
     This array is always allocated using av_malloc () by whoever constructs
     the frame. It is freed in av_frame_unref ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="extended_buf")]
     public LibAVUtil.BufferRef extended_buf;
 
     /***********************************************************
     @brief Number of elements in extended_buf.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_extended_buf")]
     public int extended_buffer_count;
 
@@ -286,7 +286,7 @@ public class Frame {
 
     /***********************************************************
     @brief Frame flags, a combination of @link lavu_frame_flags
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="flags")]
     public FrameFlags flags;
 
@@ -295,7 +295,7 @@ public class Frame {
 
     - encoding: Set by user
     - decoding: Set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="color_range")]
     public ColorRange color_range;
 
@@ -310,7 +310,7 @@ public class Frame {
 
     - encoding: Set by user
     - decoding: Set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="colorspace")]
     public ColorSpace colorspace;
 
@@ -322,7 +322,7 @@ public class Frame {
 
     - encoding: unused
     - decoding: set by LibAVCodec, read by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="best_effort_timestamp")]
     public int64 best_effort_timestamp;
 
@@ -331,7 +331,7 @@ public class Frame {
 
     - encoding: unused
     - decoding: Read by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pkt_pos")]
     public int64 packet_position;
 
@@ -341,7 +341,7 @@ public class Frame {
 
     - encoding: unused
     - decoding: Read by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pkt_duration")]
     public int64 packet_duration;
 
@@ -350,7 +350,7 @@ public class Frame {
 
     - encoding: Set by user.
     - decoding: Set by LibAVCodec.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="metadata")]
     public LibAVUtil.Dictionary metadata;
 
@@ -361,7 +361,7 @@ public class Frame {
 
     - encoding: unused
     - decoding: set by LibAVCodec, read by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="decode_error_flags")]
     public DecodeErrorFlags decode_error_flags;
 
@@ -370,7 +370,7 @@ public class Frame {
 
     - encoding: unused
     - decoding: Read by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="channels")]
     public int audio_channel_count;
 
@@ -381,14 +381,14 @@ public class Frame {
 
     - encoding: unused
     - decoding: set by LibAVCodec, read by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pkt_size")]
     public int packet_size;
 
     /***********************************************************
     @brief For hwaccel-format frames, this should be a reference to the
     HardwareFrameContext describing the frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="hw_frames_ctx")]
     public LibAVUtil.BufferRef hardware_frames_context;
 
@@ -400,7 +400,7 @@ public class Frame {
 
     This is unrelated to the opaque field, although it serves a similar
     purpose.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="opaque_ref")]
     public LibAVUtil.BufferRef opaque_ref;
 
@@ -410,7 +410,7 @@ public class Frame {
     Video frames only. The number of pixels to discard from the the
     top/bottom/left/right border of the frame to obtain the sub-rectangle of
     the frame intended for presentation.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="crop_top")]
     public size_t crop_top;
 
@@ -433,14 +433,14 @@ public class Frame {
     FFmpeg calls av_buffer_unref () on it when the frame is unreferenced.
     av_frame_copy_props () calls create a new reference with av_buffer_ref ()
     for the target frame's private_ref field.
-        ***********************************************************/
+    ***********************************************************/
     //  [CCode (cname="private_ref")]
     //  public LibAVUtil.BufferRef private_ref;
 
     /***********************************************************
     @brief Get the name of a colorspace.
     @return a static string identifying the colorspace; can be null.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_colorspace_name", cheader_filename="ffmpeg/libavutil/frame.h")]
     public string av_get_colorspace_name (
         ColorSpace val
@@ -455,7 +455,7 @@ public class Frame {
     @note this only allocates the Frame itself, not the data buffers. Those
     must be allocated through other means, e.g. with av_frame_get_buffer () or
     manually.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_alloc", cheader_filename="ffmpeg/libavutil/frame.h")]
     public Frame av_frame_alloc ();
 
@@ -465,7 +465,7 @@ public class Frame {
     unreferenced first.
 
     @param frame frame to be freed. The pointer will be set to null.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_free", cheader_filename="ffmpeg/libavutil/frame.h")]
     public void av_frame_free (
         Frame frame
@@ -485,7 +485,7 @@ public class Frame {
         function, or undefined behavior will occur.
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on error
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_ref", cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_ref (
         Frame output_frame,
@@ -498,7 +498,7 @@ public class Frame {
     This is a shortcut for av_frame_alloc ()+av_frame_ref ().
 
     @return newly created Frame on success, null on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_clone", cheader_filename="ffmpeg/libavutil/frame.h")]
     public Frame av_frame_clone (
         Frame input_frame
@@ -506,7 +506,7 @@ public class Frame {
 
     /***********************************************************
     @brief Unreference all the buffers referenced by frame and reset the frame fields.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_unref", cheader_filename="ffmpeg/libavutil/frame.h")]
     public void av_frame_unref (
         Frame frame
@@ -518,7 +518,7 @@ public class Frame {
     @warning: output_frame is not unreferenced, but directly overwritten without reading
         or deallocating its contents. Call av_frame_unref (output_frame) manually
         before calling this function to ensure that no memory is leaked.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_move_ref", cheader_filename="ffmpeg/libavutil/frame.h")]
     public void av_frame_move_ref (
         Frame output_frame,
@@ -547,7 +547,7 @@ public class Frame {
         recommended to pass 0 here unless you know what you are doing.
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_get_buffer", cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_get_buffer (
         Frame frame,
@@ -565,7 +565,7 @@ public class Frame {
     of the underlying LibAVUtil.BufferRef (s) (e.g. through av_frame_ref () or directly).
 
     @see @link av_frame_make_writable (), av_buffer_is_writable ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_is_writable", cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_is_writable (
         Frame frame
@@ -581,7 +581,7 @@ public class Frame {
 
     @see @link av_frame_is_writable (), av_buffer_is_writable (),
     av_buffer_make_writable ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_make_writable", cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_make_writable (
         Frame frame
@@ -597,7 +597,7 @@ public class Frame {
     extended data arrays), not any other properties.
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_copy", cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_copy (
         Frame output_frame,
@@ -611,7 +611,7 @@ public class Frame {
     the data layout in the buffers. E.g. pts, sample rate (for audio) or sample
     aspect ratio (for video), but not width/height or channel layout.
     Side data is also copied.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_copy_props", cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_copy_props (
         Frame output_frame,
@@ -625,7 +625,7 @@ public class Frame {
 
     @return the buffer reference that contains the plane or null if the input
     frame is not valid.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_get_plane_buffer", cheader_filename="ffmpeg/libavutil/frame.h")]
     public LibAVUtil.BufferRef av_frame_get_plane_buffer (
         Frame frame,
@@ -640,7 +640,7 @@ public class Frame {
     @param size size of the side data
 
     @return newly added side data on success, null on error
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_new_side_data", cheader_filename="ffmpeg/libavutil/frame.h")]
     public FrameSideData av_frame_new_side_data (
         Frame frame,
@@ -659,7 +659,7 @@ public class Frame {
     @return newly added side data on success, null on error. On failure
         the frame is unchanged and the LibAVUtil.BufferRef remains owned by
         the caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_new_side_data_from_buf", cheader_filename="ffmpeg/libavutil/frame.h")]
     public FrameSideData av_frame_new_side_data_from_buf (
         Frame frame,
@@ -670,7 +670,7 @@ public class Frame {
     /***********************************************************
     @return a pointer to the side data of a given type on success, null if there
     is no side data with such type in this frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_get_side_data", cheader_filename="ffmpeg/libavutil/frame.h")]
     public FrameSideData av_frame_get_side_data (
         Frame frame,
@@ -680,7 +680,7 @@ public class Frame {
     /***********************************************************
     @brief If side data of the supplied type exists in the frame, free it and remove it
     from the frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_remove_side_data", cheader_filename="ffmpeg/libavutil/frame.h")]
     public void av_frame_remove_side_data (
         Frame frame,
@@ -702,7 +702,7 @@ public class Frame {
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode on error. If the cropping fields
     were invalid, LibAVUtil.ErrorCode (ERANGE) is returned, and nothing is changed.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_frame_apply_cropping", cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_apply_cropping (
         Frame frame,

@@ -31,10 +31,10 @@ namespace LibAVFormat {
 
 //  static const LibAVUtil.Option options[] = {
 //      { "kind", "Set kind of WebVTT track", OFFSET (kind), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, KIND_FLAGS, "webvtt_kind" },
-//          { "subtitles",    "WebVTT subtitles kind",    0, AV_OPT_TYPE_CONST, { .i64 = 0 },                           INT_MIN, INT_MAX, KIND_FLAGS, "webvtt_kind" },
-//          { "captions",     "WebVTT captions kind",     0, AV_OPT_TYPE_CONST, { .i64 = AV_DISPOSITION_CAPTIONS },     INT_MIN, INT_MAX, KIND_FLAGS, "webvtt_kind" },
+//          { "subtitles", "WebVTT subtitles kind", 0, AV_OPT_TYPE_CONST, { .i64 = 0 }, INT_MIN, INT_MAX, KIND_FLAGS, "webvtt_kind" },
+//          { "captions", "WebVTT captions kind", 0, AV_OPT_TYPE_CONST, { .i64 = AV_DISPOSITION_CAPTIONS }, INT_MIN, INT_MAX, KIND_FLAGS, "webvtt_kind" },
 //          { "descriptions", "WebVTT descriptions kind", 0, AV_OPT_TYPE_CONST, { .i64 = AV_DISPOSITION_DESCRIPTIONS }, INT_MIN, INT_MAX, KIND_FLAGS, "webvtt_kind" },
-//          { "metadata",     "WebVTT metadata kind",     0, AV_OPT_TYPE_CONST, { .i64 = AV_DISPOSITION_METADATA },     INT_MIN, INT_MAX, KIND_FLAGS, "webvtt_kind" },
+//          { "metadata", "WebVTT metadata kind", 0, AV_OPT_TYPE_CONST, { .i64 = AV_DISPOSITION_METADATA }, INT_MIN, INT_MAX, KIND_FLAGS, "webvtt_kind" },
 //      { NULL }
 //  }
 

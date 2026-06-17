@@ -54,7 +54,7 @@ public int ff_voc_get_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet,
     AVStream st,
-    int max_size
+    public int max_size
 );
 
 } // namespace LibAVFormat

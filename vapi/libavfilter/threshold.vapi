@@ -22,16 +22,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 public class ThresholdContext {
     const AVClass *class;
 
-    int depth;
-    int planes;
-    int bpc;
+    public int depth;
+    public int planes;
+    public int bpc;
 
-    int nb_planes;
-    int width[4], height[4];
+    public int nb_planes;
+    public int width[4], height[4];
 
-    void (*threshold)(const uint8 *in, uint8 *threshold,
-                      uint8 *min, uint8 *max,
-                      uint8 *out,
+    void (*threshold)(const uint8[] in, uint8[] threshold,
+                      uint8[] min, uint8[] max,
+                      uint8[] out,
                       ptrdiff_t ilinesize, ptrdiff_t tlinesize,
                       ptrdiff_t flinesize, ptrdiff_t slinesize,
                       ptrdiff_t olinesize,
@@ -41,5 +41,5 @@ public class ThresholdContext {
     FFFrameSync fs;
 }
 
-void ff_threshold_init (ThresholdContext *s);
-void ff_threshold_init_x86 (ThresholdContext *s);
+public void ff_threshold_init (ThresholdContext *s);
+public void ff_threshold_init_x86 (ThresholdContext *s);

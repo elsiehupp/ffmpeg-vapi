@@ -40,14 +40,14 @@ public class VideoToolboxContext {
     /***********************************************************
     @brief Videotoolbox decompression session object.
     Created and freed the caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="session")]
     public VTDecompressionSessionRef session;
 
     /***********************************************************
     @brief The output callback that must be passed to the session.
     Set by av_videottoolbox_default_init ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="output_callback")]
     public VTDecompressionOutputCallback output_callback;
 
@@ -55,21 +55,21 @@ public class VideoToolboxContext {
     @brief CVPixelBuffer Format Type that Videotoolbox will use for decoded frames.
     set by the caller. If this is set to 0, then no specific format is
     requested from the decoder, and its native format is output.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="cv_pix_fmt_type")]
     public OSType cv_pix_fmt_type;
 
     /***********************************************************
     @brief CoreMedia Format Description that Videotoolbox will use to create the decompression session.
     Set by the caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="cm_fmt_desc")]
     public CMVideoFormatDescriptionRef cm_fmt_desc;
 
     /***********************************************************
     @brief CoreMedia codec type that Videotoolbox will use to create the decompression session.
     Set by the caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="cm_codec_type")]
     public int cm_codec_type;
 
@@ -85,7 +85,7 @@ public class VideoToolboxContext {
     object and free the Videotoolbox context using av_free ().
 
     @return the newly allocated context or null on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_videotoolbox_alloc_context", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
     public VideoToolboxContext av_videotoolbox_alloc_context ();
 
@@ -96,7 +96,7 @@ public class VideoToolboxContext {
     @param codec_context the corresponding codec context
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode code on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_videotoolbox_default_init", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
     public int av_videotoolbox_default_init (
         CodecContext codec_context
@@ -110,7 +110,7 @@ public class VideoToolboxContext {
     @param vtctx the Videotoolbox context to use
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode code on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_videotoolbox_default_init2", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
     public int av_videotoolbox_default_init2 (
         CodecContext codec_context,
@@ -122,7 +122,7 @@ public class VideoToolboxContext {
     av_videotoolbox_default_init ().
 
     @param codec_context the corresponding codec context
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_videotoolbox_default_free", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
     public void av_videotoolbox_default_free (
         CodecContext codec_context

@@ -26,6 +26,8 @@ namespace LibAVFormat {
 Libavformat version macros
 ***********************************************************/
 
+/***********************************************************
+***********************************************************/
 // Major bumping may affect Ticket5467, 5421, 5451 (compatibility with Chromium)
 // Also please add any ticket numbers that you believe might be affected here
 [CCode (cname="", cheader_filename="")]

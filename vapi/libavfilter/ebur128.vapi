@@ -22,166 +22,214 @@ https://github.com/jiixyj/libebur128/
 
 ***********************************************************/
 
-/** \file ebur128.h
+/***********************************************************
+\file ebur128.h
  \brief libebur128 - a library for loudness measurement according to
         the EBU R128 standard.
 ***********************************************************/
 
-/** \enum channel
+/***********************************************************
+\enum channel
  Use these values when setting the channel map with ebur128_set_channel ().
  See definitions in ITU R-REC-BS 1770-4
 ***********************************************************/
-enum channel {
-    FF_EBUR128_UNUSED = 0,   /***********************************************************
-    <unused channel (for example LFE channel)
-    ***********************************************************/
+public enum channel {
+  /***********************************************************
+  unused channel (for example LFE channel)
+  ***********************************************************/
+    FF_EBUR128_UNUSED = 0,
     FF_EBUR128_LEFT,
-    FF_EBUR128_Mp030 = 1,    /***********************************************************
-    <itu M+030
+    /***********************************************************
+    itu M+030
     ***********************************************************/
+    FF_EBUR128_Mp030 = 1,
     FF_EBUR128_RIGHT,
-    FF_EBUR128_Mm030 = 2,    /***********************************************************
-    <itu M-030
+    /***********************************************************
+    itu M-030
     ***********************************************************/
+    FF_EBUR128_Mm030 = 2,
     FF_EBUR128_CENTER,
-    FF_EBUR128_Mp000 = 3,    /***********************************************************
-    <itu M+000
+    /***********************************************************
+    itu M+000
     ***********************************************************/
+    FF_EBUR128_Mp000 = 3,
     FF_EBUR128_LEFT_SURROUND,
-    FF_EBUR128_Mp110 = 4,    /***********************************************************
-    <itu M+110
+    /***********************************************************
+    itu M+110
     ***********************************************************/
+    FF_EBUR128_Mp110 = 4,
     FF_EBUR128_RIGHT_SURROUND,
-    FF_EBUR128_Mm110 = 5,    /***********************************************************
-    <itu M-110
+    /***********************************************************
+    itu M-110
     ***********************************************************/
-    FF_EBUR128_DUAL_MONO,    /***********************************************************
-    <a channel that is counted twice
+    FF_EBUR128_Mm110 = 5,
+    /***********************************************************
+    a channel that is counted twice
     ***********************************************************/
-    FF_EBUR128_MpSC,         /***********************************************************
-    <itu M+SC
+    FF_EBUR128_DUAL_MONO,
+    /***********************************************************
+    itu M+SC
     ***********************************************************/
-    FF_EBUR128_MmSC,         /***********************************************************
-    <itu M-SC
+    FF_EBUR128_MpSC,
+    /***********************************************************
+    itu M-SC
     ***********************************************************/
-    FF_EBUR128_Mp060,        /***********************************************************
-    <itu M+060
+    FF_EBUR128_MmSC,
+    /***********************************************************
+    itu M+060
     ***********************************************************/
-    FF_EBUR128_Mm060,        /***********************************************************
-    <itu M-060
+    FF_EBUR128_Mp060,
+    /***********************************************************
+    itu M-060
     ***********************************************************/
-    FF_EBUR128_Mp090,        /***********************************************************
-    <itu M+090
+    FF_EBUR128_Mm060,
+    /***********************************************************
+    itu M+090
     ***********************************************************/
-    FF_EBUR128_Mm090,        /***********************************************************
-    <itu M-090
+    FF_EBUR128_Mp090,
+    /***********************************************************
+    itu M-090
     ***********************************************************/
-    FF_EBUR128_Mp135,        /***********************************************************
-    <itu M+135
+    FF_EBUR128_Mm090,
+    /***********************************************************
+    itu M+135
     ***********************************************************/
-    FF_EBUR128_Mm135,        /***********************************************************
-    <itu M-135
+    FF_EBUR128_Mp135,
+    /***********************************************************
+    itu M-135
     ***********************************************************/
-    FF_EBUR128_Mp180,        /***********************************************************
-    <itu M+180
+    FF_EBUR128_Mm135,
+    /***********************************************************
+    itu M+180
     ***********************************************************/
-    FF_EBUR128_Up000,        /***********************************************************
-    <itu U+000
+    FF_EBUR128_Mp180,
+    /***********************************************************
+    itu U+000
     ***********************************************************/
-    FF_EBUR128_Up030,        /***********************************************************
-    <itu U+030
+    FF_EBUR128_Up000,
+    /***********************************************************
+    itu U+030
     ***********************************************************/
-    FF_EBUR128_Um030,        /***********************************************************
-    <itu U-030
+    FF_EBUR128_Up030,
+    /***********************************************************
+    itu U-030
     ***********************************************************/
-    FF_EBUR128_Up045,        /***********************************************************
-    <itu U+045
+    FF_EBUR128_Um030,
+    /***********************************************************
+    itu U+045
     ***********************************************************/
-    FF_EBUR128_Um045,        /***********************************************************
-    <itu U-030
+    FF_EBUR128_Up045,
+    /***********************************************************
+    itu U-030
     ***********************************************************/
-    FF_EBUR128_Up090,        /***********************************************************
-    <itu U+090
+    FF_EBUR128_Um045,
+    /***********************************************************
+    itu U+090
     ***********************************************************/
-    FF_EBUR128_Um090,        /***********************************************************
-    <itu U-090
+    FF_EBUR128_Up090,
+    /***********************************************************
+    itu U-090
     ***********************************************************/
-    FF_EBUR128_Up110,        /***********************************************************
-    <itu U+110
+    FF_EBUR128_Um090,
+    /***********************************************************
+    itu U+110
     ***********************************************************/
-    FF_EBUR128_Um110,        /***********************************************************
-    <itu U-110
+    FF_EBUR128_Up110,
+    /***********************************************************
+    itu U-110
     ***********************************************************/
-    FF_EBUR128_Up135,        /***********************************************************
-    <itu U+135
+    FF_EBUR128_Um110,
+    /***********************************************************
+    itu U+135
     ***********************************************************/
-    FF_EBUR128_Um135,        /***********************************************************
-    <itu U-135
+    FF_EBUR128_Up135,
+    /***********************************************************
+    itu U-135
     ***********************************************************/
-    FF_EBUR128_Up180,        /***********************************************************
-    <itu U+180
+    FF_EBUR128_Um135,
+    /***********************************************************
+    itu U+180
     ***********************************************************/
-    FF_EBUR128_Tp000,        /***********************************************************
-    <itu T+000
+    FF_EBUR128_Up180,
+    /***********************************************************
+    itu T+000
     ***********************************************************/
-    FF_EBUR128_Bp000,        /***********************************************************
-    <itu B+000
+    FF_EBUR128_Tp000,
+    /***********************************************************
+    itu B+000
     ***********************************************************/
-    FF_EBUR128_Bp045,        /***********************************************************
-    <itu B+045
+    FF_EBUR128_Bp000,
+    /***********************************************************
+    itu B+045
     ***********************************************************/
-    FF_EBUR128_Bm045         /***********************************************************
-    <itu B-045
-***********************************************************/
+    FF_EBUR128_Bp045,
+    /***********************************************************
+    itu B-045
+    ***********************************************************/
+    FF_EBUR128_Bm045;
 }
 
-/** \enum mode
+/***********************************************************
+\enum mode
  Use these values in ebur128_init (or'ed). Try to use the lowest possible
  modes that suit your needs, as performance will be better.
 ***********************************************************/
-enum mode {
-  /** can call ff_ebur128_loudness_momentary
+public enum mode {
+    /***********************************************************
+    can call ff_ebur128_loudness_momentary
     ***********************************************************/
     FF_EBUR128_MODE_M = (1 << 0),
-  /** can call ff_ebur128_loudness_shortterm
+    /***********************************************************
+    can call ff_ebur128_loudness_shortterm
     ***********************************************************/
     FF_EBUR128_MODE_S = (1 << 1) | FF_EBUR128_MODE_M,
-  /** can call ff_ebur128_loudness_global_* and ff_ebur128_relative_threshold
+    /***********************************************************
+    can call ff_ebur128_loudness_global_* and ff_ebur128_relative_threshold
     ***********************************************************/
     FF_EBUR128_MODE_I = (1 << 2) | FF_EBUR128_MODE_M,
-  /** can call ff_ebur128_loudness_range
+    /***********************************************************
+    can call ff_ebur128_loudness_range
     ***********************************************************/
     FF_EBUR128_MODE_LRA = (1 << 3) | FF_EBUR128_MODE_S,
-  /** can call ff_ebur128_sample_peak
+    /***********************************************************
+    can call ff_ebur128_sample_peak
     ***********************************************************/
     FF_EBUR128_MODE_SAMPLE_PEAK = (1 << 4) | FF_EBUR128_MODE_M,
 }
 
-/** forward declaration of FFEBUR128StateInternal
+/***********************************************************
+forward declaration of FFEBUR128StateInternal
 ***********************************************************/
-struct FFEBUR128StateInternal;
+[Compact]
+public class FFEBUR128StateInternal;
 
-/** \brief Contains information about the state of a loudness measurement.
+/***********************************************************
+\brief Contains information about the state of a loudness measurement.
 
  You should not need to modify this struct directly.
 ***********************************************************/
 [Compact]
 public class FFEBUR128State {
-    int mode; /***********************************************************
-    <The current mode.
+    /***********************************************************
+    The current mode.
     ***********************************************************/
-    uint channels; /***********************************************************
-    <The number of channels.
+    public int mode;
+    /***********************************************************
+    The number of channels.
     ***********************************************************/
-    ulong samplerate; /***********************************************************
-    <The sample rate.
+    public uint channels;
+    /***********************************************************
+    The sample rate.
     ***********************************************************/
-    struct FFEBUR128StateInternal *d; /***********************************************************
-    <Internal state.
-***********************************************************/
+    ulong samplerate;
+    /***********************************************************
+    Internal state.
+    ***********************************************************/
+    struct FFEBUR128StateInternal *d;
 }
 
-/** \brief Initialize library state.
+/***********************************************************
+\brief Initialize library state.
 
  @param channels the number of channels.
  @param samplerate the sample rate.
@@ -193,13 +241,15 @@ FFEBUR128State *ff_ebur128_init (uint channels,
                                 ulong samplerate,
                                 ulong window, int mode);
 
-/** \brief Destroy library state.
+/***********************************************************
+\brief Destroy library state.
 
  @param st pointer to a library state.
 ***********************************************************/
-void ff_ebur128_destroy (FFEBUR128State ** st);
+public void ff_ebur128_destroy (FFEBUR128State ** st);
 
-/** \brief Set channel type.
+/***********************************************************
+\brief Set channel type.
 
  The default is:
  - 0 -> FF_EBUR128_LEFT
@@ -216,57 +266,66 @@ void ff_ebur128_destroy (FFEBUR128State ** st);
    - 0 on success.
    - AVERROR (EINVAL) if invalid channel index.
 ***********************************************************/
-int ff_ebur128_set_channel (FFEBUR128State * st,
+public int ff_ebur128_set_channel (FFEBUR128State * st,
                            uint channel_number, int value);
 
-/** \brief Add frames to be processed.
+/***********************************************************
+\brief Add frames to be processed.
 
  @param st library state.
  @param src array of source frames. Channels must be interleaved.
  @param frames number of frames. Not number of samples!
 ***********************************************************/
-void ff_ebur128_add_frames_short (FFEBUR128State * st,
+public void ff_ebur128_add_frames_short (FFEBUR128State * st,
                                  short *src, size_t frames);
-/** \brief See \ref ebur128_add_frames_short
+/***********************************************************
+\brief See \ref ebur128_add_frames_short
 ***********************************************************/
-void ff_ebur128_add_frames_int (FFEBUR128State * st,
+public void ff_ebur128_add_frames_int (FFEBUR128State * st,
                                int[] src, size_t frames);
-/** \brief See \ref ebur128_add_frames_short
+/***********************************************************
+\brief See \ref ebur128_add_frames_short
 ***********************************************************/
-void ff_ebur128_add_frames_float (FFEBUR128State * st,
+public void ff_ebur128_add_frames_float (FFEBUR128State * st,
                                  float *src, size_t frames);
-/** \brief See \ref ebur128_add_frames_short
+/***********************************************************
+\brief See \ref ebur128_add_frames_short
 ***********************************************************/
-void ff_ebur128_add_frames_double (FFEBUR128State * st,
+public void ff_ebur128_add_frames_double (FFEBUR128State * st,
                                   double[] src, size_t frames);
 
-/** \brief Add frames to be processed.
+/***********************************************************
+\brief Add frames to be processed.
 
  @param st library state.
  @param srcs array of source frame channel data pointers
  @param frames number of frames. Not number of samples!
  @param stride number of samples to skip to for the next sample of the same channel
 ***********************************************************/
-void ff_ebur128_add_frames_planar_short (FFEBUR128State * st,
+public void ff_ebur128_add_frames_planar_short (FFEBUR128State * st,
                                         short **srcs,
                                         size_t frames, int stride);
-/** \brief See \ref ebur128_add_frames_planar_short
+/***********************************************************
+\brief See \ref ebur128_add_frames_planar_short
 ***********************************************************/
-void ff_ebur128_add_frames_planar_int (FFEBUR128State * st,
+public void ff_ebur128_add_frames_planar_int (FFEBUR128State * st,
                                       int[] *srcs,
                                       size_t frames, int stride);
-/** \brief See \ref ebur128_add_frames_planar_short
+/***********************************************************
+\brief See \ref ebur128_add_frames_planar_short
 ***********************************************************/
-void ff_ebur128_add_frames_planar_float (FFEBUR128State * st,
+public void ff_ebur128_add_frames_planar_float (FFEBUR128State * st,
                                         float **srcs,
                                         size_t frames, int stride);
-/** \brief See \ref ebur128_add_frames_planar_short
+/***********************************************************
+\brief See \ref ebur128_add_frames_planar_short
 ***********************************************************/
-void ff_ebur128_add_frames_planar_double (FFEBUR128State * st,
+public void ff_ebur128_add_frames_planar_double (FFEBUR128State * st,
                                          double[] *srcs,
                                          size_t frames, int stride);
 
-/** \brief Get global integrated loudness in LUFS.
+/***********************************************************
+\brief Get global integrated loudness in LUFS.
 
  @param st library state.
  @param out integrated loudness in LUFS. -HUGE_VAL if result is negative
@@ -275,8 +334,9 @@ void ff_ebur128_add_frames_planar_double (FFEBUR128State * st,
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_I" has not been set.
 ***********************************************************/
-int ff_ebur128_loudness_global (FFEBUR128State * st, double[] out);
-/** \brief Get global integrated loudness in LUFS across multiple instances.
+public int ff_ebur128_loudness_global (FFEBUR128State * st, double[] out);
+/***********************************************************
+\brief Get global integrated loudness in LUFS across multiple instances.
 
  @param sts array of library states.
  @param size length of sts
@@ -286,10 +346,11 @@ int ff_ebur128_loudness_global (FFEBUR128State * st, double[] out);
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_I" has not been set.
 ***********************************************************/
-int ff_ebur128_loudness_global_multiple (FFEBUR128State ** sts,
+public int ff_ebur128_loudness_global_multiple (FFEBUR128State ** sts,
                                         size_t size, double[] out);
 
-/** \brief Get momentary loudness (last 400ms) in LUFS.
+/***********************************************************
+\brief Get momentary loudness (last 400ms) in LUFS.
 
  @param st library state.
  @param out momentary loudness in LUFS. -HUGE_VAL if result is negative
@@ -297,8 +358,9 @@ int ff_ebur128_loudness_global_multiple (FFEBUR128State ** sts,
  @return
    - 0 on success.
 ***********************************************************/
-int ff_ebur128_loudness_momentary (FFEBUR128State * st, double[] out);
-/** \brief Get short-term loudness (last 3s) in LUFS.
+public int ff_ebur128_loudness_momentary (FFEBUR128State * st, double[] out);
+/***********************************************************
+\brief Get short-term loudness (last 3s) in LUFS.
 
  @param st library state.
  @param out short-term loudness in LUFS. -HUGE_VAL if result is negative
@@ -307,9 +369,10 @@ int ff_ebur128_loudness_momentary (FFEBUR128State * st, double[] out);
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_S" has not been set.
 ***********************************************************/
-int ff_ebur128_loudness_shortterm (FFEBUR128State * st, double[] out);
+public int ff_ebur128_loudness_shortterm (FFEBUR128State * st, double[] out);
 
-/** \brief Get loudness of the specified window in LUFS.
+/***********************************************************
+\brief Get loudness of the specified window in LUFS.
 
  window must not be larger than the current window set in st.
 
@@ -320,10 +383,11 @@ int ff_ebur128_loudness_shortterm (FFEBUR128State * st, double[] out);
    - 0 on success.
    - AVERROR (EINVAL) if window larger than current window in st.
 ***********************************************************/
-int ff_ebur128_loudness_window (FFEBUR128State * st,
+public int ff_ebur128_loudness_window (FFEBUR128State * st,
                                ulong window, double[] out);
 
-/** \brief Get loudness range (LRA) of programme in LU.
+/***********************************************************
+\brief Get loudness range (LRA) of programme in LU.
 
  Calculates loudness range according to EBU 3342.
 
@@ -334,8 +398,9 @@ int ff_ebur128_loudness_window (FFEBUR128State * st,
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_LRA" has not been set.
 ***********************************************************/
-int ff_ebur128_loudness_range (FFEBUR128State * st, double[] out);
-/** \brief Get loudness range (LRA) in LU across multiple instances.
+public int ff_ebur128_loudness_range (FFEBUR128State * st, double[] out);
+/***********************************************************
+\brief Get loudness range (LRA) in LU across multiple instances.
 
  Calculates loudness range according to EBU 3342.
 
@@ -347,10 +412,11 @@ int ff_ebur128_loudness_range (FFEBUR128State * st, double[] out);
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_LRA" has not been set.
 ***********************************************************/
-int ff_ebur128_loudness_range_multiple (FFEBUR128State ** sts,
+public int ff_ebur128_loudness_range_multiple (FFEBUR128State ** sts,
                                        size_t size, double[] out);
 
-/** \brief Get maximum sample peak of selected channel in float format.
+/***********************************************************
+\brief Get maximum sample peak of selected channel in float format.
 
  @param st library state
  @param channel_number channel to analyse
@@ -360,10 +426,11 @@ int ff_ebur128_loudness_range_multiple (FFEBUR128State ** sts,
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_SAMPLE_PEAK" has not been set.
    - AVERROR (EINVAL) if invalid channel index.
 ***********************************************************/
-int ff_ebur128_sample_peak (FFEBUR128State * st,
+public int ff_ebur128_sample_peak (FFEBUR128State * st,
                            uint channel_number, double[] out);
 
-/** \brief Get relative threshold in LUFS.
+/***********************************************************
+\brief Get relative threshold in LUFS.
 
  @param st library state
  @param out relative threshold in LUFS.
@@ -371,4 +438,4 @@ int ff_ebur128_sample_peak (FFEBUR128State * st,
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_I" has not been set.
 ***********************************************************/
-int ff_ebur128_relative_threshold (FFEBUR128State * st, double[] out);
+public int ff_ebur128_relative_threshold (FFEBUR128State * st, double[] out);

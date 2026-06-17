@@ -55,7 +55,7 @@ public class CRCContext {
         representation as specified by le
     @param ctx_size size of crc_context in bytes
     @return <0 on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_crc_init", cheader_filename="ffmpeg/libavutil/crc.h")]
     public int av_crc_init (
         CRCContext crc_context,
@@ -69,7 +69,7 @@ public class CRCContext {
     @brief Get an initialized standard CRC table.
     @param crc_id ID of a standard CRC
     @return a pointer to the CRC table or null on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_crc_get_table", cheader_filename="ffmpeg/libavutil/crc.h")]
     public CRCContext av_crc_get_table (
         CRCIdentifier crc_id

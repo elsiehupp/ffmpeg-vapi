@@ -39,7 +39,7 @@ public class HardwareAcceleration {
     @brief Name of the hardware accelerated codec.
     The name is globally unique among encoders and among decoders (but an
     encoder and a decoder can share the same name).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="name")]
     public string name;
 
@@ -47,7 +47,7 @@ public class HardwareAcceleration {
     @brief Type of codec implemented by the hardware accelerator.
 
     @see @link LibAVUtil.MediaType
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="type")]
     public LibAVUtil.MediaType type;
 
@@ -55,7 +55,7 @@ public class HardwareAcceleration {
     @brief Codec implemented by the hardware accelerator.
 
     @see @link CodecID
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="id")]
     public CodecID id;
 
@@ -63,7 +63,7 @@ public class HardwareAcceleration {
     @brief Supported pixel format.
 
     @note Only hardware accelerated formats are supported here.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pix_fmt")]
     public LibAVUtil.PixelFormat pixel_format;
 
@@ -71,7 +71,7 @@ public class HardwareAcceleration {
     @brief Hardware accelerated codec capabilities.
 
     @see @link HardwareAccelerationCapabilities
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="capabilities")]
     public HardwareAccelerationCapabilities capabilities;
 }

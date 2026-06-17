@@ -76,7 +76,7 @@ public class VdpContext {
     @brief VDPAU decoder handle
 
     Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="decoder")]
     public VdpDecoder decoder;
 
@@ -84,7 +84,7 @@ public class VdpContext {
     @brief VDPAU decoder render callback
 
     Set by the user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="render")]
     public VdpDecoderRender render;
 
@@ -95,7 +95,7 @@ public class VdpContext {
     @brief allocation function for VdpContext
 
     Allows extending the struct without breaking API/ABI
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_alloc_vdpaucontext", cheader_filename="ffmpeg/libavcodec/vdpau.h")]
     public VdpContext av_alloc_vdpaucontext ();
 
@@ -126,7 +126,7 @@ public class VdpContext {
     @param flags zero of more OR'd HardwareAccelerationFlags flags
 
     @return 0 on success, an LibAVUtil.ErrorCode code on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_vdpau_bind_context", cheader_filename="ffmpeg/libavcodec/vdpau.h")]
     public int av_vdpau_bind_context (
         CodecContext avctx,
@@ -151,7 +151,7 @@ public class VdpContext {
         (or null to ignore)
 
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_vdpau_get_surface_parameters", cheader_filename="ffmpeg/libavcodec/vdpau.h")]
     public int av_vdpau_get_surface_parameters (
         CodecContext avctx,
@@ -164,7 +164,7 @@ public class VdpContext {
     @brief Allocate an VdpContext.
 
     @return Newly-allocated VdpContext or null on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_vdpau_alloc_context", cheader_filename="ffmpeg/libavcodec/vdpau.h")]
     public VdpContext av_vdpau_alloc_context ();
 }

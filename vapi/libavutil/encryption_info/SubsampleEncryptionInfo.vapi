@@ -23,7 +23,7 @@ namespace LibAVUtil {
 public class SubsampleEncryptionInfo {
     /***********************************************************
     @brief The number of bytes that are clear.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bytes_of_clear_data")]
     public uint bytes_of_clear_data;
 
@@ -31,7 +31,7 @@ public class SubsampleEncryptionInfo {
     @brief The number of bytes that are protected. If using pattern encryption,
     the pattern applies to only the protected bytes; if not using pattern
     encryption, all these bytes are encrypted.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bytes_of_protected_data")]
     public uint bytes_of_protected_data;
 }

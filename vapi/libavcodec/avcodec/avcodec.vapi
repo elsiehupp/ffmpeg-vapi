@@ -228,7 +228,7 @@ uint8[] av_packet_pack_dictionary (
 [CCode (cname="av_packet_unpack_dictionary", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public int av_packet_unpack_dictionary (
     uint8[] data,
-    int size,
+    public int size,
     out LibAVUtil.Dictionary dict
 );
 
@@ -247,8 +247,8 @@ with luma (0,0) representing the origin and luma (1,1) representing 256,256
 ***********************************************************/
 [CCode (cname="avcodec_enum_to_chroma_pos", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public int avcodec_enum_to_chroma_pos (
-    int xpos,
-    int ypos,
+    public int xpos,
+    public int ypos,
     LibAVUtil.ChromaLocation pos
 );
 
@@ -263,8 +263,8 @@ with luma (0,0) representing the origin and luma (1,1) representing 256,256
 ***********************************************************/
 [CCode (cname="avcodec_chroma_pos_to_enum", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public LibAVUtil.ChromaLocation avcodec_chroma_pos_to_enum (
-    int xpos,
-    int ypos
+    public int xpos,
+    public int ypos
 );
 
 /***********************************************************
@@ -282,7 +282,7 @@ be 0-initialized so that no uninitialized data will ever appear.
 public void av_fast_padded_malloc (
     void *ptr,
     out uint size,
-    size_t min_size
+    public size_t min_size
 );
 
 /***********************************************************
@@ -293,7 +293,7 @@ be 0-initialized after call.
 public void av_fast_padded_mallocz (
     void *ptr,
     out uint size,
-    size_t min_size
+    public size_t min_size
 );
 
 /***********************************************************
@@ -306,7 +306,7 @@ public void av_fast_padded_mallocz (
 [CCode (cname="av_xiphlacing", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public uint av_xiphlacing (
     out uchar[] s,
-    uint data_size
+    public uint data_size
 );
 
 } // namespace LibAVCodec

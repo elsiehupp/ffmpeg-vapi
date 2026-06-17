@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
+/***********************************************************
+***********************************************************/
 // See ISO/IEC 23009-1:2014 5.3.9.4.4
 [CCode (cname="", cheader_filename="")]
 public enum DASHTmplId {
@@ -37,12 +39,12 @@ public enum DASHTmplId {
 [CCode (cname="", cheader_filename="")]
 public void ff_dash_fill_tmpl_params (
     string dst,
-    size_t buffer_size,
+    public size_t buffer_size,
     string template,
-    int rep_id,
-    int number,
-    int bit_rate,
-    int64 time
+    public int rep_id,
+    public int number,
+    public int bit_rate,
+    public int64 time
 );
 
 } // namespace LibAVFormat

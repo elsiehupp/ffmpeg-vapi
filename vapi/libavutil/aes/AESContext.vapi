@@ -34,7 +34,7 @@ public class AESContext {
 
     /***********************************************************
     @brief Allocate an AESContext context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_alloc", cheader_filename="ffmpeg/libavutil/aes.h")]
     public AESContext av_aes_alloc ();
 
@@ -42,7 +42,7 @@ public class AESContext {
     @brief Initialize an AESContext context.
     @param key_bits 128, 192 or 256
     @param decrypt 0 for encryption, 1 for decryption
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_init", cheader_filename="ffmpeg/libavutil/aes.h")]
     public int av_aes_init (
         AESContext a,
@@ -59,7 +59,7 @@ public class AESContext {
     @param count number of 16 byte blocks
     @param initialization_vector initialization vector for CBC mode, if null then ECB will be used
     @param decrypt 0 for encryption, 1 for decryption
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_crypt", cheader_filename="ffmpeg/libavutil/aes.h")]
     public void av_aes_crypt (
         AESContext a,

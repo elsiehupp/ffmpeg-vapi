@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 //  static const LibAVUtil.Option options[] = {
 //      TLS_COMMON_OPTIONS (TLSContext, tls_shared),
-//      {"key_password", "Password for the private key file", OFFSET (priv_key_pw),  AV_OPT_TYPE_STRING, .flags = TLS_OPTFL },
+//      {"key_password", "Password for the private key file", OFFSET (priv_key_pw), AV_OPT_TYPE_STRING, .flags = TLS_OPTFL },
 //      { NULL }
 //  }
 

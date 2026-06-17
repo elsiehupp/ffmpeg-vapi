@@ -117,7 +117,7 @@ public class MP3Demuxer : AVInputFormat {
 
     /***********************************************************
     @brief XXX: use probe
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="extensions", cheader_filename="")]
     public override string extensions {
         public get {

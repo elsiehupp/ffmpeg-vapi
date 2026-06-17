@@ -16,6 +16,6 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_graph_thread_init (AVFilterGraph *graph);
+public int ff_graph_thread_init (AVFilterGraph *graph);
 
-void ff_graph_thread_free (AVFilterGraph *graph);
+public void ff_graph_thread_free (AVFilterGraph *graph);

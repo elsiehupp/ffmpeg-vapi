@@ -71,7 +71,7 @@ public class CPBProperties {
     /***********************************************************
     @brief The size of the buffer to which the ratecontrol is applied, in bits.
     Zero if unknown or unspecified.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="buffer_size")]
     public int buffer_size;
 
@@ -81,7 +81,7 @@ public class CPBProperties {
     clock.
 
     UINT64_MAX when unknown or unspecified.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="vbv_delay")]
     public uint64 vbv_delay;
 
@@ -93,7 +93,7 @@ public class CPBProperties {
         here. This is useful for embedding it in side data.
 
     @return the newly allocated struct or null on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_cpb_properties_alloc", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CPBProperties av_cpb_properties_alloc (out size_t size);
 

@@ -24,9 +24,9 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_asfcrypt_dec", cheader_filename="")]
 public void ff_asfcrypt_dec (
-    uint8 key[20],
+    public uint8 key[20],
     uint8[] data,
-    int len
+    public int len
 );
 
 } // namespace LibAVFormat

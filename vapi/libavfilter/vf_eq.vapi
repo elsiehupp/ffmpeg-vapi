@@ -23,14 +23,14 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 ***********************************************************/
 
 static string const var_names[] = {
-    "n",   // frame count
+    "n", // frame count
     "pos", // frame position
-    "r",   // frame rate
-    "t",   // timestamp expressed in seconds
+    "r", // frame rate
+    "t", // timestamp expressed in seconds
     NULL
 }
 
-enum var_name {
+public enum var_name {
     VAR_N,
     VAR_POS,
     VAR_R,
@@ -40,13 +40,13 @@ enum var_name {
 
 [Compact]
 public class EQParameters {
-    void (*adjust)(EQParameters *eq, uint8 *dst, int dst_stride,
-                   uint8 *src, int src_stride, int w, int h);
+    void (*adjust)(EQParameters *eq, uint8[] dst, int dst_stride,
+                   uint8[] src, int src_stride, int w, int h);
 
-    uint8 lut[256];
+    public uint8 lut[256];
 
     double brightness, contrast, gamma, gamma_weight;
-    int lut_clean;
+    public int lut_clean;
 
 }
 
@@ -62,43 +62,43 @@ public class EQContext {
 
     EQParameters param[3];
 
-    char   *contrast_expr;
+    public char   *contrast_expr;
     AVExpr *contrast_pexpr;
     double  contrast;
 
-    char   *brightness_expr;
+    public char   *brightness_expr;
     AVExpr *brightness_pexpr;
     double  brightness;
 
-    char   *saturation_expr;
+    public char   *saturation_expr;
     AVExpr *saturation_pexpr;
     double  saturation;
 
-    char   *gamma_expr;
+    public char   *gamma_expr;
     AVExpr *gamma_pexpr;
     double  gamma;
 
-    char   *gamma_weight_expr;
+    public char   *gamma_weight_expr;
     AVExpr *gamma_weight_pexpr;
     double  gamma_weight;
 
-    char   *gamma_r_expr;
+    public char   *gamma_r_expr;
     AVExpr *gamma_r_pexpr;
     double  gamma_r;
 
-    char   *gamma_g_expr;
+    public char   *gamma_g_expr;
     AVExpr *gamma_g_pexpr;
     double  gamma_g;
 
-    char   *gamma_b_expr;
+    public char   *gamma_b_expr;
     AVExpr *gamma_b_pexpr;
     double  gamma_b;
 
     double var_values[VAR_NB];
 
-    void (*process)(EQParameters *par, uint8 *dst, int dst_stride,
-                    uint8 *src, int src_stride, int w, int h);
+    void (*process)(EQParameters *par, uint8[] dst, int dst_stride,
+                    uint8[] src, int src_stride, int w, int h);
     EvalMode eval_mode;
 }
 
-void ff_eq_init_x86 (EQContext *eq);
+public void ff_eq_init_x86 (EQContext *eq);

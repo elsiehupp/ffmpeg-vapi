@@ -49,27 +49,27 @@ immutable otherwise.
 public class BitStreamFilterContext {
     /***********************************************************
     @brief A class for logging and LibAVUtil.Options
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_class")]
     public LibAVUtil.Class av_class;
 
     /***********************************************************
     @brief The bitstream filter this context is an instance of.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="filter")]
     public BitStreamFilter filter;
 
     /***********************************************************
     @brief Opaque LibAVCodec internal data. Must not be touched by the caller in any
         way.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="internal")]
     public BSFInternal internal;
 
     /***********************************************************
     @brief Opaque filter-specific private data. If filter.priv_class is non-null,
         this is an LibAVUtil.Options-enabled struct.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="priv_data")]
     public void *priv_data;
 
@@ -77,35 +77,35 @@ public class BitStreamFilterContext {
     @brief Parameters of the input stream. This field is allocated in
     av_bsf_alloc (), it needs to be filled by the caller before
     av_bsf_init ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="par_in")]
     public CodecParameters par_in;
 
     /***********************************************************
     @brief Parameters of the output stream. This field is allocated in
     av_bsf_alloc (), it is set by the filter in av_bsf_init ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="par_out")]
     public CodecParameters par_out;
 
     /***********************************************************
     @brief The timebase used for the timestamps of the input packets. Set by the
     caller before av_bsf_init ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="time_base_in")]
     public LibAVUtil.Rational time_base_in;
 
     /***********************************************************
     @brief The timebase used for the timestamps of the output packets. Set by the
     filter in av_bsf_init ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="time_base_out")]
     public LibAVUtil.Rational time_base_out;
 
     /***********************************************************
     @return a bitstream filter with the specified name or null if no such
         bitstream filter exists.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_get_by_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public BitStreamFilter av_bsf_get_by_name (
         string name
@@ -119,7 +119,7 @@ public class BitStreamFilterContext {
 
     @return the next registered bitstream filter or null when the iteration is
         finished
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_iterate", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public BitStreamFilter av_bsf_iterate (out void *opaque);
 
@@ -134,7 +134,7 @@ public class BitStreamFilterContext {
         filtering is done.
 
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_alloc", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_alloc (
         BitStreamFilter filter,
@@ -144,7 +144,7 @@ public class BitStreamFilterContext {
     /***********************************************************
     @brief Prepare the filter for use, after all the parameters and options have been
     set.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_init", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_init (
         BitStreamFilterContext bsf_context
@@ -164,7 +164,7 @@ public class BitStreamFilterContext {
     may have buffered internally.
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_send_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_send_packet (
         BitStreamFilterContext bsf_context,
@@ -194,7 +194,7 @@ public class BitStreamFilterContext {
     repeatedly until it stops returning 0. It is also possible for a filter to
     output fewer packets than were sent to it, so this function may return
     LibAVUtil.ErrorCode (EAGAIN) immediately after a successful av_bsf_send_packet () call.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_receive_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_receive_packet (
         BitStreamFilterContext bsf_context,
@@ -203,7 +203,7 @@ public class BitStreamFilterContext {
 
     /***********************************************************
     @brief Reset the internal bitstream filter state / flush internal buffers.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_flush", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_bsf_flush (
         BitStreamFilterContext bsf_context
@@ -211,8 +211,8 @@ public class BitStreamFilterContext {
 
     /***********************************************************
     @brief Free a bitstream filter context and everything associated with it; write null
-    into the supplied pointer.
-        ***********************************************************/
+    public into the supplied pointer.
+    ***********************************************************/
     [CCode (cname="av_bsf_free", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_bsf_free (
         BitStreamFilterContext bsf_context
@@ -223,7 +223,7 @@ public class BitStreamFilterContext {
     OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
     @see @link av_opt_find ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_get_class", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public LibAVUtil.Class av_bsf_get_class ();
 
@@ -239,7 +239,7 @@ public class BitStreamFilterContext {
         representing the chain of bitstream filters
 
     @return >=0 on success, negative LibAVUtil.ErrorCode in case of failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_list_parse_str", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_list_parse_str (
         string str,
@@ -252,7 +252,7 @@ public class BitStreamFilterContext {
     @param[out] bsf Pointer to be set to new instance of pass-through bitstream filter
 
     @return
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bsf_get_null_filter", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_get_null_filter (
         BitStreamFilterContext bsf

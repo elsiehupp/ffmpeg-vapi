@@ -45,7 +45,7 @@ public class DCTContext {
     @param type the type of transform
 
     @note the first element of the input of DST-I is ignored
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dct_init", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public DCTContext av_dct_init (
         int nbits,

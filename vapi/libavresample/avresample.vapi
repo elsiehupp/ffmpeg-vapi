@@ -41,12 +41,12 @@ format to interleaved signed 16-bit integer, downsampling from 48kHz to
 matrix):
 @code
 AVAudioResampleContext *avr = avresample_alloc_context ();
-av_opt_set_int (avr, "in_channel_layout",  AV_CH_LAYOUT_5POINT1, 0);
-av_opt_set_int (avr, "out_channel_layout", AV_CH_LAYOUT_STEREO,  0);
-av_opt_set_int (avr, "in_sample_rate",     48000,                0);
-av_opt_set_int (avr, "out_sample_rate",    44100,                0);
-av_opt_set_int (avr, "in_sample_fmt",      AV_SAMPLE_FMT_FLTP,   0);
-av_opt_set_int (avr, "out_sample_fmt",     AV_SAMPLE_FMT_S16,    0);
+av_opt_set_int (avr, "in_channel_layout", AV_CH_LAYOUT_5POINT1, 0);
+av_opt_set_int (avr, "out_channel_layout", AV_CH_LAYOUT_STEREO, 0);
+av_opt_set_int (avr, "in_sample_rate", 48000, 0);
+av_opt_set_int (avr, "out_sample_rate", 44100, 0);
+av_opt_set_int (avr, "in_sample_fmt", AV_SAMPLE_FMT_FLTP, 0);
+av_opt_set_int (avr, "out_sample_fmt", AV_SAMPLE_FMT_S16, 0);
 @endcode
 
 Once the context is initialized, it must be opened with avresample_open (). If
@@ -67,13 +67,13 @@ flushed by calling avresample_convert () with NULL input.
 The following code demonstrates the conversion loop assuming the parameters
 from above and caller-defined functions get_input () and handle_output ():
 @code
-uint8 **input;
-int in_linesize, in_samples;
+uint8[] *input;
+public int in_linesize, in_samples;
 
 while (get_input (&input, &in_linesize, &in_samples)) {
-    uint8 *output
-    int out_linesize;
-    int out_samples = avresample_get_out_samples (avr, in_samples);
+    uint8[] output
+    public int out_linesize;
+    public int out_samples = avresample_get_out_samples (avr, in_samples);
 
     av_samples_alloc (&output, &out_linesize, 2, out_samples,
                      AV_SAMPLE_FMT_S16, 0);
@@ -99,65 +99,82 @@ public class AVAudioResampleContext AVAudioResampleContext;
 
 Mixing Coefficient Types
 ***********************************************************/
-enum attribute_deprecated AVMixCoeffType {
-    AV_MIX_COEFF_TYPE_Q8,   /** 16-bit 8.8 fixed-point
+public enum attribute_deprecated AVMixCoeffType {
+    /***********************************************************
+    16-bit 8.8 fixed-point
     ***********************************************************/
-    AV_MIX_COEFF_TYPE_Q15,  /** 32-bit 17.15 fixed-point
+    AV_MIX_COEFF_TYPE_Q8,
+    /***********************************************************
+    32-bit 17.15 fixed-point
     ***********************************************************/
-    AV_MIX_COEFF_TYPE_FLT,  /** floating-point
+    AV_MIX_COEFF_TYPE_Q15,
+    /***********************************************************
+    floating-point
     ***********************************************************/
-    AV_MIX_COEFF_TYPE_NB,   /** Number of coeff types. Not part of ABI
-***********************************************************/
-};
+    AV_MIX_COEFF_TYPE_FLT,
+    /***********************************************************
+    Number of coeff types. Not part of ABI
+    ***********************************************************/
+    AV_MIX_COEFF_TYPE_NB;
+}
 
 /***********************************************************
 @deprecated use libswresample
 
 Resampling Filter Types
 ***********************************************************/
-enum attribute_deprecated AVResampleFilterType {
-    AV_RESAMPLE_FILTER_TYPE_CUBIC,              /***********************************************************
-    <Cubic
+public enum attribute_deprecated AVResampleFilterType {
+    /***********************************************************
+    Cubic
     ***********************************************************/
-    AV_RESAMPLE_FILTER_TYPE_BLACKMAN_NUTTALL,   /***********************************************************
-    <Blackman Nuttall Windowed Sinc
+    AV_RESAMPLE_FILTER_TYPE_CUBIC,
+    /***********************************************************
+    Blackman Nuttall Windowed Sinc
     ***********************************************************/
-    AV_RESAMPLE_FILTER_TYPE_KAISER,             /***********************************************************
-    <Kaiser Windowed Sinc
-***********************************************************/
-};
+    AV_RESAMPLE_FILTER_TYPE_BLACKMAN_NUTTALL,
+    /***********************************************************
+    Kaiser Windowed Sinc
+    ***********************************************************/
+    AV_RESAMPLE_FILTER_TYPE_KAISER;
+}
 
 /***********************************************************
 @deprecated use libswresample
 ***********************************************************/
-enum attribute_deprecated AVResampleDitherMethod {
-    AV_RESAMPLE_DITHER_NONE,            /***********************************************************
-    <Do not use dithering
+public enum attribute_deprecated AVResampleDitherMethod {
+    /***********************************************************
+    Do not use dithering
     ***********************************************************/
-    AV_RESAMPLE_DITHER_RECTANGULAR,     /***********************************************************
-    <Rectangular Dither
+    AV_RESAMPLE_DITHER_NONE,
+    /***********************************************************
+    Rectangular Dither
     ***********************************************************/
-    AV_RESAMPLE_DITHER_TRIANGULAR,      /***********************************************************
-    <Triangular Dither*/
-    AV_RESAMPLE_DITHER_TRIANGULAR_HP,   /***********************************************************
-    <Triangular Dither with High Pass
+    AV_RESAMPLE_DITHER_RECTANGULAR,
+    /***********************************************************
+    Triangular Dither
     ***********************************************************/
-    AV_RESAMPLE_DITHER_TRIANGULAR_NS,   /***********************************************************
-    <Triangular Dither with Noise Shaping
+    AV_RESAMPLE_DITHER_TRIANGULAR,
+    /***********************************************************
+    Triangular Dither with High Pass
     ***********************************************************/
-    AV_RESAMPLE_DITHER_NB,              /***********************************************************
-    <Number of dither types. Not part of ABI.
-***********************************************************/
-};
+    AV_RESAMPLE_DITHER_TRIANGULAR_HP,
+    /***********************************************************
+    Triangular Dither with Noise Shaping
+    ***********************************************************/
+    AV_RESAMPLE_DITHER_TRIANGULAR_NS,
+    /***********************************************************
+    Number of dither types. Not part of ABI.
+    ***********************************************************/
+    AV_RESAMPLE_DITHER_NB;
+}
 
 /***********************************************************
-
 @deprecated use libswresample
 
 Return the LIBAVRESAMPLE_VERSION_INT constant.
 ***********************************************************/
 attribute_deprecated
-unsigned avresample_version ();
+public uint avresample_version ();
 
 /***********************************************************
 
@@ -223,7 +240,7 @@ Initialize AVAudioResampleContext.
 @return     0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-int avresample_open (AVAudioResampleContext *avr);
+public int avresample_open (AVAudioResampleContext *avr);
 
 /***********************************************************
 
@@ -235,7 +252,7 @@ Check whether an AVAudioResampleContext is open or closed.
 @return 1 if avr is open, 0 if avr is closed.
 ***********************************************************/
 attribute_deprecated
-int avresample_is_open (AVAudioResampleContext *avr);
+public int avresample_is_open (AVAudioResampleContext *avr);
 
 /***********************************************************
 
@@ -254,7 +271,7 @@ there was a custom matrix being used, that is also cleared.
 @param avr  audio resample context
 ***********************************************************/
 attribute_deprecated
-void avresample_close (AVAudioResampleContext *avr);
+public void avresample_close (AVAudioResampleContext *avr);
 
 /***********************************************************
 
@@ -267,7 +284,7 @@ This also calls avresample_close () before freeing.
 @param avr  audio resample context
 ***********************************************************/
 attribute_deprecated
-void avresample_free (AVAudioResampleContext **avr);
+public void avresample_free (AVAudioResampleContext **avr);
 
 /***********************************************************
 
@@ -295,7 +312,7 @@ building custom matrices.
 @return                    0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-int avresample_build_matrix (uint64 in_layout, uint64 out_layout,
+public int avresample_build_matrix (uint64 in_layout, uint64 out_layout,
                             double center_mix_level, double surround_mix_level,
                             double lfe_mix_level, int normalize, double[] matrix,
                             int stride, AVMatrixEncoding matrix_encoding);
@@ -316,7 +333,7 @@ not open, an error is returned.
 @return        0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-int avresample_get_matrix (AVAudioResampleContext *avr, double[] matrix,
+public int avresample_get_matrix (AVAudioResampleContext *avr, double[] matrix,
                           int stride);
 
 /***********************************************************
@@ -341,7 +358,7 @@ Calling avresample_close () on the context will clear the current matrix.
 @return        0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-int avresample_set_matrix (AVAudioResampleContext *avr, double[] matrix,
+public int avresample_set_matrix (AVAudioResampleContext *avr, double[] matrix,
                           int stride);
 
 /***********************************************************
@@ -375,7 +392,7 @@ Duplicating the left channel of stereo input:
 @return            0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-int avresample_set_channel_mapping (AVAudioResampleContext *avr,
+public int avresample_set_channel_mapping (AVAudioResampleContext *avr,
                                    int[] channel_map);
 
 /***********************************************************
@@ -395,7 +412,7 @@ in order to use resampling compensation.
 @return                       0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-int avresample_set_compensation (AVAudioResampleContext *avr, int sample_delta,
+public int avresample_set_compensation (AVAudioResampleContext *avr, int sample_delta,
                                 int compensation_distance);
 
 /***********************************************************
@@ -412,7 +429,7 @@ conversion would output.
                      would exceed INT_MAX
 ***********************************************************/
 attribute_deprecated
-int avresample_get_out_samples (AVAudioResampleContext *avr, int in_nb_samples);
+public int avresample_get_out_samples (AVAudioResampleContext *avr, int in_nb_samples);
 
 /***********************************************************
 
@@ -434,7 +451,7 @@ samples. To get this data as output, call avresample_convert () with NULL
 input.
 
 At the end of the conversion process, there may be data remaining in the
-internal FIFO buffer. avresample_available () tells the number of remaining
+public internal FIFO buffer. avresample_available () tells the number of remaining
 samples. To get this data as output, either call avresample_convert () with
 NULL input or call avresample_read ().
 
@@ -460,9 +477,9 @@ NULL input or call avresample_read ().
                        output FIFO
 ***********************************************************/
 attribute_deprecated
-int avresample_convert (AVAudioResampleContext *avr, uint8 **output,
+public int avresample_convert (AVAudioResampleContext *avr, uint8[] *output,
                        int out_plane_size, int out_samples,
-                       uint8 * const *input, int in_plane_size,
+                       uint8[]  const *input, int in_plane_size,
                        int in_samples);
 
 /***********************************************************
@@ -482,7 +499,7 @@ the delay buffer, which can be useful for synchronization.
 @return     number of samples currently in the resampling delay buffer
 ***********************************************************/
 attribute_deprecated
-int avresample_get_delay (AVAudioResampleContext *avr);
+public int avresample_get_delay (AVAudioResampleContext *avr);
 
 /***********************************************************
 
@@ -503,7 +520,7 @@ avresample_convert ().
 @return     number of samples available for reading
 ***********************************************************/
 attribute_deprecated
-int avresample_available (AVAudioResampleContext *avr);
+public int avresample_available (AVAudioResampleContext *avr);
 
 /***********************************************************
 
@@ -526,7 +543,7 @@ buffer. This function can be used to read samples from that internal FIFO.
 @return            the number of samples written to output
 ***********************************************************/
 attribute_deprecated
-int avresample_read (AVAudioResampleContext *avr, uint8 **output, int nb_samples);
+public int avresample_read (AVAudioResampleContext *avr, uint8[] *output, int nb_samples);
 
 /***********************************************************
 
@@ -554,7 +571,7 @@ remaining samples. To get this data as output, call this function or
 avresample_convert () with NULL input.
 
 At the end of the conversion process, there may be data remaining in the
-internal FIFO buffer. avresample_available () tells the number of remaining
+public internal FIFO buffer. avresample_available () tells the number of remaining
 samples. To get this data as output, either call this function or
 avresample_convert () with NULL input or call avresample_read ().
 
@@ -576,7 +593,7 @@ or AVERROR_OUTPUT_CHANGED|AVERROR_INPUT_CHANGED is returned.
                        configuration.
 ***********************************************************/
 attribute_deprecated
-int avresample_convert_frame (AVAudioResampleContext *avr,
+public int avresample_convert_frame (AVAudioResampleContext *avr,
                              AVFrame *output, AVFrame *input);
 
 /***********************************************************
@@ -598,7 +615,7 @@ The function calls avresample_close () internally if the context is open.
 @return                0 on success, AVERROR on failure.
 ***********************************************************/
 attribute_deprecated
-int avresample_config (AVAudioResampleContext *avr, AVFrame *out, AVFrame *in);
+public int avresample_config (AVAudioResampleContext *avr, AVFrame *out, AVFrame *in);
 
 /***********************************************************
 @}

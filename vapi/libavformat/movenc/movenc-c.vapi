@@ -57,12 +57,12 @@ namespace LibAVFormat {
 //      { "frag_size", "Maximum fragment size", offsetof (MOVMuxContext, max_fragment_size), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM},
 //      { "ism_lookahead", "Number of lookahead entries for ISM files", offsetof (MOVMuxContext, ism_lookahead), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM},
 //      { "video_track_timescale", "set timescale of all video tracks", offsetof (MOVMuxContext, video_track_timescale), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM},
-//      { "brand",    "Override major brand", offsetof (MOVMuxContext, major_brand),   AV_OPT_TYPE_STRING, {.str = NULL}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
+//      { "brand", "Override major brand", offsetof (MOVMuxContext, major_brand), AV_OPT_TYPE_STRING, {.str = NULL}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
 //      { "use_editlist", "use edit list", offsetof (MOVMuxContext, use_editlist), AV_OPT_TYPE_BOOL, {.i64 = -1}, -1, 1, AV_OPT_FLAG_ENCODING_PARAM},
 //      { "fragment_index", "Fragment number of the next fragment", offsetof (MOVMuxContext, fragments), AV_OPT_TYPE_INT, {.i64 = 1}, 1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM},
 //      { "mov_gamma", "gamma value for gama atom", offsetof (MOVMuxContext, gamma), AV_OPT_TYPE_FLOAT, {.dbl = 0.0 }, 0.0, 10, AV_OPT_FLAG_ENCODING_PARAM},
 //      { "frag_interleave", "Interleave samples within fragments (max number of consecutive samples, lower is tighter interleaving, but with more overhead)", offsetof (MOVMuxContext, frag_interleave), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
-//      { "encryption_scheme",    "Configures the encryption scheme, allowed values are none, cenc-aes-ctr", offsetof (MOVMuxContext, encryption_scheme_str),   AV_OPT_TYPE_STRING, {.str = NULL}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
+//      { "encryption_scheme", "Configures the encryption scheme, allowed values are none, cenc-aes-ctr", offsetof (MOVMuxContext, encryption_scheme_str), AV_OPT_TYPE_STRING, {.str = NULL}, .flags = AV_OPT_FLAG_ENCODING_PARAM },
 //      { "encryption_key", "The media encryption key (hex)", offsetof (MOVMuxContext, encryption_key), AV_OPT_TYPE_BINARY, .flags = AV_OPT_FLAG_ENCODING_PARAM },
 //      { "encryption_kid", "The media encryption key identifier (hex)", offsetof (MOVMuxContext, encryption_kid), AV_OPT_TYPE_BINARY, .flags = AV_OPT_FLAG_ENCODING_PARAM },
 //      { "use_stream_ids_as_track_ids", "use stream ids as track ids", offsetof (MOVMuxContext, use_stream_ids_as_track_ids), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
@@ -75,12 +75,12 @@ namespace LibAVFormat {
 //  }
 
 //  static const AVCodecTag codec_3gp_tags[] = {
-//      { LibAVCodec.CodecID.H263,     MKTAG ('s','2','6','3') },
-//      { LibAVCodec.CodecID.H264,     MKTAG ('a','v','c','1') },
-//      { LibAVCodec.CodecID.MPEG4,    MKTAG ('m','p','4','v') },
-//      { LibAVCodec.CodecID.AAC,      MKTAG ('m','p','4','a') },
-//      { LibAVCodec.CodecID.AMR_NB,   MKTAG ('s','a','m','r') },
-//      { LibAVCodec.CodecID.AMR_WB,   MKTAG ('s','a','w','b') },
+//      { LibAVCodec.CodecID.H263, MKTAG ('s','2','6','3') },
+//      { LibAVCodec.CodecID.H264, MKTAG ('a','v','c','1') },
+//      { LibAVCodec.CodecID.MPEG4, MKTAG ('m','p','4','v') },
+//      { LibAVCodec.CodecID.AAC, MKTAG ('m','p','4','a') },
+//      { LibAVCodec.CodecID.AMR_NB, MKTAG ('s','a','m','r') },
+//      { LibAVCodec.CodecID.AMR_WB, MKTAG ('s','a','w','b') },
 //      { LibAVCodec.CodecID.MOV_TEXT, MKTAG ('t','x','3','g') },
 //      { LibAVCodec.CodecID.NONE, 0 },
 //  }
@@ -116,31 +116,31 @@ namespace LibAVFormat {
 //      { LibAVCodec.CodecID.DVD_SUBTITLE, MKTAG ('m', 'p', '4', 's') },
 //      { LibAVCodec.CodecID.MOV_TEXT    , MKTAG ('t', 'x', '3', 'g') },
 //      { LibAVCodec.CodecID.BIN_DATA    , MKTAG ('g', 'p', 'm', 'd') },
-//      { LibAVCodec.CodecID.NONE        ,    0 },
+//      { LibAVCodec.CodecID.NONE        , 0 },
 //  }
 
 //  const AVCodecTag codec_ism_tags[] = {
 //      { LibAVCodec.CodecID.WMAPRO      , MKTAG ('w', 'm', 'a', ' ') },
-//      { LibAVCodec.CodecID.NONE        ,    0 },
+//      { LibAVCodec.CodecID.NONE        , 0 },
 //  }
 
 //  static const AVCodecTag codec_ipod_tags[] = {
-//      { LibAVCodec.CodecID.H264,     MKTAG ('a','v','c','1') },
-//      { LibAVCodec.CodecID.MPEG4,    MKTAG ('m','p','4','v') },
-//      { LibAVCodec.CodecID.AAC,      MKTAG ('m','p','4','a') },
-//      { LibAVCodec.CodecID.ALAC,     MKTAG ('a','l','a','c') },
-//      { LibAVCodec.CodecID.AC3,      MKTAG ('a','c','-','3') },
+//      { LibAVCodec.CodecID.H264, MKTAG ('a','v','c','1') },
+//      { LibAVCodec.CodecID.MPEG4, MKTAG ('m','p','4','v') },
+//      { LibAVCodec.CodecID.AAC, MKTAG ('m','p','4','a') },
+//      { LibAVCodec.CodecID.ALAC, MKTAG ('a','l','a','c') },
+//      { LibAVCodec.CodecID.AC3, MKTAG ('a','c','-','3') },
 //      { LibAVCodec.CodecID.MOV_TEXT, MKTAG ('t','x','3','g') },
 //      { LibAVCodec.CodecID.MOV_TEXT, MKTAG ('t','e','x','t') },
 //      { LibAVCodec.CodecID.NONE, 0 },
 //  }
 
 //  static const AVCodecTag codec_f4v_tags[] = {
-//      { LibAVCodec.CodecID.MP3,    MKTAG ('.','m','p','3') },
-//      { LibAVCodec.CodecID.AAC,    MKTAG ('m','p','4','a') },
-//      { LibAVCodec.CodecID.H264,   MKTAG ('a','v','c','1') },
-//      { LibAVCodec.CodecID.VP6A,   MKTAG ('V','P','6','A') },
-//      { LibAVCodec.CodecID.VP6F,   MKTAG ('V','P','6','F') },
+//      { LibAVCodec.CodecID.MP3, MKTAG ('.','m','p','3') },
+//      { LibAVCodec.CodecID.AAC, MKTAG ('m','p','4','a') },
+//      { LibAVCodec.CodecID.H264, MKTAG ('a','v','c','1') },
+//      { LibAVCodec.CodecID.VP6A, MKTAG ('V','P','6','A') },
+//      { LibAVCodec.CodecID.VP6F, MKTAG ('V','P','6','F') },
 //      { LibAVCodec.CodecID.NONE, 0 },
 //  }
 

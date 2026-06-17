@@ -41,7 +41,7 @@ public abstract class OggCodec {
     @return 1 if the packet was a valid header,
             0 if the packet was not a header (was a data packet)
             -1 if an error occurred or for unsupported stream
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public abstract int header (
         AVFormatContext context,
@@ -58,7 +58,7 @@ public abstract class OggCodec {
     @brief Translate a granule into a timestamp.
     Will set dts if non-null and known.
     @return pts
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public abstract uint64 gptopts (
         AVFormatContext context,
@@ -70,13 +70,13 @@ public abstract class OggCodec {
     /***********************************************************
     1 if granule is the start time of the associated packet.
     0 if granule is the end time of the associated packet.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int granule_is_start;
 
     /***********************************************************
     @brief Number of expected headers
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int nb_header;
 
@@ -128,13 +128,13 @@ public class OggStream {
 
     /***********************************************************
     @brief File offset of the first page needed to reconstruct the current packet
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 sync_pos;
 
     /***********************************************************
     @brief File offset of the current page
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 page_pos;
 
@@ -158,13 +158,13 @@ public class OggStream {
 
     /***********************************************************
     @brief Whether we're expecting a continuation in the next page
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int incomplete;
 
     /***********************************************************
     @brief Current packet is the last one completed in the page
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int page_end;
 
@@ -176,19 +176,19 @@ public class OggStream {
 
     /***********************************************************
     1 if the stream got some data (non-initial packets), 0 otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int got_data;
 
     /***********************************************************
     @brief Set to the number of parsed headers
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int nb_header;
 
     /***********************************************************
     @brief Set the number of packets to drop from the end
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int end_trimming;
 
@@ -238,7 +238,7 @@ public class Ogg {
 
     /***********************************************************
     @brief File offset of the current page
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 page_pos;
 
@@ -278,8 +278,8 @@ public int ff_vorbis_comment (
     AVFormatContext ms,
     out LibAVUtil.Dictionary m,
     uint8[] buffer,
-    int size,
-    int parse_picture
+    public int size,
+    public int parse_picture
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -287,20 +287,20 @@ public int ff_vorbis_stream_comment (
     AVFormatContext as,
     AVStream st,
     uint8[] buffer,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public static int ogg_find_stream (
     Ogg ogg,
-    int serial
+    public int serial
 );
 
 [CCode (cname="", cheader_filename="")]
 public static uint64 ogg_gptopts (
     AVFormatContext format_context,
-    int i,
-    uint64 gp,
+    public int i,
+    public uint64 gp,
     out int64 dts
 );
 

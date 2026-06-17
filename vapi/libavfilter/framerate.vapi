@@ -16,9 +16,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define BLEND_FUNC_PARAMS const uint8 *src1, ptrdiff_t src1_linesize, \
-                          uint8 *src2, ptrdiff_t src2_linesize, \
-                          uint8 *dst, ptrdiff_t dst_linesize, \
+#define BLEND_FUNC_PARAMS const uint8[] src1, ptrdiff_t src1_linesize, \
+                          uint8[] src2, ptrdiff_t src2_linesize, \
+                          uint8[] dst, ptrdiff_t dst_linesize, \
                           ptrdiff_t width, ptrdiff_t height, \
                           int factor1, int factor2, int half
 
@@ -34,91 +34,91 @@ public class FrameRateContext {
     /***********************************************************
     output frames per second
     ***********************************************************/
-    AVRational dest_frame_rate; ///<
+    public AVRational dest_frame_rate;
     /***********************************************************
     flags affecting frame rate conversion algorithm
     ***********************************************************/
-    int flags; ///<
+    public int flags;
     /***********************************************************
     score that denotes a scene change has happened
     ***********************************************************/
-    double scene_score; ///<
+    double scene_score;
     /***********************************************************
     start of range to apply linear interpolation
     ***********************************************************/
-    int interp_start; ///<
+    public int interp_start;
     /***********************************************************
     end of range to apply linear interpolation
     ***********************************************************/
-    int interp_end; ///<
+    public int interp_end;
 
     /***********************************************************
     bytes of pixel data per line for each plane
     ***********************************************************/
-    int line_size[4]; ///<
-    int vsub;
+    public int line_size[4];
+    public int vsub;
 
     /***********************************************************
     timebase of source
     ***********************************************************/
-    AVRational srce_time_base; ///<
+    public AVRational srce_time_base;
     /***********************************************************
     timebase of destination
     ***********************************************************/
-    AVRational dest_time_base; ///<
+    public AVRational dest_time_base;
 
     /***********************************************************
     Sum of the absolute difference function (scene detect only)
     ***********************************************************/
-    ff_scene_sad_fn sad; ///<
+    ff_scene_sad_fn sad;
     /***********************************************************
     previous MAFD                           (scene detect only)
     ***********************************************************/
-    double prev_mafd; ///<
+    double prev_mafd;
 
-    int blend_factor_max;
-    int bitdepth;
+    public int blend_factor_max;
+    public int bitdepth;
     AVFrame *work;
 
     /***********************************************************
     last frame
     ***********************************************************/
-    AVFrame *f0; ///<
+    AVFrame *f0;
     /***********************************************************
     current frame
     ***********************************************************/
-    AVFrame *f1; ///<
+    AVFrame *f1;
     /***********************************************************
     last frame pts in dest_time_base
     ***********************************************************/
-    int64 pts0; ///<
+    public int64 pts0;
     /***********************************************************
     current frame pts in dest_time_base
     ***********************************************************/
-    int64 pts1; ///<
+    public int64 pts1;
     /***********************************************************
     pts1 to pts0 delta
     ***********************************************************/
-    int64 delta; ///<
+    public int64 delta;
     /***********************************************************
     scene change score (f0 to f1)
     ***********************************************************/
-    double score; ///<
+    double score;
     /***********************************************************
     1 if the filter is being flushed
     ***********************************************************/
-    int flush; ///<
+    public int flush;
     /***********************************************************
     pts of the first output frame
     ***********************************************************/
-    int64 start_pts; ///<
+    public int64 start_pts;
     /***********************************************************
     output frame counter
     ***********************************************************/
-    int64 n; ///<
+    public int64 n;
 
     blend_func blend;
 }
 
-void ff_framerate_init (FrameRateContext *s);
-void ff_framerate_init_x86 (FrameRateContext *s);
+public void ff_framerate_init (FrameRateContext *s);
+public void ff_framerate_init_x86 (FrameRateContext *s);

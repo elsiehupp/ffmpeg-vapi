@@ -33,7 +33,7 @@ public enum SphericalProjection {
     /***********************************************************
     @brief Video represents a sphere mapped on a flat surface using
     equirectangular projection.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SPHERICAL_EQUIRECTANGULAR")]
     EQUIRECTANGULAR,
 
@@ -43,7 +43,7 @@ public enum SphericalProjection {
     and back faces. The up face is oriented so the top of the face is
     forwards and the down face is oriented so the top of the face is
     to the back.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SPHERICAL_CUBEMAP")]
     CUBEMAP,
 
@@ -51,7 +51,7 @@ public enum SphericalProjection {
     @brief Video represents a portion of a sphere mapped on a flat surface
     using equirectangular projection. The @link bounding fields indicate
     the position of the current video in a larger surface.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SPHERICAL_EQUIRECTANGULAR_TILE")]
     EQUIRECTANGULAR_TILE,
 }

@@ -37,7 +37,7 @@ While rational numbers can be expressed as floating-point numbers, the
 conversion process is a lossy one, so are floating-point operations. On the
 other hand, the nature of FFmpeg demands highly accurate calculation of
 timestamps. This set of rational number utilities serves as a generic
-interface for manipulating rational numbers as pairs of numerators and
+public interface for manipulating rational numbers as pairs of numerators and
 denominators.
 
 Many of the functions that operate on Rational's have the suffix `_q`, in
@@ -53,13 +53,13 @@ rational numbers.
 public class Rational {
     /***********************************************************
     @brief Numerator
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="num")]
     public int numerator;
 
     /***********************************************************
     @brief Denominator
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="den")]
     public int denominator;
 
@@ -70,7 +70,7 @@ public class Rational {
 
     @note The return value is not reduced.
     @see @link av_reduce ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_make_q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public static Rational av_make_q (
         int numerator,
@@ -88,7 +88,7 @@ public class Rational {
         - 1 if `a > b`
         - -1 if `a < b`
         - `INT_MIN` if one of the values is of the form `0 / 0`
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_cmp_q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public int av_cmp_q (
         Rational a,
@@ -100,7 +100,7 @@ public class Rational {
     @param a Rational to convert
     @return `a` in floating-point form
     @see @link av_d2q ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_q2d", cheader_filename="ffmpeg/libavutil/rational.h")]
     public double av_q2d (
         Rational a
@@ -117,7 +117,7 @@ public class Rational {
     @param[in] den Source denominator
     @param[in] max Maximum allowed values for `output_num` & `output_den`
     @return 1 if the operation is exact, 0 otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_reduce", cheader_filename="ffmpeg/libavutil/rational.h")]
     public static int av_reduce (
         out int output_num,
@@ -132,7 +132,7 @@ public class Rational {
     @param b First rational
     @param c Second rational
     @return b * c
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_mul_q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public Rational av_mul_q (
         Rational b,
@@ -144,7 +144,7 @@ public class Rational {
     @param b First rational
     @param c Second rational
     @return b/c
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_div_q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public Rational av_div_q (
         Rational b,
@@ -156,7 +156,7 @@ public class Rational {
     @param b First rational
     @param c Second rational
     @return b+c
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_add_q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public Rational av_add_q (
         Rational b,
@@ -168,7 +168,7 @@ public class Rational {
     @param b First rational
     @param c Second rational
     @return b-c
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_sub_q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public Rational av_sub_q (
         Rational b,
@@ -179,7 +179,7 @@ public class Rational {
     @brief Invert a rational.
     @param q value
     @return 1 / q
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_inv_q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public static Rational av_inv_q (
         Rational q
@@ -195,7 +195,7 @@ public class Rational {
     @param max Maximum allowed numerator and denominator
     @return `d` in Rational form
     @see @link av_q2d ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_d2q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public Rational av_d2q (
         double d,
@@ -211,7 +211,7 @@ public class Rational {
         - 1 if `q1` is nearer to `q` than `q2`
         - -1 if `q2` is nearer to `q` than `q1`
         - 0 if they have the same distance
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_nearer_q", cheader_filename="ffmpeg/libavutil/rational.h")]
     public int av_nearer_q (
         Rational q,
@@ -226,7 +226,7 @@ public class Rational {
     @param q Reference rational
     @param q_list Array of rationals terminated by `{0, 0}`
     @return Index of the nearest value found in the array
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_find_nearest_q_idx", cheader_filename="ffmpeg/libavutil/rational.h")]
     public int av_find_nearest_q_idx (
         Rational q,
@@ -241,7 +241,7 @@ public class Rational {
     @return Equivalent floating-point value, expressed as a
         uint 32-bit integer.
     @note The returned value is platform-indepedant.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_q2intfloat", cheader_filename="ffmpeg/libavutil/rational.h")]
     public uint32 av_q2intfloat (
         Rational q

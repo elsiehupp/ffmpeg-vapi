@@ -34,7 +34,7 @@ public enum PlaylistType {
 [CCode (cname="", cheader_filename="")]
 public void ff_hls_write_playlist_version (
     AVIOContext out,
-    int version
+    public int version
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -43,15 +43,15 @@ public void ff_hls_write_audio_rendition (
     string agroup,
     string filename,
     string language,
-    int name_id,
-    int is_default
+    public int name_id,
+    public int is_default
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_hls_write_stream_info (
     AVStream st,
     AVIOContext output,
-    int bandwidth,
+    public int bandwidth,
     string filename,
     string agroup,
     string codecs,
@@ -61,42 +61,44 @@ public void ff_hls_write_stream_info (
 [CCode (cname="", cheader_filename="")]
 public void ff_hls_write_playlist_header (
     AVIOContext output,
-    int version,
-    int allowcache,
-    int target_duration,
-    int64 sequence,
+    public int version,
+    public int allowcache,
+    public int target_duration,
+    public int64 sequence,
     uint32 playlist_type,
-    int iframe_mode
+    public int iframe_mode
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_hls_write_init_file (
     AVIOContext output,
     string filename,
-    int byterange_mode,
-    int64 size,
-    int64 pos
+    public int byterange_mode,
+    public int64 size,
+    public int64 pos
 );
 
 [CCode (cname="", cheader_filename="")]
 public int ff_hls_write_file_entry (
     AVIOContext output,
-    int insert_discont,
-    int byterange_mode,
+    public int insert_discont,
+    public int byterange_mode,
     double duration,
-    int round_duration,
-    int64 size,
+    public int round_duration,
+    public int64 size,
     /***********************************************************
-        ***********************************************************/
-    int64 pos, // Used only if HLS_SINGLE_FILE flag is set
+    Used only if HLS_SINGLE_FILE flag is set
+    ***********************************************************/
+    public int64 pos,
     /***********************************************************
-        ***********************************************************/
-    string baseurl, // Ignored if NULL
+    Ignored if NULL
+    ***********************************************************/
+    string baseurl,
     string filename,
     out double prog_date_time,
-    int64 video_keyframe_size,
-    int64 video_keyframe_pos,
-    int iframe_mode
+    public int64 video_keyframe_size,
+    public int64 video_keyframe_pos,
+    public int iframe_mode
 );
 
 [CCode (cname="", cheader_filename="")]

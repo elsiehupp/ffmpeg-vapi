@@ -50,19 +50,19 @@ within a single video surface, with additional information as needed.
 public class Stereo3D {
     /***********************************************************
     @brief How views are packed within the video.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="type")]
     public Stereo3DType type;
 
     /***********************************************************
     @brief Additional information about the frame packing.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="flags")]
     public int flags;
 
     /***********************************************************
     @brief Determines which views are packed.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="view")]
     public Stereo3DView view;
 
@@ -71,7 +71,7 @@ public class Stereo3D {
     The resulting struct can be freed using av_freep ().
 
     @return An Stereo3D filled with default values or null on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_stereo3d_alloc", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
     public Stereo3D av_stereo3d_alloc ();
 
@@ -81,7 +81,7 @@ public class Stereo3D {
     @param frame The frame which side data is added to.
 
     @return The Stereo3D structure to be filled by caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_stereo3d_create_side_data", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
     public Stereo3D av_stereo3d_create_side_data (
         Frame frame
@@ -93,7 +93,7 @@ public class Stereo3D {
     @param type The input stereo3d type value.
 
     @return The name of the stereo3d value, or "unknown".
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_stereo3d_type_name", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
     public string av_stereo3d_type_name (
         uint type
@@ -105,7 +105,7 @@ public class Stereo3D {
     @param name The input string.
 
     @return The Stereo3DType value, or -1 if not found.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_stereo3d_from_name", cheader_filename="ffmpeg/libavutil/stereo3d.h")]
     public int av_stereo3d_from_name (
         string name

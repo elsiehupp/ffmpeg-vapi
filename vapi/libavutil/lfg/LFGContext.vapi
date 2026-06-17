@@ -47,7 +47,7 @@ public class LFGContext {
     @brief Seed the state of the LFGContext using binary data.
 
     Return value: 0 on success, negative value (LibAVUtil.ErrorCode) on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_lfg_init_from_data", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public int av_lfg_init_from_data (
         LFGContext lfg_context,
@@ -60,7 +60,7 @@ public class LFGContext {
 
     Please also consider a simple LCG like state= state*1664525+1013904223,
     it may be good enough and faster for your specific use case.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_lfg_get", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public static uint av_lfg_get (
         LFGContext lfg_context
@@ -70,7 +70,7 @@ public class LFGContext {
     @brief Get the next random uint 32-bit number using a MLFG.
 
     Please also consider av_lfg_get () above, it is faster.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_mlfg_get", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public static uint av_mlfg_get (
         LFGContext lfg_context
@@ -81,7 +81,7 @@ public class LFGContext {
     generator using the random numbers issued by lfg.
 
     @param output_buffer array where the two generated numbers are placed
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bmg_get", cheader_filename="ffmpeg/libavutil/lfg.h")]
     public void av_bmg_get (
         LFGContext lfg,

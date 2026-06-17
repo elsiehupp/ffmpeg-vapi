@@ -139,8 +139,8 @@ Function attribute used on a function that allocates memory, whose size is
 given by the specified parameter (s).
 
 @code {.c}
-void *av_malloc (size_t size) av_alloc_size (1);
-void *av_calloc (size_t nmemb, size_t size) av_alloc_size (1, 2);
+public void *av_malloc (size_t size) av_alloc_size (1);
+public void *av_calloc (size_t nmemb, size_t size) av_alloc_size (1, 2);
 @endcode
 
 @param ... One or two parameter indexes, separated by a comma
@@ -174,7 +174,7 @@ caution when doing so.
 ***********************************************************/
 [CCode (cname="av_malloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_malloc (
-    size_t size
+    public size_t size
 ); // av_malloc_attrib av_alloc_size (1);
 
 /***********************************************************
@@ -188,7 +188,7 @@ block.
 ***********************************************************/
 [CCode (cname="av_mallocz", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_mallocz (
-    size_t size
+    public size_t size
 ); // av_malloc_attrib av_alloc_size (1);
 
 /***********************************************************
@@ -204,8 +204,8 @@ The allocated memory will have size `size * nmemb` bytes.
 ***********************************************************/
 [CCode (cname="av_malloc_array", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_malloc_array (
-    size_t nmemb,
-    size_t size
+    public size_t nmemb,
+    public size_t size
 ); // av_alloc_size (1, 2)
 
 /***********************************************************
@@ -223,8 +223,8 @@ The allocated memory will have size `size * nmemb` bytes.
 ***********************************************************/
 [CCode (cname="av_mallocz_array", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_mallocz_array (
-    size_t nmemb,
-    size_t size
+    public size_t nmemb,
+    public size_t size
 ); // av_alloc_size (1, 2)
 
 /***********************************************************
@@ -234,8 +234,8 @@ Created for symmetry with the calloc () C function.
 ***********************************************************/
 [CCode (cname="av_calloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_calloc (
-    size_t nmemb,
-    size_t size
+    public size_t nmemb,
+    public size_t size
 ); // av_malloc_attrib;
 
 /***********************************************************
@@ -261,7 +261,7 @@ shrink that block of memory according to `size`.
 [CCode (cname="av_realloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_realloc (
     out void *ptr,
-    size_t size
+    public size_t size
 ); // av_alloc_size (2);
 
 /***********************************************************
@@ -286,7 +286,7 @@ shrink that block of memory according to `size`.
 [CCode (cname="av_reallocp", cheader_filename="ffmpeg/libavutil/mem.h")]
 public int av_reallocp (
     out void *ptr,
-    size_t size
+    public size_t size
 ); // av_warn_unused_result
 
 /***********************************************************
@@ -307,8 +307,8 @@ This function does the same thing as av_realloc (), except:
 [CCode (cname="av_realloc_f", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_realloc_f (
     out void *ptr,
-    size_t nelem,
-    size_t elsize
+    public size_t nelem,
+    public size_t elsize
 );
 
 /***********************************************************
@@ -332,8 +332,8 @@ If `ptr` is `null` and `nmemb` > 0, allocate a new block. If
 [CCode (cname="av_realloc_array", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_realloc_array (
     out void *ptr,
-    size_t nmemb,
-    size_t size
+    public size_t nmemb,
+    public size_t size
 ); // av_alloc_size (2, 3)
 
 /***********************************************************
@@ -356,8 +356,8 @@ zero, free the memory block pointed to by `*ptr`.
 [CCode (cname="av_reallocp_array", cheader_filename="ffmpeg/libavutil/mem.h")]
 public int av_reallocp_array (
     out void *ptr,
-    size_t nmemb,
-    size_t size
+    public size_t nmemb,
+    public size_t size
 );
 
 /***********************************************************
@@ -396,7 +396,7 @@ if (!new_buf) {
 public void *av_fast_realloc (
     out void *ptr,
     out uint size,
-    size_t min_size
+    public size_t min_size
 );
 
 /***********************************************************
@@ -432,7 +432,7 @@ if (!buffer) {
 public void av_fast_malloc (
     out void *ptr,
     out uint size,
-    size_t min_size
+    public size_t min_size
 );
 
 /***********************************************************
@@ -457,7 +457,7 @@ Reused buffer is not cleared.
 public void av_fast_mallocz (
     out void *ptr,
     out uint size,
-    size_t min_size
+    public size_t min_size
 );
 
 /***********************************************************
@@ -527,7 +527,7 @@ public string av_strdup (
 [CCode (cname="av_strndup", cheader_filename="ffmpeg/libavutil/mem.h")]
 public string av_strndup (
     string s,
-    size_t len
+    public size_t len
 ); // av_malloc_attrib;
 
 /***********************************************************
@@ -541,7 +541,7 @@ public string av_strndup (
 [CCode (cname="av_memdup", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void *av_memdup (
     void *p,
-    size_t size
+    public size_t size
 );
 
 /***********************************************************
@@ -558,8 +558,8 @@ public void *av_memdup (
 [CCode (cname="av_memcpy_backptr", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void av_memcpy_backptr (
     out uint8[] output_buffer,
-    int back,
-    int cnt
+    public int back,
+    public int cnt
 );
 
 /***********************************************************
@@ -583,7 +583,7 @@ av_dynarray_add_nofree () implement this system.
 
 @code
 type **array = null; ///< an array of pointers to values
-int nb = 0; ///< a variable to keep track of the length of the array
+public int nb = 0; ///< a variable to keep track of the length of the array
 
 type to_be_added = ...;
 type to_be_added2 = ...;
@@ -610,7 +610,7 @@ implements this mechanism.
 
 @code
 type array = null; ///< an array of values
-int nb = 0; ///< a variable to keep track of the length of the array
+public int nb = 0; ///< a variable to keep track of the length of the array
 
 type to_be_added = ...;
 type to_be_added2 = ...;
@@ -707,7 +707,7 @@ In case of failure, the array is freed, `*tab_ptr` is set to `null` and
 public void *av_dynarray2_add (
     out void *tab_ptr,
     out int nb_ptr,
-    size_t elem_size,
+    public size_t elem_size,
     uint8[] elem_data
 );
 
@@ -726,8 +726,8 @@ Other functions related to memory allocation.
 ***********************************************************/
 [CCode (cname="av_size_mult", cheader_filename="ffmpeg/libavutil/mem.h")]
 public static int av_size_mult (
-    size_t a,
-    size_t b,
+    public size_t a,
+    public size_t b,
     out size_t r
 );
 
@@ -746,7 +746,7 @@ By default, the max value is defined as `int.MAX`.
 ***********************************************************/
 [CCode (cname="av_max_alloc", cheader_filename="ffmpeg/libavutil/mem.h")]
 public void av_max_alloc (
-    size_t max
+    public size_t max
 );
 
 } // namespace LibAVUtil

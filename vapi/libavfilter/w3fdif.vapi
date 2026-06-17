@@ -21,21 +21,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [Compact]
 public class W3FDIFDSPContext {
     void (*filter_simple_low)(int32 *work_line,
-                              uint8 *in_lines_cur[2],
+                              uint8[] in_lines_cur[2],
                               int16 *coef, int linesize);
     void (*filter_complex_low)(int32 *work_line,
-                               uint8 *in_lines_cur[4],
+                               uint8[] in_lines_cur[4],
                                int16 *coef, int linesize);
     void (*filter_simple_high)(int32 *work_line,
-                               uint8 *in_lines_cur[3],
-                               uint8 *in_lines_adj[3],
+                               uint8[] in_lines_cur[3],
+                               uint8[] in_lines_adj[3],
                                int16 *coef, int linesize);
     void (*filter_complex_high)(int32 *work_line,
-                                uint8 *in_lines_cur[5],
-                                uint8 *in_lines_adj[5],
+                                uint8[] in_lines_cur[5],
+                                uint8[] in_lines_adj[5],
                                 int16 *coef, int linesize);
-    void (*filter_scale)(uint8 *out_pixel, int32 *work_pixel,
+    void (*filter_scale)(uint8[] out_pixel, int32 *work_pixel,
                          int linesize, int max);
 }
 
-void ff_w3fdif_init_x86 (W3FDIFDSPContext *dsp, int depth);
+public void ff_w3fdif_init_x86 (W3FDIFDSPContext *dsp, int depth);

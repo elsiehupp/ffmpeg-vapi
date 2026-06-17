@@ -113,7 +113,7 @@ public class WAVDemuxer : AVInputFormat {
             return AVFMT_GENERIC_INDEX;
         }
     }
-    //  .codec_tag = (AVCodecTag[]) { ff_codec_wav_tags,  0 },
+    //  .codec_tag = (AVCodecTag[]) { ff_codec_wav_tags, 0 },
     //  .priv_class = wav_demuxer_class,
 }
 #endif /***********************************************************

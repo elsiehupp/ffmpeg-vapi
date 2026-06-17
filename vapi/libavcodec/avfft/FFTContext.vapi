@@ -36,7 +36,7 @@ public class FFTContext {
     @brief Set up a complex FFT.
     @param nbits log2 of the length of the input array
     @param inverse if 0 perform the forward transform, if 1 perform the inverse
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_fft_init", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public FFTContext av_fft_init (
         int nbits,
@@ -45,7 +45,7 @@ public class FFTContext {
 
     /***********************************************************
     @brief Do the permutation needed BEFORE calling ff_fft_calc ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_fft_permute", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public void av_fft_permute (
         FFTContext fft_context,
@@ -55,7 +55,7 @@ public class FFTContext {
     /***********************************************************
     @brief Do a complex FFT with the parameters defined in av_fft_init (). The
     input data must be permuted before. No 1.0/sqrt (n) normalization is done.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_fft_calc", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public void av_fft_calc (
         FFTContext fft_context,

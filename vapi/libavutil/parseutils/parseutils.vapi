@@ -44,8 +44,8 @@ level of log_ctx
 public int av_parse_ratio (
     Rational q,
     string str,
-    int max,
-    int log_offset,
+    public int max,
+    public int log_offset,
     void *log_ctx
 );
 
@@ -53,7 +53,7 @@ public int av_parse_ratio (
 public int av_parse_ratio_quiet (
     Rational rate,
     string str,
-    int max
+    public int max
 );
 
 /***********************************************************
@@ -112,7 +112,7 @@ public int av_parse_video_rate (
 public int av_parse_color (
     out uint8 rgba_color,
     string color_string,
-    int slen,
+    public int slen,
     void *log_ctx
 );
 
@@ -129,7 +129,7 @@ av_parse_color ().
 ***********************************************************/
 [CCode (cname="av_get_known_color_name", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public string av_get_known_color_name (
-    int color_idx,
+    public int color_idx,
     out uint8[] rgb
 );
 
@@ -152,7 +152,7 @@ now
 @endcode
 If the value is "now" it takes the current time.
 Time is local time unless Z is appended, in which case it is
-interpreted as UTC.
+public interpreted as UTC.
 If the year-month-day part is not specified it takes the current
 year-month-day.
 - If a duration the syntax is:
@@ -169,7 +169,7 @@ LibAVUtil.ErrorCode code otherwise
 public int av_parse_time (
     out int64 timeval,
     string timestr,
-    int duration
+    public int duration
 );
 
 /***********************************************************
@@ -181,7 +181,7 @@ Return 1 if found.
 [CCode (cname="av_find_info_tag", cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_find_info_tag (
     string arg,
-    int arg_size,
+    public int arg_size,
     string tag1,
     string info
 );

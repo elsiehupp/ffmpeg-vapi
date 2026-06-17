@@ -35,19 +35,19 @@ public class QSVContext {
     /***********************************************************
     @brief If non-null, the session to use for encoding or decoding.
     Otherwise, LibAVCodec will try to create an internal session.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="session")]
     public mfxSession session;
 
     /***********************************************************
     @brief The IO pattern to use.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="iopattern")]
     public int iopattern;
 
     /***********************************************************
     @brief Extra buffers to pass to encoder or decoder initialization.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="ext_buffers")]
     public mfxExtBuffer[] ext_buffers;
 
@@ -64,7 +64,7 @@ public class QSVContext {
     required by the encoder and the user-provided value nb_opaque_surfaces.
     The array of the opaque surfaces will be exported to the caller through
     the opaque_surfaces field.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="opaque_alloc")]
     public int opaque_alloc;
 
@@ -76,7 +76,7 @@ public class QSVContext {
 
     On return from avcodec_open2 (), this field will be set by LibAVCodec to
     the total number of allocated opaque surfaces.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_opaque_surfaces")]
     public int nb_opaque_surfaces;
 
@@ -91,7 +91,7 @@ public class QSVContext {
     it with av_buffer_unref () when it is no longer needed.
 
     The buffer data is an nb_opaque_surfaces-sized array of mfxFrameSurface1.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="opaque_surfaces")]
     public LibAVUtil.BufferRef opaque_surfaces;
 
@@ -99,7 +99,7 @@ public class QSVContext {
     @brief Encoding only, and only if opaque_alloc is set to non-zero. On return
     from avcodec_open2 (), this field will be set to the surface type used in
     the opaque allocation request.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="opaque_alloc_type")]
     public int opaque_alloc_type;
 
@@ -107,7 +107,7 @@ public class QSVContext {
     @brief Allocate a new context.
 
     It must be freed by the caller with av_free ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_qsv_alloc_context", cheader_filename="ffmpeg/libavcodec/qsv.h")]
     public QSVContext av_qsv_alloc_context ();
 }

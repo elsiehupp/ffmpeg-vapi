@@ -23,17 +23,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 public class RemoveGrainContext {
     const AVClass *class;
 
-    int mode[4];
+    public int mode[4];
 
-    int nb_planes;
-    int planewidth[4];
-    int planeheight[4];
-    int skip_even;
-    int skip_odd;
+    public int nb_planes;
+    public int planewidth[4];
+    public int planeheight[4];
+    public int skip_even;
+    public int skip_odd;
 
-    int (*rg[4])(int c, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8);
+    public int (*rg[4])(int c, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8);
 
-    void (*fl[4])(uint8 *dst, uint8 *src, ptrdiff_t stride, int pixels);
+    void (*fl[4])(uint8[] dst, uint8[] src, ptrdiff_t stride, int pixels);
 }
 
-void ff_removegrain_init_x86 (RemoveGrainContext *rg);
+public void ff_removegrain_init_x86 (RemoveGrainContext *rg);

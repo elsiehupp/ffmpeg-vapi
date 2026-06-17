@@ -29,13 +29,13 @@ public enum StringEscapeFlags {
     This is equivalent to adding the whitespace characters to the special
     characters lists, except it is guaranteed to use the exact same list
     of whitespace characters as the rest of libavutil.
-        ***********************************************************/
+    ***********************************************************/
     WHITESPACE,
 
     /***********************************************************
     @brief Escape only specified special characters.
     Without this flag, escape also any characters that may be considered
     special by av_get_token (), such as the single quote.
-        ***********************************************************/
+    ***********************************************************/
     STRICT,
 }

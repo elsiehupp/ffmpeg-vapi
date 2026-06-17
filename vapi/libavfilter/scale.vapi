@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_scale_eval_dimensions (void *ctx,
+public int ff_scale_eval_dimensions (void *ctx,
     string w_expr, string h_expr,
     AVFilterLink *inlink, AVFilterLink *outlink,
-    int *ret_w, int *ret_h);
+    public int *ret_w, int *ret_h);

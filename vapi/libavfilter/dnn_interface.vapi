@@ -42,35 +42,49 @@ public enum DNNDataType {
 public class DNNInputData {
     void *data;
     DNNDataType dt;
-    int width, height, channels;
+    public int width, height, channels;
 }
 
 [Compact]
 public class DNNData {
     float *data;
-    int width, height, channels;
+    public int width, height, channels;
 }
 
 [Compact]
 public class DNNModel {
+    /***********************************************************
+    ***********************************************************/
     // Stores model that can be different for different backends.
     void *model;
+    /***********************************************************
+    ***********************************************************/
     // Sets model input and output.
     // Should be called at least once before model execution.
     DNNReturnType (*set_input_output)(void *model, DNNInputData *input, string input_name, string *output_names, uint32 nb_output);
 }
 
+/***********************************************************
+***********************************************************/
 // Stores pointers to functions for loading, executing, freeing DNN models for one of the backends.
 [Compact]
 public class DNNModule {
+    /***********************************************************
+    ***********************************************************/
     // Loads model and parameters from given file. Returns NULL if it is not possible.
     DNNModel *(*load_model)(string model_filename);
+    /***********************************************************
+    ***********************************************************/
     // Executes model with specified input and output. Returns DNN_ERROR otherwise.
     DNNReturnType (*execute_model)(const DNNModel *model, DNNData *outputs, uint32 nb_output);
+    /***********************************************************
+    ***********************************************************/
     // Frees memory allocated for model.
     void (*free_model)(DNNModel **model);
 }
 
+/***********************************************************
+***********************************************************/
 // Initializes DNNModule depending on chosen backend.
 DNNModule *ff_get_dnn_module (DNNBackendType backend_type);
 

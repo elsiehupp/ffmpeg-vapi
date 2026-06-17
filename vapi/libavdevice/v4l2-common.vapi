@@ -16,14 +16,15 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-struct fmt_map {
-    enum AVPixelFormat ff_fmt;
-    enum AVCodecID codec_id;
+[Compact]
+public class fmt_map {
+    public AVPixelFormat ff_fmt;
+    public AVCodecID codec_id;
     uint32 v4l2_fmt;
 }
 
 //  extern const struct fmt_map ff_fmt_conversion_table[];
 
 uint32 ff_fmt_ff2v4l (AVPixelFormat pix_fmt, AVCodecID codec_id);
-enum AVPixelFormat ff_fmt_v4l2ff (uint32 v4l2_fmt, AVCodecID codec_id);
-enum AVCodecID ff_fmt_v4l2codec (uint32 v4l2_fmt);
+public AVPixelFormat ff_fmt_v4l2ff (uint32 v4l2_fmt, AVCodecID codec_id);
+public AVCodecID ff_fmt_v4l2codec (uint32 v4l2_fmt);

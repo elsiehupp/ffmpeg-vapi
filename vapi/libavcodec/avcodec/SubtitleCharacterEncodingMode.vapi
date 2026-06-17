@@ -31,20 +31,20 @@ public enum SubtitleCharacterEncodingMode {
     /***********************************************************
     @brief Do nothing (demuxer outputs a stream supposed to be already
     in UTF-8, or the codec is bitmap for instance).
-        ***********************************************************/
+    ***********************************************************/
     FF_SUB_CHARENC_MODE_DO_NOTHING,
     /***********************************************************
     @brief LibAVCodec will select the mode itself
-        ***********************************************************/
+    ***********************************************************/
     FF_SUB_CHARENC_MODE_AUTOMATIC,
     /***********************************************************
     @brief The Packet data needs to be recoded to UTF-8 before being
     fed to the decoder, requires iconv
-        ***********************************************************/
+    ***********************************************************/
     FF_SUB_CHARENC_MODE_PRE_DECODER,
     /***********************************************************
     @brief Neither convert the subtitles, nor check them for valid UTF-8
-        ***********************************************************/
+    ***********************************************************/
     FF_SUB_CHARENC_MODE_IGNORE,
 }
 

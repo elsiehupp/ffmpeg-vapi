@@ -42,7 +42,7 @@ public int av_file_map (
     string filename,
     out uint8[] bufptr,
     out size_t size,
-    int log_offset,
+    public int log_offset,
     void *log_ctx
 );
 
@@ -55,7 +55,7 @@ by av_file_map ()
 [CCode (cname="av_file_unmap", cheader_filename="ffmpeg/libavutil/file.h")]
 public void av_file_unmap (
     uint8[] bufptr,
-    size_t size
+    public size_t size
 );
 
 /***********************************************************
@@ -74,7 +74,7 @@ Also, tries to create file in /tmp first, if possible.
 public int av_tempfile (
     string prefix,
     out string filename,
-    int log_offset,
+    public int log_offset,
     void *log_ctx
 );
 

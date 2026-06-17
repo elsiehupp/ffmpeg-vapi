@@ -31,4 +31,4 @@ public class BWDIFContext {
                         int parity, int clip_max, int spat);
 }
 
-void ff_bwdif_init_x86 (BWDIFContext *bwdif);
+public void ff_bwdif_init_x86 (BWDIFContext *bwdif);

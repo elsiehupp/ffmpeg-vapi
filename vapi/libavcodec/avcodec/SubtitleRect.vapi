@@ -31,31 +31,31 @@ LibAVCodec external API header
 public class SubtitleRect {
     /***********************************************************
     @brief Top left corner of pict, undefined when pict is not set
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="x")]
     public int x;
 
     /***********************************************************
     @brief Top left corner of pict, undefined when pict is not set
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="y")]
     public int y;
 
     /***********************************************************
     @brief Width of pict, undefined when pict is not set
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="w")]
     public int w;
 
     /***********************************************************
     @brief Height of pict, undefined when pict is not set
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="h")]
     public int h;
 
     /***********************************************************
     @brief Number of colors in pict, undefined when pict is not set
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_colors")]
     public int nb_colors;
 
@@ -63,15 +63,15 @@ public class SubtitleRect {
     @brief Data for the bitmap of this subtitle.
 
     @note Can be set for text/ass as well once they are rendered.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="data")]
-    public uint8 *data[4];
+    public uint8[] data[4];
 
     /***********************************************************
     @brief Line size for the bitmap of this subtitle.
 
     @note Can be set for text/ass as well once they are rendered.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="linesize")]
     public int linesize[4];
 
@@ -80,7 +80,7 @@ public class SubtitleRect {
 
     /***********************************************************
     @brief 0-terminated plain UTF-8 text
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="text")]
     public string text;
 
@@ -88,7 +88,7 @@ public class SubtitleRect {
     @brief 0-terminated ASS/SSA compatible event line.
     The presentation of this is unaffected by the other values in this
     struct.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="ass")]
     public string ass;
 

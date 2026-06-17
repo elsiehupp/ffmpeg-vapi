@@ -123,7 +123,7 @@ public class MXFSamplesPerFrame {
 
 [CCode (cname="", cheader_filename="")]
 public int ff_mxf_decode_pixel_layout (
-    char pixel_layout[16],
+    public char pixel_layout[16],
     LibAVUtil.PixelFormat pix_fmt
 );
 

@@ -16,9 +16,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-enum var_name {
-    VAR_MAIN_W,    VAR_MW,
-    VAR_MAIN_H,    VAR_MH,
+public enum var_name {
+    VAR_MAIN_W, VAR_MW,
+    VAR_MAIN_H, VAR_MH,
     VAR_OVERLAY_W, VAR_OW,
     VAR_OVERLAY_H, VAR_OH,
     VAR_HSUB,
@@ -31,7 +31,7 @@ enum var_name {
     VAR_VARS_NB
 }
 
-enum OverlayFormat {
+public enum OverlayFormat {
     OVERLAY_FORMAT_YUV420,
     OVERLAY_FORMAT_YUV422,
     OVERLAY_FORMAT_YUV444,
@@ -50,55 +50,55 @@ public class OverlayContext {
     /***********************************************************
     position of overlaid picture
     ***********************************************************/
-    int x, y; ///<
+    public int x, y;
 
-    uint8 main_is_packed_rgb;
-    uint8 main_rgba_map[4];
-    uint8 main_has_alpha;
-    uint8 overlay_is_packed_rgb;
-    uint8 overlay_rgba_map[4];
-    uint8 overlay_has_alpha;
+    public uint8 main_is_packed_rgb;
+    public uint8 main_rgba_map[4];
+    public uint8 main_has_alpha;
+    public uint8 overlay_is_packed_rgb;
+    public uint8 overlay_rgba_map[4];
+    public uint8 overlay_has_alpha;
     /***********************************************************
     OverlayFormat
     ***********************************************************/
-    int format; ///<
-    int alpha_format;
+    public int format;
+    public int alpha_format;
     /***********************************************************
     EvalMode
     ***********************************************************/
-    int eval_mode; ///<
+    public int eval_mode;
 
     FFFrameSync fs;
 
     /***********************************************************
     steps per pixel for each plane of the main output
     ***********************************************************/
-    int main_pix_step[4]; ///<
+    public int main_pix_step[4];
     /***********************************************************
     steps per pixel for each plane of the overlay
     ***********************************************************/
-    int overlay_pix_step[4]; ///<
+    public int overlay_pix_step[4];
     /***********************************************************
     chroma subsampling values
     ***********************************************************/
     /***********************************************************
     chroma subsampling values
     ***********************************************************/
-    int hsub, vsub; ///<
+    public int hsub, vsub;
     /***********************************************************
     format descriptor for main input
     ***********************************************************/
-    const AVPixFmtDescriptor *main_desc; ///<
+    const AVPixFmtDescriptor *main_desc;
 
     double var_values[VAR_VARS_NB];
     string x_expr, *y_expr;
 
     AVExpr *x_pexpr, *y_pexpr;
 
-    int (*blend_row[4])(uint8 *d, uint8 *da, uint8 *s, uint8 *a, int w,
+    public int (*blend_row[4])(uint8[] d, uint8[] da, uint8[] s, uint8[] a, int w,
                         ptrdiff_t alinesize);
-    int (*blend_slice)(AVFilterContext *ctx, void *arg, int jobnr, int nb_jobs);
+    public int (*blend_slice)(AVFilterContext *ctx, void *arg, int jobnr, int nb_jobs);
 }
 
-void ff_overlay_init_x86 (OverlayContext *s, int format, int pix_format,
+public void ff_overlay_init_x86 (OverlayContext *s, int format, int pix_format,
                          int alpha_format, int main_has_alpha);

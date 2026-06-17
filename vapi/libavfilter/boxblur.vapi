@@ -22,8 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class FilterParam {
-    int radius;
-    int power;
+    public int radius;
+    public int power;
     string radius_expr;
 }
 
@@ -32,7 +32,7 @@ public class FilterParam {
 #define V 2
 #define A 3
 
-int ff_boxblur_eval_filter_params (AVFilterLink *inlink,
+public int ff_boxblur_eval_filter_params (AVFilterLink *inlink,
                                   FilterParam *luma_param,
                                   FilterParam *chroma_param,
                                   FilterParam *alpha_param);

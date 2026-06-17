@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class FFRawVideoDemuxerContext {
     /***********************************************************
     @brief Class for private options.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class class;
 
@@ -36,19 +36,19 @@ public class FFRawVideoDemuxerContext {
 
     /***********************************************************
     @brief String describing video size, set by a private option.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public string video_size;
 
     /***********************************************************
     @brief Set by a private option.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public string pixel_format;
 
     /***********************************************************
     @brief LibAVUtil.Rational describing framerate, set by a private option.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Rational framerate;
 }
@@ -58,7 +58,7 @@ public class FFRawVideoDemuxerContext {
 public class FFRawDemuxerContext {
     /***********************************************************
     @brief Class for private options.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public LibAVUtil.Class class;
 

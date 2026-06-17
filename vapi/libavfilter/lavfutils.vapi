@@ -31,6 +31,6 @@ Load image from filename and put the resulting image in data.
 @param log_ctx log context
 @return >= 0 in case of success, a negative error code otherwise.
 ***********************************************************/
-int ff_load_image (uint8 *data[4], int linesize[4],
+public int ff_load_image (uint8[] data[4], int linesize[4],
                   int *w, int *h, AVPixelFormat *pix_fmt,
                   string filename, void *log_ctx);

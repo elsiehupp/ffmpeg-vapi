@@ -30,41 +30,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class AVMotionEstPredictor {
-    int mvs[10][2];
-    int nb;
+    public int mvs[10][2];
+    public int nb;
 }
 
 [Compact]
 public class AVMotionEstContext {
-    uint8 *data_cur, *data_ref;
-    int linesize;
+    uint8[] data_cur, *data_ref;
+    public int linesize;
 
-    int mb_size;
-    int search_param;
+    public int mb_size;
+    public int search_param;
 
-    int width;
-    int height;
+    public int width;
+    public int height;
 
-    int x_min;
-    int x_max;
-    int y_min;
-    int y_max;
+    public int x_min;
+    public int x_max;
+    public int y_min;
+    public int y_max;
 
     /***********************************************************
     median predictor x
     ***********************************************************/
-    int pred_x; ///<
+    public int pred_x;
     /***********************************************************
     median predictor y
     ***********************************************************/
-    int pred_y; ///<
+    public int pred_y;
     AVMotionEstPredictor preds[2];
 
-    uint64 (*get_cost)(AVMotionEstContext *me_ctx, int x_mb, int y_mb,
+    public uint64 (*get_cost)(AVMotionEstContext *me_ctx, int x_mb, int y_mb,
                          int mv_x, int mv_y);
 }
 
-void ff_me_init_context (AVMotionEstContext *me_ctx, int mb_size, int search_param,
+public void ff_me_init_context (AVMotionEstContext *me_ctx, int mb_size, int search_param,
                         int width, int height, int x_min, int x_max, int y_min, int y_max);
 
 uint64 ff_me_cmp_sad (AVMotionEstContext *me_ctx, int x_mb, int y_mb, int x_mv, int y_mv);

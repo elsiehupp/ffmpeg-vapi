@@ -27,28 +27,28 @@ namespace LibAVUtil {
 public enum PixelLossFlags {
     /***********************************************************
     @brief Loss due to resolution change
-        ***********************************************************/
+    ***********************************************************/
     RESOLUTION,
     /***********************************************************
     @brief Loss due to color depth change
-        ***********************************************************/
+    ***********************************************************/
     DEPTH,
     /***********************************************************
     @brief Loss due to color space conversion
-        ***********************************************************/
+    ***********************************************************/
     COLORSPACE,
     /***********************************************************
     @brief Loss of alpha bits
-        ***********************************************************/
+    ***********************************************************/
     ALPHA,
     /***********************************************************
     @brief Loss due to color quantization
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="FF_LOSS_COLORQUANT")]
     COLOR_QUANTIZATION,
     /***********************************************************
     @brief Loss of chroma (e.g. RGB to gray conversion)
-        ***********************************************************/
+    ***********************************************************/
     CHROMA;
 
 
@@ -69,7 +69,7 @@ public enum PixelLossFlags {
     @param[in] has_alpha Whether the source pixel format alpha channel is used.
     @return Combination of flags informing you what kind of losses will occur
     (maximum loss for an invalid output_pix_fmt).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_pix_fmt_loss", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static PixelLossFlags av_get_pix_fmt_loss (
         PixelFormat output_pix_fmt,
@@ -95,7 +95,7 @@ public enum PixelLossFlags {
     @param[in] has_alpha Whether the source pixel format alpha channel is used.
     @return Combination of flags informing you what kind of losses will occur
         (maximum loss for an invalid output_pix_fmt).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_find_best_pix_fmt_of_2", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static PixelFormat av_find_best_pix_fmt_of_2 (
         PixelFormat output_pix_fmt1,

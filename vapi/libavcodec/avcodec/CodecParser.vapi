@@ -45,14 +45,14 @@ public delegate void ParserCloseDelegate (
 public delegate int ParserSplitDelegate (
     CodecContext avctx,
     uint8[] buffer,
-    int buf_size
+    public int buf_size
 );
 
 [CCode (cname="struct AVCodecParser", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public abstract class CodecParser {
     /***********************************************************
     @brief Several codec IDs are permitted
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="codec_ids")]
     public int codec_ids[5];
 
@@ -65,7 +65,7 @@ public abstract class CodecParser {
     /***********************************************************
     @brief This callback never returns an error. A negative value means
     that the frame start was in a previous packet.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="parser_parse")]
     public ParserParseDelegate parser_parse;
 
@@ -87,7 +87,7 @@ public abstract class CodecParser {
 
     @return the next registered codec parser or null when the
     iteration is finished
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_parser_iterate", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecParser av_parser_iterate (out void *opaque);
 
@@ -141,7 +141,7 @@ pix_fmt_list parameter.
 public LibAVUtil.PixelFormat avcodec_find_best_pix_fmt_of_list (
     LibAVUtil.PixelFormat[] pix_fmt_list,
     LibAVUtil.PixelFormat input_pix_fmt,
-    int has_alpha, out int loss_ptr
+    public int has_alpha, out int loss_ptr
 );
 
 /***********************************************************
@@ -170,11 +170,11 @@ case of success, at the next libavutil bump
 [CCode (cname="avcodec_fill_audio_frame", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public int avcodec_fill_audio_frame (
     LibAVUtil.Frame frame,
-    int nb_channels,
+    public int nb_channels,
     LibAVUtil.SampleFormat sample_fmt,
     uint8[] buffer,
-    int buf_size,
-    int align
+    public int buf_size,
+    public int align
 );
 
 /***********************************************************
@@ -186,7 +186,7 @@ public int avcodec_fill_audio_frame (
 [CCode (cname="av_get_pcm_codec", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public CodecID av_get_pcm_codec (
     LibAVUtil.SampleFormat fmt,
-    int be
+    public int be
 );
 
 } // namespace LibAVCodec

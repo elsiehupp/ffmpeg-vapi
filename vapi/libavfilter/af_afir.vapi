@@ -20,16 +20,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class AudioFIRSegment {
-    int nb_partitions;
-    int part_size;
-    int block_size;
-    int fft_length;
-    int coeff_size;
-    int input_size;
-    int input_offset;
+    public int nb_partitions;
+    public int part_size;
+    public int block_size;
+    public int fft_length;
+    public int coeff_size;
+    public int input_size;
+    public int input_offset;
 
-    int[] output_offset;
-    int[] part_index;
+    public int[] output_offset;
+    public int[] part_index;
 
     AVFrame *sum;
     AVFrame *block;
@@ -54,38 +54,38 @@ public class AudioFIRContext {
     float wet_gain;
     float dry_gain;
     float length;
-    int gtype;
+    public int gtype;
     float ir_gain;
-    int ir_format;
+    public int ir_format;
     float max_ir_len;
-    int response;
-    int w, h;
-    AVRational frame_rate;
-    int ir_channel;
-    int minp;
-    int maxp;
+    public int response;
+    public int w, h;
+    public AVRational frame_rate;
+    public int ir_channel;
+    public int minp;
+    public int maxp;
 
     float gain;
 
-    int eof_coeffs;
-    int have_coeffs;
-    int nb_taps;
-    int nb_channels;
-    int nb_coef_channels;
-    int one2many;
+    public int eof_coeffs;
+    public int have_coeffs;
+    public int nb_taps;
+    public int nb_channels;
+    public int nb_coef_channels;
+    public int one2many;
 
     AudioFIRSegment seg[1024];
-    int nb_segments;
+    public int nb_segments;
 
     AVFrame *in[2];
     AVFrame *video;
-    int min_part_size;
-    int64 pts;
+    public int min_part_size;
+    public int64 pts;
 
     AudioFIRDSPContext afirdsp;
     AVFloatDSPContext *fdsp;
 
 }
 
-void ff_afir_init (AudioFIRDSPContext *s);
-void ff_afir_init_x86 (AudioFIRDSPContext *s);
+public void ff_afir_init (AudioFIRDSPContext *s);
+public void ff_afir_init_x86 (AudioFIRDSPContext *s);

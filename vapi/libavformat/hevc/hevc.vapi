@@ -48,9 +48,9 @@ discarded, and *ps_count will be set to the number of discarded PS NAL units.
 public int ff_hevc_annexb2mp4 (
     AVIOContext pb,
     uint8[] buf_in,
-    int size,
-    int filter_ps,
-    int[] ps_count
+    public int size,
+    public int filter_ps,
+    public int[] ps_count
 );
 
 /***********************************************************
@@ -80,9 +80,9 @@ On output, *size holds the size (in bytes) of the output data buffer.
 public int ff_hevc_annexb2mp4_buf (
     uint8[] buf_in,
     out uint8[] buf_out,
-    int[] size,
-    int filter_ps,
-    int[] ps_count
+    public int[] size,
+    public int filter_ps,
+    public int[] ps_count
 );
 
 /***********************************************************
@@ -104,8 +104,8 @@ writing.
 public int ff_isom_write_hvcc (
     AVIOContext pb,
     uint8[] data,
-    int size,
-    int ps_array_completeness
+    public int size,
+    public int ps_array_completeness
 );
 
 } // namespace LibAVFormat

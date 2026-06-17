@@ -44,37 +44,37 @@ The application must make it available as CodecContext.hwaccel_context.
 public class DirectXVideoAccelerationContext {
     /***********************************************************
     @brief DXVA2 decoder object
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="decoder")]
     public IDirectXVideoDecoder decoder;
 
     /***********************************************************
     @brief DXVA2 configuration used to create the decoder
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="cfg")]
     public DXVA2_ConfigPictureDecode cfg;
 
     /***********************************************************
     @brief The number of surface in the surface array
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surface_count")]
     public uint surface_count;
 
     /***********************************************************
     @brief The array of Direct3D surfaces used to create the decoder
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surface")]
     public LPDIRECT3DSURFACE9 surface;
 
     /***********************************************************
     @brief A bit field configuring the workarounds needed for using the decoder
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="workaround")]
     public uint64 workaround;
 
     /***********************************************************
     @brief Private to the FFmpeg HardwareAcceleration implementation
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="report_id")]
     public uint report_id;
 }

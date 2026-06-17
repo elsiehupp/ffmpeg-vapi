@@ -26,7 +26,7 @@ namespace LibAVFormat {
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 //  static const LibAVUtil.Option ff_avio_options[] = {
-//      {"protocol_whitelist", "List of protocols that are allowed to be used", OFFSET (protocol_whitelist), AV_OPT_TYPE_STRING, { .str = NULL },  CHAR_MIN, CHAR_MAX, D },
+//      {"protocol_whitelist", "List of protocols that are allowed to be used", OFFSET (protocol_whitelist), AV_OPT_TYPE_STRING, { .str = NULL }, CHAR_MIN, CHAR_MAX, D },
 //      { NULL },
 //  }
 

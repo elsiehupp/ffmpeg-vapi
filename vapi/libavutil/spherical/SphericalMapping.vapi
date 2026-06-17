@@ -51,7 +51,7 @@ information about projection, initial layout, and any other view modifier.
 public class SphericalMapping {
     /***********************************************************
     @brief Projection type.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="projection")]
     public SphericalProjection projection;
 
@@ -91,22 +91,22 @@ public class SphericalMapping {
     X - the default camera center
     ^ - the default up vector
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     /***********************************************************
     @brief Rotation around the up vector [-180, 180].
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="yaw")]
     public int32 yaw;
 
     /***********************************************************
     @brief Rotation around the right vector [-90, 90].
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pitch")]
     public int32 pitch;
 
     /***********************************************************
     @brief Rotation around the forward vector [-180, 180].
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="roll")]
     public int32 roll;
 
@@ -147,28 +147,28 @@ public class SphericalMapping {
     @note These values are valid only for the tiled equirectangular
         projection type (@link SphericalProjection.EQUIRECTANGULAR_TILE),
         and should be ignored in all other cases.
-        ***********************************************************/
+    ***********************************************************/
     /***********************************************************
     @brief Distance from the left edge
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bound_left")]
     public uint32 bound_left;
 
     /***********************************************************
     @brief Distance from the top edge
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bound_top")]
     public uint32 bound_top;
 
     /***********************************************************
     @brief Distance from the right edge
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bound_right")]
     public uint32 bound_right;
 
     /***********************************************************
     @brief Distance from the bottom edge
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bound_bottom")]
     public uint32 bound_bottom;
 
@@ -178,7 +178,7 @@ public class SphericalMapping {
     @note This value is valid for only for the cubemap projection type
         (@link SphericalProjection.CUBEMAP), and should be ignored in all other
         cases.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="padding")]
     public uint32 padding;
 
@@ -187,7 +187,7 @@ public class SphericalMapping {
     values.
 
     @return the newly allocated struct or null on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_spherical_alloc", cheader_filename="ffmpeg/libavutil/spherical.h")]
     public SphericalMapping av_spherical_alloc (
         size_t size
@@ -204,7 +204,7 @@ public class SphericalMapping {
     @param top Pixels from the top edge.
     @param right Pixels from the right edge.
     @param bottom Pixels from the bottom edge.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_spherical_tile_bounds", cheader_filename="ffmpeg/libavutil/spherical.h")]
     public void av_spherical_tile_bounds (
         SphericalMapping map,
@@ -222,7 +222,7 @@ public class SphericalMapping {
     @param projection The input SphericalProjection.
 
     @return The name of the SphericalProjection, or "unknown".
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_spherical_projection_name", cheader_filename="ffmpeg/libavutil/spherical.h")]
     public string av_spherical_projection_name (
         SphericalProjection projection
@@ -234,7 +234,7 @@ public class SphericalMapping {
     @param name The input string.
 
     @return The SphericalProjection value, or -1 if not found.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_spherical_from_name", cheader_filename="ffmpeg/libavutil/spherical.h")]
     public int av_spherical_from_name (
         string name

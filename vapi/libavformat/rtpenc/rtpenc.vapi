@@ -63,7 +63,7 @@ public class RTPMuxContext {
 
     /***********************************************************
     @brief Rtcp sender statistics
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int64 last_rtcp_ntp_time;
 
@@ -84,12 +84,12 @@ public class RTPMuxContext {
 
     /***********************************************************
     @brief Buffer for output
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint8[] buffer;
 
     [CCode (cname="", cheader_filename="")]
-    public uint8 *buf_ptr;
+    public uint8[] buf_ptr;
 
     [CCode (cname="", cheader_filename="")]
     public int max_frames_per_packet;
@@ -97,7 +97,7 @@ public class RTPMuxContext {
     /***********************************************************
     @brief Number of bytes used for H.264 NAL length, if the MP4 syntax is used
     (1, 2 or 4)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int nal_length_size;
 
@@ -132,102 +132,102 @@ public enum RTPEncoderFlags {
 public void ff_rtp_send_data (
     AVFormatContext s1,
     uint8[] buf1,
-    int len,
-    int m
+    public int len,
+    public int m
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_h264_hevc (
     AVFormatContext s1,
     uint8[] buf1,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_h261 (
     AVFormatContext s1,
     uint8[] buf1,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_h263 (
     AVFormatContext s1,
     uint8[] buf1,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_h263_rfc2190 (
     AVFormatContext s1,
     uint8[] buf1,
-    int size,
+    public int size,
     uint8[] mb_info,
-    int mb_info_size
+    public int mb_info_size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_aac (
     AVFormatContext s1,
     uint8[] buff,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_latm (
     AVFormatContext s1,
     uint8[] buff,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_amr (
     AVFormatContext s1,
     uint8[] buff,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_mpegvideo (
     AVFormatContext s1,
     uint8[] buf1,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_xiph (
     AVFormatContext s1,
     uint8[] buff,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_vc2hq (
     AVFormatContext s1,
     uint8[] buffer,
-    int size,
-    int interlaced
+    public int size,
+    public int interlaced
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_vp8 (
     AVFormatContext s1,
     uint8[] buff,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_vp9 (
     AVFormatContext s1,
     uint8[] buff,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_rtp_send_jpeg (
     AVFormatContext s1,
     uint8[] buff,
-    int size
+    public int size
 );
 
 [CCode (cname="", cheader_filename="")]

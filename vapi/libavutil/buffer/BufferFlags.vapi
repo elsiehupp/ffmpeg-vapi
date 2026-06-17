@@ -29,7 +29,7 @@ public enum BufferFlags {
     /***********************************************************
     @brief Always treat the buffer as read-only, even when it has only one
     reference.
-        ***********************************************************/
+    ***********************************************************/
     AV_BUFFER_FLAG_READONLY;
 }
 
@@ -150,7 +150,7 @@ a new buffer is allocated and the data is copied.
 [CCode (cname="av_buffer_realloc", cheader_filename="buffer.h")]
 public int av_buffer_realloc (
     LibAVUtil.BufferRef buffer,
-    size_t size
+    public size_t size
 );
 
 /***********************************************************

@@ -30,12 +30,12 @@ Unix socket url_protocol
 //  #define OFFSET (x) offsetof (UnixContext, x)
 //  #define ED AV_OPT_FLAG_DECODING_PARAM|AV_OPT_FLAG_ENCODING_PARAM
 //  static const LibAVUtil.Option unix_options[] = {
-//      { "listen",    "Open socket for listening",             OFFSET (listen),  AV_OPT_TYPE_BOOL,  { .i64 = 0 },                    0,       1, ED },
-//      { "timeout",   "Timeout in ms",                         OFFSET (timeout), AV_OPT_TYPE_INT,   { .i64 = -1 },                  -1, INT_MAX, ED },
-//      { "type",      "Socket type",                           OFFSET (type),    AV_OPT_TYPE_INT,   { .i64 = SOCK_STREAM },    INT_MIN, INT_MAX, ED, "type" },
-//      { "stream",    "Stream (reliable stream-oriented)",     0,               AV_OPT_TYPE_CONST, { .i64 = SOCK_STREAM },    INT_MIN, INT_MAX, ED, "type" },
-//      { "datagram",  "Datagram (unreliable packet-oriented)", 0,               AV_OPT_TYPE_CONST, { .i64 = SOCK_DGRAM },     INT_MIN, INT_MAX, ED, "type" },
-//      { "seqpacket", "Seqpacket (reliable packet-oriented",   0,               AV_OPT_TYPE_CONST, { .i64 = SOCK_SEQPACKET }, INT_MIN, INT_MAX, ED, "type" },
+//      { "listen", "Open socket for listening", OFFSET (listen), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, ED },
+//      { "timeout", "Timeout in ms", OFFSET (timeout), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, ED },
+//      { "type", "Socket type", OFFSET (type), AV_OPT_TYPE_INT, { .i64 = SOCK_STREAM }, INT_MIN, INT_MAX, ED, "type" },
+//      { "stream", "Stream (reliable stream-oriented)", 0, AV_OPT_TYPE_CONST, { .i64 = SOCK_STREAM }, INT_MIN, INT_MAX, ED, "type" },
+//      { "datagram", "Datagram (unreliable packet-oriented)", 0, AV_OPT_TYPE_CONST, { .i64 = SOCK_DGRAM }, INT_MIN, INT_MAX, ED, "type" },
+//      { "seqpacket", "Seqpacket (reliable packet-oriented", 0, AV_OPT_TYPE_CONST, { .i64 = SOCK_SEQPACKET }, INT_MIN, INT_MAX, ED, "type" },
 //      { NULL }
 //  }
 

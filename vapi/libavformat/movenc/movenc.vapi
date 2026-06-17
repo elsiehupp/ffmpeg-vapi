@@ -42,13 +42,14 @@ public enum Mode {
     MODE_MOV,
     MODE_3GP,
     /***********************************************************
-        ***********************************************************/
-    MODE_PSP, // example working PSP command line:
-    // ffmpeg -i testinput.avi -f psp -r 14.985 -s 320x240 -b 768 -ar 24000 -ab 32 M4V00001.MP4
+    example working PSP command line:
+    ffmpeg -i testinput.avi -f psp -r 14.985 -s 320x240 -b 768 -ar 24000 -ab 32 M4V00001.MP4
+    ***********************************************************/
+    MODE_PSP,
     MODE_3G2,
     MODE_IPOD,
     MODE_ISM,
-    MODE_F4V,
+    MODE_F4V;
 }
 
 [CCode (cname="struct MOVIentry", cheader_filename="")]
@@ -71,7 +72,7 @@ public class MOVIentry {
 
     /***********************************************************
     @brief Chunk number if the current entry is a chunk start otherwise 0
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint chunkNum;
 
@@ -207,7 +208,7 @@ public class MOVTrack {
 
     /***********************************************************
     @brief Stsd fourcc
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int tag;
 
@@ -237,7 +238,7 @@ public class MOVTrack {
 
     /***********************************************************
     @brief Active picture (w/o VBI) height for D-10/IMX
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int height;
 
@@ -246,7 +247,7 @@ public class MOVTrack {
 
     /***********************************************************
     @brief TrackID of the referenced track
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int tref_id;
 
@@ -267,19 +268,19 @@ public class MOVTrack {
 
     /***********************************************************
     @brief The track that hints this track, -1 if no hint track is set
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int hint_track;
 
     /***********************************************************
     @brief The track that this hint (or tmcd) track describes
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int src_track;
 
     /***********************************************************
     @brief The format context for the hinting rtp muxer
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public AVFormatContext rtp_ctx;
 
@@ -406,13 +407,13 @@ public class MOVMuxContext {
 
     /***********************************************************\
     number of new created tmcd track based on metadata (aka not data copy)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int nb_meta_tmcd;
 
     /***********************************************************
     @brief Qt chapter track number
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int chapter_track;
 
@@ -469,7 +470,7 @@ public class MOVMuxContext {
 
     /***********************************************************
     0 for disabled, -1 for automatic, size otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int reserved_moov_size;
 
@@ -569,18 +570,18 @@ public int ff_mov_write_packet (
 [CCode (cname="", cheader_filename="")]
 public int ff_mov_init_hinting (
     AVFormatContext format_context,
-    int index,
-    int src_index
+    public int index,
+    public int src_index
 );
 
 [CCode (cname="", cheader_filename="")]
 public int ff_mov_add_hinted_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet,
-    int track_index,
-    int sample,
+    public int track_index,
+    public int sample,
     uint8[] sample_data,
-    int sample_size
+    public int sample_size
 );
 
 [CCode (cname="", cheader_filename="")]

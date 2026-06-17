@@ -29,7 +29,7 @@ public class MediaCodecDeviceContext : AbstractHardwareContext {
     @brief Android/view/Surface handle, to be filled by the user.
 
     This is the default surface used by decoders on this device.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surface")]
     public void *surface;
 }

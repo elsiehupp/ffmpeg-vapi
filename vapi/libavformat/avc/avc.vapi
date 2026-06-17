@@ -26,21 +26,21 @@ namespace LibAVFormat {
 public int ff_avc_parse_nal_units (
     AVIOContext io_context,
     uint8[] buffer,
-    int size
+    public int size
 );
 
 [CCode (cname="ff_avc_parse_nal_units_buf", cheader_filename="")]
 public int ff_avc_parse_nal_units_buf (
     uint8[] buf_in,
     out uint8[] buf_out,
-    int[] size
+    public int[] size
 );
 
 [CCode (cname="ff_isom_write_avcc", cheader_filename="")]
 public int ff_isom_write_avcc (
     AVIOContext pb,
     uint8[] data,
-    int len
+    public int len
 );
 
 [CCode (cname="ff_avc_find_startcode", cheader_filename="")]
@@ -53,14 +53,14 @@ public uint8[] ff_avc_find_startcode (
 public int ff_avc_write_annexb_extradata (
     uint8[] buf_in,
     out uint8[] buf_out,
-    int[] size
+    public int[] size
 );
 
 [CCode (cname="ff_avc_mp4_find_startcode", cheader_filename="")]
 public uint8[] ff_avc_mp4_find_startcode (
     uint8[] start,
     uint8[] end,
-    int nal_length_size
+    public int nal_length_size
 );
 
 [CCode (cname="ff_nal_unit_extract_rbsp", cheader_filename="")]
@@ -68,19 +68,19 @@ public uint8[] ff_nal_unit_extract_rbsp (
     uint8[] src,
     uint32 src_len,
     out uint32 dst_len,
-    int header_len
+    public int header_len
 );
 
 [CCode (cname="struct H264SPS", cheader_filename="")]
 [Compact]
 public class H264SPS {
-    uint8 id;
-    uint8 profile_idc;
-    uint8 level_idc;
-    uint8 constraint_set_flags;
-    uint8 chroma_format_idc;
-    uint8 bit_depth_luma;
-    uint8 frame_mbs_only_flag;
+    public uint8 id;
+    public uint8 profile_idc;
+    public uint8 level_idc;
+    public uint8 constraint_set_flags;
+    public uint8 chroma_format_idc;
+    public uint8 bit_depth_luma;
+    public uint8 frame_mbs_only_flag;
     LibAVUtil.Rational sar;
 }
 
@@ -88,7 +88,7 @@ public class H264SPS {
 public int ff_avc_decode_sps (
     H264SPS sps,
     uint8[] buffer,
-    int buf_size
+    public int buf_size
 );
 
 } // namespace LibAVFormat

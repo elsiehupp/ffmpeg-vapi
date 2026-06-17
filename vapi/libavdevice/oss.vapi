@@ -21,19 +21,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [Compact]
 public class OSSAudioData {
     AVClass *class;
-    int fd;
-    int sample_rate;
-    int channels;
-    int frame_size; /***********************************************************
+    public int fd;
+    public int sample_rate;
+    public int channels;
+    /***********************************************************
     in bytes !
     ***********************************************************/
-    enum AVCodecID codec_id;
-    uint flip_left : 1;
-    uint8 buffer[OSS_AUDIO_BLOCK_SIZE];
-    int buffer_ptr;
+    public int frame_size;
+    public AVCodecID codec_id;
+    public uint flip_left : 1;
+    public uint8 buffer[OSS_AUDIO_BLOCK_SIZE];
+    public int buffer_ptr;
 }
 
-int ff_oss_audio_open (AVFormatContext *s1, int is_output,
+public int ff_oss_audio_open (AVFormatContext *s1, int is_output,
                       string audio_device);
 
-int ff_oss_audio_close (OSSAudioData *s);
+public int ff_oss_audio_close (OSSAudioData *s);

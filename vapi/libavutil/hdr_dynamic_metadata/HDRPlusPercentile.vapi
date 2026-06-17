@@ -32,7 +32,7 @@ public class HDRPlusPercentile {
     @brief The percentage value corresponding to a specific percentile linearized
     RGB value in the processing window in the scene. The value shall be in
     the range of 0 to100, inclusive.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="percentage")]
     public uint8 percentage;
 
@@ -40,7 +40,7 @@ public class HDRPlusPercentile {
     @brief The linearized maxRGB value at a specific percentile in the processing
     window in the scene. The value shall be in the range of 0 to 1, inclusive
     and in multiples of 0.00001.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="percentile")]
     public Rational percentile;
 }

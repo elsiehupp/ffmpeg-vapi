@@ -37,7 +37,7 @@ public enum EBMLID {
 
     /***********************************************************
     @brief IDs in the HEADER master
-        ***********************************************************/
+    ***********************************************************/
     EBML_ID_EBMLVERSION,
     EBML_ID_EBMLREADVERSION,
     EBML_ID_EBMLMAXIDLENGTH,
@@ -48,7 +48,7 @@ public enum EBMLID {
 
     /***********************************************************
     @brief General EBML types
-        ***********************************************************/
+    ***********************************************************/
     EBML_ID_VOID,
     EBML_ID_CRC32,
 }
@@ -60,12 +60,12 @@ public enum EBMLID {
 public enum MatroskaID {
     /***********************************************************
     @brief Toplevel segment
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_SEGMENT,
 
     /***********************************************************
     @brief Matroska top-level master IDs
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_INFO,
     MATROSKA_ID_TRACKS,
     MATROSKA_ID_CUES,
@@ -77,7 +77,7 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief IDs in the info master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_TIMECODESCALE,
     MATROSKA_ID_DURATION,
     MATROSKA_ID_TITLE,
@@ -88,12 +88,12 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief ID in the tracks master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_TRACKENTRY,
 
     /***********************************************************
     @brief IDs in the trackentry master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_TRACKNUMBER,
     MATROSKA_ID_TRACKUID,
     MATROSKA_ID_TRACKTYPE,
@@ -128,7 +128,7 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief IDs in the trackvideo master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_VIDEOFRAMERATE,
     MATROSKA_ID_VIDEODISPLAYWIDTH,
     MATROSKA_ID_VIDEODISPLAYHEIGHT,
@@ -183,7 +183,7 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief IDs in the trackaudio master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_AUDIOSAMPLINGFREQ,
     MATROSKA_ID_AUDIOOUTSAMPLINGFREQ,
 
@@ -192,7 +192,7 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief IDs in the content encoding master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_ENCODINGORDER,
     MATROSKA_ID_ENCODINGSCOPE,
     MATROSKA_ID_ENCODINGTYPE,
@@ -211,18 +211,18 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief ID in the cues master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_POINTENTRY,
 
     /***********************************************************
     @brief IDs in the pointentry master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_CUETIME,
     MATROSKA_ID_CUETRACKPOSITION,
 
     /***********************************************************
     @brief IDs in the cuetrackposition master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_CUETRACK,
     MATROSKA_ID_CUECLUSTERPOSITION,
     MATROSKA_ID_CUERELATIVEPOSITION,
@@ -231,7 +231,7 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief IDs in the tags master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_TAG,
     MATROSKA_ID_SIMPLETAG,
     MATROSKA_ID_TAGNAME,
@@ -248,18 +248,18 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief IDs in the seekhead master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_SEEKENTRY,
 
     /***********************************************************
     @brief IDs in the seekpoint master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_SEEKID,
     MATROSKA_ID_SEEKPOSITION,
 
     /***********************************************************
     @brief IDs in the cluster master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_CLUSTERTIMECODE,
     MATROSKA_ID_CLUSTERPOSITION,
     MATROSKA_ID_CLUSTERPREVSIZE,
@@ -272,7 +272,7 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief IDs in the blockgroup master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_BLOCK,
     MATROSKA_ID_BLOCKDURATION,
     MATROSKA_ID_BLOCKREFERENCE,
@@ -281,7 +281,7 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief IDs in the attachments master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_ATTACHEDFILE,
     MATROSKA_ID_FILEDESC,
     MATROSKA_ID_FILENAME,
@@ -291,7 +291,7 @@ public enum MatroskaID {
 
     /***********************************************************
     @brief IDs in the chapters master
-        ***********************************************************/
+    ***********************************************************/
     MATROSKA_ID_EDITIONENTRY,
     MATROSKA_ID_CHAPTERATOM,
     MATROSKA_ID_CHAPTERTIMESTART,
@@ -407,7 +407,7 @@ public enum MatroskaVideoProjectionType {
 [CCode (cname="struct CodecTags", cheader_filename="")]
 [Compact]
 public class CodecTags {
-    char str[22];
+    public char str[22];
     LibAVCodec.CodecID id;
 }
 

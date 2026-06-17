@@ -41,7 +41,7 @@ public class RIPEMDContext {
 
     /***********************************************************
     @brief Allocate an RIPEMDContext context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_ripemd_alloc", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public RIPEMDContext av_ripemd_alloc ();
 
@@ -51,7 +51,7 @@ public class RIPEMDContext {
     @param context pointer to the function context (of size av_ripemd_size)
     @param bits number of bits in digest (128, 160, 256 or 320 bits)
     @return zero if initialization succeeded, -1 otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_ripemd_init", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public int av_ripemd_init (
         RIPEMDContext context,
@@ -64,7 +64,7 @@ public class RIPEMDContext {
     @param context hash function context
     @param data input data to update hash with
     @param len input data length
-        ***********************************************************/
+    ***********************************************************/
     #if FF_API_CRYPTO_SIZE_T
     [CCode (cname="av_ripemd_update", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public void av_ripemd_update (
@@ -86,7 +86,7 @@ public class RIPEMDContext {
 
     @param context hash function context
     @param digest buffer where output digest value is stored
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_ripemd_final", cheader_filename="ffmpeg/libavutil/ripemd.h")]
     public void av_ripemd_final (
         RIPEMDContext context,

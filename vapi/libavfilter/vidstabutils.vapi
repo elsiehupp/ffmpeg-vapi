@@ -37,6 +37,6 @@ Initialize libvidstab
 Sets the memory allocation functions and logging constants to corresponding
 av* versions.
 ***********************************************************/
-void ff_vs_init ();
+public void ff_vs_init ();
 
 #endif

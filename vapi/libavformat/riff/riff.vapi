@@ -38,7 +38,7 @@ public int64 ff_start_tag (
 [CCode (cname="", cheader_filename="")]
 public void ff_end_tag (
     AVIOContext pb,
-    int64 start
+    public int64 start
 );
 
 /***********************************************************
@@ -58,20 +58,20 @@ public int ff_get_bmp_header (
 public void ff_put_bmp_header (
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
-    int for_asf,
-    int ignore_extradata
+    public int for_asf,
+    public int ignore_extradata
 );
 
 [Flags]
 public enum PutWAVHeaderFlags {
     /***********************************************************
     @brief Tell ff_put_wav_header () to use WAVEFORMATEX even for PCM codecs.
-        ***********************************************************/
+    ***********************************************************/
     FF_PUT_WAV_HEADER_FORCE_WAVEFORMATEX,
 
     /***********************************************************
     @brief Tell ff_put_wav_header () to write an empty channel mask.
-        ***********************************************************/
+    ***********************************************************/
     FF_PUT_WAV_HEADER_SKIP_CHANNELMASK,
 }
 
@@ -87,13 +87,13 @@ public int ff_put_wav_header (
     AVFormatContext format_context,
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
-    int flags
+    public int flags
 );
 
 [CCode (cname="", cheader_filename="")]
 public LibAVCodec.CodecID ff_wav_codec_get_id (
-    uint tag,
-    int bps
+    public uint tag,
+    public int bps
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -101,8 +101,8 @@ public int ff_get_wav_header (
     AVFormatContext format_context,
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
-    int size,
-    int big_endian
+    public int size,
+    public int big_endian
 );
 
 //  extern const AVCodecTag ff_codec_bmp_tags[]; // exposed through avformat_get_riff_video_tags ()
@@ -121,7 +121,7 @@ public void ff_parse_specific_params (
 [CCode (cname="", cheader_filename="")]
 public int ff_read_riff_info (
     AVFormatContext format_context,
-    int64 size
+    public int64 size
 );
 
 /***********************************************************

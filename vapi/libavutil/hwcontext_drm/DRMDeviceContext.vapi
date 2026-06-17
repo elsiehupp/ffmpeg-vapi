@@ -41,7 +41,7 @@ public class DRMDeviceContext : AbstractHardwareContext {
     used in some derivation and mapping operations.
 
     If no device is required, set to -1.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="fd")]
     public int file_descriptor;
 }

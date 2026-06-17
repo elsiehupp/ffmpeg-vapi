@@ -23,12 +23,12 @@ public enum TransformType {
     /***********************************************************
     @brief Standard complex to complex FFT with sample data type ComplexFloat.
     Scaling currently unsupported
-        ***********************************************************/
+    ***********************************************************/
     FLOAT_FFT,
     /***********************************************************
     @brief Standard MDCT with sample data type of float and a scale type of
     float. Length is the frame size, not the window size (which is 2x frame)
-        ***********************************************************/
+    ***********************************************************/
     FLOAT_MDCT,
 }
 

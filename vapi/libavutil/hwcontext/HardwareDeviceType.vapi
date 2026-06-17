@@ -38,7 +38,7 @@ public enum HardwareDeviceType {
     @param name String name of the device type (case-insensitive).
     @return The type from enum HardwareDeviceType, or AV_HWDEVICE_TYPE_NONE if
         not found.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hwdevice_find_type_by_name", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public static HardwareDeviceType av_hwdevice_find_type_by_name (
         string name
@@ -50,7 +50,7 @@ public enum HardwareDeviceType {
     @param type Type from enum HardwareDeviceType.
     @return Pointer to a static string containing the name, or null if the type
         is not valid.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hwdevice_get_type_name", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public static string av_hwdevice_get_type_name (
         HardwareDeviceType type
@@ -63,7 +63,7 @@ public enum HardwareDeviceType {
         returned by this function in subsequent iterations.
     @return The next usable device type from enum HardwareDeviceType, or
         AV_HWDEVICE_TYPE_NONE if there are no more.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_hwdevice_iterate_types", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
     public static HardwareDeviceType av_hwdevice_iterate_types (
         HardwareDeviceType prev

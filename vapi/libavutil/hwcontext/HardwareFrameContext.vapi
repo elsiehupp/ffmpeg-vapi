@@ -43,14 +43,14 @@ public class.
 public class HardwareFrameContext {
     /***********************************************************
     @brief A class for logging.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_class")]
     public Class av_class;
 
     /***********************************************************
     @brief Private data used internally by libavutil. Must not be accessed in any
     way by the caller.
-        ***********************************************************/
+    ***********************************************************/
     //  [CCode (cname="internal")]
     //  public HardwareFrameInternalContext internal;
 
@@ -58,7 +58,7 @@ public class HardwareFrameContext {
     @brief A reference to the parent HardwareDeviceContext. This reference is owned and
     managed by the enclosing HardwareFrameContext, but the caller may derive
     additional references from it.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="device_ref")]
     public LibAVUtil.BufferRef device_ref;
 
@@ -67,7 +67,7 @@ public class HardwareFrameContext {
     device_ref.data provided for convenience.
 
     Set by libavutil in av_hwframe_ctx_init ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="device_ctx")]
     public HardwareDeviceContext hardware_device_context;
 
@@ -81,7 +81,7 @@ public class HardwareFrameContext {
 
     After any frames using this context are created, the contents of this
     struct should not be modified by the caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="hwctx")]
     public void *hardware_context_data;
 
@@ -90,13 +90,13 @@ public class HardwareFrameContext {
 
     If non-null, this callback will be called when the last reference to
     this context is unreferenced, immediately before it is freed.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="free")]
     public HardwareFrameContextFreeDelegate free;
 
     /***********************************************************
     @brief Arbitrary user data, to be used e.g. by the free () callback.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="user_opaque")]
     public void *user_opaque;
 
@@ -109,10 +109,10 @@ public class HardwareFrameContext {
     this struct's free () callback is invoked.
 
     This field may be null, then libavutil will attempt to allocate a pool
-    internally. Note that certain device types enforce pools allocated at
+    public internally. Note that certain device types enforce pools allocated at
     fixed size (frame count), which cannot be extended dynamically. In such a
     case, initial_pool_size must be set appropriately.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pool")]
     public LibAVUtil.BufferPool pool;
 
@@ -122,7 +122,7 @@ public class HardwareFrameContext {
 
     May be set by the caller before calling av_hwframe_ctx_init (). Must be
     set if pool is null and the device type does not support dynamic pools.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="initial_pool_size")]
     public int initial_pool_size;
 
@@ -133,7 +133,7 @@ public class HardwareFrameContext {
     AV_PIX_FMT_FLAG_HWACCEL flag set.
 
     Must be set by the user before calling av_hwframe_ctx_init ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="format")]
     public PixelFormat format;
 
@@ -147,7 +147,7 @@ public class HardwareFrameContext {
     only the colorspace/bit depth, this field should be set to the fully
     planar version of that format (e.g. for 8-bit 420 YUV it should be
     PixelFormat.YUV420P, not PixelFormat.NV12 or anything else).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sw_format")]
     public PixelFormat sw_format;
 
@@ -155,7 +155,7 @@ public class HardwareFrameContext {
     @brief The allocated dimensions of the frames in this pool.
 
     Must be set by the user before calling av_hwframe_ctx_init ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="width")]
     public int width;
 

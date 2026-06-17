@@ -26,13 +26,13 @@ namespace LibAVFormat {
 public int ff_flac_write_header (
     AVIOContext pb,
     uint8[] extradata,
-    int extradata_size,
-    int last_block
+    public int extradata_size,
+    public int last_block
 );
 
 [CCode (cname="", cheader_filename="")]
 public int ff_flac_is_native_layout (
-    uint64 channel_layout
+    public uint64 channel_layout
 );
 
 } // namespace LibAVFormat

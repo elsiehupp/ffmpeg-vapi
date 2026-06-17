@@ -35,9 +35,9 @@ namespace LibAVFormat {
 [CCode (cname="", cheader_filename="")]
 public int ff_sauce_read (
     AVFormatContext avctx,
-    uint64[] fsize,
+    public uint64[] fsize,
     out int got_width,
-    int get_height
+    public int get_height
 );
 
 } // namespace LibAVFormat

@@ -40,7 +40,7 @@ public class MD5Context {
 
     /***********************************************************
     @brief Allocate an MD5Context context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_md5_alloc", cheader_filename="ffmpeg/libavutil/md5.h")]
     public MD5Context av_md5_alloc ();
 
@@ -48,7 +48,7 @@ public class MD5Context {
     @brief Initialize MD5 hashing.
 
     @param md5_context pointer to the function context (of size av_md5_size)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_md5_init", cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_init (
         MD5Context md5_context
@@ -60,7 +60,7 @@ public class MD5Context {
     @param md5_context hash function context
     @param input_buffer input data to update hash with
     @param len input data length
-        ***********************************************************/
+    ***********************************************************/
     #if FF_API_CRYPTO_SIZE_T
     [CCode (cname="av_md5_update", cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_update (
@@ -82,7 +82,7 @@ public class MD5Context {
 
     @param md5_context hash function context
     @param output_buffer buffer where output digest value is stored
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_md5_final", cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_final (
         MD5Context md5_context,
@@ -95,7 +95,7 @@ public class MD5Context {
     @param output_buffer The output buffer to write the digest into
     @param input_buffer The data to hash
     @param len The length of the data, in bytes
-        ***********************************************************/
+    ***********************************************************/
     #if FF_API_CRYPTO_SIZE_T
     [CCode (cname="av_md5_sum", cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_sum (

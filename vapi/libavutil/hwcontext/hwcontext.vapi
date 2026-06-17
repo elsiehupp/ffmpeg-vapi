@@ -74,7 +74,7 @@ public int av_hwdevice_ctx_create (
     HardwareDeviceType type,
     string device,
     LibAVUtil.Dictionary opts,
-    int flags
+    public int flags
 );
 
 /***********************************************************
@@ -103,7 +103,7 @@ public int av_hwdevice_ctx_create_derived (
     LibAVUtil.BufferRef output_ctx,
     HardwareDeviceType type,
     LibAVUtil.BufferRef input_ctx,
-    int flags
+    public int flags
 );
 
 /***********************************************************
@@ -146,7 +146,7 @@ public int av_hwframe_ctx_init (
 public int av_hwframe_get_buffer (
     LibAVUtil.BufferRef hwframe_ctx,
     Frame frame,
-    int flags
+    public int flags
 );
 
 /***********************************************************
@@ -182,7 +182,7 @@ destination frame is unspecified.
 public int av_hwframe_transfer_data (
     Frame output_frame,
     Frame input_frame,
-    int flags
+    public int flags
 );
 
 /***********************************************************

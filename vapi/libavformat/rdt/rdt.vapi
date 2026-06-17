@@ -39,7 +39,7 @@ public class RDTDemuxContext { }
 [CCode (cname="", cheader_filename="")]
 public RDTDemuxContext ff_rdt_parse_open (
     AVFormatContext ic,
-    int first_stream_of_set_idx,
+    public int first_stream_of_set_idx,
     void *priv_data,
     RTPDynamicProtocolHandler handler
 );
@@ -63,8 +63,8 @@ server), which is used as some sort of client validation.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public void ff_rdt_calc_response_and_checksum (
-    char response[41],
-    char chksum[9],
+    public char response[41],
+    public char chksum[9],
     string challenge
 );
 
@@ -79,9 +79,9 @@ public void ff_rdt_calc_response_and_checksum (
 [CCode (cname="", cheader_filename="")]
 public void ff_rdt_subscribe_rule (
     string cmd,
-    int size,
-    int stream_nr,
-    int rule_nr
+    public int size,
+    public int stream_nr,
+    public int rule_nr
 );
 
 /***********************************************************
@@ -99,11 +99,11 @@ public void ff_rdt_subscribe_rule (
 [CCode (cname="", cheader_filename="")]
 public int ff_rdt_parse_header (
     uint8[] buffer,
-    int len,
-    int[] pset_id,
-    int[] pseq_no,
-    int[] pstream_id,
-    int[] pis_keyframe,
+    public int len,
+    public int[] pset_id,
+    public int[] pseq_no,
+    public int[] pstream_id,
+    public int[] pis_keyframe,
     uint32[] ptimestamp
 );
 
@@ -116,7 +116,7 @@ public int ff_rdt_parse_packet (
     RDTDemuxContext demux_context,
     LibAVCodec.Packet packet,
     out uint8[] buffer,
-    int len
+    public int len
 );
 
 /***********************************************************
@@ -130,7 +130,7 @@ public int ff_rdt_parse_packet (
 [CCode (cname="", cheader_filename="")]
 public void ff_real_parse_sdp_a_line (
     AVFormatContext format_context,
-    int stream_index,
+    public int stream_index,
     string buffer
 );
 

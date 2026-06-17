@@ -54,7 +54,7 @@ system timer.
 ***********************************************************/
 [CCode (cname="av_usleep", cheader_filename="ffmpeg/libavutil/time.h")]
 public static int av_usleep (
-    uint usec
+    public uint usec
 );
 
 } // namespace LibAVUtil

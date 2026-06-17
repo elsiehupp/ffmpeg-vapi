@@ -36,10 +36,10 @@ public const size_t AV_NUM_DATA_POINTERS;
 public delegate void AVCodecDrawHorizontalBandDelegate (
     CodecContext codec_context,
     LibAVUtil.Frame input_frame,
-    int offset[AV_NUM_DATA_POINTERS],
-    int y,
-    int type,
-    int height
+    public int offset[AV_NUM_DATA_POINTERS],
+    public int y,
+    public int type,
+    public int height
 );
 public delegate LibAVUtil.PixelFormat AVCodecGetFormatDelegate (
     CodecContext codec_context,
@@ -48,7 +48,7 @@ public delegate LibAVUtil.PixelFormat AVCodecGetFormatDelegate (
 public delegate int AVCodecGetBuffer2Delegate (
     CodecContext codec_context,
     LibAVUtil.Frame frame,
-    int flags
+    public int flags
 );
 public delegate int AVCodecExecutionDelegateDelegate (
     CodecContext c2,
@@ -59,21 +59,21 @@ public delegate int AVCodecExecutionDelegate (
     AVCodecExecutionDelegateDelegate func,
     void *arg2,
     out int ret,
-    int count,
-    int size
+    public int count,
+    public int size
 );
 public delegate int AVCodecExecute2DelegateDelegate (
     CodecContext c2,
     void *arg,
-    int jobnr,
-    int threadnr
+    public int jobnr,
+    public int threadnr
 );
 public delegate int AVCodecExecute2Delegate (
     CodecContext codec_context,
     AVCodecExecute2DelegateDelegate func,
     void *arg2,
     out int ret,
-    int count
+    public int count
 );
 public delegate int AVCodecDefaultExecuteDelegate (
     CodecContext c2,
@@ -82,8 +82,8 @@ public delegate int AVCodecDefaultExecuteDelegate (
 public delegate int AVCodecDefaultExecute2Delegate (
     CodecContext c2,
     void *arg2,
-    int arg3,
-    int arg4
+    public int arg3,
+    public int arg4
 );
 
 /***********************************************************
@@ -106,7 +106,7 @@ public class CodecContext {
     @brief Information on struct for av_log
 
     - set by avcodec_alloc_context3
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_class")]
     public LibAVUtil.Class av_class;
 
@@ -115,7 +115,7 @@ public class CodecContext {
 
     /***********************************************************
     @see @link LibAVUtil.MediaType
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="codec_type")]
     public LibAVUtil.MediaType codec_type;
 
@@ -124,7 +124,7 @@ public class CodecContext {
 
     /***********************************************************
     @see @link CodecID
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="codec_id")]
     public CodecID codec_id;
 
@@ -142,7 +142,7 @@ public class CodecContext {
 
     - encoding: Set by user, if not then the default based on codec_id will be used.
     - decoding: Set by user, will be converted to uppercase by LibAVCodec during init.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="codec_tag")]
     public uint codec_tag;
 
@@ -154,7 +154,7 @@ public class CodecContext {
 
     @note Unlike priv_data, this is not codec-specific. It is used in general
         LibAVCodec functions.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="internal")]
     public AVCodecInternal internal;
 
@@ -163,7 +163,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="opaque")]
     public void *opaque;
 
@@ -173,7 +173,7 @@ public class CodecContext {
     - encoding: Set by user; unused for constant quantizer encoding.
     - decoding: Set by user, may be overwritten by LibAVCodec
         if this info is available in the stream
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bit_rate")]
     public int64 bit_rate;
 
@@ -183,7 +183,7 @@ public class CodecContext {
 
     - encoding: Set by user; unused for constant quantizer encoding.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bit_rate_tolerance")]
     public int bit_rate_tolerance;
 
@@ -193,7 +193,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="global_quality")]
     public int global_quality;
 
@@ -202,7 +202,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="compression_level")]
     public int compression_level;
 
@@ -214,7 +214,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="flags")]
     public CodecFlags1 flags;
 
@@ -223,7 +223,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="flags2")]
     public CodecFlags2 flags2;
 
@@ -241,7 +241,7 @@ public class CodecContext {
 
     - encoding: Set/allocated/freed by
     - decoding: Set/allocated/freed by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="extradata")]
     public uint8[] extradata;
 
@@ -266,7 +266,7 @@ public class CodecContext {
     - encoding: MUST be set by user.
     - decoding: the use of this field for decoding is deprecated.
         Use framerate instead.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="time_base")]
     public LibAVUtil.Rational time_base;
 
@@ -276,7 +276,7 @@ public class CodecContext {
         if no telecine is used ...
 
         Set to time_base ticks per frame. Default 1, e.g., H.264/MPEG-2 set it to 2.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="ticks_per_frame")]
     public int ticks_per_frame;
 
@@ -301,7 +301,7 @@ public class CodecContext {
 
     - encoding: Set by
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="delay")]
     public int delay;
 
@@ -321,7 +321,7 @@ public class CodecContext {
         from the container. Some decoders will require the dimensions
         to be set by the caller. During decoding, the decoder may
         overwrite those values as required while parsing the data.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="width")]
     public int width;
 
@@ -340,7 +340,7 @@ public class CodecContext {
     - decoding: May be set by the user before opening the decoder if known
         e.g. from the container. During decoding, the decoder may
         overwrite those values as required while parsing the data.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="coded_width")]
     public int coded_width;
 
@@ -352,7 +352,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="gop_size")]
     public int gop_size;
 
@@ -369,7 +369,7 @@ public class CodecContext {
     - encoding: Set by user.
     - decoding: Set by user if known, overridden by LibAVCodec while
         parsing the data.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pix_fmt")]
     public LibAVUtil.PixelFormat pixel_format;
 
@@ -397,7 +397,7 @@ public class CodecContext {
     @param y the y position of the slice
     @param type 1->top field, 2->bottom field, 3->frame
     @param offset offset into the LibAVUtil.Frame.data from which the slice should be read
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="draw_horiz_band")]
     public AVCodecDrawHorizontalBandDelegate draw_horiz_band;
 
@@ -416,7 +416,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user, if not set the native format will be chosen.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="get_format")]
     public AVCodecGetFormatDelegate get_format;
 
@@ -427,7 +427,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="max_b_frames")]
     public int max_b_frames;
 
@@ -439,7 +439,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="b_quant_factor")]
     public float b_quant_factor;
 
@@ -448,7 +448,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="b_quant_offset")]
     public float b_quant_offset;
 
@@ -459,7 +459,7 @@ public class CodecContext {
 
     - encoding: Set by
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="has_b_frames")]
     public int has_b_frames;
 
@@ -471,7 +471,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="i_quant_factor")]
     public float i_quant_factor;
 
@@ -480,7 +480,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="i_quant_offset")]
     public float i_quant_offset;
 
@@ -489,7 +489,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="lumi_masking")]
     public float lumi_masking;
 
@@ -498,7 +498,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="temporal_cplx_masking")]
     public float temporal_cplx_masking;
 
@@ -507,7 +507,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="spatial_cplx_masking")]
     public float spatial_cplx_masking;
 
@@ -516,7 +516,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="p_masking")]
     public float p_masking;
 
@@ -525,7 +525,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="dark_masking")]
     public float dark_masking;
 
@@ -534,7 +534,7 @@ public class CodecContext {
 
     - encoding: Set by
     - decoding: Set by user (or 0).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="slice_count")]
     public int slice_count;
 
@@ -543,7 +543,7 @@ public class CodecContext {
 
     - encoding: Set/allocated by
     - decoding: Set/allocated by user (or null).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="slice_offset")]
     public int[] slice_offset;
 
@@ -555,7 +555,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sample_aspect_ratio")]
     public LibAVUtil.Rational sample_aspect_ratio;
 
@@ -564,7 +564,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="me_cmp")]
     public int me_cmp;
 
@@ -573,7 +573,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="me_sub_cmp")]
     public int me_sub_cmp;
 
@@ -582,7 +582,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="mb_cmp")]
     public int mb_cmp;
 
@@ -591,7 +591,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="ildct_cmp")]
     public InterlacedDCTComparison ildct_cmp;
 
@@ -600,7 +600,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="dia_size")]
     public int dia_size;
 
@@ -609,7 +609,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="last_predictor_count")]
     public int last_predictor_count;
 
@@ -618,7 +618,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="me_pre_cmp")]
     public int me_pre_cmp;
 
@@ -627,7 +627,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pre_dia_size")]
     public int pre_dia_size;
 
@@ -636,7 +636,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="me_subpel_quality")]
     public int me_subpel_quality;
 
@@ -646,7 +646,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="me_range")]
     public int me_range;
 
@@ -655,7 +655,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="slice_flags")]
     public SliceFlags slice_flags;
 
@@ -664,7 +664,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="mb_decision")]
     public MacroBlockDecisionMode mb_decision;
 
@@ -676,7 +676,7 @@ public class CodecContext {
 
     - encoding: Set/allocated by user, freed by Can be null.
     - decoding: Set/allocated/freed by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="intra_matrix")]
     public uint16[] intra_matrix;
 
@@ -688,7 +688,7 @@ public class CodecContext {
 
     - encoding: Set/allocated by user, freed by Can be null.
     - decoding: Set/allocated/freed by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="inter_matrix")]
     public uint16[] inter_matrix;
 
@@ -697,7 +697,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="intra_dc_precision")]
     public int intra_dc_precision;
 
@@ -706,7 +706,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="skip_top")]
     public int skip_top;
 
@@ -715,7 +715,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="skip_bottom")]
     public int skip_bottom;
 
@@ -724,7 +724,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="mb_lmin")]
     public int mb_lmin;
 
@@ -733,7 +733,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="mb_lmax")]
     public int mb_lmax;
 
@@ -742,7 +742,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bidir_refine")]
     public int bidir_refine;
 
@@ -751,7 +751,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="keyint_min")]
     public int keyint_min;
 
@@ -760,7 +760,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by lavc.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="refs")]
     public int refs;
 
@@ -769,7 +769,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="mv0_threshold")]
     public int mv0_threshold;
 
@@ -778,7 +778,7 @@ public class CodecContext {
 
     - encoding: Set by user
     - decoding: Set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="color_primaries")]
     public LibAVUtil.ColorPrimaries color_primaries;
 
@@ -787,7 +787,7 @@ public class CodecContext {
 
     - encoding: Set by user
     - decoding: Set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="color_trc")]
     public LibAVUtil.ColorTransferCharacteristic color_trc;
 
@@ -796,7 +796,7 @@ public class CodecContext {
 
     - encoding: Set by user
     - decoding: Set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="colorspace")]
     public LibAVUtil.ColorSpace colorspace;
 
@@ -805,7 +805,7 @@ public class CodecContext {
 
     - encoding: Set by user
     - decoding: Set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="color_range")]
     public LibAVUtil.ColorRange color_range;
 
@@ -814,7 +814,7 @@ public class CodecContext {
 
     - encoding: Set by user
     - decoding: Set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="chroma_sample_location")]
     public LibAVUtil.ChromaLocation chroma_sample_location;
 
@@ -826,7 +826,7 @@ public class CodecContext {
 
     - encoding: Set by user
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="slices")]
     public int slices;
 
@@ -835,19 +835,19 @@ public class CodecContext {
 
     - encoding: set by LibAVCodec
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="field_order")]
     public FieldOrder field_order;
 
     /***********************************************************
     @brief Samples per second (audio only)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sample_rate")]
     public int sample_rate;
 
     /***********************************************************
     @brief Number of audio channels (audio only)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="channels")]
     public int channels;
 
@@ -856,7 +856,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sample_fmt")]
     public LibAVUtil.SampleFormat sample_fmt;
 
@@ -872,7 +872,7 @@ public class CodecContext {
         May be 0 when the codec has AV_CODEC_CAP_VARIABLE_FRAME_SIZE set, then the
         frame size is not restricted.
     - decoding: may be set by some decoders to indicate constant frame size
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="frame_size")]
     public int frame_size;
 
@@ -884,14 +884,14 @@ public class CodecContext {
 
     @note the counter is not incremented if encoding/decoding resulted in
         an error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="frame_number")]
     public int frame_number;
 
     /***********************************************************
     @brief Number of bytes per packet if constant and known or 0
         Used by some WAV based audio codecs.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="block_align")]
     public int block_align;
 
@@ -900,7 +900,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="cutoff")]
     public int cutoff;
 
@@ -909,7 +909,7 @@ public class CodecContext {
 
     - encoding: set by user.
     - decoding: set by user, may be overwritten by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="channel_layout")]
     public uint64 channel_layout;
 
@@ -918,7 +918,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="request_channel_layout")]
     public uint64 request_channel_layout;
 
@@ -927,7 +927,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="audio_service_type")]
     public AudioServiceType audio_service_type;
 
@@ -936,7 +936,7 @@ public class CodecContext {
 
     - encoding: Not used.
     - decoding: Set by user. Decoder will decode to this format if it can.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="request_sample_fmt")]
     public LibAVUtil.SampleFormat request_sample_fmt;
 
@@ -961,12 +961,12 @@ public class CodecContext {
         - data[]
         - linesize[]
         - extended_data:
-        * if the data is planar audio with more than 8 channels, then this
-            callback must allocate and fill extended_data to contain all pointers
-            to all data planes. data[] must hold as many pointers as it can.
-            extended_data must be allocated with av_malloc () and will be freed in
-            av_frame_unref ().
-        * otherwise extended_data must point to data
+            * if the data is planar audio with more than 8 channels, then this
+                callback must allocate and fill extended_data to contain all pointers
+                to all data planes. data[] must hold as many pointers as it can.
+                extended_data must be allocated with av_malloc () and will be freed in
+                av_frame_unref ().
+            * otherwise extended_data must point to data
         - buffer[] must contain one or more pointers to LibAVUtil.BufferRef structures. Each of
         the frame's data and extended_data pointers must be contained in these. That
         is, one LibAVUtil.BufferRef for each allocated chunk of memory, not necessarily one
@@ -1019,7 +1019,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by LibAVCodec, user can override.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="get_buffer2")]
     public AVCodecGetBuffer2Delegate get_buffer2;
 
@@ -1029,13 +1029,13 @@ public class CodecContext {
 
     /***********************************************************
     @brief Amount of qscale change between easy & hard scenes (0.0-1.0)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="qcompress")]
     public float qcompress;
 
     /***********************************************************
     @brief Amount of qscale smoothing over time (0.0-1.0)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="qblur")]
     public float qblur;
 
@@ -1044,7 +1044,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="qmin")]
     public int qmin;
 
@@ -1053,7 +1053,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="qmax")]
     public int qmax;
 
@@ -1062,7 +1062,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="max_qdiff")]
     public int max_qdiff;
 
@@ -1071,7 +1071,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="rc_buffer_size")]
     public int rc_buffer_size;
 
@@ -1080,7 +1080,7 @@ public class CodecContext {
 
     - encoding: Allocated/set/freed by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="rc_override")]
     public RcOverride[] rc_override;
 
@@ -1092,7 +1092,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user, may be overwritten by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="rc_max_rate")]
     public int64 rc_max_rate;
 
@@ -1101,7 +1101,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="rc_min_rate")]
     public int64 rc_min_rate;
 
@@ -1110,7 +1110,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="rc_max_available_vbv_use")]
     public float rc_max_available_vbv_use;
 
@@ -1119,7 +1119,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="rc_min_vbv_overflow_use")]
     public float rc_min_vbv_overflow_use;
 
@@ -1128,7 +1128,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="rc_initial_buffer_occupancy")]
     public int rc_initial_buffer_occupancy;
 
@@ -1137,7 +1137,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="trellis")]
     public int trellis;
 
@@ -1146,7 +1146,7 @@ public class CodecContext {
 
     - encoding: Set by
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="stats_out")]
     public string stats_out;
 
@@ -1157,7 +1157,7 @@ public class CodecContext {
 
     - encoding: Allocated/set/freed by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="stats_in")]
     public string stats_in;
 
@@ -1166,7 +1166,7 @@ public class CodecContext {
 
     - encoding: Set by user
     - decoding: Set by user
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="workaround_bugs")]
     public BugWorkaroundFlags workaround_bugs;
 
@@ -1183,7 +1183,7 @@ public class CodecContext {
         unofficial and experimental (that is, they always try to decode things
         when they can) unless they are explicitly asked to behave stupidly
         (=strictly conform to the specs)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="strict_std_compliance")]
     public StrictStandardsCompliance strict_std_compliance;
 
@@ -1192,7 +1192,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="error_concealment")]
     public ErrorConcealmentFlags error_concealment;
 
@@ -1201,7 +1201,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="debug")]
     public DebugFlags debug;
 
@@ -1211,7 +1211,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="debug_mv")]
     public DebugMVFlags debug_mv;
 #endif
@@ -1221,7 +1221,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="err_recognition")]
     public ErrorRecognitionFlags err_recognition;
 
@@ -1234,7 +1234,7 @@ public class CodecContext {
         supported by encoders with the
         AV_CODEC_CAP_ENCODER_REORDERED_OPAQUE capability.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="reordered_opaque")]
     public int64 reordered_opaque;
 
@@ -1243,7 +1243,7 @@ public class CodecContext {
 
     - encoding: unused.
     - decoding: Set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="hwaccel")]
     public HardwareAcceleration hwaccel;
 
@@ -1258,7 +1258,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="hwaccel_context")]
     public void *hwaccel_context;
 
@@ -1267,7 +1267,7 @@ public class CodecContext {
 
     - encoding: Set by LibAVCodec if flags & AV_CODEC_FLAG_PSNR.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="error")]
     public uint64 error[AV_NUM_DATA_POINTERS];
 
@@ -1276,7 +1276,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="dct_algo")]
     public DCTAlgorithm dct_algo;
 
@@ -1285,7 +1285,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="idct_algo")]
     public IDCTAlgorithm idct_algo;
 
@@ -1294,7 +1294,7 @@ public class CodecContext {
 
     - encoding: Set by
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bits_per_coded_sample")]
     public int bits_per_coded_sample;
 
@@ -1303,7 +1303,7 @@ public class CodecContext {
 
     - encoding: set by user.
     - decoding: set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bits_per_raw_sample")]
     public int bits_per_raw_sample;
 
@@ -1313,7 +1313,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="lowres")]
     public int lowres;
 #endif
@@ -1325,7 +1325,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="thread_count")]
     public int thread_count;
 
@@ -1337,7 +1337,7 @@ public class CodecContext {
 
     - encoding: Set by user, otherwise the default is used.
     - decoding: Set by user, otherwise the default is used.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="thread_type")]
     public ThreadType thread_type;
 
@@ -1346,7 +1346,7 @@ public class CodecContext {
 
     - encoding: Set by
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="active_thread_type")]
     public int active_thread_type;
 
@@ -1358,7 +1358,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="thread_safe_callbacks")]
     public int thread_safe_callbacks;
 
@@ -1372,7 +1372,7 @@ public class CodecContext {
 
     - encoding: Set by LibAVCodec, user can override.
     - decoding: Set by LibAVCodec, user can override.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="execute")]
     public AVCodecExecutionDelegate execute;
 
@@ -1395,7 +1395,7 @@ public class CodecContext {
 
     - encoding: Set by LibAVCodec, user can override.
     - decoding: Set by LibAVCodec, user can override.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="execute2")]
     public AVCodecExecute2Delegate execute2;
 
@@ -1404,7 +1404,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nsse_weight")]
     public int nsse_weight;
 
@@ -1413,7 +1413,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="profile")]
     public ProfileType profile;
 
@@ -1422,7 +1422,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="level")]
     public int level;
 
@@ -1434,7 +1434,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="skip_loop_filter")]
     public Discard skip_loop_filter;
 
@@ -1443,7 +1443,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="skip_idct")]
     public Discard skip_idct;
 
@@ -1452,7 +1452,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="skip_frame")]
     public Discard skip_frame;
 
@@ -1464,7 +1464,7 @@ public class CodecContext {
 
     - encoding: Set/allocated/freed by user (before avcodec_open2 ())
     - decoding: Set/allocated/freed by LibAVCodec (by avcodec_open2 ())
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="subtitle_header")]
     public uint8[] subtitle_header;
 
@@ -1486,7 +1486,7 @@ public class CodecContext {
         1/samplerate and the timestamp of the first input sample is
         0, the timestamp of the first output packet will be
         -initial_padding.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="initial_padding")]
     public int initial_padding;
 
@@ -1499,7 +1499,7 @@ public class CodecContext {
 
     - encoding: May be used to signal the framerate of CFR content to an
         encoder.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="framerate")]
     public LibAVUtil.Rational framerate;
 
@@ -1508,7 +1508,7 @@ public class CodecContext {
 
     - encoding: unused.
     - decoding: Set by LibAVCodec before calling get_format ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sw_pix_fmt")]
     public LibAVUtil.PixelFormat sw_pix_fmt;
 
@@ -1517,7 +1517,7 @@ public class CodecContext {
 
     - encoding: unused.
     - decoding: set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pkt_timebase")]
     public LibAVUtil.Rational pkt_timebase;
 
@@ -1526,7 +1526,7 @@ public class CodecContext {
 
     - encoding: unused.
     - decoding: set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="codec_descriptor")]
     public CodecDescriptor codec_descriptor;
 
@@ -1536,7 +1536,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="lowres")]
     public int lowres;
 #endif
@@ -1550,7 +1550,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: maintained and used by LibAVCodec, not intended to be used by user apps
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pts_correction_num_faulty_pts")]
     public int64 pts_correction_num_faulty_pts;
 
@@ -1559,7 +1559,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: maintained and used by LibAVCodec, not intended to be used by user apps
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pts_correction_num_faulty_dts")]
     public int64 pts_correction_num_faulty_dts;
 
@@ -1568,7 +1568,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: maintained and used by LibAVCodec, not intended to be used by user apps
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pts_correction_last_pts")]
     public int64 pts_correction_last_pts;
 
@@ -1577,7 +1577,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: maintained and used by LibAVCodec, not intended to be used by user apps
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pts_correction_last_dts")]
     public int64 pts_correction_last_dts;
 
@@ -1586,7 +1586,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: set by user
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sub_charenc")]
     public string sub_charenc;
 
@@ -1599,7 +1599,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sub_charenc_mode")]
     public SubtitleCharacterEncodingMode sub_charenc_mode;
 
@@ -1615,7 +1615,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: set by user
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="skip_alpha")]
     public int skip_alpha;
 
@@ -1624,7 +1624,7 @@ public class CodecContext {
 
     - encoding: set by LibAVCodec
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="seek_preroll")]
     public int seek_preroll;
 
@@ -1634,7 +1634,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="debug_mv")]
     public DebugMotionVectors debug_mv;
 #endif
@@ -1644,7 +1644,7 @@ public class CodecContext {
 
     - encoding: Set by user, can be null.
     - decoding: unused.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="chroma_intra_matrix")]
     public uint16[] chroma_intra_matrix;
 
@@ -1653,7 +1653,7 @@ public class CodecContext {
 
     - encoding: Set by user.
     - decoding: Set by user.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="dump_separator")]
     public uint8[] dump_separator;
 
@@ -1662,7 +1662,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: set by user
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="codec_whitelist")]
     public string codec_whitelist;
 
@@ -1671,7 +1671,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: set by LibAVCodec
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="properties")]
     public CodecPropertyFlags1 properties;
 
@@ -1680,7 +1680,7 @@ public class CodecContext {
 
     - encoding: may be set by LibAVCodec after avcodec_open2 ().
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="coded_side_data")]
     public PacketSideData[] coded_side_data;
 
@@ -1708,7 +1708,7 @@ public class CodecContext {
         If the default get_buffer2 () is used with a hwaccel pixel
         format, then this LibAVUtil.HardwareFrameContext will be used for
         allocating the frame buffers.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="hw_frames_ctx")]
     public LibAVUtil.BufferRef hw_frames_ctx;
 
@@ -1717,7 +1717,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: set by user
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sub_text_format")]
     public SubtitleTextFormatAssignment sub_text_format;
 
@@ -1729,7 +1729,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: unused
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="trailing_padding")]
     public int trailing_padding;
 
@@ -1738,7 +1738,7 @@ public class CodecContext {
 
     - encoding: set by user
     - decoding: set by user
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="max_pixels")]
     public int64 max_pixels;
 
@@ -1761,7 +1761,7 @@ public class CodecContext {
         Note that some decoders may require this field to be set initially in
         order to support hw_frames_ctx at all - in that case, all frames
         contexts used must be created on the same device.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="hw_device_ctx")]
     public LibAVUtil.BufferRef hw_device_ctx;
 
@@ -1772,7 +1772,7 @@ public class CodecContext {
     - encoding: unused
     - decoding: Set by user (either before avcodec_open2 (), or in the
         CodecContext.get_format callback)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="hwaccel_flags")]
     public HardwareAccelerationFlags hwaccel_flags;
 
@@ -1800,7 +1800,7 @@ public class CodecContext {
         context fields store display dimensions (with the coded dimensions in
         coded_width/height), while the frame fields store the coded dimensions
         (with the display dimensions being determined by the crop_* fields).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="apply_cropping")]
     public int apply_cropping;
 
@@ -1815,7 +1815,7 @@ public class CodecContext {
         The extra frames set here are on top of any number that the decoder
         needs internally in order to operate normally (for example, frames
         used as reference pictures).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="extra_hw_frames")]
     public int extra_hw_frames;
 
@@ -1824,7 +1824,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: set by user
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="discard_damaged_percentage")]
     public int discard_damaged_percentage;
 
@@ -1840,7 +1840,7 @@ public class CodecContext {
         important mainly for encoders, e.g. libx264).
 
     @return An CodecContext filled with default values or null on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_alloc_context3", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecContext avcodec_alloc_context3 (
         Codec codec
@@ -1849,7 +1849,7 @@ public class CodecContext {
     /***********************************************************
     @description Free the codec context and everything associated with it and write null to
         the provided pointer.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_free_context", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_free_context (
         CodecContext codec_context
@@ -1892,7 +1892,7 @@ public class CodecContext {
     @return zero on success, a negative value on error
     @see @link avcodec_alloc_context3 (), avcodec_find_decoder (), avcodec_find_encoder (),
         av_dict_set (), av_opt_find ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_open2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_open2 (
         CodecContext codec_context,
@@ -1912,7 +1912,7 @@ public class CodecContext {
         codec context (either open or closed). Opening and closing a codec context
         multiple times is not supported anymore -- use multiple codec contexts
         instead.
-        ***********************************************************/
+    ***********************************************************/
     //  [CCode (cname="avcodec_close", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     //  public int avcodec_close (
     //      CodecContext codec_context
@@ -1922,7 +1922,7 @@ public class CodecContext {
     @description The default callback for CodecContext.get_buffer2 (). It is made public so
         it can be called by custom get_buffer2 () implementations for decoders without
         AV_CODEC_CAP_DR1 set.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_default_get_buffer2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_default_get_buffer2 (
         CodecContext codec_context,
@@ -1936,7 +1936,7 @@ public class CodecContext {
         padding.
 
         May only be used if a codec with AV_CODEC_CAP_DR1 has been opened.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_align_dimensions", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_align_dimensions (
         CodecContext codec_context,
@@ -1950,7 +1950,7 @@ public class CodecContext {
         line sizes are a multiple of the respective linesize_align[i].
 
         May only be used if a codec with AV_CODEC_CAP_DR1 has been opened.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_align_dimensions2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_align_dimensions2 (
         CodecContext codec_context,
@@ -1994,7 +1994,7 @@ public class CodecContext {
         must be freed with avsubtitle_free if got_sub_ptr is set.
     @param[in,out] got_sub_ptr Zero if no subtitle could be decompressed, otherwise, it is nonzero.
     @param[in] avpkt The input Packet containing the input buffer.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_decode_subtitle2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_decode_subtitle2 (
         CodecContext codec_context,
@@ -2052,7 +2052,7 @@ public class CodecContext {
         LibAVUtil.ErrorCode (EINVAL): codec not opened, it is an encoder, or requires flush
         LibAVUtil.ErrorCode (ENOMEM): failed to add packet to internal queue, or similar
         other errors: legitimate decoding errors
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_send_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_send_packet (
         CodecContext codec_context,
@@ -2079,7 +2079,7 @@ public class CodecContext {
             with respect to first decoded frame. Applicable
             when flag AV_CODEC_FLAG_DROPCHANGED is set.
         other negative values: legitimate decoding errors
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_receive_frame", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_receive_frame (
         CodecContext codec_context,
@@ -2120,7 +2120,7 @@ public class CodecContext {
             decoder, or requires flush
         LibAVUtil.ErrorCode (ENOMEM): failed to add packet to internal queue, or similar
         other errors: legitimate decoding errors
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_send_frame", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_send_frame (
         CodecContext codec_context,
@@ -2141,7 +2141,7 @@ public class CodecContext {
             no more output packets
         LibAVUtil.ErrorCode (EINVAL): codec not opened, or it is an encoder
             other errors: legitimate decoding errors
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_receive_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_receive_packet (
         CodecContext codec_context,
@@ -2244,7 +2244,7 @@ public class CodecContext {
         LibAVUtil.ErrorCode (EINVAL): it is known that hardware decoding is not supported for
         this configuration, or the device_ref is not supported
         for the hwaccel referenced by hw_pix_fmt.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_get_hw_frames_parameters", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_get_hw_frames_parameters (
         CodecContext codec_context,
@@ -2256,7 +2256,7 @@ public class CodecContext {
     /***********************************************************
     @return a positive value if s is open (i.e. avcodec_open2 () was called on it
         with no corresponding avcodec_close ()), 0 otherwise.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_is_open", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_is_open (
         CodecContext codec_context
@@ -2303,7 +2303,7 @@ public class CodecContext {
         this invalidates the frames previously returned from the decoder. When
         refcounted frames are used, the decoder just releases any references it might
         keep internally, but the caller's reference remains valid.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_flush_buffers", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_flush_buffers (
         CodecContext codec_context
@@ -2316,7 +2316,7 @@ public class CodecContext {
     @param frame_bytes size of the frame, or 0 if unknown
     @return frame duration, in samples, if known. 0 if not able to
         determine.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_audio_frame_duration", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_get_audio_frame_duration (
         CodecContext codec_context,

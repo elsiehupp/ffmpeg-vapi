@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_decklink_read_header (AVFormatContext *avctx);
-int ff_decklink_read_packet (AVFormatContext *avctx, AVPacket *pkt);
-int ff_decklink_read_close (AVFormatContext *avctx);
-int ff_decklink_list_input_devices (AVFormatContext *avctx, AVDeviceInfoList *device_list);
+public int ff_decklink_read_header (AVFormatContext *avctx);
+public int ff_decklink_read_packet (AVFormatContext *avctx, AVPacket *pkt);
+public int ff_decklink_read_close (AVFormatContext *avctx);
+public int ff_decklink_list_input_devices (AVFormatContext *avctx, AVDeviceInfoList *device_list);

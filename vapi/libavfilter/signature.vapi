@@ -30,14 +30,14 @@ MPEG-7 video signature calculation and lookup filter
 ***********************************************************/
 #define COARSE_SIZE 90
 
-enum lookup_mode {
+public enum lookup_mode {
     MODE_OFF,
     MODE_FULL,
     MODE_FAST,
     NB_LOOKUP_MODE
 }
 
-enum formats {
+public enum formats {
     FORMAT_BINARY,
     FORMAT_XML,
     NB_FORMATS
@@ -45,8 +45,8 @@ enum formats {
 
 [Compact]
 public class Point {
-    uint8 x;
-    uint8 y;
+    public uint8 x;
+    public uint8 y;
 }
 
 [Compact]
@@ -57,15 +57,18 @@ public class Block {
 
 [Compact]
 public class ElemCat {
-    int av_elem; /***********************************************************
+    /***********************************************************
     average element category
     ***********************************************************/
-    short left_count; /***********************************************************
+    public int av_elem;
+    /***********************************************************
     count of blocks that will be added together
     ***********************************************************/
-    short block_count; /***********************************************************
+    short left_count;
+    /***********************************************************
     count of blocks per element
     ***********************************************************/
+    short block_count;
     short elem_count;
     const Block* blocks;
 }
@@ -74,23 +77,26 @@ public class ElemCat {
 public class FineSignature {
     struct FineSignature* next;
     struct FineSignature* prev;
-    uint64 pts;
-    uint32 index; /***********************************************************
+    public uint64 pts;
+    /***********************************************************
     needed for xmlexport
     ***********************************************************/
-    uint8 confidence;
-    uint8 words[5];
-    uint8 framesig[SIGELEM_SIZE/5];
+    uint32 index;
+    public uint8 confidence;
+    public uint8 words[5];
+    public uint8 framesig[SIGELEM_SIZE/5];
 }
 
 [Compact]
 public class CoarseSignature {
-    uint8 data[5][31]; /***********************************************************
+    /***********************************************************
     5 words with min. 243 bit
     ***********************************************************/
-    struct FineSignature* first; /***********************************************************
+    public uint8 data[5][31];
+    /***********************************************************
     associated Finesignatures
     ***********************************************************/
+    struct FineSignature* first;
     struct FineSignature* last;
     struct CoarseSignature* next;
 }
@@ -101,15 +107,17 @@ lookup types
 [Compact]
 public class MatchingInfo {
     double meandist;
-    double framerateratio; /***********************************************************
+    /***********************************************************
     second/first
     ***********************************************************/
-    int score;
-    int offset;
-    int matchframes; /***********************************************************
+    double framerateratio;
+    public int score;
+    public int offset;
+    /***********************************************************
     number of matching frames
     ***********************************************************/
-    int whole;
+    public int matchframes;
+    public int whole;
     struct FineSignature* first;
     struct FineSignature* second;
     struct MatchingInfo* next;
@@ -117,48 +125,59 @@ public class MatchingInfo {
 
 [Compact]
 public class StreamContext {
-    AVRational time_base;
     /***********************************************************
     needed for xml_export
     ***********************************************************/
-    int w; /***********************************************************
+    public AVRational time_base;
+    /***********************************************************
     height
     ***********************************************************/
-    int h; /***********************************************************
+    public int w;
+    /***********************************************************
     width
-***********************************************************/
+    ***********************************************************/
+    public int h;
 
     /***********************************************************
     overflow protection
     ***********************************************************/
-    int divide;
+    public int divide;
 
     FineSignature* finesiglist;
     FineSignature* curfinesig;
 
     CoarseSignature* coarsesiglist;
-    CoarseSignature* coarseend; /***********************************************************
+    /***********************************************************
     needed for xml export
     ***********************************************************/
+    CoarseSignature* coarseend;
+
     /***********************************************************
-    helpers to store the alternating signatures
+    helper to store the alternating signatures
     ***********************************************************/
     CoarseSignature* curcoarsesig1;
+    /***********************************************************
+    helper to store the alternating signatures
+    ***********************************************************/
     CoarseSignature* curcoarsesig2;
 
-    int coarsecount; /***********************************************************
+    /***********************************************************
     counter from 0 to 89
     ***********************************************************/
-    int midcoarse; /***********************************************************
+    public int coarsecount;
+    /***********************************************************
     whether it is a coarsesignature beginning from 45 + i * 90
     ***********************************************************/
-    uint32 lastindex; /***********************************************************
+    public int midcoarse;
+    /***********************************************************
     helper to store amount of frames
     ***********************************************************/
+    uint32 lastindex;
 
-    int exported; /***********************************************************
+    /***********************************************************
     boolean whether stream already exported
     ***********************************************************/
+    public int exported;
 }
 
 [Compact]
@@ -167,22 +186,24 @@ public class SignatureContext {
     /***********************************************************
     input parameters
     ***********************************************************/
-    int mode;
-    int nb_inputs;
+    public int mode;
+    public int nb_inputs;
     string filename;
-    int format;
-    int thworddist;
-    int thcomposdist;
-    int thl1;
-    int thdi;
-    int thit;
+    public int format;
+    public int thworddist;
+    public int thcomposdist;
+    public int thl1;
+    public int thdi;
+    public int thit;
     /***********************************************************
     end input parameters
     ***********************************************************/
 
-    uint8 l1distlut[243*242/2]; /***********************************************************
+    /***********************************************************
     243 + 242 + 241 ...
     ***********************************************************/
+    public uint8 l1distlut[243*242/2];
+
     StreamContext* streamcontexts;
 }
 

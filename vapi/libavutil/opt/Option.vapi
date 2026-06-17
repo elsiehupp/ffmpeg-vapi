@@ -50,10 +50,10 @@ The following example illustrates an LibAVUtil.Options-enabled struct:
 [Compact]
 public class test_struct {
     Class class;
-    int int_opt;
-    char str_opt;
+    public int int_opt;
+    public char str_opt;
     uint8[] bin_opt;
-    int bin_len;
+    public int bin_len;
 }
 
 [CCode (cname="", cheader_filename="")]
@@ -111,7 +111,7 @@ test_struct alloc_test_struct () {
     av_opt_set_defaults (ret);
     return ret;
 }
-void free_test_struct (out test_struct foo) {
+public void free_test_struct (out test_struct foo) {
     av_opt_free (*foo);
     av_freep (foo);
 }
@@ -242,14 +242,14 @@ public class Option {
     /***********************************************************
     @brief Short English help text
     @todo What about other languages?
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="help")]
     public string short_help_text;
 
     /***********************************************************
     @brief The offset relative to the context structure where the option
     value is stored. It should be 0 for named constants.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="offset")]
     public int offset;
 
@@ -258,26 +258,24 @@ public class Option {
 
     /***********************************************************
     @brief The default value for scalar options
-        ***********************************************************/
+    ***********************************************************/
     //  union {
     //      int64 i64;
     //      double dbl;
     //      string str;
-    //      /***********************************************************
-    TODO those are unused now
-    //  ***********************************************************/
-//      Rational q;
+    //      /* TODO those are unused now */
+    //      Rational q;
     //  } default_val;
 
     /***********************************************************
     @brief Minimum valid value for the option
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="min")]
     public double min;
 
     /***********************************************************
     @brief Maximum valid value for the option
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="max")]
     public double max;
 
@@ -288,7 +286,7 @@ public class Option {
     @brief The logical unit to which the option belongs. Non-constant
     options and corresponding named constants share the same
     unit. May be null.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="unit")]
     public string unit;
 
@@ -313,7 +311,7 @@ public class Option {
     directly with av_opt_set (). Use special calls which take an options
     LibAVUtil.Dictionary (e.g. avformat_open_input ()) to set options found with this
     flag.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_find", cheader_filename="ffmpeg/libavutil/opt.h")]
     public Option av_opt_find (
         void *obj,
@@ -343,7 +341,7 @@ public class Option {
 
     @return A pointer to the option found, or null if no option
         was found.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_find2", cheader_filename="ffmpeg/libavutil/opt.h")]
     public Option av_opt_find2 (
         void *obj,
@@ -362,7 +360,7 @@ public class Option {
     @param prev result of the previous call to av_opt_next () on this object
         or null
     @return next Option or null
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_next", cheader_filename="ffmpeg/libavutil/opt.h")]
     public Option av_opt_next (
         void *obj,
@@ -374,7 +372,7 @@ public class Option {
 
     @param prev result of a previous call to this function or null
     @return next LibAVUtil.Options-enabled child or null
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_child_next", cheader_filename="ffmpeg/libavutil/opt.h")]
     public void *av_opt_child_next (
         void *obj,
@@ -405,7 +403,7 @@ public class Option {
     AVERROR_OPTION_NOT_FOUND if no matching option exists
     LibAVUtil.ErrorCode (ERANGE) if the value is out of range
     LibAVUtil.ErrorCode (EINVAL) if the value is not valid
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_set", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set (
         void *obj,
@@ -490,7 +488,7 @@ public class Option {
     /***********************************************************
     @note Any old dictionary present is discarded and replaced with a copy of the new one. The
     caller still owns val is and responsible for freeing it.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_set_dict_val", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_dict_val (
         void *obj,
@@ -509,7 +507,7 @@ public class Option {
     @param term list terminator (usually 0 or -1)
     @param search_flags search flags
     @returns 0 or LibAVUtil.ErrorCode (EINVAL)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_set_int_list", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_int_list (
         void *obj,
@@ -529,14 +527,14 @@ public class Option {
     is passed here, then the option may be found in a child of obj.
     @param[out] out_val value of the option will be written here
     @return >=0 on success, a negative error code otherwise
-        ***********************************************************/
+    ***********************************************************/
     /***********************************************************
     @note the returned string will be av_malloc ()ed and must be av_free ()ed by the caller
 
     @note if AV_OPT_ALLOW_NULL is set in search_flags in av_opt_get, and the option has
     OptionType.STRING or OptionType.BINARY and is set to null, *out_val will be set
     to null instead of an allocated empty string.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_get", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get (
         void *obj,
@@ -613,7 +611,7 @@ public class Option {
     /***********************************************************
     @param[out] out_val The returned dictionary is a copy of the actual value and must
     be freed with av_dict_free () by the caller
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_get_dict_val", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_dict_val (
         void *obj,
@@ -629,7 +627,7 @@ public class Option {
 
     @returns a pointer to the field, it can be cast to the correct type and read
         or written to.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_ptr", cheader_filename="ffmpeg/libavutil/opt.h")]
     public void *av_opt_ptr (
         Class avclass,
@@ -639,7 +637,7 @@ public class Option {
 
     /***********************************************************
     @brief Free an OptionRangeList struct and set it to null.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_freep_ranges", cheader_filename="ffmpeg/libavutil/opt.h")]
     public void av_opt_freep_ranges (
         OptionRangeList ranges
@@ -657,7 +655,7 @@ public class Option {
     The result must be freed with av_opt_freep_ranges.
 
     @return number of compontents returned on success, a negative errro code otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_query_ranges", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_query_ranges (
         out OptionRangeList ranges,
@@ -675,7 +673,7 @@ public class Option {
     @param dest Object to copy from
     @param input_buffer Object to copy into
     @return 0 on success, negative on error
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_copy", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_copy (
         out void *dest,
@@ -695,7 +693,7 @@ public class Option {
     The result must be freed with av_opt_free_ranges.
 
     @return number of compontents returned on success, a negative errro code otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_query_ranges_default", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_query_ranges_default (
         out OptionRangeList ranges,
@@ -715,7 +713,7 @@ public class Option {
     @return     >0 when option is set to its default,
         0 when option is not set its default,
         <0 on error
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_is_set_to_default", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_is_set_to_default (
         void *obj,
@@ -731,7 +729,7 @@ public class Option {
     @return    >0 when option is set to its default,
         0 when option is not set its default,
         <0 on error
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_is_set_to_default_by_name", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_is_set_to_default_by_name (
         void *obj,
@@ -751,7 +749,7 @@ public class Option {
     @param *_out value of the string will be written here.
 
     @return 0 on success, a negative number on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_eval_flags", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_flags (
         void *obj,
@@ -808,7 +806,7 @@ public class Option {
     @param rej_flags rejected flags for the options to show. Show only the
         options for which it is !(opt.flags & req_flags).
     @param av_log_obj log context to use for showing the options
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_show2", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_show2 (
         void *obj,
@@ -821,7 +819,7 @@ public class Option {
     @brief Set the values of all Option fields to their default values.
 
     @param void_context an Option-enabled struct (its first member must be a pointer to Class)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_set_defaults", cheader_filename="ffmpeg/libavutil/opt.h")]
     public void av_opt_set_defaults (
         void *void_context
@@ -835,7 +833,7 @@ public class Option {
     @param void_context an Option-enabled struct (its first member must be a pointer to Class)
     @param mask combination of OptionFlags
     @param flags combination of OptionFlags
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_set_defaults2", cheader_filename="ffmpeg/libavutil/opt.h")]
     public void av_opt_set_defaults2 (
         void *void_context,
@@ -859,7 +857,7 @@ public class Option {
     LibAVUtil.ErrorCode (EINVAL) if opts cannot be parsed,
     the error code issued by av_opt_set () if a key/value pair
     cannot be set
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_set_options_string", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_set_options_string (
         void *class_context,
@@ -894,7 +892,7 @@ public class Option {
     Options names must use only the following characters: a-z A-Z 0-9 - . / _
     Separators must use characters distinct from option names and from each
     other.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_set_from_string", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_from_string (
         void *class_context,
@@ -906,7 +904,7 @@ public class Option {
 
     /***********************************************************
     @brief Free all allocated objects in obj.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_free", cheader_filename="ffmpeg/libavutil/opt.h")]
     public void av_opt_free (
         void *obj
@@ -919,7 +917,7 @@ public class Option {
     @param flag_name the name of the flag to check
     @return non-zero if the flag is set, zero if the flag isn't set,
         isn't of the right type, or the flags field doesn't exist.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_flag_is_set", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_flag_is_set (
         void *obj,
@@ -940,7 +938,7 @@ public class Option {
         but could not be set.
 
     @see @link av_dict_copy ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_set_dict", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_dict (
         void *obj,
@@ -961,7 +959,7 @@ public class Option {
         but could not be set.
 
     @see @link av_dict_copy ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_set_dict2", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_set_dict2 (
         void *obj,
@@ -986,7 +984,7 @@ public class Option {
     @return  >=0 for success, or a negative value corresponding to an
         LibAVUtil.ErrorCode code in case of error; in particular:
         LibAVUtil.ErrorCode (EINVAL) if no key is present
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_opt_get_key_value", cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_get_key_value (
         out string ropts,

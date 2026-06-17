@@ -18,69 +18,88 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-int ff_sample_fmt_is_planar (AVSampleFormat sample_fmt, int channels);
+public int ff_sample_fmt_is_planar (AVSampleFormat sample_fmt, int channels);
 
 /***********************************************************
 Audio buffer used for intermediate storage between conversion phases.
 ***********************************************************/
-struct AudioData {
-    const AVClass *class; /***********************************************************
-    <AVClass for logging
+[Compact]
+public class AudioData {
+    /***********************************************************
+    AVClass for logging
     ***********************************************************/
-    uint8 *data[AVRESAMPLE_MAX_CHANNELS]; /***********************************************************
-    <data plane pointers
+    const AVClass *class;
+    /***********************************************************
+    data plane pointers
     ***********************************************************/
-    uint8 *buffer; /***********************************************************
-    <data buffer
+    uint8[] data[AVRESAMPLE_MAX_CHANNELS];
+    /***********************************************************
+    data buffer
     ***********************************************************/
-    uint buffer_size; /***********************************************************
-    <allocated buffer size
+    uint8[] buffer;
+    /***********************************************************
+    allocated buffer size
     ***********************************************************/
-    int allocated_samples; /***********************************************************
-    <number of samples the buffer can hold
+    public uint buffer_size;
+    /***********************************************************
+    number of samples the buffer can hold
     ***********************************************************/
-    int nb_samples; /***********************************************************
-    <current number of samples
+    public int allocated_samples;
+    /***********************************************************
+    current number of samples
     ***********************************************************/
-    enum AVSampleFormat sample_fmt; /***********************************************************
-    <sample format
+    public int nb_samples;
+    /***********************************************************
+    sample format
     ***********************************************************/
-    int channels; /***********************************************************
-    <channel count
+    public AVSampleFormat sample_fmt;
+    /***********************************************************
+    channel count
     ***********************************************************/
-    int allocated_channels; /***********************************************************
-    <allocated channel count
+    public int channels;
+    /***********************************************************
+    allocated channel count
     ***********************************************************/
-    int is_planar; /***********************************************************
-    <sample format is planar
+    public int allocated_channels;
+    /***********************************************************
+    sample format is planar
     ***********************************************************/
-    int planes; /***********************************************************
-    <number of data planes
+    public int is_planar;
+    /***********************************************************
+    number of data planes
     ***********************************************************/
-    int sample_size; /***********************************************************
-    <bytes per sample
+    public int planes;
+    /***********************************************************
+    bytes per sample
     ***********************************************************/
-    int stride; /***********************************************************
-    <sample byte offset within a plane
+    public int sample_size;
+    /***********************************************************
+    sample byte offset within a plane
     ***********************************************************/
-    int read_only; /***********************************************************
-    <data is read-only
+    public int stride;
+    /***********************************************************
+    data is read-only
     ***********************************************************/
-    int allow_realloc; /***********************************************************
-    <realloc is allowed
+    public int read_only;
+    /***********************************************************
+    realloc is allowed
     ***********************************************************/
-    int ptr_align; /***********************************************************
-    <minimum data pointer alignment
+    public int allow_realloc;
+    /***********************************************************
+    minimum data pointer alignment
     ***********************************************************/
-    int samples_align; /***********************************************************
-    <allocated samples alignment
+    public int ptr_align;
+    /***********************************************************
+    allocated samples alignment
     ***********************************************************/
-    string name; /***********************************************************
-    <name for debug logging
-***********************************************************/
+    public int samples_align;
+    /***********************************************************
+    name for debug logging
+    ***********************************************************/
+    string name;
 };
 
-int ff_audio_data_set_channels (AudioData *a, int channels);
+public int ff_audio_data_set_channels (AudioData *a, int channels);
 
 /***********************************************************
 Initialize AudioData using a given source.
@@ -101,10 +120,12 @@ and audio parameters.
 @param name            name for debug logging (can be NULL)
 @return                0 on success, negative AVERROR value on error
 ***********************************************************/
-int ff_audio_data_init (AudioData *a, uint8 * const *src, int plane_size,
-                       int channels, int nb_samples,
-                       AVSampleFormat sample_fmt, int read_only,
-                       string name);
+public int ff_audio_data_init (
+    AudioData *a, uint8[]  const *src, int plane_size,
+    public int channels, int nb_samples,
+    AVSampleFormat sample_fmt, int read_only,
+    string name
+);
 
 /***********************************************************
 Allocate AudioData.
@@ -130,7 +151,7 @@ The AudioData must have been previously allocated with ff_audio_data_alloc ().
 @param nb_samples  number of samples to allocate space for
 @return            0 on success, negative AVERROR value on error
 ***********************************************************/
-int ff_audio_data_realloc (AudioData *a, int nb_samples);
+public int ff_audio_data_realloc (AudioData *a, int nb_samples);
 
 /***********************************************************
 Free AudioData.
@@ -139,7 +160,7 @@ The AudioData must have been previously allocated with ff_audio_data_alloc ().
 
 @param a  AudioData struct
 ***********************************************************/
-void ff_audio_data_free (AudioData **a);
+public void ff_audio_data_free (AudioData **a);
 
 /***********************************************************
 Copy data from one AudioData to another.
@@ -149,7 +170,7 @@ Copy data from one AudioData to another.
 @param map  channel map, NULL if not remapping
 @return     0 on success, negative AVERROR value on error
 ***********************************************************/
-int ff_audio_data_copy (AudioData *out, AudioData *in, ChannelMapInfo *map);
+public int ff_audio_data_copy (AudioData *out, AudioData *in, ChannelMapInfo *map);
 
 /***********************************************************
 Append data from one AudioData to the end of another.
@@ -163,7 +184,7 @@ Append data from one AudioData to the end of another.
 @param nb_samples  number of samples to copy
 @return            0 on success, negative AVERROR value on error
 ***********************************************************/
-int ff_audio_data_combine (AudioData *dst, int dst_offset, AudioData *src,
+public int ff_audio_data_combine (AudioData *dst, int dst_offset, AudioData *src,
                           int src_offset, int nb_samples);
 
 /***********************************************************
@@ -174,7 +195,7 @@ Remaining samples are shifted to the start of the AudioData.
 @param a           AudioData struct
 @param nb_samples  number of samples to drain
 ***********************************************************/
-void ff_audio_data_drain (AudioData *a, int nb_samples);
+public void ff_audio_data_drain (AudioData *a, int nb_samples);
 
 /***********************************************************
 Add samples in AudioData to an AVAudioFifo.
@@ -186,7 +207,7 @@ Add samples in AudioData to an AVAudioFifo.
 @return            number of samples actually added to the FIFO, or
                    negative AVERROR code on error
 ***********************************************************/
-int ff_audio_data_add_to_fifo (AVAudioFifo *af, AudioData *a, int offset,
+public int ff_audio_data_add_to_fifo (AVAudioFifo *af, AudioData *a, int offset,
                               int nb_samples);
 
 /***********************************************************
@@ -198,4 +219,4 @@ Read samples from an AVAudioFifo to AudioData.
 @return            number of samples actually read from the FIFO, or
                    negative AVERROR code on error
 ***********************************************************/
-int ff_audio_data_read_from_fifo (AVAudioFifo *af, AudioData *a, int nb_samples);
+public int ff_audio_data_read_from_fifo (AVAudioFifo *af, AudioData *a, int nb_samples);

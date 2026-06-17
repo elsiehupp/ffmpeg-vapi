@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 //  const AVCodecTag ff_codec_ast_tags[] = {
-//      { LibAVCodec.CodecID.ADPCM_AFC,          0 },
-//      { LibAVCodec.CodecID.PCM_S16BE_PLANAR,   1 },
-//      { LibAVCodec.CodecID.NONE,               0 },
+//      { LibAVCodec.CodecID.ADPCM_AFC, 0 },
+//      { LibAVCodec.CodecID.PCM_S16BE_PLANAR, 1 },
+//      { LibAVCodec.CodecID.NONE, 0 },
 //  }
 
 } // namespace LibAVFormat

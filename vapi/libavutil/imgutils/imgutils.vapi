@@ -42,8 +42,8 @@ for each plane which has the max pixel step. May be null.
 ***********************************************************/
 [CCode (cname="av_image_fill_max_pixsteps", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public void av_image_fill_max_pixsteps (
-    int max_pixsteps[4],
-    int max_pixstep_comps[4],
+    public int max_pixsteps[4],
+    public int max_pixstep_comps[4],
     PixelFormatDescriptor pixdesc
 );
 
@@ -56,8 +56,8 @@ width for the plane plane.
 [CCode (cname="av_image_get_linesize", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public int av_image_get_linesize (
     PixelFormat pixel_format,
-    int width,
-    int plane
+    public int width,
+    public int plane
 );
 
 /***********************************************************
@@ -69,9 +69,9 @@ width width.
 ***********************************************************/
 [CCode (cname="av_image_fill_linesizes", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public int av_image_fill_linesizes (
-    int linesizes[4],
+    public int linesizes[4],
     PixelFormat pixel_format,
-    int width
+    public int width
 );
 
 /***********************************************************
@@ -104,7 +104,7 @@ error code in case of failure
 [CCode (cname="av_image_alloc", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public int av_image_alloc (
     out uint8 pointers[4], int linesizes[4],
-    int w, int h, PixelFormat pixel_format, int align
+    public int w, int h, PixelFormat pixel_format, int align
 );
 
 /***********************************************************
@@ -124,9 +124,9 @@ public void av_image_copy_plane (
     out uint8[] output_buffer,
     out int output_linesize,
     uint8[] input_buffer,
-    int input_linesize,
-    int bytewidth,
-    int height
+    public int input_linesize,
+    public int bytewidth,
+    public int height
 );
 
 /***********************************************************
@@ -140,9 +140,9 @@ public void av_image_copy (
     out uint8 output_data[4],
     out int output_linesizes[4],
     out uint8 input_data[4],
-    int input_linesizes[4],
+    public int input_linesizes[4],
     PixelFormat pixel_format,
-    int width, int height
+    public int width, int height
 );
 
 /***********************************************************
@@ -155,7 +155,7 @@ The data pointers and the linesizes must be aligned to the maximum required
 by the CPU architecture.
 
 @note The linesize parameters have the type size_t here, while they are
-    int for av_image_copy ().
+    public int for av_image_copy ().
 @note On x86, the linesizes currently need to be aligned to the cacheline
     size (i.e. 64) to get improved performance.
 ***********************************************************/
@@ -164,9 +164,9 @@ public void av_image_copy_uc_from (
     out uint8 output_data[4],
     out size_t output_linesizes[4],
     out uint8 input_data[4],
-    size_t input_linesizes[4],
+    public size_t input_linesizes[4],
     PixelFormat pixel_format,
-    int width, int height
+    public int width, int height
 );
 
 /***********************************************************
@@ -197,13 +197,13 @@ in case of failure
 ***********************************************************/
 [CCode (cname="av_image_fill_arrays", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public int av_image_fill_arrays (
-    out uint8 *output_data[4],
+    out uint8[] output_data[4],
     out int output_linesize[4],
     uint8[] input_buffer,
     PixelFormat pixel_format,
-    int width,
-    int height,
-    int align
+    public int width,
+    public int height,
+    public int align
 );
 
 /***********************************************************
@@ -219,9 +219,9 @@ image with the given parameters.
 [CCode (cname="av_image_get_buffer_size", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public int av_image_get_buffer_size (
     PixelFormat pixel_format,
-    int width,
-    int height,
-    int align
+    public int width,
+    public int height,
+    public int align
 );
 
 /***********************************************************
@@ -245,12 +245,12 @@ for the buffer to fill.
 public int av_image_copy_to_buffer (
     out uint8[] output_buffer,
     out int output_size,
-    uint8 input_data[4],
-    int input_linesize[4],
+    public uint8 input_data[4],
+    public int input_linesize[4],
     PixelFormat pixel_format,
-    int width,
-    int height,
-    int align
+    public int width,
+    public int height,
+    public int align
 );
 
 /***********************************************************
@@ -265,9 +265,9 @@ bytes of the image can be addressed with a signed int.
 ***********************************************************/
 [CCode (cname="av_image_check_size", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public int av_image_check_size (
-    uint w,
-    uint h,
-    int log_offset,
+    public uint w,
+    public uint h,
+    public int log_offset,
     void *log_ctx
 );
 
@@ -286,11 +286,11 @@ with a signed int.
 ***********************************************************/
 [CCode (cname="av_image_check_size2", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public int av_image_check_size2 (
-    uint w,
-    uint h,
-    int64 max_pixels,
+    public uint w,
+    public uint h,
+    public int64 max_pixels,
     PixelFormat pixel_format,
-    int log_offset,
+    public int log_offset,
     void *log_ctx
 );
 
@@ -308,8 +308,8 @@ sar numerator is 0, it is considered unknown and will return as valid.
 ***********************************************************/
 [CCode (cname="av_image_check_sar", cheader_filename="ffmpeg/libavutil/imgutils.h")]
 public int av_image_check_sar (
-    uint w,
-    uint h,
+    public uint w,
+    public uint h,
     Rational sar
 );
 
@@ -342,8 +342,8 @@ public int av_image_fill_black (
     out size_t output_linesize[4],
     PixelFormat pixel_format,
     ColorRange range,
-    int width,
-    int height
+    public int width,
+    public int height
 );
 
 } // namespace LibAVUtil

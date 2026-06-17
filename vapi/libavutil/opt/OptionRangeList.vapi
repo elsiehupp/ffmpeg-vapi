@@ -50,7 +50,7 @@ public class OptionRangeList {
     Multi-component range can be read as in following example:
 
     @code
-    int range_index, component_index;
+    public int range_index, component_index;
     OptionRangeList ranges;
     OptionRange range[3]; // may require more than 3 in the future.
     av_opt_query_ranges (&ranges, obj, key, AV_OPT_MULTI_COMPONENT_RANGE);
@@ -61,19 +61,19 @@ public class OptionRangeList {
     }
     av_opt_freep_ranges (&ranges);
     @endcode
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="range")]
     public OptionRange[] range_list;
 
     /***********************************************************
     @brief Number of ranges per component.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_ranges")]
     public int range_count;
 
     /***********************************************************
     @brief Number of componentes.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_components")]
     public int component_count;
 }

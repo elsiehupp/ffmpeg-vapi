@@ -181,12 +181,12 @@ public class Mp4Descr {
 public int ff_parse_mpeg2_descriptor (
     AVFormatContext fc,
     AVStream st,
-    int stream_type,
+    public int stream_type,
     out uint8[] pp,
     out uint8 desc_list_end,
     Mp4Descr mp4_descr,
-    int mp4_descr_count,
-    int pid,
+    public int mp4_descr_count,
+    public int pid,
     MpegTSContext ts
 );
 

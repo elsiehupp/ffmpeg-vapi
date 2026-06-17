@@ -20,10 +20,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class SSIMDSPContext {
-    void (*ssim_4x4_line)(const uint8 *buf, ptrdiff_t buf_stride,
-                          uint8 *ref, ptrdiff_t ref_stride,
+    void (*ssim_4x4_line)(const uint8[] buf, ptrdiff_t buf_stride,
+                          uint8[] ref, ptrdiff_t ref_stride,
                           int (*sums)[4], int w);
     float (*ssim_end_line)(const int (*sum0)[4], int (*sum1)[4], int w);
 }
 
-void ff_ssim_init_x86 (SSIMDSPContext *dsp);
+public void ff_ssim_init_x86 (SSIMDSPContext *dsp);

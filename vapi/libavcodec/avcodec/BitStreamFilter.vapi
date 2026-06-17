@@ -40,7 +40,7 @@ public class BitStreamFilter {
     @brief A list of codec ids supported by the filter, terminated by
     LibAVCodec.CodecID.NONE.
     May be null, in that case the bitstream filter works with any codec id.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="codec_ids")]
     public CodecID[] codec_ids;
 
@@ -52,7 +52,7 @@ public class BitStreamFilter {
     If this field is non-null, the first member of the filter private data
     must be a pointer to LibAVUtil.Class, which will be set by LibAVCodec generic
     code to this class.
-        ***********************************************************/
+    ***********************************************************/
     //  [CCode (cname="priv_class")]
     public LibAVUtil.Class priv_class;
 }

@@ -37,14 +37,14 @@ public class Codec {
     The name is globally unique among encoders and among decoders (but an
     encoder and a decoder can share the same name).
     This is the primary way to find a codec from the user perspective.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="name")]
     public string name;
 
     /***********************************************************
     @brief Descriptive name for the codec, meant to be more human readable than name.
     You should use the NULL_IF_CONFIG_SMALL () macro to define it.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="long_name")]
     public string long_name;
 
@@ -56,61 +56,61 @@ public class Codec {
 
     /***********************************************************
     @brief Codec capabilities.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="capabilities")]
     public CodecCapabilityFlags capabilities;
 
     /***********************************************************
     @brief Array of supported framerates, or null if any, array is
     terminated by {0,0}
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="supported_framerates")]
     public LibAVUtil.Rational[] supported_framerates;
 
     /***********************************************************
     @brief Array of supported pixel formats, or null if unknown, array
     is terminated by -1
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pix_fmts")]
     public LibAVUtil.PixelFormat[] pix_fmts;
 
     /***********************************************************
     @brief Array of supported audio samplerates, or null if unknown,
     array is terminated by 0
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="supported_samplerates")]
     public int[] supported_samplerates;
 
     /***********************************************************
     @brief Array of supported sample formats, or null if unknown, array
     is terminated by -1
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sample_fmts")]
     public LibAVUtil.SampleFormat[] sample_fmts;
 
     /***********************************************************
     @brief Array of support channel layouts, or null if unknown. array
     is terminated by 0
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="channel_layouts")]
     public uint64[] channel_layouts;
 
     /***********************************************************
     @brief Maximum value for lowres supported by the decoder
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="max_lowres")]
     public uint8 max_lowres;
 
     /***********************************************************
     @brief LibAVUtil.Class for the private context
-        ***********************************************************/
+    ***********************************************************/
     //  [CCode (cname="priv_class")]
     public LibAVUtil.Class priv_class;
 
     /***********************************************************
     @brief Array of recognized profiles, or null if unknown, array is
     terminated by {FF_PROFILE_UNKNOWN}
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="profiles")]
     public Profile[] profiles;
 
@@ -123,7 +123,7 @@ public class Codec {
     If this field is null, this is a builtin, LibAVCodec native codec.
     If non-null, this will be the suffix in Codec.name in most cases
     (usually Codec.name will be of the form "<codec_name>_<wrapper_name>").
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="wrapper_name")]
     public string wrapper_name;
 
@@ -133,7 +133,7 @@ public class Codec {
     Values of index from zero to some maximum return the indexed configuration
     descriptor; all other values return null. If the codec does not support
     any hardware configurations then it will always return null.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_get_hw_config", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecHardwareConfig avcodec_get_hw_config (
         Codec codec,
@@ -148,7 +148,7 @@ public class Codec {
 
     @return the next registered codec or null when the iteration is
         finished
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_codec_iterate", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec av_codec_iterate (
         out void *opaque
@@ -159,7 +159,7 @@ public class Codec {
 
     @param id CodecID of the requested decoder
     @return A decoder if one was found, null otherwise.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_find_decoder", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec avcodec_find_decoder (
         CodecID id
@@ -170,7 +170,7 @@ public class Codec {
 
     @param name name of the requested decoder
     @return A decoder if one was found, null otherwise.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_find_decoder_by_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec avcodec_find_decoder_by_name (
         string name
@@ -181,7 +181,7 @@ public class Codec {
 
     @param id CodecID of the requested encoder
     @return An encoder if one was found, null otherwise.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_find_encoder", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec avcodec_find_encoder (
         CodecID id
@@ -192,7 +192,7 @@ public class Codec {
 
     @param name name of the requested encoder
     @return An encoder if one was found, null otherwise.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avcodec_find_encoder_by_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Codec avcodec_find_encoder_by_name (
         string name
@@ -200,7 +200,7 @@ public class Codec {
 
     /***********************************************************
     @return a non-zero number if codec is an encoder, zero otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_codec_is_encoder", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_codec_is_encoder (
         Codec codec
@@ -208,7 +208,7 @@ public class Codec {
 
     /***********************************************************
     @return a non-zero number if codec is a decoder, zero otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_codec_is_decoder", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_codec_is_decoder (
         Codec codec
@@ -220,7 +220,7 @@ public class Codec {
     @param codec the codec that is searched for the given profile
     @param profile the profile value for which a name is requested
     @return A name for the profile if found, null otherwise.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_profile_name", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public string av_get_profile_name (
         Codec codec,

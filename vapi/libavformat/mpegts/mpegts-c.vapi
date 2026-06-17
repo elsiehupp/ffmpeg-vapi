@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 //  #define MPEGTS_OPTIONS
-//      { "resync_size",   "set size limit for looking up a new synchronization", offsetof (MpegTSContext, resync_size), AV_OPT_TYPE_INT,  { .i64 = MAX_RESYNC_SIZE}, 0, INT_MAX,  AV_OPT_FLAG_DECODING_PARAM }
+//      { "resync_size", "set size limit for looking up a new synchronization", offsetof (MpegTSContext, resync_size), AV_OPT_TYPE_INT, { .i64 = MAX_RESYNC_SIZE}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM }
 
 //  static const LibAVUtil.Option options[] = {
 //      MPEGTS_OPTIONS,
@@ -36,7 +36,7 @@ namespace LibAVFormat {
 //      {"skip_unknown_pmt", "skip PMTs for programs not advertised in the PAT", offsetof (MpegTSContext, skip_unknown_pmt), AV_OPT_TYPE_BOOL,
 //       {.i64 = 0}, 0, 1, AV_OPT_FLAG_DECODING_PARAM },
 //      {"merge_pmt_versions", "re-use streams when PMT's version/pids change", offsetof (MpegTSContext, merge_pmt_versions), AV_OPT_TYPE_BOOL,
-//       {.i64 = 0}, 0, 1,  AV_OPT_FLAG_DECODING_PARAM },
+//       {.i64 = 0}, 0, 1, AV_OPT_FLAG_DECODING_PARAM },
 //      {"skip_changes", "skip changing / adding streams / programs", offsetof (MpegTSContext, skip_changes), AV_OPT_TYPE_BOOL,
 //       {.i64 = 0}, 0, 1, 0 },
 //      {"skip_clear", "skip clearing programs", offsetof (MpegTSContext, skip_clear), AV_OPT_TYPE_BOOL,
@@ -75,9 +75,9 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
 
 //  static const LibAVUtil.Option raw_options[] = {
 //      MPEGTS_OPTIONS,
-//      { "compute_pcr",   "compute exact PCR for each transport stream packet"
+//      { "compute_pcr", "compute exact PCR for each transport stream packet"
 //            offsetof (MpegTSContext, mpeg2ts_compute_pcr), AV_OPT_TYPE_BOOL,
-//            { .i64 = 0 }, 0, 1,  AV_OPT_FLAG_DECODING_PARAM },
+//            { .i64 = 0 }, 0, 1, AV_OPT_FLAG_DECODING_PARAM },
 //      { "ts_packetsize", "output option carrying the raw packet size"
 //        offsetof (MpegTSContext, raw_packet_size), AV_OPT_TYPE_INT,
 //        { .i64 = 0 }, 0, 0,

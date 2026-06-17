@@ -63,8 +63,8 @@ public LibAVUtil.ErrorCode ff_neterrno (); // LibAVUtil.ErrorCode (errno)
 
 [CCode (cname="", cheader_filename="")]
 public int ff_socket_nonblock (
-    int socket,
-    int enable
+    public int socket,
+    public int enable
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -81,8 +81,8 @@ public void ff_tls_deinit ();
 
 [CCode (cname="", cheader_filename="")]
 public int ff_network_wait_fd (
-    int fd,
-    int write
+    public int fd,
+    public int write
 );
 
 /***********************************************************
@@ -97,9 +97,9 @@ Uses ff_network_wait_fd in a loop
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public int ff_network_wait_fd_timeout (
-    int fd,
-    int write,
-    int64 timeout,
+    public int fd,
+    public int write,
+    public int64 timeout,
     AVIOInterruptCB int_cb
 );
 
@@ -112,7 +112,7 @@ triggered, return before that.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public int ff_network_sleep_interruptible (
-    int64 timeout,
+    public int64 timeout,
     AVIOInterruptCB int_cb
 );
 
@@ -131,7 +131,7 @@ public class sockaddr_storage {
     public uint16 ss_family;
 #endif /***********************************************************
     HAVE_STRUCT_SOCKADDR_SA_LEN
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public char ss_pad1[6];
 
@@ -301,12 +301,12 @@ public void ff_freeaddrinfo (
 [CCode (cname="", cheader_filename="")]
 public int ff_getnameinfo (
     Posix.SockAddr sa,
-    int salen,
+    public int salen,
     string host,
-    int hostlen,
+    public int hostlen,
     string serv,
-    int servlen,
-    int flags
+    public int servlen,
+    public int flags
 );
 #endif /***********************************************************
     !HAVE_GETADDRINFO
@@ -315,7 +315,7 @@ public int ff_getnameinfo (
 #if !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
 [CCode (cname="", cheader_filename="")]
 public string ff_gai_strerror (
-    int ecode
+    public int ecode
 );
 #endif /***********************************************************
     !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
@@ -371,10 +371,10 @@ Bind to a file descriptor and poll for a connection.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public int ff_listen_bind (
-    int fd,
+    public int fd,
     Posix.SockAddr addr,
     Posix.socklen_t addrlen,
-    int timeout,
+    public int timeout,
     URLContext url_context
 );
 
@@ -387,7 +387,7 @@ Bind to a file descriptor to an address without accepting connections.
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public int ff_listen (
-    int fd,
+    public int fd,
     Posix.SockAddr addr,
     Posix.socklen_t addrlen
 );
@@ -403,8 +403,8 @@ public int ff_listen (
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public int ff_accept (
-    int fd,
-    int timeout,
+    public int fd,
+    public int timeout,
     URLContext url_context
 );
 
@@ -425,12 +425,12 @@ public int ff_accept (
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public int ff_listen_connect (
-    int fd,
+    public int fd,
     Posix.SockAddr addr,
     Posix.socklen_t addrlen,
-    int timeout,
+    public int timeout,
     URLContext url_context,
-    int will_try_next
+    public int will_try_next
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -441,15 +441,15 @@ public int ff_http_match_no_proxy (
 
 [CCode (cname="", cheader_filename="")]
 public int ff_socket (
-    int domain,
-    int type,
-    int protocol
+    public int domain,
+    public int type,
+    public int protocol
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ff_log_net_error (
     void *opaque_context,
-    int level,
+    public int level,
     string prefix
 );
 
@@ -480,8 +480,8 @@ running in parallel.
 [CCode (cname="", cheader_filename="")]
 public int ff_connect_parallel (
     addrinfo[] addrs,
-    int timeout_ms_per_address,
-    int parallel,
+    public int timeout_ms_per_address,
+    public int parallel,
     URLContext url_context,
     out int fd,
     CustomizeFileDescriptorDelegate customize_fd,
@@ -490,7 +490,7 @@ public int ff_connect_parallel (
 
 public delegate void CustomizeFileDescriptorDelegate (
     void *opaque,
-    int arg
+    public int arg
 );
 
 } // namespace LibAVFormat

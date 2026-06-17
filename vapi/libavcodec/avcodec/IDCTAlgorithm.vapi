@@ -42,7 +42,7 @@ public enum IDCTAlgorithm {
     FF_IDCT_SIMPLENEON,
     /***********************************************************
     @brief Used by XvMC to extract IDCT coefficients with FF_IDCT_PERM_NONE
-        ***********************************************************/
+    ***********************************************************/
     FF_IDCT_NONE,
     FF_IDCT_SIMPLEAUTO,
 }

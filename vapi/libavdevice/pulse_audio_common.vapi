@@ -22,10 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 pa_sample_format_t ff_codec_id_to_pulse_format (AVCodecID codec_id);
 
 av_warn_unused_result
-int ff_pulse_audio_get_devices (AVDeviceInfoList *devices, string server, int output);
+public int ff_pulse_audio_get_devices (AVDeviceInfoList *devices, string server, int output);
 
 av_warn_unused_result
-int ff_pulse_audio_connect_context (pa_mainloop **pa_ml, pa_context **pa_ctx,
+public int ff_pulse_audio_connect_context (pa_mainloop **pa_ml, pa_context **pa_ctx,
                                    string server, string description);
 
-void ff_pulse_audio_disconnect_context (pa_mainloop **pa_ml, pa_context **pa_ctx);
+public void ff_pulse_audio_disconnect_context (pa_mainloop **pa_ml, pa_context **pa_ctx);

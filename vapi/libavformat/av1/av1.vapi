@@ -24,19 +24,19 @@ namespace LibAVFormat {
 [CCode (cname="struct AV1SequenceParameters", cheader_filename="")]
 [Compact]
 public class AV1SequenceParameters {
-    uint8 profile;
-    uint8 level;
-    uint8 tier;
-    uint8 bitdepth;
-    uint8 monochrome;
-    uint8 chroma_subsampling_x;
-    uint8 chroma_subsampling_y;
-    uint8 chroma_sample_position;
-    uint8 color_description_present_flag;
-    uint8 color_primaries;
-    uint8 transfer_characteristics;
-    uint8 matrix_coefficients;
-    uint8 color_range;
+    public uint8 profile;
+    public uint8 level;
+    public uint8 tier;
+    public uint8 bitdepth;
+    public uint8 monochrome;
+    public uint8 chroma_subsampling_x;
+    public uint8 chroma_subsampling_y;
+    public uint8 chroma_sample_position;
+    public uint8 color_description_present_flag;
+    public uint8 color_primaries;
+    public uint8 transfer_characteristics;
+    public uint8 matrix_coefficients;
+    public uint8 color_range;
 }
 
 /***********************************************************
@@ -55,7 +55,7 @@ the resulting bitstream to the provided AVIOContext.
 public int ff_av1_filter_obus (
     AVIOContext pb,
     uint8[] buffer,
-    int size
+    public int size
 );
 
 /***********************************************************
@@ -93,7 +93,7 @@ public int ff_av1_filter_obus_buf (
 public int ff_av1_parse_seq_header (
     AV1SequenceParameters seq,
     uint8[] buffer,
-    int size
+    public int size
 );
 
 /***********************************************************
@@ -110,7 +110,7 @@ AVIOContext.
 public int ff_isom_write_av1c (
     AVIOContext pb,
     uint8[] buffer,
-    int size
+    public int size
 );
 
 } // namespace LibAVFormat

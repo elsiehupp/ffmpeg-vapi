@@ -36,7 +36,7 @@ public enum FrameCropFlags {
     (such as crashes). You can pass unaligned data only to FFmpeg APIs that
     are explicitly documented to accept it. Use this flag only if you
     absolutely know what you are doing.
-        ***********************************************************/
+    ***********************************************************/
     UNALIGNED,
 }
 

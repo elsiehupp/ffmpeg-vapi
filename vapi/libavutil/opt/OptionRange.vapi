@@ -39,7 +39,7 @@ public class OptionRange {
     @brief Value range.
     For string ranges this represents the min/max length.
     For dimensions this represents the min/max pixel count or width/height in multi-component case.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="value_min")]
     public double value_min;
 
@@ -47,28 +47,28 @@ public class OptionRange {
     @brief Value range.
     For string ranges this represents the min/max length.
     For dimensions this represents the min/max pixel count or width/height in multi-component case.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="value_max")]
     public double value_max;
 
     /***********************************************************
     @brief Value's component range.
     For string this represents the unicode range for chars, 0-127 limits to ASCII.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="component_min")]
     public double component_min;
 
     /***********************************************************
     @brief Value's component range.
     For string this represents the unicode range for chars, 0-127 limits to ASCII.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="component_max")]
     public double component_max;
 
     /***********************************************************
     @brief Range flag.
     If set to 1 the struct encodes a range, if set to 0 a single value.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="is_range")]
     public int is_range;
 }

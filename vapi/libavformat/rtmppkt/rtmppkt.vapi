@@ -36,23 +36,23 @@ control, remote procedure calls, etc.)
 public enum RTMPChannel {
     /***********************************************************
     @brief Channel for network-related messages (bandwidth report, ping, etc)
-        ***********************************************************/
+    ***********************************************************/
     RTMP_NETWORK_CHANNEL,
     /***********************************************************
     @brief Channel for sending server control messages
-        ***********************************************************/
+    ***********************************************************/
     RTMP_SYSTEM_CHANNEL,
     /***********************************************************
     @brief Channel for audio data
-        ***********************************************************/
+    ***********************************************************/
     RTMP_AUDIO_CHANNEL,
     /***********************************************************
     @brief Channel for video data
-        ***********************************************************/
+    ***********************************************************/
     RTMP_VIDEO_CHANNEL,
     /***********************************************************
     @brief Channel for a/v invokes
-        ***********************************************************/
+    ***********************************************************/
     RTMP_SOURCE_CHANNEL;
 }
 
@@ -63,59 +63,59 @@ public enum RTMPChannel {
 public enum RTMPPacketType {
     /***********************************************************
     @brief Chunk size change
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_CHUNK_SIZE,
     /***********************************************************
     @brief Number of bytes read
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_BYTES_READ,
     /***********************************************************
     User control
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_USER_CONTROL,
     /***********************************************************
     @brief Window acknowledgement size
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_WINDOW_ACK_SIZE,
     /***********************************************************
     @brief Peer bandwidth
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_SET_PEER_BW,
     /***********************************************************
     @brief Audio packet
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_AUDIO,
     /***********************************************************
     @brief Video packet
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_VIDEO,
     /***********************************************************
     @brief Flex shared stream
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_FLEX_STREAM,
     /***********************************************************
     @brief Flex shared object
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_FLEX_OBJECT,
     /***********************************************************
     @brief Flex shared message
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_FLEX_MESSAGE,
     /***********************************************************
     @brief Some notification
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_NOTIFY,
     /***********************************************************
     @brief Shared object
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_SHARED_OBJ,
     /***********************************************************
     @brief Invoke some stream action
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_INVOKE,
     /***********************************************************
     @brief FLV metadata
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PT_METADATA;
 }
 
@@ -126,19 +126,19 @@ public enum RTMPPacketType {
 public enum RTMPPacketSize {
     /***********************************************************
     @brief Packet has 12-byte header
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PS_TWELVEBYTES,
     /***********************************************************
     @brief Packet has 8-byte header
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PS_EIGHTBYTES,
     /***********************************************************
     @brief Packet has 4-byte header
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PS_FOURBYTES,
     /***********************************************************
     @brief Packet is really a next chunk of a packet
-        ***********************************************************/
+    ***********************************************************/
     RTMP_PS_ONEBYTE;
 }
 
@@ -150,50 +150,50 @@ public enum RTMPPacketSize {
 public class RTMPPacket {
     /***********************************************************
     @brief RTMP channel ID (nothing to do with audio/video channels though)
-        ***********************************************************/
-    int channel_id;
+    ***********************************************************/
+    public int channel_id;
 
     /***********************************************************
     @brief Packet payload type
-        ***********************************************************/
+    ***********************************************************/
     RTMPPacketType type;
 
     /***********************************************************
     @brief Packet full timestamp
-        ***********************************************************/
+    ***********************************************************/
     uint32 timestamp;
 
     /***********************************************************
     24-bit timestamp or increment to the previous one, in
     milliseconds (latter only for media packets). Clipped to a
     maximum of 0xFFFFFF, indicating an extended timestamp field.
-        ***********************************************************/
+    ***********************************************************/
     uint32 ts_field;
 
     /***********************************************************
     @brief Probably an additional channel ID used during streaming data
-        ***********************************************************/
+    ***********************************************************/
     uint32 extra;
 
     /***********************************************************
     @brief Packet payload
-        ***********************************************************/
+    ***********************************************************/
     uint8[] data;
 
     /***********************************************************
     @brief Packet payload size
-        ***********************************************************/
-    int size;
+    ***********************************************************/
+    public int size;
 
     /***********************************************************
     @brief Amount of data read so far
-        ***********************************************************/
-    int offset;
+    ***********************************************************/
+    public int offset;
 
     /***********************************************************
     @brief Amount read, including headers
-        ***********************************************************/
-    int read;
+    ***********************************************************/
+    public int read;
 }
 
 /***********************************************************
@@ -209,10 +209,10 @@ public class RTMPPacket {
 [CCode (cname="", cheader_filename="")]
 public int ff_rtmp_packet_create (
     RTMPPacket packet,
-    int channel_id,
+    public int channel_id,
     RTMPPacketType type,
-    int timestamp,
-    int size
+    public int timestamp,
+    public int size
 );
 
 /***********************************************************
@@ -240,9 +240,9 @@ public void ff_rtmp_packet_destroy (
 public int ff_rtmp_packet_read (
     URLContext url_context,
     RTMPPacket packet,
-    int chunk_size,
+    public int chunk_size,
     out RTMPPacket prev_pkt,
-    int[] nb_prev_pkt
+    public int[] nb_prev_pkt
 );
 
 /***********************************************************
@@ -261,10 +261,10 @@ public int ff_rtmp_packet_read (
 public int ff_rtmp_packet_read_internal (
     URLContext url_context,
     RTMPPacket packet,
-    int chunk_size,
+    public int chunk_size,
     out RTMPPacket prev_pkt,
-    int[] nb_prev_pkt,
-    uint8 c
+    public int[] nb_prev_pkt,
+    public uint8 c
 );
 
 /***********************************************************
@@ -282,7 +282,7 @@ public int ff_rtmp_packet_read_internal (
 public int ff_rtmp_packet_write (
     URLContext url_context,
     RTMPPacket packet,
-    int chunk_size,
+    public int chunk_size,
     out RTMPPacket prev_pkt,
     out int nb_prev_pkt
 );
@@ -310,7 +310,7 @@ public void ff_rtmp_packet_dump (
 public int ff_rtmp_check_alloc_array (
     out RTMPPacket prev_pkt,
     out int nb_prev_pkt,
-    int channel
+    public int channel
 );
 
 /***********************************************************
@@ -348,7 +348,7 @@ public int ff_amf_get_field_value (
     uint8[] data_end,
     uint8[] name,
     uint8[] dst,
-    int dst_size
+    public int dst_size
 );
 
 /***********************************************************
@@ -360,7 +360,7 @@ public int ff_amf_get_field_value (
 [CCode (cname="", cheader_filename="")]
 public void ff_amf_write_bool (
     out uint8[] dst,
-    int val
+    public int val
 );
 
 /***********************************************************
@@ -487,7 +487,7 @@ ease later parsing.
 public int ff_amf_get_string (
     GetByteContext bc,
     uint8[] str,
-    int strsize,
+    public int strsize,
     out int length
 );
 
@@ -507,7 +507,7 @@ ease later parsing.
 public int ff_amf_read_string (
     GetByteContext gbc,
     uint8[] str,
-    int strsize,
+    public int strsize,
     out int length
 );
 
@@ -530,7 +530,7 @@ public int ff_amf_read_null (
 [CCode (cname="", cheader_filename="")]
 public int ff_amf_match_string (
     uint8[] data,
-    int size,
+    public int size,
     string str
 );
 

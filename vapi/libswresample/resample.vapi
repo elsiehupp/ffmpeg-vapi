@@ -22,28 +22,29 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [Compact]
 public class ResampleContext {
     const AVClass *av_class;
-    uint8 *filter_bank;
-    int filter_length;
-    int filter_alloc;
-    int ideal_dst_incr;
-    int dst_incr;
-    int dst_incr_div;
-    int dst_incr_mod;
-    int index;
-    int frac;
-    int src_incr;
-    int compensation_distance;
-    int phase_count;
-    int linear;
-    enum SwrFilterType filter_type;
+    uint8[] filter_bank;
+    public int filter_length;
+    public int filter_alloc;
+    public int ideal_dst_incr;
+    public int dst_incr;
+    public int dst_incr_div;
+    public int dst_incr_mod;
+    public int index;
+    public int frac;
+    public int src_incr;
+    public int compensation_distance;
+    public int phase_count;
+    public int linear;
+    public SwrFilterType filter_type;
     double kaiser_beta;
     double factor;
-    enum AVSampleFormat format;
-    int felem_size;
-    int filter_shift;
-    int phase_count_compensation; /***********************************************************
+    public AVSampleFormat format;
+    public int felem_size;
+    public int filter_shift;
+    /***********************************************************
     desired phase_count when compensation is enabled
     ***********************************************************/
+    public int phase_count_compensation;
 
     struct {
         void (*resample_one)(void *dst, void *src,
@@ -55,7 +56,7 @@ public class ResampleContext {
     } dsp;
 }
 
-void swri_resample_dsp_init (ResampleContext *c);
-void swri_resample_dsp_x86_init (ResampleContext *c);
-void swri_resample_dsp_arm_init (ResampleContext *c);
-void swri_resample_dsp_aarch64_init (ResampleContext *c);
+public void swri_resample_dsp_init (ResampleContext *c);
+public void swri_resample_dsp_x86_init (ResampleContext *c);
+public void swri_resample_dsp_arm_init (ResampleContext *c);
+public void swri_resample_dsp_aarch64_init (ResampleContext *c);

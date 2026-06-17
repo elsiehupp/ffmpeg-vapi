@@ -39,7 +39,7 @@ public class PanScanArea {
 
     - encoding: Set by user.
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="id")]
     public int id;
 
@@ -48,7 +48,7 @@ public class PanScanArea {
 
     - encoding: Set by user.
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="width")]
     public int width;
 
@@ -57,7 +57,7 @@ public class PanScanArea {
 
     - encoding: Set by user.
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="height")]
     public int height;
 
@@ -66,7 +66,7 @@ public class PanScanArea {
 
     - encoding: Set by user.
     - decoding: Set by
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="position")]
     public int16 position[3 * 2];
 }

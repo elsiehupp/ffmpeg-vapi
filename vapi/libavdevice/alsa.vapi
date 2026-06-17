@@ -47,31 +47,31 @@ public class AlsaData {
     /***********************************************************
     bytes per sample * channels
     ***********************************************************/
-    int frame_size; ///<
+    public int frame_size;
     /***********************************************************
     preferred size for reads and writes, in frames
     ***********************************************************/
-    int period_size; ///<
+    public int period_size;
     /***********************************************************
     sample rate set by user
     ***********************************************************/
-    int sample_rate; ///<
+    public int sample_rate;
     /***********************************************************
     number of channels set by user
     ***********************************************************/
-    int channels; ///<
-    int last_period;
+    public int channels;
+    public int last_period;
     TimeFilter *timefilter;
     void (*reorder_func)(const void *, void *, int);
     void *reorder_buf;
     /***********************************************************
     in frames
     ***********************************************************/
-    int reorder_buf_size; ///<
+    public int reorder_buf_size;
     /***********************************************************
     current timestamp, without latency applied.
     ***********************************************************/
-    int64 timestamp; ///<
+    public int64 timestamp;
 }
 
 /***********************************************************
@@ -89,7 +89,7 @@ Open an ALSA PCM.
 @return 0 if OK, AVERROR_xxx on error
 ***********************************************************/
 av_warn_unused_result
-int ff_alsa_open (AVFormatContext *s, snd_pcm_stream_t mode,
+public int ff_alsa_open (AVFormatContext *s, snd_pcm_stream_t mode,
                  uint *sample_rate,
                  int channels, AVCodecID *codec_id);
 
@@ -100,7 +100,7 @@ Close the ALSA PCM.
 
 @return 0
 ***********************************************************/
-int ff_alsa_close (AVFormatContext *s1);
+public int ff_alsa_close (AVFormatContext *s1);
 
 /***********************************************************
 Try to recover from ALSA buffer underrun.
@@ -111,10 +111,10 @@ Try to recover from ALSA buffer underrun.
 @return 0 if OK, AVERROR_xxx on error
 ***********************************************************/
 av_warn_unused_result
-int ff_alsa_xrun_recover (AVFormatContext *s1, int err);
+public int ff_alsa_xrun_recover (AVFormatContext *s1, int err);
 
 av_warn_unused_result
-int ff_alsa_extend_reorder_buf (AlsaData *s, int size);
+public int ff_alsa_extend_reorder_buf (AlsaData *s, int size);
 
 av_warn_unused_result
-int ff_alsa_get_device_list (AVDeviceInfoList *device_list, snd_pcm_stream_t stream_type);
+public int ff_alsa_get_device_list (AVDeviceInfoList *device_list, snd_pcm_stream_t stream_type);

@@ -50,7 +50,7 @@ public class SHA512Context {
 
     /***********************************************************
     @brief Allocate an SHA512Context context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_sha512_alloc", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public SHA512Context av_sha512_alloc ();
 
@@ -60,7 +60,7 @@ public class SHA512Context {
     @param context pointer to the function context (of size SHA512Context.SIZE)
     @param bits number of bits in digest (224, 256, 384 or 512 bits)
     @return zero if initialization succeeded, -1 otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_sha512_init", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public int av_sha512_init (
         SHA512Context context,
@@ -73,7 +73,7 @@ public class SHA512Context {
     @param context hash function context
     @param data input data to update hash with
     @param len input data length
-        ***********************************************************/
+    ***********************************************************/
     #if FF_API_CRYPTO_SIZE_T
     [CCode (cname="av_sha512_update", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public void av_sha512_update (
@@ -95,7 +95,7 @@ public class SHA512Context {
 
     @param context hash function context
     @param digest buffer where output digest value is stored
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_sha512_final", cheader_filename="ffmpeg/libavutil/sha512.h")]
     public void av_sha512_final (
         SHA512Context context,

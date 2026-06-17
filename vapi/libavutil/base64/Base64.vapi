@@ -64,7 +64,7 @@ public string av_base64_encode (
     out string output_buffer,
     out int output_size,
     uint8[] input_buffer,
-    int input_size
+    public int input_size
 );
 
 /***********************************************************

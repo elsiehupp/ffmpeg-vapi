@@ -36,37 +36,37 @@ appropriate type.
 public class MasteringDisplayMetadata {
     /***********************************************************
     @brief CIE 1931 xy chromaticity coords of color primaries (r, g, b order).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="display_primaries")]
     public Rational display_primaries[3 * 2];
 
     /***********************************************************
     @brief CIE 1931 xy chromaticity coords of white point.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="white_point")]
     public Rational white_point[2];
 
     /***********************************************************
     @brief Min luminance of mastering display (cd/m^2).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="min_luminance")]
     public Rational min_luminance;
 
     /***********************************************************
     @brief Max luminance of mastering display (cd/m^2).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="max_luminance")]
     public Rational max_luminance;
 
     /***********************************************************
     @brief Flag indicating whether the display primaries (and white point) are set.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="has_primaries")]
     public int has_primaries;
 
     /***********************************************************
     @brief Flag indicating whether the luminance (min_ and max_) have been set.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="has_luminance")]
     public int has_luminance;
 
@@ -76,7 +76,7 @@ public class MasteringDisplayMetadata {
 
     @return An MasteringDisplayMetadata filled with default values or null
         on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_mastering_display_metadata_alloc", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public MasteringDisplayMetadata av_mastering_display_metadata_alloc ();
 
@@ -86,7 +86,7 @@ public class MasteringDisplayMetadata {
     @param frame The frame which side data is added to.
 
     @return The MasteringDisplayMetadata structure to be filled by caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_mastering_display_metadata_create_side_data", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public MasteringDisplayMetadata av_mastering_display_metadata_create_side_data (
         Frame frame

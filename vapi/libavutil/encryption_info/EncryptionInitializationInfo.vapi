@@ -30,7 +30,7 @@ public class EncryptionInitializationInfo {
     @brief A unique identifier for the key system this is for, can be null if it
     is not known. This should always be 16 bytes, but may change in the
     future.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="system_id")]
     public uint8[] system_id;
 
@@ -40,20 +40,20 @@ public class EncryptionInitializationInfo {
     /***********************************************************
     @brief An array of key IDs this initialization data is for. All IDs are the
     same length. Can be null if there are no known key IDs.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="key_ids")]
     public uint8[] key_id_list;
 
     /***********************************************************
     @brief The number of key IDs.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="num_key_ids")]
     public uint32 key_id_count;
 
     /***********************************************************
     @brief The number of bytes in each key ID. This should always be 16, but may
     change in the future.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="key_id_size")]
     public uint32 bytes_per_key_id;
 
@@ -62,7 +62,7 @@ public class EncryptionInitializationInfo {
     from the file and the format depends on the specific key system. This
     can be null if there is no initialization data; in that case, there
     will be at least one key ID.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="data")]
     public uint8[] data;
 
@@ -71,7 +71,7 @@ public class EncryptionInitializationInfo {
 
     /***********************************************************
     @brief An optional pointer to the next initialization info in the list.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="next")]
     public EncryptionInitializationInfo *next;
 
@@ -80,7 +80,7 @@ public class EncryptionInitializationInfo {
     given sizes. This will allocate pointers and set all the fields.
 
     @return The new EncryptionInitializationInfo structure, or null on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_encryption_init_info_alloc", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public EncryptionInitializationInfo av_encryption_init_info_alloc (
         uint32 system_id_size,
@@ -92,7 +92,7 @@ public class EncryptionInitializationInfo {
     /***********************************************************
     @brief Frees the given encryption init info object. This MUST NOT be used to free
     the side-data data pointer, that should use normal side-data methods.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_encryption_init_info_free", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public void av_encryption_init_info_free (
         EncryptionInitializationInfo info
@@ -104,7 +104,7 @@ public class EncryptionInitializationInfo {
     av_encryption_init_info_free () when done.
 
     @return The new EncryptionInitializationInfo structure, or null on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_encryption_init_info_get_side_data", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public EncryptionInitializationInfo av_encryption_init_info_get_side_data (
         uint8[] side_data,
@@ -117,7 +117,7 @@ public class EncryptionInitializationInfo {
     given to av_packet_add_side_data ().
 
     @return The new side-data pointer, or null.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_encryption_init_info_add_side_data", cheader_filename="ffmpeg/libavutil/encryption_info.h")]
     public uint8[] av_encryption_init_info_add_side_data (
         EncryptionInitializationInfo info,

@@ -25,7 +25,7 @@ public enum ThreadMessageFlags {
     @brief Perform non-blocking operation.
     If this flag is set, send and recv operations are non-blocking and
     return LibAVUtil.ErrorCode (EAGAIN) immediately if they can not proceed.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_THREAD_MESSAGE_NONBLOCK")]
     NON_BLOCKING,
 }

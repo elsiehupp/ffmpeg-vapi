@@ -34,25 +34,25 @@ public class TimeCode {
 
     /***********************************************************
     @brief Timecode frame start (first base frame number)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="start")]
     public int start;
 
     /***********************************************************
     @brief Flags such as drop frame, +24 hours support, ...
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="flags")]
     public uint32 flags;
 
     /***********************************************************
     @brief Frame rate in rational form
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="rate")]
     public Rational rate;
 
     /***********************************************************
     @brief Frames per second; must be consistent with the rate field
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="fps")]
     public uint fps;
 
@@ -63,7 +63,7 @@ public class TimeCode {
     @param fps frame per second, 30 or 60
     @return adjusted frame number
     @warning adjustment is only valid in NTSC 29.97 and 59.94
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_timecode_adjust_ntsc_framenum2", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public static int av_timecode_adjust_ntsc_framenum2 (
         int framenum,
@@ -82,7 +82,7 @@ public class TimeCode {
     @note The frame number is relative to tc.start.
     @note Color frame (CF), binary group flags (BGF) and biphase mark polarity
         correction (PC) bits are set to zero.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_timecode_get_smpte_from_framenum", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public uint32 av_timecode_get_smpte_from_framenum (
         TimeCode tc,
@@ -100,7 +100,7 @@ public class TimeCode {
     @note Timecode representation can be a negative timecode and have more than
         24 hours, but will only be honored if the flags are correctly set.
     @note The frame number is relative to tc.start.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_timecode_make_string", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public string av_timecode_make_string (
         TimeCode tc,
@@ -116,7 +116,7 @@ public class TimeCode {
     @param prevent_df prevent the use of a drop flag when it is known the DF bit
         is arbitrary
     @return the buffer parameter
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_timecode_make_smpte_tc_string", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public static string av_timecode_make_smpte_tc_string (
         out string buffer,
@@ -130,7 +130,7 @@ public class TimeCode {
     @param buffer destination buffer, must be at least AV_TIMECODE_STR_SIZE long
     @param tc25bit the 25-bits timecode
     @return the buffer parameter
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_timecode_make_mpeg_tc_string", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public static string av_timecode_make_mpeg_tc_string (
         out string buffer,
@@ -148,7 +148,7 @@ public class TimeCode {
         (@link TimeCodeFlags)
     @param frame_start the first frame number
     @return 0 on success, LibAVUtil.ErrorCode otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_timecode_init", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public int av_timecode_init (
         TimeCode tc,
@@ -167,7 +167,7 @@ public class TimeCode {
     @param rate frame rate in rational form
     @param str timecode string which will determine the frame start
     @return 0 on success, LibAVUtil.ErrorCode otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_timecode_init_from_string", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public int av_timecode_init_from_string (
         TimeCode tc,
@@ -180,7 +180,7 @@ public class TimeCode {
     @brief Check if the timecode feature is available for the given frame rate
 
     @return 0 if supported, <0 otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_timecode_check_frame_rate", cheader_filename="ffmpeg/libavutil/timecode.h")]
     public static int av_timecode_check_frame_rate (
         Rational rate

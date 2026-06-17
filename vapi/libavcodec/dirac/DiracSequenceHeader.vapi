@@ -51,7 +51,7 @@ public class DiracSequenceHeader {
     the others to 4 decompositions (or 3 for the fidelity filter).
 
     We use this instead of MAX_DECOMPOSITIONS to save some memory.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="MAX_DWT_LEVELS", cheader_filename="ffmpeg/libavcodec/dirac.h")]
     public const int MAX_DWT_LEVELS;
 
@@ -72,13 +72,13 @@ public class DiracSequenceHeader {
 
     /***********************************************************
     @brief Index into dirac_frame_rate[]
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="frame_rate_index")]
     public uint8 frame_rate_index;
 
     /***********************************************************
     @brief Index into dirac_aspect_ratio[]
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="aspect_ratio_index")]
     public uint8 aspect_ratio_index;
 
@@ -96,13 +96,13 @@ public class DiracSequenceHeader {
 
     /***********************************************************
     @brief Index into dirac_pixel_range_presets[]
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pixel_range_index")]
     public uint8 pixel_range_index;
 
     /***********************************************************
     @brief Index into dirac_color_spec_presets[]
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="color_spec_index")]
     public uint8 color_spec_index;
 
@@ -149,7 +149,7 @@ public class DiracSequenceHeader {
     @param buf_size the size of the data buffer in bytes
     @param log_ctx if non-null, this function will log errors here
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dirac_parse_sequence_header", cheader_filename="ffmpeg/libavcodec/dirac.h")]
     public int av_dirac_parse_sequence_header (
         out DiracSequenceHeader dsh,

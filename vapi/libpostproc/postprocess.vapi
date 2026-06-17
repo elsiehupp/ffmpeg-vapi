@@ -34,17 +34,17 @@ Video postprocessing library.
 /***********************************************************
 Return the LIBPOSTPROC_VERSION_INT constant.
 ***********************************************************/
-unsigned postproc_version ();
+public uint postproc_version ();
 
 /***********************************************************
 Return the libpostproc build-time configuration.
 ***********************************************************/
-string postproc_configuration ();
+public string postproc_configuration ();
 
 /***********************************************************
 Return the libpostproc license.
 ***********************************************************/
-string postproc_license ();
+public string postproc_license ();
 
 #define PP_QUALITY_MAX 6
 
@@ -57,18 +57,18 @@ typedef pp_mode pp_mode_t;
 /***********************************************************
 a simple help text
 ***********************************************************/
-//  extern string const pp_help; ///<
+//  extern string const pp_help;
 #else
 /***********************************************************
 a simple help text
 ***********************************************************/
-//  extern const char pp_help[]; ///<
+//  extern const char pp_help[];
 #endif
 
-void  pp_postprocess (const uint8 * src[3], int srcStride[3],
-                     uint8 * dst[3], int dstStride[3],
+public void  pp_postprocess (const uint8[]  src[3], int srcStride[3],
+                     uint8[]  dst[3], int dstStride[3],
                      int horizontalSize, int verticalSize,
-                     int8 *QP_store,  int QP_stride,
+                     int8 *QP_store, int QP_stride,
                      pp_mode *mode, pp_context *ppContext, int pict_type);
 
 
@@ -79,10 +79,10 @@ Return a pp_mode or NULL if an error occurred.
 @param quality a number from 0 to PP_QUALITY_MAX
 ***********************************************************/
 pp_mode *pp_get_mode_by_name_and_quality (string name, int quality);
-void pp_free_mode (pp_mode *mode);
+public void pp_free_mode (pp_mode *mode);
 
 pp_context *pp_get_context (int width, int height, int flags);
-void pp_free_context (pp_context *ppContext);
+public void pp_free_context (pp_context *ppContext);
 
 #define PP_CPU_CAPS_MMX   0x80000000
 #define PP_CPU_CAPS_MMX2  0x20000000
@@ -97,7 +97,10 @@ void pp_free_context (pp_context *ppContext);
 #define PP_FORMAT_444    (0x00000000|PP_FORMAT)
 #define PP_FORMAT_440    (0x00000010|PP_FORMAT)
 
-#define PP_PICT_TYPE_QP2  0x00000010 ///< MPEG2 style QScale
+/***********************************************************
+MPEG2 style QScale
+***********************************************************/
+#define PP_PICT_TYPE_QP2  0x00000010
 
 /***********************************************************
 @}

@@ -29,26 +29,26 @@ public class ReplayGain {
     /***********************************************************
     @brief Track replay gain in microbels (divide by 100000 to get the value in dB).
     Should be set to INT32_MIN when unknown.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="track_gain")]
     public int32 track_gain;
 
     /***********************************************************
     @brief Peak track amplitude, with 100000 representing full scale (but values
     may overflow). 0 when unknown.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="track_peak")]
     public uint32 track_peak;
 
     /***********************************************************
     @brief Same as track_gain, but for the whole album.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="album_gain")]
     public int32 album_gain;
 
     /***********************************************************
     @brief Same as track_peak, but for the whole album,
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="album_peak")]
     public uint32 album_peak;
 }

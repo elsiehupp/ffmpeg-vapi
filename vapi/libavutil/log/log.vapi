@@ -38,7 +38,7 @@ function.
 [CCode (cname="av_log", cheader_filename="ffmpeg/libavutil/log.h")]
 public void av_log (
     void *avcl,
-    int level,
+    public int level,
     string fmt,
     ...
 ); // av_printf_format (3, 4);
@@ -61,7 +61,7 @@ function.
 [CCode (cname="av_vlog", cheader_filename="ffmpeg/libavutil/log.h")]
 public void av_vlog (
     void *avcl,
-    int level,
+    public int level,
     string fmt,
     va_list vl
 );
@@ -85,12 +85,12 @@ public int av_log_get_level ();
 ***********************************************************/
 [CCode (cname="av_log_set_level", cheader_filename="ffmpeg/libavutil/log.h")]
 public void av_log_set_level (
-    int level
+    public int level
 );
 
 public delegate void CallbackDelegate (
     void *arg0,
-    int arg1,
+    public int arg1,
     string arg2,
     va_list arg3
 );
@@ -126,7 +126,7 @@ It prints the message to stderr, optionally colorizing it.
 [CCode (cname="av_log_default_callback", cheader_filename="ffmpeg/libavutil/log.h")]
 public void av_log_default_callback (
     void *avcl,
-    int level,
+    public int level,
     string fmt,
     va_list vl
 );
@@ -141,11 +141,11 @@ public void av_log_default_callback (
 [CCode (cname="av_log_format_line", cheader_filename="ffmpeg/libavutil/log.h")]
 public void av_log_format_line (
     void *ptr,
-    int level,
+    public int level,
     string fmt,
     va_list vl,
     string line,
-    int line_size,
+    public int line_size,
     out int print_prefix
 );
 
@@ -166,11 +166,11 @@ public void av_log_format_line (
 [CCode (cname="av_log_format_line2", cheader_filename="ffmpeg/libavutil/log.h")]
 public int av_log_format_line2 (
     void *ptr,
-    int level,
+    public int level,
     string fmt,
     va_list vl,
     string line,
-    int line_size,
+    public int line_size,
     out int print_prefix
 );
 

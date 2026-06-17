@@ -16,29 +16,65 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-enum YADIFMode {
-    YADIF_MODE_SEND_FRAME           = 0, ///< send 1 frame for each frame
-    YADIF_MODE_SEND_FIELD           = 1, ///< send 1 frame for each field
-    YADIF_MODE_SEND_FRAME_NOSPATIAL = 2, ///< send 1 frame for each frame but skips spatial interlacing check
-    YADIF_MODE_SEND_FIELD_NOSPATIAL = 3, ///< send 1 frame for each field but skips spatial interlacing check
-};
+public enum YADIFMode {
+    /***********************************************************
+    send 1 frame for each frame
+    ***********************************************************/
+    YADIF_MODE_SEND_FRAME = 0,
+    /***********************************************************
+    send 1 frame for each field
+    ***********************************************************/
+    YADIF_MODE_SEND_FIELD = 1,
+    /***********************************************************
+    send 1 frame for each frame but skips spatial interlacing check
+    ***********************************************************/
+    YADIF_MODE_SEND_FRAME_NOSPATIAL = 2,
+    /***********************************************************
+    send 1 frame for each field but skips spatial interlacing check
+    ***********************************************************/
+    YADIF_MODE_SEND_FIELD_NOSPATIAL = 3;
+}
 
-enum YADIFParity {
-    YADIF_PARITY_TFF  =  0, ///< top field first
-    YADIF_PARITY_BFF  =  1, ///< bottom field first
-    YADIF_PARITY_AUTO = -1, ///< auto detection
-};
+public enum YADIFParity {
+    /***********************************************************
+    top field first
+    ***********************************************************/
+    YADIF_PARITY_TFF = 0,
+    /***********************************************************
+    bottom field first
+    ***********************************************************/
+    YADIF_PARITY_BFF = 1,
+    /***********************************************************
+    auto detection
+    ***********************************************************/
+    YADIF_PARITY_AUTO = -1;
+}
 
-enum YADIFDeint {
-    YADIF_DEINT_ALL        = 0, ///< deinterlace all frames
-    YADIF_DEINT_INTERLACED = 1, ///< only deinterlace frames marked as interlaced
-};
+public enum YADIFDeint {
+    /***********************************************************
+    deinterlace all frames
+    ***********************************************************/
+    YADIF_DEINT_ALL = 0,
+    /***********************************************************
+    only deinterlace frames marked as interlaced
+    ***********************************************************/
+    YADIF_DEINT_INTERLACED = 1;
+}
 
-enum YADIFCurrentField {
-    YADIF_FIELD_BACK_END = -1, ///< The last frame in a sequence
-    YADIF_FIELD_END      =  0, ///< The first or last field in a sequence
-    YADIF_FIELD_NORMAL   =  1, ///< A normal field in the middle of a sequence
-};
+public enum YADIFCurrentField {
+    /***********************************************************
+    The last frame in a sequence
+    ***********************************************************/
+    YADIF_FIELD_BACK_END = -1,
+    /***********************************************************
+    The first or last field in a sequence
+    ***********************************************************/
+    YADIF_FIELD_END = 0,
+    /***********************************************************
+    A normal field in the middle of a sequence
+    ***********************************************************/
+    YADIF_FIELD_NORMAL = 1;
+}
 
 [Compact]
 public class YADIFContext {
@@ -47,38 +83,45 @@ public class YADIFContext {
     /***********************************************************
     YADIFMode
     ***********************************************************/
-    int mode; ///<
+    public int mode;
     /***********************************************************
     YADIFParity
     ***********************************************************/
-    int parity; ///<
+    public int parity;
     /***********************************************************
     YADIFDeint
     ***********************************************************/
-    int deint; ///<
+    public int deint;
 
-    int frame_pending;
+    public int frame_pending;
 
     AVFrame *cur;
     AVFrame *next;
     AVFrame *prev;
     AVFrame *out;
 
-    void (*filter)(AVFilterContext *ctx, AVFrame *dstpic, int parity, int tff);
+    void (*filter)(
+        AVFilterContext *ctx, AVFrame *dstpic, int parity, int tff
+    );
 
     /***********************************************************
     Required alignment for filter_line
-        ***********************************************************/
-    void (*filter_line)(void *dst,
-                        void *prev, void *cur, void *next,
-                        int w, int prefs, int mrefs, int parity, int mode);
-    void (*filter_edges)(void *dst, void *prev, void *cur, void *next,
-                         int w, int prefs, int mrefs, int parity, int mode);
+    ***********************************************************/
+    void (*filter_line)(
+        void *dst,
+        void *prev, void *cur, void *next,
+        int w, int prefs, int mrefs, int parity, int mode
+    );
+
+    void (*filter_edges)(
+        void *dst, void *prev, void *cur, void *next,
+        int w, int prefs, int mrefs, int parity, int mode
+    );
 
     const AVPixFmtDescriptor *csp;
-    int eof;
-    uint8 *temp_line;
-    int temp_line_size;
+    public int eof;
+    uint8[] temp_line;
+    public int temp_line_size;
 
     /***********************************************************
     YADIFCurrentField
@@ -88,13 +131,13 @@ public class YADIFContext {
     responsibility to set the value to YADIF_FIELD_NORMAL after processing
     the first field.
     ***********************************************************/
-    int current_field; ///<
+    public int current_field;
 }
 
-void ff_yadif_init_x86 (YADIFContext *yadif);
+public void ff_yadif_init_x86 (YADIFContext *yadif);
 
-int ff_yadif_filter_frame (AVFilterLink *link, AVFrame *frame);
+public int ff_yadif_filter_frame (AVFilterLink *link, AVFrame *frame);
 
-int ff_yadif_request_frame (AVFilterLink *link);
+public int ff_yadif_request_frame (AVFilterLink *link);
 
 //  extern const AVOption ff_yadif_options[];

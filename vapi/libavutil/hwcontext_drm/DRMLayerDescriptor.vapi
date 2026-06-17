@@ -38,13 +38,13 @@ defined by its format, and will contain one or more planes.
 public class DRMLayerDescriptor {
     /***********************************************************
     @brief Format of the layer (DRM_FORMAT_*).
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="format")]
     public uint32 format;
 
     /***********************************************************
     @brief Array of planes in this layer.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="planes")]
     public DRMPlaneDescriptor plane_list[MAX_PLANE_COUNT];
 
@@ -52,13 +52,13 @@ public class DRMLayerDescriptor {
     @brief Number of planes in the layer.
 
     This must match the number of planes required by format.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_planes")]
     public int plane_count;
 
     /***********************************************************
     @brief The maximum number of layers/planes in a DRM frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_DRM_MAX_PLANES", cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
     public const size_t MAX_PLANE_COUNT;
 

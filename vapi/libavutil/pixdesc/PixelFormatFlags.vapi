@@ -27,27 +27,27 @@ namespace LibAVUtil {
 public enum PixelFormatFlags {
     /***********************************************************
     @brief Pixel format is big-endian.
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_BE,
     /***********************************************************
     @brief Pixel format has a palette in data[1], values are indexes in this palette.
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_PAL,
     /***********************************************************
     @brief All values of a component are bit-wise packed end to end.
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_BITSTREAM,
     /***********************************************************
     @brief Pixel format is a hardware accelerated format.
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_HWACCEL,
     /***********************************************************
     @brief At least one pixel component is not in the first data plane.
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_PLANAR,
     /***********************************************************
     @brief The pixel format contains RGB-like data (as opposed to YUV/grayscale).
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_RGB,
 
     /***********************************************************
@@ -65,7 +65,7 @@ public enum PixelFormatFlags {
     extra "pseudo" palette is already ignored, and API users are not required to
     allocate a palette for AV_PIX_FMT_FLAG_PSEUDOPAL formats (it was required
     before the deprecation, though).
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_PSEUDOPAL,
 
     /***********************************************************
@@ -76,18 +76,18 @@ public enum PixelFormatFlags {
     If a codec or a filter does not support alpha, it should set all alpha to
     opaque, or use the equivalent pixel formats without alpha component, e.g.
     PixelFormat.RGB0 (or PixelFormat.RGB24 etc.) instead of PixelFormat.RGBA.
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_ALPHA,
 
     /***********************************************************
     @brief The pixel format is following a Bayer pattern
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_BAYER,
 
     /***********************************************************
     @brief The pixel format contains IEEE-754 floating point values. Precision (double,
     single, or half) should be determined by the pixel size (64, 32, or 16 bits).
-        ***********************************************************/
+    ***********************************************************/
     AV_PIX_FMT_FLAG_FLOAT,
 }
 

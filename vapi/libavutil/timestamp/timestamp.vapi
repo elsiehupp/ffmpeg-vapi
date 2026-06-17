@@ -40,7 +40,7 @@ representation.
 [CCode (cname="av_ts_make_string", cheader_filename="ffmpeg/libavutil/timestamp.h")]
 public static string av_ts_make_string (
     out string buffer,
-    int64 ts
+    public int64 ts
 );
 
 /***********************************************************
@@ -49,7 +49,7 @@ function arguments but never stand-alone.
 ***********************************************************/
 [CCode (cname="av_ts2str", cheader_filename="ffmpeg/libavutil/timestamp.h")]
 public static string av_ts2str (
-    int64 ts
+    public int64 ts
 );
 
 /***********************************************************
@@ -64,7 +64,7 @@ representation.
 [CCode (cname="av_ts_make_time_string", cheader_filename="ffmpeg/libavutil/timestamp.h")]
 public static string av_ts_make_time_string (
     out string buffer,
-    int64 ts,
+    public int64 ts,
     Rational tb
 );
 
@@ -74,7 +74,7 @@ function arguments but never stand-alone.
 ***********************************************************/
 [CCode (cname="av_ts2timestr", cheader_filename="ffmpeg/libavutil/timestamp.h")]
 public static string av_ts2timestr (
-    int64 ts,
+    public int64 ts,
     Rational tb
 );
 

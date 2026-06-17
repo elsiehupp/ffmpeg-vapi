@@ -36,7 +36,7 @@ public class TEAContext {
     /***********************************************************
     @brief Allocate an TEAContext context
     To free the struct: av_free (ptr)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_tea_alloc", cheader_filename="ffmpeg/libavutil/tea.h")]
     public TEAContext av_tea_alloc ();
 
@@ -46,7 +46,7 @@ public class TEAContext {
     @param tea_context an TEAContext context
     @param key a key of 16 bytes used for encryption/decryption
     @param rounds the number of rounds in TEA (64 is the "standard")
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_tea_init", cheader_filename="ffmpeg/libavutil/tea.h")]
     public void av_tea_init (
         TEAContext tea_context,
@@ -63,7 +63,7 @@ public class TEAContext {
     @param count number of 8 byte blocks
     @param initialization_vector initialization vector for CBC mode, if null then ECB will be used
     @param decrypt 0 for encryption, 1 for decryption
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_tea_crypt", cheader_filename="ffmpeg/libavutil/tea.h")]
     public void av_tea_crypt (
         TEAContext tea_context,

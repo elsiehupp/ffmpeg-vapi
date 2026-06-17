@@ -37,7 +37,7 @@ public enum ParserFlags {
     PARSER_FLAG_ONCE,
     /***********************************************************
     @brief Set if the parser has a valid file offset
-        ***********************************************************/
+    ***********************************************************/
     PARSER_FLAG_FETCHED_OFFSET,
     PARSER_FLAG_USE_CODEC_TS,
 }

@@ -27,27 +27,27 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 public class SPPContext {
     const AVClass *av_class;
 
-    int log2_count;
-    int qp;
-    int mode;
-    int qscale_type;
-    int temp_linesize;
-    uint8 *src;
+    public int log2_count;
+    public int qp;
+    public int mode;
+    public int qscale_type;
+    public int temp_linesize;
+    uint8[] src;
     uint16 *temp;
     AVCodecContext *avctx;
     AVDCT *dct;
-    int8 *non_b_qp_table;
-    int non_b_qp_alloc_size;
-    int use_bframe_qp;
-    int hsub, vsub;
+    public int8 *non_b_qp_table;
+    public int non_b_qp_alloc_size;
+    public int use_bframe_qp;
+    public int hsub, vsub;
 
-    void (*store_slice)(uint8 *dst, int16 *src,
+    void (*store_slice)(uint8[] dst, int16 *src,
                         int dst_stride, int src_stride,
                         int width, int height, int log2_scale,
                         uint8 dither[8][8]);
 
     void (*requantize)(int16 dst[64], int16 src[64],
-                       int qp, uint8 *permutation);
+                       int qp, uint8[] permutation);
 }
 
-void ff_spp_init_x86 (SPPContext *s);
+public void ff_spp_init_x86 (SPPContext *s);

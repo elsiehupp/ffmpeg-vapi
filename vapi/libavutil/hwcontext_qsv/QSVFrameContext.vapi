@@ -38,7 +38,7 @@ public class QSVFrameContext : AbstractHardwareContext {
 
     /***********************************************************
     @brief A combination of MFX_MEMTYPE_* describing the frame pool.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="frame_type")]
     public int frame_type;
 }

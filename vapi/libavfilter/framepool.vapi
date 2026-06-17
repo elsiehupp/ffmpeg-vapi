@@ -68,7 +68,7 @@ some of the allocated frame are still in use.
 
 @param pool pointer to the frame pool to be freed. It will be set to NULL.
 ***********************************************************/
-void ff_frame_pool_uninit (FFFramePool **pool);
+public void ff_frame_pool_uninit (FFFramePool **pool);
 
 /***********************************************************
 Get the video frame pool configuration.
@@ -79,7 +79,7 @@ Get the video frame pool configuration.
 @param align buffers alignement of each frame in this pool
 @return 0 on success, a negative AVERROR otherwise.
 ***********************************************************/
-int ff_frame_pool_get_video_config (FFFramePool *pool,
+public int ff_frame_pool_get_video_config (FFFramePool *pool,
                                    int *width,
                                    int *height,
                                    AVPixelFormat *format,
@@ -94,7 +94,7 @@ Get the audio frame pool configuration.
 @param align buffers alignement of each frame in this pool
 @return 0 on success, a negative AVERROR otherwise.
 ***********************************************************/
-int ff_frame_pool_get_audio_config (FFFramePool *pool,
+public int ff_frame_pool_get_audio_config (FFFramePool *pool,
                                    int *channels,
                                    int *nb_samples,
                                    AVSampleFormat *format,

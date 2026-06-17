@@ -30,48 +30,49 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 #define MULTIPLY16H (x,k)   (((x) * (k)) >> 16)
 #define THRESHOLD (r,x,t)                         \
-    if (((unsigned)((x) + t)) > t * 2) r = (x); \
+    if (((uint)((x) + t)) > t * 2) r = (x); \
     else r = 0;
 #define DESCALE (x,n)  (((x) + (1 << ((n) - 1))) >> n)
 
 typedef int32 int_simd16_t;
-static const int16 FIX_0_382683433   = FIX (0.382683433, 14);
-static const int16 FIX_0_541196100   = FIX (0.541196100, 14);
-static const int16 FIX_0_707106781   = FIX (M_SQRT1_2  , 14);
-static const int16 FIX_1_306562965   = FIX (1.306562965, 14);
+static const int16 FIX_0_382683433 = FIX (0.382683433, 14);
+static const int16 FIX_0_541196100 = FIX (0.541196100, 14);
+static const int16 FIX_0_707106781 = FIX (M_SQRT1_2  , 14);
+static const int16 FIX_1_306562965 = FIX (1.306562965, 14);
 static const int16 FIX_1_414213562_A = FIX (M_SQRT2    , 14);
-static const int16 FIX_1_847759065   = FIX (1.847759065, 13);
-static const int16 FIX_2_613125930   = FIX (-2.613125930, 13);
-static const int16 FIX_1_414213562   = FIX (M_SQRT2    , 13);
-static const int16 FIX_1_082392200   = FIX (1.082392200, 13);
+static const int16 FIX_1_847759065 = FIX (1.847759065, 13);
+static const int16 FIX_2_613125930 = FIX (-2.613125930, 13);
+static const int16 FIX_1_414213562 = FIX (M_SQRT2    , 13);
+static const int16 FIX_1_082392200 = FIX (1.082392200, 13);
 
 [Compact]
 public class FSPPContext {
     AVClass *class;
-    uint64 threshold_mtx_noq[8 * 2];
+    public uint64 threshold_mtx_noq[8 * 2];
     /***********************************************************
+    used in both C & MMX (& later SSE2) versions
     ***********************************************************/
-    uint64 threshold_mtx[8 * 2]; // used in both C & MMX (& later SSE2) versions
+    public uint64 threshold_mtx[8 * 2];
 
-    int log2_count;
-    int strength;
-    int hsub;
-    int vsub;
-    int temp_stride;
-    int qp;
-    int qscale_type;
-    int prev_q;
-    uint8 *src;
-    int16 *temp;
-    uint8 *non_b_qp_table;
-    int non_b_qp_alloc_size;
-    int use_bframe_qp;
+    public int log2_count;
+    public int strength;
+    public int hsub;
+    public int vsub;
+    public int temp_stride;
+    public int qp;
+    public int qscale_type;
+    public int prev_q;
+    uint8[] src;
+    public int16 *temp;
+    uint8[] non_b_qp_table;
+    public int non_b_qp_alloc_size;
+    public int use_bframe_qp;
 
-    void (*store_slice)(uint8 *dst, int16 *src,
+    void (*store_slice)(uint8[] dst, int16 *src,
                         ptrdiff_t dst_stride, ptrdiff_t src_stride,
                         ptrdiff_t width, ptrdiff_t height, ptrdiff_t log2_scale);
 
-    void (*store_slice2)(uint8 *dst, int16 *src,
+    void (*store_slice2)(uint8[] dst, int16 *src,
                          ptrdiff_t dst_stride, ptrdiff_t src_stride,
                          ptrdiff_t width, ptrdiff_t height, ptrdiff_t log2_scale);
 
@@ -83,9 +84,9 @@ public class FSPPContext {
     void (*row_idct)(int16 *workspace, int16 *output_adr,
                      ptrdiff_t output_stride, int cnt);
 
-    void (*row_fdct)(int16 *data, uint8 *pixels,
+    void (*row_fdct)(int16 *data, uint8[] pixels,
                      ptrdiff_t line_size, int cnt);
 
 }
 
-void ff_fspp_init_x86 (FSPPContext *fspp);
+public void ff_fspp_init_x86 (FSPPContext *fspp);

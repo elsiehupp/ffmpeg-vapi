@@ -18,33 +18,34 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-struct ResampleContext {
+[Compact]
+public class ResampleContext {
     AVAudioResampleContext *avr;
     AudioData *buffer;
-    uint8 *filter_bank;
-    int filter_length;
-    int ideal_dst_incr;
-    int dst_incr;
-    uint index;
-    int frac;
-    int src_incr;
-    int compensation_distance;
-    int phase_shift;
-    int phase_mask;
-    int linear;
-    enum AVResampleFilterType filter_type;
-    int kaiser_beta;
+    uint8[] filter_bank;
+    public int filter_length;
+    public int ideal_dst_incr;
+    public int dst_incr;
+    public uint index;
+    public int frac;
+    public int src_incr;
+    public int compensation_distance;
+    public int phase_shift;
+    public int phase_mask;
+    public int linear;
+    public AVResampleFilterType filter_type;
+    public int kaiser_beta;
     void (*set_filter)(void *filter, double[] tab, int phase, int tap_count);
     void (*resample_one)(ResampleContext *c, void *dst0,
                          int dst_index, void *src0,
                          uint index, int frac);
     void (*resample_nearest)(void *dst0, int dst_index,
                              void *src0, uint index);
-    int padding_size;
-    int initial_padding_filled;
-    int initial_padding_samples;
-    int final_padding_filled;
-    int final_padding_samples;
+    public int padding_size;
+    public int initial_padding_filled;
+    public int initial_padding_samples;
+    public int final_padding_filled;
+    public int final_padding_samples;
 };
 
 /***********************************************************
@@ -63,7 +64,7 @@ Free a ResampleContext.
 
 @param c  ResampleContext
 ***********************************************************/
-void ff_audio_resample_free (ResampleContext **c);
+public void ff_audio_resample_free (ResampleContext **c);
 
 /***********************************************************
 Resample audio data.
@@ -84,4 +85,4 @@ destination data buffers.
 @param src       source audio data
 @return          0 on success, negative AVERROR code on failure
 ***********************************************************/
-int ff_audio_resample (ResampleContext *c, AudioData *dst, AudioData *src);
+public int ff_audio_resample (ResampleContext *c, AudioData *dst, AudioData *src);

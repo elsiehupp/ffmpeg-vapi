@@ -34,21 +34,21 @@ public enum VAAPIDriverQuirk {
     /***********************************************************
     @brief The quirks field has been set by the user and should not be detected
     automatically by av_hwdevice_ctx_init ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_VAAPI_DRIVER_QUIRK_USER_SET")]
     AV_VAAPI_DRIVER_QUIRK_USER_SET,
     /***********************************************************
     @brief The driver does not destroy parameter buffers when they are used by
     vaRenderPicture (). Additional code will be required to destroy them
     separately afterwards.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_VAAPI_DRIVER_QUIRK_RENDER_PARAM_BUFFERS")]
     AV_VAAPI_DRIVER_QUIRK_RENDER_PARAM_BUFFERS,
 
     /***********************************************************
     @brief The driver does not support the VASurfaceAttribMemoryType attribute,
     so the surface allocation code will not try to use it.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_VAAPI_DRIVER_QUIRK_ATTRIB_MEMTYPE")]
     AV_VAAPI_DRIVER_QUIRK_ATTRIB_MEMTYPE,
 
@@ -56,7 +56,7 @@ public enum VAAPIDriverQuirk {
     @brief The driver does not support surface attributes at all.
     The surface allocation code will never pass them to surface allocation,
     and the results of the vaQuerySurfaceAttributes () call will be faked.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_VAAPI_DRIVER_QUIRK_SURFACE_ATTRIBUTES")]
     AV_VAAPI_DRIVER_QUIRK_SURFACE_ATTRIBUTES,
 }

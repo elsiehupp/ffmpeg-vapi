@@ -51,14 +51,14 @@ state.
 public class HardwareDeviceContext {
     /***********************************************************
     @brief A class for logging. Set by av_hwdevice_ctx_alloc ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_class")]
     public Class av_class;
 
     /***********************************************************
     @brief Private data used internally by libavutil. Must not be accessed in any
     way by the caller.
-        ***********************************************************/
+    ***********************************************************/
     //  [CCode (cname="internal")]
     //  public AVHWDeviceInternal internal;
 
@@ -67,7 +67,7 @@ public class HardwareDeviceContext {
 
     This field is set when this struct is allocated and never changed
     afterwards.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="type")]
     public HardwareDeviceType type;
 
@@ -81,7 +81,7 @@ public class HardwareDeviceContext {
 
     After calling av_hwdevice_ctx_init () this struct should not be modified
     by the caller.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="hwctx")]
     public AbstractHardwareContext hwctx;
 
@@ -94,13 +94,13 @@ public class HardwareDeviceContext {
     @note when other objects (e.g an HardwareFrameContext) are derived from this
         struct, this callback will be invoked after all such child objects
         are fully uninitialized and their respective destructors invoked.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="free")]
     public AVHWDeviceContextFreeDelegate free;
 
     /***********************************************************
     @brief Arbitrary user data, to be used e.g. by the free () callback.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="user_opaque")]
     public void *user_opaque;
 }

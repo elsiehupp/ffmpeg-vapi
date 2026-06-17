@@ -45,7 +45,7 @@ public class MOVMuxCencContext {
 
     /***********************************************************
     @brief Subsample support
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int use_subsamples;
 
@@ -71,8 +71,8 @@ public class MOVMuxCencContext {
 public int ff_mov_cenc_init (
     MOVMuxCencContext cenc_context,
     uint8[] encryption_key,
-    int use_subsamples,
-    int bitexact
+    public int use_subsamples,
+    public int bitexact
 );
 
 /***********************************************************
@@ -91,7 +91,7 @@ public int ff_mov_cenc_write_packet (
     MOVMuxCencContext cenc_context,
     AVIOContext pb,
     uint8[] buf_in,
-    int size
+    public int size
 );
 
 /***********************************************************
@@ -102,7 +102,7 @@ public int ff_mov_cenc_avc_parse_nal_units (
     MOVMuxCencContext cenc_context,
     AVIOContext pb,
     uint8[] buf_in,
-    int size
+    public int size
 );
 
 /***********************************************************
@@ -112,10 +112,10 @@ public int ff_mov_cenc_avc_parse_nal_units (
 public int ff_mov_cenc_avc_write_nal_units (
     AVFormatContext format_context,
     MOVMuxCencContext cenc_context,
-    int nal_length_size,
+    public int nal_length_size,
     AVIOContext pb,
     uint8[] buf_in,
-    int size
+    public int size
 );
 
 /***********************************************************

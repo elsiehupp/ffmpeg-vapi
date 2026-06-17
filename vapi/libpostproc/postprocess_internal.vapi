@@ -20,13 +20,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 /***********************************************************
 @file
-internal API header.
+public internal API header.
 ***********************************************************/
 
 #define V_DEBLOCK       0x01
 #define H_DEBLOCK       0x02
 #define DERING          0x04
-#define LEVEL_FIX       0x08 ///< Brightness & Contrast
+/***********************************************************
+Brightness & Contrast
+***********************************************************/
+#define LEVEL_FIX       0x08
 
 #define LUM_V_DEBLOCK   V_DEBLOCK               //   1
 #define LUM_H_DEBLOCK   H_DEBLOCK               //   2
@@ -35,19 +38,29 @@ internal API header.
 #define LUM_DERING      DERING                  //   4
 #define CHROM_DERING    (DERING<<4)             //  64
 #define LUM_LEVEL_FIX   LEVEL_FIX               //   8
+/***********************************************************
+***********************************************************/
 #define CHROM_LEVEL_FIX (LEVEL_FIX<<4)          // 128 (not implemented yet)
 
+/***********************************************************
+***********************************************************/
 // Experimental vertical filters
 #define V_X1_FILTER     0x0200                  // 512
 #define V_A_DEBLOCK     0x0400
 
+/***********************************************************
+***********************************************************/
 // Experimental horizontal filters
 #define H_X1_FILTER     0x2000                  // 8192
 #define H_A_DEBLOCK     0x4000
 
-/// select between full y range (255-0) or standard one (234-16)
+/***********************************************************
+select between full y range (255-0) or standard one (234-16)
+***********************************************************/
 #define FULL_Y_RANGE    0x8000                  // 32768
 
+/***********************************************************
+***********************************************************/
 // Deinterlacing Filters
 #define LINEAR_IPOL_DEINT_FILTER        0x10000 // 65536
 #define LINEAR_BLEND_DEINT_FILTER       0x20000 // 131072
@@ -62,6 +75,8 @@ internal API header.
 #define BITEXACT                        0x1000000
 #define VISUALIZE                       0x2000000
 
+/***********************************************************
+***********************************************************/
 // use if you want a faster postprocessing code
 // cannot differentiate between chroma & luma filters (both on or both off)
 // obviously the -pp option on the command line has no effect except turning the here selected
@@ -71,25 +86,26 @@ internal API header.
 /***********************************************************
 Postprocessing filter.
 ***********************************************************/
-struct PPFilter {
+[Compact]
+public class PPFilter {
     string shortName;
     string longName;
     /***********************************************************
     is chrominance filtering on by default if this filter is manually activated
     ***********************************************************/
-    int chromDefault; ///<
+    public int chromDefault;
     /***********************************************************
     minimum quality to turn luminance filtering on
     ***********************************************************/
-    int minLumQuality; ///<
+    public int minLumQuality;
     /***********************************************************
     minimum quality to turn chrominance filtering on
     ***********************************************************/
-    int minChromQuality; ///<
+    public int minChromQuality;
     /***********************************************************
     Bitmask to turn this filter on
     ***********************************************************/
-    int mask; ///<
+    public int mask;
 };
 
 /***********************************************************
@@ -100,41 +116,41 @@ public class PPMode {
     /***********************************************************
     activates filters for luminance
     ***********************************************************/
-    int lumMode; ///<
+    public int lumMode;
     /***********************************************************
     activates filters for chrominance
     ***********************************************************/
-    int chromMode; ///<
+    public int chromMode;
     /***********************************************************
     non zero on error
     ***********************************************************/
-    int error; ///<
+    public int error;
 
     /***********************************************************
     for brightness correction
     ***********************************************************/
-    int minAllowedY; ///<
+    public int minAllowedY;
     /***********************************************************
     for brightness correction
     ***********************************************************/
-    int maxAllowedY; ///<
+    public int maxAllowedY;
     /***********************************************************
     amount of "black" you are willing to lose to get a brightness-corrected picture
     ***********************************************************/
-    AVRational maxClippedThreshold; ///<
+    public AVRational maxClippedThreshold;
 
     /***********************************************************
     for Temporal Noise Reducing filter (Maximal sum of abs differences)
     ***********************************************************/
-    int maxTmpNoise[3]; ///<
+    public int maxTmpNoise[3];
 
-    int baseDcDiff;
-    int flatnessThreshold;
+    public int baseDcDiff;
+    public int flatnessThreshold;
 
     /***********************************************************
     quantizer if FORCE_QUANT is used
     ***********************************************************/
-    int forcedQuant; ///<
+    public int forcedQuant;
 }
 
 /***********************************************************
@@ -148,30 +164,33 @@ public class PPContext {
     const AVClass *av_class;
 
     /***********************************************************
+    used for the horizontal code
     ***********************************************************/
-    uint8 *tempBlocks; ///<used for the horizontal code
+    uint8[] tempBlocks;
 
     /***********************************************************
     luma histogram.
     we need 64bit here otherwise we'll going to have a problem
     after watching a black picture for 5 hours
-        ***********************************************************/
-    uint64 *yHistogram;
+    ***********************************************************/
+    public uint64[] yHistogram;
 
     DECLARE_ALIGNED (8, uint64, packedYOffset);
     DECLARE_ALIGNED (8, uint64, packedYScale);
 
-    /** Temporal noise reducing buffers
+    /***********************************************************
+    Temporal noise reducing buffers
     ***********************************************************/
-    uint8 *tempBlurred[3];
-    int32 *tempBlurredPast[3];
+    uint8[] tempBlurred[3];
+    public int32 *tempBlurredPast[3];
 
-    /** Temporary buffers for handling the last row (s)
+    /***********************************************************
+    Temporary buffers for handling the last row (s)
     ***********************************************************/
-    uint8 *tempDst;
-    uint8 *tempSrc;
+    uint8[] tempDst;
+    uint8[] tempSrc;
 
-    uint8 *deintTemp;
+    uint8[] deintTemp;
 
     DECLARE_ALIGNED (8, uint64, pQPb);
     DECLARE_ALIGNED (8, uint64, pQPb2);
@@ -185,29 +204,31 @@ public class PPContext {
     /***********************************************************
     used to fix MPEG2 style qscale
     ***********************************************************/
-    int8 *stdQPTable; ///<
-    int8 *nonBQPTable;
-    int8 *forcedQPTable;
+    public int8 *stdQPTable;
+    public int8 *nonBQPTable;
+    public int8 *forcedQPTable;
 
-    int QP;
-    int nonBQP;
+    public int QP;
+    public int nonBQP;
 
     DECLARE_ALIGNED (32, int, QP_block)[4];
     DECLARE_ALIGNED (32, int, nonBQP_block)[4];
 
-    int frameNum;
+    public int frameNum;
 
-    int cpuCaps;
+    public int cpuCaps;
 
     /***********************************************************
+    size of qp buffers (needed to realloc them if needed)
     ***********************************************************/
-    int qpStride; ///<size of qp buffers (needed to realloc them if needed)
+    public int qpStride;
     /***********************************************************
+    size of some buffers (needed to realloc them if needed)
     ***********************************************************/
-    int stride; ///<size of some buffers (needed to realloc them if needed)
+    public int stride;
 
-    int hChromaSubSample;
-    int vChromaSubSample;
+    public int hChromaSubSample;
+    public int vChromaSubSample;
 
     PPMode ppMode;
 }

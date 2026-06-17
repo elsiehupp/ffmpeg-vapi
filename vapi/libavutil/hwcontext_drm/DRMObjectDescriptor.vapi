@@ -38,7 +38,7 @@ descriptor.
 public class DRMObjectDescriptor {
     /***********************************************************
     @brief DRM PRIME fd for the object.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="fd")]
     public int file_descriptor;
 
@@ -46,7 +46,7 @@ public class DRMObjectDescriptor {
     @brief Total size of the object.
 
     (This includes any parts not which do not contain image data.)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="size")]
     public size_t size;
 
@@ -55,7 +55,7 @@ public class DRMObjectDescriptor {
 
     If the format modifier is unknown then this should be set to
     DRM_FORMAT_MOD_INVALID.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="format_modifier")]
     public uint64 format_modifier;
 }

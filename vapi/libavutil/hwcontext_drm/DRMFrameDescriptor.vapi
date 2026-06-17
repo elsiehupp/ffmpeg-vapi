@@ -52,31 +52,31 @@ be used for the data pointers in the equivalent software format.
 public class DRMFrameDescriptor {
     /***********************************************************
     @brief The maximum number of layers/planes in a DRM frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_DRM_MAX_PLANES", cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
     public const size_t AV_DRM_MAX_PLANES;
 
     /***********************************************************
     @brief Array of objects making up the frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="objects")]
     public DRMObjectDescriptor object_list[AV_DRM_MAX_PLANES];
 
     /***********************************************************
     @brief Number of DRM objects making up this frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_objects")]
     public int object_count;
 
     /***********************************************************
     @brief Array of layers in the frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="layers")]
     public DRMLayerDescriptor layer_list[AV_DRM_MAX_PLANES];
 
     /***********************************************************
     @brief Number of layers in the frame.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_layers")]
     public int layer_count;
 }

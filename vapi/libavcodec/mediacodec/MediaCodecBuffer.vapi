@@ -46,7 +46,7 @@ public class MediaCodecBuffer {
     @param render 1 to release and render the buffer to the surface or 0 to
     discard the buffer
     @return 0 on success, < 0 otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_mediacodec_release_buffer", cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
     public int av_mediacodec_release_buffer (
         MediaCodecBuffer buffer,
@@ -63,7 +63,7 @@ public class MediaCodecBuffer {
     @param buffer the buffer to render
     @param time timestamp in nanoseconds of when to render the buffer
     @return 0 on success, < 0 otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_mediacodec_render_buffer_at_time", cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
     public int av_mediacodec_render_buffer_at_time (
         MediaCodecBuffer buffer,

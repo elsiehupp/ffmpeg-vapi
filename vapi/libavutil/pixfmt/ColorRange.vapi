@@ -29,22 +29,22 @@ public enum ColorRange {
     UNSPECIFIED,
     /***********************************************************
     @brief The normal 219*2^(n-8) "MPEG" YUV ranges
-        ***********************************************************/
+    ***********************************************************/
     MPEG,
     /***********************************************************
     @brief The normal 2^n-1 "JPEG" YUV ranges
-        ***********************************************************/
+    ***********************************************************/
     JPEG;
 
     /***********************************************************
     @brief Not part of ABI
-        ***********************************************************/
+    ***********************************************************/
     //  NB,
 
 
     /***********************************************************
     @return the name for provided color range or null if unknown.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_color_range_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static string av_color_range_name (
         ColorRange range
@@ -52,7 +52,7 @@ public enum ColorRange {
 
     /***********************************************************
     @return the ColorRange value for name or an ErrorCode if not found.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_color_range_from_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static ColorRange av_color_range_from_name (
         string name

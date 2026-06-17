@@ -31,12 +31,12 @@ public class GBlurContext {
 
     float sigma;
     float sigmaV;
-    int steps;
-    int planes;
+    public int steps;
+    public int planes;
 
-    int depth;
-    int planewidth[4];
-    int planeheight[4];
+    public int depth;
+    public int planewidth[4];
+    public int planeheight[4];
     float *buffer;
     float boundaryscale;
     float boundaryscaleV;
@@ -44,10 +44,10 @@ public class GBlurContext {
     float postscaleV;
     float nu;
     float nuV;
-    int nb_planes;
+    public int nb_planes;
     void (*horiz_slice)(float *buffer, int width, int height, int steps, float nu, float bscale);
 }
 
-void ff_gblur_init (GBlurContext *s);
-void ff_gblur_init_x86 (GBlurContext *s);
+public void ff_gblur_init (GBlurContext *s);
+public void ff_gblur_init_x86 (GBlurContext *s);
 #endif

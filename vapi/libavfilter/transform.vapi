@@ -31,26 +31,63 @@ example, the identity matrix would be:
                      0, 0, 1}
 ***********************************************************/
 
-enum InterpolateMethod {
-    INTERPOLATE_NEAREST,        //< Nearest-neighbor (fast)
-    INTERPOLATE_BILINEAR,       //< Bilinear
-    INTERPOLATE_BIQUADRATIC,    //< Biquadratic (best)
-    INTERPOLATE_COUNT,          //< Number of interpolation methods
+public enum InterpolateMethod {
+    /***********************************************************
+    Nearest-neighbor (fast)
+    ***********************************************************/
+    INTERPOLATE_NEAREST,
+    /***********************************************************
+    Bilinear
+    ***********************************************************/
+    INTERPOLATE_BILINEAR,
+    /***********************************************************
+    Biquadratic (best)
+    ***********************************************************/
+    INTERPOLATE_BIQUADRATIC,
+    /***********************************************************
+    Number of interpolation methods
+    ***********************************************************/
+    INTERPOLATE_COUNT;
 }
 
-// Shortcuts for the fastest and best interpolation methods
+/***********************************************************
+Shortcuts for the fastest and best interpolation methods
+***********************************************************/
 #define INTERPOLATE_DEFAULT INTERPOLATE_BILINEAR
+/***********************************************************
+Shortcuts for the fastest and best interpolation methods
+***********************************************************/
 #define INTERPOLATE_FAST    INTERPOLATE_NEAREST
+/***********************************************************
+Shortcuts for the fastest and best interpolation methods
+***********************************************************/
 #define INTERPOLATE_BEST    INTERPOLATE_BIQUADRATIC
 
-enum FillMethod {
-    FILL_BLANK,         //< Fill zeroes at blank locations
-    FILL_ORIGINAL,      //< Original image at blank locations
-    FILL_CLAMP,         //< Extruded edge value at blank locations
-    FILL_MIRROR,        //< Mirrored edge at blank locations
-    FILL_COUNT,         //< Number of edge fill methods
+public enum FillMethod {
+    /***********************************************************
+    Fill zeroes at blank locations
+    ***********************************************************/
+    FILL_BLANK,
+    /***********************************************************
+    Original image at blank locations
+    ***********************************************************/
+    FILL_ORIGINAL,
+    /***********************************************************
+    Extruded edge value at blank locations
+    ***********************************************************/
+    FILL_CLAMP,
+    /***********************************************************
+    Mirrored edge at blank locations
+    ***********************************************************/
+    FILL_MIRROR,
+    /***********************************************************
+    Number of edge fill methods
+    ***********************************************************/
+    FILL_COUNT;
 }
 
+/***********************************************************
+***********************************************************/
 // Shortcuts for fill methods
 #define FILL_DEFAULT FILL_ORIGINAL
 
@@ -58,9 +95,9 @@ enum FillMethod {
 Get an affine transformation matrix from a given translation, rotation, and
 zoom factor. The matrix will look like:
 
-[ zoom * cos (angle),           -sin (angle),     x_shift,
-         sin (angle),     zoom * cos (angle),     y_shift,
-                  0,                     0,           1 ]
+[ zoom * cos (angle), -sin (angle), x_shift,
+         sin (angle), zoom * cos (angle), y_shift,
+                  0, 0, 1 ]
 
 @param x_shift horizontal translation
 @param y_shift vertical translation
@@ -68,7 +105,7 @@ zoom factor. The matrix will look like:
 @param zoom    scale percent (1.0 = 100%)
 @param matrix  9-item affine transformation matrix
 ***********************************************************/
-void avfilter_get_matrix (float x_shift, float y_shift, float angle, float zoom, float *matrix);
+public void avfilter_get_matrix (float x_shift, float y_shift, float angle, float zoom, float *matrix);
 
 /***********************************************************
 Add two matrices together. result = m1 + m2.
@@ -77,7 +114,7 @@ Add two matrices together. result = m1 + m2.
 @param m2     9-item transformation matrix
 @param result 9-item transformation matrix
 ***********************************************************/
-void avfilter_add_matrix (const float *m1, float *m2, float *result);
+public void avfilter_add_matrix (const float *m1, float *m2, float *result);
 
 /***********************************************************
 Subtract one matrix from another. result = m1 - m2.
@@ -86,7 +123,7 @@ Subtract one matrix from another. result = m1 - m2.
 @param m2     9-item transformation matrix
 @param result 9-item transformation matrix
 ***********************************************************/
-void avfilter_sub_matrix (const float *m1, float *m2, float *result);
+public void avfilter_sub_matrix (const float *m1, float *m2, float *result);
 
 /***********************************************************
 Multiply a matrix by a scalar value. result = m1 * scalar.
@@ -95,7 +132,7 @@ Multiply a matrix by a scalar value. result = m1 * scalar.
 @param scalar a number
 @param result 9-item transformation matrix
 ***********************************************************/
-void avfilter_mul_matrix (const float *m1, float scalar, float *result);
+public void avfilter_mul_matrix (const float *m1, float scalar, float *result);
 
 /***********************************************************
 Do an affine transformation with the given interpolation method. This
@@ -113,7 +150,7 @@ get the final value.
 @param fill        edge fill method
 @return negative on error
 ***********************************************************/
-int avfilter_transform (const uint8 *src, uint8 *dst,
+public int avfilter_transform (const uint8[] src, uint8[] dst,
                         int src_stride, int dst_stride,
                         int width, int height, float *matrix,
                         InterpolateMethod interpolate,

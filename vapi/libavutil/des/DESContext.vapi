@@ -37,7 +37,7 @@ public class DESContext {
 
     /***********************************************************
     @brief Allocate an DESContext context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_des_alloc", cheader_filename="ffmpeg/libavutil/des.h")]
     public DESContext av_des_alloc ();
 
@@ -47,7 +47,7 @@ public class DESContext {
     @param key_bits must be 64 or 192
     @param decrypt 0 for encryption/CBC-MAC, 1 for decryption
     @return zero on success, negative value otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_des_init", cheader_filename="ffmpeg/libavutil/des.h")]
     public int av_des_init (
         DESContext des_context,
@@ -65,7 +65,7 @@ public class DESContext {
     @param initialization_vector initialization vector for CBC mode, if null then ECB will be used,
         must be 8-byte aligned
     @param decrypt 0 for encryption, 1 for decryption
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_des_crypt", cheader_filename="ffmpeg/libavutil/des.h")]
     public void av_des_crypt (
         DESContext des_context,
@@ -82,7 +82,7 @@ public class DESContext {
     @param count number of 8 byte blocks
     @param output_buffer destination array, can be equal to input_buffer, must be 8-byte aligned
     @param input_buffer source array, can be equal to output_buffer, must be 8-byte aligned, may be null
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_des_mac", cheader_filename="ffmpeg/libavutil/des.h")]
     public void av_des_mac (
         DESContext des_context,

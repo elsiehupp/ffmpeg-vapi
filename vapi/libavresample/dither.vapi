@@ -36,11 +36,11 @@ public class DitherDSPContext {
     /***********************************************************
     src and dst constraints for quantize ()
     ***********************************************************/
-    int ptr_align; ///<
+    public int ptr_align;
     /***********************************************************
     len constraints for quantize ()
     ***********************************************************/
-    int samples_align; ///<
+    public int samples_align;
 
     /***********************************************************
     Convert dither noise from int to float with triangular distribution.
@@ -75,7 +75,7 @@ Free a DitherContext.
 
 @param c  DitherContext
 ***********************************************************/
-void ff_dither_free (DitherContext **c);
+public void ff_dither_free (DitherContext **c);
 
 /***********************************************************
 Convert audio sample format with dithering.
@@ -85,11 +85,11 @@ Convert audio sample format with dithering.
 @param src  source audio data
 @return     0 if ok, negative AVERROR code on failure
 ***********************************************************/
-int ff_convert_dither (DitherContext *c, AudioData *dst, AudioData *src);
+public int ff_convert_dither (DitherContext *c, AudioData *dst, AudioData *src);
 
 /***********************************************************
 arch-specific initialization functions
 ***********************************************************/
 
-void ff_dither_init_x86 (DitherDSPContext *ddsp,
+public void ff_dither_init_x86 (DitherDSPContext *ddsp,
                         AVResampleDitherMethod method);

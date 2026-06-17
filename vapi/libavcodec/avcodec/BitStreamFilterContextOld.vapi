@@ -49,7 +49,7 @@ public class BitStreamFilterContextOld {
     /***********************************************************
     @brief Internal default arguments, used if null is passed to av_bitstream_filter_filter ().
     Not for access by library users.
-        ***********************************************************/
+    ***********************************************************/
     //  [CCode (cname="args")]
     //  public string args;
 }

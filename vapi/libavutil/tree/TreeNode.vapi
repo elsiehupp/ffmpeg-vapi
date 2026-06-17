@@ -59,7 +59,7 @@ public class TreeNode {
 
     /***********************************************************
     @brief Allocate an TreeNode.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_tree_node_alloc", cheader_filename="ffmpeg/libavutil/tree.h")]
     public TreeNode av_tree_node_alloc ();
 
@@ -76,7 +76,7 @@ public class TreeNode {
         user wants, be a different type (like an opaque context).
     @return An element with cmp (key, elem) == 0 or null if no such element
         exists in the tree.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_tree_find", cheader_filename="ffmpeg/libavutil/tree.h")]
     public void *av_tree_find (
         TreeNode root,
@@ -133,7 +133,7 @@ public class TreeNode {
         removal happened, then either key or null will be returned.
         Which one it is depends on the tree state and the implementation. You
         should make no assumptions that it's one or the other in the code.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_tree_insert", cheader_filename="ffmpeg/libavutil/tree.h")]
     public void *av_tree_insert (
         out TreeNode rootp,
@@ -156,7 +156,7 @@ public class TreeNode {
 
     @note The cmp function should use the same ordering used to construct the
         tree.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_tree_enumerate", cheader_filename="ffmpeg/libavutil/tree.h")]
     public void av_tree_enumerate (
         TreeNode t,

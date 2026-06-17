@@ -45,61 +45,61 @@ program birth year, defined by the program for show_banner ()
 /***********************************************************
 Register a program-specific cleanup routine.
 ***********************************************************/
-void register_exit (void (*cb)(int ret));
+public void register_exit (void (*cb)(int ret));
 
 /***********************************************************
 Wraps exit with a program-specific cleanup routine.
 ***********************************************************/
-void exit_program (int ret) av_noreturn;
+public void exit_program (int ret) av_noreturn;
 
 /***********************************************************
 Initialize dynamic library loading
 ***********************************************************/
-void init_dynload ();
+public void init_dynload ();
 
 /***********************************************************
 Initialize the cmdutils option system, in particular
 allocate the *_opts contexts.
 ***********************************************************/
-void init_opts ();
+public void init_opts ();
 /***********************************************************
 Uninitialize the cmdutils option system, in particular
 free the *_opts contexts and their contents.
 ***********************************************************/
-void uninit_opts ();
+public void uninit_opts ();
 
 /***********************************************************
 Trivial log callback.
 Only suitable for opt_help and similar since it lacks prefix handling.
 ***********************************************************/
-void log_callback_help (void* ptr, int level, char* fmt, va_list vl);
+public void log_callback_help (void* ptr, int level, char* fmt, va_list vl);
 
 /***********************************************************
 Override the cpuflags.
 ***********************************************************/
-int opt_cpuflags (void *optctx, string opt, string arg);
+public int opt_cpuflags (void *optctx, string opt, string arg);
 
 /***********************************************************
 Fallback for options that are not explicitly handled, these will be
 parsed through AVOptions.
 ***********************************************************/
-int opt_default (void *optctx, string opt, string arg);
+public int opt_default (void *optctx, string opt, string arg);
 
 /***********************************************************
 Set the libav* libraries log level.
 ***********************************************************/
-int opt_loglevel (void *optctx, string opt, string arg);
+public int opt_loglevel (void *optctx, string opt, string arg);
 
-int opt_report (string opt);
+public int opt_report (string opt);
 
-int opt_max_alloc (void *optctx, string opt, string arg);
+public int opt_max_alloc (void *optctx, string opt, string arg);
 
-int opt_codec_debug (void *optctx, string opt, string arg);
+public int opt_codec_debug (void *optctx, string opt, string arg);
 
 /***********************************************************
 Limit the execution time.
 ***********************************************************/
-int opt_timelimit (void *optctx, string opt, string arg);
+public int opt_timelimit (void *optctx, string opt, string arg);
 
 /***********************************************************
 Parse a string and return its corresponding value as a double.
@@ -131,9 +131,9 @@ date
 
 @see av_parse_time ()
 ***********************************************************/
-int64 parse_time_or_die (
+public int64 parse_time_or_die (
     string context, string timestr,
-    int is_duration
+    public int is_duration
 );
 
 [Compact]
@@ -143,7 +143,7 @@ public class SpecifierOpt {
     ***********************************************************/
     string specifier;
     union {
-        uint8 *str;
+        uint8[] str;
         int        i;
         int64  i64;
         uint64 ui64;
@@ -155,7 +155,7 @@ public class SpecifierOpt {
 [Compact]
 public class OptionDef {
     string name;
-    int flags;
+    public int flags;
 #define HAS_ARG    0x0001
 #define OPT_BOOL   0x0002
 #define OPT_EXPERT 0x0004
@@ -202,66 +202,66 @@ Print help for all options matching specified flags.
 @param rej_flags don't print options which have any of those flags set.
 @param alt_flags print only options that have at least one of those flags set
 ***********************************************************/
-void show_help_options (OptionDef[] options, string msg, int req_flags,
+public void show_help_options (OptionDef[] options, string msg, int req_flags,
                        int rej_flags, int alt_flags);
 
 #if CONFIG_AVDEVICE
 //  #define CMDUTILS_COMMON_OPTIONS_AVDEVICE                                                                                \
-//      { "sources"    , OPT_EXIT | HAS_ARG, { .func_arg = show_sources },                                                  \
-//        "list sources of the input device", "device" },                                                                   \
-//      { "sinks"      , OPT_EXIT | HAS_ARG, { .func_arg = show_sinks },                                                    \
-//        "list sinks of the output device", "device" },                                                                    \
+//      { "sources"    , OPT_EXIT | HAS_ARG, { .func_arg = show_sources }, \
+//        "list sources of the input device", "device" }, \
+//      { "sinks"      , OPT_EXIT | HAS_ARG, { .func_arg = show_sinks }, \
+//        "list sinks of the output device", "device" }, \
 
 #else
 //  #define CMDUTILS_COMMON_OPTIONS_AVDEVICE
 #endif
 
 //  #define CMDUTILS_COMMON_OPTIONS                                                                                         \
-//      { "L",           OPT_EXIT,             { .func_arg = show_license },     "show license" },                          \
-//      { "h",           OPT_EXIT,             { .func_arg = show_help },        "show help", "topic" },                    \
-//      { "?",           OPT_EXIT,             { .func_arg = show_help },        "show help", "topic" },                    \
-//      { "help",        OPT_EXIT,             { .func_arg = show_help },        "show help", "topic" },                    \
-//      { "-help",       OPT_EXIT,             { .func_arg = show_help },        "show help", "topic" },                    \
-//      { "version",     OPT_EXIT,             { .func_arg = show_version },     "show version" },                          \
-//      { "buildconf",   OPT_EXIT,             { .func_arg = show_buildconf },   "show build configuration" },              \
-//      { "formats",     OPT_EXIT,             { .func_arg = show_formats },     "show available formats" },                \
-//      { "muxers",      OPT_EXIT,             { .func_arg = show_muxers },      "show available muxers" },                 \
-//      { "demuxers",    OPT_EXIT,             { .func_arg = show_demuxers },    "show available demuxers" },               \
-//      { "devices",     OPT_EXIT,             { .func_arg = show_devices },     "show available devices" },                \
-//      { "codecs",      OPT_EXIT,             { .func_arg = show_codecs },      "show available codecs" },                 \
-//      { "decoders",    OPT_EXIT,             { .func_arg = show_decoders },    "show available decoders" },               \
-//      { "encoders",    OPT_EXIT,             { .func_arg = show_encoders },    "show available encoders" },               \
-//      { "bsfs",        OPT_EXIT,             { .func_arg = show_bsfs },        "show available bit stream filters" },     \
-//      { "protocols",   OPT_EXIT,             { .func_arg = show_protocols },   "show available protocols" },              \
-//      { "filters",     OPT_EXIT,             { .func_arg = show_filters },     "show available filters" },                \
-//      { "pix_fmts",    OPT_EXIT,             { .func_arg = show_pix_fmts },    "show available pixel formats" },          \
-//      { "layouts",     OPT_EXIT,             { .func_arg = show_layouts },     "show standard channel layouts" },         \
-//      { "sample_fmts", OPT_EXIT,             { .func_arg = show_sample_fmts }, "show available audio sample formats" },   \
-//      { "colors",      OPT_EXIT,             { .func_arg = show_colors },      "show available color names" },            \
-//      { "loglevel",    HAS_ARG,              { .func_arg = opt_loglevel },     "set logging level", "loglevel" },         \
-//      { "v",           HAS_ARG,              { .func_arg = opt_loglevel },     "set logging level", "loglevel" },         \
-//      { "report",      0,                    { (void*)opt_report },            "generate a report" },                     \
-//      { "max_alloc",   HAS_ARG,              { .func_arg = opt_max_alloc },    "set maximum size of a single allocated block", "bytes" }, \
-//      { "cpuflags",    HAS_ARG | OPT_EXPERT, { .func_arg = opt_cpuflags },     "force specific cpu flags", "flags" },     \
-//      { "hide_banner", OPT_BOOL | OPT_EXPERT, {&hide_banner},     "do not show program banner", "hide_banner" },          \
+//      { "L", OPT_EXIT, { .func_arg = show_license }, "show license" }, \
+//      { "h", OPT_EXIT, { .func_arg = show_help }, "show help", "topic" }, \
+//      { "?", OPT_EXIT, { .func_arg = show_help }, "show help", "topic" }, \
+//      { "help", OPT_EXIT, { .func_arg = show_help }, "show help", "topic" }, \
+//      { "-help", OPT_EXIT, { .func_arg = show_help }, "show help", "topic" }, \
+//      { "version", OPT_EXIT, { .func_arg = show_version }, "show version" }, \
+//      { "buildconf", OPT_EXIT, { .func_arg = show_buildconf }, "show build configuration" }, \
+//      { "formats", OPT_EXIT, { .func_arg = show_formats }, "show available formats" }, \
+//      { "muxers", OPT_EXIT, { .func_arg = show_muxers }, "show available muxers" }, \
+//      { "demuxers", OPT_EXIT, { .func_arg = show_demuxers }, "show available demuxers" }, \
+//      { "devices", OPT_EXIT, { .func_arg = show_devices }, "show available devices" }, \
+//      { "codecs", OPT_EXIT, { .func_arg = show_codecs }, "show available codecs" }, \
+//      { "decoders", OPT_EXIT, { .func_arg = show_decoders }, "show available decoders" }, \
+//      { "encoders", OPT_EXIT, { .func_arg = show_encoders }, "show available encoders" }, \
+//      { "bsfs", OPT_EXIT, { .func_arg = show_bsfs }, "show available bit stream filters" }, \
+//      { "protocols", OPT_EXIT, { .func_arg = show_protocols }, "show available protocols" }, \
+//      { "filters", OPT_EXIT, { .func_arg = show_filters }, "show available filters" }, \
+//      { "pix_fmts", OPT_EXIT, { .func_arg = show_pix_fmts }, "show available pixel formats" }, \
+//      { "layouts", OPT_EXIT, { .func_arg = show_layouts }, "show standard channel layouts" }, \
+//      { "sample_fmts", OPT_EXIT, { .func_arg = show_sample_fmts }, "show available audio sample formats" }, \
+//      { "colors", OPT_EXIT, { .func_arg = show_colors }, "show available color names" }, \
+//      { "loglevel", HAS_ARG, { .func_arg = opt_loglevel }, "set logging level", "loglevel" }, \
+//      { "v", HAS_ARG, { .func_arg = opt_loglevel }, "set logging level", "loglevel" }, \
+//      { "report", 0, { (void*)opt_report }, "generate a report" }, \
+//      { "max_alloc", HAS_ARG, { .func_arg = opt_max_alloc }, "set maximum size of a single allocated block", "bytes" }, \
+//      { "cpuflags", HAS_ARG | OPT_EXPERT, { .func_arg = opt_cpuflags }, "force specific cpu flags", "flags" }, \
+//      { "hide_banner", OPT_BOOL | OPT_EXPERT, {&hide_banner}, "do not show program banner", "hide_banner" }, \
 //      CMDUTILS_COMMON_OPTIONS_AVDEVICE                                                                                    \
 
 /***********************************************************
 Show help for all options with given flags in class and all its
 children.
 ***********************************************************/
-void show_help_children (AVClass class, int flags);
+public void show_help_children (AVClass class, int flags);
 
 /***********************************************************
 Per-fftool specific help handler. Implemented in each
 fftool, called by show_help ().
 ***********************************************************/
-void show_help_default (string opt, string arg);
+public void show_help_default (string opt, string arg);
 
 /***********************************************************
 Generic -h handler common to all fftools.
 ***********************************************************/
-int show_help (void *optctx, string opt, string arg);
+public int show_help (void *optctx, string opt, string arg);
 
 /***********************************************************
 Parse the command line arguments.
@@ -275,7 +275,7 @@ option of the form: -option_name [argument]
 argument without a leading option name flag. NULL if such arguments do
 not have to be processed.
 ***********************************************************/
-void parse_options (void *optctx, int argc, string *argv, OptionDef *options,
+public void parse_options (void *optctx, int argc, string *argv, OptionDef *options,
                    void (* parse_arg_function)(void *optctx, char*));
 
 /***********************************************************
@@ -283,7 +283,7 @@ Parse one given option.
 
 @return on success 1 if arg was consumed, 0 otherwise; negative number on error
 ***********************************************************/
-int parse_option (void *optctx, string opt, string arg,
+public int parse_option (void *optctx, string opt, string arg,
                  OptionDef *options);
 
 /***********************************************************
@@ -301,20 +301,20 @@ public class Option {
 [Compact]
 public class OptionGroupDef {
     /***********************************************************
-    <group name
+    group name
     ***********************************************************/
     string name;
     /***********************************************************
-    Option to be used as group separator. Can be NULL for groups which
-     * are terminated by a non-option argument (e.g. ffmpeg output files)
-        ***********************************************************/
+    Option to be used as group separator. Can be NULL for groups
+    which are terminated by a non-option argument (e.g. ffmpeg
+    output files)
+    ***********************************************************/
     string sep;
     /***********************************************************
     Option flags that must be set on each option that is
-     * applied to this group
-
+    applied to this group
     ***********************************************************/
-    int flags;
+    public int flags;
 }
 
 [Compact]
@@ -323,7 +323,7 @@ public class OptionGroup {
     string arg;
 
     Option *opts;
-    int  nb_opts;
+    public int  nb_opts;
 
     AVDictionary *codec_opts;
     AVDictionary *format_opts;
@@ -341,7 +341,7 @@ public class OptionGroupList {
     const OptionGroupDef *group_def;
 
     OptionGroup *groups;
-    int       nb_groups;
+    public int       nb_groups;
 }
 
 [Compact]
@@ -349,11 +349,11 @@ public class OptionParseContext {
     OptionGroup global_opts;
 
     OptionGroupList *groups;
-    int           nb_groups;
+    public int           nb_groups;
 
     /***********************************************************
     parsing state
-        ***********************************************************/
+    ***********************************************************/
     OptionGroup cur_group;
 }
 
@@ -362,7 +362,7 @@ Parse an options group and write results into optctx.
 
 @param optctx an app-specific options context. NULL for global options group
 ***********************************************************/
-int parse_optgroup (void *optctx, OptionGroup *g);
+public int parse_optgroup (void *optctx, OptionGroup *g);
 
 /***********************************************************
 Split the commandline into an intermediate form convenient for further
@@ -382,24 +382,24 @@ OptionGroupList, all groups with the same group definition are stored in one
 OptionGroupList in OptionParseContext.groups. The order of group lists is the
 same as the order of group definitions.
 ***********************************************************/
-int split_commandline (OptionParseContext *octx, int argc, string argv[],
+public int split_commandline (OptionParseContext *octx, int argc, string argv[],
                        OptionDef *options,
                        OptionGroupDef *groups, int nb_groups);
 
 /***********************************************************
 Free all allocated memory in an OptionParseContext.
 ***********************************************************/
-void uninit_parse_context (OptionParseContext *octx);
+public void uninit_parse_context (OptionParseContext *octx);
 
 /***********************************************************
 Find the '-loglevel' option in the command line args and apply it.
 ***********************************************************/
-void parse_loglevel (int argc, string *argv, OptionDef *options);
+public void parse_loglevel (int argc, string *argv, OptionDef *options);
 
 /***********************************************************
 Return index of option opt in argv or 0 if not found.
 ***********************************************************/
-int locate_option (int argc, string *argv, OptionDef *options,
+public int locate_option (int argc, string *argv, OptionDef *options,
                   string optname);
 
 /***********************************************************
@@ -411,7 +411,7 @@ Check if the given stream matches a stream specifier.
 
 @return 1 if the stream matches, 0 if it doesn't, <0 on error
 ***********************************************************/
-int check_stream_specifier (AVFormatContext *s, AVStream *st, string spec);
+public int check_stream_specifier (AVFormatContext *s, AVStream *st, string spec);
 
 /***********************************************************
 Filter out options for given codec.
@@ -453,14 +453,14 @@ multithreaded application may be unsafe.
 
 @see av_strerror ()
 ***********************************************************/
-void print_error (string filename, int err);
+public void print_error (string filename, int err);
 
 /***********************************************************
 Print the program banner to stderr. The banner contents depend on the
 current version of the repository and of the libav* libraries used by
 the program.
 ***********************************************************/
-void show_banner (int argc, string *argv, OptionDef *options);
+public void show_banner (int argc, string *argv, OptionDef *options);
 
 /***********************************************************
 Print the version of the program to stdout. The version message
@@ -468,62 +468,62 @@ depends on the current versions of the repository and of the libav*
 libraries.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_version (void *optctx, string opt, string arg);
+public int show_version (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print the build configuration of the program to stdout. The contents
 depend on the definition of FFMPEG_CONFIGURATION.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_buildconf (void *optctx, string opt, string arg);
+public int show_buildconf (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print the license of the program to stdout. The license depends on
 the license of the libraries compiled into the program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_license (void *optctx, string opt, string arg);
+public int show_license (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the formats supported by the
 program (including devices).
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_formats (void *optctx, string opt, string arg);
+public int show_formats (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the muxers supported by the
 program (including devices).
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_muxers (void *optctx, string opt, string arg);
+public int show_muxers (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the demuxer supported by the
 program (including devices).
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_demuxers (void *optctx, string opt, string arg);
+public int show_demuxers (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the devices supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_devices (void *optctx, string opt, string arg);
+public int show_devices (void *optctx, string opt, string arg);
 
 #if CONFIG_AVDEVICE
 /***********************************************************
 Print a listing containing autodetected sinks of the output device.
 Device name with options may be passed as an argument to limit results.
 ***********************************************************/
-int show_sinks (void *optctx, string opt, string arg);
+public int show_sinks (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing autodetected sources of the input device.
 Device name with options may be passed as an argument to limit results.
 ***********************************************************/
-int show_sources (void *optctx, string opt, string arg);
+public int show_sources (void *optctx, string opt, string arg);
 #endif
 
 /***********************************************************
@@ -531,72 +531,72 @@ Print a listing containing all the codecs supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_codecs (void *optctx, string opt, string arg);
+public int show_codecs (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the decoders supported by the
 program.
 ***********************************************************/
-int show_decoders (void *optctx, string opt, string arg);
+public int show_decoders (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the encoders supported by the
 program.
 ***********************************************************/
-int show_encoders (void *optctx, string opt, string arg);
+public int show_encoders (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the filters supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_filters (void *optctx, string opt, string arg);
+public int show_filters (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the bit stream filters supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_bsfs (void *optctx, string opt, string arg);
+public int show_bsfs (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the protocols supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_protocols (void *optctx, string opt, string arg);
+public int show_protocols (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the pixel formats supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_pix_fmts (void *optctx, string opt, string arg);
+public int show_pix_fmts (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the standard channel layouts supported by
 the program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-int show_layouts (void *optctx, string opt, string arg);
+public int show_layouts (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the sample formats supported by the
 program.
 ***********************************************************/
-int show_sample_fmts (void *optctx, string opt, string arg);
+public int show_sample_fmts (void *optctx, string opt, string arg);
 
 /***********************************************************
 Print a listing containing all the color names and values recognized
 by the program.
 ***********************************************************/
-int show_colors (void *optctx, string opt, string arg);
+public int show_colors (void *optctx, string opt, string arg);
 
 /***********************************************************
 Return a positive value if a line read from standard input
 starts with [yY], otherwise return 0.
 ***********************************************************/
-int read_yesno ();
+public int read_yesno ();
 
 /***********************************************************
 Get a file corresponding to a preset file.
@@ -629,7 +629,7 @@ Calls exit () on failure.
 @param new_size number of elements to place in reallocated array
 @return reallocated array
 ***********************************************************/
-void *grow_array (void *array, int elem_size, out int size, int new_size);
+public void *grow_array (void *array, int elem_size, out int size, int new_size);
 
 #define media_type_string av_get_media_type_string
 
@@ -646,15 +646,15 @@ void *grow_array (void *array, int elem_size, out int size, int new_size);
     string name = av_get_sample_fmt_name (sample_fmt)
 
 #define GET_SAMPLE_RATE_NAME (rate)\
-    char name[16];\
+    public char name[16];\
     snprintf (name, sizeof (name), "%d", rate);
 
 #define GET_CH_LAYOUT_NAME (ch_layout)\
-    char name[16];\
+    public char name[16];\
     snprintf (name, sizeof (name), "0x%"PRIx64, ch_layout);
 
 #define GET_CH_LAYOUT_DESC (ch_layout)\
-    char name[128];\
+    public char name[128];\
     av_get_channel_layout_string (name, sizeof (name), 0, ch_layout);
 
 double get_rotation (AVStream *st);

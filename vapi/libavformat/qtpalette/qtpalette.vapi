@@ -594,7 +594,7 @@ description size and the data format).
 ***********************************************************/
 [CCode (cname="", cheader_filename="")]
 public int ff_get_qtpalette (
-    int codec_id,
+    public int codec_id,
     AVIOContext pb,
     out uint32 palette
 );

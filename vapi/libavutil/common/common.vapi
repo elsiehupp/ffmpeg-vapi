@@ -98,12 +98,12 @@ must not have a side-effect.
 
 [CCode (cname="av_log2", cheader_filename="ffmpeg/libavutil/common.h")]
 public int av_log2 (
-    uint v
+    public uint v
 );
 
 [CCode (cname="av_log2_16bit", cheader_filename="ffmpeg/libavutil/common.h")]
 public int av_log2_16bit (
-    uint v
+    public uint v
 );
 
 /***********************************************************
@@ -115,9 +115,9 @@ public int av_log2_16bit (
 ***********************************************************/
 [CCode (cname="av_clip_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_clip_c (
-    int a,
-    int amin,
-    int amax
+    public int a,
+    public int amin,
+    public int amax
 );
 
 /***********************************************************
@@ -129,9 +129,9 @@ public static int av_clip_c (
 ***********************************************************/
 [CCode (cname="av_clip64_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int64 av_clip64_c (
-    int64 a,
-    int64 amin,
-    int64 amax
+    public int64 a,
+    public int64 amin,
+    public int64 amax
 );
 
 /***********************************************************
@@ -141,7 +141,7 @@ public static int64 av_clip64_c (
 ***********************************************************/
 [CCode (cname="av_clip_uint8_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static uint8 av_clip_uint8_c (
-    int a
+    public int a
 );
 
 /***********************************************************
@@ -151,7 +151,7 @@ public static uint8 av_clip_uint8_c (
 ***********************************************************/
 [CCode (cname="av_clip_int8_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int8 av_clip_int8_c (
-    int a
+    public int a
 );
 
 /***********************************************************
@@ -161,7 +161,7 @@ public static int8 av_clip_int8_c (
 ***********************************************************/
 [CCode (cname="av_clip_uint16_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static uint16 av_clip_uint16_c (
-    int a
+    public int a
 );
 
 /***********************************************************
@@ -171,7 +171,7 @@ public static uint16 av_clip_uint16_c (
 ***********************************************************/
 [CCode (cname="av_clip_int16_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int16 av_clip_int16_c (
-    int a
+    public int a
 );
 
 /***********************************************************
@@ -181,7 +181,7 @@ public static int16 av_clip_int16_c (
 ***********************************************************/
 [CCode (cname="av_clipl_int32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int32 av_clipl_int32_c (
-    int64 a
+    public int64 a
 );
 
 /***********************************************************
@@ -192,8 +192,8 @@ public static int32 av_clipl_int32_c (
 ***********************************************************/
 [CCode (cname="av_clip_intp2_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_clip_intp2_c (
-    int a,
-    int p
+    public int a,
+    public int p
 );
 
 /***********************************************************
@@ -204,8 +204,8 @@ public static int av_clip_intp2_c (
 ***********************************************************/
 [CCode (cname="av_clip_uintp2_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static uint av_clip_uintp2_c (
-    int a,
-    int p
+    public int a,
+    public int p
 );
 
 /***********************************************************
@@ -216,8 +216,8 @@ public static uint av_clip_uintp2_c (
 ***********************************************************/
 [CCode (cname="av_mod_uintp2_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static uint av_mod_uintp2_c (
-    uint a,
-    uint p
+    public uint a,
+    public uint p
 );
 
 /***********************************************************
@@ -229,8 +229,8 @@ public static uint av_mod_uintp2_c (
 ***********************************************************/
 [CCode (cname="av_sat_add32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_sat_add32_c (
-    int a,
-    int b
+    public int a,
+    public int b
 );
 
 /***********************************************************
@@ -242,8 +242,8 @@ public static int av_sat_add32_c (
 ***********************************************************/
 [CCode (cname="av_sat_dadd32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_sat_dadd32_c (
-    int a,
-    int b
+    public int a,
+    public int b
 );
 
 /***********************************************************
@@ -255,8 +255,8 @@ public static int av_sat_dadd32_c (
 ***********************************************************/
 [CCode (cname="av_sat_sub32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_sat_sub32_c (
-    int a,
-    int b
+    public int a,
+    public int b
 );
 
 /***********************************************************
@@ -268,8 +268,8 @@ public static int av_sat_sub32_c (
 ***********************************************************/
 [CCode (cname="av_sat_dsub32_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_sat_dsub32_c (
-    int a,
-    int b
+    public int a,
+    public int b
 );
 
 /***********************************************************
@@ -307,7 +307,7 @@ public static double av_clipd_c (
 ***********************************************************/
 [CCode (cname="av_ceil_log2_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_ceil_log2_c (
-    int x
+    public int x
 );
 
 /***********************************************************
@@ -327,7 +327,7 @@ public static int av_popcount_c (
 ***********************************************************/
 [CCode (cname="av_popcount64_c", cheader_filename="ffmpeg/libavutil/common.h")]
 public static int av_popcount64_c (
-    uint64 x
+    public uint64 x
 );
 
 [CCode (cname="av_parity_c", cheader_filename="ffmpeg/libavutil/common.h")]

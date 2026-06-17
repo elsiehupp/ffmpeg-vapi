@@ -52,49 +52,49 @@ Use av_d3d11va_alloc_context () exclusively to allocate an Direct3D11VideoAccele
 public class Direct3D11VideoAccelerationContext {
     /***********************************************************
     @brief D3D11 decoder object
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="decoder")]
     public ID3D11VideoDecoder decoder;
 
     /***********************************************************
     @brief D3D11 VideoContext
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="video_context")]
     public ID3D11VideoContext video_context;
 
     /***********************************************************
     @brief D3D11 configuration used to create the decoder
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="cfg")]
     public D3D11_VIDEO_DECODER_CONFIG cfg;
 
     /***********************************************************
     @brief The number of surface in the surface array
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surface_count")]
     public uint surface_count;
 
     /***********************************************************
     @brief The array of Direct3D surfaces used to create the decoder
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surface")]
     public ID3D11VideoDecoderOutputView[] surface;
 
     /***********************************************************
     @brief A bit field configuring the workarounds needed for using the decoder
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="workaround")]
     public Direct3D11VideoAccelerationWorkaroundFlags workaround;
 
     /***********************************************************
     @brief Private to the FFmpeg HardwareAcceleration implementation
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="report_id")]
     public uint report_id;
 
     /***********************************************************
     @brief Mutex to access video_context
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="context_mutex")]
     public HANDLE context_mutex;
 
@@ -102,7 +102,7 @@ public class Direct3D11VideoAccelerationContext {
     @brief Allocate an Direct3D11VideoAccelerationContext.
 
     @return Newly-allocated Direct3D11VideoAccelerationContext or null on failure.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_d3d11va_alloc_context", cheader_filename="ffmpeg/libavcodec/d3d11va.h")]
     public Direct3D11VideoAccelerationContext av_d3d11va_alloc_context ();
 }

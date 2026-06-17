@@ -23,27 +23,27 @@ namespace LibAVFormat {
 public delegate int ReadPacketDelegate (
     void *opaque,
     uint8[] buffer,
-    int buf_size
+    public int buf_size
 );
 
 public delegate int WritePacketDelegate (
     void *opaque,
     uint8[] buffer,
-    int buf_size
+    public int buf_size
 );
 
 public delegate int64 SeekDelegate (
     void *opaque,
-    int64 offset,
-    int whence
+    public int64 offset,
+    public int whence
 );
 
 [CCode (cname="", cheader_filename="")]
 public int ffio_init_context (
     AVIOContext io_context,
     uchar[] buffer,
-    int buffer_size,
-    int write_flag,
+    public int buffer_size,
+    public int write_flag,
     void *opaque,
     ReadPacketDelegate read_packet,
     WritePacketDelegate write_packet,
@@ -69,15 +69,15 @@ valid until the next call that references the same IO context.
 public int ffio_read_indirect (
     AVIOContext io_context,
     uchar[] buffer,
-    int size,
+    public int size,
     out uchar[] data
 );
 
 [CCode (cname="", cheader_filename="")]
 public void ffio_fill (
     AVIOContext io_context,
-    int b,
-    int count
+    public int b,
+    public int count
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -102,7 +102,7 @@ LibAVUtil.ErrorCode code in case of failure
 public int ffio_rewind_with_probe_data (
     AVIOContext io_context,
     out uchar[] buffer,
-    int buf_size
+    public int buf_size
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -119,7 +119,7 @@ Check that exactly size bytes have been read.
 public int ffio_read_size (
     AVIOContext io_context,
     uchar[] buffer,
-    int size
+    public int size
 );
 
 /***********************************************************
@@ -128,7 +128,7 @@ public int ffio_read_size (
 [CCode (cname="", cheader_filename="")]
 public int ffio_set_buf_size (
     AVIOContext io_context,
-    int buf_size
+    public int buf_size
 );
 
 /***********************************************************
@@ -141,19 +141,19 @@ Once the stream position moves outside this window this guarantee is lost.
 [CCode (cname="", cheader_filename="")]
 public int ffio_ensure_seekback (
     AVIOContext io_context,
-    int64 buf_size
+    public int64 buf_size
 );
 
 [CCode (cname="", cheader_filename="")]
 public int ffio_limit (
     AVIOContext io_context,
-    int size
+    public int size
 );
 
 public delegate ulong UpdateChecksumDelegate (
     ulong c,
     uint8[] p,
-    uint len
+    public uint len
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -172,21 +172,21 @@ public ulong ffio_get_checksum (
 public ulong ff_crc04C11DB7_update (
     ulong checksum,
     uint8[] buffer,
-    uint len
+    public uint len
 );
 
 [CCode (cname="", cheader_filename="")]
 public ulong ff_crcEDB88320_update (
     ulong checksum,
     uint8[] buffer,
-    uint len
+    public uint len
 );
 
 [CCode (cname="", cheader_filename="")]
 public ulong ff_crcA001_update (
     ulong checksum,
     uint8[] buffer,
-    uint len
+    public uint len
 );
 
 /***********************************************************
@@ -201,7 +201,7 @@ with a big-endian 4 byte header giving the packet size in bytes.
 [CCode (cname="", cheader_filename="")]
 public int ffio_open_dyn_packet_buf (
     out AVIOContext io_context,
-    int max_packet_size
+    public int max_packet_size
 );
 
 /***********************************************************
@@ -249,7 +249,7 @@ public int ffio_open_null_buf (
 public int ffio_open_whitelist (
     out AVIOContext io_context,
     string url,
-    int flags,
+    public int flags,
     AVIOInterruptCB int_cb,
     out LibAVUtil.Dictionary options,
     string whitelist,

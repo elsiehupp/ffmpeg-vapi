@@ -26,14 +26,14 @@ namespace LibAVFormat {
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
 //  static const LibAVUtil.Option options[] = {
-//      { "listen",          "Listen for incoming connections",  OFFSET (listen),         AV_OPT_TYPE_INT, { .i64 = 0 },     0,       2,       //  .flags = D|E },
-//      { "timeout",     "set timeout (in microseconds) of socket I/O operations", OFFSET (rw_timeout),     AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
-//      { "listen_timeout",  "Connection awaiting timeout (in milliseconds)",      OFFSET (listen_timeout), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
-//      { "send_buffer_size", "Socket send buffer size (in bytes)",                OFFSET (send_buffer_size), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
-//      { "recv_buffer_size", "Socket receive buffer size (in bytes)",             OFFSET (recv_buffer_size), AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
-//      { "tcp_nodelay", "Use TCP_NODELAY to disable nagle's algorithm",           OFFSET (tcp_nodelay), AV_OPT_TYPE_BOOL, { .i64 = 0 },             0, 1, .flags = D|E },
+//      { "listen", "Listen for incoming connections", OFFSET (listen), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 2, //  .flags = D|E },
+//      { "timeout", "set timeout (in microseconds) of socket I/O operations", OFFSET (rw_timeout), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, .flags = D|E },
+//      { "listen_timeout", "Connection awaiting timeout (in milliseconds)", OFFSET (listen_timeout), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, .flags = D|E },
+//      { "send_buffer_size", "Socket send buffer size (in bytes)", OFFSET (send_buffer_size), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, .flags = D|E },
+//      { "recv_buffer_size", "Socket receive buffer size (in bytes)", OFFSET (recv_buffer_size), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, .flags = D|E },
+//      { "tcp_nodelay", "Use TCP_NODELAY to disable nagle's algorithm", OFFSET (tcp_nodelay), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, .flags = D|E },
 //  #if !HAVE_WINSOCK2_H
-//      { "tcp_mss",     "Maximum segment size for outgoing TCP packets",          OFFSET (tcp_mss),     AV_OPT_TYPE_INT, { .i64 = -1 },         -1, INT_MAX, .flags = D|E },
+//      { "tcp_mss", "Maximum segment size for outgoing TCP packets", OFFSET (tcp_mss), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, .flags = D|E },
 //  #endif /***********************************************************
 //  !HAVE_WINSOCK2_H
 //  ***********************************************************/

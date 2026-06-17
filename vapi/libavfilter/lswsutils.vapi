@@ -24,8 +24,8 @@ Miscellaneous utilities which make use of the libswscale library
 /***********************************************************
 Scale image using libswscale.
 ***********************************************************/
-int ff_scale_image (uint8 *dst_data[4], int dst_linesize[4],
+public int ff_scale_image (uint8[] dst_data[4], int dst_linesize[4],
                    int dst_w, int dst_h, AVPixelFormat dst_pix_fmt,
-                   uint8 *const src_data[4], int src_linesize[4],
+                   uint8[] const src_data[4], int src_linesize[4],
                    int src_w, int src_h, AVPixelFormat src_pix_fmt,
                    void *log_ctx);

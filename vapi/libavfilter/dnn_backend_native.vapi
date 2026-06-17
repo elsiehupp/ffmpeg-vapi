@@ -52,35 +52,37 @@ public class Layer {
 
 [Compact]
 public class ConvolutionalParams {
-    int32 input_num, output_num, kernel_size;
+    public int32 input_num, output_num, kernel_size;
     DNNActivationFunc activation;
     DNNConvPaddingParam padding_method;
-    int32 dilation;
+    public int32 dilation;
     float *kernel;
     float *biases;
 }
 
 [Compact]
 public class InputParams {
-    int height, width, channels;
+    public int height, width, channels;
 }
 
 [Compact]
 public class DepthToSpaceParams {
-    int block_size;
+    public int block_size;
 }
 
+/***********************************************************
+***********************************************************/
 // Represents simple feed-forward convolutional network.
 [Compact]
 public class ConvolutionalNetwork {
     Layer *layers;
-    int32 layers_num;
+    public int32 layers_num;
 }
 
 DNNModel *ff_dnn_load_model_native (string model_filename);
 
 DNNReturnType ff_dnn_execute_model_native (const DNNModel *model, DNNData *outputs, uint32 nb_output);
 
-void ff_dnn_free_model_native (DNNModel **model);
+public void ff_dnn_free_model_native (DNNModel **model);
 
 #endif

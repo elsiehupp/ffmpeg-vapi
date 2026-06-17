@@ -36,7 +36,7 @@ public int64 ff_vorbiscomment_length (
     LibAVUtil.Dictionary m,
     string vendor_string,
     AVChapter[] chapters,
-    uint nb_chapters
+    public uint nb_chapters
 );
 
 /***********************************************************
@@ -57,7 +57,7 @@ public int ff_vorbiscomment_write (
     out LibAVUtil.Dictionary m,
     string vendor_string,
     AVChapter[] chapters,
-    uint nb_chapters
+    public uint nb_chapters
 );
 
 //  extern const AVMetadataConv ff_vorbiscomment_metadata_conv[];

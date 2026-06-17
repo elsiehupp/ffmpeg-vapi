@@ -23,8 +23,8 @@ namespace LibAVFormat {
 ***********************************************************/
 //  #define OFFSET (x) offsetof (CDXLDemuxContext, x)
 //  static const LibAVUtil.Option cdxl_options[] = {
-//      { "sample_rate", "", OFFSET (sample_rate), AV_OPT_TYPE_INT,    { .i64 = 11025 }, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { "framerate",   "", OFFSET (framerate),   AV_OPT_TYPE_STRING, { .str = NULL },  0, 0,       AV_OPT_FLAG_DECODING_PARAM },
+//      { "sample_rate", "", OFFSET (sample_rate), AV_OPT_TYPE_INT, { .i64 = 11025 }, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
+//      { "framerate", "", OFFSET (framerate), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, AV_OPT_FLAG_DECODING_PARAM },
 //      { NULL },
 //  }
 

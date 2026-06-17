@@ -58,7 +58,7 @@ public class D3D11VAFrameContext : AbstractHardwareContext {
     This is in particular used by the LibAVCodec D3D11VA hwaccel, which
     requires a single array texture. It will create ID3D11VideoDecoderOutputView
     objects for each array texture element on decoder initialization.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="texture")]
     public ID3D11Texture2D texture;
 
@@ -67,14 +67,14 @@ public class D3D11VAFrameContext : AbstractHardwareContext {
     at least set D3D11_BIND_DECODER if the frames context is to be used for
     video decoding.
     This field is ignored/invalid if a user-allocated texture is provided.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="BindFlags")]
     public uint bind_flags;
 
     /***********************************************************
     @brief D3D11_TEXTURE2D_DESC.MiscFlags used for texture creation.
     This field is ignored/invalid if a user-allocated texture is provided.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="MiscFlags")]
     public uint misc_flags;
 }

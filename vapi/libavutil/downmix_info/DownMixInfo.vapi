@@ -44,42 +44,42 @@ bitstream (if present), or to a "sane" default otherwise.
 public class DownMixInfo {
     /***********************************************************
     @brief Type of downmix preferred by the mastering engineer.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="preferred_downmix_type")]
     public DownMixType preferred_downmix_type;
 
     /***********************************************************
     @brief Absolute scale factor representing the nominal level of the center
     channel during a regular downmix.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="center_mix_level")]
     public double center_mix_level;
 
     /***********************************************************
     @brief Absolute scale factor representing the nominal level of the center
     channel during an Lt/Rt compatible downmix.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="center_mix_level_ltrt")]
     public double center_mix_level_ltrt;
 
     /***********************************************************
     @brief Absolute scale factor representing the nominal level of the surround
     channels during a regular downmix.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surround_mix_level")]
     public double surround_mix_level;
 
     /***********************************************************
     @brief Absolute scale factor representing the nominal level of the surround
     channels during an Lt/Rt compatible downmix.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surround_mix_level_ltrt")]
     public double surround_mix_level_ltrt;
 
     /***********************************************************
     @brief Absolute scale factor representing the level at which the LFE data is
     mixed into L/R channels during downmixing.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="lfe_mix_level")]
     public double lfe_mix_level;
 
@@ -93,7 +93,7 @@ public class DownMixInfo {
 
     @return the DownMixInfo structure to be edited by the caller, or null if
             the structure cannot be allocated.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_downmix_info_update_side_data", cheader_filename="ffmpeg/libavutil/downmix_info.h")]
     public DownMixInfo av_downmix_info_update_side_data (
         Frame frame

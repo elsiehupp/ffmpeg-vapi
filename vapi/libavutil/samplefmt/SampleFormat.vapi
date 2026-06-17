@@ -52,74 +52,74 @@ public enum SampleFormat {
     NONE,
     /***********************************************************
     @brief uint 8 bits
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_U8")]
     UNSIGNED_8_BIT,
     /***********************************************************
     @brief signed 16 bits
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_S16")]
     SIGNED_16_BIT,
     /***********************************************************
     @brief signed 32 bits
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_S32")]
     SIGNED_32_BIT,
     /***********************************************************
     @brief float
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_FLT")]
     FLOAT,
     /***********************************************************
     @brief double
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_DBL")]
     DOUBLE,
     /***********************************************************
     @brief uint 8 bits, planar
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_U8P")]
     UNSIGNED_8_BIT_PLANAR,
     /***********************************************************
     @brief signed 16 bits, planar
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_S16P")]
     SIGNED_16_BIT_PLANAR,
     /***********************************************************
     @brief signed 32 bits, planar
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_S32P")]
     SIGNED_32_BIT_PLANAR,
     /***********************************************************
     @brief float, planar
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_FLTP")]
     FLOAT_PLANAR,
     /***********************************************************
     @brief double, planar
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_DBLP")]
     DOUBLE_PLANAR,
     /***********************************************************
     @brief signed 64 bits
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_S64")]
     AV_SAMPLE_FMT_S64,
     /***********************************************************
     @brief signed 64 bits, planar
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_S64P")]
     SIGNED_64_BIT_PLANAR;
 
     /***********************************************************
     @brief Number of sample formats. DO NOT USE if linking dynamically
-        ***********************************************************/
+    ***********************************************************/
     //  AV_SAMPLE_FMT_NB;
 
     /***********************************************************
     @brief Return the name of sample_fmt, or null if sample_fmt is not
     recognized.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_sample_fmt_name", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static string av_get_sample_fmt_name (
         SampleFormat sample_fmt
@@ -128,7 +128,7 @@ public enum SampleFormat {
     /***********************************************************
     @brief Return a sample format corresponding to name, or SampleFormat.NONE
     on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_sample_fmt", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static SampleFormat av_get_sample_fmt (
         string name
@@ -139,7 +139,7 @@ public enum SampleFormat {
     SampleFormat.NONE on error. If the passed sample_fmt is already in the
     requested planar/packed format, the format returned is the same as the
     input.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_alt_sample_fmt", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static SampleFormat av_get_alt_sample_fmt (
         SampleFormat sample_fmt,
@@ -154,7 +154,7 @@ public enum SampleFormat {
 
     @return the packed alternative form of the given sample format or
         SampleFormat.NONE on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_packed_sample_fmt", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static SampleFormat av_get_packed_sample_fmt (
         SampleFormat sample_fmt
@@ -168,7 +168,7 @@ public enum SampleFormat {
 
     @return the planar alternative form of the given sample format or
         SampleFormat.NONE on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_planar_sample_fmt", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static SampleFormat av_get_planar_sample_fmt (
         SampleFormat sample_fmt
@@ -185,7 +185,7 @@ public enum SampleFormat {
     corresponding header.
     @return the pointer to the filled buffer or null if sample_fmt is
     unknown or in case of other errors
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_sample_fmt_string", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static string av_get_sample_fmt_string (
         string buffer,
@@ -199,7 +199,7 @@ public enum SampleFormat {
     @param sample_fmt the sample format
     @return number of bytes per sample or zero if unknown for the given
     sample format
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_bytes_per_sample", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_get_bytes_per_sample (
         SampleFormat sample_fmt
@@ -210,7 +210,7 @@ public enum SampleFormat {
 
     @param sample_fmt the sample format to inspect
     @return 1 if the sample format is planar, 0 if it is interleaved
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_sample_fmt_is_planar", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_sample_fmt_is_planar (
         SampleFormat sample_fmt
@@ -225,7 +225,7 @@ public enum SampleFormat {
     @param sample_fmt the sample format
     @param align buffer size alignment (0 = default, 1 = no alignment)
     @return required buffer size, or negative error code on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_samples_get_buffer_size", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_get_buffer_size (
         out int linesize,
@@ -270,7 +270,7 @@ public enum SampleFormat {
     @return        >=0 on success or a negative error code on failure
     @todo return minimum size in bytes required for the buffer in case
     of success at the next bump
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_samples_fill_arrays", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_fill_arrays (
         out uint8[] audio_data,
@@ -300,7 +300,7 @@ public enum SampleFormat {
     @todo return the size of the allocated buffer in case of success at the next bump
     @see @link av_samples_fill_arrays ()
     @see @link av_samples_alloc_array_and_samples ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_samples_alloc", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_alloc (
         out uint8[] audio_data,
@@ -319,7 +319,7 @@ public enum SampleFormat {
     pointers array.
 
     @see @link av_samples_alloc ()
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_samples_alloc_array_and_samples", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_alloc_array_and_samples (
         out uint8[] audio_data,
@@ -340,7 +340,7 @@ public enum SampleFormat {
     @param nb_samples number of samples to be copied
     @param nb_channels number of audio channels
     @param sample_fmt audio sample format
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_samples_copy", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_copy (
         out uint8[] output_buffer,
@@ -360,7 +360,7 @@ public enum SampleFormat {
     @param nb_samples number of samples to fill
     @param nb_channels number of audio channels
     @param sample_fmt audio sample format
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_samples_set_silence", cheader_filename="ffmpeg/libavutil/samplefmt.h")]
     public static int av_samples_set_silence (
         out uint8[] audio_data,

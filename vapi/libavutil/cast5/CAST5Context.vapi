@@ -37,7 +37,7 @@ public class CAST5Context {
     /***********************************************************
     @brief Allocate an CAST5Context context
     To free the struct: av_free (ptr)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_cast5_alloc", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public CAST5Context av_cast5_alloc ();
 
@@ -48,7 +48,7 @@ public class CAST5Context {
     @param key a key of 5,6,...16 bytes used for encryption/decryption
     @param key_bits number of keybits: possible are 40,48,...,128
     @return 0 on success, less than 0 on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_cast5_init", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public int av_cast5_init (
         CAST5Context cast5_context,
@@ -64,7 +64,7 @@ public class CAST5Context {
     @param input_buffer source array, can be equal to output_buffer
     @param count number of 8 byte blocks
     @param decrypt 0 for encryption, 1 for decryption
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_cast5_crypt", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public void av_cast5_crypt (
         CAST5Context cast5_context,
@@ -83,7 +83,7 @@ public class CAST5Context {
     @param count number of 8 byte blocks
     @param initialization_vector initialization vector for CBC mode, null for ECB mode
     @param decrypt 0 for encryption, 1 for decryption
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_cast5_crypt2", cheader_filename="ffmpeg/libavutil/cast5.h")]
     public void av_cast5_crypt2 (
         CAST5Context cast5_context,

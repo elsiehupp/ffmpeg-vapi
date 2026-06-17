@@ -80,7 +80,7 @@ public string av_stristr (
 /***********************************************************
 @brief Locate the first occurrence of the string needle in the string haystack
 where not more than hay_length characters are searched. A zero-length
-string needle is considered to match at the start of haystack.
+public string needle is considered to match at the start of haystack.
 
 This function is a length-limited version of the standard strstr ().
 
@@ -94,7 +94,7 @@ This function is a length-limited version of the standard strstr ().
 public string av_strnstr (
     string haystack,
     string needle,
-    size_t hay_length
+    public size_t hay_length
 );
 
 /***********************************************************
@@ -116,7 +116,7 @@ the end of the buffer and possibly crash.
 public size_t av_strlcpy (
     out string output_buffer,
     string input_buffer,
-    size_t size
+    public size_t size
 );
 
 /***********************************************************
@@ -139,7 +139,7 @@ will read beyond the end of the buffer and possibly crash.
 public size_t av_strlcat (
     out string output_buffer,
     string input_buffer,
-    size_t size
+    public size_t size
 );
 
 /***********************************************************
@@ -157,7 +157,7 @@ the buffer.
 [CCode (cname="av_strlcatf", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public size_t av_strlcatf (
     out string output_buffer,
-    size_t size,
+    public size_t size,
     string fmt,
     ...
 ); // av_printf_format (3, 4);
@@ -171,7 +171,7 @@ public size_t av_strlcatf (
 [CCode (cname="av_strnlen", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public static size_t av_strnlen (
     string s,
-    size_t len
+    public size_t len
 );
 
 /***********************************************************
@@ -250,7 +250,7 @@ public string av_strtok (
 ***********************************************************/
 [CCode (cname="av_isdigit", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public static int av_isdigit (
-    int c
+    public int c
 );
 
 /***********************************************************
@@ -258,7 +258,7 @@ public static int av_isdigit (
 ***********************************************************/
 [CCode (cname="av_isgraph", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public static int av_isgraph (
-    int c
+    public int c
 );
 
 /***********************************************************
@@ -266,7 +266,7 @@ public static int av_isgraph (
 ***********************************************************/
 [CCode (cname="av_isspace", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public static int av_isspace (
-    int c
+    public int c
 );
 
 /***********************************************************
@@ -274,7 +274,7 @@ public static int av_isspace (
 ***********************************************************/
 [CCode (cname="av_toupper", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public static int av_toupper (
-    int c
+    public int c
 );
 
 /***********************************************************
@@ -282,7 +282,7 @@ public static int av_toupper (
 ***********************************************************/
 [CCode (cname="av_tolower", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public static int av_tolower (
-    int c
+    public int c
 );
 
 /***********************************************************
@@ -290,7 +290,7 @@ public static int av_tolower (
 ***********************************************************/
 [CCode (cname="av_isxdigit", cheader_filename="ffmpeg/libavutil/avstring.h")]
 public static int av_isxdigit (
-    int c
+    public int c
 );
 
 /***********************************************************
@@ -311,7 +311,7 @@ public int av_strcasecmp (
 public int av_strncasecmp (
     string a,
     string b,
-    size_t n
+    public size_t n
 );
 
 /***********************************************************
@@ -379,7 +379,7 @@ public string av_append_path_component (
 
 /***********************************************************
 @brief Escape string in input_buffer, and put the escaped string in an allocated
-string in output_buffer, which must be freed with av_free ().
+public string in output_buffer, which must be freed with av_free ().
 
 @param output_buffer pointer where an allocated string is put
 @param input_buffer string to escape, must be non-null
@@ -449,7 +449,7 @@ public int av_utf8_decode (
 public int av_match_list (
     string name,
     string list,
-    char separator
+    public char separator
 );
 
 /***********************************************************

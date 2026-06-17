@@ -34,14 +34,14 @@ public class AESCTRContext {
 
     /***********************************************************
     @brief Allocate an AESCTRContext context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_ctr_alloc", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public AESCTRContext av_aes_ctr_alloc ();
 
     /***********************************************************
     @brief Initialize an AESCTRContext context.
     @param key encryption key, must have a length of AES_CTR_KEY_SIZE
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_ctr_init", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public int av_aes_ctr_init (
         AESCTRContext a,
@@ -50,7 +50,7 @@ public class AESCTRContext {
 
     /***********************************************************
     @brief Release an AESCTRContext context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_ctr_free", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_free (
         AESCTRContext a
@@ -61,7 +61,7 @@ public class AESCTRContext {
     @param output_buffer destination array, can be equal to input_buffer
     @param input_buffer source array, can be equal to output_buffer
     @param size the size of input_buffer and output_buffer
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_ctr_crypt", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_crypt (
         AESCTRContext a,
@@ -72,7 +72,7 @@ public class AESCTRContext {
 
     /***********************************************************
     @brief Get the current initialization vector
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_ctr_get_iv", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public uint8[] av_aes_ctr_get_iv (
         AESCTRContext a
@@ -80,7 +80,7 @@ public class AESCTRContext {
 
     /***********************************************************
     @brief Generate a random initialization vector
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_ctr_set_random_iv", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_set_random_iv (
         AESCTRContext a
@@ -88,7 +88,7 @@ public class AESCTRContext {
 
     /***********************************************************
     @brief Forcefully change the 8-byte initialization vector
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_ctr_set_iv", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_set_iv (
         AESCTRContext a,
@@ -97,7 +97,7 @@ public class AESCTRContext {
 
     /***********************************************************
     @brief Forcefully change the "full" 16-byte initialization vector, including the counter
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_ctr_set_full_iv", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_set_full_iv (
         AESCTRContext a,
@@ -106,7 +106,7 @@ public class AESCTRContext {
 
     /***********************************************************
     @brief Increment the top 64 bit of the initialization vector (performed after each frame)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_aes_ctr_increment_iv", cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_increment_iv (
         AESCTRContext a

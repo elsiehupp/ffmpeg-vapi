@@ -81,7 +81,7 @@ follows:
 ***********************************************************/
 [CCode (cname="av_display_rotation_get", cheader_filename="ffmpeg/libavutil/display.h")]
 public double av_display_rotation_get (
-    int32 matrix[9]
+    public int32 matrix[9]
 );
 
 /***********************************************************
@@ -94,7 +94,7 @@ rotation by the specified angle (in degrees).
 ***********************************************************/
 [CCode (cname="av_display_rotation_set", cheader_filename="ffmpeg/libavutil/display.h")]
 public void av_display_rotation_set (
-    int32 matrix[9],
+    public int32 matrix[9],
     double angle
 );
 
@@ -107,9 +107,9 @@ public void av_display_rotation_set (
 ***********************************************************/
 [CCode (cname="av_display_matrix_flip", cheader_filename="ffmpeg/libavutil/display.h")]
 public void av_display_matrix_flip (
-    int32 matrix[9],
-    int hflip,
-    int vflip
+    public int32 matrix[9],
+    public int hflip,
+    public int vflip
 );
 
 } // namespace LibAVUtil

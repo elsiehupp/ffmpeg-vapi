@@ -25,5 +25,5 @@ public class AudioNLMDNDSPContext {
                           ptrdiff_t i, ptrdiff_t jj);
 }
 
-void ff_anlmdn_init (AudioNLMDNDSPContext *s);
-void ff_anlmdn_init_x86 (AudioNLMDNDSPContext *s);
+public void ff_anlmdn_init (AudioNLMDNDSPContext *s);
+public void ff_anlmdn_init_x86 (AudioNLMDNDSPContext *s);

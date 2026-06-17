@@ -49,7 +49,7 @@ they were concatenated.
 public ulong av_adler32_update (
     ulong adler,
     uint8[] buffer,
-    uint len
+    public uint len
 ); // av_pure;
 
 }

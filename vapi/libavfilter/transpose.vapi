@@ -18,20 +18,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifndef AVFILTER_TRANSPOSE_H
 #define AVFILTER_TRANSPOSE_H
 
-enum PassthroughType {
+public enum PassthroughType {
     TRANSPOSE_PT_TYPE_NONE,
     TRANSPOSE_PT_TYPE_LANDSCAPE,
-    TRANSPOSE_PT_TYPE_PORTRAIT,
-};
+    TRANSPOSE_PT_TYPE_PORTRAIT;
+}
 
-enum TransposeDir {
+public enum TransposeDir {
     TRANSPOSE_CCLOCK_FLIP,
     TRANSPOSE_CLOCK,
     TRANSPOSE_CCLOCK,
     TRANSPOSE_CLOCK_FLIP,
-    TRANSPOSE_REVERSAL,    // rotate by half-turn
+    TRANSPOSE_REVERSAL, // rotate by half-turn
     TRANSPOSE_HFLIP,
-    TRANSPOSE_VFLIP,
-};
+    TRANSPOSE_VFLIP;
+}
 
 #endif

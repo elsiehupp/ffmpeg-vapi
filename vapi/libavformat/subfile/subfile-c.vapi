@@ -26,7 +26,7 @@ namespace LibAVFormat {
 
 //  static const LibAVUtil.Option subfile_options[] = {
 //      { "start", "start offset", OFFSET (start), AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
-//      { "end",   "end offset",   OFFSET (end),   AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
+//      { "end", "end offset", OFFSET (end), AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
 //      { NULL }
 //  }
 

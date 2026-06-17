@@ -39,7 +39,7 @@ public class PixelFormatDescriptor {
 
     /***********************************************************
     @brief The number of components each pixel has, (1-4)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="nb_components")]
     public uint8 component_count;
 
@@ -49,7 +49,7 @@ public class PixelFormatDescriptor {
     chroma_width = AV_CEIL_RSHIFT (luma_width, log2_chroma_w)
     The note above is needed to ensure rounding up.
     This value only refers to the chroma components.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="log2_chroma_w")]
     public uint8 log2_chroma_w;
 
@@ -59,13 +59,13 @@ public class PixelFormatDescriptor {
     chroma_height= AV_CEIL_RSHIFT (luma_height, log2_chroma_h)
     The note above is needed to ensure rounding up.
     This value only refers to the chroma components.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="log2_chroma_h")]
     public uint8 log2_chroma_h;
 
     /***********************************************************
     @brief Combination of PixelFormatFlags.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="flags")]
     public PixelFormatFlags flags;
 
@@ -77,13 +77,13 @@ public class PixelFormatDescriptor {
       otherwise 0 is luma, 1 is chroma-U and 2 is chroma-V.
 
     If present, the Alpha channel is always the last component.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="comp")]
     public ComponentDescriptor comp[4];
 
     /***********************************************************
     @brief Alternative comma-separated names.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="alias")]
     public string alias;
 
@@ -95,7 +95,7 @@ public class PixelFormatDescriptor {
     The returned number of bits refers to the number of bits actually
     used for storing the pixel information, that is padding bits are
     not counted.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_bits_per_pixel", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public int av_get_bits_per_pixel (
         PixelFormatDescriptor pixdesc
@@ -104,7 +104,7 @@ public class PixelFormatDescriptor {
     /***********************************************************
     @brief Return the number of bits per pixel for the pixel format
     described by pixdesc, including any padding or unused bits.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_padded_bits_per_pixel", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public int av_get_padded_bits_per_pixel (
         PixelFormatDescriptor pixdesc
@@ -116,7 +116,7 @@ public class PixelFormatDescriptor {
     @param prev previous descriptor. null to get the first descriptor.
 
     @return next descriptor or null after the last descriptor
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_pix_fmt_desc_next", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public PixelFormatDescriptor av_pix_fmt_desc_next (
         PixelFormatDescriptor prev
@@ -125,7 +125,7 @@ public class PixelFormatDescriptor {
     /***********************************************************
     @return an PixelFormat id described by desc, or PixelFormat.NONE if desc
     is not a valid pointer to a pixel format descriptor.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_pix_fmt_desc_get_id", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public PixelFormat av_pix_fmt_desc_get_id (
         PixelFormatDescriptor desc
@@ -147,7 +147,7 @@ public class PixelFormatDescriptor {
     component c in data[1] to output_buffer, rather than the palette indexes in
     data[0]. The behavior is undefined if the format is not paletted.
     @param output_element_size size of elements in output_buffer array (2 or 4 byte)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_read_image_line2", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public void av_read_image_line2 (
         out void *output_buffer,
@@ -189,7 +189,7 @@ public class PixelFormatDescriptor {
     @param w the width of the line to write, that is the number of
     values to write to the image line
     @param input_element_size size of elements in input_buffer array (2 or 4 byte)
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_write_image_line2", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public void av_write_image_line2 (
         void *input_buffer, out uint8 data[4],

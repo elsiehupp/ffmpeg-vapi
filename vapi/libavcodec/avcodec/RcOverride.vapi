@@ -40,7 +40,7 @@ public class RcOverride {
 
     /***********************************************************
     @note If this is 0 then quality_factor will be used instead.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="qscale")]
     public int qscale;
 

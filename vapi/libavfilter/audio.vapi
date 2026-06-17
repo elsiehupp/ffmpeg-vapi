@@ -37,11 +37,13 @@ static const enum AVSampleFormat ff_planar_sample_fmts_array[] = {
     AV_SAMPLE_FMT_NONE
 }
 
-/** default handler for get_audio_buffer () for audio inputs
+/***********************************************************
+default handler for get_audio_buffer () for audio inputs
 ***********************************************************/
 AVFrame *ff_default_get_audio_buffer (AVFilterLink *link, int nb_samples);
 
-/** get_audio_buffer () handler for filters which simply pass audio along
+/***********************************************************
+get_audio_buffer () handler for filters which simply pass audio along
 ***********************************************************/
 AVFrame *ff_null_get_audio_buffer (AVFilterLink *link, int nb_samples);
 

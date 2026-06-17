@@ -37,103 +37,103 @@ DV specs as well (e.g. SMPTE314M vs. IEC 61834).
 public class DVProfile {
     /***********************************************************
     @brief Value of the dsf in the DV header
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="dsf")]
     public int dsf;
 
     /***********************************************************
     @brief Stype for VAUX source pack
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="video_stype")]
     public int video_stype;
 
     /***********************************************************
     @brief Total size of one frame in bytes
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="frame_size")]
     public int frame_size;
 
     /***********************************************************
     @brief Number of DIF segments per DIF channel
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="difseg_size")]
     public int difseg_size;
 
     /***********************************************************
     @brief Number of DIF channels per frame
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="n_difchan")]
     public int n_difchan;
 
     /***********************************************************
     @brief 1/framerate
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="time_base")]
     public LibAVUtil.Rational time_base;
 
     /***********************************************************
     @brief FPS from the LTS standpoint
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="ltc_divisor")]
     public int ltc_divisor;
 
     /***********************************************************
     @brief Picture height in pixels
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="height")]
     public int height;
 
     /***********************************************************
     @brief Picture width in pixels
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="width")]
     public int width;
 
     /***********************************************************
     @brief Sample aspect ratios for 4:3 and 16:9
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="sar")]
     public LibAVUtil.Rational sar[2];
 
     /***********************************************************
     @brief Picture pixel format
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pix_fmt")]
     public LibAVUtil.PixelFormat pixel_format;
 
     /***********************************************************
     @brief Blocks per macroblock
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="bpm")]
     public int blocks_per_macroblock;
 
     /***********************************************************
     @brief AC block sizes, in bits
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="block_sizes")]
     public uint8[] block_sizes;
 
     /***********************************************************
     @brief Size of audio_shuffle table
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="audio_stride")]
     public int audio_stride;
 
     /***********************************************************
     @brief Minimum amount of audio samples for 48kHz, 44.1kHz and 32kHz
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="audio_min_samples")]
     public int audio_min_samples[3];
 
     /***********************************************************
     @brief How many samples are supposed to be in each frame in a 5 frames window
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="audio_samples_dist")]
     public int audio_samples_dist[5];
 
     /***********************************************************
     @brief PCM shuffling table
-        ***********************************************************/
+    ***********************************************************/
     //  [CCode (cname="audio_shuffle")]
     //  public uint8 (*audio_shuffle)[9];
 
@@ -144,7 +144,7 @@ public class DVProfile {
     @param frame the compressed data buffer
     @param buf_size size of the buffer in bytes
     @return the DV profile for the supplied data or null on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dv_frame_profile", cheader_filename="ffmpeg/libavcodec/dv_profile.h")]
     public DVProfile av_dv_frame_profile (
         DVProfile sys,
@@ -154,7 +154,7 @@ public class DVProfile {
 
     /***********************************************************
     @brief Get a DV profile for the provided stream parameters.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dv_codec_profile", cheader_filename="ffmpeg/libavcodec/dv_profile.h")]
     public DVProfile av_dv_codec_profile (
         int width,
@@ -165,7 +165,7 @@ public class DVProfile {
     /***********************************************************
     @brief Get a DV profile for the provided stream parameters.
     The frame rate is used as a best-effort parameter.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dv_codec_profile2", cheader_filename="ffmpeg/libavcodec/dv_profile.h")]
     public DVProfile av_dv_codec_profile2 (
         int width,

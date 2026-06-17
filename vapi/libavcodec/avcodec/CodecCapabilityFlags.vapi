@@ -34,14 +34,14 @@ LibAVCodec external API header
 public enum CodecCapabilityFlags {
     /***********************************************************
     @brief Decoder can use draw_horiz_band callback.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_DRAW_HORIZ_BAND,
     /***********************************************************
     @brief Codec uses get_buffer () for allocating buffers and supports
     custom allocators. If not set, it might not use get_buffer ()
     at all or use operations that assume the buffer was
     allocated by avcodec_default_get_buffer.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_DR1,
     AV_CODEC_CAP_TRUNCATED,
     /***********************************************************
@@ -68,12 +68,12 @@ public enum CodecCapabilityFlags {
         must set the pts and duration for each output packet.
         If this flag is not set, the pts and duration will be
         determined by LibAVCodec from the input frame.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_DELAY,
     /***********************************************************
     @brief Codec can be fed a final frame with a smaller size. This can
     be used to prevent truncation of the last audio samples.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_SMALL_LAST_FRAME,
 
     /***********************************************************
@@ -87,38 +87,38 @@ public enum CodecCapabilityFlags {
     multiple frames in a packet. This has many disadvantages
     like prohibiting stream copy in many cases thus it should
     only be considered as a last resort.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_SUBFRAMES,
     /***********************************************************
     @brief Codec is experimental and is thus avoided in favor of non-
     experimental encoders.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_EXPERIMENTAL,
     /***********************************************************
     @brief Codec should fill in channel configuration and samplerate
     instead of container.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_CHANNEL_CONF,
     /***********************************************************
     @brief Codec supports frame-level multithreading.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_FRAME_THREADS,
     /***********************************************************
     @brief Codec supports slice-based (or partition-based) multithreading.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_SLICE_THREADS,
     /***********************************************************
     @brief Codec supports changed parameters at any point.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_PARAM_CHANGE,
     /***********************************************************
     @brief Codec supports avctx.thread_count == 0 (auto).
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_AUTO_THREADS,
     /***********************************************************
     @brief Audio encoder supports receiving a different number of
     samples in each call.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_VARIABLE_FRAME_SIZE,
     /***********************************************************
     @brief Decoder is not a preferred choice for probing. This
@@ -127,36 +127,36 @@ public enum CodecCapabilityFlags {
     decoder, or it could simply not provide a lot of useful
     information about the stream. A decoder marked with this
     flag should only be used as last resort choice for probing.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_AVOID_PROBING,
     /***********************************************************
     @brief Codec is intra only.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_INTRA_ONLY,
     /***********************************************************
     @brief Codec is lossless.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_LOSSLESS,
 
     /***********************************************************
     @brief Codec is backed by a hardware implementation. Typically used
     to identify a non-hwaccel hardware decoder. For information
     about hwaccels, use avcodec_get_hw_config () instead.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_HARDWARE,
 
     /***********************************************************
     @brief Codec is potentially backed by a hardware implementation,
     but not necessarily. This is used instead of AV_CODEC_CAP_HARDWARE,
     if the implementation provides some sort of internal fallback.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_HYBRID,
 
     /***********************************************************
     @brief This codec takes the reordered_opaque field from input
     LibAVUtil.Frame and returns it in the corresponding field in
     CodecContext after encoding.
-        ***********************************************************/
+    ***********************************************************/
     AV_CODEC_CAP_ENCODER_REORDERED_OPAQUE;
 }
 

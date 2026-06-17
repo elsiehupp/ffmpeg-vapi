@@ -21,19 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [Compact]
 public class MaskedMergeContext {
     const AVClass *class;
-    int width[4], height[4];
-    int linesize[4];
-    int nb_planes;
-    int planes;
-    int half, depth;
+    public int width[4], height[4];
+    public int linesize[4];
+    public int nb_planes;
+    public int planes;
+    public int half, depth;
     FFFrameSync fs;
 
-    void (*maskedmerge)(const uint8 *bsrc, uint8 *osrc,
-                        uint8 *msrc, uint8 *dst,
+    void (*maskedmerge)(const uint8[] bsrc, uint8[] osrc,
+                        uint8[] msrc, uint8[] dst,
                         ptrdiff_t blinesize, ptrdiff_t olinesize,
                         ptrdiff_t mlinesize, ptrdiff_t dlinesize,
                         int w, int h,
                         int half, int shift);
 }
 
-void ff_maskedmerge_init_x86 (MaskedMergeContext *s);
+public void ff_maskedmerge_init_x86 (MaskedMergeContext *s);

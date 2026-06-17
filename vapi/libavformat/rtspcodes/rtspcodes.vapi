@@ -146,7 +146,7 @@ public enum RTSPMethod {
 [CCode (cname="", cheader_filename="")]
 public static int ff_rtsp_averror (
     RTSPStatusCode status_code,
-    int default_averror
+    public int default_averror
 );
 
 } // namespace LibAVFormat

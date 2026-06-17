@@ -25,18 +25,18 @@ public class FlipContext {
     /***********************************************************
     max pixel step for each plane, expressed as a number of bytes
     ***********************************************************/
-    int max_step[4]; ///<
+    public int max_step[4];
     /***********************************************************
     width of each plane
     ***********************************************************/
-    int planewidth[4]; ///<
+    public int planewidth[4];
     /***********************************************************
     height of each plane
     ***********************************************************/
-    int planeheight[4]; ///<
+    public int planeheight[4];
 
-    void (*flip_line[4])(const uint8 *src, uint8 *dst, int w);
+    void (*flip_line[4])(const uint8[] src, uint8[] dst, int w);
 }
 
-int ff_hflip_init (FlipContext *s, int step[4], int nb_planes);
-void ff_hflip_init_x86 (FlipContext *s, int step[4], int nb_planes);
+public int ff_hflip_init (FlipContext *s, int step[4], int nb_planes);
+public void ff_hflip_init_x86 (FlipContext *s, int step[4], int nb_planes);

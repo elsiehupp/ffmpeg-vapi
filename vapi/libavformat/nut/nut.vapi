@@ -54,51 +54,51 @@ public const int NUT_MIN_VERSION; // 2
 public enum Flag {
     /***********************************************************
     @brief If set, frame is keyframe
-        ***********************************************************/
+    ***********************************************************/
     FLAG_KEY,
     /***********************************************************
     @brief If set, stream has no relevance on presentation. (EOR)
-        ***********************************************************/
+    ***********************************************************/
     FLAG_EOR,
     /***********************************************************
     @brief If set, coded_pts is in the frame header
-        ***********************************************************/
+    ***********************************************************/
     FLAG_CODED_PTS,
     /***********************************************************
     @brief If set, stream_id is coded in the frame header
-        ***********************************************************/
+    ***********************************************************/
     FLAG_STREAM_ID,
     /***********************************************************
     @brief If set, data_size_msb is at frame header, otherwise data_size_msb is 0
-        ***********************************************************/
+    ***********************************************************/
     FLAG_SIZE_MSB,
     /***********************************************************
     @brief If set, the frame header contains a checksum
-        ***********************************************************/
+    ***********************************************************/
     FLAG_CHECKSUM,
     /***********************************************************
     @brief If set, reserved_count is coded in the frame header
-        ***********************************************************/
+    ***********************************************************/
     FLAG_RESERVED,
     /***********************************************************
     @brief If set, side / meta data is stored in the frame header.
-        ***********************************************************/
+    ***********************************************************/
     FLAG_SM_DATA,
     /***********************************************************
     @brief If set, header_idx is coded in the frame header.
-        ***********************************************************/
+    ***********************************************************/
     FLAG_HEADER_IDX,
     /***********************************************************
     @brief If set, match_time_delta is coded in the frame header
-        ***********************************************************/
+    ***********************************************************/
     FLAG_MATCH_TIME,
     /***********************************************************
     @brief If set, coded_flags are stored in the frame header
-        ***********************************************************/
+    ***********************************************************/
     FLAG_CODED,
     /***********************************************************
     @brief If set, frame_code is invalid
-        ***********************************************************/
+    ***********************************************************/
     FLAG_INVALID,
 }
 
@@ -167,7 +167,7 @@ public class StreamContext {
 
     /***********************************************************
     @brief FIXME duplicate of has_b_frames
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int decode_delay;
 
@@ -200,11 +200,11 @@ public class NUTContext {
     public uint8 header_len[128];
 
     [CCode (cname="", cheader_filename="")]
-    public uint8 *header[128];
+    public uint8[] header[128];
 
     /***********************************************************
     @brief Stores the next startcode if it has already been parsed but the stream is not seekable
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public uint64 next_startcode;
 
@@ -252,7 +252,7 @@ public class NUTContext {
 
     /***********************************************************
     @brief Version currently in use
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int version;
 
@@ -264,11 +264,11 @@ public class NUTContext {
 public enum NUTFlags {
     /***********************************************************
     Use extended syncpoints.
-        ***********************************************************/
+    ***********************************************************/
     NUT_BROADCAST,
     /***********************************************************
     @brief Do not write syncpoints.
-        ***********************************************************/
+    ***********************************************************/
     NUT_PIPE,
 }
 
@@ -294,13 +294,13 @@ public class Dispositions {
 public void ff_nut_reset_ts (
     NUTContext nut,
     LibAVUtil.Rational time_base,
-    int64 val
+    public int64 val
 );
 
 [CCode (cname="", cheader_filename="")]
 public int64 ff_lsb2full (
     StreamContext stream,
-    int64 lsb
+    public int64 lsb
 );
 
 [CCode (cname="", cheader_filename="")]
@@ -318,9 +318,9 @@ public int ff_nut_sp_pts_cmp (
 [CCode (cname="", cheader_filename="")]
 public int ff_nut_add_sp (
     NUTContext nut,
-    int64 pos,
-    int64 back_ptr,
-    int64 ts
+    public int64 pos,
+    public int64 back_ptr,
+    public int64 ts
 );
 
 [CCode (cname="", cheader_filename="")]

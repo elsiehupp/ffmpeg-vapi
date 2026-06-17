@@ -28,7 +28,7 @@ namespace LibAVFormat {
 public int ff_flac_parse_picture (
     AVFormatContext format_context,
     uint8[] buffer,
-    int buf_size
+    public int buf_size
 );
 
 } // namespace LibAVFormat

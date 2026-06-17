@@ -22,19 +22,19 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 [Compact]
 public class PP7Context {
     AVClass *class;
-    int thres2[99][16];
+    public int thres2[99][16];
 
-    int qp;
-    int mode;
-    int qscale_type;
-    int hsub;
-    int vsub;
-    int temp_stride;
-    uint8 *src;
+    public int qp;
+    public int mode;
+    public int qscale_type;
+    public int hsub;
+    public int vsub;
+    public int temp_stride;
+    uint8[] src;
 
-    int (*requantize)(PP7Context *p, int16 *src, int qp);
+    public int (*requantize)(PP7Context *p, int16 *src, int qp);
     void (*dctB)(int16 *dst, int16 *src);
 
 }
 
-void ff_pp7_init_x86 (PP7Context *pp7);
+public void ff_pp7_init_x86 (PP7Context *pp7);

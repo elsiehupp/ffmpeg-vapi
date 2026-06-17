@@ -49,7 +49,7 @@ public class SHAContext {
 
     /***********************************************************
     @brief Allocate an SHAContext context.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_sha_alloc", cheader_filename="ffmpeg/libavutil/sha.h")]
     public SHAContext av_sha_alloc ();
 
@@ -59,7 +59,7 @@ public class SHAContext {
     @param context pointer to the function context (of size av_sha_size)
     @param bits number of bits in digest (SHA-1 - 160 bits, SHA-2 224 or 256 bits)
     @return zero if initialization succeeded, -1 otherwise
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_sha_init", cheader_filename="ffmpeg/libavutil/sha.h")]
     public int av_sha_init (
         SHAContext context,
@@ -72,7 +72,7 @@ public class SHAContext {
     @param sha_context hash function context
     @param data input data to update hash with
     @param len input data length
-        ***********************************************************/
+    ***********************************************************/
     #if FF_API_CRYPTO_SIZE_T
     [CCode (cname="av_sha_update", cheader_filename="ffmpeg/libavutil/sha.h")]
     public void av_sha_update (
@@ -94,7 +94,7 @@ public class SHAContext {
 
     @param context hash function context
     @param digest buffer where output digest value is stored
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_sha_final", cheader_filename="ffmpeg/libavutil/sha.h")]
     public void av_sha_final (
         SHAContext context,

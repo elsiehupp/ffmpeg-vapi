@@ -37,12 +37,12 @@ Public LibAVCodec DXVA2 header.
 public enum DirectXVideoAccelerationWorkaroundFlags {
     /***********************************************************
     @brief Workaround for DXVA2 and old UVD/UVD+ ATI video cards
-        ***********************************************************/
+    ***********************************************************/
     FF_DXVA2_WORKAROUND_SCALING_LIST_ZIGZAG,
     /***********************************************************
     @brief Workaround for DXVA2 and old Intel GPUs with ClearVideo
-    interface
-        ***********************************************************/
+    public interface
+    ***********************************************************/
     FF_DXVA2_WORKAROUND_INTEL_CLEARVIDEO,
 }
 

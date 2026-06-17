@@ -29,7 +29,7 @@ using LibAVUtil;
 [CCode (cname="av_ac3_parse_header", cheader_filename="ffmpeg/libavcodec/ac3_parser.h")]
 public int av_ac3_parse_header (
     uint8[] buffer,
-    size_t size,
+    public size_t size,
     out uint8 bitstream_id,
     out uint16 frame_size
 );

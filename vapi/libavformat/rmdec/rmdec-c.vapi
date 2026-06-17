@@ -22,12 +22,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define DEINT_ID_GENR MKTAG ('g', 'e', 'n', 'r') ///< interleaving for Cooker/ATRAC
-//  #define DEINT_ID_INT0 MKTAG ('I', 'n', 't', '0') ///< no interleaving needed
-//  #define DEINT_ID_INT4 MKTAG ('I', 'n', 't', '4') ///< interleaving for 28.8
-//  #define DEINT_ID_SIPR MKTAG ('s', 'i', 'p', 'r') ///< interleaving for Sipro
-//  #define DEINT_ID_VBRF MKTAG ('v', 'b', 'r', 'f') ///< VBR case for AAC
-//  #define DEINT_ID_VBRS MKTAG ('v', 'b', 'r', 's') ///< VBR case for AAC
+/***********************************************************
+public interleaving for Cooker/ATRAC
+***********************************************************/
+//  #define DEINT_ID_GENR MKTAG ('g', 'e', 'n', 'r')
+/***********************************************************
+no interleaving needed
+***********************************************************/
+//  #define DEINT_ID_INT0 MKTAG ('I', 'n', 't', '0')
+/***********************************************************
+public interleaving for 28.8
+***********************************************************/
+//  #define DEINT_ID_INT4 MKTAG ('I', 'n', 't', '4')
+/***********************************************************
+public interleaving for Sipro
+***********************************************************/
+//  #define DEINT_ID_SIPR MKTAG ('s', 'i', 'p', 'r')
+/***********************************************************
+VBR case for AAC
+***********************************************************/
+//  #define DEINT_ID_VBRF MKTAG ('v', 'b', 'r', 'f')
+/***********************************************************
+VBR case for AAC
+***********************************************************/
+//  #define DEINT_ID_VBRS MKTAG ('v', 'b', 'r', 's')
 
 [CCode (cname="struct RMDemuxContext", cheader_filename="")]
 [Compact]

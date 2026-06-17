@@ -18,28 +18,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class PullupBuffer {
-    int lock[2];
-    uint8 *planes[4];
+    public int lock[2];
+    uint8[] planes[4];
 }
 
 [Compact]
 public class PullupField {
-    int parity;
-    PullupBuffer *buffer;
-    unsigned flags;
-    int breaks;
-    int affinity;
-    int[] diffs;
-    int[] combs;
-    int[] vars;
+    public int parity;
+    public PullupBuffer *buffer;
+    public uint flags;
+    public int breaks;
+    public int affinity;
+    public int[] diffs;
+    public int[] combs;
+    public int[] vars;
     struct PullupField *prev, *next;
 }
 
 [Compact]
 public class PullupFrame {
-    int lock;
-    int length;
-    int parity;
+    public int lock;
+    public int length;
+    public int parity;
     PullupBuffer *ifields[4], *ofields[2];
     PullupBuffer *buffer;
 }
@@ -47,22 +47,22 @@ public class PullupFrame {
 [Compact]
 public class PullupContext {
     const AVClass *class;
-    int junk_left, junk_right, junk_top, junk_bottom;
-    int metric_plane;
-    int strict_breaks;
-    int strict_pairs;
-    int metric_w, metric_h, metric_length;
-    int metric_offset;
-    int nb_planes;
-    int planewidth[4];
-    int planeheight[4];
+    public int junk_left, junk_right, junk_top, junk_bottom;
+    public int metric_plane;
+    public int strict_breaks;
+    public int strict_pairs;
+    public int metric_w, metric_h, metric_length;
+    public int metric_offset;
+    public int nb_planes;
+    public int planewidth[4];
+    public int planeheight[4];
     PullupField *first, *last, *head;
     PullupBuffer buffers[10];
     PullupFrame frame;
 
-    int (*diff)(const uint8 *a, uint8 *b, ptrdiff_t s);
-    int (*comb)(const uint8 *a, uint8 *b, ptrdiff_t s);
-    int (*var )(const uint8 *a, uint8 *b, ptrdiff_t s);
+    public int (*diff)(const uint8[] a, uint8[] b, ptrdiff_t s);
+    public int (*comb)(const uint8[] a, uint8[] b, ptrdiff_t s);
+    public int (*var )(const uint8[] a, uint8[] b, ptrdiff_t s);
 }
 
-void ff_pullup_init_x86 (PullupContext *s);
+public void ff_pullup_init_x86 (PullupContext *s);

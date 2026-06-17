@@ -24,9 +24,9 @@ namespace LibAVUtil {
 [CCode (cname="av_pixelutils_sad_fn", cheader_filename="ffmpeg/libavutil/pixelutils.h")]
 public delegate int SumOfAbsoluteDifferencesDelegate (
     uint8[] src1,
-    size_t stride1,
+    public size_t stride1,
     uint8[] src2,
-    size_t stride2
+    public size_t stride2
 );
 
 /***********************************************************
@@ -48,9 +48,9 @@ function (see @link SumOfAbsoluteDifferencesDelegate prototype).
 ***********************************************************/
 [CCode (cname="av_pixelutils_get_sad_fn", cheader_filename="ffmpeg/libavutil/pixelutils.h")]
 public static SumOfAbsoluteDifferencesDelegate av_pixelutils_get_sad_fn (
-    int w_bits,
-    int h_bits,
-    int aligned,
+    public int w_bits,
+    public int h_bits,
+    public int aligned,
     void *log_ctx
 );
 

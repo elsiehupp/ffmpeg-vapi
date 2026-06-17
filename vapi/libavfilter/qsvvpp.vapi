@@ -40,7 +40,7 @@ public class QSVVPPCrop {
     /***********************************************************
     Input index
     ***********************************************************/
-    int in_idx; ///<
+    public int in_idx;
     /***********************************************************
     Crop rectangle
     ***********************************************************/
@@ -53,7 +53,7 @@ public class QSVVPPCrop {
     /***********************************************************
     Crop rectangle
     ***********************************************************/
-    int x, y, w, h; ///<
+    public int x, y, w, h;
 }
 
 [Compact]
@@ -61,37 +61,37 @@ public class QSVVPPParam {
     /***********************************************************
     default is ff_filter_frame
     ***********************************************************/
-    int (*filter_frame)(AVFilterLink *outlink, AVFrame *frame);
+    public int (*filter_frame)(AVFilterLink *outlink, AVFrame *frame);
 
     /***********************************************************
     To fill with MFX enhanced filter configurations
     ***********************************************************/
-    int num_ext_buf;
+    public int num_ext_buf;
     mfxExtBuffer **ext_buf;
 
     /***********************************************************
     Real output format
     ***********************************************************/
-    enum AVPixelFormat out_sw_format;
+    public AVPixelFormat out_sw_format;
 
     /***********************************************************
     Crop information for each input, if needed
     ***********************************************************/
-    int num_crop;
+    public int num_crop;
     QSVVPPCrop *crop;
 }
 
 /***********************************************************
 create and initialize the QSV session
 ***********************************************************/
-int ff_qsvvpp_create (AVFilterContext *avctx, QSVVPPContext **vpp, QSVVPPParam *param);
+public int ff_qsvvpp_create (AVFilterContext *avctx, QSVVPPContext **vpp, QSVVPPParam *param);
 
 /***********************************************************
 release the resources (eg.surfaces)
 ***********************************************************/
-int ff_qsvvpp_free (QSVVPPContext **vpp);
+public int ff_qsvvpp_free (QSVVPPContext **vpp);
 
 /***********************************************************
 vpp filter frame and call the cb if needed
 ***********************************************************/
-int ff_qsvvpp_filter_frame (QSVVPPContext *vpp, AVFilterLink *inlink, AVFrame *frame);
+public int ff_qsvvpp_filter_frame (QSVVPPContext *vpp, AVFilterLink *inlink, AVFrame *frame);

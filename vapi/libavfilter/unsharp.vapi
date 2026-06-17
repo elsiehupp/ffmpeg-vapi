@@ -28,56 +28,56 @@ public class UnsharpFilterParam {
     /***********************************************************
     matrix width
     ***********************************************************/
-    int msize_x; ///<
+    public int msize_x;
     /***********************************************************
     matrix height
     ***********************************************************/
-    int msize_y; ///<
+    public int msize_y;
     /***********************************************************
     effect amount
     ***********************************************************/
-    int amount; ///<
+    public int amount;
     /***********************************************************
     horizontal step count
     ***********************************************************/
-    int steps_x; ///<
+    public int steps_x;
     /***********************************************************
     vertical step count
     ***********************************************************/
-    int steps_y; ///<
+    public int steps_y;
     /***********************************************************
     bits to shift pixel
     ***********************************************************/
-    int scalebits; ///<
+    public int scalebits;
     /***********************************************************
     amount to add to pixel
     ***********************************************************/
-    int32 halfscale; ///<
+    public int32 halfscale;
     /***********************************************************
     finite state machine storage within a row
     ***********************************************************/
-    uint32 *sr; ///<
+    uint32 *sr;
     /***********************************************************
     finite state machine storage across rows
     ***********************************************************/
-    uint32 **sc; ///<
+    uint32 **sc;
 }
 
 [Compact]
 public class UnsharpContext {
     const AVClass *class;
-    int lmsize_x, lmsize_y, cmsize_x, cmsize_y;
+    public int lmsize_x, lmsize_y, cmsize_x, cmsize_y;
     float lamount, camount;
     /***********************************************************
     luma parameters (width, height, amount)
     ***********************************************************/
-    UnsharpFilterParam luma; ///<
+    UnsharpFilterParam luma;
     /***********************************************************
     chroma parameters (width, height, amount)
     ***********************************************************/
-    UnsharpFilterParam chroma; ///<
-    int hsub, vsub;
-    int nb_threads;
-    int opencl;
-    int (* apply_unsharp)(AVFilterContext *ctx, AVFrame *in, AVFrame *out);
+    UnsharpFilterParam chroma;
+    public int hsub, vsub;
+    public int nb_threads;
+    public int opencl;
+    public int (* apply_unsharp)(AVFilterContext *ctx, AVFrame *in, AVFrame *out);
 }

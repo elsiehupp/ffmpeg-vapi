@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-enum WindowFunc {
+public enum WindowFunc {
     WFUNC_RECT,
     WFUNC_HANNING,
     WFUNC_HAMMING,

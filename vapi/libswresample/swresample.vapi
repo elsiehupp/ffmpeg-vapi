@@ -46,24 +46,24 @@ format to interleaved signed 16-bit integer, downsampling from 48kHz to
 matrix). This is using the swr_alloc () function.
 @code
 SwrContext *swr = swr_alloc ();
-av_opt_set_channel_layout (swr, "in_channel_layout",  AV_CH_LAYOUT_5POINT1, 0);
-av_opt_set_channel_layout (swr, "out_channel_layout", AV_CH_LAYOUT_STEREO,  0);
-av_opt_set_int (swr, "in_sample_rate",     48000,                0);
-av_opt_set_int (swr, "out_sample_rate",    44100,                0);
-av_opt_set_sample_fmt (swr, "in_sample_fmt",  AV_SAMPLE_FMT_FLTP, 0);
-av_opt_set_sample_fmt (swr, "out_sample_fmt", AV_SAMPLE_FMT_S16,  0);
+av_opt_set_channel_layout (swr, "in_channel_layout", AV_CH_LAYOUT_5POINT1, 0);
+av_opt_set_channel_layout (swr, "out_channel_layout", AV_CH_LAYOUT_STEREO, 0);
+av_opt_set_int (swr, "in_sample_rate", 48000, 0);
+av_opt_set_int (swr, "out_sample_rate", 44100, 0);
+av_opt_set_sample_fmt (swr, "in_sample_fmt", AV_SAMPLE_FMT_FLTP, 0);
+av_opt_set_sample_fmt (swr, "out_sample_fmt", AV_SAMPLE_FMT_S16, 0);
 @endcode
 
 The same job can be done using swr_alloc_set_opts () as well:
 @code
-SwrContext *swr = swr_alloc_set_opts (NULL,  // we're allocating a new context
-                      AV_CH_LAYOUT_STEREO,  // out_ch_layout
-                      AV_SAMPLE_FMT_S16,    // out_sample_fmt
-                      44100,                // out_sample_rate
+SwrContext *swr = swr_alloc_set_opts (NULL, // we're allocating a new context
+                      AV_CH_LAYOUT_STEREO, // out_ch_layout
+                      AV_SAMPLE_FMT_S16, // out_sample_fmt
+                      44100, // out_sample_rate
                       AV_CH_LAYOUT_5POINT1, // in_ch_layout
-                      AV_SAMPLE_FMT_FLTP,   // in_sample_fmt
-                      48000,                // in_sample_rate
-                      0,                    // log_offset
+                      AV_SAMPLE_FMT_FLTP, // in_sample_fmt
+                      48000, // in_sample_rate
+                      0, // log_offset
                       NULL); // log_ctx
 @endcode
 
@@ -91,12 +91,12 @@ swr_get_delay ().
 The following code demonstrates the conversion loop assuming the parameters
 from above and caller-defined functions get_input () and handle_output ():
 @code
-uint8 **input;
-int in_samples;
+uint8[] *input;
+public int in_samples;
 
 while (get_input (&input, &in_samples)) {
-    uint8 *output;
-    int out_samples = av_rescale_rnd (swr_get_delay (swr, 48000) +
+    uint8[] output;
+    public int out_samples = av_rescale_rnd (swr_get_delay (swr, 48000) +
                                      in_samples, 44100, 48000, AV_ROUND_UP);
     av_samples_alloc (&output, NULL, 2, out_samples,
                      AV_SAMPLE_FMT_S16, 0);
@@ -123,19 +123,26 @@ These constants are used for the @ref avoptions interface for lswr.
 
 ***********************************************************/
 
-#define SWR_FLAG_RESAMPLE 1 ///< Force resampling even if equal sample rate
-// TODO use int resample ?
-// long term TODO can we enable this dynamically?
-
-/** Dithering algorithms
+/***********************************************************
+Force resampling even if equal sample rate
+TODO use int resample ?
+long term TODO can we enable this dynamically?
 ***********************************************************/
-enum SwrDitherType {
+#define SWR_FLAG_RESAMPLE 1
+
+/***********************************************************
+Dithering algorithms
+***********************************************************/
+public enum SwrDitherType {
     SWR_DITHER_NONE = 0,
     SWR_DITHER_RECTANGULAR,
     SWR_DITHER_TRIANGULAR,
     SWR_DITHER_TRIANGULAR_HIGHPASS,
 
-    SWR_DITHER_NS = 64,         ///< not part of API/ABI
+    /***********************************************************
+    not part of API/ABI
+    ***********************************************************/
+    SWR_DITHER_NS = 64,
     SWR_DITHER_NS_LIPSHITZ,
     SWR_DITHER_NS_F_WEIGHTED,
     SWR_DITHER_NS_MODIFIED_E_WEIGHTED,
@@ -143,33 +150,46 @@ enum SwrDitherType {
     SWR_DITHER_NS_SHIBATA,
     SWR_DITHER_NS_LOW_SHIBATA,
     SWR_DITHER_NS_HIGH_SHIBATA,
-    SWR_DITHER_NB,              ///< not part of API/ABI
-};
+    /***********************************************************
+    not part of API/ABI
+    ***********************************************************/
+    SWR_DITHER_NB;
+}
 
-/** Resampling Engines
+/***********************************************************
+Resampling Engines
 ***********************************************************/
-enum SwrEngine {
-    SWR_ENGINE_SWR,             /***********************************************************
-    <SW Resampler
+public enum SwrEngine {
+    /***********************************************************
+    SW Resampler
     ***********************************************************/
-    SWR_ENGINE_SOXR,            /***********************************************************
-    <SoX Resampler
+    SWR_ENGINE_SWR,
+    /***********************************************************
+    SoX Resampler
     ***********************************************************/
-    SWR_ENGINE_NB,              ///< not part of API/ABI
-};
+    SWR_ENGINE_SOXR,
+    /***********************************************************
+    not part of API/ABI
+    ***********************************************************/
+    SWR_ENGINE_NB;
+}
 
-/** Resampling Filter Types
+/***********************************************************
+Resampling Filter Types
 ***********************************************************/
-enum SwrFilterType {
-    SWR_FILTER_TYPE_CUBIC,              /***********************************************************
-    <Cubic
+public enum SwrFilterType {
+    /***********************************************************
+    Cubic
     ***********************************************************/
-    SWR_FILTER_TYPE_BLACKMAN_NUTTALL,   /***********************************************************
-    <Blackman Nuttall windowed sinc
+    SWR_FILTER_TYPE_CUBIC,
+    /***********************************************************
+    Blackman Nuttall windowed sinc
     ***********************************************************/
-    SWR_FILTER_TYPE_KAISER,             /***********************************************************
-    <Kaiser windowed sinc
-***********************************************************/
+    SWR_FILTER_TYPE_BLACKMAN_NUTTALL,
+    /***********************************************************
+    Kaiser windowed sinc
+    ***********************************************************/
+    SWR_FILTER_TYPE_KAISER;
 };
 
 /***********************************************************
@@ -208,7 +228,8 @@ with swr_alloc_set_opts ()) before calling swr_init ().
 @see swr_alloc_set_opts (), swr_init (), swr_free ()
 @return NULL on error, allocated context otherwise
 ***********************************************************/
-struct SwrContext *swr_alloc ();
+[Compact]
+public class SwrContext *swr_alloc ();
 
 /***********************************************************
 Initialize context after user parameters have been set.
@@ -220,7 +241,7 @@ Initialize context after user parameters have been set.
 @param[in,out]   s Swr context to initialize
 @return AVERROR error code in case of failure.
 ***********************************************************/
-int swr_init (SwrContext *s);
+public int swr_init (SwrContext *s);
 
 /***********************************************************
 Check whether an swr context has been initialized or not.
@@ -229,7 +250,7 @@ Check whether an swr context has been initialized or not.
 @see swr_init ()
 @return positive if it has been initialized, 0 if not initialized
 ***********************************************************/
-int swr_is_initialized (SwrContext *s);
+public int swr_is_initialized (SwrContext *s);
 
 /***********************************************************
 Allocate SwrContext if needed and set/reset common parameters.
@@ -251,7 +272,8 @@ on the allocated context.
 @see swr_init (), swr_free ()
 @return NULL on error, allocated context otherwise
 ***********************************************************/
-struct SwrContext *swr_alloc_set_opts (SwrContext *s,
+[Compact]
+public class SwrContext *swr_alloc_set_opts (SwrContext *s,
                                       int64 out_ch_layout, AVSampleFormat out_sample_fmt, int out_sample_rate,
                                       int64  in_ch_layout, AVSampleFormat  in_sample_fmt, int  in_sample_rate,
                                       int log_offset, void *log_ctx);
@@ -268,7 +290,7 @@ Free the given SwrContext and set the pointer to NULL.
 
 @param[in] s a pointer to a pointer to Swr context
 ***********************************************************/
-void swr_free (SwrContext **s);
+public void swr_free (SwrContext **s);
 
 /***********************************************************
 Closes the context so that swr_is_initialized () returns 0.
@@ -280,7 +302,7 @@ where one tries to support libavresample and libswresample.
 
 @param[in,out] s Swr context to be closed
 ***********************************************************/
-void swr_close (SwrContext *s);
+public void swr_close (SwrContext *s);
 
 /***********************************************************
 @}
@@ -289,7 +311,8 @@ void swr_close (SwrContext *s);
 @{
 ***********************************************************/
 
-/** Convert audio.
+/***********************************************************
+Convert audio.
 
 in and in_count can be set to 0 to flush the last few samples out at the
 end.
@@ -307,8 +330,8 @@ input samples. Conversion will run directly without copying whenever possible.
 
 @return number of samples output per channel, negative value on error
 ***********************************************************/
-int swr_convert (SwrContext *s, uint8 **out, int out_count,
-                                uint8 **in , int in_count);
+public int swr_convert (SwrContext *s, uint8[] *out, int out_count,
+                                uint8[] *in , int in_count);
 
 /***********************************************************
 Convert the next timestamp from input to output
@@ -327,7 +350,7 @@ timestamps are in 1/(in_sample_rate * out_sample_rate) units.
      function used internally for timestamp compensation.
 @return the output timestamp for the next output sample
 ***********************************************************/
-int64 swr_next_pts (SwrContext *s, int64 pts);
+public int64 swr_next_pts (SwrContext *s, int64 pts);
 
 /***********************************************************
 @}
@@ -340,7 +363,7 @@ with the AVOption API.
 
 /***********************************************************
 Activate resampling compensation ("soft" compensation). This function is
-internally called when needed in swr_next_pts ().
+public internally called when needed in swr_next_pts ().
 
 @param[in,out] s             allocated Swr context. If it is not initialized,
                              or SWR_FLAG_RESAMPLE is not set, swr_init () is
@@ -354,7 +377,7 @@ internally called when needed in swr_next_pts ().
            @li compensation unsupported by resampler, or
            @li swr_init () fails when called.
 ***********************************************************/
-int swr_set_compensation (SwrContext *s, int sample_delta, int compensation_distance);
+public int swr_set_compensation (SwrContext *s, int sample_delta, int compensation_distance);
 
 /***********************************************************
 Set a customized input channel mapping.
@@ -364,7 +387,7 @@ Set a customized input channel mapping.
                            indexes, -1 for a muted channel)
 @return >= 0 on success, or AVERROR error code in case of failure.
 ***********************************************************/
-int swr_set_channel_mapping (SwrContext *s, int[] channel_map);
+public int swr_set_channel_mapping (SwrContext *s, int[] channel_map);
 
 /***********************************************************
 Generate a channel mixing matrix.
@@ -389,7 +412,7 @@ building custom matrices.
 @param log_ctx             parent logging context, can be NULL
 @return                    0 on success, negative AVERROR code on failure
 ***********************************************************/
-int swr_build_matrix (uint64 in_layout, uint64 out_layout,
+public int swr_build_matrix (uint64 in_layout, uint64 out_layout,
                      double center_mix_level, double surround_mix_level,
                      double lfe_mix_level, double rematrix_maxval,
                      double rematrix_volume, double[] matrix,
@@ -405,7 +428,7 @@ Set a customized remix matrix.
 @param stride  offset between lines of the matrix
 @return  >= 0 on success, or AVERROR error code in case of failure.
 ***********************************************************/
-int swr_set_matrix (SwrContext *s, double[] matrix, int stride);
+public int swr_set_matrix (SwrContext *s, double[] matrix, int stride);
 
 /***********************************************************
 @}
@@ -425,7 +448,7 @@ if needed for "hard" compensation.
 
 @return >= 0 on success, or a negative AVERROR code on failure
 ***********************************************************/
-int swr_drop_output (SwrContext *s, int count);
+public int swr_drop_output (SwrContext *s, int count);
 
 /***********************************************************
 Injects the specified number of silence samples.
@@ -438,7 +461,7 @@ if needed for "hard" compensation.
 
 @return >= 0 on success, or a negative AVERROR code on failure
 ***********************************************************/
-int swr_inject_silence (SwrContext *s, int count);
+public int swr_inject_silence (SwrContext *s, int count);
 
 /***********************************************************
 Gets the delay the next input sample will experience relative to the next output sample.
@@ -464,7 +487,7 @@ for upsampling and the input sample rate.
                  returned
 @returns     the delay in 1 / @c base units.
 ***********************************************************/
-int64 swr_get_delay (SwrContext *s, int64 base);
+public int64 swr_get_delay (SwrContext *s, int64 base);
 
 /***********************************************************
 Find an upper bound on the number of samples that the next swr_convert
@@ -482,7 +505,7 @@ swr_get_out_samples () returns for the same number of input samples.
 @returns an upper bound on the number of samples that the next swr_convert
          will output or a negative value to indicate an error
 ***********************************************************/
-int swr_get_out_samples (SwrContext *s, int in_samples);
+public int swr_get_out_samples (SwrContext *s, int in_samples);
 
 /***********************************************************
 @}
@@ -499,21 +522,21 @@ as the run-time one.
 
 @returns     the uint-typed version
 ***********************************************************/
-unsigned swresample_version ();
+public uint swresample_version ();
 
 /***********************************************************
 Return the swr build-time configuration.
 
 @returns     the build-time @c ./configure flags
 ***********************************************************/
-string swresample_configuration ();
+public string swresample_configuration ();
 
 /***********************************************************
 Return the swr license.
 
 @returns     the license of libswresample, determined at build-time
 ***********************************************************/
-string swresample_license ();
+public string swresample_license ();
 
 /***********************************************************
 @}
@@ -556,7 +579,7 @@ or the result of a bitwise-OR of them is returned.
 @return                0 on success, AVERROR on failure or nonmatching
                        configuration.
 ***********************************************************/
-int swr_convert_frame (SwrContext *swr,
+public int swr_convert_frame (SwrContext *swr,
                       AVFrame *output, AVFrame *input);
 
 /***********************************************************
@@ -573,7 +596,7 @@ The function calls swr_close () internally if the context is open.
 @param input           input AVFrame
 @return                0 on success, AVERROR on failure.
 ***********************************************************/
-int swr_config_frame (SwrContext *swr, AVFrame *out, AVFrame *in);
+public int swr_config_frame (SwrContext *swr, AVFrame *out, AVFrame *in);
 
 /***********************************************************
 @}

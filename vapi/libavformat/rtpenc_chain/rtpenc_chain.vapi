@@ -28,8 +28,8 @@ public int ff_rtp_chain_mux_open (
     AVFormatContext format_context,
     AVStream st,
     URLContext handle,
-    int packet_size,
-    int id
+    public int packet_size,
+    public int id
 );
 
 } // namespace LibAVFormat

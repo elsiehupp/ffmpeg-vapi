@@ -19,7 +19,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-/// Holds instance-specific information for gradfun.
+/***********************************************************
+Holds instance-specific information for gradfun.
+***********************************************************/
 [Compact]
 public class GradFunContext {
     const AVClass *class;
@@ -27,38 +29,38 @@ public class GradFunContext {
     /***********************************************************
     threshold for gradient algorithm
     ***********************************************************/
-    int thresh; ///<
+    public int thresh;
     /***********************************************************
     blur radius
     ***********************************************************/
-    int radius; ///<
+    public int radius;
     /***********************************************************
     width of the chroma planes
     ***********************************************************/
-    int chroma_w; ///<
+    public int chroma_w;
     /***********************************************************
     weight of the chroma planes
     ***********************************************************/
-    int chroma_h; ///<
+    public int chroma_h;
     /***********************************************************
     blur radius for the chroma planes
     ***********************************************************/
-    int chroma_r; ///<
+    public int chroma_r;
     /***********************************************************
     holds image data for blur algorithm passed into filter.
     ***********************************************************/
-    uint16 *buf; ///<
+    uint16 *buf;
     /***********************************************************
     DSP function.
     ***********************************************************/
-    void (*filter_line) (uint8 *dst, uint8 *src, uint16 *dc, int width, int thresh, uint16 *dithers);
+    void (*filter_line) (uint8[] dst, uint8[] src, uint16 *dc, int width, int thresh, uint16 *dithers);
     /***********************************************************
     DSP function.
     ***********************************************************/
-    void (*blur_line) (uint16 *dc, uint16 *buf, uint16 *buf1, uint8 *src, int src_linesize, int width);
+    void (*blur_line) (uint16 *dc, uint16 *buf, uint16 *buf1, uint8[] src, int src_linesize, int width);
 }
 
-void ff_gradfun_init_x86 (GradFunContext *gf);
+public void ff_gradfun_init_x86 (GradFunContext *gf);
 
-void ff_gradfun_filter_line_c (uint8 *dst, uint8 *src, uint16 *dc, int width, int thresh, uint16 *dithers);
-void ff_gradfun_blur_line_c (uint16 *dc, uint16 *buf, uint16 *buf1, uint8 *src, int src_linesize, int width);
+public void ff_gradfun_filter_line_c (uint8[] dst, uint8[] src, uint16 *dc, int width, int thresh, uint16 *dithers);
+public void ff_gradfun_blur_line_c (uint16 *dc, uint16 *buf, uint16 *buf1, uint8[] src, int src_linesize, int width);

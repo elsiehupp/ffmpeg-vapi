@@ -55,7 +55,7 @@ public class D3D11VADeviceContext : AbstractHardwareContext {
 
     Deallocating the HardwareDeviceContext will always release this interface,
     and it does not matter whether it was user-allocated.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="device")]
     public ID3D11Device device;
 
@@ -64,7 +64,7 @@ public class D3D11VADeviceContext : AbstractHardwareContext {
 
     Deallocating the HardwareDeviceContext will always release this interface,
     and it does not matter whether it was user-allocated.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="device_context")]
     public ID3D11DeviceContext device_context;
 
@@ -73,7 +73,7 @@ public class D3D11VADeviceContext : AbstractHardwareContext {
 
     Deallocating the HardwareDeviceContext will always release this interface,
     and it does not matter whether it was user-allocated.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="video_device")]
     public ID3D11VideoDevice video_device;
 
@@ -82,7 +82,7 @@ public class D3D11VADeviceContext : AbstractHardwareContext {
 
     Deallocating the HardwareDeviceContext will always release this interface,
     and it does not matter whether it was user-allocated.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="video_context")]
     public ID3D11VideoContext video_context;
 
@@ -93,11 +93,11 @@ public class D3D11VADeviceContext : AbstractHardwareContext {
     access to hwcontext or decoder state in general.
 
     If unset on init, the hwcontext implementation will set them to use an
-    internal mutex.
+    public internal mutex.
 
     The underlying lock must be recursive. lock_ctx is for free use by the
     locking implementation.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="lock")]
     public D3D11VADeviceLockDelegate lock;
 

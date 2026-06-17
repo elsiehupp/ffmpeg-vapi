@@ -21,19 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 audio volume filter
 ***********************************************************/
 
-enum PrecisionType {
+public enum PrecisionType {
     PRECISION_FIXED = 0,
     PRECISION_FLOAT,
     PRECISION_DOUBLE,
 }
 
-enum EvalMode {
+public enum EvalMode {
     EVAL_MODE_ONCE,
     EVAL_MODE_FRAME,
     EVAL_MODE_NB
 }
 
-enum VolumeVarName {
+public enum VolumeVarName {
     VAR_N,
     VAR_NB_CHANNELS,
     VAR_NB_CONSUMED_SAMPLES,
@@ -49,7 +49,7 @@ enum VolumeVarName {
     VAR_VARS_NB
 }
 
-enum ReplayGainType {
+public enum ReplayGainType {
     REPLAYGAIN_DROP,
     REPLAYGAIN_IGNORE,
     REPLAYGAIN_TRACK,
@@ -60,24 +60,24 @@ enum ReplayGainType {
 public class VolumeContext {
     const AVClass *class;
     AVFloatDSPContext *fdsp;
-    int precision;
-    int eval_mode;
+    public int precision;
+    public int eval_mode;
     string volume_expr;
     AVExpr *volume_pexpr;
     double var_values[VAR_VARS_NB];
 
-    int replaygain;
+    public int replaygain;
     double replaygain_preamp;
-    int    replaygain_noclip;
+    public int    replaygain_noclip;
     double volume;
-    int    volume_i;
-    int    channels;
-    int    planes;
-    enum AVSampleFormat sample_fmt;
+    public int    volume_i;
+    public int    channels;
+    public int    planes;
+    public AVSampleFormat sample_fmt;
 
-    void (*scale_samples)(uint8 *dst, uint8 *src, int nb_samples,
+    void (*scale_samples)(uint8[] dst, uint8[] src, int nb_samples,
                           int volume);
-    int samples_align;
+    public int samples_align;
 }
 
-void ff_volume_init_x86 (VolumeContext *vol);
+public void ff_volume_init_x86 (VolumeContext *vol);

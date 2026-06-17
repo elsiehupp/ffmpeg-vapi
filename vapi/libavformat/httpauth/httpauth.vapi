@@ -29,16 +29,16 @@ namespace LibAVFormat {
 public enum HTTPAuthType {
     /***********************************************************
     @brief No authentication specified
-        ***********************************************************/
+    ***********************************************************/
     HTTP_AUTH_NONE,
     /***********************************************************
     @brief HTTP 1.0 Basic auth from RFC 1945
     (also in RFC 2617)
-        ***********************************************************/
+    ***********************************************************/
     HTTP_AUTH_BASIC,
     /***********************************************************
     @brief HTTP 1.1 Digest auth from RFC 2617
-        ***********************************************************/
+    ***********************************************************/
     HTTP_AUTH_DIGEST,
 }
 
@@ -47,13 +47,13 @@ public enum HTTPAuthType {
 public class DigestParams {
     /***********************************************************
     @brief Server specified nonce
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public char nonce[300];
 
     /***********************************************************
     @brief Server specified digest algorithm
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public char algorithm[10];
 
@@ -61,7 +61,7 @@ public class DigestParams {
     @brief Quality of protection, containing the one
     that we've chosen to use, from the
     alternatives that the server offered.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public char qop[30];
 
@@ -69,7 +69,7 @@ public class DigestParams {
     @brief A server-specified string that should be
     included in authentication responses, not
     included in the actual digest calculation.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public char opaque[300];
 
@@ -77,14 +77,14 @@ public class DigestParams {
     @brief The server indicated that the auth was ok,
     but needs to be redone with a new, non-stale
     nonce.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public char stale[10];
 
     /***********************************************************
     @brief Nonce count, the number of earlier replies
     where this particular nonce has been used.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int nc;
 }
@@ -98,25 +98,25 @@ before used with the functions below.
 public class HTTPAuthState {
     /***********************************************************
     @brief The currently chosen auth type.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int auth_type;
 
     /***********************************************************
     @brief Authentication realm
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public char realm[200];
 
     /***********************************************************
     @brief The parameters specific to digest authentication.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public DigestParams digest_params;
 
     /***********************************************************
     @brief Auth ok, but needs to be resent with a new nonce.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="", cheader_filename="")]
     public int stale;
 }

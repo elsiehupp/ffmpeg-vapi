@@ -39,13 +39,13 @@ public class BufferRef {
     @description The data buffer. It is considered writable if and only if
         this is the only reference to the buffer, in which case
         av_buffer_is_writable () returns 1.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="data")]
     public uint8[] data;
 
     /***********************************************************
     @brief Size of data in bytes.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="size")]
     public size_t size;
 
@@ -53,7 +53,7 @@ public class BufferRef {
     @brief Allocate an LibAVUtil.Buffer of the given size using av_malloc ().
 
     @return an LibAVUtil.BufferRef of given size or null when out of memory
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_buffer_alloc", cheader_filename="buffer.h")]
     public LibAVUtil.BufferRef av_buffer_alloc (
         size_t size
@@ -62,7 +62,7 @@ public class BufferRef {
     /***********************************************************
     @description Same as av_buffer_alloc (), except the returned buffer will be initialized
         to zero.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_buffer_allocz", cheader_filename="buffer.h")]
     public LibAVUtil.BufferRef av_buffer_allocz (
         size_t size

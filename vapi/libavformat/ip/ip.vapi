@@ -28,8 +28,8 @@ namespace LibAVFormat {
 [CCode (cname="", cheader_filename="")]
 [Compact]
 public class IPSourceFilters {
-    int nb_include_addrs;
-    int nb_exclude_addrs;
+    public int nb_include_addrs;
+    public int nb_exclude_addrs;
     sockaddr_storage include_addrs;
     sockaddr_storage exclude_addrs;
 }
@@ -54,7 +54,7 @@ public int ff_ip_check_source_lists (
 public addrinfo ff_ip_resolve_host (
     void *log_ctx,
     string hostname, int port,
-    int type, int family, int flags
+    public int type, int family, int flags
 );
 
 /***********************************************************

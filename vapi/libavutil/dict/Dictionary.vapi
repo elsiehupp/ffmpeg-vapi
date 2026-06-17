@@ -49,7 +49,7 @@ public class Dictionary  {
         the entry is retrieved
     @return found entry or null in case no matching entry was
         found in the dictionary
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dict_get", cheader_filename="dict.h")]
     public LibAVUtil.DictionaryEntry av_dict_get (
         LibAVUtil.Dictionary dictionary,
@@ -63,7 +63,7 @@ public class Dictionary  {
 
     @param dictionary dictionary
     @return number of entries in dictionary
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dict_count", cheader_filename="dict.h")]
     public int av_dict_count (
         LibAVUtil.Dictionary dictionary
@@ -84,7 +84,7 @@ public class Dictionary  {
     @param value entry value to add to pm (will be av_strduped or added as a new key depending on flags).
         Passing a null value will cause an existing entry to be deleted.
     @return >= 0 on success otherwise an error code <0
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dict_set", cheader_filename="dict.h")]
     public int av_dict_set (
         LibAVUtil.Dictionary pm,
@@ -98,7 +98,7 @@ public class Dictionary  {
         and stores it.
 
     @note If AVDictionaryFlags.DONT_STRDUP_KEY is set, key will be freed on error.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dict_set_int", cheader_filename="dict.h")]
     public int av_dict_set_int (
         LibAVUtil.Dictionary pm,
@@ -122,7 +122,7 @@ public class Dictionary  {
         are ignored since the key/value tokens will always
         be duplicated.
     @return 0 on success, negative LibAVUtil.ErrorCode code on failure
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dict_parse_string", cheader_filename="dict.h")]
     public int av_dict_parse_string (
         LibAVUtil.Dictionary pm,
@@ -141,7 +141,7 @@ public class Dictionary  {
     @note metadata is read using the AVDictionaryFlags.IGNORE_SUFFIX flag
     @return 0 on success, negative LibAVUtil.ErrorCode code on failure. If output_dictionary was allocated
         by this function, callers should free the associated memory.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dict_copy", cheader_filename="dict.h")]
     public int av_dict_copy (
         LibAVUtil.Dictionary output_dictionary,
@@ -152,7 +152,7 @@ public class Dictionary  {
     /***********************************************************
     @description Free all the memory allocated for an LibAVUtil.Dictionary struct
         and all keys and values.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dict_free", cheader_filename="dict.h")]
     public void av_dict_free (
         LibAVUtil.Dictionary dictionary
@@ -173,7 +173,7 @@ public class Dictionary  {
     @param[in] pairs_sep character used to separate two pairs from each other
     @return        >= 0 on success, negative on error
     @warning Separators cannot be neither '\\' nor '\0'. They also cannot be the same.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_dict_get_string", cheader_filename="dict.h")]
     public int av_dict_get_string (
         LibAVUtil.Dictionary dictionary,

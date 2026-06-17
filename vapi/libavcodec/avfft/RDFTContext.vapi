@@ -39,7 +39,7 @@ public class RDFTContext {
     @brief Set up a real FFT.
     @param nbits log2 of the length of the input array
     @param trans the type of transform
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_rdft_init", cheader_filename="ffmpeg/libavcodec/avfft.h")]
     public RDFTContext av_rdft_init (
         int nbits,

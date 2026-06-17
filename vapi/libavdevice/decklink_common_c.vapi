@@ -21,15 +21,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 public enum DecklinkPtsSource {
-    PTS_SRC_AUDIO     = 1,
-    PTS_SRC_VIDEO     = 2,
+    PTS_SRC_AUDIO = 1,
+    PTS_SRC_VIDEO = 2,
     PTS_SRC_REFERENCE = 3,
     PTS_SRC_WALLCLOCK = 4,
     PTS_SRC_ABS_WALLCLOCK = 5,
     PTS_SRC_NB
 }
 
-struct decklink_cctx {
+[Compact]
+public class decklink_cctx {
     const AVClass *cclass;
 
     void *ctx;
@@ -37,24 +38,24 @@ struct decklink_cctx {
     /***********************************************************
     Options
     ***********************************************************/
-    int list_devices;
-    int list_formats;
-    int64 teletext_lines;
+    public int list_devices;
+    public int list_formats;
+    public int64 teletext_lines;
     double preroll;
-    int v210;
-    int audio_channels;
-    int audio_depth;
-    int duplex_mode;
+    public int v210;
+    public int audio_channels;
+    public int audio_depth;
+    public int duplex_mode;
     DecklinkPtsSource audio_pts_source;
     DecklinkPtsSource video_pts_source;
-    int audio_input;
-    int video_input;
-    int tc_format;
-    int draw_bars;
+    public int audio_input;
+    public int video_input;
+    public int tc_format;
+    public int draw_bars;
     string format_code;
-    int raw_format;
-    int64 queue_size;
-    int copyts;
-    int64 timestamp_align;
-    int timing_offset;
+    public int raw_format;
+    public int64 queue_size;
+    public int copyts;
+    public int64 timestamp_align;
+    public int timing_offset;
 }

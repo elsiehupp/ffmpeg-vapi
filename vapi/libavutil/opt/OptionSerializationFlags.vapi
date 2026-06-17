@@ -31,11 +31,11 @@ namespace LibAVUtil {
 public enum OptionSerializationFlags {
     /***********************************************************
     @brief Serialize options that are not set to default values only.
-        ***********************************************************/
+    ***********************************************************/
     SKIP_DEFAULTS,
     /***********************************************************
     @brief Serialize options that exactly match opt_flags only.
-        ***********************************************************/
+    ***********************************************************/
     OPT_FLAGS_EXACT,
 }
 
@@ -60,11 +60,11 @@ name string are escaped through the av_escape () function.
 [CCode (cname="av_opt_serialize", cheader_filename="ffmpeg/libavutil/opt.h")]
 public int av_opt_serialize (
     void *obj,
-    int opt_flags,
+    public int opt_flags,
     OptionSerializationFlags flags,
     out string buffer,
-    char key_val_sep,
-    char pairs_sep
+    public char key_val_sep,
+    public char pairs_sep
 );
 
 } // namespace LibAVUtil

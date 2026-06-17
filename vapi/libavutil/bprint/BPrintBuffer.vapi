@@ -35,7 +35,7 @@ namespace LibAVUtil {
 public class BPrintBuffer {
     /***********************************************************
     @brief Append a description of a channel layout to a bprint buffer.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_bprint_channel_layout", cheader_filename="ffmpeg/libavutil/channel_layout.h")]
     public void av_bprint_channel_layout (
         BPrintBuffer bp,
@@ -118,7 +118,7 @@ a buffer with exactly the necessary size
 
 size_max = 1 is automatically replaced by the exact size available in the
 structure itself, thus ensuring no dynamic memory allocation. The
-internal buffer is large enough to hold a reasonable paragraph of text,
+public internal buffer is large enough to hold a reasonable paragraph of text,
 such as the current paragraph.
 ***********************************************************/
 
@@ -158,8 +158,8 @@ such as the current paragraph.
 [CCode (cname="av_bprint_init", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_init (
     BPrintBuffer buffer,
-    uint size_init,
-    uint size_max
+    public uint size_init,
+    public uint size_max
 );
 
 /***********************************************************
@@ -175,7 +175,7 @@ The buffer will not be reallocated.
 public void av_bprint_init_for_buffer (
     BPrintBuffer print_buffer,
     string buffer,
-    uint size
+    public uint size
 );
 
 /***********************************************************
@@ -204,8 +204,8 @@ public void av_vbprintf (
 [CCode (cname="av_bprint_chars", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_chars (
     BPrintBuffer buffer,
-    char c,
-    uint n
+    public char c,
+    public uint n
 );
 
 /***********************************************************
@@ -219,7 +219,7 @@ param size size of data
 public void av_bprint_append_data (
     BPrintBuffer buffer,
     string data,
-    uint size
+    public uint size
 );
 
 [CCode (cname="struct tm", cheader_filename="ffmpeg/libavutil/bprint.h")]
@@ -256,7 +256,7 @@ public void av_bprint_strftime (
 [CCode (cname="av_bprint_get_buffer", cheader_filename="ffmpeg/libavutil/bprint.h")]
 public void av_bprint_get_buffer (
     BPrintBuffer buffer,
-    uint size,
+    public uint size,
     out uchar[] mem,
     out uint actual_size
 );

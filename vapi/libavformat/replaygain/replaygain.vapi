@@ -34,9 +34,9 @@ public int ff_replaygain_export (
 [CCode (cname="", cheader_filename="")]
 public int ff_replaygain_export_raw (
     AVStream st,
-    int32 tg,
+    public int32 tg,
     uint32 tp,
-    int32 ag,
+    public int32 ag,
     uint32 ap
 );
 

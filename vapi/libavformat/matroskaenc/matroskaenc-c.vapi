@@ -23,41 +23,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 //  static const AVCodecTag additional_audio_tags[] = {
-//      { LibAVCodec.CodecID.ALAC,      0XFFFFFFFF },
-//      { LibAVCodec.CodecID.MLP,       0xFFFFFFFF },
-//      { LibAVCodec.CodecID.OPUS,      0xFFFFFFFF },
+//      { LibAVCodec.CodecID.ALAC, 0XFFFFFFFF },
+//      { LibAVCodec.CodecID.MLP, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.OPUS, 0xFFFFFFFF },
 //      { LibAVCodec.CodecID.PCM_S16BE, 0xFFFFFFFF },
 //      { LibAVCodec.CodecID.PCM_S24BE, 0xFFFFFFFF },
 //      { LibAVCodec.CodecID.PCM_S32BE, 0xFFFFFFFF },
-//      { LibAVCodec.CodecID.QDMC,      0xFFFFFFFF },
-//      { LibAVCodec.CodecID.QDM2,      0xFFFFFFFF },
-//      { LibAVCodec.CodecID.RA_144,    0xFFFFFFFF },
-//      { LibAVCodec.CodecID.RA_288,    0xFFFFFFFF },
-//      { LibAVCodec.CodecID.COOK,      0xFFFFFFFF },
-//      { LibAVCodec.CodecID.TRUEHD,    0xFFFFFFFF },
-//      { LibAVCodec.CodecID.NONE,      0xFFFFFFFF }
+//      { LibAVCodec.CodecID.QDMC, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.QDM2, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.RA_144, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.RA_288, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.COOK, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.TRUEHD, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.NONE, 0xFFFFFFFF }
 //  }
 
 //  static const AVCodecTag additional_video_tags[] = {
-//      { LibAVCodec.CodecID.RV10,      0xFFFFFFFF },
-//      { LibAVCodec.CodecID.RV20,      0xFFFFFFFF },
-//      { LibAVCodec.CodecID.RV30,      0xFFFFFFFF },
-//      { LibAVCodec.CodecID.NONE,      0xFFFFFFFF }
+//      { LibAVCodec.CodecID.RV10, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.RV20, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.RV30, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.NONE, 0xFFFFFFFF }
 //  }
 
 //  static const AVCodecTag additional_subtitle_tags[] = {
-//      { LibAVCodec.CodecID.DVB_SUBTITLE,      0xFFFFFFFF },
-//      { LibAVCodec.CodecID.DVD_SUBTITLE,      0xFFFFFFFF },
+//      { LibAVCodec.CodecID.DVB_SUBTITLE, 0xFFFFFFFF },
+//      { LibAVCodec.CodecID.DVD_SUBTITLE, 0xFFFFFFFF },
 //      { LibAVCodec.CodecID.HDMV_PGS_SUBTITLE, 0xFFFFFFFF },
-//      { LibAVCodec.CodecID.NONE,              0xFFFFFFFF }
+//      { LibAVCodec.CodecID.NONE, 0xFFFFFFFF }
 //  }
 
 //  #define OFFSET (x) offsetof (MatroskaMuxContext, x)
 //  #define FLAGS AV_OPT_FLAG_ENCODING_PARAM
 //  static const LibAVUtil.Option options[] = {
-//      { "reserve_index_space", "Reserve a given amount of space (in bytes) at the beginning of the file for the index (cues).", OFFSET (reserve_cues_space), AV_OPT_TYPE_INT,   { .i64 = 0 },   0, INT_MAX,   FLAGS },
-//      { "cluster_size_limit",  "Store at most the provided amount of bytes in a cluster. ",                                     OFFSET (cluster_size_limit), AV_OPT_TYPE_INT  , { .i64 = -1 }, -1, INT_MAX,   FLAGS },
-//      { "cluster_time_limit",  "Store at most the provided number of milliseconds in a cluster.",                               OFFSET (cluster_time_limit), AV_OPT_TYPE_INT64, { .i64 = -1 }, -1, INT64_MAX, FLAGS },
+//      { "reserve_index_space", "Reserve a given amount of space (in bytes) at the beginning of the file for the index (cues).", OFFSET (reserve_cues_space), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, FLAGS },
+//      { "cluster_size_limit", "Store at most the provided amount of bytes in a cluster. ", OFFSET (cluster_size_limit), AV_OPT_TYPE_INT  , { .i64 = -1 }, -1, INT_MAX, FLAGS },
+//      { "cluster_time_limit", "Store at most the provided number of milliseconds in a cluster.", OFFSET (cluster_time_limit), AV_OPT_TYPE_INT64, { .i64 = -1 }, -1, INT64_MAX, FLAGS },
 //      { "dash", "Create a WebM file conforming to WebM DASH specification", OFFSET (is_dash), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, FLAGS },
 //      { "dash_track_number", "Track number for the DASH stream", OFFSET (dash_track_number), AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 127, FLAGS },
 //      { "live", "Write files assuming it is a live stream.", OFFSET (is_live), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, FLAGS },

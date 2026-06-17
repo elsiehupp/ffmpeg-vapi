@@ -30,39 +30,39 @@ public class AudioInterleaveContext {
 
     /***********************************************************
     @brief Size of currently allocated FIFO
-        ***********************************************************/
-    uint fifo_size;
+    ***********************************************************/
+    public uint fifo_size;
 
     /***********************************************************
     @brief Current dts
-        ***********************************************************/
-    uint64 dts;
+    ***********************************************************/
+    public uint64 dts;
 
     /***********************************************************
     @brief Size of one sample all channels included
-        ***********************************************************/
-    int sample_size;
+    ***********************************************************/
+    public int sample_size;
 
     /***********************************************************
     @brief Must be 0-terminated
-        ***********************************************************/
-    int[] samples_per_frame;
+    ***********************************************************/
+    public int[] samples_per_frame;
 
     /***********************************************************
     @brief Current samples per frame, pointer to samples_per_frame
-        ***********************************************************/
-    int[] samples;
+    ***********************************************************/
+    public int[] samples;
 
     /***********************************************************
     @brief Time base of output audio packets
-        ***********************************************************/
+    ***********************************************************/
     LibAVUtil.Rational time_base;
 }
 
 [CCode (cname="ff_audio_interleave_init", cheader_filename="")]
 public int ff_audio_interleave_init (
     AVFormatContext format_context,
-    int[] samples_per_frame,
+    public int[] samples_per_frame,
     LibAVUtil.Rational time_base
 );
 
@@ -75,7 +75,7 @@ public delegate int GetPacketDelegate (
     AVFormatContext format_context,
     LibAVCodec.Packet packet_1,
     LibAVCodec.Packet packet_2,
-    int arg
+    public int arg
 );
 
 public delegate int CompareTimeStampDelegate (
@@ -98,7 +98,7 @@ public int ff_audio_rechunk_interleave (
     AVFormatContext format_context,
     LibAVCodec.Packet out,
     LibAVCodec.Packet packet,
-    int flush,
+    public int flush,
     GetPacketDelegate get_packet,
     CompareTimeStampDelegate compare_ts
 );

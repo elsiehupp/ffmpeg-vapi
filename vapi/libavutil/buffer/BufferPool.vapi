@@ -61,7 +61,7 @@ av_buffer_pool_uninit ().
 public class BufferPool { }
 
 public delegate LibAVUtil.BufferRef AllocDelegate (
-    size_t size
+    public size_t size
 );
 
 /***********************************************************
@@ -75,13 +75,13 @@ pool is empty. May be null, then the default allocator will be used
 ***********************************************************/
 [CCode (cname="av_buffer_pool_init", cheader_filename="buffer.h")]
 public LibAVUtil.BufferPool av_buffer_pool_init (
-    size_t size,
+    public size_t size,
     AllocDelegate alloc
 );
 
 public delegate LibAVUtil.BufferRef AllocDelegate2 (
     void *opaque,
-    size_t size
+    public size_t size
 );
 
 public delegate void FreeDelegate2 (
@@ -105,7 +105,7 @@ public delegate void FreeDelegate2 (
 ***********************************************************/
 [CCode (cname="av_buffer_pool_init2", cheader_filename="buffer.h")]
 public LibAVUtil.BufferPool av_buffer_pool_init2 (
-    size_t size,
+    public size_t size,
     void *opaque,
     AllocDelegate2 alloc,
     FreeDelegate2 pool_free

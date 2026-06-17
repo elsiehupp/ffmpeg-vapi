@@ -42,7 +42,7 @@ public static uint32 av_float2int (
 ***********************************************************/
 [CCode (cname="av_int2double", cheader_filename="ffmpeg/libavutil/intfloat.h")]
 public static double av_int2double (
-    uint64 i
+    public uint64 i
 );
 
 /***********************************************************

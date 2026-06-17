@@ -31,19 +31,19 @@ LibAVCodec external API header
 public class Subtitle {
     /***********************************************************
     @brief 0 = graphics
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="format")]
     public uint16 format;
 
     /***********************************************************
     @brief Relative to packet pts, in ms
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="start_display_time")]
     public uint32 start_display_time;
 
     /***********************************************************
     @brief Relative to packet pts, in ms
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="end_display_time")]
     public uint32 end_display_time;
 
@@ -55,7 +55,7 @@ public class Subtitle {
 
     /***********************************************************
     @brief Same as packet pts, in AV_TIME_BASE
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="pts")]
     public int64 pts;
 
@@ -63,7 +63,7 @@ public class Subtitle {
     @brief Free all allocated data in the given subtitle struct.
 
     @param sub Subtitle to free.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="avsubtitle_free", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void avsubtitle_free (
         Subtitle sub

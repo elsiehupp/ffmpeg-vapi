@@ -170,25 +170,25 @@ public string avutil_license ();
 public enum MediaType {
     /***********************************************************
     @brief Usually treated as AVMEDIA_TYPE_DATA
-        ***********************************************************/
+    ***********************************************************/
     AVMEDIA_TYPE_UNKNOWN,
     AVMEDIA_TYPE_VIDEO,
     AVMEDIA_TYPE_AUDIO,
     /***********************************************************
     @brief Opaque data information usually continuous
-        ***********************************************************/
+    ***********************************************************/
     AVMEDIA_TYPE_DATA,
     AVMEDIA_TYPE_SUBTITLE,
     /***********************************************************
     @brief Opaque data information usually sparse
-        ***********************************************************/
+    ***********************************************************/
     AVMEDIA_TYPE_ATTACHMENT;
     //  AVMEDIA_TYPE_NB;
 
     /***********************************************************
     @brief Return a string describing the media_type enum, null if media_type
     is unknown.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_get_media_type_string", cheader_filename="ffmpeg/libavutil/avutil.h")]
     public string av_get_media_type_string (
         MediaType media_type
@@ -282,9 +282,9 @@ public static void *av_x_if_null (
 ***********************************************************/
 [CCode (cname="av_int_list_length_for_size", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public uint av_int_list_length_for_size (
-    uint elsize,
+    public uint elsize,
     void *list,
-    uint64 term
+    public uint64 term
 ); // av_pure;
 
 /***********************************************************
@@ -297,7 +297,7 @@ public uint av_int_list_length_for_size (
 [CCode (cname="av_int_list_length", cheader_filename="ffmpeg/libavutil/avutil.h")]
 public uint av_int_list_length (
     void *list,
-    uint64 term
+    public uint64 term
 );
 
 /***********************************************************

@@ -30,29 +30,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class FilterParams {
-    int strength;
-    unsigned flags;
-    AVLFG lfg;
-    int seed;
-    int8 *noise;
-    int8 *prev_shift[MAX_RES][3];
-    int rand_shift[MAX_RES];
-    int rand_shift_init;
+    public int strength;
+    public uint flags;
+    public AVLFG lfg;
+    public int seed;
+    public int8 *noise;
+    public int8 *prev_shift[MAX_RES][3];
+    public int rand_shift[MAX_RES];
+    public int rand_shift_init;
 }
 
 [Compact]
 public class NoiseContext {
     const AVClass *class;
-    int nb_planes;
-    int bytewidth[4];
-    int height[4];
+    public int nb_planes;
+    public int bytewidth[4];
+    public int height[4];
     FilterParams all;
     FilterParams param[4];
-    void (*line_noise)(uint8 *dst, uint8 *src, int8 *noise, int len, int shift);
-    void (*line_noise_avg)(uint8 *dst, uint8 *src, int len, int8 * const *shift);
+    void (*line_noise)(
+        uint8[] dst, uint8[] src, int8 *noise, int len, int shift
+    );
+
+    void (*line_noise_avg)(
+        uint8[] dst, uint8[] src, int len, int8 * const *shift
+    );
+
 }
 
-void ff_line_noise_c (uint8 *dst, uint8 *src, int8 *noise, int len, int shift);
-void ff_line_noise_avg_c (uint8 *dst, uint8 *src, int len, int8 * const *shift);
+public void ff_line_noise_c (
+    uint8[] dst, uint8[] src, int8 *noise, int len, int shift
+);
 
-void ff_noise_init_x86 (NoiseContext *n);
+public void ff_line_noise_avg_c (
+    uint8[] dst, uint8[] src, int len, int8 * const *shift
+);
+
+public void ff_noise_init_x86 (NoiseContext *n);

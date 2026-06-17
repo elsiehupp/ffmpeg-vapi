@@ -59,7 +59,7 @@ public class MurMur3Context {
     @brief Allocate an LibAVUtil.MurMur3Context hash context.
 
     @return Uninitialized hash context or `null` in case of error
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_murmur3_alloc", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public LibAVUtil.MurMur3Context av_murmur3_alloc ();
 
@@ -72,7 +72,7 @@ public class MurMur3Context {
     @see @link av_murmur3_init ()
     @see @link lavu_murmur3_seedinfo "Detailed description" on a discussion of
     seeds for MurmurHash3.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_murmur3_init_seeded", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public void av_murmur3_init_seeded (
         LibAVUtil.MurMur3Context hash_context,
@@ -89,7 +89,7 @@ public class MurMur3Context {
     @see @link av_murmur3_init_seeded ()
     @see @link lavu_murmur3_seedinfo "Detailed description" on a discussion of
     seeds for MurmurHash3.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_murmur3_init", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public void av_murmur3_init (
         LibAVUtil.MurMur3Context hash_context
@@ -101,7 +101,7 @@ public class MurMur3Context {
     @param[out] hash_context Hash context
     @param[in] input_buffer Input data to update hash with
     @param[in] len Number of bytes to read from `input_buffer`
-        ***********************************************************/
+    ***********************************************************/
     #if FF_API_CRYPTO_SIZE_T
     [CCode (cname="av_murmur3_update", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public void av_murmur3_update (
@@ -123,7 +123,7 @@ public class MurMur3Context {
 
     @param[in,out] hash_context Hash context
     @param[out] output_buffer Buffer where output digest value is stored
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_murmur3_final", cheader_filename="ffmpeg/libavutil/murmur3.h")]
     public void av_murmur3_final (
         LibAVUtil.MurMur3Context hash_context,

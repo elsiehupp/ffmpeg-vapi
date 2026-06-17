@@ -25,7 +25,7 @@ namespace LibAVFormat {
 //  #define OFFSET (obj) offsetof (ASTMuxContext, obj)
 //  static const LibAVUtil.Option options[] = {
 //    { "loopstart", "Loopstart position in milliseconds.", OFFSET (loopstart), AV_OPT_TYPE_INT64, { .i64 = -1 }, -1, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
-//    { "loopend",   "Loopend position in milliseconds.",   OFFSET (loopend),   AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
+//    { "loopend", "Loopend position in milliseconds.", OFFSET (loopend), AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
 //    { NULL },
 //  }
 

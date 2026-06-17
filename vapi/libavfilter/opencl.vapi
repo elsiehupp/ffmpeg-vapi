@@ -16,6 +16,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+/***********************************************************
+***********************************************************/
 // The intended target is OpenCL 1.2, so disable warnings for APIs
 // deprecated after that.  This primarily applies to clCreateCommandQueue (),
 // we can't use the replacement clCreateCommandQueueWithProperties () because
@@ -32,9 +34,9 @@ public class OpenCLFilterContext {
 
     cl_program         program;
 
-    enum AVPixelFormat output_format;
-    int                output_width;
-    int                output_height;
+    public AVPixelFormat output_format;
+    public int                output_width;
+    public int                output_height;
 }
 
 
@@ -63,9 +65,9 @@ variable err, log error msg, and jump to fail label on error.
             goto fail; \
         }                                                      \
     } while (0)
-/***********************************************************
-  * release an OpenCL Kernel
 
+/***********************************************************
+release an OpenCL Kernel
 ***********************************************************/
 #define CL_RELEASE_KERNEL (k)                                  \
 do {                                                          \
@@ -78,8 +80,7 @@ do {                                                          \
 } while (0)
 
 /***********************************************************
-  * release an OpenCL Memory Object
-
+release an OpenCL Memory Object
 ***********************************************************/
 #define CL_RELEASE_MEMORY (m)                                  \
 do {                                                          \
@@ -92,8 +93,7 @@ do {                                                          \
 } while (0)
 
 /***********************************************************
-  * release an OpenCL Command Queue
-
+release an OpenCL Command Queue
 ***********************************************************/
 #define CL_RELEASE_QUEUE (q)                                   \
 do {                                                          \
@@ -108,28 +108,28 @@ do {                                                          \
 /***********************************************************
 Return that all inputs and outputs support only AV_PIX_FMT_OPENCL.
 ***********************************************************/
-int ff_opencl_filter_query_formats (AVFilterContext *avctx);
+public int ff_opencl_filter_query_formats (AVFilterContext *avctx);
 
 /***********************************************************
 Check that the input link contains a suitable hardware frames
 context and extract the device from it.
 ***********************************************************/
-int ff_opencl_filter_config_input (AVFilterLink *inlink);
+public int ff_opencl_filter_config_input (AVFilterLink *inlink);
 
 /***********************************************************
 Create a suitable hardware frames context for the output.
 ***********************************************************/
-int ff_opencl_filter_config_output (AVFilterLink *outlink);
+public int ff_opencl_filter_config_output (AVFilterLink *outlink);
 
 /***********************************************************
 Initialise an OpenCL filter context.
 ***********************************************************/
-int ff_opencl_filter_init (AVFilterContext *avctx);
+public int ff_opencl_filter_init (AVFilterContext *avctx);
 
 /***********************************************************
 Uninitialise an OpenCL filter context.
 ***********************************************************/
-void ff_opencl_filter_uninit (AVFilterContext *avctx);
+public void ff_opencl_filter_uninit (AVFilterContext *avctx);
 
 /***********************************************************
 Load a new OpenCL program from strings in memory.
@@ -137,7 +137,7 @@ Load a new OpenCL program from strings in memory.
 Creates a new program and compiles it for the current device.
 Will log any build errors if compilation fails.
 ***********************************************************/
-int ff_opencl_filter_load_program (AVFilterContext *avctx,
+public int ff_opencl_filter_load_program (AVFilterContext *avctx,
                                   string *program_source_array,
                                   int nb_strings);
 
@@ -146,13 +146,13 @@ Load a new OpenCL program from a file.
 
 Same as ff_opencl_filter_load_program (), but from a file.
 ***********************************************************/
-int ff_opencl_filter_load_program_from_file (AVFilterContext *avctx,
+public int ff_opencl_filter_load_program_from_file (AVFilterContext *avctx,
                                             string filename);
 
 /***********************************************************
 Find the work size needed needed for a given plane of an image.
 ***********************************************************/
-int ff_opencl_filter_work_size_from_image (AVFilterContext *avctx,
+public int ff_opencl_filter_work_size_from_image (AVFilterContext *avctx,
                                           size_t *work_size,
                                           AVFrame *frame, int plane,
                                           int block_alignment);
@@ -161,5 +161,5 @@ Print a 3x3 matrix into a buffer as __constant array, which could
 be included in an OpenCL program.
 ***********************************************************/
 
-void ff_opencl_print_const_matrix_3x3 (AVBPrint *buf, string name_str,
+public void ff_opencl_print_const_matrix_3x3 (AVBPrint *buf, string name_str,
                                       double mat[3][3]);

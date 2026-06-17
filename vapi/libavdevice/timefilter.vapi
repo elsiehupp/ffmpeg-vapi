@@ -98,9 +98,9 @@ This function should mainly be called in case of XRUN.
 Warning: after calling this, the filter is in an undetermined state until
 the next call to ff_timefilter_update ()
 ***********************************************************/
-void ff_timefilter_reset (TimeFilter *);
+public void ff_timefilter_reset (TimeFilter *);
 
 /***********************************************************
 Free all resources associated with the filter
 ***********************************************************/
-void ff_timefilter_destroy (TimeFilter *);
+public void ff_timefilter_destroy (TimeFilter *);

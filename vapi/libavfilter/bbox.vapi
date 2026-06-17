@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class FFBoundingBox {
-    int x1, x2, y1, y2;
+    public int x1, x2, y1, y2;
 }
 
 /***********************************************************
@@ -33,6 +33,6 @@ region with values > min_val.
 @return 1 in case at least one pixel with value > min_val was found,
         0 otherwise
 ***********************************************************/
-int ff_calculate_bounding_box (FFBoundingBox *bbox,
-                              uint8 *data, int linesize,
+public int ff_calculate_bounding_box (FFBoundingBox *bbox,
+                              uint8[] data, int linesize,
                               int w, int h, int min_val);

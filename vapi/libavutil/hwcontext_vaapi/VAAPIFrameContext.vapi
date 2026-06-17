@@ -28,7 +28,7 @@ public class VAAPIFrameContext : AbstractHardwareContext {
     /***********************************************************
     @brief Set by the user to apply surface attributes to all surfaces in
     the frame pool. If null, default settings are used.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="attributes")]
     public VASurfaceAttribp[] attribute_list;
 
@@ -40,7 +40,7 @@ public class VAAPIFrameContext : AbstractHardwareContext {
     Only valid if HardwareFrameContext.initial_pool_size was positive.
     These are intended to be used as the render_targets arguments to
     vaCreateContext ().
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="surface_ids")]
     public VASurfaceID[] surface_id_list;
 

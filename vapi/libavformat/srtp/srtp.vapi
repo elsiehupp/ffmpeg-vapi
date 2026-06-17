@@ -97,9 +97,9 @@ public int ff_srtp_decrypt (
 public int ff_srtp_encrypt (
     SRTPContext srtp_context,
     uint8[] input_buffer,
-    int len,
+    public int len,
     out uint8[] output_buffer,
-    int outlen
+    public int outlen
 );
 
 } // namespace LibAVFormat

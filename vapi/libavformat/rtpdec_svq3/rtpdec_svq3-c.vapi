@@ -46,7 +46,7 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
 
     /***********************************************************
     @see if (config_packet) above
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="codec_id", cheader_filename="")]
     public override LibAVCodec.CodecID codec_id {
         public get {

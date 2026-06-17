@@ -44,7 +44,7 @@ namespace LZOContext {
 
     Make sure all buffers are appropriately padded, in must provide
     LZOContext.INPUT_PADDING, out must provide LZOContext.OUTPUT_PADDING additional bytes.
-        ***********************************************************/
+    ***********************************************************/
     [CCode (cname="av_lzo1x_decode", cheader_filename="ffmpeg/libavutil/lzo.h")]
     public static int av_lzo1x_decode (
         out void *output_buffer,

@@ -20,8 +20,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-enum AVPixelFormat ff_get_pixfmt_from_fb_varinfo (fb_var_screeninfo *varinfo);
+public AVPixelFormat ff_get_pixfmt_from_fb_varinfo (fb_var_screeninfo *varinfo);
 
 const char* ff_fbdev_default_device ();
 
-int ff_fbdev_get_device_list (AVDeviceInfoList *device_list);
+public int ff_fbdev_get_device_list (AVDeviceInfoList *device_list);

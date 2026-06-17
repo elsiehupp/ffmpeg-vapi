@@ -49,7 +49,7 @@ public int ff_rtmpe_compute_secret_key (
     URLContext url_context,
     uint8[] serverdata,
     uint8[] clientdata,
-    int type
+    public int type
 );
 
 /***********************************************************
@@ -65,7 +65,7 @@ public void ff_rtmpe_encrypt_sig (
     URLContext url_context,
     uint8[] signature,
     uint8[] digest,
-    int type
+    public int type
 );
 
 /***********************************************************
