@@ -120,7 +120,7 @@ public void class##_Destroy (class *this)                                       
 class *class##_Create (__VA_ARGS__)                                           \
 {                                                                            \
     class *this = CoTaskMemAlloc (sizeof (class)); \
-    void  *vtbl = CoTaskMemAlloc (sizeof (*this->vtbl)); \
+    void *vtbl = CoTaskMemAlloc (sizeof (*this->vtbl)); \
     dshowdebug (AV_STRINGIFY (class)"_Create (%p)\n", this); \
     if (!this || !vtbl)                                                      \
         goto fail; \
@@ -168,39 +168,112 @@ public class libAVPin {
     IMemInputPinVtbl *imemvtbl;
 }
 
-long          WINAPI libAVPin_QueryInterface          (libAVPin *, GUID *, void **);
-ulong WINAPI libAVPin_AddRef                  (libAVPin *);
-ulong WINAPI libAVPin_Release                 (libAVPin *);
-long          WINAPI libAVPin_Connect                 (libAVPin *, IPin *, AM_MEDIA_TYPE *);
-long          WINAPI libAVPin_ReceiveConnection       (libAVPin *, IPin *, AM_MEDIA_TYPE *);
-long          WINAPI libAVPin_Disconnect              (libAVPin *);
-long          WINAPI libAVPin_ConnectedTo             (libAVPin *, IPin **);
-long          WINAPI libAVPin_ConnectionMediaType     (libAVPin *, AM_MEDIA_TYPE *);
-long          WINAPI libAVPin_QueryPinInfo            (libAVPin *, PIN_INFO *);
-long          WINAPI libAVPin_QueryDirection          (libAVPin *, PIN_DIRECTION *);
-long          WINAPI libAVPin_QueryId                 (libAVPin *, wchar_t **);
-long          WINAPI libAVPin_QueryAccept             (libAVPin *, AM_MEDIA_TYPE *);
-long          WINAPI libAVPin_EnumMediaTypes          (libAVPin *, IEnumMediaTypes **);
-long          WINAPI libAVPin_QueryInternalConnections (libAVPin *, IPin **, ulong *);
-long          WINAPI libAVPin_EndOfStream             (libAVPin *);
-long          WINAPI libAVPin_BeginFlush              (libAVPin *);
-long          WINAPI libAVPin_EndFlush                (libAVPin *);
-long          WINAPI libAVPin_NewSegment              (libAVPin *, REFERENCE_TIME, REFERENCE_TIME, double);
+long WINAPI libAVPin_QueryInterface (libAVPin *, GUID *, void **
+);
 
-long          WINAPI libAVMemInputPin_QueryInterface          (libAVMemInputPin *, GUID *, void **);
-ulong WINAPI libAVMemInputPin_AddRef                  (libAVMemInputPin *);
-ulong WINAPI libAVMemInputPin_Release                 (libAVMemInputPin *);
-long          WINAPI libAVMemInputPin_GetAllocator            (libAVMemInputPin *, IMemAllocator **);
-long          WINAPI libAVMemInputPin_NotifyAllocator         (libAVMemInputPin *, IMemAllocator *, BOOL);
-long          WINAPI libAVMemInputPin_GetAllocatorRequirements (libAVMemInputPin *, ALLOCATOR_PROPERTIES *);
-long          WINAPI libAVMemInputPin_Receive                 (libAVMemInputPin *, IMediaSample *);
-long          WINAPI libAVMemInputPin_ReceiveMultiple         (libAVMemInputPin *, IMediaSample **, long, long *);
-long          WINAPI libAVMemInputPin_ReceiveCanBlock         (libAVMemInputPin *);
+ulong WINAPI libAVPin_AddRef (libAVPin *
+);
 
-public void                 libAVPin_Destroy (libAVPin *);
-libAVPin            *libAVPin_Create (libAVFilter *filter);
+ulong WINAPI libAVPin_Release (libAVPin *
+);
 
-public void                 libAVMemInputPin_Destroy (libAVMemInputPin *);
+long WINAPI libAVPin_Connect (libAVPin *, IPin *, AM_MEDIA_TYPE *
+);
+
+long WINAPI libAVPin_ReceiveConnection (libAVPin *, IPin *, AM_MEDIA_TYPE *
+);
+
+long WINAPI libAVPin_Disconnect (libAVPin *
+);
+
+long WINAPI libAVPin_ConnectedTo (libAVPin *, IPin **
+);
+
+long WINAPI libAVPin_ConnectionMediaType (libAVPin *, AM_MEDIA_TYPE *
+);
+
+long WINAPI libAVPin_QueryPinInfo (libAVPin *, PIN_INFO *
+);
+
+long WINAPI libAVPin_QueryDirection (libAVPin *, PIN_DIRECTION *
+);
+
+long WINAPI libAVPin_QueryId (libAVPin *, wchar_t **
+);
+
+long WINAPI libAVPin_QueryAccept (libAVPin *, AM_MEDIA_TYPE *
+);
+
+long WINAPI libAVPin_EnumMediaTypes (libAVPin *, IEnumMediaTypes **
+);
+
+long WINAPI libAVPin_QueryInternalConnections (libAVPin *, IPin **, ulong *
+);
+
+long WINAPI libAVPin_EndOfStream (libAVPin *
+);
+
+long WINAPI libAVPin_BeginFlush (libAVPin *
+);
+
+long WINAPI libAVPin_EndFlush (libAVPin *
+);
+
+long WINAPI libAVPin_NewSegment (libAVPin *, REFERENCE_TIME, REFERENCE_TIME, double);
+
+long WINAPI libAVMemInputPin_QueryInterface (
+    libAVMemInputPin *, GUID *, void **
+);
+
+ulong WINAPI libAVMemInputPin_AddRef (
+    libAVMemInputPin *
+);
+
+ulong WINAPI libAVMemInputPin_Release (
+    libAVMemInputPin *
+);
+
+long WINAPI libAVMemInputPin_GetAllocator (
+    libAVMemInputPin *,
+    IMemAllocator **
+);
+
+long WINAPI libAVMemInputPin_NotifyAllocator (
+    libAVMemInputPin *,
+    IMemAllocator *,
+    BOOL
+);
+
+long WINAPI libAVMemInputPin_GetAllocatorRequirements (
+    libAVMemInputPin *,
+    ALLOCATOR_PROPERTIES *
+);
+
+long WINAPI libAVMemInputPin_Receive (
+    libAVMemInputPin *,
+    IMediaSample *
+);
+
+long WINAPI libAVMemInputPin_ReceiveMultiple (
+    libAVMemInputPin *,
+    IMediaSample **,
+    long,
+    long *
+);
+
+long WINAPI libAVMemInputPin_ReceiveCanBlock (libAVMemInputPin *
+);
+
+
+public void libAVPin_Destroy (libAVPin *
+);
+
+libAVPin            *libAVPin_Create (
+    libAVFilter *filter);
+
+public void libAVMemInputPin_Destroy (libAVMemInputPin *
+);
+
 
 /*****************************************************************************
 libAVEnumPins
@@ -214,16 +287,48 @@ public class libAVEnumPins {
     libAVFilter *filter;
 }
 
-long          WINAPI libAVEnumPins_QueryInterface (libAVEnumPins *, GUID *, void **);
-ulong WINAPI libAVEnumPins_AddRef        (libAVEnumPins *);
-ulong WINAPI libAVEnumPins_Release       (libAVEnumPins *);
-long          WINAPI libAVEnumPins_Next          (libAVEnumPins *, ulong, IPin **, ulong *);
-long          WINAPI libAVEnumPins_Skip          (libAVEnumPins *, ulong);
-long          WINAPI libAVEnumPins_Reset         (libAVEnumPins *);
-long          WINAPI libAVEnumPins_Clone         (libAVEnumPins *, libAVEnumPins **);
+long WINAPI libAVEnumPins_QueryInterface (
+    libAVEnumPins *, GUID *, void **
+);
 
-public void                 libAVEnumPins_Destroy (libAVEnumPins *);
-libAVEnumPins       *libAVEnumPins_Create (libAVPin *pin, libAVFilter *filter);
+ulong WINAPI libAVEnumPins_AddRef (
+    libAVEnumPins *
+);
+
+ulong WINAPI libAVEnumPins_Release (
+    libAVEnumPins *
+);
+
+long WINAPI libAVEnumPins_Next (
+    libAVEnumPins *,
+    ulong,
+    IPin **,
+    ulong *
+);
+
+long WINAPI libAVEnumPins_Skip (
+    libAVEnumPins *,
+    ulong
+);
+
+long WINAPI libAVEnumPins_Reset (
+    libAVEnumPins *
+);
+
+long WINAPI libAVEnumPins_Clone (
+    libAVEnumPins *,
+    libAVEnumPins **
+);
+
+
+public void libAVEnumPins_Destroy (
+    libAVEnumPins *
+);
+
+libAVEnumPins *libAVEnumPins_Create (
+    libAVPin *pin,
+    libAVFilter *filter
+);
 
 /*****************************************************************************
 libAVEnumMediaTypes
@@ -236,16 +341,45 @@ public class libAVEnumMediaTypes {
     AM_MEDIA_TYPE type;
 }
 
-long          WINAPI libAVEnumMediaTypes_QueryInterface (libAVEnumMediaTypes *, GUID *, void **);
-ulong WINAPI libAVEnumMediaTypes_AddRef        (libAVEnumMediaTypes *);
-ulong WINAPI libAVEnumMediaTypes_Release       (libAVEnumMediaTypes *);
-long          WINAPI libAVEnumMediaTypes_Next          (libAVEnumMediaTypes *, ulong, AM_MEDIA_TYPE **, ulong *);
-long          WINAPI libAVEnumMediaTypes_Skip          (libAVEnumMediaTypes *, ulong);
-long          WINAPI libAVEnumMediaTypes_Reset         (libAVEnumMediaTypes *);
-long          WINAPI libAVEnumMediaTypes_Clone         (libAVEnumMediaTypes *, libAVEnumMediaTypes **);
+long WINAPI libAVEnumMediaTypes_QueryInterface (
+    libAVEnumMediaTypes *, GUID *, void **
+);
 
-public void                 libAVEnumMediaTypes_Destroy (libAVEnumMediaTypes *);
-libAVEnumMediaTypes *libAVEnumMediaTypes_Create (const AM_MEDIA_TYPE *type);
+ulong WINAPI libAVEnumMediaTypes_AddRef (
+    libAVEnumMediaTypes *
+);
+
+ulong WINAPI libAVEnumMediaTypes_Release (
+    libAVEnumMediaTypes *
+);
+
+long WINAPI libAVEnumMediaTypes_Next (
+    libAVEnumMediaTypes *,
+    ulong,
+    AM_MEDIA_TYPE **,
+    ulong *
+);
+
+long WINAPI libAVEnumMediaTypes_Skip (
+    libAVEnumMediaTypes *,
+    ulong
+);
+
+long WINAPI libAVEnumMediaTypes_Reset (
+    libAVEnumMediaTypes *
+);
+
+long WINAPI libAVEnumMediaTypes_Clone (
+    libAVEnumMediaTypes *,
+    libAVEnumMediaTypes **
+);
+
+void libAVEnumMediaTypes_Destroy (
+    libAVEnumMediaTypes *
+);
+libAVEnumMediaTypes *libAVEnumMediaTypes_Create (
+    const AM_MEDIA_TYPE *type
+);
 
 /*****************************************************************************
 libAVFilter
@@ -266,29 +400,100 @@ public class libAVFilter {
 
     [CCode (cname="callback")]
     public void (*callback)(
-        void *priv_data, int index, uint8[] buf, int buf_size, int64 time, dshowDeviceType type
+        void *priv_data,
+        int index,
+        uint8[] buf,
+        int buf_size,
+        int64 time,
+        dshowDeviceType type
     );
 
 }
 
-long          WINAPI libAVFilter_QueryInterface (libAVFilter *, GUID *, void **);
-ulong WINAPI libAVFilter_AddRef         (libAVFilter *);
-ulong WINAPI libAVFilter_Release        (libAVFilter *);
-long          WINAPI libAVFilter_GetClassID     (libAVFilter *, CLSID *);
-long          WINAPI libAVFilter_Stop           (libAVFilter *);
-long          WINAPI libAVFilter_Pause          (libAVFilter *);
-long          WINAPI libAVFilter_Run            (libAVFilter *, REFERENCE_TIME);
-long          WINAPI libAVFilter_GetState       (libAVFilter *, DWORD, FILTER_STATE *);
-long          WINAPI libAVFilter_SetSyncSource  (libAVFilter *, IReferenceClock *);
-long          WINAPI libAVFilter_GetSyncSource  (libAVFilter *, IReferenceClock **);
-long          WINAPI libAVFilter_EnumPins       (libAVFilter *, IEnumPins **);
-long          WINAPI libAVFilter_FindPin        (libAVFilter *, wchar_t *, IPin **);
-long          WINAPI libAVFilter_QueryFilterInfo (libAVFilter *, FILTER_INFO *);
-long          WINAPI libAVFilter_JoinFilterGraph (libAVFilter *, IFilterGraph *, wchar_t *);
-long          WINAPI libAVFilter_QueryVendorInfo (libAVFilter *, wchar_t **);
+long WINAPI libAVFilter_QueryInterface (
+    libAVFilter *,
+    GUID *,
+    void **
+);
 
-public void                 libAVFilter_Destroy (libAVFilter *);
-libAVFilter         *libAVFilter_Create (void *, void *, dshowDeviceType);
+ulong WINAPI libAVFilter_AddRef (
+    libAVFilter *
+);
+
+ulong WINAPI libAVFilter_Release (
+    libAVFilter *
+);
+
+long WINAPI libAVFilter_GetClassID (
+    libAVFilter *,
+    CLSID *
+);
+
+long WINAPI libAVFilter_Stop (
+    libAVFilter *
+);
+
+long WINAPI libAVFilter_Pause (
+    libAVFilter *
+);
+
+long WINAPI libAVFilter_Run (
+    libAVFilter *,
+    REFERENCE_TIME
+);
+long WINAPI libAVFilter_GetState (
+    libAVFilter *,
+    DWORD,
+    FILTER_STATE *
+);
+
+long WINAPI libAVFilter_SetSyncSource (
+    libAVFilter *,
+    IReferenceClock *
+);
+
+long WINAPI libAVFilter_GetSyncSource (
+    libAVFilter *,
+    IReferenceClock **
+);
+
+long WINAPI libAVFilter_EnumPins (
+    libAVFilter *,
+    IEnumPins **
+);
+
+long WINAPI libAVFilter_FindPin (
+    libAVFilter *,
+    wchar_t *,
+    IPin **
+);
+
+long WINAPI libAVFilter_QueryFilterInfo (
+    libAVFilter *,
+    FILTER_INFO *
+);
+
+long WINAPI libAVFilter_JoinFilterGraph (
+    libAVFilter *,
+    IFilterGraph *,
+    wchar_t *
+);
+
+long WINAPI libAVFilter_QueryVendorInfo (
+    libAVFilter *,
+    wchar_t **
+);
+
+
+public void libAVFilter_Destroy (
+    libAVFilter *
+);
+
+libAVFilter *libAVFilter_Create (
+    void *,
+    void *,
+    dshowDeviceType
+);
 
 /*****************************************************************************
 dshow_ctx
@@ -360,7 +565,14 @@ public class dshow_ctx {
 /*****************************************************************************
 CrossBar
 ****************************************************************************/
-HRESULT dshow_try_setup_crossbar_options (ICaptureGraphBuilder2 *graph_builder2,
-    IBaseFilter *device_filter, dshowDeviceType devtype, AVFormatContext *avctx);
+HRESULT dshow_try_setup_crossbar_options (
+    ICaptureGraphBuilder2 *graph_builder2,
+    IBaseFilter *device_filter,
+    dshowDeviceType devtype,
+    AVFormatContext *avctx
+);
 
-public void dshow_show_filter_properties (IBaseFilter *pFilter, AVFormatContext *avctx);
+public void dshow_show_filter_properties (
+    IBaseFilter *pFilter,
+    AVFormatContext *avctx
+);

@@ -240,7 +240,9 @@ Initialize AVAudioResampleContext.
 @return     0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-public int avresample_open (AVAudioResampleContext *avr);
+public int avresample_open (
+    AVAudioResampleContext *avr
+);
 
 /***********************************************************
 
@@ -252,7 +254,9 @@ Check whether an AVAudioResampleContext is open or closed.
 @return 1 if avr is open, 0 if avr is closed.
 ***********************************************************/
 attribute_deprecated
-public int avresample_is_open (AVAudioResampleContext *avr);
+public int avresample_is_open (
+    AVAudioResampleContext *avr
+);
 
 /***********************************************************
 
@@ -271,7 +275,9 @@ there was a custom matrix being used, that is also cleared.
 @param avr  audio resample context
 ***********************************************************/
 attribute_deprecated
-public void avresample_close (AVAudioResampleContext *avr);
+public void avresample_close (
+    AVAudioResampleContext *avr
+);
 
 /***********************************************************
 
@@ -284,7 +290,9 @@ This also calls avresample_close () before freeing.
 @param avr  audio resample context
 ***********************************************************/
 attribute_deprecated
-public void avresample_free (AVAudioResampleContext **avr);
+public void avresample_free (
+    AVAudioResampleContext **avr
+);
 
 /***********************************************************
 
@@ -312,10 +320,17 @@ building custom matrices.
 @return                    0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-public int avresample_build_matrix (uint64 in_layout, uint64 out_layout,
-                            double center_mix_level, double surround_mix_level,
-                            double lfe_mix_level, int normalize, double[] matrix,
-                            int stride, AVMatrixEncoding matrix_encoding);
+public int avresample_build_matrix (
+    uint64 in_layout,
+    uint64 out_layout,
+    double center_mix_level,
+    double surround_mix_level,
+    double lfe_mix_level,
+    int normalize,
+    double[] matrix,
+    int stride,
+    AVMatrixEncoding matrix_encoding
+);
 
 /***********************************************************
 
@@ -333,8 +348,11 @@ not open, an error is returned.
 @return        0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-public int avresample_get_matrix (AVAudioResampleContext *avr, double[] matrix,
-                          int stride);
+public int avresample_get_matrix (
+    AVAudioResampleContext *avr,
+    double[] matrix,
+    int stride
+);
 
 /***********************************************************
 
@@ -358,8 +376,11 @@ Calling avresample_close () on the context will clear the current matrix.
 @return        0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-public int avresample_set_matrix (AVAudioResampleContext *avr, double[] matrix,
-                          int stride);
+public int avresample_set_matrix (
+    AVAudioResampleContext *avr,
+    double[] matrix,
+    int stride
+);
 
 /***********************************************************
 
@@ -392,8 +413,10 @@ Duplicating the left channel of stereo input:
 @return            0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-public int avresample_set_channel_mapping (AVAudioResampleContext *avr,
-                                   int[] channel_map);
+public int avresample_set_channel_mapping (
+    AVAudioResampleContext *avr,
+    int[] channel_map
+);
 
 /***********************************************************
 
@@ -412,8 +435,11 @@ in order to use resampling compensation.
 @return                       0 on success, negative AVERROR code on failure
 ***********************************************************/
 attribute_deprecated
-public int avresample_set_compensation (AVAudioResampleContext *avr, int sample_delta,
-                                int compensation_distance);
+public int avresample_set_compensation (
+    AVAudioResampleContext *avr,
+    int sample_delta,
+    int compensation_distance
+);
 
 /***********************************************************
 
@@ -429,7 +455,9 @@ conversion would output.
                      would exceed INT_MAX
 ***********************************************************/
 attribute_deprecated
-public int avresample_get_out_samples (AVAudioResampleContext *avr, int in_nb_samples);
+public int avresample_get_out_samples (
+    AVAudioResampleContext *avr, int in_nb_samples
+);
 
 /***********************************************************
 
@@ -477,10 +505,15 @@ NULL input or call avresample_read ().
                        output FIFO
 ***********************************************************/
 attribute_deprecated
-public int avresample_convert (AVAudioResampleContext *avr, uint8[] *output,
-                       int out_plane_size, int out_samples,
-                       uint8[]  const *input, int in_plane_size,
-                       int in_samples);
+public int avresample_convert (
+    AVAudioResampleContext *avr,
+    uint8[] *output,
+    int out_plane_size,
+    int out_samples,
+    uint8[]  const *input,
+    int in_plane_size,
+    int in_samples
+);
 
 /***********************************************************
 
@@ -499,7 +532,9 @@ the delay buffer, which can be useful for synchronization.
 @return     number of samples currently in the resampling delay buffer
 ***********************************************************/
 attribute_deprecated
-public int avresample_get_delay (AVAudioResampleContext *avr);
+public int avresample_get_delay (
+    AVAudioResampleContext *avr
+);
 
 /***********************************************************
 
@@ -520,7 +555,9 @@ avresample_convert ().
 @return     number of samples available for reading
 ***********************************************************/
 attribute_deprecated
-public int avresample_available (AVAudioResampleContext *avr);
+public int avresample_available (
+    AVAudioResampleContext *avr
+);
 
 /***********************************************************
 
@@ -543,7 +580,11 @@ buffer. This function can be used to read samples from that internal FIFO.
 @return            the number of samples written to output
 ***********************************************************/
 attribute_deprecated
-public int avresample_read (AVAudioResampleContext *avr, uint8[] *output, int nb_samples);
+public int avresample_read (
+    AVAudioResampleContext *avr,
+    uint8[] *output,
+    int nb_samples
+);
 
 /***********************************************************
 
@@ -593,8 +634,11 @@ or AVERROR_OUTPUT_CHANGED|AVERROR_INPUT_CHANGED is returned.
                        configuration.
 ***********************************************************/
 attribute_deprecated
-public int avresample_convert_frame (AVAudioResampleContext *avr,
-                             public AVFrame output, AVFrame *input);
+public int avresample_convert_frame (
+    AVAudioResampleContext *avr,
+    AVFrame output,
+    AVFrame *input
+);
 
 /***********************************************************
 
@@ -615,7 +659,11 @@ The function calls avresample_close () internally if the context is open.
 @return                0 on success, AVERROR on failure.
 ***********************************************************/
 attribute_deprecated
-public int avresample_config (AVAudioResampleContext *avr, AVFrame *out, AVFrame *in);
+public int avresample_config (
+    AVAudioResampleContext *avr,
+    AVFrame *out,
+    AVFrame *in
+);
 
 /***********************************************************
 @}

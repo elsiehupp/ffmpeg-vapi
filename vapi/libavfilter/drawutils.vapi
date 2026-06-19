@@ -21,20 +21,49 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 misc drawing utilities
 ***********************************************************/
 
-public int ff_fill_rgba_map (uint8[] rgba_map, AVPixelFormat pix_fmt);
+public int ff_fill_rgba_map (
+    uint8[] rgba_map,
+    AVPixelFormat pix_fmt
+);
 
-public int ff_fill_line_with_color (uint8[] line[4], int pixel_step[4], int w,
-                            uint8 dst_color[4],
-                            AVPixelFormat pix_fmt, uint8 rgba_color[4],
-                            int *is_packed_rgba, uint8 rgba_map[4]);
+public int ff_fill_line_with_color (
+    uint8[] line[4],
+    int pixel_step[4],
+    int w,
+    uint8 dst_color[4],
+    AVPixelFormat pix_fmt,
+    uint8 rgba_color[4],
+    int *is_packed_rgba,
+    uint8 rgba_map[4]
+);
 
-public void ff_draw_rectangle (uint8[] dst[4], int dst_linesize[4],
-                       uint8[] src[4], int pixelstep[4],
-                       int hsub, int vsub, int x, int y, int w, int h);
+public void ff_draw_rectangle (
+    uint8[] dst[4],
+    int dst_linesize[4],
+    uint8[] src[4],
+    int pixelstep[4],
+    int hsub,
+    int vsub,
+    int x,
+    int y,
+    int w,
+    int h
+);
 
-public void ff_copy_rectangle (uint8[] dst[4], int dst_linesize[4],
-                       uint8[] src[4], int src_linesize[4], int pixelstep[4],
-                       int hsub, int vsub, int x, int y, int y2, int w, int h);
+public void ff_copy_rectangle (
+    uint8[] dst[4],
+    int dst_linesize[4],
+    uint8[] src[4],
+    int src_linesize[4],
+    int pixelstep[4],
+    int hsub,
+    int vsub,
+    int x,
+    int y,
+    int y2,
+    int w,
+    int h
+);
 
 #define MAX_PLANES 4
 
@@ -88,23 +117,39 @@ supported the function will return an error.
 flags is combination of FF_DRAW_* flags.
 @return  0 for success, < 0 for error
 ***********************************************************/
-public int ff_draw_init (FFDrawContext *draw, AVPixelFormat format, uint flags);
+public int ff_draw_init (
+    FFDrawContext *draw,
+    AVPixelFormat format,
+    uint flags
+);
 
 /***********************************************************
 Prepare a color.
 ***********************************************************/
-public void ff_draw_color (FFDrawContext *draw, FFDrawColor *color, uint8 rgba[4]);
+public void ff_draw_color (
+    FFDrawContext *draw,
+    FFDrawColor *color,
+    uint8 rgba[4]
+);
 
 /***********************************************************
 Copy a rectangle from an image to another.
 
 The coordinates must be as even as the subsampling requires.
 ***********************************************************/
-public void ff_copy_rectangle2 (FFDrawContext *draw,
-                        uint8[] dst[], int dst_linesize[],
-                        uint8[] src[], int src_linesize[],
-                        int dst_x, int dst_y, int src_x, int src_y,
-                        int w, int h);
+public void ff_copy_rectangle2 (
+    FFDrawContext *draw,
+    uint8[] dst[],
+    int dst_linesize[],
+    uint8[] src[],
+    int src_linesize[],
+    int dst_x,
+    int dst_y,
+    int src_x,
+    int src_y,
+    int w,
+    int h
+);
 
 /***********************************************************
 Fill a rectangle with an uniform color.
@@ -112,17 +157,32 @@ Fill a rectangle with an uniform color.
 The coordinates must be as even as the subsampling requires.
 The color needs to be inited with ff_draw_color.
 ***********************************************************/
-public void ff_fill_rectangle (FFDrawContext *draw, FFDrawColor *color,
-                       uint8[] dst[], int dst_linesize[],
-                       int dst_x, int dst_y, int w, int h);
+public void ff_fill_rectangle (
+    FFDrawContext *draw,
+    FFDrawColor *color,
+    uint8[] dst[],
+    int dst_linesize[],
+    int dst_x,
+    int dst_y,
+    int w,
+    int h
+);
 
 /***********************************************************
 Blend a rectangle with an uniform color.
 ***********************************************************/
-public void ff_blend_rectangle (FFDrawContext *draw, FFDrawColor *color,
-                        uint8[] dst[], int dst_linesize[],
-                        int dst_w, int dst_h,
-                        int x0, int y0, int w, int h);
+public void ff_blend_rectangle (
+    FFDrawContext *draw,
+    FFDrawColor *color,
+    uint8[] dst[],
+    int dst_linesize[],
+    int dst_w,
+    int dst_h,
+    int x0,
+    int y0,
+    int w,
+    int h
+);
 
 /***********************************************************
 Blend an alpha mask with an uniform color.
@@ -142,10 +202,22 @@ Blend an alpha mask with an uniform color.
 @param x0             horizontal position of the overlay
 @param y0             vertical position of the overlay
 ***********************************************************/
-public void ff_blend_mask (FFDrawContext *draw, FFDrawColor *color,
-                   uint8[] dst[], int dst_linesize[], int dst_w, int dst_h,
-                   uint8[] mask, int mask_linesize, int mask_w, int mask_h,
-                   int l2depth, uint endianness, int x0, int y0);
+public void ff_blend_mask (
+    FFDrawContext *draw,
+    FFDrawColor *color,
+    uint8[] dst[],
+    int dst_linesize[],
+    int dst_w,
+    int dst_h,
+    uint8[] mask,
+    int mask_linesize,
+    int mask_w,
+    int mask_h,
+    int l2depth,
+    uint endianness,
+    int x0,
+    int y0
+);
 
 /***********************************************************
 Round a dimension according to subsampling.
@@ -156,12 +228,18 @@ Round a dimension according to subsampling.
 @param value      value to round
 @return  the rounded value
 ***********************************************************/
-public int ff_draw_round_to_sub (FFDrawContext *draw, int sub_dir, int round_dir,
-                         int value);
+public int ff_draw_round_to_sub (
+    FFDrawContext *draw,
+    int sub_dir,
+    int round_dir,
+    int value
+);
 
 /***********************************************************
 Return the list of pixel formats supported by the draw functions.
 
 The flags are the same as ff_draw_init, i.e., none currently.
 ***********************************************************/
-public AVFilterFormats ff_draw_supported_pixel_formats (uint flags);
+public AVFilterFormats ff_draw_supported_pixel_formats (
+    uint flags
+);

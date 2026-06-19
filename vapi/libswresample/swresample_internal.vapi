@@ -32,10 +32,30 @@ typedef int64 integer;
 typedef int integer;
 #endif
 
-typedef void (mix_1_1_func_type)(void *out, void *in, void *coeffp, integer index, integer len);
-typedef void (mix_2_1_func_type)(void *out, void *in1, void *in2, void *coeffp, integer index1, integer index2, integer len);
+typedef void (mix_1_1_func_type)(
+    void *out,
+    void *in,
+    void *coeffp,
+    integer index,
+    integer len
+);
 
-typedef void (mix_any_func_type)(uint8[] *out, uint8[] *in1, void *coeffp, integer len);
+typedef void (mix_2_1_func_type)(
+    void *out,
+    void *in1,
+    void *in2,
+    void *coeffp,
+    integer index1,
+    integer index2,
+    integer len
+);
+
+typedef void (mix_any_func_type)(
+    uint8[] *out,
+    uint8[] *in1,
+    void *coeffp,
+    integer len
+);
 
 [Compact]
 public class AudioData {
@@ -115,8 +135,19 @@ public class DitherContext {
 
 [CCode (cname="")]
 public ResampleContext (* resample_init_func)(
-    ResampleContext *c, int out_rate, int in_rate, int filter_size, int phase_shift, int linear,
-    double cutoff, AVSampleFormat format, SwrFilterType filter_type, double kaiser_beta, double precision, int cheby, int exact_rational
+    ResampleContext *c,
+    int out_rate,
+    int in_rate,
+    int filter_size,
+    int phase_shift,
+    int linear,
+    double cutoff,
+    AVSampleFormat format,
+    SwrFilterType filter_type,
+    double kaiser_beta,
+    double precision,
+    int cheby,
+    int exact_rational
 );
 
 [CCode (cname="")]
@@ -126,7 +157,12 @@ typedef void    (* resample_free_func)(
 
 [CCode (cname="")]
 typedef int     (* multiple_resample_func)(
-    ResampleContext *c, AudioData *dst, int dst_size, AudioData *src, int src_size, int *consumed
+    ResampleContext *c,
+    AudioData *dst,
+    int dst_size,
+    AudioData *src,
+    int src_size,
+    int *consumed
 );
 
 [CCode (cname="")]
@@ -136,22 +172,31 @@ typedef int     (* resample_flush_func)(
 
 [CCode (cname="")]
 typedef int     (* set_compensation_func)(
-    ResampleContext *c, int sample_delta, int compensation_distance
+    ResampleContext *c,
+    int sample_delta,
+    int compensation_distance
 );
 
 [CCode (cname="")]
 typedef int64 (* get_delay_func)(
-    SwrContext *s, int64 base
+    SwrContext *s,
+    int64 base
 );
 
 [CCode (cname="")]
 typedef int     (* invert_initial_buffer_func)(
-    ResampleContext *c, AudioData *dst, AudioData *src, int src_size, int *dst_idx, int *dst_count
+    ResampleContext *c,
+    AudioData *dst,
+    AudioData *src,
+    int src_size,
+    int *dst_idx,
+    int *dst_count
 );
 
 [CCode (cname="")]
 typedef int64 (* get_out_samples_func)(
-    SwrContext *s, int in_samples
+    SwrContext *s,
+    int in_samples
 );
 
 [Compact]
@@ -475,35 +520,99 @@ public class SwrContext {
 };
 
 av_warn_unused_result
-public int swri_realloc_audio (AudioData *a, int count);
+public int swri_realloc_audio (
+    AudioData *a,
+    int count
+);
 
-public void swri_noise_shaping_int16 (SwrContext *s, AudioData *dsts, AudioData *srcs, AudioData *noises, int count);
-public void swri_noise_shaping_int32 (SwrContext *s, AudioData *dsts, AudioData *srcs, AudioData *noises, int count);
-public void swri_noise_shaping_float (SwrContext *s, AudioData *dsts, AudioData *srcs, AudioData *noises, int count);
-public void swri_noise_shaping_double (SwrContext *s, AudioData *dsts, AudioData *srcs, AudioData *noises, int count);
+public void swri_noise_shaping_int16 (
+    SwrContext *s,
+    AudioData *dsts,
+    AudioData *srcs,
+    AudioData *noises,
+    int count
+);
+
+public void swri_noise_shaping_int32 (
+    SwrContext *s,
+    AudioData *dsts,
+    AudioData *srcs,
+    AudioData *noises,
+    int count
+);
+
+public void swri_noise_shaping_float (
+    SwrContext *s,
+    AudioData *dsts,
+    AudioData *srcs,
+    AudioData *noises,
+    int count
+);
+
+public void swri_noise_shaping_double (
+    SwrContext *s,
+    AudioData *dsts,
+    AudioData *srcs,
+    AudioData *noises,
+    int count
+);
 
 av_warn_unused_result
-public int swri_rematrix_init (SwrContext *s);
-public void swri_rematrix_free (SwrContext *s);
-public int swri_rematrix (SwrContext *s, AudioData *out, AudioData *in, int len, int mustcopy);
-public int swri_rematrix_init_x86 (SwrContext *s);
+public int swri_rematrix_init (
+    SwrContext *s
+);
+
+public void swri_rematrix_free (
+    SwrContext *s
+);
+
+public int swri_rematrix (
+    SwrContext *s,
+    AudioData *out,
+    AudioData *in,
+    int len,
+    int mustcopy
+);
+
+public int swri_rematrix_init_x86 (
+    SwrContext *s
+);
 
 av_warn_unused_result
-public int swri_get_dither (SwrContext *s, void *dst, int len, uint seed, AVSampleFormat noise_fmt);
-av_warn_unused_result
-public int swri_dither_init (SwrContext *s, AVSampleFormat out_fmt, AVSampleFormat in_fmt);
+public int swri_get_dither (
+    SwrContext *s,
+    void *dst,
+    int len,
+    uint seed,
+    AVSampleFormat noise_fmt
+);
 
-public void swri_audio_convert_init_aarch64 (AudioConvert *ac,
-                                 AVSampleFormat out_fmt,
-                                 AVSampleFormat in_fmt,
-                                 int channels);
-public void swri_audio_convert_init_arm (AudioConvert *ac,
-                                 AVSampleFormat out_fmt,
-                                 AVSampleFormat in_fmt,
-                                 int channels);
-public void swri_audio_convert_init_x86 (AudioConvert *ac,
-                                 AVSampleFormat out_fmt,
-                                 AVSampleFormat in_fmt,
-                                 int channels);
+av_warn_unused_result
+public int swri_dither_init (
+    SwrContext *s,
+    AVSampleFormat out_fmt,
+    AVSampleFormat in_fmt
+);
+
+public void swri_audio_convert_init_aarch64 (
+    AudioConvert *ac,
+    AVSampleFormat out_fmt,
+    AVSampleFormat in_fmt,
+    int channels
+);
+
+public void swri_audio_convert_init_arm (
+    AudioConvert *ac,
+    AVSampleFormat out_fmt,
+    AVSampleFormat in_fmt,
+    int channels
+);
+
+public void swri_audio_convert_init_x86 (
+    AudioConvert *ac,
+    AVSampleFormat out_fmt,
+    AVSampleFormat in_fmt,
+    int channels
+);
 
 #endif

@@ -29,56 +29,105 @@ static const LibAVUtil.Option options[] = {
     {
         "start_number",
         "set first number in the sequence",
-        OFFSET (start_sequence),AV_OPT_TYPE_INT64, { .i64 = 0}, 0, INT64_MAX, E},
+        OFFSET (
+            start_sequence
+        ),
+        AV_OPT_TYPE_INT64,
+        {
+            .i64 = 0
+        },
+        0,
+        INT64_MAX,
+        E
+    },
     {
         "hls_time",
         "set segment length in seconds",
-        OFFSET (time), AV_OPT_TYPE_FLOAT, {.dbl = 2}, 0, FLT_MAX, E},
+        OFFSET (
+            time
+        ),
+        AV_OPT_TYPE_FLOAT,
+        {
+            .dbl = 2
+        },
+        0,
+        FLT_MAX,
+        E
+    },
     {
         "hls_init_time",
         "set segment length in seconds at init list",
-        OFFSET (init_time), AV_OPT_TYPE_FLOAT, {.dbl = 0}, 0, FLT_MAX, E},
+        OFFSET (
+            init_time
+        ),
+        AV_OPT_TYPE_FLOAT,
+        {
+            .dbl = 0
+        },
+        0,
+        FLT_MAX,
+        E
+    },
     {
         "hls_list_size",
         "set maximum number of playlist entries",
-        OFFSET (max_nb_segments
+        OFFSET (
+            max_nb_segments
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = 5}, 0,
+        {
+            .i64 = 5
+        },
+        0,
         INT_MAX,
-        E},
+        E
+    },
     {
         "hls_delete_threshold",
         "set number of unreferenced segments to keep before deleting",
-        OFFSET (hls_delete_threshold
+        OFFSET (
+            hls_delete_threshold
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = 1}, 1,
+        {
+            .i64 = 1
+        },
+        1,
         INT_MAX,
-        E},
+        E
+    },
     {
         "hls_ts_options","set hls mpegts list of options for the container format used for hls",
-        OFFSET (format_options_str
+        OFFSET (
+            format_options_str
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "hls_vtt_options","set hls vtt list of options for the container format used for hls",
-        OFFSET (vtt_format_options_str
+        OFFSET (
+            vtt_format_options_str
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
 #if FF_API_HLS_WRAP
     {
         "hls_wrap",
         "set number after which the index wraps (will be deprecated)",
-        OFFSET (wrap
+        OFFSET (
+            wrap
         ),
         AV_OPT_TYPE_INT,
         {
@@ -86,42 +135,55 @@ static const LibAVUtil.Option options[] = {
         },
         0,
         INT_MAX,
-        E},
+        E
+    },
 #endif
     {
         "hls_allow_cache",
         "explicitly set whether the client MAY (1) or MUST NOT (0) cache media segments",
-        OFFSET (allowcache
+        OFFSET (
+            allowcache
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = -1},
+        {
+            .i64 = -1},
         INT_MIN,
         INT_MAX,
-        E},
+        E
+    },
     {
         "hls_base_url",
         "url to prepend to each playlist entry",
-        OFFSET (baseurl
+        OFFSET (
+            baseurl
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "hls_segment_filename",
         "filename template for segment files",
-        OFFSET (segment_filename
+        OFFSET (
+            segment_filename
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "hls_segment_size",
         "maximum size per segment file, (in bytes)",
-        OFFSET (max_seg_size
+        OFFSET (
+            max_seg_size
         ),
         AV_OPT_TYPE_INT,
         {
@@ -129,68 +191,96 @@ static const LibAVUtil.Option options[] = {
         },
         0,
         INT_MAX,
-        E},
+        E
+    },
     {
         "hls_key_info_file",
         "file with key URI and key file path",
-        OFFSET (key_info_file
+        OFFSET (
+            key_info_file
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "hls_enc",
         "enable AES128 encryption support",
-        OFFSET (encrypt
+        OFFSET (
+            encrypt
         ),
         AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, E},
+        0,
+        1,
+        E
+    },
     {
         "hls_enc_key",
         "hex-coded 16 byte key to encrypt the segments",
-        OFFSET (key
+        OFFSET (
+            key
         ),
         AV_OPT_TYPE_STRING,
-        .flags = E},
+        .flags = E
+    },
     {
         "hls_enc_key_url",
         "url to access the key to decrypt the segments",
-        OFFSET (key_url
+        OFFSET (
+            key_url
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "hls_enc_iv",
         "hex-coded 16 byte initialization vector",
-        OFFSET (iv
+        OFFSET (
+            iv
         ),
         AV_OPT_TYPE_STRING,
-        .flags = E},
+        .flags = E
+    },
     {
         "hls_subtitle_path",
         "set path of hls subtitles",
-        OFFSET (subtitle_filename
+        OFFSET (
+            subtitle_filename
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "hls_segment_type",
         "set hls segment files type",
-        OFFSET (segment_type
+        OFFSET (
+            segment_type
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = SEGMENT_TYPE_MPEGTS }, 0, SEGMENT_TYPE_FMP4, E, "segment_type"
+        {
+            .i64 = SEGMENT_TYPE_MPEGTS
+        },
+        0,
+        SEGMENT_TYPE_FMP4,
+        E,
+        "segment_type"
     },
     {
         "mpegts",
@@ -198,7 +288,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = SEGMENT_TYPE_MPEGTS }, 0, UINT_MAX, E, "segment_type"
+            .i64 = SEGMENT_TYPE_MPEGTS
+        },
+        0,
+        UINT_MAX,
+        E,
+        "segment_type"
     },
     {
         "fmp4",
@@ -206,23 +301,41 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = SEGMENT_TYPE_FMP4 }, 0, UINT_MAX, E, "segment_type"
+            .i64 = SEGMENT_TYPE_FMP4
+        },
+        0,
+        UINT_MAX,
+        E,
+        "segment_type"
     },
     {
         "hls_fmp4_init_filename",
         "set fragment mp4 file init filename",
-        OFFSET (fmp4_init_filename
+        OFFSET (
+            fmp4_init_filename
         ),
         AV_OPT_TYPE_STRING,
-        {.str = "init.mp4"}, 0, 0, E},
+        {
+            .str = "init.mp4"
+        },
+        0,
+        0,
+        E
+    },
     {
         "hls_flags",
         "set flags affecting HLS playlist and media file generation",
-        OFFSET (flags
+        OFFSET (
+            flags
         ),
         AV_OPT_TYPE_FLAGS,
         {
-            .i64 = 0 }, 0, UINT_MAX, E, "flags"
+            .i64 = 0
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "single_file",
@@ -230,7 +343,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_SINGLE_FILE }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_SINGLE_FILE
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "temp_file",
@@ -238,7 +356,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_TEMP_FILE }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_TEMP_FILE
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "delete_segments",
@@ -246,7 +369,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_DELETE_SEGMENTS }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_DELETE_SEGMENTS
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "round_durations",
@@ -254,7 +382,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_ROUND_DURATIONS }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_ROUND_DURATIONS
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "discont_start",
@@ -262,7 +395,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_DISCONT_START }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_DISCONT_START
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "omit_endlist",
@@ -270,7 +408,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_OMIT_ENDLIST }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_OMIT_ENDLIST
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "split_by_time",
@@ -278,7 +421,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_SPLIT_BY_TIME }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_SPLIT_BY_TIME
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "append_list",
@@ -286,7 +434,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_APPEND_LIST }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_APPEND_LIST
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "program_date_time",
@@ -294,7 +447,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_PROGRAM_DATE_TIME }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_PROGRAM_DATE_TIME
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "second_level_segment_index",
@@ -302,7 +460,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_SECOND_LEVEL_SEGMENT_INDEX }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_SECOND_LEVEL_SEGMENT_INDEX
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "second_level_segment_duration",
@@ -310,7 +473,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_SECOND_LEVEL_SEGMENT_DURATION }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_SECOND_LEVEL_SEGMENT_DURATION
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "second_level_segment_size",
@@ -318,7 +486,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_SECOND_LEVEL_SEGMENT_SIZE }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_SECOND_LEVEL_SEGMENT_SIZE
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "periodic_rekey",
@@ -326,7 +499,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_PERIODIC_REKEY }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_PERIODIC_REKEY
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "independent_segments",
@@ -334,7 +512,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_INDEPENDENT_SEGMENTS }, 0, UINT_MAX, E, "flags"
+            .i64 = HLS_INDEPENDENT_SEGMENTS
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
     },
     {
         "iframes_only",
@@ -342,47 +525,87 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_I_FRAMES_ONLY }, 0, UINT_MAX, E, "flags"},
+            .i64 = HLS_I_FRAMES_ONLY
+        },
+        0,
+        UINT_MAX,
+        E,
+        "flags"
+    },
 #if FF_API_HLS_USE_LOCALTIME
     {
         "use_localtime",
         "set filename expansion with strftime at segment creation (will be deprecated )",
-        OFFSET (use_localtime
+        OFFSET (
+            use_localtime
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E },
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        E
+    },
 #endif
     {
         "strftime",
         "set filename expansion with strftime at segment creation",
-        OFFSET (use_localtime
+        OFFSET (
+            use_localtime
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E },
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        E
+    },
 #if FF_API_HLS_USE_LOCALTIME
     {
         "use_localtime_mkdir",
         "create last directory component in strftime-generated filename (will be deprecated)",
-        OFFSET (use_localtime_mkdir
+        OFFSET (
+            use_localtime_mkdir
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E },
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        E
+    },
 #endif
     {
         "strftime_mkdir",
         "create last directory component in strftime-generated filename",
-        OFFSET (use_localtime_mkdir
+        OFFSET (
+            use_localtime_mkdir
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        E
     },
     {
         "hls_playlist_type",
         "set the HLS playlist type",
-        OFFSET (pl_type
+        OFFSET (
+            pl_type
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = PLAYLIST_TYPE_NONE }, 0, PLAYLIST_TYPE_NB-1, E, "pl_type"
+        {
+            .i64 = PLAYLIST_TYPE_NONE
+        },
+        0,
+        PLAYLIST_TYPE_NB - 1,
+        E,
+        "pl_type"
     },
     {
         "event",
@@ -393,7 +616,8 @@ static const LibAVUtil.Option options[] = {
             .i64 = PLAYLIST_TYPE_EVENT },
         INT_MIN,
         INT_MAX,
-        E, "pl_type"
+        E,
+        "pl_type"
     },
     {
         "vod",
@@ -404,25 +628,37 @@ static const LibAVUtil.Option options[] = {
             .i64 = PLAYLIST_TYPE_VOD },
         INT_MIN,
         INT_MAX,
-        E, "pl_type"
+        E,
+        "pl_type"
     },
     {
         "method",
         "set the HTTP method (default: PUT)",
-        OFFSET (method
+        OFFSET (
+            method
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "hls_start_number_source",
         "set source of first number in sequence",
-        OFFSET (start_sequence_source_type
+        OFFSET (
+            start_sequence_source_type
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = HLS_START_SEQUENCE_AS_START_NUMBER }, 0, HLS_START_SEQUENCE_AS_FORMATTED_DATETIME, E, "start_sequence_source_type"
+        {
+            .i64 = HLS_START_SEQUENCE_AS_START_NUMBER
+        },
+        0,
+        HLS_START_SEQUENCE_AS_FORMATTED_DATETIME,
+        E,
+        "start_sequence_source_type"
     },
     {
         "generic",
@@ -433,7 +669,8 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_START_SEQUENCE_AS_START_NUMBER },
         INT_MIN,
         INT_MAX,
-        E, "start_sequence_source_type"
+        E,
+        "start_sequence_source_type"
     },
     {
         "epoch",
@@ -444,7 +681,8 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_START_SEQUENCE_AS_SECONDS_SINCE_EPOCH },
         INT_MIN,
         INT_MAX,
-        E, "start_sequence_source_type"
+        E,
+        "start_sequence_source_type"
     },
     {
         "datetime",
@@ -455,88 +693,134 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_START_SEQUENCE_AS_FORMATTED_DATETIME },
         INT_MIN,
         INT_MAX,
-        E, "start_sequence_source_type"
+        E,
+        "start_sequence_source_type"
     },
     {
         "http_user_agent",
         "override User-Agent field in HTTP header",
-        OFFSET (user_agent
+        OFFSET (
+            user_agent
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "var_stream_map",
         "Variant stream map string",
-        OFFSET (var_stream_map
+        OFFSET (
+            var_stream_map
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "cc_stream_map",
         "Closed captions stream map string",
-        OFFSET (cc_stream_map
+        OFFSET (
+            cc_stream_map
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "master_pl_name",
         "Create HLS master playlist with this name",
-        OFFSET (master_pl_name
+        OFFSET (
+            master_pl_name
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E},
+        0,
+        0,
+        E
+    },
     {
         "master_pl_publish_rate",
         "Publish master play list every after this many segment intervals",
-        OFFSET (master_publish_rate
+        OFFSET (
+            master_publish_rate
         ),
         AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
-        0, UINT_MAX, E},
+        0,
+        UINT_MAX,
+        E
+    },
     {
         "http_persistent",
         "Use persistent HTTP connections",
-        OFFSET (http_persistent
+        OFFSET (
+            http_persistent
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        E
     },
     {
         "timeout",
         "set timeout for socket I/O operations",
-        OFFSET (timeout), AV_OPT_TYPE_DURATION, { .i64 = -1 }, -1,
+        OFFSET (
+            timeout
+        ),
+        AV_OPT_TYPE_DURATION,
+        {
+            .i64 = -1
+        },
+        -1,
         INT_MAX,
         .flags = E
     },
     {
         "ignore_io_errors",
         "Ignore IO errors for stable long-duration runs with network output",
-        OFFSET (ignore_io_errors
+        OFFSET (
+            ignore_io_errors
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        E
     },
     {
         "headers",
         "set custom HTTP headers, can override built in default headers",
-        OFFSET (headers
+        OFFSET (
+            headers
         ),
         AV_OPT_TYPE_STRING,
-        { .str = NULL }, 0, 0, E
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        E
     },
     {
         NULL },

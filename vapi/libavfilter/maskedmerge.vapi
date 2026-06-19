@@ -26,7 +26,7 @@ public class MaskedMergeContext {
     public int nb_planes;
     public int planes;
     public int half, depth;
-    FFFrameSync fs;
+    public FFFrameSync fs;
 
     [CCode (cname="maskedmerge")]
     public void (*maskedmerge)(

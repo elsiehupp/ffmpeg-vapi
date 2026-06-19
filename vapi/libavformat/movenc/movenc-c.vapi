@@ -34,7 +34,8 @@ static const LibAVUtil.Option options[] = {
         ),
         AV_OPT_TYPE_FLAGS,
         {
-            .i64 = 0},
+            .i64 = 0
+        },
         INT_MIN,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -46,7 +47,8 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_RTP_HINT},
+            .i64 = FF_MOV_FLAG_RTP_HINT
+        },
         INT_MIN,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -61,7 +63,8 @@ static const LibAVUtil.Option options[] = {
         ),
         AV_OPT_TYPE_INT,
         {
-            .i64 = 0},
+            .i64 = 0
+        },
         0,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -72,7 +75,8 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_EMPTY_MOOV},
+            .i64 = FF_MOV_FLAG_EMPTY_MOOV
+        },
         INT_MIN,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -84,7 +88,8 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_FRAG_KEYFRAME},
+            .i64 = FF_MOV_FLAG_FRAG_KEYFRAME
+        },
         INT_MIN,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -96,7 +101,8 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_FRAG_EVERY_FRAME},
+            .i64 = FF_MOV_FLAG_FRAG_EVERY_FRAME
+        },
         INT_MIN,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -108,7 +114,8 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_SEPARATE_MOOF},
+            .i64 = FF_MOV_FLAG_SEPARATE_MOOF
+        },
         INT_MIN,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -120,7 +127,8 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_FRAG_CUSTOM},
+            .i64 = FF_MOV_FLAG_FRAG_CUSTOM
+        },
         INT_MIN,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -132,7 +140,8 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_ISML},
+            .i64 = FF_MOV_FLAG_ISML
+        },
         INT_MIN,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -144,7 +153,8 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_FASTSTART},
+            .i64 = FF_MOV_FLAG_FASTSTART
+        },
         INT_MIN,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM,
@@ -557,117 +567,431 @@ static const LibAVUtil.Option options[] = {
 
 static const AVCodecTag codec_3gp_tags[] = {
     {
-        LibAVCodec.CodecID.H263, MKTAG ('s','2','6','3') },
+        LibAVCodec.CodecID.H263,
+        MKTAG (,
+            's',
+            '2',
+            '6',
+            '3'
+        )
+    },
     {
-        LibAVCodec.CodecID.H264, MKTAG ('a','v','c','1') },
+        LibAVCodec.CodecID.H264,
+        MKTAG (,
+            'a',
+            'v',
+            'c',
+            '1'
+        )
+    },
     {
-        LibAVCodec.CodecID.MPEG4, MKTAG ('m','p','4','v') },
+        LibAVCodec.CodecID.MPEG4,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'v'
+        )
+    },
     {
-        LibAVCodec.CodecID.AAC, MKTAG ('m','p','4','a') },
+        LibAVCodec.CodecID.AAC,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
-        LibAVCodec.CodecID.AMR_NB, MKTAG ('s','a','m','r') },
+        LibAVCodec.CodecID.AMR_NB,
+        MKTAG (,
+            's',
+            'a',
+            'm',
+            'r'
+        )
+    },
     {
-        LibAVCodec.CodecID.AMR_WB, MKTAG ('s','a','w','b') },
+        LibAVCodec.CodecID.AMR_WB,
+        MKTAG (,
+            's',
+            'a',
+            'w',
+            'b'
+        )
+    },
     {
-        LibAVCodec.CodecID.MOV_TEXT, MKTAG ('t','x','3','g') },
+        LibAVCodec.CodecID.MOV_TEXT,
+        MKTAG (,
+            't',
+            'x',
+            '3',
+            'g'
+        )
+    },
     {
-        LibAVCodec.CodecID.NONE, 0 },
+        LibAVCodec.CodecID.NONE,
+        0
+    },
 }
 
 const AVCodecTag codec_mp4_tags[] = {
     {
-        LibAVCodec.CodecID.MPEG4, MKTAG ('m', 'p', '4', 'v') },
+        LibAVCodec.CodecID.MPEG4,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'v'
+        )
+    },
     {
-        LibAVCodec.CodecID.H264, MKTAG ('a', 'v', 'c', '1') },
+        LibAVCodec.CodecID.H264,
+        MKTAG (,
+            'a',
+            'v',
+            'c',
+            '1'
+        )
+    },
     {
-        LibAVCodec.CodecID.H264, MKTAG ('a', 'v', 'c', '3') },
+        LibAVCodec.CodecID.H264,
+        MKTAG (,
+            'a',
+            'v',
+            'c',
+            '3'
+        )
+    },
     {
-        LibAVCodec.CodecID.HEVC, MKTAG ('h', 'e', 'v', '1') },
+        LibAVCodec.CodecID.HEVC,
+        MKTAG (,
+            'h',
+            'e',
+            'v',
+            '1'
+        )
+    },
     {
-        LibAVCodec.CodecID.HEVC, MKTAG ('h', 'v', 'c', '1') },
+        LibAVCodec.CodecID.HEVC,
+        MKTAG (,
+            'h',
+            'v',
+            'c',
+            '1'
+        )
+    },
     {
-        LibAVCodec.CodecID.MPEG2VIDEO, MKTAG ('m', 'p', '4', 'v') },
+        LibAVCodec.CodecID.MPEG2VIDEO,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'v'
+        )
+    },
     {
-        LibAVCodec.CodecID.MPEG1VIDEO, MKTAG ('m', 'p', '4', 'v') },
+        LibAVCodec.CodecID.MPEG1VIDEO,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'v'
+        )
+    },
     {
-        LibAVCodec.CodecID.MJPEG, MKTAG ('m', 'p', '4', 'v') },
+        LibAVCodec.CodecID.MJPEG,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'v'
+        )
+    },
     {
-        LibAVCodec.CodecID.PNG, MKTAG ('m', 'p', '4', 'v') },
+        LibAVCodec.CodecID.PNG,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'v'
+        )
+    },
     {
-        LibAVCodec.CodecID.JPEG2000, MKTAG ('m', 'p', '4', 'v') },
+        LibAVCodec.CodecID.JPEG2000,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'v'
+        )
+    },
     {
-        LibAVCodec.CodecID.VC1, MKTAG ('v', 'c', '-', '1') },
+        LibAVCodec.CodecID.VC1,
+        MKTAG (,
+            'v',
+            'c',
+            '-',
+            '1'
+        )
+    },
     {
-        LibAVCodec.CodecID.DIRAC, MKTAG ('d', 'r', 'a', 'c') },
+        LibAVCodec.CodecID.DIRAC,
+        MKTAG (,
+            'd',
+            'r',
+            'a',
+            'c'
+        )
+    },
     {
-        LibAVCodec.CodecID.TSCC2, MKTAG ('m', 'p', '4', 'v') },
+        LibAVCodec.CodecID.TSCC2,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'v'
+        )
+    },
     {
-        LibAVCodec.CodecID.VP9, MKTAG ('v', 'p', '0', '9') },
+        LibAVCodec.CodecID.VP9,
+        MKTAG (,
+            'v',
+            'p',
+            '0',
+            '9'
+        )
+    },
     {
-        LibAVCodec.CodecID.AV1, MKTAG ('a', 'v', '0', '1') },
+        LibAVCodec.CodecID.AV1,
+        MKTAG (,
+            'a',
+            'v',
+            '0',
+            '1'
+        )
+    },
     {
-        LibAVCodec.CodecID.AAC, MKTAG ('m', 'p', '4', 'a') },
+        LibAVCodec.CodecID.AAC,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
-        LibAVCodec.CodecID.MP4ALS, MKTAG ('m', 'p', '4', 'a') },
+        LibAVCodec.CodecID.MP4ALS,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
-        LibAVCodec.CodecID.MP3, MKTAG ('m', 'p', '4', 'a') },
+        LibAVCodec.CodecID.MP3,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
-        LibAVCodec.CodecID.MP2, MKTAG ('m', 'p', '4', 'a') },
+        LibAVCodec.CodecID.MP2,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
-        LibAVCodec.CodecID.AC3, MKTAG ('a', 'c', '-', '3') },
+        LibAVCodec.CodecID.AC3,
+        MKTAG (,
+            'a',
+            'c',
+            '-',
+            '3'
+        )
+    },
     {
-        LibAVCodec.CodecID.EAC3, MKTAG ('e', 'c', '-', '3') },
+        LibAVCodec.CodecID.EAC3,
+        MKTAG (,
+            'e',
+            'c',
+            '-',
+            '3'
+        )
+    },
     {
-        LibAVCodec.CodecID.DTS, MKTAG ('m', 'p', '4', 'a') },
+        LibAVCodec.CodecID.DTS,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
-        LibAVCodec.CodecID.FLAC, MKTAG ('f', 'L', 'a', 'C') },
+        LibAVCodec.CodecID.FLAC,
+        MKTAG (,
+            'f',
+            'L',
+            'a',
+            'C'
+        )
+    },
     {
-        LibAVCodec.CodecID.OPUS, MKTAG ('O', 'p', 'u', 's') },
+        LibAVCodec.CodecID.OPUS,
+        MKTAG (
+            'O',
+            'p',
+            'u',
+            's'
+        )
+    },
     {
-        LibAVCodec.CodecID.VORBIS, MKTAG ('m', 'p', '4', 'a') },
+        LibAVCodec.CodecID.VORBIS,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
-        LibAVCodec.CodecID.QCELP, MKTAG ('m', 'p', '4', 'a') },
+        LibAVCodec.CodecID.QCELP,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
-        LibAVCodec.CodecID.EVRC, MKTAG ('m', 'p', '4', 'a') },
+        LibAVCodec.CodecID.EVRC,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
-        LibAVCodec.CodecID.DVD_SUBTITLE, MKTAG ('m', 'p', '4', 's') },
+        LibAVCodec.CodecID.DVD_SUBTITLE,
+        MKTAG (,
+            'm',
+            'p',
+            '4',
+            's'
+        )
+    },
     {
-        LibAVCodec.CodecID.MOV_TEXT, MKTAG ('t', 'x', '3', 'g') },
+        LibAVCodec.CodecID.MOV_TEXT,
+        MKTAG (,
+            't',
+            'x',
+            '3',
+            'g'
+        )
+    },
     {
-        LibAVCodec.CodecID.BIN_DATA, MKTAG ('g', 'p', 'm', 'd') },
+        LibAVCodec.CodecID.BIN_DATA,
+        MKTAG (,
+            'g',
+            'p',
+            'm',
+            'd'
+        )
+    },
     {
-        LibAVCodec.CodecID.NONE, 0 },
+        LibAVCodec.CodecID.NONE,
+        0
+    }
 }
 
 const AVCodecTag codec_ism_tags[] = {
     {
-        LibAVCodec.CodecID.WMAPRO, MKTAG ('w', 'm', 'a', ' ') },
+        LibAVCodec.CodecID.WMAPRO,
+        MKTAG (,
+            'w',
+            'm',
+            'a',
+            ' '
+        )
+    },
     {
-        LibAVCodec.CodecID.NONE, 0 },
+        LibAVCodec.CodecID.NONE,
+        0
+    },
 }
 
 static const AVCodecTag codec_ipod_tags[] = {
     {
         LibAVCodec.CodecID.H264,
-        MKTAG ('a','v','c','1') },
+        MKTAG (
+            'a',
+            'v',
+            'c',
+            '1'
+        )
+    },
     {
         LibAVCodec.CodecID.MPEG4,
-        MKTAG ('m','p','4','v') },
+        MKTAG (
+            'm',
+            'p',
+            '4',
+            'v'
+        )
+    },
     {
         LibAVCodec.CodecID.AAC,
-        MKTAG ('m','p','4','a') },
+        MKTAG (
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
         LibAVCodec.CodecID.ALAC,
-        MKTAG ('a','l','a','c') },
+        MKTAG (
+            'a',
+            'l',
+            'a',
+            'c'
+        )
+    },
     {
         LibAVCodec.CodecID.AC3,
-        MKTAG ('a','c','-','3') },
+        MKTAG (
+            'a',
+            'c',
+            '-',
+            '3'
+        )
+    },
     {
         LibAVCodec.CodecID.MOV_TEXT,
-        MKTAG ('t','x','3','g') },
+        MKTAG (
+            't',
+            'x',
+            '3',
+            'g'
+        )
+    },
     {
         LibAVCodec.CodecID.MOV_TEXT,
-        MKTAG ('t','e','x','t') },
+        MKTAG (
+            't',
+            'e',
+            'x',
+            't'
+        )
+    },
     {
         LibAVCodec.CodecID.NONE,
         0 },
@@ -676,19 +1000,49 @@ static const AVCodecTag codec_ipod_tags[] = {
 static const AVCodecTag codec_f4v_tags[] = {
     {
         LibAVCodec.CodecID.MP3,
-        MKTAG ('.','m','p','3') },
+        MKTAG (
+            '.',
+            'm',
+            'p',
+            '3'
+        )
+    },
     {
         LibAVCodec.CodecID.AAC,
-        MKTAG ('m','p','4','a') },
+        MKTAG (
+            'm',
+            'p',
+            '4',
+            'a'
+        )
+    },
     {
         LibAVCodec.CodecID.H264,
-        MKTAG ('a','v','c','1') },
+        MKTAG (
+            'a',
+            'v',
+            'c',
+            '1'
+        )
+    },
     {
         LibAVCodec.CodecID.VP6A,
-        MKTAG ('V','P','6','A') },
+        MKTAG (
+            'V',
+            'P',
+            '6',
+            'A'
+        )
+    },
     {
         LibAVCodec.CodecID.VP6F,
-        MKTAG ('V','P','6','F') },
+        MKTAG (
+            'V',
+            'P',
+            '6',
+            'F'
+        )
+    },
     {
         LibAVCodec.CodecID.NONE,
         0 },

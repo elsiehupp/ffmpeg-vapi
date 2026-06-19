@@ -33,62 +33,87 @@ static const LibAVUtil.Option options[] = {
     {
         "reference_stream",
         "set reference stream",
-        OFFSET (reference_stream_specifier
+        OFFSET (
+            reference_stream_specifier
         ),
         AV_OPT_TYPE_STRING,
-        {.str = "auto"}, CHAR_MIN, CHAR_MAX, E
+        {
+            .str = "auto"
+        },
+        CHAR_MIN,
+        CHAR_MAX,
+        E
     },
     {
         "segment_format",
         "set container format used for the segments",
-        OFFSET (format
+        OFFSET (
+            format
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E
+        0,
+        0,
+        E
     },
     {
         "segment_format_options",
         "set list of options for the container format used for the segments",
-        OFFSET (format_options_str
+        OFFSET (
+            format_options_str
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E
+        0,
+        0,
+        E
     },
     {
         "segment_list",
         "set the segment list filename",
-        OFFSET (list
+        OFFSET (
+            list
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E
+        0,
+        0,
+        E
     },
     {
         "segment_header_filename",
         "write a single file containing the header",
-        OFFSET (header_filename
+        OFFSET (
+            header_filename
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E },
+        0,
+        0,
+        E
+    },
 
     {
         "segment_list_flags","set flags affecting segment list generation",
-        OFFSET (list_flags
+        OFFSET (
+            list_flags
         ),
         AV_OPT_TYPE_FLAGS,
         {
-            .i64 = SEGMENT_LIST_FLAG_CACHE }, 0, UINT_MAX, E, "list_flags"
+            .i64 = SEGMENT_LIST_FLAG_CACHE
+        },
+        0,
+        UINT_MAX,
+        E,
+        "list_flags"
     },
     {
         "cache",
@@ -96,10 +121,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = SEGMENT_LIST_FLAG_CACHE },
+            .i64 = SEGMENT_LIST_FLAG_CACHE
+        },
         INT_MIN,
         INT_MAX,
-        E, "list_flags"
+        E,
+        "list_flags"
     },
     {
         "live",
@@ -107,15 +134,18 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = SEGMENT_LIST_FLAG_LIVE },
+            .i64 = SEGMENT_LIST_FLAG_LIVE
+        },
         INT_MIN,
         INT_MAX,
-        E, "list_flags"},
-
+        E,
+        "list_flags"
+    },
     {
         "segment_list_size",
         "set the maximum number of playlist entries",
-        OFFSET (list_size
+        OFFSET (
+            list_size
         ),
         AV_OPT_TYPE_INT,
         {
@@ -123,15 +153,22 @@ static const LibAVUtil.Option options[] = {
         },
         0,
         INT_MAX,
-        E },
-
+        E
+    },
     {
         "segment_list_type",
         "set the segment list type",
-        OFFSET (list_type
+        OFFSET (
+            list_type
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = LIST_TYPE_UNDEFINED}, -1, LIST_TYPE_NB-1, E, "list_type"
+        {
+            .i64 = LIST_TYPE_UNDEFINED
+        },
+        -1,
+        LIST_TYPE_NB - 1,
+        E,
+        "list_type"
     },
     {
         "flat",
@@ -139,10 +176,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = LIST_TYPE_FLAT },
+            .i64 = LIST_TYPE_FLAT
+        },
         INT_MIN,
         INT_MAX,
-        E, "list_type"
+        E,
+        "list_type"
     },
     {
         "csv",
@@ -150,10 +189,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = LIST_TYPE_CSV  },
+            .i64 = LIST_TYPE_CSV
+        },
         INT_MIN,
         INT_MAX,
-        E, "list_type"
+        E,
+        "list_type"
     },
     {
         "ext",
@@ -161,10 +202,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = LIST_TYPE_EXT  },
+            .i64 = LIST_TYPE_EXT
+        },
         INT_MIN,
         INT_MAX,
-        E, "list_type"
+        E,
+        "list_type"
     },
     {
         "ffconcat",
@@ -172,10 +215,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = LIST_TYPE_FFCONCAT },
+            .i64 = LIST_TYPE_FFCONCAT
+        },
         INT_MIN,
         INT_MAX,
-        E, "list_type"
+        E,
+        "list_type"
     },
     {
         "m3u8",
@@ -183,10 +228,12 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = LIST_TYPE_M3U8 },
+            .i64 = LIST_TYPE_M3U8
+        },
         INT_MIN,
         INT_MAX,
-        E, "list_type"
+        E,
+        "list_type"
     },
     {
         "hls",
@@ -194,52 +241,115 @@ static const LibAVUtil.Option options[] = {
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = LIST_TYPE_M3U8 },
+            .i64 = LIST_TYPE_M3U8
+        },
         INT_MIN,
         INT_MAX,
-        E, "list_type" },
-
+        E,
+        "list_type"
+    },
     {
         "segment_atclocktime",
         "set segment to be cut at clocktime",
-        OFFSET (use_clocktime
+        OFFSET (
+            use_clocktime
         ),
         AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, E},
+        0,
+        1,
+        E
+    },
     {
         "segment_clocktime_offset",
         "set segment clocktime offset",
-        OFFSET (clocktime_offset), AV_OPT_TYPE_DURATION, { .i64 = 0}, 0, 86400000000LL, E},
+        OFFSET (
+            clocktime_offset
+        ),
+        AV_OPT_TYPE_DURATION,
+        {
+            .i64 = 0
+        },
+        0,
+        86400000000LL,
+        E
+    },
     {
         "segment_clocktime_wrap_duration",
         "set segment clocktime wrapping duration",
-        OFFSET (clocktime_wrap_duration), AV_OPT_TYPE_DURATION, { .i64 = INT64_MAX}, 0, INT64_MAX, E},
+        OFFSET (
+            clocktime_wrap_duration
+        ),
+        AV_OPT_TYPE_DURATION,
+        {
+            .i64 = INT64_MAX
+        },
+        0,
+        INT64_MAX,
+        E
+    },
     {
         "segment_time",
         "set segment duration",
-        OFFSET (time_str),AV_OPT_TYPE_STRING, {.str = NULL}, 0, 0, E
+        OFFSET (
+            time_str
+        ),
+        AV_OPT_TYPE_STRING,
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        E
     },
     {
         "segment_time_delta","set approximation value used for the segment times",
-        OFFSET (time_delta), AV_OPT_TYPE_DURATION, { .i64 = 0}, 0, INT64_MAX, E
+        OFFSET (
+            time_delta
+        ),
+        AV_OPT_TYPE_DURATION,
+        {
+            .i64 = 0
+        },
+        0,
+        INT64_MAX,
+        E
     },
     {
         "segment_times",
         "set segment split time points",
-        OFFSET (times_str),AV_OPT_TYPE_STRING,{.str = NULL}, 0, 0, E
+        OFFSET (
+            times_str
+        ),
+        AV_OPT_TYPE_STRING,
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        E
     },
     {
         "segment_frames",
         "set segment split frame numbers",
-        OFFSET (frames_str),AV_OPT_TYPE_STRING,{.str = NULL}, 0, 0, E
+        OFFSET (
+            frames_str
+        ),
+        AV_OPT_TYPE_STRING,
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        E
     },
     {
         "segment_wrap",
         "set number after which the index wraps",
-        OFFSET (segment_idx_wrap
+        OFFSET (
+            segment_idx_wrap
         ),
         AV_OPT_TYPE_INT,
         {
@@ -252,18 +362,22 @@ static const LibAVUtil.Option options[] = {
     {
         "segment_list_entry_prefix",
         "set base url prefix for segments",
-        OFFSET (entry_prefix
+        OFFSET (
+            entry_prefix
         ),
         AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, E
+        0,
+        0,
+        E
     },
     {
         "segment_start_number",
         "set the sequence number of the first segment",
-        OFFSET (segment_idx
+        OFFSET (
+            segment_idx
         ),
         AV_OPT_TYPE_INT,
         {
@@ -276,7 +390,8 @@ static const LibAVUtil.Option options[] = {
     {
         "segment_wrap_number",
         "set the number of wrap before the first segment",
-        OFFSET (segment_idx_wrap_nb
+        OFFSET (
+            segment_idx_wrap_nb
         ),
         AV_OPT_TYPE_INT,
         {
@@ -289,75 +404,119 @@ static const LibAVUtil.Option options[] = {
     {
         "strftime",
         "set filename expansion with strftime at segment creation",
-        OFFSET (use_strftime
+        OFFSET (
+            use_strftime
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        E
     },
     {
         "increment_tc",
         "increment timecode between each segment",
-        OFFSET (increment_tc
+        OFFSET (
+            increment_tc
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        E
     },
     {
         "break_non_keyframes",
         "allow breaking segments on non-keyframes",
-        OFFSET (break_non_keyframes
+        OFFSET (
+            break_non_keyframes
         ),
         AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, E },
-
+        0,
+        1,
+        E
+    },
     {
         "individual_header_trailer",
         "write header/trailer to each segment",
-        OFFSET (individual_header_trailer
+        OFFSET (
+            individual_header_trailer
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, 0, 1, E
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        E
     },
     {
         "write_header_trailer",
         "write a header to the first segment and a trailer to the last one",
-        OFFSET (write_header_trailer
+        OFFSET (
+            write_header_trailer
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, 0, 1, E
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        E
     },
     {
         "reset_timestamps",
         "reset timestamps at the beginning of each segment",
-        OFFSET (reset_timestamps
+        OFFSET (
+            reset_timestamps
         ),
         AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, E
+        0,
+        1,
+        E
     },
     {
         "initial_offset",
         "set initial timestamp offset",
-        OFFSET (initial_offset), AV_OPT_TYPE_DURATION, { .i64 = 0}, -INT64_MAX, INT64_MAX, E
+        OFFSET (
+            initial_offset
+        ),
+        AV_OPT_TYPE_DURATION,
+        {
+            .i64 = 0
+        },
+        -INT64_MAX,
+        INT64_MAX,
+        E
     },
     {
         "write_empty_segments",
         "allow writing empty 'filler' segments",
-        OFFSET (write_empty
+        OFFSET (
+            write_empty
         ),
         AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, E
+        0,
+        1,
+        E
     },
     {
-        NULL },
+        NULL
+    }
+
 }
 
 #if CONFIG_SEGMENT_MUXER

@@ -27,7 +27,8 @@ static const LibAVUtil.Option options[] = {
         "mpegts_transport_stream_id",
         "Set transport_stream_id field.",
         offsetof (
-            MpegTSWrite, transport_stream_id), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            transport_stream_id), AV_OPT_TYPE_INT,
         {
             .i64 = 0x0001 }, 0x0001, 0xffff, AV_OPT_FLAG_ENCODING_PARAM
     },
@@ -35,7 +36,8 @@ static const LibAVUtil.Option options[] = {
         "mpegts_original_network_id",
         "Set original_network_id field.",
         offsetof (
-            MpegTSWrite, original_network_id), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            original_network_id), AV_OPT_TYPE_INT,
         {
             .i64 = DVB_PRIVATE_NETWORK_START }, 0x0001, 0xffff, AV_OPT_FLAG_ENCODING_PARAM
     },
@@ -43,7 +45,8 @@ static const LibAVUtil.Option options[] = {
         "mpegts_service_id",
         "Set service_id field.",
         offsetof (
-            MpegTSWrite, service_id), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            service_id), AV_OPT_TYPE_INT,
         {
             .i64 = 0x0001 }, 0x0001, 0xffff, AV_OPT_FLAG_ENCODING_PARAM
     },
@@ -51,7 +54,8 @@ static const LibAVUtil.Option options[] = {
         "mpegts_service_type",
         "Set service_type field.",
         offsetof (
-            MpegTSWrite, service_type), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            service_type), AV_OPT_TYPE_INT,
         {
             .i64 = 0x01 }, 0x01, 0xff, AV_OPT_FLAG_ENCODING_PARAM, "mpegts_service_type"
     },
@@ -139,7 +143,8 @@ static const LibAVUtil.Option options[] = {
         "mpegts_pmt_start_pid",
         "Set the first pid of the PMT.",
         offsetof (
-            MpegTSWrite, pmt_start_pid), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            pmt_start_pid), AV_OPT_TYPE_INT,
         {
             .i64 = 0x1000 }, 0x0010, 0x1f00, AV_OPT_FLAG_ENCODING_PARAM
     },
@@ -147,7 +152,8 @@ static const LibAVUtil.Option options[] = {
         "mpegts_start_pid",
         "Set the first pid.",
         offsetof (
-            MpegTSWrite, start_pid), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            start_pid), AV_OPT_TYPE_INT,
         {
             .i64 = 0x0100 }, 0x0010, 0x0f00, AV_OPT_FLAG_ENCODING_PARAM
     },
@@ -155,14 +161,16 @@ static const LibAVUtil.Option options[] = {
         "mpegts_m2ts_mode",
         "Enable m2ts mode.",
         offsetof (
-            MpegTSWrite, m2ts_mode), AV_OPT_TYPE_BOOL,
+            MpegTSWrite,
+            m2ts_mode), AV_OPT_TYPE_BOOL,
         {
             .i64 = -1 }, -1, 1, AV_OPT_FLAG_ENCODING_PARAM
     },
     {
         "muxrate", NULL,
         offsetof (
-            MpegTSWrite, mux_rate), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            mux_rate), AV_OPT_TYPE_INT,
         {
             .i64 = 1 }, 0,
         INT_MAX,
@@ -172,7 +180,8 @@ static const LibAVUtil.Option options[] = {
         "pes_payload_size",
         "Minimum PES packet payload in bytes",
         offsetof (
-            MpegTSWrite, pes_payload_size), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            pes_payload_size), AV_OPT_TYPE_INT,
         {
             .i64 = DEFAULT_PES_PAYLOAD_SIZE }, 0,
         INT_MAX,
@@ -182,7 +191,8 @@ static const LibAVUtil.Option options[] = {
         "mpegts_flags",
         "MPEG-TS muxing flags",
         offsetof (
-            MpegTSWrite, flags
+            MpegTSWrite,
+            flags
         ),
         AV_OPT_TYPE_FLAGS,
         {
@@ -244,7 +254,8 @@ static const LibAVUtil.Option options[] = {
         "resend_headers",
         "Reemit PAT/PMT before writing the next packet",
         offsetof (
-            MpegTSWrite, reemit_pat_pmt), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            reemit_pat_pmt), AV_OPT_TYPE_INT,
         {
             .i64 = 0 }, 0,
         INT_MAX,
@@ -254,7 +265,8 @@ static const LibAVUtil.Option options[] = {
         "mpegts_copyts",
         "don't offset dts/pts",
         offsetof (
-            MpegTSWrite, copyts), AV_OPT_TYPE_BOOL,
+            MpegTSWrite,
+            copyts), AV_OPT_TYPE_BOOL,
         {
             .i64 = -1 }, -1, 1, AV_OPT_FLAG_ENCODING_PARAM
     },
@@ -262,7 +274,8 @@ static const LibAVUtil.Option options[] = {
         "tables_version",
         "set PAT, PMT and SDT version",
         offsetof (
-            MpegTSWrite, tables_version), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            tables_version), AV_OPT_TYPE_INT,
         {
             .i64 = 0 }, 0, 31, AV_OPT_FLAG_ENCODING_PARAM
     },
@@ -270,7 +283,8 @@ static const LibAVUtil.Option options[] = {
         "omit_video_pes_length",
         "Omit the PES packet length for video packets",
         offsetof (
-            MpegTSWrite, omit_video_pes_length), AV_OPT_TYPE_BOOL,
+            MpegTSWrite,
+            omit_video_pes_length), AV_OPT_TYPE_BOOL,
         {
             .i64 = 1 }, 0, 1, AV_OPT_FLAG_ENCODING_PARAM
     },
@@ -278,7 +292,8 @@ static const LibAVUtil.Option options[] = {
         "pcr_period",
         "PCR retransmission time in milliseconds",
         offsetof (
-            MpegTSWrite, pcr_period), AV_OPT_TYPE_INT,
+            MpegTSWrite,
+            pcr_period), AV_OPT_TYPE_INT,
         {
             .i64 = PCR_RETRANS_TIME }, 0,
         INT_MAX,
@@ -288,7 +303,8 @@ static const LibAVUtil.Option options[] = {
         "pat_period",
         "PAT/PMT retransmission time limit in seconds",
         offsetof (
-            MpegTSWrite, pat_period), AV_OPT_TYPE_DOUBLE,
+            MpegTSWrite,
+            pat_period), AV_OPT_TYPE_DOUBLE,
         { .dbl = INT_MAX }, 0,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM
@@ -297,7 +313,8 @@ static const LibAVUtil.Option options[] = {
         "sdt_period",
         "SDT retransmission time limit in seconds",
         offsetof (
-            MpegTSWrite, sdt_period), AV_OPT_TYPE_DOUBLE,
+            MpegTSWrite,
+            sdt_period), AV_OPT_TYPE_DOUBLE,
         { .dbl = INT_MAX }, 0,
         INT_MAX,
         AV_OPT_FLAG_ENCODING_PARAM

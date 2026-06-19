@@ -35,13 +35,17 @@ public const LibAVUtil.Option avformat_options[];
     {
         "avioflags",
         NULL,
-        OFFSET (avio_flags
+        OFFSET (
+            avio_flags
         ),
         AV_OPT_TYPE_FLAGS,
         {
-            .i64 = DEFAULT },
+            .i64 = DEFAULT
+        },
         INT_MIN,
-        int.MAX, D|E, "avioflags"
+        int.MAX,
+        D|E,
+        "avioflags"
     },
     {
         "direct",
@@ -49,36 +53,69 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVIO_FLAG_DIRECT },
+            .i64 = AVIO_FLAG_DIRECT
+        },
         INT_MIN,
-        int.MAX, D|E, "avioflags"
+        int.MAX,
+        D|E,
+        "avioflags"
     },
     {
         "probesize",
         "set probing size",
-        OFFSET (probesize), AV_OPT_TYPE_INT64, { .i64 = 5000000 }, 32, INT64_MAX, D},
+        OFFSET (
+            probesize
+        ),
+        AV_OPT_TYPE_INT64,
+        {
+            .i64 = 5000000
+        },
+        32,
+        INT64_MAX,
+        D
+    },
     {
         "formatprobesize",
         "number of bytes to probe file format",
-        OFFSET (format_probesize
+        OFFSET (
+            format_probesize
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = PROBE_BUF_MAX}, 0, int.MAX-1, D},
+        {
+            .i64 = PROBE_BUF_MAX
+        },
+        0,
+        int.MAX - 1,
+        D
+    },
     {
         "packetsize",
         "set packet size",
-        OFFSET (packet_size
+        OFFSET (
+            packet_size
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = DEFAULT }, 0, int.MAX, E},
+        {
+            .i64 = DEFAULT
+        },
+        0,
+        int.MAX,
+        E
+    },
     {
-        "fflags", NULL, OFFSET (flags
+        "fflags",
+        NULL,
+        OFFSET (
+            flags
         ),
         AV_OPT_TYPE_FLAGS,
         {
-            .i64 = AVFMT_FLAG_AUTO_BSF },
+            .i64 = AVFMT_FLAG_AUTO_BSF
+        },
         INT_MIN,
-        int.MAX, D|E, "fflags"
+        int.MAX,
+        D|E,
+        "fflags"
     },
     {
         "flush_packets",
@@ -86,9 +123,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_FLUSH_PACKETS },
+            .i64 = AVFMT_FLAG_FLUSH_PACKETS
+        },
         INT_MIN,
-        int.MAX, E, "fflags"
+        int.MAX,
+        E,
+        "fflags"
     },
     {
         "ignidx",
@@ -96,9 +136,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_IGNIDX },
+            .i64 = AVFMT_FLAG_IGNIDX
+        },
         INT_MIN,
-        int.MAX, D, "fflags"
+        int.MAX,
+        D,
+        "fflags"
     },
     {
         "genpts",
@@ -106,9 +149,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_GENPTS },
+            .i64 = AVFMT_FLAG_GENPTS
+        },
         INT_MIN,
-        int.MAX, D, "fflags"
+        int.MAX,
+        D,
+        "fflags"
     },
     {
         "nofillin",
@@ -116,9 +162,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_NOFILLIN },
+            .i64 = AVFMT_FLAG_NOFILLIN
+        },
         INT_MIN,
-        int.MAX, D, "fflags"
+        int.MAX,
+        D,
+        "fflags"
     },
     {
         "noparse",
@@ -126,9 +175,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_NOPARSE },
+            .i64 = AVFMT_FLAG_NOPARSE
+        },
         INT_MIN,
-        int.MAX, D, "fflags"
+        int.MAX,
+        D,
+        "fflags"
     },
     {
         "igndts",
@@ -136,9 +188,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_IGNDTS },
+            .i64 = AVFMT_FLAG_IGNDTS
+        },
         INT_MIN,
-        int.MAX, D, "fflags"
+        int.MAX,
+        D,
+        "fflags"
     },
     {
         "discardcorrupt",
@@ -146,9 +201,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_DISCARD_CORRUPT },
+            .i64 = AVFMT_FLAG_DISCARD_CORRUPT
+        },
         INT_MIN,
-        int.MAX, D, "fflags"
+        int.MAX,
+        D,
+        "fflags"
     },
     {
         "sortdts",
@@ -156,9 +214,13 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_SORT_DTS },
+            .i64 = AVFMT_FLAG_SORT_DTS
+        },
         INT_MIN,
-        int.MAX, D, "fflags"},
+        int.MAX,
+        D,
+        "fflags"
+    },
 #if FF_API_LAVF_KEEPSIDE_FLAG
     {
         "keepside",
@@ -166,9 +228,13 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_KEEP_SIDE_DATA },
+            .i64 = AVFMT_FLAG_KEEP_SIDE_DATA
+        },
         INT_MIN,
-        int.MAX, D, "fflags"},
+        int.MAX,
+        D,
+        "fflags"
+    },
 #endif
     {
         "fastseek",
@@ -176,9 +242,13 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_FAST_SEEK },
+            .i64 = AVFMT_FLAG_FAST_SEEK
+        },
         INT_MIN,
-        int.MAX, D, "fflags"},
+        int.MAX,
+        D,
+        "fflags"
+    },
 #if FF_API_LAVF_MP4A_LATM
     {
         "latm",
@@ -186,9 +256,13 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_MP4A_LATM },
+            .i64 = AVFMT_FLAG_MP4A_LATM
+        },
         INT_MIN,
-        int.MAX, E, "fflags"},
+        int.MAX,
+        E,
+        "fflags"
+    },
 #endif
     {
         "nobuffer",
@@ -196,7 +270,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_NOBUFFER }, 0, int.MAX, D, "fflags"
+            .i64 = AVFMT_FLAG_NOBUFFER
+        },
+        0,
+        int.MAX,
+        D,
+        "fflags"
     },
     {
         "bitexact",
@@ -204,7 +283,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_BITEXACT }, 0, 0, E, "fflags"
+            .i64 = AVFMT_FLAG_BITEXACT
+        },
+        0,
+        0,
+        E,
+        "fflags"
     },
     {
         "shortest",
@@ -212,7 +296,12 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_SHORTEST }, 0, 0, E, "fflags"
+            .i64 = AVFMT_FLAG_SHORTEST
+        },
+        0,
+        0,
+        E,
+        "fflags"
     },
     {
         "autobsf",
@@ -220,103 +309,195 @@ public const LibAVUtil.Option avformat_options[];
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_FLAG_AUTO_BSF }, 0, 0, E, "fflags"
+            .i64 = AVFMT_FLAG_AUTO_BSF
+        },
+        0,
+        0,
+        E,
+        "fflags"
     },
     {
         "seek2any",
         "allow seeking to non-keyframes on demuxer level when supported",
-        OFFSET (seek2any
+        OFFSET (
+            seek2any
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, D},
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        D
+    },
     {
         "analyzeduration",
         "specify how many microseconds are analyzed to probe the input",
-        OFFSET (max_analyze_duration), AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT64_MAX, D},
+        OFFSET (
+            max_analyze_duration
+        ),
+        AV_OPT_TYPE_INT64,
+        {
+            .i64 = 0
+        },
+        0,
+        INT64_MAX,
+        D
+    },
     {
         "cryptokey",
         "decryption key",
-        OFFSET (key), AV_OPT_TYPE_BINARY, {.dbl = 0}, 0, 0, D},
+        OFFSET (
+            key
+        ),
+        AV_OPT_TYPE_BINARY,
+        {
+            .dbl = 0
+        },
+        0,
+        0,
+        D
+    },
     {
         "indexmem",
         "max memory used for timestamp index (per stream)",
-        OFFSET (max_index_size
+        OFFSET (
+            max_index_size
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = 1<<20 }, 0, int.MAX, D},
+        {
+            .i64 = 1<<20
+        },
+        0,
+        int.MAX,
+        D
+    },
     {
         "rtbufsize",
         "max memory used for buffering real-time frames",
-        OFFSET (max_picture_buffer
+        OFFSET (
+            max_picture_buffer
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = 3041280 }, 0, int.MAX, D}, /* defaults to 1s of 15fps 352x288 YUYV422 video */
+        {
+            .i64 = 3041280
+        },
+        0,
+        int.MAX,
+        D
+    }, /* defaults to 1s of 15fps 352x288 YUYV422 video */
     {
         "fdebug",
         "print specific debug info",
-        OFFSET (debug
+        OFFSET (
+            debug
         ),
         AV_OPT_TYPE_FLAGS,
         {
-            .i64 = DEFAULT }, 0, int.MAX, E|D, "fdebug"
+            .i64 = DEFAULT
+        },
+        0,
+        int.MAX,
+        E|D,
+        "fdebug"
     },
     {
-        "ts", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = FF_FDEBUG_TS },
+        "ts",
+        NULL,
+        0,
+        AV_OPT_TYPE_CONST,
+        {
+            .i64 = FF_FDEBUG_TS
+        },
         INT_MIN,
-        int.MAX, E|D, "fdebug"
+        int.MAX,
+        E|D,
+        "fdebug"
     },
     {
         "max_delay",
         "maximum muxing or demuxing delay in microseconds",
-        OFFSET (max_delay
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1, int.MAX, E|D},
-    {
-        "start_time_realtime",
-        "wall-clock time when stream begins (PTS==0)",
-        OFFSET (start_time_realtime), AV_OPT_TYPE_INT64, { .i64 = AV_NOPTS_VALUE}, INT64_MIN, INT64_MAX, E},
-    {
-        "fpsprobesize",
-        "number of frames used to probe fps",
-        OFFSET (fps_probe_size
+        OFFSET (
+            max_delay
         ),
         AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
-        int.MAX-1, D},
+        int.MAX,
+        E|D
+    },
+    {
+        "start_time_realtime",
+        "wall-clock time when stream begins (PTS==0)",
+        OFFSET (
+            start_time_realtime
+        ),
+        AV_OPT_TYPE_INT64,
+        {
+            .i64 = AV_NOPTS_VALUE
+        },
+        INT64_MIN,
+        INT64_MAX,
+        E
+    },
+    {
+        "fpsprobesize",
+        "number of frames used to probe fps",
+        OFFSET (
+            fps_probe_size
+        ),
+        AV_OPT_TYPE_INT,
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX - 1,
+        D
+    },
     {
         "audio_preload",
         "microseconds by which audio packets should be interleaved earlier",
-        OFFSET (audio_preload
+        OFFSET (
+            audio_preload
         ),
         AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
-        0, int.MAX-1, E},
+        0,
+        int.MAX - 1,
+        E
+    },
     {
         "chunk_duration",
         "microseconds for each chunk",
-        OFFSET (max_chunk_duration
+        OFFSET (
+            max_chunk_duration
         ),
         AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
-        0, int.MAX-1, E},
+        0,
+        int.MAX - 1,
+        E
+    },
     {
         "chunk_size",
         "size in bytes for each chunk",
-        OFFSET (max_chunk_size
+        OFFSET (
+            max_chunk_size
         ),
         AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
-        0, int.MAX-1, E},
+        0,
+        int.MAX - 1,
+        E
+    },
 /***********************************************************
 this is a crutch for avconv, since it cannot deal with identically named options in different contexts.
 to be removed when avconv is fixed
@@ -324,24 +505,32 @@ to be removed when avconv is fixed
     {
         "f_err_detect",
         "set error detection flags (deprecated; use err_detect, save via avconv)",
-        OFFSET (error_recognition
+        OFFSET (
+            error_recognition
         ),
         AV_OPT_TYPE_FLAGS,
         {
-            .i64 = AV_EF_CRCCHECK },
+            .i64 = AV_EF_CRCCHECK
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "err_detect",
         "set error detection flags",
-        OFFSET (error_recognition
+        OFFSET (
+            error_recognition
         ),
         AV_OPT_TYPE_FLAGS,
         {
-            .i64 = AV_EF_CRCCHECK },
+            .i64 = AV_EF_CRCCHECK
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "crccheck",
@@ -349,9 +538,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_EF_CRCCHECK },
+            .i64 = AV_EF_CRCCHECK
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "bitstream",
@@ -359,9 +551,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_EF_BITSTREAM },
+            .i64 = AV_EF_BITSTREAM
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "buffer",
@@ -369,9 +564,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_EF_BUFFER },
+            .i64 = AV_EF_BUFFER
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "explode",
@@ -379,9 +577,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_EF_EXPLODE },
+            .i64 = AV_EF_EXPLODE
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "ignore_err",
@@ -389,9 +590,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_EF_IGNORE_ERR },
+            .i64 = AV_EF_IGNORE_ERR
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "careful",
@@ -399,9 +603,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_EF_CAREFUL },
+            .i64 = AV_EF_CAREFUL
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "compliant",
@@ -409,9 +616,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_EF_COMPLIANT },
+            .i64 = AV_EF_COMPLIANT
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "aggressive",
@@ -419,81 +629,140 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_EF_AGGRESSIVE },
+            .i64 = AV_EF_AGGRESSIVE
+        },
         INT_MIN,
-        int.MAX, D, "err_detect"
+        int.MAX,
+        D,
+        "err_detect"
     },
     {
         "use_wallclock_as_timestamps",
         "use wallclock as timestamps",
-        OFFSET (use_wallclock_as_timestamps
+        OFFSET (
+            use_wallclock_as_timestamps
         ),
         AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, D},
+        0,
+        1,
+        D
+    },
     {
         "skip_initial_bytes",
         "set number of bytes to skip before reading header and frames",
-        OFFSET (skip_initial_bytes), AV_OPT_TYPE_INT64, { .i64 = 0}, 0, INT64_MAX-1, D},
+        OFFSET (
+            skip_initial_bytes
+        ),
+        AV_OPT_TYPE_INT64,
+        {
+            .i64 = 0
+        },
+        0,
+        INT64_MAX - 1,
+        D
+    },
     {
         "correct_ts_overflow",
         "correct single timestamp overflows",
-        OFFSET (correct_ts_overflow
+        OFFSET (
+            correct_ts_overflow
         ),
         AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, 0, 1, D},
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        D
+    },
     {
         "flush_packets",
         "enable flushing of the I/O context after each packet",
-        OFFSET (flush_packets
+        OFFSET (
+            flush_packets
         ),
         AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
-        1, E},
+        1,
+        E
+    },
     {
         "metadata_header_padding",
         "set number of bytes to be written as padding in a metadata header",
-        OFFSET (metadata_header_padding
+        OFFSET (
+            metadata_header_padding
         ),
         AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
-        int.MAX, E},
+        int.MAX,
+        E
+    },
     {
         "output_ts_offset",
         "set output timestamp offset",
-        OFFSET (output_ts_offset), AV_OPT_TYPE_DURATION, { .i64 = 0}, -INT64_MAX, INT64_MAX, E},
+        OFFSET (
+            output_ts_offset
+        ),
+        AV_OPT_TYPE_DURATION,
+        {
+            .i64 = 0
+        },
+        -INT64_MAX,
+        INT64_MAX,
+        E
+    },
     {
         "max_interleave_delta",
         "maximum buffering duration for interleaving",
-        OFFSET (max_interleave_delta), AV_OPT_TYPE_INT64, { .i64 = 10000000 }, 0, INT64_MAX, E
+        OFFSET (
+            max_interleave_delta
+        ),
+        AV_OPT_TYPE_INT64,
+        {
+            .i64 = 10000000
+        },
+        0,
+        INT64_MAX,
+        E
     },
     {
         "f_strict",
         "how strictly to follow the standards (deprecated; use strict, save via avconv)",
-        OFFSET (strict_std_compliance
+        OFFSET (
+            strict_std_compliance
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = DEFAULT },
+        {
+            .i64 = DEFAULT
+        },
         INT_MIN,
-        int.MAX, D|E, "strict"
+        int.MAX,
+        D|E,
+        "strict"
     },
     {
         "strict",
         "how strictly to follow the standards",
-        OFFSET (strict_std_compliance
+        OFFSET (
+            strict_std_compliance
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = DEFAULT },
+        {
+            .i64 = DEFAULT
+        },
         INT_MIN,
-        int.MAX, D|E, "strict"
+        int.MAX,
+        D|E,
+        "strict"
     },
     {
         "very",
@@ -501,9 +770,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_COMPLIANCE_VERY_STRICT },
+            .i64 = FF_COMPLIANCE_VERY_STRICT
+        },
         INT_MIN,
-        int.MAX, D|E, "strict"
+        int.MAX,
+        D|E,
+        "strict"
     },
     {
         "strict",
@@ -511,14 +783,25 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_COMPLIANCE_STRICT },
+            .i64 = FF_COMPLIANCE_STRICT
+        },
         INT_MIN,
-        int.MAX, D|E, "strict"
+        int.MAX,
+        D|E,
+        "strict"
     },
     {
-        "normal", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = FF_COMPLIANCE_NORMAL },
+        "normal",
+        NULL,
+        0,
+        AV_OPT_TYPE_CONST,
+        {
+            .i64 = FF_COMPLIANCE_NORMAL
+        },
         INT_MIN,
-        int.MAX, D|E, "strict"
+        int.MAX,
+        D|E,
+        "strict"
     },
     {
         "unofficial",
@@ -526,9 +809,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_COMPLIANCE_UNOFFICIAL },
+            .i64 = FF_COMPLIANCE_UNOFFICIAL
+        },
         INT_MIN,
-        int.MAX, D|E, "strict"
+        int.MAX,
+        D|E,
+        "strict"
     },
     {
         "experimental",
@@ -536,29 +822,41 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_COMPLIANCE_EXPERIMENTAL },
+            .i64 = FF_COMPLIANCE_EXPERIMENTAL
+        },
         INT_MIN,
-        int.MAX, D|E, "strict"
+        int.MAX,
+        D|E,
+        "strict"
     },
     {
         "max_ts_probe",
         "maximum number of packets to read while waiting for the first timestamp",
-        OFFSET (max_ts_probe
+        OFFSET (
+            max_ts_probe
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = 50 }, 0, int.MAX, D
+        {
+            .i64 = 50
+        },
+        0,
+        int.MAX,
+        D
     },
     {
         "avoid_negative_ts",
         "shift timestamps so they start at 0",
-        OFFSET (avoid_negative_ts
+        OFFSET (
+            avoid_negative_ts
         ),
         AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
-        2, E, "avoid_negative_ts"
+        2,
+        E,
+        "avoid_negative_ts"
     },
     {
         "auto",
@@ -566,9 +864,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_AVOID_NEG_TS_AUTO },
+            .i64 = AVFMT_AVOID_NEG_TS_AUTO
+        },
         INT_MIN,
-        int.MAX, E, "avoid_negative_ts"
+        int.MAX,
+        E,
+        "avoid_negative_ts"
     },
     {
         "disabled",
@@ -576,9 +877,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = 0 },
+            .i64 = 0
+        },
         INT_MIN,
-        int.MAX, E, "avoid_negative_ts"
+        int.MAX,
+        E,
+        "avoid_negative_ts"
     },
     {
         "make_non_negative",
@@ -586,9 +890,12 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_AVOID_NEG_TS_MAKE_NON_NEGATIVE },
+            .i64 = AVFMT_AVOID_NEG_TS_MAKE_NON_NEGATIVE
+        },
         INT_MIN,
-        int.MAX, E, "avoid_negative_ts"
+        int.MAX,
+        E,
+        "avoid_negative_ts"
     },
     {
         "make_zero",
@@ -596,69 +903,115 @@ to be removed when avconv is fixed
         0,
         AV_OPT_TYPE_CONST,
         {
-            .i64 = AVFMT_AVOID_NEG_TS_MAKE_ZERO },
+            .i64 = AVFMT_AVOID_NEG_TS_MAKE_ZERO
+        },
         INT_MIN,
-        int.MAX, E, "avoid_negative_ts"
+        int.MAX,
+        E,
+        "avoid_negative_ts"
     },
     {
         "dump_separator",
         "set information dump field separator",
-        OFFSET (dump_separator
+        OFFSET (
+            dump_separator
         ),
         AV_OPT_TYPE_STRING,
-        {.str = ",
-        "}, CHAR_MIN, CHAR_MAX, D|E},
+        {
+            .str = ", "
+        },
+        CHAR_MIN,
+        CHAR_MAX,
+        D|E
+    },
     {
         "codec_whitelist",
         "List of decoders that are allowed to be used",
-        OFFSET (codec_whitelist
+        OFFSET (
+            codec_whitelist
         ),
         AV_OPT_TYPE_STRING,
-        { .str = NULL }, CHAR_MIN, CHAR_MAX, D
+        {
+            .str = NULL
+        },
+        CHAR_MIN,
+        CHAR_MAX,
+        D
     },
     {
         "format_whitelist",
         "List of demuxers that are allowed to be used",
-        OFFSET (format_whitelist
+        OFFSET (
+            format_whitelist
         ),
         AV_OPT_TYPE_STRING,
-        { .str = NULL }, CHAR_MIN, CHAR_MAX, D
+        {
+            .str = NULL
+        },
+        CHAR_MIN,
+        CHAR_MAX,
+        D
     },
     {
         "protocol_whitelist",
         "List of protocols that are allowed to be used",
-        OFFSET (protocol_whitelist
+        OFFSET (
+            protocol_whitelist
         ),
         AV_OPT_TYPE_STRING,
-        { .str = NULL }, CHAR_MIN, CHAR_MAX, D
+        {
+            .str = NULL
+        },
+        CHAR_MIN,
+        CHAR_MAX,
+        D
     },
     {
         "protocol_blacklist",
         "List of protocols that are not allowed to be used",
-        OFFSET (protocol_blacklist
+        OFFSET (
+            protocol_blacklist
         ),
         AV_OPT_TYPE_STRING,
-        { .str = NULL }, CHAR_MIN, CHAR_MAX, D
+        {
+            .str = NULL
+        },
+        CHAR_MIN,
+        CHAR_MAX,
+        D
     },
     {
         "max_streams",
         "maximum number of streams",
-        OFFSET (max_streams
+        OFFSET (
+            max_streams
         ),
         AV_OPT_TYPE_INT,
-        { .i64 = 1000 }, 0, int.MAX, D
+        {
+            .i64 = 1000
+        },
+        0,
+        int.MAX,
+        D
     },
     {
         "skip_estimate_duration_from_pts",
         "skip duration calculation in estimate_timings_from_pts",
-        OFFSET (skip_estimate_duration_from_pts
+        OFFSET (
+            skip_estimate_duration_from_pts
         ),
         AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, D},
-{NULL},
+        0,
+        1,
+        D
+    },
+    {
+        NULL
+    }
+
 }
 
 } // namespace LibAVFormat
