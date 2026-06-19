@@ -1,0 +1,28 @@
+{
+    "name": "elementary stable",
+    "build": { "dockerfile": "DockerFile" },
+    // Configure tool-specific properties.
+    "customizations": {
+        // Configure properties specific to VS Code.
+        "vscode": {
+            "settings": {
+                "editor.detectIndentation": false,
+                "editor.insertSpaces": true,
+                "editor.tabSize": 4,
+                "git.alwaysSignOff": true,
+                "vala.debugMode": true,
+                "vala.languageServerPath": "/usr/bin/vala-language-server",
+                "files.exclude" : {
+                    "/tmp/*" : true
+                }
+            },
+            "extensions": [
+                "prince781.vala",
+                "mesonbuild.mesonbuild",
+                "yzhang.markdown-all-in-one",
+                "ColinKiama.linter-vala"
+            ]
+            // "devPort": {}
+        }
+    }
+}
