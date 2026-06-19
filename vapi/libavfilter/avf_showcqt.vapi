@@ -75,14 +75,38 @@ public class ShowCQTContext {
     /***********************************************************
     callback
     ***********************************************************/
-    void                (*cqt_calc)(FFTComplex *dst, FFTComplex *src, Coeffs *coeffs,
-                                    int len, int fft_len);
-    void                (*permute_coeffs)(float *v, int len);
-    void                (*draw_bar)(AVFrame *out, float *h, float *rcp_h,
-                                     ColorFloat *c, int bar_h, float bar_t);
-    void                (*draw_axis)(AVFrame *out, AVFrame *axis, ColorFloat *c, int off);
-    void                (*draw_sono)(AVFrame *out, AVFrame *sono, int off, int idx);
-    void                (*update_sono)(AVFrame *sono, ColorFloat *c, int idx);
+    [CCode (cname="")]
+    void                (*cqt_calc)(
+        FFTComplex *dst, FFTComplex *src, Coeffs *coeffs,
+        int len, int fft_len
+    );
+
+    [CCode (cname="")]
+    void                (*permute_coeffs)(
+        float *v, int len
+    );
+
+    [CCode (cname="")]
+    void                (*draw_bar)(
+        AVFrame *out, float *h, float *rcp_h,
+        ColorFloat *c, int bar_h, float bar_t
+    );
+
+    [CCode (cname="")]
+    void                (*draw_axis)(
+        AVFrame *out, AVFrame *axis, ColorFloat *c, int off
+    );
+
+    [CCode (cname="")]
+    void                (*draw_sono)(
+        AVFrame *out, AVFrame *sono, int off, int idx
+    );
+
+    [CCode (cname="")]
+    void                (*update_sono)(
+        AVFrame *sono, ColorFloat *c, int idx
+    );
+
     /***********************************************************
     performance debugging
     ***********************************************************/

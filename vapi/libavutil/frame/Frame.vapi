@@ -480,7 +480,8 @@ public class Frame {
     If input_frame is not reference counted, new buffers are allocated and the data is
     copied.
 
-    @warning: output_frame MUST have been either unreferenced with av_frame_unref (output_frame),
+    @warning: output_frame MUST have been either unreferenced with av_frame_unref (output_frame
+        ),
         or newly allocated with av_frame_alloc () before calling this
         function, or undefined behavior will occur.
 

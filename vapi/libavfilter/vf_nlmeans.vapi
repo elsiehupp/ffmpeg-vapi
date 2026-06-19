@@ -18,10 +18,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class NLMeansDSPContext {
-    void (*compute_safe_ssd_integral_image)(uint32 *dst, ptrdiff_t dst_linesize_32,
-                                            uint8[] s1, ptrdiff_t linesize1,
-                                            uint8[] s2, ptrdiff_t linesize2,
-                                            int w, int h);
+    public delegate void ComputeSafeSsdIntegralImageDelegate (
+        uint32 *dst, ptrdiff_t dst_linesize_32,
+        uint8[] s1, ptrdiff_t linesize1,
+        uint8[] s2, ptrdiff_t linesize2,
+        int w, int h
+    );
+
+    [CCode (cname="compute_safe_ssd_integral_image")]
+    public ComputeSafeSsdIntegralImageDelegate compute_safe_ssd_integral_image;
 }
 
 public void ff_nlmeans_init (NLMeansDSPContext *dsp);

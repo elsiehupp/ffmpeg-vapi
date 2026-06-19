@@ -20,9 +20,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class AudioNLMDNDSPContext {
-    float (*compute_distance_ssd)(const float *f1, float *f2, ptrdiff_t K);
-    void (*compute_cache)(float *cache, float *f, ptrdiff_t S, ptrdiff_t K,
-                          ptrdiff_t i, ptrdiff_t jj);
+    [CCode (cname=""compute_distance_ssd)]
+    float (*compute_distance_ssd)(
+        const float *f1, float *f2, ptrdiff_t K
+    );
+
+    [CCode (cname="compute_cache")]
+    public void (*compute_cache)(
+        float *cache, float *f, ptrdiff_t S, ptrdiff_t K,
+        ptrdiff_t i, ptrdiff_t jj
+    );
+
 }
 
 public void ff_anlmdn_init (AudioNLMDNDSPContext *s);

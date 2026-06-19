@@ -22,14 +22,40 @@ BluRay (libbluray) protocol
 
 @copyright 2012 Petri Hintukainen <phintuka <at> users.sourceforge.net>
 ***********************************************************/
-//  #define OFFSET (x) offsetof (BlurayContext, x)
-//  static const LibAVUtil.Option options[] = {
-//      {"playlist", "", OFFSET (playlist), AV_OPT_TYPE_INT, { .i64=-1 }, -1, 99999, AV_OPT_FLAG_DECODING_PARAM },
-//      {"angle", "", OFFSET (angle), AV_OPT_TYPE_INT, { .i64=0 }, 0, 0xfe, AV_OPT_FLAG_DECODING_PARAM },
-//      {"chapter", "", OFFSET (chapter), AV_OPT_TYPE_INT, { .i64=1 }, 1, 0xfffe, AV_OPT_FLAG_DECODING_PARAM },
-//      /*{"region", "bluray player region code (1 = region A, 2 = region B, 4 = region C)", OFFSET (region), AV_OPT_TYPE_INT, { .i64=0 }, 0, 3, AV_OPT_FLAG_DECODING_PARAM },*/
-//      {NULL}
-//  }
+#define OFFSET (x) offsetof (BlurayContext, x)
+static const LibAVUtil.Option options[] = {
+    {
+        "playlist",
+        "",
+        OFFSET (playlist
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64=-1 }, -1, 99999, AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "angle",
+        "",
+        OFFSET (angle
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64=0 }, 0, 0xfe, AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "chapter",
+        "",
+        OFFSET (chapter
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64=1 }, 1, 0xfffe, AV_OPT_FLAG_DECODING_PARAM },
+    /*{
+        "region",
+        "bluray player region code (1 = region A, 2 = region B, 4 = region C)",
+        OFFSET (region
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64=0 }, 0, 3, AV_OPT_FLAG_DECODING_PARAM },*/
+    {NULL}
+}
 
 [CCode (cname="bluray_context_class", cheader_filename="")]
 public class BluRayContextClass : LibAVUtil.Class {

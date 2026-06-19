@@ -17,7 +17,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 av_warn_unused_result
-public int ff_alloc_input_device_context (AVFormatContext **avctx, AVInputFormat *iformat,
-                                  string format);
+public int ff_alloc_input_device_context (
+    AVFormatContext **avctx,
+    AVInputFormat *iformat,
+    string format
+);
 
 #endif

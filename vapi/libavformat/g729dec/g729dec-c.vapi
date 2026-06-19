@@ -22,11 +22,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (G729DemuxerContext, x)
-//  static const LibAVUtil.Option g729_options[] = {
-//      { "bit_rate", "", OFFSET (bit_rate), AV_OPT_TYPE_INT, { .i64 = 8000 }, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (G729DemuxerContext, x)
+static const LibAVUtil.Option g729_options[] = {
+    {
+        "bit_rate",
+        "",
+        OFFSET (bit_rate
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 8000 }, 0,
+        INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="g729_demuxer_class", cheader_filename="")]
 public class G729DemuxerClass : LibAVUtil.Class {

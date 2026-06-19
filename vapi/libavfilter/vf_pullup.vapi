@@ -60,9 +60,21 @@ public class PullupContext {
     PullupBuffer buffers[10];
     PullupFrame frame;
 
-    public int (*diff)(const uint8[] a, uint8[] b, ptrdiff_t s);
-    public int (*comb)(const uint8[] a, uint8[] b, ptrdiff_t s);
-    public int (*var )(const uint8[] a, uint8[] b, ptrdiff_t s);
+    [CCode (cname="diff")]
+    public int (*diff)(
+        const uint8[] a, uint8[] b, ptrdiff_t s
+    );
+
+    [CCode (cname="comb")]
+    public int (*comb)(
+        const uint8[] a, uint8[] b, ptrdiff_t s
+    );
+
+    [CCode (cname="var")]
+    public int (*var )(
+        const uint8[] a, uint8[] b, ptrdiff_t s
+    );
+
 }
 
 public void ff_pullup_init_x86 (PullupContext *s);

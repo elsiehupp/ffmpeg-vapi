@@ -22,16 +22,34 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (FailingMuxerContext, x)
-//  static const LibAVUtil.Option options[] = {
-//          {"write_header_ret", "write_header () return value", OFFSET (write_header_ret),
-//           AV_OPT_TYPE_INT, {.i64 = 0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM},
-//          {"write_trailer_ret", "write_trailer () return value", OFFSET (write_trailer_ret),
-//           AV_OPT_TYPE_INT, {.i64 = 0}, INT_MIN, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM},
-//          {"print_deinit_summary", "print summary when deinitializing muxer", OFFSET (print_deinit_summary),
-//           AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-//          {NULL}
-//      }
+#define OFFSET (x) offsetof (FailingMuxerContext, x)
+static const LibAVUtil.Option options[] = {
+    {
+        "write_header_ret",
+        "write_header () return value",
+        OFFSET (write_header_ret
+        ),
+        AV_OPT_TYPE_INT, { .i64 = 0},
+        INT_MIN,
+        INT_MAX,
+        AV_OPT_FLAG_ENCODING_PARAM},
+    {
+        "write_trailer_ret",
+        "write_trailer () return value",
+        OFFSET (write_trailer_ret
+        ),
+        AV_OPT_TYPE_INT, { .i64 = 0},
+        INT_MIN,
+        INT_MAX,
+        AV_OPT_FLAG_ENCODING_PARAM},
+    {
+        "print_deinit_summary",
+        "print summary when deinitializing muxer",
+        OFFSET (print_deinit_summary
+        ),
+        AV_OPT_TYPE_BOOL, { .i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
+        {NULL}
+    }
 
 [CCode (cname="failing_muxer_class", cheader_filename="")]
 public class FifoTestMuxerClass : LibAVUtil.Class {

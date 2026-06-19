@@ -27,12 +27,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_WAV_DEMUXER
-//  #define OFFSET (x) offsetof (WAVDemuxContext, x)
-//  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option demux_options[] = {
-//      { "ignore_length", "Ignore length", OFFSET (ignore_length), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, DEC },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (WAVDemuxContext, x)
+#define DEC AV_OPT_FLAG_DECODING_PARAM
+static const LibAVUtil.Option demux_options[] = {
+    {
+        "ignore_length",
+        "Ignore length",
+        OFFSET (ignore_length
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 0 }, 0, 1, DEC
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="wav_demuxer_class", cheader_filename="")]
 public class WAVDemuxerClass : LibAVUtil.Class {

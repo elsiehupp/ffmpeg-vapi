@@ -20,26 +20,59 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class ThresholdContext {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
+    [CCode (cname="")]
     public int depth;
+
+    [CCode (cname="")]
     public int planes;
+
+    [CCode (cname="")]
     public int bpc;
 
+    [CCode (cname="")]
     public int nb_planes;
-    public int width[4], height[4];
 
-    void (*threshold)(const uint8[] in, uint8[] threshold,
-                      uint8[] min, uint8[] max,
-                      uint8[] out,
-                      ptrdiff_t ilinesize, ptrdiff_t tlinesize,
-                      ptrdiff_t flinesize, ptrdiff_t slinesize,
-                      ptrdiff_t olinesize,
-                      int w, int h);
+    [CCode (cname="")]
+    public int width[4];
 
-    AVFrame *frames[4];
-    FFFrameSync fs;
+    [CCode (cname="")]
+    public int height[4];
+
+    public delegate void ThresholdDelegate (
+        uint8[] in,
+        int8[] threshold,
+        uint8[] min,
+        uint8[] max,
+        uint8[] out,
+        ptrdiff_t ilinesize,
+        ptrdiff_t tlinesize,
+        ptrdiff_t flinesize,
+        ptrdiff_t slinesize,
+        ptrdiff_t olinesize,
+        int w,
+        int h
+    );
+
+    [CCode (cname="")]
+    public ThresholdDelegate threshold;
+
+    [CCode (cname="")]
+    public AVFrame frames[4];
+
+    [CCode (cname="")]
+    public FFFrameSync fs;
+
+    [CCode (cname="")]
+    public void ff_threshold_init (
+        ThresholdContext *s
+    );
+
+    [CCode (cname="")]
+    public void ff_threshold_init_x86 (
+        ThresholdContext *s
+    );
+
 }
-
-public void ff_threshold_init (ThresholdContext *s);
-public void ff_threshold_init_x86 (ThresholdContext *s);

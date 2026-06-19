@@ -61,7 +61,10 @@ public class QSVVPPParam {
     /***********************************************************
     default is ff_filter_frame
     ***********************************************************/
-    public int (*filter_frame)(AVFilterLink *outlink, AVFrame *frame);
+    [CCode (cname="filter_frame")]
+    public int (*filter_frame)(
+        AVFilterLink *outlink, AVFrame *frame
+    );
 
     /***********************************************************
     To fill with MFX enhanced filter configurations

@@ -31,7 +31,10 @@ public class DitherDSPContext {
     @param dither float dither noise array
     @param len    number of samples
     ***********************************************************/
-    void (*quantize)(int16 *dst, float *src, float *dither, int len);
+    [CCode (cname="quantize")]
+    public void (*quantize)(
+        int16 *dst, float *src, float *dither, int len
+    );
 
     /***********************************************************
     src and dst constraints for quantize ()
@@ -53,7 +56,11 @@ public class DitherDSPContext {
     @param len  number of output noise samples
                 constraints: multiple of 16
     ***********************************************************/
-    void (*dither_int_to_float)(float *dst, int *src0, int len);
+    [CCode (cname="dither_int_to_float")]
+    public void (*dither_int_to_float)(
+        float *dst, int *src0, int len
+    );
+
 }
 
 /***********************************************************

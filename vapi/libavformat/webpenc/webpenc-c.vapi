@@ -22,13 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (WebpContext, x)
-//  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "loop", "Number of times to loop the output: 0 - infinite loop", OFFSET (loop),
-//        AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 65535, ENC },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (WebpContext, x)
+#define ENC AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "loop",
+        "Number of times to loop the output: 0 - infinite loop",
+        OFFSET (loop
+        ),
+        AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 65535, ENC
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="webp_muxer_class", cheader_filename="")]
 public class WebPMuxerClass : LibAVUtil.Class {

@@ -22,10 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  static const LibAVUtil.Option asf_options[] = {
-//      { "packet_size", "Packet size", offsetof (ASFContext, packet_size), AV_OPT_TYPE_INT, {.i64 = 3200}, PACKET_SIZE_MIN, PACKET_SIZE_MAX, AV_OPT_FLAG_ENCODING_PARAM },
-//      { NULL },
-//  }
+static const LibAVUtil.Option asf_options[] = {
+    {
+        "packet_size",
+        "Packet size",
+        offsetof (
+            ASFContext, packet_size
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 3200}, PACKET_SIZE_MIN, PACKET_SIZE_MAX, AV_OPT_FLAG_ENCODING_PARAM
+    },
+    {
+        NULL },
+}
 
 #if CONFIG_ASF_MUXER
 [CCode (cname="asf_muxer_class", cheader_filename="")]

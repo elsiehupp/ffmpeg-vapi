@@ -211,7 +211,7 @@ public enum PollEvent {
 
 //  DEF_FS_FUNCTION (unlink, _wunlink, _unlink)
 //  DEF_FS_FUNCTION (mkdir, _wmkdir, _mkdir)
-//  DEF_FS_FUNCTION (rmdir, _wrmdir , _rmdir)
+//  DEF_FS_FUNCTION (rmdir, _wrmdir, _rmdir)
 
 //  #define DEF_FS_FUNCTION2 (name, wfunc, afunc, partype)
 //  static inline int win32_##name (string filename_utf8, partype par) {

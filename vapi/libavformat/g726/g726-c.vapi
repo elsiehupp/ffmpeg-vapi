@@ -22,14 +22,29 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (G726Context, x)
-//  static const LibAVUtil.Option options[] = {
-//      { "code_size", "Bits per G.726 code",
-//          OFFSET (code_size), AV_OPT_TYPE_INT, {.i64 = 4}, 2, 5, AV_OPT_FLAG_DECODING_PARAM },
-//      { "sample_rate", "",
-//          OFFSET (sample_rate), AV_OPT_TYPE_INT, {.i64 = 8000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (G726Context, x)
+static const LibAVUtil.Option options[] = {
+    {
+        "code_size",
+        "Bits per G.726 code",
+        OFFSET (code_size
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 4}, 2, 5, AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "sample_rate",
+        "",
+        OFFSET (sample_rate
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 8000}, 0,
+        INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        NULL },
+}
 
 #if CONFIG_G726_DEMUXER
 [CCode (cname="g726le_demuxer_class", cheader_filename="")]

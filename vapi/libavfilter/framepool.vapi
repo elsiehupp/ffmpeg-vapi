@@ -38,7 +38,9 @@ the pool is empty. May be NULL, then the default allocator will be used
 @param align buffers alignement of each frame in this pool
 @return newly created video frame pool on success, NULL on error.
 ***********************************************************/
-FFFramePool *ff_frame_pool_video_init (AVBufferRef* (*alloc)(int size),
+[CCode (cname="")]
+FFFramePool *ff_frame_pool_video_init (AVBufferRef* (*alloc)(int size
+        ),
                                       int width,
                                       int height,
                                       AVPixelFormat format,
@@ -56,7 +58,9 @@ the pool is empty. May be NULL, then the default allocator will be used
 @param align buffers alignement of each frame in this pool
 @return newly created audio frame pool on success, NULL on error.
 ***********************************************************/
-FFFramePool *ff_frame_pool_audio_init (AVBufferRef* (*alloc)(int size),
+[CCode (cname="")]
+FFFramePool *ff_frame_pool_audio_init (AVBufferRef* (*alloc)(int size
+        ),
                                       int channels,
                                       int samples,
                                       AVSampleFormat format,

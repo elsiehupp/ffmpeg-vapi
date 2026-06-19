@@ -263,7 +263,12 @@ public class libAVFilter {
     void *priv_data;
     public int stream_index;
     public int64 start_time;
-    void (*callback)(void *priv_data, int index, uint8[] buf, int buf_size, int64 time, dshowDeviceType type);
+
+    [CCode (cname="callback")]
+    public void (*callback)(
+        void *priv_data, int index, uint8[] buf, int buf_size, int64 time, dshowDeviceType type
+    );
+
 }
 
 long          WINAPI libAVFilter_QueryInterface (libAVFilter *, GUID *, void **);

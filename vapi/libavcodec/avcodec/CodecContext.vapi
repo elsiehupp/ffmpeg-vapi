@@ -1484,7 +1484,8 @@ public class CodecContext {
         first sample of the data actually contained in the packet,
         including any added padding. E.g. if the timebase is
         1/samplerate and the timestamp of the first input sample is
-        0, the timestamp of the first output packet will be
+        0,
+        the timestamp of the first output packet will be
         -initial_padding.
     ***********************************************************/
     [CCode (cname="initial_padding")]
@@ -1870,7 +1871,8 @@ public class CodecContext {
 
     @code
         avcodec_register_all ();
-        av_dict_set (&opts, "b", "2.5M", 0);
+        av_dict_set (&opts, "b", "2.5M",
+        0);
         codec = avcodec_find_decoder (LibAVCodec.CodecID.H264);
         if (codec == null)
             exit (1);
@@ -2030,7 +2032,8 @@ public class CodecContext {
         a reference to the packet data (or copy it if the packet is
         not reference-counted).
         Unlike with older APIs, the packet is always fully consumed,
-        and if it contains multiple frames (e.g. some audio codecs),
+        and if it contains multiple frames (e.g. some audio codecs
+        ),
         will require you to call avcodec_receive_frame () multiple
         times afterwards before you can send a new packet.
         It can be null (or an Packet with data set to null and
@@ -2180,7 +2183,8 @@ public class CodecContext {
             the user must return the same hw_pix_fmt from get_format.
         - The device_ref passed to this function must support the given hw_pix_fmt.
         - After calling this API function, it is the user's responsibility to
-            initialize the LibAVUtil.HardwareFrameContext (returned by the out_frames_ref parameter),
+            initialize the LibAVUtil.HardwareFrameContext (returned by the out_frames_ref parameter
+        ),
             and to set CodecContext.hw_frames_ctx to it. If done, this must be done
             before returning from get_format (this is implied by the normal
             CodecContext.hw_frames_ctx API rules).

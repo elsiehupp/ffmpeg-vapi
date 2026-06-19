@@ -20,10 +20,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class Stereo3DDSPContext {
-    void (*anaglyph)(uint8[] dst, uint8[] lsrc, uint8[] rsrc,
-                     ptrdiff_t dst_linesize, ptrdiff_t l_linesize, ptrdiff_t r_linesize,
-                     int width, int height,
-                     int[] ana_matrix_r, int[] ana_matrix_g, int[] ana_matrix_b);
+    public delegate void AnaglyphDelegate (
+        uint8[] dst, uint8[] lsrc, uint8[] rsrc,
+        ptrdiff_t dst_linesize, ptrdiff_t l_linesize, ptrdiff_t r_linesize,
+        int width, int height,
+        int[] ana_matrix_r, int[] ana_matrix_g, int[] ana_matrix_b
+    );
+
+    [CCode (cname="")]
+    public AnaglyphDelegate anaglyph;
+
 }
 
 public void ff_stereo3d_init_x86 (Stereo3DDSPContext *dsp);

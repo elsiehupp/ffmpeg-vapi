@@ -46,7 +46,8 @@ and all its contents.
 LibAVUtil.Dictionary d = null; // "create" an empty dictionary
 LibAVUtil.DictionaryEntry t = null;
 
-av_dict_set (&d, "foo", "bar", 0); // add an entry
+av_dict_set (&d, "foo", "bar",
+        0); // add an entry
 
 public string k = av_strdup ("key"); // if your strings are already allocated,
 public string v = av_strdup ("value"); // you can avoid copying them like this

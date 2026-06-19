@@ -49,9 +49,16 @@ public class VAAPIVPPContext {
     VABufferID         filter_buffers[VAProcFilterCount];
     public int                nb_filter_buffers;
 
-    public int (*build_filter_params)(AVFilterContext *avctx);
+    [CCode (cname="build_filter_params")]
+    public int (*build_filter_params)(
+        AVFilterContext *avctx
+    );
 
-    void (*pipeline_uninit)(AVFilterContext *avctx);
+    [CCode (cname="pipeline_uninit")]
+    public void (*pipeline_uninit)(
+        AVFilterContext *avctx
+    );
+
 }
 
 public void ff_vaapi_vpp_ctx_init (AVFilterContext *avctx);
@@ -68,8 +75,8 @@ public int ff_vaapi_vpp_config_output (AVFilterLink *outlink);
 
 public int ff_vaapi_vpp_init_params (AVFilterContext *avctx,
                              VAProcPipelineParameterBuffer *params,
-                             AVFrame *input_frame,
-                             AVFrame *output_frame);
+                             public AVFrame input_frame,
+                             public AVFrame output_frame);
 
 public int ff_vaapi_vpp_make_param_buffers (AVFilterContext *avctx,
                                     int type,
@@ -79,4 +86,4 @@ public int ff_vaapi_vpp_make_param_buffers (AVFilterContext *avctx,
 
 public int ff_vaapi_vpp_render_picture (AVFilterContext *avctx,
                                 VAProcPipelineParameterBuffer *params,
-                                AVFrame *output_frame);
+                                public AVFrame output_frame);

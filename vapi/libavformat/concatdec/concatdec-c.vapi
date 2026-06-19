@@ -21,17 +21,40 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (ConcatContext, x)
-//  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "safe", "enable safe mode",
-//        OFFSET (safe), AV_OPT_TYPE_BOOL, {.i64 = 1}, -1, 1, DEC },
-//      { "auto_convert", "automatically convert bitstream format",
-//        OFFSET (auto_convert), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, DEC },
-//      { "segment_time_metadata", "output file segment start time and duration as packet metadata",
-//        OFFSET (segment_time_metadata), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC },
-//      { NULL }
-//  }
+#define OFFSET (x) offsetof (ConcatContext, x)
+#define DEC AV_OPT_FLAG_DECODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "safe",
+        "enable safe mode",
+      OFFSET (safe
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 1}, -1, 1, DEC
+    },
+    {
+        "auto_convert",
+        "automatically convert bitstream format",
+      OFFSET (auto_convert
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 1}, 0, 1, DEC
+    },
+    {
+        "segment_time_metadata",
+        "output file segment start time and duration as packet metadata",
+      OFFSET (segment_time_metadata
+        ),
+        AV_OPT_TYPE_BOOL,
+        {
+            .i64 = 0
+        },
+        0, 1, DEC
+    },
+    {
+        NULL
+    }
+}
 
 [CCode (cname="concat_class", cheader_filename="")]
 public class ConcatDemuxerClass : LibAVUtil.Class {

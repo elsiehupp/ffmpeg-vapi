@@ -62,11 +62,15 @@ public class FilterParams {
     double opacity;
     AVExpr *e;
     string expr_str;
-    void (*blend)(const uint8[] top, ptrdiff_t top_linesize,
-                  uint8[] bottom, ptrdiff_t bottom_linesize,
-                  uint8[] dst, ptrdiff_t dst_linesize,
-                  ptrdiff_t width, ptrdiff_t height,
-                  struct FilterParams *param, double[] values, int starty);
+    [CCode (cname="blend")]
+    public void (*blend)(
+        const uint8[] top, ptrdiff_t top_linesize,
+        uint8[] bottom, ptrdiff_t bottom_linesize,
+        uint8[] dst, ptrdiff_t dst_linesize,
+        ptrdiff_t width, ptrdiff_t height,
+        struct FilterParams *param, double[] values, int starty
+    );
+
 }
 
 public void ff_blend_init (FilterParams *param, int depth);

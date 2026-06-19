@@ -21,15 +21,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (LIBSSHContext, x)
-//  #define D AV_OPT_FLAG_DECODING_PARAM
-//  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      {"timeout", "set timeout of socket I/O operations", OFFSET (rw_timeout), AV_OPT_TYPE_INT, {.i64 = -1}, -1, INT_MAX, D|E },
-//      {"truncate", "Truncate existing files on write", OFFSET (trunc), AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 1, E },
-//      {"private_key", "set path to private key", OFFSET (priv_key), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, D|E },
-//      {NULL}
-//  }
+#define OFFSET (x) offsetof (LIBSSHContext, x)
+#define D AV_OPT_FLAG_DECODING_PARAM
+#define E AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "timeout",
+        "set timeout of socket I/O operations",
+        OFFSET (rw_timeout
+        ),
+        AV_OPT_TYPE_INT,
+        {
+            .i64 = -1
+        },
+        -1,
+        INT_MAX,
+        D|E
+    },
+    {
+        "truncate",
+        "Truncate existing files on write",
+        OFFSET (trunc
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 1 }, 0, 1, E
+    },
+    {
+        "private_key",
+        "set path to private key",
+        OFFSET (priv_key
+        ),
+        AV_OPT_TYPE_STRING,
+        { .str = NULL }, 0, 0, D|E
+    },
+    {NULL}
+}
 
 [CCode (cname="libssh_context_class", cheader_filename="")]
 public class LibSSHURLProtocolClass : LibAVUtil.Class {

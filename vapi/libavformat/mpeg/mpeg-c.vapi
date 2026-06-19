@@ -82,10 +82,20 @@ public class MPEGPSDemuxer : AVInputFormat {
 }
 
 #if CONFIG_VOBSUB_DEMUXER
-//  static const LibAVUtil.Option options[] = {
-//      { "sub_name", "URI for .sub file", offsetof (MpegDemuxContext, sub_name), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, AV_OPT_FLAG_DECODING_PARAM },
-//      { NULL }
-//  }
+static const LibAVUtil.Option options[] = {
+    {
+        "sub_name",
+        "URI for .sub file",
+        offsetof (
+            MpegDemuxContext, sub_name
+        ),
+        AV_OPT_TYPE_STRING,
+        { .str = NULL }, 0, 0, AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        NULL
+    }
+}
 
 [CCode (cname="vobsub_demuxer_class", cheader_filename="")]
 public class VobSubDemuxerClass : LibAVUtil.Class {

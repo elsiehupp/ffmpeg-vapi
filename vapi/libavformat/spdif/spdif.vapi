@@ -115,11 +115,13 @@ public enum IEC61937DataType {
     IEC61937_TRUEHD,
 }
 
-//  public const uint16 spdif_mpeg_pkt_offset[2][3] = {
-//      // LAYER1 LAYER2 LAYER3
-//      { 3072, 9216, 4608 }, // MPEG-2 LSF
-//      { 1536, 4608, 4608 }, // MPEG-1
-//  }
+public const uint16 spdif_mpeg_pkt_offset[2][3] = {
+    // LAYER1 LAYER2 LAYER3
+    {
+        3072, 9216, 4608 }, // MPEG-2 LSF
+    {
+        1536, 4608, 4608 }, // MPEG-1
+}
 
 [CCode (cname="", cheader_filename="")]
 public void ff_spdif_bswap_buf16 (

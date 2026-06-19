@@ -95,7 +95,7 @@ public class PutByteContext {
 //  DEF (uint, be32, 4, AV_RB32, AV_WB32)
 //  DEF (uint, be24, 3, AV_RB24, AV_WB24)
 //  DEF (uint, be16, 2, AV_RB16, AV_WB16)
-//  DEF (uint, byte, 1, AV_RB8 , AV_WB8)
+//  DEF (uint, byte, 1, AV_RB8, AV_WB8)
 
 //  #if AV_HAVE_BIGENDIAN
 //  #   define bytestream2_get_ne16  bytestream2_get_be16

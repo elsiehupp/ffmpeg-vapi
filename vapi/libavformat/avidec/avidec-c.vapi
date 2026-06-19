@@ -22,10 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  static const LibAVUtil.Option options[] = {
-//      { "use_odml", "use odml index", offsetof (AVIContext, use_odml), AV_OPT_TYPE_BOOL, {.i64 = 1}, -1, 1, AV_OPT_FLAG_DECODING_PARAM},
-//      { NULL },
-//  }
+static const LibAVUtil.Option options[] = {
+    {
+        "use_odml",
+        "use odml index",
+        offsetof (
+            AVIContext, use_odml
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 1}, -1, 1, AV_OPT_FLAG_DECODING_PARAM},
+    {
+        NULL },
+}
 
 [CCode (cname="demuxer_class", cheader_filename="")]
 public class AVIDemuxerClass : LibAVUtil.Class {

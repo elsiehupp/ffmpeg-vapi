@@ -22,18 +22,44 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (CryptoContext, x)
-//  #define D AV_OPT_FLAG_DECODING_PARAM
-//  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      {"key", "AES encryption/decryption key", OFFSET (key), AV_OPT_TYPE_BINARY, .flags = D|E },
-//      {"iv", "AES encryption/decryption initialization vector", OFFSET (iv), AV_OPT_TYPE_BINARY, .flags = D|E },
-//      {"decryption_key", "AES decryption key", OFFSET (decrypt_key), AV_OPT_TYPE_BINARY, .flags = D },
-//      {"decryption_iv", "AES decryption initialization vector", OFFSET (decrypt_iv), AV_OPT_TYPE_BINARY, .flags = D },
-//      {"encryption_key", "AES encryption key", OFFSET (encrypt_key), AV_OPT_TYPE_BINARY, .flags = E },
-//      {"encryption_iv", "AES encryption initialization vector", OFFSET (encrypt_iv), AV_OPT_TYPE_BINARY, .flags = E },
-//      { NULL }
-//  }
+#define OFFSET (x) offsetof (CryptoContext, x)
+#define D AV_OPT_FLAG_DECODING_PARAM
+#define E AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "key",
+        "AES encryption/decryption key",
+        OFFSET (key), AV_OPT_TYPE_BINARY, .flags = D|E
+    },
+    {
+        "iv",
+        "AES encryption/decryption initialization vector",
+        OFFSET (iv), AV_OPT_TYPE_BINARY, .flags = D|E
+    },
+    {
+        "decryption_key",
+        "AES decryption key",
+        OFFSET (decrypt_key), AV_OPT_TYPE_BINARY, .flags = D
+    },
+    {
+        "decryption_iv",
+        "AES decryption initialization vector",
+        OFFSET (decrypt_iv), AV_OPT_TYPE_BINARY, .flags = D
+    },
+    {
+        "encryption_key",
+        "AES encryption key",
+        OFFSET (encrypt_key), AV_OPT_TYPE_BINARY, .flags = E
+    },
+    {
+        "encryption_iv",
+        "AES encryption initialization vector",
+        OFFSET (encrypt_iv), AV_OPT_TYPE_BINARY, .flags = E
+    },
+    {
+        NULL
+    }
+}
 
 [CCode (cname="crypto_class", cheader_filename="")]
 public class CryptoURLProtocolClass : LibAVUtil.Class {

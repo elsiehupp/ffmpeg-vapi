@@ -28,12 +28,16 @@ public class MaskedMergeContext {
     public int half, depth;
     FFFrameSync fs;
 
-    void (*maskedmerge)(const uint8[] bsrc, uint8[] osrc,
-                        uint8[] msrc, uint8[] dst,
-                        ptrdiff_t blinesize, ptrdiff_t olinesize,
-                        ptrdiff_t mlinesize, ptrdiff_t dlinesize,
-                        int w, int h,
-                        int half, int shift);
+    [CCode (cname="maskedmerge")]
+    public void (*maskedmerge)(
+        const uint8[] bsrc, uint8[] osrc,
+        uint8[] msrc, uint8[] dst,
+        ptrdiff_t blinesize, ptrdiff_t olinesize,
+        ptrdiff_t mlinesize, ptrdiff_t dlinesize,
+        int w, int h,
+        int half, int shift
+    );
+
 }
 
 public void ff_maskedmerge_init_x86 (MaskedMergeContext *s);

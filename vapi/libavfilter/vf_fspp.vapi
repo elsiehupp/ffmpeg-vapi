@@ -37,12 +37,12 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 typedef int32 int_simd16_t;
 static const int16 FIX_0_382683433 = FIX (0.382683433, 14);
 static const int16 FIX_0_541196100 = FIX (0.541196100, 14);
-static const int16 FIX_0_707106781 = FIX (M_SQRT1_2  , 14);
+static const int16 FIX_0_707106781 = FIX (M_SQRT1_2, 14);
 static const int16 FIX_1_306562965 = FIX (1.306562965, 14);
-static const int16 FIX_1_414213562_A = FIX (M_SQRT2    , 14);
+static const int16 FIX_1_414213562_A = FIX (M_SQRT2, 14);
 static const int16 FIX_1_847759065 = FIX (1.847759065, 13);
 static const int16 FIX_2_613125930 = FIX (-2.613125930, 13);
-static const int16 FIX_1_414213562 = FIX (M_SQRT2    , 13);
+static const int16 FIX_1_414213562 = FIX (M_SQRT2, 13);
 static const int16 FIX_1_082392200 = FIX (1.082392200, 13);
 
 [Compact]
@@ -68,24 +68,42 @@ public class FSPPContext {
     public int non_b_qp_alloc_size;
     public int use_bframe_qp;
 
-    void (*store_slice)(uint8[] dst, int16 *src,
-                        ptrdiff_t dst_stride, ptrdiff_t src_stride,
-                        ptrdiff_t width, ptrdiff_t height, ptrdiff_t log2_scale);
+    [CCode (cname="")]
+    public void (*store_slice)(
+        uint8[] dst, int16 *src,
+        ptrdiff_t dst_stride, ptrdiff_t src_stride,
+        ptrdiff_t width, ptrdiff_t height, ptrdiff_t log2_scale
+    );
 
-    void (*store_slice2)(uint8[] dst, int16 *src,
-                         ptrdiff_t dst_stride, ptrdiff_t src_stride,
-                         ptrdiff_t width, ptrdiff_t height, ptrdiff_t log2_scale);
+    [CCode (cname="")]
+    public void (*store_slice2)(
+        uint8[] dst, int16 *src,
+        ptrdiff_t dst_stride, ptrdiff_t src_stride,
+        ptrdiff_t width, ptrdiff_t height, ptrdiff_t log2_scale
+    );
 
-    void (*mul_thrmat)(int16 *thr_adr_noq, int16 *thr_adr, int q);
+    [CCode (cname="")]
+    public void (*mul_thrmat)(
+        int16 *thr_adr_noq, int16 *thr_adr, int q
+    );
 
-    void (*column_fidct)(int16 *thr_adr, int16 *data,
-                         int16 *output, int cnt);
+    [CCode (cname="")]
+    public void (*column_fidct)(
+        int16 *thr_adr, int16 *data,
+        int16 *output, int cnt
+    );
 
-    void (*row_idct)(int16 *workspace, int16 *output_adr,
-                     ptrdiff_t output_stride, int cnt);
+    [CCode (cname="")]
+    public void (*row_idct)(
+        int16 *workspace, int16 *output_adr,
+        ptrdiff_t output_stride, int cnt
+    );
 
-    void (*row_fdct)(int16 *data, uint8[] pixels,
-                     ptrdiff_t line_size, int cnt);
+    [CCode (cname="")]
+    public void (*row_fdct)(
+        int16 *data, uint8[] pixels,
+        ptrdiff_t line_size, int cnt
+    );
 
 }
 

@@ -66,8 +66,8 @@ public class TInterlaceContext {
     chroma vertical subsampling
     ***********************************************************/
     public int vsub;
-    AVFrame *cur;
-    AVFrame *next;
+    public AVFrame cur;
+    public AVFrame next;
     /***********************************************************
     buffer used to fill padded lines
     ***********************************************************/
@@ -76,8 +76,12 @@ public class TInterlaceContext {
     FFDrawContext draw;
     FFDrawColor color;
     const AVPixFmtDescriptor *csp;
-    void (*lowpass_line)(uint8[] dstp, ptrdiff_t width, uint8[] srcp,
-                         ptrdiff_t mref, ptrdiff_t pref, int clip_max);
+    [CCode (cname="lowpass_line")]
+    public void (*lowpass_line)(
+        uint8[] dstp, ptrdiff_t width, uint8[] srcp,
+        ptrdiff_t mref, ptrdiff_t pref, int clip_max
+    );
+
 }
 
 public void ff_tinterlace_init_x86 (TInterlaceContext *interlace);

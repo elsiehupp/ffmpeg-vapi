@@ -88,7 +88,7 @@ public class DeshakeContext {
     /***********************************************************
     Previous frame
     ***********************************************************/
-    AVFrame *ref;
+    public AVFrame ref;
     /***********************************************************
     Maximum horizontal shift
     ***********************************************************/
@@ -139,7 +139,11 @@ public class DeshakeContext {
     ***********************************************************/
     string filename;
     public int opencl;
-    public int (* transform)(AVFilterContext *ctx, int width, int height, int cw, int ch,
-                      float *matrix_y, float *matrix_uv, InterpolateMethod interpolate,
-                      FillMethod fill, AVFrame *in, AVFrame *out);
+    [CCode (cname="transform")]
+    public int (* transform)(
+        AVFilterContext *ctx, int width, int height, int cw, int ch,
+        float *matrix_y, float *matrix_uv, InterpolateMethod interpolate,
+        FillMethod fill, AVFrame *in, AVFrame *out
+    );
+
 }

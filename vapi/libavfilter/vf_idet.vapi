@@ -18,7 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HIST_SIZE 4
 
-typedef int (*ff_idet_filter_func)(const uint8[] a, uint8[] b, uint8[] c, int w);
+[CCode (cname="ff_idet_filter_func")]
+typedef int (*ff_idet_filter_func)(
+    const uint8[] a, uint8[] b, uint8[] c, int w
+);
 
 public enum Type {
     TFF,
@@ -53,9 +56,9 @@ public class IDETContext {
 
     public uint8 history[HIST_SIZE];
 
-    AVFrame *cur;
-    AVFrame *next;
-    AVFrame *prev;
+    public AVFrame cur;
+    public AVFrame next;
+    public AVFrame prev;
     ff_idet_filter_func filter_line;
 
     public int interlaced_flag_accuracy;

@@ -22,11 +22,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  static const LibAVUtil.Option pcm_options[] = {
-//      { "sample_rate", "", offsetof (PCMAudioDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 44100}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { "channels", "", offsetof (PCMAudioDemuxerContext, channels), AV_OPT_TYPE_INT, {.i64 = 1}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { NULL },
-//  }
+static const LibAVUtil.Option pcm_options[] = {
+    {
+        "sample_rate",
+        "",
+        offsetof (
+            PCMAudioDemuxerContext, sample_rate
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 44100}, 0,
+        INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "channels",
+        "",
+        offsetof (
+            PCMAudioDemuxerContext, channels
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 1}, 0,
+        INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="struct PCMAudioDemuxerContext", cheader_filename="")]
 [Compact]
@@ -1008,11 +1029,32 @@ public class PCMVIDCDemuxer : PCMDemuxer {
     //  .priv_class = vidc_demuxer_class,
 }
 
-//  static const LibAVUtil.Option sln_options[] = {
-//      { "sample_rate", "", offsetof (PCMAudioDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 8000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { "channels", "", offsetof (PCMAudioDemuxerContext, channels), AV_OPT_TYPE_INT, {.i64 = 1}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { NULL },
-//  }
+static const LibAVUtil.Option sln_options[] = {
+    {
+        "sample_rate",
+        "",
+        offsetof (
+            PCMAudioDemuxerContext, sample_rate
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 8000}, 0,
+        INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "channels",
+        "",
+        offsetof (
+            PCMAudioDemuxerContext, channels
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 1}, 0,
+        INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="sln_demuxer_class", cheader_filename="")]
 public class SLNDemuxerClass : LibAVUtil.Class {

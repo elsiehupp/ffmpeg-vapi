@@ -23,12 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (MicroDVDContext, x)
-//  #define SD AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option microdvd_options[] = {
-//      { "subfps", "set the movie frame rate fallback", OFFSET (frame_rate), AV_OPT_TYPE_RATIONAL, {.dbl=0}, 0, INT_MAX, SD },
-//      { NULL }
-//  }
+#define OFFSET (x) offsetof (MicroDVDContext, x)
+#define SD AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
+static const LibAVUtil.Option microdvd_options[] = {
+    {
+        "subfps",
+        "set the movie frame rate fallback",
+        OFFSET (frame_rate),
+        AV_OPT_TYPE_RATIONAL,
+        {
+            .dbl = 0
+        },
+        0,
+        INT_MAX,
+        SD
+    },
+    {
+        NULL
+    }
+}
 
 [CCode (cname="microdvd_class", cheader_filename="")]
 public class MicroDVDDemuxerClass : LibAVUtil.Class {

@@ -67,7 +67,10 @@ public class AVFilterPad {
 
     Input video pads only.
     ***********************************************************/
-    AVFrame *(*get_video_buffer)(AVFilterLink *link, int w, int h);
+    [CCode (cname="")]
+    public AVFrame (*get_video_buffer)(
+        AVFilterLink *link, int w, int h
+    );
 
     /***********************************************************
     Callback function to get an audio buffer. If NULL, the filter system will
@@ -75,7 +78,10 @@ public class AVFilterPad {
 
     Input audio pads only.
     ***********************************************************/
-    AVFrame *(*get_audio_buffer)(AVFilterLink *link, int nb_samples);
+    [CCode (cname="")]
+    public AVFrame (*get_audio_buffer)(
+        AVFilterLink *link, int nb_samples
+    );
 
     /***********************************************************
     Filtering callback. This is where a filter receives a frame with
@@ -87,6 +93,7 @@ public class AVFilterPad {
     must ensure that frame is properly unreferenced on error if it
     hasn't been passed on to another filter.
     ***********************************************************/
+    [CCode (cname="")]
     public int (*filter_frame)(AVFilterLink *link, AVFrame *frame);
 
     /***********************************************************
@@ -98,6 +105,7 @@ public class AVFilterPad {
 
     Output pads only.
     ***********************************************************/
+    [CCode (cname="")]
     public int (*poll_frame)(AVFilterLink *link);
 
     /***********************************************************
@@ -107,6 +115,7 @@ public class AVFilterPad {
 
     Output pads only.
     ***********************************************************/
+    [CCode (cname="")]
     public int (*request_frame)(AVFilterLink *link);
 
     /***********************************************************
@@ -123,6 +132,7 @@ public class AVFilterPad {
     For both input and output filters, this should return zero on success,
     and another value on error.
     ***********************************************************/
+    [CCode (cname="")]
     public int (*config_props)(AVFilterLink *link);
 
     /***********************************************************
@@ -282,7 +292,8 @@ Insert a new input pad for the filter.
 static inline int ff_insert_inpad (AVFilterContext *f, uint index,
                                    AVFilterPad *p)
 {
-    return ff_insert_pad (index, &f->nb_inputs, offsetof (AVFilterLink, dstpad),
+    return ff_insert_pad (index, &f->nb_inputs, offsetof (AVFilterLink, dstpad
+        ),
                   &f->input_pads, &f->inputs, p);
 }
 
@@ -292,7 +303,8 @@ Insert a new output pad for the filter.
 static inline int ff_insert_outpad (AVFilterContext *f, uint index,
                                     AVFilterPad *p)
 {
-    return ff_insert_pad (index, &f->nb_outputs, offsetof (AVFilterLink, srcpad),
+    return ff_insert_pad (index, &f->nb_outputs, offsetof (AVFilterLink, srcpad
+        ),
                   &f->output_pads, &f->outputs, p);
 }
 

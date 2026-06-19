@@ -84,12 +84,37 @@ namespace LibAVFormat {
 //  #define OFFSET (x) offsetof (PrompegContext, x)
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
 
-//  static const LibAVUtil.Option options[] = {
-//      { "ttl", "Time to live (in milliseconds, multicast only)", OFFSET (ttl), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, INT_MAX, .flags = E },
-//      { "l", "FEC L", OFFSET (l), AV_OPT_TYPE_INT, { .i64 = 5 }, 4, 20, .flags = E },
-//      { "d", "FEC D", OFFSET (d), AV_OPT_TYPE_INT, { .i64 = 5 }, 4, 20, .flags = E },
-//      { NULL }
-//  }
+static const LibAVUtil.Option options[] = {
+    {
+        "ttl",
+        "Time to live (in milliseconds, multicast only)",
+        OFFSET (ttl
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = -1 }, -1,
+        INT_MAX,
+        .flags = E
+    },
+    {
+        "l",
+        "FEC L",
+        OFFSET (l
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 5 }, 4, 20, .flags = E
+    },
+    {
+        "d",
+        "FEC D",
+        OFFSET (d
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 5 }, 4, 20, .flags = E
+    },
+    {
+        NULL
+    }
+}
 
 [CCode (cname="prompeg_class", cheader_filename="")]
 public class ProMpegURLProtocolClass : LibAVUtil.Class {

@@ -594,7 +594,7 @@ or AVERROR_OUTPUT_CHANGED|AVERROR_INPUT_CHANGED is returned.
 ***********************************************************/
 attribute_deprecated
 public int avresample_convert_frame (AVAudioResampleContext *avr,
-                             AVFrame *output, AVFrame *input);
+                             public AVFrame output, AVFrame *input);
 
 /***********************************************************
 

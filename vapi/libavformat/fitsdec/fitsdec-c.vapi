@@ -26,10 +26,17 @@ namespace LibAVFormat {
 @file FITS demuxer.
 ***********************************************************/
 
-//  static const LibAVUtil.Option fits_options[] = {
-//      { "framerate", "set the framerate", offsetof (FITSContext, framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "1"}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM},
-//      { NULL },
-//  }
+static const LibAVUtil.Option fits_options[] = {
+    {
+        "framerate",
+        "set the framerate",
+        offsetof (
+            FITSContext, framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "1"}, 0,
+        INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM},
+    {
+        NULL },
+}
 
 [CCode (cname="struct FITSContext", cheader_filename="")]
 [Compact]

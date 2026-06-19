@@ -193,7 +193,7 @@ If this function returns an error, the input frame is not touched.
 ***********************************************************/
 av_warn_unused_result
 public int av_buffersrc_add_frame_flags (AVFilterContext *buffer_src,
-                                 AVFrame *frame, int flags);
+                                 public AVFrame frame, int flags);
 
 /***********************************************************
 Close the buffer source after EOF.

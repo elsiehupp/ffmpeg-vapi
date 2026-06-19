@@ -22,15 +22,49 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define D AV_OPT_FLAG_DECODING_PARAM
-//  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "srtp_out_suite", "", offsetof (SRTPProtoContext, out_suite), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, E },
-//      { "srtp_out_params", "", offsetof (SRTPProtoContext, out_params), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, E },
-//      { "srtp_in_suite", "", offsetof (SRTPProtoContext, in_suite), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, D },
-//      { "srtp_in_params", "", offsetof (SRTPProtoContext, in_params), AV_OPT_TYPE_STRING, { .str = NULL }, 0, 0, D },
-//      { NULL }
-//  }
+#define D AV_OPT_FLAG_DECODING_PARAM
+#define E AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "srtp_out_suite",
+        "",
+        offsetof (
+            SRTPProtoContext, out_suite
+        ),
+        AV_OPT_TYPE_STRING,
+        { .str = NULL }, 0, 0, E
+    },
+    {
+        "srtp_out_params",
+        "",
+        offsetof (
+            SRTPProtoContext, out_params
+        ),
+        AV_OPT_TYPE_STRING,
+        { .str = NULL }, 0, 0, E
+    },
+    {
+        "srtp_in_suite",
+        "",
+        offsetof (
+            SRTPProtoContext, in_suite
+        ),
+        AV_OPT_TYPE_STRING,
+        { .str = NULL }, 0, 0, D
+    },
+    {
+        "srtp_in_params",
+        "",
+        offsetof (
+            SRTPProtoContext, in_params
+        ),
+        AV_OPT_TYPE_STRING,
+        { .str = NULL }, 0, 0, D
+    },
+    {
+        NULL
+    }
+}
 
 [CCode (cname="srtp_context_class", cheader_filename="")]
 public class SRTPURLProtocolClass : LibAVUtil.Class {

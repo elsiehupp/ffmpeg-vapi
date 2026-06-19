@@ -36,6 +36,7 @@ XXX: find better solution with "preinit" method, needed also in
 ***********************************************************/
 #define DEFAULT_CODEC_ID AV_NE (AV_CODEC_ID_PCM_S16BE, AV_CODEC_ID_PCM_S16LE)
 
+[CCode (cname="ff_reorder_func")]
 typedef void (*ff_reorder_func)(const void *, void *, int);
 
 #define ALSA_BUFFER_SIZE_MAX 131072
@@ -62,7 +63,12 @@ public class AlsaData {
     public int channels;
     public int last_period;
     TimeFilter *timefilter;
-    void (*reorder_func)(const void *, void *, int);
+
+    [CCode (cname="reorder_func")]
+    public void (*reorder_func)(
+        const void *, void *, int
+    );
+
     void *reorder_buf;
     /***********************************************************
     in frames

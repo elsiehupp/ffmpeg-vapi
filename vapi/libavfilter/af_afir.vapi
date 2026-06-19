@@ -31,20 +31,25 @@ public class AudioFIRSegment {
     public int[] output_offset;
     public int[] part_index;
 
-    AVFrame *sum;
-    AVFrame *block;
-    AVFrame *buffer;
-    AVFrame *coeff;
-    AVFrame *input;
-    AVFrame *output;
+    public AVFrame sum;
+    public AVFrame block;
+    public AVFrame buffer;
+    public AVFrame coeff;
+    public AVFrame input;
+    public AVFrame output;
 
     RDFTContext **rdft, **irdft;
 }
 
 [Compact]
 public class AudioFIRDSPContext {
-    void (*fcmul_add)(float *sum, float *t, float *c,
-                      ptrdiff_t len);
+
+    [CCode (cname="fcmul_add")]
+    public void (*fcmul_add)(
+        float *sum, float *t, float *c,
+        ptrdiff_t len
+    );
+
 }
 
 [Compact]
@@ -77,8 +82,8 @@ public class AudioFIRContext {
     AudioFIRSegment seg[1024];
     public int nb_segments;
 
-    AVFrame *in[2];
-    AVFrame *video;
+    public AVFrame in[2];
+    public AVFrame video;
     public int min_part_size;
     public int64 pts;
 

@@ -30,12 +30,21 @@ namespace LibAVFormat {
     support filling with a background thread
 ***********************************************************/
 
-//  #define OFFSET (x) offsetof (Context, x)
-//  #define D AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "read_ahead_limit", "Amount in bytes that may be read ahead when seeking isn't supported, -1 for unlimited", OFFSET (read_ahead_limit), AV_OPT_TYPE_INT, { .i64 = 65536 }, -1, INT_MAX, D },
-//      {NULL},
-//  }
+#define OFFSET (x) offsetof (Context, x)
+#define D AV_OPT_FLAG_DECODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "read_ahead_limit",
+        "Amount in bytes that may be read ahead when seeking isn't supported, -1 for unlimited",
+        OFFSET (read_ahead_limit
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 65536 }, -1,
+        INT_MAX,
+        D
+    },
+    {NULL},
+}
 
 [CCode (cname="struct Context", cheader_filename="")]
 [Compact]

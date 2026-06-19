@@ -41,13 +41,20 @@ public class SPPContext {
     public int use_bframe_qp;
     public int hsub, vsub;
 
-    void (*store_slice)(uint8[] dst, int16 *src,
-                        int dst_stride, int src_stride,
-                        int width, int height, int log2_scale,
-                        uint8 dither[8][8]);
+    [CCode (cname="store_slice")]
+    public void (*store_slice)(
+        uint8[] dst, int16 *src,
+        int dst_stride, int src_stride,
+        int width, int height, int log2_scale,
+        uint8 dither[8][8]
+    );
 
-    void (*requantize)(int16 dst[64], int16 src[64],
-                       int qp, uint8[] permutation);
+    [CCode (cname="requantize")]
+    public void (*requantize)(
+        int16 dst[64], int16 src[64],
+        int qp, uint8[] permutation
+    );
+
 }
 
 public void ff_spp_init_x86 (SPPContext *s);

@@ -22,17 +22,71 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (ChromaprintMuxContext, x)
-//  #define FLAGS AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "silence_threshold", "threshold for detecting silence", OFFSET (silence_threshold), AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 32767, FLAGS },
-//      { "algorithm", "version of the fingerprint algorithm", OFFSET (algorithm), AV_OPT_TYPE_INT, { .i64 = CHROMAPRINT_ALGORITHM_DEFAULT }, CHROMAPRINT_ALGORITHM_TEST1, INT_MAX, FLAGS },
-//      { "fp_format", "fingerprint format to write", OFFSET (fp_format), AV_OPT_TYPE_INT, { .i64 = FINGERPRINT_BASE64 }, FINGERPRINT_RAW, FINGERPRINT_BASE64, FLAGS },
-//      { "raw", "binary raw fingerprint", 0, AV_OPT_TYPE_CONST, {.i64 = FINGERPRINT_RAW }, INT_MIN, INT_MAX, FLAGS, "fp_format"},
-//      { "compressed", "binary compressed fingerprint", 0, AV_OPT_TYPE_CONST, {.i64 = FINGERPRINT_COMPRESSED }, INT_MIN, INT_MAX, FLAGS, "fp_format"},
-//      { "base64", "Base64 compressed fingerprint", 0, AV_OPT_TYPE_CONST, {.i64 = FINGERPRINT_BASE64 }, INT_MIN, INT_MAX, FLAGS, "fp_format"},
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (ChromaprintMuxContext, x)
+#define FLAGS AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "silence_threshold",
+        "threshold for detecting silence",
+        OFFSET (silence_threshold
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = -1 }, -1, 32767, FLAGS
+    },
+    {
+        "algorithm",
+        "version of the fingerprint algorithm",
+        OFFSET (algorithm
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = CHROMAPRINT_ALGORITHM_DEFAULT }, CHROMAPRINT_ALGORITHM_TEST1,
+        INT_MAX,
+        FLAGS
+    },
+    {
+        "fp_format",
+        "fingerprint format to write",
+        OFFSET (fp_format
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = FINGERPRINT_BASE64 }, FINGERPRINT_RAW, FINGERPRINT_BASE64, FLAGS
+    },
+    {
+        "raw",
+        "binary raw fingerprint",
+        0,
+        AV_OPT_TYPE_CONST,
+        {
+            .i64 = FINGERPRINT_RAW },
+        INT_MIN,
+        INT_MAX,
+        FLAGS, "fp_format"
+    },
+    {
+        "compressed",
+        "binary compressed fingerprint",
+        0,
+        AV_OPT_TYPE_CONST,
+        {
+            .i64 = FINGERPRINT_COMPRESSED },
+        INT_MIN,
+        INT_MAX,
+        FLAGS, "fp_format"
+    },
+    {
+        "base64",
+        "Base64 compressed fingerprint",
+        0,
+        AV_OPT_TYPE_CONST,
+        {
+            .i64 = FINGERPRINT_BASE64 },
+        INT_MIN,
+        INT_MAX,
+        FLAGS, "fp_format"
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="chromaprint_class", cheader_filename="")]
 public class ChromaPrintMuxerClass : LibAVUtil.Class {

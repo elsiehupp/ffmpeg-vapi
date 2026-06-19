@@ -22,15 +22,47 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (HDSContext, x)
-//  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "window_size", "number of fragments kept in the manifest", OFFSET (window_size), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, E },
-//      { "extra_window_size", "number of fragments kept outside of the manifest before removing from disk", OFFSET (extra_window_size), AV_OPT_TYPE_INT, { .i64 = 5 }, 0, INT_MAX, E },
-//      { "min_frag_duration", "minimum fragment duration (in microseconds)", OFFSET (min_frag_duration), AV_OPT_TYPE_INT64, { .i64 = 10000000 }, 0, INT_MAX, E },
-//      { "remove_at_exit", "remove all fragments when finished", OFFSET (remove_at_exit), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, E },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (HDSContext, x)
+#define E AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "window_size",
+        "number of fragments kept in the manifest",
+        OFFSET (window_size
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 0 }, 0,
+        INT_MAX,
+        E
+    },
+    {
+        "extra_window_size",
+        "number of fragments kept outside of the manifest before removing from disk",
+        OFFSET (extra_window_size
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 5 }, 0,
+        INT_MAX,
+        E
+    },
+    {
+        "min_frag_duration",
+        "minimum fragment duration (in microseconds)",
+        OFFSET (min_frag_duration), AV_OPT_TYPE_INT64, { .i64 = 10000000 }, 0,
+        INT_MAX,
+        E
+    },
+    {
+        "remove_at_exit",
+        "remove all fragments when finished",
+        OFFSET (remove_at_exit
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 0 }, 0, 1, E
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="hds_class", cheader_filename="")]
 public class HDSMuxerClass : LibAVUtil.Class {

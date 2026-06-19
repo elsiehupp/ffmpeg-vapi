@@ -35,12 +35,25 @@ public class ResampleContext {
     public int linear;
     public AVResampleFilterType filter_type;
     public int kaiser_beta;
-    void (*set_filter)(void *filter, double[] tab, int phase, int tap_count);
-    void (*resample_one)(ResampleContext *c, void *dst0,
-                         int dst_index, void *src0,
-                         uint index, int frac);
-    void (*resample_nearest)(void *dst0, int dst_index,
-                             void *src0, uint index);
+
+    [CCode (cname="set_filter")]
+    public void (*set_filter)(
+        void *filter, double[] tab, int phase, int tap_count
+    );
+
+    [CCode (cname="resample_one")]
+    public void (*resample_one)(
+        ResampleContext *c, void *dst0,
+        int dst_index, void *src0,
+        uint index, int frac
+    );
+
+    [CCode (cname="resample_nearest")]
+    public void (*resample_nearest)(
+        void *dst0, int dst_index,
+        void *src0, uint index
+    );
+
     public int padding_size;
     public int initial_padding_filled;
     public int initial_padding_samples;

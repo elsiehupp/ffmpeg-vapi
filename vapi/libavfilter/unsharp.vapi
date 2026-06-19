@@ -79,5 +79,9 @@ public class UnsharpContext {
     public int hsub, vsub;
     public int nb_threads;
     public int opencl;
-    public int (* apply_unsharp)(AVFilterContext *ctx, AVFrame *in, AVFrame *out);
+    [CCode (cname="apply_unsharp")]
+    public int (* apply_unsharp)(
+        AVFilterContext *ctx, AVFrame *in, AVFrame *out
+    );
+
 }

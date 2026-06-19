@@ -24,15 +24,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (GIFContext, x)
-//  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "loop", "Number of times to loop the output: -1 - no loop, 0 - infinite loop", OFFSET (loop),
-//        AV_OPT_TYPE_INT, { .i64 = 0 }, -1, 65535, ENC },
-//      { "final_delay", "Force delay (in centiseconds) after the last frame", OFFSET (last_delay),
-//        AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 65535, ENC },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (GIFContext, x)
+#define ENC AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "loop",
+        "Number of times to loop the output: -1 - no loop, 0 - infinite loop",
+        OFFSET (loop
+        ),
+        AV_OPT_TYPE_INT, { .i64 = 0 }, -1, 65535, ENC
+    },
+    {
+        "final_delay",
+        "Force delay (in centiseconds) after the last frame",
+        OFFSET (last_delay
+        ),
+        AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 65535, ENC
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="gif_muxer_class", cheader_filename="")]
 public class GIFMuxerClass : LibAVUtil.Class {

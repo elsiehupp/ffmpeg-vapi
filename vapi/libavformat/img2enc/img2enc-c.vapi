@@ -23,16 +23,54 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (VideoMuxData, x)
-//  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option muxoptions[] = {
-//      { "update", "continuously overwrite one file", OFFSET (update), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, ENC },
-//      { "start_number", "set first number in the sequence", OFFSET (img_number), AV_OPT_TYPE_INT, { .i64 = 1 }, 0, INT_MAX, ENC },
-//      { "strftime", "use strftime for filename", OFFSET (use_strftime), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, ENC },
-//      { "frame_pts", "use current frame pts for filename", OFFSET (frame_pts), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, ENC },
-//      { "atomic_writing", "write files atomically (using temporary files and renames)", OFFSET (use_rename), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, ENC },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (VideoMuxData, x)
+#define ENC AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option muxoptions[] = {
+    {
+        "update",
+        "continuously overwrite one file",
+        OFFSET (update
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 0 }, 0, 1, ENC
+    },
+    {
+        "start_number",
+        "set first number in the sequence",
+        OFFSET (img_number
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 1 }, 0,
+        INT_MAX,
+        ENC
+    },
+    {
+        "strftime",
+        "use strftime for filename",
+        OFFSET (use_strftime
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 0 }, 0, 1, ENC
+    },
+    {
+        "frame_pts",
+        "use current frame pts for filename",
+        OFFSET (frame_pts
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 0 }, 0, 1, ENC
+    },
+    {
+        "atomic_writing",
+        "write files atomically (using temporary files and renames)",
+        OFFSET (use_rename
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 0 }, 0, 1, ENC
+    },
+    {
+        NULL },
+}
 
 #if CONFIG_IMAGE2_MUXER
 [CCode (cname="img2mux_class", cheader_filename="")]

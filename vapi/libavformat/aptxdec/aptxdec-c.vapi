@@ -22,10 +22,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-//  static const LibAVUtil.Option aptx_options[] = {
-//      { "sample_rate", "", offsetof (AptXDemuxerContext, sample_rate), AV_OPT_TYPE_INT, {.i64 = 48000}, 0, INT_MAX, AV_OPT_FLAG_DECODING_PARAM },
-//      { NULL },
-//  }
+static const LibAVUtil.Option aptx_options[] = {
+    {
+        "sample_rate",
+        "",
+        offsetof (
+            AptXDemuxerContext, sample_rate
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 48000}, 0,
+        INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        NULL },
+}
 
 #if CONFIG_APTX_DEMUXER
 [CCode (cname="aptx_demuxer_class", cheader_filename="")]

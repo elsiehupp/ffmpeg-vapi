@@ -62,7 +62,7 @@ public class SUPDemuxer : AVInputFormat {
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
-    ); // = ,
+    ); // =,
     [CCode (cname="flags", cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {

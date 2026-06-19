@@ -95,9 +95,17 @@ public class OverlayContext {
 
     AVExpr *x_pexpr, *y_pexpr;
 
-    public int (*blend_row[4])(uint8[] d, uint8[] da, uint8[] s, uint8[] a, int w,
-                        ptrdiff_t alinesize);
-    public int (*blend_slice)(AVFilterContext *ctx, void *arg, int jobnr, int nb_jobs);
+    [CCode (cname="blend_row")]
+    public int (*blend_row[4])(
+        uint8[] d, uint8[] da, uint8[] s, uint8[] a, int w,
+        ptrdiff_t alinesize
+    );
+
+    [CCode (cname="blend_slice")]
+    public int (*blend_slice)(
+        AVFilterContext *ctx, void *arg, int jobnr, int nb_jobs
+    );
+
 }
 
 public void ff_overlay_init_x86 (OverlayContext *s, int format, int pix_format,

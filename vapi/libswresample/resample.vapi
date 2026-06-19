@@ -47,12 +47,24 @@ public class ResampleContext {
     public int phase_count_compensation;
 
     struct {
-        void (*resample_one)(void *dst, void *src,
-                             int n, int64 index, int64 incr);
-        int (*resample_common)(ResampleContext *c, void *dst,
-                               void *src, int n, int update_ctx);
-        int (*resample_linear)(ResampleContext *c, void *dst,
-                               void *src, int n, int update_ctx);
+        [CCode (cname="resample_one")]
+        public void (*resample_one)(
+            void *dst, void *src,
+            int n, int64 index, int64 incr
+        );
+
+        [CCode (cname="resample_common")]
+        int (*resample_common)(
+            ResampleContext *c, void *dst,
+            void *src, int n, int update_ctx
+        );
+
+        [CCode (cname="resample_linear")]
+        int (*resample_linear)(
+            ResampleContext *c, void *dst,
+            void *src, int n, int update_ctx
+        );
+
     } dsp;
 }
 

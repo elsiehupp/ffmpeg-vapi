@@ -194,7 +194,10 @@ public class AVFilter {
             AVERROR code on failure (but the code will be
               dropped and treated as ENOMEM by the calling code)
     ***********************************************************/
-    public int (*preinit)(AVFilterContext *ctx);
+    [CCode (cname="")]
+    public int (*preinit)(
+        AVFilterContext *ctx
+    );
 
     /***********************************************************
     Filter initialization function.
@@ -217,7 +220,10 @@ public class AVFilter {
 
     @return 0 on success, a negative AVERROR on failure
     ***********************************************************/
-    public int (*init)(AVFilterContext *ctx);
+    [CCode (cname="")]
+    public int (*init)(
+        AVFilterContext *ctx
+    );
 
     /***********************************************************
     Should be set instead of @ref AVFilter.init "init" by the filters that
@@ -230,7 +236,10 @@ public class AVFilter {
 
     Otherwise the semantics is the same as for @ref AVFilter.init "init".
     ***********************************************************/
-    public int (*init_dict)(AVFilterContext *ctx, AVDictionary **options);
+    [CCode (cname="")]
+    public int (*init_dict)(
+        AVFilterContext *ctx, AVDictionary **options
+    );
 
     /***********************************************************
     Filter uninitialization function.
@@ -242,7 +251,8 @@ public class AVFilter {
     This callback may be called even if @ref AVFilter.init "init" was not
     called or failed, so it must be prepared to handle such a situation.
     ***********************************************************/
-    void (*uninit)(AVFilterContext *ctx);
+    [CCode (cname="")]
+    public void (*uninit)(AVFilterContext *ctx);
 
     /***********************************************************
     Query formats supported by the filter on its inputs and outputs.
@@ -267,7 +277,10 @@ public class AVFilter {
     @return zero on success, a negative value corresponding to an
         AVERROR code otherwise
     ***********************************************************/
-    public int (*query_formats)(AVFilterContext *);
+    [CCode (cname="")]
+    public int (*query_formats)(
+        AVFilterContext *
+    );
 
     /***********************************************************
     size of private data to allocate for the filter
@@ -296,14 +309,20 @@ public class AVFilter {
     @returns >=0 on success otherwise an error code.
              AVERROR (ENOSYS) on unsupported commands
     ***********************************************************/
-    public int (*process_command)(AVFilterContext *, string cmd, string arg, string res, int res_len, int flags);
+    [CCode (cname="")]
+    public int (*process_command)(
+        AVFilterContext *, string cmd, string arg, string res, int res_len, int flags
+    );
 
     /***********************************************************
     Filter initialization function, alternative to the init ()
     callback. Args contains the user-supplied parameters, opaque is
     used for providing binary data.
     ***********************************************************/
-    public int (*init_opaque)(AVFilterContext *ctx, void *opaque);
+    [CCode (cname="")]
+    public int (*init_opaque)(
+        AVFilterContext *ctx, void *opaque
+    );
 
     /***********************************************************
     Filter activation function.
@@ -317,7 +336,11 @@ public class AVFilter {
     possible, it must use ff_filter_set_ready () to schedule another
     activation.
     ***********************************************************/
-    public int (*activate)(AVFilterContext *ctx);
+    [CCode (cname="")]
+    public int (*activate)(
+        AVFilterContext *ctx
+    );
+
 }
 
 /***********************************************************
@@ -640,7 +663,7 @@ public class AVFilterLink {
     /***********************************************************
     Buffer partially filled with samples to achieve a fixed/minimum size.
     ***********************************************************/
-    AVFrame *partial_buf;
+    public AVFrame partial_buf;
 
     /***********************************************************
     Size of the partial buffer to allocate.

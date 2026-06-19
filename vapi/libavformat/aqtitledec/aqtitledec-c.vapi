@@ -28,12 +28,22 @@ namespace LibAVFormat {
 @see https://trac.annodex.net/wiki/AQTitle
 ***********************************************************/
 
-//  #define OFFSET (x) offsetof (AQTitleContext, x)
-//  #define SD AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option aqt_options[] = {
-//      { "subfps", "set the movie frame rate", OFFSET (frame_rate), AV_OPT_TYPE_RATIONAL, {.dbl=25}, 0, INT_MAX, SD },
-//      { NULL }
-//  }
+#define OFFSET (x) offsetof (AQTitleContext, x)
+#define SD AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
+static const LibAVUtil.Option aqt_options[] = {
+    {
+        "subfps",
+        "set the movie frame rate",
+        OFFSET (frame_rate),
+        AV_OPT_TYPE_RATIONAL,
+        {.dbl=25}, 0,
+        INT_MAX,
+        SD
+    },
+    {
+        NULL
+    }
+}
 
 [CCode (cname="aqt_class", cheader_filename="")]
 public class AQTitleClass : LibAVUtil.Class {

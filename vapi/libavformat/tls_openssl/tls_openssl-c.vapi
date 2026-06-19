@@ -36,10 +36,12 @@ namespace LibAVFormat {
 //  }
 //  #endif
 
-//  static const LibAVUtil.Option options[] = {
-//      TLS_COMMON_OPTIONS (TLSContext, tls_shared),
-//      { NULL }
-//  }
+static const LibAVUtil.Option options[] = {
+    TLS_COMMON_OPTIONS (TLSContext, tls_shared),
+    {
+        NULL
+    }
+}
 
 [CCode (cname="tls_class", cheader_filename="")]
 public class OpenTLSURLProtocolClass : LibAVUtil.Class {

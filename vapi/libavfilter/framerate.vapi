@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define BLEND_FACTOR_DEPTH8   7
 #define BLEND_FACTOR_DEPTH16 15
 
+[CCode (cname="blend_func")]
 typedef void (*blend_func)(BLEND_FUNC_PARAMS);
 
 [Compact]
@@ -78,16 +79,16 @@ public class FrameRateContext {
 
     public int blend_factor_max;
     public int bitdepth;
-    AVFrame *work;
+    public AVFrame work;
 
     /***********************************************************
     last frame
     ***********************************************************/
-    AVFrame *f0;
+    public AVFrame f0;
     /***********************************************************
     current frame
     ***********************************************************/
-    AVFrame *f1;
+    public AVFrame f1;
     /***********************************************************
     last frame pts in dest_time_base
     ***********************************************************/

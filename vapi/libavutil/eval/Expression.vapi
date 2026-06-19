@@ -47,7 +47,8 @@ public class Expression {
     @param res a pointer to a double where is put the result value of
     the expression, or NAN in case of error
     @param s expression as a zero terminated string, for example "1+2^3+5*5+sin (2/3)"
-    @param const_names null terminated array of zero terminated strings of constant identifiers, for example {"PI", "E", 0}
+    @param const_names null terminated array of zero terminated strings of constant identifiers, for example { "PI", "E",
+        0}
     @param const_values a zero terminated array of values for the identifiers from const_names
     @param func1_names null terminated array of zero terminated strings of funcs1 identifiers
     @param funcs1 null terminated array of function pointers for functions which take 1 argument
@@ -81,7 +82,8 @@ public class Expression {
     The pointed to Expression must be freed with av_expr_free () by the user
     when it is not needed anymore.
     @param s expression as a zero terminated string, for example "1+2^3+5*5+sin (2/3)"
-    @param const_names null terminated array of zero terminated strings of constant identifiers, for example {"PI", "E", 0}
+    @param const_names null terminated array of zero terminated strings of constant identifiers, for example { "PI", "E",
+        0}
     @param func1_names null terminated array of zero terminated strings of funcs1 identifiers
     @param funcs1 null terminated array of function pointers for functions which take 1 argument
     @param func2_names null terminated array of zero terminated strings of funcs2 identifiers

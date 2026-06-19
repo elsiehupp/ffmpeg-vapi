@@ -45,7 +45,11 @@ public class GBlurContext {
     float nu;
     float nuV;
     public int nb_planes;
-    void (*horiz_slice)(float *buffer, int width, int height, int steps, float nu, float bscale);
+    [CCode (cname="horiz_slice")]
+    public void (*horiz_slice)(
+        float *buffer, int width, int height, int steps, float nu, float bscale
+    );
+
 }
 
 public void ff_gblur_init (GBlurContext *s);

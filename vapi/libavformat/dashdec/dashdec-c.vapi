@@ -23,15 +23,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (DASHContext, x)
-//  #define FLAGS AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option dash_options[] = {
-//      {"allowed_extensions", "List of file extensions that dash is allowed to access"
-//          OFFSET (allowed_extensions), AV_OPT_TYPE_STRING,
-//          {.str = "aac,m4a,m4s,m4v,mov,mp4,webm"},
-//          INT_MIN, INT_MAX, FLAGS},
-//      {NULL}
-//  }
+#define OFFSET (x) offsetof (DASHContext, x)
+#define FLAGS AV_OPT_FLAG_DECODING_PARAM
+static const LibAVUtil.Option dash_options[] = {
+    {
+        "allowed_extensions",
+        "List of file extensions that dash is allowed to access"
+        OFFSET (allowed_extensions), AV_OPT_TYPE_STRING,
+        {.str = "aac,m4a,m4s,m4v,mov,mp4,webm"},
+        INT_MIN,
+        INT_MAX,
+        FLAGS},
+    {NULL}
+}
 
 [CCode (cname="dash_class", cheader_filename="")]
 public class DashDemuxerClass : LibAVUtil.Class {

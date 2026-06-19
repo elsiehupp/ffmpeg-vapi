@@ -25,20 +25,30 @@ namespace LibAVFormat {
 @brief Transcoding report2074.c2 to wav went from 7.391s to 5.322s
 with -frames_per_packet 1000 compared to default, same sha1sum
 ***********************************************************/
-//  #define FRAMES_PER_PACKET
-//      { "frames_per_packet", "Number of frames to read at a time. Higher = faster decoding, lower granularity",
-//        offsetof (Codec2Context, frames_per_packet), AV_OPT_TYPE_INT, {.i64 = 1}, 1, INT_MAX, AV_OPT_FLAG_DECODING_PARAM}
+#define FRAMES_PER_PACKET
+    {
+        "frames_per_packet",
+        "Number of frames to read at a time. Higher = faster decoding, lower granularity",
+        offsetof (
+            Codec2Context, frames_per_packet
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 1}, 1,
+        INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM}
 
-//  static const LibAVUtil.Option codec2_options[] = {
-//      FRAMES_PER_PACKET,
-//      { NULL },
-//  }
+static const LibAVUtil.Option codec2_options[] = {
+    FRAMES_PER_PACKET,
+    {
+        NULL },
+}
 
-//  static const LibAVUtil.Option codec2raw_options[] = {
-//      AVPRIV_CODEC2_AVOPTIONS ("codec2 mode [mandatory]", Codec2Context, -1, -1, AV_OPT_FLAG_DECODING_PARAM),
-//      FRAMES_PER_PACKET,
-//      { NULL },
-//  }
+static const LibAVUtil.Option codec2raw_options[] = {
+    AVPRIV_CODEC2_AVOPTIONS ("codec2 mode [mandatory]", Codec2Context, -1, -1, AV_OPT_FLAG_DECODING_PARAM),
+    FRAMES_PER_PACKET,
+    {
+        NULL },
+}
 
 [CCode (cname="codec2_mux_class", cheader_filename="")]
 public class Codec2MuxerClass : LibAVUtil.Class {

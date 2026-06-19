@@ -22,13 +22,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (AVIContext, x)
-//  #define ENC AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "reserve_index_space", "reserve space (in bytes) at the beginning of the file for each stream index", OFFSET (reserve_index_space), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, ENC },
-//      { "write_channel_mask", "write channel mask into wave format header", OFFSET (write_channel_mask), AV_OPT_TYPE_BOOL, { .i64 = 1 }, 0, 1, ENC },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (AVIContext, x)
+#define ENC AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "reserve_index_space",
+        "reserve space (in bytes) at the beginning of the file for each stream index",
+        OFFSET (reserve_index_space
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 0 }, 0,
+        INT_MAX,
+        ENC
+    },
+    {
+        "write_channel_mask",
+        "write channel mask into wave format header",
+        OFFSET (write_channel_mask
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 1 }, 0, 1, ENC
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="avi_muxer_class", cheader_filename="")]
 public class AVIMuxerClass : LibAVUtil.Class {

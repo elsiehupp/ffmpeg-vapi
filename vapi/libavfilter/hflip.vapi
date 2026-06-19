@@ -35,7 +35,11 @@ public class FlipContext {
     ***********************************************************/
     public int planeheight[4];
 
-    void (*flip_line[4])(const uint8[] src, uint8[] dst, int w);
+    [CCode (cname="flip_line")]
+    public void (*flip_line[4])(
+        const uint8[] src, uint8[] dst, int w
+    );
+
 }
 
 public int ff_hflip_init (FlipContext *s, int step[4], int nb_planes);

@@ -34,7 +34,10 @@ public class OSSAudioData {
     public int buffer_ptr;
 }
 
-public int ff_oss_audio_open (AVFormatContext *s1, int is_output,
-                      string audio_device);
+public int ff_oss_audio_open (
+    AVFormatContext *s1,
+    int is_output,
+    string audio_device
+);
 
 public int ff_oss_audio_close (OSSAudioData *s);

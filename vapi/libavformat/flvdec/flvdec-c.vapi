@@ -31,15 +31,45 @@ namespace LibAVFormat {
 [Compact]
 public class FLVDemuxerClassPrivateData { }
 
-//  #define OFFSET (x) offsetof (FLVContext, x)
-//  #define VD AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "flv_metadata", "Allocate streams according to the onMetaData array", OFFSET (trust_metadata), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, VD },
-//      { "flv_full_metadata", "Dump full metadata of the onMetadata", OFFSET (dump_full_metadata), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, VD },
-//      { "flv_ignore_prevtag", "Ignore the Size of previous tag", OFFSET (trust_datasize), AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, VD },
-//      { "missing_streams", "", OFFSET (missing_streams), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, 0xFF, VD | AV_OPT_FLAG_EXPORT | AV_OPT_FLAG_READONLY },
-//      { NULL }
-//  }
+#define OFFSET (x) offsetof (FLVContext, x)
+#define VD AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "flv_metadata",
+        "Allocate streams according to the onMetaData array",
+        OFFSET (trust_metadata
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 0 }, 0, 1, VD
+    },
+    {
+        "flv_full_metadata",
+        "Dump full metadata of the onMetadata",
+        OFFSET (dump_full_metadata
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 0 }, 0, 1, VD
+    },
+    {
+        "flv_ignore_prevtag",
+        "Ignore the Size of previous tag",
+        OFFSET (trust_datasize
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 0 }, 0, 1, VD
+    },
+    {
+        "missing_streams",
+        "",
+        OFFSET (missing_streams
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 0 }, 0, 0xFF, VD | AV_OPT_FLAG_EXPORT | AV_OPT_FLAG_READONLY
+    },
+    {
+        NULL
+    }
+}
 
 [CCode (cname="flv_class", cheader_filename="")]
 public class FLVDemuxerClass : LibAVUtil.Class {

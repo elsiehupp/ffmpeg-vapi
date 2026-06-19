@@ -23,19 +23,42 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (FFRawVideoDemuxerContext, x)
-//  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  const LibAVUtil.Option ff_rawvideo_options[] = {
-//      { "framerate", "", OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, DEC},
-//      { "raw_packet_size", "", OFFSET (raw_packet_size), AV_OPT_TYPE_INT, {.i64 = RAW_PACKET_SIZE }, 1, INT_MAX, DEC},
-//      { NULL },
-//  }
-//  #undef OFFSET
-//  #define OFFSET (x) offsetof (FFRawDemuxerContext, x)
-//  const LibAVUtil.Option ff_raw_options[] = {
-//      { "raw_packet_size", "", OFFSET (raw_packet_size), AV_OPT_TYPE_INT, {.i64 = RAW_PACKET_SIZE }, 1, INT_MAX, DEC},
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (FFRawVideoDemuxerContext, x)
+#define DEC AV_OPT_FLAG_DECODING_PARAM
+const LibAVUtil.Option ff_rawvideo_options[] = {
+    {
+        "framerate",
+        "",
+        OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0,
+        INT_MAX,
+        DEC},
+    {
+        "raw_packet_size",
+        "",
+        OFFSET (raw_packet_size
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = RAW_PACKET_SIZE }, 1,
+        INT_MAX,
+        DEC},
+    {
+        NULL },
+}
+#undef OFFSET
+#define OFFSET (x) offsetof (FFRawDemuxerContext, x)
+const LibAVUtil.Option ff_raw_options[] = {
+    {
+        "raw_packet_size",
+        "",
+        OFFSET (raw_packet_size
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = RAW_PACKET_SIZE }, 1,
+        INT_MAX,
+        DEC},
+    {
+        NULL },
+}
 
 #if CONFIG_DATA_DEMUXER
 //  FF_RAW_DEMUXER_CLASS (raw_data)

@@ -25,17 +25,43 @@ namespace LibAVFormat {
 //  #define OFFSET (x) offsetof (OGGContext, x)
 //  #define PARAM AV_OPT_FLAG_ENCODING_PARAM
 
-//  static const LibAVUtil.Option options[] = {
-//      { "serial_offset", "serial number offset",
-//          OFFSET (serial_offset), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX, PARAM },
-//      { "oggpagesize", "Set preferred Ogg page size.",
-//        OFFSET (pref_size), AV_OPT_TYPE_INT, {.i64 = 0}, 0, MAX_PAGE_SIZE, PARAM},
-//      { "pagesize", "preferred page size in bytes (deprecated)",
-//          OFFSET (pref_size), AV_OPT_TYPE_INT, { .i64 = 0 }, 0, MAX_PAGE_SIZE, PARAM },
-//      { "page_duration", "preferred page duration, in microseconds",
-//          OFFSET (pref_duration), AV_OPT_TYPE_INT64, { .i64 = 1000000 }, 0, INT64_MAX, PARAM },
-//      { NULL },
-//  }
+static const LibAVUtil.Option options[] = {
+    {
+        "serial_offset",
+        "serial number offset",
+        OFFSET (serial_offset
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 0 }, 0,
+        INT_MAX,
+        PARAM
+    },
+    {
+        "oggpagesize",
+        "Set preferred Ogg page size.",
+      OFFSET (pref_size
+        ),
+        AV_OPT_TYPE_INT,
+        {
+            .i64 = 0
+        },
+        0, MAX_PAGE_SIZE, PARAM},
+    {
+        "pagesize",
+        "preferred page size in bytes (deprecated)",
+        OFFSET (pref_size
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 0 }, 0, MAX_PAGE_SIZE, PARAM
+    },
+    {
+        "page_duration",
+        "preferred page duration, in microseconds",
+        OFFSET (pref_duration), AV_OPT_TYPE_INT64, { .i64 = 1000000 }, 0, INT64_MAX, PARAM
+    },
+    {
+        NULL },
+}
 
 //  #define OGG_CLASS (flavor, name)
 [CCode (cname="flavor ## _muxer_class", cheader_filename="")]

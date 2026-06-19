@@ -31,10 +31,20 @@ namespace LibAVFormat {
 //  #define OFFSET (x) offsetof (RTMPEContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
 
-//  static const LibAVUtil.Option ffrtmpcrypt_options[] = {
-//      {"ffrtmpcrypt_tunneling", "Use a HTTP tunneling connection (RTMPTE).", OFFSET (tunneling), AV_OPT_TYPE_INT, {.i64 = 0}, 0, 1, DEC},
-//      { NULL },
-//  }
+static const LibAVUtil.Option ffrtmpcrypt_options[] = {
+    {
+        "ffrtmpcrypt_tunneling",
+        "Use a HTTP tunneling connection (RTMPTE).",
+        OFFSET (tunneling
+        ),
+        AV_OPT_TYPE_INT,
+        {
+            .i64 = 0
+        },
+        0, 1, DEC},
+    {
+        NULL },
+}
 
 [CCode (cname="ffrtmpcrypt_class", cheader_filename="")]
 public class RTMPCryptURLProtocolClass : LibAVUtil.Class {

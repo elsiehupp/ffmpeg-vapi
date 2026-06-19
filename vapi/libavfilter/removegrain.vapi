@@ -31,9 +31,16 @@ public class RemoveGrainContext {
     public int skip_even;
     public int skip_odd;
 
-    public int (*rg[4])(int c, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8);
+    [CCode (cname="rg")]
+    public int (*rg[4])(
+        int c, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8
+    );
 
-    void (*fl[4])(uint8[] dst, uint8[] src, ptrdiff_t stride, int pixels);
+    [CCode (cname="fl")]
+    public void (*fl[4])(
+        uint8[] dst, uint8[] src, ptrdiff_t stride, int pixels
+    );
+
 }
 
 public void ff_removegrain_init_x86 (RemoveGrainContext *rg);

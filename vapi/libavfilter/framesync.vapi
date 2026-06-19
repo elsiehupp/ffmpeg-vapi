@@ -164,7 +164,10 @@ public class FFFrameSync {
     /***********************************************************
     Callback called when a frame event is ready
     ***********************************************************/
-    public int (*on_event)(FFFrameSync *fs);
+    [CCode (cname="on_event")]
+    public int (*on_event)(F
+        FFrameSync *fs
+    );
 
     /***********************************************************
     Opaque pointer, not used by the API

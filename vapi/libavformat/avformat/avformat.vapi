@@ -129,8 +129,10 @@ options on a preallocated context. Instead, the options should be passed to
 avformat_open_input () wrapped in an LibAVUtil.Dictionary:
 @code
 LibAVUtil.Dictionary options = NULL;
-av_dict_set (&options, "video_size", "640x480", 0);
-av_dict_set (&options, "pixel_format", "rgb24", 0);
+av_dict_set (&options, "video_size", "640x480",
+        0);
+av_dict_set (&options, "pixel_format", "rgb24",
+        0);
 
 if (avformat_open_input (&format_context, url, NULL, &options) < 0)
     abort ();

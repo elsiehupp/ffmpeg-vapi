@@ -32,8 +32,15 @@ public class PP7Context {
     public int temp_stride;
     uint8[] src;
 
-    public int (*requantize)(PP7Context *p, int16 *src, int qp);
-    void (*dctB)(int16 *dst, int16 *src);
+    [CCode (cname="requantize")]
+    public int (*requantize)(
+        PP7Context *p, int16 *src, int qp
+    );
+
+    [CCode (cname="*dctB")]
+    public void (*dctB)(
+        int16 *dst, int16 *src
+    );
 
 }
 

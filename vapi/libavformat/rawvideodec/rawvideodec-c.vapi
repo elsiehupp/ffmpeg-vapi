@@ -22,14 +22,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (RawVideoDemuxerContext, x)
-//  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option rawvideo_options[] = {
-//      { "video_size", "set frame size", OFFSET (width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, DEC },
-//      { "pixel_format", "set pixel format", OFFSET (pixel_format), AV_OPT_TYPE_STRING, {.str = "yuv420p"}, 0, 0, DEC },
-//      { "framerate", "set frame rate", OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, DEC },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (RawVideoDemuxerContext, x)
+#define DEC AV_OPT_FLAG_DECODING_PARAM
+static const LibAVUtil.Option rawvideo_options[] = {
+    {
+        "video_size",
+        "set frame size",
+        OFFSET (width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, DEC
+    },
+    {
+        "pixel_format",
+        "set pixel format",
+        OFFSET (pixel_format
+        ),
+        AV_OPT_TYPE_STRING,
+        {.str = "yuv420p"}, 0, 0, DEC
+    },
+    {
+        "framerate",
+        "set frame rate",
+        OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0,
+        INT_MAX,
+        DEC
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="rawvideo_demuxer_class", cheader_filename="")]
 public class RawVideoDemuxerClass : LibAVUtil.Class {

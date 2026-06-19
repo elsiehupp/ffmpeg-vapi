@@ -29,10 +29,20 @@ namespace LibAVFormat {
 //  #define OFFSET (x) offsetof (RTMP_HTTPContext, x)
 //  #define DEC AV_OPT_FLAG_DECODING_PARAM
 
-//  static const LibAVUtil.Option ffrtmphttp_options[] = {
-//      {"ffrtmphttp_tls", "Use a HTTPS tunneling connection (RTMPTS).", OFFSET (tls), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, DEC},
-//      { NULL },
-//  }
+static const LibAVUtil.Option ffrtmphttp_options[] = {
+    {
+        "ffrtmphttp_tls",
+        "Use a HTTPS tunneling connection (RTMPTS).",
+        OFFSET (tls
+        ),
+        AV_OPT_TYPE_BOOL,
+        {
+            .i64 = 0
+        },
+        0, 1, DEC},
+    {
+        NULL },
+}
 
 [CCode (cname="ffrtmphttp_class", cheader_filename="")]
 public class RTMPHTTPURLProtocolClass : LibAVUtil.Class {

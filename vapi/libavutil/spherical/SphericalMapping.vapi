@@ -145,7 +145,8 @@ public class SphericalMapping {
     @endcode
 
     @note These values are valid only for the tiled equirectangular
-        projection type (@link SphericalProjection.EQUIRECTANGULAR_TILE),
+        projection type (@link SphericalProjection.EQUIRECTANGULAR_TILE
+        ),
         and should be ignored in all other cases.
     ***********************************************************/
     /***********************************************************

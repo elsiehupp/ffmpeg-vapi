@@ -22,9 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  static const LibAVUtil.Option tee_options[] = {
-//      { NULL }
-//  }
+static const LibAVUtil.Option tee_options[] = {
+    {
+        NULL
+    }
+}
 
 [CCode (cname="tee_class", cheader_filename="")]
 public class TeeURLProtocolClass : LibAVUtil.Class {

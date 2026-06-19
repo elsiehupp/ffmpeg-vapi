@@ -61,6 +61,7 @@ public class DNNModel {
     ***********************************************************/
     // Sets model input and output.
     // Should be called at least once before model execution.
+    [CCode (cname="")]
     DNNReturnType (*set_input_output)(void *model, DNNInputData *input, string input_name, string *output_names, uint32 nb_output);
 }
 
@@ -72,15 +73,18 @@ public class DNNModule {
     /***********************************************************
     ***********************************************************/
     // Loads model and parameters from given file. Returns NULL if it is not possible.
+    [CCode (cname="")]
     DNNModel *(*load_model)(string model_filename);
     /***********************************************************
     ***********************************************************/
     // Executes model with specified input and output. Returns DNN_ERROR otherwise.
+    [CCode (cname="")]
     DNNReturnType (*execute_model)(const DNNModel *model, DNNData *outputs, uint32 nb_output);
     /***********************************************************
     ***********************************************************/
+    [CCode (cname="")]
     // Frees memory allocated for model.
-    void (*free_model)(DNNModel **model);
+    public void (*free_model)(DNNModel **model);
 }
 
 /***********************************************************

@@ -26,13 +26,43 @@ namespace LibAVFormat {
 @file GIF demuxer.
 ***********************************************************/
 
-//  static const LibAVUtil.Option options[] = {
-//      { "min_delay"    , "minimum valid delay between frames (in hundredths of second)", offsetof (GIFDemuxContext, min_delay)    , AV_OPT_TYPE_INT, {.i64 = GIF_MIN_DELAY}    , 0, 100 * 60, AV_OPT_FLAG_DECODING_PARAM },
-//      { "max_gif_delay", "maximum valid delay between frames (in hundredths of seconds)", offsetof (GIFDemuxContext, max_delay)   , AV_OPT_TYPE_INT, {.i64 = 65535}            , 0, 65535   , AV_OPT_FLAG_DECODING_PARAM },
-//      { "default_delay", "default delay between frames (in hundredths of second)"      , offsetof (GIFDemuxContext, default_delay), AV_OPT_TYPE_INT, {.i64 = GIF_DEFAULT_DELAY}, 0, 100 * 60, AV_OPT_FLAG_DECODING_PARAM },
-//      { "ignore_loop"  , "ignore loop setting (netscape extension)"                    , offsetof (GIFDemuxContext, ignore_loop)  , AV_OPT_TYPE_BOOL,{.i64 = 1}                , 0, 1, AV_OPT_FLAG_DECODING_PARAM },
-//      { NULL },
-//  }
+static const LibAVUtil.Option options[] = {
+    {
+        "min_delay",
+        "minimum valid delay between frames (in hundredths of second)",
+        offsetof (
+            GIFDemuxContext, min_delay
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = GIF_MIN_DELAY}, 0, 100 * 60, AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "max_gif_delay",
+        "maximum valid delay between frames (in hundredths of seconds)",
+        offsetof (
+            GIFDemuxContext, max_delay
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 65535}, 0, 65535, AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "default_delay",
+        "default delay between frames (in hundredths of second)",
+        offsetof (
+            GIFDemuxContext, default_delay
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = GIF_DEFAULT_DELAY}, 0, 100 * 60, AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "ignore_loop",
+        "ignore loop setting (netscape extension)",
+        offsetof (
+            GIFDemuxContext, ignore_loop), AV_OPT_TYPE_BOOL,{ .i64 = 1}, 0, 1, AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="demuxer_class", cheader_filename="")]
 public class GIFDemuxerClass : LibAVUtil.Class {

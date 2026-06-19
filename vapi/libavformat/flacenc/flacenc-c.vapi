@@ -26,10 +26,19 @@ namespace LibAVFormat {
 [Compact]
 public class FLACMuxerPrivateData { }
 
-//  static const LibAVUtil.Option flacenc_options[] = {
-//      { "write_header", "Write the file header", offsetof (FlacMuxerContext, write_header), AV_OPT_TYPE_BOOL, {.i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM },
-//      { NULL },
-//  }
+static const LibAVUtil.Option flacenc_options[] = {
+    {
+        "write_header",
+        "Write the file header",
+        offsetof (
+            FlacMuxerContext, write_header
+        ),
+        AV_OPT_TYPE_BOOL,
+        { .i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="flac_muxer_class", cheader_filename="")]
 public class FLACMuxerClass : LibAVUtil.Class {

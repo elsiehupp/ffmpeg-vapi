@@ -40,8 +40,11 @@ public enum var_name {
 
 [Compact]
 public class EQParameters {
-    void (*adjust)(EQParameters *eq, uint8[] dst, int dst_stride,
-                   uint8[] src, int src_stride, int w, int h);
+    [CCode (cname="adjust")]
+    public void (*adjust)(
+        EQParameters *eq, uint8[] dst, int dst_stride,
+        uint8[] src, int src_stride, int w, int h
+    );
 
     public uint8 lut[256];
 
@@ -96,7 +99,8 @@ public class EQContext {
 
     double var_values[VAR_NB];
 
-    void (*process)(EQParameters *par, uint8[] dst, int dst_stride,
+    [CCode (cname="")]
+    public void (*process)(EQParameters *par, uint8[] dst, int dst_stride,
                     uint8[] src, int src_stride, int w, int h);
     EvalMode eval_mode;
 }

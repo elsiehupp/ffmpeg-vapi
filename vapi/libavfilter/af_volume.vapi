@@ -75,8 +75,12 @@ public class VolumeContext {
     public int    planes;
     public AVSampleFormat sample_fmt;
 
-    void (*scale_samples)(uint8[] dst, uint8[] src, int nb_samples,
-                          int volume);
+    [CCode (cname="scale_samples")]
+    public void (*scale_samples)(
+        uint8[] dst, uint8[] src, int nb_samples,
+        int volume
+    );
+
     public int samples_align;
 }
 

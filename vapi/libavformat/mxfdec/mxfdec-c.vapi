@@ -46,12 +46,22 @@ Simple demuxer, only OP1A supported and some files might not work at all.
 Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPTE 377M D.1
 ***********************************************************/
 
-//  static const LibAVUtil.Option options[] = {
-//      { "eia608_extract", "extract eia 608 captions from s436m track",
-//        offsetof (MXFContext, eia608_extract), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1,
-//        AV_OPT_FLAG_DECODING_PARAM },
-//      { NULL },
-//  }
+static const LibAVUtil.Option options[] = {
+    {
+        "eia608_extract",
+        "extract eia 608 captions from s436m track",
+      offsetof (MXFContext, eia608_extract
+        ),
+        AV_OPT_TYPE_BOOL,
+        {
+            .i64 = 0
+        },
+        0, 1,
+      AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="demuxer_class", cheader_filename="")]
 public class MXFDemuxerClass : LibAVUtil.Class {

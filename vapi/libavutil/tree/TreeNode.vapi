@@ -110,7 +110,8 @@ public class TreeNode {
         void *tree_insert (
             TreeNode rootp,
             void *key,
-            int (*cmp)(void *key, void *b),
+            int (*cmp)(void *key, void *b
+        ),
             out TreeNode next
         ) {
             if (next == null) {

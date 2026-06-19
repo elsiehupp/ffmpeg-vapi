@@ -18,23 +18,38 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-typedef void (*yuv2rgb_fn)(int16 *rgb[3], ptrdiff_t rgb_stride,
-                           uint8[] yuv[3], ptrdiff_t yuv_stride[3],
-                           int w, int h, int16 yuv2rgb_coeffs[3][3][8],
-                           int16 yuv_offset[8]);
-typedef void (*rgb2yuv_fn)(uint8[] yuv[3], ptrdiff_t yuv_stride[3],
-                           int16 *rgb[3], ptrdiff_t rgb_stride,
-                           int w, int h, int16 rgb2yuv_coeffs[3][3][8],
-                           int16 yuv_offset[8]);
-typedef void (*rgb2yuv_fsb_fn)(uint8[] yuv[3], ptrdiff_t yuv_stride[3],
-                               int16 *rgb[3], ptrdiff_t rgb_stride,
-                               int w, int h, int16 rgb2yuv_coeffs[3][3][8],
-                               int16 yuv_offset[8],
-                               int *rnd[3][2]);
-typedef void (*yuv2yuv_fn)(uint8[] yuv_out[3], ptrdiff_t yuv_out_stride[3],
-                           uint8[] yuv_in[3], ptrdiff_t yuv_in_stride[3],
-                           int w, int h, int16 yuv2yuv_coeffs[3][3][8],
-                           int16 yuv_offset[2][8]);
+[CCode (cname="")]
+typedef void (*yuv2rgb_fn)(
+    int16 *rgb[3], ptrdiff_t rgb_stride,
+    uint8[] yuv[3], ptrdiff_t yuv_stride[3],
+    int w, int h, int16 yuv2rgb_coeffs[3][3][8],
+    int16 yuv_offset[8]
+);
+
+[CCode (cname="")]
+typedef void (*rgb2yuv_fn)(
+    uint8[] yuv[3], ptrdiff_t yuv_stride[3],
+    int16 *rgb[3], ptrdiff_t rgb_stride,
+    int w, int h, int16 rgb2yuv_coeffs[3][3][8],
+    int16 yuv_offset[8]
+);
+
+[CCode (cname="")]
+typedef void (*rgb2yuv_fsb_fn)(
+    uint8[] yuv[3], ptrdiff_t yuv_stride[3],
+    int16 *rgb[3], ptrdiff_t rgb_stride,
+    int w, int h, int16 rgb2yuv_coeffs[3][3][8],
+    int16 yuv_offset[8],
+    int *rnd[3][2]
+);
+
+[CCode (cname="")]
+typedef void (*yuv2yuv_fn)(
+    uint8[] yuv_out[3], ptrdiff_t yuv_out_stride[3],
+    uint8[] yuv_in[3], ptrdiff_t yuv_in_stride[3],
+    int w, int h, int16 yuv2yuv_coeffs[3][3][8],
+    int16 yuv_offset[2][8]
+);
 
 public enum BitDepthIndex {
     BPP_8,
@@ -76,7 +91,8 @@ public class ColorSpaceDSPContext {
     In-place 3x3 matrix multiplication. Input and output are
     both 15bpp (our internal data format)
     ***********************************************************/
-    void (*multiply3x3)(
+    [CCode (cname="")]
+    public void (*multiply3x3)(
         int16 *data[3], ptrdiff_t stride,
         int w, int h, int16 m[3][3][8]
     );

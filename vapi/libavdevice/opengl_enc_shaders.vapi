@@ -28,7 +28,7 @@ static string  const FF_OPENGL_VERTEX_SHADER =
     "varying vec2 texture_coordinate;"
 
     "void main ()"
-    "{"
+    "{ "
         "gl_Position = u_projectionMatrix * (a_position * u_modelViewMatrix);"
         "texture_coordinate = a_textureCoords;"
     "}";
@@ -46,7 +46,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGBA_PACKET =
     "varying vec2 texture_coordinate;"
 
     "void main ()"
-    "{"
+    "{ "
         "gl_FragColor = texture2D (u_texture0, texture_coordinate) * u_colorMap;"
     "}";
 
@@ -63,7 +63,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGB_PACKET =
     "varying vec2 texture_coordinate;"
 
     "void main ()"
-    "{"
+    "{ "
         "gl_FragColor = vec4 ((texture2D (u_texture0, texture_coordinate) * u_colorMap).rgb, 1.0);"
     "}";
 
@@ -82,7 +82,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGBA_PLANAR =
     "varying vec2 texture_coordinate;"
 
     "void main ()"
-    "{"
+    "{ "
         "gl_FragColor = vec4 (texture2D (u_texture0, texture_coordinate).r,"
                             "texture2D (u_texture1, texture_coordinate).r,"
                             "texture2D (u_texture2, texture_coordinate).r,"
@@ -103,7 +103,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGB_PLANAR =
     "varying vec2 texture_coordinate;"
 
     "void main ()"
-    "{"
+    "{ "
         "gl_FragColor = vec4 (texture2D (u_texture0, texture_coordinate).r,"
                             "texture2D (u_texture1, texture_coordinate).r,"
                             "texture2D (u_texture2, texture_coordinate).r,"
@@ -126,7 +126,7 @@ static string  const  FF_OPENGL_FRAGMENT_SHADER_YUV_PLANAR =
     "varying vec2 texture_coordinate;"
 
     "void main ()"
-    "{"
+    "{ "
         "vec3 yuv;"
 
         "yuv.r = texture2D (u_texture0, texture_coordinate).r - 0.0625;"
@@ -156,7 +156,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_YUVA_PLANAR =
     "varying vec2 texture_coordinate;"
 
     "void main ()"
-    "{"
+    "{ "
         "vec3 yuv;"
 
         "yuv.r = texture2D (u_texture0, texture_coordinate).r - 0.0625;"
@@ -175,7 +175,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_GRAY =
     "uniform sampler2D u_texture0;"
     "varying vec2 texture_coordinate;"
     "void main ()"
-    "{"
+    "{ "
         "float c = texture2D (u_texture0, texture_coordinate).r;"
         "gl_FragColor = vec4 (c, c, c, 1.0);"
     "}";

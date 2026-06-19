@@ -26,6 +26,7 @@ Scene SAD functions
                          ptrdiff_t width, ptrdiff_t height, \
                          uint64[] sum
 
+[CCode (cname="ff_scene_sad_fn")]
 typedef void (*ff_scene_sad_fn)(SCENE_SAD_PARAMS);
 
 public void ff_scene_sad_c (SCENE_SAD_PARAMS);

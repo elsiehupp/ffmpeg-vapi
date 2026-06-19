@@ -23,10 +23,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  static const LibAVUtil.Option options[] = {
-//      TLS_COMMON_OPTIONS (TLSContext, tls_shared),
-//      { NULL }
-//  }
+static const LibAVUtil.Option options[] = {
+    TLS_COMMON_OPTIONS (TLSContext, tls_shared),
+    {
+        NULL
+    }
+}
 
 [CCode (cname="tls_class", cheader_filename="")]
 public class LibTLSURLProtocolClass : LibAVUtil.Class {

@@ -27,14 +27,53 @@ The chunk muxer enables writing WebM Live chunks where there is a header
 chunk, followed by data chunks where each Cluster is written out as a Chunk.
 ***********************************************************/
 
-//  #define OFFSET (x) offsetof (WebMChunkContext, x)
-//  static const LibAVUtil.Option options[] = {
-//      { "chunk_start_index", "start index of the chunk", OFFSET (chunk_start_index), AV_OPT_TYPE_INT, {.i64 = 0}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
-//      { "header", "filename of the header where the initialization data will be written", OFFSET (header_filename), AV_OPT_TYPE_STRING, { 0 }, 0, 0, AV_OPT_FLAG_ENCODING_PARAM },
-//      { "audio_chunk_duration", "duration of each chunk in milliseconds", OFFSET (chunk_duration), AV_OPT_TYPE_INT, {.i64 = 5000}, 0, INT_MAX, AV_OPT_FLAG_ENCODING_PARAM },
-//      { "method", "set the HTTP method", OFFSET (http_method), AV_OPT_TYPE_STRING, {.str = NULL}, 0, 0, AV_OPT_FLAG_ENCODING_PARAM },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (WebMChunkContext, x)
+static const LibAVUtil.Option options[] = {
+    {
+        "chunk_start_index",
+        "start index of the chunk",
+        OFFSET (chunk_start_index
+        ),
+        AV_OPT_TYPE_INT,
+        {
+            .i64 = 0
+        },
+        0,
+        INT_MAX,
+        AV_OPT_FLAG_ENCODING_PARAM
+    },
+    {
+        "header",
+        "filename of the header where the initialization data will be written",
+        OFFSET (header_filename
+        ),
+        AV_OPT_TYPE_STRING,
+        { 0 }, 0, 0, AV_OPT_FLAG_ENCODING_PARAM
+    },
+    {
+        "audio_chunk_duration",
+        "duration of each chunk in milliseconds",
+        OFFSET (chunk_duration
+        ),
+        AV_OPT_TYPE_INT,
+        { .i64 = 5000}, 0,
+        INT_MAX,
+        AV_OPT_FLAG_ENCODING_PARAM
+    },
+    {
+        "method",
+        "set the HTTP method",
+        OFFSET (http_method
+        ),
+        AV_OPT_TYPE_STRING,
+        {
+            .str = NULL
+        },
+        0, 0, AV_OPT_FLAG_ENCODING_PARAM
+    },
+    {
+        NULL },
+}
 
 #if CONFIG_WEBM_CHUNK_MUXER
 [CCode (cname="webm_chunk_class", cheader_filename="")]

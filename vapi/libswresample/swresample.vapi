@@ -331,7 +331,7 @@ input samples. Conversion will run directly without copying whenever possible.
 @return number of samples output per channel, negative value on error
 ***********************************************************/
 public int swr_convert (SwrContext *s, uint8[] *out, int out_count,
-                                uint8[] *in , int in_count);
+                                uint8[] *in, int in_count);
 
 /***********************************************************
 Convert the next timestamp from input to output
@@ -580,7 +580,7 @@ or the result of a bitwise-OR of them is returned.
                        configuration.
 ***********************************************************/
 public int swr_convert_frame (SwrContext *swr,
-                      AVFrame *output, AVFrame *input);
+                      public AVFrame output, AVFrame *input);
 
 /***********************************************************
 Configure or reconfigure the SwrContext using the information

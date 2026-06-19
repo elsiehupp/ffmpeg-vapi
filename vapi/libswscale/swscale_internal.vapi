@@ -65,9 +65,12 @@ public enum SwsAlphaBlend {
     SWS_ALPHA_BLEND_NB,
 }
 
-typedef int (*SwsFunc)(SwsContext *context, uint8[] src[],
-                       int srcStride[], int srcSliceY, int srcSliceH,
-                       uint8[] dst[], int dstStride[]);
+[CCode (cname="")]
+typedef int (*SwsFunc)(
+    SwsContext *context, uint8[] src[],
+    int srcStride[], int srcSliceY, int srcSliceH,
+    uint8[] dst[], int dstStride[]
+);
 
 /***********************************************************
 Write one line of horizontally scaled data to planar output
@@ -81,8 +84,11 @@ without any additional vertical scaling (or point-scaling).
 @param dither  ordered dither array of type int16 and size 8
 @param offset  Dither offset
 ***********************************************************/
-typedef void (*yuv2planar1_fn)(const int16 *src, uint8[] dest, int dstW,
-                               uint8[] dither, int offset);
+[CCode (cname="")]
+typedef void (*yuv2planar1_fn)(
+    const int16 *src, uint8[] dest, int dstW,
+    uint8[] dither, int offset
+);
 
 /***********************************************************
 Write one line of horizontally scaled data to planar output
@@ -97,9 +103,12 @@ with multi-point vertical scaling between input pixels.
 @param dstW          width of destination pixels
 @param offset        Dither offset
 ***********************************************************/
-typedef void (*yuv2planarX_fn)(const int16 *filter, int filterSize,
-                               int16 **src, uint8[] dest, int dstW,
-                               uint8[] dither, int offset);
+[CCode (cname="")]
+typedef void (*yuv2planarX_fn)(
+    const int16 *filter, int filterSize,
+    int16 **src, uint8[] dest, int dstW,
+    uint8[] dither, int offset
+);
 
 /***********************************************************
 Write one line of horizontally scaled chroma to interleaved output
@@ -116,12 +125,15 @@ with multi-point vertical scaling between input pixels.
                      output, this is in uint16
 @param dstW          width of chroma planes
 ***********************************************************/
-typedef void (*yuv2interleavedX_fn)(SwsContext *c,
-                                    int16 *chrFilter,
-                                    int chrFilterSize,
-                                    int16 **chrUSrc,
-                                    int16 **chrVSrc,
-                                    uint8[] dest, int dstW);
+[CCode (cname="")]
+typedef void (*yuv2interleavedX_fn)(
+    SwsContext *c,
+    int16 *chrFilter,
+    int chrFilterSize,
+    int16 **chrUSrc,
+    int16 **chrVSrc,
+    uint8[] dest, int dstW
+);
 
 /***********************************************************
 Write one line of horizontally scaled Y/U/V/A to packed-pixel YUV/RGB
@@ -152,11 +164,15 @@ that this function may do chroma scaling, see the "uvalpha" argument.
                but can be used to generate comfort noise using dithering
                for some output formats.
 ***********************************************************/
-typedef void (*yuv2packed1_fn)(SwsContext *c, int16 *lumSrc,
-                               int16 *chrUSrc[2],
-                               int16 *chrVSrc[2],
-                               int16 *alpSrc, uint8[] dest,
-                               int dstW, int uvalpha, int y);
+[CCode (cname="")]
+typedef void (*yuv2packed1_fn)(
+    SwsContext *c, int16 *lumSrc,
+    int16 *chrUSrc[2],
+    int16 *chrVSrc[2],
+    int16 *alpSrc, uint8[] dest,
+    int dstW, int uvalpha, int y
+);
+
 /***********************************************************
 Write one line of horizontally scaled Y/U/V/A to packed-pixel YUV/RGB
 output by doing bilinear scaling between two input lines.
@@ -185,12 +201,16 @@ output by doing bilinear scaling between two input lines.
                but can be used to generate comfort noise using dithering
                for some output formats.
 ***********************************************************/
-typedef void (*yuv2packed2_fn)(SwsContext *c, int16 *lumSrc[2],
-                               int16 *chrUSrc[2],
-                               int16 *chrVSrc[2],
-                               int16 *alpSrc[2],
-                               uint8[] dest,
-                               int dstW, int yalpha, int uvalpha, int y);
+[CCode (cname="")]
+typedef void (*yuv2packed2_fn)(
+    SwsContext *c, int16 *lumSrc[2],
+    int16 *chrUSrc[2],
+    int16 *chrVSrc[2],
+    int16 *alpSrc[2],
+    uint8[] dest,
+    int dstW, int yalpha, int uvalpha, int y
+);
+
 /***********************************************************
 Write one line of horizontally scaled Y/U/V/A to packed-pixel YUV/RGB
 output by doing multi-point vertical scaling between input pixels.
@@ -217,13 +237,16 @@ output by doing multi-point vertical scaling between input pixels.
                      but can be used to generate comfort noise using dithering
                      or some output formats.
 ***********************************************************/
-typedef void (*yuv2packedX_fn)(SwsContext *c, int16 *lumFilter,
-                               int16 **lumSrc, int lumFilterSize,
-                               int16 *chrFilter,
-                               int16 **chrUSrc,
-                               int16 **chrVSrc, int chrFilterSize,
-                               int16 **alpSrc, uint8[] dest,
-                               int dstW, int y);
+[CCode (cname="")]
+typedef void (*yuv2packedX_fn)(
+    SwsContext *c, int16 *lumFilter,
+    int16 **lumSrc, int lumFilterSize,
+    int16 *chrFilter,
+    int16 **chrUSrc,
+    int16 **chrVSrc, int chrFilterSize,
+    int16 **alpSrc, uint8[] dest,
+    int dstW, int y
+);
 
 /***********************************************************
 Write one line of horizontally scaled Y/U/V/A to YUV/RGB
@@ -251,18 +274,16 @@ output by doing multi-point vertical scaling between input pixels.
                      but can be used to generate comfort noise using dithering
                      or some output formats.
 ***********************************************************/
-typedef void (*yuv2anyX_fn)(SwsContext *c, int16 *lumFilter,
-                            int16 **lumSrc, int lumFilterSize,
-                            int16 *chrFilter,
-                            int16 **chrUSrc,
-                            int16 **chrVSrc, int chrFilterSize,
-                            int16 **alpSrc, uint8[] *dest,
-                            int dstW, int y);
-
-[Compact]
-public class SwsSlice;
-[Compact]
-public class SwsFilterDescriptor;
+[CCode (cname="")]
+typedef void (*yuv2anyX_fn)(
+    SwsContext *c, int16 *lumFilter,
+    int16 **lumSrc, int lumFilterSize,
+    int16 *chrFilter,
+    int16 **chrUSrc,
+    int16 **chrVSrc, int chrFilterSize,
+    int16 **alpSrc, uint8[] *dest,
+    int dstW, int y
+);
 
 /***********************************************************
 This struct should be aligned on at least a 32-byte boundary.
@@ -680,19 +701,30 @@ pre defined color-spaces gamma
     /***********************************************************
     Unscaled conversion of luma plane to YV12 for horizontal scaler.
     ***********************************************************/
-    void (*lumToYV12)(uint8[] dst, uint8[] src, uint8[] src2, uint8[] src3,
-                      int width, uint32 *pal);
+    [CCode (cname="")]
+    public void (*lumToYV12)(
+        uint8[] dst, uint8[] src, uint8[] src2, uint8[] src3,
+        int width, uint32 *pal
+    );
+
     /***********************************************************
     Unscaled conversion of alpha plane to YV12 for horizontal scaler.
     ***********************************************************/
-    void (*alpToYV12)(uint8[] dst, uint8[] src, uint8[] src2, uint8[] src3,
-                      int width, uint32 *pal);
+    [CCode (cname="")]
+    public void (*alpToYV12)(
+        uint8[] dst, uint8[] src, uint8[] src2, uint8[] src3,
+        int width, uint32 *pal
+    );
+
     /***********************************************************
     Unscaled conversion of chroma planes to YV12 for horizontal scaler.
     ***********************************************************/
-    void (*chrToYV12)(uint8[] dstU, uint8[] dstV,
-                      uint8[] src1, uint8[] src2, uint8[] src3,
-                      int width, uint32 *pal);
+    [CCode (cname="")]
+    public void (*chrToYV12)(
+        uint8[] dstU, uint8[] dstV,
+        uint8[] src1, uint8[] src2, uint8[] src3,
+        int width, uint32 *pal
+    );
 
     /***********************************************************
     Functions to read planar input, such as planar RGB, and convert
@@ -701,10 +733,22 @@ pre defined color-spaces gamma
     /***********************************************************
     @{
     ***********************************************************/
-    void (*readLumPlanar)(uint8[] dst, uint8[] src[4], int width, int32 *rgb2yuv);
-    void (*readChrPlanar)(uint8[] dstU, uint8[] dstV, uint8[] src[4],
-                          int width, int32 *rgb2yuv);
-    void (*readAlpPlanar)(uint8[] dst, uint8[] src[4], int width, int32 *rgb2yuv);
+    [CCode (cname="")]
+    public void (*readLumPlanar)(
+        uint8[] dst, uint8[] src[4], int width, int32 *rgb2yuv
+    );
+
+    [CCode (cname="")]
+    public void (*readChrPlanar)(
+        uint8[] dstU, uint8[] dstV, uint8[] src[4],
+        int width, int32 *rgb2yuv
+    );
+
+    [CCode (cname="")]
+    public void (*readAlpPlanar)(
+        uint8[] dst, uint8[] src[4], int width, int32 *rgb2yuv
+    );
+
     /***********************************************************
     @}
     ***********************************************************/
@@ -730,13 +774,21 @@ pre defined color-spaces gamma
     /***********************************************************
     @{
     ***********************************************************/
-    void (*hyscale_fast)(SwsContext *c,
-                         int16 *dst, int dstWidth,
-                         uint8[] src, int srcW, int xInc);
-    void (*hcscale_fast)(SwsContext *c,
-                         int16 *dst1, int16 *dst2, int dstWidth,
-                         uint8[] src1, uint8[] src2,
-                         int srcW, int xInc);
+    [CCode (cname="")]
+    public void (*hyscale_fast)(
+        SwsContext *c,
+        int16 *dst, int dstWidth,
+        uint8[] src, int srcW, int xInc
+    );
+
+    [CCode (cname="")]
+    public void (*hcscale_fast)(
+        SwsContext *c,
+        int16 *dst1, int16 *dst2, int dstWidth,
+        uint8[] src1, uint8[] src2,
+        int srcW, int xInc
+    );
+
     /***********************************************************
     @}
     ***********************************************************/
@@ -774,12 +826,20 @@ pre defined color-spaces gamma
     /***********************************************************
     @{
     ***********************************************************/
-    void (*hyScale)(SwsContext *c, int16 *dst, int dstW,
-                    uint8[] src, int16 *filter,
-                    int32 *filterPos, int filterSize);
-    void (*hcScale)(SwsContext *c, int16 *dst, int dstW,
-                    uint8[] src, int16 *filter,
-                    int32 *filterPos, int filterSize);
+    [CCode (cname="")]
+    public void (*hyScale)(
+        SwsContext *c, int16 *dst, int dstW,
+        uint8[] src, int16 *filter,
+        int32 *filterPos, int filterSize
+    );
+
+    [CCode (cname="")]
+    public void (*hcScale)(
+        SwsContext *c, int16 *dst, int dstW,
+        uint8[] src, int16 *filter,
+        int32 *filterPos, int filterSize
+    );
+
     /***********************************************************
     @}
     ***********************************************************/
@@ -787,11 +847,18 @@ pre defined color-spaces gamma
     /***********************************************************
     Color range conversion function for luma plane if needed.
     ***********************************************************/
-    void (*lumConvertRange)(int16 *dst, int width);
+    [CCode (cname="")]
+    public void (*lumConvertRange)(
+        int16 *dst, int width
+    );
+
     /***********************************************************
     Color range conversion function for chroma planes if needed.
     ***********************************************************/
-    void (*chrConvertRange)(int16 *dst1, int16 *dst2, int width);
+    [CCode (cname="")]
+    public void (*chrConvertRange)(
+        int16 *dst1, int16 *dst2, int width
+    );
 
     /***********************************************************
     Set if there are chroma planes to be converted.

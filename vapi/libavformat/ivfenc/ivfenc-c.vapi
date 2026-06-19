@@ -25,12 +25,16 @@ namespace LibAVFormat {
 [Compact]
 public class IVFMuxerPrivateData { }
 
-//  static const AVCodecTag codec_ivf_tags[] = {
-//      { LibAVCodec.CodecID.VP8, MKTAG ('V', 'P', '8', '0') },
-//      { LibAVCodec.CodecID.VP9, MKTAG ('V', 'P', '9', '0') },
-//      { LibAVCodec.CodecID.AV1, MKTAG ('A', 'V', '0', '1') },
-//      { LibAVCodec.CodecID.NONE, 0 }
-//  }
+static const AVCodecTag codec_ivf_tags[] = {
+    {
+        LibAVCodec.CodecID.VP8, MKTAG ('V', 'P', '8', '0') },
+    {
+        LibAVCodec.CodecID.VP9, MKTAG ('V', 'P', '9', '0') },
+    {
+        LibAVCodec.CodecID.AV1, MKTAG ('A', 'V', '0', '1') },
+    {
+        LibAVCodec.CodecID.NONE, 0 }
+}
 
 [CCode (cname="ff_ivf_muxer", cheader_filename="")]
 public class IVFMuxer : AVOutputFormat {

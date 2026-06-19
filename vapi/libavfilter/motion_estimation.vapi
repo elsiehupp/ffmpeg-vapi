@@ -60,8 +60,12 @@ public class AVMotionEstContext {
     public int pred_y;
     AVMotionEstPredictor preds[2];
 
-    public uint64 (*get_cost)(AVMotionEstContext *me_ctx, int x_mb, int y_mb,
-                         int mv_x, int mv_y);
+    [CCode (cname="get_cost")]
+    public uint64 (*get_cost)(
+        AVMotionEstContext *me_ctx, int x_mb, int y_mb,
+        int mv_x, int mv_y
+    );
+
 }
 
 public void ff_me_init_context (AVMotionEstContext *me_ctx, int mb_size, int search_param,

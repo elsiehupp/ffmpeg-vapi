@@ -22,18 +22,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  static const LibAVUtil.Option sbg_options[] = {
-//      { "sample_rate", "", offsetof (sbg_demuxer, sample_rate),
-//        AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX,
-//        AV_OPT_FLAG_DECODING_PARAM },
-//      { "frame_size", "", offsetof (sbg_demuxer, frame_size),
-//        AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX,
-//        AV_OPT_FLAG_DECODING_PARAM },
-//      { "max_file_size", "", offsetof (sbg_demuxer, max_file_size),
-//        AV_OPT_TYPE_INT, { .i64 = 5000000 }, 0, INT_MAX,
-//        AV_OPT_FLAG_DECODING_PARAM },
-//      { NULL },
-//  }
+static const LibAVUtil.Option sbg_options[] = {
+    {
+        "sample_rate",
+        "",
+        offsetof (
+            sbg_demuxer, sample_rate
+        ),
+        AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "frame_size",
+        "",
+        offsetof (
+            sbg_demuxer, frame_size
+        ),
+        AV_OPT_TYPE_INT, { .i64 = 0 }, 0, INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        "max_file_size",
+        "",
+        offsetof (
+            sbg_demuxer, max_file_size
+        ),
+        AV_OPT_TYPE_INT, { .i64 = 5000000 }, 0, INT_MAX,
+        AV_OPT_FLAG_DECODING_PARAM
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="sbg_demuxer_class", cheader_filename="")]
 public class SBGDemuxerClass : LibAVUtil.Class {

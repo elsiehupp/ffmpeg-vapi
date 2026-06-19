@@ -108,7 +108,7 @@ ff_inlink_consume_samples (). Negative error codes must still be checked.
          or AVERROR code
 ***********************************************************/
 public int ff_inlink_consume_samples (AVFilterLink *link, uint min, uint max,
-                            AVFrame **rframe);
+                            public AVFrame *rframe);
 
 /***********************************************************
 Access a frame in the link fifo without consuming it.

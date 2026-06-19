@@ -48,11 +48,13 @@ public class NoiseContext {
     public int height[4];
     FilterParams all;
     FilterParams param[4];
-    void (*line_noise)(
+    [CCode (cname="line_noise")]
+    public void (*line_noise)(
         uint8[] dst, uint8[] src, int8 *noise, int len, int shift
     );
 
-    void (*line_noise_avg)(
+    [CCode (cname="line_noise_avg")]
+    public void (*line_noise_avg)(
         uint8[] dst, uint8[] src, int len, int8 * const *shift
     );
 

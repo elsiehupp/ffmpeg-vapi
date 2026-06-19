@@ -22,12 +22,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (ASSContext, x)
-//  #define E AV_OPT_FLAG_ENCODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      { "ignore_readorder", "write events immediately, even if they're out-of-order", OFFSET (ignore_readorder), AV_OPT_TYPE_BOOL, {.i64 = 0}, 0, 1, E },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (ASSContext, x)
+#define E AV_OPT_FLAG_ENCODING_PARAM
+static const LibAVUtil.Option options[] = {
+    {
+        "ignore_readorder",
+        "write events immediately, even if they're out-of-order",
+        OFFSET (ignore_readorder
+        ),
+        AV_OPT_TYPE_BOOL,
+        {
+            .i64 = 0
+        },
+        0, 1, E
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="ass_class", cheader_filename="")]
 public class ASSClass : LibAVUtil.Class {

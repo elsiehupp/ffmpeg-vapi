@@ -113,15 +113,46 @@ public class DitherContext {
     public int output_sample_bits;
 }
 
-public ResampleContext (* resample_init_func)(ResampleContext *c, int out_rate, int in_rate, int filter_size, int phase_shift, int linear,
-                                    double cutoff, AVSampleFormat format, SwrFilterType filter_type, double kaiser_beta, double precision, int cheby, int exact_rational);
-typedef void    (* resample_free_func)(ResampleContext **c);
-typedef int     (* multiple_resample_func)(ResampleContext *c, AudioData *dst, int dst_size, AudioData *src, int src_size, int *consumed);
-typedef int     (* resample_flush_func)(SwrContext *c);
-typedef int     (* set_compensation_func)(ResampleContext *c, int sample_delta, int compensation_distance);
-typedef int64 (* get_delay_func)(SwrContext *s, int64 base);
-typedef int     (* invert_initial_buffer_func)(ResampleContext *c, AudioData *dst, AudioData *src, int src_size, int *dst_idx, int *dst_count);
-typedef int64 (* get_out_samples_func)(SwrContext *s, int in_samples);
+[CCode (cname="")]
+public ResampleContext (* resample_init_func)(
+    ResampleContext *c, int out_rate, int in_rate, int filter_size, int phase_shift, int linear,
+    double cutoff, AVSampleFormat format, SwrFilterType filter_type, double kaiser_beta, double precision, int cheby, int exact_rational
+);
+
+[CCode (cname="")]
+typedef void    (* resample_free_func)(
+    ResampleContext **c
+);
+
+[CCode (cname="")]
+typedef int     (* multiple_resample_func)(
+    ResampleContext *c, AudioData *dst, int dst_size, AudioData *src, int src_size, int *consumed
+);
+
+[CCode (cname="")]
+typedef int     (* resample_flush_func)(
+    SwrContext *c
+);
+
+[CCode (cname="")]
+typedef int     (* set_compensation_func)(
+    ResampleContext *c, int sample_delta, int compensation_distance
+);
+
+[CCode (cname="")]
+typedef int64 (* get_delay_func)(
+    SwrContext *s, int64 base
+);
+
+[CCode (cname="")]
+typedef int     (* invert_initial_buffer_func)(
+    ResampleContext *c, AudioData *dst, AudioData *src, int src_size, int *dst_idx, int *dst_count
+);
+
+[CCode (cname="")]
+typedef int64 (* get_out_samples_func)(
+    SwrContext *s, int in_samples
+);
 
 [Compact]
 public class Resampler {

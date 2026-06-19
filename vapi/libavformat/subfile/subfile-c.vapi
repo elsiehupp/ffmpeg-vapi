@@ -24,11 +24,21 @@ namespace LibAVFormat {
 //  #define OFFSET (field) offsetof (SubfileContext, field)
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 
-//  static const LibAVUtil.Option subfile_options[] = {
-//      { "start", "start offset", OFFSET (start), AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
-//      { "end", "end offset", OFFSET (end), AV_OPT_TYPE_INT64, {.i64 = 0}, 0, INT64_MAX, D },
-//      { NULL }
-//  }
+static const LibAVUtil.Option subfile_options[] = {
+    {
+        "start",
+        "start offset",
+        OFFSET (start), AV_OPT_TYPE_INT64, { .i64 = 0}, 0, INT64_MAX, D
+    },
+    {
+        "end",
+        "end offset",
+        OFFSET (end), AV_OPT_TYPE_INT64, { .i64 = 0}, 0, INT64_MAX, D
+    },
+    {
+        NULL
+    }
+}
 
 //  #undef OFFSET
 //  #undef D

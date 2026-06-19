@@ -53,11 +53,19 @@ public class GradFunContext {
     /***********************************************************
     DSP function.
     ***********************************************************/
-    void (*filter_line) (uint8[] dst, uint8[] src, uint16 *dc, int width, int thresh, uint16 *dithers);
+    [CCode (cname="filter_line")]
+    public void (*filter_line) (
+        uint8[] dst, uint8[] src, uint16 *dc, int width, int thresh, uint16 *dithers
+    );
+
     /***********************************************************
     DSP function.
     ***********************************************************/
-    void (*blur_line) (uint16 *dc, uint16 *buf, uint16 *buf1, uint8[] src, int src_linesize, int width);
+    [CCode (cname="blur_line")]
+    public void (*blur_line) (
+        uint16 *dc, uint16 *buf, uint16 *buf1, uint8[] src, int src_linesize, int width
+    );
+
 }
 
 public void ff_gradfun_init_x86 (GradFunContext *gf);

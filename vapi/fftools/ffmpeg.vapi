@@ -46,6 +46,7 @@ public enum HWAccelID {
 [Compact]
 public class HWAccel {
     string name;
+    [CCode (cname="")]
     public int (*init)(AVCodecContext *s);
     public HWAccelID id;
     public AVPixelFormat pix_fmt;
@@ -358,8 +359,8 @@ public classInputStream {
     a ref of decoded_frame, to be sent to filters
     ***********************************************************/
     AVCodec *dec;
-    AVFrame *decoded_frame;
-    AVFrame *filter_frame;
+    public AVFrame decoded_frame;
+    public AVFrame filter_frame;
 
     /***********************************************************
     time when read started
@@ -442,7 +443,7 @@ public classInputStream {
         queue of AVSubtitle* before filter init
     ***********************************************************/
         AVFifoBuffer *sub_queue;
-        AVFrame *frame;
+        public AVFrame frame;
         int w;
         int h;
     }
@@ -471,8 +472,11 @@ public classInputStream {
     hwaccel context
     ***********************************************************/
     void  *hwaccel_ctx;
-    void (*hwaccel_uninit)(AVCodecContext *s);
+    [CCode (cname="")]
+    public void (*hwaccel_uninit)(AVCodecContext *s);
+    [CCode (cname="")]
     public int  (*hwaccel_get_buffer)(AVCodecContext *s, AVFrame *frame, int flags);
+    [CCode (cname="")]
     public int  (*hwaccel_retrieve_data)(AVCodecContext *s, AVFrame *frame);
     public AVPixelFormat hwaccel_pix_fmt;
     public AVPixelFormat hwaccel_retrieved_pix_fmt;

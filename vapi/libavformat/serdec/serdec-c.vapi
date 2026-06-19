@@ -22,12 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define OFFSET (x) offsetof (SERDemuxerContext, x)
-//  #define DEC AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option ser_options[] = {
-//      { "framerate", "set frame rate", OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0, INT_MAX, DEC },
-//      { NULL },
-//  }
+#define OFFSET (x) offsetof (SERDemuxerContext, x)
+#define DEC AV_OPT_FLAG_DECODING_PARAM
+static const LibAVUtil.Option ser_options[] = {
+    {
+        "framerate",
+        "set frame rate",
+        OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0,
+        INT_MAX,
+        DEC
+    },
+    {
+        NULL },
+}
 
 [CCode (cname="ser_demuxer_class", cheader_filename="")]
 public class SERDemuxerClass : LibAVUtil.Class {

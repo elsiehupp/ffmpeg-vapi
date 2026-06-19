@@ -29,7 +29,11 @@ public class HQDN3DContext {
     double strength[4];
     public int hsub, vsub;
     public int depth;
-    void (*denoise_row[17])(uint8[] src, uint8[] dst, uint16 *line_ant, uint16 *frame_ant, ptrdiff_t w, int16 *spatial, int16 *temporal);
+    [CCode (cname="denoise_row")]
+    public void (*denoise_row[17])(
+        uint8[] src, uint8[] dst, uint16 *line_ant, uint16 *frame_ant, ptrdiff_t w, int16 *spatial, int16 *temporal
+    );
+
 }
 
 #define LUMA_SPATIAL   0

@@ -21,10 +21,12 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-//  static const LibAVUtil.Option options[] = {
-//      TLS_COMMON_OPTIONS (TLSContext, tls_shared),
-//      { NULL }
-//  }
+static const LibAVUtil.Option options[] = {
+    TLS_COMMON_OPTIONS (TLSContext, tls_shared),
+    {
+        NULL
+    }
+}
 
 [CCode (cname="tls_class", cheader_filename="")]
 public class SecureTransportTLSURLProtocolClass : LibAVUtil.Class {

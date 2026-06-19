@@ -42,7 +42,7 @@ Structure holding the queue
 ***********************************************************/
 [Compact]
 public class FFBufQueue {
-    AVFrame *queue[FF_BUFQUEUE_SIZE];
+    public AVFrame queue[FF_BUFQUEUE_SIZE];
     ushort head;
     /***********************************************************
     number of available buffers
@@ -67,7 +67,7 @@ If the queue is already full, then the current last buffer is dropped
 (and unrefed) with a warning before adding the new buffer.
 ***********************************************************/
 static inline void ff_bufqueue_add (void *log, FFBufQueue *queue,
-                                   AVFrame *buf)
+                                   public AVFrame buf)
 {
     if (ff_bufqueue_is_full (queue)) {
         av_log (log, AV_LOG_WARNING, "Buffer queue overflow, dropping.\n");
@@ -95,7 +95,7 @@ Do not use on an empty queue.
 ***********************************************************/
 static inline AVFrame *ff_bufqueue_get (FFBufQueue *queue)
 {
-    AVFrame *ret = queue->queue[queue->head];
+    public AVFrame ret = queue->queue[queue->head];
     av_assert0 (queue->available);
     queue->available--;
     queue->queue[queue->head] = NULL;
@@ -109,7 +109,7 @@ Unref and remove all buffers from the queue.
 static inline void ff_bufqueue_discard_all (FFBufQueue *queue)
 {
     while (queue->available) {
-        AVFrame *buf = ff_bufqueue_get (queue);
+        public AVFrame buf = ff_bufqueue_get (queue);
         av_frame_free (&buf);
     }
 }

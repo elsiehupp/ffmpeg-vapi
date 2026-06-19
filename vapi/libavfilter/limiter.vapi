@@ -18,9 +18,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [Compact]
 public class LimiterDSPContext {
-    void (*limiter)(const uint8[] src, uint8[] dst,
-                    ptrdiff_t slinesize, ptrdiff_t dlinesize,
-                    int w, int h, int min, int max);
+    [CCode (cname="limiter")]
+    public void (*limiter)(
+        const uint8[] src, uint8[] dst,
+        ptrdiff_t slinesize, ptrdiff_t dlinesize,
+        int w, int h, int min, int max
+    );
+
 }
 
 public void ff_limiter_init_x86 (LimiterDSPContext *dsp, int bpp);
