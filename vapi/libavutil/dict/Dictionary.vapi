@@ -28,7 +28,7 @@ It is recommended that new code uses our tree container from tree.c/h
 where applicable, which uses AVL trees to achieve O (log n) performance.
 ***********************************************************/
 
-[CCode (cname="struct AVDictionary", cheader_filename="dict.h")]
+[CCode (cname="struct AVDictionary",cheader_filename="dict.h")]
 [Compact]
 public class Dictionary  {
     /***********************************************************
@@ -50,7 +50,7 @@ public class Dictionary  {
     @return found entry or null in case no matching entry was
         found in the dictionary
     ***********************************************************/
-    [CCode (cname="av_dict_get", cheader_filename="dict.h")]
+    [CCode (cname="av_dict_get",cheader_filename="dict.h")]
     public LibAVUtil.DictionaryEntry av_dict_get (
         LibAVUtil.Dictionary dictionary,
         string key,
@@ -64,7 +64,7 @@ public class Dictionary  {
     @param dictionary dictionary
     @return number of entries in dictionary
     ***********************************************************/
-    [CCode (cname="av_dict_count", cheader_filename="dict.h")]
+    [CCode (cname="av_dict_count",cheader_filename="dict.h")]
     public int av_dict_count (
         LibAVUtil.Dictionary dictionary
     );
@@ -85,7 +85,7 @@ public class Dictionary  {
         Passing a null value will cause an existing entry to be deleted.
     @return >= 0 on success otherwise an error code <0
     ***********************************************************/
-    [CCode (cname="av_dict_set", cheader_filename="dict.h")]
+    [CCode (cname="av_dict_set",cheader_filename="dict.h")]
     public int av_dict_set (
         LibAVUtil.Dictionary pm,
         string key,
@@ -99,7 +99,7 @@ public class Dictionary  {
 
     @note If AVDictionaryFlags.DONT_STRDUP_KEY is set, key will be freed on error.
     ***********************************************************/
-    [CCode (cname="av_dict_set_int", cheader_filename="dict.h")]
+    [CCode (cname="av_dict_set_int",cheader_filename="dict.h")]
     public int av_dict_set_int (
         LibAVUtil.Dictionary pm,
         string key,
@@ -123,7 +123,7 @@ public class Dictionary  {
         be duplicated.
     @return 0 on success, negative LibAVUtil.ErrorCode code on failure
     ***********************************************************/
-    [CCode (cname="av_dict_parse_string", cheader_filename="dict.h")]
+    [CCode (cname="av_dict_parse_string",cheader_filename="dict.h")]
     public int av_dict_parse_string (
         LibAVUtil.Dictionary pm,
         string str,
@@ -142,7 +142,7 @@ public class Dictionary  {
     @return 0 on success, negative LibAVUtil.ErrorCode code on failure. If output_dictionary was allocated
         by this function, callers should free the associated memory.
     ***********************************************************/
-    [CCode (cname="av_dict_copy", cheader_filename="dict.h")]
+    [CCode (cname="av_dict_copy",cheader_filename="dict.h")]
     public int av_dict_copy (
         LibAVUtil.Dictionary output_dictionary,
         LibAVUtil.Dictionary input_dictionary,
@@ -153,7 +153,7 @@ public class Dictionary  {
     @description Free all the memory allocated for an LibAVUtil.Dictionary struct
         and all keys and values.
     ***********************************************************/
-    [CCode (cname="av_dict_free", cheader_filename="dict.h")]
+    [CCode (cname="av_dict_free",cheader_filename="dict.h")]
     public void av_dict_free (
         LibAVUtil.Dictionary dictionary
     );
@@ -174,7 +174,7 @@ public class Dictionary  {
     @return        >= 0 on success, negative on error
     @warning Separators cannot be neither '\\' nor '\0'. They also cannot be the same.
     ***********************************************************/
-    [CCode (cname="av_dict_get_string", cheader_filename="dict.h")]
+    [CCode (cname="av_dict_get_string",cheader_filename="dict.h")]
     public int av_dict_get_string (
         LibAVUtil.Dictionary dictionary,
         string buffer,

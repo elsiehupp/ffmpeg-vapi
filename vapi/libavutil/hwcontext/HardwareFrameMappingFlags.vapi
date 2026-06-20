@@ -22,16 +22,18 @@ namespace LibAVUtil {
 @brief Flags to apply to frame mappings.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="AV_HWFRAME_MAP_", cheader_filename="ffmpeg/libavutil/hwcontext.h")]
+[CCode (cprefix="AV_HWFRAME_MAP_",cheader_filename="ffmpeg/libavutil/hwcontext.h")]
 public enum HardwareFrameMappingFlags {
     /***********************************************************
     @brief The mapping must be readable.
     ***********************************************************/
     READ,
+
     /***********************************************************
     @brief The mapping must be writeable.
     ***********************************************************/
     WRITE,
+
     /***********************************************************
     @brief The mapped frame will be overwritten completely in
         subsequent operations, so the current frame data need
@@ -39,13 +41,14 @@ public enum HardwareFrameMappingFlags {
         unspecified.
     ***********************************************************/
     OVERWRITE,
+
     /***********************************************************
     @brief The mapping must be direct. That is, there must not
         be any copying in the map or unmap steps. Note that
         performance of direct mappings may be much lower than
         normal memory.
     ***********************************************************/
-    DIRECT,
+    DIRECT;
 }
 
 } // namespace LibAVUtil

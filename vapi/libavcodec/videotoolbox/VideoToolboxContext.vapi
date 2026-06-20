@@ -34,7 +34,7 @@ between the caller and LibAVCodec for initializing Videotoolbox decoding.
 Its size is not a part of the public ABI, it must be allocated with
 av_videotoolbox_alloc_context () and freed with av_free ().
 ***********************************************************/
-[CCode (cname="struct AVVideotoolboxContext", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
+[CCode (cname="struct AVVideotoolboxContext",cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
 [Compact]
 public class VideoToolboxContext {
     /***********************************************************
@@ -86,7 +86,7 @@ public class VideoToolboxContext {
 
     @return the newly allocated context or null on failure
     ***********************************************************/
-    [CCode (cname="av_videotoolbox_alloc_context", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
+    [CCode (cname="av_videotoolbox_alloc_context",cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
     public VideoToolboxContext av_videotoolbox_alloc_context ();
 
     /***********************************************************
@@ -97,7 +97,7 @@ public class VideoToolboxContext {
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode code on failure
     ***********************************************************/
-    [CCode (cname="av_videotoolbox_default_init", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
+    [CCode (cname="av_videotoolbox_default_init",cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
     public int av_videotoolbox_default_init (
         CodecContext codec_context
     );
@@ -111,7 +111,7 @@ public class VideoToolboxContext {
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode code on failure
     ***********************************************************/
-    [CCode (cname="av_videotoolbox_default_init2", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
+    [CCode (cname="av_videotoolbox_default_init2",cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
     public int av_videotoolbox_default_init2 (
         CodecContext codec_context,
         VideoToolboxContext vtctx
@@ -123,7 +123,7 @@ public class VideoToolboxContext {
 
     @param codec_context the corresponding codec context
     ***********************************************************/
-    [CCode (cname="av_videotoolbox_default_free", cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
+    [CCode (cname="av_videotoolbox_default_free",cheader_filename="ffmpeg/libavcodec/videotoolbox.h")]
     public void av_videotoolbox_default_free (
         CodecContext codec_context
     );

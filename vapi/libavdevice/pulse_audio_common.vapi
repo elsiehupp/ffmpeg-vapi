@@ -19,13 +19,27 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-pa_sample_format_t ff_codec_id_to_pulse_format (AVCodecID codec_id);
+pa_sample_format_t ff_codec_id_to_pulse_format (
+    AVCodecID codec_id
+);
 
 av_warn_unused_result
-public int ff_pulse_audio_get_devices (AVDeviceInfoList *devices, string server, int output);
+public int ff_pulse_audio_get_devices (
+    AVDeviceInfoList *devices,
+    string server,
+    int output
+);
 
 av_warn_unused_result
-public int ff_pulse_audio_connect_context (pa_mainloop **pa_ml, pa_context **pa_ctx,
-                                   string server, string description);
+public int ff_pulse_audio_connect_context (
+    pa_mainloop **pa_ml,
+    pa_context **pa_ctx,
+    string server,
+    string description
+);
 
-public void ff_pulse_audio_disconnect_context (pa_mainloop **pa_ml, pa_context **pa_ctx);
+[CCode (cname="",cheader_filename="")]
+public void ff_pulse_audio_disconnect_context (
+    pa_mainloop **pa_ml,
+    pa_context **pa_ctx
+);

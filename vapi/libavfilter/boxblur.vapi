@@ -20,21 +20,30 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class FilterParam {
+    [CCode (cname="")]
     public int radius;
+
+    [CCode (cname="")]
     public int power;
+
     string radius_expr;
 }
 
-#define Y 0
-#define U 1
-#define V 2
-#define A 3
+[CCode (cname="",cheader_filename="")]
+public define Y 0
+public define U 1
+public define V 2
+public define A 3
 
-public int ff_boxblur_eval_filter_params (AVFilterLink *inlink,
-                                  FilterParam *luma_param,
-                                  FilterParam *chroma_param,
-                                  FilterParam *alpha_param);
+[CCode (cname="",cheader_filename="")]
+public int ff_boxblur_eval_filter_params (
+    AVFilterLink *inlink,
+    FilterParam *luma_param,
+    FilterParam *chroma_param,
+    FilterParam *alpha_param
+);
 
 #endif // AVFILTER_BOXBLUR_H

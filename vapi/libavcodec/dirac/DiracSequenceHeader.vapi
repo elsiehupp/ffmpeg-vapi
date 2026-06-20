@@ -40,7 +40,7 @@ VC-2 Specification ->
 10.4.1 Table 10.1
 ***********************************************************/
 
-[CCode (cname="struct AVDiracSeqHeader", cheader_filename="ffmpeg/libavcodec/dirac.h")]
+[CCode (cname="struct AVDiracSeqHeader",cheader_filename="ffmpeg/libavcodec/dirac.h")]
 [Compact]
 public class DiracSequenceHeader {
     /***********************************************************
@@ -52,7 +52,7 @@ public class DiracSequenceHeader {
 
     We use this instead of MAX_DECOMPOSITIONS to save some memory.
     ***********************************************************/
-    [CCode (cname="MAX_DWT_LEVELS", cheader_filename="ffmpeg/libavcodec/dirac.h")]
+    [CCode (cname="MAX_DWT_LEVELS",cheader_filename="ffmpeg/libavcodec/dirac.h")]
     public const int MAX_DWT_LEVELS;
 
     [CCode (cname="width")]
@@ -150,7 +150,7 @@ public class DiracSequenceHeader {
     @param log_ctx if non-null, this function will log errors here
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
     ***********************************************************/
-    [CCode (cname="av_dirac_parse_sequence_header", cheader_filename="ffmpeg/libavcodec/dirac.h")]
+    [CCode (cname="av_dirac_parse_sequence_header",cheader_filename="ffmpeg/libavcodec/dirac.h")]
     public int av_dirac_parse_sequence_header (
         out DiracSequenceHeader dsh,
         uint8[] buffer, size_t buf_size,

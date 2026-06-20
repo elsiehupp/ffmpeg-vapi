@@ -29,70 +29,84 @@ namespace LibAVFormat {
     - byte order mark.
 ***********************************************************/
 
-[CCode (cname="struct SRTContext", cheader_filename="")]
+[CCode (cname="struct SRTContext",cheader_filename="")]
 [Compact]
 public class SubRipMuxerPrivateData { }
 
-[CCode (cname="ff_srt_muxer", cheader_filename="")]
+[CCode (cname="ff_srt_muxer",cheader_filename="")]
 public class SubRipMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "srt";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "SubRip subtitle";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="")]
     public override string mime_type {
         public get {
             return "application/x-subrip";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "srt";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SubRipMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="srt_write_header", cheader_filename="")]
+    [CCode (cname="srt_write_header",cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="srt_write_packet", cheader_filename="")]
+    [CCode (cname="srt_write_packet",cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT;
+
         }
+
     }
 
-    [CCode (cname="subtitle_codec", cheader_filename="")]
+    [CCode (cname="subtitle_codec",cheader_filename="")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.SUBRIP;
+
         }
+
     }
 }
 

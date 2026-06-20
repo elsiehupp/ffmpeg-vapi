@@ -33,17 +33,18 @@ Public LibAVCodec DXVA2 header.
 @ingroup lavc_codec_hwaccel
 ***********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/dxva2.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/dxva2.h")]
 public enum DirectXVideoAccelerationWorkaroundFlags {
     /***********************************************************
     @brief Workaround for DXVA2 and old UVD/UVD+ ATI video cards
     ***********************************************************/
     FF_DXVA2_WORKAROUND_SCALING_LIST_ZIGZAG,
+
     /***********************************************************
     @brief Workaround for DXVA2 and old Intel GPUs with ClearVideo
     public interface
     ***********************************************************/
-    FF_DXVA2_WORKAROUND_INTEL_CLEARVIDEO,
+    FF_DXVA2_WORKAROUND_INTEL_CLEARVIDEO;
 }
 
 } // namespace LibAVCodec

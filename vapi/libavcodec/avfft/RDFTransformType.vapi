@@ -32,12 +32,12 @@ FFT functions
 /***********************************************************
 @brief Real Discrete Fourier Transform
 ***********************************************************/
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avfft.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avfft.h")]
 public enum RDFTransformType {
     DFT_R2C,
     IDFT_C2R,
     IDFT_R2C,
-    DFT_C2R,
+    DFT_C2R;
 }
 
 } // namespace LibAVCodec

@@ -30,79 +30,168 @@ static string const var_names[] = {
     NULL
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum var_name {
+    [CCode (cname="")]
     VAR_N,
+
+    [CCode (cname="")]
     VAR_POS,
+
+    [CCode (cname="")]
     VAR_R,
+
+    [CCode (cname="")]
     VAR_T,
-    VAR_NB
+
+    [CCode (cname="")]
+    VAR_NB;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class EQParameters {
     [CCode (cname="adjust")]
     public void (*adjust)(
-        EQParameters *eq, uint8[] dst, int dst_stride,
-        uint8[] src, int src_stride, int w, int h
+        EQParameters *eq,
+        uint8[] dst,
+        int dst_stride,
+        uint8[] src,
+        int src_stride,
+        int w,
+        int h
     );
 
+    [CCode (cname="")]
     public uint8 lut[256];
 
-    double brightness, contrast, gamma, gamma_weight;
+    [CCode (cname="")]
+    public double brightness;
+
+    [CCode (cname="")]
+    public double contrast;
+
+    [CCode (cname="")]
+    public double gamma;
+
+    [CCode (cname="")]
+    public double gamma_weight;
+
+    [CCode (cname="")]
     public int lut_clean;
 
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum EvalMode {
+    [CCode (cname="")]
     EVAL_MODE_INIT,
+
+    [CCode (cname="")]
     EVAL_MODE_FRAME,
+
+    [CCode (cname="")]
     EVAL_MODE_NB
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class EQContext {
-    const AVClass *class;
-
-    EQParameters param[3];
-
-    public char   *contrast_expr;
-    AVExpr *contrast_pexpr;
-    double  contrast;
-
-    public char   *brightness_expr;
-    AVExpr *brightness_pexpr;
-    double  brightness;
-
-    public char   *saturation_expr;
-    AVExpr *saturation_pexpr;
-    double  saturation;
-
-    public char   *gamma_expr;
-    AVExpr *gamma_pexpr;
-    double  gamma;
-
-    public char   *gamma_weight_expr;
-    AVExpr *gamma_weight_pexpr;
-    double  gamma_weight;
-
-    public char   *gamma_r_expr;
-    AVExpr *gamma_r_pexpr;
-    double  gamma_r;
-
-    public char   *gamma_g_expr;
-    AVExpr *gamma_g_pexpr;
-    double  gamma_g;
-
-    public char   *gamma_b_expr;
-    AVExpr *gamma_b_pexpr;
-    double  gamma_b;
-
-    double var_values[VAR_NB];
+    [CCode (cname="")]
+    public AVClass class;
 
     [CCode (cname="")]
-    public void (*process)(EQParameters *par, uint8[] dst, int dst_stride,
-                    uint8[] src, int src_stride, int w, int h);
-    EvalMode eval_mode;
+    public EQParameters param[3];
+
+    [CCode (cname="")]
+    public string contrast_expr;
+
+    [CCode (cname="")]
+    public AVExpr *contrast_pexpr;
+
+    [CCode (cname="")]
+    public double  contrast;
+
+    [CCode (cname="")]
+    public string brightness_expr;
+
+    [CCode (cname="")]
+    public AVExpr *brightness_pexpr;
+
+    [CCode (cname="")]
+    public double  brightness;
+
+    [CCode (cname="")]
+    public string saturation_expr;
+
+    [CCode (cname="")]
+    public AVExpr *saturation_pexpr;
+
+    [CCode (cname="")]
+    public double saturation;
+
+    [CCode (cname="")]
+    public string gamma_expr;
+
+    [CCode (cname="")]
+    public AVExpr *gamma_pexpr;
+
+    [CCode (cname="")]
+    public double  gamma;
+
+    [CCode (cname="")]
+    public string gamma_weight_expr;
+
+    [CCode (cname="")]
+    public AVExpr *gamma_weight_pexpr;
+
+    [CCode (cname="")]
+    public double  gamma_weight;
+
+    [CCode (cname="")]
+    public string gamma_r_expr;
+
+    [CCode (cname="")]
+    public AVExpr *gamma_r_pexpr;
+
+    [CCode (cname="")]
+    public double  gamma_r;
+
+    [CCode (cname="")]
+    public string gamma_g_expr;
+
+    [CCode (cname="")]
+    public AVExpr *gamma_g_pexpr;
+
+    [CCode (cname="")]
+    public double  gamma_g;
+
+    [CCode (cname="")]
+    public string gamma_b_expr;
+
+    [CCode (cname="")]
+    public AVExpr *gamma_b_pexpr;
+
+    [CCode (cname="")]
+    public double  gamma_b;
+
+    [CCode (cname="")]
+    public double var_values[VAR_NB];
+
+    [CCode (cname="")]
+    public void (*process)(
+        EQParameters *par,
+        uint8[] dst,
+        int dst_stride,
+        uint8[] src,
+        int src_stride,
+        int w,
+        int h
+    );
+
+    [CCode (cname="")]
+    public EvalMode eval_mode;
 }
 
+[CCode (cname="",cheader_filename="")]
 public void ff_eq_init_x86 (EQContext *eq);

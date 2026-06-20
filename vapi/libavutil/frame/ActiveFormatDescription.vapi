@@ -23,7 +23,7 @@ namespace LibAVUtil {
 reference-counted frame API
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/frame.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavutil/frame.h")]
 public enum ActiveFormatDescription {
     AV_AFD_SAME,
     AV_AFD_4_3,
@@ -31,7 +31,7 @@ public enum ActiveFormatDescription {
     AV_AFD_14_9,
     AV_AFD_4_3_SP_14_9,
     AV_AFD_16_9_SP_14_9,
-    AV_AFD_SP_4_3,
+    AV_AFD_SP_4_3;
 }
 
 } // namespace LibAVUtil

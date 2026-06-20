@@ -22,16 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="class_openmpt", cheader_filename="")]
+[CCode (cname="class_openmpt",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
 public class LibOpenMptDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override string class_name {
         public get {
             return "libopenmpt";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -40,66 +42,74 @@ public class LibOpenMptDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct OpenMPTContext", cheader_filename="")]
+[CCode (cname="struct OpenMPTContext",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
 [Compact]
 public class LibOpenMptDemuxerPrivateData { }
 
-[CCode (cname="ff_libopenmpt_demuxer", cheader_filename="")]
+[CCode (cname="ff_libopenmpt_demuxer",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
 public class LibOpenMptDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override string name {
         public get {
             return "libopenmpt";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override string long_name {
         public get {
             return "Tracker formats (libopenmpt)";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LibOpenMptDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="read_probe_openmpt", cheader_filename="")]
+    [CCode (cname="read_probe_openmpt",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header_openmpt", cheader_filename="")]
+    [CCode (cname="read_header_openmpt",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet_openmpt", cheader_filename="")]
+    [CCode (cname="read_packet_openmpt",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="read_close_openmpt", cheader_filename="")]
+    [CCode (cname="read_close_openmpt",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_seek_openmpt", cheader_filename="")]
+    [CCode (cname="read_seek_openmpt",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -107,7 +117,8 @@ public class LibOpenMptDemuxer : AVInputFormat {
         int flags
     );
     //  .priv_class = class_openmpt,
-    [CCode (cname="extensions", cheader_filename="")]
+
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/libopenmpt.c")]
     public override string extensions {
         public get {
         //  if (OPENMPT_API_VERSION_AT_LEAST (0,3,0)) {

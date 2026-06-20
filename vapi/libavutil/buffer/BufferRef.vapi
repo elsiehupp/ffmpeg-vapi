@@ -29,7 +29,7 @@ refcounted data buffer API
 The size of this struct is not a part of the public ABI and it is not meant
 to be allocated directly.
 ***********************************************************/
-[CCode (cname="struct AVBufferRef", cheader_filename="buffer.h")]
+[CCode (cname="struct AVBufferRef",cheader_filename="buffer.h")]
 [Compact]
 public class BufferRef {
     [CCode (cname="buffer")]
@@ -54,7 +54,7 @@ public class BufferRef {
 
     @return an LibAVUtil.BufferRef of given size or null when out of memory
     ***********************************************************/
-    [CCode (cname="av_buffer_alloc", cheader_filename="buffer.h")]
+    [CCode (cname="av_buffer_alloc",cheader_filename="buffer.h")]
     public LibAVUtil.BufferRef av_buffer_alloc (
         size_t size
     );
@@ -63,7 +63,7 @@ public class BufferRef {
     @description Same as av_buffer_alloc (), except the returned buffer will be initialized
         to zero.
     ***********************************************************/
-    [CCode (cname="av_buffer_allocz", cheader_filename="buffer.h")]
+    [CCode (cname="av_buffer_allocz",cheader_filename="buffer.h")]
     public LibAVUtil.BufferRef av_buffer_allocz (
         size_t size
     );

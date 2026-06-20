@@ -32,16 +32,16 @@ Public header for MD5 hash function implementation.
 MD5 hash function implementation.
 ***********************************************************/
 
-[CCode (cname="struct AVMD5", cheader_filename="ffmpeg/libavutil/md5.h")]
+[CCode (cname="struct AVMD5",cheader_filename="ffmpeg/libavutil/md5.h")]
 [Compact]
 public class MD5Context {
-    [CCode (cname="av_md5_size", cheader_filename="ffmpeg/libavutil/md5.h")]
+    [CCode (cname="av_md5_size",cheader_filename="ffmpeg/libavutil/md5.h")]
     public const size_t SIZE;
 
     /***********************************************************
     @brief Allocate an MD5Context context.
     ***********************************************************/
-    [CCode (cname="av_md5_alloc", cheader_filename="ffmpeg/libavutil/md5.h")]
+    [CCode (cname="av_md5_alloc",cheader_filename="ffmpeg/libavutil/md5.h")]
     public MD5Context av_md5_alloc ();
 
     /***********************************************************
@@ -49,7 +49,7 @@ public class MD5Context {
 
     @param md5_context pointer to the function context (of size av_md5_size)
     ***********************************************************/
-    [CCode (cname="av_md5_init", cheader_filename="ffmpeg/libavutil/md5.h")]
+    [CCode (cname="av_md5_init",cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_init (
         MD5Context md5_context
     );
@@ -61,21 +61,21 @@ public class MD5Context {
     @param input_buffer input data to update hash with
     @param len input data length
     ***********************************************************/
-    #if FF_API_CRYPTO_SIZE_T
-    [CCode (cname="av_md5_update", cheader_filename="ffmpeg/libavutil/md5.h")]
+#if FF_API_CRYPTO_SIZE_T
+    [CCode (cname="av_md5_update",cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_update (
         MD5Context md5_context,
         uint8[] input_buffer,
         int len
     );
-    #else
-    [CCode (cname="av_md5_update", cheader_filename="ffmpeg/libavutil/md5.h")]
+#else
+    [CCode (cname="av_md5_update",cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_update (
         MD5Context md5_context,
         uint8[] input_buffer,
         size_t len
     );
-    #endif
+#endif
 
     /***********************************************************
     @brief Finish hashing and output digest value.
@@ -83,7 +83,7 @@ public class MD5Context {
     @param md5_context hash function context
     @param output_buffer buffer where output digest value is stored
     ***********************************************************/
-    [CCode (cname="av_md5_final", cheader_filename="ffmpeg/libavutil/md5.h")]
+    [CCode (cname="av_md5_final",cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_final (
         MD5Context md5_context,
         out uint8[] output_buffer
@@ -96,21 +96,21 @@ public class MD5Context {
     @param input_buffer The data to hash
     @param len The length of the data, in bytes
     ***********************************************************/
-    #if FF_API_CRYPTO_SIZE_T
-    [CCode (cname="av_md5_sum", cheader_filename="ffmpeg/libavutil/md5.h")]
+#if FF_API_CRYPTO_SIZE_T
+    [CCode (cname="av_md5_sum",cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_sum (
         out uint8[] output_buffer,
         uint8[] input_buffer,
         int len
     );
-    #else
-    [CCode (cname="av_md5_sum", cheader_filename="ffmpeg/libavutil/md5.h")]
+#else
+    [CCode (cname="av_md5_sum",cheader_filename="ffmpeg/libavutil/md5.h")]
     public void av_md5_sum (
         out uint8[] output_buffer,
         uint8[] input_buffer,
         size_t len
     );
-    #endif
+#endif
 }
 
 } // namespace LibAVUtil

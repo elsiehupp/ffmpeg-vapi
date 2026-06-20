@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_ESCAPE_FLAG_", cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cprefix="AV_ESCAPE_FLAG_",cheader_filename="ffmpeg/libavutil/avstring.h")]
 public enum StringEscapeFlags {
     /***********************************************************
     @brief Consider spaces special and escape them even in the middle of the
@@ -37,5 +37,5 @@ public enum StringEscapeFlags {
     Without this flag, escape also any characters that may be considered
     special by av_get_token (), such as the single quote.
     ***********************************************************/
-    STRICT,
+    STRICT;
 }

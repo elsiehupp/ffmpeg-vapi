@@ -27,7 +27,7 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum BugWorkaroundFlags {
     /***********************************************************
     @brief Autodetection
@@ -44,6 +44,7 @@ public enum BugWorkaroundFlags {
     FF_BUG_EDGE,
     FF_BUG_HPEL_CHROMA,
     FF_BUG_DC_CLIP,
+
     /***********************************************************
     @brief Workaround various bugs in Microsoft's broken decoders.
     ***********************************************************/

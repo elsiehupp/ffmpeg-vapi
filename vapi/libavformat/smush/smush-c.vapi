@@ -22,44 +22,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct SMUSHContext", cheader_filename="")]
+[CCode (cname="struct SMUSHContext",cheader_filename="")]
 [Compact]
 public class SmushDemuxerPrivateData { }
 
-[CCode (cname="ff_smush_demuxer", cheader_filename="")]
+[CCode (cname="ff_smush_demuxer",cheader_filename="")]
 public class SmushDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "smush";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "LucasArts Smush";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SmushDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="smush_read_probe", cheader_filename="")]
+    [CCode (cname="smush_read_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="smush_read_header", cheader_filename="")]
+    [CCode (cname="smush_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="smush_read_packet", cheader_filename="")]
+    [CCode (cname="smush_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

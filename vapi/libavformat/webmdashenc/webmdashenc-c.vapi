@@ -29,7 +29,8 @@ ISO DASH Specification:
 http://standards.iso.org/ittf/PubliclyAvailableStandards/c065274_ISO_IEC_23009-1_2014.zip
 ***********************************************************/
 
-#define OFFSET (x) offsetof (WebMDashMuxContext, x)
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (WebMDashMuxContext, x)
 static const LibAVUtil.Option options[] = {
     {
         "adaptation_sets",
@@ -108,20 +109,23 @@ static const LibAVUtil.Option options[] = {
         AV_OPT_FLAG_ENCODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
 #if CONFIG_WEBM_DASH_MANIFEST_MUXER
-[CCode (cname="webm_dash_class", cheader_filename="")]
+
+[CCode (cname="webm_dash_class",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
 public class WebMDashManifestMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override string class_name {
         public get {
             return "WebM DASH Manifest muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -130,71 +134,83 @@ public class WebMDashManifestMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_webm_dash_manifest_muxer", cheader_filename="")]
+[CCode (cname="ff_webm_dash_manifest_muxer",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
 public class WebMDashManifestMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override string name {
         public get {
             return "webm_dash_manifest";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override string long_name {
         public get {
             return "WebM DASH Manifest";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override string mime_type {
         public get {
             return "application/xml";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override string extensions {
         public get {
             return "xml";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WebMDashMuxContext);
+
         }
+
     }
 
-    [CCode (cname="webm_dash_manifest_write_header", cheader_filename="")]
+    [CCode (cname="webm_dash_manifest_write_header",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="webm_dash_manifest_write_packet", cheader_filename="")]
+    [CCode (cname="webm_dash_manifest_write_packet",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="webm_dash_manifest_write_trailer", cheader_filename="")]
+    [CCode (cname="webm_dash_manifest_write_trailer",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .priv_class = webm_dash_class,
+    //  .priv_class = webm_dash_class;
 }
 #endif
 

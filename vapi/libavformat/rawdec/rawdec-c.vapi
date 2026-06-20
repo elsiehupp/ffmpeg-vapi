@@ -23,8 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (FFRawVideoDemuxerContext, x)
-#define DEC AV_OPT_FLAG_DECODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (FFRawVideoDemuxerContext, x)
+public define DEC AV_OPT_FLAG_DECODING_PARAM
 const LibAVUtil.Option ff_rawvideo_options[] = {
     {
         "framerate",
@@ -42,10 +43,10 @@ const LibAVUtil.Option ff_rawvideo_options[] = {
         INT_MAX,
         DEC},
     {
-        NULL },
+        NULL };
 }
 #undef OFFSET
-#define OFFSET (x) offsetof (FFRawDemuxerContext, x)
+public define OFFSET (x) offsetof (FFRawDemuxerContext, x)
 const LibAVUtil.Option ff_raw_options[] = {
     {
         "raw_packet_size",
@@ -57,60 +58,70 @@ const LibAVUtil.Option ff_raw_options[] = {
         INT_MAX,
         DEC},
     {
-        NULL },
+        NULL };
 }
 
 #if CONFIG_DATA_DEMUXER
 //  FF_RAW_DEMUXER_CLASS (raw_data)
 
-[CCode (cname="ff_data_demuxer", cheader_filename="")]
+[CCode (cname="ff_data_demuxer",cheader_filename="")]
 public class DataDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "data";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "raw data";
+
         }
+
     }
 
-    [CCode (cname="ff_raw_data_read_header", cheader_filename="")]
+    [CCode (cname="ff_raw_data_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet", cheader_filename="")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="raw_codec_id", cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.NONE;
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);
+
         }
+
     }
-    //  .priv_class = raw_data_demuxer_class,
+    //  .priv_class = raw_data_demuxer_class;
 }
 #endif
 

@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (G729DemuxerContext, x)
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (G729DemuxerContext, x)
 static const LibAVUtil.Option g729_options[] = {
     {
         "bit_rate",
@@ -35,19 +36,21 @@ static const LibAVUtil.Option g729_options[] = {
         AV_OPT_FLAG_DECODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="g729_demuxer_class", cheader_filename="")]
+[CCode (cname="g729_demuxer_class",cheader_filename="")]
 public class G729DemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="")]
     public override string class_name {
         public get {
             return "g729 demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
@@ -56,66 +59,79 @@ public class G729DemuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = g729_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct G729DemuxerContext", cheader_filename="")]
+[CCode (cname="struct G729DemuxerContext",cheader_filename="")]
 [Compact]
 public class G729DemuxerPrivateData { }
 
-[CCode (cname="ff_g729_demuxer", cheader_filename="")]
+[CCode (cname="ff_g729_demuxer",cheader_filename="")]
 public class G729Demuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "g729";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "G.729 raw format demuxer";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (G729DemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="g729_read_header", cheader_filename="")]
+    [CCode (cname="g729_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="g729_read_packet", cheader_filename="")]
+    [CCode (cname="g729_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "g729";
+
         }
+
     }
-    //  .priv_class = g729_demuxer_class,
+    //  .priv_class = g729_demuxer_class;
 }
 
 } // namespace LibAVFormat

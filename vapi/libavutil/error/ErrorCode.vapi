@@ -29,122 +29,148 @@ namespace LibAVUtil {
 /***********************************************************
 @brief Error handling
 ***********************************************************/
-[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/error.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavutil/error.h")]
 public errordomain ErrorCode {
     /***********************************************************
     @brief Bitstream filter not found
     ***********************************************************/
     AVERROR_BSF_NOT_FOUND,
+
     /***********************************************************
     @brief Internal bug, also see AVERROR_BUG2
     ***********************************************************/
     AVERROR_BUG,
+
     /***********************************************************
     @brief Buffer too small
     ***********************************************************/
     AVERROR_BUFFER_TOO_SMALL,
+
     /***********************************************************
     @brief Decoder not found
     ***********************************************************/
     AVERROR_DECODER_NOT_FOUND,
+
     /***********************************************************
     @brief Demuxer not found
     ***********************************************************/
     AVERROR_DEMUXER_NOT_FOUND,
+
     /***********************************************************
     @brief Encoder not found
     ***********************************************************/
     AVERROR_ENCODER_NOT_FOUND,
+
     /***********************************************************
     @brief End of file
     ***********************************************************/
     AVERROR_EOF,
+
     /***********************************************************
     @brief Immediate exit was requested; the called function should not
     be restarted.
     ***********************************************************/
     AVERROR_EXIT,
+
     /***********************************************************
     @brief Generic error in an external library
     ***********************************************************/
     AVERROR_EXTERNAL,
+
     /***********************************************************
     @brief Filter not found
     ***********************************************************/
     AVERROR_FILTER_NOT_FOUND,
+
     /***********************************************************
     @brief Invalid data found when processing input
     ***********************************************************/
     AVERROR_INVALIDDATA,
+
     /***********************************************************
     @brief Muxer not found
     ***********************************************************/
     AVERROR_MUXER_NOT_FOUND,
+
     /***********************************************************
     @brief Option not found
     ***********************************************************/
     AVERROR_OPTION_NOT_FOUND,
+
     /***********************************************************
     @brief Not yet implemented in FFmpeg, patches welcome
     ***********************************************************/
     AVERROR_PATCHWELCOME,
+
     /***********************************************************
     @brief Protocol not found
     ***********************************************************/
     AVERROR_PROTOCOL_NOT_FOUND,
+
     /***********************************************************
     @brief Stream not found
     ***********************************************************/
     AVERROR_STREAM_NOT_FOUND,
+
     /***********************************************************
     @brief This is semantically identical to AVERROR_BUG; it has been
     public introduced in Libav after our AVERROR_BUG and with a
     modified value.
     ***********************************************************/
     AVERROR_BUG2,
+
     /***********************************************************
     @brief Unknown error, typically from an external library
     ***********************************************************/
     AVERROR_UNKNOWN,
+
     /***********************************************************
     @brief Requested feature is flagged experimental. Set
     strict_std_compliance if you really want to use it.
     ***********************************************************/
     AVERROR_EXPERIMENTAL,
+
     /***********************************************************
     @brief Input changed between calls. Reconfiguration is required.
     (can be OR-ed with AVERROR_OUTPUT_CHANGED)
     ***********************************************************/
     AVERROR_INPUT_CHANGED,
+
     /***********************************************************
     @brief Output changed between calls. Reconfiguration is required.
     (can be OR-ed with AVERROR_INPUT_CHANGED)
     ***********************************************************/
     AVERROR_OUTPUT_CHANGED,
+
     /***********************************************************
     @brief HTTP & RTSP error
     ***********************************************************/
     AVERROR_HTTP_BAD_REQUEST,
+
     /***********************************************************
     @brief HTTP & RTSP error
     ***********************************************************/
     AVERROR_HTTP_UNAUTHORIZED,
+
     /***********************************************************
     @brief HTTP & RTSP error
     ***********************************************************/
     AVERROR_HTTP_FORBIDDEN,
+
     /***********************************************************
     @brief HTTP & RTSP error
     ***********************************************************/
     AVERROR_HTTP_NOT_FOUND,
+
     /***********************************************************
     @brief HTTP & RTSP error
     ***********************************************************/
     AVERROR_HTTP_OTHER_4XX,
+
     /***********************************************************
     @brief HTTP & RTSP error
     ***********************************************************/
-    AVERROR_HTTP_SERVER_ERROR,
+    AVERROR_HTTP_SERVER_ERROR;
 }
 
 /***********************************************************
@@ -159,11 +185,11 @@ error message indicating the errnum provided to errbuf.
 @return 0 on success, a negative value if a description for errnum
 cannot be found
 ***********************************************************/
-[CCode (cname="av_strerror", cheader_filename="ffmpeg/libavutil/error.h")]
+[CCode (cname="av_strerror",cheader_filename="ffmpeg/libavutil/error.h")]
 public int av_strerror (
-    public int errnum,
+    int errnum,
     string errbuf,
-    public size_t errbuf_size
+    size_t errbuf_size
 );
 
 /***********************************************************
@@ -176,18 +202,18 @@ corresponding to the LibAVUtil.ErrorCode code errnum.
 @return the buffer in input, filled with the error description
 @see @link av_strerror ()
 ***********************************************************/
-[CCode (cname="av_make_error_string", cheader_filename="ffmpeg/libavutil/error.h")]
+[CCode (cname="av_make_error_string",cheader_filename="ffmpeg/libavutil/error.h")]
 public static string av_make_error_string (
     string errbuf,
-    public size_t errbuf_size,
-    public int errnum
+    size_t errbuf_size,
+    int errnum
 );
 
 /***********************************************************
 @brief Convenience macro, the return value should be used only directly in
 function arguments but never stand-alone.
 ***********************************************************/
-[CCode (cname="av_err2str", cheader_filename="ffmpeg/libavutil/error.h")]
+[CCode (cname="av_err2str",cheader_filename="ffmpeg/libavutil/error.h")]
 public static string av_err2str (
     ErrorCode errnum
 );

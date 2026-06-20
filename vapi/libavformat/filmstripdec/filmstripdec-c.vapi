@@ -26,45 +26,51 @@ namespace LibAVFormat {
 @file Adobe Filmstrip demuxer
 ***********************************************************/
 
-[CCode (cname="struct FilmstripDemuxContext", cheader_filename="")]
+[CCode (cname="struct FilmstripDemuxContext",cheader_filename="")]
 [Compact]
 public class FilmstripDemuxerPrivateData { }
 
-[CCode (cname="ff_filmstrip_demuxer", cheader_filename="")]
+[CCode (cname="ff_filmstrip_demuxer",cheader_filename="")]
 public class FilmstripDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "filmstrip";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Adobe Filmstrip";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FilmstripDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="read_header", cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet", cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="read_seek", cheader_filename="")]
+    [CCode (cname="read_seek",cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -72,11 +78,13 @@ public class FilmstripDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "flm";
+
         }
+
     }
 }
 

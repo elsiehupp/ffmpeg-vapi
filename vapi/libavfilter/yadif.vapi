@@ -16,93 +16,135 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum YADIFMode {
     /***********************************************************
     send 1 frame for each frame
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_MODE_SEND_FRAME = 0,
+
     /***********************************************************
     send 1 frame for each field
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_MODE_SEND_FIELD = 1,
+
     /***********************************************************
     send 1 frame for each frame but skips spatial interlacing check
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_MODE_SEND_FRAME_NOSPATIAL = 2,
+
     /***********************************************************
     send 1 frame for each field but skips spatial interlacing check
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_MODE_SEND_FIELD_NOSPATIAL = 3;
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum YADIFParity {
     /***********************************************************
     top field first
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_PARITY_TFF = 0,
+
     /***********************************************************
     bottom field first
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_PARITY_BFF = 1,
+
     /***********************************************************
     auto detection
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_PARITY_AUTO = -1;
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum YADIFDeint {
     /***********************************************************
     deinterlace all frames
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_DEINT_ALL = 0,
+
     /***********************************************************
     only deinterlace frames marked as interlaced
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_DEINT_INTERLACED = 1;
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum YADIFCurrentField {
     /***********************************************************
     The last frame in a sequence
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_FIELD_BACK_END = -1,
+
     /***********************************************************
     The first or last field in a sequence
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_FIELD_END = 0,
+
     /***********************************************************
     A normal field in the middle of a sequence
     ***********************************************************/
+    [CCode (cname="")]
     YADIF_FIELD_NORMAL = 1;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class YADIFContext {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
     /***********************************************************
     YADIFMode
     ***********************************************************/
+    [CCode (cname="")]
     public int mode;
+
     /***********************************************************
     YADIFParity
     ***********************************************************/
+    [CCode (cname="")]
     public int parity;
+
     /***********************************************************
     YADIFDeint
     ***********************************************************/
+    [CCode (cname="")]
     public int deint;
 
+    [CCode (cname="")]
     public int frame_pending;
 
+    [CCode (cname="")]
     public AVFrame cur;
+
+    [CCode (cname="")]
     public AVFrame next;
+
+    [CCode (cname="")]
     public AVFrame prev;
+
+    [CCode (cname="")]
     public AVFrame out;
 
     [CCode (cname="filter")]
     public void (*filter)(
-        AVFilterContext *ctx, AVFrame *dstpic, int parity, int tff
+        AVFilterContext *ctx,
+        AVFrame *dstpic,
+        int parity,
+        int tff
     );
 
     /***********************************************************
@@ -111,20 +153,42 @@ public class YADIFContext {
     [CCode (cname="filter_line")]
     public void (*filter_line)(
         void *dst,
-        void *prev, void *cur, void *next,
-        int w, int prefs, int mrefs, int parity, int mode
+        void *prev,
+        void *cur,
+        void *next,
+        int w,
+        int prefs,
+        int mrefs,
+        int parity,
+        int mode
     );
 
     [CCode (cname="filter_edges")]
     public void (*filter_edges)(
-        void *dst, void *prev, void *cur, void *next,
-        int w, int prefs, int mrefs, int parity, int mode
+        void *dst,
+        void *prev,
+        void *cur,
+        void *next,
+        int w,
+        int prefs,
+        int mrefs,
+        int parity,
+        int mode
     );
 
-    const AVPixFmtDescriptor *csp;
+    [CCode (cname="")]
+    public AVPixFmtDescriptor *csp;
+
+    [CCode (cname="")]
     public int eof;
-    uint8[] temp_line;
+
+    [CCode (cname="")]
+    public uint8[] temp_line;
+
+    [CCode (cname="")]
     public int temp_line_size;
+
+    [CCode (cname="")]
 
     /***********************************************************
     YADIFCurrentField
@@ -134,13 +198,24 @@ public class YADIFContext {
     responsibility to set the value to YADIF_FIELD_NORMAL after processing
     the first field.
     ***********************************************************/
+    [CCode (cname="")]
     public int current_field;
 }
 
-public void ff_yadif_init_x86 (YADIFContext *yadif);
+[CCode (cname="",cheader_filename="")]
+public void ff_yadif_init_x86 (
+    YADIFContext *yadif
+);
 
-public int ff_yadif_filter_frame (AVFilterLink *link, AVFrame *frame);
+[CCode (cname="",cheader_filename="")]
+public int ff_yadif_filter_frame (
+    AVFilterLink *link,
+    AVFrame *frame
+);
 
-public int ff_yadif_request_frame (AVFilterLink *link);
+[CCode (cname="",cheader_filename="")]
+public int ff_yadif_request_frame (
+    AVFilterLink *link
+);
 
 //  extern const AVOption ff_yadif_options[];

@@ -22,50 +22,56 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct PAFDemuxContext", cheader_filename="")]
+[CCode (cname="struct PAFDemuxContext",cheader_filename="")]
 [Compact]
 public class PAFDemuxerPrivateData { }
 
-[CCode (cname="ff_paf_demuxer", cheader_filename="")]
+[CCode (cname="ff_paf_demuxer",cheader_filename="")]
 public class PAFDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "paf";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Amazing Studio Packed Animation File";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PAFDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="read_probe", cheader_filename="")]
+    [CCode (cname="read_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header", cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet", cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="read_close", cheader_filename="")]
+    [CCode (cname="read_close",cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );

@@ -23,7 +23,7 @@ namespace LibAVUtil {
 
 Allocated with av_hwdevice_hwconfig_alloc ().
 ***********************************************************/
-[CCode (cname="struct AVVAAPIHWConfig", cheader_filename="ffmpeg/libavutil/hwcontext_vaapi.h")]
+[CCode (cname="struct AVVAAPIHWConfig",cheader_filename="ffmpeg/libavutil/hwcontext_vaapi.h")]
 [Compact]
 public class VAAPIHWConfig {
     /***********************************************************

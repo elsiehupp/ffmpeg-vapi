@@ -53,6 +53,7 @@ public void register_exit (
 /***********************************************************
 Wraps exit with a program-specific cleanup routine.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void exit_program (
     int ret
 ) av_noreturn;
@@ -60,23 +61,28 @@ public void exit_program (
 /***********************************************************
 Initialize dynamic library loading
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void init_dynload ();
 
 /***********************************************************
 Initialize the cmdutils option system, in particular
 allocate the *_opts contexts.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void init_opts ();
+
 /***********************************************************
 Uninitialize the cmdutils option system, in particular
 free the *_opts contexts and their contents.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void uninit_opts ();
 
 /***********************************************************
 Trivial log callback.
 Only suitable for opt_help and similar since it lacks prefix handling.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void log_callback_help (
     void* ptr,
     int level,
@@ -87,6 +93,7 @@ public void log_callback_help (
 /***********************************************************
 Override the cpuflags.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int opt_cpuflags (
     void *optctx,
     string opt,
@@ -97,6 +104,7 @@ public int opt_cpuflags (
 Fallback for options that are not explicitly handled, these will be
 parsed through AVOptions.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int opt_default (
     void *optctx,
     string opt,
@@ -106,22 +114,26 @@ public int opt_default (
 /***********************************************************
 Set the libav* libraries log level.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int opt_loglevel (
     void *optctx,
     string opt,
     string arg
 );
 
+[CCode (cname="",cheader_filename="")]
 public int opt_report (
     string opt
 );
 
+[CCode (cname="",cheader_filename="")]
 public int opt_max_alloc (
     void *optctx,
     string opt,
     string arg
 );
 
+[CCode (cname="",cheader_filename="")]
 public int opt_codec_debug (
     void *optctx,
     string opt,
@@ -131,6 +143,7 @@ public int opt_codec_debug (
 /***********************************************************
 Limit the execution time.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int opt_timelimit (
     void *optctx,
     string opt,
@@ -150,7 +163,8 @@ string should be parsed
 @param min the minimum valid accepted value
 @param max the maximum valid accepted value
 ***********************************************************/
-double parse_number_or_die (
+[CCode (cname="",cheader_filename="")]
+public double parse_number_or_die (
     string context,
     string numstr,
     int type,
@@ -172,73 +186,145 @@ date
 
 @see av_parse_time ()
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int64 parse_time_or_die (
     string context,
     string timestr,
     int is_duration
 );
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class SpecifierOpt {
     /***********************************************************
     stream/chapter/program/... specifier
     ***********************************************************/
-    string specifier;
+    [CCode (cname="")]
+    public string specifier;
+
     union {
-        uint8[] str;
-        int        i;
-        int64  i64;
-        uint64 ui64;
-        float      f;
-        double   dbl;
+        [CCode (cname="")]
+        public uint8[] str;
+
+        [CCode (cname="")]
+        public int        i;
+
+        [CCode (cname="")]
+        public int64  i64;
+
+        [CCode (cname="")]
+        public uint64 ui64;
+
+        [CCode (cname="")]
+        public float      f;
+
+        [CCode (cname="")]
+        public double   dbl;
+
     } u;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class OptionDef {
-    string name;
+    [CCode (cname="")]
+    public string name;
+
+    [CCode (cname="")]
     public int flags;
-#define HAS_ARG    0x0001
-#define OPT_BOOL   0x0002
-#define OPT_EXPERT 0x0004
-#define OPT_STRING 0x0008
-#define OPT_VIDEO  0x0010
-#define OPT_AUDIO  0x0020
-#define OPT_INT    0x0080
-#define OPT_FLOAT  0x0100
-#define OPT_SUBTITLE 0x0200
-#define OPT_INT64  0x0400
-#define OPT_EXIT   0x0800
-#define OPT_DATA   0x1000
-#define OPT_PERFILE  0x2000     /***********************************************************
-    the option is per-file (currently ffmpeg-only).
-                                   implied by OPT_OFFSET or OPT_SPEC
-***********************************************************/
-#define OPT_OFFSET 0x4000       /***********************************************************
-    option is specified as an offset in a passed optctx
-***********************************************************/
-#define OPT_SPEC   0x8000       /***********************************************************
-    option is to be stored in an array of SpecifierOpt.
-                                   Implies OPT_OFFSET. Next element after the offset is
-                                   an int containing element count in the array.
-***********************************************************/
-#define OPT_TIME  0x10000
-#define OPT_DOUBLE 0x20000
-#define OPT_INPUT  0x40000
-#define OPT_OUTPUT 0x80000
-     union {
-        void *dst_ptr;
+
+    public enum FooBar {
+        [CCode (cname="")]
+        HAS_ARG, // 0x0001
+
+        [CCode (cname="")]
+        OPT_BOOL, // 0x0002
+
+        [CCode (cname="")]
+        OPT_EXPERT, // 0x0004
+
+        [CCode (cname="")]
+        OPT_STRING, // 0x0008
+
+        [CCode (cname="")]
+        OPT_VIDEO, // 0x0010
+
+        [CCode (cname="")]
+        OPT_AUDIO, // 0x0020
+
+        [CCode (cname="")]
+        OPT_INT, // 0x0080
+
+        [CCode (cname="")]
+        OPT_FLOAT, // 0x0100
+
+        [CCode (cname="")]
+        OPT_SUBTITLE, // 0x0200
+
+        [CCode (cname="")]
+        OPT_INT64, // 0x0400
+
+        [CCode (cname="")]
+        OPT_EXIT, // 0x0800
+
+        [CCode (cname="")]
+        OPT_DATA, // 0x1000
+
+        /***********************************************************
+        the option is per-file (currently ffmpeg-only).
+        implied by OPT_OFFSET or OPT_SPEC
+        ***********************************************************/
+        [CCode (cname="")]
+        OPT_PERFILE, // 0x2000
+
+        /***********************************************************
+        option is specified as an offset in a passed optctx
+        ***********************************************************/
+        [CCode (cname="")]
+        OPT_OFFSET, // 0x4000
+
+        /***********************************************************
+        option is to be stored in an array of SpecifierOpt.
+        Implies OPT_OFFSET. Next element after the offset is
+        an int containing element count in the array.
+        ***********************************************************/
+        [CCode (cname="")]
+        OPT_SPEC, // 0x8000
+
+        [CCode (cname="")]
+        OPT_TIME, // 0x10000
+
+        [CCode (cname="")]
+        OPT_DOUBLE, // 0x20000
+
+        [CCode (cname="")]
+        OPT_INPUT, // 0x40000
+
+        [CCode (cname="")]
+        OPT_OUTPUT; // 0x80000
+    }
+
+    union {
+        [CCode (cname="")]
+        public void *dst_ptr;
+
         [CCode (cname="func_arg")]
-        int (*func_arg)(
+        public int (*func_arg)(
             void *,
             string,
             string
         );
 
-        size_t off;
+        [CCode (cname="")]
+        public size_t off;
+
     } u;
-    string help;
-    string argname;
+
+    [CCode (cname="")]
+    public string help;
+
+    [CCode (cname="")]
+    public string argname;
 }
 
 /***********************************************************
@@ -250,6 +336,7 @@ Print help for all options matching specified flags.
 @param rej_flags don't print options which have any of those flags set.
 @param alt_flags print only options that have at least one of those flags set
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void show_help_options (
     OptionDef[] options,
     string msg,
@@ -259,7 +346,8 @@ public void show_help_options (
 );
 
 #if CONFIG_AVDEVICE
-#define CMDUTILS_COMMON_OPTIONS_AVDEVICE                                                                                \
+[CCode (cname="",cheader_filename="")]
+public define CMDUTILS_COMMON_OPTIONS_AVDEVICE                                                                                \
     {
         "sources",
         OPT_EXIT | HAS_ARG,
@@ -283,7 +371,8 @@ public void show_help_options (
 //  #define CMDUTILS_COMMON_OPTIONS_AVDEVICE
 #endif
 
-#define CMDUTILS_COMMON_OPTIONS                                                                                         \
+[CCode (cname="",cheader_filename="")]
+public define CMDUTILS_COMMON_OPTIONS                                                                                         \
     {
         "L",
         OPT_EXIT,
@@ -509,12 +598,13 @@ public void show_help_options (
         "do not show program banner",
         "hide_banner"
     },
-    CMDUTILS_COMMON_OPTIONS_AVDEVICE                                                                                    \
+    CMDUTILS_COMMON_OPTIONS_AVDEVICE
 
 /***********************************************************
 Show help for all options with given flags in class and all its
 children.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void show_help_children (
     AVClass class,
     int flags
@@ -524,6 +614,7 @@ public void show_help_children (
 Per-fftool specific help handler. Implemented in each
 fftool, called by show_help ().
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void show_help_default (
     string opt,
     string arg
@@ -532,6 +623,7 @@ public void show_help_default (
 /***********************************************************
 Generic -h handler common to all fftools.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_help (
     void *optctx,
     string opt,
@@ -550,6 +642,7 @@ option of the form: -option_name [argument]
 argument without a leading option name flag. NULL if such arguments do
 not have to be processed.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void parse_options (
     void *optctx,
     int argc,
@@ -566,6 +659,7 @@ Parse one given option.
 
 @return on success 1 if arg was consumed, 0 otherwise; negative number on error
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int parse_option (
     void *optctx,
     string opt,
@@ -578,70 +672,109 @@ An option extracted from the commandline.
 Cannot use AVDictionary because of options like -map which can be
 used multiple times.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class Option {
-    const OptionDef  *opt;
-    const char       *key;
-    const char       *val;
+    [CCode (cname="")]
+    public OptionDef opt;
+
+    [CCode (cname="")]
+    public string key;
+
+    [CCode (cname="")]
+    public string val;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class OptionGroupDef {
     /***********************************************************
     group name
     ***********************************************************/
-    string name;
+    [CCode (cname="")]
+    public string name;
+
     /***********************************************************
     Option to be used as group separator. Can be NULL for groups
     which are terminated by a non-option argument (e.g. ffmpeg
     output files)
     ***********************************************************/
-    string sep;
+    [CCode (cname="")]
+    public string sep;
+
     /***********************************************************
     Option flags that must be set on each option that is
     applied to this group
     ***********************************************************/
+    [CCode (cname="")]
     public int flags;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class OptionGroup {
-    const OptionGroupDef *group_def;
-    string arg;
+    [CCode (cname="")]
+    public OptionGroupDef group_def;
 
-    Option *opts;
+    [CCode (cname="")]
+    public string arg;
+
+    [CCode (cname="")]
+    public Option *opts;
+
+    [CCode (cname="")]
     public int  nb_opts;
 
-    AVDictionary *codec_opts;
-    AVDictionary *format_opts;
-    AVDictionary *resample_opts;
-    AVDictionary *sws_dict;
-    AVDictionary *swr_opts;
+    [CCode (cname="")]
+    public AVDictionary *codec_opts;
+
+    [CCode (cname="")]
+    public AVDictionary *format_opts;
+
+    [CCode (cname="")]
+    public AVDictionary *resample_opts;
+
+    [CCode (cname="")]
+    public AVDictionary *sws_dict;
+
+    [CCode (cname="")]
+    public AVDictionary *swr_opts;
 }
 
 /***********************************************************
 A list of option groups that all have the same group type
 (e.g. input files or output files)
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class OptionGroupList {
-    const OptionGroupDef *group_def;
+    [CCode (cname="")]
+    public OptionGroupDef group_def;
 
-    OptionGroup *groups;
+    [CCode (cname="")]
+    public OptionGroup[] groups;
+
+    [CCode (cname="")]
     public int       nb_groups;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class OptionParseContext {
-    OptionGroup global_opts;
+    [CCode (cname="")]
+    public OptionGroup global_opts;
 
-    OptionGroupList *groups;
+    [CCode (cname="")]
+    public OptionGroupList groups;
+
+    [CCode (cname="")]
     public int           nb_groups;
 
     /***********************************************************
     parsing state
     ***********************************************************/
-    OptionGroup cur_group;
+    [CCode (cname="")]
+    public OptionGroup cur_group;
 }
 
 /***********************************************************
@@ -649,6 +782,7 @@ Parse an options group and write results into optctx.
 
 @param optctx an app-specific options context. NULL for global options group
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int parse_optgroup (
     void *optctx,
     OptionGroup *g
@@ -672,6 +806,7 @@ OptionGroupList, all groups with the same group definition are stored in one
 OptionGroupList in OptionParseContext.groups. The order of group lists is the
 same as the order of group definitions.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int split_commandline (
     OptionParseContext *octx,
     int argc,
@@ -684,6 +819,7 @@ public int split_commandline (
 /***********************************************************
 Free all allocated memory in an OptionParseContext.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void uninit_parse_context (
     OptionParseContext *octx
 );
@@ -691,6 +827,7 @@ public void uninit_parse_context (
 /***********************************************************
 Find the '-loglevel' option in the command line args and apply it.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void parse_loglevel (
     int argc
     string *argv,
@@ -700,6 +837,7 @@ public void parse_loglevel (
 /***********************************************************
 Return index of option opt in argv or 0 if not found.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int locate_option (
     int argc,
     string *argv,
@@ -716,6 +854,7 @@ Check if the given stream matches a stream specifier.
 
 @return 1 if the stream matches, 0 if it doesn't, <0 on error
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int check_stream_specifier (
     AVFormatContext *s,
     AVStream *st,
@@ -736,7 +875,7 @@ opts which apply to the codec with ID codec_id.
              If null, the default one is looked up according to the codec id.
 @return a pointer to the created dictionary
 ***********************************************************/
-AVDictionary *filter_codec_opts (
+public AVDictionary *filter_codec_opts (
     AVDictionary *opts,
     AVCodecID codec_id,
     AVFormatContext *s,
@@ -755,7 +894,7 @@ be applied to the corresponding stream codec context.
 @return pointer to the created array of dictionaries, NULL if it
 cannot be created
 ***********************************************************/
-AVDictionary **setup_find_stream_info_opts (
+public AVDictionary **setup_find_stream_info_opts (
     AVFormatContext *s,
     AVDictionary *codec_opts
 );
@@ -769,8 +908,10 @@ multithreaded application may be unsafe.
 
 @see av_strerror ()
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void print_error (
-    string filename, int err
+    string filename,
+    int err
 );
 
 /***********************************************************
@@ -778,6 +919,7 @@ Print the program banner to stderr. The banner contents depend on the
 current version of the repository and of the libav* libraries used by
 the program.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void show_banner (
     int argc,
     string *argv,
@@ -790,6 +932,7 @@ depends on the current versions of the repository and of the libav*
 libraries.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_version (
     void *optctx,
     string opt,
@@ -801,6 +944,7 @@ Print the build configuration of the program to stdout. The contents
 depend on the definition of FFMPEG_CONFIGURATION.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_buildconf (
     void *optctx,
     string opt,
@@ -812,6 +956,7 @@ Print the license of the program to stdout. The license depends on
 the license of the libraries compiled into the program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_license (
     void *optctx,
     string opt,
@@ -823,6 +968,7 @@ Print a listing containing all the formats supported by the
 program (including devices).
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_formats (
     void *optctx,
     string opt,
@@ -834,6 +980,7 @@ Print a listing containing all the muxers supported by the
 program (including devices).
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_muxers (
     void *optctx,
     string opt,
@@ -845,6 +992,7 @@ Print a listing containing all the demuxer supported by the
 program (including devices).
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_demuxers (
     void *optctx,
     string opt,
@@ -856,6 +1004,7 @@ Print a listing containing all the devices supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_devices (
     void *optctx,
     string opt,
@@ -867,6 +1016,7 @@ public int show_devices (
 Print a listing containing autodetected sinks of the output device.
 Device name with options may be passed as an argument to limit results.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_sinks (
     void *optctx,
     string opt,
@@ -877,6 +1027,7 @@ public int show_sinks (
 Print a listing containing autodetected sources of the input device.
 Device name with options may be passed as an argument to limit results.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_sources (
     void *optctx,
     string opt,
@@ -889,6 +1040,7 @@ Print a listing containing all the codecs supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_codecs (
     void *optctx,
     string opt,
@@ -899,6 +1051,7 @@ public int show_codecs (
 Print a listing containing all the decoders supported by the
 program.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_decoders (
     void *optctx,
     string opt,
@@ -909,6 +1062,7 @@ public int show_decoders (
 Print a listing containing all the encoders supported by the
 program.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_encoders (
     void *optctx,
     string opt,
@@ -920,6 +1074,7 @@ Print a listing containing all the filters supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_filters (
     void *optctx,
     string opt,
@@ -931,6 +1086,7 @@ Print a listing containing all the bit stream filters supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_bsfs (
     void *optctx,
     string opt,
@@ -942,6 +1098,7 @@ Print a listing containing all the protocols supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_protocols (
     void *optctx,
     string opt,
@@ -953,6 +1110,7 @@ Print a listing containing all the pixel formats supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_pix_fmts (
     void *optctx,
     string opt,
@@ -964,6 +1122,7 @@ Print a listing containing all the standard channel layouts supported by
 the program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_layouts (
     void *optctx,
     string opt,
@@ -974,6 +1133,7 @@ public int show_layouts (
 Print a listing containing all the sample formats supported by the
 program.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_sample_fmts (
     void *optctx,
     string opt,
@@ -984,6 +1144,7 @@ public int show_sample_fmts (
 Print a listing containing all the color names and values recognized
 by the program.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int show_colors (
     void *optctx,
     string opt,
@@ -994,6 +1155,7 @@ public int show_colors (
 Return a positive value if a line read from standard input
 starts with [yY], otherwise return 0.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int read_yesno ();
 
 /***********************************************************
@@ -1014,7 +1176,8 @@ codec_name-preset_name.avpreset in the above-mentioned directories.
 @param codec_name name of the codec for which to look for the
 preset, may be NULL
 ***********************************************************/
-FILE *get_preset_file (
+[CCode (cname="",cheader_filename="")]
+public FILE *get_preset_file (
     string filename,
     size_t filename_size,
     string preset_name,
@@ -1032,6 +1195,7 @@ Calls exit () on failure.
 @param new_size number of elements to place in reallocated array
 @return reallocated array
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void *grow_array (
     void *array,
     int elem_size,
@@ -1039,9 +1203,11 @@ public void *grow_array (
     int new_size
 );
 
-#define media_type_string av_get_media_type_string
+[CCode (cname="",cheader_filename="")]
+public define media_type_string av_get_media_type_string
 
-#define GROW_ARRAY (
+[CCode (cname="",cheader_filename="")]
+public define GROW_ARRAY (
     array,
     nb_elems
 ) {
@@ -1053,23 +1219,27 @@ public void *grow_array (
     );
 }
 
-#define GET_PIX_FMT_NAME (
+[CCode (cname="",cheader_filename="")]
+public define GET_PIX_FMT_NAME (
     pix_fmt
 ) {
     string name = av_get_pix_fmt_name (pix_fmt);
 }
 
-#define GET_CODEC_NAME (id) {
+[CCode (cname="",cheader_filename="")]
+public define GET_CODEC_NAME (id) {
     string name = avcodec_descriptor_get (id)->name;
 }
 
-#define GET_SAMPLE_FMT_NAME (
+[CCode (cname="",cheader_filename="")]
+public define GET_SAMPLE_FMT_NAME (
     sample_fmt
 ) {
     string name = av_get_sample_fmt_name (sample_fmt);
 }
 
-#define GET_SAMPLE_RATE_NAME (rate) {
+[CCode (cname="",cheader_filename="")]
+public define GET_SAMPLE_RATE_NAME (rate) {
     char name[16];
     snprintf (
         name,
@@ -1080,7 +1250,8 @@ public void *grow_array (
 
 }
 
-#define GET_CH_LAYOUT_NAME (
+[CCode (cname="",cheader_filename="")]
+public define GET_CH_LAYOUT_NAME (
     ch_layout
 ) {
     char name[16];
@@ -1093,7 +1264,8 @@ public void *grow_array (
 
 }
 
-#define GET_CH_LAYOUT_DESC (
+[CCode (cname="",cheader_filename="")]
+public define GET_CH_LAYOUT_DESC (
     ch_layout
 ) {
     char name[128];
@@ -1106,6 +1278,7 @@ public void *grow_array (
 
 }
 
-double get_rotation (
+[CCode (cname="",cheader_filename="")]
+public double get_rotation (
     AVStream *st
 );

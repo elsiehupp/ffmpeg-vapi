@@ -19,6 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public int ff_decklink_read_header (AVFormatContext *avctx);
 public int ff_decklink_read_packet (AVFormatContext *avctx, AVPacket *pkt);
 public int ff_decklink_read_close (AVFormatContext *avctx);

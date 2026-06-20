@@ -18,6 +18,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum EOFAction {
     EOF_ACTION_REPEAT,
     EOF_ACTION_ENDALL,
@@ -52,6 +53,7 @@ Stream extrapolation mode
 Describe how the frames of a stream are extrapolated before the first one
 and after EOF to keep sync with possibly longer other streams.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public enum FFFrameSyncExtMode {
     /***********************************************************
     Completely stop all streams with this one.
@@ -66,57 +68,67 @@ public enum FFFrameSyncExtMode {
     /***********************************************************
     Extend the frame to infinity.
     ***********************************************************/
-    EXT_INFINITY,
+    EXT_INFINITY;
 }
 
 /***********************************************************
 Input stream structure
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class FFFrameSyncIn {
     /***********************************************************
     Extrapolation mode for timestamps before the first frame
     ***********************************************************/
+    [CCode (cname="")]
     public FFFrameSyncExtMode before;
 
     /***********************************************************
     Extrapolation mode for timestamps after the last frame
     ***********************************************************/
+    [CCode (cname="")]
     public FFFrameSyncExtMode after;
 
     /***********************************************************
     Time base for the incoming frames
     ***********************************************************/
+    [CCode (cname="")]
     public AVRational time_base;
 
     /***********************************************************
     Current frame, may be NULL before the first one or after EOF
     ***********************************************************/
+    [CCode (cname="")]
     public AVFrame *frame;
 
     /***********************************************************
     Next frame, for internal use
     ***********************************************************/
+    [CCode (cname="")]
     public AVFrame *frame_next;
 
     /***********************************************************
     PTS of the current frame
     ***********************************************************/
+    [CCode (cname="")]
     public int64 pts;
 
     /***********************************************************
     PTS of the next frame, for internal use
     ***********************************************************/
+    [CCode (cname="")]
     public int64 pts_next;
 
     /***********************************************************
     Boolean flagging the next frame, for internal use
     ***********************************************************/
+    [CCode (cname="")]
     public uint8 have_next;
 
     /***********************************************************
     State: before first, in stream or after EOF, for internal use
     ***********************************************************/
+    [CCode (cname="")]
     public uint8 state;
 
     /***********************************************************
@@ -130,6 +142,7 @@ public class FFFrameSyncIn {
 
     If sync is 0, no frame event will be generated.
     ***********************************************************/
+    [CCode (cname="")]
     public uint sync;
 
 }
@@ -137,28 +150,34 @@ public class FFFrameSyncIn {
 /***********************************************************
 Frame sync structure.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class FFFrameSync {
+    [CCode (cname="")]
     public AVClass class;
 
     /***********************************************************
     Parent filter context.
     ***********************************************************/
+    [CCode (cname="")]
     public AVFilterContext parent;
 
     /***********************************************************
     Number of input streams
     ***********************************************************/
+    [CCode (cname="")]
     public uint nb_in;
 
     /***********************************************************
     Time base for the output events
     ***********************************************************/
+    [CCode (cname="")]
     public AVRational time_base;
 
     /***********************************************************
     Timestamp of the current event
     ***********************************************************/
+    [CCode (cname="")]
     public int64 pts;
 
     /***********************************************************
@@ -172,36 +191,47 @@ public class FFFrameSync {
     /***********************************************************
     Opaque pointer, not used by the API
     ***********************************************************/
+    [CCode (cname="")]
     public void *opaque;
 
     /***********************************************************
     Index of the input that requires a request
     ***********************************************************/
+    [CCode (cname="")]
     public uint in_request;
 
     /***********************************************************
     Synchronization level: only inputs with the same sync level are sync
     sources.
     ***********************************************************/
+    [CCode (cname="")]
     public uint sync_level;
 
     /***********************************************************
     Flag indicating that a frame event is ready
     ***********************************************************/
+    [CCode (cname="")]
     public uint8 frame_ready;
 
     /***********************************************************
     Flag indicating that output has reached EOF.
     ***********************************************************/
+    [CCode (cname="")]
     public uint8 eof;
 
     /***********************************************************
     Pointer to array of inputs.
     ***********************************************************/
+    [CCode (cname="")]
     public FFFrameSyncIn[] in;
 
+    [CCode (cname="")]
     public int opt_repeatlast;
+
+    [CCode (cname="")]
     public int opt_shortest;
+
+    [CCode (cname="")]
     public int opt_eof_action;
 
 }
@@ -209,6 +239,7 @@ public class FFFrameSync {
 /***********************************************************
 Get the class for the framesync object.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public AVClass ff_framesync_get_class ();
 
 /***********************************************************
@@ -218,7 +249,10 @@ It sets the class pointer and inits the options to their default values.
 The entire structure is expected to be already set to 0.
 This step is optional, but necessary to use the options.
 ***********************************************************/
-public void ff_framesync_preinit (FFFrameSync *fs);
+[CCode (cname="",cheader_filename="")]
+public void ff_framesync_preinit (
+    FFFrameSync *fs
+);
 
 /***********************************************************
 Initialize a frame sync structure.
@@ -230,7 +264,12 @@ The entire structure is expected to be already set to 0 or preinited.
 @param  nb_in   number of inputs
 @return  >= 0 for success or a negative error code
 ***********************************************************/
-public int ff_framesync_init (FFFrameSync *fs, AVFilterContext *parent, uint nb_in);
+[CCode (cname="",cheader_filename="")]
+public int ff_framesync_init (
+    FFFrameSync *fs,
+    AVFilterContext *parent,
+    uint nb_in
+);
 
 /***********************************************************
 Configure a frame sync structure.
@@ -239,12 +278,18 @@ Must be called after all options are set but before all use.
 
 @return  >= 0 for success or a negative error code
 ***********************************************************/
-public int ff_framesync_configure (FFFrameSync *fs);
+[CCode (cname="",cheader_filename="")]
+public int ff_framesync_configure (
+    FFFrameSync *fs
+);
 
 /***********************************************************
 Free all memory currently allocated.
 ***********************************************************/
-public void ff_framesync_uninit (FFFrameSync *fs);
+[CCode (cname="",cheader_filename="")]
+public void ff_framesync_uninit (
+    FFFrameSync *fs
+);
 
 /***********************************************************
 Get the current frame in an input.
@@ -256,8 +301,11 @@ Get the current frame in an input.
                the returned frame; the current frame will either be
                duplicated or removed from the framesync structure
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int ff_framesync_get_frame (
-    FFFrameSync *fs, uint in, AVFrame **rframe,
+    FFFrameSync *fs,
+    uint in,
+    AVFrame **rframe,
     uint get
 );
 
@@ -267,6 +315,7 @@ Examine the frames in the filter's input and try to produce output.
 This function can be the complete implementation of the activate
 method of a filter using framesync.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int ff_framesync_activate (
     FFFrameSync *fs
 );
@@ -282,8 +331,10 @@ unchanged when disabled.
 Equivalent to ff_framesync_init (fs, parent, 2) then setting the time
 base, sync and ext modes on the inputs.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int ff_framesync_init_dualinput (
-    FFFrameSync *fs, AVFilterContext *parent
+    FFFrameSync *fs,
+    AVFilterContext *parent
 );
 
 /***********************************************************
@@ -294,18 +345,25 @@ public int ff_framesync_init_dualinput (
 ff_framesync_get_frame ()) while the frame returned in f1 is still owned
 by the framesync structure.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int ff_framesync_dualinput_get (
-    FFFrameSync *fs, AVFrame **f0, AVFrame **f1
+    FFFrameSync *fs,
+    AVFrame **f0,
+    AVFrame **f1
 );
 
 /***********************************************************
 Same as ff_framesync_dualinput_get (), but make sure that f0 is writable.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int ff_framesync_dualinput_get_writable (
-    FFFrameSync *fs, AVFrame **f0, AVFrame **f1
+    FFFrameSync *fs,
+    AVFrame **f0,
+    AVFrame **f1
 );
 
-#define FRAMESYNC_DEFINE_CLASS (name, context, field) \
+[CCode (cname="",cheader_filename="")]
+public define FRAMESYNC_DEFINE_CLASS (name, context, field) \
 static int name##_framesync_preinit (AVFilterContext *ctx) { \
     context *s = ctx->priv; \
     ff_framesync_preinit (&s->field); \

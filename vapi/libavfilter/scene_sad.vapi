@@ -21,16 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Scene SAD functions
 ***********************************************************/
 
-#define SCENE_SAD_PARAMS const uint8[] src1, ptrdiff_t stride1, \
+[CCode (cname="",cheader_filename="")]
+public define SCENE_SAD_PARAMS uint8[] src1, ptrdiff_t stride1, \
                          uint8[] src2, ptrdiff_t stride2, \
                          ptrdiff_t width, ptrdiff_t height, \
                          uint64[] sum
 
 [CCode (cname="ff_scene_sad_fn")]
-typedef void (*ff_scene_sad_fn)(SCENE_SAD_PARAMS);
+public typedef void (*ff_scene_sad_fn)(SCENE_SAD_PARAMS);
 
+[CCode (cname="",cheader_filename="")]
 public void ff_scene_sad_c (SCENE_SAD_PARAMS);
 
+[CCode (cname="",cheader_filename="")]
 public void ff_scene_sad16_c (SCENE_SAD_PARAMS);
 
 ff_scene_sad_fn ff_scene_sad_get_fn_x86 (int depth);

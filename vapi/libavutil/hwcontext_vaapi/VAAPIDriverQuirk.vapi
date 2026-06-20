@@ -37,6 +37,7 @@ public enum VAAPIDriverQuirk {
     ***********************************************************/
     [CCode (cname="AV_VAAPI_DRIVER_QUIRK_USER_SET")]
     AV_VAAPI_DRIVER_QUIRK_USER_SET,
+
     /***********************************************************
     @brief The driver does not destroy parameter buffers when they are used by
     vaRenderPicture (). Additional code will be required to destroy them
@@ -58,7 +59,7 @@ public enum VAAPIDriverQuirk {
     and the results of the vaQuerySurfaceAttributes () call will be faked.
     ***********************************************************/
     [CCode (cname="AV_VAAPI_DRIVER_QUIRK_SURFACE_ATTRIBUTES")]
-    AV_VAAPI_DRIVER_QUIRK_SURFACE_ATTRIBUTES,
+    AV_VAAPI_DRIVER_QUIRK_SURFACE_ATTRIBUTES;
 }
 
 } // namespace LibAVUtil

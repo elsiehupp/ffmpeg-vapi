@@ -34,26 +34,32 @@ Video postprocessing library.
 /***********************************************************
 Return the LIBPOSTPROC_VERSION_INT constant.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public uint postproc_version ();
 
 /***********************************************************
 Return the libpostproc build-time configuration.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public string postproc_configuration ();
 
 /***********************************************************
 Return the libpostproc license.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public string postproc_license ();
 
-#define PP_QUALITY_MAX 6
+[CCode (cname="",cheader_filename="")]
+public define PP_QUALITY_MAX 6
 
-typedef void pp_context;
-typedef void pp_mode;
+[CCode (cname="",cheader_filename="")]
+public typedef void pp_context;
+public typedef void pp_mode;
 
 #if LIBPOSTPROC_VERSION_INT < (52<<16)
-typedef pp_context pp_context_t;
-typedef pp_mode pp_mode_t;
+public typedef pp_context pp_context_t;
+public typedef pp_mode pp_mode_t;
+
 /***********************************************************
 a simple help text
 ***********************************************************/
@@ -65,11 +71,20 @@ a simple help text
 //  extern const char pp_help[];
 #endif
 
-public void  pp_postprocess (const uint8[]  src[3], int srcStride[3],
-                     uint8[]  dst[3], int dstStride[3],
-                     int horizontalSize, int verticalSize,
-                     int8 *QP_store, int QP_stride,
-                     pp_mode *mode, pp_context *ppContext, int pict_type);
+[CCode (cname="",cheader_filename="")]
+public void  pp_postprocess (
+    uint8[]  src[3],
+    int srcStride[3],
+    uint8[]  dst[3],
+    int dstStride[3],
+    int horizontalSize,
+    int verticalSize,
+    int8 *QP_store,
+    int QP_stride,
+    pp_mode *mode,
+    pp_context *ppContext,
+    int pict_type
+);
 
 
 /***********************************************************
@@ -78,29 +93,46 @@ Return a pp_mode or NULL if an error occurred.
 @param name    the string after "-pp" on the command line
 @param quality a number from 0 to PP_QUALITY_MAX
 ***********************************************************/
-pp_mode *pp_get_mode_by_name_and_quality (string name, int quality);
-public void pp_free_mode (pp_mode *mode);
+pp_mode *pp_get_mode_by_name_and_quality (
+    string name,
+    int quality
+);
 
-pp_context *pp_get_context (int width, int height, int flags);
-public void pp_free_context (pp_context *ppContext);
+[CCode (cname="",cheader_filename="")]
+public void pp_free_mode (
+    pp_mode *mode
+);
 
-#define PP_CPU_CAPS_MMX   0x80000000
-#define PP_CPU_CAPS_MMX2  0x20000000
-#define PP_CPU_CAPS_3DNOW 0x40000000
-#define PP_CPU_CAPS_ALTIVEC 0x10000000
-#define PP_CPU_CAPS_AUTO  0x00080000
+pp_context *pp_get_context (
+    int width,
+    int height,
+    int flags
+);
 
-#define PP_FORMAT         0x00000008
-#define PP_FORMAT_420    (0x00000011|PP_FORMAT)
-#define PP_FORMAT_422    (0x00000001|PP_FORMAT)
-#define PP_FORMAT_411    (0x00000002|PP_FORMAT)
-#define PP_FORMAT_444    (0x00000000|PP_FORMAT)
-#define PP_FORMAT_440    (0x00000010|PP_FORMAT)
+[CCode (cname="",cheader_filename="")]
+public void pp_free_context (
+    pp_context *ppContext
+);
+
+[CCode (cname="",cheader_filename="")]
+public define PP_CPU_CAPS_MMX   0x80000000
+public define PP_CPU_CAPS_MMX2  0x20000000
+public define PP_CPU_CAPS_3DNOW 0x40000000
+public define PP_CPU_CAPS_ALTIVEC 0x10000000
+public define PP_CPU_CAPS_AUTO  0x00080000
+
+[CCode (cname="",cheader_filename="")]
+public define PP_FORMAT         0x00000008
+public define PP_FORMAT_420    (0x00000011|PP_FORMAT)
+public define PP_FORMAT_422    (0x00000001|PP_FORMAT)
+public define PP_FORMAT_411    (0x00000002|PP_FORMAT)
+public define PP_FORMAT_444    (0x00000000|PP_FORMAT)
+public define PP_FORMAT_440    (0x00000010|PP_FORMAT)
 
 /***********************************************************
 MPEG2 style QScale
 ***********************************************************/
-#define PP_PICT_TYPE_QP2  0x00000010
+public define PP_PICT_TYPE_QP2  0x00000010
 
 /***********************************************************
 @}

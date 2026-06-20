@@ -21,33 +21,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_msnwc_tcp_demuxer", cheader_filename="")]
+[CCode (cname="ff_msnwc_tcp_demuxer",cheader_filename="")]
 public class MSNWCTCPDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "msnwctcp";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "MSN TCP Webcam stream";
+
         }
+
     }
 
-    [CCode (cname="msnwc_tcp_probe", cheader_filename="")]
+    [CCode (cname="msnwc_tcp_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="msnwc_tcp_read_header", cheader_filename="")]
+    [CCode (cname="msnwc_tcp_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="msnwc_tcp_read_packet", cheader_filename="")]
+    [CCode (cname="msnwc_tcp_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

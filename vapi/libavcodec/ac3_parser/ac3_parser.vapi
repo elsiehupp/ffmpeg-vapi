@@ -26,10 +26,10 @@ using LibAVUtil;
 /***********************************************************
 @brief Extract the bitstream ID and the frame size from AC-3 data.
 ***********************************************************/
-[CCode (cname="av_ac3_parse_header", cheader_filename="ffmpeg/libavcodec/ac3_parser.h")]
+[CCode (cname="av_ac3_parse_header",cheader_filename="ffmpeg/libavcodec/ac3_parser.h")]
 public int av_ac3_parse_header (
     uint8[] buffer,
-    public size_t size,
+    size_t size,
     out uint8 bitstream_id,
     out uint16 frame_size
 );

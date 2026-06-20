@@ -35,19 +35,21 @@ static const LibAVUtil.Option options[] = {
         },
         0, 1, AV_OPT_FLAG_DECODING_PARAM},
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="demuxer_class", cheader_filename="")]
+[CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/mp3dec.c")]
 public class MP3DemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override string class_name {
         public get {
             return "mp3";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -56,55 +58,61 @@ public class MP3DemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER,
+    //  .category = AV_CLASS_CATEGORY_DEMUXER;
 }
 
-[CCode (cname="struct MP3DecContext", cheader_filename="")]
+[CCode (cname="struct MP3DecContext",cheader_filename="ffmpeg/libformat/mp3dec.c")]
 [Compact]
 public class MP3DemuxerPrivateData { }
 
-[CCode (cname="ff_mp3_demuxer", cheader_filename="")]
+[CCode (cname="ff_mp3_demuxer",cheader_filename="ffmpeg/libformat/mp3dec.c")]
 public class MP3Demuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override string name {
         public get {
             return "mp3";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override string long_name {
         public get {
             return "MP2/3 (MPEG audio layer 2/3)";
+
         }
+
     }
 
-    [CCode (cname="mp3_read_probe", cheader_filename="")]
+    [CCode (cname="mp3_read_probe",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="mp3_read_header", cheader_filename="")]
+    [CCode (cname="mp3_read_header",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mp3_read_packet", cheader_filename="")]
+    [CCode (cname="mp3_read_packet",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mp3_seek", cheader_filename="")]
+    [CCode (cname="mp3_seek",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -112,30 +120,36 @@ public class MP3Demuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MP3DemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 
     /***********************************************************
     @brief XXX: use probe
     ***********************************************************/
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override string extensions {
         public get {
             return "mp2,mp3,m2a,mpa";
+
         }
+
     }
-    //  .priv_class = demuxer_class,
+    //  .priv_class = demuxer_class;
 }
 
 } // namespace LibAVFormat

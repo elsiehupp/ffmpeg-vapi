@@ -22,14 +22,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libavformat/rtpenc_chain.h")]
 public int ff_rtp_chain_mux_open (
     out AVFormatContext output,
     AVFormatContext format_context,
     AVStream st,
     URLContext handle,
-    public int packet_size,
-    public int id
+    int packet_size,
+    int id
 );
 
 } // namespace LibAVFormat

@@ -34,16 +34,18 @@ public enum TimeCodeFlags {
     ***********************************************************/
     [CCode (cname="AV_TIMECODE_FLAG_DROPFRAME")]
     DROP_FRAME,
+
     /***********************************************************
     @brief Timecode wraps after 24 hours
     ***********************************************************/
     [CCode (cname="AV_TIMECODE_FLAG_24HOURSMAX")]
     WRAPS_AFTER_24_HOURS,
+
     /***********************************************************
     @brief Negative time values are allowed
     ***********************************************************/
     [CCode (cname="AV_TIMECODE_FLAG_ALLOWNEGATIVE")]
-    ALLOW_NEGATIVE,
+    ALLOW_NEGATIVE;
 }
 
 } // namespace LibAVUtil

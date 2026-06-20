@@ -38,16 +38,18 @@ namespace LibAVFormat {
 //  #undef D
 //  #undef OFFSET
 
-[CCode (cname="async_context_class", cheader_filename="")]
+[CCode (cname="async_context_class",cheader_filename="ffmpeg/libformat/async.c")]
 public class AsyncContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/async.c")]
     public override string class_name {
         public get {
             return "Async";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/async.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -56,31 +58,35 @@ public class AsyncContextClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/async.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/async.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct Context", cheader_filename="")]
+[CCode (cname="struct Context",cheader_filename="ffmpeg/libformat/async.c")]
 [Compact]
 public class AsyncPrivateData { }
 
-[CCode (cname="ff_async_protocol", cheader_filename="")]
+[CCode (cname="ff_async_protocol",cheader_filename="ffmpeg/libformat/async.c")]
 public class AsyncURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/async.c")]
     public override string name {
         public get {
             return "async";
+
         }
+
     }
 
-    [CCode (cname="async_open", cheader_filename="")]
+    [CCode (cname="async_open",cheader_filename="ffmpeg/libformat/async.c")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -88,38 +94,41 @@ public class AsyncURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="async_read", cheader_filename="")]
+    [CCode (cname="async_read",cheader_filename="ffmpeg/libformat/async.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="async_seek", cheader_filename="")]
+    [CCode (cname="async_seek",cheader_filename="ffmpeg/libformat/async.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="async_close", cheader_filename="")]
+    [CCode (cname="async_close",cheader_filename="ffmpeg/libformat/async.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/async.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AsyncPrivateData);
+
         }
+
     }
-    //  .priv_data_class = async_context_class,
+    //  .priv_data_class = async_context_class;
 }
 
 #if 0
 
-#define OFFSET (x) offsetof (TestContext, x)
-#define D AV_OPT_FLAG_DECODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (TestContext, x)
+public define D AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option async_test_options[] = {
     {
         "async-test-read-error",
@@ -132,21 +141,23 @@ static const LibAVUtil.Option async_test_options[] = {
         INT_MAX,
         .flags = D
     },
-    {NULL},
+    {NULL};
 }
 #undef D
 #undef OFFSET
 
-[CCode (cname="async_test_context_class", cheader_filename="")]
+[CCode (cname="async_test_context_class",cheader_filename="ffmpeg/libformat/async.c")]
 public class AsyncTestContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/async.c")]
     public override string class_name {
         public get {
             return "Async-Test";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/async.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -155,24 +166,29 @@ public class AsyncTestContextClass : LibAVUtil.Class {
         );
     }
     //  .option = async_test_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/async.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_async_test_protocol", cheader_filename="")]
+[CCode (cname="ff_async_test_protocol",cheader_filename="ffmpeg/libformat/async.c")]
 public class AsyncTestURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/async.c")]
     public override string name {
         public get {
             return "async-test";
+
         }
+
     }
 
-    [CCode (cname="async_test_open", cheader_filename="")]
+    [CCode (cname="async_test_open",cheader_filename="ffmpeg/libformat/async.c")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -180,32 +196,34 @@ public class AsyncTestURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="async_test_read", cheader_filename="")]
+    [CCode (cname="async_test_read",cheader_filename="ffmpeg/libformat/async.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="async_test_seek", cheader_filename="")]
+    [CCode (cname="async_test_seek",cheader_filename="ffmpeg/libformat/async.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="async_test_close", cheader_filename="")]
+    [CCode (cname="async_test_close",cheader_filename="ffmpeg/libformat/async.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/async.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TestContext);
+
         }
+
     }
-    //  .priv_data_class = async_test_context_class,
+    //  .priv_data_class = async_test_context_class;
 }
 
 #endif

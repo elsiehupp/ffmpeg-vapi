@@ -47,55 +47,61 @@ VBR case for AAC
 ***********************************************************/
 //  #define DEINT_ID_VBRS MKTAG ('v', 'b', 'r', 's')
 
-[CCode (cname="struct RMDemuxContext", cheader_filename="")]
+[CCode (cname="struct RMDemuxContext",cheader_filename="ffmpeg/libformat/rmdec.c")]
 [Compact]
 public class RealMediaDemuxerPrivateData { }
 
-[CCode (cname="ff_rm_demuxer", cheader_filename="")]
+[CCode (cname="ff_rm_demuxer",cheader_filename="ffmpeg/libformat/rmdec.c")]
 public class RealMediaDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override string name {
         public get {
             return "rm";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override string long_name {
         public get {
             return "RealMedia";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RealMediaDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="rm_probe", cheader_filename="")]
+    [CCode (cname="rm_probe",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="rm_read_header", cheader_filename="")]
+    [CCode (cname="rm_read_header",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="rm_read_packet", cheader_filename="")]
+    [CCode (cname="rm_read_packet",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="rm_read_close", cheader_filename="")]
+    [CCode (cname="rm_read_close",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="rm_read_dts", cheader_filename="")]
+    [CCode (cname="rm_read_dts",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
@@ -103,7 +109,7 @@ public class RealMediaDemuxer : AVInputFormat {
         int64 pos_limit
     );
 
-    [CCode (cname="rm_read_seek", cheader_filename="")]
+    [CCode (cname="rm_read_seek",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -112,91 +118,107 @@ public class RealMediaDemuxer : AVInputFormat {
     );
 }
 
-[CCode (cname="ff_rdt_demuxer", cheader_filename="")]
+[CCode (cname="ff_rdt_demuxer",cheader_filename="ffmpeg/libformat/rmdec.c")]
 public class RDTDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override string name {
         public get {
             return "rdt";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override string long_name {
         public get {
             return "RDT demuxer";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RealMediaDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="rm_read_close", cheader_filename="")]
+    [CCode (cname="rm_read_close",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOFILE;
+
         }
+
     }
 }
 
-[CCode (cname="ff_ivr_demuxer", cheader_filename="")]
+[CCode (cname="ff_ivr_demuxer",cheader_filename="ffmpeg/libformat/rmdec.c")]
 public class IVRDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override string name {
         public get {
             return "ivr";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override string long_name {
         public get {
             return "IVR (Internet Video Recording)";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RealMediaDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="ivr_probe", cheader_filename="")]
+    [CCode (cname="ivr_probe",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ivr_read_header", cheader_filename="")]
+    [CCode (cname="ivr_read_header",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ivr_read_packet", cheader_filename="")]
+    [CCode (cname="ivr_read_packet",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="rm_read_close", cheader_filename="")]
+    [CCode (cname="rm_read_close",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/rmdec.c")]
     public override string extensions {
         public get {
             return "ivr";
+
         }
+
     }
 }
 

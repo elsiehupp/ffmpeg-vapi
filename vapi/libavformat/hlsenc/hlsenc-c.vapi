@@ -23,8 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (HLSContext, x)
-#define E AV_OPT_FLAG_ENCODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (HLSContext, x)
+public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "start_number",
@@ -138,6 +139,7 @@ static const LibAVUtil.Option options[] = {
         E
     },
 #endif
+
     {
         "hls_allow_cache",
         "explicitly set whether the client MAY (1) or MUST NOT (0) cache media segments",
@@ -548,6 +550,7 @@ static const LibAVUtil.Option options[] = {
         E
     },
 #endif
+
     {
         "strftime",
         "set filename expansion with strftime at segment creation",
@@ -578,6 +581,7 @@ static const LibAVUtil.Option options[] = {
         E
     },
 #endif
+
     {
         "strftime_mkdir",
         "create last directory component in strftime-generated filename",
@@ -823,19 +827,21 @@ static const LibAVUtil.Option options[] = {
         E
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="hls_class", cheader_filename="")]
+[CCode (cname="hls_class",cheader_filename="ffmpeg/libformat/hlsenc.c")]
 public class HLSMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override string class_name {
         public get {
             return "hls muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -844,100 +850,118 @@ public class HLSMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct HLSContext", cheader_filename="")]
+[CCode (cname="struct HLSContext",cheader_filename="ffmpeg/libformat/hlsenc.c")]
 [Compact]
 public class HLSMuxerPrivateData { }
 
-[CCode (cname="ff_hls_muxer", cheader_filename="")]
+[CCode (cname="ff_hls_muxer",cheader_filename="ffmpeg/libformat/hlsenc.c")]
 public class HLSMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override string name {
         public get {
             return "hls";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override string long_name {
         public get {
             return "Apple HTTP Live Streaming";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override string extensions {
         public get {
             return "m3u8";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HLSMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
+
         }
+
     }
 
-    [CCode (cname="subtitle_codec", cheader_filename="")]
+    [CCode (cname="subtitle_codec",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.WEBVTT;
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_ALLOW_FLUSH | AVFMT_NODIMENSIONS;
+
         }
+
     }
 
-    [CCode (cname="hls_init", cheader_filename="")]
+    [CCode (cname="hls_init",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="hls_write_header", cheader_filename="")]
+    [CCode (cname="hls_write_header",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="hls_write_packet", cheader_filename="")]
+    [CCode (cname="hls_write_packet",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="hls_write_trailer", cheader_filename="")]
+    [CCode (cname="hls_write_trailer",cheader_filename="ffmpeg/libformat/hlsenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .priv_class = hls_class,
+    //  .priv_class = hls_class;
 }
 
 } // namespace LibAVFormat

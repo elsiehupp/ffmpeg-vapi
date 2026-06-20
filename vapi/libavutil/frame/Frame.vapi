@@ -53,11 +53,11 @@ Fields can be accessed through LibAVUtil.Options, the name string used, matches 
 C structure field name for fields accessible through LibAVUtil.Options. The Class
 for Frame can be obtained from avcodec_get_frame_class ()
 ***********************************************************/
-[CCode (cname="struct AVFrame", cheader_filename="ffmpeg/libavutil/frame.h")]
+[CCode (cname="struct AVFrame",cheader_filename="ffmpeg/libavutil/frame.h")]
 [Compact]
 public class Frame {
 
-    [CCode (cname="AV_NUM_DATA_POINTERS", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="AV_NUM_DATA_POINTERS",cheader_filename="ffmpeg/libavutil/frame.h")]
     public const size_t AV_NUM_DATA_POINTERS;
 
     /***********************************************************
@@ -441,7 +441,7 @@ public class Frame {
     @brief Get the name of a colorspace.
     @return a static string identifying the colorspace; can be null.
     ***********************************************************/
-    [CCode (cname="av_get_colorspace_name", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_get_colorspace_name",cheader_filename="ffmpeg/libavutil/frame.h")]
     public string av_get_colorspace_name (
         ColorSpace val
     );
@@ -456,7 +456,7 @@ public class Frame {
     must be allocated through other means, e.g. with av_frame_get_buffer () or
     manually.
     ***********************************************************/
-    [CCode (cname="av_frame_alloc", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_alloc",cheader_filename="ffmpeg/libavutil/frame.h")]
     public Frame av_frame_alloc ();
 
     /***********************************************************
@@ -466,7 +466,7 @@ public class Frame {
 
     @param frame frame to be freed. The pointer will be set to null.
     ***********************************************************/
-    [CCode (cname="av_frame_free", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_free",cheader_filename="ffmpeg/libavutil/frame.h")]
     public void av_frame_free (
         Frame frame
     );
@@ -487,7 +487,7 @@ public class Frame {
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on error
     ***********************************************************/
-    [CCode (cname="av_frame_ref", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_ref",cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_ref (
         Frame output_frame,
         Frame input_frame
@@ -500,7 +500,7 @@ public class Frame {
 
     @return newly created Frame on success, null on error.
     ***********************************************************/
-    [CCode (cname="av_frame_clone", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_clone",cheader_filename="ffmpeg/libavutil/frame.h")]
     public Frame av_frame_clone (
         Frame input_frame
     );
@@ -508,7 +508,7 @@ public class Frame {
     /***********************************************************
     @brief Unreference all the buffers referenced by frame and reset the frame fields.
     ***********************************************************/
-    [CCode (cname="av_frame_unref", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_unref",cheader_filename="ffmpeg/libavutil/frame.h")]
     public void av_frame_unref (
         Frame frame
     );
@@ -520,7 +520,7 @@ public class Frame {
         or deallocating its contents. Call av_frame_unref (output_frame) manually
         before calling this function to ensure that no memory is leaked.
     ***********************************************************/
-    [CCode (cname="av_frame_move_ref", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_move_ref",cheader_filename="ffmpeg/libavutil/frame.h")]
     public void av_frame_move_ref (
         Frame output_frame,
         Frame input_frame
@@ -549,7 +549,7 @@ public class Frame {
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on error.
     ***********************************************************/
-    [CCode (cname="av_frame_get_buffer", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_get_buffer",cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_get_buffer (
         Frame frame,
         int align
@@ -567,7 +567,7 @@ public class Frame {
 
     @see @link av_frame_make_writable (), av_buffer_is_writable ()
     ***********************************************************/
-    [CCode (cname="av_frame_is_writable", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_is_writable",cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_is_writable (
         Frame frame
     );
@@ -583,7 +583,7 @@ public class Frame {
     @see @link av_frame_is_writable (), av_buffer_is_writable (),
     av_buffer_make_writable ()
     ***********************************************************/
-    [CCode (cname="av_frame_make_writable", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_make_writable",cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_make_writable (
         Frame frame
     );
@@ -599,7 +599,7 @@ public class Frame {
 
     @return >= 0 on success, a negative LibAVUtil.ErrorCode on error.
     ***********************************************************/
-    [CCode (cname="av_frame_copy", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_copy",cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_copy (
         Frame output_frame,
         Frame input_frame
@@ -613,7 +613,7 @@ public class Frame {
     aspect ratio (for video), but not width/height or channel layout.
     Side data is also copied.
     ***********************************************************/
-    [CCode (cname="av_frame_copy_props", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_copy_props",cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_copy_props (
         Frame output_frame,
         Frame input_frame
@@ -627,7 +627,7 @@ public class Frame {
     @return the buffer reference that contains the plane or null if the input
     frame is not valid.
     ***********************************************************/
-    [CCode (cname="av_frame_get_plane_buffer", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_get_plane_buffer",cheader_filename="ffmpeg/libavutil/frame.h")]
     public LibAVUtil.BufferRef av_frame_get_plane_buffer (
         Frame frame,
         int plane
@@ -642,7 +642,7 @@ public class Frame {
 
     @return newly added side data on success, null on error
     ***********************************************************/
-    [CCode (cname="av_frame_new_side_data", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_new_side_data",cheader_filename="ffmpeg/libavutil/frame.h")]
     public FrameSideData av_frame_new_side_data (
         Frame frame,
         FrameSideDataType type,
@@ -661,7 +661,7 @@ public class Frame {
         the frame is unchanged and the LibAVUtil.BufferRef remains owned by
         the caller.
     ***********************************************************/
-    [CCode (cname="av_frame_new_side_data_from_buf", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_new_side_data_from_buf",cheader_filename="ffmpeg/libavutil/frame.h")]
     public FrameSideData av_frame_new_side_data_from_buf (
         Frame frame,
         FrameSideDataType type,
@@ -672,7 +672,7 @@ public class Frame {
     @return a pointer to the side data of a given type on success, null if there
     is no side data with such type in this frame.
     ***********************************************************/
-    [CCode (cname="av_frame_get_side_data", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_get_side_data",cheader_filename="ffmpeg/libavutil/frame.h")]
     public FrameSideData av_frame_get_side_data (
         Frame frame,
         FrameSideDataType type
@@ -682,7 +682,7 @@ public class Frame {
     @brief If side data of the supplied type exists in the frame, free it and remove it
     from the frame.
     ***********************************************************/
-    [CCode (cname="av_frame_remove_side_data", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_remove_side_data",cheader_filename="ffmpeg/libavutil/frame.h")]
     public void av_frame_remove_side_data (
         Frame frame,
         FrameSideDataType type
@@ -704,7 +704,7 @@ public class Frame {
     @return >= 0 on success, a negative LibAVUtil.ErrorCode on error. If the cropping fields
     were invalid, LibAVUtil.ErrorCode (ERANGE) is returned, and nothing is changed.
     ***********************************************************/
-    [CCode (cname="av_frame_apply_cropping", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_apply_cropping",cheader_filename="ffmpeg/libavutil/frame.h")]
     public int av_frame_apply_cropping (
         Frame frame,
         FrameCropFlags flags

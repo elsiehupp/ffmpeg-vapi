@@ -18,20 +18,22 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AudioNLMDNDSPContext {
     [CCode (cname=""compute_distance_ssd)]
     float (*compute_distance_ssd)(
-        const float *f1, float *f2, ptrdiff_t K
+        float[] f1, float[] f2, ptrdiff_t K
     );
 
     [CCode (cname="compute_cache")]
     public void (*compute_cache)(
-        float *cache, float *f, ptrdiff_t S, ptrdiff_t K,
+        float[] cache, float[] f, ptrdiff_t S, ptrdiff_t K,
         ptrdiff_t i, ptrdiff_t jj
     );
 
 }
 
+[CCode (cname="",cheader_filename="")]
 public void ff_anlmdn_init (AudioNLMDNDSPContext *s);
 public void ff_anlmdn_init_x86 (AudioNLMDNDSPContext *s);

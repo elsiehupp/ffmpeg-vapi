@@ -35,50 +35,56 @@ extradata:
 optional background_frame
 ***********************************************************/
 
-[CCode (cname="struct Rl2DemuxContext", cheader_filename="")]
+[CCode (cname="struct Rl2DemuxContext",cheader_filename="")]
 [Compact]
 public class RL2DemuxerPrivateData { }
 
-[CCode (cname="ff_rl2_demuxer", cheader_filename="")]
+[CCode (cname="ff_rl2_demuxer",cheader_filename="")]
 public class RL2Demuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "rl2";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "RL2";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RL2DemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="rl2_probe", cheader_filename="")]
+    [CCode (cname="rl2_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="rl2_read_header", cheader_filename="")]
+    [CCode (cname="rl2_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="rl2_read_packet", cheader_filename="")]
+    [CCode (cname="rl2_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="rl2_read_seek", cheader_filename="")]
+    [CCode (cname="rl2_read_seek",cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

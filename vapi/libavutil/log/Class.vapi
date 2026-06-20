@@ -26,7 +26,7 @@ namespace LibAVUtil {
 arbitrary struct of which the first field is a pointer to an
 Class struct (e.g. LibAVCodec.CodecContext, AVFormatContext etc.).
 ***********************************************************/
-[CCode (cname="struct AVClass", cheader_filename="ffmpeg/libavutil/log.h")]
+[CCode (cname="struct AVClass",cheader_filename="ffmpeg/libavutil/log.h")]
 public abstract class Class {
     /***********************************************************
     @brief The name of the class; usually it is the same name as the
@@ -51,7 +51,7 @@ public abstract class Class {
 
     @return The Class class_name
     ***********************************************************/
-    [CCode (cname="av_default_item_name", cheader_filename="ffmpeg/libavutil/log.h")]
+    [CCode (cname="av_default_item_name",cheader_filename="ffmpeg/libavutil/log.h")]
     public virtual string item_name (
         void *class_context
     );
@@ -147,7 +147,7 @@ public abstract class Class {
 @param prev result of a previous call to this function or null
 @return Class corresponding to next potential child or null
 ***********************************************************/
-[CCode (cname="av_opt_child_class_next", cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cname="av_opt_child_class_next",cheader_filename="ffmpeg/libavutil/opt.h")]
 public Class av_opt_child_class_next (
     Class parent,
     Class prev

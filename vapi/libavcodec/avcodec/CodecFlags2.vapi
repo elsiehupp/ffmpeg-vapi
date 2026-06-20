@@ -33,16 +33,18 @@ LibAVCodec external API header
     Independent Segment Decoding
 ********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum CodecFlags2 {
     /***********************************************************
     @brief Allow non spec compliant speedup tricks.
     ***********************************************************/
     AV_CODEC_FLAG2_FAST,
+
     /***********************************************************
     @brief Skip bitstream encoding.
     ***********************************************************/
     AV_CODEC_FLAG2_NO_OUTPUT,
+
     /***********************************************************
     @brief Place global headers at every keyframe instead of in extradata.
     ***********************************************************/
@@ -58,6 +60,7 @@ public enum CodecFlags2 {
     instead of only at frame boundaries.
     ***********************************************************/
     AV_CODEC_FLAG2_CHUNKS,
+
     /***********************************************************
     @brief Discard cropping information from SPS.
     ***********************************************************/
@@ -67,18 +70,21 @@ public enum CodecFlags2 {
     @brief Show all frames before the first keyframe
     ***********************************************************/
     AV_CODEC_FLAG2_SHOW_ALL,
+
     /***********************************************************
     @brief Export motion vectors through frame side data
     ***********************************************************/
     AV_CODEC_FLAG2_EXPORT_MVS,
+
     /***********************************************************
     @brief Do not skip samples and export skip information as frame side data
     ***********************************************************/
     AV_CODEC_FLAG2_SKIP_MANUAL,
+
     /***********************************************************
     @brief Do not reset ASS ReadOrder field on flush (subtitles decoding)
     ***********************************************************/
-    AV_CODEC_FLAG2_RO_FLUSH_NOOP,
+    AV_CODEC_FLAG2_RO_FLUSH_NOOP;
 }
 
 } // namespace LibAVCodec

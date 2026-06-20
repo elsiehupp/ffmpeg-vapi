@@ -28,50 +28,58 @@ by Konstantin Shishkov
 Format specified in SMPTE standard 421 Annex L
 ***********************************************************/
 
-[CCode (cname="ff_vc1t_demuxer", cheader_filename="")]
+[CCode (cname="ff_vc1t_demuxer",cheader_filename="")]
 public class VC1TestDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "vc1test";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "VC-1 test bitstream";
+
         }
+
     }
 
-    [CCode (cname="vc1t_probe", cheader_filename="")]
+    [CCode (cname="vc1t_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="vc1t_read_header", cheader_filename="")]
+    [CCode (cname="vc1t_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="vc1t_read_packet", cheader_filename="")]
+    [CCode (cname="vc1t_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "rcv";
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 }
 

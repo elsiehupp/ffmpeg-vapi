@@ -18,48 +18,95 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class ResampleContext {
-    AVAudioResampleContext *avr;
-    AudioData *buffer;
-    uint8[] filter_bank;
+    [CCode (cname="")]
+    public AVAudioResampleContext *avr;
+
+    [CCode (cname="")]
+    public AudioData *buffer;
+
+    [CCode (cname="")]
+    public uint8[] filter_bank;
+
+    [CCode (cname="")]
     public int filter_length;
+
+    [CCode (cname="")]
     public int ideal_dst_incr;
+
+    [CCode (cname="")]
     public int dst_incr;
+
+    [CCode (cname="")]
     public uint index;
+
+    [CCode (cname="")]
     public int frac;
+
+    [CCode (cname="")]
     public int src_incr;
+
+    [CCode (cname="")]
     public int compensation_distance;
+
+    [CCode (cname="")]
     public int phase_shift;
+
+    [CCode (cname="")]
     public int phase_mask;
+
+    [CCode (cname="")]
     public int linear;
+
+    [CCode (cname="")]
     public AVResampleFilterType filter_type;
+
+    [CCode (cname="")]
     public int kaiser_beta;
 
     [CCode (cname="set_filter")]
     public void (*set_filter)(
-        void *filter, double[] tab, int phase, int tap_count
+        void *filter,
+        double[] tab,
+        int phase,
+        int tap_count
     );
 
     [CCode (cname="resample_one")]
     public void (*resample_one)(
-        ResampleContext *c, void *dst0,
-        int dst_index, void *src0,
-        uint index, int frac
+        ResampleContext *c,
+        void *dst0,
+        int dst_index,
+        void *src0,
+        uint index,
+        int frac
     );
 
     [CCode (cname="resample_nearest")]
     public void (*resample_nearest)(
-        void *dst0, int dst_index,
-        void *src0, uint index
+        void *dst0,
+        int dst_index,
+        void *src0,
+        uint index
     );
 
+    [CCode (cname="")]
     public int padding_size;
+
+    [CCode (cname="")]
     public int initial_padding_filled;
+
+    [CCode (cname="")]
     public int initial_padding_samples;
+
+    [CCode (cname="")]
     public int final_padding_filled;
+
+    [CCode (cname="")]
     public int final_padding_samples;
-};
+}
 
 /***********************************************************
 Allocate and initialize a ResampleContext.
@@ -70,14 +117,20 @@ ResampleContext.
 @param avr  AVAudioResampleContext
 @return     newly-allocated ResampleContext
 ***********************************************************/
-ResampleContext *ff_audio_resample_init (AVAudioResampleContext *avr);
+[CCode (cname="",cheader_filename="")]
+public ResampleContext *ff_audio_resample_init (
+    AVAudioResampleContext *avr
+);
 
 /***********************************************************
 Free a ResampleContext.
 
 @param c  ResampleContext
 ***********************************************************/
-public void ff_audio_resample_free (ResampleContext **c);
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_resample_free (
+    ResampleContext **c
+);
 
 /***********************************************************
 Resample audio data.
@@ -98,4 +151,9 @@ destination data buffers.
 @param src       source audio data
 @return          0 on success, negative AVERROR code on failure
 ***********************************************************/
-public int ff_audio_resample (ResampleContext *c, AudioData *dst, AudioData *src);
+[CCode (cname="",cheader_filename="")]
+public int ff_audio_resample (
+    ResampleContext *c,
+    AudioData *dst,
+    AudioData *src
+);

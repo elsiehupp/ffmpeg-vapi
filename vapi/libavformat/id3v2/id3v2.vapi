@@ -22,130 +22,145 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public const size_t ID3v2_HEADER_SIZE; // 10
 
 /***********************************************************
 @brief Default magic bytes for ID3v2 header: "ID3"
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public const string ID3v2_DEFAULT_MAGIC; // "ID3"
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 [Flags]
 public enum ID3v2Flags {
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     ID3v2_FLAG_DATALEN,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     ID3v2_FLAG_UNSYNCH,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     ID3v2_FLAG_ENCRYPTION,
-    ID3v2_FLAG_COMPRESSION,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
+    ID3v2_FLAG_COMPRESSION;
 }
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public const string ID3v2_PRIV_METADATA_PREFIX;
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public enum ID3v2Encoding {
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     ID3v2_ENCODING_ISO8859,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     ID3v2_ENCODING_UTF16BOM,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     ID3v2_ENCODING_UTF16BE,
-    ID3v2_ENCODING_UTF8,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
+    ID3v2_ENCODING_UTF8;
 }
 
-[CCode (cname="struct ID3v2EncContext", cheader_filename="")]
+[CCode (cname="struct ID3v2EncContext",cheader_filename="ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2EncContext {
     /***********************************************************
     @brief ID3v2 minor version, either 3 or 4
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public int version;
 
     /***********************************************************
     @brief Offset of the tag total size
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public int64 size_pos;
 
     /***********************************************************
     @brief Size of the tag written so far
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public int len;
 }
 
-[CCode (cname="struct ID3v2ExtraMeta", cheader_filename="")]
+[CCode (cname="struct ID3v2ExtraMeta",cheader_filename="ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMeta {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public string tag;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public void *data;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public ID3v2ExtraMeta *next;
 }
 
-[CCode (cname="struct ID3v2ExtraMetaGEOB", cheader_filename="")]
+[CCode (cname="struct ID3v2ExtraMetaGEOB",cheader_filename="ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMetaGEOB {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint32 datasize;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint8[] mime_type;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint8[] file_name;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint8[] description;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint8[] data;
 }
 
-[CCode (cname="struct ID3v2ExtraMetaAPIC", cheader_filename="")]
+[CCode (cname="struct ID3v2ExtraMetaAPIC",cheader_filename="ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMetaAPIC {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public LibAVUtil.BufferRef buffer;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public string type;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public string description;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public LibAVCodec.CodecID id;
 }
 
-[CCode (cname="struct ID3v2ExtraMetaPRIV", cheader_filename="")]
+[CCode (cname="struct ID3v2ExtraMetaPRIV",cheader_filename="ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMetaPRIV {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint8[] owner;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint8[] data;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint32 datasize;
 }
 
-[CCode (cname="struct ID3v2ExtraMetaCHAP", cheader_filename="")]
+[CCode (cname="struct ID3v2ExtraMetaCHAP",cheader_filename="ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMetaCHAP {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint8[] element_id;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint32 start;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public uint32 end;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
     public LibAVUtil.Dictionary meta;
 }
 
@@ -156,7 +171,7 @@ public class ID3v2ExtraMetaCHAP {
 @param magic magic bytes to identify the header.
 If in doubt, use ID3v2_DEFAULT_MAGIC.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_match (
     uint8[] buffer,
     string magic
@@ -167,7 +182,7 @@ public int ff_id3v2_match (
 @param buffer must be ID3v2_HEADER_SIZE bytes long and point to the start of an
 already detected ID3v2 tag
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_tag_len (
     uint8[] buffer
 );
@@ -179,7 +194,7 @@ public int ff_id3v2_tag_len (
 @param extra_meta If not NULL, extra metadata is parsed into a list of
 ID3v2ExtraMeta structs and *extra_meta points to the head of the list
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public void ff_id3v2_read_dict (
     AVIOContext pb,
     out LibAVUtil.Dictionary metadata,
@@ -196,29 +211,29 @@ Data is read from and stored to AVFormatContext.
 ID3v2ExtraMeta structs and *extra_meta points to the head of the list
 @param[opt] max_search_search restrict ID3 magic number search (bytes from start)
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public void ff_id3v2_read (
     AVFormatContext format_context,
     string magic,
     out ID3v2ExtraMeta extra_meta,
-    public uint max_search_size
+    uint max_search_size
 );
 
 /***********************************************************
 @brief Initialize an ID3v2 tag.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public void ff_id3v2_start (
     ID3v2EncContext id3,
     AVIOContext pb,
-    public int id3v2_version,
+    int id3v2_version,
     string magic
 );
 
 /***********************************************************
 @brief Convert and write all global metadata from format_context into an ID3v2 tag.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_write_metadata (
     AVFormatContext format_context,
     ID3v2EncContext id3
@@ -227,7 +242,7 @@ public int ff_id3v2_write_metadata (
 /***********************************************************
 @brief Write an attached picture from packet into an ID3v2 tag.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_write_apic (
     AVFormatContext format_context,
     ID3v2EncContext id3,
@@ -237,11 +252,11 @@ public int ff_id3v2_write_apic (
 /***********************************************************
 @brief Finalize an opened ID3v2 tag.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public void ff_id3v2_finish (
     ID3v2EncContext id3,
     AVIOContext pb,
-    public int padding_bytes
+    int padding_bytes
 );
 
 /***********************************************************
@@ -250,10 +265,10 @@ public void ff_id3v2_finish (
 @param magic magic bytes to identify the header
 If in doubt, use ID3v2_DEFAULT_MAGIC.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_write_simple (
     AVFormatContext format_context,
-    public int id3v2_version,
+    int id3v2_version,
     string magic
 );
 
@@ -261,7 +276,7 @@ public int ff_id3v2_write_simple (
 @brief Free memory allocated parsing special (non-text) metadata.
 @param extra_meta Pointer to a pointer to the head of a ID3v2ExtraMeta list, *extra_meta is set to NULL.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public void ff_id3v2_free_extra_meta (
     out ID3v2ExtraMeta extra_meta
 );
@@ -270,7 +285,7 @@ public void ff_id3v2_free_extra_meta (
 @brief Create a stream for each APIC (attached picture) extracted from the
 ID3v2 header.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_parse_apic (
     AVFormatContext format_context,
     out ID3v2ExtraMeta extra_meta
@@ -279,7 +294,7 @@ public int ff_id3v2_parse_apic (
 /***********************************************************
 @brief Create chapters for all CHAP tags found in the ID3v2 header.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_parse_chapters (
     AVFormatContext format_context,
     out ID3v2ExtraMeta extra_meta
@@ -289,7 +304,7 @@ public int ff_id3v2_parse_chapters (
 @brief Parse PRIV tags into a dictionary. The PRIV owner is the metadata key. The
 PRIV data is the value, with non-printable characters escaped.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_parse_priv_dict (
     out LibAVUtil.Dictionary dictionary,
     out ID3v2ExtraMeta extra_meta
@@ -300,7 +315,7 @@ public int ff_id3v2_parse_priv_dict (
 metadata key. The PRIV data is the value, with non-printable characters
 escaped.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_parse_priv (
     AVFormatContext format_context,
     out ID3v2ExtraMeta extra_meta

@@ -24,33 +24,36 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_vorbis_codec", cheader_filename="")]
+[CCode (cname="ff_vorbis_codec",cheader_filename="")]
 public class VorbisCodec : OggCodec {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="")]
     public override uint8[] magic {
         public get {
             return "\001vorbis".data;
+
         }
+
     }
     //  .magicsize = 7,
-    [CCode (cname="vorbis_header", cheader_filename="")]
+
+    [CCode (cname="vorbis_header",cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="vorbis_packet", cheader_filename="")]
+    [CCode (cname="vorbis_packet",cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="vorbis_cleanup", cheader_filename="")]
+    [CCode (cname="vorbis_cleanup",cheader_filename="")]
     public override void cleanup (
         AVFormatContext format_context,
         int idx
     );
-    //  .nb_header = 3,
+    //  .nb_header = 3;
 }
 
 } // namespace LibAVFormat

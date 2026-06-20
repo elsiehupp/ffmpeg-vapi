@@ -26,59 +26,67 @@ namespace LibAVFormat {
 @file Microsoft Windows ICO demuxer
 ***********************************************************/
 
-[CCode (cname="struct IcoDemuxContext", cheader_filename="")]
+[CCode (cname="struct IcoDemuxContext",cheader_filename="")]
 [Compact]
 public class ICODemuxerPrivateData { }
 
-[CCode (cname="ff_ico_demuxer", cheader_filename="")]
+[CCode (cname="ff_ico_demuxer",cheader_filename="")]
 public class ICODemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "ico";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Microsoft Windows ICO";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ICODemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="probe", cheader_filename="")]
+    [CCode (cname="probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header", cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet", cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ico_read_close", cheader_filename="")]
+    [CCode (cname="ico_read_close",cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
+
         }
+
     }
 }
 

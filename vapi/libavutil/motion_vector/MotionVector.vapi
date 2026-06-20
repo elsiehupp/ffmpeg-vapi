@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cname="struct AVMotionVector", cheader_filename="ffmpeg/libavutil/motion_vector.h")]
+[CCode (cname="struct AVMotionVector",cheader_filename="ffmpeg/libavutil/motion_vector.h")]
 [Compact]
 public class MotionVector {
     /***********************************************************

@@ -26,44 +26,50 @@ namespace LibAVFormat {
 @brief Demuxer for xWMA, a Microsoft audio container used by XAudio 2.
 ***********************************************************/
 
-[CCode (cname="struct XWMAContext", cheader_filename="")]
+[CCode (cname="struct XWMAContext",cheader_filename="")]
 [Compact]
 public class XWMADemuxerPrivateData { }
 
-[CCode (cname="ff_xwma_demuxer", cheader_filename="")]
+[CCode (cname="ff_xwma_demuxer",cheader_filename="")]
 public class XWMADemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "xwma";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Microsoft xWMA";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (XWMADemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="xwma_probe", cheader_filename="")]
+    [CCode (cname="xwma_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="xwma_read_header", cheader_filename="")]
+    [CCode (cname="xwma_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="xwma_read_packet", cheader_filename="")]
+    [CCode (cname="xwma_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

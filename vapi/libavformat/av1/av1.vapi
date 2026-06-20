@@ -21,21 +21,46 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct AV1SequenceParameters", cheader_filename="")]
+[CCode (cname="struct AV1SequenceParameters",cheader_filename="ffmpeg/libformat/av1.h")]
 [Compact]
 public class AV1SequenceParameters {
+    [CCode (cname="")]
     public uint8 profile;
+
+    [CCode (cname="")]
     public uint8 level;
+
+    [CCode (cname="")]
     public uint8 tier;
+
+    [CCode (cname="")]
     public uint8 bitdepth;
+
+    [CCode (cname="")]
     public uint8 monochrome;
+
+    [CCode (cname="")]
     public uint8 chroma_subsampling_x;
+
+    [CCode (cname="")]
     public uint8 chroma_subsampling_y;
+
+    [CCode (cname="")]
     public uint8 chroma_sample_position;
+
+    [CCode (cname="")]
     public uint8 color_description_present_flag;
+
+    [CCode (cname="")]
     public uint8 color_primaries;
+
+    [CCode (cname="")]
     public uint8 transfer_characteristics;
+
+    [CCode (cname="")]
     public uint8 matrix_coefficients;
+
+    [CCode (cname="")]
     public uint8 color_range;
 }
 
@@ -51,11 +76,11 @@ the resulting bitstream to the provided AVIOContext.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure
 ***********************************************************/
-[CCode (cname="ff_av1_filter_obus", cheader_filename="")]
+[CCode (cname="ff_av1_filter_obus",cheader_filename="ffmpeg/libformat/av1.h")]
 public int ff_av1_filter_obus (
     AVIOContext pb,
     uint8[] buffer,
-    public int size
+    int size
 );
 
 /***********************************************************
@@ -72,7 +97,7 @@ the resulting bitstream to a newly allocated data buffer.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure. On failure, out and size are unchanged
 ***********************************************************/
-[CCode (cname="ff_av1_filter_obus_buf", cheader_filename="")]
+[CCode (cname="ff_av1_filter_obus_buf",cheader_filename="ffmpeg/libformat/av1.h")]
 public int ff_av1_filter_obus_buf (
     uint8[] input_buffer,
     out uint8[] output_buffer,
@@ -89,11 +114,11 @@ public int ff_av1_filter_obus_buf (
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="ff_av1_parse_seq_header", cheader_filename="")]
+[CCode (cname="ff_av1_parse_seq_header",cheader_filename="ffmpeg/libformat/av1.h")]
 public int ff_av1_parse_seq_header (
     AV1SequenceParameters seq,
     uint8[] buffer,
-    public int size
+    int size
 );
 
 /***********************************************************
@@ -106,11 +131,11 @@ AVIOContext.
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="ff_isom_write_av1c", cheader_filename="")]
+[CCode (cname="ff_isom_write_av1c",cheader_filename="ffmpeg/libformat/av1.h")]
 public int ff_isom_write_av1c (
     AVIOContext pb,
     uint8[] buffer,
-    public int size
+    int size
 );
 
 } // namespace LibAVFormat

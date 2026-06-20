@@ -23,28 +23,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 [Flags]
-[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
 public enum PixelFormatFlags {
     /***********************************************************
     @brief Pixel format is big-endian.
     ***********************************************************/
     AV_PIX_FMT_FLAG_BE,
+
     /***********************************************************
     @brief Pixel format has a palette in data[1], values are indexes in this palette.
     ***********************************************************/
     AV_PIX_FMT_FLAG_PAL,
+
     /***********************************************************
     @brief All values of a component are bit-wise packed end to end.
     ***********************************************************/
     AV_PIX_FMT_FLAG_BITSTREAM,
+
     /***********************************************************
     @brief Pixel format is a hardware accelerated format.
     ***********************************************************/
     AV_PIX_FMT_FLAG_HWACCEL,
+
     /***********************************************************
     @brief At least one pixel component is not in the first data plane.
     ***********************************************************/
     AV_PIX_FMT_FLAG_PLANAR,
+
     /***********************************************************
     @brief The pixel format contains RGB-like data (as opposed to YUV/grayscale).
     ***********************************************************/
@@ -88,7 +93,7 @@ public enum PixelFormatFlags {
     @brief The pixel format contains IEEE-754 floating point values. Precision (double,
     single, or half) should be determined by the pixel size (64, 32, or 16 bits).
     ***********************************************************/
-    AV_PIX_FMT_FLAG_FLOAT,
+    AV_PIX_FMT_FLAG_FLOAT;
 }
 
 } // namespace LibAVUtil

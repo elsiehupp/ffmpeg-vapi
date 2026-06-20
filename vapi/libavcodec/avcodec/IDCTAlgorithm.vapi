@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum IDCTAlgorithm {
     FF_IDCT_AUTO,
     FF_IDCT_INT,
@@ -40,11 +40,12 @@ public enum IDCTAlgorithm {
     FF_IDCT_SIMPLEARMV6,
     FF_IDCT_FAAN,
     FF_IDCT_SIMPLENEON,
+
     /***********************************************************
     @brief Used by XvMC to extract IDCT coefficients with FF_IDCT_PERM_NONE
     ***********************************************************/
     FF_IDCT_NONE,
-    FF_IDCT_SIMPLEAUTO,
+    FF_IDCT_SIMPLEAUTO;
 }
 
 } // namespace LibAVCodec

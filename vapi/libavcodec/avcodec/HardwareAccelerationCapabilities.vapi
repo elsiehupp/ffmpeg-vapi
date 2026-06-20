@@ -32,7 +32,7 @@ codecs
 ***********************************************************/
 [CCode (cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum HardwareAccelerationCapabilities {
-    [CCode (cname="AV_HWACCEL_CODEC_CAP_EXPERIMENTAL", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="AV_HWACCEL_CODEC_CAP_EXPERIMENTAL",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     EXPERIMENTAL;
 }
 

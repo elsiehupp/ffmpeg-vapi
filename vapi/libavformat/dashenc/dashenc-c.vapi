@@ -23,8 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (DASHContext, x)
-#define E AV_OPT_FLAG_ENCODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (DASHContext, x)
+public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "adaptation_sets",
@@ -64,6 +65,7 @@ static const LibAVUtil.Option options[] = {
         INT_MAX,
         E },
 #endif
+
     {
         "seg_duration",
         "segment duration (in seconds, fractional value can be set)",
@@ -271,19 +273,21 @@ static const LibAVUtil.Option options[] = {
         },
         0, UINT_MAX, E},
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="dash_class", cheader_filename="")]
+[CCode (cname="dash_class",cheader_filename="ffmpeg/libformat/dashenc.c")]
 public class DashMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override string class_name {
         public get {
             return "dash muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -292,104 +296,120 @@ public class DashMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct DASHContext", cheader_filename="")]
+[CCode (cname="struct DASHContext",cheader_filename="ffmpeg/libformat/dashenc.c")]
 [Compact]
 public class DashMuxerPrivateData { }
 
-[CCode (cname="ff_dash_muxer", cheader_filename="")]
+[CCode (cname="ff_dash_muxer",cheader_filename="ffmpeg/libformat/dashenc.c")]
 public class DashMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override string name {
         public get {
             return "dash";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override string long_name {
         public get {
             return "DASH Muxer";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override string extensions {
         public get {
             return "mpd";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (DashMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_NOFILE | AVFMT_TS_NEGATIVE;
+
         }
+
     }
 
-    [CCode (cname="dash_init", cheader_filename="")]
+    [CCode (cname="dash_init",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="dash_write_header", cheader_filename="")]
+    [CCode (cname="dash_write_header",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="dash_write_packet", cheader_filename="")]
+    [CCode (cname="dash_write_packet",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="dash_write_trailer", cheader_filename="")]
+    [CCode (cname="dash_write_trailer",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="dash_free", cheader_filename="")]
+    [CCode (cname="dash_free",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="dash_check_bitstream", cheader_filename="")]
+    [CCode (cname="dash_check_bitstream",cheader_filename="ffmpeg/libformat/dashenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .priv_class = dash_class,
+    //  .priv_class = dash_class;
 }
 
 } // namespace LibAVFormat

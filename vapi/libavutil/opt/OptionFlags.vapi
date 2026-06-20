@@ -27,18 +27,20 @@ namespace LibAVUtil {
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_OPT_FLAG_", cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cprefix="AV_OPT_FLAG_",cheader_filename="ffmpeg/libavutil/opt.h")]
 public enum OptionFlags {
     /***********************************************************
     @brief Accept to parse a value without a key; the key will then be returned
     as null.
     ***********************************************************/
     IMPLICIT_KEY,
+
     /***********************************************************
     @brief A generic parameter which can be set by the user for muxing
     or encoding
     ***********************************************************/
     ENCODING_PARAM,
+
     /***********************************************************
     @brief A generic parameter which can be set by the user for
     demuxing or decoding
@@ -47,30 +49,36 @@ public enum OptionFlags {
     AUDIO_PARAM,
     VIDEO_PARAM,
     SUBTITLE_PARAM,
+
     /***********************************************************
     @brief The option is intended for exporting values to the caller.
     ***********************************************************/
     EXPORT,
+
     /***********************************************************
     @brief The option may not be set through the LibAVUtil.Options API, only
     read. This flag only makes sense when OptionFlags.EXPORT
     is also set.
     ***********************************************************/
     READONLY,
+
     /***********************************************************
     @brief A generic parameter which can be set by the user for bit
     stream filtering
     ***********************************************************/
     BSF_PARAM,
+
     /***********************************************************
     @brief A generic parameter which can be set by the user for filtering
     ***********************************************************/
     FILTERING_PARAM,
+
     /***********************************************************
     @brief Set if option is deprecated, users should refer to
     Option.help text for more information
     ***********************************************************/
     DEPRECATED,
+
     /***********************************************************
     @brief FIXME think about enc-audio, ... style flags
     ***********************************************************/

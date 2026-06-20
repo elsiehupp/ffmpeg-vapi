@@ -25,44 +25,50 @@ namespace LibAVFormat {
 @file Deluxe Paint Animation demuxer
 ***********************************************************/
 
-[CCode (cname="struct AnmDemuxContext", cheader_filename="")]
+[CCode (cname="struct AnmDemuxContext",cheader_filename="")]
 [Compact]
 public class ANMDemuxerPrivateData { }
 
-[CCode (cname="ff_anm_demuxer", cheader_filename="")]
+[CCode (cname="ff_anm_demuxer",cheader_filename="")]
 public class ANMDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "anm";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Deluxe Paint Animation";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ANMDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="probe", cheader_filename="")]
+    [CCode (cname="probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header", cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet", cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

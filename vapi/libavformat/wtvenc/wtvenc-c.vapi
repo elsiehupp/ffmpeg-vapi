@@ -26,70 +26,82 @@ namespace LibAVFormat {
 @author Zhentan Feng <spyfeng at gmail dot com>
 ***********************************************************/
 
-[CCode (cname="struct WtvContext", cheader_filename="")]
+[CCode (cname="struct WtvContext",cheader_filename="")]
 [Compact]
 public class WTVMuxerPrivateData { }
 
-[CCode (cname="ff_wtv_muxer", cheader_filename="")]
+[CCode (cname="ff_wtv_muxer",cheader_filename="")]
 public class WTVMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "wtv";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Windows Television (WTV)";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "wtv";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WTVMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AC3;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG2VIDEO;
+
         }
+
     }
 
-    [CCode (cname="write_header", cheader_filename="")]
+    [CCode (cname="write_header",cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="write_packet", cheader_filename="")]
+    [CCode (cname="write_packet",cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="write_trailer", cheader_filename="")]
+    [CCode (cname="write_trailer",cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (AVCodecTag[]){ ff_codec_bmp_tags, ff_codec_wav_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_codec_bmp_tags, ff_codec_wav_tags, 0 };
 }
 
 } // namespace LibAVFormat

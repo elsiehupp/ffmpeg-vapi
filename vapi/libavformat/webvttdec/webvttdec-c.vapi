@@ -89,16 +89,18 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="webvtt_demuxer_class", cheader_filename="")]
+[CCode (cname="webvtt_demuxer_class",cheader_filename="ffmpeg/libformat/webvttdec.c")]
 public class WebVTTDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override string class_name {
         public get {
             return "WebVTT demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -107,58 +109,67 @@ public class WebVTTDemuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct WebVTTContext", cheader_filename="")]
+[CCode (cname="struct WebVTTContext",cheader_filename="ffmpeg/libformat/webvttdec.c")]
 [Compact]
 public class WebVTTDemuxerPrivateData { }
 
-[CCode (cname="ff_webvtt_demuxer", cheader_filename="")]
+[CCode (cname="ff_webvtt_demuxer",cheader_filename="ffmpeg/libformat/webvttdec.c")]
 public class WebVTTDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override string name {
         public get {
             return "webvtt";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override string long_name {
         public get {
             return "WebVTT subtitle";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WebVTTDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="webvtt_probe", cheader_filename="")]
+    [CCode (cname="webvtt_probe",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="webvtt_read_header", cheader_filename="")]
+    [CCode (cname="webvtt_read_header",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="webvtt_read_packet", cheader_filename="")]
+    [CCode (cname="webvtt_read_packet",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="webvtt_read_seek", cheader_filename="")]
+    [CCode (cname="webvtt_read_seek",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -168,18 +179,20 @@ public class WebVTTDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="webvtt_read_close", cheader_filename="")]
+    [CCode (cname="webvtt_read_close",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/webvttdec.c")]
     public override string extensions {
         public get {
             return "vtt";
+
         }
+
     }
-    //  .priv_class = webvtt_demuxer_class,
+    //  .priv_class = webvtt_demuxer_class;
 }
 
 } // namespace LibAVFormat

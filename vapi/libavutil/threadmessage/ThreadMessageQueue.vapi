@@ -18,11 +18,12 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVUtil {
 
+[CCode (cname="",cheader_filename="")]
 public delegate void ThreadMessageFreeDelegate (
     void *msg
 );
 
-[CCode (cname="struct AVThreadMessageQueue", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+[CCode (cname="struct AVThreadMessageQueue",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
 [Compact]
 public class ThreadMessageQueue {
     /***********************************************************
@@ -34,7 +35,7 @@ public class ThreadMessageQueue {
     @return  >=0 for success; <0 for error, in particular LibAVUtil.ErrorCode (ENOSYS) if
         lavu was built without thread support
     ***********************************************************/
-    [CCode (cname="av_thread_message_queue_alloc", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+    [CCode (cname="av_thread_message_queue_alloc",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
     public int av_thread_message_queue_alloc (
         ThreadMessageQueue mq,
         uint nelem,
@@ -46,7 +47,7 @@ public class ThreadMessageQueue {
 
     The message queue must no longer be in use by another thread.
     ***********************************************************/
-    [CCode (cname="av_thread_message_queue_free", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+    [CCode (cname="av_thread_message_queue_free",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
     public void av_thread_message_queue_free (
         ThreadMessageQueue mq
     );
@@ -54,7 +55,7 @@ public class ThreadMessageQueue {
     /***********************************************************
     @brief Send a message on the queue.
     ***********************************************************/
-    [CCode (cname="av_thread_message_queue_send", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+    [CCode (cname="av_thread_message_queue_send",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
     public int av_thread_message_queue_send (
         ThreadMessageQueue mq,
         void *msg,
@@ -64,7 +65,7 @@ public class ThreadMessageQueue {
     /***********************************************************
     @brief Receive a message from the queue.
     ***********************************************************/
-    [CCode (cname="av_thread_message_queue_recv", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+    [CCode (cname="av_thread_message_queue_recv",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
     public int av_thread_message_queue_recv (
         ThreadMessageQueue mq,
         void *msg,
@@ -79,7 +80,7 @@ public class ThreadMessageQueue {
     LibAVUtil.ErrorCode (EAGAIN), can be used to cause the sending thread to stop or
     suspend its operation.
     ***********************************************************/
-    [CCode (cname="av_thread_message_queue_set_err_send", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+    [CCode (cname="av_thread_message_queue_set_err_send",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
     public void av_thread_message_queue_set_err_send (
         ThreadMessageQueue mq,
         int err
@@ -93,7 +94,7 @@ public class ThreadMessageQueue {
     Conventional values, such as AVERROR_EOF or LibAVUtil.ErrorCode (EAGAIN), can be used
     to cause the receiving thread to stop or suspend its operation.
     ***********************************************************/
-    [CCode (cname="av_thread_message_queue_set_err_recv", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+    [CCode (cname="av_thread_message_queue_set_err_recv",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
     public void av_thread_message_queue_set_err_recv (
         ThreadMessageQueue mq,
         int err
@@ -103,7 +104,7 @@ public class ThreadMessageQueue {
     @brief Set the optional free message callback function which will be called if an
     operation is removing messages from the queue.
     ***********************************************************/
-    [CCode (cname="av_thread_message_queue_set_free_func", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+    [CCode (cname="av_thread_message_queue_set_free_func",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
     public void av_thread_message_queue_set_free_func (
         ThreadMessageQueue mq,
         ThreadMessageFreeDelegate free_func
@@ -115,7 +116,7 @@ public class ThreadMessageQueue {
     @return the current number of messages or LibAVUtil.ErrorCode (ENOSYS) if lavu was built
         without thread support
     ***********************************************************/
-    [CCode (cname="av_thread_message_queue_nb_elems", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+    [CCode (cname="av_thread_message_queue_nb_elems",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
     public int av_thread_message_queue_nb_elems (
         ThreadMessageQueue mq
     );
@@ -127,7 +128,7 @@ public class ThreadMessageQueue {
     except that it will be done in a single operation (no lock/unlock between
     reads).
     ***********************************************************/
-    [CCode (cname="av_thread_message_flush", cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+    [CCode (cname="av_thread_message_flush",cheader_filename="ffmpeg/libavutil/threadmessage.h")]
     public void av_thread_message_flush (
         ThreadMessageQueue mq
     );

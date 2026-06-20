@@ -29,11 +29,11 @@ FFT functions
 @ingroup lavc_misc
 ***********************************************************/
 
-[CCode (cname="struct FFTSample", cheader_filename="ffmpeg/libavcodec/avfft.h")]
+[CCode (cname="struct FFTSample",cheader_filename="ffmpeg/libavcodec/avfft.h")]
 [Compact]
 public class FFTSample : float { }
 
-[CCode (cname="struct FFTComplex", cheader_filename="ffmpeg/libavcodec/avfft.h")]
+[CCode (cname="struct FFTComplex",cheader_filename="ffmpeg/libavcodec/avfft.h")]
 [Compact]
 public class FFTComplex {
     [CCode (cname="re")]

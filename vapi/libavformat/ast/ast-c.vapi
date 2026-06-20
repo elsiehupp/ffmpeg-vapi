@@ -28,7 +28,7 @@ const AVCodecTag ff_codec_ast_tags[] = {
     {
         LibAVCodec.CodecID.PCM_S16BE_PLANAR, 1 },
     {
-        LibAVCodec.CodecID.NONE, 0 },
+        LibAVCodec.CodecID.NONE, 0 };
 }
 
 } // namespace LibAVFormat

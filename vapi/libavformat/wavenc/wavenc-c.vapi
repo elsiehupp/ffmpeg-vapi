@@ -32,8 +32,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_WAV_MUXER
-#define OFFSET (x) offsetof (WAVMuxContext, x)
-#define ENC AV_OPT_FLAG_ENCODING_PARAM
+public define OFFSET (x) offsetof (WAVMuxContext, x)
+public define ENC AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "write_bext",
@@ -131,19 +131,21 @@ static const LibAVUtil.Option options[] = {
         { .i64 = 2 }, 1, 2, ENC
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="wav_muxer_class", cheader_filename="")]
+[CCode (cname="wav_muxer_class",cheader_filename="ffmpeg/libformat/wavenc.c")]
 public class WAVMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override string class_name {
         public get {
             return "WAV muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -152,170 +154,199 @@ public class WAVMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_wav_muxer", cheader_filename="")]
+[CCode (cname="ff_wav_muxer",cheader_filename="ffmpeg/libformat/wavenc.c")]
 public class WAVMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override string name {
         public get {
             return "wav";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override string long_name {
         public get {
             return "WAV / WAVE (Waveform Audio)";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override string mime_type {
         public get {
             return "audio/x-wav";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override string extensions {
         public get {
             return "wav";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WAVMuxContext);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
+
         }
+
     }
 
-    [CCode (cname="wav_write_header", cheader_filename="")]
+    [CCode (cname="wav_write_header",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="wav_write_packet", cheader_filename="")]
+    [CCode (cname="wav_write_packet",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="wav_write_trailer", cheader_filename="")]
+    [CCode (cname="wav_write_trailer",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_TS_NONSTRICT;
+
         }
+
     }
     //  .codec_tag = (AVCodecTag[]){ ff_codec_wav_tags, 0 },
-    //  .priv_class = wav_muxer_class,
+    //  .priv_class = wav_muxer_class;
 }
-#endif /***********************************************************
-    CONFIG_WAV_MUXER
-***********************************************************/
+#endif // CONFIG_WAV_MUXER
 
 #if CONFIG_W64_MUXER
-[CCode (cname="ff_w64_muxer", cheader_filename="")]
+
+[CCode (cname="ff_w64_muxer",cheader_filename="ffmpeg/libformat/wavenc.c")]
 public class Wave64Muxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override string name {
         public get {
             return "w64";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override string long_name {
         public get {
             return "Sony Wave64";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override string extensions {
         public get {
             return "w64";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WAVMuxContext);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
+
         }
+
     }
 
-    [CCode (cname="w64_write_header", cheader_filename="")]
+    [CCode (cname="w64_write_header",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="wav_write_packet", cheader_filename="")]
+    [CCode (cname="wav_write_packet",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="w64_write_trailer", cheader_filename="")]
+    [CCode (cname="w64_write_trailer",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/wavenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_TS_NONSTRICT;
+
         }
+
     }
-    //  .codec_tag = (AVCodecTag[]){ ff_codec_wav_tags, 0 },
+    //  .codec_tag = (AVCodecTag[]){ ff_codec_wav_tags, 0 };
 }
-#endif /***********************************************************
-    CONFIG_W64_MUXER
-***********************************************************/
+#endif // CONFIG_W64_MUXER
 
 } // namespace LibAVFormat

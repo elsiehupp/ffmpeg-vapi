@@ -22,11 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_asfcrypt_dec", cheader_filename="")]
+[CCode (cname="ff_asfcrypt_dec",cheader_filename="ffmpeg/libavformat/asfcrypto.h")]
 public void ff_asfcrypt_dec (
-    public uint8 key[20],
+    uint8 key[20],
     uint8[] data,
-    public int len
+    int len
 );
 
 } // namespace LibAVFormat

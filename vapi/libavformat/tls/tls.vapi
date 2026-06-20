@@ -22,39 +22,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct TLSShared", cheader_filename="")]
+[CCode (cname="struct TLSShared",cheader_filename="ffmpeg/libformat/tls.h")]
 [Compact]
 public class TLSShared {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
     public string ca_file;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
     public int verify;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
     public string cert_file;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
     public string key_file;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
     public int listen;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
     public string host;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
     public char underlying_host[200];
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
     public int numerichost;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
     public URLContext tcp;
 }
 
-#define TLS_OPTFL (AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_ENCODING_PARAM)
-#define TLS_COMMON_OPTIONS (pstruct, options_field)
+[CCode (cname="",cheader_filename="")]
+public define TLS_OPTFL (AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_ENCODING_PARAM)
+public define TLS_COMMON_OPTIONS (pstruct, options_field)
     {
         "ca_file",
         "Certificate Authority database file",
@@ -118,7 +119,7 @@ public class TLSShared {
         AV_OPT_TYPE_STRING,
         .flags = TLS_OPTFL }
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
 public int ff_tls_open_underlying (
     TLSShared *tls_shared,
     URLContext parent,
@@ -126,16 +127,16 @@ public int ff_tls_open_underlying (
     out LibAVUtil.Dictionary options
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
 public void ff_gnutls_init ();
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
 public void ff_gnutls_deinit ();
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
 public int ff_openssl_init ();
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
 public void ff_openssl_deinit ();
 
 } // namespace LibAVFormat

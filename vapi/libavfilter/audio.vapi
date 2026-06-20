@@ -40,12 +40,18 @@ static const enum AVSampleFormat ff_planar_sample_fmts_array[] = {
 /***********************************************************
 default handler for get_audio_buffer () for audio inputs
 ***********************************************************/
-AVFrame *ff_default_get_audio_buffer (AVFilterLink *link, int nb_samples);
+AVFrame *ff_default_get_audio_buffer (
+    AVFilterLink *link,
+    int nb_samples
+);
 
 /***********************************************************
 get_audio_buffer () handler for filters which simply pass audio along
 ***********************************************************/
-AVFrame *ff_null_get_audio_buffer (AVFilterLink *link, int nb_samples);
+AVFrame *ff_null_get_audio_buffer (
+    AVFilterLink *link,
+    int nb_samples
+);
 
 /***********************************************************
 Request an audio samples buffer with a specific set of permissions.
@@ -56,4 +62,7 @@ Request an audio samples buffer with a specific set of permissions.
 @return               A reference to the samples. This must be unreferenced with
                       avfilter_unref_buffer when you are finished with it.
 ***********************************************************/
-AVFrame *ff_get_audio_buffer (AVFilterLink *link, int nb_samples);
+AVFrame *ff_get_audio_buffer (
+    AVFilterLink *link,
+    int nb_samples
+);

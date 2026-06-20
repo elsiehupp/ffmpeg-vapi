@@ -26,70 +26,94 @@ transform input video
 All matrices are defined as a single 9-item block of contiguous memory. For
 example, the identity matrix would be:
 
-    float *matrix = {1, 0, 0,
+    float[] matrix = {1, 0, 0,
                      0, 1, 0,
                      0, 0, 1}
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum InterpolateMethod {
     /***********************************************************
     Nearest-neighbor (fast)
     ***********************************************************/
+    [CCode (cname="")]
     INTERPOLATE_NEAREST,
+
     /***********************************************************
     Bilinear
     ***********************************************************/
+    [CCode (cname="")]
     INTERPOLATE_BILINEAR,
+
     /***********************************************************
     Biquadratic (best)
     ***********************************************************/
+    [CCode (cname="")]
     INTERPOLATE_BIQUADRATIC,
+
     /***********************************************************
     Number of interpolation methods
     ***********************************************************/
-    INTERPOLATE_COUNT;
+    [CCode (cname="")]
+    INTERPOLATE_COUNT,
+
+    /***********************************************************
+    Shortcut for the default interpolation method
+    ***********************************************************/
+    [CCode (cname="")]
+    INTERPOLATE_DEFAULT, // INTERPOLATE_BILINEAR
+
+    /***********************************************************
+    Shortcuts for the fastest interpolation method
+    ***********************************************************/
+    [CCode (cname="")]
+    INTERPOLATE_FAST, // INTERPOLATE_NEAREST
+
+    /***********************************************************
+    Shortcuts for the best interpolation method
+    ***********************************************************/
+    [CCode (cname="")]
+    INTERPOLATE_BEST; // INTERPOLATE_BIQUADRATIC
 }
 
-/***********************************************************
-Shortcuts for the fastest and best interpolation methods
-***********************************************************/
-#define INTERPOLATE_DEFAULT INTERPOLATE_BILINEAR
-/***********************************************************
-Shortcuts for the fastest and best interpolation methods
-***********************************************************/
-#define INTERPOLATE_FAST    INTERPOLATE_NEAREST
-/***********************************************************
-Shortcuts for the fastest and best interpolation methods
-***********************************************************/
-#define INTERPOLATE_BEST    INTERPOLATE_BIQUADRATIC
-
+[CCode (cname="",cheader_filename="")]
 public enum FillMethod {
     /***********************************************************
     Fill zeroes at blank locations
     ***********************************************************/
+    [CCode (cname="")]
     FILL_BLANK,
+
     /***********************************************************
     Original image at blank locations
     ***********************************************************/
+    [CCode (cname="")]
     FILL_ORIGINAL,
+
     /***********************************************************
     Extruded edge value at blank locations
     ***********************************************************/
+    [CCode (cname="")]
     FILL_CLAMP,
+
     /***********************************************************
     Mirrored edge at blank locations
     ***********************************************************/
+    [CCode (cname="")]
     FILL_MIRROR,
+
     /***********************************************************
     Number of edge fill methods
     ***********************************************************/
-    FILL_COUNT;
-}
+    [CCode (cname="")]
+    FILL_COUNT,
 
-/***********************************************************
-***********************************************************/
-// Shortcuts for fill methods
-#define FILL_DEFAULT FILL_ORIGINAL
+    /***********************************************************
+    Shortcuts for fill methods
+    ***********************************************************/
+    [CCode (cname="")]
+    FILL_DEFAULT; // FILL_ORIGINAL;
+}
 
 /***********************************************************
 Get an affine transformation matrix from a given translation, rotation, and
@@ -105,7 +129,14 @@ zoom factor. The matrix will look like:
 @param zoom    scale percent (1.0 = 100%)
 @param matrix  9-item affine transformation matrix
 ***********************************************************/
-public void avfilter_get_matrix (float x_shift, float y_shift, float angle, float zoom, float *matrix);
+[CCode (cname="",cheader_filename="")]
+public void avfilter_get_matrix (
+    float x_shift,
+    float y_shift,
+    float angle,
+    float zoom,
+    float[] matrix
+);
 
 /***********************************************************
 Add two matrices together. result = m1 + m2.
@@ -114,7 +145,12 @@ Add two matrices together. result = m1 + m2.
 @param m2     9-item transformation matrix
 @param result 9-item transformation matrix
 ***********************************************************/
-public void avfilter_add_matrix (const float *m1, float *m2, float *result);
+[CCode (cname="",cheader_filename="")]
+public void avfilter_add_matrix (
+    float[] m1,
+    float[] m2,
+    float[] result
+);
 
 /***********************************************************
 Subtract one matrix from another. result = m1 - m2.
@@ -123,7 +159,12 @@ Subtract one matrix from another. result = m1 - m2.
 @param m2     9-item transformation matrix
 @param result 9-item transformation matrix
 ***********************************************************/
-public void avfilter_sub_matrix (const float *m1, float *m2, float *result);
+[CCode (cname="",cheader_filename="")]
+public void avfilter_sub_matrix (
+    float[] m1,
+    float[] m2,
+    float[] result
+);
 
 /***********************************************************
 Multiply a matrix by a scalar value. result = m1 * scalar.
@@ -132,7 +173,12 @@ Multiply a matrix by a scalar value. result = m1 * scalar.
 @param scalar a number
 @param result 9-item transformation matrix
 ***********************************************************/
-public void avfilter_mul_matrix (const float *m1, float scalar, float *result);
+[CCode (cname="",cheader_filename="")]
+public void avfilter_mul_matrix (
+    float[] m1,
+    float scalar,
+    float[] result
+);
 
 /***********************************************************
 Do an affine transformation with the given interpolation method. This
@@ -150,8 +196,15 @@ get the final value.
 @param fill        edge fill method
 @return negative on error
 ***********************************************************/
-public int avfilter_transform (const uint8[] src, uint8[] dst,
-                        int src_stride, int dst_stride,
-                        int width, int height, float *matrix,
-                        InterpolateMethod interpolate,
-                        FillMethod fill);
+[CCode (cname="",cheader_filename="")]
+public int avfilter_transform (
+    uint8[] src,
+    uint8[] dst,
+    int src_stride,
+    int dst_stride,
+    int width,
+    int height,
+    float[] matrix,
+    InterpolateMethod interpolate,
+    FillMethod fill
+);

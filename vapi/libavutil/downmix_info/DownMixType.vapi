@@ -36,24 +36,28 @@ namespace LibAVUtil {
 /***********************************************************
 @brief Possible downmix types.
 ***********************************************************/
-[CCode (cprefix="AV_DOWNMIX_TYPE_", cheader_filename="ffmpeg/libavutil/downmix_info.h")]
+[CCode (cprefix="AV_DOWNMIX_TYPE_",cheader_filename="ffmpeg/libavutil/downmix_info.h")]
 public enum DownMixType {
     /***********************************************************
     @brief Not indicated.
     ***********************************************************/
     UNKNOWN,
+
     /***********************************************************
     @brief Lo/Ro 2-channel downmix (Stereo).
     ***********************************************************/
     LORO,
+
     /***********************************************************
     @brief Lt/Rt 2-channel downmix, Dolby Surround compatible.
     ***********************************************************/
     LTRT,
+
     /***********************************************************
     @brief Lt/Rt 2-channel downmix, Dolby Pro Logic II compatible.
     ***********************************************************/
     DPLII,
+
     /***********************************************************
     @brief Number of downmix types. Not part of ABI.
     ***********************************************************/

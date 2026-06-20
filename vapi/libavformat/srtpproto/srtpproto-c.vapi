@@ -22,8 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define D AV_OPT_FLAG_DECODING_PARAM
-#define E AV_OPT_FLAG_ENCODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define D AV_OPT_FLAG_DECODING_PARAM
+public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "srtp_out_suite",
@@ -66,16 +67,18 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="srtp_context_class", cheader_filename="")]
+[CCode (cname="srtp_context_class",cheader_filename="ffmpeg/libformat/srtpproto.c")]
 public class SRTPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override string class_name {
         public get {
             return "srtp";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -84,77 +87,87 @@ public class SRTPURLProtocolClass : LibAVUtil.Class {
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct SRTPProtoContext", cheader_filename="")]
+[CCode (cname="struct SRTPProtoContext",cheader_filename="ffmpeg/libformat/srtpproto.c")]
 [Compact]
 public class SRTPPrivateData { }
 
-[CCode (cname="ff_srtp_protocol", cheader_filename="")]
+[CCode (cname="ff_srtp_protocol",cheader_filename="ffmpeg/libformat/srtpproto.c")]
 public class SRTPURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override string name {
         public get {
             return "srtp";
+
         }
+
     }
 
-    [CCode (cname="srtp_open", cheader_filename="")]
+    [CCode (cname="srtp_open",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="srtp_read", cheader_filename="")]
+    [CCode (cname="srtp_read",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="srtp_write", cheader_filename="")]
+    [CCode (cname="srtp_write",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="srtp_close", cheader_filename="")]
+    [CCode (cname="srtp_close",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="srtp_get_file_handle", cheader_filename="")]
+    [CCode (cname="srtp_get_file_handle",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="srtp_get_multi_file_handle", cheader_filename="")]
+    [CCode (cname="srtp_get_multi_file_handle",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override int url_get_multi_file_handle (
         URLContext url_context,
         out int[] handles,
         out int numhandles
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SRTPPrivateData);
+
         }
+
     }
     //  .priv_data_class = srtp_context_class,
-    [CCode (cname="flags", cheader_filename="")]
+
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/srtpproto.c")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
+
         }
+
     }
 }
 

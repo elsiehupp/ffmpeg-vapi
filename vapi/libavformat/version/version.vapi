@@ -27,27 +27,39 @@ Libavformat version macros
 ***********************************************************/
 
 /***********************************************************
+Major bumping may affect Ticket5467, 5421, 5451 (compatibility with Chromium)
+Also please add any ticket numbers that you believe might be affected here
 ***********************************************************/
-// Major bumping may affect Ticket5467, 5421, 5451 (compatibility with Chromium)
-// Also please add any ticket numbers that you believe might be affected here
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
 public const int LIBAVFORMAT_VERSION_MAJOR;
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
 public const int LIBAVFORMAT_VERSION_MINOR;
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
 public const int LIBAVFORMAT_VERSION_MICRO;
 
-//  #define LIBAVFORMAT_VERSION_INT AV_VERSION_INT (LIBAVFORMAT_VERSION_MAJOR,
-//                                                 LIBAVFORMAT_VERSION_MINOR,
-//                                                 LIBAVFORMAT_VERSION_MICRO)
-//  #define LIBAVFORMAT_VERSION AV_VERSION (LIBAVFORMAT_VERSION_MAJOR,
-//                                             LIBAVFORMAT_VERSION_MINOR,
-//                                             LIBAVFORMAT_VERSION_MICRO)
-//  #define LIBAVFORMAT_BUILD LIBAVFORMAT_VERSION_INT
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const int LIBAVFORMAT_VERSION_INT;
+//  AV_VERSION_INT (
+//      LIBAVFORMAT_VERSION_MAJOR,
+//      LIBAVFORMAT_VERSION_MINOR,
+//      LIBAVFORMAT_VERSION_MICRO
+//  )
 
-//  #define LIBAVFORMAT_IDENT       "Lavf" AV_STRINGIFY (LIBAVFORMAT_VERSION)
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const string LIBAVFORMAT_VERSION
+//  AV_VERSION (
+//      LIBAVFORMAT_VERSION_MAJOR,
+//      LIBAVFORMAT_VERSION_MINOR,
+//      LIBAVFORMAT_VERSION_MICRO
+//  )
+
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const int LIBAVFORMAT_BUILD; // LIBAVFORMAT_VERSION_INT
+
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const string LIBAVFORMAT_IDENT; // "Lavf" AV_STRINGIFY (LIBAVFORMAT_VERSION)
 
 /***********************************************************
 @brief FF_API_* defines may be placed below to indicate public API that will be
@@ -58,61 +70,95 @@ the public API and may change, break or disappear at any time.
 disable each FF_API_* in its own commit instead of disabling them all
 at once through the bump. This improves the git bisect-ability of the change.
 ***********************************************************/
-//  #ifndef FF_API_COMPUTE_PKT_FIELDS2
-//  #define FF_API_COMPUTE_PKT_FIELDS2 (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_OLD_OPEN_CALLBACKS
-//  #define FF_API_OLD_OPEN_CALLBACKS (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_LAVF_AVCTX
-//  #define FF_API_LAVF_AVCTX (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_HTTP_USER_AGENT
-//  #define FF_API_HTTP_USER_AGENT (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_HLS_WRAP
-//  #define FF_API_HLS_WRAP (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_HLS_USE_LOCALTIME
-//  #define FF_API_HLS_USE_LOCALTIME (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_LAVF_KEEPSIDE_FLAG
-//  #define FF_API_LAVF_KEEPSIDE_FLAG (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_OLD_ROTATE_API
-//  #define FF_API_OLD_ROTATE_API (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_FORMAT_GET_SET
-//  #define FF_API_FORMAT_GET_SET (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_OLD_AVIO_EOF_0
-//  #define FF_API_OLD_AVIO_EOF_0 (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_LAVF_FFSERVER
-//  #define FF_API_LAVF_FFSERVER (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_FORMAT_FILENAME
-//  #define FF_API_FORMAT_FILENAME (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_OLD_RTSP_OPTIONS
-//  #define FF_API_OLD_RTSP_OPTIONS (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_NEXT
-//  #define FF_API_NEXT (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_DASH_MIN_SEG_DURATION
-//  #define FF_API_DASH_MIN_SEG_DURATION (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_LAVF_MP4A_LATM
-//  #define FF_API_LAVF_MP4A_LATM (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
-//  #ifndef FF_API_AVIOFORMAT
-//  #define FF_API_AVIOFORMAT (LIBAVFORMAT_VERSION_MAJOR < 59)
-//  #endif
+#if !FF_API_COMPUTE_PKT_FIELDS2
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_COMPUTE_PKT_FIELDS2; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_OLD_OPEN_CALLBACKS
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_OLD_OPEN_CALLBACKS; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_LAVF_AVCTX
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_LAVF_AVCTX; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_HTTP_USER_AGENT
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_HTTP_USER_AGENT; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_HLS_WRAP
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_HLS_WRAP; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_HLS_USE_LOCALTIME
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_HLS_USE_LOCALTIME; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_LAVF_KEEPSIDE_FLAG
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_LAVF_KEEPSIDE_FLAG; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_OLD_ROTATE_API
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_OLD_ROTATE_API; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_FORMAT_GET_SET
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_FORMAT_GET_SET; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_OLD_AVIO_EOF_0
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_OLD_AVIO_EOF_0; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_LAVF_FFSERVER
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_LAVF_FFSERVER; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_FORMAT_FILENAME
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_FORMAT_FILENAME; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_OLD_RTSP_OPTIONS
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_OLD_RTSP_OPTIONS; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_NEXT
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_NEXT; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_DASH_MIN_SEG_DURATION
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_DASH_MIN_SEG_DURATION; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_LAVF_MP4A_LATM
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_LAVF_MP4A_LATM; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
+
+#if !FF_API_AVIOFORMAT
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const bool FF_API_AVIOFORMAT; // (LIBAVFORMAT_VERSION_MAJOR < 59)
+#endif
 
 
-//  #ifndef FF_API_R_FRAME_RATE
-//  #define FF_API_R_FRAME_RATE 1
-//  #endif
+#if !FF_API_R_FRAME_RATE
+[CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
+public const int FF_API_R_FRAME_RATE; // 1
+#endif
 
 } // namespace LibAVFormat

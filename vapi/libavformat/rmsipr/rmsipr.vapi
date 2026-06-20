@@ -28,11 +28,11 @@ namespace LibAVFormat {
 
 @param buffer SIPR data
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rmsipr.h")]
 public void ff_rm_reorder_sipr_data (
     uint8[] buffer,
-    public int sub_packet_h,
-    public int framesize
+    int sub_packet_h,
+    int framesize
 );
 
 } // namespace LibAVFormat

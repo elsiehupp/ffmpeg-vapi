@@ -26,45 +26,53 @@ namespace LibAVFormat {
 @file G.723.1 demuxer
 ***********************************************************/
 
-[CCode (cname="ff_g723_1_demuxer", cheader_filename="")]
+[CCode (cname="ff_g723_1_demuxer",cheader_filename="")]
 public class G7231Demuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "g723_1";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "G.723.1";
+
         }
+
     }
 
-    [CCode (cname="g723_1_init", cheader_filename="")]
+    [CCode (cname="g723_1_init",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="g723_1_read_packet", cheader_filename="")]
+    [CCode (cname="g723_1_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "tco,rco,g723_1";
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 }
 

@@ -22,8 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (V210DemuxerContext, x)
-#define DEC AV_OPT_FLAG_DECODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (V210DemuxerContext, x)
+public define DEC AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option v210_options[] = {
     {
         "video_size",
@@ -38,20 +39,23 @@ static const LibAVUtil.Option v210_options[] = {
         DEC
     },
     {
-        NULL },
+        NULL };
 }
 
 #if CONFIG_V210_DEMUXER
-[CCode (cname="v210_demuxer_class", cheader_filename="")]
+
+[CCode (cname="v210_demuxer_class",cheader_filename="ffmpeg/libformat/v210.c")]
 public class V210DemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string class_name {
         public get {
             return "v210 demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -60,83 +64,101 @@ public class V210DemuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = v210_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/v210.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_v210_demuxer", cheader_filename="")]
+[CCode (cname="ff_v210_demuxer",cheader_filename="ffmpeg/libformat/v210.c")]
 public class V210Demuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string name {
         public get {
             return "v210";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string long_name {
         public get {
             return "Uncompressed 4:2:2 10-bit";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/v210.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (V210DemuxerContext);
+
         }
+
     }
 
-    [CCode (cname="v210_read_header", cheader_filename="")]
+    [CCode (cname="v210_read_header",cheader_filename="ffmpeg/libformat/v210.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="v210_read_packet", cheader_filename="")]
+    [CCode (cname="v210_read_packet",cheader_filename="ffmpeg/libformat/v210.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/v210.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string extensions {
         public get {
             return "v210";
+
         }
+
     }
 
-    [CCode (cname="raw_codec_id", cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/v210.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.V210;
+
         }
+
     }
-    //  .priv_class = v210_demuxer_class,
+    //  .priv_class = v210_demuxer_class;
 }
 #endif // CONFIG_V210_DEMUXER
 
 #if CONFIG_V210X_DEMUXER
-[CCode (cname="v210x_demuxer_class", cheader_filename="")]
+
+[CCode (cname="v210x_demuxer_class",cheader_filename="ffmpeg/libformat/v210.c")]
 public class V210XDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string class_name {
         public get {
             return "v210x demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -145,69 +167,84 @@ public class V210XDemuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = v210_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/v210.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_v210x_demuxer", cheader_filename="")]
+[CCode (cname="ff_v210x_demuxer",cheader_filename="ffmpeg/libformat/v210.c")]
 public class V210XDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string name {
         public get {
             return "v210x";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string long_name {
         public get {
             return "Uncompressed 4:2:2 10-bit";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/v210.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (V210DemuxerContext);
+
         }
+
     }
 
-    [CCode (cname="v210_read_header", cheader_filename="")]
+    [CCode (cname="v210_read_header",cheader_filename="ffmpeg/libformat/v210.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="v210_read_packet", cheader_filename="")]
+    [CCode (cname="v210_read_packet",cheader_filename="ffmpeg/libformat/v210.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/v210.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/v210.c")]
     public override string extensions {
         public get {
             return "yuv10";
+
         }
+
     }
 
-    [CCode (cname="raw_codec_id", cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/v210.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.V210X;
+
         }
+
     }
-    //  .priv_class = v210x_demuxer_class,
+    //  .priv_class = v210x_demuxer_class;
 }
 #endif // CONFIG_V210X_DEMUXER
 

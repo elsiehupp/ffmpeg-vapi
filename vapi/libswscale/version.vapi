@@ -21,19 +21,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 swscale version macros
 ***********************************************************/
 
-#define LIBSWSCALE_VERSION_MAJOR   5
-#define LIBSWSCALE_VERSION_MINOR   5
-#define LIBSWSCALE_VERSION_MICRO 100
+[CCode (cname="",cheader_filename="")]
+public define LIBSWSCALE_VERSION_MAJOR   5
+public define LIBSWSCALE_VERSION_MINOR   5
+public define LIBSWSCALE_VERSION_MICRO 100
 
-#define LIBSWSCALE_VERSION_INT  AV_VERSION_INT (LIBSWSCALE_VERSION_MAJOR, \
+[CCode (cname="",cheader_filename="")]
+public define LIBSWSCALE_VERSION_INT  AV_VERSION_INT (LIBSWSCALE_VERSION_MAJOR, \
                                                LIBSWSCALE_VERSION_MINOR, \
                                                LIBSWSCALE_VERSION_MICRO)
-#define LIBSWSCALE_VERSION      AV_VERSION (LIBSWSCALE_VERSION_MAJOR, \
+public define LIBSWSCALE_VERSION      AV_VERSION (LIBSWSCALE_VERSION_MAJOR, \
                                            LIBSWSCALE_VERSION_MINOR, \
                                            LIBSWSCALE_VERSION_MICRO)
-#define LIBSWSCALE_BUILD        LIBSWSCALE_VERSION_INT
+public define LIBSWSCALE_BUILD        LIBSWSCALE_VERSION_INT
 
-#define LIBSWSCALE_IDENT        "SwS" AV_STRINGIFY (LIBSWSCALE_VERSION)
+[CCode (cname="",cheader_filename="")]
+public define LIBSWSCALE_IDENT        "SwS" AV_STRINGIFY (LIBSWSCALE_VERSION)
 
 /***********************************************************
 FF_API_* defines may be placed below to indicate public API that will be
@@ -41,6 +44,6 @@ dropped at a future version bump. The defines themselves are not part of
 the public API and may change, break or disappear at any time.
 ***********************************************************/
 
-//  #ifndef FF_API_SWS_VECTOR
+//  #if !FF_API_SWS_VECTOR
 //  #define FF_API_SWS_VECTOR            (LIBSWSCALE_VERSION_MAJOR < 6)
 //  #endif

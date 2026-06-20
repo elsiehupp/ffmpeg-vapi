@@ -33,24 +33,29 @@ This value can be overridden by definying it before including this
 header.
 Powers of 2 are recommended.
 ***********************************************************/
-#ifndef FF_BUFQUEUE_SIZE
-#define FF_BUFQUEUE_SIZE 64
+#if !FF_BUFQUEUE_SIZE
+public define FF_BUFQUEUE_SIZE 64
 #endif
 
 /***********************************************************
 Structure holding the queue
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class FFBufQueue {
+    [CCode (cname="")]
     public AVFrame queue[FF_BUFQUEUE_SIZE];
+
     ushort head;
+
     /***********************************************************
     number of available buffers
     ***********************************************************/
     ushort available;
 }
 
-#define BUCKET (i) queue->queue[(queue->head + (i)) % FF_BUFQUEUE_SIZE]
+[CCode (cname="",cheader_filename="")]
+public define BUCKET (i) queue->queue[(queue->head + (i)) % FF_BUFQUEUE_SIZE]
 
 /***********************************************************
 Test if a buffer queue is full.
@@ -66,9 +71,10 @@ Add a buffer to the queue.
 If the queue is already full, then the current last buffer is dropped
 (and unrefed) with a warning before adding the new buffer.
 ***********************************************************/
-static inline void ff_bufqueue_add (void *log, FFBufQueue *queue,
-                                   public AVFrame buf)
-{
+static inline void ff_bufqueue_add (
+    void *log, FFBufQueue *queue,
+    AVFrame buf
+) {
     if (ff_bufqueue_is_full (queue)) {
         av_log (log, AV_LOG_WARNING, "Buffer queue overflow, dropping.\n");
         av_frame_free (&BUCKET (--queue->available));
@@ -93,8 +99,10 @@ Get the first buffer from the queue and remove it.
 
 Do not use on an empty queue.
 ***********************************************************/
-static inline AVFrame *ff_bufqueue_get (FFBufQueue *queue)
-{
+static inline AVFrame *ff_bufqueue_get (
+    FFBufQueue *queue
+) {
+    [CCode (cname="")]
     public AVFrame ret = queue->queue[queue->head];
     av_assert0 (queue->available);
     queue->available--;
@@ -106,8 +114,9 @@ static inline AVFrame *ff_bufqueue_get (FFBufQueue *queue)
 /***********************************************************
 Unref and remove all buffers from the queue.
 ***********************************************************/
-static inline void ff_bufqueue_discard_all (FFBufQueue *queue)
-{
+static inline void ff_bufqueue_discard_all (
+    FFBufQueue *queue
+) {
     while (queue->available) {
         public AVFrame buf = ff_bufqueue_get (queue);
         av_frame_free (&buf);

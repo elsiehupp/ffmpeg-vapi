@@ -34,6 +34,7 @@ public enum OptionSearchFlags {
     ***********************************************************/
     [CCode (cname="AV_OPT_SEARCH_CHILDREN")]
     SEARCH_CHILDREN,
+
     /***********************************************************
     @description The object passed to av_opt_find () is fake --
         only a double pointer to Class instead of a required
@@ -55,7 +56,7 @@ public enum OptionSearchFlags {
         one component for certain option types.
     @see @link OptionRangeList for details.
     ***********************************************************/
-    AV_OPT_MULTI_COMPONENT_RANGE,
+    AV_OPT_MULTI_COMPONENT_RANGE;
 }
 
 } // namespace LibAVUtil

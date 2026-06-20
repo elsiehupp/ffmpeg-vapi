@@ -22,18 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/pdm.h")]
 public int ff_pcm_read_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/pdm.h")]
 public int ff_pcm_read_seek (
     AVFormatContext format_context,
-    public int stream_index,
-    public int64 timestamp,
-    public int flags
+    int stream_index,
+    int64 timestamp,
+    int flags
 );
 
 } // namespace LibAVFormat

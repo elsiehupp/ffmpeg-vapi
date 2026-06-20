@@ -19,22 +19,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVCodec {
 using LibAVUtil;
 
+[CCode (cname="",cheader_filename="")]
 public delegate void IDCTDelegate (
-    public int16[] block /***********************************************************
+    int16[] block /***********************************************************
     align 16
 ***********************************************************/
 );
 public delegate void FDCTDelegate (
-    public int16[] block /***********************************************************
+    int16[] block /***********************************************************
     align 16
 ***********************************************************/
 );
 public delegate void GetPixelsDelegate (
-    public int16[] block /***********************************************************
+    int16[] block /***********************************************************
     align 16 */,
     uint8[] pixels /***********************************************************
     align 8 */,
-    public size_t line_size
+    size_t line_size
 );
 
 /***********************************************************
@@ -42,7 +43,7 @@ public delegate void GetPixelsDelegate (
 @note function pointers can be null if the specific features have been
     disabled at build time.
 ***********************************************************/
-[CCode (cname="struct AVDCT", cheader_filename="ffmpeg/libavcodec/avdct.h")]
+[CCode (cname="struct AVDCT",cheader_filename="ffmpeg/libavcodec/avdct.h")]
 [Compact]
 public class DCT {
     [CCode (cname="av_class")]
@@ -98,15 +99,15 @@ public class DCT {
 
     To free it use av_free ()
     ***********************************************************/
-    [CCode (cname="avcodec_dct_alloc", cheader_filename="ffmpeg/libavcodec/avdct.h")]
+    [CCode (cname="avcodec_dct_alloc",cheader_filename="ffmpeg/libavcodec/avdct.h")]
     public DCT avcodec_dct_alloc ();
 
-    [CCode (cname="avcodec_dct_init", cheader_filename="ffmpeg/libavcodec/avdct.h")]
+    [CCode (cname="avcodec_dct_init",cheader_filename="ffmpeg/libavcodec/avdct.h")]
     public int avcodec_dct_init (
         DCT avdct
     );
 
-    [CCode (cname="avcodec_dct_get_class", cheader_filename="ffmpeg/libavcodec/avdct.h")]
+    [CCode (cname="avcodec_dct_get_class",cheader_filename="ffmpeg/libavcodec/avdct.h")]
     public LibAVUtil.Class avcodec_dct_get_class ();
 }
 

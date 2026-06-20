@@ -26,8 +26,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (MOVContext, x)
-#define FLAGS AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (MOVContext, x)
+public define FLAGS AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option mov_options[] = {
     {
         "use_absolute_path",
@@ -154,19 +155,21 @@ static const LibAVUtil.Option mov_options[] = {
             .i64 = 0}, 0, 1, FLAGS },
 
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="mov_class", cheader_filename="")]
+[CCode (cname="mov_class",cheader_filename="ffmpeg/libformat/mov.c")]
 public class MOVDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/mov.c")]
     public override string class_name {
         public get {
             return "mov,mp4,m4a,3gp,3g2,mj2";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/mov.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -175,66 +178,78 @@ public class MOVDemuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = mov_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/mov.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_mov_demuxer", cheader_filename="")]
+[CCode (cname="ff_mov_demuxer",cheader_filename="ffmpeg/libformat/mov.c")]
 public class MOVDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mov.c")]
     public override string name {
         public get {
             return "mov,mp4,m4a,3gp,3g2,mj2";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mov.c")]
     public override string long_name {
         public get {
             return "QuickTime / MOV";
+
         }
+
     }
     //  .priv_class = mov_class,
-    [CCode (cname="priv_data_size", cheader_filename="")]
+
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mov.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVContext);
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/mov.c")]
     public override string extensions {
         public get {
             return "mov,mp4,m4a,3gp,3g2,mj2";
+
         }
+
     }
 
-    [CCode (cname="mov_probe", cheader_filename="")]
+    [CCode (cname="mov_probe",cheader_filename="ffmpeg/libformat/mov.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="mov_read_header", cheader_filename="")]
+    [CCode (cname="mov_read_header",cheader_filename="ffmpeg/libformat/mov.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_read_packet", cheader_filename="")]
+    [CCode (cname="mov_read_packet",cheader_filename="ffmpeg/libformat/mov.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mov_read_close", cheader_filename="")]
+    [CCode (cname="mov_read_close",cheader_filename="ffmpeg/libformat/mov.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_read_seek", cheader_filename="")]
+    [CCode (cname="mov_read_seek",cheader_filename="ffmpeg/libformat/mov.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -242,11 +257,13 @@ public class MOVDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mov.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NO_BYTE_SEEK | AVFMT_SEEK_TO_PTS;
+
         }
+
     }
 }
 

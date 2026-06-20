@@ -16,65 +16,138 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define HIST_SIZE 4
+[CCode (cname="",cheader_filename="")]
+public define HIST_SIZE 4
 
 [CCode (cname="ff_idet_filter_func")]
-typedef int (*ff_idet_filter_func)(
-    const uint8[] a, uint8[] b, uint8[] c, int w
+public typedef int (*ff_idet_filter_func)(
+    uint8[] a,
+    uint8[] b,
+    uint8[] c,
+    int w
 );
 
+[CCode (cname="",cheader_filename="")]
 public enum Type {
+    [CCode (cname="")]
     TFF,
+
+    [CCode (cname="")]
     BFF,
+
+    [CCode (cname="")]
     PROGRESSIVE,
-    UNDETERMINED,
+
+    [CCode (cname="")]
+    UNDETERMINED;
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum RepeatedField {
+    [CCode (cname="")]
     REPEAT_NONE,
+
+    [CCode (cname="")]
     REPEAT_TOP,
-    REPEAT_BOTTOM,
+
+    [CCode (cname="")]
+    REPEAT_BOTTOM;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class IDETContext {
-    const AVClass *class;
-    float interlace_threshold;
-    float progressive_threshold;
-    float repeat_threshold;
-    float half_life;
+    [CCode (cname="")]
+    public AVClass class;
+
+    [CCode (cname="")]
+    public float interlace_threshold;
+
+    [CCode (cname="")]
+    public float progressive_threshold;
+
+    [CCode (cname="")]
+    public float repeat_threshold;
+
+    [CCode (cname="")]
+    public float half_life;
+
+    [CCode (cname="")]
     public uint64 decay_coefficient;
 
-    Type last_type;
+    [CCode (cname="")]
+    public Type last_type;
 
+    [CCode (cname="")]
     public uint64 repeats[3];
+
+    [CCode (cname="")]
     public uint64 prestat[4];
+
+    [CCode (cname="")]
     public uint64 poststat[4];
+
+    [CCode (cname="")]
     public uint64 total_repeats[3];
+
+    [CCode (cname="")]
     public uint64 total_prestat[4];
+
+    [CCode (cname="")]
     public uint64 total_poststat[4];
 
+    [CCode (cname="")]
     public uint8 history[HIST_SIZE];
 
+    [CCode (cname="")]
     public AVFrame cur;
-    public AVFrame next;
-    public AVFrame prev;
-    ff_idet_filter_func filter_line;
 
+    [CCode (cname="")]
+    public AVFrame next;
+
+    [CCode (cname="")]
+    public AVFrame prev;
+
+    [CCode (cname="")]
+    public ff_idet_filter_func filter_line;
+
+    [CCode (cname="")]
     public int interlaced_flag_accuracy;
+
+    [CCode (cname="")]
     public int analyze_interlaced_flag;
+
+    [CCode (cname="")]
     public int analyze_interlaced_flag_done;
 
-    const AVPixFmtDescriptor *csp;
+    [CCode (cname="")]
+    public VPixFmtDescriptor csp;
+
+    [CCode (cname="")]
     public int eof;
 }
 
-public void ff_idet_init_x86 (IDETContext *idet, int for_16b);
+[CCode (cname="",cheader_filename="")]
+public void ff_idet_init_x86 (
+    IDETContext *idet,
+    int for_16b
+);
 
 /***********************************************************
 main fall-back for left-over
 ***********************************************************/
-public int ff_idet_filter_line_c (const uint8[] a, uint8[] b, uint8[] c, int w);
-public int ff_idet_filter_line_c_16bit (const uint16 *a, uint16 *b, uint16 *c, int w);
+[CCode (cname="",cheader_filename="")]
+public int ff_idet_filter_line_c (
+    uint8[] a,
+    uint8[] b,
+    uint8[] c,
+    int w
+);
 
-#endif
+[CCode (cname="",cheader_filename="")]
+public int ff_idet_filter_line_c_16bit (
+    const uint16[] a,
+    uint16[] b,
+    uint16[] c,
+    int w
+);

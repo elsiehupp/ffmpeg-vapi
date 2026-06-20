@@ -54,7 +54,7 @@ av_packet_ref () and freed by av_packet_unref ().
 @see @link av_packet_ref
 @see @link av_packet_unref
 ***********************************************************/
-[CCode (cname="struct AVPacket", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVPacket",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class Packet {
     /***********************************************************
@@ -138,7 +138,7 @@ public class Packet {
 
     @see @link av_new_packet
     ***********************************************************/
-    [CCode (cname="av_packet_alloc", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_alloc",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Packet av_packet_alloc ();
 
     /***********************************************************
@@ -151,7 +151,7 @@ public class Packet {
     @see @link av_packet_alloc
     @see @link av_packet_ref
     ***********************************************************/
-    [CCode (cname="av_packet_clone", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_clone",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public Packet av_packet_clone (
         Packet input_packet
     );
@@ -163,7 +163,7 @@ public class Packet {
     @param packet packet to be freed. The pointer will be set to null.
     @note passing null is a no-op.
     ***********************************************************/
-    [CCode (cname="av_packet_free", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_free",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_packet_free (
         Packet packet
     );
@@ -176,7 +176,7 @@ public class Packet {
 
     @param packet packet
     ***********************************************************/
-    [CCode (cname="av_init_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_init_packet",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_init_packet (
         Packet packet
     );
@@ -189,7 +189,7 @@ public class Packet {
     @param size wanted payload size
     @return 0 if OK, LibAVUtil.ErrorCode otherwise
     ***********************************************************/
-    [CCode (cname="av_new_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_new_packet",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_new_packet (
         Packet packet,
         int size
@@ -201,7 +201,7 @@ public class Packet {
     @param packet packet
     @param size new size
     ***********************************************************/
-    [CCode (cname="av_shrink_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_shrink_packet",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_shrink_packet (
         Packet packet,
         int size
@@ -213,7 +213,7 @@ public class Packet {
     @param packet packet
     @param grow_by number of bytes by which to increase the size of the packet
     ***********************************************************/
-    [CCode (cname="av_grow_packet", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_grow_packet",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_grow_packet (
         Packet packet,
         int grow_by
@@ -232,7 +232,7 @@ public class Packet {
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on error
     ***********************************************************/
-    [CCode (cname="av_packet_from_data", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_from_data",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_from_data (
         Packet packet,
         uint8[] data,
@@ -266,7 +266,7 @@ public class Packet {
         failure. On failure, the packet is unchanged and the data remains
         owned by the caller.
     ***********************************************************/
-    [CCode (cname="av_packet_add_side_data", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_add_side_data",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_add_side_data (
         Packet packet,
         PacketSideDataType type,
@@ -282,7 +282,7 @@ public class Packet {
     @param size new side information size
     @return 0 on success, < 0 on failure
     ***********************************************************/
-    [CCode (cname="av_packet_shrink_side_data", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_shrink_side_data",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_shrink_side_data (
         Packet packet,
         PacketSideDataType type,
@@ -309,7 +309,7 @@ public class Packet {
 
     @param packet packet
     ***********************************************************/
-    [CCode (cname="av_packet_free_side_data", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_free_side_data",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_packet_free_side_data (
         Packet packet
     );
@@ -330,7 +330,7 @@ public class Packet {
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on error.
     ***********************************************************/
-    [CCode (cname="av_packet_ref", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_ref",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_ref (
         Packet output_packet,
         Packet input_packet
@@ -344,7 +344,7 @@ public class Packet {
 
     @param packet The packet to be unreferenced.
     ***********************************************************/
-    [CCode (cname="av_packet_unref", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_unref",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_packet_unref (
         Packet packet
     );
@@ -357,7 +357,7 @@ public class Packet {
     @param input_packet Source packet, will be reset
     @param output_packet Destination packet
     ***********************************************************/
-    [CCode (cname="av_packet_move_ref", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_move_ref",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_packet_move_ref (
         Packet output_packet,
         Packet input_packet
@@ -374,7 +374,7 @@ public class Packet {
 
     @return 0 on success LibAVUtil.ErrorCode on failure.
     ***********************************************************/
-    [CCode (cname="av_packet_copy_props", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_copy_props",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_copy_props (
         Packet output_packet,
         Packet input_packet
@@ -394,7 +394,7 @@ public class Packet {
     @return 0 on success, a negative LibAVUtil.ErrorCode on error. On failure, the
         packet is unchanged.
     ***********************************************************/
-    [CCode (cname="av_packet_make_refcounted", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_make_refcounted",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_make_refcounted (
         Packet packet
     );
@@ -408,7 +408,7 @@ public class Packet {
     @return 0 on success, a negative LibAVUtil.ErrorCode on failure. On failure, the
         packet is unchanged.
     ***********************************************************/
-    [CCode (cname="av_packet_make_writable", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_make_writable",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_packet_make_writable (
         Packet packet
     );
@@ -424,7 +424,7 @@ public class Packet {
     @param tb_dst output_packet timebase, to which the timing fields will be
         converted
     ***********************************************************/
-    [CCode (cname="av_packet_rescale_ts", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_packet_rescale_ts",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_packet_rescale_ts (
         Packet packet,
         LibAVUtil.Rational tb_src,

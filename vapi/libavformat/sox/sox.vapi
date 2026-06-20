@@ -25,10 +25,10 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Size of fixed header without magic
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/sox.h")]
 public const size_t SOX_FIXED_HDR;
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/sox.h")]
 public const uint32 SOX_TAG; // MKTAG ('.', 'S', 'o', 'X')
 
 } // namespace LibAVFormat

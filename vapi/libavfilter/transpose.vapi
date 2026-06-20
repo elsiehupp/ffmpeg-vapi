@@ -15,15 +15,17 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-#ifndef AVFILTER_TRANSPOSE_H
-#define AVFILTER_TRANSPOSE_H
+#if !AVFILTER_TRANSPOSE_H
+public define AVFILTER_TRANSPOSE_H
 
+[CCode (cname="",cheader_filename="")]
 public enum PassthroughType {
     TRANSPOSE_PT_TYPE_NONE,
     TRANSPOSE_PT_TYPE_LANDSCAPE,
     TRANSPOSE_PT_TYPE_PORTRAIT;
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum TransposeDir {
     TRANSPOSE_CCLOCK_FLIP,
     TRANSPOSE_CLOCK,

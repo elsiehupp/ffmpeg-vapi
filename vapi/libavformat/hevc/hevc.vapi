@@ -44,13 +44,13 @@ discarded, and *ps_count will be set to the number of discarded PS NAL units.
 @return the amount (in bytes) of data written in case of success, a negative
     value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/hevc.h")]
 public int ff_hevc_annexb2mp4 (
     AVIOContext pb,
     uint8[] buf_in,
-    public int size,
-    public int filter_ps,
-    public int[] ps_count
+    int size,
+    int filter_ps,
+    int[] ps_count
 );
 
 /***********************************************************
@@ -76,13 +76,13 @@ On output, *size holds the size (in bytes) of the output data buffer.
 @return the amount (in bytes) of data written in case of success, a negative
      value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/hevc.h")]
 public int ff_hevc_annexb2mp4_buf (
     uint8[] buf_in,
     out uint8[] buf_out,
-    public int[] size,
-    public int filter_ps,
-    public int[] ps_count
+    int[] size,
+    int filter_ps,
+    int[] ps_count
 );
 
 /***********************************************************
@@ -100,12 +100,12 @@ writing.
 @return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
      code in case of failure
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/hevc.h")]
 public int ff_isom_write_hvcc (
     AVIOContext pb,
     uint8[] data,
-    public int size,
-    public int ps_array_completeness
+    int size,
+    int ps_array_completeness
 );
 
 } // namespace LibAVFormat

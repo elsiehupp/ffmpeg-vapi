@@ -22,42 +22,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_mkvtimestamp_v2_muxer", cheader_filename="")]
+[CCode (cname="ff_mkvtimestamp_v2_muxer",cheader_filename="")]
 public class MKVTimeStampV2Muxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "mkvtimestamp_v2";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "extract pts as timecode v2 format, as defined by mkvtoolnix";
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
+
         }
+
     }
 
-    [CCode (cname="write_header", cheader_filename="")]
+    [CCode (cname="write_header",cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="write_packet", cheader_filename="")]
+    [CCode (cname="write_packet",cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

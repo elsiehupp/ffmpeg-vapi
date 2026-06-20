@@ -29,7 +29,7 @@ namespace LibAVFormat {
 @param buffer handshake data (1536 bytes)
 @return zero on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpcrypt.h")]
 public int ff_rtmpe_gen_pub_key (
     URLContext url_context,
     uint8[] buffer
@@ -44,12 +44,12 @@ public int ff_rtmpe_gen_pub_key (
 @param type the position of the server digest
 @return zero on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpcrypt.h")]
 public int ff_rtmpe_compute_secret_key (
     URLContext url_context,
     uint8[] serverdata,
     uint8[] clientdata,
-    public int type
+    int type
 );
 
 /***********************************************************
@@ -60,12 +60,12 @@ public int ff_rtmpe_compute_secret_key (
 @param digest the digest used for finding the encryption key
 @param type type of encryption (8 for XTEA, 9 for Blowfish)
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpcrypt.h")]
 public void ff_rtmpe_encrypt_sig (
     URLContext url_context,
     uint8[] signature,
     uint8[] digest,
-    public int type
+    int type
 );
 
 /***********************************************************
@@ -74,7 +74,7 @@ public void ff_rtmpe_encrypt_sig (
 @param h an URLContext
 @return zero on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpcrypt.h")]
 public int ff_rtmpe_update_keystream (
     URLContext url_context
 );

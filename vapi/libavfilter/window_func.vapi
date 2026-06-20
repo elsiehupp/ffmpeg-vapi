@@ -18,6 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum WindowFunc {
     WFUNC_RECT,
     WFUNC_HANNING,
@@ -42,5 +43,9 @@ public enum WindowFunc {
     NB_WFUNC
 }
 
-static inline void generate_window_func (float *lut, int N, int win_func,
-                                        float *overlap);
+static inline void generate_window_func (
+    float[] lut,
+    int N,
+    int win_func,
+    float[] overlap
+);

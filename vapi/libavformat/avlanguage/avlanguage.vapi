@@ -24,19 +24,24 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Known language codespaces
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avlanguage.h")]
 public enum AVLangCodespace {
     /***********************************************************
     3-char bibliographic language codes as per ISO-IEC 639-2
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avlanguage.h")]
     AV_LANG_ISO639_2_BIBL,
+
     /***********************************************************
     3-char terminological language codes as per ISO-IEC 639-2
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avlanguage.h")]
     AV_LANG_ISO639_2_TERM,
+
     /***********************************************************
     2-char code of language as per ISO/IEC 639-1
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avlanguage.h")]
     AV_LANG_ISO639_1
 }
 
@@ -44,7 +49,7 @@ public enum AVLangCodespace {
 @brief Convert a language code to a target codespace. The source codespace is guessed.
 @return NULL if the provided lang is null or invalid.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avlanguage.h")]
 public string ff_convert_lang_to (
     string lang,
     AVLangCodespace target_codespace

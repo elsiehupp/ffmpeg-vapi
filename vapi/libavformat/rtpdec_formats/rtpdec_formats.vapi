@@ -27,13 +27,13 @@ namespace LibAVFormat {
 
 @param format_context RTSP demux context
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
 public int ff_wms_parse_sdp_a_line (
     AVFormatContext format_context,
     string p
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h263_handle_packet (
     AVFormatContext format_context,
     PayloadContext data,
@@ -41,12 +41,12 @@ public int ff_h263_handle_packet (
     LibAVCodec.Packet packet,
     out uint32 timestamp,
     uint8[] buffer,
-    public int len,
+    int len,
     uint16 seq,
-    public int flags
+    int flags
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h264_parse_sprop_parameter_sets (
     AVFormatContext format_context,
     out uint8[] data_ptr,
@@ -54,29 +54,29 @@ public int ff_h264_parse_sprop_parameter_sets (
     string value
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h264_handle_aggregated_packet (
     AVFormatContext format_context,
     PayloadContext data,
     LibAVCodec.Packet packet,
     uint8[] buffer,
-    public int len,
-    public int start_skip,
-    public int[] nal_counters,
-    public int nal_mask
+    int len,
+    int start_skip,
+    int[] nal_counters,
+    int nal_mask
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h264_handle_frag_packet (
     LibAVCodec.Packet packet,
     uint8[] buffer,
-    public int len,
-    public int start_bit,
+    int len,
+    int start_bit,
     uint8[] nal_header,
-    public int nal_header_len
+    int nal_header_len
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
 public void ff_h264_parse_framesize (
     LibAVCodec.CodecParameters par,
     string p

@@ -24,11 +24,11 @@ namespace LibAVFormat {
 
 //  #define RETURN_ERROR (code) do { ret = (code); goto fail; } while (0)
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/flag_picture.h")]
 public int ff_flac_parse_picture (
     AVFormatContext format_context,
     uint8[] buffer,
-    public int buf_size
+    int buf_size
 );
 
 } // namespace LibAVFormat

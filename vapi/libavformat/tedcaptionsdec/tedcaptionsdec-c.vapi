@@ -33,19 +33,21 @@ static const LibAVUtil.Option tedcaptions_options[] = {
         AV_OPT_FLAG_SUBTITLE_PARAM | AV_OPT_FLAG_DECODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="tedcaptions_demuxer_class", cheader_filename="")]
+[CCode (cname="tedcaptions_demuxer_class",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
 public class TedCaptionsDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override string class_name {
         public get {
             return "tedcaptions_demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -54,63 +56,73 @@ public class TedCaptionsDemuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = tedcaptions_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct TEDCaptionsDemuxer", cheader_filename="")]
+[CCode (cname="struct TEDCaptionsDemuxer",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
 [Compact]
 public class TedCaptionsDemuxerPrivateData { }
 
-[CCode (cname="ff_tedcaptions_demuxer", cheader_filename="")]
+[CCode (cname="ff_tedcaptions_demuxer",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
 public class TedCaptionsDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override string name {
         public get {
             return "tedcaptions";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override string long_name {
         public get {
             return "TED Talks captions";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TedCaptionsDemuxerPrivateData);
+
         }
+
     }
     //  .priv_class = tedcaptions_demuxer_class,
-    [CCode (cname="tedcaptions_read_header", cheader_filename="")]
+
+    [CCode (cname="tedcaptions_read_header",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="tedcaptions_read_packet", cheader_filename="")]
+    [CCode (cname="tedcaptions_read_packet",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="tedcaptions_read_close", cheader_filename="")]
+    [CCode (cname="tedcaptions_read_close",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="tedcaptions_read_probe", cheader_filename="")]
+    [CCode (cname="tedcaptions_read_probe",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="tedcaptions_read_seek", cheader_filename="")]
+    [CCode (cname="tedcaptions_read_seek",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,

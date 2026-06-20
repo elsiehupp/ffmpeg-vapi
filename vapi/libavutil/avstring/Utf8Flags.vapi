@@ -20,20 +20,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_UTF8_FLAG_", cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cprefix="AV_UTF8_FLAG_",cheader_filename="ffmpeg/libavutil/avstring.h")]
 public enum Utf8Flags {
     /***********************************************************
     @brief Accept codepoints over 0x10FFFF
     ***********************************************************/
     ACCEPT_INVALID_BIG_CODES,
+
     /***********************************************************
     @brief Accept non-characters - 0xFFFE and 0xFFFF
     ***********************************************************/
     ACCEPT_NON_CHARACTERS,
+
     /***********************************************************
     @brief Accept UTF-16 surrogates codes
     ***********************************************************/
     ACCEPT_SURROGATES,
+
     /***********************************************************
     @brief Exclude control codes not accepted by XML
     ***********************************************************/

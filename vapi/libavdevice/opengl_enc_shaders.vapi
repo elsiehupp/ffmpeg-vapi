@@ -40,6 +40,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGBA_PACKET =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
+
     "uniform sampler2D u_texture0;"
     "uniform mat4 u_colorMap;"
 
@@ -57,6 +58,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGB_PACKET =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
+
     "uniform sampler2D u_texture0;"
     "uniform mat4 u_colorMap;"
 
@@ -74,6 +76,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGBA_PLANAR =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
+
     "uniform sampler2D u_texture0;"
     "uniform sampler2D u_texture1;"
     "uniform sampler2D u_texture2;"
@@ -96,6 +99,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGB_PLANAR =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
+
     "uniform sampler2D u_texture0;"
     "uniform sampler2D u_texture1;"
     "uniform sampler2D u_texture2;"
@@ -117,6 +121,7 @@ static string  const  FF_OPENGL_FRAGMENT_SHADER_YUV_PLANAR =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
+
     "uniform sampler2D u_texture0;"
     "uniform sampler2D u_texture1;"
     "uniform sampler2D u_texture2;"
@@ -146,6 +151,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_YUVA_PLANAR =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
+
     "uniform sampler2D u_texture0;"
     "uniform sampler2D u_texture1;"
     "uniform sampler2D u_texture2;"
@@ -172,6 +178,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_GRAY =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
+
     "uniform sampler2D u_texture0;"
     "varying vec2 texture_coordinate;"
     "void main ()"

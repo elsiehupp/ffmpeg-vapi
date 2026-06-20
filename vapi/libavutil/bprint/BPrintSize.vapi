@@ -26,11 +26,11 @@ namespace LibAVUtil {
 @brief Convenience macros for special values for av_bprint_init () size_max
 parameter.
 ***********************************************************/
-[CCode (cprefix="AV_BPRINT_SIZE_", cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cprefix="AV_BPRINT_SIZE_",cheader_filename="ffmpeg/libavutil/bprint.h")]
 public enum BPrintSize {
     UNLIMITED,
     AUTOMATIC,
-    COUNT_ONLY,
+    COUNT_ONLY;
 }
 
 } // namespace LibAVUtil

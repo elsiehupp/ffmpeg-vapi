@@ -27,116 +27,140 @@ namespace LibAVFormat {
 Only mono files are supported.
 ***********************************************************/
 #if CONFIG_AMRWB_DEMUXER
-[CCode (cname="ff_amrwb_demuxer", cheader_filename="")]
+
+[CCode (cname="ff_amrwb_demuxer",cheader_filename="ffmpeg/libformat/amr.c")]
 public class AMRWBDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/amr.c")]
     public override string name {
         public get {
             return "amrwb";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/amr.c")]
     public override string long_name {
         public get {
             return "raw AMR-WB";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/amr.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AMRContext);
+
         }
+
     }
 
-    [CCode (cname="amrwb_probe", cheader_filename="")]
+    [CCode (cname="amrwb_probe",cheader_filename="ffmpeg/libformat/amr.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="amrwb_read_header", cheader_filename="")]
+    [CCode (cname="amrwb_read_header",cheader_filename="ffmpeg/libformat/amr.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="amr_read_packet", cheader_filename="")]
+    [CCode (cname="amr_read_packet",cheader_filename="ffmpeg/libformat/amr.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/amr.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 }
 #endif
 
 #if CONFIG_AMR_MUXER
-[CCode (cname="ff_amr_muxer", cheader_filename="")]
+
+[CCode (cname="ff_amr_muxer",cheader_filename="ffmpeg/libformat/amr.c")]
 public class AmrMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/amr.c")]
     public override string name {
         public get {
             return "amr";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/amr.c")]
     public override string long_name {
         public get {
             return "3GPP AMR";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/amr.c")]
     public override string mime_type {
         public get {
             return "audio/amr";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/amr.c")]
     public override string extensions {
         public get {
             return "amr";
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/amr.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AMR_NB;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/amr.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
+
         }
+
     }
 
-    [CCode (cname="amr_write_header", cheader_filename="")]
+    [CCode (cname="amr_write_header",cheader_filename="ffmpeg/libformat/amr.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="amr_write_packet", cheader_filename="")]
+    [CCode (cname="amr_write_packet",cheader_filename="ffmpeg/libformat/amr.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/amr.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
+
         }
+
     }
 }
 #endif

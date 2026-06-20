@@ -25,14 +25,14 @@ namespace LibAVFormat {
 //  extern string const ff_rm_metadata[4];
 //  extern const AVCodecTag ff_rm_codec_tags[];
 
-[CCode (cname="struct RMStream", cheader_filename="")]
+[CCode (cname="struct RMStream",cheader_filename="ffmpeg/libformat/rm.h")]
 [Compact]
 public class RMStream { }
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rm.h")]
 public RMStream ff_rm_alloc_rmstream ();
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rm.h")]
 public void ff_rm_free_rmstream (
     RMStream rms
 );
@@ -54,12 +54,12 @@ parameters.
 @param codec_data_size size of the MDPR chunk
 @return 0 on success, errno codes on error
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rm.h")]
 public int ff_rm_read_mdpr_codecdata (
     AVFormatContext format_context,
     AVIOContext pb,
     AVStream st, RMStream rst,
-    public uint codec_data_size,
+    uint codec_data_size,
     uint8[] mime
 );
 
@@ -80,17 +80,17 @@ public int ff_rm_read_mdpr_codecdata (
     value >0 means that no data was placed in packet, but that cached
     data is available by calling ff_rm_retrieve_cache ().
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rm.h")]
 public int ff_rm_parse_packet (
     AVFormatContext format_context,
     AVIOContext pb,
     AVStream st,
     RMStream rst,
-    public int len,
+    int len,
     LibAVCodec.Packet packet,
     out int seq,
-    public int flags,
-    public int64 ts
+    int flags,
+    int64 ts
 );
 
 /***********************************************************
@@ -109,7 +109,7 @@ of those packets can be retrieved sequentially.
 @return the number of samples left for subsequent calls to this same
      function, or 0 if all samples have been retrieved.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rm.h")]
 public int ff_rm_retrieve_cache (
     AVFormatContext format_context,
     AVIOContext pb,

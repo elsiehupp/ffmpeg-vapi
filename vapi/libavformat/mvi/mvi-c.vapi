@@ -22,49 +22,57 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct MviDemuxContext", cheader_filename="")]
+[CCode (cname="struct MviDemuxContext",cheader_filename="")]
 [Compact]
 public class MVIDemuxerPrivateData { }
 
-[CCode (cname="ff_mvi_demuxer", cheader_filename="")]
+[CCode (cname="ff_mvi_demuxer",cheader_filename="")]
 public class MVIDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "mvi";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Motion Pixels MVI";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MVIDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="read_header", cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet", cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "mvi";
+
         }
+
     }
 }
 

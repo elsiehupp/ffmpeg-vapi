@@ -37,16 +37,18 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="tls_class", cheader_filename="")]
+[CCode (cname="tls_class",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
 public class MbedTLSURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override string class_name {
         public get {
             return "tls";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -55,31 +57,35 @@ public class MbedTLSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct TLSContext", cheader_filename="")]
+[CCode (cname="struct TLSContext",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
 [Compact]
 public class MbedTLSPrivateData { }
 
-[CCode (cname="ff_tls_protocol", cheader_filename="")]
+[CCode (cname="ff_tls_protocol",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
 public class MbedTLSURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override string name {
         public get {
             return "tls";
+
         }
+
     }
 
-    [CCode (cname="tls_open", cheader_filename="")]
+    [CCode (cname="tls_open",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -87,44 +93,48 @@ public class MbedTLSURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="tls_read", cheader_filename="")]
+    [CCode (cname="tls_read",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="tls_write", cheader_filename="")]
+    [CCode (cname="tls_write",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="tls_close", cheader_filename="")]
+    [CCode (cname="tls_close",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="tls_get_file_handle", cheader_filename="")]
+    [CCode (cname="tls_get_file_handle",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MbedTLSPrivateData);
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
+
         }
+
     }
-    //  .priv_data_class = tls_class,
+    //  .priv_data_class = tls_class;
 }
 
 } // namespace LibAVFormat

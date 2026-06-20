@@ -60,19 +60,21 @@ static const LibAVUtil.Option options[] = {
       AV_OPT_FLAG_DECODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="demuxer_class", cheader_filename="")]
+[CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/mfxdec.c")]
 public class MXFDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override string class_name {
         public get {
             return "mxf";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -81,81 +83,91 @@ public class MXFDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER,
+    //  .category = AV_CLASS_CATEGORY_DEMUXER;
 }
 
-[CCode (cname="struct MXFContext", cheader_filename="")]
+[CCode (cname="struct MXFContext",cheader_filename="ffmpeg/libformat/mfxdec.c")]
 [Compact]
 public class MXFDemuxerPrivateData { }
 
-[CCode (cname="ff_mxf_demuxer", cheader_filename="")]
+[CCode (cname="ff_mxf_demuxer",cheader_filename="ffmpeg/libformat/mfxdec.c")]
 public class MXFDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override string name {
         public get {
             return "mxf";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override string long_name {
         public get {
             return "MXF (Material eXchange Format)";
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_SEEK_TO_PTS;
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MXFDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="mxf_probe", cheader_filename="")]
+    [CCode (cname="mxf_probe",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="mxf_read_header", cheader_filename="")]
+    [CCode (cname="mxf_read_header",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mxf_read_packet", cheader_filename="")]
+    [CCode (cname="mxf_read_packet",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mxf_read_close", cheader_filename="")]
+    [CCode (cname="mxf_read_close",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mxf_read_seek", cheader_filename="")]
+    [CCode (cname="mxf_read_seek",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    //  .priv_class = demuxer_class,
+    //  .priv_class = demuxer_class;
 }
 
 } // namespace LibAVFormat

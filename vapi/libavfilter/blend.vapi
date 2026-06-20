@@ -18,6 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum BlendMode {
     BLEND_UNSET = -1,
     BLEND_NORMAL,
@@ -56,22 +57,43 @@ public enum BlendMode {
     BLEND_NB
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class FilterParams {
+    [CCode (cname="")]
     public BlendMode mode;
+
     double opacity;
+
     AVExpr *e;
+
     string expr_str;
+
     [CCode (cname="blend")]
     public void (*blend)(
-        const uint8[] top, ptrdiff_t top_linesize,
-        uint8[] bottom, ptrdiff_t bottom_linesize,
-        uint8[] dst, ptrdiff_t dst_linesize,
-        ptrdiff_t width, ptrdiff_t height,
-        struct FilterParams *param, double[] values, int starty
+        uint8[] top,
+        ptrdiff_t top_linesize,
+        uint8[] bottom,
+        ptrdiff_t bottom_linesize,
+        uint8[] dst,
+        ptrdiff_t dst_linesize,
+        ptrdiff_t width,
+        ptrdiff_t height,
+        struct FilterParams *param,
+        double[] values,
+        int starty
     );
 
 }
 
-public void ff_blend_init (FilterParams *param, int depth);
-public void ff_blend_init_x86 (FilterParams *param, int depth);
+[CCode (cname="",cheader_filename="")]
+public void ff_blend_init (
+    FilterParams *param,
+    int depth
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_blend_init_x86 (
+    FilterParams *param,
+    int depth
+);

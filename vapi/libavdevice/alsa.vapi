@@ -34,49 +34,73 @@ XXX: we make the assumption that the soundcard accepts this format
 XXX: find better solution with "preinit" method, needed also in
         other formats
 ***********************************************************/
-#define DEFAULT_CODEC_ID AV_NE (AV_CODEC_ID_PCM_S16BE, AV_CODEC_ID_PCM_S16LE)
+public define DEFAULT_CODEC_ID AV_NE (AV_CODEC_ID_PCM_S16BE, AV_CODEC_ID_PCM_S16LE)
 
 [CCode (cname="ff_reorder_func")]
-typedef void (*ff_reorder_func)(const void *, void *, int);
+public typedef void (*ff_reorder_func)(
+    const void *,
+    void *,
+    int
+);
 
-#define ALSA_BUFFER_SIZE_MAX 131072
+[CCode (cname="",cheader_filename="")]
+public define ALSA_BUFFER_SIZE_MAX 131072
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AlsaData {
     AVClass *class;
+
     snd_pcm_t *h;
+
     /***********************************************************
     bytes per sample * channels
     ***********************************************************/
+    [CCode (cname="")]
     public int frame_size;
+
     /***********************************************************
     preferred size for reads and writes, in frames
     ***********************************************************/
+    [CCode (cname="")]
     public int period_size;
+
     /***********************************************************
     sample rate set by user
     ***********************************************************/
+    [CCode (cname="")]
     public int sample_rate;
+
     /***********************************************************
     number of channels set by user
     ***********************************************************/
+    [CCode (cname="")]
     public int channels;
+
+    [CCode (cname="")]
     public int last_period;
+
     TimeFilter *timefilter;
 
     [CCode (cname="reorder_func")]
     public void (*reorder_func)(
-        const void *, void *, int
+        const void *,
+        void *,
+        int
     );
 
     void *reorder_buf;
+
     /***********************************************************
     in frames
     ***********************************************************/
+    [CCode (cname="")]
     public int reorder_buf_size;
+
     /***********************************************************
     current timestamp, without latency applied.
     ***********************************************************/
+    [CCode (cname="")]
     public int64 timestamp;
 }
 
@@ -106,6 +130,7 @@ Close the ALSA PCM.
 
 @return 0
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int ff_alsa_close (AVFormatContext *s1);
 
 /***********************************************************
@@ -117,10 +142,19 @@ Try to recover from ALSA buffer underrun.
 @return 0 if OK, AVERROR_xxx on error
 ***********************************************************/
 av_warn_unused_result
-public int ff_alsa_xrun_recover (AVFormatContext *s1, int err);
+public int ff_alsa_xrun_recover (
+    AVFormatContext *s1,
+    int err
+);
 
 av_warn_unused_result
-public int ff_alsa_extend_reorder_buf (AlsaData *s, int size);
+public int ff_alsa_extend_reorder_buf (
+    AlsaData *s,
+    int size
+);
 
 av_warn_unused_result
-public int ff_alsa_get_device_list (AVDeviceInfoList *device_list, snd_pcm_stream_t stream_type);
+public int ff_alsa_get_device_list (
+    AVDeviceInfoList *device_list,
+    snd_pcm_stream_t stream_type
+);

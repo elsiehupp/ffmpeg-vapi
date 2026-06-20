@@ -26,12 +26,13 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileH264 {
     /***********************************************************
     @note 8+1; constraint_set1_flag
     ***********************************************************/
     FF_PROFILE_H264_CONSTRAINED,
+
     /***********************************************************
     @note 8+3; constraint_set3_flag
     ***********************************************************/
@@ -51,7 +52,7 @@ public enum ProfileH264 {
     FF_PROFILE_H264_HIGH_444,
     FF_PROFILE_H264_HIGH_444_PREDICTIVE,
     FF_PROFILE_H264_HIGH_444_INTRA,
-    FF_PROFILE_H264_CAVLC_444,
+    FF_PROFILE_H264_CAVLC_444;
 }
 
 } // namespace LibAVCodec

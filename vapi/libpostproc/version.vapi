@@ -23,16 +23,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Libpostproc version macros
 ***********************************************************/
 
-#define LIBPOSTPROC_VERSION_MAJOR  55
-#define LIBPOSTPROC_VERSION_MINOR   5
-#define LIBPOSTPROC_VERSION_MICRO 100
+[CCode (cname="",cheader_filename="")]
+public define LIBPOSTPROC_VERSION_MAJOR  55
+public define LIBPOSTPROC_VERSION_MINOR   5
+public define LIBPOSTPROC_VERSION_MICRO 100
 
-#define LIBPOSTPROC_VERSION_INT AV_VERSION_INT (LIBPOSTPROC_VERSION_MAJOR, \
+[CCode (cname="",cheader_filename="")]
+public define LIBPOSTPROC_VERSION_INT AV_VERSION_INT (LIBPOSTPROC_VERSION_MAJOR, \
                                                LIBPOSTPROC_VERSION_MINOR, \
                                                LIBPOSTPROC_VERSION_MICRO)
-#define LIBPOSTPROC_VERSION     AV_VERSION (LIBPOSTPROC_VERSION_MAJOR, \
+public define LIBPOSTPROC_VERSION     AV_VERSION (LIBPOSTPROC_VERSION_MAJOR, \
                                            LIBPOSTPROC_VERSION_MINOR, \
                                            LIBPOSTPROC_VERSION_MICRO)
-#define LIBPOSTPROC_BUILD       LIBPOSTPROC_VERSION_INT
+public define LIBPOSTPROC_BUILD       LIBPOSTPROC_VERSION_INT
 
-#define LIBPOSTPROC_IDENT       "postproc" AV_STRINGIFY (LIBPOSTPROC_VERSION)
+[CCode (cname="",cheader_filename="")]
+public define LIBPOSTPROC_IDENT       "postproc" AV_STRINGIFY (LIBPOSTPROC_VERSION)

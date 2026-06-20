@@ -116,16 +116,18 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="prompeg_class", cheader_filename="")]
+[CCode (cname="prompeg_class",cheader_filename="ffmpeg/libformat/prompeg.c")]
 public class ProMpegURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override string class_name {
         public get {
             return "prompeg";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -134,63 +136,71 @@ public class ProMpegURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct PrompegContext", cheader_filename="")]
+[CCode (cname="struct PrompegContext",cheader_filename="ffmpeg/libformat/prompeg.c")]
 [Compact]
 public class ProMpegPrivateData { }
 
-[CCode (cname="ff_prompeg_protocol", cheader_filename="")]
+[CCode (cname="ff_prompeg_protocol",cheader_filename="ffmpeg/libformat/prompeg.c")]
 public class ProMpegURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override string name {
         public get {
             return "prompeg";
+
         }
+
     }
 
-    [CCode (cname="prompeg_open", cheader_filename="")]
+    [CCode (cname="prompeg_open",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="prompeg_write", cheader_filename="")]
+    [CCode (cname="prompeg_write",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="prompeg_close", cheader_filename="")]
+    [CCode (cname="prompeg_close",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ProMpegPrivateData);
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
+
         }
+
     }
-    //  .priv_data_class = prompeg_class,
+    //  .priv_data_class = prompeg_class;
 }
 
 } // namespace LibAVFormat

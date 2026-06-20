@@ -20,6 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum DecklinkPtsSource {
     PTS_SRC_AUDIO = 1,
     PTS_SRC_VIDEO = 2,
@@ -29,15 +30,17 @@ public enum DecklinkPtsSource {
     PTS_SRC_NB
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class decklink_cctx {
-    const AVClass *cclass;
+    public AVClass cclass;
 
     void *ctx;
 
     /***********************************************************
     Options
     ***********************************************************/
+    [CCode (cname="")]
     public int list_devices;
     public int list_formats;
     public int64 teletext_lines;

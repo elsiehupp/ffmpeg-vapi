@@ -25,26 +25,26 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Platform-specific
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
 [Compact]
 public class FFBigNum { }
 
-[CCode (cname="struct FF_DH", cheader_filename="")]
+[CCode (cname="struct FF_DH",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
 [Compact]
 public class FF_DH {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
     public FFBigNum p;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
     public FFBigNum g;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
     public FFBigNum pub_key;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
     public FFBigNum priv_key;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
     public long length;
 }
 
@@ -55,9 +55,9 @@ public class FF_DH {
 @param key_len length of the key
 @return a new Diffie-Hellmann context on success, NULL otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
 public FF_DH ff_dh_init (
-    public int key_len
+    int key_len
 );
 
 /***********************************************************
@@ -65,7 +65,7 @@ public FF_DH ff_dh_init (
 
 @param dh a Diffie-Hellmann context to free
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
 public void ff_dh_free (
     FF_DH dh
 );
@@ -76,7 +76,7 @@ public void ff_dh_free (
 @param dh a Diffie-Hellmann context
 @return zero on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
 public int ff_dh_generate_public_key (
     FF_DH dh
 );
@@ -89,11 +89,11 @@ public int ff_dh_generate_public_key (
 @param pub_key_len the length of the buffer
 @return zero on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
 public int ff_dh_write_public_key (
     FF_DH dh,
     uint8[] pub_key,
-    public int pub_key_len
+    int pub_key_len
 );
 
 /***********************************************************
@@ -107,13 +107,13 @@ other party's public value.
 @param secret_key_len the length of the secret key buffer
 @return length of the shared secret key on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmpdh.h")]
 public int ff_dh_compute_shared_secret_key (
     FF_DH dh,
     uint8[] pub_key,
-    public int pub_key_len,
+    int pub_key_len,
     uint8[] secret_key,
-    public int secret_key_len
+    int secret_key_len
 );
 
 } // namespace LibAVFormat

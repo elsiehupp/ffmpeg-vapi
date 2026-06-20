@@ -25,10 +25,12 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 temporal field interlace filter, ported from MPlayer/libmpcodecs
 ***********************************************************/
 
-#define TINTERLACE_FLAG_VLPF 01
-#define TINTERLACE_FLAG_CVLPF 2
-#define TINTERLACE_FLAG_EXACT_TB 4
+[CCode (cname="",cheader_filename="")]
+public define TINTERLACE_FLAG_VLPF 01
+public define TINTERLACE_FLAG_CVLPF 2
+public define TINTERLACE_FLAG_EXACT_TB 4
 
+[CCode (cname="",cheader_filename="")]
 public enum TInterlaceMode {
     MODE_MERGE = 0,
     MODE_DROP_EVEN,
@@ -38,50 +40,81 @@ public enum TInterlaceMode {
     MODE_INTERLEAVE_BOTTOM,
     MODE_INTERLACEX2,
     MODE_MERGEX2,
-    MODE_NB,
+    MODE_NB;
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum InterlaceScanMode {
     MODE_TFF = 0,
-    MODE_BFF,
+    MODE_BFF;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class TInterlaceContext {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
+
     /***********************************************************
     TInterlaceMode, interlace mode selected
     ***********************************************************/
+    [CCode (cname="")]
     public int mode;
+
+    [CCode (cname="")]
     public AVRational preout_time_base;
+
     /***********************************************************
     flags affecting interlacing algorithm
     ***********************************************************/
+    [CCode (cname="")]
     public int flags;
+
     /***********************************************************
     number of the output frame
     ***********************************************************/
+    [CCode (cname="")]
     public int frame;
+
     /***********************************************************
     chroma vertical subsampling
     ***********************************************************/
+    [CCode (cname="")]
     public int vsub;
+
+    [CCode (cname="")]
     public AVFrame cur;
+
+    [CCode (cname="")]
     public AVFrame next;
+
     /***********************************************************
     buffer used to fill padded lines
     ***********************************************************/
     uint8[] black_data[4];
+
+    [CCode (cname="")]
     public int black_linesize[4];
+
     FFDrawContext draw;
+
     FFDrawColor color;
+
     const AVPixFmtDescriptor *csp;
+
     [CCode (cname="lowpass_line")]
     public void (*lowpass_line)(
-        uint8[] dstp, ptrdiff_t width, uint8[] srcp,
-        ptrdiff_t mref, ptrdiff_t pref, int clip_max
+        uint8[] dstp,
+        ptrdiff_t width,
+        uint8[] srcp,
+        ptrdiff_t mref,
+        ptrdiff_t pref,
+        int clip_max
     );
 
 }
 
-public void ff_tinterlace_init_x86 (TInterlaceContext *interlace);
+[CCode (cname="",cheader_filename="")]
+public void ff_tinterlace_init_x86 (
+    TInterlaceContext *interlace
+);

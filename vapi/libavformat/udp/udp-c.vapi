@@ -26,9 +26,10 @@ namespace LibAVFormat {
 @file UDP protocol
 ***********************************************************/
 
-#define OFFSET (x) offsetof (UDPContext, x)
-#define D AV_OPT_FLAG_DECODING_PARAM
-#define E AV_OPT_FLAG_ENCODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (UDPContext, x)
+public define D AV_OPT_FLAG_DECODING_PARAM
+public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "buffer_size",
@@ -195,16 +196,18 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="udp_class", cheader_filename="")]
+[CCode (cname="udp_class",cheader_filename="ffmpeg/libformat/udp.c")]
 public class UDPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/udp.c")]
     public override string class_name {
         public get {
             return "udp";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/udp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -213,27 +216,31 @@ public class UDPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/udp.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="udplite_context_class", cheader_filename="")]
+[CCode (cname="udplite_context_class",cheader_filename="ffmpeg/libformat/udp.c")]
 public class UDPLiteURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/udp.c")]
     public override string class_name {
         public get {
             return "udplite";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/udp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -242,125 +249,142 @@ public class UDPLiteURLProtocolClass : LibAVUtil.Class {
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct UDPContext", cheader_filename="")]
+[CCode (cname="struct UDPContext",cheader_filename="ffmpeg/libformat/udp.c")]
 [Compact]
 public class UDPPrivateData { }
 
-[CCode (cname="ff_udp_protocol", cheader_filename="")]
+[CCode (cname="ff_udp_protocol",cheader_filename="ffmpeg/libformat/udp.c")]
 public class UDPURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/udp.c")]
     public override string name {
         public get {
             return "udp";
+
         }
+
     }
 
-    [CCode (cname="udp_open", cheader_filename="")]
+    [CCode (cname="udp_open",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="udp_read", cheader_filename="")]
+    [CCode (cname="udp_read",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="udp_write", cheader_filename="")]
+    [CCode (cname="udp_write",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="udp_close", cheader_filename="")]
+    [CCode (cname="udp_close",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="udp_get_file_handle", cheader_filename="")]
+    [CCode (cname="udp_get_file_handle",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/udp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (UDPPrivateData);
+
         }
+
     }
     //  .priv_data_class = udp_class,
-    [CCode (cname="flags", cheader_filename="")]
+
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/udp.c")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
+
         }
+
     }
 }
 
-[CCode (cname="ff_udplite_protocol", cheader_filename="")]
+[CCode (cname="ff_udplite_protocol",cheader_filename="ffmpeg/libformat/udp.c")]
 public class UDPLiteURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/udp.c")]
     public override string name {
         public get {
             return "udplite";
+
         }
+
     }
 
-    [CCode (cname="udplite_open", cheader_filename="")]
+    [CCode (cname="udplite_open",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="udp_read", cheader_filename="")]
+    [CCode (cname="udp_read",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="udp_write", cheader_filename="")]
+    [CCode (cname="udp_write",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="udp_close", cheader_filename="")]
+    [CCode (cname="udp_close",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="udp_get_file_handle", cheader_filename="")]
+    [CCode (cname="udp_get_file_handle",cheader_filename="ffmpeg/libformat/udp.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/udp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (UDPPrivateData);
+
         }
+
     }
     //  .priv_data_class = udplite_context_class,
-    [CCode (cname="flags", cheader_filename="")]
+
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/udp.c")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
+
         }
+
     }
 }
 

@@ -18,6 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class ThresholdContext {
     [CCode (cname="")]
@@ -41,6 +42,7 @@ public class ThresholdContext {
     [CCode (cname="")]
     public int height[4];
 
+    [CCode (cname="")]
     public delegate void ThresholdDelegate (
         uint8[] in,
         int8[] threshold,

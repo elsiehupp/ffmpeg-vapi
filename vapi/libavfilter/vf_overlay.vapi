@@ -16,11 +16,16 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum var_name {
-    VAR_MAIN_W, VAR_MW,
-    VAR_MAIN_H, VAR_MH,
-    VAR_OVERLAY_W, VAR_OW,
-    VAR_OVERLAY_H, VAR_OH,
+    VAR_MAIN_W,
+    VAR_MW,
+    VAR_MAIN_H,
+    VAR_MH,
+    VAR_OVERLAY_W,
+    VAR_OW,
+    VAR_OVERLAY_H,
+    VAR_OH,
     VAR_HSUB,
     VAR_VSUB,
     VAR_X,
@@ -31,6 +36,7 @@ public enum var_name {
     VAR_VARS_NB
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum OverlayFormat {
     OVERLAY_FORMAT_YUV420,
     OVERLAY_FORMAT_YUV422,
@@ -41,31 +47,55 @@ public enum OverlayFormat {
     OVERLAY_FORMAT_NB
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class OverlayContext {
-    const AVClass *class;
-    /***********************************************************
-    position of overlaid picture
-    ***********************************************************/
-    /***********************************************************
-    position of overlaid picture
-    ***********************************************************/
-    public int x, y;
+    [CCode (cname="")]
+    public AVClass class;
 
+    /***********************************************************
+    position of overlaid picture
+    ***********************************************************/
+    [CCode (cname="")]
+    public int x;
+
+    /***********************************************************
+    position of overlaid picture
+    ***********************************************************/
+    [CCode (cname="")]
+    public int y;
+
+    [CCode (cname="")]
     public uint8 main_is_packed_rgb;
+
+    [CCode (cname="")]
     public uint8 main_rgba_map[4];
+
+    [CCode (cname="")]
     public uint8 main_has_alpha;
+
+    [CCode (cname="")]
     public uint8 overlay_is_packed_rgb;
+
+    [CCode (cname="")]
     public uint8 overlay_rgba_map[4];
+
+    [CCode (cname="")]
     public uint8 overlay_has_alpha;
+
     /***********************************************************
     OverlayFormat
     ***********************************************************/
+    [CCode (cname="")]
     public int format;
+
+    [CCode (cname="")]
     public int alpha_format;
+
     /***********************************************************
     EvalMode
     ***********************************************************/
+    [CCode (cname="")]
     public int eval_mode;
 
     FFFrameSync fs;
@@ -73,40 +103,64 @@ public class OverlayContext {
     /***********************************************************
     steps per pixel for each plane of the main output
     ***********************************************************/
+    [CCode (cname="")]
     public int main_pix_step[4];
+
     /***********************************************************
     steps per pixel for each plane of the overlay
     ***********************************************************/
+    [CCode (cname="")]
     public int overlay_pix_step[4];
+
     /***********************************************************
     chroma subsampling values
     ***********************************************************/
     /***********************************************************
     chroma subsampling values
     ***********************************************************/
+    [CCode (cname="")]
     public int hsub, vsub;
+
     /***********************************************************
     format descriptor for main input
     ***********************************************************/
     const AVPixFmtDescriptor *main_desc;
 
     double var_values[VAR_VARS_NB];
-    string x_expr, *y_expr;
 
-    AVExpr *x_pexpr, *y_pexpr;
+    string x_expr;
+
+    string y_expr;
+
+    AVExpr *x_pexpr;
+
+    AVExpr *y_pexpr;
 
     [CCode (cname="blend_row")]
     public int (*blend_row[4])(
-        uint8[] d, uint8[] da, uint8[] s, uint8[] a, int w,
+        uint8[] d,
+        uint8[] da,
+        uint8[] s,
+        uint8[] a,
+        int w,
         ptrdiff_t alinesize
     );
 
     [CCode (cname="blend_slice")]
     public int (*blend_slice)(
-        AVFilterContext *ctx, void *arg, int jobnr, int nb_jobs
+        AVFilterContext *ctx,
+        void *arg,
+        int jobnr,
+        int nb_jobs
     );
 
 }
 
-public void ff_overlay_init_x86 (OverlayContext *s, int format, int pix_format,
-                         int alpha_format, int main_has_alpha);
+[CCode (cname="",cheader_filename="")]
+public void ff_overlay_init_x86 (
+    OverlayContext *s,
+    int format,
+    int pix_format,
+    int alpha_format,
+    int main_has_alpha
+);

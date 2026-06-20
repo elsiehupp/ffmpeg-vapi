@@ -25,59 +25,230 @@ namespace LibAVFormat {
 @file common header for AIFF muxer and demuxer
 ***********************************************************/
 
-[CCode (cname="ff_codec_aiff_tags", cheader_filename="")]
+[CCode (cname="ff_codec_aiff_tags",cheader_filename="ffmpeg/libformat/aiff.h")]
 public const AVCodecTag[] ff_codec_aiff_tags;
 {
     {
-        LibAVCodec.CodecID.PCM_S16BE, MKTAG ('N','O','N','E') },
+        LibAVCodec.CodecID.PCM_S16BE,
+        MKTAG (
+            'N',
+            'O',
+            'N',
+            'E'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_S8, MKTAG ('N','O','N','E') },
+        LibAVCodec.CodecID.PCM_S8,
+        MKTAG (
+            'N',
+            'O',
+            'N',
+            'E'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_U8, MKTAG ('r','a','w',' ') },
+        LibAVCodec.CodecID.PCM_U8,
+        MKTAG (
+            'r',
+            'a',
+            'w',
+            ' '
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_S24BE, MKTAG ('N','O','N','E') },
+        LibAVCodec.CodecID.PCM_S24BE,
+        MKTAG (
+            'N',
+            'O',
+            'N',
+            'E'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_S32BE, MKTAG ('N','O','N','E') },
+        LibAVCodec.CodecID.PCM_S32BE,
+        MKTAG (
+            'N',
+            'O',
+            'N',
+            'E'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_F32BE, MKTAG ('f','l','3','2') },
+        LibAVCodec.CodecID.PCM_F32BE,
+        MKTAG (
+            'f',
+            'l',
+            '3',
+            '2'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_F64BE, MKTAG ('f','l','6','4') },
+        LibAVCodec.CodecID.PCM_F64BE,
+        MKTAG (
+            'f',
+            'l',
+            '6',
+            '4'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_ALAW, MKTAG ('a','l','a','w') },
+        LibAVCodec.CodecID.PCM_ALAW,
+        MKTAG (
+            'a',
+            'l',
+            'a',
+            'w'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_MULAW, MKTAG ('u','l','a','w') },
+        LibAVCodec.CodecID.PCM_MULAW,
+        MKTAG (
+            'u',
+            'l',
+            'a',
+            'w'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_S24BE, MKTAG ('i','n','2','4') },
+        LibAVCodec.CodecID.PCM_S24BE,
+        MKTAG (
+            'i',
+            'n',
+            '2',
+            '4'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_S32BE, MKTAG ('i','n','3','2') },
+        LibAVCodec.CodecID.PCM_S32BE,
+        MKTAG (
+            'i',
+            'n',
+            '3',
+            '2'
+        )
+    },
     {
-        LibAVCodec.CodecID.MACE3, MKTAG ('M','A','C','3') },
+        LibAVCodec.CodecID.MACE3,
+        MKTAG (
+            'M',
+            'A',
+            'C',
+            '3'
+        )
+    },
     {
-        LibAVCodec.CodecID.MACE6, MKTAG ('M','A','C','6') },
+        LibAVCodec.CodecID.MACE6,
+        MKTAG (
+            'M',
+            'A',
+            'C',
+            '6'
+        )
+    },
     {
-        LibAVCodec.CodecID.GSM, MKTAG ('G','S','M',' ') },
+        LibAVCodec.CodecID.GSM,
+        MKTAG (
+            'G',
+            'S',
+            'M',
+            ' '
+        )
+    },
     {
-        LibAVCodec.CodecID.ADPCM_G722, MKTAG ('G','7','2','2') },
+        LibAVCodec.CodecID.ADPCM_G722,
+        MKTAG (
+            'G',
+            '7',
+            '2',
+            '2'
+        )
+    },
     {
-        LibAVCodec.CodecID.ADPCM_G726LE, MKTAG ('G','7','2','6') },
+        LibAVCodec.CodecID.ADPCM_G726LE,
+        MKTAG (
+            'G',
+            '7',
+            '2',
+            '6'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_S16BE, MKTAG ('t','w','o','s') },
+        LibAVCodec.CodecID.PCM_S16BE,
+        MKTAG (
+            't',
+            'w',
+            'o',
+            's'
+        )
+    },
     {
-        LibAVCodec.CodecID.PCM_S16LE, MKTAG ('s','o','w','t') },
+        LibAVCodec.CodecID.PCM_S16LE,
+        MKTAG (
+            's',
+            'o',
+            'w',
+            't'
+        )
+    },
     {
-        LibAVCodec.CodecID.ADPCM_IMA_QT, MKTAG ('i','m','a','4') },
+        LibAVCodec.CodecID.ADPCM_IMA_QT,
+        MKTAG (
+            'i',
+            'm',
+            'a',
+            '4'
+        )
+    },
     {
-        LibAVCodec.CodecID.QDMC, MKTAG ('Q','D','M','C') },
+        LibAVCodec.CodecID.QDMC,
+        MKTAG (
+            'Q',
+            'D',
+            'M',
+            'C'
+        )
+    },
     {
-        LibAVCodec.CodecID.QDM2, MKTAG ('Q','D','M','2') },
+        LibAVCodec.CodecID.QDM2,
+        MKTAG (
+            'Q',
+            'D',
+            'M',
+            '2'
+        )
+    },
     {
-        LibAVCodec.CodecID.QCELP, MKTAG ('Q','c','l','p') },
+        LibAVCodec.CodecID.QCELP,
+        MKTAG (
+            'Q',
+            'c',
+            'l',
+            'p'
+        )
+    },
     {
-        LibAVCodec.CodecID.SDX2_DPCM, MKTAG ('S','D','X','2') },
+        LibAVCodec.CodecID.SDX2_DPCM,
+        MKTAG (
+            'S',
+            'D',
+            'X',
+            '2'
+        )
+    },
     {
-        LibAVCodec.CodecID.ADPCM_IMA_WS, MKTAG ('A','D','P','4') },
+        LibAVCodec.CodecID.ADPCM_IMA_WS,
+        MKTAG (
+            'A',
+            'D',
+            'P',
+            '4'
+        )
+    },
     {
-        LibAVCodec.CodecID.NONE, 0 },
-}
+        LibAVCodec.CodecID.NONE,
+        0
+    }
+
+};
 
 } // namespace LibAVFormat

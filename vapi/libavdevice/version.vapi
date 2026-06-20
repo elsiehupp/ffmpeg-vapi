@@ -22,19 +22,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Libavdevice version macros
 ***********************************************************/
 
-#define LIBAVDEVICE_VERSION_MAJOR  58
-#define LIBAVDEVICE_VERSION_MINOR   8
-#define LIBAVDEVICE_VERSION_MICRO 100
+[CCode (cname="",cheader_filename="")]
+public define LIBAVDEVICE_VERSION_MAJOR  58
+public define LIBAVDEVICE_VERSION_MINOR   8
+public define LIBAVDEVICE_VERSION_MICRO 100
 
-#define LIBAVDEVICE_VERSION_INT AV_VERSION_INT (LIBAVDEVICE_VERSION_MAJOR, \
+[CCode (cname="",cheader_filename="")]
+public define LIBAVDEVICE_VERSION_INT AV_VERSION_INT (LIBAVDEVICE_VERSION_MAJOR, \
                                                LIBAVDEVICE_VERSION_MINOR, \
                                                LIBAVDEVICE_VERSION_MICRO)
-#define LIBAVDEVICE_VERSION     AV_VERSION (LIBAVDEVICE_VERSION_MAJOR, \
+public define LIBAVDEVICE_VERSION     AV_VERSION (LIBAVDEVICE_VERSION_MAJOR, \
                                            LIBAVDEVICE_VERSION_MINOR, \
                                            LIBAVDEVICE_VERSION_MICRO)
-#define LIBAVDEVICE_BUILD       LIBAVDEVICE_VERSION_INT
+public define LIBAVDEVICE_BUILD       LIBAVDEVICE_VERSION_INT
 
-#define LIBAVDEVICE_IDENT       "Lavd" AV_STRINGIFY (LIBAVDEVICE_VERSION)
+[CCode (cname="",cheader_filename="")]
+public define LIBAVDEVICE_IDENT       "Lavd" AV_STRINGIFY (LIBAVDEVICE_VERSION)
 
 /***********************************************************
 FF_API_* defines may be placed below to indicate public API that will be

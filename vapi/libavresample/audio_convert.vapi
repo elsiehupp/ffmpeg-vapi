@@ -37,10 +37,17 @@ set as the optimized conversion function.
 @param descr          function type description (e.g. "C" or "SSE")
 @param conv           conversion function pointer
 ***********************************************************/
-public void ff_audio_convert_set_func (AudioConvert *ac, AVSampleFormat out_fmt,
-                               AVSampleFormat in_fmt, int channels,
-                               int ptr_align, int samples_align,
-                               string descr, void *conv);
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_convert_set_func (
+    AudioConvert *ac,
+    AVSampleFormat out_fmt,
+    AVSampleFormat in_fmt,
+    int channels,
+    int ptr_align,
+    int samples_align,
+    string descr,
+    void *conv
+);
 
 /***********************************************************
 Allocate and initialize AudioConvert context for sample format conversion.
@@ -53,11 +60,14 @@ Allocate and initialize AudioConvert context for sample format conversion.
 @param apply_map   apply channel map during conversion
 @return            newly-allocated AudioConvert context
 ***********************************************************/
-AudioConvert *ff_audio_convert_alloc (AVAudioResampleContext *avr,
-                                     AVSampleFormat out_fmt,
-                                     AVSampleFormat in_fmt,
-                                     int channels, int sample_rate,
-                                     int apply_map);
+AudioConvert *ff_audio_convert_alloc (
+    AVAudioResampleContext *avr,
+    AVSampleFormat out_fmt,
+    AVSampleFormat in_fmt,
+    int channels,
+    int sample_rate,
+    int apply_map
+);
 
 /***********************************************************
 Free AudioConvert.
@@ -66,7 +76,10 @@ The AudioConvert must have been previously allocated with ff_audio_convert_alloc
 
 @param ac  AudioConvert struct
 ***********************************************************/
-public void ff_audio_convert_free (AudioConvert **ac);
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_convert_free (
+    AudioConvert **ac
+);
 
 /***********************************************************
 Convert audio data from one sample format to another.
@@ -84,12 +97,28 @@ set by this function before a successful return.
 @param in     input audio data
 @return       0 on success, negative AVERROR code on failure
 ***********************************************************/
-public int ff_audio_convert (AudioConvert *ac, AudioData *out, AudioData *in);
+[CCode (cname="",cheader_filename="")]
+public int ff_audio_convert (
+    AudioConvert *ac,
+    AudioData *out,
+    AudioData *in
+);
 
 /***********************************************************
 arch-specific initialization functions
 ***********************************************************/
 
-public void ff_audio_convert_init_aarch64 (AudioConvert *ac);
-public void ff_audio_convert_init_arm (AudioConvert *ac);
-public void ff_audio_convert_init_x86 (AudioConvert *ac);
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_convert_init_aarch64 (
+    AudioConvert *ac
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_convert_init_arm (
+    AudioConvert *ac
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_convert_init_x86 (
+    AudioConvert *ac
+);

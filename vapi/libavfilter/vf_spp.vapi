@@ -19,42 +19,72 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-#define MAX_LEVEL 6 /***********************************************************
+[CCode (cname="",cheader_filename="")]
+public define MAX_LEVEL 6 /***********************************************************
     quality levels
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class SPPContext {
-    const AVClass *av_class;
+    public AVClass av_class;
 
+    [CCode (cname="")]
     public int log2_count;
+
+    [CCode (cname="")]
     public int qp;
+
+    [CCode (cname="")]
     public int mode;
+
+    [CCode (cname="")]
     public int qscale_type;
+
+    [CCode (cname="")]
     public int temp_linesize;
+
     uint8[] src;
-    uint16 *temp;
+
+    uint16[] temp;
+
     AVCodecContext *avctx;
+
     AVDCT *dct;
+
+    [CCode (cname="")]
     public int8 *non_b_qp_table;
+
+    [CCode (cname="")]
     public int non_b_qp_alloc_size;
+
+    [CCode (cname="")]
     public int use_bframe_qp;
+
+    [CCode (cname="")]
     public int hsub, vsub;
 
     [CCode (cname="store_slice")]
     public void (*store_slice)(
-        uint8[] dst, int16 *src,
-        int dst_stride, int src_stride,
-        int width, int height, int log2_scale,
+        uint8[] dst,
+        int16[] src,
+        int dst_stride,
+        int src_stride,
+        int width,
+        int height,
+        int log2_scale,
         uint8 dither[8][8]
     );
 
     [CCode (cname="requantize")]
     public void (*requantize)(
-        int16 dst[64], int16 src[64],
-        int qp, uint8[] permutation
+        int16 dst[64],
+        int16 src[64],
+        int qp,
+        uint8[] permutation
     );
 
 }
 
+[CCode (cname="",cheader_filename="")]
 public void ff_spp_init_x86 (SPPContext *s);

@@ -16,28 +16,48 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define OSS_AUDIO_BLOCK_SIZE 4096
+[CCode (cname="",cheader_filename="")]
+public define OSS_AUDIO_BLOCK_SIZE 4096
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class OSSAudioData {
     AVClass *class;
+
+    [CCode (cname="")]
     public int fd;
+
+    [CCode (cname="")]
     public int sample_rate;
+
+    [CCode (cname="")]
     public int channels;
+
     /***********************************************************
     in bytes !
     ***********************************************************/
+    [CCode (cname="")]
     public int frame_size;
+
+    [CCode (cname="")]
     public AVCodecID codec_id;
+
+    [CCode (cname="")]
     public uint flip_left : 1;
+
+    [CCode (cname="")]
     public uint8 buffer[OSS_AUDIO_BLOCK_SIZE];
+
+    [CCode (cname="")]
     public int buffer_ptr;
 }
 
+[CCode (cname="",cheader_filename="")]
 public int ff_oss_audio_open (
     AVFormatContext *s1,
     int is_output,
     string audio_device
 );
 
+[CCode (cname="",cheader_filename="")]
 public int ff_oss_audio_close (OSSAudioData *s);

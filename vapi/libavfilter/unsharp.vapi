@@ -19,66 +19,98 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define MIN_MATRIX_SIZE 3
-#define MAX_MATRIX_SIZE 63
+[CCode (cname="",cheader_filename="")]
+public define MIN_MATRIX_SIZE 3
+public define MAX_MATRIX_SIZE 63
 
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class UnsharpFilterParam {
     /***********************************************************
     matrix width
     ***********************************************************/
+    [CCode (cname="")]
     public int msize_x;
+
     /***********************************************************
     matrix height
     ***********************************************************/
+    [CCode (cname="")]
     public int msize_y;
+
     /***********************************************************
     effect amount
     ***********************************************************/
+    [CCode (cname="")]
     public int amount;
+
     /***********************************************************
     horizontal step count
     ***********************************************************/
+    [CCode (cname="")]
     public int steps_x;
+
     /***********************************************************
     vertical step count
     ***********************************************************/
+    [CCode (cname="")]
     public int steps_y;
+
     /***********************************************************
     bits to shift pixel
     ***********************************************************/
+    [CCode (cname="")]
     public int scalebits;
+
     /***********************************************************
     amount to add to pixel
     ***********************************************************/
+    [CCode (cname="")]
     public int32 halfscale;
+
     /***********************************************************
     finite state machine storage within a row
     ***********************************************************/
-    uint32 *sr;
+    uint32[] sr;
+
     /***********************************************************
     finite state machine storage across rows
     ***********************************************************/
-    uint32 **sc;
+    uint32[] *sc;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class UnsharpContext {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
+
+    [CCode (cname="")]
     public int lmsize_x, lmsize_y, cmsize_x, cmsize_y;
-    float lamount, camount;
+
+    [CCode (cname="")]
+    public float lamount, camount;
+
     /***********************************************************
     luma parameters (width, height, amount)
     ***********************************************************/
     UnsharpFilterParam luma;
+
     /***********************************************************
     chroma parameters (width, height, amount)
     ***********************************************************/
     UnsharpFilterParam chroma;
+
+    [CCode (cname="")]
     public int hsub, vsub;
+
+    [CCode (cname="")]
     public int nb_threads;
+
+    [CCode (cname="")]
     public int opencl;
+
     [CCode (cname="apply_unsharp")]
     public int (* apply_unsharp)(
         AVFilterContext *ctx, AVFrame *in, AVFrame *out

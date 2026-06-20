@@ -26,50 +26,56 @@ namespace LibAVFormat {
 @see https://en.wikipedia.org/wiki/SubViewer
 ***********************************************************/
 
-[CCode (cname="struct SubViewerContext", cheader_filename="")]
+[CCode (cname="struct SubViewerContext",cheader_filename="")]
 [Compact]
 public class SubViewerDemuxerPrivateData { }
 
-[CCode (cname="ff_subviewer_demuxer", cheader_filename="")]
+[CCode (cname="ff_subviewer_demuxer",cheader_filename="")]
 public class SubViewerDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "subviewer";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "SubViewer subtitle format";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SubViewerDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="subviewer_probe", cheader_filename="")]
+    [CCode (cname="subviewer_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="subviewer_read_header", cheader_filename="")]
+    [CCode (cname="subviewer_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="subviewer_read_packet", cheader_filename="")]
+    [CCode (cname="subviewer_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="subviewer_read_seek", cheader_filename="")]
+    [CCode (cname="subviewer_read_seek",cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -79,16 +85,18 @@ public class SubViewerDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="subviewer_read_close", cheader_filename="")]
+    [CCode (cname="subviewer_read_close",cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "sub";
+
         }
+
     }
 }
 

@@ -28,6 +28,7 @@ Memory buffer source API.
 @{
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum {
 
     /***********************************************************
@@ -56,7 +57,10 @@ A failed request is when the request_frame method is called while no
 frame is present in the buffer.
 The number is reset when a frame is added.
 ***********************************************************/
-public uint av_buffersrc_get_nb_failed_requests (AVFilterContext *buffer_src);
+[CCode (cname="",cheader_filename="")]
+public uint av_buffersrc_get_nb_failed_requests (
+    AVFilterContext *buffer_src
+);
 
 /***********************************************************
 This structure contains the parameters describing the frames that will be
@@ -65,31 +69,38 @@ passed to this filter.
 It should be allocated with av_buffersrc_parameters_alloc () and freed with
 av_free (). All the allocated fields in it remain owned by the caller.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVBufferSrcParameters {
     /***********************************************************
     video: the pixel format, value corresponds to enum AVPixelFormat
     audio: the sample format, value corresponds to enum AVSampleFormat
     ***********************************************************/
+    [CCode (cname="")]
     public int format;
 
     /***********************************************************
     The timebase to be used for the timestamps on the input frames.
     ***********************************************************/
+    [CCode (cname="")]
     public AVRational time_base;
 
     /***********************************************************
     Video only, the display dimensions of the input frames.
     ***********************************************************/
+    [CCode (cname="")]
     public int width;
+
     /***********************************************************
     Video only, the display dimensions of the input frames.
     ***********************************************************/
+    [CCode (cname="")]
     public int height;
 
     /***********************************************************
     Video only, the sample (pixel) aspect ratio.
     ***********************************************************/
+    [CCode (cname="")]
     public AVRational sample_aspect_ratio;
 
     /***********************************************************
@@ -98,6 +109,7 @@ public class AVBufferSrcParameters {
     known constant framerate and should be left at its initial
     value if the framerate is variable or unknown.
     ***********************************************************/
+    [CCode (cname="")]
     public AVRational frame_rate;
 
     /***********************************************************
@@ -105,16 +117,19 @@ public class AVBufferSrcParameters {
     reference to an AVHWFramesContext instance describing the
     input frames.
     ***********************************************************/
+    [CCode (cname="")]
     public AVBufferRef hw_frames_ctx;
 
     /***********************************************************
     Audio only, the audio sampling rate in samples per second.
     ***********************************************************/
+    [CCode (cname="")]
     public int sample_rate;
 
     /***********************************************************
     Audio only, the audio channel layout
     ***********************************************************/
+    [CCode (cname="")]
     public uint64 channel_layout;
 }
 
@@ -122,6 +137,7 @@ public class AVBufferSrcParameters {
 Allocate a new AVBufferSrcParameters instance. It should be freed by the
 caller with av_free ().
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public AVBufferSrcParameters av_buffersrc_parameters_alloc ();
 
 /***********************************************************
@@ -137,7 +153,11 @@ whatever method is used last takes precedence.
              copies or references when necessary.
 @return 0 on success, a negative AVERROR code on failure.
 ***********************************************************/
-public int av_buffersrc_parameters_set (AVFilterContext *ctx, AVBufferSrcParameters *param);
+[CCode (cname="",cheader_filename="")]
+public int av_buffersrc_parameters_set (
+    AVFilterContext *ctx,
+    AVBufferSrcParameters *param
+);
 
 /***********************************************************
 Add a frame to the buffer source.
@@ -153,7 +173,10 @@ This function is equivalent to av_buffersrc_add_frame_flags () with the
 AV_BUFFERSRC_FLAG_KEEP_REF flag.
 ***********************************************************/
 av_warn_unused_result
-public int av_buffersrc_write_frame (AVFilterContext *ctx, AVFrame *frame);
+public int av_buffersrc_write_frame (
+    AVFilterContext *ctx,
+    AVFrame *frame
+);
 
 /***********************************************************
 Add a frame to the buffer source.
@@ -174,7 +197,10 @@ This function is equivalent to av_buffersrc_add_frame_flags () without the
 AV_BUFFERSRC_FLAG_KEEP_REF flag.
 ***********************************************************/
 av_warn_unused_result
-public int av_buffersrc_add_frame (AVFilterContext *ctx, AVFrame *frame);
+public int av_buffersrc_add_frame (
+    AVFilterContext *ctx,
+    AVFrame *frame
+);
 
 /***********************************************************
 Add a frame to the buffer source.
@@ -192,8 +218,11 @@ If this function returns an error, the input frame is not touched.
                    in case of failure
 ***********************************************************/
 av_warn_unused_result
-public int av_buffersrc_add_frame_flags (AVFilterContext *buffer_src,
-                                 public AVFrame frame, int flags);
+public int av_buffersrc_add_frame_flags (
+    AVFilterContext *buffer_src,
+    AVFrame frame,
+    int flags
+);
 
 /***********************************************************
 Close the buffer source after EOF.
@@ -202,7 +231,12 @@ This is similar to passing NULL to av_buffersrc_add_frame_flags ()
 except it takes the timestamp of the EOF, i.e. the timestamp of the end
 of the last frame.
 ***********************************************************/
-public int av_buffersrc_close (AVFilterContext *ctx, int64 pts, uint flags);
+[CCode (cname="",cheader_filename="")]
+public int av_buffersrc_close (
+    AVFilterContext *ctx,
+    int64 pts,
+    uint flags
+);
 
 /***********************************************************
 @}

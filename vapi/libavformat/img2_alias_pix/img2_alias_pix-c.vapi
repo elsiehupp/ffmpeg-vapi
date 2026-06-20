@@ -22,16 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="image2_alias_pix_class", cheader_filename="")]
+[CCode (cname="image2_alias_pix_class",cheader_filename="")]
 public class Image2AliasPIXDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="")]
     public override string class_name {
         public get {
             return "alias_pix demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
@@ -40,60 +42,71 @@ public class Image2AliasPIXDemuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = ff_img_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_image2_alias_pix_demuxer", cheader_filename="")]
+[CCode (cname="ff_image2_alias_pix_demuxer",cheader_filename="")]
 public class Image2AliasPIXDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "alias_pix";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Alias/Wavefront PIX image";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
+
         }
+
     }
 
-    [CCode (cname="alias_pix_read_probe", cheader_filename="")]
+    [CCode (cname="alias_pix_read_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ff_img_read_header", cheader_filename="")]
+    [CCode (cname="ff_img_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_img_read_packet", cheader_filename="")]
+    [CCode (cname="ff_img_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="raw_codec_id", cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.ALIAS_PIX;
+
         }
+
     }
-    //  .priv_class = image2_alias_pix_class,
+    //  .priv_class = image2_alias_pix_class;
 }
 
 } // namespace LibAVFormat

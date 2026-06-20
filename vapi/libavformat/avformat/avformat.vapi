@@ -313,11 +313,11 @@ for (;;) {
 @}
 ***********************************************************/
 
-[CCode (cname="struct AVDeviceInfoList", cheader_filename="")]
+[CCode (cname="struct AVDeviceInfoList",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVDeviceInfoList { }
 
-[CCode (cname="struct AVDeviceCapabilitiesQuery", cheader_filename="")]
+[CCode (cname="struct AVDeviceCapabilitiesQuery",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVDeviceCapabilitiesQuery { }
 
@@ -413,11 +413,11 @@ fields with default values.
 @param size desired payload size
 @return >0 (read size) if OK, AVERROR_xxx otherwise
 ***********************************************************/
-[CCode (cname="av_get_packet", cheader_filename="")]
+[CCode (cname="av_get_packet",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_get_packet (
     AVIOContext io_context,
     LibAVCodec.Packet packet,
-    public int size
+    int size
 );
 
 
@@ -435,11 +435,11 @@ the final size.
 @return >0 (read size) if OK, AVERROR_xxx otherwise, previous data
     will not be lost even if an error occurs.
 ***********************************************************/
-[CCode (cname="av_append_packet", cheader_filename="")]
+[CCode (cname="av_append_packet",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_append_packet (
     AVIOContext io_context,
     LibAVCodec.Packet packet,
-    public int size
+    int size
 );
 
 /*************************************************/
@@ -450,7 +450,7 @@ public int av_append_packet (
 /***********************************************************
 @brief This structure contains the data a format has to probe a file.
 ***********************************************************/
-[CCode (cname="struct AVProbeData", cheader_filename="")]
+[CCode (cname="struct AVProbeData",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVProbeData {
     [CCode (cname="filename")]
@@ -475,114 +475,129 @@ public class AVProbeData {
     public string mime_type;
 }
 
-[CCode (cname="AVPROBE_SCORE_RETRY", cheader_filename="")]
+[CCode (cname="AVPROBE_SCORE_RETRY",cheader_filename="ffmpeg/libformat/avformat.h")]
 public const int AVPROBE_SCORE_RETRY;
 
-[CCode (cname="AVPROBE_SCORE_STREAM_RETRY", cheader_filename="")]
+[CCode (cname="AVPROBE_SCORE_STREAM_RETRY",cheader_filename="ffmpeg/libformat/avformat.h")]
 public const int AVPROBE_SCORE_STREAM_RETRY;
 
 /***********************************************************
 @brief Score for file extension
 ***********************************************************/
-[CCode (cname="AVPROBE_SCORE_EXTENSION", cheader_filename="")]
+[CCode (cname="AVPROBE_SCORE_EXTENSION",cheader_filename="ffmpeg/libformat/avformat.h")]
 public const int AVPROBE_SCORE_EXTENSION;
 
 /***********************************************************
 @brief Score for file mime type
 ***********************************************************/
-[CCode (cname="AVPROBE_SCORE_MIME", cheader_filename="")]
+[CCode (cname="AVPROBE_SCORE_MIME",cheader_filename="ffmpeg/libformat/avformat.h")]
 public const int AVPROBE_SCORE_MIME;
 
 /***********************************************************
 @brief Maximum score
 ***********************************************************/
-[CCode (cname="AVPROBE_SCORE_MAX", cheader_filename="")]
+[CCode (cname="AVPROBE_SCORE_MAX",cheader_filename="ffmpeg/libformat/avformat.h")]
 public const int AVPROBE_SCORE_MAX;
 
 /***********************************************************
 @brief Extra allocated bytes at the end of the probe buffer
 ***********************************************************/
-[CCode (cname="AVPROBE_PADDING_SIZE", cheader_filename="")]
+[CCode (cname="AVPROBE_PADDING_SIZE",cheader_filename="ffmpeg/libformat/avformat.h")]
 public const size_t AVPROBE_PADDING_SIZE;
 
-[CCode (cheader_filename="")]
+[CCode (cheader_filename="ffmpeg/libformat/avformat.h")]
 public enum AVFormatFlags1 {
     /***********************************************************
     @brief Demuxer will use avio_open, no opened file should be provided by the caller.
     ***********************************************************/
     [CCode (cname="AVFMT_NOFILE")]
     AVFMT_NOFILE,
+
     /***********************************************************
     @brief Needs '%d' in filename.
     ***********************************************************/
     [CCode (cname="AVFMT_NEEDNUMBER")]
     AVFMT_NEEDNUMBER,
+
     /***********************************************************
     @brief Show format stream IDs numbers.
     ***********************************************************/
     [CCode (cname="AVFMT_SHOW_IDS")]
     AVFMT_SHOW_IDS,
+
     /***********************************************************
     @brief Format wants global header.
     ***********************************************************/
     [CCode (cname="AVFMT_GLOBALHEADER")]
     AVFMT_GLOBALHEADER,
+
     /***********************************************************
     @brief Format does not need / have any timestamps.
     ***********************************************************/
     [CCode (cname="AVFMT_NOTIMESTAMPS")]
     AVFMT_NOTIMESTAMPS,
+
     /***********************************************************
     Use generic index building code.
     ***********************************************************/
     [CCode (cname="AVFMT_GENERIC_INDEX")]
     AVFMT_GENERIC_INDEX,
+
     /***********************************************************
     @brief Format allows timestamp discontinuities. Note, muxers always require valid (monotone) timestamps
     ***********************************************************/
     [CCode (cname="AVFMT_TS_DISCONT")]
     AVFMT_TS_DISCONT,
+
     /***********************************************************
     @brief Format allows variable fps.
     ***********************************************************/
     [CCode (cname="AVFMT_VARIABLE_FPS")]
     AVFMT_VARIABLE_FPS,
+
     /***********************************************************
     @brief Format does not need width/height
     ***********************************************************/
     [CCode (cname="AVFMT_NODIMENSIONS")]
     AVFMT_NODIMENSIONS,
+
     /***********************************************************
     @brief Format does not require any streams
     ***********************************************************/
     [CCode (cname="AVFMT_NOSTREAMS")]
     AVFMT_NOSTREAMS,
+
     /***********************************************************
     @brief Format does not allow to fall back on binary search via read_timestamp
     ***********************************************************/
     [CCode (cname="AVFMT_NOBINSEARCH")]
     AVFMT_NOBINSEARCH,
+
     /***********************************************************
     @brief Format does not allow to fall back on generic search
     ***********************************************************/
     [CCode (cname="AVFMT_NOGENSEARCH")]
     AVFMT_NOGENSEARCH,
+
     /***********************************************************
     @brief Format does not allow seeking by bytes
     ***********************************************************/
     [CCode (cname="AVFMT_NO_BYTE_SEEK")]
     AVFMT_NO_BYTE_SEEK,
+
     /***********************************************************
     @brief Format allows flushing. If not set, the muxer will not receive a NULL packet in the write_packet function.
     ***********************************************************/
     [CCode (cname="AVFMT_ALLOW_FLUSH")]
     AVFMT_ALLOW_FLUSH,
+
     /***********************************************************
     @brief Format does not require strictly increasing timestamps, but
     they must still be monotonic.
     ***********************************************************/
     [CCode (cname="AVFMT_TS_NONSTRICT")]
     AVFMT_TS_NONSTRICT,
+
     /***********************************************************
     @brief Format allows muxing negative
     timestamps. If not set the timestamp
@@ -594,20 +609,21 @@ public enum AVFormatFlags1 {
     ***********************************************************/
     [CCode (cname="AVFMT_TS_NEGATIVE")]
     AVFMT_TS_NEGATIVE,
+
     /***********************************************************
     @brief Seeking is based on PTS
     ***********************************************************/
     [CCode (cname="AVFMT_SEEK_TO_PTS")]
-    AVFMT_SEEK_TO_PTS,
+    AVFMT_SEEK_TO_PTS;
 }
 
 /***********************************************************
 @addtogroup lavf_encoding
 @{
 ***********************************************************/
-[CCode (cname="class AVOutputFormat", cheader_filename="")]
+[CCode (cname="class AVOutputFormat",cheader_filename="ffmpeg/libformat/avformat.h")]
 public abstract class AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract string name { public get; }
 
     /***********************************************************
@@ -615,16 +631,16 @@ public abstract class AVOutputFormat {
     than name. You should use the NULL_IF_CONFIG_SMALL () macro
     to define it.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract string long_name { public get; }
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract string mime_type { public get; }
 
     /***********************************************************
     @brief Comma-separated filename extensions
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract string extensions { public get; }
 
     /***********************************************************
@@ -634,19 +650,19 @@ public abstract class AVOutputFormat {
     /***********************************************************
     @brief Default audio codec
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVCodec.CodecID audio_codec { public get; }
 
     /***********************************************************
     @brief Default video codec
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVCodec.CodecID video_codec { public get; }
 
     /***********************************************************
     @brief Default subtitle codec
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVCodec.CodecID subtitle_codec { public get; }
 
     /***********************************************************
@@ -655,21 +671,21 @@ public abstract class AVOutputFormat {
     AVFMT_NODIMENSIONS, AVFMT_NOSTREAMS, AVFMT_ALLOW_FLUSH,
     AVFMT_TS_NONSTRICT, AVFMT_TS_NEGATIVE
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract AVFormatFlags1 flags { public get; }
 
     /***********************************************************
     @brief List of supported codec_id-codec_tag pairs, ordered by "better
     choice first". The arrays are all terminated by LibAVCodec.CodecID.NONE.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract AVCodecTag[] codec_tag { public get; }
 
 
     /***********************************************************
     @brief LibAVUtil.Class for the private context
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVUtil.Class priv_class { public get; }
 
     /***********************************************************
@@ -678,16 +694,16 @@ public abstract class AVOutputFormat {
     removed at will.
     New public fields should be added right above.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVOutputFormat next;
 
     /***********************************************************
     @brief Size of private data so that it can be allocated in the wrapper
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract size_t priv_data_size { public get; }
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int write_header (
         AVFormatContext format_context
     );
@@ -699,13 +715,13 @@ public abstract class AVOutputFormat {
     or 1 if everything was flushed and there is no more buffered
     data.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int write_trailer (
         AVFormatContext format_context
     );
@@ -713,7 +729,7 @@ public abstract class AVOutputFormat {
     /***********************************************************
     @brief Currently only used to set pixel format if not YUV420P.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int interleave_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet output,
@@ -728,13 +744,13 @@ public abstract class AVOutputFormat {
             A negative number if unknown.
             MKTAG ('A', 'P', 'I', 'C') if the codec is only supported as AV_DISPOSITION_ATTACHED_PIC
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
     );
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract void get_output_timestamp (
         AVFormatContext format_context,
         int stream,
@@ -745,7 +761,7 @@ public abstract class AVOutputFormat {
     /***********************************************************
     @brief Allows sending messages from application to device.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int control_message (
         AVFormatContext format_context,
         int type,
@@ -761,7 +777,7 @@ public abstract class AVOutputFormat {
     The library will free frame afterwards, but the muxer can prevent it
     by setting the pointer to NULL.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int write_uncoded_frame (
         AVFormatContext format_context,
         int stream_index,
@@ -773,7 +789,7 @@ public abstract class AVOutputFormat {
     @brief Returns device list with it properties.
     @see avdevice_list_devices () for more details.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int get_device_list (
         AVFormatContext format_context,
         AVDeviceInfoList device_list
@@ -783,7 +799,7 @@ public abstract class AVOutputFormat {
     @brief Initialize device capabilities submodule.
     @see avdevice_capabilities_create () for more details.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int create_device_capabilities (
         AVFormatContext format_context,
         AVDeviceCapabilitiesQuery caps
@@ -793,7 +809,7 @@ public abstract class AVOutputFormat {
     @brief Free device capabilities submodule.
     @see avdevice_capabilities_free () for more details.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int free_device_capabilities (
         AVFormatContext format_context,
         AVDeviceCapabilitiesQuery caps
@@ -802,7 +818,7 @@ public abstract class AVOutputFormat {
     /***********************************************************
     @brief Default data codec
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVCodec.CodecID data_codec { public get; }
 
     /***********************************************************
@@ -814,7 +830,7 @@ public abstract class AVOutputFormat {
 
     Any allocations made here must be freed in deinit ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int init (
         AVFormatContext format_context
     );
@@ -827,7 +843,7 @@ public abstract class AVOutputFormat {
 
     This is called if init () fails as well.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract void deinit (
         AVFormatContext format_context
     );
@@ -837,7 +853,7 @@ public abstract class AVOutputFormat {
     for the global header.
     Return 0 if more packets from this stream must be checked; 1 if not.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -852,13 +868,13 @@ public abstract class AVOutputFormat {
 @addtogroup lavf_decoding
 @{
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public abstract class AVInputFormat {
     /***********************************************************
     @brief A comma separated list of short names for the format. New names
     may be appended with a minor bump.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract string name { public get; }
 
     /***********************************************************
@@ -866,7 +882,7 @@ public abstract class AVInputFormat {
     than name. You should use the NULL_IF_CONFIG_SMALL () macro
     to define it.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract string long_name { public get; }
 
     /***********************************************************
@@ -874,7 +890,7 @@ public abstract class AVInputFormat {
     AVFMT_NOTIMESTAMPS, AVFMT_GENERIC_INDEX, AVFMT_TS_DISCONT, AVFMT_NOBINSEARCH,
     AVFMT_NOGENSEARCH, AVFMT_NO_BYTE_SEEK, AVFMT_SEEK_TO_PTS.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract AVFormatFlags1 flags { public get; }
 
     /***********************************************************
@@ -882,16 +898,16 @@ public abstract class AVInputFormat {
     usually not use extension format guessing because it is not
     reliable enough
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract string extensions { public get; }
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVCodecTag codec_tag;
 
     /***********************************************************
     @brief LibAVUtil.Class for the private context
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Class priv_class;
 
     /***********************************************************
@@ -899,7 +915,7 @@ public abstract class AVInputFormat {
     It is used check for matching mime types while probing.
     @see av_probe_input_format2
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract string mime_type { public get; }
 
     /***********************************************************
@@ -908,19 +924,19 @@ public abstract class AVInputFormat {
     removed at will.
     New public fields should be added right above.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVInputFormat next;
 
     /***********************************************************
     @brief Raw demuxers store their codec ID here.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVCodec.CodecID raw_codec_id { public get; }
 
     /***********************************************************
     @brief Size of private data so that it can be allocated in the wrapper.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract size_t priv_data_size { public get; }
 
     /***********************************************************
@@ -928,7 +944,7 @@ public abstract class AVInputFormat {
     The buffer provided is guaranteed to be AVPROBE_PADDING_SIZE bytes
     big so you do not have to check for that unless you need more.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int read_probe (
         AVProbeData format_context
     );
@@ -938,7 +954,7 @@ public abstract class AVInputFormat {
     structure. Return 0 if OK. 'avformat_new_stream' should be
     called to create new streams.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int read_header (
         AVFormatContext format_context
     );
@@ -952,7 +968,7 @@ public abstract class AVInputFormat {
             When returning an error, packet must not have been allocated
             or must be freed before returning
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -962,7 +978,7 @@ public abstract class AVInputFormat {
     @brief Close the stream. The AVFormatContext and AVStreams are not
     freed by this function
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int read_close (
         AVFormatContext format_context
     );
@@ -975,7 +991,7 @@ public abstract class AVInputFormat {
                  match is available.
     @return >= 0 on success (but not necessarily the new offset)
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -987,7 +1003,7 @@ public abstract class AVInputFormat {
     @brief Get the next timestamp in stream[stream_index].time_base units.
     @return the timestamp or AV_NOPTS_VALUE if an error occurred
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
@@ -999,7 +1015,7 @@ public abstract class AVInputFormat {
     @brief Start/resume playing - only meaningful if using a network-based format
     (RTSP).
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int read_play (
         AVFormatContext format_context
     );
@@ -1008,7 +1024,7 @@ public abstract class AVInputFormat {
     @brief Pause playing - only meaningful if using a network-based format
     (RTSP).
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int read_pause (
         AVFormatContext format_context
     );
@@ -1019,7 +1035,7 @@ public abstract class AVInputFormat {
     can be presented successfully will be closest to ts and within min/max_ts.
     Active streams are all streams that have AVStream.discard < AVDISCARD_ALL.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -1033,7 +1049,7 @@ public abstract class AVInputFormat {
     @brief Returns device list with it properties.
     @see avdevice_list_devices () for more details.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int get_device_list (
         AVFormatContext format_context,
         AVDeviceInfoList device_list
@@ -1043,7 +1059,7 @@ public abstract class AVInputFormat {
     @brief Initialize device capabilities submodule.
     @see avdevice_capabilities_create () for more details.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int create_device_capabilities (
         AVFormatContext format_context,
         AVDeviceCapabilitiesQuery caps
@@ -1053,7 +1069,7 @@ public abstract class AVInputFormat {
     @brief Free device capabilities submodule.
     @see avdevice_capabilities_free () for more details.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int free_device_capabilities (
         AVFormatContext format_context,
         AVDeviceCapabilitiesQuery caps
@@ -1064,37 +1080,48 @@ public abstract class AVInputFormat {
 @}
 ***********************************************************/
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public enum AVStreamParseType {
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSTREAM_PARSE_NONE,
+
     /***********************************************************
     @brief Full parsing and repack
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSTREAM_PARSE_FULL,
+
     /***********************************************************
     @brief Only parse headers, do not repack.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSTREAM_PARSE_HEADERS,
+
     /***********************************************************
     @brief Full parsing and interpolation of timestamps for frames not starting on a packet boundary
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSTREAM_PARSE_TIMESTAMPS,
+
     /***********************************************************
     @brief Full parsing and repack of the first frame only, only implemented for H.264 currently
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSTREAM_PARSE_FULL_ONCE,
+
     /***********************************************************
     @brief Full parsing and repack with timestamp and position generation by parser for raw
     this assumes that each packet in the file contains no demuxer level headers and
     just codec level data, otherwise position generation would fail
     ***********************************************************/
-    AVSTREAM_PARSE_FULL_RAW,
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
+    AVSTREAM_PARSE_FULL_RAW;
 }
 
-[CCode (cname="struct AVIndexEntry", cheader_filename="")]
+[CCode (cname="struct AVIndexEntry",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVIndexEntry {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 pos;
 
     /***********************************************************
@@ -1105,40 +1132,56 @@ public class AVIndexEntry {
     timestamp, if it is more convenient for the implementation
     or nothing better is known.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 timestamp;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVIndexEntryFlags flags; // :2;
 
     /***********************************************************
     @brief Yeah, trying to keep the size of this small to reduce memory requirements (it is 24 vs. 32 bytes due to possible 8-byte alignment).
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int size; // :30
     /***********************************************************
     @brief Minimum distance between this and the previous keyframe, used to avoid unneeded searching.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int min_distance;
 }
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVIndexEntryFlags {
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVINDEX_KEYFRAME,
+
     /***********************************************************
     @brief Flag is used to indicate which frame should be discarded after decoding.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVINDEX_DISCARD_FRAME;
 }
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVDispositionFlags {
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_DEFAULT,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_DUB,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_ORIGINAL,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_COMMENT,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_LYRICS,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_KARAOKE,
 
     /***********************************************************
@@ -1146,19 +1189,27 @@ public enum AVDispositionFlags {
     Useful for subtitle track that should be displayed
     even when user did not explicitly ask for subtitles.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_FORCED,
+
     /***********************************************************
     @brief Stream for hearing impaired audiences
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_HEARING_IMPAIRED,
+
     /***********************************************************
     @brief Stream for visual impaired audiences
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_VISUAL_IMPAIRED,
+
     /***********************************************************
     @brief Stream without voice
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_CLEAN_EFFECTS,
+
     /***********************************************************
     @brief The stream is stored in the file as an attached picture/"cover art" (e.g.
     APIC frame in ID3v2). The first (usually only) packet associated with it
@@ -1166,54 +1217,73 @@ public enum AVDispositionFlags {
     seeking takes place. It can also be accessed at any time in
     AVStream.attached_pic.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_ATTACHED_PIC,
+
     /***********************************************************
     @brief The stream is sparse, and contains thumbnail images, often corresponding
     to chapter markers. Only ever used with AV_DISPOSITION_ATTACHED_PIC.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_TIMED_THUMBNAILS,
 
     /***********************************************************
     @brief To specify text track kind (different from subtitles default).
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_CAPTIONS,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_DESCRIPTIONS,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_METADATA,
+
     /***********************************************************
     @brief Dependent audio stream (mix_type=0 in mpegts)
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_DISPOSITION_DEPENDENT,
+
     /***********************************************************
     @brief Still images in video stream (still_picture_flag=1 in mpegts)
     ***********************************************************/
-    AV_DISPOSITION_STILL_IMAGE,
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
+    AV_DISPOSITION_STILL_IMAGE;
 }
 
 /***********************************************************
 @brief Options for behavior on timestamp wrap detection.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public enum AVFormatParseTimestampWrapDetection {
     /***********************************************************
     @brief Ignore the wrap
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_PTS_WRAP_IGNORE,
+
     /***********************************************************
     @brief Add the format specific offset on wrap detection
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_PTS_WRAP_ADD_OFFSET,
+
     /***********************************************************
     @brief Subtract the format specific offset on wrap detection
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_PTS_WRAP_SUB_OFFSET;
 }
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVFormatStreamEventFlags {
     /***********************************************************
     @brief The call resulted in updated metadata.
     ***********************************************************/
-    AVSTREAM_EVENT_FLAG_METADATA_UPDATED,
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
+    AVSTREAM_EVENT_FLAG_METADATA_UPDATED;
 }
 
 /***********************************************************
@@ -1223,13 +1293,13 @@ Removal, reordering and changes to existing fields require a major
 version bump.
 sizeof (AVStream) must not be used outside libav*.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVStream {
     /***********************************************************
     @brief Stream index in AVFormatContext
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int index;
 
     /***********************************************************
@@ -1238,10 +1308,10 @@ public class AVStream {
     - decoding: set by libavformat
     - encoding: set by the user, replaced by libavformat if left unset
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int id;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public void *priv_data;
 
     /***********************************************************
@@ -1256,7 +1326,7 @@ public class AVStream {
               written into the file (which may or may not be related to the
               user-provided one, depending on the format).
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Rational time_base;
 
     /***********************************************************
@@ -1267,7 +1337,7 @@ public class AVStream {
     @note The ASF header does NOT contain a correct start_time the ASF
     demuxer must NOT set this.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 start_time;
 
     /***********************************************************
@@ -1278,25 +1348,25 @@ public class AVStream {
     Encoding: May be set by the caller before avformat_write_header () to
     provide a hint to the muxer about the estimated duration.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 duration;
 
     /***********************************************************
     @brief Number of frames in this stream if known or 0
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 nb_frames;
 
     /***********************************************************
     @brief AV_DISPOSITION_* bit field
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int disposition;
 
     /***********************************************************
     @brief Selects which packets can be discarded at will and do not need to be demuxed.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.Discard discard;
 
     /***********************************************************
@@ -1305,10 +1375,10 @@ public class AVStream {
     - encoding: Set by user.
     - decoding: Set by libavformat.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Rational sample_aspect_ratio;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Dictionary metadata;
 
     /***********************************************************
@@ -1318,7 +1388,7 @@ public class AVStream {
                 avformat_find_stream_info ().
     - muxing: May be set by the caller before avformat_write_header ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Rational avg_frame_rate;
 
     /***********************************************************
@@ -1328,7 +1398,7 @@ public class AVStream {
     decoding: set by libavformat, must not be modified by the caller.
     encoding: unused
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.Packet attached_pic;
 
     /***********************************************************
@@ -1349,13 +1419,13 @@ public class AVStream {
 
     @see av_format_inject_global_side_data ()
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.PacketSideData[] side_data;
 
     /***********************************************************
     @brief The number of elements in the AVStream.side_data array.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int nb_side_data;
 
     /***********************************************************
@@ -1363,7 +1433,7 @@ public class AVStream {
     be cleared by the user once the event has been handled.
     A combination of AVSTREAM_EVENT_FLAG_*.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVFormatStreamEventFlags event_flags;
 
     /***********************************************************
@@ -1374,7 +1444,7 @@ public class AVStream {
     For example, if the time base is 1/90000 and all frames have either
     approximately 3600 or 1800 timer ticks, then r_frame_rate will be 50/1.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Rational r_frame_rate;
 
     /***********************************************************
@@ -1386,7 +1456,7 @@ public class AVStream {
                 avformat_find_stream_info ()
     - muxing: filled by the caller before avformat_write_header ()
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.CodecParameters codecpar;
 
     //  /***********************************************************
@@ -1403,13 +1473,21 @@ public class AVStream {
     //      ***********************************************************/
     //  public public struct StreamInfo {
     //      public int64 last_dts;
+
     //      public int64 duration_gcd;
+
     //      public int duration_count;
+
     //      public int64 rfps_duration_sum;
+
     //      public public const int MAX_STD_TIMEBASES;
+
     //      public double duration_error)[2][MAX_STD_TIMEBASES];
+
     //      public int64 codec_info_duration;
+
     //      public int64 codec_info_duration_fields;
+
     //      public int frame_delay_evidence;
 
     //      /***********************************************************
@@ -1425,8 +1503,11 @@ public class AVStream {
     //      Those are used for average framerate estimation.
     //      ***********************************************************/
     //      public int64 fps_first_dts;
+
     //      public int fps_first_dts_idx;
+
     //      public int64 fps_last_dts;
+
     //      public int fps_last_dts_idx;
 
     //  }
@@ -1449,8 +1530,11 @@ public class AVStream {
     //  AV_NOPTS_VALUE by default.
     //      ***********************************************************/
     //  public int64 first_dts;
+
     //  public int64 cur_dts;
+
     //  public int64 last_IP_pts;
+
     //  public int last_IP_duration;
 
     //  /***********************************************************
@@ -1473,16 +1557,20 @@ public class AVStream {
     //  last packet in packet_buffer for this stream when muxing.
     //      ***********************************************************/
     //  public AVPacketList last_in_packet_buffer;
+
     //  public AVProbeData probe_data;
 
     //  public const int MAX_REORDER_DELAY;
+
     //  public int64 pts_buffer[MAX_REORDER_DELAY+1];
 
     //  /***********************************************************
     //  Only used if the format does not support seeking natively.
     //      ***********************************************************/
     //  public AVIndexEntry[] index_entries;
+
     //  public int nb_index_entries;
+
     //  public uint index_entries_allocated_size;
 
     //  /***********************************************************
@@ -1496,10 +1584,13 @@ public class AVStream {
     //  Details of the MPEG-TS program which created this stream.
     //      ***********************************************************/
     //  public int program_num;
+
     //  public int pmt_version;
+
     //  public int pmt_stream_idx;
 
     //  public int64 interleaver_chunk_size;
+
     //  public int64 interleaver_chunk_duration;
 
     //  /***********************************************************
@@ -1510,6 +1601,7 @@ public class AVStream {
     //  NOT PART OF PUBLIC API
     //      ***********************************************************/
     //  public int request_probe;
+
     //  /***********************************************************
     //  Indicates that everything up to the next keyframe
     //  should be discarded.
@@ -1583,13 +1675,16 @@ public class AVStream {
     //  Internal data to generate dts from pts
     //      ***********************************************************/
     //  public int64 pts_reorder_error[MAX_REORDER_DELAY+1];
+
     //  public uint8 pts_reorder_error_count[MAX_REORDER_DELAY+1];
 
     //  /***********************************************************
     //  Internal data to analyze DTS and detect faulty mpeg streams
     //      ***********************************************************/
     //  public int64 last_dts_for_order_check;
+
     //  public uint8 dts_ordered;
+
     //  public uint8 dts_misordered;
 
     //  /***********************************************************
@@ -1611,7 +1706,7 @@ public class AVStream {
     //  public AVStreamInternal internal;
 }
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public LibAVCodec.CodecParserContext av_stream_get_parser (
     AVStream stream
 );
@@ -1621,12 +1716,12 @@ public LibAVCodec.CodecParserContext av_stream_get_parser (
 
 the retuned value is undefined when used with a demuxer.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int64 av_stream_get_end_pts (
     AVStream st
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public const int AV_PROGRAM_RUNNING;
 
 /***********************************************************
@@ -1635,40 +1730,40 @@ Removal, reordering and changes to existing fields require a major
 version bump.
 sizeof (AVProgram) must not be used outside libav*.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVProgram {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int id;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int lags;
 
     /***********************************************************
     @brief Selects which program to discard and which to feed to the caller
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.Discard discard;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint[] stream_index;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint nb_stream_indexes;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Dictionary metadata;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int program_num;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int pmt_pid;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int pcr_pid;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int pmt_version;
 
     //  /***********************************************************
@@ -1678,25 +1773,30 @@ public class AVProgram {
     //  New public fields should be added right above.
     //      ***********************************************************/
     //  public int64 start_time;
+
     //  public int64 end_time;
 
     //  /***********************************************************
     //  reference dts for wrap detection
     //      ***********************************************************/
     //  public int64 pts_wrap_reference;
+
     //  /***********************************************************
     //  behavior on wrap detection
     //      ***********************************************************/
     //  public int pts_wrap_behavior;
 }
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVFormatContextFlags {
     /***********************************************************
     @brief Signal that no header is present
     (streams are added dynamically)
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMTCTX_NOHEADER,
+
     /***********************************************************
     @brief Signal that the stream is definitely
     not seekable, and attempts to call the
@@ -1704,37 +1804,38 @@ public enum AVFormatContextFlags {
     network protocols (e.g. HLS), this can
     change dynamically at runtime.
     ***********************************************************/
-    AVFMTCTX_UNSEEKABLE,
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
+    AVFMTCTX_UNSEEKABLE;
 }
 
-[CCode (cname="struct AVChapter", cheader_filename="")]
+[CCode (cname="struct AVChapter",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVChapter {
     /***********************************************************
     unique ID to identify the chapter
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int id;
 
     /***********************************************************
     @brief Time base in which the start/end timestamps are specified
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Rational time_base;
 
     /***********************************************************
     @brief Chapter start time in time_base units
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 start;
 
     /***********************************************************
     @brief Chapter end time in time_base units
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 end;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Dictionary metadata;
 }
 
@@ -1745,16 +1846,17 @@ public class AVChapter {
 [CCode (cname="av_format_control_message")]
 public delegate int AVFormatControlMessage (
     AVFormatContext format_context,
-    public int type,
+    int type,
     void *data,
-    public size_t data_size
+    size_t data_size
 );
 
+[CCode (cname="",cheader_filename="")]
 public delegate int AVOpenCallback (
     AVFormatContext format_context,
     out AVIOContext pb,
     string url,
-    public int flags,
+    int flags,
     AVIOInterruptCB int_cb,
     LibAVUtil.Dictionary[] options
 );
@@ -1763,120 +1865,167 @@ public delegate int AVOpenCallback (
 @brief The duration of a video can be estimated through various ways, and this enum can be used
 to know how the duration was estimated.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public enum AVDurationEstimationMethod {
     /***********************************************************
     @brief Duration accurately estimated from PTSes
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_DURATION_FROM_PTS,
+
     /***********************************************************
     @brief Duration estimated from a stream with a known duration
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_DURATION_FROM_STREAM,
+
     /***********************************************************
     @brief Duration estimated from bitrate (less accurate)
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_DURATION_FROM_BITRATE
 }
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVFormatFlags {
     /***********************************************************
     @brief Generate missing pts even if it requires parsing future frames.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_GENPTS,
+
     /***********************************************************
     @brief Ignore index.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_IGNIDX,
+
     /***********************************************************
     @brief Do not block when reading packets from input.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_NONBLOCK,
+
     /***********************************************************
     @brief Ignore DTS on frames that contain both DTS & PTS
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_IGNDTS,
+
     /***********************************************************
     @brief Do not infer any values from other values, just return what is stored in the container
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_NOFILLIN,
+
     /***********************************************************
     @brief Do not use AVParsers, you also must set AVFMT_FLAG_NOFILLIN as the fillin code works on frames and no parsing -> no frames. Also seeking to frames can not work if parsing to find frame boundaries has been disabled
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_NOPARSE,
+
     /***********************************************************
     @brief Do not buffer frames when possible
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_NOBUFFER,
+
     /***********************************************************
     @brief The caller has supplied a custom AVIOContext, don't avio_close () it.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_CUSTOM_IO,
+
     /***********************************************************
     @brief Discard frames marked corrupted
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_DISCARD_CORRUPT,
+
     /***********************************************************
     @brief Flush the AVIOContext every packet.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_FLUSH_PACKETS,
+
     /***********************************************************
     @brief When muxing, try to avoid writing any random/volatile data to the output.
     This includes any random IDs, real-time timestamps/dates, muxer version, etc.
 
     This flag is mainly intended for testing.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_BITEXACT,
+
     /***********************************************************
     @brief Try to interleave outputted packets by dts (using this flag can slow demuxing down)
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_SORT_DTS,
+
     /***********************************************************
     @brief Enable use of private options by delaying codec open (this could be made default once all code is converted)
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_PRIV_OPT,
+
     /***********************************************************
     @brief Enable fast, but inaccurate seeks for some formats
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_FAST_SEEK,
+
     /***********************************************************
     @brief Stop muxing when the shortest stream stops.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_FLAG_SHORTEST,
+
     /***********************************************************
     @brief Add bitstream filters as requested by the muxer
     ***********************************************************/
-    AVFMT_FLAG_AUTO_BSF,
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
+    AVFMT_FLAG_AUTO_BSF;
 }
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVFormatDebugFlags {
-    FF_FDEBUG_TS,
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
+    FF_FDEBUG_TS;
 }
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVFormatEventFlags {
     /***********************************************************
     @brief The call resulted in updated metadata.
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_EVENT_FLAG_METADATA_UPDATED
 }
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVFormatAvoidNegativeTimestampFlags {
     /***********************************************************
     @brief Enabled when required by target format
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_AVOID_NEG_TS_AUTO,
+
     /***********************************************************
     @brief Shift timestamps so they are non negative
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_AVOID_NEG_TS_MAKE_NON_NEGATIVE,
+
     /***********************************************************
     @brief Shift timestamps so that they start at 0
     ***********************************************************/
-    AVFMT_AVOID_NEG_TS_MAKE_ZERO,
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
+    AVFMT_AVOID_NEG_TS_MAKE_ZERO;
 }
 
 /***********************************************************
@@ -1893,13 +2042,13 @@ can be found in libavformat/options_table.h.
 The LibAVUtil.Option/command line parameter names differ in some cases from the C
 structure field names for historic reasons or brevity.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public abstract class AVFormatContext {
     /***********************************************************
     @brief A class for logging and @ref avoptions. Set by avformat_alloc_context ().
     Exports (de)muxer private options if they exist.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Class av_class;
 
     /***********************************************************
@@ -1907,7 +2056,7 @@ public abstract class AVFormatContext {
 
     Demuxing only, set by avformat_open_input ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVInputFormat iformat;
 
     /***********************************************************
@@ -1915,7 +2064,7 @@ public abstract class AVFormatContext {
 
     Muxing only, must be set by the caller before avformat_write_header ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVOutputFormat oformat;
 
     /***********************************************************
@@ -1925,7 +2074,7 @@ public abstract class AVFormatContext {
     - muxing: set by avformat_write_header ()
     - demuxing: set by avformat_open_input ()
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public void *priv_data;
 
     /***********************************************************
@@ -1940,7 +2089,7 @@ public abstract class AVFormatContext {
     iformat/oformat.flags. In such a case, the (de)muxer will handle
     I/O in some other way and this field will be NULL.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVIOContext pb;
 
     /***********************************************************
@@ -1951,7 +2100,7 @@ public abstract class AVFormatContext {
     @brief Flags signalling stream properties. A combination of AVFMTCTX_*.
     Set by libavformat.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int ctx_flags;
 
     /***********************************************************
@@ -1965,7 +2114,7 @@ public abstract class AVFormatContext {
 
     Freed by libavformat in avformat_free_context ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVStream[] streams;
 
     /***********************************************************
@@ -1973,7 +2122,7 @@ public abstract class AVFormatContext {
 
     Set by avformat_new_stream (), must not be modified by any other code.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint nb_streams;
 
     /***********************************************************
@@ -1989,7 +2138,7 @@ public abstract class AVFormatContext {
 
     Freed by libavformat in avformat_free_context ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public string url;
 
     /***********************************************************
@@ -1999,7 +2148,7 @@ public abstract class AVFormatContext {
 
     Demuxing only, set by libavformat.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 start_time;
 
     /***********************************************************
@@ -2010,7 +2159,7 @@ public abstract class AVFormatContext {
 
     Demuxing only, set by libavformat.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 duration;
 
     /***********************************************************
@@ -2018,20 +2167,20 @@ public abstract class AVFormatContext {
     available. Never set it directly if the file_size and the
     duration are known as FFmpeg can compute it automatically.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 bit_rate;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint packet_size;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int max_delay;
 
     /***********************************************************
     @brief Flags modifying the (de)muxer behaviour. A combination of AVFMT_FLAG_*.
     Set by the user before avformat_open_input () / avformat_write_header ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVFormatFlags flags;
 
     /***********************************************************
@@ -2039,7 +2188,7 @@ public abstract class AVFormatContext {
     the input container format.
     Demuxing only, set by the caller before avformat_open_input ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 probesize;
 
     /***********************************************************
@@ -2048,40 +2197,40 @@ public abstract class AVFormatContext {
     Demuxing only, set by the caller before avformat_find_stream_info ().
     Can be set to 0 to let avformat choose using a heuristic.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 max_analyze_duration;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint8[] key;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int keylen;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVProgram[] programs;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint nb_programs;
 
     /***********************************************************
     @brief Forced video codec_id.
     Demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.CodecID video_codec_id;
 
     /***********************************************************
     @brief Forced audio codec_id.
     Demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.CodecID audio_codec_id;
 
     /***********************************************************
     @brief Forced subtitle codec_id.
     Demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.CodecID subtitle_codec_id;
 
     /***********************************************************
@@ -2094,14 +2243,14 @@ public abstract class AVFormatContext {
     - muxing: unused
     - demuxing: set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint max_index_size;
 
     /***********************************************************
     @brief Maximum amount of memory in bytes to use for buffering frames
     obtained from realtime capture devices.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint max_picture_buffer;
 
     /***********************************************************
@@ -2115,10 +2264,10 @@ public abstract class AVFormatContext {
     - muxing: set by user
     - demuxing: set by libavformat
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVChapter[] chapters;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint nb_chapters;
 
     /***********************************************************
@@ -2129,7 +2278,7 @@ public abstract class AVFormatContext {
 
     Freed by libavformat in avformat_free_context ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Dictionary metadata;
 
     /***********************************************************
@@ -2143,7 +2292,7 @@ public abstract class AVFormatContext {
                 the value may become known after some number of frames
                 have been received.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 start_time_realtime;
 
     /***********************************************************
@@ -2151,7 +2300,7 @@ public abstract class AVFormatContext {
     avformat_find_stream_info ().
     Demuxing only, set by the caller before avformat_find_stream_info ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int fps_probe_size;
 
     /***********************************************************
@@ -2159,7 +2308,7 @@ public abstract class AVFormatContext {
     misdetect some more or less valid parts as errors.
     Demuxing only, set by the caller before avformat_open_input ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int error_recognition;
 
     /***********************************************************
@@ -2171,13 +2320,13 @@ public abstract class AVFormatContext {
     should also be passed to avio_open2 () if it's used to
     open the file.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVIOInterruptCB interrupt_callback;
 
     /***********************************************************
     @brief Flags to enable debugging.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVFormatDebugFlags debug;
 
     /***********************************************************
@@ -2196,14 +2345,14 @@ public abstract class AVFormatContext {
 
     Muxing only, set by the caller before avformat_write_header ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 max_interleave_delta;
 
     /***********************************************************
     @brief Allow non-standard and experimental extension
     @see LibAVCodec.CodecContext.strict_std_compliance
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int strict_std_compliance;
 
     /***********************************************************
@@ -2211,14 +2360,14 @@ public abstract class AVFormatContext {
     be cleared by the user once the event has been handled.
     A combination of AVFMT_EVENT_FLAG_*.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVFormatEventFlags event_flags;
 
     /***********************************************************
     @brief Maximum number of packets to read while waiting for the first timestamp.
     Decoding only.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int max_ts_probe;
 
     /***********************************************************
@@ -2228,14 +2377,14 @@ public abstract class AVFormatContext {
     - muxing: Set by user
     - demuxing: unused
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVFormatAvoidNegativeTimestampFlags avoid_negative_ts;
 
     /***********************************************************
     @brief Transport stream id.
     This will be moved into demuxer private options. Thus no API/ABI compatibility
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int ts_id;
 
     /***********************************************************
@@ -2244,7 +2393,7 @@ public abstract class AVFormatContext {
     - encoding: Set by user
     - decoding: unused
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int audio_preload;
 
     /***********************************************************
@@ -2253,7 +2402,7 @@ public abstract class AVFormatContext {
     - encoding: Set by user
     - decoding: unused
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int max_chunk_duration;
 
     /***********************************************************
@@ -2262,7 +2411,7 @@ public abstract class AVFormatContext {
     - encoding: Set by user
     - decoding: unused
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int max_chunk_size;
 
     /***********************************************************
@@ -2271,7 +2420,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: Set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int use_wallclock_as_timestamps;
 
     /***********************************************************
@@ -2279,7 +2428,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: Set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int avio_flags;
 
     /***********************************************************
@@ -2288,7 +2437,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: Read by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVDurationEstimationMethod duration_estimation_method;
 
     /***********************************************************
@@ -2296,7 +2445,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: Set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 skip_initial_bytes;
 
     /***********************************************************
@@ -2304,7 +2453,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: Set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint correct_ts_overflow;
 
     /***********************************************************
@@ -2312,7 +2461,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: Set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int seek2any;
 
     /***********************************************************
@@ -2320,7 +2469,7 @@ public abstract class AVFormatContext {
     - encoding: Set by user
     - decoding: unused
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int flush_packets;
 
     /***********************************************************
@@ -2330,7 +2479,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: set by avformat, read by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int probe_score;
 
     /***********************************************************
@@ -2338,7 +2487,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int format_probesize;
 
     /***********************************************************
@@ -2347,7 +2496,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public string codec_whitelist;
 
     /***********************************************************
@@ -2356,14 +2505,14 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public string format_whitelist;
 
     /***********************************************************
     @brief An opaque field for libavformat internal usage.
     Must not be accessed in any way by callers.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVFormatInternal internal;
 
     /***********************************************************
@@ -2372,7 +2521,7 @@ public abstract class AVFormatContext {
     is repositioned, for example when doing byte based seeking.
     Demuxers can use the flag to detect such changes.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int io_repositioned;
 
     /***********************************************************
@@ -2381,7 +2530,7 @@ public abstract class AVFormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVCodec.Codec video_codec { public get; }
 
     /***********************************************************
@@ -2390,7 +2539,7 @@ public abstract class AVFormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVCodec.Codec audio_codec { public get; }
 
     /***********************************************************
@@ -2399,7 +2548,7 @@ public abstract class AVFormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVCodec.Codec subtitle_codec { public get; }
 
     /***********************************************************
@@ -2408,7 +2557,7 @@ public abstract class AVFormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract LibAVCodec.Codec data_codec { public get; }
 
     /***********************************************************
@@ -2416,27 +2565,27 @@ public abstract class AVFormatContext {
     Demuxing: Unused.
     Muxing: Set by user via av_format_set_metadata_header_padding.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int metadata_header_padding;
 
     /***********************************************************
     User data.
     This is a place for some private data of the user.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public void *opaque;
 
     /***********************************************************
     @brief Callback used by devices to communicate with application.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVFormatControlMessage control_message_cb;
 
     /***********************************************************
     @brief Output timestamp offset, in microseconds.
     Muxing: set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int64 output_ts_offset;
 
     /***********************************************************
@@ -2445,14 +2594,14 @@ public abstract class AVFormatContext {
     - muxing: Set by user.
     - demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public uint8[] dump_separator;
 
     /***********************************************************
     @brief Forced Data codec_id.
     Demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.CodecID data_codec_id;
 
     /***********************************************************
@@ -2460,7 +2609,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public string protocol_whitelist;
 
     /***********************************************************
@@ -2483,7 +2632,7 @@ public abstract class AVFormatContext {
     passed to this callback may be different from the one facing the caller.
     It will, however, have the same 'opaque' field.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract int io_open (
         AVFormatContext format_context,
         out AVIOContext pb,
@@ -2495,7 +2644,7 @@ public abstract class AVFormatContext {
     /***********************************************************
     @brief A callback for closing the streams opened with AVFormatContext.io_open ().
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public abstract void io_close (
         AVFormatContext format_context,
         AVIOContext pb
@@ -2506,7 +2655,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public string protocol_blacklist;
 
     /***********************************************************
@@ -2514,7 +2663,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int max_streams;
 
     /***********************************************************
@@ -2522,7 +2671,7 @@ public abstract class AVFormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public int skip_estimate_duration_from_pts;
 }
 
@@ -2530,7 +2679,7 @@ public abstract class AVFormatContext {
 @brief This function will cause global side data to be injected in the next packet
 of each stream as well as after any subsequent seek.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_format_inject_global_side_data (
     AVFormatContext format_context
 );
@@ -2540,18 +2689,18 @@ public void av_format_inject_global_side_data (
 
 @return AVFMT_DURATION_FROM_PTS, AVFMT_DURATION_FROM_STREAM, or AVFMT_DURATION_FROM_BITRATE.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVDurationEstimationMethod av_fmt_ctx_get_duration_estimation_method (
     AVFormatContext fomat_context
 );
 
-[CCode (cname="struct AVPacketList", cheader_filename="")]
+[CCode (cname="struct AVPacketList",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVPacketList {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public LibAVCodec.Packet packet;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     public AVPacketList *next;
 }
 
@@ -2568,19 +2717,19 @@ etc.
 /***********************************************************
 @brief Return the LIBAVFORMAT_VERSION_INT constant.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public uint avformat_version ();
 
 /***********************************************************
 @brief Return the libavformat build-time configuration.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public string avformat_configuration ();
 
 /***********************************************************
 @brief Return the libavformat license.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public string avformat_license ();
 
 /***********************************************************
@@ -2597,14 +2746,14 @@ This function will be deprecated once support for older GnuTLS and
 OpenSSL libraries is removed, and this function has no purpose
 anymore.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_network_init ();
 
 /***********************************************************
 @brief Undo the initialization done by avformat_network_init. Call it only
 once for each time you called avformat_network_init.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_network_deinit ();
 
 /***********************************************************
@@ -2616,7 +2765,7 @@ public int avformat_network_deinit ();
 @return the next registered muxer or NULL when the iteration is
         finished
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVOutputFormat av_muxer_iterate (
     out void *opaque
 );
@@ -2630,7 +2779,7 @@ public AVOutputFormat av_muxer_iterate (
 @return the next registered demuxer or NULL when the iteration is
         finished
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVInputFormat av_demuxer_iterate (
     out void *opaque
 );
@@ -2640,14 +2789,14 @@ public AVInputFormat av_demuxer_iterate (
 avformat_free_context () can be used to free the context and everything
 allocated by the framework within it.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVFormatContext avformat_alloc_context ();
 
 /***********************************************************
 @brief Free an AVFormatContext and all its streams.
 @param format_context context to free
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void avformat_free_context (
     AVFormatContext format_context
 );
@@ -2658,7 +2807,7 @@ AV_OPT_SEARCH_FAKE_OBJ for examining options.
 
 @see av_opt_find ().
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public LibAVUtil.Class avformat_get_class ();
 
 /***********************************************************
@@ -2680,7 +2829,7 @@ defaults to be set, so codec should be provided if it is known.
 
 @return newly created stream or NULL on error.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVStream avformat_new_stream (
     AVFormatContext format_context,
     LibAVCodec.Codec codec
@@ -2698,12 +2847,12 @@ public AVStream avformat_new_stream (
 @return zero on success, a negative LibAVUtil.ErrorCode code on failure. On failure,
         the stream is unchanged and the data remains owned by the caller.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_stream_add_side_data (
     AVStream st,
     LibAVCodec.PacketSideDataType type,
     uint8[] data,
-    public size_t size
+    size_t size
 );
 
 /***********************************************************
@@ -2714,11 +2863,11 @@ public int av_stream_add_side_data (
 @param size side information size
 @return pointer to fresh allocated data or NULL otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public uint8[] av_stream_new_side_data (
     AVStream stream,
     LibAVCodec.PacketSideDataType type,
-    public int size
+    int size
 );
 
 /***********************************************************
@@ -2729,17 +2878,17 @@ public uint8[] av_stream_new_side_data (
 @param size pointer for side information size to store (optional)
 @return pointer to data if present or NULL otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public uint8[] av_stream_get_side_data (
     AVStream stream,
     LibAVCodec.PacketSideDataType type,
-    public int[] size
+    int[] size
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVProgram av_new_program (
     AVFormatContext format_context,
-    public int id
+    int id
 );
 
 /***********************************************************
@@ -2763,7 +2912,7 @@ context, may be NULL
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of
 failure
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_alloc_output_context2 (
     out AVFormatContext fomat_context,
     AVOutputFormat oformat,
@@ -2779,7 +2928,7 @@ public int avformat_alloc_output_context2 (
 /***********************************************************
 @brief Find AVInputFormat based on the short name of the input format.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVInputFormat av_find_input_format (
     string short_name
 );
@@ -2791,10 +2940,10 @@ public AVInputFormat av_find_input_format (
 @param is_opened Whether the file is already opened; determines whether
                  demuxers with or without AVFMT_NOFILE are probed.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVInputFormat av_probe_input_format (
     AVProbeData probe_data,
-    public int is_opened
+    int is_opened
 );
 
 /***********************************************************
@@ -2809,10 +2958,10 @@ public AVInputFormat av_probe_input_format (
                  If the score is <= AVPROBE_SCORE_MAX / 4 it is recommended
                  to retry with a larger probe buffer.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVInputFormat av_probe_input_format2 (
     AVProbeData probe_data,
-    public int is_opened,
+    int is_opened,
     out int score_max
 );
 
@@ -2823,10 +2972,10 @@ public AVInputFormat av_probe_input_format2 (
                  demuxers with or without AVFMT_NOFILE are probed.
 @param score_ret The score of the best detection.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVInputFormat av_probe_input_format3 (
     AVProbeData probe_data,
-    public int is_opened,
+    int is_opened,
     out int score_ret
 );
 
@@ -2846,27 +2995,27 @@ with the highest score is returned.
         the maximal score is AVPROBE_SCORE_MAX
 LibAVUtil.ErrorCode code otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_probe_input_buffer2 (
     AVIOContext pb,
     out AVInputFormat fmt,
     string url,
     void *logctx,
-    public uint offset,
-    public uint max_probe_size
+    uint offset,
+    uint max_probe_size
 );
 
 /***********************************************************
 @brief Like av_probe_input_buffer2 () but returns 0 on success
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_probe_input_buffer (
     AVIOContext pb,
     out AVInputFormat fmt,
     string url,
     void *logctx,
-    public uint offset,
-    public uint max_probe_size
+    uint offset,
+    uint max_probe_size
 );
 
 /***********************************************************
@@ -2888,7 +3037,7 @@ The stream must be closed with avformat_close_input ().
 
 @note If you want to use custom IO, preallocate the format context and set its pb field.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_open_input (
     out AVFormatContext ps,
     string url,
@@ -2917,7 +3066,7 @@ examined packets may be buffered for later processing.
 @todo Let the user decide somehow what information is needed so that
       we do not waste time getting stuff the user does not need.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_find_stream_info (
     AVFormatContext ic,
     out LibAVUtil.Dictionary options
@@ -2933,18 +3082,18 @@ public int avformat_find_stream_info (
 @return the next program which belongs to stream_index, NULL if no program is found or
         the last program is not among the programs of ic.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVProgram av_find_program_from_stream (
     AVFormatContext ic,
     AVProgram last,
-    public int stream_index
+    int stream_index
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_program_add_stream_index (
     AVFormatContext ac,
-    public int progid,
-    public uint idx
+    int progid,
+    uint idx
 );
 
 /***********************************************************
@@ -2971,14 +3120,14 @@ be found are ignored.
 @note If av_find_best_stream returns successfully and decoder_ret is not
        NULL, then decoder_ret is guaranteed to be set to a valid LibAVCodec.Codec.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_find_best_stream (
     AVFormatContext ic,
     LibAVUtil.MediaType type,
-    public int wanted_stream_nb,
-    public int related_stream,
+    int wanted_stream_nb,
+    int related_stream,
     out LibAVCodec.Codec decoder_ret,
-    public int flags
+    int flags
 );
 
 /***********************************************************
@@ -3005,7 +3154,7 @@ decompress the payload.
 
 @return 0 if OK, < 0 on error or end of file
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_read_frame (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
@@ -3024,12 +3173,12 @@ from AV_TIME_BASE units to the stream specific time_base.
 @param flags flags which select direction and seeking mode
 @return >= 0 on success
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_seek_frame (
     AVFormatContext format_context,
-    public int stream_index,
-    public int64 timestamp,
-    public int flags
+    int stream_index,
+    int64 timestamp,
+    int flags
 );
 
 /***********************************************************
@@ -3060,14 +3209,14 @@ If flags contain AVSEEK_FLAG_BACKWARD, it is ignored.
       Thus do not use this yet. It may change at any time, do not expect
       ABI compatibility yet!
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_seek_file (
     AVFormatContext format_context,
-    public int stream_index,
-    public int64 min_ts,
-    public int64 ts,
-    public int64 max_ts,
-    public int flags
+    int stream_index,
+    int64 min_ts,
+    int64 ts,
+    int64 max_ts,
+    int flags
 );
 
 /***********************************************************
@@ -3086,7 +3235,7 @@ avio_flush (format_context.pb) before calling this function.
 @param format_context media file handle
 @return >=0 on success, error code otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_flush (
     AVFormatContext format_context
 );
@@ -3095,7 +3244,7 @@ public int avformat_flush (
 @brief Start playing a network-based stream (e.g. RTSP stream) at the
 current position.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_read_play (
     AVFormatContext format_context
 );
@@ -3105,7 +3254,7 @@ public int av_read_play (
 
 Use av_read_play () to resume it.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_read_pause (
     AVFormatContext format_context
 );
@@ -3114,7 +3263,7 @@ public int av_read_pause (
 @brief Close an opened input AVFormatContext. Free it and all its contents
 and set format_context to NULL.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void avformat_close_input (
     out AVFormatContext format_context
 );
@@ -3123,23 +3272,31 @@ public void avformat_close_input (
 @}
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVFormatSeekFlags {
     /***********************************************************
     @brief Seek backward
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSEEK_FLAG_BACKWARD,
+
     /***********************************************************
     @brief Seeking based on position in bytes
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSEEK_FLAG_BYTE,
+
     /***********************************************************
     @brief Seek to any frame, even non-keyframes
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSEEK_FLAG_ANY,
+
     /***********************************************************
     @brief Seeking based on frame number
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSEEK_FLAG_FRAME;
 }
 
@@ -3148,15 +3305,19 @@ public enum AVFormatSeekFlags {
 @{
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVFormatStreamInitializationFlags {
     /***********************************************************
     @brief Stream parameters initialized in avformat_write_header
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSTREAM_INIT_IN_WRITE_HEADER,
+
     /***********************************************************
     @brief Stream parameters initialized in avformat_init_output
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVSTREAM_INIT_IN_INIT_OUTPUT;
 }
 
@@ -3178,7 +3339,7 @@ an output media file.
 @see av_opt_find, av_dict_set, avio_open, av_oformat_next, avformat_init_output.
 ***********************************************************/
 //  av_warn_unused_result
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_write_header (
     AVFormatContext format_context,
     out LibAVUtil.Dictionary options
@@ -3204,7 +3365,7 @@ If using this function, do not pass the same options to avformat_write_header.
 @see av_opt_find, av_dict_set, avio_open, av_oformat_next, avformat_write_header.
 ***********************************************************/
 //  av_warn_unused_result
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_init_output (
     AVFormatContext format_context,
     out LibAVUtil.Dictionary options
@@ -3247,7 +3408,7 @@ function.
 
 @see av_interleaved_write_frame ()
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_write_frame (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
@@ -3296,7 +3457,7 @@ muxer for VFR content in fragmenting mode.
 
 @see av_write_frame (), AVFormatContext.max_interleave_delta
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_interleaved_write_frame (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
@@ -3310,10 +3471,10 @@ specification; if not, then av_interleaved_write_frame () must be used.
 
 See av_interleaved_write_frame () for details.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_write_uncoded_frame (
     AVFormatContext format_context,
-    public int stream_index,
+    int stream_index,
     LibAVUtil.Frame frame
 );
 
@@ -3333,10 +3494,10 @@ afterwards.
 
 @return  >=0 for success, a negative code on error
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_interleaved_write_uncoded_frame (
     AVFormatContext format_context,
-    public int stream_index,
+    int stream_index,
     LibAVUtil.Frame frame
 );
 
@@ -3346,10 +3507,10 @@ public int av_interleaved_write_uncoded_frame (
 @return  >=0 if an uncoded frame can be written to that muxer and stream,
          <0 if not
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_write_uncoded_frame_query (
     AVFormatContext format_context,
-    public int stream_index
+    int stream_index
 );
 
 /***********************************************************
@@ -3361,7 +3522,7 @@ May only be called after a successful call to avformat_write_header.
 @param format_context media file handle
 @return 0 if OK, AVERROR_xxx on error
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_write_trailer (
     AVFormatContext format_context
 );
@@ -3378,7 +3539,7 @@ extensions of the registered formats
 @param mime_type if non-NULL checks if mime_type matches with the
 MIME type of the registered formats
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVOutputFormat av_guess_format (
     string short_name,
     string filename,
@@ -3388,7 +3549,7 @@ public AVOutputFormat av_guess_format (
 /***********************************************************
 @brief Guess the codec ID based upon muxer and filename.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public LibAVCodec.CodecID av_guess_codec (
     AVOutputFormat fmt,
     string short_name,
@@ -3412,10 +3573,10 @@ work in real time.
 Note: some formats or devices may not allow to measure dts and wall
 atomically.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_get_output_timestamp (
     AVFormatContext format_context,
-    public int stream,
+    int stream,
     out int64 dts,
     out int64 wall
 );
@@ -3444,11 +3605,11 @@ Miscellaneous utility functions related to both muxing and demuxing
 
 @see av_hex_dump_log, av_pkt_dump2, av_pkt_dump_log2
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_hex_dump (
     GLib.File f,
     uint8[] buffer,
-    public int size
+    int size
 );
 
 /***********************************************************
@@ -3463,12 +3624,12 @@ higher importance.
 
 @see av_hex_dump, av_pkt_dump2, av_pkt_dump_log2
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_hex_dump_log (
     void *avcl,
-    public int level,
+    int level,
     uint8[] buffer,
-    public int size
+    int size
 );
 
 /***********************************************************
@@ -3479,11 +3640,11 @@ public void av_hex_dump_log (
 @param dump_payload True if the payload must be displayed, too.
 @param st AVStream that the packet belongs to
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_pkt_dump2 (
     GLib.File f,
     LibAVCodec.Packet packet,
-    public int dump_payload,
+    int dump_payload,
     AVStream st
 );
 
@@ -3499,12 +3660,12 @@ higher importance.
 @param dump_payload True if the payload must be displayed, too.
 @param st AVStream that the packet belongs to
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_pkt_dump_log2 (
     void *avcl,
-    public int level,
+    int level,
     LibAVCodec.Packet packet,
-    public int dump_payload,
+    int dump_payload,
     AVStream st
 );
 
@@ -3516,10 +3677,10 @@ If no codec id is found returns LibAVCodec.CodecID.NONE.
 in AVInputFormat.codec_tag and AVOutputFormat.codec_tag
 @param tag codec tag to match to a codec ID
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public LibAVCodec.CodecID av_codec_get_id (
     AVCodecTag[] tags,
-    public uint tag
+    uint tag
 );
 
 /***********************************************************
@@ -3530,7 +3691,7 @@ If no codec tag is found returns 0.
 in AVInputFormat.codec_tag and AVOutputFormat.codec_tag
 @param id codec ID to match to a codec tag
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public uint av_codec_get_tag (
     AVCodecTag[] tags,
     LibAVCodec.CodecID id
@@ -3545,14 +3706,14 @@ in AVInputFormat.codec_tag and AVOutputFormat.codec_tag
 @param tag A pointer to the found tag
 @return 0 if id was not found in tags, > 0 if it was found
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_codec_get_tag2 (
     AVCodecTag[] tags,
     LibAVCodec.CodecID id,
     out uint tag
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_find_default_stream_index (
     AVFormatContext format_context
 );
@@ -3568,11 +3729,11 @@ public int av_find_default_stream_index (
              if AVSEEK_FLAG_ANY seek to any frame, only keyframes otherwise
 @return < 0 if no such timestamp could be found
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_index_search_timestamp (
     AVStream st,
-    public int64 timestamp,
-    public int flags
+    int64 timestamp,
+    int flags
 );
 
 /***********************************************************
@@ -3581,14 +3742,14 @@ already contains it.
 
 @param timestamp timestamp in the time base of the given stream
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_add_index_entry (
     AVStream st,
-    public int64 pos,
-    public int64 timestamp,
-    public int size,
-    public int distance,
-    public int flags
+    int64 pos,
+    int64 timestamp,
+    int size,
+    int distance,
+    int flags
 );
 
 
@@ -3611,17 +3772,17 @@ value.
 @param path_size the size of the path buffer
 @param url the URL to split
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_url_split (
     string proto,
-    public int proto_size,
+    int proto_size,
     string authorization,
-    public int authorization_size,
+    int authorization_size,
     string hostname,
-    public int hostname_size,
+    int hostname_size,
     out int port_ptr,
     string path,
-    public int path_size,
+    int path_size,
     string url
 );
 
@@ -3636,19 +3797,21 @@ codec and time base.
 @param url the URL to print, such as source or destination file
 @param is_output Select whether the specified context is an input (0) or output (1)
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_dump_format (
     AVFormatContext ic,
-    public int index,
+    int index,
     string url,
-    public int is_output
+    int is_output
 );
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 [Flags]
 public enum AVFormatFrameFilenameFlags {
     /***********************************************************
     @brief Allow multiple %d
     ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AV_FRAME_FILENAME_FLAGS_MULTIPLE
 }
 
@@ -3665,21 +3828,21 @@ of digits and '%%'.
 @param flags AV_FRAME_FILENAME_FLAGS_*
 @return 0 if OK, -1 on format error
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_get_frame_filename2 (
     string buffer,
-    public int buf_size,
+    int buf_size,
     string path,
-    public int number,
-    public int flags
+    int number,
+    int flags
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_get_frame_filename (
     string buffer,
-    public int buf_size,
+    int buf_size,
     string path,
-    public int number
+    int number
 );
 
 /***********************************************************
@@ -3688,7 +3851,7 @@ public int av_get_frame_filename (
 @param filename possible numbered sequence string
 @return 1 if a valid numbered sequence string, 0 otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_filename_number_test (
     string filename
 );
@@ -3710,12 +3873,12 @@ for getting unique dynamic payload types.
 @param size the size of the buffer
 @return 0 if OK, AVERROR_xxx on error
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_sdp_create (
     out AVFormatContext[] ac,
-    public int n_files,
+    int n_files,
     string buffer,
-    public int size
+    int size
 );
 
 /***********************************************************
@@ -3725,7 +3888,7 @@ extensions, 0 otherwise.
 @param filename file name to check against the given extensions
 @param extensions a comma-separated list of filename extensions
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int av_match_ext (
     string filename,
     string extensions
@@ -3741,11 +3904,11 @@ public int av_match_ext (
 @return 1 if codec with ID codec_id can be stored in ofmt, 0 if it cannot.
         A negative number if this information is not available.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_query_codec (
     AVOutputFormat ofmt,
     LibAVCodec.CodecID codec_id,
-    public int std_compliance
+    int std_compliance
 );
 
 /***********************************************************
@@ -3757,31 +3920,31 @@ following code:
 @code
 uint32 tag = MKTAG ('H', '2', '6', '4');
 const struct AVCodecTag table[] = { avformat_get_riff_video_tags (), 0 }
-enum LibAVCodec.CodecID id = av_codec_get_id (table, tag);
+LibAVCodec.CodecID id = av_codec_get_id (table, tag);
 @endcode
 ***********************************************************/
 /***********************************************************
 @return the table mapping RIFF FourCCs for video to libavcodec LibAVCodec.CodecID.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVCodecTag avformat_get_riff_video_tags ();
 
 /***********************************************************
 @return the table mapping RIFF FourCCs for audio to LibAVCodec.CodecID.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVCodecTag avformat_get_riff_audio_tags ();
 
 /***********************************************************
 @return the table mapping MOV FourCCs for video to libavcodec LibAVCodec.CodecID.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVCodecTag avformat_get_mov_video_tags ();
 
 /***********************************************************
 @return the table mapping MOV FourCCs for audio to LibAVCodec.CodecID.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public AVCodecTag avformat_get_mov_audio_tags ();
 
 /***********************************************************
@@ -3805,7 +3968,7 @@ usually easy to modify can override the coded value in the frames.
 @param frame the frame with the aspect ratio to be determined
 @return the guessed (valid) sample_aspect_ratio, 0/1 if no idea
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public LibAVUtil.Rational av_guess_sample_aspect_ratio (
     AVFormatContext format,
     AVStream stream,
@@ -3820,7 +3983,7 @@ public LibAVUtil.Rational av_guess_sample_aspect_ratio (
 @param frame the frame for which the frame rate should be determined, may be NULL
 @return the guessed (valid) frame rate, 0/1 if no idea
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public LibAVUtil.Rational av_guess_frame_rate (
     AVFormatContext fomat_context,
     AVStream stream,
@@ -3840,24 +4003,32 @@ of spec.
 
 @note A stream specifier can match several streams in the format.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_match_stream_specifier (
     AVFormatContext format_context,
     AVStream st,
     string spec
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_queue_attached_pictures (
     AVFormatContext format_context
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public enum AVTimebaseSource {
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_TBCF_AUTO = -1,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_TBCF_DECODER,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_TBCF_DEMUXER,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 #if FF_API_R_FRAME_RATE
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
     AVFMT_TBCF_R_FRAMERATE,
 #endif
 }
@@ -3872,7 +4043,7 @@ This function is useful when doing stream copy.
 @param ist reference input stream to copy timings from
 @param copy_tb define from where the stream codec timebase needs to be imported
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public int avformat_transfer_internal_stream_timing_info (
     AVOutputFormat ofmt,
     AVStream ost,
@@ -3885,7 +4056,7 @@ public int avformat_transfer_internal_stream_timing_info (
 
 @param st input stream to extract the timebase from
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public LibAVUtil.Rational av_stream_get_codec_timebase (
     AVStream st
 );

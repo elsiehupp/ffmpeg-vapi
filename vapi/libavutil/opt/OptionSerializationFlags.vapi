@@ -27,16 +27,17 @@ namespace LibAVUtil {
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_OPT_SERIALIZE_", cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cprefix="AV_OPT_SERIALIZE_",cheader_filename="ffmpeg/libavutil/opt.h")]
 public enum OptionSerializationFlags {
     /***********************************************************
     @brief Serialize options that are not set to default values only.
     ***********************************************************/
     SKIP_DEFAULTS,
+
     /***********************************************************
     @brief Serialize options that exactly match opt_flags only.
     ***********************************************************/
-    OPT_FLAGS_EXACT,
+    OPT_FLAGS_EXACT;
 }
 
 /***********************************************************
@@ -57,14 +58,14 @@ name string are escaped through the av_escape () function.
 @return >= 0 on success, negative on error
 @warning Separators cannot be neither '\\' nor '\0'. They also cannot be the same.
 ***********************************************************/
-[CCode (cname="av_opt_serialize", cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cname="av_opt_serialize",cheader_filename="ffmpeg/libavutil/opt.h")]
 public int av_opt_serialize (
     void *obj,
-    public int opt_flags,
+    int opt_flags,
     OptionSerializationFlags flags,
     out string buffer,
-    public char key_val_sep,
-    public char pairs_sep
+    char key_val_sep,
+    char pairs_sep
 );
 
 } // namespace LibAVUtil

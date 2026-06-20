@@ -26,70 +26,82 @@ namespace LibAVFormat {
 @file This is a muxer for Loki SDL Motion JPEG files
 ***********************************************************/
 
-[CCode (cname="struct SMJPEGMuxContext", cheader_filename="")]
+[CCode (cname="struct SMJPEGMuxContext",cheader_filename="")]
 [Compact]
 public class SDLMotionJpegMuxerPrivateData { }
 
-[CCode (cname="ff_smjpeg_muxer", cheader_filename="")]
+[CCode (cname="ff_smjpeg_muxer",cheader_filename="")]
 public class SDLMotionJpegMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "smjpeg";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Loki SDL MJPEG";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SDLMotionJpegMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MJPEG;
+
         }
+
     }
 
-    [CCode (cname="smjpeg_write_header", cheader_filename="")]
+    [CCode (cname="smjpeg_write_header",cheader_filename="")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="smjpeg_write_packet", cheader_filename="")]
+    [CCode (cname="smjpeg_write_packet",cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="smjpeg_write_trailer", cheader_filename="")]
+    [CCode (cname="smjpeg_write_trailer",cheader_filename="")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT;
+
         }
+
     }
-    //  .codec_tag = (const AVCodecTag *const []){ ff_codec_smjpeg_video_tags, ff_codec_smjpeg_audio_tags, 0 },
+    //  .codec_tag = (const AVCodecTag *const []){ ff_codec_smjpeg_video_tags, ff_codec_smjpeg_audio_tags, 0 };
 }
 
 } // namespace LibAVFormat

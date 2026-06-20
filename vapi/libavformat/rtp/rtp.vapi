@@ -33,10 +33,11 @@ The format context private option payload_type overrides both.
 @param idx The stream index
 @return The payload type (the 'PT' field in the RTP header).
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int ff_rtp_get_payload_type (
     AVFormatContext fmt,
     LibAVCodec.CodecParameters par,
-    public int idx
+    int idx
 );
 
 /***********************************************************
@@ -51,9 +52,10 @@ channels and sample_rate fields are also filled.
 @return In case of unknown payload type or dynamic payload type, a
 negative value is returned; otherwise, 0 is returned
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int ff_rtp_get_codec_info (
     LibAVCodec.CodecParameters par,
-    public int payload_type
+    int payload_type
 );
 
 /***********************************************************
@@ -65,8 +67,9 @@ http://www.iana.org/assignments/rtp-parameters) for a given payload type.
 to an empty string is returned; otherwise, a pointer to a string containing
 the encoding name is returned
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public string ff_rtp_enc_name (
-    public int payload_type
+    int payload_type
 );
 
 /***********************************************************
@@ -77,28 +80,31 @@ public string ff_rtp_enc_name (
 @return In case of unknown encoding name, LibAVCodec.CodecID.NONE is returned;
 otherwise, the codec id is returned
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
 public LibAVCodec.CodecID ff_rtp_codec_id (
     string buffer,
     LibAVUtil.MediaType codec_type
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
 public const int RTP_PT_PRIVATE; // 96
-[CCode (cname="", cheader_filename="")]
+
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
 public const int RTP_VERSION; // 2
+
 /***********************************************************
 maximum text length for SDES
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
 public const size_t RTP_MAX_SDES; // 256
 
 /***********************************************************
 @brief RTCP packets use 0.5% of the bandwidth
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
 public const int RTCP_TX_RATIO_NUM; // 5
-[CCode (cname="", cheader_filename="")]
+
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
 public const int RTCP_TX_RATIO_DEN; // 1000
 
 /***********************************************************
@@ -106,32 +112,60 @@ public const int RTCP_TX_RATIO_DEN; // 1000
 that the configuration has changed within a stream (by changing the
 ident value sent).
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
 public const uint32 RTP_XIPH_IDENT; // 0xfecdba
 
 /***********************************************************
 @brief RTCP packet types
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
 public enum RTCPType {
-    RTCP_FIR, // 192,
+    RTCP_FIR, // 192
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_NACK, // 193
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_SMPTETC,// 194
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_IJ, // 195
-    RTCP_SR, // 200,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
+    RTCP_SR, // 200
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_RR, // 201
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_SDES, // 202
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_BYE, // 203
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_APP, // 204
-    RTCP_RTPFB,// 205
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
+    RTCP_RTPFB, // 205
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_PSFB, // 206
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_XR, // 207
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_AVB, // 208
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_RSI, // 209
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
     RTCP_TOKEN,// 210
 }
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rtp.h")]
 public static bool RTP_PT_IS_RTCP (
     RTCPType x
 );

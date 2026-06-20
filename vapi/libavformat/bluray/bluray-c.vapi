@@ -22,7 +22,7 @@ BluRay (libbluray) protocol
 
 @copyright 2012 Petri Hintukainen <phintuka <at> users.sourceforge.net>
 ***********************************************************/
-#define OFFSET (x) offsetof (BlurayContext, x)
+public define OFFSET (x) offsetof (BlurayContext, x)
 static const LibAVUtil.Option options[] = {
     {
         "playlist",
@@ -57,16 +57,18 @@ static const LibAVUtil.Option options[] = {
     {NULL}
 }
 
-[CCode (cname="bluray_context_class", cheader_filename="")]
+[CCode (cname="bluray_context_class",cheader_filename="")]
 public class BluRayContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="")]
     public override string class_name {
         public get {
             return "bluray";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
@@ -75,60 +77,67 @@ public class BluRayContextClass : LibAVUtil.Class {
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct BlurayContext", cheader_filename="")]
+[CCode (cname="struct BlurayContext",cheader_filename="")]
 [Compact]
 public class BluRayPrivateData { }
 
-[CCode (cname="ff_bluray_protocol", cheader_filename="")]
+[CCode (cname="ff_bluray_protocol",cheader_filename="")]
 public class BluRayURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "bluray";
+
         }
+
     }
 
-    [CCode (cname="bluray_close", cheader_filename="")]
+    [CCode (cname="bluray_close",cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="bluray_open", cheader_filename="")]
+    [CCode (cname="bluray_open",cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="bluray_read", cheader_filename="")]
+    [CCode (cname="bluray_read",cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="bluray_seek", cheader_filename="")]
+    [CCode (cname="bluray_seek",cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BluRayPrivateData);
+
         }
+
     }
-    //  .priv_data_class = bluray_context_class,
+    //  .priv_data_class = bluray_context_class;
 }
 
 } // namespace LibAVFormat

@@ -19,29 +19,50 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class PP7Context {
     AVClass *class;
+
+    [CCode (cname="")]
     public int thres2[99][16];
 
+    [CCode (cname="")]
     public int qp;
+
+    [CCode (cname="")]
     public int mode;
+
+    [CCode (cname="")]
     public int qscale_type;
+
+    [CCode (cname="")]
     public int hsub;
+
+    [CCode (cname="")]
     public int vsub;
+
+    [CCode (cname="")]
     public int temp_stride;
+
     uint8[] src;
 
     [CCode (cname="requantize")]
     public int (*requantize)(
-        PP7Context *p, int16 *src, int qp
+        PP7Context *p,
+        int16[] src,
+        int qp
     );
 
     [CCode (cname="*dctB")]
     public void (*dctB)(
-        int16 *dst, int16 *src
+        int16[] dst,
+        int16[] src
     );
 
 }
 
-public void ff_pp7_init_x86 (PP7Context *pp7);
+[CCode (cname="",cheader_filename="")]
+public void ff_pp7_init_x86 (
+    PP7Context *pp7
+);

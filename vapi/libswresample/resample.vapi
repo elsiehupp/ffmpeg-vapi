@@ -19,56 +19,122 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class ResampleContext {
-    const AVClass *av_class;
-    uint8[] filter_bank;
+    [CCode (cname="")]
+    public AVClass av_class;
+
+    [CCode (cname="")]
+    public uint8[] filter_bank;
+
+    [CCode (cname="")]
     public int filter_length;
+
+    [CCode (cname="")]
     public int filter_alloc;
+
+    [CCode (cname="")]
     public int ideal_dst_incr;
+
+    [CCode (cname="")]
     public int dst_incr;
+
+    [CCode (cname="")]
     public int dst_incr_div;
+
+    [CCode (cname="")]
     public int dst_incr_mod;
+
+    [CCode (cname="")]
     public int index;
+
+    [CCode (cname="")]
     public int frac;
+
+    [CCode (cname="")]
     public int src_incr;
+
+    [CCode (cname="")]
     public int compensation_distance;
+
+    [CCode (cname="")]
     public int phase_count;
+
+    [CCode (cname="")]
     public int linear;
+
+    [CCode (cname="")]
     public SwrFilterType filter_type;
-    double kaiser_beta;
-    double factor;
+
+    [CCode (cname="")]
+    public double kaiser_beta;
+
+    [CCode (cname="")]
+    public double factor;
+
+    [CCode (cname="")]
     public AVSampleFormat format;
+
+    [CCode (cname="")]
     public int felem_size;
+
+    [CCode (cname="")]
     public int filter_shift;
+
     /***********************************************************
     desired phase_count when compensation is enabled
     ***********************************************************/
+    [CCode (cname="")]
     public int phase_count_compensation;
 
     struct {
         [CCode (cname="resample_one")]
         public void (*resample_one)(
-            void *dst, void *src,
-            int n, int64 index, int64 incr
+            void *dst,
+            void *src,
+            int n,
+            int64 index,
+            int64 incr
         );
 
         [CCode (cname="resample_common")]
-        int (*resample_common)(
-            ResampleContext *c, void *dst,
-            void *src, int n, int update_ctx
+        public int (*resample_common)(
+            ResampleContext *c,
+            void *dst,
+            void *src,
+            int n,
+            int update_ctx
         );
 
         [CCode (cname="resample_linear")]
-        int (*resample_linear)(
-            ResampleContext *c, void *dst,
-            void *src, int n, int update_ctx
+        public int (*resample_linear)(
+            ResampleContext *c,
+            void *dst,
+            void *src,
+            int n,
+            int update_ctx
         );
 
     } dsp;
 }
 
-public void swri_resample_dsp_init (ResampleContext *c);
-public void swri_resample_dsp_x86_init (ResampleContext *c);
-public void swri_resample_dsp_arm_init (ResampleContext *c);
-public void swri_resample_dsp_aarch64_init (ResampleContext *c);
+[CCode (cname="",cheader_filename="")]
+public void swri_resample_dsp_init (
+    ResampleContext *c
+);
+
+[CCode (cname="",cheader_filename="")]
+public void swri_resample_dsp_x86_init (
+    ResampleContext *c
+);
+
+[CCode (cname="",cheader_filename="")]
+public void swri_resample_dsp_arm_init (
+    ResampleContext *c
+);
+
+[CCode (cname="",cheader_filename="")]
+public void swri_resample_dsp_aarch64_init (
+    ResampleContext *c
+);

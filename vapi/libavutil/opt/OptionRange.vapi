@@ -29,7 +29,7 @@ namespace LibAVUtil {
 /***********************************************************
 @brief A single allowed range of values, or a single allowed value.
 ***********************************************************/
-[CCode (cname="struct AVOptionRange", cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cname="struct AVOptionRange",cheader_filename="ffmpeg/libavutil/opt.h")]
 [Compact]
 public class OptionRange {
     [CCode (cname="str")]

@@ -22,39 +22,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_yuv4mpegpipe_demuxer", cheader_filename="")]
+[CCode (cname="ff_yuv4mpegpipe_demuxer",cheader_filename="")]
 public class YUV4MpegPipeDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "yuv4mpegpipe";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "YUV4MPEG pipe";
+
         }
+
     }
 
-    [CCode (cname="yuv4_probe", cheader_filename="")]
+    [CCode (cname="yuv4_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="yuv4_read_header", cheader_filename="")]
+    [CCode (cname="yuv4_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="yuv4_read_packet", cheader_filename="")]
+    [CCode (cname="yuv4_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="yuv4_read_seek", cheader_filename="")]
+    [CCode (cname="yuv4_read_seek",cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -62,11 +66,13 @@ public class YUV4MpegPipeDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "y4m";
+
         }
+
     }
 }
 

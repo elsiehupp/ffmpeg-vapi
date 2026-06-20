@@ -21,38 +21,44 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_flac_codec", cheader_filename="")]
+[CCode (cname="ff_flac_codec",cheader_filename="")]
 public class FlacCodec : OggCodec {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="")]
     public override uint8[] magic {
         public get {
             return "177FLAC".data;
+
         }
+
     }
     //  .magicsize = 5,
-    [CCode (cname="flac_header", cheader_filename="")]
+
+    [CCode (cname="flac_header",cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 2,
+    //  .nb_header = 2;
 }
 
-[CCode (cname="ff_old_flac_codec", cheader_filename="")]
+[CCode (cname="ff_old_flac_codec",cheader_filename="")]
 public class OldFlacCodec : OggCodec {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="")]
     public override uint8[] magic {
         public get {
             return "fLaC".data;
+
         }
+
     }
     //  .magicsize = 4,
-    [CCode (cname="old_flac_header", cheader_filename="")]
+
+    [CCode (cname="old_flac_header",cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 0,
+    //  .nb_header = 0;
 }
 
 } // namespace LibAVFormat

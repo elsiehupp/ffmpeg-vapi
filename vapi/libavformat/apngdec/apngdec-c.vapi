@@ -57,19 +57,21 @@ static const LibAVUtil.Option options[] = {
         AV_OPT_FLAG_DECODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="demuxer_class", cheader_filename="")]
+[CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/apngdec.c")]
 public class APNGDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override string class_name {
         public get {
             return "APNG demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -78,68 +80,78 @@ public class APNGDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER,
+    //  .category = AV_CLASS_CATEGORY_DEMUXER;
 }
 
-[CCode (cname="struct APNGDemuxContext", cheader_filename="")]
+[CCode (cname="struct APNGDemuxContext",cheader_filename="ffmpeg/libformat/apngdec.c")]
 [Compact]
 public class APNGDemuxerPrivateData { }
 
-[CCode (cname="ff_apng_demuxer", cheader_filename="")]
+[CCode (cname="ff_apng_demuxer",cheader_filename="ffmpeg/libformat/apngdec.c")]
 public class APNGDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override string name {
         public get {
             return "apng";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override string long_name {
         public get {
             return "Animated Portable Network Graphics";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (APNGDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="apng_probe", cheader_filename="")]
+    [CCode (cname="apng_probe",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="apng_read_header", cheader_filename="")]
+    [CCode (cname="apng_read_header",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="apng_read_packet", cheader_filename="")]
+    [CCode (cname="apng_read_packet",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
-    //  .priv_class = demuxer_class,
+    //  .priv_class = demuxer_class;
 }
 
 } // namespace LibAVFormat

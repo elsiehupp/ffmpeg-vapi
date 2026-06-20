@@ -37,12 +37,12 @@ The returned buffer must be released with av_file_unmap ().
 corresponding to an LibAVUtil.ErrorCode error code in case of failure
 ***********************************************************/
 //  av_warn_unused_result
-[CCode (cname="av_file_map", cheader_filename="ffmpeg/libavutil/file.h")]
+[CCode (cname="av_file_map",cheader_filename="ffmpeg/libavutil/file.h")]
 public int av_file_map (
     string filename,
     out uint8[] bufptr,
     out size_t size,
-    public int log_offset,
+    int log_offset,
     void *log_ctx
 );
 
@@ -52,10 +52,10 @@ public int av_file_map (
 @param size size in bytes of bufptr, must be the same as returned
 by av_file_map ()
 ***********************************************************/
-[CCode (cname="av_file_unmap", cheader_filename="ffmpeg/libavutil/file.h")]
+[CCode (cname="av_file_unmap",cheader_filename="ffmpeg/libavutil/file.h")]
 public void av_file_unmap (
     uint8[] bufptr,
-    public size_t size
+    size_t size
 );
 
 /***********************************************************
@@ -70,11 +70,11 @@ Also, tries to create file in /tmp first, if possible.
     libraries and could interfere with the calling application.
 @deprecated as fd numbers cannot be passed saftely between libs on some platforms
 ***********************************************************/
-[CCode (cname="av_tempfile", cheader_filename="ffmpeg/libavutil/file.h")]
+[CCode (cname="av_tempfile",cheader_filename="ffmpeg/libavutil/file.h")]
 public int av_tempfile (
     string prefix,
     out string filename,
-    public int log_offset,
+    int log_offset,
     void *log_ctx
 );
 

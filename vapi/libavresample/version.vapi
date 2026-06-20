@@ -22,19 +22,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Libavresample version macros.
 ***********************************************************/
 
-#define LIBAVRESAMPLE_VERSION_MAJOR  4
-#define LIBAVRESAMPLE_VERSION_MINOR  0
-#define LIBAVRESAMPLE_VERSION_MICRO  0
+[CCode (cname="",cheader_filename="")]
+public define LIBAVRESAMPLE_VERSION_MAJOR  4
+public define LIBAVRESAMPLE_VERSION_MINOR  0
+public define LIBAVRESAMPLE_VERSION_MICRO  0
 
-#define LIBAVRESAMPLE_VERSION_INT  AV_VERSION_INT (LIBAVRESAMPLE_VERSION_MAJOR, \
+[CCode (cname="",cheader_filename="")]
+public define LIBAVRESAMPLE_VERSION_INT  AV_VERSION_INT (LIBAVRESAMPLE_VERSION_MAJOR, \
                                                   LIBAVRESAMPLE_VERSION_MINOR, \
                                                   LIBAVRESAMPLE_VERSION_MICRO)
-#define LIBAVRESAMPLE_VERSION          AV_VERSION (LIBAVRESAMPLE_VERSION_MAJOR, \
+public define LIBAVRESAMPLE_VERSION          AV_VERSION (LIBAVRESAMPLE_VERSION_MAJOR, \
                                                   LIBAVRESAMPLE_VERSION_MINOR, \
                                                   LIBAVRESAMPLE_VERSION_MICRO)
-#define LIBAVRESAMPLE_BUILD        LIBAVRESAMPLE_VERSION_INT
+public define LIBAVRESAMPLE_BUILD        LIBAVRESAMPLE_VERSION_INT
 
-#define LIBAVRESAMPLE_IDENT        "Lavr" AV_STRINGIFY (LIBAVRESAMPLE_VERSION)
+[CCode (cname="",cheader_filename="")]
+public define LIBAVRESAMPLE_IDENT        "Lavr" AV_STRINGIFY (LIBAVRESAMPLE_VERSION)
 
 /***********************************************************
 FF_API_* defines may be placed below to indicate public API that will be

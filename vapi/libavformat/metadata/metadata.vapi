@@ -26,24 +26,24 @@ namespace LibAVFormat {
 see avformat.h or the public API!
 ***********************************************************/
 
-[CCode (cname="struct AVMetadataConv", cheader_filename="")]
+[CCode (cname="struct AVMetadataConv",cheader_filename="ffmpeg/libformat/metadata.h")]
 [Compact]
 public class AVMetadataConv {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/metadata.h")]
     public string native;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/metadata.h")]
     public string generic;
 }
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/metadata.h")]
 public void ff_metadata_conv (
     out LibAVUtil.Dictionary pm,
     AVMetadataConv d_conv,
     AVMetadataConv s_conv
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/metadata.h")]
 public void ff_metadata_conv_ctx (
     AVFormatContext fomat_context,
     AVMetadataConv d_conv,

@@ -25,55 +25,61 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct YopDecContext", cheader_filename="")]
+[CCode (cname="struct YopDecContext",cheader_filename="")]
 [Compact]
 public class YOPDemuxerPrivateData { }
 
-[CCode (cname="ff_yop_demuxer", cheader_filename="")]
+[CCode (cname="ff_yop_demuxer",cheader_filename="")]
 public class YOPDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "yop";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Psygnosis YOP";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (YOPDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="yop_probe", cheader_filename="")]
+    [CCode (cname="yop_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="yop_read_header", cheader_filename="")]
+    [CCode (cname="yop_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="yop_read_packet", cheader_filename="")]
+    [CCode (cname="yop_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="yop_read_close", cheader_filename="")]
+    [CCode (cname="yop_read_close",cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="yop_read_seek", cheader_filename="")]
+    [CCode (cname="yop_read_seek",cheader_filename="")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -81,18 +87,22 @@ public class YOPDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "yop";
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 }
 

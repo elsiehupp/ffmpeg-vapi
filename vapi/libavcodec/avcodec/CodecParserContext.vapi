@@ -30,7 +30,7 @@ LibAVCodec external API header
 @defgroup lavc_parsing Frame parsing
 ***********************************************************/
 
-[CCode (cname="struct AVCodecParserContext", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecParserContext",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class CodecParserContext {
     [CCode (cname="priv_data")]
@@ -105,7 +105,7 @@ public class CodecParserContext {
     [CCode (cname="fetch_timestamp")]
     public int fetch_timestamp;
 
-    [CCode (cname="AV_PARSER_PTS_NB", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="AV_PARSER_PTS_NB",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public const int AV_PARSER_PTS_NB;
 
     [CCode (cname="cur_frame_start_index")]
@@ -274,7 +274,7 @@ public class CodecParserContext {
     [CCode (cname="format")]
     public int format;
 
-    [CCode (cname="av_parser_init", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_parser_init",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecParserContext av_parser_init (
         int codec_id
     );
@@ -299,28 +299,33 @@ public class CodecParserContext {
     Example:
     @code
     while (in_len) {
-        len = av_parser_parse2 (myparser, CodecContext, &data, &size,
-        in_data, in_len,
-        pts, dts, pos);
+        len = av_parser_parse2 (
+            myparser, CodecContext, &data, &size,
+            in_data, in_len,
+            pts, dts, pos
+        );
         in_data += len;
         in_len -= len;
 
         if (size)
-        decode_frame (data, size);
+            decode_frame (data, size);
     }
     @endcode
     ***********************************************************/
-    [CCode (cname="av_parser_parse2", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_parser_parse2",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public int av_parser_parse2 (
         CodecParserContext s,
         CodecContext avctx,
-        out uint8[] poutbuf, out int poutbuf_size,
-        uint8[] buffer, int buf_size,
-        int64 pts, int64 dts,
+        out uint8[] poutbuf,
+        out int poutbuf_size,
+        uint8[] buffer,
+        int buf_size,
+        int64 pts,
+        int64 dts,
         int64 pos
     );
 
-    [CCode (cname="av_parser_close", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_parser_close",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public void av_parser_close (
         CodecParserContext s
     );

@@ -40,7 +40,7 @@ VC-2 Specification ->
 10.4.1 Table 10.1
 ***********************************************************/
 
-[CCode (cname="struct DiracVersionInfo", cheader_filename="ffmpeg/libavcodec/dirac.h")]
+[CCode (cname="struct DiracVersionInfo",cheader_filename="ffmpeg/libavcodec/dirac.h")]
 [Compact]
 public class DiracVersionInfo {
     [CCode (cname="major")]

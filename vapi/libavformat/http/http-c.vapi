@@ -28,16 +28,19 @@ only a subset of it.
 ***********************************************************/
 
 #if CONFIG_HTTP_PROTOCOL
-[CCode (cname="http_context_class", cheader_filename="")]
+
+[CCode (cname="http_context_class",cheader_filename="ffmpeg/libformat/http.c")]
 public class HTTPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/http.c")]
     public override string class_name {
         public get {
             return "http";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/http.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -46,27 +49,31 @@ public class HTTPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/http.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/http.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_http_protocol", cheader_filename="")]
+[CCode (cname="ff_http_protocol",cheader_filename="ffmpeg/libformat/http.c")]
 public class HTTPURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/http.c")]
     public override string name {
         public get {
             return "http";
+
         }
+
     }
 
-    [CCode (cname="http_open", cheader_filename="")]
+    [CCode (cname="http_open",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -74,71 +81,76 @@ public class HTTPURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="http_accept", cheader_filename="")]
+    [CCode (cname="http_accept",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_accept (
         URLContext server_url_context,
         out URLContext client_url_context
     );
 
-    [CCode (cname="http_handshake", cheader_filename="")]
+    [CCode (cname="http_handshake",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_handshake (
         URLContext client_url_context
     );
 
-    [CCode (cname="http_read", cheader_filename="")]
+    [CCode (cname="http_read",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="http_write", cheader_filename="")]
+    [CCode (cname="http_write",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="http_seek", cheader_filename="")]
+    [CCode (cname="http_seek",cheader_filename="ffmpeg/libformat/http.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="http_close", cheader_filename="")]
+    [CCode (cname="http_close",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="http_get_file_handle", cheader_filename="")]
+    [CCode (cname="http_get_file_handle",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="http_get_short_seek", cheader_filename="")]
+    [CCode (cname="http_get_short_seek",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_get_short_seek (
         URLContext url_context
     );
 
-    [CCode (cname="http_shutdown", cheader_filename="")]
+    [CCode (cname="http_shutdown",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_shutdown (
         URLContext url_context,
         int flags
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/http.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HTTPContext);
+
         }
+
     }
     //  .priv_data_class = http_context_class,
-    [CCode (cname="flags", cheader_filename="")]
+
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/http.c")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
+
         }
+
     }
     //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy";
 }
@@ -147,16 +159,19 @@ public class HTTPURLProtocol : URLProtocol {
 ***********************************************************/
 
 #if CONFIG_HTTPS_PROTOCOL
-[CCode (cname="https_context_class", cheader_filename="")]
+
+[CCode (cname="https_context_class",cheader_filename="ffmpeg/libformat/http.c")]
 public class HTTPSURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/http.c")]
     public override string class_name {
         public get {
             return "https";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/http.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -165,27 +180,31 @@ public class HTTPSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/http.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/http.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_https_protocol", cheader_filename="")]
+[CCode (cname="ff_https_protocol",cheader_filename="ffmpeg/libformat/http.c")]
 public class HTTPSURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/http.c")]
     public override string name {
         public get {
             return "https";
+
         }
+
     }
 
-    [CCode (cname="http_open", cheader_filename="")]
+    [CCode (cname="http_open",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -193,60 +212,65 @@ public class HTTPSURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="http_read", cheader_filename="")]
+    [CCode (cname="http_read",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="http_write", cheader_filename="")]
+    [CCode (cname="http_write",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="http_seek", cheader_filename="")]
+    [CCode (cname="http_seek",cheader_filename="ffmpeg/libformat/http.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="http_close", cheader_filename="")]
+    [CCode (cname="http_close",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="http_get_file_handle", cheader_filename="")]
+    [CCode (cname="http_get_file_handle",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="http_get_short_seek", cheader_filename="")]
+    [CCode (cname="http_get_short_seek",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_get_short_seek (
         URLContext url_context
     );
 
-    [CCode (cname="http_shutdown", cheader_filename="")]
+    [CCode (cname="http_shutdown",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_shutdown (
         URLContext url_context,
         int flags
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/http.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HTTPContext);
+
         }
+
     }
     //  .priv_data_class = https_context_class,
-    [CCode (cname="flags", cheader_filename="")]
+
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/http.c")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
+
         }
+
     }
     //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy";
 }
@@ -255,58 +279,65 @@ public class HTTPSURLProtocol : URLProtocol {
 ***********************************************************/
 
 #if CONFIG_HTTPPROXY_PROTOCOL
-[CCode (cname="ff_httpproxy_protocol", cheader_filename="")]
+
+[CCode (cname="ff_httpproxy_protocol",cheader_filename="ffmpeg/libformat/http.c")]
 public class HttpProxyURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/http.c")]
     public override string name {
         public get {
             return "httpproxy";
+
         }
+
     }
 
-    [CCode (cname="http_proxy_open", cheader_filename="")]
+    [CCode (cname="http_proxy_open",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="http_buf_read", cheader_filename="")]
+    [CCode (cname="http_buf_read",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="http_proxy_write", cheader_filename="")]
+    [CCode (cname="http_proxy_write",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="http_proxy_close", cheader_filename="")]
+    [CCode (cname="http_proxy_close",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="http_get_file_handle", cheader_filename="")]
+    [CCode (cname="http_get_file_handle",cheader_filename="ffmpeg/libformat/http.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/http.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HTTPContext);
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/http.c")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
+
         }
+
     }
 }
 #endif /***********************************************************

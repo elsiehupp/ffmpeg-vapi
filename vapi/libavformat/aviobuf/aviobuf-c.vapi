@@ -22,9 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (AVIOContext,x)
-#define E AV_OPT_FLAG_ENCODING_PARAM
-#define D AV_OPT_FLAG_DECODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (AVIOContext,x)
+public define E AV_OPT_FLAG_ENCODING_PARAM
+public define D AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option ff_avio_options[] = {
     {
         "protocol_whitelist",
@@ -35,19 +36,21 @@ static const LibAVUtil.Option ff_avio_options[] = {
         { .str = NULL }, CHAR_MIN, CHAR_MAX, D
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="ff_avio_class", cheader_filename="")]
+[CCode (cname="ff_avio_class",cheader_filename="")]
 public class AVIOContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="")]
     public override string class_name {
         public get {
             return "AVIOContext";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
@@ -56,20 +59,23 @@ public class AVIOContextClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
     //  .option = ff_avio_options,
-    [CCode (cname="ff_avio_child_next", cheader_filename="")]
+
+    [CCode (cname="ff_avio_child_next",cheader_filename="")]
     public override void *child_next (
         void *obj,
         void *prev
     );
 
-    [CCode (cname="ff_avio_child_class_next", cheader_filename="")]
+    [CCode (cname="ff_avio_child_class_next",cheader_filename="")]
     public override LibAVUtil.Class child_class_next (
         LibAVUtil.Class prev
     );

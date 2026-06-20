@@ -22,40 +22,61 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /***********************************************************
 Holds instance-specific information for gradfun.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class GradFunContext {
-    const AVClass *class;
-    float strength;
+    [CCode (cname="")]
+    public AVClass class;
+
+    [CCode (cname="")]
+    public float strength;
+
     /***********************************************************
     threshold for gradient algorithm
     ***********************************************************/
+    [CCode (cname="")]
     public int thresh;
+
     /***********************************************************
     blur radius
     ***********************************************************/
+    [CCode (cname="")]
     public int radius;
+
     /***********************************************************
     width of the chroma planes
     ***********************************************************/
+    [CCode (cname="")]
     public int chroma_w;
+
     /***********************************************************
     weight of the chroma planes
     ***********************************************************/
+    [CCode (cname="")]
     public int chroma_h;
+
     /***********************************************************
     blur radius for the chroma planes
     ***********************************************************/
+    [CCode (cname="")]
     public int chroma_r;
+
     /***********************************************************
     holds image data for blur algorithm passed into filter.
     ***********************************************************/
-    uint16 *buf;
+    uint16[] buf;
+
     /***********************************************************
     DSP function.
     ***********************************************************/
     [CCode (cname="filter_line")]
     public void (*filter_line) (
-        uint8[] dst, uint8[] src, uint16 *dc, int width, int thresh, uint16 *dithers
+        uint8[] dst,
+        uint8[] src,
+        uint16[] dc,
+        int width,
+        int thresh,
+        uint16[] dithers
     );
 
     /***********************************************************
@@ -63,12 +84,37 @@ public class GradFunContext {
     ***********************************************************/
     [CCode (cname="blur_line")]
     public void (*blur_line) (
-        uint16 *dc, uint16 *buf, uint16 *buf1, uint8[] src, int src_linesize, int width
+        uint16[] dc,
+        uint16[] buf,
+        uint16[] buf1,
+        uint8[] src,
+        int src_linesize,
+        int width
     );
 
 }
 
-public void ff_gradfun_init_x86 (GradFunContext *gf);
+[CCode (cname="",cheader_filename="")]
+public void ff_gradfun_init_x86 (
+    GradFunContext *gf
+);
 
-public void ff_gradfun_filter_line_c (uint8[] dst, uint8[] src, uint16 *dc, int width, int thresh, uint16 *dithers);
-public void ff_gradfun_blur_line_c (uint16 *dc, uint16 *buf, uint16 *buf1, uint8[] src, int src_linesize, int width);
+[CCode (cname="",cheader_filename="")]
+public void ff_gradfun_filter_line_c (
+    uint8[] dst,
+    uint8[] src,
+    uint16[] dc,
+    int width,
+    int thresh,
+    uint16[] dithers
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_gradfun_blur_line_c (
+    uint16[] dc,
+    uint16[] buf,
+    uint16[] buf1,
+    uint8[] src,
+    int src_linesize,
+    int width
+);

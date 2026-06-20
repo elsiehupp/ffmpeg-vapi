@@ -37,23 +37,27 @@ ______ ______
                   |            |1 2 1-6 are possible chroma positions
 * 2nd luma line > |X X ...   |5 6 X ...    0 is undefined/unknown position
 ***********************************************************/
-[CCode (cname="AVChromaLocation", cprefix="AVCHROMA_LOC_", cheader_filename="ffmpeg/libavutil/pixfmt.h")]
+[CCode (cname="AVChromaLocation", cprefix="AVCHROMA_LOC_",cheader_filename="ffmpeg/libavutil/pixfmt.h")]
 public enum ChromaLocation {
     UNSPECIFIED,
+
     /***********************************************************
     @brief MPEG-2/4 4:2:0, H.264 default for 4:2:0
     ***********************************************************/
     LEFT,
+
     /***********************************************************
     @brief MPEG-1 4:2:0, JPEG 4:2:0, H.263 4:2:0
     ***********************************************************/
     CENTER,
+
     /***********************************************************
     @brief ITU-R 601, SMPTE 274M 296M S314M (DV 4:1:1), mpeg2 4:2:2
     ***********************************************************/
     [CCode (cname="AVCHROMA_LOC_TOPLEFT")]
     TOP_LEFT,
     TOP,
+
     [CCode (cname="AVCHROMA_LOC_BOTTOMLEFT")]
     BOTTOM_LEFT,
     BOTTOM;
@@ -67,7 +71,7 @@ public enum ChromaLocation {
     /***********************************************************
     @return the name for provided chroma location or null if unknown.
     ***********************************************************/
-    [CCode (cname="av_chroma_location_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_chroma_location_name",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static string av_chroma_location_name (
         ChromaLocation location
     );
@@ -75,7 +79,7 @@ public enum ChromaLocation {
     /***********************************************************
     @return the ChromaLocation value for name or an ErrorCode if not found.
     ***********************************************************/
-    [CCode (cname="av_chroma_location_from_name", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_chroma_location_from_name",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public static ChromaLocation av_chroma_location_from_name (
         string name
     );

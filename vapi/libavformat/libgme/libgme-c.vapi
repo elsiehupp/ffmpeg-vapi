@@ -22,16 +22,18 @@ namespace LibAVFormat {
 @file libgme demuxer
 ***********************************************************/
 
-[CCode (cname="class_gme", cheader_filename="")]
+[CCode (cname="class_gme",cheader_filename="ffmpeg/libformat/libgme.c")]
 public class LibGMEDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override string class_name {
         public get {
             return "Game Music Emu demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -40,73 +42,81 @@ public class LibGMEDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct GMEContext", cheader_filename="")]
+[CCode (cname="struct GMEContext",cheader_filename="ffmpeg/libformat/libgme.c")]
 [Compact]
 public class LibGMEDemuxerPrivateData { }
 
-[CCode (cname="ff_libgme_demuxer", cheader_filename="")]
+[CCode (cname="ff_libgme_demuxer",cheader_filename="ffmpeg/libformat/libgme.c")]
 public class LibGMEDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override string name {
         public get {
             return "libgme";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override string long_name {
         public get {
             return "Game Music Emu demuxer";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LibGMEDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="probe_gme", cheader_filename="")]
+    [CCode (cname="probe_gme",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header_gme", cheader_filename="")]
+    [CCode (cname="read_header_gme",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet_gme", cheader_filename="")]
+    [CCode (cname="read_packet_gme",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="read_close_gme", cheader_filename="")]
+    [CCode (cname="read_close_gme",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_seek_gme", cheader_filename="")]
+    [CCode (cname="read_seek_gme",cheader_filename="ffmpeg/libformat/libgme.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    //  .priv_class = class_gme,
+    //  .priv_class = class_gme;
 }
 
 } // namespace LibAVFormat

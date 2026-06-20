@@ -21,26 +21,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Intel Quick Sync Video VPP base function
 ***********************************************************/
 
-#define FF_INLINK_IDX (link)  ((int)((link)->dstpad - (link)->dst->input_pads))
-#define FF_OUTLINK_IDX (link) ((int)((link)->srcpad - (link)->src->output_pads))
+[CCode (cname="",cheader_filename="")]
+public define FF_INLINK_IDX (link)  ((int)((link)->dstpad - (link)->dst->input_pads))
+public define FF_OUTLINK_IDX (link) ((int)((link)->srcpad - (link)->src->output_pads))
 
-#define QSV_VERSION_ATLEAST (MAJOR, MINOR)   \
+[CCode (cname="",cheader_filename="")]
+public define QSV_VERSION_ATLEAST (MAJOR, MINOR)   \
     (MFX_VERSION_MAJOR > (MAJOR) ||         \
      MFX_VERSION_MAJOR == (MAJOR) && MFX_VERSION_MINOR >= (MINOR))
 
-#define QSV_RUNTIME_VERSION_ATLEAST (MFX_VERSION, MAJOR, MINOR) \
+[CCode (cname="",cheader_filename="")]
+public define QSV_RUNTIME_VERSION_ATLEAST (MFX_VERSION, MAJOR, MINOR) \
     ((MFX_VERSION.Major > (MAJOR)) ||                           \
     (MFX_VERSION.Major == (MAJOR) && MFX_VERSION.Minor >= (MINOR)))
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class QSVVPPContext QSVVPPContext;
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class QSVVPPCrop {
     /***********************************************************
     Input index
     ***********************************************************/
+    [CCode (cname="")]
     public int in_idx;
+
     /***********************************************************
     Crop rectangle
     ***********************************************************/
@@ -53,9 +60,11 @@ public class QSVVPPCrop {
     /***********************************************************
     Crop rectangle
     ***********************************************************/
+    [CCode (cname="")]
     public int x, y, w, h;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class QSVVPPParam {
     /***********************************************************
@@ -69,32 +78,46 @@ public class QSVVPPParam {
     /***********************************************************
     To fill with MFX enhanced filter configurations
     ***********************************************************/
+    [CCode (cname="")]
     public int num_ext_buf;
+
     mfxExtBuffer **ext_buf;
 
     /***********************************************************
     Real output format
     ***********************************************************/
+    [CCode (cname="")]
     public AVPixelFormat out_sw_format;
 
     /***********************************************************
     Crop information for each input, if needed
     ***********************************************************/
+    [CCode (cname="")]
     public int num_crop;
+
     QSVVPPCrop *crop;
 }
 
 /***********************************************************
 create and initialize the QSV session
 ***********************************************************/
-public int ff_qsvvpp_create (AVFilterContext *avctx, QSVVPPContext **vpp, QSVVPPParam *param);
+[CCode (cname="",cheader_filename="")]
+public int ff_qsvvpp_create (
+    AVFilterContext *avctx, QSVVPPContext **vpp, QSVVPPParam *param
+);
 
 /***********************************************************
 release the resources (eg.surfaces)
 ***********************************************************/
-public int ff_qsvvpp_free (QSVVPPContext **vpp);
+[CCode (cname="",cheader_filename="")]
+public int ff_qsvvpp_free (
+    QSVVPPContext **vpp
+);
 
 /***********************************************************
 vpp filter frame and call the cb if needed
 ***********************************************************/
-public int ff_qsvvpp_filter_frame (QSVVPPContext *vpp, AVFilterLink *inlink, AVFrame *frame);
+[CCode (cname="",cheader_filename="")]
+public int ff_qsvvpp_filter_frame (
+    QSVVPPContext *vpp, AVFilterLink *inlink, AVFrame *frame
+);

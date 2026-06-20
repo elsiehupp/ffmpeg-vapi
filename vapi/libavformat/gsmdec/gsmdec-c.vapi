@@ -33,19 +33,21 @@ static const LibAVUtil.Option options[] = {
         AV_OPT_FLAG_DECODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="gsm_class", cheader_filename="")]
+[CCode (cname="gsm_class",cheader_filename="ffmpeg/libformat/gsmdec.c")]
 public class GSMDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override string class_name {
         public get {
             return "gsm demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -54,81 +56,95 @@ public class GSMDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct GSMDemuxerContext", cheader_filename="")]
+[CCode (cname="struct GSMDemuxerContext",cheader_filename="ffmpeg/libformat/gsmdec.c")]
 [Compact]
 public class GSMDemuxerPrivateData { }
 
-[CCode (cname="ff_gsm_demuxer", cheader_filename="")]
+[CCode (cname="ff_gsm_demuxer",cheader_filename="ffmpeg/libformat/gsmdec.c")]
 public class GSMDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override string name {
         public get {
             return "gsm";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override string long_name {
         public get {
             return "raw GSM";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GSMDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="gsm_probe", cheader_filename="")]
+    [CCode (cname="gsm_probe",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="gsm_read_header", cheader_filename="")]
+    [CCode (cname="gsm_read_header",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="gsm_read_packet", cheader_filename="")]
+    [CCode (cname="gsm_read_packet",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override string extensions {
         public get {
             return "gsm";
+
         }
+
     }
 
-    [CCode (cname="raw_codec_id", cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.GSM;
+
         }
+
     }
-    //  .priv_class = gsm_class,
+    //  .priv_class = gsm_class;
 }
 
 } // namespace LibAVFormat

@@ -22,8 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-#define ENC AV_OPT_FLAG_ENCODING_PARAM
-#define OFFSET (obj) offsetof (ADTSContext, obj)
+[CCode (cname="",cheader_filename="")]
+public define ENC AV_OPT_FLAG_ENCODING_PARAM
+public define OFFSET (obj) offsetof (ADTSContext, obj)
 static const LibAVUtil.Option options[] = {
     {
         "write_id3v2",
@@ -46,19 +47,21 @@ static const LibAVUtil.Option options[] = {
         },
         0, 1, ENC},
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="adts_muxer_class", cheader_filename="")]
+[CCode (cname="adts_muxer_class",cheader_filename="ffmpeg/libformat/adtsenc.c")]
 public class ADTSMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override string class_name {
         public get {
             return "ADTS muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -67,95 +70,115 @@ public class ADTSMuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct ADTSContext", cheader_filename="")]
+[CCode (cname="struct ADTSContext",cheader_filename="ffmpeg/libformat/adtsenc.c")]
 [Compact]
 public class ADTSMuxerPrivateData { }
 
-[CCode (cname="ff_adts_muxer", cheader_filename="")]
+[CCode (cname="ff_adts_muxer",cheader_filename="ffmpeg/libformat/adtsenc.c")]
 public class ADTSMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override string name {
         public get {
             return "adts";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override string long_name {
         public get {
             return "ADTS AAC (Advanced Audio Coding)";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override string mime_type {
         public get {
             return "audio/aac";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override string extensions {
         public get {
             return "aac,adts";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ADTSMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
+
         }
+
     }
 
-    [CCode (cname="adts_init", cheader_filename="")]
+    [CCode (cname="adts_init",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="adts_write_header", cheader_filename="")]
+    [CCode (cname="adts_write_header",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="adts_write_packet", cheader_filename="")]
+    [CCode (cname="adts_write_packet",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="adts_write_trailer", cheader_filename="")]
+    [CCode (cname="adts_write_trailer",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
     //  .priv_class = adts_muxer_class,
-    [CCode (cname="flags", cheader_filename="")]
+
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/adtsenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
+
         }
+
     }
 }
 

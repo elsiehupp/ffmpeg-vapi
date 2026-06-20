@@ -16,65 +16,159 @@ with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class PullupBuffer {
+    [CCode (cname="")]
     public int lock[2];
-    uint8[] planes[4];
+
+    [CCode (cname="")]
+    public uint8[] planes[4];
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class PullupField {
+    [CCode (cname="")]
     public int parity;
+
+    [CCode (cname="")]
     public PullupBuffer *buffer;
+
+    [CCode (cname="")]
     public uint flags;
+
+    [CCode (cname="")]
     public int breaks;
+
+    [CCode (cname="")]
     public int affinity;
+
+    [CCode (cname="")]
     public int[] diffs;
+
+    [CCode (cname="")]
     public int[] combs;
+
+    [CCode (cname="")]
     public int[] vars;
-    struct PullupField *prev, *next;
+
+    [CCode (cname="")]
+    public PullupField *prev;
+
+    [CCode (cname="")]
+    public PullupField *next;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class PullupFrame {
+    [CCode (cname="")]
     public int lock;
+
+    [CCode (cname="")]
     public int length;
+
+    [CCode (cname="")]
     public int parity;
-    PullupBuffer *ifields[4], *ofields[2];
-    PullupBuffer *buffer;
+
+    [CCode (cname="")]
+    public PullupBuffer *ifields[4];
+
+    [CCode (cname="")]
+    public PullupBuffer *ofields[2];
+
+    [CCode (cname="")]
+    public PullupBuffer *buffer;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class PullupContext {
-    const AVClass *class;
-    public int junk_left, junk_right, junk_top, junk_bottom;
+    [CCode (cname="")]
+    public AVClass class;
+
+    [CCode (cname="")]
+    public int junk_left;
+
+    [CCode (cname="")]
+    public int junk_right;
+
+    [CCode (cname="")]
+    public int junk_top;
+
+    [CCode (cname="")]
+    public int junk_bottom;
+
+    [CCode (cname="")]
     public int metric_plane;
+
+    [CCode (cname="")]
     public int strict_breaks;
+
+    [CCode (cname="")]
     public int strict_pairs;
-    public int metric_w, metric_h, metric_length;
+
+    [CCode (cname="")]
+    public int metric_w;
+
+    [CCode (cname="")]
+    public int metric_h;
+
+    [CCode (cname="")]
+    public int metric_length;
+
+    [CCode (cname="")]
     public int metric_offset;
+
+    [CCode (cname="")]
     public int nb_planes;
+
+    [CCode (cname="")]
     public int planewidth[4];
+
+    [CCode (cname="")]
     public int planeheight[4];
-    PullupField *first, *last, *head;
-    PullupBuffer buffers[10];
-    PullupFrame frame;
+
+    [CCode (cname="")]
+    public PullupField *first;
+
+    [CCode (cname="")]
+    public PullupField *last;
+
+    [CCode (cname="")]
+    public PullupField *head;
+
+    [CCode (cname="")]
+    public PullupBuffer buffers[10];
+
+    [CCode (cname="")]
+    public PullupFrame frame;
 
     [CCode (cname="diff")]
     public int (*diff)(
-        const uint8[] a, uint8[] b, ptrdiff_t s
+        uint8[] a,
+        uint8[] b,
+        ptrdiff_t s
     );
 
     [CCode (cname="comb")]
     public int (*comb)(
-        const uint8[] a, uint8[] b, ptrdiff_t s
+        uint8[] a,
+        uint8[] b,
+        ptrdiff_t s
     );
 
     [CCode (cname="var")]
     public int (*var )(
-        const uint8[] a, uint8[] b, ptrdiff_t s
+        uint8[] a,
+        uint8[] b,
+        ptrdiff_t s
     );
 
 }
 
-public void ff_pullup_init_x86 (PullupContext *s);
+[CCode (cname="",cheader_filename="")]
+public void ff_pullup_init_x86 (
+    PullupContext *s
+);

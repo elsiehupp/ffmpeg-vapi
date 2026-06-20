@@ -18,8 +18,17 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-AVFrame *ff_default_get_video_buffer (AVFilterLink *link, int w, int h);
-AVFrame *ff_null_get_video_buffer (AVFilterLink *link, int w, int h);
+AVFrame *ff_default_get_video_buffer (
+    AVFilterLink *link,
+    int w,
+    int h
+);
+
+AVFrame *ff_null_get_video_buffer (
+    AVFilterLink *link,
+    int w,
+    int h
+);
 
 /***********************************************************
 Request a picture buffer with a specific set of permissions.
@@ -31,4 +40,8 @@ Request a picture buffer with a specific set of permissions.
 @return      A reference to the buffer. This must be unreferenced with
              avfilter_unref_buffer when you are finished with it.
 ***********************************************************/
-AVFrame *ff_get_video_buffer (AVFilterLink *link, int w, int h);
+AVFrame *ff_get_video_buffer (
+    AVFilterLink *link,
+    int w,
+    int h
+);

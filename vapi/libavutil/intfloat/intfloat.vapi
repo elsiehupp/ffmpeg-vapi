@@ -24,7 +24,7 @@ namespace LibAVUtil {
 /***********************************************************
 @brief Reinterpret a 32-bit integer as a float.
 ***********************************************************/
-[CCode (cname="av_int2float", cheader_filename="ffmpeg/libavutil/intfloat.h")]
+[CCode (cname="av_int2float",cheader_filename="ffmpeg/libavutil/intfloat.h")]
 public static float av_int2float (
     uint32 i
 );
@@ -32,7 +32,7 @@ public static float av_int2float (
 /***********************************************************
 @brief Reinterpret a float as a 32-bit integer.
 ***********************************************************/
-[CCode (cname="av_float2int", cheader_filename="ffmpeg/libavutil/intfloat.h")]
+[CCode (cname="av_float2int",cheader_filename="ffmpeg/libavutil/intfloat.h")]
 public static uint32 av_float2int (
     float f
 );
@@ -40,15 +40,15 @@ public static uint32 av_float2int (
 /***********************************************************
 @brief Reinterpret a 64-bit integer as a double.
 ***********************************************************/
-[CCode (cname="av_int2double", cheader_filename="ffmpeg/libavutil/intfloat.h")]
+[CCode (cname="av_int2double",cheader_filename="ffmpeg/libavutil/intfloat.h")]
 public static double av_int2double (
-    public uint64 i
+    uint64 i
 );
 
 /***********************************************************
 @brief Reinterpret a double as a 64-bit integer.
 ***********************************************************/
-[CCode (cname="av_double2int", cheader_filename="ffmpeg/libavutil/intfloat.h")]
+[CCode (cname="av_double2int",cheader_filename="ffmpeg/libavutil/intfloat.h")]
 public static uint64 av_double2int (
     double f
 );

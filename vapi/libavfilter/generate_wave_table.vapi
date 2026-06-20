@@ -16,13 +16,20 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum WaveType {
     WAVE_SIN,
     WAVE_TRI,
-    WAVE_NB,
+    WAVE_NB;
 }
 
-public void ff_generate_wave_table (WaveType wave_type,
-                            AVSampleFormat sample_fmt,
-                            void *table, int table_size,
-                            double min, double max, double phase);
+[CCode (cname="",cheader_filename="")]
+public void ff_generate_wave_table (
+    WaveType wave_type,
+    AVSampleFormat sample_fmt,
+    void *table,
+    int table_size,
+    double min,
+    double max,
+    double phase
+);

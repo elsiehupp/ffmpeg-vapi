@@ -17,23 +17,28 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define REFERENCE_WHITE 100.0f
+[CCode (cname="",cheader_filename="")]
+public define REFERENCE_WHITE 100.0f
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class LumaCoefficients {
     double cr, cg, cb;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class PrimaryCoefficients {
     double xr, yr, xg, yg, xb, yb;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class WhitepointCoefficients {
     double xw, yw;
 }
 
+[CCode (cname="",cheader_filename="")]
 public void ff_matrix_invert_3x3 (const double in[3][3], double out[3][3]);
 public void ff_matrix_mul_3x3 (double dst[3][3],
                double src1[3][3], double src2[3][3]);

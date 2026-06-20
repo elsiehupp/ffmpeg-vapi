@@ -32,70 +32,132 @@ Color conversion and scaling library.
 
 Return the LIBSWSCALE_VERSION_INT constant.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public uint swscale_version ();
 
 /***********************************************************
 Return the libswscale build-time configuration.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public string swscale_configuration ();
 
 /***********************************************************
 Return the libswscale license.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public string swscale_license ();
 
 /***********************************************************
 values for the flags, the stuff on the command line is different
 ***********************************************************/
-#define SWS_FAST_BILINEAR     1
-#define SWS_BILINEAR          2
-#define SWS_BICUBIC           4
-#define SWS_X                 8
-#define SWS_POINT          0x10
-#define SWS_AREA           0x20
-#define SWS_BICUBLIN       0x40
-#define SWS_GAUSS          0x80
-#define SWS_SINC          0x100
-#define SWS_LANCZOS       0x200
-#define SWS_SPLINE        0x400
+[Flags]
+public enum FooBar {
+    [CCode (cname="")]
+    SWS_FAST_BILINEAR, // 1
 
-#define SWS_SRC_V_CHR_DROP_MASK     0x30000
-#define SWS_SRC_V_CHR_DROP_SHIFT    16
+    [CCode (cname="")]
+    SWS_BILINEAR, // 2
 
-#define SWS_PARAM_DEFAULT           123456
+    [CCode (cname="")]
+    SWS_BICUBIC, // 4
 
-#define SWS_PRINT_INFO              0x1000
+    [CCode (cname="")]
+    SWS_X, //   8
 
-/***********************************************************
-***********************************************************/
-// the following 3 flags are not completely implemented
-/***********************************************************
-***********************************************************/
-// internal chrominance subsampling info
-#define SWS_FULL_CHR_H_INT    0x2000
+    [CCode (cname="")]
+    SWS_POINT, // 0x10
 
-/***********************************************************
-***********************************************************/
-// input subsampling info
-#define SWS_FULL_CHR_H_INP    0x4000
+    [CCode (cname="")]
+    SWS_AREA, // 0x20
 
-/***********************************************************
-***********************************************************/
-#define SWS_DIRECT_BGR        0x8000
-#define SWS_ACCURATE_RND      0x40000
-#define SWS_BITEXACT          0x80000
-#define SWS_ERROR_DIFFUSION  0x800000
+    [CCode (cname="")]
+    SWS_BICUBLIN, // 0x40
 
-#define SWS_MAX_REDUCE_CUTOFF 0.002
+    [CCode (cname="")]
+    SWS_GAUSS, // 0x80
 
-#define SWS_CS_ITU709         1
-#define SWS_CS_FCC            4
-#define SWS_CS_ITU601         5
-#define SWS_CS_ITU624         5
-#define SWS_CS_SMPTE170M      5
-#define SWS_CS_SMPTE240M      7
-#define SWS_CS_DEFAULT        5
-#define SWS_CS_BT2020         9
+    [CCode (cname="")]
+    SWS_SINC, // 0x100
+
+    [CCode (cname="")]
+    SWS_LANCZOS       0x200
+
+    [CCode (cname="")]
+    SWS_SPLINE, // 0x400
+
+    [CCode (cname="")]
+    SWS_SRC_V_CHR_DROP_MASK, // 0x30000
+
+    [CCode (cname="")]
+    SWS_SRC_V_CHR_DROP_SHIFT, // 16
+
+    [CCode (cname="")]
+    SWS_PARAM_DEFAULT, // 123456
+
+    [CCode (cname="")]
+    SWS_PRINT_INFO, // 0x1000
+
+    /***********************************************************
+    internal chrominance subsampling info
+
+    this flag is not completely implemented
+    ***********************************************************/
+    [CCode (cname="")]
+    SWS_FULL_CHR_H_INT, // 0x2000
+
+    /***********************************************************
+    input subsampling info
+
+    this flag is not completely implemented
+    ***********************************************************/
+    [CCode (cname="")]
+    SWS_FULL_CHR_H_INP, // 0x4000
+
+    /***********************************************************
+    this flag is not completely implemented
+    ***********************************************************/
+    [CCode (cname="")]
+    SWS_DIRECT_BGR, // 0x8000
+
+    [CCode (cname="")]
+    SWS_ACCURATE_RND, // 0x40000
+
+    [CCode (cname="")]
+    SWS_BITEXACT, // 0x80000
+
+    [CCode (cname="")]
+    SWS_ERROR_DIFFUSION; // 0x800000
+}
+
+[CCode (cname="",cheader_filename="")]
+public define SWS_MAX_REDUCE_CUTOFF 0.002
+
+[CCode (cname="",cheader_filename="")]
+public enum FooBar {
+    [CCode (cname="")]
+    SWS_CS_ITU709, // 1
+
+    [CCode (cname="")]
+    SWS_CS_FCC, // 4
+
+    [CCode (cname="")]
+    SWS_CS_ITU601, // 5
+
+    [CCode (cname="")]
+    SWS_CS_ITU624, // 5
+
+    [CCode (cname="")]
+    SWS_CS_SMPTE170M, // 5
+
+    [CCode (cname="")]
+    SWS_CS_SMPTE240M, // 7
+
+    [CCode (cname="")]
+    SWS_CS_DEFAULT, // 5
+
+    [CCode (cname="")]
+    SWS_CS_BT2020; // 9
+}
 
 /***********************************************************
 Return a pointer to yuv<->rgb coefficients for the given colorspace
@@ -104,41 +166,55 @@ suitable for sws_setColorspaceDetails ().
 @param colorspace One of the SWS_CS_* macros. If invalid,
 SWS_CS_DEFAULT is used.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int[] sws_getCoefficients (
     int colorspace
 );
 
 /***********************************************************
+when used for filters they must have an odd number of elements
+coeffs cannot be shared between vectors
 ***********************************************************/
-// when used for filters they must have an odd number of elements
-// coeffs cannot be shared between vectors
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class SwsVector {
     /***********************************************************
     pointer to the list of coefficients
     ***********************************************************/
-    double[] coeff;
+    [CCode (cname="")]
+    public double[] coeff;
+
     /***********************************************************
     number of coefficients in the vector
     ***********************************************************/
+    [CCode (cname="")]
     public int length;
 }
 
 /***********************************************************
+vectors can be shared
 ***********************************************************/
-// vectors can be shared
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class SwsFilter {
-    SwsVector *lumH;
-    SwsVector *lumV;
-    SwsVector *chrH;
-    SwsVector *chrV;
+    [CCode (cname="")]
+    public SwsVector *lumH;
+
+    [CCode (cname="")]
+    public SwsVector *lumV;
+
+    [CCode (cname="")]
+    public SwsVector *chrH;
+
+    [CCode (cname="")]
+    public SwsVector *chrV;
 }
 
 /***********************************************************
 Return a positive value if pix_fmt is a supported input
 format, 0 otherwise.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int sws_isSupportedInput (
     AVPixelFormat pix_fmt
 );
@@ -147,6 +223,7 @@ public int sws_isSupportedInput (
 Return a positive value if pix_fmt is a supported output
 format, 0 otherwise.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int sws_isSupportedOutput (
     AVPixelFormat pix_fmt
 );
@@ -156,6 +233,7 @@ public int sws_isSupportedOutput (
 @return a positive value if an endianness conversion for
     pix_fmt is supported, 0 otherwise.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int sws_isSupportedEndiannessConversion (
     AVPixelFormat pix_fmt
 );
@@ -165,8 +243,8 @@ Allocate an empty SwsContext. This must be filled and passed to
 sws_init_context (). For filling see AVOptions, options.c and
 sws_setColorspaceDetails ().
 ***********************************************************/
-[Compact]
-public class SwsContext *sws_alloc_context ();
+[CCode (cname="",cheader_filename="")]
+public SwsContext *sws_alloc_context ();
 
 /***********************************************************
 Initialize the swscaler context sws_context.
@@ -174,6 +252,7 @@ Initialize the swscaler context sws_context.
 @return zero or positive value on success, a negative value on
 error
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 av_warn_unused_result
 public int sws_init_context (
     SwsContext *sws_context,
@@ -185,6 +264,7 @@ public int sws_init_context (
 Free the swscaler context swsContext.
 If swsContext is NULL, then does nothing.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void sws_freeContext (
     SwsContext *swsContext
 );
@@ -210,7 +290,8 @@ scaling/conversion operations using sws_scale ().
 @note this function is to be removed after a saner alternative is
       written
 ***********************************************************/
-SwsContext sws_getContext (
+[CCode (cname="",cheader_filename="")]
+public SwsContext sws_getContext (
     int srcW,
     int srcH,
     AVPixelFormat srcFormat,
@@ -249,6 +330,7 @@ non-sequential order the behavior of the function is undefined.
                  the destination image
 @return          the height of the output slice
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int sws_scale (
     SwsContext *c,
     out uint8[] srcSlice,
@@ -269,6 +351,7 @@ public int sws_scale (
 @param saturation 16.16 fixed point saturation correction
 @return -1 if not supported
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int sws_setColorspaceDetails (
     SwsContext *c,
     int inv_table[4],
@@ -283,6 +366,7 @@ public int sws_setColorspaceDetails (
 /***********************************************************
 @return -1 if not supported
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int sws_getColorspaceDetails (
     SwsContext *c,
     int **inv_table,
@@ -297,7 +381,8 @@ public int sws_getColorspaceDetails (
 /***********************************************************
 Allocate and return an uninitialized vector with length coefficients.
 ***********************************************************/
-SwsVector *sws_allocVec (
+[CCode (cname="",cheader_filename="")]
+public SwsVector *sws_allocVec (
     int length
 );
 
@@ -305,7 +390,8 @@ SwsVector *sws_allocVec (
 Return a normalized Gaussian curve used to filter stuff
 quality = 3 is high quality, lower is lower quality.
 ***********************************************************/
-SwsVector *sws_getGaussianVec (
+[CCode (cname="",cheader_filename="")]
+public SwsVector *sws_getGaussianVec (
     double variance,
     double quality
 );
@@ -313,6 +399,7 @@ SwsVector *sws_getGaussianVec (
 /***********************************************************
 Scale all the coefficients of a by the scalar value.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void sws_scaleVec (
     SwsVector *a,
     double scalar
@@ -321,43 +408,54 @@ public void sws_scaleVec (
 /***********************************************************
 Scale all the coefficients of a so that their sum equals height.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void sws_normalizeVec (
     SwsVector *a,
     double height
 );
 
 #if FF_API_SWS_VECTOR
-attribute_deprecated SwsVector *sws_getConstVec (
+
+[CCode (cname="",cheader_filename="")]
+public attribute_deprecated SwsVector *sws_getConstVec (
     double c,
     int length
 );
 
-attribute_deprecated SwsVector *sws_getIdentityVec ();
-attribute_deprecated void sws_convVec (
+[CCode (cname="",cheader_filename="")]
+public attribute_deprecated SwsVector *sws_getIdentityVec ();
+
+[CCode (cname="",cheader_filename="")]
+public attribute_deprecated void sws_convVec (
     SwsVector *a,
     SwsVector *b
 );
 
-attribute_deprecated void sws_addVec (
+[CCode (cname="",cheader_filename="")]
+public attribute_deprecated void sws_addVec (
     SwsVector *a,
     SwsVector *b
 );
 
-attribute_deprecated void sws_subVec (
+[CCode (cname="",cheader_filename="")]
+public attribute_deprecated void sws_subVec (
     SwsVector *a,
     SwsVector *b
 );
 
-attribute_deprecated void sws_shiftVec (
+[CCode (cname="",cheader_filename="")]
+public attribute_deprecated void sws_shiftVec (
     SwsVector *a,
     int shift
 );
 
-attribute_deprecated SwsVector *sws_cloneVec (
+[CCode (cname="",cheader_filename="")]
+public attribute_deprecated SwsVector *sws_cloneVec (
     SwsVector *a
 );
 
-attribute_deprecated void sws_printVec2 (
+[CCode (cname="",cheader_filename="")]
+public attribute_deprecated void sws_printVec2 (
     SwsVector *a,
     AVClass *log_ctx,
     int log_level
@@ -365,11 +463,13 @@ attribute_deprecated void sws_printVec2 (
 
 #endif
 
+[CCode (cname="",cheader_filename="")]
 public void sws_freeVec (
     SwsVector *a
 );
 
-SwsFilter *sws_getDefaultFilter (
+[CCode (cname="",cheader_filename="")]
+public SwsFilter *sws_getDefaultFilter (
     float lumaGBlur,
     float chromaGBlur,
     float lumaSharpen,
@@ -379,6 +479,7 @@ SwsFilter *sws_getDefaultFilter (
     int verbose
 );
 
+[CCode (cname="",cheader_filename="")]
 public void sws_freeFilter (
     SwsFilter *filter
 );
@@ -395,8 +496,9 @@ the new parameters.
 Be warned that srcFilter and dstFilter are not checked, they
 are assumed to remain the same.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
-public class SwsContext *sws_getCachedContext (
+public SwsContext *sws_getCachedContext (
     SwsContext *context,
     int srcW,
     int srcH,
@@ -420,8 +522,9 @@ The output frame will have the same packed format as the palette.
 @param num_pixels number of pixels to convert
 @param palette    array with [256] entries, which must match color arrangement (RGB or BGR) of src
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void sws_convertPalette8ToPacked32 (
-    const uint8[] src,
+    uint8[] src,
     uint8[] dst,
     int num_pixels,
     uint8[] palette
@@ -437,8 +540,9 @@ With the palette format "ABCD", the destination frame ends up with the format "A
 @param num_pixels number of pixels to convert
 @param palette    array with [256] entries, which must match color arrangement (RGB or BGR) of src
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void sws_convertPalette8ToPacked24 (
-    const uint8[] src,
+    uint8[] src,
     uint8[] dst,
     int num_pixels,
     uint8[] palette
@@ -450,7 +554,8 @@ AV_OPT_SEARCH_FAKE_OBJ for examining options.
 
 @see av_opt_find ().
 ***********************************************************/
-AVClass *sws_get_class ();
+[CCode (cname="",cheader_filename="")]
+public AVClass *sws_get_class ();
 
 /***********************************************************
 @}

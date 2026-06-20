@@ -23,119 +23,143 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_MMF_DEMUXER
-[CCode (cname="ff_mmf_demuxer", cheader_filename="")]
+
+[CCode (cname="ff_mmf_demuxer",cheader_filename="ffmpeg/libformat/mmf.c")]
 public class SMAFDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override string name {
         public get {
             return "mmf";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override string long_name {
         public get {
             return "Yamaha SMAF";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MMFContext);
+
         }
+
     }
 
-    [CCode (cname="mmf_probe", cheader_filename="")]
+    [CCode (cname="mmf_probe",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="mmf_read_header", cheader_filename="")]
+    [CCode (cname="mmf_read_header",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mmf_read_packet", cheader_filename="")]
+    [CCode (cname="mmf_read_packet",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 }
 #endif
 
 #if CONFIG_MMF_MUXER
-[CCode (cname="ff_mmf_muxer", cheader_filename="")]
+
+[CCode (cname="ff_mmf_muxer",cheader_filename="ffmpeg/libformat/mmf.c")]
 public class MMFMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override string name {
         public get {
             return "mmf";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override string long_name {
         public get {
             return "Yamaha SMAF";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override string mime_type {
         public get {
             return "application/vnd.smaf";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override string extensions {
         public get {
             return "mmf";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MMFContext);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.ADPCM_YAMAHA;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
+
         }
+
     }
 
-    [CCode (cname="mmf_write_header", cheader_filename="")]
+    [CCode (cname="mmf_write_header",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_write_packet", cheader_filename="")]
+    [CCode (cname="ff_raw_write_packet",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mmf_write_trailer", cheader_filename="")]
+    [CCode (cname="mmf_write_trailer",cheader_filename="ffmpeg/libformat/mmf.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );

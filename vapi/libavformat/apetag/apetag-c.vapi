@@ -22,13 +22,13 @@ based upon libdemac from Dave Chapman.
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cprefix="APE_TAG_FLAG_", cheader_filename="")]
+[CCode (cprefix="APE_TAG_FLAG_",cheader_filename="ffmpeg/libformat/apetag.c")]
 [Flags]
 public enum ApeTagFlags {
     CONTAINS_HEADER,
     LACKS_FOOTER,
     IS_HEADER,
-    IS_BINARY,
+    IS_BINARY;
 }
 
 } // namespace LibAVFormat

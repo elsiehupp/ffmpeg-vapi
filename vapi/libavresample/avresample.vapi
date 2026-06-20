@@ -72,8 +72,8 @@ public int in_linesize, in_samples;
 
 while (get_input (&input, &in_linesize, &in_samples)) {
     uint8[] output
-    public int out_linesize;
-    public int out_samples = avresample_get_out_samples (avr, in_samples);
+    int out_linesize;
+    int out_samples = avresample_get_out_samples (avr, in_samples);
 
     av_samples_alloc (&output, &out_linesize, 2, out_samples,
                      AV_SAMPLE_FMT_S16, 0);
@@ -82,15 +82,17 @@ while (get_input (&input, &in_linesize, &in_samples)) {
     handle_output (output, out_linesize, out_samples);
     av_freep (&output);
  }
- @endcode
+@endcode
 
  When the conversion is finished and the FIFOs are flushed if required, the
  conversion context and everything associated with it must be freed with
  avresample_free ().
 ***********************************************************/
 
-#define AVRESAMPLE_MAX_CHANNELS 32
+[CCode (cname="",cheader_filename="")]
+public define AVRESAMPLE_MAX_CHANNELS 32
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVAudioResampleContext AVAudioResampleContext;
 
@@ -99,19 +101,23 @@ public class AVAudioResampleContext AVAudioResampleContext;
 
 Mixing Coefficient Types
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public enum attribute_deprecated AVMixCoeffType {
     /***********************************************************
     16-bit 8.8 fixed-point
     ***********************************************************/
     AV_MIX_COEFF_TYPE_Q8,
+
     /***********************************************************
     32-bit 17.15 fixed-point
     ***********************************************************/
     AV_MIX_COEFF_TYPE_Q15,
+
     /***********************************************************
     floating-point
     ***********************************************************/
     AV_MIX_COEFF_TYPE_FLT,
+
     /***********************************************************
     Number of coeff types. Not part of ABI
     ***********************************************************/
@@ -123,15 +129,18 @@ public enum attribute_deprecated AVMixCoeffType {
 
 Resampling Filter Types
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public enum attribute_deprecated AVResampleFilterType {
     /***********************************************************
     Cubic
     ***********************************************************/
     AV_RESAMPLE_FILTER_TYPE_CUBIC,
+
     /***********************************************************
     Blackman Nuttall Windowed Sinc
     ***********************************************************/
     AV_RESAMPLE_FILTER_TYPE_BLACKMAN_NUTTALL,
+
     /***********************************************************
     Kaiser Windowed Sinc
     ***********************************************************/
@@ -141,27 +150,33 @@ public enum attribute_deprecated AVResampleFilterType {
 /***********************************************************
 @deprecated use libswresample
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public enum attribute_deprecated AVResampleDitherMethod {
     /***********************************************************
     Do not use dithering
     ***********************************************************/
     AV_RESAMPLE_DITHER_NONE,
+
     /***********************************************************
     Rectangular Dither
     ***********************************************************/
     AV_RESAMPLE_DITHER_RECTANGULAR,
+
     /***********************************************************
     Triangular Dither
     ***********************************************************/
     AV_RESAMPLE_DITHER_TRIANGULAR,
+
     /***********************************************************
     Triangular Dither with High Pass
     ***********************************************************/
     AV_RESAMPLE_DITHER_TRIANGULAR_HP,
+
     /***********************************************************
     Triangular Dither with Noise Shaping
     ***********************************************************/
     AV_RESAMPLE_DITHER_TRIANGULAR_NS,
+
     /***********************************************************
     Number of dither types. Not part of ABI.
     ***********************************************************/
@@ -456,7 +471,8 @@ conversion would output.
 ***********************************************************/
 attribute_deprecated
 public int avresample_get_out_samples (
-    AVAudioResampleContext *avr, int in_nb_samples
+    AVAudioResampleContext *avr,
+    int in_nb_samples
 );
 
 /***********************************************************

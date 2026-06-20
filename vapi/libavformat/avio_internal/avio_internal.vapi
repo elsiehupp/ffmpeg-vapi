@@ -20,30 +20,33 @@ namespace LibAVFormat {
 
 //  extern const LibAVUtil.Class ff_avio_class;
 
+[CCode (cname="",cheader_filename="")]
 public delegate int ReadPacketDelegate (
     void *opaque,
     uint8[] buffer,
-    public int buf_size
+    int buf_size
 );
 
+[CCode (cname="",cheader_filename="")]
 public delegate int WritePacketDelegate (
     void *opaque,
     uint8[] buffer,
-    public int buf_size
+    int buf_size
 );
 
+[CCode (cname="",cheader_filename="")]
 public delegate int64 SeekDelegate (
     void *opaque,
-    public int64 offset,
-    public int whence
+    int64 offset,
+    int whence
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_init_context (
     AVIOContext io_context,
     uchar[] buffer,
-    public int buffer_size,
-    public int write_flag,
+    int buffer_size,
+    int write_flag,
     void *opaque,
     ReadPacketDelegate read_packet,
     WritePacketDelegate write_packet,
@@ -65,22 +68,22 @@ valid until the next call that references the same IO context.
     will be a copy of buffer
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_read_indirect (
     AVIOContext io_context,
     uchar[] buffer,
-    public int size,
+    int size,
     out uchar[] data
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public void ffio_fill (
     AVIOContext io_context,
-    public int b,
-    public int count
+    int b,
+    int count
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public void ffio_wfourcc (
     AVIOContext pb,
     uint8[] io_context
@@ -98,14 +101,14 @@ Joins buffer and io_context.buffer, taking any overlap into consideration.
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_rewind_with_probe_data (
     AVIOContext io_context,
     out uchar[] buffer,
-    public int buf_size
+    int buf_size
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public uint64 ffio_read_varlen (
     AVIOContext bc
 );
@@ -115,20 +118,20 @@ public uint64 ffio_read_varlen (
 Check that exactly size bytes have been read.
 @return number of bytes read or LibAVUtil.ErrorCode
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_read_size (
     AVIOContext io_context,
     uchar[] buffer,
-    public int size
+    int size
 );
 
 /***********************************************************
 @warning must be called before any I/O
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_set_buf_size (
     AVIOContext io_context,
-    public int buf_size
+    int buf_size
 );
 
 /***********************************************************
@@ -138,55 +141,56 @@ Will ensure that when reading sequentially up to buf_size, seeking
 within the current pos and pos+buf_size is possible.
 Once the stream position moves outside this window this guarantee is lost.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_ensure_seekback (
     AVIOContext io_context,
-    public int64 buf_size
+    int64 buf_size
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_limit (
     AVIOContext io_context,
-    public int size
+    int size
 );
 
+[CCode (cname="",cheader_filename="")]
 public delegate ulong UpdateChecksumDelegate (
     ulong c,
     uint8[] p,
-    public uint len
+    uint len
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public void ffio_init_checksum (
     AVIOContext io_context,
     UpdateChecksumDelegate update_checksum,
     ulong checksum
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public ulong ffio_get_checksum (
     AVIOContext io_context
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public ulong ff_crc04C11DB7_update (
     ulong checksum,
     uint8[] buffer,
-    public uint len
+    uint len
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public ulong ff_crcEDB88320_update (
     ulong checksum,
     uint8[] buffer,
-    public uint len
+    uint len
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public ulong ff_crcA001_update (
     ulong checksum,
     uint8[] buffer,
-    public uint len
+    uint len
 );
 
 /***********************************************************
@@ -198,10 +202,10 @@ with a big-endian 4 byte header giving the packet size in bytes.
 @param max_packet_size maximum packet size (must be > 0)
 @return zero if no error.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_open_dyn_packet_buf (
     out AVIOContext io_context,
-    public int max_packet_size
+    int max_packet_size
 );
 
 /***********************************************************
@@ -215,7 +219,7 @@ In case of failure the pointed to value is set to NULL.
 @return >= 0 in case of success, a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_fdopen (
     out AVIOContext io_context,
     URLContext url_context
@@ -227,7 +231,7 @@ public int ffio_fdopen (
 @param io_context IO context
 @return pointer to URLContext or NULL.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public URLContext ffio_geturlcontext (
     AVIOContext io_context
 );
@@ -240,16 +244,16 @@ written.
 @param io_context new IO context
 @return zero if no error.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_open_null_buf (
     out AVIOContext io_context
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_open_whitelist (
     out AVIOContext io_context,
     string url,
-    public int flags,
+    int flags,
     AVIOInterruptCB int_cb,
     out LibAVUtil.Dictionary options,
     string whitelist,
@@ -262,7 +266,7 @@ public int ffio_open_whitelist (
 @param io_context an IO context opened by ffio_open_null_buf
 @return the number of bytes written to the null buffer
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public int ffio_close_null_buf (
     AVIOContext io_context
 );
@@ -272,7 +276,7 @@ public int ffio_close_null_buf (
 
 @param io_context a pointer to an IO context opened by avio_open_dyn_buf ()
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/avio_internal.h")]
 public void ffio_free_dyn_buf (
     out AVIOContext io_context
 );

@@ -29,7 +29,11 @@ Converts an AVPixelFormat to a VSPixelFormat.
 @param[in] pf  AVPixelFormat
 @return    a corresponding VSPixelFormat
 ***********************************************************/
-VSPixelFormat ff_av2vs_pixfmt (AVFilterContext *ctx, AVPixelFormat pf);
+[CCode (cname="",cheader_filename="")]
+public VSPixelFormat ff_av2vs_pixfmt (
+    AVFilterContext *ctx,
+    AVPixelFormat pf
+);
 
 /***********************************************************
 Initialize libvidstab
@@ -37,6 +41,5 @@ Initialize libvidstab
 Sets the memory allocation functions and logging constants to corresponding
 av* versions.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void ff_vs_init ();
-
-#endif

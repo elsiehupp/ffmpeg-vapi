@@ -22,21 +22,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_celt_codec", cheader_filename="")]
+[CCode (cname="ff_celt_codec",cheader_filename="ffmpeg/libformat/oggparsecelt.c")]
 public class CELTCodec : OggCodec {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparsecelt.c")]
     public override uint8[] magic {
         public get {
             return "CELT    ".data;
+
         }
+
     }
     //  .magicsize = 8,
-    [CCode (cname="celt_header", cheader_filename="")]
+
+    [CCode (cname="celt_header",cheader_filename="ffmpeg/libformat/oggparsecelt.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 2,
+    //  .nb_header = 2;
 }
 
 } // namespace LibAVFormat

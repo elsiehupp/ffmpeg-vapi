@@ -43,21 +43,25 @@ compiled muxers and demuxers. They all use standard libavformat API.
 /***********************************************************
 Return the LIBAVDEVICE_VERSION_INT constant.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public uint avdevice_version ();
 
 /***********************************************************
 Return the libavdevice build-time configuration.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public string avdevice_configuration ();
 
 /***********************************************************
 Return the libavdevice license.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public string avdevice_license ();
 
 /***********************************************************
 Initialize libavdevice and register all the input and output devices.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void avdevice_register_all ();
 
 /***********************************************************
@@ -104,29 +108,38 @@ AVOutputFormat *av_output_video_device_next (
     AVOutputFormat *d
 );
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVDeviceRect {
     /***********************************************************
     x coordinate of top left corner
     ***********************************************************/
+    [CCode (cname="")]
     public int x;
+
     /***********************************************************
     y coordinate of top left corner
     ***********************************************************/
+    [CCode (cname="")]
     public int y;
+
     /***********************************************************
     width
     ***********************************************************/
+    [CCode (cname="")]
     public int width;
+
     /***********************************************************
     height
     ***********************************************************/
+    [CCode (cname="")]
     public int height;
 }
 
 /***********************************************************
 Message types used by avdevice_app_to_dev_control_message ().
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public enum AVAppToDevMessageType {
     /***********************************************************
     Dummy message.
@@ -260,12 +273,13 @@ public enum AVAppToDevMessageType {
         'M',
         'U',
         'T'
-    ),
+    );
 }
 
 /***********************************************************
 Message types used by avdevice_dev_to_app_control_message ().
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public enum AVDevToAppMessageType {
     /***********************************************************
     Dummy message.
@@ -416,7 +430,7 @@ public enum AVDevToAppMessageType {
         'V',
         'O',
         'L'
-    ),
+    );
 }
 
 /***********************************************************
@@ -429,6 +443,7 @@ Send control message from application to device.
 @return >= 0 on success, negative on error.
         AVERROR (ENOSYS) when device doesn't implement handler of the message.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int avdevice_app_to_dev_control_message (
     AVFormatContext *s,
     AVAppToDevMessageType type,
@@ -446,6 +461,7 @@ Send control message from device to application.
 @return >= 0 on success, negative on error.
         AVERROR (ENOSYS) when application doesn't implement handler of the message.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int avdevice_dev_to_app_control_message (
     AVFormatContext *s,
     AVDevToAppMessageType type,
@@ -529,20 +545,44 @@ Structure describes device capabilities.
 It is used by devices in conjunction with av_device_capabilities AVOption table
 to implement capabilities probing API based on AVOption API. Should not be used directly.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVDeviceCapabilitiesQuery {
-    const AVClass *av_class;
+    public AVClass av_class;
+
     AVFormatContext *device_context;
+
+    [CCode (cname="")]
     public AVCodecID codec;
+
+    [CCode (cname="")]
     public AVSampleFormat sample_format;
+
+    [CCode (cname="")]
     public AVPixelFormat pixel_format;
+
+    [CCode (cname="")]
     public int sample_rate;
+
+    [CCode (cname="")]
     public int channels;
+
+    [CCode (cname="")]
     public int64 channel_layout;
+
+    [CCode (cname="")]
     public int window_width;
+
+    [CCode (cname="")]
     public int window_height;
+
+    [CCode (cname="")]
     public int frame_width;
+
+    [CCode (cname="")]
     public int frame_height;
+
+    [CCode (cname="")]
     public AVRational fps;
 }
 
@@ -568,6 +608,7 @@ not used anymore.
 
 @return >= 0 on success, negative otherwise.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int avdevice_capabilities_create (
     AVDeviceCapabilitiesQuery **caps,
     AVFormatContext *s,
@@ -580,6 +621,7 @@ Free resources created by avdevice_capabilities_create ()
 @param caps Device capabilities data to be freed.
 @param s    Context of the device.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void avdevice_capabilities_free (
     AVDeviceCapabilitiesQuery **caps,
     AVFormatContext *s
@@ -588,12 +630,14 @@ public void avdevice_capabilities_free (
 /***********************************************************
 Structure describes basic parameters of the device.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVDeviceInfo {
     /***********************************************************
     device name, format depends on device
     ***********************************************************/
     string device_name;
+
     /***********************************************************
     human friendly name
     ***********************************************************/
@@ -603,19 +647,24 @@ public class AVDeviceInfo {
 /***********************************************************
 List of devices.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVDeviceInfoList {
     /***********************************************************
     list of autodetected devices
     ***********************************************************/
     AVDeviceInfo **devices;
+
     /***********************************************************
     number of autodetected devices
     ***********************************************************/
+    [CCode (cname="")]
     public int nb_devices;
+
     /***********************************************************
     index of default device or -1 if no default
     ***********************************************************/
+    [CCode (cname="")]
     public int default_device;
 }
 
@@ -632,6 +681,7 @@ Returns available device names and their parameters.
 @param[out] device_list list of autodetected devices.
 @return count of autodetected devices, negative on error.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int avdevice_list_devices (
     AVFormatContext *s,
     AVDeviceInfoList **device_list
@@ -642,6 +692,7 @@ Convenient function to free result of avdevice_list_devices ().
 
 @param devices device list to be freed.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void avdevice_free_list_devices (
     AVDeviceInfoList **device_list
 );
@@ -663,6 +714,7 @@ Device context is allocated and deallocated internally.
 @return count of autodetected devices, negative on error.
 @note device argument takes precedence over device_name when both are set.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public int avdevice_list_input_sources (
     AVInputFormat *device,
     string device_name,
@@ -670,6 +722,7 @@ public int avdevice_list_input_sources (
     AVDeviceInfoList **device_list
 );
 
+[CCode (cname="",cheader_filename="")]
 public int avdevice_list_output_sinks (
     AVOutputFormat *device,
     string device_name,

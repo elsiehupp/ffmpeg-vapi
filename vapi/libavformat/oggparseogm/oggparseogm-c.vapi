@@ -24,100 +24,112 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_ogm_video_codec", cheader_filename="")]
+[CCode (cname="ff_ogm_video_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
 public class OGMVideoCodec : OggCodec {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override uint8[] magic {
         public get {
             return "\001video".data;
+
         }
+
     }
     //  .magicsize = 6,
-    [CCode (cname="ogm_header", cheader_filename="")]
+
+    [CCode (cname="ogm_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="ogm_packet", cheader_filename="")]
+    [CCode (cname="ogm_packet",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
     //  .granule_is_start = 1,
-    //  .nb_header = 2,
+    //  .nb_header = 2;
 }
 
-[CCode (cname="ff_ogm_audio_codec", cheader_filename="")]
+[CCode (cname="ff_ogm_audio_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
 public class OGMAudioCodec : OggCodec {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override uint8[] magic {
         public get {
             return "\001audio".data;
+
         }
+
     }
     //  .magicsize = 6,
-    [CCode (cname="ogm_header", cheader_filename="")]
+
+    [CCode (cname="ogm_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="ogm_packet", cheader_filename="")]
+    [CCode (cname="ogm_packet",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
     //  .granule_is_start = 1,
-    //  .nb_header = 2,
+    //  .nb_header = 2;
 }
 
-[CCode (cname="ff_ogm_text_codec", cheader_filename="")]
+[CCode (cname="ff_ogm_text_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
 public class OGMTextCodec : OggCodec {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override uint8[] magic {
         public get {
             return "\001text".data;
+
         }
+
     }
     //  .magicsize = 5,
-    [CCode (cname="ogm_header", cheader_filename="")]
+
+    [CCode (cname="ogm_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="ogm_packet", cheader_filename="")]
+    [CCode (cname="ogm_packet",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
     //  .granule_is_start = 1,
-    //  .nb_header = 2,
+    //  .nb_header = 2;
 }
 
-[CCode (cname="ff_ogm_old_codec", cheader_filename="")]
+[CCode (cname="ff_ogm_old_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
 public class OGMOldCodec : OggCodec {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override uint8[] magic {
         public get {
             return "\001Direct Show Samples embedded in Ogg".data;
+
         }
+
     }
     //  .magicsize = 35,
-    [CCode (cname="ogm_dshow_header", cheader_filename="")]
+
+    [CCode (cname="ogm_dshow_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="ogm_packet", cheader_filename="")]
+    [CCode (cname="ogm_packet",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
     //  .granule_is_start = 1,
-    //  .nb_header = 1,
+    //  .nb_header = 1;
 }
 
 } // namespace LibAVFormat

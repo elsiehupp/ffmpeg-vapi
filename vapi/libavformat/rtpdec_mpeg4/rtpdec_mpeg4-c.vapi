@@ -29,44 +29,54 @@ namespace LibAVFormat {
 @author Romain Degez
 ***********************************************************/
 
-[CCode (cname="ff_mp4v_es_dynamic_handler", cheader_filename="")]
+[CCode (cname="ff_mp4v_es_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
 public class MP4VESDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name", cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override string enc_name {
         public get {
             return "MP4V-ES";
+
         }
+
     }
 
-    [CCode (cname="codec_type", cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_VIDEO;
+
         }
+
     }
 
-    [CCode (cname="codec_id", cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MPEG4;
+
         }
+
     }
 
-    [CCode (cname="need_parsing", cheader_filename="")]
+    [CCode (cname="need_parsing",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVSTREAM_PARSE_FULL;
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
+
         }
+
     }
 
-    [CCode (cname="parse_sdp_line", cheader_filename="")]
+    [CCode (cname="parse_sdp_line",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
@@ -75,37 +85,45 @@ public class MP4VESDynamicHandler : RTPDynamicProtocolHandler {
     );
 }
 
-[CCode (cname="ff_mpeg4_generic_dynamic_handler", cheader_filename="")]
+[CCode (cname="ff_mpeg4_generic_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
 public class Mpeg4GenericDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name", cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override string enc_name {
         public get {
             return "mpeg4-generic";
+
         }
+
     }
 
-    [CCode (cname="codec_type", cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return AVMEDIA_TYPE_AUDIO;
+
         }
+
     }
 
-    [CCode (cname="codec_id", cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.AAC;
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
+
         }
+
     }
 
-    [CCode (cname="parse_sdp_line", cheader_filename="")]
+    [CCode (cname="parse_sdp_line",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
@@ -113,12 +131,12 @@ public class Mpeg4GenericDynamicHandler : RTPDynamicProtocolHandler {
         string line
     );
 
-    [CCode (cname="close_context", cheader_filename="")]
+    [CCode (cname="close_context",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override void close (
         PayloadContext protocol_data
     );
 
-    [CCode (cname="aac_parse_packet", cheader_filename="")]
+    [CCode (cname="aac_parse_packet",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

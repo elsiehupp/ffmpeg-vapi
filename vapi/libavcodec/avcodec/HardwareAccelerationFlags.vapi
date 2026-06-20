@@ -27,7 +27,7 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_HWACCEL_FLAG_", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="AV_HWACCEL_FLAG_",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum HardwareAccelerationFlags {
     /***********************************************************
     @brief Hardware acceleration should be used for decoding even if the codec level
@@ -57,7 +57,7 @@ public enum HardwareAccelerationFlags {
         undefined, and may include returning entirely incorrect output
         while indicating success.
     ***********************************************************/
-    ALLOW_PROFILE_MISMATCH,
+    ALLOW_PROFILE_MISMATCH;
 }
 
 } // namespace LibAVCodec

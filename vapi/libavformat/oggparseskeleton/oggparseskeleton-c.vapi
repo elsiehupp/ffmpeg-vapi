@@ -21,21 +21,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_skeleton_codec", cheader_filename="")]
+[CCode (cname="ff_skeleton_codec",cheader_filename="ffmpeg/libformat/oggparseskeleton.c")]
 public class SkeletonCodec : OggCodec {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseskeleton.c")]
     public override uint8[] magic {
         public get {
             return "fishead".data;
+
         }
+
     }
     //  .magicsize = 8,
-    [CCode (cname="skeleton_header", cheader_filename="")]
+
+    [CCode (cname="skeleton_header",cheader_filename="ffmpeg/libformat/oggparseskeleton.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 0,
+    //  .nb_header = 0;
 }
 
 } // namespace LibAVFormat

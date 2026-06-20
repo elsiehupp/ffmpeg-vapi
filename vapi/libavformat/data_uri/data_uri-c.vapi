@@ -21,43 +21,47 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-[CCode (cname="struct DataContext", cheader_filename="")]
+[CCode (cname="struct DataContext",cheader_filename="")]
 [Compact]
 public class DataPrivateData { }
 
-[CCode (cname="ff_data_protocol", cheader_filename="")]
+[CCode (cname="ff_data_protocol",cheader_filename="")]
 public class DataURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "data";
+
         }
+
     }
 
-    [CCode (cname="data_open", cheader_filename="")]
+    [CCode (cname="data_open",cheader_filename="")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="data_close", cheader_filename="")]
+    [CCode (cname="data_close",cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="data_read", cheader_filename="")]
+    [CCode (cname="data_read",cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (DataPrivateData);
+
         }
+
     }
 }
 

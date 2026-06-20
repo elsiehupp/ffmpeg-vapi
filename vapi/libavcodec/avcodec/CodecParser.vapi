@@ -30,14 +30,17 @@ LibAVCodec external API header
 @defgroup lavc_parsing Frame parsing
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public delegate int ParserInitDelegate (
     CodecParserContext s
 );
 public delegate int ParserParseDelegate (
     CodecParserContext s,
     CodecContext avctx,
-    out uint8[] poutbuf, out int poutbuf_size,
-    uint8[] buffer, int buf_size
+    out uint8[] poutbuf,
+    out int poutbuf_size,
+    uint8[] buffer,
+    int buf_size
 );
 public delegate void ParserCloseDelegate (
     CodecParserContext s
@@ -45,10 +48,10 @@ public delegate void ParserCloseDelegate (
 public delegate int ParserSplitDelegate (
     CodecContext avctx,
     uint8[] buffer,
-    public int buf_size
+    int buf_size
 );
 
-[CCode (cname="struct AVCodecParser", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecParser",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public abstract class CodecParser {
     /***********************************************************
     @brief Several codec IDs are permitted
@@ -88,7 +91,7 @@ public abstract class CodecParser {
     @return the next registered codec parser or null when the
     iteration is finished
     ***********************************************************/
-    [CCode (cname="av_parser_iterate", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_parser_iterate",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CodecParser av_parser_iterate (out void *opaque);
 
 }
@@ -116,7 +119,7 @@ Functions for working with pixel formats.
 pixel format pixel_format, or 0 if no associated fourCC code can be
 found.
 ***********************************************************/
-[CCode (cname="avcodec_pix_fmt_to_codec_tag", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="avcodec_pix_fmt_to_codec_tag",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public uint avcodec_pix_fmt_to_codec_tag (
     LibAVUtil.PixelFormat pixel_format
 );
@@ -137,11 +140,11 @@ pix_fmt_list parameter.
 @param[out] loss_ptr Combination of flags informing you what kind of losses will occur.
 @return The best pixel format to convert to or -1 if none was found.
 ***********************************************************/
-[CCode (cname="avcodec_find_best_pix_fmt_of_list", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="avcodec_find_best_pix_fmt_of_list",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public LibAVUtil.PixelFormat avcodec_find_best_pix_fmt_of_list (
     LibAVUtil.PixelFormat[] pix_fmt_list,
     LibAVUtil.PixelFormat input_pix_fmt,
-    public int has_alpha, out int loss_ptr
+    int has_alpha, out int loss_ptr
 );
 
 /***********************************************************
@@ -167,14 +170,14 @@ planar audio.
 @todo return the size in bytes required to store the samples in
 case of success, at the next libavutil bump
 ***********************************************************/
-[CCode (cname="avcodec_fill_audio_frame", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="avcodec_fill_audio_frame",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public int avcodec_fill_audio_frame (
     LibAVUtil.Frame frame,
-    public int nb_channels,
+    int nb_channels,
     LibAVUtil.SampleFormat sample_fmt,
     uint8[] buffer,
-    public int buf_size,
-    public int align
+    int buf_size,
+    int align
 );
 
 /***********************************************************
@@ -183,10 +186,10 @@ public int avcodec_fill_audio_frame (
     -1 (or anything else) for native
 @return CodecID
 ***********************************************************/
-[CCode (cname="av_get_pcm_codec", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="av_get_pcm_codec",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public CodecID av_get_pcm_codec (
     LibAVUtil.SampleFormat fmt,
-    public int be
+    int be
 );
 
 } // namespace LibAVCodec

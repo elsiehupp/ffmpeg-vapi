@@ -56,12 +56,13 @@ thread-safe.
 directly. It is allocated with av_buffer_pool_init () and freed with
 av_buffer_pool_uninit ().
 ***********************************************************/
-[CCode (cname="struct AVBufferPool", cheader_filename="buffer.h")]
+[CCode (cname="struct AVBufferPool",cheader_filename="buffer.h")]
 [Compact]
 public class BufferPool { }
 
+[CCode (cname="",cheader_filename="")]
 public delegate LibAVUtil.BufferRef AllocDelegate (
-    public size_t size
+    size_t size
 );
 
 /***********************************************************
@@ -73,17 +74,19 @@ pool is empty. May be null, then the default allocator will be used
 (av_buffer_alloc ()).
 @return newly created buffer pool on success, null on error.
 ***********************************************************/
-[CCode (cname="av_buffer_pool_init", cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_pool_init",cheader_filename="buffer.h")]
 public LibAVUtil.BufferPool av_buffer_pool_init (
-    public size_t size,
+    size_t size,
     AllocDelegate alloc
 );
 
+[CCode (cname="",cheader_filename="")]
 public delegate LibAVUtil.BufferRef AllocDelegate2 (
     void *opaque,
-    public size_t size
+    size_t size
 );
 
+[CCode (cname="",cheader_filename="")]
 public delegate void FreeDelegate2 (
     void *opaque
 );
@@ -103,9 +106,9 @@ public delegate void FreeDelegate2 (
     data. May be null.
 @return newly created buffer pool on success, null on error.
 ***********************************************************/
-[CCode (cname="av_buffer_pool_init2", cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_pool_init2",cheader_filename="buffer.h")]
 public LibAVUtil.BufferPool av_buffer_pool_init2 (
-    public size_t size,
+    size_t size,
     void *opaque,
     AllocDelegate2 alloc,
     FreeDelegate2 pool_free
@@ -119,7 +122,7 @@ in use.
 
 @param pool pointer to the pool to be freed. It will be set to null.
 ***********************************************************/
-[CCode (cname="av_buffer_pool_uninit", cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_pool_uninit",cheader_filename="buffer.h")]
 public void av_buffer_pool_uninit (
     LibAVUtil.BufferPool pool
 );
@@ -130,7 +133,7 @@ This function may be called simultaneously from multiple threads.
 
 @return a reference to the new buffer on success, null on error.
 ***********************************************************/
-[CCode (cname="av_buffer_pool_get", cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_pool_get",cheader_filename="buffer.h")]
 public LibAVUtil.BufferRef av_buffer_pool_get (
     LibAVUtil.BufferPool pool
 );
@@ -146,7 +149,7 @@ public LibAVUtil.BufferRef av_buffer_pool_get (
 therefore you have to use this function to access the original opaque
 parameter of an allocated buffer.
 ***********************************************************/
-[CCode (cname="av_buffer_pool_buffer_get_opaque", cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_pool_buffer_get_opaque",cheader_filename="buffer.h")]
 public void *av_buffer_pool_buffer_get_opaque (
     LibAVUtil.BufferRef ref
 );

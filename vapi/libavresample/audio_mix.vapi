@@ -18,8 +18,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-typedef void (mix_func)(uint8[] *src, void **matrix, int len, int out_ch,
-                        int in_ch);
+[CCode (cname="",cheader_filename="")]
+public typedef void (mix_func)(
+    uint8[] *src,
+    void **matrix,
+    int len,
+    int out_ch,
+    int in_ch
+);
 
 /***********************************************************
 Set mixing function if the parameters match.
@@ -41,10 +47,18 @@ the optimized mixing function.
 @param descr          function type description (e.g. "C" or "SSE")
 @param mix_func       mixing function pointer
 ***********************************************************/
-public void ff_audio_mix_set_func (AudioMix *am, AVSampleFormat fmt,
-                           AVMixCoeffType coeff_type, int in_channels,
-                           int out_channels, int ptr_align, int samples_align,
-                           string descr, void *mix_func);
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_mix_set_func (
+    AudioMix *am,
+    AVSampleFormat fmt,
+    AVMixCoeffType coeff_type,
+    int in_channels,
+    int out_channels,
+    int ptr_align,
+    int samples_align,
+    string descr,
+    void *mix_func
+);
 
 /***********************************************************
 Allocate and initialize an AudioMix context.
@@ -55,30 +69,52 @@ AudioMix context.
 @param avr  AVAudioResampleContext
 @return     newly-allocated AudioMix context.
 ***********************************************************/
-AudioMix *ff_audio_mix_alloc (AVAudioResampleContext *avr);
+AudioMix *ff_audio_mix_alloc (
+    AVAudioResampleContext *avr
+);
 
 /***********************************************************
 Free an AudioMix context.
 ***********************************************************/
-public void ff_audio_mix_free (AudioMix **am);
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_mix_free (
+    AudioMix **am
+);
 
 /***********************************************************
 Apply channel mixing to audio data using the current mixing matrix.
 ***********************************************************/
-public int ff_audio_mix (AudioMix *am, AudioData *src);
+[CCode (cname="",cheader_filename="")]
+public int ff_audio_mix (
+    AudioMix *am,
+    AudioData *src
+);
 
 /***********************************************************
 Get the current mixing matrix.
 ***********************************************************/
-public int ff_audio_mix_get_matrix (AudioMix *am, double[] matrix, int stride);
+[CCode (cname="",cheader_filename="")]
+public int ff_audio_mix_get_matrix (
+    AudioMix *am,
+    double[] matrix,
+    int stride
+);
 
 /***********************************************************
 Set the current mixing matrix.
 ***********************************************************/
-public int ff_audio_mix_set_matrix (AudioMix *am, double[] matrix, int stride);
+[CCode (cname="",cheader_filename="")]
+public int ff_audio_mix_set_matrix (
+    AudioMix *am,
+    double[] matrix,
+    int stride
+);
 
 /***********************************************************
 arch-specific initialization functions
 ***********************************************************/
 
-public void ff_audio_mix_init_x86 (AudioMix *am);
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_mix_init_x86 (
+    AudioMix *am
+);

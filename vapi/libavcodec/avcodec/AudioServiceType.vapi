@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="AV_AUDIO_SERVICE_TYPE_", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="AV_AUDIO_SERVICE_TYPE_",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum AudioServiceType {
     MAIN,
     EFFECTS,
@@ -37,10 +37,11 @@ public enum AudioServiceType {
     EMERGENCY,
     VOICE_OVER,
     KARAOKE,
+
     /***********************************************************
     @brief Not part of ABI
     ***********************************************************/
-    //  NB,
+    //  NB;
 }
 
 } // namespace LibAVCodec

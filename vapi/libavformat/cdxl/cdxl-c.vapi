@@ -21,7 +21,7 @@ namespace LibAVFormat {
 @brief CDXL demuxer
 @copyright 2011-2012 Paul B Mahol
 ***********************************************************/
-#define OFFSET (x) offsetof (CDXLDemuxContext, x)
+public define OFFSET (x) offsetof (CDXLDemuxContext, x)
 static const LibAVUtil.Option cdxl_options[] = {
     {
         "sample_rate",
@@ -42,19 +42,21 @@ static const LibAVUtil.Option cdxl_options[] = {
         { .str = NULL }, 0, 0, AV_OPT_FLAG_DECODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="cdxl_demuxer_class", cheader_filename="")]
+[CCode (cname="cdxl_demuxer_class",cheader_filename="ffmpeg/libformat/cdxl.c")]
 public class CDXLDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override string class_name {
         public get {
             return "CDXL demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -63,71 +65,84 @@ public class CDXLDemuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = cdxl_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct CDXLDemuxContext", cheader_filename="")]
+[CCode (cname="struct CDXLDemuxContext",cheader_filename="ffmpeg/libformat/cdxl.c")]
 [Compact]
 public class CDXLDemuxerPrivateData { }
 
-[CCode (cname="ff_cdxl_demuxer", cheader_filename="")]
+[CCode (cname="ff_cdxl_demuxer",cheader_filename="ffmpeg/libformat/cdxl.c")]
 public class CDXLDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override string name {
         public get {
             return "cdxl";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override string long_name {
         public get {
             return "Commodore CDXL video";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (CDXLDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="cdxl_read_probe", cheader_filename="")]
+    [CCode (cname="cdxl_read_probe",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="cdxl_read_header", cheader_filename="")]
+    [CCode (cname="cdxl_read_header",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="cdxl_read_packet", cheader_filename="")]
+    [CCode (cname="cdxl_read_packet",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override string extensions {
         public get {
             return "cdxl,xl";
+
         }
+
     }
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/cdxl.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
-    //  .priv_class = cdxl_demuxer_class,
+    //  .priv_class = cdxl_demuxer_class;
 }
 
 } // namespace LibAVFormat

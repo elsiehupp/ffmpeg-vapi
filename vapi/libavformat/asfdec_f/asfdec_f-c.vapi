@@ -22,16 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="asf_class", cheader_filename="")]
+[CCode (cname="asf_class",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
 public class ASFClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override string class_name {
         public get {
             return "asf demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -40,66 +42,74 @@ public class ASFClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct ASFContext", cheader_filename="")]
+[CCode (cname="struct ASFContext",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
 [Compact]
 public class ASFDemuxerPrivateData { }
 
-[CCode (cname="ff_asf_demuxer", cheader_filename="")]
+[CCode (cname="ff_asf_demuxer",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
 public class ASFDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override string name {
         public get {
             return "asf";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override string long_name {
         public get {
             return "ASF (Advanced / Active Streaming Format)";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ASFDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="asf_probe", cheader_filename="")]
+    [CCode (cname="asf_probe",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="asf_read_header", cheader_filename="")]
+    [CCode (cname="asf_read_header",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="asf_read_packet", cheader_filename="")]
+    [CCode (cname="asf_read_packet",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="asf_read_close", cheader_filename="")]
+    [CCode (cname="asf_read_close",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="asf_read_seek", cheader_filename="")]
+    [CCode (cname="asf_read_seek",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -107,7 +117,7 @@ public class ASFDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="asf_read_pts", cheader_filename="")]
+    [CCode (cname="asf_read_pts",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
@@ -115,13 +125,15 @@ public class ASFDemuxer : AVInputFormat {
         int64 pos_limit
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/asfdec_f.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH;
+
         }
+
     }
-    //  .priv_class = asf_class,
+    //  .priv_class = asf_class;
 }
 
 } // namespace LibAVFormat

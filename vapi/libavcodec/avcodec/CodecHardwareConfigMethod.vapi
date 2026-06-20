@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum CodecHardwareConfigMethod {
     /***********************************************************
     @brief The codec supports this format via the hw_device_ctx interface.
@@ -36,6 +36,7 @@ public enum CodecHardwareConfigMethod {
     avcodec_open2 ().
     ***********************************************************/
     AV_CODEC_HW_CONFIG_METHOD_HW_DEVICE_CTX,
+
     /***********************************************************
     @brief The codec supports this format via the hw_frames_ctx interface.
 
@@ -45,6 +46,7 @@ public enum CodecHardwareConfigMethod {
     must have been created on a device of the specified type.
     ***********************************************************/
     AV_CODEC_HW_CONFIG_METHOD_HW_FRAMES_CTX,
+
     /***********************************************************
     @brief The codec supports this format by some internal method.
 
@@ -52,6 +54,7 @@ public enum CodecHardwareConfigMethod {
     no device or frames context is required.
     ***********************************************************/
     AV_CODEC_HW_CONFIG_METHOD_INTERNAL,
+
     /***********************************************************
     @brief The codec supports this format by some ad-hoc method.
 
@@ -60,7 +63,7 @@ public enum CodecHardwareConfigMethod {
     this sort of configuration are deprecated and others should be
     used in preference.)
     ***********************************************************/
-    AV_CODEC_HW_CONFIG_METHOD_AD_HOC,
+    AV_CODEC_HW_CONFIG_METHOD_AD_HOC;
 }
 
 } // namespace LibAVCodec

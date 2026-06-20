@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ID_STRING", cheader_filename="")]
+[CCode (cname="ID_STRING",cheader_filename="ffmpeg/libformat/ffmeta.h")]
 public const string ID_STRING; // ";FFMETADATA"
 
-[CCode (cname="ID_CHAPTER", cheader_filename="")]
+[CCode (cname="ID_CHAPTER",cheader_filename="ffmpeg/libformat/ffmeta.h")]
 public const string ID_CHAPTER; // "[CHAPTER]"
 
-[CCode (cname="ID_STREAM", cheader_filename="")]
+[CCode (cname="ID_STREAM",cheader_filename="ffmpeg/libformat/ffmeta.h")]
 public const string ID_STREAM; // "[STREAM]"
 
 } // namespace LibAVFormat

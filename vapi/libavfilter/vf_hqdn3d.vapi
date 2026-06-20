@@ -20,25 +20,48 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class HQDN3DContext {
-    const AVClass *class;
-    public int16 *coefs[4];
-    uint16 *line;
-    uint16 *frame_prev[3];
+    [CCode (cname="")]
+    public AVClass class;
+
+    [CCode (cname="")]
+    public int16[] coefs[4];
+
+    uint16[] line;
+
+    uint16[] frame_prev[3];
+
     double strength[4];
-    public int hsub, vsub;
+
+    [CCode (cname="")]
+    public int hsub;
+
+    [CCode (cname="")]
+    public int vsub;
+
+    [CCode (cname="")]
     public int depth;
+
     [CCode (cname="denoise_row")]
     public void (*denoise_row[17])(
-        uint8[] src, uint8[] dst, uint16 *line_ant, uint16 *frame_ant, ptrdiff_t w, int16 *spatial, int16 *temporal
+        uint8[] src,
+        uint8[] dst,
+        uint16[] line_ant,
+        uint16[] frame_ant,
+        ptrdiff_t w,
+        int16[] spatial,
+        int16[] temporal
     );
 
 }
 
-#define LUMA_SPATIAL   0
-#define LUMA_TMP       1
-#define CHROMA_SPATIAL 2
-#define CHROMA_TMP     3
+[CCode (cname="",cheader_filename="")]
+public define LUMA_SPATIAL   0
+public define LUMA_TMP       1
+public define CHROMA_SPATIAL 2
+public define CHROMA_TMP     3
 
+[CCode (cname="",cheader_filename="")]
 public void ff_hqdn3d_init_x86 (HQDN3DContext *hqdn3d);

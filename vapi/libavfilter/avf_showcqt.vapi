@@ -18,141 +18,320 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class Coeffs {
-    FFTSample *val;
-    public int start, len;
+    [CCode (cname="")]
+    public FFTSample *val;
+
+    [CCode (cname="")]
+    public int start;
+
+    [CCode (cname="")]
+    public int len;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class RGBFloat {
-    float r, g, b;
+    [CCode (cname="")]
+    public float r;
+
+    [CCode (cname="")]
+    public float g;
+
+    [CCode (cname="")]
+    public float b;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class YUVFloat {
-    float y, u, v;
+    [CCode (cname="")]
+    public float y;
+
+    [CCode (cname="")]
+    public float u;
+
+    [CCode (cname="")]
+    public float v;
 }
 
-typedef union ColorFloat {
+[CCode (cname="",cheader_filename="")]
+public typedef union ColorFloat {
+    [CCode (cname="")]
     RGBFloat rgb;
+
+    [CCode (cname="")]
     YUVFloat yuv;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class ShowCQTContext {
-    const AVClass       *class;
-    AVFilterContext     *ctx;
-    AVFrame             *axis_frame;
-    AVFrame             *sono_frame;
+    [CCode (cname="")]
+    public AVClass class;
+
+    [CCode (cname="")]
+    public AVFilterContext     *ctx;
+
+    [CCode (cname="")]
+    public AVFrame             *axis_frame;
+
+    [CCode (cname="")]
+    public AVFrame             *sono_frame;
+
+    [CCode (cname="")]
     public AVPixelFormat  format;
+
+    [CCode (cname="")]
     public int                 sono_idx;
+
+    [CCode (cname="")]
     public int                 sono_count;
+
+    [CCode (cname="")]
     public int                 step;
+
+    [CCode (cname="")]
     public AVRational          step_frac;
+
+    [CCode (cname="")]
     public int                 remaining_frac;
+
+    [CCode (cname="")]
     public int                 remaining_fill;
+
+    [CCode (cname="")]
     public int                 remaining_fill_max;
+
+    [CCode (cname="")]
     public int64             next_pts;
-    double              *freq;
-    FFTContext          *fft_ctx;
-    Coeffs              *coeffs;
-    FFTComplex          *fft_data;
-    FFTComplex          *fft_result;
-    FFTComplex          *cqt_result;
-    float               *attack_data;
+
+    [CCode (cname="")]
+    public double              *freq;
+
+    [CCode (cname="")]
+    public FFTContext          *fft_ctx;
+
+    [CCode (cname="")]
+    public Coeffs              *coeffs;
+
+    [CCode (cname="")]
+    public FFTComplex          *fft_data;
+
+    [CCode (cname="")]
+    public FFTComplex          *fft_result;
+
+    [CCode (cname="")]
+    public FFTComplex          *cqt_result;
+
+    [CCode (cname="")]
+    public float               *attack_data;
+
+    [CCode (cname="")]
     public int                 fft_bits;
+
+    [CCode (cname="")]
     public int                 fft_len;
+
+    [CCode (cname="")]
     public int                 cqt_len;
+
+    [CCode (cname="")]
     public int                 cqt_align;
-    ColorFloat          *c_buf;
-    float               *h_buf;
-    float               *rcp_h_buf;
-    float               *sono_v_buf;
-    float               *bar_v_buf;
-    float               cmatrix[3][3];
-    float               cscheme_v[6];
+
+    [CCode (cname="")]
+    public ColorFloat          *c_buf;
+
+    [CCode (cname="")]
+    public float               *h_buf;
+
+    [CCode (cname="")]
+    public float               *rcp_h_buf;
+
+    [CCode (cname="")]
+    public float               *sono_v_buf;
+
+    [CCode (cname="")]
+    public float               *bar_v_buf;
+
+    [CCode (cname="")]
+    public float               cmatrix[3][3];
+
+    [CCode (cname="")]
+    public float               cscheme_v[6];
+
     /***********************************************************
     callback
     ***********************************************************/
     [CCode (cname="")]
-    void                (*cqt_calc)(
-        FFTComplex *dst, FFTComplex *src, Coeffs *coeffs,
-        int len, int fft_len
+    public void                (*cqt_calc)(
+        FFTComplex *dst,
+        FFTComplex *src,
+        Coeffs *coeffs,
+        int len,
+        int fft_len
     );
 
     [CCode (cname="")]
-    void                (*permute_coeffs)(
-        float *v, int len
+    public void                (*permute_coeffs)(
+        float[] v,
+        int len
     );
 
     [CCode (cname="")]
-    void                (*draw_bar)(
-        AVFrame *out, float *h, float *rcp_h,
-        ColorFloat *c, int bar_h, float bar_t
+    public void                (*draw_bar)(
+        AVFrame *out,
+        float[] h,
+        float[] rcp_h,
+        ColorFloat *c,
+        int bar_h,
+        float bar_t
     );
 
     [CCode (cname="")]
-    void                (*draw_axis)(
-        AVFrame *out, AVFrame *axis, ColorFloat *c, int off
+    public void                (*draw_axis)(
+        AVFrame *out,
+        AVFrame *axis,
+        ColorFloat *c,
+        int off
     );
 
     [CCode (cname="")]
-    void                (*draw_sono)(
-        AVFrame *out, AVFrame *sono, int off, int idx
+    public void                (*draw_sono)(
+        AVFrame *out,
+        AVFrame *sono,
+        int off,
+        int idx
     );
 
     [CCode (cname="")]
-    void                (*update_sono)(
-        AVFrame *sono, ColorFloat *c, int idx
+    public void                (*update_sono)(
+        AVFrame *sono,
+        ColorFloat *c,
+        int idx
     );
 
     /***********************************************************
     performance debugging
     ***********************************************************/
+    [CCode (cname="")]
     public int64             fft_time;
+
+    [CCode (cname="")]
     public int64             cqt_time;
+
+    [CCode (cname="")]
     public int64             process_cqt_time;
+
+    [CCode (cname="")]
     public int64             update_sono_time;
+
+    [CCode (cname="")]
     public int64             alloc_time;
+
+    [CCode (cname="")]
     public int64             bar_time;
+
+    [CCode (cname="")]
     public int64             axis_time;
+
+    [CCode (cname="")]
     public int64             sono_time;
+
     /***********************************************************
     option
     ***********************************************************/
-    public int                 width, height;
+    [CCode (cname="")]
+    public int                 width;
+
+    [CCode (cname="")]
+    public int                 height;
+
+    [CCode (cname="")]
     public AVRational          rate;
+
+    [CCode (cname="")]
     public int                 bar_h;
+
+    [CCode (cname="")]
     public int                 axis_h;
+
+    [CCode (cname="")]
     public int                 sono_h;
+
     /***********************************************************
     deprecated
     ***********************************************************/
+    [CCode (cname="")]
     public int                 fullhd;
-    public char                *sono_v;
-    public char                *bar_v;
-    float               sono_g;
-    float               bar_g;
-    float               bar_t;
-    double              timeclamp;
-    double              attack;
-    double              basefreq;
-    double              endfreq;
+
+    [CCode (cname="")]
+    public string sono_v;
+
+    [CCode (cname="")]
+    public string bar_v;
+
+    [CCode (cname="")]
+    public float               sono_g;
+
+    [CCode (cname="")]
+    public float               bar_g;
+
+    [CCode (cname="")]
+    public float               bar_t;
+
+    [CCode (cname="")]
+    public double              timeclamp;
+
+    [CCode (cname="")]
+    public double              attack;
+
+    [CCode (cname="")]
+    public double              basefreq;
+
+    [CCode (cname="")]
+    public double              endfreq;
+
     /***********************************************************
     deprecated - ignored
     ***********************************************************/
-    float               coeffclamp;
-    public char                *tlength;
+    [CCode (cname="")]
+    public float               coeffclamp;
+
+    [CCode (cname="")]
+    public string tlength;
+
+    [CCode (cname="")]
     public int                 count;
+
+    [CCode (cname="")]
     public int                 fcount;
-    public char                *fontfile;
-    public char                *font;
-    public char                *fontcolor;
-    public char                *axisfile;
+
+    [CCode (cname="")]
+    public string fontfile;
+
+    [CCode (cname="")]
+    public string font;
+
+    [CCode (cname="")]
+    public string fontcolor;
+
+    [CCode (cname="")]
+    public string axisfile;
+
+    [CCode (cname="")]
     public int                 axis;
+
+    [CCode (cname="")]
     public int                 csp;
-    public char                *cscheme;
+
+    [CCode (cname="")]
+    public string cscheme;
 }
 
-public void ff_showcqt_init_x86 (ShowCQTContext *s);
+[CCode (cname="",cheader_filename="")]
+public void ff_showcqt_init_x86 (
+    ShowCQTContext *s
+);

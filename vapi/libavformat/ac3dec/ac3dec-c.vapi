@@ -29,66 +29,78 @@ static int ac3_probe (const AVProbeData *p)
 
 //  FF_RAW_DEMUXER_CLASS (ac3)
 
-[CCode (cname="ff_ac3_demuxer", cheader_filename="")]
+[CCode (cname="ff_ac3_demuxer",cheader_filename="ffmpeg/libformat/ac3dec.c")]
 public class AC3Demuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override string name {
         public get {
             return "ac3";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override string long_name {
         public get {
             return "raw AC-3";
+
         }
+
     }
 
-    [CCode (cname="ac3_probe", cheader_filename="")]
+    [CCode (cname="ac3_probe",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ff_raw_audio_read_header", cheader_filename="")]
+    [CCode (cname="ff_raw_audio_read_header",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet", cheader_filename="")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override string extensions {
         public get {
             return "ac3";
+
         }
+
     }
 
-    [CCode (cname="raw_codec_id", cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.AC3;
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);
+
         }
+
     }
-    //  .priv_class = ac3_demuxer_class,
+    //  .priv_class = ac3_demuxer_class;
 }
 #endif
 
@@ -99,66 +111,78 @@ static int eac3_probe (const AVProbeData *p)
 }
 
 //  FF_RAW_DEMUXER_CLASS (eac3)
-[CCode (cname="ff_eac3_demuxer", cheader_filename="")]
+[CCode (cname="ff_eac3_demuxer",cheader_filename="ffmpeg/libformat/ac3dec.c")]
 public class EAC3Demuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override string name {
         public get {
             return "eac3";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override string long_name {
         public get {
             return "raw E-AC-3";
+
         }
+
     }
 
-    [CCode (cname="eac3_probe", cheader_filename="")]
+    [CCode (cname="eac3_probe",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ff_raw_audio_read_header", cheader_filename="")]
+    [CCode (cname="ff_raw_audio_read_header",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet", cheader_filename="")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_GENERIC_INDEX;
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override string extensions {
         public get {
             return "eac3";
+
         }
+
     }
 
-    [CCode (cname="raw_codec_id", cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.EAC3;
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);
+
         }
+
     }
-    //  .priv_class = eac3_demuxer_class,
+    //  .priv_class = eac3_demuxer_class;
 }
 #endif
 

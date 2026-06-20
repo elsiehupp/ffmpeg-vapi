@@ -16,31 +16,63 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader="")]
 [Compact]
 public class BWDIFContext {
-    YADIFContext yadif;
+    [CCode (cname="",cheader="")]
+    public YADIFContext yadif;
 
     [CCode (cname="filter_intra")]
     public void (*filter_intra)(
-        void *dst1, void *cur1, int w, int prefs, int mrefs,
-        int prefs3, int mrefs3, int parity, int clip_max
+        void *dst1,
+        void *cur1,
+        int w,
+        int prefs,
+        int mrefs,
+        int prefs3,
+        int mrefs3,
+        int parity,
+        int clip_max
     );
 
     [CCode (cname="filter_line")]
     public void (*filter_line)(
-        void *dst, void *prev, void *cur, void *next,
-        int w, int prefs, int mrefs, int prefs2, int mrefs2,
-        int prefs3, int mrefs3, int prefs4, int mrefs4,
-        int parity, int clip_max
+        void *dst,
+        void *prev,
+        void *cur,
+        void *next,
+        int w,
+        int prefs,
+        int mrefs,
+        int prefs2,
+        int mrefs2,
+        int prefs3,
+        int mrefs3,
+        int prefs4,
+        int mrefs4,
+        int parity,
+        int clip_max
     );
 
     [CCode (cname="filter_edge")]
     public void (*filter_edge)(
-        void *dst, void *prev, void *cur, void *next,
-        int w, int prefs, int mrefs, int prefs2, int mrefs2,
-        int parity, int clip_max, int spat
+        void *dst,
+        void *prev,
+        void *cur,
+        void *next,
+        int w,
+        int prefs,
+        int mrefs,
+        int prefs2,
+        int mrefs2,
+        int parity,
+        int clip_max,
+        int spat
     );
 
 }
 
-public void ff_bwdif_init_x86 (BWDIFContext *bwdif);
+[CCode (cname="",cheader="")]
+public void ff_bwdif_init_x86 (
+    BWDIFContext *bwdif
+);

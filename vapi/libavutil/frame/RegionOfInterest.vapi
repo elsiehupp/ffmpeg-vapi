@@ -34,7 +34,7 @@ to truncate the list.
 When overlapping regions are defined, the first region containing a given
 area of the frame applies.
 ***********************************************************/
-[CCode (cname="struct AVRegionOfInterest", cheader_filename="ffmpeg/libavutil/frame.h")]
+[CCode (cname="struct AVRegionOfInterest",cheader_filename="ffmpeg/libavutil/frame.h")]
 [Compact]
 public class RegionOfInterest {
     /***********************************************************

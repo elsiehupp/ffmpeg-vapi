@@ -30,11 +30,12 @@ namespace LibAVFormat {
 @see specs available on the Matroska project page: http://www.matroska.org/
 ***********************************************************/
 
-[CCode (cname="struct MatroskaDemuxContext", cheader_filename="")]
+[CCode (cname="struct MatroskaDemuxContext",cheader_filename="ffmpeg/libformat/matroskadec.c")]
 [Compact]
 public class MatroskaDemuxerPrivateData { }
 
-#define OFFSET (x) offsetof (MatroskaDemuxContext, x)
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (MatroskaDemuxContext, x)
 static const LibAVUtil.Option options[] = {
     {
         "live",
@@ -61,19 +62,21 @@ static const LibAVUtil.Option options[] = {
         AV_OPT_FLAG_DECODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="webm_dash_class", cheader_filename="")]
+[CCode (cname="webm_dash_class",cheader_filename="ffmpeg/libformat/matroskadec.c")]
 public class WebMDashManifestDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override string class_name {
         public get {
             return "WebM DASH Manifest demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -82,69 +85,79 @@ public class WebMDashManifestDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_matroska_demuxer", cheader_filename="")]
+[CCode (cname="ff_matroska_demuxer",cheader_filename="ffmpeg/libformat/matroskadec.c")]
 public class MatroskaDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override string name {
         public get {
             return "matroska,webm";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override string long_name {
         public get {
             return "Matroska / WebM";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override string extensions {
         public get {
             return "mkv,mk3d,mka,mks";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MatroskaDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="matroska_probe", cheader_filename="")]
+    [CCode (cname="matroska_probe",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="matroska_read_header", cheader_filename="")]
+    [CCode (cname="matroska_read_header",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="matroska_read_packet", cheader_filename="")]
+    [CCode (cname="matroska_read_packet",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="matroska_read_close", cheader_filename="")]
+    [CCode (cname="matroska_read_close",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="matroska_read_seek", cheader_filename="")]
+    [CCode (cname="matroska_read_seek",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -152,53 +165,61 @@ public class MatroskaDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override string mime_type {
         public get {
             return "audio/webm,audio/x-matroska,video/webm,video/x-matroska";
+
         }
+
     }
 }
 
-[CCode (cname="ff_webm_dash_manifest_demuxer", cheader_filename="")]
+[CCode (cname="ff_webm_dash_manifest_demuxer",cheader_filename="ffmpeg/libformat/matroskadec.c")]
 public class WebMDashManifestDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override string name {
         public get {
             return "webm_dash_manifest";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override string long_name {
         public get {
             return "WebM DASH Manifest";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MatroskaDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="webm_dash_manifest_read_header", cheader_filename="")]
+    [CCode (cname="webm_dash_manifest_read_header",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="webm_dash_manifest_read_packet", cheader_filename="")]
+    [CCode (cname="webm_dash_manifest_read_packet",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="matroska_read_close", cheader_filename="")]
+    [CCode (cname="matroska_read_close",cheader_filename="ffmpeg/libformat/matroskadec.c")]
     public override int read_close (
         AVFormatContext format_context
     ); // =,
-    //  .priv_class = webm_dash_class,
+    //  .priv_class = webm_dash_class;
 }
 
 } // namespace LibAVFormat

@@ -19,308 +19,506 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define DSHOWDEBUG 0
+[CCode (cname="",cheader_filename="")]
+public define DSHOWDEBUG 0
 
-#define COBJMACROS
-#define WIN32_LEAN_AND_MEAN
+[CCode (cname="",cheader_filename="")]
+public define COBJMACROS
+public define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#define NO_DSHOW_STRSAFE
+public define NO_DSHOW_STRSAFE
 #include <dshow.h>
 #include <dvdmedia.h>
 
 /***********************************************************
 EC_DEVICE_LOST is not defined in MinGW dshow headers.
 ***********************************************************/
-#ifndef EC_DEVICE_LOST
-#define EC_DEVICE_LOST 0x1f
+#if !EC_DEVICE_LOST
+public define EC_DEVICE_LOST 0x1f
 #endif
 
-long ff_copy_dshow_media_type (AM_MEDIA_TYPE *dst, AM_MEDIA_TYPE *src);
-public void ff_print_VIDEO_STREAM_CONFIG_CAPS (const VIDEO_STREAM_CONFIG_CAPS *caps);
-public void ff_print_AUDIO_STREAM_CONFIG_CAPS (const AUDIO_STREAM_CONFIG_CAPS *caps);
-public void ff_print_AM_MEDIA_TYPE (const AM_MEDIA_TYPE *type);
-public void ff_printGUID (const GUID *g);
+[CCode (cname="",cheader_filename="")]
+public long ff_copy_dshow_media_type (
+    AM_MEDIA_TYPE *dst,
+    AM_MEDIA_TYPE *src
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_print_VIDEO_STREAM_CONFIG_CAPS (
+    const VIDEO_STREAM_CONFIG_CAPS *caps
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_print_AUDIO_STREAM_CONFIG_CAPS (
+    const AUDIO_STREAM_CONFIG_CAPS *caps
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_print_AM_MEDIA_TYPE (
+    const AM_MEDIA_TYPE *type
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_printGUID (
+    const GUID *g
+);
 
 //  extern const AVClass *ff_dshow_context_class_ptr;
-#define dshowdebug (...) ff_dlog (&ff_dshow_context_class_ptr, __VA_ARGS__)
 
-static inline void nothing (void *foo)
-{
+[CCode (cname="",cheader_filename="")]
+public define dshowdebug (
+    ...
+) {
+    ff_dlog (
+        &ff_dshow_context_class_ptr,
+        __VA_ARGS__
+    );
+
 }
 
+[CCode (cname="",cheader_filename="")]
+public static inline void nothing (
+    void *foo
+) {
+}
+
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class GUIDoffset {
-    const GUID *iid;
+    [CCode (cname="")]
+    public GUID *iid;
+
+    [CCode (cname="")]
     public int offset;
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum dshowDeviceType {
+    [CCode (cname="")]
     VideoDevice = 0,
-    AudioDevice = 1,
+
+    [CCode (cname="")]
+    AudioDevice = 1;
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum dshowSourceFilterType {
+    [CCode (cname="")]
     VideoSourceDevice = 0,
-    AudioSourceDevice = 1,
+
+    [CCode (cname="")]
+    AudioSourceDevice = 1;
 }
 
-#define DECLARE_QUERYINTERFACE (class, ...)                                   \
-long WINAPI                                                                  \
-class##_QueryInterface (class *this, GUID *riid, void **ppvObject)      \
-{                                                                            \
-    struct GUIDoffset ifaces[] = __VA_ARGS__; \
-    public int i; \
-    dshowdebug (AV_STRINGIFY (class)"_QueryInterface (%p, %p, %p)\n", this, riid, ppvObject); \
-    ff_printGUID (riid); \
-    if (!ppvObject)                                                          \
-        return E_POINTER; \
-    for (i = 0; i < sizeof (ifaces)/sizeof (ifaces[0]); i++) {                 \
-        if (IsEqualGUID (riid, ifaces[i].iid)) {                              \
-            void *obj = (void *) ((uint8[] ) this + ifaces[i].offset); \
-            class##_AddRef (this); \
-            dshowdebug ("\tfound %d with offset %d\n", i, ifaces[i].offset); \
-            *ppvObject = (void *) obj; \
-            return S_OK; \
-        }                                                                    \
-    }                                                                        \
-    dshowdebug ("\tE_NOINTERFACE\n"); \
-    *ppvObject = NULL; \
-    return E_NOINTERFACE; \
+[CCode (cname="",cheader_filename="")]
+public define DECLARE_QUERYINTERFACE (
+    class,
+    ...
+) {
+    long WINAPI                                                                  \
+    class##_QueryInterface (class *this, GUID *riid, void **ppvObject)      \
+    {                                                                            \
+        struct GUIDoffset ifaces[] = __VA_ARGS__; \
+        public int i; \
+        dshowdebug (AV_STRINGIFY (class)"_QueryInterface (%p, %p, %p)\n", this, riid, ppvObject); \
+        ff_printGUID (riid); \
+        if (!ppvObject)                                                          \
+            return E_POINTER; \
+        for (i = 0; i < sizeof (ifaces)/sizeof (ifaces[0]); i++) {                 \
+            if (IsEqualGUID (riid, ifaces[i].iid)) {                              \
+                void *obj = (void *) ((uint8[] ) this + ifaces[i].offset); \
+                class##_AddRef (this); \
+                dshowdebug ("\tfound %d with offset %d\n", i, ifaces[i].offset); \
+                *ppvObject = (void *) obj; \
+                return S_OK; \
+            }                                                                    \
+        }                                                                        \
+        dshowdebug ("\tE_NOINTERFACE\n"); \
+        *ppvObject = NULL; \
+        return E_NOINTERFACE; \
+    }
+
 }
-#define DECLARE_ADDREF (class)                                                \
-ulong WINAPI                                                         \
-class##_AddRef (class *this)                                                  \
-{                                                                            \
-    dshowdebug (AV_STRINGIFY (class)"_AddRef (%p)\t%ld\n", this, this->ref+1); \
-    return InterlockedIncrement (&this->ref); \
+
+[CCode (cname="",cheader_filename="")]
+public define DECLARE_ADDREF (
+    class
+) {
+    ulong WINAPI                                                         \
+    class##_AddRef (class *this)                                                  \
+    {                                                                            \
+        dshowdebug (AV_STRINGIFY (class)"_AddRef (%p)\t%ld\n", this, this->ref+1); \
+        return InterlockedIncrement (&this->ref); \
+    }
+
 }
-#define DECLARE_RELEASE (class)                                               \
-ulong WINAPI                                                         \
-class##_Release (class *this)                                                 \
-{                                                                            \
-    long ref = InterlockedDecrement (&this->ref); \
-    dshowdebug (AV_STRINGIFY (class)"_Release (%p)\t%ld\n", this, ref); \
-    if (!ref)                                                                \
+
+[CCode (cname="",cheader_filename="")]
+public define DECLARE_RELEASE (
+    class
+) {
+    ulong WINAPI                                                         \
+    class##_Release (class *this)                                                 \
+    {                                                                            \
+        long ref = InterlockedDecrement (&this->ref); \
+        dshowdebug (AV_STRINGIFY (class)"_Release (%p)\t%ld\n", this, ref); \
+        if (!ref)                                                                \
+            class##_Destroy (this); \
+        return ref; \
+    }
+
+}
+
+[CCode (cname="",cheader_filename="")]
+public define DECLARE_DESTROY (
+    class,
+    func
+) {
+    void class##_Destroy (class *this)                                            \
+    {                                                                            \
+        dshowdebug (AV_STRINGIFY (class)"_Destroy (%p)\n", this); \
+        func (this); \
+        if (this) {                                                              \
+            if (this->vtbl)                                                      \
+                CoTaskMemFree (this->vtbl); \
+            CoTaskMemFree (this); \
+        }                                                                        \
+    }
+
+}
+
+[CCode (cname="",cheader_filename="")]
+public define DECLARE_CREATE (
+    class,
+    setup,
+    ...
+) {
+    class *class##_Create (__VA_ARGS__)                                           \
+    {                                                                            \
+        class *this = CoTaskMemAlloc (sizeof (class)); \
+        void *vtbl = CoTaskMemAlloc (sizeof (*this->vtbl)); \
+        dshowdebug (AV_STRINGIFY (class)"_Create (%p)\n", this); \
+        if (!this || !vtbl)                                                      \
+            goto fail; \
+        ZeroMemory (this, sizeof (class)); \
+        ZeroMemory (vtbl, sizeof (*this->vtbl)); \
+        this->ref = 1; \
+        this->vtbl = vtbl; \
+        if (!setup)                                                              \
+            goto fail; \
+        dshowdebug ("created "AV_STRINGIFY (class)" %p\n", this); \
+        return this; \
+    fail:                                                                        \
         class##_Destroy (this); \
-    return ref; \
+        dshowdebug ("could not create "AV_STRINGIFY (class)"\n"); \
+        return NULL; \
+    }
+
 }
 
-#define DECLARE_DESTROY (class, func)                                         \
-public void class##_Destroy (class *this)                                            \
-{                                                                            \
-    dshowdebug (AV_STRINGIFY (class)"_Destroy (%p)\n", this); \
-    func (this); \
-    if (this) {                                                              \
-        if (this->vtbl)                                                      \
-            CoTaskMemFree (this->vtbl); \
-        CoTaskMemFree (this); \
-    }                                                                        \
+[CCode (cname="",cheader_filename="")]
+public define SETVTBL (
+    vtbl,
+    class,
+    fn
+) {
+    (vtbl)->fn = (void *) class##_##fn;
 }
-#define DECLARE_CREATE (class, setup, ...)                                    \
-class *class##_Create (__VA_ARGS__)                                           \
-{                                                                            \
-    class *this = CoTaskMemAlloc (sizeof (class)); \
-    void *vtbl = CoTaskMemAlloc (sizeof (*this->vtbl)); \
-    dshowdebug (AV_STRINGIFY (class)"_Create (%p)\n", this); \
-    if (!this || !vtbl)                                                      \
-        goto fail; \
-    ZeroMemory (this, sizeof (class)); \
-    ZeroMemory (vtbl, sizeof (*this->vtbl)); \
-    this->ref = 1; \
-    this->vtbl = vtbl; \
-    if (!setup)                                                              \
-        goto fail; \
-    dshowdebug ("created "AV_STRINGIFY (class)" %p\n", this); \
-    return this; \
-fail:                                                                        \
-    class##_Destroy (this); \
-    dshowdebug ("could not create "AV_STRINGIFY (class)"\n"); \
-    return NULL; \
-}
-
-#define SETVTBL (vtbl, class, fn) \
-    do { (vtbl)->fn = (void *) class##_##fn; } while (0)
 
 /*****************************************************************************
 Forward Declarations
- ****************************************************************************/
+****************************************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
-public class libAVPin libAVPin;
+public class libAVPin { }
+
+[CCode (cname="",cheader_filename="")]
 [Compact]
-public class libAVMemInputPin libAVMemInputPin;
+public class libAVMemInputPin { }
+
+[CCode (cname="",cheader_filename="")]
 [Compact]
-public class libAVEnumPins libAVEnumPins;
+public class libAVEnumPins { }
+
+[CCode (cname="",cheader_filename="")]
 [Compact]
-public class libAVEnumMediaTypes libAVEnumMediaTypes;
+public class libAVEnumMediaTypes { }
+
+[CCode (cname="",cheader_filename="")]
 [Compact]
-public class libAVFilter libAVFilter;
+public class libAVFilter { }
 
 /*****************************************************************************
 libAVPin
- ****************************************************************************/
+****************************************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class libAVPin {
-    IPinVtbl *vtbl;
-    long ref;
-    libAVFilter *filter;
-    IPin *connectedto;
-    AM_MEDIA_TYPE type;
-    IMemInputPinVtbl *imemvtbl;
+    [CCode (cname="")]
+    public IPinVtbl *vtbl;
+
+    [CCode (cname="")]
+    public long ref;
+
+    [CCode (cname="")]
+    public libAVFilter *filter;
+
+    [CCode (cname="")]
+    public IPin *connectedto;
+
+    [CCode (cname="")]
+    public AM_MEDIA_TYPE type;
+
+    [CCode (cname="")]
+    public IMemInputPinVtbl *imemvtbl;
 }
 
-long WINAPI libAVPin_QueryInterface (libAVPin *, GUID *, void **
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_QueryInterface (
+    libAVPin *,
+    GUID *,
+    void **
 );
 
-ulong WINAPI libAVPin_AddRef (libAVPin *
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVPin_AddRef (
+    libAVPin *
 );
 
-ulong WINAPI libAVPin_Release (libAVPin *
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVPin_Release (
+    libAVPin *
 );
 
-long WINAPI libAVPin_Connect (libAVPin *, IPin *, AM_MEDIA_TYPE *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_Connect (
+    libAVPin *,
+    IPin *,
+    AM_MEDIA_TYPE *
 );
 
-long WINAPI libAVPin_ReceiveConnection (libAVPin *, IPin *, AM_MEDIA_TYPE *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_ReceiveConnection (
+    libAVPin *,
+    IPin *,
+    AM_MEDIA_TYPE *
 );
 
-long WINAPI libAVPin_Disconnect (libAVPin *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_Disconnect (
+    libAVPin *
 );
 
-long WINAPI libAVPin_ConnectedTo (libAVPin *, IPin **
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_ConnectedTo (
+    libAVPin *,
+    IPin **
 );
 
-long WINAPI libAVPin_ConnectionMediaType (libAVPin *, AM_MEDIA_TYPE *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_ConnectionMediaType (
+    libAVPin *,
+    AM_MEDIA_TYPE *
 );
 
-long WINAPI libAVPin_QueryPinInfo (libAVPin *, PIN_INFO *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_QueryPinInfo (
+    libAVPin *,
+    PIN_INFO *
 );
 
-long WINAPI libAVPin_QueryDirection (libAVPin *, PIN_DIRECTION *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_QueryDirection (
+    libAVPin *,
+    PIN_DIRECTION *
 );
 
-long WINAPI libAVPin_QueryId (libAVPin *, wchar_t **
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_QueryId (
+    libAVPin *,
+    wchar_t **
 );
 
-long WINAPI libAVPin_QueryAccept (libAVPin *, AM_MEDIA_TYPE *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_QueryAccept (
+    libAVPin *,
+    AM_MEDIA_TYPE *
 );
 
-long WINAPI libAVPin_EnumMediaTypes (libAVPin *, IEnumMediaTypes **
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_EnumMediaTypes (
+    libAVPin *,
+    IEnumMediaTypes **
 );
 
-long WINAPI libAVPin_QueryInternalConnections (libAVPin *, IPin **, ulong *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_QueryInternalConnections (
+    libAVPin *,
+    IPin **,
+    ulong *
 );
 
-long WINAPI libAVPin_EndOfStream (libAVPin *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_EndOfStream (
+    libAVPin *
 );
 
-long WINAPI libAVPin_BeginFlush (libAVPin *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_BeginFlush (
+    libAVPin *
 );
 
-long WINAPI libAVPin_EndFlush (libAVPin *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_EndFlush (
+    libAVPin *
 );
 
-long WINAPI libAVPin_NewSegment (libAVPin *, REFERENCE_TIME, REFERENCE_TIME, double);
-
-long WINAPI libAVMemInputPin_QueryInterface (
-    libAVMemInputPin *, GUID *, void **
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVPin_NewSegment (
+    libAVPin *,
+    REFERENCE_TIME,
+    REFERENCE_TIME,
+    double
 );
 
-ulong WINAPI libAVMemInputPin_AddRef (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVMemInputPin_QueryInterface (
+    libAVMemInputPin *,
+    GUID *,
+    void **
+);
+
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVMemInputPin_AddRef (
     libAVMemInputPin *
 );
 
-ulong WINAPI libAVMemInputPin_Release (
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVMemInputPin_Release (
     libAVMemInputPin *
 );
 
-long WINAPI libAVMemInputPin_GetAllocator (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVMemInputPin_GetAllocator (
     libAVMemInputPin *,
     IMemAllocator **
 );
 
-long WINAPI libAVMemInputPin_NotifyAllocator (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVMemInputPin_NotifyAllocator (
     libAVMemInputPin *,
     IMemAllocator *,
     BOOL
 );
 
-long WINAPI libAVMemInputPin_GetAllocatorRequirements (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVMemInputPin_GetAllocatorRequirements (
     libAVMemInputPin *,
     ALLOCATOR_PROPERTIES *
 );
 
-long WINAPI libAVMemInputPin_Receive (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVMemInputPin_Receive (
     libAVMemInputPin *,
     IMediaSample *
 );
 
-long WINAPI libAVMemInputPin_ReceiveMultiple (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVMemInputPin_ReceiveMultiple (
     libAVMemInputPin *,
     IMediaSample **,
     long,
     long *
 );
 
-long WINAPI libAVMemInputPin_ReceiveCanBlock (libAVMemInputPin *
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVMemInputPin_ReceiveCanBlock (
+    libAVMemInputPin *
 );
 
 
-public void libAVPin_Destroy (libAVPin *
+[CCode (cname="",cheader_filename="")]
+public void libAVPin_Destroy (
+    libAVPin *
 );
 
-libAVPin            *libAVPin_Create (
-    libAVFilter *filter);
+[CCode (cname="",cheader_filename="")]
+public libAVPin            *libAVPin_Create (
+    libAVFilter *filter
+);
 
-public void libAVMemInputPin_Destroy (libAVMemInputPin *
+[CCode (cname="",cheader_filename="")]
+public void libAVMemInputPin_Destroy (
+    libAVMemInputPin *
 );
 
 
 /*****************************************************************************
 libAVEnumPins
  ****************************************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class libAVEnumPins {
-    IEnumPinsVtbl *vtbl;
-    long ref;
+    [CCode (cname="")]
+    public IEnumPinsVtbl *vtbl;
+
+    [CCode (cname="")]
+    public long ref;
+
+    [CCode (cname="")]
     public int pos;
-    libAVPin *pin;
-    libAVFilter *filter;
+
+    [CCode (cname="")]
+    public libAVPin *pin;
+
+    [CCode (cname="")]
+    public libAVFilter *filter;
 }
 
-long WINAPI libAVEnumPins_QueryInterface (
-    libAVEnumPins *, GUID *, void **
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumPins_QueryInterface (
+    libAVEnumPins *,
+    GUID *,
+    void **
 );
 
-ulong WINAPI libAVEnumPins_AddRef (
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVEnumPins_AddRef (
     libAVEnumPins *
 );
 
-ulong WINAPI libAVEnumPins_Release (
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVEnumPins_Release (
     libAVEnumPins *
 );
 
-long WINAPI libAVEnumPins_Next (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumPins_Next (
     libAVEnumPins *,
     ulong,
     IPin **,
     ulong *
 );
 
-long WINAPI libAVEnumPins_Skip (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumPins_Skip (
     libAVEnumPins *,
     ulong
 );
 
-long WINAPI libAVEnumPins_Reset (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumPins_Reset (
     libAVEnumPins *
 );
 
-long WINAPI libAVEnumPins_Clone (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumPins_Clone (
     libAVEnumPins *,
     libAVEnumPins **
 );
 
 
+[CCode (cname="",cheader_filename="")]
 public void libAVEnumPins_Destroy (
     libAVEnumPins *
 );
@@ -333,69 +531,111 @@ libAVEnumPins *libAVEnumPins_Create (
 /*****************************************************************************
 libAVEnumMediaTypes
  ****************************************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class libAVEnumMediaTypes {
-    IEnumMediaTypesVtbl *vtbl;
-    long ref;
+    [CCode (cname="")]
+    public IEnumMediaTypesVtbl *vtbl;
+
+    [CCode (cname="")]
+    public long ref;
+
+    [CCode (cname="")]
     public int pos;
-    AM_MEDIA_TYPE type;
+
+    [CCode (cname="")]
+    public AM_MEDIA_TYPE type;
 }
 
-long WINAPI libAVEnumMediaTypes_QueryInterface (
-    libAVEnumMediaTypes *, GUID *, void **
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumMediaTypes_QueryInterface (
+    libAVEnumMediaTypes *,
+    GUID *,
+    void **
 );
 
-ulong WINAPI libAVEnumMediaTypes_AddRef (
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVEnumMediaTypes_AddRef (
     libAVEnumMediaTypes *
 );
 
-ulong WINAPI libAVEnumMediaTypes_Release (
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVEnumMediaTypes_Release (
     libAVEnumMediaTypes *
 );
 
-long WINAPI libAVEnumMediaTypes_Next (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumMediaTypes_Next (
     libAVEnumMediaTypes *,
     ulong,
     AM_MEDIA_TYPE **,
     ulong *
 );
 
-long WINAPI libAVEnumMediaTypes_Skip (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumMediaTypes_Skip (
     libAVEnumMediaTypes *,
     ulong
 );
 
-long WINAPI libAVEnumMediaTypes_Reset (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumMediaTypes_Reset (
     libAVEnumMediaTypes *
 );
 
-long WINAPI libAVEnumMediaTypes_Clone (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVEnumMediaTypes_Clone (
     libAVEnumMediaTypes *,
     libAVEnumMediaTypes **
 );
 
-void libAVEnumMediaTypes_Destroy (
+[CCode (cname="",cheader_filename="")]
+public void libAVEnumMediaTypes_Destroy (
     libAVEnumMediaTypes *
 );
-libAVEnumMediaTypes *libAVEnumMediaTypes_Create (
+
+[CCode (cname="",cheader_filename="")]
+public libAVEnumMediaTypes *libAVEnumMediaTypes_Create (
     const AM_MEDIA_TYPE *type
 );
 
 /*****************************************************************************
 libAVFilter
  ****************************************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class libAVFilter {
-    IBaseFilterVtbl *vtbl;
-    long ref;
-    const wchar_t *name;
-    libAVPin *pin;
-    FILTER_INFO info;
-    FILTER_STATE state;
-    IReferenceClock *clock;
+    [CCode (cname="")]
+    public IBaseFilterVtbl *vtbl;
+
+    [CCode (cname="")]
+    public long ref;
+
+    [CCode (cname="")]
+    public const wchar_t *name;
+
+    [CCode (cname="")]
+    public libAVPin *pin;
+
+    [CCode (cname="")]
+    public FILTER_INFO info;
+
+    [CCode (cname="")]
+    public FILTER_STATE state;
+
+    [CCode (cname="")]
+    public IReferenceClock *clock;
+
+    [CCode (cname="")]
     public dshowDeviceType type;
-    void *priv_data;
+
+    [CCode (cname="")]
+    public void *priv_data;
+
+    [CCode (cname="")]
     public int stream_index;
+
+    [CCode (cname="")]
     public int64 start_time;
 
     [CCode (cname="callback")]
@@ -410,86 +650,103 @@ public class libAVFilter {
 
 }
 
-long WINAPI libAVFilter_QueryInterface (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_QueryInterface (
     libAVFilter *,
     GUID *,
     void **
 );
 
-ulong WINAPI libAVFilter_AddRef (
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVFilter_AddRef (
     libAVFilter *
 );
 
-ulong WINAPI libAVFilter_Release (
+[CCode (cname="",cheader_filename="")]
+public ulong WINAPI libAVFilter_Release (
     libAVFilter *
 );
 
-long WINAPI libAVFilter_GetClassID (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_GetClassID (
     libAVFilter *,
     CLSID *
 );
 
-long WINAPI libAVFilter_Stop (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_Stop (
     libAVFilter *
 );
 
-long WINAPI libAVFilter_Pause (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_Pause (
     libAVFilter *
 );
 
-long WINAPI libAVFilter_Run (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_Run (
     libAVFilter *,
     REFERENCE_TIME
 );
-long WINAPI libAVFilter_GetState (
+
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_GetState (
     libAVFilter *,
     DWORD,
     FILTER_STATE *
 );
 
-long WINAPI libAVFilter_SetSyncSource (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_SetSyncSource (
     libAVFilter *,
     IReferenceClock *
 );
 
-long WINAPI libAVFilter_GetSyncSource (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_GetSyncSource (
     libAVFilter *,
     IReferenceClock **
 );
 
-long WINAPI libAVFilter_EnumPins (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_EnumPins (
     libAVFilter *,
     IEnumPins **
 );
 
-long WINAPI libAVFilter_FindPin (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_FindPin (
     libAVFilter *,
     wchar_t *,
     IPin **
 );
 
-long WINAPI libAVFilter_QueryFilterInfo (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_QueryFilterInfo (
     libAVFilter *,
     FILTER_INFO *
 );
 
-long WINAPI libAVFilter_JoinFilterGraph (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_JoinFilterGraph (
     libAVFilter *,
     IFilterGraph *,
     wchar_t *
 );
 
-long WINAPI libAVFilter_QueryVendorInfo (
+[CCode (cname="",cheader_filename="")]
+public long WINAPI libAVFilter_QueryVendorInfo (
     libAVFilter *,
     wchar_t **
 );
 
-
+[CCode (cname="",cheader_filename="")]
 public void libAVFilter_Destroy (
     libAVFilter *
 );
 
-libAVFilter *libAVFilter_Create (
+[CCode (cname="",cheader_filename="")]
+public libAVFilter *libAVFilter_Create (
     void *,
     void *,
     dshowDeviceType
@@ -498,80 +755,157 @@ libAVFilter *libAVFilter_Create (
 /*****************************************************************************
 dshow_ctx
  ****************************************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class dshow_ctx {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
-    IGraphBuilder *graph;
+    [CCode (cname="")]
+    public IGraphBuilder *graph;
 
-    string device_name[2];
-    string device_unique_name[2];
+    [CCode (cname="")]
+    public string device_name[2];
 
+    [CCode (cname="")]
+    public string device_unique_name[2];
+
+    [CCode (cname="")]
     public int video_device_number;
+
+    [CCode (cname="")]
     public int audio_device_number;
 
+    [CCode (cname="")]
     public int   list_options;
+
+    [CCode (cname="")]
     public int   list_devices;
+
+    [CCode (cname="")]
     public int   audio_buffer_size;
+
+    [CCode (cname="")]
     public int   crossbar_video_input_pin_number;
+
+    [CCode (cname="")]
     public int   crossbar_audio_input_pin_number;
-    string video_pin_name;
-    string audio_pin_name;
+
+    [CCode (cname="")]
+    public string video_pin_name;
+
+    [CCode (cname="")]
+    public string audio_pin_name;
+
+    [CCode (cname="")]
     public int   show_video_device_dialog;
+
+    [CCode (cname="")]
     public int   show_audio_device_dialog;
+
+    [CCode (cname="")]
     public int   show_video_crossbar_connection_dialog;
+
+    [CCode (cname="")]
     public int   show_audio_crossbar_connection_dialog;
+
+    [CCode (cname="")]
     public int   show_analog_tv_tuner_dialog;
+
+    [CCode (cname="")]
     public int   show_analog_tv_tuner_audio_dialog;
-    string audio_filter_load_file;
-    string audio_filter_save_file;
-    string video_filter_load_file;
-    string video_filter_save_file;
 
-    IBaseFilter *device_filter[2];
-    IPin        *device_pin[2];
-    libAVFilter *capture_filter[2];
-    libAVPin    *capture_pin[2];
+    [CCode (cname="")]
+    public string audio_filter_load_file;
 
-    HANDLE mutex;
+    [CCode (cname="")]
+    public string audio_filter_save_file;
+
+    [CCode (cname="")]
+    public string video_filter_load_file;
+
+    [CCode (cname="")]
+    public string video_filter_save_file;
+
+    [CCode (cname="")]
+    public IBaseFilter *device_filter[2];
+
+    [CCode (cname="")]
+    public IPin        *device_pin[2];
+
+    [CCode (cname="")]
+    public libAVFilter *capture_filter[2];
+
+    [CCode (cname="")]
+    public libAVPin    *capture_pin[2];
+
+    [CCode (cname="")]
+    public HANDLE mutex;
+
     /***********************************************************
     event[0] is set by DirectShow
     event[1] is set by callback ()
     ***********************************************************/
-    HANDLE event[2];
-    AVPacketList *pktl;
+    [CCode (cname="")]
+    public HANDLE event[2];
 
+    [CCode (cname="")]
+    public AVPacketList *pktl;
+
+    [CCode (cname="")]
     public int eof;
 
+    [CCode (cname="")]
     public int64 curbufsize[2];
+
+    [CCode (cname="")]
     public uint video_frame_num;
 
-    IMediaControl *control;
-    IMediaEvent *media_event;
+    [CCode (cname="")]
+    public IMediaControl *control;
 
+    [CCode (cname="")]
+    public IMediaEvent *media_event;
+
+    [CCode (cname="")]
     public AVPixelFormat pixel_format;
-    public AVCodecID video_codec_id;
-    string framerate;
 
+    [CCode (cname="")]
+    public AVCodecID video_codec_id;
+
+    [CCode (cname="")]
+    public string framerate;
+
+    [CCode (cname="")]
     public int requested_width;
+
+    [CCode (cname="")]
     public int requested_height;
+
+    [CCode (cname="")]
     public AVRational requested_framerate;
 
+    [CCode (cname="")]
     public int sample_rate;
+
+    [CCode (cname="")]
     public int sample_size;
+
+    [CCode (cname="")]
     public int channels;
 }
 
 /*****************************************************************************
 CrossBar
 ****************************************************************************/
-HRESULT dshow_try_setup_crossbar_options (
+public HRESULT dshow_try_setup_crossbar_options (
     ICaptureGraphBuilder2 *graph_builder2,
     IBaseFilter *device_filter,
     dshowDeviceType devtype,
     AVFormatContext *avctx
 );
 
+[CCode (cname="",cheader_filename="")]
 public void dshow_show_filter_properties (
     IBaseFilter *pFilter,
     AVFormatContext *avctx

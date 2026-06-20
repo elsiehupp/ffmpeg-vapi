@@ -27,9 +27,10 @@ namespace LibAVFormat {
 ***********************************************************/
 /*@{*/
 
-#define OFFSET (x) offsetof (URLContext,x)
-#define E AV_OPT_FLAG_ENCODING_PARAM
-#define D AV_OPT_FLAG_DECODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (URLContext,x)
+public define E AV_OPT_FLAG_ENCODING_PARAM
+public define D AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "protocol_whitelist",
@@ -58,30 +59,35 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="ffurl_context_class", cheader_filename="")]
+[CCode (cname="ffurl_context_class",cheader_filename="")]
 public class URLContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="")]
     public override string class_name {
         public get {
             return "URLContext";
+
         }
+
     }
     //  .item_name = urlcontext_to_name,
     //  .option = options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 
-    [CCode (cname="urlcontext_child_next", cheader_filename="")]
+    [CCode (cname="urlcontext_child_next",cheader_filename="")]
     public override void *child_next (
         void *obj,
         void *prev
     );
 
-    [CCode (cname="ff_urlcontext_child_class_next", cheader_filename="")]
+    [CCode (cname="ff_urlcontext_child_class_next",cheader_filename="")]
     public override LibAVUtil.Class child_class_next (
         LibAVUtil.Class prev
     );

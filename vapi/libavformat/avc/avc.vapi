@@ -22,73 +22,88 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_avc_parse_nal_units", cheader_filename="")]
+[CCode (cname="ff_avc_parse_nal_units",cheader_filename="ffmpeg/libformat/avc.h")]
 public int ff_avc_parse_nal_units (
     AVIOContext io_context,
     uint8[] buffer,
-    public int size
+    int size
 );
 
-[CCode (cname="ff_avc_parse_nal_units_buf", cheader_filename="")]
+[CCode (cname="ff_avc_parse_nal_units_buf",cheader_filename="ffmpeg/libformat/avc.h")]
 public int ff_avc_parse_nal_units_buf (
     uint8[] buf_in,
     out uint8[] buf_out,
-    public int[] size
+    int[] size
 );
 
-[CCode (cname="ff_isom_write_avcc", cheader_filename="")]
+[CCode (cname="ff_isom_write_avcc",cheader_filename="ffmpeg/libformat/avc.h")]
 public int ff_isom_write_avcc (
     AVIOContext pb,
     uint8[] data,
-    public int len
+    int len
 );
 
-[CCode (cname="ff_avc_find_startcode", cheader_filename="")]
+[CCode (cname="ff_avc_find_startcode",cheader_filename="ffmpeg/libformat/avc.h")]
 public uint8[] ff_avc_find_startcode (
     uint8[] pointer,
     uint8[] end
 );
 
-[CCode (cname="ff_avc_write_annexb_extradata", cheader_filename="")]
+[CCode (cname="ff_avc_write_annexb_extradata",cheader_filename="ffmpeg/libformat/avc.h")]
 public int ff_avc_write_annexb_extradata (
     uint8[] buf_in,
     out uint8[] buf_out,
-    public int[] size
+    int[] size
 );
 
-[CCode (cname="ff_avc_mp4_find_startcode", cheader_filename="")]
+[CCode (cname="ff_avc_mp4_find_startcode",cheader_filename="ffmpeg/libformat/avc.h")]
 public uint8[] ff_avc_mp4_find_startcode (
     uint8[] start,
     uint8[] end,
-    public int nal_length_size
+    int nal_length_size
 );
 
-[CCode (cname="ff_nal_unit_extract_rbsp", cheader_filename="")]
+[CCode (cname="ff_nal_unit_extract_rbsp",cheader_filename="ffmpeg/libformat/avc.h")]
 public uint8[] ff_nal_unit_extract_rbsp (
     uint8[] src,
     uint32 src_len,
     out uint32 dst_len,
-    public int header_len
+    int header_len
 );
 
-[CCode (cname="struct H264SPS", cheader_filename="")]
+[CCode (cname="struct H264SPS",cheader_filename="ffmpeg/libformat/avc.h")]
 [Compact]
 public class H264SPS {
+    [CCode (cname="")]
     public uint8 id;
+
+    [CCode (cname="")]
     public uint8 profile_idc;
+
+    [CCode (cname="")]
     public uint8 level_idc;
+
+    [CCode (cname="")]
     public uint8 constraint_set_flags;
+
+    [CCode (cname="")]
     public uint8 chroma_format_idc;
+
+    [CCode (cname="")]
     public uint8 bit_depth_luma;
+
+    [CCode (cname="")]
     public uint8 frame_mbs_only_flag;
-    LibAVUtil.Rational sar;
+
+    [CCode (cname="")]
+    public LibAVUtil.Rational sar;
 }
 
-[CCode (cname="ff_avc_decode_sps", cheader_filename="")]
+[CCode (cname="ff_avc_decode_sps",cheader_filename="ffmpeg/libformat/avc.h")]
 public int ff_avc_decode_sps (
     H264SPS sps,
     uint8[] buffer,
-    public int buf_size
+    int buf_size
 );
 
 } // namespace LibAVFormat

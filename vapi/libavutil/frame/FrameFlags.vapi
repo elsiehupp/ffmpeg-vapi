@@ -29,15 +29,16 @@ reference-counted frame API
 Flags describing additional frame properties.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/frame.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavutil/frame.h")]
 public enum FrameFlags {
     /***********************************************************
     @brief The frame data may be corrupted, e.g. due to decoding errors.
     ***********************************************************/
     AV_FRAME_FLAG_CORRUPT,
+
     /***********************************************************
     @brief A flag to mark the frames which need to be decoded, but shouldn't be output.
     ***********************************************************/
-    AV_FRAME_FLAG_DISCARD,
+    AV_FRAME_FLAG_DISCARD;
 }
 } // namespace LibAVUtil

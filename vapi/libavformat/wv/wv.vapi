@@ -21,64 +21,68 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
 public const size_t WV_HEADER_SIZE; // 32
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
 [Flags]
 public enum BlockFlags {
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     WV_FLAG_INITIAL_BLOCK,
-    WV_FLAG_FINAL_BLOCK,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
+    WV_FLAG_FINAL_BLOCK;
 }
 
 /***********************************************************
 @brief Specs say that maximum block size is 1Mb
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
 public const size_t WV_BLOCK_LIMIT;
 
-[CCode (cname="struct WvHeader", cheader_filename="")]
+[CCode (cname="struct WvHeader",cheader_filename="ffmpeg/libformat/wv.h")]
 [Compact]
 public class WvHeader {
     /***********************************************************
     @brief Size of the block data (excluding the header)
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     public uint32 blocksize;
 
     /***********************************************************
     @brief Bitstream version
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     public uint16 version;
 
     /***********************************************************
     @brief Total number of samples in the stream
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     public uint32 total_samples;
 
     /***********************************************************
     @brief Index of the first sample in this block
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     public uint32 block_idx;
 
     /***********************************************************
     @brief Number of samples in this block
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     public uint32 samples;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     public BlockFlags flags;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     public uint32 crc;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     public int initial;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
     public int final;
 }
 
@@ -90,7 +94,7 @@ public class WvHeader {
 
 @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/wv.h")]
 public int ff_wv_parse_header (
     WvHeader wv,
     uint8[] data

@@ -19,20 +19,48 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class SndioData {
     AVClass *class;
+
     struct sio_hdl *hdl;
+
+    [CCode (cname="")]
     public AVCodecID codec_id;
+
+    [CCode (cname="")]
     public int64 hwpos;
+
+    [CCode (cname="")]
     public int64 softpos;
+
     uint8[] buffer;
+
+    [CCode (cname="")]
     public int bps;
+
+    [CCode (cname="")]
     public int buffer_size;
+
+    [CCode (cname="")]
     public int buffer_offset;
+
+    [CCode (cname="")]
     public int channels;
+
+    [CCode (cname="")]
     public int sample_rate;
 }
 
-public int ff_sndio_open (AVFormatContext *s1, int is_output, string audio_device);
-public int ff_sndio_close (SndioData *s);
+[CCode (cname="",cheader_filename="")]
+public int ff_sndio_open (
+    AVFormatContext *s1,
+    int is_output,
+    string audio_device
+);
+
+[CCode (cname="",cheader_filename="")]
+public int ff_sndio_close (
+    SndioData *s
+);

@@ -27,7 +27,7 @@ public enum ThreadMessageFlags {
     return LibAVUtil.ErrorCode (EAGAIN) immediately if they can not proceed.
     ***********************************************************/
     [CCode (cname="AV_THREAD_MESSAGE_NONBLOCK")]
-    NON_BLOCKING,
+    NON_BLOCKING;
 }
 
 } // namespace LibAVUtil

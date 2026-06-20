@@ -32,19 +32,21 @@ static const LibAVUtil.Option options[] = {
         AV_OPT_TYPE_BOOL,
         { .i64 = 1}, -1, 1, AV_OPT_FLAG_DECODING_PARAM},
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="demuxer_class", cheader_filename="")]
+[CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/avidec.c")]
 public class AVIDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override string class_name {
         public get {
             return "avi";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -53,81 +55,91 @@ public class AVIDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER,
+    //  .category = AV_CLASS_CATEGORY_DEMUXER;
 }
 
-[CCode (cname="struct AVIContext", cheader_filename="")]
+[CCode (cname="struct AVIContext",cheader_filename="ffmpeg/libformat/avidec.c")]
 [Compact]
 public class AVIDemuxerPrivateData { }
 
-[CCode (cname="ff_avi_demuxer", cheader_filename="")]
+[CCode (cname="ff_avi_demuxer",cheader_filename="ffmpeg/libformat/avidec.c")]
 public class AVIDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override string name {
         public get {
             return "avi";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override string long_name {
         public get {
             return "AVI (Audio Video Interleaved)";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AVIDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override string extensions {
         public get {
             return "avi";
+
         }
+
     }
 
-    [CCode (cname="avi_probe", cheader_filename="")]
+    [CCode (cname="avi_probe",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="avi_read_header", cheader_filename="")]
+    [CCode (cname="avi_read_header",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="avi_read_packet", cheader_filename="")]
+    [CCode (cname="avi_read_packet",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="avi_read_close", cheader_filename="")]
+    [CCode (cname="avi_read_close",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="avi_read_seek", cheader_filename="")]
+    [CCode (cname="avi_read_seek",cheader_filename="ffmpeg/libformat/avidec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
     );
-    //  .priv_class = demuxer_class,
+    //  .priv_class = demuxer_class;
 }
 
 } // namespace LibAVFormat

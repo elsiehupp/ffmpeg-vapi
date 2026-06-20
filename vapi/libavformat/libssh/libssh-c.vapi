@@ -21,9 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (LIBSSHContext, x)
-#define D AV_OPT_FLAG_DECODING_PARAM
-#define E AV_OPT_FLAG_ENCODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (LIBSSHContext, x)
+public define D AV_OPT_FLAG_DECODING_PARAM
+public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "timeout",
@@ -57,16 +58,18 @@ static const LibAVUtil.Option options[] = {
     {NULL}
 }
 
-[CCode (cname="libssh_context_class", cheader_filename="")]
+[CCode (cname="libssh_context_class",cheader_filename="ffmpeg/libformat/libssh.c")]
 public class LibSSHURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override string class_name {
         public get {
             return "libssh";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -75,99 +78,109 @@ public class LibSSHURLProtocolClass : LibAVUtil.Class {
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct LIBSSHContext", cheader_filename="")]
+[CCode (cname="struct LIBSSHContext",cheader_filename="ffmpeg/libformat/libssh.c")]
 [Compact]
 public class LibSSHPrivateData { }
 
-[CCode (cname="ff_libssh_protocol", cheader_filename="")]
+[CCode (cname="ff_libssh_protocol",cheader_filename="ffmpeg/libformat/libssh.c")]
 public class LibSSHURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override string name {
         public get {
             return "sftp";
+
         }
+
     }
 
-    [CCode (cname="libssh_open", cheader_filename="")]
+    [CCode (cname="libssh_open",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="libssh_read", cheader_filename="")]
+    [CCode (cname="libssh_read",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="libssh_write", cheader_filename="")]
+    [CCode (cname="libssh_write",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="libssh_seek", cheader_filename="")]
+    [CCode (cname="libssh_seek",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="libssh_close", cheader_filename="")]
+    [CCode (cname="libssh_close",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="libssh_delete", cheader_filename="")]
+    [CCode (cname="libssh_delete",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int url_delete (
         URLContext url_context
     );
 
-    [CCode (cname="libssh_move", cheader_filename="")]
+    [CCode (cname="libssh_move",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int url_move (
         URLContext h_src,
         URLContext h_dst
     );
 
-    [CCode (cname="libssh_open_dir", cheader_filename="")]
+    [CCode (cname="libssh_open_dir",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int url_open_dir (
         URLContext url_context
     );
 
-    [CCode (cname="libssh_read_dir", cheader_filename="")]
+    [CCode (cname="libssh_read_dir",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int url_read_dir (
         URLContext url_context,
         out AVIODirEntry next
     );
 
-    [CCode (cname="libssh_close_dir", cheader_filename="")]
+    [CCode (cname="libssh_close_dir",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override int url_close_dir (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LibSSHPrivateData);
+
         }
+
     }
     //  .priv_data_class = libssh_context_class,
-    [CCode (cname="flags", cheader_filename="")]
+
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override URLProtocolFlags flags {
         public get {
             return URL_PROTOCOL_FLAG_NETWORK;
+
         }
+
     }
 }
 

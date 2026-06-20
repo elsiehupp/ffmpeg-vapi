@@ -26,32 +26,37 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum FieldOrder {
     [CCode (cname="AV_FIELD_UNKNOWN")]
     UNKNOWN,
+
     [CCode (cname="AV_FIELD_PROGRESSIVE")]
     PROGRESSIVE,
+
     /***********************************************************
     @brief Top coded_first, top displayed first
     ***********************************************************/
     [CCode (cname="AV_FIELD_TT")]
     TOP_TOP,
+
     /***********************************************************
     @brief Bottom coded first, bottom displayed first
     ***********************************************************/
     [CCode (cname="AV_FIELD_BB")]
     BOTTOM_BOTTOM,
+
     /***********************************************************
     @brief Top coded first, bottom displayed first
     ***********************************************************/
     [CCode (cname="AV_FIELD_TB")]
     TOP_BOTTOM,
+
     /***********************************************************
     @brief Bottom coded first, top displayed first
     ***********************************************************/
     [CCode (cname="AV_FIELD_BT")]
-    BOTTOM_TOP,
+    BOTTOM_TOP;
 }
 
 } // namespace LibAVCodec

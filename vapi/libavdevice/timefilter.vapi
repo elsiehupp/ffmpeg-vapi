@@ -30,6 +30,7 @@ stamps that can be compared to wall clock time, especially when dealing
 with two clocks: the system clock and a hardware device clock, such as
 a soundcard.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class TimeFilter TimeFilter;
 
@@ -79,7 +80,8 @@ cycle).
 
 @return the filtered time, in seconds
 ***********************************************************/
-double ff_timefilter_update (TimeFilter *self, double system_time, double period);
+[CCode (cname="",cheader_filename="")]
+public doubleff_timefilter_update (TimeFilter *self, double system_time, double period);
 
 /***********************************************************
 Evaluate the filter at a specified time
@@ -88,7 +90,8 @@ Evaluate the filter at a specified time
               (last call to ff_timefilter_update).
 @return  the filtered time
 ***********************************************************/
-double ff_timefilter_eval (TimeFilter *self, double delta);
+[CCode (cname="",cheader_filename="")]
+public doubleff_timefilter_eval (TimeFilter *self, double delta);
 
 /***********************************************************
 Reset the filter
@@ -98,9 +101,11 @@ This function should mainly be called in case of XRUN.
 Warning: after calling this, the filter is in an undetermined state until
 the next call to ff_timefilter_update ()
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void ff_timefilter_reset (TimeFilter *);
 
 /***********************************************************
 Free all resources associated with the filter
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public void ff_timefilter_destroy (TimeFilter *);

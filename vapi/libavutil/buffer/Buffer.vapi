@@ -65,7 +65,7 @@ parts of the buffer (i.e. their LibAVUtil.BufferRef.data will not be equal).
 @brief A reference counted buffer type. It is opaque and is meant to be used through
 references (LibAVUtil.BufferRef).
 ***********************************************************/
-[CCode (cname="struct AVBuffer", cheader_filename="buffer.h")]
+[CCode (cname="struct AVBuffer",cheader_filename="buffer.h")]
 [Compact]
 public class Buffer { }
 

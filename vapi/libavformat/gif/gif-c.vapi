@@ -24,8 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (GIFContext, x)
-#define ENC AV_OPT_FLAG_ENCODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (GIFContext, x)
+public define ENC AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "loop",
@@ -42,19 +43,21 @@ static const LibAVUtil.Option options[] = {
         AV_OPT_TYPE_INT, { .i64 = -1 }, -1, 65535, ENC
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="gif_muxer_class", cheader_filename="")]
+[CCode (cname="gif_muxer_class",cheader_filename="ffmpeg/libformat/gif.c")]
 public class GIFMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/gif.c")]
     public override string class_name {
         public get {
             return "GIF muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/gif.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -63,93 +66,112 @@ public class GIFMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/gif.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/gif.c")]
     public override LibAVUtil.Option[] option { public get; }
 }
 
-[CCode (cname="struct GIFContext", cheader_filename="")]
+[CCode (cname="struct GIFContext",cheader_filename="ffmpeg/libformat/gif.c")]
 [Compact]
 public class GIFMuxerPrivateData { }
 
-[CCode (cname="ff_gif_muxer", cheader_filename="")]
+[CCode (cname="ff_gif_muxer",cheader_filename="ffmpeg/libformat/gif.c")]
 public class GIFMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/gif.c")]
     public override string name {
         public get {
             return "gif";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/gif.c")]
     public override string long_name {
         public get {
             return "CompuServe Graphics Interchange Format (GIF)";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/gif.c")]
     public override string mime_type {
         public get {
             return "image/gif";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/gif.c")]
     public override string extensions {
         public get {
             return "gif";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/gif.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GIFMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/gif.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/gif.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.GIF;
+
         }
+
     }
 
-    [CCode (cname="gif_write_header", cheader_filename="")]
+    [CCode (cname="gif_write_header",cheader_filename="ffmpeg/libformat/gif.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="gif_write_packet", cheader_filename="")]
+    [CCode (cname="gif_write_packet",cheader_filename="ffmpeg/libformat/gif.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="gif_write_trailer", cheader_filename="")]
+    [CCode (cname="gif_write_trailer",cheader_filename="ffmpeg/libformat/gif.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
     //  .priv_class = gif_muxer_class,
-    [CCode (cname="flags", cheader_filename="")]
+
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/gif.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_VARIABLE_FPS;
+
         }
+
     }
 }
 

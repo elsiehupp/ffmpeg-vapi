@@ -31,7 +31,7 @@ LibAVCodec external API header
 roughly corresponds to a subset the VBV parameters for MPEG-2 or HRD
 parameters for H.264/HEVC.
 ***********************************************************/
-[CCode (cname="struct AVCPBProperties", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVCPBProperties",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class CPBProperties {
     /***********************************************************
@@ -45,6 +45,7 @@ public class CPBProperties {
     [CCode (cname="max_bitrate")]
     public int64 max_bitrate;
 #endif
+
     /***********************************************************
     @brief Minimum bitrate of the stream, in bits per second.
     Zero if unknown or unspecified.
@@ -56,6 +57,7 @@ public class CPBProperties {
     [CCode (cname="min_bitrate")]
     public int64 min_bitrate;
 #endif
+
     /***********************************************************
     @brief Average bitrate of the stream, in bits per second.
     Zero if unknown or unspecified.
@@ -94,7 +96,7 @@ public class CPBProperties {
 
     @return the newly allocated struct or null on failure
     ***********************************************************/
-    [CCode (cname="av_cpb_properties_alloc", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_cpb_properties_alloc",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
     public CPBProperties av_cpb_properties_alloc (out size_t size);
 
 }

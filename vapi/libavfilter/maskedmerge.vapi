@@ -18,26 +18,50 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class MaskedMergeContext {
-    const AVClass *class;
-    public int width[4], height[4];
+    [CCode (cname="")]
+    public AVClass class;
+
+    [CCode (cname="")]
+    public int width[4];
+
+    [CCode (cname="")]
+    public int height[4];
+
+    [CCode (cname="")]
     public int linesize[4];
+
+    [CCode (cname="")]
     public int nb_planes;
+
+    [CCode (cname="")]
     public int planes;
+
+    [CCode (cname="")]
     public int half, depth;
+
+    [CCode (cname="")]
     public FFFrameSync fs;
 
     [CCode (cname="maskedmerge")]
     public void (*maskedmerge)(
-        const uint8[] bsrc, uint8[] osrc,
-        uint8[] msrc, uint8[] dst,
-        ptrdiff_t blinesize, ptrdiff_t olinesize,
-        ptrdiff_t mlinesize, ptrdiff_t dlinesize,
-        int w, int h,
-        int half, int shift
+        uint8[] bsrc,
+        uint8[] osrc,
+        uint8[] msrc,
+        uint8[] dst,
+        ptrdiff_t blinesize,
+        ptrdiff_t olinesize,
+        ptrdiff_t mlinesize,
+        ptrdiff_t dlinesize,
+        int w,
+        int h,
+        int half,
+        int shift
     );
 
 }
 
+[CCode (cname="",cheader_filename="")]
 public void ff_maskedmerge_init_x86 (MaskedMergeContext *s);

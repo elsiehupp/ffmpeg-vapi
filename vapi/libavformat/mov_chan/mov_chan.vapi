@@ -33,7 +33,7 @@ namespace LibAVFormat {
 @param[out] bitmap channel bitmap (only used if needed)
 @return channel layout
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/mov_chan.h")]
 public uint64 ff_mov_get_channel_layout (
     uint32 tag,
     uint32 bitmap
@@ -48,10 +48,10 @@ If the layout tag was not found, use a channel bitmap if possible.
 @param[out] bitmap channel bitmap
 @return channel layout tag
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/mov_chan.h")]
 public uint32 ff_mov_get_channel_layout_tag (
     LibAVCodec.CodecID codec_id,
-    public uint64 channel_layout,
+    uint64 channel_layout,
     out uint32 bitmap
 );
 
@@ -64,12 +64,12 @@ public uint32 ff_mov_get_channel_layout_tag (
 @param size Remaining size in the 'chan' tag
 @return 0 if ok, or negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/mov_chan.h")]
 public int ff_mov_read_chan (
     AVFormatContext format_context,
     AVIOContext pb,
     AVStream st,
-    public int64 size
+    int64 size
 );
 
 } // namespace LibAVFormat

@@ -29,12 +29,12 @@ FFT functions
 @ingroup lavc_misc
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avfft.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avfft.h")]
 public enum DCTTransformType {
     DCT_II,
     DCT_III,
     DCT_I,
-    DST_I,
+    DST_I;
 }
 
 } // namespace LibAVCodec

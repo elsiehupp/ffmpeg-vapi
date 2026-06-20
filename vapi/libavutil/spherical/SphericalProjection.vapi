@@ -53,7 +53,7 @@ public enum SphericalProjection {
     the position of the current video in a larger surface.
     ***********************************************************/
     [CCode (cname="AV_SPHERICAL_EQUIRECTANGULAR_TILE")]
-    EQUIRECTANGULAR_TILE,
+    EQUIRECTANGULAR_TILE;
 }
 
 } // namespace LibAVUtil

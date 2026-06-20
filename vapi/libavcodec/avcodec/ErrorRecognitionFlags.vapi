@@ -33,38 +33,45 @@ If AV_EF_EXPLODE is also set, a mismatching checksum will result in the
 decoder returning an error.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum ErrorRecognitionFlags {
     AV_EF_CRCCHECK,
+
     /***********************************************************
     @brief Detect bitstream specification deviations
     ***********************************************************/
     AV_EF_BITSTREAM,
+
     /***********************************************************
     @brief Detect improper bitstream length
     ***********************************************************/
     AV_EF_BUFFER,
+
     /***********************************************************
     @brief Abort decoding on minor error detection
     ***********************************************************/
     AV_EF_EXPLODE,
+
     /***********************************************************
     @brief Ignore errors and continue
     ***********************************************************/
     AV_EF_IGNORE_ERR,
+
     /***********************************************************
     @brief Consider things that violate the spec, are fast to calculate
     and have not been seen in the wild as errors
     ***********************************************************/
     AV_EF_CAREFUL,
+
     /***********************************************************
     @brief Consider all spec non compliances as errors
     ***********************************************************/
     AV_EF_COMPLIANT,
+
     /***********************************************************
     @brief Consider things that a sane encoder should not do as an error
     ***********************************************************/
-    AV_EF_AGGRESSIVE,
+    AV_EF_AGGRESSIVE;
 }
 
 } // namespace LibAVCodec

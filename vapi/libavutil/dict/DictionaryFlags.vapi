@@ -49,6 +49,7 @@ LibAVUtil.DictionaryEntry t = null;
 av_dict_set (&d, "foo", "bar",
         0); // add an entry
 
+[CCode (cname="",cheader_filename="")]
 public string k = av_strdup ("key"); // if your strings are already allocated,
 public string v = av_strdup ("value"); // you can avoid copying them like this
 av_dict_set (&d, k, v, AVDictionaryFlags.DONT_STRDUP_KEY | AVDictionaryFlags.DONT_STRDUP_VAL);
@@ -59,42 +60,48 @@ while (t = av_dict_get (d, "", t, AVDictionaryFlags.IGNORE_SUFFIX)) {
 av_dict_free (&d);
 @endcode
 ***********************************************************/
-[CCode (cprefix="AV_DICT_", cheader_filename="dict.h")]
+[CCode (cprefix="AV_DICT_",cheader_filename="dict.h")]
 public enum AVDictionaryFlags {
     /***********************************************************
     @brief Only get an entry with exact-case key match. Only relevant
     in av_dict_get ().
     ***********************************************************/
     MATCH_CASE,
+
     /***********************************************************
     @brief Return first entry in a dictionary whose first part
     corresponds to the search key, ignoring the suffix of the
     found key string. Only relevant in av_dict_get ().
     ***********************************************************/
     IGNORE_SUFFIX,
+
     /***********************************************************
     @brief Take ownership of a key that's been allocated with
     av_malloc () or another memory allocation function.
     ***********************************************************/
     DONT_STRDUP_KEY,
+
     /***********************************************************
     @brief Take ownership of a value that's been allocated with
     av_malloc () or another memory allocation function.
     ***********************************************************/
     DONT_STRDUP_VAL,
+
     /***********************************************************
     @brief Don't overwrite existing entries.
     ***********************************************************/
     DONT_OVERWRITE,
+
     /***********************************************************
     @brief If the entry already exists, append to it. Note that no
     delimiter is added, the strings are simply concatenated.
     ***********************************************************/
     APPEND,
+
     /***********************************************************
     @brief Allow to store several equal keys in the dictionary
     ***********************************************************/
-    MULTIKEY,
+    MULTIKEY;
 }
 
 } // namespace LibAVUtil

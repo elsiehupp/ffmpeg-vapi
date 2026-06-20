@@ -25,7 +25,7 @@ This API supports dynamic frame pools. HardwareFrameContext.pool must return
 LibAVUtil.BufferRef (s) whose data pointer is a CUdeviceptr.
 ***********************************************************/
 
-[CCode (cname="struct AVCUDADeviceContextInternal", cheader_filename="ffmpeg/libavutil/hwcontext_cuda.h")]
+[CCode (cname="struct AVCUDADeviceContextInternal",cheader_filename="ffmpeg/libavutil/hwcontext_cuda.h")]
 [Compact]
 public class CUDADeviceContextInternal { }
 
@@ -34,7 +34,7 @@ public class CUDADeviceContextInternal { }
 
 @note HardwareFrameContext.hwctx is currently not used
 ***********************************************************/
-[CCode (cname="struct AVCUDADeviceContext", cheader_filename="ffmpeg/libavutil/hwcontext_cuda.h")]
+[CCode (cname="struct AVCUDADeviceContext",cheader_filename="ffmpeg/libavutil/hwcontext_cuda.h")]
 public class CUDADeviceContext : AbstractHardwareContext {
     [CCode (cname="cuda_ctx")]
     public CUcontext cuda_ctx;

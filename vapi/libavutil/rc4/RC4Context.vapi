@@ -25,7 +25,7 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_rc4 RC4
 ***********************************************************/
 
-[CCode (cname="struct AVRC4", cheader_filename="ffmpeg/libavutil/rc4.h")]
+[CCode (cname="struct AVRC4",cheader_filename="ffmpeg/libavutil/rc4.h")]
 [Compact]
 public class RC4Context {
     [CCode (cname="state")]
@@ -40,7 +40,7 @@ public class RC4Context {
     /***********************************************************
     @brief Allocate an RC4Context context.
     ***********************************************************/
-    [CCode (cname="av_rc4_alloc", cheader_filename="ffmpeg/libavutil/rc4.h")]
+    [CCode (cname="av_rc4_alloc",cheader_filename="ffmpeg/libavutil/rc4.h")]
     public RC4Context av_rc4_alloc ();
 
     /***********************************************************
@@ -50,7 +50,7 @@ public class RC4Context {
     @param decrypt 0 for encryption, 1 for decryption, currently has no effect
     @return zero on success, negative value otherwise
     ***********************************************************/
-    [CCode (cname="av_rc4_init", cheader_filename="ffmpeg/libavutil/rc4.h")]
+    [CCode (cname="av_rc4_init",cheader_filename="ffmpeg/libavutil/rc4.h")]
     public int av_rc4_init (
         RC4Context d,
         uint8[] key,
@@ -67,7 +67,7 @@ public class RC4Context {
     @param initialization_vector not (yet) used for RC4, should be null
     @param decrypt 0 for encryption, 1 for decryption, not (yet) used
     ***********************************************************/
-    [CCode (cname="av_rc4_crypt", cheader_filename="ffmpeg/libavutil/rc4.h")]
+    [CCode (cname="av_rc4_crypt",cheader_filename="ffmpeg/libavutil/rc4.h")]
     public void av_rc4_crypt (
         RC4Context d,
         out uint8[] output_buffer,

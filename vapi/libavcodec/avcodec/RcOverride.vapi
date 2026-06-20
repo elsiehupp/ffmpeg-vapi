@@ -29,7 +29,7 @@ LibAVCodec external API header
 /***********************************************************
 @ingroup lavc_encoding
 ***********************************************************/
-[CCode (cname="struct RcOverride", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct RcOverride",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class RcOverride {
     [CCode (cname="start_frame")]

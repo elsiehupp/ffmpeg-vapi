@@ -19,53 +19,101 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-#define MAX_NOISE 5120
-#define MAX_SHIFT 1024
-#define MAX_RES (MAX_NOISE-MAX_SHIFT)
+[CCode (cname="",cheader_filename="")]
+public define MAX_NOISE 5120
+public define MAX_SHIFT 1024
+public define MAX_RES (MAX_NOISE-MAX_SHIFT)
 
-#define NOISE_UNIFORM  1
-#define NOISE_TEMPORAL 2
-#define NOISE_AVERAGED 8
-#define NOISE_PATTERN  16
+[CCode (cname="",cheader_filename="")]
+public define NOISE_UNIFORM  1
+public define NOISE_TEMPORAL 2
+public define NOISE_AVERAGED 8
+public define NOISE_PATTERN  16
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class FilterParams {
+    [CCode (cname="")]
     public int strength;
+
+    [CCode (cname="")]
     public uint flags;
+
+    [CCode (cname="")]
     public AVLFG lfg;
+
+    [CCode (cname="")]
     public int seed;
+
+    [CCode (cname="")]
     public int8 *noise;
+
+    [CCode (cname="")]
     public int8 *prev_shift[MAX_RES][3];
+
+    [CCode (cname="")]
     public int rand_shift[MAX_RES];
+
+    [CCode (cname="")]
     public int rand_shift_init;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class NoiseContext {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
+
+    [CCode (cname="")]
     public int nb_planes;
+
+    [CCode (cname="")]
     public int bytewidth[4];
+
+    [CCode (cname="")]
     public int height[4];
+
     FilterParams all;
+
     FilterParams param[4];
+
     [CCode (cname="line_noise")]
     public void (*line_noise)(
-        uint8[] dst, uint8[] src, int8 *noise, int len, int shift
+        uint8[] dst,
+        uint8[] src,
+        int8 *noise,
+        int len,
+        int shift
     );
 
     [CCode (cname="line_noise_avg")]
     public void (*line_noise_avg)(
-        uint8[] dst, uint8[] src, int len, int8 * const *shift
+        uint8[] dst,
+        uint8[] src,
+        int len,
+        int8 * const *shift
     );
 
 }
 
+[CCode (cname="",cheader_filename="")]
 public void ff_line_noise_c (
-    uint8[] dst, uint8[] src, int8 *noise, int len, int shift
+    uint8[] dst,
+    uint8[] src,
+    int8 *noise,
+    int len,
+    int shift
 );
 
+[CCode (cname="",cheader_filename="")]
 public void ff_line_noise_avg_c (
-    uint8[] dst, uint8[] src, int len, int8 * const *shift
+    uint8[] dst,
+    uint8[] src,
+    int len,
+    int8 * const *shift
 );
 
-public void ff_noise_init_x86 (NoiseContext *n);
+[CCode (cname="",cheader_filename="")]
+public void ff_noise_init_x86 (
+    NoiseContext *n
+);

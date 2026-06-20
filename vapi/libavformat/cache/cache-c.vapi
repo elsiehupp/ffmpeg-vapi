@@ -30,8 +30,9 @@ namespace LibAVFormat {
     support filling with a background thread
 ***********************************************************/
 
-#define OFFSET (x) offsetof (Context, x)
-#define D AV_OPT_FLAG_DECODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (Context, x)
+public define D AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "read_ahead_limit",
@@ -43,23 +44,25 @@ static const LibAVUtil.Option options[] = {
         INT_MAX,
         D
     },
-    {NULL},
+    {NULL};
 }
 
-[CCode (cname="struct Context", cheader_filename="")]
+[CCode (cname="struct Context",cheader_filename="")]
 [Compact]
 public class CachePrivateData { }
 
-[CCode (cname="cache_context_class", cheader_filename="")]
+[CCode (cname="cache_context_class",cheader_filename="")]
 public class CacheContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="")]
     public override string class_name {
         public get {
             return "Cache";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="")]
     public override string item_name (
         void *class_context
     ) {
@@ -68,27 +71,31 @@ public class CacheContextClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_cache_protocol", cheader_filename="")]
+[CCode (cname="ff_cache_protocol",cheader_filename="")]
 public class CacheURLProtocol : URLProtocol {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "cache";
+
         }
+
     }
 
-    [CCode (cname="cache_open", cheader_filename="")]
+    [CCode (cname="cache_open",cheader_filename="")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -96,32 +103,34 @@ public class CacheURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="cache_read", cheader_filename="")]
+    [CCode (cname="cache_read",cheader_filename="")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="cache_seek", cheader_filename="")]
+    [CCode (cname="cache_seek",cheader_filename="")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="cache_close", cheader_filename="")]
+    [CCode (cname="cache_close",cheader_filename="")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (CachePrivateData);
+
         }
+
     }
-    //  .priv_data_class = cache_context_class,
+    //  .priv_data_class = cache_context_class;
 }
 
 } // namespace LibAVFormat

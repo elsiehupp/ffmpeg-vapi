@@ -26,14 +26,14 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum DCTAlgorithm {
     FF_DCT_AUTO,
     FF_DCT_FASTINT,
     FF_DCT_INT,
     FF_DCT_MMX,
     FF_DCT_ALTIVEC,
-    FF_DCT_FAAN,
+    FF_DCT_FAAN;
 }
 
 } // namespace LibAVCodec

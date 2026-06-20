@@ -31,7 +31,7 @@ subsampling factors and number of components.
     and all the YUV variants) PixelFormatDescriptor just stores how values
     are stored not what these values represent.
 ***********************************************************/
-[CCode (cname="struct AVPixFmtDescriptor", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+[CCode (cname="struct AVPixFmtDescriptor",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
 [Compact]
 public class PixelFormatDescriptor {
     [CCode (cname="name")]
@@ -96,7 +96,7 @@ public class PixelFormatDescriptor {
     used for storing the pixel information, that is padding bits are
     not counted.
     ***********************************************************/
-    [CCode (cname="av_get_bits_per_pixel", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_get_bits_per_pixel",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public int av_get_bits_per_pixel (
         PixelFormatDescriptor pixdesc
     );
@@ -105,7 +105,7 @@ public class PixelFormatDescriptor {
     @brief Return the number of bits per pixel for the pixel format
     described by pixdesc, including any padding or unused bits.
     ***********************************************************/
-    [CCode (cname="av_get_padded_bits_per_pixel", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_get_padded_bits_per_pixel",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public int av_get_padded_bits_per_pixel (
         PixelFormatDescriptor pixdesc
     );
@@ -117,7 +117,7 @@ public class PixelFormatDescriptor {
 
     @return next descriptor or null after the last descriptor
     ***********************************************************/
-    [CCode (cname="av_pix_fmt_desc_next", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_pix_fmt_desc_next",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public PixelFormatDescriptor av_pix_fmt_desc_next (
         PixelFormatDescriptor prev
     );
@@ -126,7 +126,7 @@ public class PixelFormatDescriptor {
     @return an PixelFormat id described by desc, or PixelFormat.NONE if desc
     is not a valid pointer to a pixel format descriptor.
     ***********************************************************/
-    [CCode (cname="av_pix_fmt_desc_get_id", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_pix_fmt_desc_get_id",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public PixelFormat av_pix_fmt_desc_get_id (
         PixelFormatDescriptor desc
     );
@@ -148,7 +148,7 @@ public class PixelFormatDescriptor {
     data[0]. The behavior is undefined if the format is not paletted.
     @param output_element_size size of elements in output_buffer array (2 or 4 byte)
     ***********************************************************/
-    [CCode (cname="av_read_image_line2", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_read_image_line2",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public void av_read_image_line2 (
         out void *output_buffer,
         out uint8 data[4],
@@ -162,7 +162,7 @@ public class PixelFormatDescriptor {
         int output_element_size
     );
 
-    [CCode (cname="av_read_image_line", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_read_image_line",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public void av_read_image_line (
         out uint16[] output_buffer,
         out uint8 data[4],
@@ -190,18 +190,29 @@ public class PixelFormatDescriptor {
     values to write to the image line
     @param input_element_size size of elements in input_buffer array (2 or 4 byte)
     ***********************************************************/
-    [CCode (cname="av_write_image_line2", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_write_image_line2",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public void av_write_image_line2 (
-        void *input_buffer, out uint8 data[4],
-        int linesize[4], PixelFormatDescriptor desc,
-        int x, int y, int c, int w, int input_element_size
+        void *input_buffer,
+        out uint8 data[4],
+        int linesize[4],
+        PixelFormatDescriptor desc,
+        int x,
+        int y,
+        int c,
+        int w,
+        int input_element_size
     );
 
-    [CCode (cname="av_write_image_line", cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_write_image_line",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
     public void av_write_image_line (
-        uint16[] input_buffer, out uint8 data[4],
-        int linesize[4], PixelFormatDescriptor desc,
-        int x, int y, int c, int w
+        uint16[] input_buffer,
+        out uint8 data[4],
+        int linesize[4],
+        PixelFormatDescriptor desc,
+        int x,
+        int y,
+        int c,
+        int w
     );
 
 }

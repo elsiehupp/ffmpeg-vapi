@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/http.h")]
 public const size_t HTTP_HEADERS_SIZE;
 
 /***********************************************************
@@ -34,7 +34,7 @@ request just to get the parameters.
 @param dest URL context whose authentication state gets updated
 @param src URL context whose authentication state gets copied
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/http.h")]
 public void ff_http_init_auth_state (
     URLContext dest,
     URLContext src
@@ -48,16 +48,16 @@ public void ff_http_init_auth_state (
 @return a negative value if an error condition occurred, 0
 otherwise
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/http.h")]
 public int ff_http_do_new_request (
     URLContext url_context,
     string uri
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/http.h")]
 public int ff_http_averror (
-    public int status_code,
-    public int default_averror
+    int status_code,
+    int default_averror
 );
 
 } // namespace LibAVFormat

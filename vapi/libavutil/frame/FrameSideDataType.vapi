@@ -30,36 +30,42 @@ reference-counted frame API
 Frame is an abstraction for reference-counted raw multimedia data.
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavutil/frame.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavutil/frame.h")]
 public enum FrameSideDataType {
     /***********************************************************
     @brief The data is the LibAVCodec.PanScanArea struct defined in LibAVCodec.
     ***********************************************************/
     AV_FRAME_DATA_PANSCAN,
+
     /***********************************************************
     @brief ATSC A53 Part 4 Closed Captions.
     A53 CC bitstream is stored as uint8 in FrameSideData.data.
     The number of bytes of CC data is FrameSideData.size.
     ***********************************************************/
     AV_FRAME_DATA_A53_CC,
+
     /***********************************************************
     @brief Stereoscopic 3d metadata.
     The data is the Stereo3D struct defined in libavutil/stereo3d.h.
     ***********************************************************/
     AV_FRAME_DATA_STEREO3D,
+
     /***********************************************************
     @brief The data is the MatrixEncoding enum defined in libavutil/channel_layout.h.
     ***********************************************************/
     AV_FRAME_DATA_MATRIXENCODING,
+
     /***********************************************************
     @brief Metadata relevant to a downmix procedure.
     The data is the DownMixInfo struct defined in libavutil/downmix_info.h.
     ***********************************************************/
     AV_FRAME_DATA_DOWNMIX_INFO,
+
     /***********************************************************
     @brief ReplayGain information in the form of the ReplayGain struct.
     ***********************************************************/
     AV_FRAME_DATA_REPLAYGAIN,
+
     /***********************************************************
     @brief This side data contains a 3x3 transformation matrix describing an affine
     transformation that needs to be applied to the frame for correct
@@ -68,11 +74,13 @@ public enum FrameSideDataType {
     See libavutil/display.h for a detailed description of the data.
     ***********************************************************/
     AV_FRAME_DATA_DISPLAYMATRIX,
+
     /***********************************************************
     @brief Active Format Description data consisting of a single byte as specified
     in ETSI TS 101 154 using ActiveFormatDescription enum.
     ***********************************************************/
     AV_FRAME_DATA_AFD,
+
     /***********************************************************
     @brief Motion vectors exported by some codecs (on demand through the export_mvs
     flag set in the LibAVCodec LibAVCodec.CodecContext flags2 option).
@@ -80,6 +88,7 @@ public enum FrameSideDataType {
     libavutil/motion_vector.h.
     ***********************************************************/
     AV_FRAME_DATA_MOTION_VECTORS,
+
     /***********************************************************
     @brief Recommmends skipping the specified number of samples. This is exported
     only if the "skip_manual" Option is set in LibAVCodec.
@@ -92,17 +101,20 @@ public enum FrameSideDataType {
     @endcode
     ***********************************************************/
     AV_FRAME_DATA_SKIP_SAMPLES,
+
     /***********************************************************
     @brief This side data must be associated with an audio frame and corresponds to
     enum LibAVCodec.AudioServiceType defined in avcodec.h.
     ***********************************************************/
     AV_FRAME_DATA_AUDIO_SERVICE_TYPE,
+
     /***********************************************************
     @brief Mastering display metadata associated with a video frame. The payload is
     an MasteringDisplayMetadata type and contains information about the
     mastering display color volume.
     ***********************************************************/
     AV_FRAME_DATA_MASTERING_DISPLAY_METADATA,
+
     /***********************************************************
     @brief The GOP timecode in 25 bit timecode format. Data format is 64-bit integer.
     This is set on the first frame of a GOP that has a temporal reference of 0.
@@ -169,7 +181,7 @@ public enum FrameSideDataType {
     /***********************************************************
     @return a string identifying the side data type
     ***********************************************************/
-    [CCode (cname="av_frame_side_data_name", cheader_filename="ffmpeg/libavutil/frame.h")]
+    [CCode (cname="av_frame_side_data_name",cheader_filename="ffmpeg/libavutil/frame.h")]
     public string av_frame_side_data_name (
         FrameSideDataType type
     );

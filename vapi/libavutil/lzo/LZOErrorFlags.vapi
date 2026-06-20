@@ -37,21 +37,24 @@ public enum LZOErrorFlags {
     ***********************************************************/
     [CCode (cname="AV_LZO_INPUT_DEPLETED")]
     AV_LZO_INPUT_DEPLETED,
+
     /***********************************************************
     @brief Decoded data did not fit into output buffer
     ***********************************************************/
     [CCode (cname="AV_LZO_OUTPUT_FULL")]
     AV_LZO_OUTPUT_FULL,
+
     /***********************************************************
     @brief A reference to previously decoded data was wrong
     ***********************************************************/
     [CCode (cname="AV_LZO_INVALID_BACKPTR")]
     AV_LZO_INVALID_BACKPTR,
+
     /***********************************************************
     @brief A non-specific error in the compressed bitstream
     ***********************************************************/
     [CCode (cname="AV_LZO_ERROR")]
-    AV_LZO_ERROR,
+    AV_LZO_ERROR;
 }
 
 } // namespace LibAVUtil.Crypto

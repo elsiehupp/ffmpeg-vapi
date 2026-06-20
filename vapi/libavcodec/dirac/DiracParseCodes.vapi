@@ -40,7 +40,7 @@ VC-2 Specification ->
 10.4.1 Table 10.1
 ***********************************************************/
 
-[CCode (cprefix="DIRAC_PCODE_", cheader_filename="ffmpeg/libavcodec/dirac.h")]
+[CCode (cprefix="DIRAC_PCODE_",cheader_filename="ffmpeg/libavcodec/dirac.h")]
 public enum DiracParseCodes {
     SEQ_HEADER,
     END_SEQ,
@@ -57,7 +57,7 @@ public enum DiracParseCodes {
     INTRA_REF_CO,
     INTRA_REF_RAW,
     INTRA_REF_PICT,
-    MAGIC,
+    MAGIC;
 }
 
 } // namespace LibAVCodec

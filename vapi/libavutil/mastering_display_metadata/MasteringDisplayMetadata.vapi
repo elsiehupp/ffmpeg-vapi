@@ -31,7 +31,7 @@ appropriate type.
 @note The struct should be allocated with av_mastering_display_metadata_alloc ()
       and its size is not a part of the public ABI.
 ***********************************************************/
-[CCode (cname="struct AVMasteringDisplayMetadata", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
+[CCode (cname="struct AVMasteringDisplayMetadata",cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
 [Compact]
 public class MasteringDisplayMetadata {
     /***********************************************************
@@ -77,7 +77,7 @@ public class MasteringDisplayMetadata {
     @return An MasteringDisplayMetadata filled with default values or null
         on failure.
     ***********************************************************/
-    [CCode (cname="av_mastering_display_metadata_alloc", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
+    [CCode (cname="av_mastering_display_metadata_alloc",cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public MasteringDisplayMetadata av_mastering_display_metadata_alloc ();
 
     /***********************************************************
@@ -87,7 +87,7 @@ public class MasteringDisplayMetadata {
 
     @return The MasteringDisplayMetadata structure to be filled by caller.
     ***********************************************************/
-    [CCode (cname="av_mastering_display_metadata_create_side_data", cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
+    [CCode (cname="av_mastering_display_metadata_create_side_data",cheader_filename="ffmpeg/libavutil/mastering_display_metadata.h")]
     public MasteringDisplayMetadata av_mastering_display_metadata_create_side_data (
         Frame frame
     );

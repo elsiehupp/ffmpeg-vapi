@@ -320,19 +320,21 @@ static const LibAVUtil.Option options[] = {
         AV_OPT_FLAG_ENCODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="mpegts_muxer_class", cheader_filename="")]
+[CCode (cname="mpegts_muxer_class",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
 public class MpegTSMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override string class_name {
         public get {
             return "MPEGTS muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -341,106 +343,124 @@ public class MpegTSMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct MpegTSWrite", cheader_filename="")]
+[CCode (cname="struct MpegTSWrite",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
 [Compact]
 public class MpegTSMuxerPrivateData { }
 
-[CCode (cname="ff_mpegts_muxer", cheader_filename="")]
+[CCode (cname="ff_mpegts_muxer",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
 public class MpegTSMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override string name {
         public get {
             return "mpegts";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override string long_name {
         public get {
             return "MPEG-TS (MPEG-2 Transport Stream)";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override string mime_type {
         public get {
             return "video/MP2T";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override string extensions {
         public get {
             return "ts,m2t,m2ts,mts";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegTSMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.MP2;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG2VIDEO;
+
         }
+
     }
 
-    [CCode (cname="mpegts_init", cheader_filename="")]
+    [CCode (cname="mpegts_init",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpegts_write_packet", cheader_filename="")]
+    [CCode (cname="mpegts_write_packet",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mpegts_write_end", cheader_filename="")]
+    [CCode (cname="mpegts_write_end",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpegts_deinit", cheader_filename="")]
+    [CCode (cname="mpegts_deinit",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpegts_check_bitstream", cheader_filename="")]
+    [CCode (cname="mpegts_check_bitstream",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mpegtsenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_ALLOW_FLUSH | AVFMT_VARIABLE_FPS | AVFMT_NODIMENSIONS;
+
         }
+
     }
-    //  .priv_class = mpegts_muxer_class,
+    //  .priv_class = mpegts_muxer_class;
 }
 
 } // namespace LibAVFormat

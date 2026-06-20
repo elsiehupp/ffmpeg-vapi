@@ -27,7 +27,7 @@ reference-counted frame API
 @brief Flags for frame cropping.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="AV_FRAME_CROP_", cheader_filename="ffmpeg/libavutil/frame.h")]
+[CCode (cprefix="AV_FRAME_CROP_",cheader_filename="ffmpeg/libavutil/frame.h")]
 public enum FrameCropFlags {
     /***********************************************************
     @brief Apply the maximum possible cropping, even if it requires setting the
@@ -37,7 +37,7 @@ public enum FrameCropFlags {
     are explicitly documented to accept it. Use this flag only if you
     absolutely know what you are doing.
     ***********************************************************/
-    UNALIGNED,
+    UNALIGNED;
 }
 
 } // namespace LibAVUtil

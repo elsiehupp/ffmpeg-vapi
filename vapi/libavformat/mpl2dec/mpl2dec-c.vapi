@@ -25,50 +25,56 @@ namespace LibAVFormat {
 @file MPL2 subtitles format demuxer
 ***********************************************************/
 
-[CCode (cname="struct MPL2Context", cheader_filename="")]
+[CCode (cname="struct MPL2Context",cheader_filename="")]
 [Compact]
 public class MPL2DemuxerPrivateData { }
 
-[CCode (cname="ff_mpl2_demuxer", cheader_filename="")]
+[CCode (cname="ff_mpl2_demuxer",cheader_filename="")]
 public class MPL2Demuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "mpl2";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "MPL2 subtitles";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MPL2DemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="mpl2_probe", cheader_filename="")]
+    [CCode (cname="mpl2_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="mpl2_read_header", cheader_filename="")]
+    [CCode (cname="mpl2_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpl2_read_packet", cheader_filename="")]
+    [CCode (cname="mpl2_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mpl2_read_seek", cheader_filename="")]
+    [CCode (cname="mpl2_read_seek",cheader_filename="")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -78,16 +84,18 @@ public class MPL2Demuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="mpl2_read_close", cheader_filename="")]
+    [CCode (cname="mpl2_read_close",cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "txt,mpl2";
+
         }
+
     }
 }
 

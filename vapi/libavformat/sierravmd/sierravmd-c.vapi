@@ -29,50 +29,56 @@ for more information on the Sierra VMD file format, visit:
     http://www.pcisys.net/~melanson/codecs/
 ***********************************************************/
 
-[CCode (cname="struct VmdDemuxContext", cheader_filename="")]
+[CCode (cname="struct VmdDemuxContext",cheader_filename="")]
 [Compact]
 public class VMDDemuxerPrivateData { }
 
-[CCode (cname="ff_vmd_demuxer", cheader_filename="")]
+[CCode (cname="ff_vmd_demuxer",cheader_filename="")]
 public class VMDDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "vmd";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Sierra VMD";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VMDDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="vmd_probe", cheader_filename="")]
+    [CCode (cname="vmd_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="vmd_read_header", cheader_filename="")]
+    [CCode (cname="vmd_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="vmd_read_packet", cheader_filename="")]
+    [CCode (cname="vmd_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="vmd_read_close", cheader_filename="")]
+    [CCode (cname="vmd_read_close",cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );

@@ -31,16 +31,18 @@ namespace LibAVFormat {
     http://wiki.multimedia.cx/index.php?title=Sega_FILM
 ***********************************************************/
 
-[CCode (cname="film_muxer_class", cheader_filename="")]
+[CCode (cname="film_muxer_class",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
 public class SegaFilmMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override string class_name {
         public get {
             return "Sega FILM muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -49,78 +51,92 @@ public class SegaFilmMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct FILMOutputContext", cheader_filename="")]
+[CCode (cname="struct FILMOutputContext",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
 [Compact]
 public class SegaFilmMuxerPrivateData { }
 
-[CCode (cname="ff_segafilm_muxer", cheader_filename="")]
+[CCode (cname="ff_segafilm_muxer",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
 public class SegaFilmMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override string name {
         public get {
             return "film_cpk";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override string long_name {
         public get {
             return "Sega FILM / CPK";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override string extensions {
         public get {
             return "cpk";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SegaFilmMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16BE_PLANAR;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.CINEPAK;
+
         }
+
     }
 
-    [CCode (cname="film_init", cheader_filename="")]
+    [CCode (cname="film_init",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="film_write_header", cheader_filename="")]
+    [CCode (cname="film_write_header",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="film_write_packet", cheader_filename="")]
+    [CCode (cname="film_write_packet",cheader_filename="ffmpeg/libformat/segafilmenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .priv_class = film_muxer_class,
+    //  .priv_class = film_muxer_class;
 }
 
 } // namespace LibAVFormat

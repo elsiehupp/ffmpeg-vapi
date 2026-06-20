@@ -30,12 +30,13 @@ LibAVCodec external API header
 @brief Codec capabilities
 ***********************************************************/
 [Flags]
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum CodecCapabilityFlags {
     /***********************************************************
     @brief Decoder can use draw_horiz_band callback.
     ***********************************************************/
     AV_CODEC_CAP_DRAW_HORIZ_BAND,
+
     /***********************************************************
     @brief Codec uses get_buffer () for allocating buffers and supports
     custom allocators. If not set, it might not use get_buffer ()
@@ -44,6 +45,7 @@ public enum CodecCapabilityFlags {
     ***********************************************************/
     AV_CODEC_CAP_DR1,
     AV_CODEC_CAP_TRUNCATED,
+
     /***********************************************************
     @brief Encoder or decoder requires flushing with null input at the
     end in order to give the complete and correct output.
@@ -70,6 +72,7 @@ public enum CodecCapabilityFlags {
         determined by LibAVCodec from the input frame.
     ***********************************************************/
     AV_CODEC_CAP_DELAY,
+
     /***********************************************************
     @brief Codec can be fed a final frame with a smaller size. This can
     be used to prevent truncation of the last audio samples.
@@ -89,37 +92,45 @@ public enum CodecCapabilityFlags {
     only be considered as a last resort.
     ***********************************************************/
     AV_CODEC_CAP_SUBFRAMES,
+
     /***********************************************************
     @brief Codec is experimental and is thus avoided in favor of non-
     experimental encoders.
     ***********************************************************/
     AV_CODEC_CAP_EXPERIMENTAL,
+
     /***********************************************************
     @brief Codec should fill in channel configuration and samplerate
     instead of container.
     ***********************************************************/
     AV_CODEC_CAP_CHANNEL_CONF,
+
     /***********************************************************
     @brief Codec supports frame-level multithreading.
     ***********************************************************/
     AV_CODEC_CAP_FRAME_THREADS,
+
     /***********************************************************
     @brief Codec supports slice-based (or partition-based) multithreading.
     ***********************************************************/
     AV_CODEC_CAP_SLICE_THREADS,
+
     /***********************************************************
     @brief Codec supports changed parameters at any point.
     ***********************************************************/
     AV_CODEC_CAP_PARAM_CHANGE,
+
     /***********************************************************
     @brief Codec supports avctx.thread_count == 0 (auto).
     ***********************************************************/
     AV_CODEC_CAP_AUTO_THREADS,
+
     /***********************************************************
     @brief Audio encoder supports receiving a different number of
     samples in each call.
     ***********************************************************/
     AV_CODEC_CAP_VARIABLE_FRAME_SIZE,
+
     /***********************************************************
     @brief Decoder is not a preferred choice for probing. This
     indicates that the decoder is not a good choice for probing.
@@ -129,10 +140,12 @@ public enum CodecCapabilityFlags {
     flag should only be used as last resort choice for probing.
     ***********************************************************/
     AV_CODEC_CAP_AVOID_PROBING,
+
     /***********************************************************
     @brief Codec is intra only.
     ***********************************************************/
     AV_CODEC_CAP_INTRA_ONLY,
+
     /***********************************************************
     @brief Codec is lossless.
     ***********************************************************/

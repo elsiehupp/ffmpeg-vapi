@@ -28,7 +28,7 @@ It is recommended that new code uses our tree container from tree.c/h
 where applicable, which uses AVL trees to achieve O (log n) performance.
 ***********************************************************/
 
-[CCode (cname="struct AVDictionaryEntry", cheader_filename="dict.h")]
+[CCode (cname="struct AVDictionaryEntry",cheader_filename="dict.h")]
 [Compact]
 public class DictionaryEntry {
     [CCode (cname="key")]

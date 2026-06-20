@@ -18,79 +18,173 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AudioFIRSegment {
+    [CCode (cname="")]
     public int nb_partitions;
+
+    [CCode (cname="")]
     public int part_size;
+
+    [CCode (cname="")]
     public int block_size;
+
+    [CCode (cname="")]
     public int fft_length;
+
+    [CCode (cname="")]
     public int coeff_size;
+
+    [CCode (cname="")]
     public int input_size;
+
+    [CCode (cname="")]
     public int input_offset;
 
+    [CCode (cname="")]
     public int[] output_offset;
+
+    [CCode (cname="")]
     public int[] part_index;
 
+    [CCode (cname="")]
     public AVFrame sum;
+
+    [CCode (cname="")]
     public AVFrame block;
+
+    [CCode (cname="")]
     public AVFrame buffer;
+
+    [CCode (cname="")]
     public AVFrame coeff;
+
+    [CCode (cname="")]
     public AVFrame input;
+
+    [CCode (cname="")]
     public AVFrame output;
 
-    RDFTContext **rdft, **irdft;
+    [CCode (cname="")]
+    public RDFTContext **rdft;
+
+    [CCode (cname="")]
+    public RDFTContext **irdft;
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AudioFIRDSPContext {
-
     [CCode (cname="fcmul_add")]
     public void (*fcmul_add)(
-        float *sum, float *t, float *c,
+        float[] sum, float[] t, float[] c,
         ptrdiff_t len
     );
 
 }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class AudioFIRContext {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
-    float wet_gain;
-    float dry_gain;
-    float length;
+    [CCode (cname="")]
+    public float wet_gain;
+
+    [CCode (cname="")]
+    public float dry_gain;
+
+    [CCode (cname="")]
+    public float length;
+
+    [CCode (cname="")]
+    [CCode (cname="")]
     public int gtype;
-    float ir_gain;
+
+    [CCode (cname="")]
+    public float ir_gain;
+
+    [CCode (cname="")]
     public int ir_format;
-    float max_ir_len;
+
+    [CCode (cname="")]
+    public float max_ir_len;
+
+    [CCode (cname="")]
     public int response;
-    public int w, h;
+
+    [CCode (cname="")]
+    public int w;
+
+    [CCode (cname="")]
+    public int h;
+
+    [CCode (cname="")]
     public AVRational frame_rate;
+
+    [CCode (cname="")]
     public int ir_channel;
+
+    [CCode (cname="")]
     public int minp;
+
+    [CCode (cname="")]
     public int maxp;
 
-    float gain;
+    [CCode (cname="")]
+    public float gain;
 
+    [CCode (cname="")]
     public int eof_coeffs;
+
+    [CCode (cname="")]
     public int have_coeffs;
+
+    [CCode (cname="")]
     public int nb_taps;
+
+    [CCode (cname="")]
     public int nb_channels;
+
+    [CCode (cname="")]
     public int nb_coef_channels;
+
+    [CCode (cname="")]
     public int one2many;
 
-    AudioFIRSegment seg[1024];
+    [CCode (cname="")]
+    public AudioFIRSegment seg[1024];
+
+    [CCode (cname="")]
     public int nb_segments;
 
+    [CCode (cname="")]
     public AVFrame in[2];
+
+    [CCode (cname="")]
     public AVFrame video;
+
+    [CCode (cname="")]
     public int min_part_size;
+
+    [CCode (cname="")]
     public int64 pts;
 
-    AudioFIRDSPContext afirdsp;
-    AVFloatDSPContext *fdsp;
+    [CCode (cname="")]
+    public AudioFIRDSPContext afirdsp;
 
+    [CCode (cname="")]
+    public AVFloatDSPContext *fdsp;
 }
 
-public void ff_afir_init (AudioFIRDSPContext *s);
-public void ff_afir_init_x86 (AudioFIRDSPContext *s);
+[CCode (cname="",cheader_filename="")]
+public void ff_afir_init (
+    AudioFIRDSPContext *s
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_afir_init_x86 (
+    AudioFIRDSPContext *s
+);

@@ -93,19 +93,21 @@ static const LibAVUtil.Option options[] = {
         AV_OPT_FLAG_ENCODING_PARAM
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="spdif_class", cheader_filename="")]
+[CCode (cname="spdif_class",cheader_filename="ffmpeg/libformat/spdifenc.c")]
 public class SPIDFMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override string class_name {
         public get {
             return "spdif";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -114,85 +116,102 @@ public class SPIDFMuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct IEC61937Context", cheader_filename="")]
+[CCode (cname="struct IEC61937Context",cheader_filename="ffmpeg/libformat/spdifenc.c")]
 [Compact]
 public class SPIDFMuxerPrivateData { }
 
-[CCode (cname="ff_spdif_muxer", cheader_filename="")]
+[CCode (cname="ff_spdif_muxer",cheader_filename="ffmpeg/libformat/spdifenc.c")]
 public class SPIDFMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override string name {
         public get {
             return "spdif";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override string long_name {
         public get {
             return "IEC 61937 (used on S/PDIF - IEC958)";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override string extensions {
         public get {
             return "spdif";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SPIDFMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AC3;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
+
         }
+
     }
 
-    [CCode (cname="spdif_write_header", cheader_filename="")]
+    [CCode (cname="spdif_write_header",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="spdif_write_packet", cheader_filename="")]
+    [CCode (cname="spdif_write_packet",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="spdif_write_trailer", cheader_filename="")]
+    [CCode (cname="spdif_write_trailer",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
+
         }
+
     }
-    //  .priv_class = spdif_class,
+    //  .priv_class = spdif_class;
 }
 
 } // namespace LibAVFormat

@@ -18,9 +18,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class DitherContext { }
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class DitherDSPContext {
     /***********************************************************
@@ -33,16 +35,22 @@ public class DitherDSPContext {
     ***********************************************************/
     [CCode (cname="quantize")]
     public void (*quantize)(
-        int16 *dst, float *src, float *dither, int len
+        int16[] dst,
+        float[] src,
+        float[] dither,
+        int len
     );
 
     /***********************************************************
     src and dst constraints for quantize ()
     ***********************************************************/
+    [CCode (cname="")]
     public int ptr_align;
+
     /***********************************************************
     len constraints for quantize ()
     ***********************************************************/
+    [CCode (cname="")]
     public int samples_align;
 
     /***********************************************************
@@ -58,7 +66,9 @@ public class DitherDSPContext {
     ***********************************************************/
     [CCode (cname="dither_int_to_float")]
     public void (*dither_int_to_float)(
-        float *dst, int *src0, int len
+        float[] dst,
+        int *src0,
+        int len
     );
 
 }
@@ -72,17 +82,24 @@ DitherContext.
 @param avr  AVAudioResampleContext
 @return     newly-allocated DitherContext
 ***********************************************************/
-DitherContext *ff_dither_alloc (AVAudioResampleContext *avr,
-                               AVSampleFormat out_fmt,
-                               AVSampleFormat in_fmt,
-                               int channels, int sample_rate, int apply_map);
+DitherContext *ff_dither_alloc (
+    AVAudioResampleContext *avr,
+    AVSampleFormat out_fmt,
+    AVSampleFormat in_fmt,
+    int channels,
+    int sample_rate,
+    int apply_map
+);
 
 /***********************************************************
 Free a DitherContext.
 
 @param c  DitherContext
 ***********************************************************/
-public void ff_dither_free (DitherContext **c);
+[CCode (cname="",cheader_filename="")]
+public void ff_dither_free (
+    DitherContext **c
+);
 
 /***********************************************************
 Convert audio sample format with dithering.
@@ -92,11 +109,19 @@ Convert audio sample format with dithering.
 @param src  source audio data
 @return     0 if ok, negative AVERROR code on failure
 ***********************************************************/
-public int ff_convert_dither (DitherContext *c, AudioData *dst, AudioData *src);
+[CCode (cname="",cheader_filename="")]
+public int ff_convert_dither (
+    DitherContext *c,
+    AudioData *dst,
+    AudioData *src
+);
 
 /***********************************************************
 arch-specific initialization functions
 ***********************************************************/
 
-public void ff_dither_init_x86 (DitherDSPContext *ddsp,
-                        AVResampleDitherMethod method);
+[CCode (cname="",cheader_filename="")]
+public void ff_dither_init_x86 (
+    DitherDSPContext *ddsp,
+    AVResampleDitherMethod method
+);

@@ -26,7 +26,7 @@ namespace LibAVUtil {
 @file LibAVUtil.Options
 ***********************************************************/
 
-[CCode (cprefix="AV_OPT_TYPE_", cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cprefix="AV_OPT_TYPE_",cheader_filename="ffmpeg/libavutil/opt.h")]
 public enum OptionType {
     FLAGS,
     INT,
@@ -35,6 +35,7 @@ public enum OptionType {
     FLOAT,
     STRING,
     RATIONAL,
+
     /***********************************************************
     @brief Offset must point to a pointer immediately followed by an
     public int for the length
@@ -43,14 +44,18 @@ public enum OptionType {
     DICT,
     UINT64,
     CONST,
+
     /***********************************************************
     @brief Offset must point to two consecutive integers
     ***********************************************************/
     IMAGE_SIZE,
+
     [CCode (cname="AV_OPT_TYPE_PIXEL_FMT")]
     PIXEL_FORMAT,
+
     [CCode (cname="AV_OPT_TYPE_SAMPLE_FMT")]
     SAMPLE_FORMAT,
+
     /***********************************************************
     @brief Offset must point to Rational
     ***********************************************************/
@@ -58,7 +63,7 @@ public enum OptionType {
     DURATION,
     COLOR,
     CHANNEL_LAYOUT,
-    BOOL,
+    BOOL;
 }
 
 } // namespace LibAVUtil

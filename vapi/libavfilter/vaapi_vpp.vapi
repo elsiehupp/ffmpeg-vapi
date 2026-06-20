@@ -17,36 +17,60 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 /***********************************************************
+ARGB black, for VAProcPipelineParameterBuffer.output_background_color.
 ***********************************************************/
-// ARGB black, for VAProcPipelineParameterBuffer.output_background_color.
-#define VAAPI_VPP_BACKGROUND_BLACK 0xff000000
+[CCode (cname="",cheader_filename="")]
+public const uint32 VAAPI_VPP_BACKGROUND_BLACK; // 0xff000000
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class VAAPIVPPContext {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
-    AVVAAPIDeviceContext *hwctx;
+    [CCode (cname="")]
+    public AVVAAPIDeviceContext *hwctx;
+
+    [CCode (cname="")]
     public AVBufferRef device_ref;
 
+    [CCode (cname="")]
     public int valid_ids;
-    VAConfigID  va_config;
-    VAContextID va_context;
 
-    AVBufferRef       *input_frames_ref;
-    AVHWFramesContext *input_frames;
-    VARectangle        input_region;
+    [CCode (cname="")]
+    public VAConfigID  va_config;
 
+    [CCode (cname="")]
+    public VAContextID va_context;
+
+    [CCode (cname="")]
+    public AVBufferRef       *input_frames_ref;
+
+    [CCode (cname="")]
+    public AVHWFramesContext *input_frames;
+
+    [CCode (cname="")]
+    public VARectangle        input_region;
+
+    [CCode (cname="")]
     public AVPixelFormat output_format;
+
     /***********************************************************
     computed width
     ***********************************************************/
+    [CCode (cname="")]
     public int output_width;
+
     /***********************************************************
     computed height
     ***********************************************************/
+    [CCode (cname="")]
     public int output_height;
 
-    VABufferID         filter_buffers[VAProcFilterCount];
+    [CCode (cname="")]
+    public ABufferID         filter_buffers[VAProcFilterCount];
+
+    [CCode (cname="")]
     public int                nb_filter_buffers;
 
     [CCode (cname="build_filter_params")]
@@ -61,29 +85,56 @@ public class VAAPIVPPContext {
 
 }
 
-public void ff_vaapi_vpp_ctx_init (AVFilterContext *avctx);
+[CCode (cname="",cheader_filename="")]
+public void ff_vaapi_vpp_ctx_init (
+    AVFilterContext *avctx
+);
 
-public void ff_vaapi_vpp_ctx_uninit (AVFilterContext *avctx);
+[CCode (cname="",cheader_filename="")]
+public void ff_vaapi_vpp_ctx_uninit (
+    AVFilterContext *avctx
+);
 
-public int ff_vaapi_vpp_query_formats (AVFilterContext *avctx);
+[CCode (cname="",cheader_filename="")]
+public int ff_vaapi_vpp_query_formats (
+    AVFilterContext *avctx
+);
 
-public void ff_vaapi_vpp_pipeline_uninit (AVFilterContext *avctx);
+[CCode (cname="",cheader_filename="")]
+public void ff_vaapi_vpp_pipeline_uninit (
+    AVFilterContext *avctx
+);
 
-public int ff_vaapi_vpp_config_input (AVFilterLink *inlink);
+[CCode (cname="",cheader_filename="")]
+public int ff_vaapi_vpp_config_input (
+    AVFilterLink *inlink
+);
 
-public int ff_vaapi_vpp_config_output (AVFilterLink *outlink);
+[CCode (cname="",cheader_filename="")]
+public int ff_vaapi_vpp_config_output (
+    AVFilterLink *outlink
+);
 
-public int ff_vaapi_vpp_init_params (AVFilterContext *avctx,
-                             VAProcPipelineParameterBuffer *params,
-                             public AVFrame input_frame,
-                             public AVFrame output_frame);
+[CCode (cname="",cheader_filename="")]
+public int ff_vaapi_vpp_init_params (
+    AVFilterContext *avctx,
+    VAProcPipelineParameterBuffer *params,
+    AVFrame input_frame,
+    AVFrame output_frame
+);
 
-public int ff_vaapi_vpp_make_param_buffers (AVFilterContext *avctx,
-                                    int type,
-                                    void *data,
-                                    size_t size,
-                                    int count);
+[CCode (cname="",cheader_filename="")]
+public int ff_vaapi_vpp_make_param_buffers (
+    AVFilterContext *avctx,
+    int type,
+    void *data,
+    size_t size,
+    int count
+);
 
-public int ff_vaapi_vpp_render_picture (AVFilterContext *avctx,
-                                VAProcPipelineParameterBuffer *params,
-                                public AVFrame output_frame);
+[CCode (cname="",cheader_filename="")]
+public int ff_vaapi_vpp_render_picture (
+    AVFilterContext *avctx,
+    VAProcPipelineParameterBuffer *params,
+    AVFrame output_frame
+);

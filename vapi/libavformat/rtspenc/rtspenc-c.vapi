@@ -22,16 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="rtsp_muxer_class", cheader_filename="")]
+[CCode (cname="rtsp_muxer_class",cheader_filename="ffmpeg/libformat/rtspenc.c")]
 public class RTSPMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override string class_name {
         public get {
             return "RTSP muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -40,74 +42,89 @@ public class RTSPMuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = ff_rtsp_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="ff_rtsp_muxer", cheader_filename="")]
+[CCode (cname="ff_rtsp_muxer",cheader_filename="ffmpeg/libformat/rtspenc.c")]
 public class RTSPMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override string name {
         public get {
             return "rtsp";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override string long_name {
         public get {
             return "RTSP output";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RTSPState);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG4;
+
         }
+
     }
 
-    [CCode (cname="rtsp_write_header", cheader_filename="")]
+    [CCode (cname="rtsp_write_header",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="rtsp_write_packet", cheader_filename="")]
+    [CCode (cname="rtsp_write_packet",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="rtsp_write_close", cheader_filename="")]
+    [CCode (cname="rtsp_write_close",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags", cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOFILE | AVFMT_GLOBALHEADER;
+
         }
+
     }
-    //  .priv_class = rtsp_muxer_class,
+    //  .priv_class = rtsp_muxer_class;
 }
 
 } // namespace LibAVFormat

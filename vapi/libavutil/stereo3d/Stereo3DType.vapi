@@ -101,5 +101,5 @@ public enum Stereo3DType {
     @endcode
     ***********************************************************/
     [CCode (cname="AV_STEREO3D_COLUMNS")]
-    ALTERNATING_COLUMNS,
+    ALTERNATING_COLUMNS;
 }

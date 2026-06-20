@@ -22,54 +22,62 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct MXGContext", cheader_filename="")]
+[CCode (cname="struct MXGContext",cheader_filename="")]
 [Compact]
 public class MXGDemuxerPrivateData { }
 
-[CCode (cname="ff_mxg_demuxer", cheader_filename="")]
+[CCode (cname="ff_mxg_demuxer",cheader_filename="")]
 public class MXGDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "mxg";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "MxPEG clip";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MXGDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="mxg_read_header", cheader_filename="")]
+    [CCode (cname="mxg_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mxg_read_packet", cheader_filename="")]
+    [CCode (cname="mxg_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mxg_close", cheader_filename="")]
+    [CCode (cname="mxg_close",cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="")]
     public override string extensions {
         public get {
             return "mxg";
+
         }
+
     }
 }
 

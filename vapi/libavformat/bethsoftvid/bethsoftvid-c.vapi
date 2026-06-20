@@ -29,50 +29,56 @@ namespace LibAVFormat {
 @see http://www.svatopluk.com/andux/docs/dfvid.html
 ***********************************************************/
 
-[CCode (cname="struct BVID_DemuxContext", cheader_filename="")]
+[CCode (cname="struct BVID_DemuxContext",cheader_filename="")]
 [Compact]
 public class BethSoftVIDDemuxerPrivateData { }
 
-[CCode (cname="ff_bethsoftvid_demuxer", cheader_filename="")]
+[CCode (cname="ff_bethsoftvid_demuxer",cheader_filename="")]
 public class BethSoftVIDDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override string name {
         public get {
             return "bethsoftvid";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="")]
     public override string long_name {
         public get {
             return "Bethesda Softworks VID";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BethSoftVIDDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="vid_probe", cheader_filename="")]
+    [CCode (cname="vid_probe",cheader_filename="")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="vid_read_header", cheader_filename="")]
+    [CCode (cname="vid_read_header",cheader_filename="")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="vid_read_packet", cheader_filename="")]
+    [CCode (cname="vid_read_packet",cheader_filename="")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="vid_read_close", cheader_filename="")]
+    [CCode (cname="vid_read_close",cheader_filename="")]
     public override int read_close (
         AVFormatContext format_context
     );

@@ -18,13 +18,22 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class Stereo3DDSPContext {
+    [CCode (cname="")]
     public delegate void AnaglyphDelegate (
-        uint8[] dst, uint8[] lsrc, uint8[] rsrc,
-        ptrdiff_t dst_linesize, ptrdiff_t l_linesize, ptrdiff_t r_linesize,
-        int width, int height,
-        int[] ana_matrix_r, int[] ana_matrix_g, int[] ana_matrix_b
+        uint8[] dst,
+        uint8[] lsrc,
+        uint8[] rsrc,
+        ptrdiff_t dst_linesize,
+        ptrdiff_t l_linesize,
+        ptrdiff_t r_linesize,
+        int width,
+        int height,
+        int[] ana_matrix_r,
+        int[] ana_matrix_g,
+        int[] ana_matrix_b
     );
 
     [CCode (cname="")]
@@ -32,4 +41,5 @@ public class Stereo3DDSPContext {
 
 }
 
+[CCode (cname="",cheader_filename="")]
 public void ff_stereo3d_init_x86 (Stereo3DDSPContext *dsp);

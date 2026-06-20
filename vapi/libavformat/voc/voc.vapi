@@ -25,36 +25,55 @@ namespace LibAVFormat {
 [CCode (cname="struct voc_dec_context")]
 [Compact]
 public class VocDecContext {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     public int64 remaining_size;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     public int64 pts;
 }
 
 [CCode (cname="enum voc_type")]
 public enum VocType {
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     VOC_TYPE_EOF,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     VOC_TYPE_VOICE_DATA,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     VOC_TYPE_VOICE_DATA_CONT,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     VOC_TYPE_SILENCE,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     VOC_TYPE_MARKER,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     VOC_TYPE_ASCII,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     VOC_TYPE_REPETITION_START,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     VOC_TYPE_REPETITION_END,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
     VOC_TYPE_EXTENDED,
-    VOC_TYPE_NEW_VOICE_DATA,
+
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
+    VOC_TYPE_NEW_VOICE_DATA;
 }
 
 //  extern const uchar ff_voc_magic[21];
 //  extern const AVCodecTag ff_voc_codec_tags[];
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/voc.h")]
 public int ff_voc_get_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet,
     AVStream st,
-    public int max_size
+    int max_size
 );
 
 } // namespace LibAVFormat

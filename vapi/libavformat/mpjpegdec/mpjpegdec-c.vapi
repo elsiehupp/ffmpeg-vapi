@@ -22,8 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (MPJPEGDemuxContext, x)
-#define DEC AV_OPT_FLAG_DECODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (MPJPEGDemuxContext, x)
+public define DEC AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option mpjpeg_options[] = {
     {
         "strict_mime_boundary",
@@ -41,16 +42,18 @@ static const LibAVUtil.Option mpjpeg_options[] = {
     }
 }
 
-[CCode (cname="mpjpeg_demuxer_class", cheader_filename="")]
+[CCode (cname="mpjpeg_demuxer_class",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
 public class MPJPEGDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override string class_name {
         public get {
             return "MPJPEG demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -59,81 +62,97 @@ public class MPJPEGDemuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = mpjpeg_options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct MPJPEGDemuxContext", cheader_filename="")]
+[CCode (cname="struct MPJPEGDemuxContext",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
 [Compact]
 public class MultipartJPEGDemuxerPrivateData { }
 
-[CCode (cname="ff_mpjpeg_demuxer", cheader_filename="")]
+[CCode (cname="ff_mpjpeg_demuxer",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
 public class MultipartJPEGDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override string name {
         public get {
             return "mpjpeg";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override string long_name {
         public get {
             return "MIME multipart JPEG";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override string mime_type {
         public get {
             return "multipart/x-mixed-replace";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override string extensions {
         public get {
             return "mjpg";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MultipartJPEGDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="mpjpeg_read_probe", cheader_filename="")]
+    [CCode (cname="mpjpeg_read_probe",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="mpjpeg_read_header", cheader_filename="")]
+    [CCode (cname="mpjpeg_read_header",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpjpeg_read_packet", cheader_filename="")]
+    [CCode (cname="mpjpeg_read_packet",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mpjpeg_read_close", cheader_filename="")]
+    [CCode (cname="mpjpeg_read_close",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
     //  .priv_class = mpjpeg_demuxer_class,
-    [CCode (cname="flags", cheader_filename="")]
+
+    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFMT_NOTIMESTAMPS;
+
         }
+
     }
 }
 

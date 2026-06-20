@@ -25,33 +25,75 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class GBlurContext {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
-    float sigma;
-    float sigmaV;
+    [CCode (cname="")]
+    public float sigma;
+
+    [CCode (cname="")]
+    public float sigmaV;
+
+    [CCode (cname="")]
     public int steps;
+
+    [CCode (cname="")]
     public int planes;
 
+    [CCode (cname="")]
     public int depth;
+
+    [CCode (cname="")]
     public int planewidth[4];
+
+    [CCode (cname="")]
     public int planeheight[4];
-    float *buffer;
-    float boundaryscale;
-    float boundaryscaleV;
-    float postscale;
-    float postscaleV;
-    float nu;
-    float nuV;
+
+    [CCode (cname="")]
+    public float[] buffer;
+
+    [CCode (cname="")]
+    public float boundaryscale;
+
+    [CCode (cname="")]
+    public float boundaryscaleV;
+
+    [CCode (cname="")]
+    public float postscale;
+
+    [CCode (cname="")]
+    public float postscaleV;
+
+    [CCode (cname="")]
+    public float nu;
+
+    [CCode (cname="")]
+    public float nuV;
+
+    [CCode (cname="")]
     public int nb_planes;
+
     [CCode (cname="horiz_slice")]
     public void (*horiz_slice)(
-        float *buffer, int width, int height, int steps, float nu, float bscale
+        float[] buffer,
+        int width,
+        int height,
+        int steps,
+        float nu,
+        float bscale
     );
 
 }
 
-public void ff_gblur_init (GBlurContext *s);
-public void ff_gblur_init_x86 (GBlurContext *s);
-#endif
+[CCode (cname="",cheader_filename="")]
+public void ff_gblur_init (
+    GBlurContext *s
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_gblur_init_x86 (
+    GBlurContext *s
+);

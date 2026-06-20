@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileAAC {
     FF_PROFILE_AAC_MAIN,
     FF_PROFILE_AAC_LOW,
@@ -37,7 +37,7 @@ public enum ProfileAAC {
     FF_PROFILE_AAC_LD,
     FF_PROFILE_AAC_ELD,
     FF_PROFILE_MPEG2_AAC_LOW,
-    FF_PROFILE_MPEG2_AAC_HE,
+    FF_PROFILE_MPEG2_AAC_HE;
 }
 
 } // namespace LibAVCodec

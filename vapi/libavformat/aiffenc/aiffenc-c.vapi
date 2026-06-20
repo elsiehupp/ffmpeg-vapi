@@ -21,8 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-#define OFFSET (x) offsetof (AIFFOutputContext, x)
-#define ENC AV_OPT_FLAG_ENCODING_PARAM
+[CCode (cname="",cheader_filename="")]
+public define OFFSET (x) offsetof (AIFFOutputContext, x)
+public define ENC AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
     {
         "write_id3v2",
@@ -43,19 +44,21 @@ static const LibAVUtil.Option options[] = {
         { .i64 = 4}, 3, 4, ENC
     },
     {
-        NULL },
+        NULL };
 }
 
-[CCode (cname="aiff_muxer_class", cheader_filename="")]
+[CCode (cname="aiff_muxer_class",cheader_filename="ffmpeg/libformat/aiffenc.c")]
 public class AIFFMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override string class_name {
         public get {
             return "AIFF muxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -64,86 +67,103 @@ public class AIFFMuxerClass : LibAVUtil.Class {
         );
     }
     //  .option = options,
-    [CCode (cname="version", cheader_filename="")]
+
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct AIFFOutputContext", cheader_filename="")]
+[CCode (cname="struct AIFFOutputContext",cheader_filename="ffmpeg/libformat/aiffenc.c")]
 [Compact]
 public class AIFFMuxerPrivateData { }
 
-[CCode (cname="ff_aiff_muxer", cheader_filename="")]
+[CCode (cname="ff_aiff_muxer",cheader_filename="ffmpeg/libformat/aiffenc.c")]
 public class AIFFMuxer : AVOutputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override string name {
         public get {
             return "aiff";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override string long_name {
         public get {
             return "Audio IFF";
+
         }
+
     }
 
-    [CCode (cname="mime_type", cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override string mime_type {
         public get {
             return "audio/aiff";
+
         }
+
     }
 
-    [CCode (cname="extensions", cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override string extensions {
         public get {
             return "aif,aiff,afc,aifc";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AIFFMuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="audio_codec", cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16BE;
+
         }
+
     }
 
-    [CCode (cname="video_codec", cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.PNG;
+
         }
+
     }
 
-    [CCode (cname="aiff_write_header", cheader_filename="")]
+    [CCode (cname="aiff_write_header",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="aiff_write_packet", cheader_filename="")]
+    [CCode (cname="aiff_write_packet",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="aiff_write_trailer", cheader_filename="")]
+    [CCode (cname="aiff_write_trailer",cheader_filename="ffmpeg/libformat/aiffenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
     //  .codec_tag = (AVCodecTag[]){ ff_codec_aiff_tags, 0 },
-    //  .priv_class = aiff_muxer_class,
+    //  .priv_class = aiff_muxer_class;
 }
 
 } // namespace LibAVFormat

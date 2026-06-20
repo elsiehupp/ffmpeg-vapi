@@ -27,7 +27,7 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_xtea XTEA
 ***********************************************************/
 
-[CCode (cname="public struct AVXTEA", cheader_filename="ffmpeg/libavutil/xtea.h")]
+[CCode (cname="public struct AVXTEA",cheader_filename="ffmpeg/libavutil/xtea.h")]
 [Compact]
 public class XTEAContext {
     [CCode (cname="key")]
@@ -36,7 +36,7 @@ public class XTEAContext {
     /***********************************************************
     @brief Allocate an XTEAContext context.
     ***********************************************************/
-    [CCode (cname="av_xtea_alloc", cheader_filename="ffmpeg/libavutil/xtea.h")]
+    [CCode (cname="av_xtea_alloc",cheader_filename="ffmpeg/libavutil/xtea.h")]
     public XTEAContext av_xtea_alloc ();
 
     /***********************************************************
@@ -46,7 +46,7 @@ public class XTEAContext {
     @param key a key of 16 bytes used for encryption/decryption,
         interpreted as big endian 32 bit numbers
     ***********************************************************/
-    [CCode (cname="av_xtea_init", cheader_filename="ffmpeg/libavutil/xtea.h")]
+    [CCode (cname="av_xtea_init",cheader_filename="ffmpeg/libavutil/xtea.h")]
     public void av_xtea_init (
         XTEAContext xtea_context,
         uint8 key[16]
@@ -59,7 +59,7 @@ public class XTEAContext {
     @param key a key of 16 bytes used for encryption/decryption,
         interpreted as little endian 32 bit numbers
     ***********************************************************/
-    [CCode (cname="av_xtea_le_init", cheader_filename="ffmpeg/libavutil/xtea.h")]
+    [CCode (cname="av_xtea_le_init",cheader_filename="ffmpeg/libavutil/xtea.h")]
     public void av_xtea_le_init (
         XTEAContext xtea_context,
         uint8 key[16]
@@ -76,7 +76,7 @@ public class XTEAContext {
     @param initialization_vector initialization vector for CBC mode, if null then ECB will be used
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_xtea_crypt", cheader_filename="ffmpeg/libavutil/xtea.h")]
+    [CCode (cname="av_xtea_crypt",cheader_filename="ffmpeg/libavutil/xtea.h")]
     public void av_xtea_crypt (
         XTEAContext xtea_context,
         out uint8[] output_buffer,
@@ -97,7 +97,7 @@ public class XTEAContext {
     @param initialization_vector initialization vector for CBC mode, if null then ECB will be used
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_xtea_le_crypt", cheader_filename="ffmpeg/libavutil/xtea.h")]
+    [CCode (cname="av_xtea_le_crypt",cheader_filename="ffmpeg/libavutil/xtea.h")]
     public void av_xtea_le_crypt (
         XTEAContext xtea_context,
         out uint8[] output_buffer,

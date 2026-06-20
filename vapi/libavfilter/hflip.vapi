@@ -19,28 +19,49 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 [Compact]
 public class FlipContext {
-    const AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
+
     /***********************************************************
     max pixel step for each plane, expressed as a number of bytes
     ***********************************************************/
+    [CCode (cname="")]
     public int max_step[4];
+
     /***********************************************************
     width of each plane
     ***********************************************************/
+    [CCode (cname="")]
     public int planewidth[4];
+
     /***********************************************************
     height of each plane
     ***********************************************************/
+    [CCode (cname="")]
     public int planeheight[4];
 
     [CCode (cname="flip_line")]
     public void (*flip_line[4])(
-        const uint8[] src, uint8[] dst, int w
+        uint8[] src,
+        uint8[] dst,
+        int w
     );
 
 }
 
-public int ff_hflip_init (FlipContext *s, int step[4], int nb_planes);
-public void ff_hflip_init_x86 (FlipContext *s, int step[4], int nb_planes);
+[CCode (cname="",cheader_filename="")]
+public int ff_hflip_init (
+    FlipContext *s,
+    int step[4],
+    int nb_planes
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_hflip_init_x86 (
+    FlipContext *s,
+    int step[4],
+    int nb_planes
+);

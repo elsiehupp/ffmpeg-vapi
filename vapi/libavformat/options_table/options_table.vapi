@@ -23,13 +23,15 @@ namespace LibAVFormat {
 
 //  #define OFFSET (x) offsetof (AVFormatContext,x)
 /***********************************************************
+should be NAN but it does not work as it is not a constant
+in glibc as required by ANSI/ISO C
+these names are too long to be readable
 ***********************************************************/
-//  #define DEFAULT 0 // should be NAN but it does not work as it is not a constant in glibc as required by ANSI/ISO C
-//  // these names are too long to be readable
+//  #define DEFAULT 0
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/options_table.h")]
 public const LibAVUtil.Option avformat_options[];
 = {
     {
@@ -236,6 +238,7 @@ public const LibAVUtil.Option avformat_options[];
         "fflags"
     },
 #endif
+
     {
         "fastseek",
         "fast but inaccurate seeks",
@@ -264,6 +267,7 @@ public const LibAVUtil.Option avformat_options[];
         "fflags"
     },
 #endif
+
     {
         "nobuffer",
         "reduce the latency introduced by optional buffering",

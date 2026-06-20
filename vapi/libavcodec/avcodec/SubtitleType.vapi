@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="", cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
 public enum SubtitleType {
     SUBTITLE_NONE,
 
@@ -45,7 +45,7 @@ public enum SubtitleType {
     @brief Formatted text, the ass field must be set by the decoder and is
     authoritative. pict and text fields may contain approximations.
     ***********************************************************/
-    SUBTITLE_ASS,
+    SUBTITLE_ASS;
 }
 
 } // namespace LibAVCodec

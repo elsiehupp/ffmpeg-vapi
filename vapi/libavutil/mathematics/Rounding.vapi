@@ -26,75 +26,85 @@ namespace LibAVUtil {
 Mathematical utilities for working with timestamp and time base.
 ***********************************************************/
 
-//  #if !M_E
+#if !M_E
 /***********************************************************
+e
 ***********************************************************/
-//  #define M_E 2.7182818284590452354 /***********************************************************
-    e
-//  ***********************************************************/
-//  #endif
-//  #if !M_LN2
+[CCode (cname="",cheader_filename="")]
+public const double M_E; // 2.7182818284590452354
+#endif
+
+#if !M_LN2
 /***********************************************************
+log_e 2
 ***********************************************************/
-//  #define M_LN2 0.69314718055994530942 /***********************************************************
-    log_e 2
-//  ***********************************************************/
-//  #endif
-//  #if !M_LN10
+[CCode (cname="",cheader_filename="")]
+public const double M_LN2; // 0.69314718055994530942
+#endif
+
+#if !M_LN10
 /***********************************************************
+log_e 10
 ***********************************************************/
-//  #define M_LN10 2.30258509299404568402 /***********************************************************
-    log_e 10
-//  ***********************************************************/
-//  #endif
-//  #if !M_LOG2_10
+[CCode (cname="",cheader_filename="")]
+public const double M_LN10; // 2.30258509299404568402
+#endif
+
+#if !M_LOG2_10
 /***********************************************************
+log_2 10
 ***********************************************************/
-//  #define M_LOG2_10 3.32192809488736234787 /***********************************************************
-    log_2 10
-//  ***********************************************************/
-//  #endif
-//  #if !M_PHI
+[CCode (cname="",cheader_filename="")]
+public const double M_LOG2_10; // 3.32192809488736234787
+#endif
+
+#if !M_PHI
 /***********************************************************
+phi / golden ratio
 ***********************************************************/
-//  #define M_PHI 1.61803398874989484820 /***********************************************************
-    phi / golden ratio
-//  ***********************************************************/
-//  #endif
-//  #if !M_PI
+[CCode (cname="",cheader_filename="")]
+public const double M_PHI; // 1.61803398874989484820
+#endif
+
+#if !M_PI
 /***********************************************************
+pi
 ***********************************************************/
-//  #define M_PI 3.14159265358979323846 /***********************************************************
-    pi
-//  ***********************************************************/
-//  #endif
-//  #if !M_PI_2
+[CCode (cname="",cheader_filename="")]
+public const double M_PI; // 3.14159265358979323846
+#endif
+
+#if !M_PI_2
 /***********************************************************
+pi/2
 ***********************************************************/
-//  #define M_PI_2 1.57079632679489661923 /***********************************************************
-    pi/2
-//  ***********************************************************/
-//  #endif
-//  #if !M_SQRT1_2
+[CCode (cname="",cheader_filename="")]
+public const double M_PI_2; // 1.57079632679489661923
+#endif
+
+#if !M_SQRT1_2
 /***********************************************************
+1/sqrt (2)
 ***********************************************************/
-//  #define M_SQRT1_2 0.70710678118654752440 /***********************************************************
-    1/sqrt (2)
-//  ***********************************************************/
-//  #endif
-//  #if !M_SQRT2
+[CCode (cname="",cheader_filename="")]
+public const double M_SQRT1_2; // 0.70710678118654752440
+#endif
+
+#if !M_SQRT2
 /***********************************************************
+sqrt (2)
 ***********************************************************/
-//  #define M_SQRT2 1.41421356237309504880 /***********************************************************
-    sqrt (2)
-//  ***********************************************************/
-//  #endif
-//  #if !NAN
-//  #define NAN av_int2float (0x7fc00000)
-//  #endif
-//  #if !INFINITY
-//  #define INFINITY av_int2float (0x7f800000)
-//  #endif
+[CCode (cname="",cheader_filename="")]
+public const double M_SQRT2; // 1.41421356237309504880
+#endif
+
+#if !NAN
+public const double NAN; // av_int2float (0x7fc00000)
+#endif
+
+#if !INFINITY
+public const double INFINITY; // av_int2float (0x7f800000)
+#endif
 
 /***********************************************************
 @addtogroup LibAVUtil.Math
@@ -110,26 +120,31 @@ public enum Rounding {
     ***********************************************************/
     [CCode (cname="AV_ROUND_ZERO")]
     TOWARDS_ZERO,
+
     /***********************************************************
     @brief Round away from zero.
     ***********************************************************/
     [CCode (cname="AV_ROUND_INF")]
     AWAY_FROM_ZERO,
+
     /***********************************************************
     @brief Round toward -infinity.
     ***********************************************************/
     [CCode (cname="AV_ROUND_DOWN")]
     DOWN,
+
     /***********************************************************
     @brief Round toward +infinity.
     ***********************************************************/
     [CCode (cname="AV_ROUND_UP")]
     UP,
+
     /***********************************************************
     @brief Round to nearest and halfway cases away from zero.
     ***********************************************************/
     [CCode (cname="AV_ROUND_NEAR_INF")]
     NEAREST_THEN_AWAY_FROM_ZERO,
+
     /***********************************************************
     @brief Flag telling rescaling functions to pass `INT64_MIN`/`MAX` through
     unchanged, avoiding special cases for #AV_NOPTS_VALUE.
@@ -154,7 +169,7 @@ public enum Rounding {
     @endcode
     ***********************************************************/
     [CCode (cname="AV_ROUND_PASS_MINMAX")]
-    AVOID_SPECIAL_CASE,
+    AVOID_SPECIAL_CASE;
 }
 
 /***********************************************************
@@ -164,10 +179,10 @@ public enum Rounding {
 @return GCD of a and b up to sign; if a >= 0 and b >= 0, return value is >= 0;
 if a == 0 and b == 0, returns 0.
 ***********************************************************/
-[CCode (cname="av_gcd", cheader_filename="ffmpeg/libavutil/mathematics.h")]
+[CCode (cname="av_gcd",cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_gcd (
-    public int64 a,
-    public int64 b
+    int64 a,
+    int64 b
 );
 
 /***********************************************************
@@ -180,11 +195,11 @@ This function is equivalent to av_rescale_rnd () with #Rounding.NEAREST_THEN_AWA
 
 @see @link av_rescale_rnd (), av_rescale_q (), av_rescale_q_rnd ()
 ***********************************************************/
-[CCode (cname="av_rescale", cheader_filename="ffmpeg/libavutil/mathematics.h")]
+[CCode (cname="av_rescale",cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale (
-    public int64 a,
-    public int64 b,
-    public int64 c
+    int64 a,
+    int64 b,
+    int64 c
 ); // av_const;
 
 /***********************************************************
@@ -196,11 +211,11 @@ If the result is not representable then INT64_MIN is returned.
 
 @see @link av_rescale (), av_rescale_q (), av_rescale_q_rnd ()
 ***********************************************************/
-[CCode (cname="av_rescale_rnd", cheader_filename="ffmpeg/libavutil/mathematics.h")]
+[CCode (cname="av_rescale_rnd",cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale_rnd (
-    public int64 a,
-    public int64 b,
-    public int64 c,
+    int64 a,
+    int64 b,
+    int64 c,
     Rounding rnd
 ); // av_const;
 
@@ -213,9 +228,9 @@ This function is equivalent to av_rescale_q_rnd () with #Rounding.NEAREST_THEN_A
 
 @see @link av_rescale (), av_rescale_rnd (), av_rescale_q_rnd ()
 ***********************************************************/
-[CCode (cname="av_rescale_q", cheader_filename="ffmpeg/libavutil/mathematics.h")]
+[CCode (cname="av_rescale_q",cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale_q (
-    public int64 a,
+    int64 a,
     Rational bq,
     Rational cq
 ); // av_const;
@@ -227,9 +242,9 @@ The operation is mathematically equivalent to `a * bq / cq`.
 
 @see @link av_rescale (), av_rescale_rnd (), av_rescale_q ()
 ***********************************************************/
-[CCode (cname="av_rescale_q_rnd", cheader_filename="ffmpeg/libavutil/mathematics.h")]
+[CCode (cname="av_rescale_q_rnd",cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale_q_rnd (
-    public int64 a,
+    int64 a,
     Rational bq,
     Rational cq,
     Rounding rnd
@@ -247,11 +262,11 @@ public int64 av_rescale_q_rnd (
 The result of the function is undefined if one of the timestamps is outside
 the `int64` range when represented in the other's timebase.
 ***********************************************************/
-[CCode (cname="av_compare_ts", cheader_filename="ffmpeg/libavutil/mathematics.h")]
+[CCode (cname="av_compare_ts",cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int av_compare_ts (
-    public int64 ts_a,
+    int64 ts_a,
     Rational tb_a,
-    public int64 ts_b,
+    int64 ts_b,
     Rational tb_b
 );
 
@@ -273,11 +288,11 @@ av_compare_mod (0x11, 0x02, 0x20) > 0 // since 0x11 % 0x20 (0x11) > 0x02 % 0x20 
     - a positive value if `a % mod > b % mod`
     - zero if `a % mod == b % mod`
 ***********************************************************/
-[CCode (cname="av_compare_mod", cheader_filename="ffmpeg/libavutil/mathematics.h")]
+[CCode (cname="av_compare_mod",cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_compare_mod (
-    public uint64 a,
-    public uint64 b,
-    public uint64 mod
+    uint64 a,
+    uint64 b,
+    uint64 mod
 );
 
 /***********************************************************
@@ -305,12 +320,12 @@ initialized to #AV_NOPTS_VALUE.
 @note In the context of this function, "duration" is in term of samples, not
       seconds.
 ***********************************************************/
-[CCode (cname="av_rescale_delta", cheader_filename="ffmpeg/libavutil/mathematics.h")]
+[CCode (cname="av_rescale_delta",cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_rescale_delta (
     Rational in_tb,
-    public int64 in_ts,
+    int64 in_ts,
     Rational fs_tb,
-    public int duration,
+    int duration,
     out int64 last,
     Rational out_tb
 );
@@ -326,12 +341,12 @@ no accumulation of rounding errors occurs.
 @param[in] inc Value to be added
 @param[in] inc_tb Time base of `inc`
 ***********************************************************/
-[CCode (cname="av_add_stable", cheader_filename="ffmpeg/libavutil/mathematics.h")]
+[CCode (cname="av_add_stable",cheader_filename="ffmpeg/libavutil/mathematics.h")]
 public int64 av_add_stable (
     Rational ts_tb,
-    public int64 ts,
+    int64 ts,
     Rational inc_tb,
-    public int64 inc
+    int64 inc
 );
 
 } // namespace LibAVUtil

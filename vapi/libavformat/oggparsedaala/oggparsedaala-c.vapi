@@ -23,35 +23,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_daala_codec", cheader_filename="")]
+[CCode (cname="ff_daala_codec",cheader_filename="")]
 public class DaalaCodec : OggCodec {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="")]
     public override uint8[] name {
         public get {
             return "Daala".data;
+
         }
+
     }
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="")]
     public override uint8[] magic {
         public get {
             return "200daala".data;
+
         }
+
     }
     //  .magicsize = 6,
-    [CCode (cname="daala_header", cheader_filename="")]
+
+    [CCode (cname="daala_header",cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="daala_packet", cheader_filename="")]
+    [CCode (cname="daala_packet",cheader_filename="")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="daala_gptopts", cheader_filename="")]
+    [CCode (cname="daala_gptopts",cheader_filename="")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,
@@ -59,7 +64,7 @@ public class DaalaCodec : OggCodec {
         out int64 dts
     );
     //  .granule_is_start = 1,
-    //  .nb_header = 3,
+    //  .nb_header = 3;
 }
 
 } // namespace LibAVFormat

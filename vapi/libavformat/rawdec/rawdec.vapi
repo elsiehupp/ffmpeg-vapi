@@ -22,75 +22,75 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct FFRawVideoDemuxerContext", cheader_filename="")]
+[CCode (cname="struct FFRawVideoDemuxerContext",cheader_filename="ffmpeg/libformat/rawdec.h")]
 [Compact]
 public class FFRawVideoDemuxerContext {
     /***********************************************************
     @brief Class for private options.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
     public LibAVUtil.Class class;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
     public int raw_packet_size;
 
     /***********************************************************
     @brief String describing video size, set by a private option.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
     public string video_size;
 
     /***********************************************************
     @brief Set by a private option.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
     public string pixel_format;
 
     /***********************************************************
     @brief LibAVUtil.Rational describing framerate, set by a private option.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
     public LibAVUtil.Rational framerate;
 }
 
-[CCode (cname="struct FFRawDemuxerContext", cheader_filename="")]
+[CCode (cname="struct FFRawDemuxerContext",cheader_filename="ffmpeg/libformat/rawdec.h")]
 [Compact]
 public class FFRawDemuxerContext {
     /***********************************************************
     @brief Class for private options.
     ***********************************************************/
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
     public LibAVUtil.Class class;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
     public int raw_packet_size;
 }
 
 //  extern const LibAVUtil.Option ff_rawvideo_options[];
 //  extern const LibAVUtil.Option ff_raw_options[];
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
 public int ff_raw_read_partial_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
 public int ff_raw_audio_read_header (
     AVFormatContext format_context
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
 public int ff_raw_video_read_header (
     AVFormatContext format_context
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
 public int ff_raw_subtitle_read_header (
     AVFormatContext format_context
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/rawdec.h")]
 public int ff_raw_data_read_header (
     AVFormatContext format_context
 );

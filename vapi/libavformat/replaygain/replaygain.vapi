@@ -21,7 +21,7 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Parse replaygain tags and export them as per-stream side data.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/replaygain.h")]
 public int ff_replaygain_export (
     AVStream st,
     LibAVUtil.Dictionary metadata
@@ -31,12 +31,12 @@ public int ff_replaygain_export (
 /***********************************************************
 @brief Export already decoded replaygain values as per-stream side data.
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/replaygain.h")]
 public int ff_replaygain_export_raw (
     AVStream st,
-    public int32 tg,
+    int32 tg,
     uint32 tp,
-    public int32 ag,
+    int32 ag,
     uint32 ap
 );
 

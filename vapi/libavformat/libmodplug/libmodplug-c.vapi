@@ -23,16 +23,18 @@ namespace LibAVFormat {
 @todo better probing than extensions matching
 ***********************************************************/
 
-[CCode (cname="modplug_class", cheader_filename="")]
+[CCode (cname="modplug_class",cheader_filename="ffmpeg/libformat/libmodplug.c")]
 public class LibModPlugDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name", cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override string class_name {
         public get {
             return "ModPlug demuxer";
+
         }
+
     }
 
-    [CCode (cname="item_name", cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -41,66 +43,74 @@ public class LibModPlugDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options", cheader_filename="")]
+    [CCode (cname="options",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version", cheader_filename="")]
+    [CCode (cname="version",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
+
         }
+
     }
 }
 
-[CCode (cname="struct ModPlugContext", cheader_filename="")]
+[CCode (cname="struct ModPlugContext",cheader_filename="ffmpeg/libformat/libmodplug.c")]
 [Compact]
 public class LibModPlugDemuxerPrivateData { }
 
-[CCode (cname="ff_libmodplug_demuxer", cheader_filename="")]
+[CCode (cname="ff_libmodplug_demuxer",cheader_filename="ffmpeg/libformat/libmodplug.c")]
 public class LibModPlugDemuxer : AVInputFormat {
-    [CCode (cname="name", cheader_filename="")]
+    [CCode (cname="name",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override string name {
         public get {
             return "libmodplug";
+
         }
+
     }
 
-    [CCode (cname="long_name", cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override string long_name {
         public get {
             return "ModPlug demuxer";
+
         }
+
     }
 
-    [CCode (cname="priv_data_size", cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LibModPlugDemuxerPrivateData);
+
         }
+
     }
 
-    [CCode (cname="modplug_probe", cheader_filename="")]
+    [CCode (cname="modplug_probe",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="modplug_read_header", cheader_filename="")]
+    [CCode (cname="modplug_read_header",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="modplug_read_packet", cheader_filename="")]
+    [CCode (cname="modplug_read_packet",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="modplug_read_close", cheader_filename="")]
+    [CCode (cname="modplug_read_close",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="modplug_read_seek", cheader_filename="")]
+    [CCode (cname="modplug_read_seek",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -108,11 +118,11 @@ public class LibModPlugDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="modplug_extensions", cheader_filename="")]
+    [CCode (cname="modplug_extensions",cheader_filename="ffmpeg/libformat/libmodplug.c")]
     public override string extensions {
         public get;
     }
-    //  .priv_class = modplug_class,
+    //  .priv_class = modplug_class;
 }
 
 } // namespace LibAVFormat

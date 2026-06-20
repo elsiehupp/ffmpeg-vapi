@@ -26,22 +26,22 @@ namespace LibAVFormat {
 @file internal header for VPx codec configuration utilities.
 ***********************************************************/
 
-[CCode (cname="struct VPCC", cheader_filename="")]
+[CCode (cname="struct VPCC",cheader_filename="ffmpeg/libformat/vpcc.h")]
 [Compact]
 public class VPCC {
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/vpcc.h")]
     public int profile;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/vpcc.h")]
     public int level;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/vpcc.h")]
     public int bitdepth;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/vpcc.h")]
     public int chroma_subsampling;
 
-    [CCode (cname="", cheader_filename="")]
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/vpcc.h")]
     public int full_range_flag;
 }
 
@@ -54,14 +54,14 @@ public class VPCC {
 @return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
         code in case of failure
 ***********************************************************/
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/vpcc.h")]
 public int ff_isom_write_vpcc (
     AVFormatContext format_context,
     AVIOContext pb,
     LibAVCodec.CodecParameters par
 );
 
-[CCode (cname="", cheader_filename="")]
+[CCode (cname="",cheader_filename="ffmpeg/libformat/vpcc.h")]
 public int ff_isom_get_vpcc_features (
     AVFormatContext format_context,
     LibAVCodec.CodecParameters par,
