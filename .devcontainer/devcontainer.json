@@ -24,13 +24,16 @@
             "settings": {
                 "editor.detectIndentation": false,
                 "editor.insertSpaces": true,
+                "files.exclude" : {
+                    "/tmp/*" : true,
+                    "subprojects/ffmpeg/**" : true,
+                    "**/.cache/**" : true
+                },
                 "editor.tabSize": 4,
                 "git.alwaysSignOff": true,
+                "mesonbuild.configureOnOpen": true,
                 "vala.debugMode": true,
-                "vala.languageServerPath": "/usr/bin/vala-language-server",
-                "files.exclude" : {
-                    "/tmp/*" : true
-                }
+                "vala.languageServerPath": "/usr/bin/vala-language-server"
             },
             "extensions": [
                 "prince781.vala",
