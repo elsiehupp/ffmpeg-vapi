@@ -16,10 +16,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/oss.h")]
 public const size_t OSS_AUDIO_BLOCK_SIZE; // 4096
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/oss.h")]
 [Compact]
 public class OSSAudioData {
     [CCode (cname="")]
@@ -53,14 +53,14 @@ public class OSSAudioData {
     public int buffer_ptr;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/oss.h")]
 public int ff_oss_audio_open (
     AVFormatContext? s1,
     int is_output,
     string audio_device
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/oss.h")]
 public int ff_oss_audio_close (
     OSSAudioData? s
 );

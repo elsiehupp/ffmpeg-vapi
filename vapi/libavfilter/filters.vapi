@@ -26,7 +26,7 @@ public enum FooBar {
     /***********************************************************
     Special return code when activate () did not do anything.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
     FFERROR_NOT_READY;
     //  FFERRTAG (
     //      'N',
@@ -47,7 +47,7 @@ perform one more round of processing later.
 It is also useful for filters reacting to external or asynchronous
 events.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public void ff_filter_set_ready (
     AVFilterContext? filter,
     uint priority
@@ -58,7 +58,7 @@ Process the commands queued in the link up to the time of the frame.
 Commands will trigger the process_command () callback.
 @return  >= 0 or AVERROR code.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_process_commands (
     AVFilterLink? link,
     AVFrame? frame
@@ -70,7 +70,7 @@ of the frame.
 @return  >0 if enabled, 0 if disabled
 @note  It does not update link->dst->is_disabled.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_evaluate_timeline_at_frame (
     AVFilterLink? link,
     AVFrame? frame
@@ -80,7 +80,7 @@ public int ff_inlink_evaluate_timeline_at_frame (
 Get the number of frames available on the link.
 @return the number of frames available in the link fifo.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public size_t ff_inlink_queued_frames (
     AVFilterLink? link
 );
@@ -89,7 +89,7 @@ public size_t ff_inlink_queued_frames (
 Test if a frame is available on the link.
 @return  >0 if a frame is available
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_check_available_frame (
     AVFilterLink? link
 );
@@ -100,7 +100,7 @@ Get the number of samples available on the link.
 
 @return the numer of samples available on the link.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_queued_samples (
     AVFilterLink? link
 );
@@ -110,7 +110,7 @@ Test if enough samples are available on the link.
 @return  >0 if enough samples are available
 @note  on EOF and error, min becomes 1
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_check_available_samples (
     AVFilterLink? link,
     uint min
@@ -128,7 +128,7 @@ ff_inlink_consume_frame (). Negative error codes must still be checked.
          0 and set rframe to NULL if no frame available,
          or AVERROR code
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_consume_frame (
     AVFilterLink? link,
     out AVFrame[] rframe
@@ -146,7 +146,7 @@ ff_inlink_consume_samples (). Negative error codes must still be checked.
          0 and set rframe to NULL if no frame available,
          or AVERROR code
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_consume_samples (
     AVFilterLink? link,
     uint min,
@@ -159,7 +159,7 @@ Access a frame in the link fifo without consuming it.
 The first frame is numbered 0; the designated frame must exist.
 @return the frame at idx position in the link fifo.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public AVFrame? ff_inlink_peek_frame (
     AVFilterLink? link,
     size_t idx
@@ -170,7 +170,7 @@ Make sure a frame is writable.
 This is similar to av_frame_make_writable () except it uses the link's
 buffer allocation callback, and therefore allows direct rendering.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_make_frame_writable (
     AVFilterLink? link,
     out AVFrame[] rframe
@@ -197,7 +197,7 @@ need to call that since the same treatment happens in ff_filter_frame ().
 @param[out] rpts     current timestamp of the link in link time base
 @return  >0 if status changed, <0 if status already acked, 0 otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_acknowledge_status (
     AVFilterLink? link,
     out int rstatus,
@@ -210,7 +210,7 @@ Unlike ff_filter_frame (), it must not be called when the link has a
 non-zero status, and thus does not acknowledge it.
 Also it cannot fail.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public void ff_inlink_request_frame (
     AVFilterLink? link
 );
@@ -219,7 +219,7 @@ public void ff_inlink_request_frame (
 Set the status on an input link.
 Also discard all frames in the link's FIFO.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public void ff_inlink_set_status (
     AVFilterLink? link,
     int status
@@ -228,7 +228,7 @@ public void ff_inlink_set_status (
 /***********************************************************
 Test if a frame is wanted on an output link.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public static inline int ff_outlink_frame_wanted (
     AVFilterLink? link
 );
@@ -239,7 +239,7 @@ public static inline int ff_outlink_frame_wanted (
 /***********************************************************
 Get the status on an output link.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_outlink_get_status (
     AVFilterLink? link
 );
@@ -251,7 +251,7 @@ in link time base and relative to the frames timeline.
 In particular, for AVERROR_EOF, it should reflect the
 end time of the last frame.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public static inline void ff_outlink_set_status (
     AVFilterLink? link,
     int status,
@@ -270,7 +270,7 @@ Forward the status on an output link to an input link.
 If the status is set, it will discard all queued frames and this macro
 will return immediately.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public define FF_FILTER_FORWARD_STATUS_BACK (
     void *outlink,
     void *inlink
@@ -288,7 +288,7 @@ Forward the status on an output link to all input links.
 If the status is set, it will discard all queued frames and this macro
 will return immediately.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public define FF_FILTER_FORWARD_STATUS_BACK_ALL (
     void *outlink,
     void *filter
@@ -307,7 +307,7 @@ public define FF_FILTER_FORWARD_STATUS_BACK_ALL (
 Acknowledge the status on an input link and forward it to an output link.
 If the status is set, this macro will return immediately.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public define FF_FILTER_FORWARD_STATUS (
     void *inlink,
     void *outlink
@@ -325,7 +325,7 @@ public define FF_FILTER_FORWARD_STATUS (
 Acknowledge the status on an input link and forward it to an output link.
 If the status is set, this macro will return immediately.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public define FF_FILTER_FORWARD_STATUS_ALL (
     void *inlink,
     void *filter
@@ -345,7 +345,7 @@ public define FF_FILTER_FORWARD_STATUS_ALL (
 Forward the frame_wanted_out flag from an output link to an input link.
 If the flag is set, this macro will return immediately.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public define FF_FILTER_FORWARD_WANTED (
     void *outlink,
     void *inlink

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="enum ASFDataType",cheader_filename="ffmpeg/libformat/asf.h")]
+[CCode (cname="enum ASFDataType",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
 public enum ASFDataType {
     ASF_UNICODE,
     ASF_BYTE_ARRAY,
@@ -32,7 +32,7 @@ public enum ASFDataType {
     ASF_GUID;
 }
 
-[CCode (cname="struct ASFMainHeader",cheader_filename="ffmpeg/libformat/asf.h")]
+[CCode (cname="struct ASFMainHeader",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
 [Compact]
 public class ASFMainHeader {
     /***********************************************************
@@ -107,7 +107,7 @@ public class ASFMainHeader {
 }
 
 
-[CCode (cname="struct ASFIndex",cheader_filename="ffmpeg/libformat/asf.h")]
+[CCode (cname="struct ASFIndex",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
 [Compact]
 public class ASFIndex {
     uint32 packet_number;
@@ -157,10 +157,10 @@ public class ASFIndex {
 
 //  extern const AVMetadataConv ff_asf_metadata_conv[];
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
 [Flags]
 public enum ASFPacketFlags {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PACKET_FLAG_ERROR_CORRECTION_PRESENT; // 1000 0000
 }
 
@@ -184,84 +184,84 @@ public enum ASFPacketFlags {
 /***********************************************************
 @brief PPI_FLAG - Payload parsing information flags
 ***********************************************************/
-[CCode (cprefix="",cheader_filename="ffmpeg/libformat/asf.h")]
+[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
 public enum ASFPayloadParsingFlags {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_MULTIPLE_PAYLOADS_PRESENT,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_SEQUENCE_FIELD_IS_BYTE, // 0000 0010
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_SEQUENCE_FIELD_IS_WORD, // 0000 0100
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_SEQUENCE_FIELD_IS_DWORD, // 0000 0110
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_MASK_SEQUENCE_FIELD_SIZE, // 0000 0110
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_PADDING_LENGTH_FIELD_IS_BYTE, // 0000 1000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_PADDING_LENGTH_FIELD_IS_WORD, // 0001 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_PADDING_LENGTH_FIELD_IS_DWORD, // 0001 1000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_MASK_PADDING_LENGTH_FIELD_SIZE, // 0001 1000
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_PACKET_LENGTH_FIELD_IS_BYTE, // 0010 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_PACKET_LENGTH_FIELD_IS_WORD, // 0100 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_FLAG_PACKET_LENGTH_FIELD_IS_DWORD, // 0110 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PPI_MASK_PACKET_LENGTH_FIELD_SIZE, // 0110 0000
 }
 
 /***********************************************************
 @brief PL_FLAG - Payload flags
 ***********************************************************/
-[CCode (cprefix="",cheader_filename="ffmpeg/libformat/asf.h")]
+[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
 public enum ASFPayloadFlags {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_REPLICATED_DATA_LENGTH_FIELD_IS_BYTE, // 0000 0001
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_REPLICATED_DATA_LENGTH_FIELD_IS_WORD, // 0000 0010
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_REPLICATED_DATA_LENGTH_FIELD_IS_DWORD, // 0000 0011
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_MASK_REPLICATED_DATA_LENGTH_FIELD_SIZE, // 0000 0011
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_OFFSET_INTO_MEDIA_OBJECT_LENGTH_FIELD_IS_BYTE, // 0000 0100
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_OFFSET_INTO_MEDIA_OBJECT_LENGTH_FIELD_IS_WORD, // 0000 1000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_OFFSET_INTO_MEDIA_OBJECT_LENGTH_FIELD_IS_DWORD, // 0000 1100
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_MASK_OFFSET_INTO_MEDIA_OBJECT_LENGTH_FIELD_SIZE, // 0000 1100
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_MEDIA_OBJECT_NUMBER_LENGTH_FIELD_IS_BYTE, // 0001 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_MEDIA_OBJECT_NUMBER_LENGTH_FIELD_IS_WORD, // 0010 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_MEDIA_OBJECT_NUMBER_LENGTH_FIELD_IS_DWORD, // 0011 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_MASK_MEDIA_OBJECT_NUMBER_LENGTH_FIELD_SIZE, // 0011 0000
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_STREAM_NUMBER_LENGTH_FIELD_IS_BYTE, // 0100 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_MASK_STREAM_NUMBER_LENGTH_FIELD_SIZE, // 1100 0000
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_PAYLOAD_LENGTH_FIELD_IS_BYTE, // 0100 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_PAYLOAD_LENGTH_FIELD_IS_WORD, // 1000 0000
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_MASK_PAYLOAD_LENGTH_FIELD_SIZE, // 1100 0000
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/asf.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
     ASF_PL_FLAG_KEY_FRAME; // 1000 0000
 }
 

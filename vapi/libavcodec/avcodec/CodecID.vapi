@@ -41,7 +41,7 @@ If you add a codec ID to this list, add it so that
 After adding new codec IDs, do not forget to add an entry to the codec
 descriptor list and bump LibAVCodec minor version.
 ***********************************************************/
-[CCode (cname="AVCodecID", cprefix="AV_CODEC_ID_",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="AVCodecID", cprefix="AV_CODEC_ID_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum CodecID {
     NONE,
 
@@ -609,7 +609,7 @@ public enum CodecID {
     /***********************************************************
     @brief Get the type of the given codec.
     ***********************************************************/
-    [CCode (cname="avcodec_get_type",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_get_type",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static LibAVUtil.MediaType avcodec_get_type (
         CodecID codec_id
     );
@@ -618,7 +618,7 @@ public enum CodecID {
     @brief Get the name of a codec.
     @return a static string identifying the codec; never null
     ***********************************************************/
-    [CCode (cname="avcodec_get_name",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_get_name",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static string avcodec_get_name (
         CodecID id
     );
@@ -634,7 +634,7 @@ public enum CodecID {
         supported by a specific decoder or encoder implementation, this
         function searches the list of profiles from the CodecDescriptor
     ***********************************************************/
-    [CCode (cname="avcodec_profile_name",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_profile_name",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static string avcodec_profile_name (
         CodecID codec_id,
         int profile
@@ -646,7 +646,7 @@ public enum CodecID {
     @param[in] codec_id the codec
     @return Number of bits per sample or zero if unknown for the given codec.
     ***********************************************************/
-    [CCode (cname="av_get_bits_per_sample",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_get_bits_per_sample",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static int av_get_bits_per_sample (
         CodecID codec_id
     );
@@ -659,7 +659,7 @@ public enum CodecID {
     @param[in] codec_id the codec
     @return Number of bits per sample or zero if unknown for the given codec.
     ***********************************************************/
-    [CCode (cname="av_get_exact_bits_per_sample",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_get_exact_bits_per_sample",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static int av_get_exact_bits_per_sample (
         CodecID codec_id
     );

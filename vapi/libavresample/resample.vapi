@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/resample.h")]
 [Compact]
 public class ResampleContext {
     [CCode (cname="")]
@@ -123,7 +123,7 @@ ResampleContext.
 @param avr  AVAudioResampleContext
 @return     newly-allocated ResampleContext
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/resample.h")]
 public ResampleContext? ff_audio_resample_init (
     AVAudioResampleContext? avr
 );
@@ -133,7 +133,7 @@ Free a ResampleContext.
 
 @param resample_context  ResampleContext
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/resample.h")]
 public void ff_audio_resample_free (
     ResampleContext **resample_context
 );
@@ -157,7 +157,7 @@ destination data buffers.
 @param src       source audio data
 @return          0 on success, negative AVERROR code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/resample.h")]
 public int ff_audio_resample (
     ResampleContext? resample_context,
     AudioData? dst,

@@ -47,7 +47,7 @@ and rendering (API calls) are done as part of the VDPAU
 presentation (vo_vdpau.c) module.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
 public delegate int AVVDPAU_Render2 (
     CodecContext codec_context,
     LibAVUtil.Frame frame,
@@ -70,7 +70,7 @@ The size of this structure is not a part of the public ABI and must not
 be used outside of Use av_vdpau_alloc_context () to allocate an
 VdpContext.
 ***********************************************************/
-[CCode (cname="struct AVVDPAUContext",cheader_filename="ffmpeg/libavcodec/vdpau.h")]
+[CCode (cname="struct AVVDPAUContext",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
 [Compact]
 public class VdpContext {
     /***********************************************************
@@ -97,15 +97,15 @@ public class VdpContext {
 
     Allows extending the struct without breaking API/ABI
     ***********************************************************/
-    [CCode (cname="av_alloc_vdpaucontext",cheader_filename="ffmpeg/libavcodec/vdpau.h")]
+    [CCode (cname="av_alloc_vdpaucontext",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
     public VdpContext av_alloc_vdpaucontext ();
 
-    [CCode (cname="av_vdpau_hwaccel_get_render2",cheader_filename="ffmpeg/libavcodec/vdpau.h")]
+    [CCode (cname="av_vdpau_hwaccel_get_render2",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
     public AVVDPAU_Render2 av_vdpau_hwaccel_get_render2 (
         VdpContext vdp_context
     );
 
-    [CCode (cname="av_vdpau_hwaccel_set_render2",cheader_filename="ffmpeg/libavcodec/vdpau.h")]
+    [CCode (cname="av_vdpau_hwaccel_set_render2",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
     public void av_vdpau_hwaccel_set_render2 (
         VdpContext vdp_context,
         AVVDPAU_Render2 render
@@ -128,7 +128,7 @@ public class VdpContext {
 
     @return 0 on success, an LibAVUtil.ErrorCode code on failure.
     ***********************************************************/
-    [CCode (cname="av_vdpau_bind_context",cheader_filename="ffmpeg/libavcodec/vdpau.h")]
+    [CCode (cname="av_vdpau_bind_context",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
     public int av_vdpau_bind_context (
         CodecContext avctx,
         VdpDevice device,
@@ -153,7 +153,7 @@ public class VdpContext {
 
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure.
     ***********************************************************/
-    [CCode (cname="av_vdpau_get_surface_parameters",cheader_filename="ffmpeg/libavcodec/vdpau.h")]
+    [CCode (cname="av_vdpau_get_surface_parameters",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
     public int av_vdpau_get_surface_parameters (
         CodecContext avctx,
         VdpChromaType type,
@@ -166,7 +166,7 @@ public class VdpContext {
 
     @return Newly-allocated VdpContext or null on failure.
     ***********************************************************/
-    [CCode (cname="av_vdpau_alloc_context",cheader_filename="ffmpeg/libavcodec/vdpau.h")]
+    [CCode (cname="av_vdpau_alloc_context",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
     public VdpContext av_vdpau_alloc_context ();
 }
 

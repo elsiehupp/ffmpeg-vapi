@@ -23,11 +23,11 @@ Frame pool. This structure is opaque and not meant to be accessed
 directly. It is allocated with ff_frame_pool_init () and freed with
 ff_frame_pool_uninit ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 [Compact]
 public class FFFramePool  { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 public delegate AVBufferRef AllocDelegate (
     int size
 );
@@ -44,7 +44,7 @@ the pool is empty. May be NULL, then the default allocator will be used
 @param align buffers alignement of each frame in this pool
 @return newly created video frame pool on success, NULL on error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 public FFFramePool? ff_frame_pool_video_init (
     AllocDelegate alloc,
     int width,
@@ -65,7 +65,7 @@ the pool is empty. May be NULL, then the default allocator will be used
 @param align buffers alignement of each frame in this pool
 @return newly created audio frame pool on success, NULL on error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 public FFFramePool? ff_frame_pool_audio_init (
     AllocDelegate alloc,
     int channels,
@@ -80,7 +80,7 @@ some of the allocated frame are still in use.
 
 @param pool pointer to the frame pool to be freed. It will be set to NULL.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 public void ff_frame_pool_uninit (
     FFFramePool **pool
 );
@@ -94,7 +94,7 @@ Get the video frame pool configuration.
 @param align buffers alignement of each frame in this pool
 @return 0 on success, a negative AVERROR otherwise.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 public int ff_frame_pool_get_video_config (
     FFFramePool? pool,
     out int width,
@@ -112,7 +112,7 @@ Get the audio frame pool configuration.
 @param align buffers alignement of each frame in this pool
 @return 0 on success, a negative AVERROR otherwise.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 public int ff_frame_pool_get_audio_config (
     FFFramePool? pool,
     out int channels,
@@ -127,7 +127,7 @@ This function may be called simultaneously from multiple threads.
 
 @return a new AVFrame on success, NULL on error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 public AVFrame? ff_frame_pool_get (
     FFFramePool? pool
 );

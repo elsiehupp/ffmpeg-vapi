@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transpose.h")]
 public enum PassthroughType {
     [CCode (cname="")]
     TRANSPOSE_PT_TYPE_NONE,
@@ -28,7 +28,7 @@ public enum PassthroughType {
     TRANSPOSE_PT_TYPE_PORTRAIT;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transpose.h")]
 public enum TransposeDir {
     [CCode (cname="")]
     TRANSPOSE_CCLOCK_FLIP,

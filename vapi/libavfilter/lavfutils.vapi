@@ -31,7 +31,7 @@ Load image from filename and put the resulting image in data.
 @param log_ctx log context
 @return >= 0 in case of success, a negative error code otherwise.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="ff_load_image",cheader_filename="subprojects/ffmpeg/libavfilter/lavfutils.h")]
 public int ff_load_image (
     uint8[] data[4],
     int linesize[4],

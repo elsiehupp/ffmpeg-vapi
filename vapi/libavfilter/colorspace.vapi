@@ -17,10 +17,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public const float REFERENCE_WHITE; // 100.0f
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 [Compact]
 public class LumaCoefficients {
     [CCode (cname="")]
@@ -33,7 +33,7 @@ public class LumaCoefficients {
     public double cb;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 [Compact]
 public class PrimaryCoefficients {
     [CCode (cname="")]
@@ -55,7 +55,7 @@ public class PrimaryCoefficients {
     public double yb;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 [Compact]
 public class WhitepointCoefficients {
     [CCode (cname="")]
@@ -65,43 +65,43 @@ public class WhitepointCoefficients {
     public double yw;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public void ff_matrix_invert_3x3 (
     double in[3][3],
     double out[3][3]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public void ff_matrix_mul_3x3 (
     double dst[3][3],
     double src1[3][3],
     double src2[3][3]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public void ff_fill_rgb2xyz_table (
     PrimaryCoefficients? coeffs,
     WhitepointCoefficients? wp,
     double rgb2xyz[3][3]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public LumaCoefficients? ff_get_luma_coefficients (
     AVColorSpace csp
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public void ff_fill_rgb2yuv_table (
     LumaCoefficients? coeffs,
     double rgb2yuv[3][3]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public double ff_determine_signal_peak (
     AVFrame? in
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public void ff_update_hdr_metadata (
     AVFrame? in,
     double peak

@@ -19,10 +19,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public const bool DSHOWDEBUG; // 0
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public define COBJMACROS
 public define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -37,35 +37,35 @@ EC_DEVICE_LOST is not defined in MinGW dshow headers.
 public const int EC_DEVICE_LOST; // 0x1f
 #endif
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long ff_copy_dshow_media_type (
     AM_MEDIA_TYPE? dst,
     AM_MEDIA_TYPE? src
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void ff_print_VIDEO_STREAM_CONFIG_CAPS (
     VIDEO_STREAM_CONFIG_CAPS? caps
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void ff_print_AUDIO_STREAM_CONFIG_CAPS (
     AUDIO_STREAM_CONFIG_CAPS? caps
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void ff_print_AM_MEDIA_TYPE (
     AM_MEDIA_TYPE? type
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void ff_printGUID (
     GUID? g
 );
 
 //  extern const AVClass? ff_dshow_context_class_ptr;
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public define dshowdebug (
     ...
 );
@@ -76,14 +76,14 @@ public define dshowdebug (
 //      );
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public static inline void nothing (
     void *foo
 );
 //  {
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class GUIDoffset {
     [CCode (cname="")]
@@ -93,7 +93,7 @@ public class GUIDoffset {
     public int offset;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public enum dshowDeviceType {
     [CCode (cname="")]
     VideoDevice = 0,
@@ -102,7 +102,7 @@ public enum dshowDeviceType {
     AudioDevice = 1;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public enum dshowSourceFilterType {
     [CCode (cname="")]
     VideoSourceDevice = 0,
@@ -111,7 +111,7 @@ public enum dshowSourceFilterType {
     AudioSourceDevice = 1;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public define DECLARE_QUERYINTERFACE (
     void *class,
     ...
@@ -142,7 +142,7 @@ public define DECLARE_QUERYINTERFACE (
 
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public define DECLARE_ADDREF (
     void *class
 );
@@ -156,7 +156,7 @@ public define DECLARE_ADDREF (
 
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public define DECLARE_RELEASE (
     void *class
 );
@@ -173,7 +173,7 @@ public define DECLARE_RELEASE (
 
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public define DECLARE_DESTROY (
     void *class,
     void *func
@@ -192,7 +192,7 @@ public define DECLARE_DESTROY (
 
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public define DECLARE_CREATE (
     void *class,
     void *setup,
@@ -222,7 +222,7 @@ public define DECLARE_CREATE (
 
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public define SETVTBL (
     void *vtbl,
     void *class,
@@ -235,30 +235,30 @@ public define SETVTBL (
 /*****************************************************************************
 Forward Declarations
 ****************************************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVPin { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVMemInputPin { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVEnumPins { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVEnumMediaTypes { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVFilter { }
 
 /*****************************************************************************
 libAVPin
 ****************************************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVPin {
     [CCode (cname="")]
@@ -280,107 +280,107 @@ public class libAVPin {
     public IMemInputPinVtbl? imemvtbl;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_QueryInterface (
     libAVPin *,
     GUID *,
     void **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVPin_AddRef (
     libAVPin *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVPin_Release (
     libAVPin *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_Connect (
     libAVPin *,
     IPin *,
     AM_MEDIA_TYPE *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_ReceiveConnection (
     libAVPin *,
     IPin *,
     AM_MEDIA_TYPE *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_Disconnect (
     libAVPin *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_ConnectedTo (
     libAVPin *,
     IPin **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_ConnectionMediaType (
     libAVPin *,
     AM_MEDIA_TYPE *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_QueryPinInfo (
     libAVPin *,
     PIN_INFO *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_QueryDirection (
     libAVPin *,
     PIN_DIRECTION *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_QueryId (
     libAVPin *,
     wchar_t **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_QueryAccept (
     libAVPin *,
     AM_MEDIA_TYPE *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_EnumMediaTypes (
     libAVPin *,
     IEnumMediaTypes **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_QueryInternalConnections (
     libAVPin *,
     IPin **,
     ulong *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_EndOfStream (
     libAVPin *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_BeginFlush (
     libAVPin *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_EndFlush (
     libAVPin *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVPin_NewSegment (
     libAVPin *,
     REFERENCE_TIME,
@@ -388,49 +388,49 @@ public long WINAPI libAVPin_NewSegment (
     double
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVMemInputPin_QueryInterface (
     libAVMemInputPin *,
     GUID *,
     void **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVMemInputPin_AddRef (
     libAVMemInputPin *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVMemInputPin_Release (
     libAVMemInputPin *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVMemInputPin_GetAllocator (
     libAVMemInputPin *,
     IMemAllocator **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVMemInputPin_NotifyAllocator (
     libAVMemInputPin *,
     IMemAllocator *,
     BOOL
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVMemInputPin_GetAllocatorRequirements (
     libAVMemInputPin *,
     ALLOCATOR_PROPERTIES *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVMemInputPin_Receive (
     libAVMemInputPin *,
     IMediaSample *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVMemInputPin_ReceiveMultiple (
     libAVMemInputPin *,
     IMediaSample **,
@@ -438,23 +438,23 @@ public long WINAPI libAVMemInputPin_ReceiveMultiple (
     long *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVMemInputPin_ReceiveCanBlock (
     libAVMemInputPin *
 );
 
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void libAVPin_Destroy (
     libAVPin *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public libAVPin? libAVPin_Create (
     libAVFilter? filter
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void libAVMemInputPin_Destroy (
     libAVMemInputPin *
 );
@@ -463,7 +463,7 @@ public void libAVMemInputPin_Destroy (
 /*****************************************************************************
 libAVEnumPins
  ****************************************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVEnumPins {
     [CCode (cname="")]
@@ -482,24 +482,24 @@ public class libAVEnumPins {
     public libAVFilter? filter;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumPins_QueryInterface (
     libAVEnumPins *,
     GUID *,
     void **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVEnumPins_AddRef (
     libAVEnumPins *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVEnumPins_Release (
     libAVEnumPins *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumPins_Next (
     libAVEnumPins *,
     ulong,
@@ -507,25 +507,25 @@ public long WINAPI libAVEnumPins_Next (
     ulong *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumPins_Skip (
     libAVEnumPins *,
     ulong
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumPins_Reset (
     libAVEnumPins *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumPins_Clone (
     libAVEnumPins *,
     libAVEnumPins **
 );
 
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void libAVEnumPins_Destroy (
     libAVEnumPins *
 );
@@ -538,7 +538,7 @@ libAVEnumPins? libAVEnumPins_Create (
 /*****************************************************************************
 libAVEnumMediaTypes
  ****************************************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVEnumMediaTypes {
     [CCode (cname="")]
@@ -554,24 +554,24 @@ public class libAVEnumMediaTypes {
     public AM_MEDIA_TYPE type;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumMediaTypes_QueryInterface (
     libAVEnumMediaTypes *,
     GUID *,
     void **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVEnumMediaTypes_AddRef (
     libAVEnumMediaTypes *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVEnumMediaTypes_Release (
     libAVEnumMediaTypes *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumMediaTypes_Next (
     libAVEnumMediaTypes *,
     ulong,
@@ -579,29 +579,29 @@ public long WINAPI libAVEnumMediaTypes_Next (
     ulong *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumMediaTypes_Skip (
     libAVEnumMediaTypes *,
     ulong
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumMediaTypes_Reset (
     libAVEnumMediaTypes *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVEnumMediaTypes_Clone (
     libAVEnumMediaTypes *,
     libAVEnumMediaTypes **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void libAVEnumMediaTypes_Destroy (
     libAVEnumMediaTypes *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public libAVEnumMediaTypes? libAVEnumMediaTypes_Create (
     AM_MEDIA_TYPE? type
 );
@@ -609,7 +609,7 @@ public libAVEnumMediaTypes? libAVEnumMediaTypes_Create (
 /*****************************************************************************
 libAVFilter
  ****************************************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVFilter {
     [CCode (cname="")]
@@ -659,102 +659,102 @@ public class libAVFilter {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_QueryInterface (
     libAVFilter *,
     GUID *,
     void **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVFilter_AddRef (
     libAVFilter *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public ulong WINAPI libAVFilter_Release (
     libAVFilter *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_GetClassID (
     libAVFilter *,
     CLSID *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_Stop (
     libAVFilter *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_Pause (
     libAVFilter *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_Run (
     libAVFilter *,
     REFERENCE_TIME
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_GetState (
     libAVFilter *,
     DWORD,
     FILTER_STATE *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_SetSyncSource (
     libAVFilter *,
     IReferenceClock *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_GetSyncSource (
     libAVFilter *,
     IReferenceClock **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_EnumPins (
     libAVFilter *,
     IEnumPins **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_FindPin (
     libAVFilter *,
     wchar_t *,
     IPin **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_QueryFilterInfo (
     libAVFilter *,
     FILTER_INFO *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_JoinFilterGraph (
     libAVFilter *,
     IFilterGraph *,
     wchar_t *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public long WINAPI libAVFilter_QueryVendorInfo (
     libAVFilter *,
     wchar_t **
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void libAVFilter_Destroy (
     libAVFilter *
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public libAVFilter? libAVFilter_Create (
     void *,
     void *,
@@ -764,7 +764,7 @@ public libAVFilter? libAVFilter_Create (
 /*****************************************************************************
 dshow_ctx
  ****************************************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class dshow_ctx {
     [CCode (cname="")]
@@ -907,7 +907,7 @@ public class dshow_ctx {
 /*****************************************************************************
 CrossBar
 ****************************************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public HRESULT dshow_try_setup_crossbar_options (
     ICaptureGraphBuilder2? graph_builder2,
     IBaseFilter? device_filter,
@@ -915,7 +915,7 @@ public HRESULT dshow_try_setup_crossbar_options (
     AVFormatContext? avctx
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void dshow_show_filter_properties (
     IBaseFilter? pFilter,
     AVFormatContext? avctx

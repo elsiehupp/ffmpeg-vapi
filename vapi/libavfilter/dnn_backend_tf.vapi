@@ -23,19 +23,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 DNN inference functions interface for TensorFlow backend.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_tf.h")]
 public DNNModel? ff_dnn_load_model_tf (
     string model_filename
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_tf.h")]
 public DNNReturnType ff_dnn_execute_model_tf (
     const DNNModel? model,
     DNNData? outputs,
     uint32 nb_output
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_tf.h")]
 public void ff_dnn_free_model_tf (
     DNNModel **model
 );

@@ -22,78 +22,78 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct SRTPContext",cheader_filename="ffmpeg/libformat/srtp.h")]
+[CCode (cname="struct SRTPContext",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
 [Compact]
 public class SRTPContext {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public LibAVUtil.Crypto.AESContext aes;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public LibAVUtil.Crypto.HMACContext hmac;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public int rtp_hmac_size;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public int rtcp_hmac_size;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint8 master_key[16];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint8 master_salt[14];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint8 rtp_key[16];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint8 rtcp_key[16];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint8 rtp_salt[14];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint8 rtcp_salt[14];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint8 rtp_auth[20];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint8 rtcp_auth[20];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public int seq_largest;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public int seq_initialized;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint32 roc;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
     public uint32 rtcp_index;
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
 public int ff_srtp_set_crypto (
     SRTPContext srtp_context,
     string suite,
     string params
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
 public void ff_srtp_free (
     SRTPContext srtp_context
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
 public int ff_srtp_decrypt (
     SRTPContext srtp_context,
     uint8[] buffer,
     out int lenptr
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/srtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
 public int ff_srtp_encrypt (
     SRTPContext srtp_context,
     uint8[] input_buffer,

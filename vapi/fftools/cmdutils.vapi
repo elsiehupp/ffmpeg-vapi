@@ -42,7 +42,7 @@ program birth year, defined by the program for show_banner ()
 //  extern AVDictionary? format_opts,? codec_opts,? resample_opts;
 //  extern int hide_banner;
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public delegate void CallbackDelegate (
     int ret
 );
@@ -58,7 +58,7 @@ public void register_exit (
 /***********************************************************
 Wraps exit with a program-specific cleanup routine.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void exit_program (
     int ret
 ) av_noreturn;
@@ -66,28 +66,28 @@ public void exit_program (
 /***********************************************************
 Initialize dynamic library loading
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void init_dynload ();
 
 /***********************************************************
 Initialize the cmdutils option system, in particular
 allocate the *_opts contexts.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void init_opts ();
 
 /***********************************************************
 Uninitialize the cmdutils option system, in particular
 free the *_opts contexts and their contents.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void uninit_opts ();
 
 /***********************************************************
 Trivial log callback.
 Only suitable for opt_help and similar since it lacks prefix handling.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void log_callback_help (
     void* ptr,
     int level,
@@ -98,7 +98,7 @@ public void log_callback_help (
 /***********************************************************
 Override the cpuflags.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int opt_cpuflags (
     void *optctx,
     string opt,
@@ -109,7 +109,7 @@ public int opt_cpuflags (
 Fallback for options that are not explicitly handled, these will be
 parsed through AVOptions.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int opt_default (
     void *optctx,
     string opt,
@@ -119,26 +119,26 @@ public int opt_default (
 /***********************************************************
 Set the libav* libraries log level.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int opt_loglevel (
     void *optctx,
     string opt,
     string arg
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int opt_report (
     string opt
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int opt_max_alloc (
     void *optctx,
     string opt,
     string arg
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int opt_codec_debug (
     void *optctx,
     string opt,
@@ -148,7 +148,7 @@ public int opt_codec_debug (
 /***********************************************************
 Limit the execution time.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int opt_timelimit (
     void *optctx,
     string opt,
@@ -168,7 +168,7 @@ string should be parsed
 @param min the minimum valid accepted value
 @param max the maximum valid accepted value
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public double parse_number_or_die (
     string context,
     string numstr,
@@ -191,14 +191,14 @@ date
 
 @see av_parse_time ()
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int64 parse_time_or_die (
     string context,
     string timestr,
     int is_duration
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class SpecifierOpt {
     /***********************************************************
@@ -229,7 +229,7 @@ public class SpecifierOpt {
     } u;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionDef {
     [CCode (cname="")]
@@ -343,7 +343,7 @@ Print help for all options matching specified flags.
 @param rej_flags don't print options which have any of those flags set.
 @param alt_flags print only options that have at least one of those flags set
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void show_help_options (
     OptionDef[] options,
     string msg,
@@ -353,7 +353,7 @@ public void show_help_options (
 );
 
 #if CONFIG_AVDEVICE
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define CMDUTILS_COMMON_OPTIONS_AVDEVICE
     {
         "sources",
@@ -378,7 +378,7 @@ public define CMDUTILS_COMMON_OPTIONS_AVDEVICE
 //  #define CMDUTILS_COMMON_OPTIONS_AVDEVICE
 #endif
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define CMDUTILS_COMMON_OPTIONS
     {
         "L",
@@ -611,7 +611,7 @@ public define CMDUTILS_COMMON_OPTIONS
 Show help for all options with given flags in class and all its
 children.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void show_help_children (
     AVClass class,
     int flags
@@ -621,7 +621,7 @@ public void show_help_children (
 Per-fftool specific help handler. Implemented in each
 fftool, called by show_help ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void show_help_default (
     string opt,
     string arg
@@ -630,14 +630,14 @@ public void show_help_default (
 /***********************************************************
 Generic -h handler common to all fftools.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_help (
     void *optctx,
     string opt,
     string arg
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public delegate void ParseArgDelegate (
     void *optctx,
     string str
@@ -655,7 +655,7 @@ option of the form: -option_name [argument]
 argument without a leading option name flag. NULL if such arguments do
 not have to be processed.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void parse_options (
     void *optctx,
     int argc,
@@ -669,7 +669,7 @@ Parse one given option.
 
 @return on success 1 if arg was consumed, 0 otherwise; negative number on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int parse_option (
     void *optctx,
     string opt,
@@ -682,7 +682,7 @@ An option extracted from the commandline.
 Cannot use AVDictionary because of options like -map which can be
 used multiple times.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class Option {
     [CCode (cname="")]
@@ -695,7 +695,7 @@ public class Option {
     public string val;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionGroupDef {
     /***********************************************************
@@ -720,7 +720,7 @@ public class OptionGroupDef {
     public int flags;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionGroup {
     [CCode (cname="")]
@@ -755,7 +755,7 @@ public class OptionGroup {
 A list of option groups that all have the same group type
 (e.g. input files or output files)
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionGroupList {
     [CCode (cname="")]
@@ -768,7 +768,7 @@ public class OptionGroupList {
     public int nb_groups;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionParseContext {
     [CCode (cname="")]
@@ -792,7 +792,7 @@ Parse an options group and write results into optctx.
 
 @param optctx an app-specific options context. NULL for global options group
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int parse_optgroup (
     void *optctx,
     OptionGroup? g
@@ -816,7 +816,7 @@ OptionGroupList, all groups with the same group definition are stored in one
 OptionGroupList in OptionParseContext.groups. The order of group lists is the
 same as the order of group definitions.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int split_commandline (
     OptionParseContext? octx,
     int argc,
@@ -829,7 +829,7 @@ public int split_commandline (
 /***********************************************************
 Free all allocated memory in an OptionParseContext.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void uninit_parse_context (
     OptionParseContext? octx
 );
@@ -837,7 +837,7 @@ public void uninit_parse_context (
 /***********************************************************
 Find the '-loglevel' option in the command line args and apply it.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void parse_loglevel (
     int argc
     string? argv,
@@ -847,7 +847,7 @@ public void parse_loglevel (
 /***********************************************************
 Return index of option opt in argv or 0 if not found.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int locate_option (
     int argc,
     string? argv,
@@ -864,7 +864,7 @@ Check if the given stream matches a stream specifier.
 
 @return 1 if the stream matches, 0 if it doesn't, <0 on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int check_stream_specifier (
     AVFormatContext? av_format_context,
     AVStream? st,
@@ -885,7 +885,7 @@ opts which apply to the codec with ID codec_id.
              If null, the default one is looked up according to the codec id.
 @return a pointer to the created dictionary
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public AVDictionary? filter_codec_opts (
     AVDictionary? opts,
     AVCodecID codec_id,
@@ -905,7 +905,7 @@ be applied to the corresponding stream codec context.
 @return pointer to the created array of dictionaries, NULL if it
 cannot be created
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public AVDictionary **setup_find_stream_info_opts (
     AVFormatContext? av_format_context,
     AVDictionary? codec_opts
@@ -920,7 +920,7 @@ multithreaded application may be unsafe.
 
 @see av_strerror ()
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void print_error (
     string filename,
     int err
@@ -931,7 +931,7 @@ Print the program banner to stderr. The banner contents depend on the
 current version of the repository and of the libav* libraries used by
 the program.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void show_banner (
     int argc,
     string? argv,
@@ -944,7 +944,7 @@ depends on the current versions of the repository and of the libav*
 libraries.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_version (
     void *optctx,
     string opt,
@@ -956,7 +956,7 @@ Print the build configuration of the program to stdout. The contents
 depend on the definition of FFMPEG_CONFIGURATION.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_buildconf (
     void *optctx,
     string opt,
@@ -968,7 +968,7 @@ Print the license of the program to stdout. The license depends on
 the license of the libraries compiled into the program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_license (
     void *optctx,
     string opt,
@@ -980,7 +980,7 @@ Print a listing containing all the formats supported by the
 program (including devices).
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_formats (
     void *optctx,
     string opt,
@@ -992,7 +992,7 @@ Print a listing containing all the muxers supported by the
 program (including devices).
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_muxers (
     void *optctx,
     string opt,
@@ -1004,7 +1004,7 @@ Print a listing containing all the demuxer supported by the
 program (including devices).
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_demuxers (
     void *optctx,
     string opt,
@@ -1016,7 +1016,7 @@ Print a listing containing all the devices supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_devices (
     void *optctx,
     string opt,
@@ -1028,7 +1028,7 @@ public int show_devices (
 Print a listing containing autodetected sinks of the output device.
 Device name with options may be passed as an argument to limit results.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_sinks (
     void *optctx,
     string opt,
@@ -1039,7 +1039,7 @@ public int show_sinks (
 Print a listing containing autodetected sources of the input device.
 Device name with options may be passed as an argument to limit results.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_sources (
     void *optctx,
     string opt,
@@ -1052,7 +1052,7 @@ Print a listing containing all the codecs supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_codecs (
     void *optctx,
     string opt,
@@ -1063,7 +1063,7 @@ public int show_codecs (
 Print a listing containing all the decoders supported by the
 program.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_decoders (
     void *optctx,
     string opt,
@@ -1074,7 +1074,7 @@ public int show_decoders (
 Print a listing containing all the encoders supported by the
 program.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_encoders (
     void *optctx,
     string opt,
@@ -1086,7 +1086,7 @@ Print a listing containing all the filters supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_filters (
     void *optctx,
     string opt,
@@ -1098,7 +1098,7 @@ Print a listing containing all the bit stream filters supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_bsfs (
     void *optctx,
     string opt,
@@ -1110,7 +1110,7 @@ Print a listing containing all the protocols supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_protocols (
     void *optctx,
     string opt,
@@ -1122,7 +1122,7 @@ Print a listing containing all the pixel formats supported by the
 program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_pix_fmts (
     void *optctx,
     string opt,
@@ -1134,7 +1134,7 @@ Print a listing containing all the standard channel layouts supported by
 the program.
 This option processing function does not utilize the arguments.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_layouts (
     void *optctx,
     string opt,
@@ -1145,7 +1145,7 @@ public int show_layouts (
 Print a listing containing all the sample formats supported by the
 program.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_sample_fmts (
     void *optctx,
     string opt,
@@ -1156,7 +1156,7 @@ public int show_sample_fmts (
 Print a listing containing all the color names and values recognized
 by the program.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int show_colors (
     void *optctx,
     string opt,
@@ -1167,7 +1167,7 @@ public int show_colors (
 Return a positive value if a line read from standard input
 starts with [yY], otherwise return 0.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int read_yesno ();
 
 /***********************************************************
@@ -1188,7 +1188,7 @@ codec_name-preset_name.avpreset in the above-mentioned directories.
 @param codec_name name of the codec for which to look for the
 preset, may be NULL
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public FILE? get_preset_file (
     string filename,
     size_t filename_size,
@@ -1207,7 +1207,7 @@ Calls exit () on failure.
 @param new_size number of elements to place in reallocated array
 @return reallocated array
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void *grow_array (
     void *array,
     int elem_size,
@@ -1215,10 +1215,10 @@ public void *grow_array (
     int new_size
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define media_type_string av_get_media_type_string
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define GROW_ARRAY (
     void *array,
     void *nb_elems
@@ -1232,7 +1232,7 @@ public define GROW_ARRAY (
 //      );
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define GET_PIX_FMT_NAME (
     void *pix_fmt
 );
@@ -1240,7 +1240,7 @@ public define GET_PIX_FMT_NAME (
 //      string name = av_get_pix_fmt_name (pix_fmt);
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define GET_CODEC_NAME (
     void *id
 );
@@ -1248,7 +1248,7 @@ public define GET_CODEC_NAME (
 //      string name = avcodec_descriptor_get (id)->name;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define GET_SAMPLE_FMT_NAME (
     void *sample_fmt
 );
@@ -1256,7 +1256,7 @@ public define GET_SAMPLE_FMT_NAME (
 //      string name = av_get_sample_fmt_name (sample_fmt);
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define GET_SAMPLE_RATE_NAME (
     void *rate
 );
@@ -1270,7 +1270,7 @@ public define GET_SAMPLE_RATE_NAME (
 //      );
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define GET_CH_LAYOUT_NAME (
     void *ch_layout
 );
@@ -1284,7 +1284,7 @@ public define GET_CH_LAYOUT_NAME (
 //      );
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define GET_CH_LAYOUT_DESC (
     void *ch_layout
 );
@@ -1298,7 +1298,7 @@ public define GET_CH_LAYOUT_DESC (
 //      );
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public double get_rotation (
     AVStream? st
 );

@@ -26,7 +26,7 @@ Note: this API is not thread-safe. Concurrent access to the same queue
 must be protected by a mutex or any synchronization mechanism.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 [Compact]
 public class FFFrameBucket {
     [CCode (cname="")]
@@ -41,7 +41,7 @@ frame queues, including memory consumption caps.
 
 It is currently empty.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 [Compact]
 public class FFFrameQueueGlobal {
     /***********************************************************
@@ -53,7 +53,7 @@ public class FFFrameQueueGlobal {
 /***********************************************************
 Queue of AVFrame pointers.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 [Compact]
 public class FFFrameQueue {
 
@@ -124,26 +124,26 @@ public class FFFrameQueue {
 /***********************************************************
 Init a global structure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 public void ff_framequeue_global_init (FFFrameQueueGlobal? fqg);
 
 /***********************************************************
 Init a frame queue and attach it to a global structure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 public void ff_framequeue_init (FFFrameQueue? fq, FFFrameQueueGlobal? fqg);
 
 /***********************************************************
 Free the queue and all queued frames.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 public void ff_framequeue_free (FFFrameQueue? fq);
 
 /***********************************************************
 Add a frame.
 @return  >=0 or an AVERROR code.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 public int ff_framequeue_add (FFFrameQueue? fq, AVFrame? frame);
 
 /***********************************************************
@@ -161,7 +161,7 @@ AVFrame? ff_framequeue_peek (FFFrameQueue? fq, size_t idx);
 /***********************************************************
 Get the number of queued frames.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 public static inline size_t ff_framequeue_queued_frames (const FFFrameQueue? fq)
 {
     return fq->queued;
@@ -170,7 +170,7 @@ public static inline size_t ff_framequeue_queued_frames (const FFFrameQueue? fq)
 /***********************************************************
 Get the number of queued samples.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 public static inline uint64 ff_framequeue_queued_samples (const FFFrameQueue? fq)
 {
     return fq->total_samples_head - fq->total_samples_tail;
@@ -181,7 +181,7 @@ Update the statistics after a frame accessed using ff_framequeue_peek ()
 was modified.
 Currently used only as a marker.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 public static inline void ff_framequeue_update_peeked (FFFrameQueue? fq, size_t idx)
 {
 }
@@ -194,5 +194,5 @@ ff_framequeue_peek () and samples were consumed from it.
 It adapts the data pointers and timestamps of the head frame to account
 for the skipped samples.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 public void ff_framequeue_skip_samples (FFFrameQueue? fq, size_t samples, AVRational time_base);

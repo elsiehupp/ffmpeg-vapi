@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum SubtitleCharacterEncodingMode {
     /***********************************************************
     @brief Do nothing (demuxer outputs a stream supposed to be already

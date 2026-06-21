@@ -26,14 +26,13 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cname="struct AVCodecInternal",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecInternal",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class AVCodecInternal { }
 
-[CCode (cname="AV_NUM_DATA_POINTERS",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="AV_NUM_DATA_POINTERS",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public const size_t AV_NUM_DATA_POINTERS;
 
-[CCode (cname="",cheader_filename="")]
 public delegate void AVCodecDrawHorizontalBandDelegate (
     CodecContext codec_context,
     LibAVUtil.Frame input_frame,
@@ -42,19 +41,23 @@ public delegate void AVCodecDrawHorizontalBandDelegate (
     int type,
     int height
 );
+
 public delegate LibAVUtil.PixelFormat AVCodecGetFormatDelegate (
     CodecContext codec_context,
     LibAVUtil.PixelFormat fmt
 );
+
 public delegate int AVCodecGetBuffer2Delegate (
     CodecContext codec_context,
     LibAVUtil.Frame frame,
     int flags
 );
+
 public delegate int AVCodecExecutionDelegateDelegate (
     CodecContext c2,
     void *arg
 );
+
 public delegate int AVCodecExecutionDelegate (
     CodecContext codec_context,
     AVCodecExecutionDelegateDelegate func,
@@ -63,12 +66,14 @@ public delegate int AVCodecExecutionDelegate (
     int count,
     int size
 );
+
 public delegate int AVCodecExecute2DelegateDelegate (
     CodecContext c2,
     void *arg,
     int jobnr,
     int threadnr
 );
+
 public delegate int AVCodecExecute2Delegate (
     CodecContext codec_context,
     AVCodecExecute2DelegateDelegate func,
@@ -76,10 +81,12 @@ public delegate int AVCodecExecute2Delegate (
     out int ret,
     int count
 );
+
 public delegate int AVCodecDefaultExecuteDelegate (
     CodecContext c2,
     void *arg2
 );
+
 public delegate int AVCodecDefaultExecute2Delegate (
     CodecContext c2,
     void *arg2,
@@ -100,7 +107,7 @@ The LibAVUtil.Option/command line parameter names differ in some cases from the 
 structure field names for historic reasons or brevity.
 sizeof (CodecContext) must not be used outside libav*.
 ***********************************************************/
-[CCode (cname="struct AVCodecContext",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecContext",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class CodecContext {
     /***********************************************************
@@ -207,7 +214,7 @@ public class CodecContext {
     [CCode (cname="compression_level")]
     public int compression_level;
 
-    [CCode (cname="FF_COMPRESSION_DEFAULT",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="FF_COMPRESSION_DEFAULT",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public const int FF_COMPRESSION_DEFAULT;
 
     /***********************************************************
@@ -1427,7 +1434,7 @@ public class CodecContext {
     [CCode (cname="level")]
     public int level;
 
-    [CCode (cname="FF_LEVEL_UNKNOWN",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="FF_LEVEL_UNKNOWN",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public const int FF_LEVEL_UNKNOWN;
 
     /***********************************************************
@@ -1843,7 +1850,7 @@ public class CodecContext {
 
     @return An CodecContext filled with default values or null on failure.
     ***********************************************************/
-    [CCode (cname="avcodec_alloc_context3",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_alloc_context3",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public CodecContext avcodec_alloc_context3 (
         Codec codec
     );
@@ -1852,7 +1859,7 @@ public class CodecContext {
     @description Free the codec context and everything associated with it and write null to
         the provided pointer.
     ***********************************************************/
-    [CCode (cname="avcodec_free_context",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_free_context",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_free_context (
         CodecContext codec_context
     );
@@ -1896,7 +1903,7 @@ public class CodecContext {
     @see @link avcodec_alloc_context3 (), avcodec_find_decoder (), avcodec_find_encoder (),
         av_dict_set (), av_opt_find ().
     ***********************************************************/
-    [CCode (cname="avcodec_open2",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_open2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_open2 (
         CodecContext codec_context,
         Codec codec,
@@ -1916,7 +1923,7 @@ public class CodecContext {
         multiple times is not supported anymore -- use multiple codec contexts
         instead.
     ***********************************************************/
-    //  [CCode (cname="avcodec_close",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    //  [CCode (cname="avcodec_close",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     //  public int avcodec_close (
     //      CodecContext codec_context
     //  );
@@ -1926,7 +1933,7 @@ public class CodecContext {
         it can be called by custom get_buffer2 () implementations for decoders without
         AV_CODEC_CAP_DR1 set.
     ***********************************************************/
-    [CCode (cname="avcodec_default_get_buffer2",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_default_get_buffer2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_default_get_buffer2 (
         CodecContext codec_context,
         LibAVUtil.Frame frame,
@@ -1940,7 +1947,7 @@ public class CodecContext {
 
         May only be used if a codec with AV_CODEC_CAP_DR1 has been opened.
     ***********************************************************/
-    [CCode (cname="avcodec_align_dimensions",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_align_dimensions",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_align_dimensions (
         CodecContext codec_context,
         int width,
@@ -1954,7 +1961,7 @@ public class CodecContext {
 
         May only be used if a codec with AV_CODEC_CAP_DR1 has been opened.
     ***********************************************************/
-    [CCode (cname="avcodec_align_dimensions2",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_align_dimensions2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_align_dimensions2 (
         CodecContext codec_context,
         int width,
@@ -1962,7 +1969,7 @@ public class CodecContext {
         int linesize_align[AV_NUM_DATA_POINTERS]
     );
 
-    [CCode (cname="avcodec_encode_subtitle",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_encode_subtitle",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_encode_subtitle (
         CodecContext codec_context,
         uint8[] buffer,
@@ -1998,7 +2005,7 @@ public class CodecContext {
     @param[in,out] got_sub_ptr Zero if no subtitle could be decompressed, otherwise, it is nonzero.
     @param[in] avpkt The input Packet containing the input buffer.
     ***********************************************************/
-    [CCode (cname="avcodec_decode_subtitle2",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_decode_subtitle2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_decode_subtitle2 (
         CodecContext codec_context,
         out Subtitle sub,
@@ -2057,7 +2064,7 @@ public class CodecContext {
         LibAVUtil.ErrorCode (ENOMEM): failed to add packet to internal queue, or similar
         other errors: legitimate decoding errors
     ***********************************************************/
-    [CCode (cname="avcodec_send_packet",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_send_packet",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_send_packet (
         CodecContext codec_context,
         Packet avpkt
@@ -2084,7 +2091,7 @@ public class CodecContext {
             when flag AV_CODEC_FLAG_DROPCHANGED is set.
         other negative values: legitimate decoding errors
     ***********************************************************/
-    [CCode (cname="avcodec_receive_frame",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_receive_frame",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_receive_frame (
         CodecContext codec_context,
         LibAVUtil.Frame frame
@@ -2125,7 +2132,7 @@ public class CodecContext {
         LibAVUtil.ErrorCode (ENOMEM): failed to add packet to internal queue, or similar
         other errors: legitimate decoding errors
     ***********************************************************/
-    [CCode (cname="avcodec_send_frame",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_send_frame",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_send_frame (
         CodecContext codec_context,
         LibAVUtil.Frame frame
@@ -2146,7 +2153,7 @@ public class CodecContext {
         LibAVUtil.ErrorCode (EINVAL): codec not opened, or it is an encoder
             other errors: legitimate decoding errors
     ***********************************************************/
-    [CCode (cname="avcodec_receive_packet",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_receive_packet",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_receive_packet (
         CodecContext codec_context,
         Packet avpkt
@@ -2250,7 +2257,7 @@ public class CodecContext {
         this configuration, or the device_ref is not supported
         for the hwaccel referenced by hw_pix_fmt.
     ***********************************************************/
-    [CCode (cname="avcodec_get_hw_frames_parameters",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_get_hw_frames_parameters",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_get_hw_frames_parameters (
         CodecContext codec_context,
         LibAVUtil.BufferRef device_ref,
@@ -2262,12 +2269,12 @@ public class CodecContext {
     @return a positive value if s is open (i.e. avcodec_open2 () was called on it
         with no corresponding avcodec_close ()), 0 otherwise.
     ***********************************************************/
-    [CCode (cname="avcodec_is_open",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_is_open",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_is_open (
         CodecContext codec_context
     );
 
-    [CCode (cname="v",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="v",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_string (
         string buffer,
         int buf_size,
@@ -2275,13 +2282,13 @@ public class CodecContext {
         int encode
     );
 
-    [CCode (cname="avcodec_default_get_format",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_default_get_format",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public LibAVUtil.PixelFormat avcodec_default_get_format (
         CodecContext codec_context,
         LibAVUtil.PixelFormat fmt
     );
 
-    [CCode (cname="avcodec_default_execute",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_default_execute",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_default_execute (
         CodecContext codec_context,
         AVCodecDefaultExecuteDelegate func,
@@ -2291,7 +2298,7 @@ public class CodecContext {
         int size
     );
 
-    [CCode (cname="avcodec_default_execute2",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_default_execute2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_default_execute2 (
         CodecContext codec_context,
         AVCodecDefaultExecute2Delegate func,
@@ -2309,7 +2316,7 @@ public class CodecContext {
         refcounted frames are used, the decoder just releases any references it might
         keep internally, but the caller's reference remains valid.
     ***********************************************************/
-    [CCode (cname="avcodec_flush_buffers",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avcodec_flush_buffers",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_flush_buffers (
         CodecContext codec_context
     );
@@ -2322,7 +2329,7 @@ public class CodecContext {
     @return frame duration, in samples, if known. 0 if not able to
         determine.
     ***********************************************************/
-    [CCode (cname="av_get_audio_frame_duration",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_get_audio_frame_duration",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_get_audio_frame_duration (
         CodecContext codec_context,
         int frame_bytes

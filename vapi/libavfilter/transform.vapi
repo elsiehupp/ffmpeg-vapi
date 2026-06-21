@@ -31,7 +31,7 @@ example, the identity matrix would be:
                      0, 0, 1}
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public enum InterpolateMethod {
     /***********************************************************
     Nearest-neighbor (fast)
@@ -76,7 +76,7 @@ public enum InterpolateMethod {
     INTERPOLATE_BEST; // INTERPOLATE_BIQUADRATIC
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public enum FillMethod {
     /***********************************************************
     Fill zeroes at blank locations
@@ -129,7 +129,7 @@ zoom factor. The matrix will look like:
 @param zoom    scale percent (1.0 = 100%)
 @param matrix  9-item affine transformation matrix
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public void avfilter_get_matrix (
     float x_shift,
     float y_shift,
@@ -145,7 +145,7 @@ Add two matrices together. result = m1 + m2.
 @param m2     9-item transformation matrix
 @param result 9-item transformation matrix
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public void avfilter_add_matrix (
     float[] m1,
     float[] m2,
@@ -159,7 +159,7 @@ Subtract one matrix from another. result = m1 - m2.
 @param m2     9-item transformation matrix
 @param result 9-item transformation matrix
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public void avfilter_sub_matrix (
     float[] m1,
     float[] m2,
@@ -173,7 +173,7 @@ Multiply a matrix by a scalar value. result = m1 * scalar.
 @param scalar a number
 @param result 9-item transformation matrix
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public void avfilter_mul_matrix (
     float[] m1,
     float scalar,
@@ -196,7 +196,7 @@ get the final value.
 @param fill        edge fill method
 @return negative on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public int avfilter_transform (
     uint8[] src,
     uint8[] dst,

@@ -38,7 +38,7 @@ Get a frame with filtered data from sink and put it in frame.
 
 @return  >= 0 in for success, a negative AVERROR code for failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_frame_flags (
     AVFilterContext? av_filter_context,
     AVFrame? frame,
@@ -52,7 +52,7 @@ public enum FooBar {
     reference, but not remove it from the buffer. This is useful if you
     need only to read a video/samples buffer, without to fetch it.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
     AV_BUFFERSINK_FLAG_PEEK, // 1
 
     /***********************************************************
@@ -60,14 +60,14 @@ public enum FooBar {
     If a frame is already buffered, it is read (and removed from the buffer),
     but if no frame is present, return AVERROR (EAGAIN).
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
     AV_BUFFERSINK_FLAG_NO_REQUEST; // 2
 }
 
 /***********************************************************
 Struct to use for initializing a buffersink context.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 [Compact]
 public class AVBufferSinkParams {
     /***********************************************************
@@ -82,13 +82,13 @@ Create an AVBufferSinkParams structure.
 
 Must be freed with av_free ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public AVBufferSinkParams? av_buffersink_params_alloc ();
 
 /***********************************************************
 Struct to use for initializing an abuffersink context.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 [Compact]
 public class AVABufferSinkParams {
     /***********************************************************
@@ -127,7 +127,7 @@ Create an AVABufferSinkParams structure.
 
 Must be freed with av_free ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public AVABufferSinkParams? av_abuffersink_params_alloc ();
 
 /***********************************************************
@@ -137,7 +137,7 @@ All calls to av_buffersink_get_buffer_ref will return a buffer with
 exactly the specified number of samples, or AVERROR (EAGAIN) if there is
 not enough. The last buffer at EOF will be padded with 0.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public void av_buffersink_set_frame_size (
     AVFilterContext? av_filter_context,
     uint frame_size
@@ -149,60 +149,60 @@ Get the properties of the stream
 @{
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public AVMediaType av_buffersink_get_type (
     AVFilterContext? av_filter_context
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public AVRational av_buffersink_get_time_base (
     AVFilterContext? av_filter_context
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_format (
     AVFilterContext? av_filter_context
 );
 
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public AVRational av_buffersink_get_frame_rate (
     AVFilterContext? av_filter_context
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_w (
     AVFilterContext? av_filter_context
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_h (
     AVFilterContext? av_filter_context
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public AVRational av_buffersink_get_sample_aspect_ratio (
     AVFilterContext? av_filter_context
 );
 
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_channels (
     AVFilterContext? av_filter_context
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public uint64 av_buffersink_get_channel_layout (
     AVFilterContext? av_filter_context
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_sample_rate (
     AVFilterContext? av_filter_context
 );
 
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public AVBufferRef av_buffersink_get_hw_frames_ctx (
     AVFilterContext? av_filter_context
 );
@@ -226,7 +226,7 @@ Get a frame with filtered data from sink and put it in frame.
         - AVERROR_EOF if there will be no more output frames on this sink.
         - A different negative AVERROR code in other failure cases.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_frame (
     AVFilterContext? av_filter_context,
     AVFrame? frame
@@ -249,7 +249,7 @@ av_buffersink_get_frame (), because it copies the data around.
 @warning do not mix this function with av_buffersink_get_frame (). Use only one or
 the other with a single sink, not both.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_samples (
     AVFilterContext? av_filter_context,
     AVFrame? frame,

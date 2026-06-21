@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="yuv2rgb_fn",cheader_filename="")]
+[CCode (cname="yuv2rgb_fn",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public delegate void Yuv2RgbDelegate (
     int16[] rgb[3],
     ptrdiff_t rgb_stride,
@@ -30,7 +30,7 @@ public delegate void Yuv2RgbDelegate (
     int16 yuv_offset[8]
 );
 
-[CCode (cname="rgb2yuv_fn",cheader_filename="")]
+[CCode (cname="rgb2yuv_fn",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public delegate void Rgb2YuvDelegate (
     uint8[] yuv[3],
     ptrdiff_t yuv_stride[3],
@@ -42,7 +42,7 @@ public delegate void Rgb2YuvDelegate (
     int16 yuv_offset[8]
 );
 
-[CCode (cname="rgb2yuv_fsb_fn",cheader_filename="")]
+[CCode (cname="rgb2yuv_fsb_fn",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public delegate void Rgb2YuvFsbDelegate (
     uint8[] yuv[3],
     ptrdiff_t yuv_stride[3],
@@ -55,7 +55,7 @@ public delegate void Rgb2YuvFsbDelegate (
     out int rnd[3][2]
 );
 
-[CCode (cname="yuv2yuv_fn",cheader_filename="")]
+[CCode (cname="yuv2yuv_fn",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public delegate void Yuv2YuvDelegate (
     uint8[] yuv_out[3],
     ptrdiff_t yuv_out_stride[3],
@@ -67,7 +67,7 @@ public delegate void Yuv2YuvDelegate (
     int16 yuv_offset[2][8]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public enum BitDepthIndex {
     [CCode (cname="")]
     BPP_8,
@@ -82,7 +82,7 @@ public enum BitDepthIndex {
     NB_BPP;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public enum ChromaSubsamplingIndex {
     [CCode (cname="")]
     SS_444,
@@ -97,7 +97,7 @@ public enum ChromaSubsamplingIndex {
     NB_SS;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 [Compact]
 public class ColorSpaceDSPContext {
     /***********************************************************
@@ -144,7 +144,7 @@ public class ColorSpaceDSPContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public void ff_colorspacedsp_init (
     ColorSpaceDSPContext? dsp
 );
@@ -152,7 +152,7 @@ public void ff_colorspacedsp_init (
 /***********************************************************
 internal
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public void ff_colorspacedsp_x86_init (
     ColorSpaceDSPContext? dsp
 );

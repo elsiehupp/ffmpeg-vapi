@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cname="struct AVSubtitleRect",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVSubtitleRect",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class SubtitleRect {
     /***********************************************************

@@ -25,7 +25,7 @@ namespace LibAVUtil {
 @brief YUV colorspace type.
 These values match the ones defined by ISO/IEC 23001-8_2013 § 7.3.
 ***********************************************************/
-[CCode (cprefix="AVCOL_SPC_",cheader_filename="ffmpeg/libavutil/pixfmt.h")]
+[CCode (cprefix="AVCOL_SPC_",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
 public enum ColorSpace {
     /***********************************************************
     @brief Order of coefficients is actually GBR, also IEC 61966-2-1 (sRGB)
@@ -108,7 +108,7 @@ public enum ColorSpace {
     /***********************************************************
     @return the name for provided color space or null if unknown.
     ***********************************************************/
-    [CCode (cname="av_color_space_name",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_color_space_name",cheader_filename="subprojects/ffmpeg/libavutil/pixdesc.h")]
     public static string av_color_space_name (
         ColorSpace space
     );
@@ -116,7 +116,7 @@ public enum ColorSpace {
     /***********************************************************
     @return the ColorSpace value for name or an ErrorCode if not found.
     ***********************************************************/
-    [CCode (cname="av_color_space_from_name",cheader_filename="ffmpeg/libavutil/pixdesc.h")]
+    [CCode (cname="av_color_space_from_name",cheader_filename="subprojects/ffmpeg/libavutil/pixdesc.h")]
     public static ColorSpace av_color_space_from_name (
         string name
     );

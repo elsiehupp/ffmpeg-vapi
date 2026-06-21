@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 DNN inference engine interface.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_interface.h")]
 public enum DNNReturnType {
     [CCode (cname="")]
     DNN_SUCCESS,
@@ -32,7 +32,7 @@ public enum DNNReturnType {
     DNN_ERROR;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_interface.h")]
 public enum DNNBackendType {
     [CCode (cname="")]
     DNN_NATIVE,
@@ -41,7 +41,7 @@ public enum DNNBackendType {
     DNN_TF;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_interface.h")]
 public enum DNNDataType {
     [CCode (cname="")]
     DNN_FLOAT,
@@ -50,7 +50,7 @@ public enum DNNDataType {
     DNN_UINT8;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_interface.h")]
 [Compact]
 public class DNNInputData {
     [CCode (cname="")]
@@ -69,7 +69,7 @@ public class DNNInputData {
     public int channels;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_interface.h")]
 [Compact]
 public class DNNData {
     [CCode (cname="")]
@@ -85,7 +85,7 @@ public class DNNData {
     public int channels;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_interface.h")]
 [Compact]
 public class DNNModel {
     /***********************************************************
@@ -113,7 +113,7 @@ public class DNNModel {
 /***********************************************************
 Stores pointers to functions for loading, executing, freeing DNN models for one of the backends.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_interface.h")]
 [Compact]
 public class DNNModule {
     public delegate DNNModel LoadModelDelegate (
@@ -153,7 +153,7 @@ public class DNNModule {
 /***********************************************************
 Initializes DNNModule depending on chosen backend.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_interface.h")]
 public DNNModule? ff_get_dnn_module (
     DNNBackendType backend_type
 );

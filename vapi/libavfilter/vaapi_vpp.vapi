@@ -19,10 +19,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /***********************************************************
 ARGB black, for VAProcPipelineParameterBuffer.output_background_color.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public const uint32 VAAPI_VPP_BACKGROUND_BLACK; // 0xff000000
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 [Compact]
 public class VAAPIVPPContext {
     [CCode (cname="")]
@@ -89,37 +89,37 @@ public class VAAPIVPPContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public void ff_vaapi_vpp_ctx_init (
     AVFilterContext? avctx
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public void ff_vaapi_vpp_ctx_uninit (
     AVFilterContext? avctx
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public int ff_vaapi_vpp_query_formats (
     AVFilterContext? avctx
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public void ff_vaapi_vpp_pipeline_uninit (
     AVFilterContext? avctx
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public int ff_vaapi_vpp_config_input (
     AVFilterLink? inlink
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public int ff_vaapi_vpp_config_output (
     AVFilterLink? outlink
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public int ff_vaapi_vpp_init_params (
     AVFilterContext? avctx,
     VAProcPipelineParameterBuffer? params,
@@ -127,7 +127,7 @@ public int ff_vaapi_vpp_init_params (
     AVFrame output_frame
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public int ff_vaapi_vpp_make_param_buffers (
     AVFilterContext? avctx,
     int type,
@@ -136,7 +136,7 @@ public int ff_vaapi_vpp_make_param_buffers (
     int count
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public int ff_vaapi_vpp_render_picture (
     AVFilterContext? avctx,
     VAProcPipelineParameterBuffer? params,

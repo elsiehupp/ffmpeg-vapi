@@ -19,14 +19,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/video.h")]
 public AVFrame? ff_default_get_video_buffer (
     AVFilterLink? link,
     int w,
     int h
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/video.h")]
 public AVFrame? ff_null_get_video_buffer (
     AVFilterLink? link,
     int w,
@@ -43,7 +43,7 @@ Request a picture buffer with a specific set of permissions.
 @return      A reference to the buffer. This must be unreferenced with
              avfilter_unref_buffer when you are finished with it.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/video.h")]
 public AVFrame? ff_get_video_buffer (
     AVFilterLink? link,
     int w,

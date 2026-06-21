@@ -35,7 +35,7 @@ the address of the first character in str after the prefix.
 @param ptr updated if the prefix is matched inside str
 @return non-zero if the prefix matches, zero otherwise
 ***********************************************************/
-[CCode (cname="av_strstart",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strstart",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public int av_strstart (
     string str,
     string pfx,
@@ -52,7 +52,7 @@ after the prefix.
 @param ptr updated if the prefix is matched inside str
 @return non-zero if the prefix matches, zero otherwise
 ***********************************************************/
-[CCode (cname="av_stristart",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_stristart",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public int av_stristart (
     string str,
     string pfx,
@@ -71,7 +71,7 @@ This function is a case-insensitive version of the standard strstr ().
 @return pointer to the located match within haystack
     or a null pointer if no match
 ***********************************************************/
-[CCode (cname="av_stristr",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_stristr",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_stristr (
     string haystack,
     string needle
@@ -90,7 +90,7 @@ This function is a length-limited version of the standard strstr ().
 @return pointer to the located match within haystack
     or a null pointer if no match
 ***********************************************************/
-[CCode (cname="av_strnstr",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strnstr",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_strnstr (
     string haystack,
     string needle,
@@ -112,7 +112,7 @@ This function is the same as BSD strlcpy ().
 _must_ be a properly 0-terminated string, otherwise this will read beyond
 the end of the buffer and possibly crash.
 ***********************************************************/
-[CCode (cname="av_strlcpy",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strlcpy",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public size_t av_strlcpy (
     out string output_buffer,
     string input_buffer,
@@ -135,7 +135,7 @@ size <= strlen (output_buffer).
 absolutely _must_ be a properly 0-terminated strings, otherwise this
 will read beyond the end of the buffer and possibly crash.
 ***********************************************************/
-[CCode (cname="av_strlcat",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strlcat",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public size_t av_strlcat (
     out string output_buffer,
     string input_buffer,
@@ -154,7 +154,7 @@ the buffer.
 @return the length of the string that would have been generated
     if enough space had been available
 ***********************************************************/
-[CCode (cname="av_strlcatf",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strlcatf",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public size_t av_strlcatf (
     out string output_buffer,
     size_t size,
@@ -168,7 +168,7 @@ public size_t av_strlcatf (
 @param len maximum number of characters to check in the string, that
     is the maximum value which is returned by the function
 ***********************************************************/
-[CCode (cname="av_strnlen",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strnlen",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public static size_t av_strnlen (
     string s,
     size_t len
@@ -182,7 +182,7 @@ allocated buffer. It is similar to GNU asprintf ().
 @return the allocated string
 @note You have to free the string yourself with av_free ().
 ***********************************************************/
-[CCode (cname="av_asprintf",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_asprintf",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_asprintf (
     string fmt,
     ...
@@ -191,7 +191,7 @@ public string av_asprintf (
 /***********************************************************
 @brief Convert a number to an av_malloced string.
 ***********************************************************/
-[CCode (cname="av_d2str",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_d2str",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_d2str (
     double d
 );
@@ -210,7 +210,7 @@ terminating char
 @return the malloced unescaped string, which must be av_freed by
 the user, null in case of allocation failure
 ***********************************************************/
-[CCode (cname="av_get_token",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_get_token",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_get_token (
     out string buffer,
     string term
@@ -238,7 +238,7 @@ This function is similar to strtok_r () defined in POSIX.1.
     first delimiter found, or to null if the string was terminated
 @return the found token, or null when no token is found
 ***********************************************************/
-[CCode (cname="av_strtok",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strtok",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_strtok (
     string s,
     string delim,
@@ -248,7 +248,7 @@ public string av_strtok (
 /***********************************************************
 @brief Locale-independent conversion of ASCII isdigit.
 ***********************************************************/
-[CCode (cname="av_isdigit",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_isdigit",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public static int av_isdigit (
     int c
 );
@@ -256,7 +256,7 @@ public static int av_isdigit (
 /***********************************************************
 @brief Locale-independent conversion of ASCII isgraph.
 ***********************************************************/
-[CCode (cname="av_isgraph",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_isgraph",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public static int av_isgraph (
     int c
 );
@@ -264,7 +264,7 @@ public static int av_isgraph (
 /***********************************************************
 @brief Locale-independent conversion of ASCII isspace.
 ***********************************************************/
-[CCode (cname="av_isspace",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_isspace",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public static int av_isspace (
     int c
 );
@@ -272,7 +272,7 @@ public static int av_isspace (
 /***********************************************************
 @brief Locale-independent conversion of ASCII characters to uppercase.
 ***********************************************************/
-[CCode (cname="av_toupper",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_toupper",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public static int av_toupper (
     int c
 );
@@ -280,7 +280,7 @@ public static int av_toupper (
 /***********************************************************
 @brief Locale-independent conversion of ASCII characters to lowercase.
 ***********************************************************/
-[CCode (cname="av_tolower",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_tolower",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public static int av_tolower (
     int c
 );
@@ -288,7 +288,7 @@ public static int av_tolower (
 /***********************************************************
 @brief Locale-independent conversion of ASCII isxdigit.
 ***********************************************************/
-[CCode (cname="av_isxdigit",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_isxdigit",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public static int av_isxdigit (
     int c
 );
@@ -297,7 +297,7 @@ public static int av_isxdigit (
 @brief Locale-independent case-insensitive compare.
 @note This means only ASCII-range characters are case-insensitive
 ***********************************************************/
-[CCode (cname="av_strcasecmp",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strcasecmp",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public int av_strcasecmp (
     string a,
     string b
@@ -307,7 +307,7 @@ public int av_strcasecmp (
 @brief Locale-independent case-insensitive compare.
 @note This means only ASCII-range characters are case-insensitive
 ***********************************************************/
-[CCode (cname="av_strncasecmp",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strncasecmp",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public int av_strncasecmp (
     string a,
     string b,
@@ -318,7 +318,7 @@ public int av_strncasecmp (
 @brief Locale-independent strings replace.
 @note This means only ASCII-range characters are replace
 ***********************************************************/
-[CCode (cname="av_strireplace",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_strireplace",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_strireplace (
     string str,
     string from,
@@ -330,7 +330,7 @@ public string av_strireplace (
 @param path the path, on DOS both \ and / are considered separators.
 @return pointer to the basename substring.
 ***********************************************************/
-[CCode (cname="av_basename",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_basename",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_basename (
     string path
 );
@@ -341,7 +341,7 @@ public string av_basename (
 @return the path with the separator replaced by the string terminator or ".".
 @note the function may change the input string.
 ***********************************************************/
-[CCode (cname="av_dirname",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_dirname",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_dirname (
     string path
 );
@@ -357,7 +357,7 @@ match all names.
 @param names List of names.
 @return 1 on match, 0 otherwise.
 ***********************************************************/
-[CCode (cname="av_match_name",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_match_name",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public int av_match_name (
     string name,
     string names
@@ -371,7 +371,7 @@ Resulting string have to be freed with av_free ().
 @param component component to be appended
 @return new path or null on error.
 ***********************************************************/
-[CCode (cname="av_append_path_component",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_append_path_component",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public string av_append_path_component (
     string path,
     string component
@@ -394,7 +394,7 @@ public string in output_buffer, which must be freed with av_free ().
 @see @link av_bprint_escape ()
 ***********************************************************/
 //  av_warn_unused_result
-[CCode (cname="av_escape",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_escape",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public int av_escape (
     out string output_buffer,
     string input_buffer,
@@ -432,7 +432,7 @@ GET_UTF8 () may be preferred.
 value in case of invalid sequence
 ***********************************************************/
 //  av_warn_unused_result
-[CCode (cname="av_utf8_decode",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_utf8_decode",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public int av_utf8_decode (
     out int32 codep,
     out uint8[] bufp,
@@ -445,7 +445,7 @@ public int av_utf8_decode (
 @returns 0 if not found, or the 1 based index where it has been found in the
     list.
 ***********************************************************/
-[CCode (cname="av_match_list",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_match_list",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public int av_match_list (
     string name,
     string list,
@@ -456,7 +456,7 @@ public int av_match_list (
 @brief See libc sscanf manual for more information.
 Locale-independent sscanf implementation.
 ***********************************************************/
-[CCode (cname="av_sscanf",cheader_filename="ffmpeg/libavutil/avstring.h")]
+[CCode (cname="av_sscanf",cheader_filename="subprojects/ffmpeg/libavutil/avstring.h")]
 public int av_sscanf (
     string str,
     string format,

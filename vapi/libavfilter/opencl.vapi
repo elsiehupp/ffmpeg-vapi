@@ -24,7 +24,7 @@ it was introduced in OpenCL 2.0.
 ***********************************************************/
 //  public define CL_USE_DEPRECATED_OPENCL_1_2_APIS
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 [Compact]
 public class OpenCLFilterContext {
     [CCode (cname="")]
@@ -58,7 +58,7 @@ set argument to specific Kernel.
 This macro relies on usage of local label "fail" and variables:
 avctx, cle and err.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public define CL_SET_KERNEL_ARG (
     void *kernel,
     void *arg_num,
@@ -79,7 +79,7 @@ public define CL_SET_KERNEL_ARG (
 A helper macro to handle OpenCL errors. It will assign errcode to
 variable err, log error msg, and jump to fail label on error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public define CL_FAIL_ON_ERROR (
     void *errcode,
     ...
@@ -95,7 +95,7 @@ public define CL_FAIL_ON_ERROR (
 /***********************************************************
 release an OpenCL Kernel
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public define CL_RELEASE_KERNEL (
     void *k
 );
@@ -111,7 +111,7 @@ public define CL_RELEASE_KERNEL (
 /***********************************************************
 release an OpenCL Memory Object
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public define CL_RELEASE_MEMORY (
     void *m
 );
@@ -127,7 +127,7 @@ public define CL_RELEASE_MEMORY (
 /***********************************************************
 release an OpenCL Command Queue
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public define CL_RELEASE_QUEUE (
     void *q
 );
@@ -143,7 +143,7 @@ public define CL_RELEASE_QUEUE (
 /***********************************************************
 Return that all inputs and outputs support only AV_PIX_FMT_OPENCL.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public int ff_opencl_filter_query_formats (
     AVFilterContext? avctx
 );
@@ -152,7 +152,7 @@ public int ff_opencl_filter_query_formats (
 Check that the input link contains a suitable hardware frames
 context and extract the device from it.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public int ff_opencl_filter_config_input (
     AVFilterLink? inlink
 );
@@ -160,7 +160,7 @@ public int ff_opencl_filter_config_input (
 /***********************************************************
 Create a suitable hardware frames context for the output.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public int ff_opencl_filter_config_output (
     AVFilterLink? outlink
 );
@@ -168,7 +168,7 @@ public int ff_opencl_filter_config_output (
 /***********************************************************
 Initialise an OpenCL filter context.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public int ff_opencl_filter_init (
     AVFilterContext? avctx
 );
@@ -176,7 +176,7 @@ public int ff_opencl_filter_init (
 /***********************************************************
 Uninitialise an OpenCL filter context.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public void ff_opencl_filter_uninit (
     AVFilterContext? avctx
 );
@@ -187,7 +187,7 @@ Load a new OpenCL program from strings in memory.
 Creates a new program and compiles it for the current device.
 Will log any build errors if compilation fails.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public int ff_opencl_filter_load_program (
     AVFilterContext? avctx,
     string? program_source_array,
@@ -199,7 +199,7 @@ Load a new OpenCL program from a file.
 
 Same as ff_opencl_filter_load_program (), but from a file.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public int ff_opencl_filter_load_program_from_file (
     AVFilterContext? avctx,
     string filename
@@ -208,7 +208,7 @@ public int ff_opencl_filter_load_program_from_file (
 /***********************************************************
 Find the work size needed needed for a given plane of an image.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public int ff_opencl_filter_work_size_from_image (
     AVFilterContext? avctx,
     size_t? work_size,
@@ -221,7 +221,7 @@ public int ff_opencl_filter_work_size_from_image (
 Print a 3x3 matrix into a buffer as __constant array, which could
 be included in an OpenCL program.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public void ff_opencl_print_const_matrix_3x3 (
     AVBPrint? buf,
     string name_str,

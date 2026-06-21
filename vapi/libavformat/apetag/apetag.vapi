@@ -22,16 +22,16 @@ based upon libdemac from Dave Chapman.
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="APE_TAG_PREAMBLE",cheader_filename="ffmpeg/libformat/apetag.h")]
+[CCode (cname="APE_TAG_PREAMBLE",cheader_filename="subprojects/ffmpeg/libformat/apetag.h")]
 public const string APE_TAG_PREAMBLE;
 
-[CCode (cname="APE_TAG_VERSION",cheader_filename="ffmpeg/libformat/apetag.h")]
+[CCode (cname="APE_TAG_VERSION",cheader_filename="subprojects/ffmpeg/libformat/apetag.h")]
 public const int APE_TAG_VERSION;
 
-[CCode (cname="APE_TAG_FOOTER_BYTES",cheader_filename="ffmpeg/libformat/apetag.h")]
+[CCode (cname="APE_TAG_FOOTER_BYTES",cheader_filename="subprojects/ffmpeg/libformat/apetag.h")]
 public const size_t APE_TAG_FOOTER_BYTES;
 
-[CCode (cname="APE_TAG_HEADER_BYTES",cheader_filename="ffmpeg/libformat/apetag.h")]
+[CCode (cname="APE_TAG_HEADER_BYTES",cheader_filename="subprojects/ffmpeg/libformat/apetag.h")]
 public const size_t APE_TAG_HEADER_BYTES;
 
 /***********************************************************
@@ -39,7 +39,7 @@ public const size_t APE_TAG_HEADER_BYTES;
 
 @return offset of the tag start in the file
 ***********************************************************/
-[CCode (cname="ff_ape_parse_tag",cheader_filename="ffmpeg/libformat/apetag.h")]
+[CCode (cname="ff_ape_parse_tag",cheader_filename="subprojects/ffmpeg/libformat/apetag.h")]
 public int64 ff_ape_parse_tag (
     AVFormatContext format_context
 );
@@ -47,7 +47,7 @@ public int64 ff_ape_parse_tag (
 /***********************************************************
 @brief Write an APE tag into a file.
 ***********************************************************/
-[CCode (cname="ff_ape_write_tag",cheader_filename="ffmpeg/libformat/apetag.h")]
+[CCode (cname="ff_ape_write_tag",cheader_filename="subprojects/ffmpeg/libformat/apetag.h")]
 public int ff_ape_write_tag (
     AVFormatContext format_context
 );

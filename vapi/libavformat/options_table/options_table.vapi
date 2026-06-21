@@ -31,7 +31,7 @@ these names are too long to be readable
 //  #define E AV_OPT_FLAG_ENCODING_PARAM
 //  #define D AV_OPT_FLAG_DECODING_PARAM
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/options_table.h")]
+[CCode (cname="avformat_options",cheader_filename="subprojects/ffmpeg/libformat/options_table.h")]
 public const LibAVUtil.Option avformat_options[];
 = {
     {

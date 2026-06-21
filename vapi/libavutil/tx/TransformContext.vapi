@@ -30,7 +30,7 @@ is not allowed.
 @param stride the input or output stride (depending on transform direction)
 in bytes, currently implemented for all MDCT transforms
 ***********************************************************/
-[CCode (cname="av_tx_fn",cheader_filename="ffmpeg/libavutil/tx.h")]
+[CCode (cname="av_tx_fn",cheader_filename="subprojects/ffmpeg/libavutil/tx.h")]
 public delegate void TransformDelegate (
     TransformContext transform_context,
     out void *output,
@@ -38,7 +38,7 @@ public delegate void TransformDelegate (
     size_t stride
 );
 
-[CCode (cname="struct AVTXContext",cheader_filename="ffmpeg/libavutil/tx.h")]
+[CCode (cname="struct AVTXContext",cheader_filename="subprojects/ffmpeg/libavutil/tx.h")]
 [Compact]
 public class TransformContext {
     /***********************************************************
@@ -56,7 +56,7 @@ public class TransformContext {
 
     @return 0 on success, negative error code on failure
     ***********************************************************/
-    [CCode (cname="av_tx_init",cheader_filename="ffmpeg/libavutil/tx.h")]
+    [CCode (cname="av_tx_init",cheader_filename="subprojects/ffmpeg/libavutil/tx.h")]
     public int av_tx_init (
         TransformContext transform_context,
         TransformDelegate tx,
@@ -70,7 +70,7 @@ public class TransformContext {
     /***********************************************************
     @brief Frees a context and sets transform_context to null, does nothing when transform_context == null
     ***********************************************************/
-    [CCode (cname="av_tx_uninit",cheader_filename="ffmpeg/libavutil/tx.h")]
+    [CCode (cname="av_tx_uninit",cheader_filename="subprojects/ffmpeg/libavutil/tx.h")]
     public void av_tx_uninit (
         TransformContext transform_context
     );

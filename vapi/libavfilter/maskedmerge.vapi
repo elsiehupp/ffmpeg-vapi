@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/maskedmerge.h")]
 [Compact]
 public class MaskedMergeContext {
     [CCode (cname="")]
@@ -68,7 +68,7 @@ public class MaskedMergeContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/maskedmerge.h")]
 public void ff_maskedmerge_init_x86 (
     MaskedMergeContext? s
 );

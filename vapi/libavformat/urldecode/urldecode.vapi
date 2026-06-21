@@ -29,7 +29,7 @@ in that case the original string is duplicated.
 Note that the returned string should be explicitly freed when not
 used anymore.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/urldecode.h")]
+[CCode (cname="ff_urldecode",cheader_filename="subprojects/ffmpeg/libformat/urldecode.h")]
 public static string ff_urldecode (
     string url
 );

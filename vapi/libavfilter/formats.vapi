@@ -56,7 +56,7 @@ we must ensure that all links which reference either pre-merge format list
 get updated as well. Therefore, we have the format list structure store a
 pointer to each of the pointers to itself.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 [Compact]
 public class AVFilterFormats {
     /***********************************************************
@@ -97,7 +97,7 @@ differences:
   channel count with unknown disposition with the same number of channels
   (e.g. AV_CH_LAYOUT_STEREO and FF_COUNT2LAYOUT (2).
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 [Compact]
 public class AVFilterChannelLayouts {
     /***********************************************************
@@ -144,7 +144,7 @@ or unknown disposition.
 The result is only valid inside AVFilterChannelLayouts and immediately
 related functions.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 public define FF_COUNT2LAYOUT (
     void *c
 );
@@ -156,7 +156,7 @@ public define FF_COUNT2LAYOUT (
 Decode a channel count encoded as a channel layout.
 Return 0 if the channel layout was a real one.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 public define FF_LAYOUT2COUNT (
     void *l
 );
@@ -176,13 +176,13 @@ references of b, and a and b themselves will be deallocated.
 If a and b do not share any common elements, neither is modified, and NULL
 is returned.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 public AVFilterChannelLayouts ff_merge_channel_layouts (
     AVFilterChannelLayouts? a,
     AVFilterChannelLayouts? b
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 public AVFilterFormats ff_merge_samplerates (
     AVFilterFormats? a,
     AVFilterFormats? b
@@ -192,11 +192,11 @@ public AVFilterFormats ff_merge_samplerates (
 Construct an empty AVFilterChannelLayouts/AVFilterFormats struct --
 representing any channel layout (with known disposition)/sample rate.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public AVFilterChannelLayouts ff_all_channel_layouts ();
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public AVFilterFormats ff_all_samplerates ();
 
@@ -204,17 +204,17 @@ public AVFilterFormats ff_all_samplerates ();
 Construct an AVFilterChannelLayouts coding for any channel layout, with
 known or unknown disposition.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public AVFilterChannelLayouts ff_all_channel_counts ();
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public AVFilterChannelLayouts avfilter_make_format64_list (
     const int64[] fmts
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public AVFilterChannelLayouts ff_make_formatu64_list (
     const uint64[] fmts
@@ -226,14 +226,14 @@ A helper for query_formats () which sets all links to the same list of channel
 layouts/sample rates. If there are no links hooked to this filter, the list
 is freed.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public int ff_set_common_channel_layouts (
     AVFilterContext? av_filter_context,
     AVFilterChannelLayouts? layouts
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public int ff_set_common_samplerates (
     AVFilterContext? av_filter_context,
@@ -245,14 +245,14 @@ A helper for query_formats () which sets all links to the same list of
 formats. If there are no links hooked to this filter, the list of formats is
 freed.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public int ff_set_common_formats (
     AVFilterContext? av_filter_context,
     AVFilterFormats? formats
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public int ff_add_channel_layout (
     AVFilterChannelLayouts **l,
@@ -262,7 +262,7 @@ public int ff_add_channel_layout (
 /***********************************************************
 Add? ref as a new reference to f.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public int ff_channel_layouts_ref (
     AVFilterChannelLayouts? f,
@@ -272,18 +272,18 @@ public int ff_channel_layouts_ref (
 /***********************************************************
 Remove a reference to a channel layouts list.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 public void ff_channel_layouts_unref (
     AVFilterChannelLayouts **ref
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 public void ff_channel_layouts_changeref (
     AVFilterChannelLayouts **oldref,
     AVFilterChannelLayouts **newref
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public int ff_default_query_formats (
     AVFilterContext? av_filter_context
@@ -294,7 +294,7 @@ Set the formats list to all known channel layouts. This function behaves
 like ff_default_query_formats (), except it only accepts known channel
 layouts. It should only be used with audio filters.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public int ff_query_formats_all_layouts (
     AVFilterContext? av_filter_context
@@ -307,7 +307,7 @@ AVFilter->query_formats ().
 @param fmts list of media formats, terminated by -1
 @return the format list, with no existing references
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public AVFilterFormats ff_make_format_list (
     int[] fmts
@@ -321,7 +321,7 @@ and puts its pointer in? avff.
 @return a non negative value in case of success, or a negative
 value corresponding to an AVERROR code in case of error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public int ff_add_format (
     AVFilterFormats **avff,
@@ -331,7 +331,7 @@ public int ff_add_format (
 /***********************************************************
 Return a list of all formats supported by FFmpeg for the given media type.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public AVFilterFormats ff_all_formats (
     AVMediaType type
@@ -340,7 +340,7 @@ public AVFilterFormats ff_all_formats (
 /***********************************************************
 Construct a formats list containing all planar sample formats.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public AVFilterFormats ff_planar_sample_fmts ();
 
@@ -352,7 +352,7 @@ a and b themselves will be deallocated.
 If a and b do not share any common formats, neither is modified, and NULL
 is returned.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 public AVFilterFormats ff_merge_formats (
     AVFilterFormats? a,
     AVFilterFormats? b,
@@ -371,7 +371,7 @@ That is the pointers will point like in the ascii art below:
  | |____| |    | |____|
  |________|    |________________________
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 //  av_warn_unused_result
 public int ff_formats_ref (
     AVFilterFormats? formats,
@@ -393,7 +393,7 @@ reference, and sets? ref to NULL.
  | |____| |    | |____|                 | |____| |    | |____|
  |________|    |_____________________   |________|    |_____________________
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 public void ff_formats_unref (
     AVFilterFormats **ref
 );
@@ -410,7 +410,7 @@ public void ff_formats_unref (
  |________|                       |________|                |*oldref|
                                                             |_______|
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 public void ff_formats_changeref (
     AVFilterFormats **oldref,
     AVFilterFormats **newref

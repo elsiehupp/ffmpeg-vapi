@@ -25,7 +25,7 @@ namespace LibAVUtil {
 @brief Color transform parameters at a processing window in a dynamic metadata for
 SMPTE 2094-40.
 ***********************************************************/
-[CCode (cname="struct AVHDRPlusColorTransformParams",cheader_filename="ffmpeg/libavutil/hdr_dynamic_metadata.h")]
+[CCode (cname="struct AVHDRPlusColorTransformParams",cheader_filename="subprojects/ffmpeg/libavutil/hdr_dynamic_metadata.h")]
 [Compact]
 public class HDRPlusColorTransformParameters {
     /***********************************************************

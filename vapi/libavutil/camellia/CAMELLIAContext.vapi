@@ -27,18 +27,18 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_camellia CAMELLIA
 ***********************************************************/
 
-[CCode (cname="struct AVCAMELLIA",cheader_filename="ffmpeg/libavutil/camellia.h")]
+[CCode (cname="struct AVCAMELLIA",cheader_filename="subprojects/ffmpeg/libavutil/camellia.h")]
 [Compact]
 public class CAMELLIAContext {
 
-    [CCode (cname="av_camellia_size",cheader_filename="ffmpeg/libavutil/camellia.h")]
+    [CCode (cname="av_camellia_size",cheader_filename="subprojects/ffmpeg/libavutil/camellia.h")]
     public const size_t SIZE;
 
     /***********************************************************
     @brief Allocate an CAMELLIAContext context
     To free the struct: av_free (ptr)
     ***********************************************************/
-    [CCode (cname="av_camellia_alloc",cheader_filename="ffmpeg/libavutil/camellia.h")]
+    [CCode (cname="av_camellia_alloc",cheader_filename="subprojects/ffmpeg/libavutil/camellia.h")]
     public CAMELLIAContext av_camellia_alloc ();
 
     /***********************************************************
@@ -48,7 +48,7 @@ public class CAMELLIAContext {
     @param key a key of 16, 24, 32 bytes used for encryption/decryption
     @param key_bits number of keybits: possible are 128, 192, 256
     ***********************************************************/
-    [CCode (cname="av_camellia_init",cheader_filename="ffmpeg/libavutil/camellia.h")]
+    [CCode (cname="av_camellia_init",cheader_filename="subprojects/ffmpeg/libavutil/camellia.h")]
     public int av_camellia_init (
         CAMELLIAContext camellia,
         uint8[] key,
@@ -65,7 +65,7 @@ public class CAMELLIAContext {
     @paran initialization_vector initialization vector for CBC mode, null for ECB mode
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_camellia_crypt",cheader_filename="ffmpeg/libavutil/camellia.h")]
+    [CCode (cname="av_camellia_crypt",cheader_filename="subprojects/ffmpeg/libavutil/camellia.h")]
     public void av_camellia_crypt (
         CAMELLIAContext camellia,
         out uint8[] output_buffer,

@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
 namespace FFmpeg {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
 public enum FooBar {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     VSYNC_AUTO, // -1

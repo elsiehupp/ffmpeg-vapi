@@ -30,13 +30,13 @@ namespace LibAVUtil {
 @addtogroup LibAVUtil.Audio
 ***********************************************************/
 
-[CCode (cname="struct AVBPrint",cheader_filename="ffmpeg/libavutil/channel_layout.h")]
+[CCode (cname="struct AVBPrint",cheader_filename="subprojects/ffmpeg/libavutil/channel_layout.h")]
 [Compact]
 public class BPrintBuffer {
     /***********************************************************
     @brief Append a description of a channel layout to a bprint buffer.
     ***********************************************************/
-    [CCode (cname="av_bprint_channel_layout",cheader_filename="ffmpeg/libavutil/channel_layout.h")]
+    [CCode (cname="av_bprint_channel_layout",cheader_filename="subprojects/ffmpeg/libavutil/channel_layout.h")]
     public void av_bprint_channel_layout (
         BPrintBuffer bp,
         int nb_channels,
@@ -155,7 +155,7 @@ such as the current paragraph.
     UINT_MAX, the largest limit possible.
     May use @link BPrintSize macros.
 ***********************************************************/
-[CCode (cname="av_bprint_init",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_init",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_bprint_init (
     BPrintBuffer buffer,
     uint size_init,
@@ -171,7 +171,7 @@ The buffer will not be reallocated.
 @param buffer byte buffer to use for the string data
 @param size size of buffer
 ***********************************************************/
-[CCode (cname="av_bprint_init_for_buffer",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_init_for_buffer",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_bprint_init_for_buffer (
     BPrintBuffer print_buffer,
     string buffer,
@@ -181,7 +181,7 @@ public void av_bprint_init_for_buffer (
 /***********************************************************
 @brief Append a formatted string to a print buffer.
 ***********************************************************/
-[CCode (cname="av_bprintf",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprintf",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_bprintf (
     BPrintBuffer buffer,
     string fmt,
@@ -191,7 +191,7 @@ public void av_bprintf (
 /***********************************************************
 @brief Append a formatted string to a print buffer.
 ***********************************************************/
-[CCode (cname="av_vbprintf",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_vbprintf",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_vbprintf (
     BPrintBuffer buffer,
     string fmt,
@@ -201,7 +201,7 @@ public void av_vbprintf (
 /***********************************************************
 @brief Append char c n times to a print buffer.
 ***********************************************************/
-[CCode (cname="av_bprint_chars",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_chars",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_bprint_chars (
     BPrintBuffer buffer,
     char c,
@@ -215,14 +215,14 @@ param buffer bprint buffer to use
 param data pointer to data
 param size size of data
 ***********************************************************/
-[CCode (cname="av_bprint_append_data",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_append_data",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_bprint_append_data (
     BPrintBuffer buffer,
     string data,
     uint size
 );
 
-[CCode (cname="struct tm",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="struct tm",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 [Compact]
 public class AVTime { }
 
@@ -237,7 +237,7 @@ param tm broken-down time structure to translate
 produce poor results if the format string expands to a very long text and
 the bprint buffer is near the limit stated by the size_max option.
 ***********************************************************/
-[CCode (cname="av_bprint_strftime",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_strftime",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_bprint_strftime (
     BPrintBuffer buffer,
     string fmt,
@@ -253,7 +253,7 @@ public void av_bprint_strftime (
 @param[out] actual_size size of the memory area after allocation;
     can be larger or smaller than size
 ***********************************************************/
-[CCode (cname="av_bprint_get_buffer",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_get_buffer",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_bprint_get_buffer (
     BPrintBuffer buffer,
     uint size,
@@ -264,7 +264,7 @@ public void av_bprint_get_buffer (
 /***********************************************************
 @brief Reset the string to "" but keep internal allocated data.
 ***********************************************************/
-[CCode (cname="av_bprint_clear",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_clear",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_bprint_clear (
     BPrintBuffer buffer
 );
@@ -275,7 +275,7 @@ public void av_bprint_clear (
 It may have been truncated due to a memory allocation failure
 or the size_max limit (compare size and size_max if necessary).
 ***********************************************************/
-[CCode (cname="av_bprint_is_complete",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_is_complete",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public static int av_bprint_is_complete (
     BPrintBuffer buffer
 );
@@ -291,7 +291,7 @@ but the len and size fields are still valid.
     if null, the buffer is discarded and freed
 @return 0 for success or error code (probably LibAVUtil.ErrorCode (ENOMEM))
 ***********************************************************/
-[CCode (cname="av_bprint_finalize",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_finalize",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public int av_bprint_finalize (
     BPrintBuffer buffer,
     out string ret_str
@@ -310,7 +310,7 @@ public int av_bprint_finalize (
     notice.
 @param flags flags which control how to escape, see StringEscapeFlags macros
 ***********************************************************/
-[CCode (cname="av_bprint_escape",cheader_filename="ffmpeg/libavutil/bprint.h")]
+[CCode (cname="av_bprint_escape",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
 public void av_bprint_escape (
     BPrintBuffer dstbuf,
     string input_buffer,

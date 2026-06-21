@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cname="struct AVSubtitle",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVSubtitle",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class Subtitle {
     /***********************************************************
@@ -64,7 +64,7 @@ public class Subtitle {
 
     @param sub Subtitle to free.
     ***********************************************************/
-    [CCode (cname="avsubtitle_free",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="avsubtitle_free",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avsubtitle_free (
         Subtitle sub
     );

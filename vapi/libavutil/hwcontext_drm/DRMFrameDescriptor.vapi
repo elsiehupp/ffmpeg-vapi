@@ -47,13 +47,13 @@ the order of the planes by increasing layer index followed by
 increasing plane index must be the same as the order which would
 be used for the data pointers in the equivalent software format.
 ***********************************************************/
-[CCode (cname="struct AVDRMFrameDescriptor",cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
+[CCode (cname="struct AVDRMFrameDescriptor",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext_drm.h")]
 [Compact]
 public class DRMFrameDescriptor {
     /***********************************************************
     @brief The maximum number of layers/planes in a DRM frame.
     ***********************************************************/
-    [CCode (cname="AV_DRM_MAX_PLANES",cheader_filename="ffmpeg/libavutil/hwcontext_drm.h")]
+    [CCode (cname="AV_DRM_MAX_PLANES",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext_drm.h")]
     public const size_t AV_DRM_MAX_PLANES;
 
     /***********************************************************

@@ -16,10 +16,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framerate.h")]
 public const int BLEND_FACTOR_DEPTH8; // 7
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framerate.h")]
 public const int BLEND_FACTOR_DEPTH16; // 15
 
 [CCode (cname="blend_func")]
@@ -37,7 +37,7 @@ public delegate void BlendDelegate (
     int half
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framerate.h")]
 [Compact]
 public class FrameRateContext {
     [CCode (cname="")]
@@ -175,12 +175,12 @@ public class FrameRateContext {
     public BlendDelegate blend;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framerate.h")]
 public void ff_framerate_init (
     FrameRateContext? s
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framerate.h")]
 public void ff_framerate_init_x86 (
     FrameRateContext? s
 );

@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bbox.h")]
 [Compact]
 public class FFBoundingBox {
     [CCode (cname="")]
@@ -44,7 +44,7 @@ region with values > min_val.
 @return 1 in case at least one pixel with value > min_val was found,
         0 otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bbox.h")]
 public int ff_calculate_bounding_box (
     FFBoundingBox? bbox,
     uint8[] data,

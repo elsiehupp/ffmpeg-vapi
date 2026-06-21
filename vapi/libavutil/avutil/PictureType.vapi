@@ -27,7 +27,7 @@ namespace LibAVUtil {
 AVPicture types, pixel formats and basic image planes manipulation.
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="ffmpeg/libavutil/avutil.h")]
+[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavutil/avutil.h")]
 public enum PictureType {
     /***********************************************************
     @brief Undefined

@@ -24,7 +24,7 @@ reference-counted frame API
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="FF_DECODE_ERROR_",cheader_filename="ffmpeg/libavutil/frame.h")]
+[CCode (cprefix="FF_DECODE_ERROR_",cheader_filename="subprojects/ffmpeg/libavutil/frame.h")]
 public enum DecodeErrorFlags {
     INVALID_BITSTREAM,
     MISSING_REFERENCE,

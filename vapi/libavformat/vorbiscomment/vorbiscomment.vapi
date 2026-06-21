@@ -31,7 +31,7 @@ size required by ff_vorbiscomment_write ().
 For no string, set to an empty string.
 @return The length in bytes.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/vorbiscomment.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/vorbiscomment.h")]
 public int64 ff_vorbiscomment_length (
     LibAVUtil.Dictionary m,
     string vendor_string,
@@ -51,7 +51,7 @@ ff_vorbiscomment_length ()
 @param chapters The chapters to write.
 @param nb_chapters The number of chapters to write.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/vorbiscomment.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/vorbiscomment.h")]
 public int ff_vorbiscomment_write (
     out uint8[] p,
     out LibAVUtil.Dictionary m,

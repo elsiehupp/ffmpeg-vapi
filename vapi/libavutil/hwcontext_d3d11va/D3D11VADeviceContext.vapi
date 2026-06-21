@@ -34,10 +34,10 @@ for the LibAVUtil.Dictionary entry. If this is set to any value, the device crea
 code will try to load various supported D3D debugging layers.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
 public delegate void D3D11VADeviceLockDelegate (
     void *lock_ctx
 );
+
 public delegate void D3D11VADeviceUnlockDelegate (
     void *lock_ctx
 );
@@ -45,7 +45,7 @@ public delegate void D3D11VADeviceUnlockDelegate (
 /***********************************************************
 @brief This struct is allocated as HardwareDeviceContext.hwctx
 ***********************************************************/
-[CCode (cname="struct AVD3D11VADeviceContext",cheader_filename="ffmpeg/libavutil/hwcontext_d3d11va.h")]
+[CCode (cname="struct AVD3D11VADeviceContext",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext_d3d11va.h")]
 public class D3D11VADeviceContext : AbstractHardwareContext {
     /***********************************************************
     @brief Device used for texture creation and access. This can also be used to

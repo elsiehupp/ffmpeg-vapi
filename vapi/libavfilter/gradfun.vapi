@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /***********************************************************
 Holds instance-specific information for gradfun.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
 [Compact]
 public class GradFunContext {
     [CCode (cname="")]
@@ -99,12 +99,12 @@ public class GradFunContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
 public void ff_gradfun_init_x86 (
     GradFunContext? gf
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
 public void ff_gradfun_filter_line_c (
     uint8[] dst,
     uint8[] src,
@@ -114,7 +114,7 @@ public void ff_gradfun_filter_line_c (
     uint16[] dithers
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
 public void ff_gradfun_blur_line_c (
     uint16[] dc,
     uint16[] buf,

@@ -20,7 +20,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
 [Compact]
 public class FilterParam {
     [CCode (cname="")]
@@ -33,22 +33,22 @@ public class FilterParam {
     public string radius_expr;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
 public enum FooBar {
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
     Y, // 0
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
     U, // 1
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
     V, // 2
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
     A; // 3
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
 public int ff_boxblur_eval_filter_params (
     AVFilterLink? inlink,
     FilterParam? luma_param,

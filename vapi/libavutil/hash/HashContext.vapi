@@ -104,7 +104,7 @@ arguments. It demonstrates a typical use of the hashing API with allocation,
 initialization, updating, and finalizing.
 ***********************************************************/
 
-[CCode (cname="struct AVHashContext",cheader_filename="ffmpeg/libavutil/hash.h")]
+[CCode (cname="struct AVHashContext",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
 [Compact]
 public class HashContext {
 
@@ -116,7 +116,7 @@ public class HashContext {
     @note The context is not initialized after a call to this function; you must
     call av_hash_init () to do so.
     ***********************************************************/
-    [CCode (cname="av_hash_alloc",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_alloc",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public int av_hash_alloc (
         HashContext hash_context,
         string name
@@ -130,7 +130,7 @@ public class HashContext {
     @param[in] i Index of the hash algorithm, starting from 0
     @return Pointer to a static string or `null` if `i` is out of range
     ***********************************************************/
-    [CCode (cname="av_hash_names",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_names",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public string av_hash_names (
         int i
     );
@@ -138,7 +138,7 @@ public class HashContext {
     /***********************************************************
     @brief Get the name of the algorithm corresponding to the given hash context.
     ***********************************************************/
-    [CCode (cname="av_hash_get_name",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_get_name",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public string av_hash_get_name (
         HashContext hash_context
     );
@@ -157,7 +157,7 @@ public class HashContext {
     av_hash_get_size (), or limit your use of the Hashing API to hashes that are
     already in FFmpeg during the time of compilation.
     ***********************************************************/
-    [CCode (cname="AV_HASH_MAX_SIZE",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="AV_HASH_MAX_SIZE",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public const size_t AV_HASH_MAX_SIZE;
 
     /***********************************************************
@@ -169,7 +169,7 @@ public class HashContext {
     @param[in] hash_context Hash context
     @return Size of the hash value in bytes
     ***********************************************************/
-    [CCode (cname="av_hash_get_size",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_get_size",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public int av_hash_get_size (
         HashContext hash_context
     );
@@ -179,7 +179,7 @@ public class HashContext {
 
     @param[in,out] hash_context Hash context
     ***********************************************************/
-    [CCode (cname="av_hash_init",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_init",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public void av_hash_init (
         HashContext hash_context
     );
@@ -192,14 +192,14 @@ public class HashContext {
     @param[in] len Size of the additional data
     ***********************************************************/
 #if FF_API_CRYPTO_SIZE_T
-    [CCode (cname="av_hash_update",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_update",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public void av_hash_update (
         HashContext hash_context,
         uint8[] input_buffer,
         int len
     );
 #else
-    [CCode (cname="av_hash_update",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_update",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public void av_hash_update (
         HashContext hash_context,
         uint8[] input_buffer,
@@ -221,7 +221,7 @@ public class HashContext {
 
     @see @link av_hash_final_bin () provides an alternative API
     ***********************************************************/
-    [CCode (cname="av_hash_final",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_final",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public void av_hash_final (
         HashContext hash_context,
         out uint8[] output_buffer
@@ -240,7 +240,7 @@ public class HashContext {
     @param[out] output_buffer Where the final hash value will be stored
     @param[in] size Number of bytes to write to `output_buffer`
     ***********************************************************/
-    [CCode (cname="av_hash_final_bin",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_final_bin",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public void av_hash_final_bin (
         HashContext hash_context,
         out uint8[] output_buffer,
@@ -263,7 +263,7 @@ public class HashContext {
     @param[out] output_buffer Where the string will be stored
     @param[in] size Maximum number of bytes to write to `output_buffer`
     ***********************************************************/
-    [CCode (cname="av_hash_final_hex",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_final_hex",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public void av_hash_final_hex (
         HashContext hash_context,
         out uint8[] output_buffer,
@@ -286,7 +286,7 @@ public class HashContext {
     @param[out] output_buffer Where the final hash value will be stored
     @param[in] size Maximum number of bytes to write to `output_buffer`
     ***********************************************************/
-    [CCode (cname="av_hash_final_b64",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_final_b64",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public void av_hash_final_b64 (
         HashContext hash_context,
         out uint8[] output_buffer,
@@ -298,7 +298,7 @@ public class HashContext {
 
     @param[in,out] hash_context Pointer to hash context
     ***********************************************************/
-    [CCode (cname="av_hash_freep",cheader_filename="ffmpeg/libavutil/hash.h")]
+    [CCode (cname="av_hash_freep",cheader_filename="subprojects/ffmpeg/libavutil/hash.h")]
     public void av_hash_freep (
         HashContext hash_context
     );

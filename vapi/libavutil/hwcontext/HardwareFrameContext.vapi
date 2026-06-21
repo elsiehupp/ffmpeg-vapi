@@ -18,11 +18,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cname="struct AVHWFramesInternal",cheader_filename="ffmpeg/libavutil/hwcontext.h")]
+[CCode (cname="struct AVHWFramesInternal",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 [Compact]
 public class HardwareFrameInternalContext { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 public delegate void HardwareFrameContextFreeDelegate (
     HardwareFrameContext hardware_frames_context
 );
@@ -37,7 +37,7 @@ given HardwareDeviceContext instance. The av_hwframe_ctx_alloc () constructor
 yields a reference, whose data field points to the actual HardwareFrameContext
 class.
 ***********************************************************/
-[CCode (cname="struct AVHWFramesContext",cheader_filename="ffmpeg/libavutil/hwcontext.h")]
+[CCode (cname="struct AVHWFramesContext",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 [Compact]
 public class HardwareFrameContext {
     /***********************************************************

@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cname="struct MpegEncContext",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct MpegEncContext",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class MpegEncContext { }
 

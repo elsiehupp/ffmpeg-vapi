@@ -18,14 +18,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cname="struct AVHWDeviceInternal",cheader_filename="ffmpeg/libavutil/hwcontext.h")]
+[CCode (cname="struct AVHWDeviceInternal",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 [Compact]
 public class AVHWDeviceInternal { }
 
-[CCode (cname="struct AVHWContext",cheader_filename="ffmpeg/libavutil/hwcontext.h")]
+[CCode (cname="struct AVHWContext",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 public abstract class AbstractHardwareContext { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 public delegate void AVHWDeviceContextFreeDelegate (
     HardwareDeviceContext hardware_device_context
 );
@@ -47,7 +47,7 @@ references are released, the HardwareDeviceContext itself will be freed,
 optionally invoking a user-specified callback for uninitializing the hardware
 state.
 ***********************************************************/
-[CCode (cname="struct AVHWDeviceContext",cheader_filename="ffmpeg/libavutil/hwcontext.h")]
+[CCode (cname="struct AVHWDeviceContext",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 [Compact]
 public class HardwareDeviceContext {
     /***********************************************************

@@ -27,7 +27,7 @@ namespace LibAVUtil {
 ***********************************************************/
 
 [Flags]
-[CCode (cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
 public enum OptionSearchFlags {
     /***********************************************************
     @brief Search in possible children of the given object first.

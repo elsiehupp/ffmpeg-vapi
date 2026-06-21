@@ -27,17 +27,17 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_tea TEA
 ***********************************************************/
 
-[CCode (cname="struct AVTEA",cheader_filename="ffmpeg/libavutil/tea.h")]
+[CCode (cname="struct AVTEA",cheader_filename="subprojects/ffmpeg/libavutil/tea.h")]
 [Compact]
 public class TEAContext {
-    [CCode (cname="av_tea_size",cheader_filename="ffmpeg/libavutil/tea.h")]
+    [CCode (cname="av_tea_size",cheader_filename="subprojects/ffmpeg/libavutil/tea.h")]
     public const size_t SIZE;
 
     /***********************************************************
     @brief Allocate an TEAContext context
     To free the struct: av_free (ptr)
     ***********************************************************/
-    [CCode (cname="av_tea_alloc",cheader_filename="ffmpeg/libavutil/tea.h")]
+    [CCode (cname="av_tea_alloc",cheader_filename="subprojects/ffmpeg/libavutil/tea.h")]
     public TEAContext av_tea_alloc ();
 
     /***********************************************************
@@ -47,7 +47,7 @@ public class TEAContext {
     @param key a key of 16 bytes used for encryption/decryption
     @param rounds the number of rounds in TEA (64 is the "standard")
     ***********************************************************/
-    [CCode (cname="av_tea_init",cheader_filename="ffmpeg/libavutil/tea.h")]
+    [CCode (cname="av_tea_init",cheader_filename="subprojects/ffmpeg/libavutil/tea.h")]
     public void av_tea_init (
         TEAContext tea_context,
         uint8 key[16],
@@ -64,7 +64,7 @@ public class TEAContext {
     @param initialization_vector initialization vector for CBC mode, if null then ECB will be used
     @param decrypt 0 for encryption, 1 for decryption
     ***********************************************************/
-    [CCode (cname="av_tea_crypt",cheader_filename="ffmpeg/libavutil/tea.h")]
+    [CCode (cname="av_tea_crypt",cheader_filename="subprojects/ffmpeg/libavutil/tea.h")]
     public void av_tea_crypt (
         TEAContext tea_context,
         out uint8[] output_buffer,

@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct RDTDemuxContext",cheader_filename="ffmpeg/libformat/rdt.h")]
+[CCode (cname="struct RDTDemuxContext",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 [Compact]
 public class RDTDemuxContext { }
 
@@ -36,7 +36,7 @@ public class RDTDemuxContext { }
 @param handler pointer to the parse_packet () payload parsing function
 @return a newly allocated RDTDemuxContext. Free with ff_rdt_parse_close ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rdt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 public RDTDemuxContext ff_rdt_parse_open (
     AVFormatContext ic,
     int first_stream_of_set_idx,
@@ -44,7 +44,7 @@ public RDTDemuxContext ff_rdt_parse_open (
     RTPDynamicProtocolHandler handler
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rdt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 public void ff_rdt_parse_close (
     RDTDemuxContext demux_context
 );
@@ -61,7 +61,7 @@ server), which is used as some sort of client validation.
 @param challenge pointer to the RealChallenge1 value provided by the
                  server.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rdt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 public void ff_rdt_calc_response_and_checksum (
     char response[41],
     char chksum[9],
@@ -76,7 +76,7 @@ public void ff_rdt_calc_response_and_checksum (
 @param stream_nr stream number.
 @param rule_nr rule number to conform to.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rdt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 public void ff_rdt_subscribe_rule (
     string cmd,
     int size,
@@ -96,7 +96,7 @@ public void ff_rdt_subscribe_rule (
 @param ptimestamp will be set to the timestamp of the packet
 @return the amount of bytes consumed, or negative on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rdt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 public int ff_rdt_parse_header (
     uint8[] buffer,
     int len,
@@ -111,7 +111,7 @@ public int ff_rdt_parse_header (
 @brief Parse RDT-style packet data (header + media data).
 Usage similar to rtp_parse_packet ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rdt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 public int ff_rdt_parse_packet (
     RDTDemuxContext demux_context,
     LibAVCodec.Packet packet,
@@ -127,7 +127,7 @@ public int ff_rdt_parse_packet (
               by the SDP m= line (in format_context.streams)
 @param buffer the SDP line
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rdt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 public void ff_real_parse_sdp_a_line (
     AVFormatContext format_context,
     int stream_index,

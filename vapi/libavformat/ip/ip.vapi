@@ -25,7 +25,7 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Structure for storing IP (UDP) source filters or block lists.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/ip.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/ip.h")]
 [Compact]
 public class IPSourceFilters {
     [CCode (cname="")]
@@ -46,7 +46,7 @@ public class IPSourceFilters {
 @return 0 if packet should be processed based on the filter, 1 if the packet
     can be dropped.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/ip.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/ip.h")]
 public int ff_ip_check_source_lists (
     sockaddr_storage source_addr_ptr,
     IPSourceFilters source_filters
@@ -57,7 +57,7 @@ public int ff_ip_check_source_lists (
 @return addrinfo structure which should be freed by the user, NULL in case
     of error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/ip.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/ip.h")]
 public addrinfo ff_ip_resolve_host (
     void *log_ctx,
     string hostname,
@@ -72,7 +72,7 @@ public addrinfo ff_ip_resolve_host (
 in the IPSourceFilters structure.
 @return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/ip.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/ip.h")]
 public int ff_ip_parse_sources (
     void *log_ctx,
     string buffer,
@@ -84,7 +84,7 @@ public int ff_ip_parse_sources (
 filters in the IPSourceFilters structure.
 @return 0 on success, < 0 LibAVUtil.ErrorCode code on error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/ip.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/ip.h")]
 public int ff_ip_parse_blocks (
     void *log_ctx,
     string buffer,
@@ -95,7 +95,7 @@ public int ff_ip_parse_blocks (
 @brief Resets the IP filter list and frees the internal fields of an
 IPSourceFilters structure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/ip.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/ip.h")]
 public void ff_ip_reset_filters (
     IPSourceFilters filters
 );

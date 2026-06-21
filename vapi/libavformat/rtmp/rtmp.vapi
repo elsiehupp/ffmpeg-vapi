@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public const int RTMP_DEFAULT_PORT; // 1935
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public const int RTMPS_DEFAULT_PORT; // 443
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public const size_t RTMP_HANDSHAKE_PACKET_SIZE; // 1536
 
 /***********************************************************
@@ -36,19 +36,19 @@ public const size_t RTMP_HANDSHAKE_PACKET_SIZE; // 1536
 
 version defines
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public const string RTMP_CLIENT_PLATFORM; // "LNX"
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public const int RTMP_CLIENT_VER1; // 9
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public const int RTMP_CLIENT_VER2; // 0
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public const int RTMP_CLIENT_VER3; // 124
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public const int RTMP_CLIENT_VER4; // 2
 
 /***********************************************************
@@ -62,7 +62,7 @@ public const int RTMP_CLIENT_VER4; // 2
 @param keylen digest key length
 @param dst buffer where calculated digest will be stored (32 bytes)
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public int ff_rtmp_calc_digest (
     uint8[] src,
     int len,
@@ -80,7 +80,7 @@ public int ff_rtmp_calc_digest (
 @param mod_val value used for computing modulo
 @param add_val value added at the end (after computing modulo)
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmp.h")]
 public int ff_rtmp_calc_digest_pos (
     uint8[] buffer,
     int off,

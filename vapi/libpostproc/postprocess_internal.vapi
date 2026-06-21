@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 public internal API header.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 public enum FooBar {
     [CCode (cname="")]
     V_DEBLOCK, // 0x01
@@ -41,7 +41,7 @@ public enum FooBar {
     LEVEL_FIX; // 0x08
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 public enum FooBar {
     [CCode (cname="")]
     LUM_V_DEBLOCK, // V_DEBLOCK // 1
@@ -174,7 +174,7 @@ except turning the here selected filters on
 /***********************************************************
 Postprocessing filter.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 [Compact]
 public class PPFilter {
     [CCode (cname="")]
@@ -211,7 +211,7 @@ public class PPFilter {
 /***********************************************************
 Postprocessing mode.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 [Compact]
 public class PPMode {
     /***********************************************************
@@ -272,7 +272,7 @@ public class PPMode {
 /***********************************************************
 postprocess context.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 [Compact]
 public class PPContext {
     /***********************************************************
@@ -383,7 +383,7 @@ public class PPContext {
 }
 
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 public static inline void linecpy (
     void *dest,
     void *src,

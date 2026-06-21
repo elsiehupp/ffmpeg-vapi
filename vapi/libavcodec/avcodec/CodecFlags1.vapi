@@ -35,7 +35,7 @@ These flags can be passed in CodecContext.flags before initialization.
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum CodecFlags1 {
     /***********************************************************
     @brief Allow decoders to produce frames with data planes that are not aligned

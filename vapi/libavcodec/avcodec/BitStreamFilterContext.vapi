@@ -30,7 +30,7 @@ LibAVCodec external API header
 @defgroup lavc_parsing Frame parsing
 ***********************************************************/
 
-[CCode (cname="struct AVBSFInternal",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVBSFInternal",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class BSFInternal { }
 
@@ -44,7 +44,7 @@ The fields in the struct will only be changed (by the caller or by the
 filter) as described in their documentation, and are to be considered
 immutable otherwise.
 ***********************************************************/
-[CCode (cname="struct AVBSFContext",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVBSFContext",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class BitStreamFilterContext {
     /***********************************************************
@@ -106,7 +106,7 @@ public class BitStreamFilterContext {
     @return a bitstream filter with the specified name or null if no such
         bitstream filter exists.
     ***********************************************************/
-    [CCode (cname="av_bsf_get_by_name",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_get_by_name",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public BitStreamFilter av_bsf_get_by_name (
         string name
     );
@@ -120,7 +120,7 @@ public class BitStreamFilterContext {
     @return the next registered bitstream filter or null when the iteration is
         finished
     ***********************************************************/
-    [CCode (cname="av_bsf_iterate",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_iterate",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public BitStreamFilter av_bsf_iterate (out void *opaque);
 
     /***********************************************************
@@ -135,7 +135,7 @@ public class BitStreamFilterContext {
 
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
     ***********************************************************/
-    [CCode (cname="av_bsf_alloc",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_alloc",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_alloc (
         BitStreamFilter filter,
         BitStreamFilterContext bsf_context
@@ -145,7 +145,7 @@ public class BitStreamFilterContext {
     @brief Prepare the filter for use, after all the parameters and options have been
     set.
     ***********************************************************/
-    [CCode (cname="av_bsf_init",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_init",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_init (
         BitStreamFilterContext bsf_context
     );
@@ -165,7 +165,7 @@ public class BitStreamFilterContext {
 
     @return 0 on success, a negative LibAVUtil.ErrorCode on error.
     ***********************************************************/
-    [CCode (cname="av_bsf_send_packet",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_send_packet",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_send_packet (
         BitStreamFilterContext bsf_context,
         Packet packet
@@ -195,7 +195,7 @@ public class BitStreamFilterContext {
     output fewer packets than were sent to it, so this function may return
     LibAVUtil.ErrorCode (EAGAIN) immediately after a successful av_bsf_send_packet () call.
     ***********************************************************/
-    [CCode (cname="av_bsf_receive_packet",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_receive_packet",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_receive_packet (
         BitStreamFilterContext bsf_context,
         Packet packet
@@ -204,7 +204,7 @@ public class BitStreamFilterContext {
     /***********************************************************
     @brief Reset the internal bitstream filter state / flush internal buffers.
     ***********************************************************/
-    [CCode (cname="av_bsf_flush",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_flush",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void av_bsf_flush (
         BitStreamFilterContext bsf_context
     );
@@ -213,7 +213,7 @@ public class BitStreamFilterContext {
     @brief Free a bitstream filter context and everything associated with it; write null
     public into the supplied pointer.
     ***********************************************************/
-    [CCode (cname="av_bsf_free",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_free",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void av_bsf_free (
         BitStreamFilterContext bsf_context
     );
@@ -224,7 +224,7 @@ public class BitStreamFilterContext {
 
     @see @link av_opt_find ().
     ***********************************************************/
-    [CCode (cname="av_bsf_get_class",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_get_class",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public LibAVUtil.Class av_bsf_get_class ();
 
     /***********************************************************
@@ -240,7 +240,7 @@ public class BitStreamFilterContext {
 
     @return >=0 on success, negative LibAVUtil.ErrorCode in case of failure
     ***********************************************************/
-    [CCode (cname="av_bsf_list_parse_str",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_list_parse_str",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_list_parse_str (
         string str,
         BitStreamFilterContext bsf
@@ -253,7 +253,7 @@ public class BitStreamFilterContext {
 
     @return
     ***********************************************************/
-    [CCode (cname="av_bsf_get_null_filter",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+    [CCode (cname="av_bsf_get_null_filter",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_bsf_get_null_filter (
         BitStreamFilterContext bsf
     );

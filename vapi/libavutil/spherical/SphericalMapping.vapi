@@ -46,7 +46,7 @@ information about projection, initial layout, and any other view modifier.
 @note The struct must be allocated with av_spherical_alloc () and
       its size is not a part of the public ABI.
 ***********************************************************/
-[CCode (cname="struct AVSphericalMapping",cheader_filename="ffmpeg/libavutil/spherical.h")]
+[CCode (cname="struct AVSphericalMapping",cheader_filename="subprojects/ffmpeg/libavutil/spherical.h")]
 [Compact]
 public class SphericalMapping {
     /***********************************************************
@@ -189,7 +189,7 @@ public class SphericalMapping {
 
     @return the newly allocated struct or null on failure
     ***********************************************************/
-    [CCode (cname="av_spherical_alloc",cheader_filename="ffmpeg/libavutil/spherical.h")]
+    [CCode (cname="av_spherical_alloc",cheader_filename="subprojects/ffmpeg/libavutil/spherical.h")]
     public SphericalMapping av_spherical_alloc (
         size_t size
     );
@@ -206,7 +206,7 @@ public class SphericalMapping {
     @param right Pixels from the right edge.
     @param bottom Pixels from the bottom edge.
     ***********************************************************/
-    [CCode (cname="av_spherical_tile_bounds",cheader_filename="ffmpeg/libavutil/spherical.h")]
+    [CCode (cname="av_spherical_tile_bounds",cheader_filename="subprojects/ffmpeg/libavutil/spherical.h")]
     public void av_spherical_tile_bounds (
         SphericalMapping map,
         size_t width,
@@ -224,7 +224,7 @@ public class SphericalMapping {
 
     @return The name of the SphericalProjection, or "unknown".
     ***********************************************************/
-    [CCode (cname="av_spherical_projection_name",cheader_filename="ffmpeg/libavutil/spherical.h")]
+    [CCode (cname="av_spherical_projection_name",cheader_filename="subprojects/ffmpeg/libavutil/spherical.h")]
     public string av_spherical_projection_name (
         SphericalProjection projection
     );
@@ -236,7 +236,7 @@ public class SphericalMapping {
 
     @return The SphericalProjection value, or -1 if not found.
     ***********************************************************/
-    [CCode (cname="av_spherical_from_name",cheader_filename="ffmpeg/libavutil/spherical.h")]
+    [CCode (cname="av_spherical_from_name",cheader_filename="subprojects/ffmpeg/libavutil/spherical.h")]
     public int av_spherical_from_name (
         string name
     );

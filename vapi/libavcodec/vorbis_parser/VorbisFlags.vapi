@@ -26,7 +26,7 @@ Determines the duration for each packet.
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/vorbis_parser.h")]
+[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/vorbis_parser.h")]
 public enum VorbisFlags {
     VORBIS_FLAG_HEADER,
     VORBIS_FLAG_COMMENT,

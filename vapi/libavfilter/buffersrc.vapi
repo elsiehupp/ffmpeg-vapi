@@ -33,13 +33,13 @@ public enum FooBar {
     /***********************************************************
     Do not check for format changes.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
     AV_BUFFERSRC_FLAG_NO_CHECK_FORMAT, // = 1,
 
     /***********************************************************
     Immediately push the frame to the output.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
     AV_BUFFERSRC_FLAG_PUSH, // = 4,
 
     /***********************************************************
@@ -47,7 +47,7 @@ public enum FooBar {
     If the frame if reference-counted, create a new reference;
     otherwise copy the frame data.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
     AV_BUFFERSRC_FLAG_KEEP_REF; // = 8,
 
 }
@@ -59,7 +59,7 @@ A failed request is when the request_frame method is called while no
 frame is present in the buffer.
 The number is reset when a frame is added.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 public uint av_buffersrc_get_nb_failed_requests (
     AVFilterContext? buffer_src
 );
@@ -71,7 +71,7 @@ passed to this filter.
 It should be allocated with av_buffersrc_parameters_alloc () and freed with
 av_free (). All the allocated fields in it remain owned by the caller.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 [Compact]
 public class AVBufferSrcParameters {
     /***********************************************************
@@ -139,7 +139,7 @@ public class AVBufferSrcParameters {
 Allocate a new AVBufferSrcParameters instance. It should be freed by the
 caller with av_free ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 public AVBufferSrcParameters av_buffersrc_parameters_alloc ();
 
 /***********************************************************
@@ -155,7 +155,7 @@ whatever method is used last takes precedence.
              copies or references when necessary.
 @return 0 on success, a negative AVERROR code on failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 public int av_buffersrc_parameters_set (
     AVFilterContext? av_filter_context,
     AVBufferSrcParameters? param
@@ -174,7 +174,7 @@ copied.
 This function is equivalent to av_buffersrc_add_frame_flags () with the
 AV_BUFFERSRC_FLAG_KEEP_REF flag.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 //  av_warn_unused_result
 public int av_buffersrc_write_frame (
     AVFilterContext? av_filter_context,
@@ -199,7 +199,7 @@ while this function takes ownership of the reference passed to it.
 This function is equivalent to av_buffersrc_add_frame_flags () without the
 AV_BUFFERSRC_FLAG_KEEP_REF flag.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 //  av_warn_unused_result
 public int av_buffersrc_add_frame (
     AVFilterContext? av_filter_context,
@@ -221,7 +221,7 @@ If this function returns an error, the input frame is not touched.
 @return            >= 0 in case of success, a negative AVERROR code
                    in case of failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 //  av_warn_unused_result
 public int av_buffersrc_add_frame_flags (
     AVFilterContext? buffer_src,
@@ -236,7 +236,7 @@ This is similar to passing NULL to av_buffersrc_add_frame_flags ()
 except it takes the timestamp of the EOF, i.e. the timestamp of the end
 of the last frame.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 public int av_buffersrc_close (
     AVFilterContext? av_filter_context,
     int64 pts,

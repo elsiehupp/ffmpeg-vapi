@@ -32,7 +32,7 @@ LibAVCodec external API header
 We leave some space between these for extensions (drop some
 keyframes for intra-only or drop just some bidir frames).
 ***********************************************************/
-[CCode (cname="AVDiscard", cprefix="AVDISCARD_",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="AVDiscard", cprefix="AVDISCARD_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum Discard {
     /***********************************************************
     @brief Discard nothing

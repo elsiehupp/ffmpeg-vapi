@@ -18,7 +18,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public enum EOFAction {
     [CCode (cname="")]
     EOF_ACTION_REPEAT,
@@ -58,7 +58,7 @@ Stream extrapolation mode
 Describe how the frames of a stream are extrapolated before the first one
 and after EOF to keep sync with possibly longer other streams.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public enum FFFrameSyncExtMode {
     /***********************************************************
     Completely stop all streams with this one.
@@ -82,7 +82,7 @@ public enum FFFrameSyncExtMode {
 /***********************************************************
 Input stream structure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 [Compact]
 public class FFFrameSyncIn {
     /***********************************************************
@@ -157,7 +157,7 @@ public class FFFrameSyncIn {
 /***********************************************************
 Frame sync structure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 [Compact]
 public class FFFrameSync {
     [CCode (cname="")]
@@ -248,7 +248,7 @@ public class FFFrameSync {
 /***********************************************************
 Get the class for the framesync object.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public AVClass ff_framesync_get_class ();
 
 /***********************************************************
@@ -258,7 +258,7 @@ It sets the class pointer and inits the options to their default values.
 The entire structure is expected to be already set to 0.
 This step is optional, but necessary to use the options.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public void ff_framesync_preinit (
     FFFrameSync? fs
 );
@@ -273,7 +273,7 @@ The entire structure is expected to be already set to 0 or preinited.
 @param  nb_in   number of inputs
 @return  >= 0 for success or a negative error code
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public int ff_framesync_init (
     FFFrameSync? fs,
     AVFilterContext? parent,
@@ -287,7 +287,7 @@ Must be called after all options are set but before all use.
 
 @return  >= 0 for success or a negative error code
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public int ff_framesync_configure (
     FFFrameSync? fs
 );
@@ -295,7 +295,7 @@ public int ff_framesync_configure (
 /***********************************************************
 Free all memory currently allocated.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public void ff_framesync_uninit (
     FFFrameSync? fs
 );
@@ -310,7 +310,7 @@ Get the current frame in an input.
                the returned frame; the current frame will either be
                duplicated or removed from the framesync structure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public int ff_framesync_get_frame (
     FFFrameSync? fs,
     uint in,
@@ -324,7 +324,7 @@ Examine the frames in the filter's input and try to produce output.
 This function can be the complete implementation of the activate
 method of a filter using framesync.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public int ff_framesync_activate (
     FFFrameSync? fs
 );
@@ -340,7 +340,7 @@ unchanged when disabled.
 Equivalent to ff_framesync_init (fs, parent, 2) then setting the time
 base, sync and ext modes on the inputs.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public int ff_framesync_init_dualinput (
     FFFrameSync? fs,
     AVFilterContext? parent
@@ -354,7 +354,7 @@ public int ff_framesync_init_dualinput (
 ff_framesync_get_frame ()) while the frame returned in f1 is still owned
 by the framesync structure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public int ff_framesync_dualinput_get (
     FFFrameSync? fs,
     out AVFrame[] f0,
@@ -364,14 +364,14 @@ public int ff_framesync_dualinput_get (
 /***********************************************************
 Same as ff_framesync_dualinput_get (), but make sure that f0 is writable.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public int ff_framesync_dualinput_get_writable (
     FFFrameSync? fs,
     out AVFrame[] f0,
     out AVFrame[] f1
 );
 
-//  [CCode (cname="",cheader_filename="")]
+//  [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 //  public define FRAMESYNC_DEFINE_CLASS (name, context, field) \
 //  static int name##_framesync_preinit (AVFilterContext? av_filter_context) { \
 //      context? s = av_filter_context->priv; \

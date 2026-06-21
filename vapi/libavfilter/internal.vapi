@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 public internal API functions
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
 public class AVFilterCommand {
     /***********************************************************
@@ -52,7 +52,7 @@ public class AVFilterCommand {
 /***********************************************************
 Update the position of a link in the age heap.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_avfilter_graph_update_heap (
     AVFilterGraph? graph,
     AVFilterLink? link
@@ -61,7 +61,7 @@ public void ff_avfilter_graph_update_heap (
 /***********************************************************
 A filter pad used for either input or output.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
 public class AVFilterPad {
     /***********************************************************
@@ -195,7 +195,7 @@ public class AVFilterPad {
     public int needs_writable;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
 public class AVFilterGraphInternal {
     [CCode (cname="")]
@@ -208,7 +208,7 @@ public class AVFilterGraphInternal {
     public FFFrameQueueGlobal frame_queues;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
 public class AVFilterInternal {
     [CCode (cname="")]
@@ -224,7 +224,7 @@ array of supported formats.
 @param fmts -1-terminated list of formats
 @return 1 if present, 0 if absent
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_fmt_is_in (
     int fmt,
     int[] fmts
@@ -242,7 +242,7 @@ Parse a pixel format.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 //  av_warn_unused_result
 public int ff_parse_pixel_format (
     AVPixelFormat? ret,
@@ -258,7 +258,7 @@ Parse a sample rate.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 //  av_warn_unused_result
 public int ff_parse_sample_rate (
     out int ret,
@@ -274,7 +274,7 @@ Parse a time base.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 //  av_warn_unused_result
 public int ff_parse_time_base (
     AVRational? ret,
@@ -290,7 +290,7 @@ Parse a sample format name or a corresponding integer representation.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 //  av_warn_unused_result
 public int ff_parse_sample_format (
     out int ret,
@@ -308,7 +308,7 @@ Parse a channel layout or a corresponding integer representation.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 //  av_warn_unused_result
 public int ff_parse_channel_layout (
     int64[] ret,
@@ -317,7 +317,7 @@ public int ff_parse_channel_layout (
     void *log_ctx
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_update_link_current_pts (
     AVFilterLink? link,
     int64 pts
@@ -330,7 +330,7 @@ in link time base and relative to the frames timeline.
 In particular, for AVERROR_EOF, it should reflect the
 end time of the last frame.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_avfilter_link_set_in_status (
     AVFilterLink? link,
     int status,
@@ -341,14 +341,14 @@ public void ff_avfilter_link_set_in_status (
 Set the status field of a link from the destination filter.
 The pts should probably be left unset (AV_NOPTS_VALUE).
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_avfilter_link_set_out_status (
     AVFilterLink? link,
     int status,
     int64 pts
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_command_queue_pop (
     AVFilterContext? filter
 );
@@ -357,7 +357,7 @@ public void ff_command_queue_pop (
 misc trace functions
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public define FF_TPRINTF_START (
     void *ctx,
     void *func
@@ -366,21 +366,21 @@ public define FF_TPRINTF_START (
 //      ff_tlog (NULL, "%-16s: ", #func);
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public string ff_get_ref_perms_string (
     string buf,
     size_t buf_size,
     int perms
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_tlog_ref (
     void *ctx,
     AVFrame? ref,
     int end
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_tlog_link (
     void *ctx,
     AVFilterLink? link,
@@ -401,7 +401,7 @@ Insert a new pad.
 @param newpad The new pad to add. A copy is made when adding.
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_insert_pad (
     uint idx,
     uint? count,
@@ -414,7 +414,7 @@ public int ff_insert_pad (
 /***********************************************************
 Insert a new input pad for the filter.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public static inline int ff_insert_inpad (
     AVFilterContext? av_filter_context,
     uint index,
@@ -435,7 +435,7 @@ public static inline int ff_insert_inpad (
 /***********************************************************
 Insert a new output pad for the filter.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public static inline int ff_insert_outpad (
     AVFilterContext? av_filter_context,
     uint index,
@@ -462,7 +462,7 @@ Poll a frame from the filter chain.
 @return the number of immediately available frames, a negative
 number in case of error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_poll_frame (
     AVFilterLink? link
 );
@@ -498,12 +498,12 @@ filter is also allowed to simply forward a success return value.
             AVERROR (EAGAIN) if the previous filter cannot output a frame
             currently and can neither guarantee that EOF has been reached.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_request_frame (
     AVFilterLink? link
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public define AVFILTER_DEFINE_CLASS (
     fname
 );
@@ -520,7 +520,7 @@ Find the index of a link.
 
 I.e. find i such that link == ctx->(in|out)puts[i]
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public define FF_INLINK_IDX (
     void *link
 );
@@ -528,7 +528,7 @@ public define FF_INLINK_IDX (
 //      return ((int)((link)->dstpad - (link)->dst->input_pads));
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public define FF_OUTLINK_IDX (
     void *link
 );
@@ -547,7 +547,7 @@ Send a frame of data to the next filter.
 @return >= 0 on success, a negative AVERROR on error. The receiving filter
 is responsible for unreferencing frame in case of error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_frame (
     AVFilterLink? link,
     AVFrame? frame
@@ -561,13 +561,13 @@ Allocate a new filter context and return it.
 
 @return newly created filter context or NULL on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public AVFilterContext? ff_filter_alloc (
     AVFilter? filter,
     string inst_name
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_activate (
     AVFilterContext? filter
 );
@@ -575,7 +575,7 @@ public int ff_filter_activate (
 /***********************************************************
 Remove a filter from a graph;
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_filter_graph_remove_filter (
     AVFilterGraph? graph,
     AVFilterContext? filter
@@ -587,14 +587,14 @@ public enum FooBar {
     The filter is aware of hardware frames, and any hardware frame context
     should not be automatically propagated through it.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
     FF_FILTER_FLAG_HWFRAME_AWARE; // (1 << 0)
 }
 
 /***********************************************************
 Run one round of processing on a filter graph.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_graph_run_once (
     AVFilterGraph? graph
 );
@@ -604,7 +604,7 @@ Normalize the qscale factor
 FIXME the H264 qscale is a log based scale, mpeg1/2 is not, the code below
       cannot be optimal
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public static inline int ff_norm_qscale (
     int qscale,
     int type
@@ -623,7 +623,7 @@ public static inline int ff_norm_qscale (
 Get number of threads for current filter instance.
 This number is always same or less than graph->nb_threads.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_get_nb_threads (
     AVFilterContext? av_filter_context
 );
@@ -641,7 +641,7 @@ default_pool_size is nonzero, then it will be used as the pool size if
 no other modification takes place (this can be used to preserve
 compatibility).
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_init_hw_frames (
     AVFilterContext? avctx,
     AVFilterLink? link,

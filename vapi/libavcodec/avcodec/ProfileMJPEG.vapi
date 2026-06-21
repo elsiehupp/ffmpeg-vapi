@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileMJPEG {
     FF_PROFILE_MJPEG_HUFFMAN_BASELINE_DCT,
     FF_PROFILE_MJPEG_HUFFMAN_EXTENDED_SEQUENTIAL_DCT,

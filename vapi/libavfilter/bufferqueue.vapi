@@ -40,7 +40,7 @@ public const size_t FF_BUFQUEUE_SIZE; // 64
 /***********************************************************
 Structure holding the queue
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
 [Compact]
 public class FFBufQueue {
     [CCode (cname="")]
@@ -61,7 +61,7 @@ public class FFBufQueue {
 /***********************************************************
 Test if a buffer queue is full.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
 public static inline bool ff_bufqueue_is_full (
     FFBufQueue? queue
 );
@@ -75,7 +75,7 @@ Add a buffer to the queue.
 If the queue is already full, then the current last buffer is dropped
 (and unrefed) with a warning before adding the new buffer.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
 public static inline void ff_bufqueue_add (
     void *log,
     FFBufQueue? queue,
@@ -97,7 +97,7 @@ Get a buffer from the queue without altering it.
 Buffer with index 0 is the first buffer in the queue.
 Return NULL if the queue has not enough buffers.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
 public static inline AVFrame? ff_bufqueue_peek (
     FFBufQueue? queue,
     uint index
@@ -111,7 +111,7 @@ Get the first buffer from the queue and remove it.
 
 Do not use on an empty queue.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
 public static inline AVFrame? ff_bufqueue_get (
     FFBufQueue? queue
 );
@@ -128,7 +128,7 @@ public static inline AVFrame? ff_bufqueue_get (
 /***********************************************************
 Unref and remove all buffers from the queue.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
 public static inline void ff_bufqueue_discard_all (
     FFBufQueue? queue
 );

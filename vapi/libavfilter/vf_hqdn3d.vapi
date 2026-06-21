@@ -20,7 +20,7 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
 [Compact]
 public class HQDN3DContext {
     [CCode (cname="")]
@@ -62,22 +62,22 @@ public class HQDN3DContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
 public enum FooBar {
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
     LUMA_SPATIAL, // 0
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
     LUMA_TMP, // 1
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
     CHROMA_SPATIAL, // 2
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
     CHROMA_TMP; // 3
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
 public void ff_hqdn3d_init_x86 (
     HQDN3DContext? hqdn3d
 );

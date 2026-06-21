@@ -27,17 +27,17 @@ temporal field interlace filter, ported from MPlayer/libmpcodecs
 
 [Flags]
 public enum FooBar {
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
     TINTERLACE_FLAG_VLPF, // 01
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
     TINTERLACE_FLAG_CVLPF, // 2
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
     TINTERLACE_FLAG_EXACT_TB; // 4
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
 public enum TInterlaceMode {
     [CCode (cname="")]
     MODE_MERGE = 0,
@@ -67,7 +67,7 @@ public enum TInterlaceMode {
     MODE_NB;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
 public enum InterlaceScanMode {
     [CCode (cname="")]
     MODE_TFF = 0,
@@ -76,7 +76,7 @@ public enum InterlaceScanMode {
     MODE_BFF;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
 [Compact]
 public class TInterlaceContext {
     [CCode (cname="")]
@@ -147,7 +147,7 @@ public class TInterlaceContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
 public void ff_tinterlace_init_x86 (
     TInterlaceContext? interlace
 );

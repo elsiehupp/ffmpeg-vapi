@@ -55,14 +55,14 @@ public define DECKLINK_STRDUP av_strdup
 /***********************************************************
 free () is needed for a string returned by the DeckLink SDL.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public define DECKLINK_FREE (s) free ((void *) s)
 #endif
 
 class decklink_output_callback;
 class decklink_input_callback;
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 [Compact]
 public class AVPacketQueue {
     [CCode (cname="")]
@@ -93,7 +93,7 @@ public class AVPacketQueue {
     public int64 max_q_size;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 [Compact]
 public class decklink_ctx {
     /***********************************************************
@@ -253,12 +253,12 @@ public class decklink_ctx {
     public int audio_depth;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public enum decklink_direction_t {
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
     DIRECTION_IN,
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
     DIRECTION_OUT
 }
 
@@ -304,13 +304,13 @@ static const BMDTimecodeFormat decklink_timecode_format_map[] = {
     bmdTimecodeSerial;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_set_configs (
     AVFormatContext? avctx,
     decklink_direction_t direction
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_set_format (
     AVFormatContext? avctx,
     int width,
@@ -322,14 +322,14 @@ public int ff_decklink_set_format (
     int num = 0
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_set_format (
     AVFormatContext? avctx,
     decklink_direction_t direction,
     int num
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_list_devices (
     AVFormatContext? avctx,
     AVDeviceInfoList? device_list,
@@ -337,25 +337,25 @@ public int ff_decklink_list_devices (
     int show_outputs
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public void ff_decklink_list_devices_legacy (
     AVFormatContext? avctx,
     int show_inputs,
     int show_outputs
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_list_formats (
     AVFormatContext? avctx,
     decklink_direction_t direction = DIRECTION_OUT
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public void ff_decklink_cleanup (
     AVFormatContext? avctx
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_init_device (
     AVFormatContext? avctx,
     char* name

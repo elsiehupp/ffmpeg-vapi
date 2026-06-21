@@ -33,7 +33,7 @@ https://github.com/jiixyj/libebur128/
  Use these values when setting the channel map with ebur128_set_channel ().
  See definitions in ITU R-REC-BS 1770-4
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public enum channel {
     /***********************************************************
     unused channel (for example LFE channel)
@@ -248,7 +248,7 @@ public enum channel {
  Use these values in ebur128_init (or'ed). Try to use the lowest possible
  modes that suit your needs, as performance will be better.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public enum mode {
     /***********************************************************
     can call ff_ebur128_loudness_momentary
@@ -284,7 +284,7 @@ public enum mode {
 /***********************************************************
 forward declaration of FFEBUR128StateInternal
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 [Compact]
 public class FFEBUR128StateInternal { }
 
@@ -293,7 +293,7 @@ public class FFEBUR128StateInternal { }
 
  You should not need to modify this struct directly.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 [Compact]
 public class FFEBUR128State {
     /***********************************************************
@@ -330,7 +330,7 @@ public class FFEBUR128State {
 @param mode see the mode enum for possible values.
 @return an initialized library state.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public FFEBUR128State? ff_ebur128_init (
     uint channels,
     ulong samplerate,
@@ -343,7 +343,7 @@ public FFEBUR128State? ff_ebur128_init (
 
 @param st pointer to a library state.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_destroy (
     FFEBUR128State ** st
 );
@@ -366,7 +366,7 @@ public void ff_ebur128_destroy (
    - 0 on success.
    - AVERROR (EINVAL) if invalid channel index.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_set_channel (
     FFEBUR128State * st,
     uint channel_number,
@@ -380,7 +380,7 @@ public int ff_ebur128_set_channel (
 @param src array of source frames. Channels must be interleaved.
 @param frames number of frames. Not number of samples!
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_short (
     FFEBUR128State * st,
     short[] src,
@@ -390,7 +390,7 @@ public void ff_ebur128_add_frames_short (
 /***********************************************************
 @brief See \ref ebur128_add_frames_short
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_int (
     FFEBUR128State * st,
     int[] src,
@@ -400,7 +400,7 @@ public void ff_ebur128_add_frames_int (
 /***********************************************************
 @brief See \ref ebur128_add_frames_short
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_float (
     FFEBUR128State * st,
     float[] src,
@@ -410,7 +410,7 @@ public void ff_ebur128_add_frames_float (
 /***********************************************************
 @brief See \ref ebur128_add_frames_short
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_double (
     FFEBUR128State * st,
     double[] src,
@@ -425,7 +425,7 @@ public void ff_ebur128_add_frames_double (
 @param frames number of frames. Not number of samples!
 @param stride number of samples to skip to for the next sample of the same channel
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_planar_short (
     FFEBUR128State * st,
     short[][] srcs,
@@ -436,7 +436,7 @@ public void ff_ebur128_add_frames_planar_short (
 /***********************************************************
 @brief See \ref ebur128_add_frames_planar_short
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_planar_int (
     FFEBUR128State * st,
     int[]? srcs,
@@ -447,7 +447,7 @@ public void ff_ebur128_add_frames_planar_int (
 /***********************************************************
 @brief See \ref ebur128_add_frames_planar_short
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_planar_float (
     FFEBUR128State * st,
     float[]? srcs,
@@ -458,7 +458,7 @@ public void ff_ebur128_add_frames_planar_float (
 /***********************************************************
 @brief See \ref ebur128_add_frames_planar_short
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_planar_double (
     FFEBUR128State * st,
     double[]? srcs,
@@ -476,7 +476,7 @@ public void ff_ebur128_add_frames_planar_double (
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_I" has not been set.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_global (
     FFEBUR128State * st,
     double[] out
@@ -493,7 +493,7 @@ public int ff_ebur128_loudness_global (
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_I" has not been set.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_global_multiple (
     FFEBUR128State ** sts,
     size_t size,
@@ -509,7 +509,7 @@ public int ff_ebur128_loudness_global_multiple (
 @return
    - 0 on success.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_momentary (
     FFEBUR128State * st,
     double[] out
@@ -525,7 +525,7 @@ public int ff_ebur128_loudness_momentary (
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_S" has not been set.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_shortterm (
     FFEBUR128State * st,
     double[] out
@@ -543,7 +543,7 @@ public int ff_ebur128_loudness_shortterm (
    - 0 on success.
    - AVERROR (EINVAL) if window larger than current window in st.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_window (
     FFEBUR128State * st,
     ulong window,
@@ -562,7 +562,7 @@ public int ff_ebur128_loudness_window (
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_LRA" has not been set.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_range (
     FFEBUR128State * st,
     double[] out
@@ -581,7 +581,7 @@ public int ff_ebur128_loudness_range (
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_LRA" has not been set.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_range_multiple (
     FFEBUR128State ** sts,
     size_t size,
@@ -599,7 +599,7 @@ public int ff_ebur128_loudness_range_multiple (
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_SAMPLE_PEAK" has not been set.
    - AVERROR (EINVAL) if invalid channel index.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_sample_peak (
     FFEBUR128State * st,
     uint channel_number,
@@ -615,7 +615,7 @@ public int ff_ebur128_sample_peak (
    - 0 on success.
    - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_I" has not been set.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_relative_threshold (
     FFEBUR128State * st,
     double[] out

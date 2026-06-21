@@ -20,62 +20,62 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public const size_t BLOCKSZ; // 12
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public const int MAX_LEVEL; // 5
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public const size_t DCTSIZE; // 8
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public const string DCTSIZE_S; // "8"
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public define FIX (x,s)  ((x) * (1 << s) + 0.5)
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public define MULTIPLY16H (x,k)   (((x) * (k)) >> 16)
 public define THRESHOLD (r,x,t)                         \
     if (((uint)((x) + t)) > t * 2) r = (x); \
     else r = 0;
 public define DESCALE (x,n)  (((x) + (1 << ((n) - 1))) >> n)
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public typedef int32 int_simd16_t;
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public enum FooBar { // int16
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
     FIX_0_382683433, // = FIX (0.382683433, 14);
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
     FIX_0_541196100, // = FIX (0.541196100, 14);
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
     FIX_0_707106781, // = FIX (M_SQRT1_2, 14);
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
     FIX_1_306562965, // = FIX (1.306562965, 14);
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
     FIX_1_414213562_A, // = FIX (M_SQRT2, 14);
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
     FIX_1_847759065, // = FIX (1.847759065, 13);
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
     FIX_2_613125930, // = FIX (-2.613125930, 13);
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
     FIX_1_414213562, // = FIX (M_SQRT2, 13);
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
     FIX_1_082392200; // = FIX (1.082392200, 13);
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 [Compact]
 public class FSPPContext {
     [CCode (cname="")]
@@ -186,7 +186,7 @@ public class FSPPContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public void ff_fspp_init_x86 (
     FSPPContext? fspp
 );

@@ -16,7 +16,7 @@ with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 [Compact]
 public class PullupBuffer {
     [CCode (cname="")]
@@ -26,7 +26,7 @@ public class PullupBuffer {
     public uint8[] planes[4];
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 [Compact]
 public class PullupField {
     [CCode (cname="")]
@@ -60,7 +60,7 @@ public class PullupField {
     public PullupField? next;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 [Compact]
 public class PullupFrame {
     [CCode (cname="")]
@@ -82,7 +82,7 @@ public class PullupFrame {
     public PullupBuffer? buffer;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 [Compact]
 public class PullupContext {
     [CCode (cname="")]
@@ -174,7 +174,7 @@ public class PullupContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 public void ff_pullup_init_x86 (
     PullupContext? s
 );

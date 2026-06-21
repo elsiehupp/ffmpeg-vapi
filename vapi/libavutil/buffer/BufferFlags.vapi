@@ -24,7 +24,7 @@ refcounted data buffer API
 ***********************************************************/
 
 [Flags]
-[CCode (cname="enum AVBufferFlags",cheader_filename="buffer.h")]
+[CCode (cname="enum AVBufferFlags",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public enum BufferFlags {
     /***********************************************************
     @brief Always treat the buffer as read-only, even when it has only one
@@ -33,7 +33,7 @@ public enum BufferFlags {
     AV_BUFFER_FLAG_READONLY;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public delegate void FreeDelegate (
     void *opaque,
     uint8[] data
@@ -54,7 +54,7 @@ If this function fails, data is left untouched.
 
 @return an LibAVUtil.BufferRef referring to data on success, null on failure.
 ***********************************************************/
-[CCode (cname="av_buffer_create",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_create",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public LibAVUtil.BufferRef av_buffer_create (
     uint8[] data, size_t size,
     FreeDelegate free,
@@ -67,7 +67,7 @@ public LibAVUtil.BufferRef av_buffer_create (
 This function is meant to be passed to av_buffer_create (), not called
 directly.
 ***********************************************************/
-[CCode (cname="av_buffer_default_free",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_default_free",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public void av_buffer_default_free (
     void *opaque,
     uint8[] data
@@ -79,7 +79,7 @@ public void av_buffer_default_free (
 @return a new LibAVUtil.BufferRef referring to the same LibAVUtil.Buffer as buffer or null on
 failure.
 ***********************************************************/
-[CCode (cname="av_buffer_ref",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_ref",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public LibAVUtil.BufferRef av_buffer_ref (
     LibAVUtil.BufferRef buffer
 );
@@ -90,7 +90,7 @@ references to it.
 
 @param buffer the reference to be freed. The pointer is set to null on return.
 ***********************************************************/
-[CCode (cname="av_buffer_unref",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_unref",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public void av_buffer_unref (
     LibAVUtil.BufferRef buffer
 );
@@ -101,7 +101,7 @@ true if and only if buffer is the only reference to the underlying LibAVUtil.Buf
 Return 0 otherwise.
 A positive answer is valid until av_buffer_ref () is called on buffer.
 ***********************************************************/
-[CCode (cname="av_buffer_is_writable",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_is_writable",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public int av_buffer_is_writable (
     LibAVUtil.BufferRef buffer
 );
@@ -109,12 +109,12 @@ public int av_buffer_is_writable (
 /***********************************************************
 @return the opaque parameter set by av_buffer_create.
 ***********************************************************/
-[CCode (cname="av_buffer_get_opaque",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_get_opaque",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public void *av_buffer_get_opaque (
     LibAVUtil.BufferRef buffer
 );
 
-[CCode (cname="av_buffer_get_ref_count",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_get_ref_count",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public int av_buffer_get_ref_count (
     LibAVUtil.BufferRef buffer
 );
@@ -128,7 +128,7 @@ if possible.
     written in its place. On failure, buffer is left untouched.
 @return 0 on success, a negative LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-[CCode (cname="av_buffer_make_writable",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_make_writable",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public int av_buffer_make_writable (
     LibAVUtil.BufferRef buffer
 );
@@ -148,7 +148,7 @@ initially allocated through av_buffer_realloc (null) and there is only one
 reference to it (i.e. the one passed to this function). In all other cases
 a new buffer is allocated and the data is copied.
 ***********************************************************/
-[CCode (cname="av_buffer_realloc",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_realloc",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public int av_buffer_realloc (
     LibAVUtil.BufferRef buffer,
     size_t size
@@ -168,7 +168,7 @@ and replace it with a new reference to input_buffer.
 @return 0 on success
     LibAVUtil.ErrorCode (ENOMEM) on memory allocation failure.
 ***********************************************************/
-[CCode (cname="av_buffer_replace",cheader_filename="buffer.h")]
+[CCode (cname="av_buffer_replace",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public int av_buffer_replace (
     LibAVUtil.BufferRef output_buffer,
     LibAVUtil.BufferRef input_buffer

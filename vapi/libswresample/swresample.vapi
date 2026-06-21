@@ -125,21 +125,21 @@ These constants are used for the @ref avoptions interface for lswr.
 
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public enum FooBar {
     /***********************************************************
     Force resampling even if equal sample rate
     TODO use int resample ?
     long term TODO can we enable this dynamically?
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
     SWR_FLAG_RESAMPLE; // 1
 }
 
 /***********************************************************
 Dithering algorithms
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public enum SwrDitherType {
     [CCode (cname="")]
     SWR_DITHER_NONE; // = 0,
@@ -190,7 +190,7 @@ public enum SwrDitherType {
 /***********************************************************
 Resampling Engines
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public enum SwrEngine {
     /***********************************************************
     SW Resampler
@@ -214,7 +214,7 @@ public enum SwrEngine {
 /***********************************************************
 Resampling Filter Types
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public enum SwrFilterType {
     /***********************************************************
     Cubic
@@ -245,7 +245,7 @@ is opaque. This means that if you would like to set options, you must use
 the @ref avoptions API and cannot directly set values to members of the
 structure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 [Compact]
 public class SwrContext { }
 
@@ -256,7 +256,7 @@ AV_OPT_SEARCH_FAKE_OBJ for examining options.
 @see av_opt_find ().
 @return the AVClass of SwrContext
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public AVClass? swr_get_class ();
 
 /***********************************************************
@@ -273,7 +273,7 @@ with swr_alloc_set_opts ()) before calling swr_init ().
 @see swr_alloc_set_opts (), swr_init (), swr_free ()
 @return NULL on error, allocated context otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public SwrContext? swr_alloc ();
 
 /***********************************************************
@@ -286,7 +286,7 @@ Initialize context after user parameters have been set.
 @param[in,out]   s Swr context to initialize
 @return AVERROR error code in case of failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_init (
     SwrContext? s
 );
@@ -298,7 +298,7 @@ Check whether an swr context has been initialized or not.
 @see swr_init ()
 @return positive if it has been initialized, 0 if not initialized
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_is_initialized (
     SwrContext? s
 );
@@ -348,7 +348,7 @@ Free the given SwrContext and set the pointer to NULL.
 
 @param[in] s a pointer to a pointer to Swr context
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public void swr_free (
     SwrContext **s
 );
@@ -363,7 +363,7 @@ where one tries to support libavresample and libswresample.
 
 @param[in,out] s Swr context to be closed
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public void swr_close (
     SwrContext? s
 );
@@ -394,7 +394,7 @@ input samples. Conversion will run directly without copying whenever possible.
 
 @return number of samples output per channel, negative value on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_convert (
     SwrContext? s,
     uint8[][] out,
@@ -420,7 +420,7 @@ timestamps are in 1/(in_sample_rate * out_sample_rate) units.
      function used internally for timestamp compensation.
 @return the output timestamp for the next output sample
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int64 swr_next_pts (
     SwrContext? s,
     int64 pts
@@ -451,7 +451,7 @@ public internally called when needed in swr_next_pts ().
            @li compensation unsupported by resampler, or
            @li swr_init () fails when called.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_set_compensation (
     SwrContext? s,
     int sample_delta,
@@ -466,7 +466,7 @@ Set a customized input channel mapping.
                            indexes, -1 for a muted channel)
 @return >= 0 on success, or AVERROR error code in case of failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_set_channel_mapping (
     SwrContext? s,
     int[] channel_map
@@ -495,7 +495,7 @@ building custom matrices.
 @param log_ctx             parent logging context, can be NULL
 @return                    0 on success, negative AVERROR code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_build_matrix (
     uint64 in_layout,
     uint64 out_layout,
@@ -519,7 +519,7 @@ Set a customized remix matrix.
 @param stride  offset between lines of the matrix
 @return  >= 0 on success, or AVERROR error code in case of failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_set_matrix (
     SwrContext? s,
     double[] matrix,
@@ -544,7 +544,7 @@ if needed for "hard" compensation.
 
 @return >= 0 on success, or a negative AVERROR code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_drop_output (
     SwrContext? s,
     int count
@@ -561,7 +561,7 @@ if needed for "hard" compensation.
 
 @return >= 0 on success, or a negative AVERROR code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_inject_silence (
     SwrContext? s,
     int count
@@ -591,7 +591,7 @@ for upsampling and the input sample rate.
                  returned
 @returns     the delay in 1 / @c base units.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int64 swr_get_delay (
     SwrContext? s,
     int64 base
@@ -613,7 +613,7 @@ swr_get_out_samples () returns for the same number of input samples.
 @returns an upper bound on the number of samples that the next swr_convert
          will output or a negative value to indicate an error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_get_out_samples (
     SwrContext? s,
     int in_samples
@@ -634,7 +634,7 @@ as the run-time one.
 
 @returns     the uint-typed version
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public uint swresample_version ();
 
 /***********************************************************
@@ -642,7 +642,7 @@ Return the swr build-time configuration.
 
 @returns     the build-time @c ./configure flags
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public string swresample_configuration ();
 
 /***********************************************************
@@ -650,7 +650,7 @@ Return the swr license.
 
 @returns     the license of libswresample, determined at build-time
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public string swresample_license ();
 
 /***********************************************************
@@ -694,7 +694,7 @@ or the result of a bitwise-OR of them is returned.
 @return                0 on success, AVERROR on failure or nonmatching
                        configuration.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_convert_frame (
     SwrContext? swr,
     AVFrame output,
@@ -715,7 +715,7 @@ The function calls swr_close () internally if the context is open.
 @param input           input AVFrame
 @return                0 on success, AVERROR on failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 public int swr_config_frame (
     SwrContext? swr,
     AVFrame? out,

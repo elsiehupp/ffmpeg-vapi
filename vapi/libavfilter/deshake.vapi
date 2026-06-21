@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 public enum SearchMethod {
     /***********************************************************
     Search all possible positions
@@ -37,7 +37,7 @@ public enum SearchMethod {
     SEARCH_COUNT;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 [Compact]
 public class IntMotionVector {
     /***********************************************************
@@ -53,7 +53,7 @@ public class IntMotionVector {
     public int y;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 [Compact]
 public class MotionVector {
     /***********************************************************
@@ -69,7 +69,7 @@ public class MotionVector {
     public double y;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 [Compact]
 public class Transform {
     /***********************************************************
@@ -91,10 +91,10 @@ public class Transform {
     public double zoom;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 public const size_t MAX_R; // 64
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 [Compact]
 public class DeshakeContext {
     [CCode (cname="")]

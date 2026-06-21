@@ -21,36 +21,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
 public const size_t EA3_HEADER_SIZE;
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
 public const string ID3v2_EA3_MAGIC;
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
 public const size_t OMA_ENC_HEADER_SIZE;
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
 public enum OMACodecID {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
     OMA_CODECID_ATRAC3,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
     OMA_CODECID_ATRAC3P,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
     OMA_CODECID_MP3,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
     OMA_CODECID_LPCM,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
     OMA_CODECID_WMA,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
     OMA_CODECID_ATRAC3PAL,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oma.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
     OMA_CODECID_ATRAC3AL;
 }
 

@@ -25,27 +25,27 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Network layer over which RTP/etc packet data will be transported.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public enum RTSPLowerTransport {
     /***********************************************************
     UDP/unicast
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_LOWER_TRANSPORT_UDP,
 
     /***********************************************************
     @brief TCP; interleaved in RTSP
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_LOWER_TRANSPORT_TCP,
 
     /***********************************************************
     UDP/multicast
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_LOWER_TRANSPORT_UDP_MULTICAST,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_LOWER_TRANSPORT_NB,
 
     /***********************************************************
@@ -53,13 +53,13 @@ public enum RTSPLowerTransport {
     transport mode as such,
     only for use via AVOptions
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_LOWER_TRANSPORT_HTTP,
 
     /***********************************************************
     @brief HTTPS tunneled
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_LOWER_TRANSPORT_HTTPS,
 
     /***********************************************************
@@ -68,7 +68,7 @@ public enum RTSPLowerTransport {
     but set in the SDP demuxer based
     on a flag.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_LOWER_TRANSPORT_CUSTOM;
 }
 
@@ -77,27 +77,27 @@ public enum RTSPLowerTransport {
 commonly send RDT (although they can sometimes send RTP as well),
 whereas most others will send RTP.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public enum RTSPTransport {
     /***********************************************************
     @brief Standards-compliant RTP
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_TRANSPORT_RTP,
 
     /***********************************************************
     @brief Realmedia Data Transport
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_TRANSPORT_RDT,
 
     /***********************************************************
     @brief Raw data (over UDP)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_TRANSPORT_RAW,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_TRANSPORT_NB
 }
 
@@ -105,43 +105,43 @@ public enum RTSPTransport {
 @brief Transport mode for the RTSP data. This may be plain, or
 tunneled, which is done over HTTP.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public enum RTSPControlTransport {
     /***********************************************************
     @brief Normal RTSP
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_MODE_PLAIN,
 
     /***********************************************************
     @brief RTSP over HTTP (tunneling)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_MODE_TUNNEL
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public const int RTSP_DEFAULT_PORT; // 554
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public const int RTSPS_DEFAULT_PORT; // 322
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public const int RTSP_MAX_TRANSPORTS; // 8
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public const size_t RTSP_TCP_MAX_PACKET_SIZE; // 1472
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public const int RTSP_DEFAULT_NB_AUDIO_CHANNELS; // 1
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public const int RTSP_DEFAULT_AUDIO_SAMPLERATE; // 44100
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public const int RTSP_RTP_PORT_MIN; // 5000
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public const int RTSP_RTP_PORT_MAX; // 65000
 
 /***********************************************************
@@ -151,7 +151,7 @@ separated ("Transport: x-read-rdt/tcp;interleaved=0-1,rtp/avp/udp;
 client_port=1000-1001;server_port=1800-1801") and described in separate
 RTSPTransportFields.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 [Compact]
 public class RTSPTransportField {
     /***********************************************************
@@ -160,144 +160,144 @@ public class RTSPTransportField {
     the range of this interleaved_min-max, then the packet belongs to
     this stream.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int interleaved_min;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int interleaved_max;
 
     /***********************************************************
     UDP multicast port range; the ports to which we should connect to
     receive multicast UDP data.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int port_min;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int port_max;
 
     /***********************************************************
     UDP client ports; these should be the local ports of the UDP RTP
     (and RTCP) sockets over which we receive RTP/RTCP data.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int client_port_min;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int client_port_max;
 
     /***********************************************************
     UDP unicast server port range; the ports to which we should connect
     to receive unicast UDP RTP/RTCP data.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int server_port_min;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int server_port_max;
 
     /***********************************************************
     @brief Time-to-live value (required for multicast); the amount of HOPs that
     packets will be allowed to make before being discarded.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int ttl;
 
     /***********************************************************
     @brief Transport set to record data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int mode_record;
 
     /***********************************************************
     @brief Destination IP address
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public sockaddr_storage destination;
 
     /***********************************************************
     @brief Source IP address
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char source[INET6_ADDRSTRLEN + 1];
 
     /***********************************************************
     @brief Data/packet transport protocol; e.g. RTP or RDT
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPTransport transport;
 
     /***********************************************************
     @brief Network layer transport protocol; e.g. TCP or UDP uni-/multicast
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPLowerTransport lower_transport;
 }
 
 /***********************************************************
 @brief This describes the server response to each RTSP command.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 [Compact]
 public class RTSPMessageHeader {
     /***********************************************************
     @brief Length of the data following this header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int content_length;
 
     /***********************************************************
     @brief Response code from server
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPStatusCode status_code;
 
     /***********************************************************
     @brief Number of items in the 'transports' variable below
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int nb_transports;
 
     /***********************************************************
     @brief Time range of the streams that the server will stream. In
     AV_TIME_BASE unit, AV_NOPTS_VALUE if not used
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int64 range_start;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int64 range_end;
 
     /***********************************************************
     @brief Describes the complete "Transport:" line of the server in response
     to a SETUP RTSP command by the client
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPTransportField transports[RTSP_MAX_TRANSPORTS];
 
     /***********************************************************
     @brief Sequence number
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int seq;
 
     /***********************************************************
     @brief The "Session:" field. This value is initially set by the server and
     should be re-transmitted by the client in every RTSP command.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char session_id[512];
 
     /***********************************************************
     @brief The "Location:" field. This value is used to handle redirection.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char location[4096];
 
     /***********************************************************
     @brief The "RealChallenge1:" field from the server
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char real_challenge[64];
 
     /***********************************************************
@@ -309,7 +309,7 @@ public class RTSPMessageHeader {
     (RealServer compatible)" or "RealServer Version v.e.r.sion (platform)"
     where platform is the output of $uname -msr | sed 's/ /-/g'.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char server[64];
 
     /***********************************************************
@@ -320,7 +320,7 @@ public class RTSPMessageHeader {
     this, sent dummy requests (e.g. OPTIONS) with intervals smaller
     than this value.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int timeout;
 
     /***********************************************************
@@ -328,20 +328,20 @@ public class RTSPMessageHeader {
     http://tools.ietf.org/html/draft-stiemerling-rtsp-announce-00
     for a complete list of supported values.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int notice;
 
     /***********************************************************
     @brief The "reason" is meant to specify better the meaning of the error code
     returned
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char reason[256];
 
     /***********************************************************
     @brief Content type header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char content_type[64];
 }
 
@@ -350,30 +350,30 @@ public class RTSPMessageHeader {
 setup-but-not-receiving (PAUSED). State can be changed in applications
 by calling av_read_play/pause ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public enum RTSPClientState {
     /***********************************************************
     @brief Not initialized
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_STATE_IDLE,
 
     /***********************************************************
     @brief Initialized and sending/receiving data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_STATE_STREAMING,
 
     /***********************************************************
     @brief Initialized, but not receiving data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_STATE_PAUSED,
 
     /***********************************************************
     @brief Initialized, requesting a seek
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_STATE_SEEKING;
 }
 
@@ -381,27 +381,27 @@ public enum RTSPClientState {
 @brief Identify particular servers that require special handling, such as
 standards-incompliant "Transport:" lines in the SETUP request.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public enum RTSPServerType {
     /***********************************************************
     @brief Standards-compliant RTP-server
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_SERVER_RTP,
 
     /***********************************************************
     @brief Realmedia-style server
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_SERVER_REAL,
 
     /***********************************************************
     @brief Windows Media server
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_SERVER_WMS,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_SERVER_NB
 }
 
@@ -410,31 +410,31 @@ public enum RTSPServerType {
 
 @todo Use AVIOContext instead of URLContext
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 [Compact]
 public class RTSPState {
     /***********************************************************
     @brief Class for private options.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public LibAVUtil.Class class;
 
     /***********************************************************
     @brief RTSP TCP connection handle
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public URLContext rtsp_hd;
 
     /***********************************************************
     @brief Streams in this session
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPStream[] rtsp_streams;
 
     /***********************************************************
     @brief Number of items in the 'rtsp_streams' variable
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int nb_rtsp_streams;
 
     /***********************************************************
@@ -443,7 +443,7 @@ public class RTSPState {
     last PLAY/PAUSE command sent to the server, to make sure we don't
     send 2x the same unexpectedly or commands in the wrong state.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPClientState state;
 
     /***********************************************************
@@ -454,20 +454,20 @@ public class RTSPState {
     whenever we resume playback. Either way, the value is only used once,
     see rtsp_read_play () and rtsp_read_seek ().
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int64 seek_timestamp;
 
     /***********************************************************
     @brief RTSP command sequence number
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int seq;
 
     /***********************************************************
     @brief Copy of RTSPMessageHeader.session_id, i.e. the server-provided session
     identifier that the client should re-transmit in each RTSP command
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char session_id[512];
 
     /***********************************************************
@@ -475,7 +475,7 @@ public class RTSPState {
     the server will go without traffic on the RTSP/TCP line before it
     closes the connection.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int timeout;
 
     /***********************************************************
@@ -483,20 +483,20 @@ public class RTSPState {
     This is used to calculate when to send dummy commands to keep the
     connection alive, in conjunction with timeout.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int64 last_cmd_time;
 
     /***********************************************************
     @brief The negotiated data/packet transport protocol; e.g. RTP or RDT
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPTransport transport;
 
     /***********************************************************
     @brief The negotiated network layer transport protocol; e.g. TCP or UDP
     uni-/multicast
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPLowerTransport lower_transport;
 
     /***********************************************************
@@ -504,39 +504,39 @@ public class RTSPState {
     Detected based on the value of RTSPMessageHeader.server or the presence
     of RTSPMessageHeader.real_challenge
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPServerType server_type;
 
     /***********************************************************
     @brief The "RealChallenge1:" field from the server
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char real_challenge[64];
 
     /***********************************************************
     @brief Plaintext authorization line (username:password)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char auth[128];
 
     /***********************************************************
     @brief Authentication state
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public HTTPAuthState auth_state;
 
     /***********************************************************
     @brief The last reply of the server to a RTSP command
     XXX: allocate ?
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char last_reply[2048];
 
     /***********************************************************
     @brief RTSPStream.transport_priv of the last stream that we read a
     packet from
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public void *cur_transport_priv;
 
     /***********************************************************
@@ -546,21 +546,21 @@ public class RTSPState {
     /***********************************************************
     @brief Whether we need to send a "SET_PARAMETER Subscribe:" command
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int need_subscription;
 
     /***********************************************************
     @brief Stream setup during the last frame read. This is used to detect if
     we need to subscribe or unsubscribe to any new streams.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public LibAVCodec.Discard? real_setup_cache;
 
     /***********************************************************
     @brief Current stream setup. This is a temporary buffer used to compare
     current setup to previous frame setup.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public LibAVCodec.Discard? real_setup;
 
     /***********************************************************
@@ -568,7 +568,7 @@ public class RTSPState {
     this is used to send the same "Unsubscribe:" if stream setup changed,
     before sending a new "Subscribe:" command.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char last_subscription[1024];
 
     //@}
@@ -580,14 +580,14 @@ public class RTSPState {
     /***********************************************************
     @brief ASF demuxer context for the embedded ASF stream from WMS servers
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public AVFormatContext asf_ctx;
 
     /***********************************************************
     @brief Cache for position of the asf demuxer, since we load a new
     data packet in the bytecontext for each incoming RTSP packet.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public uint64 asf_pb_pos;
 
     //@}
@@ -597,20 +597,20 @@ public class RTSPState {
     for all subsequent RTSP requests, rather than the input URI; in
     other cases, this is a copy of AVFormatContext.filename.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char control_uri[1024];
 
     /***********************************************************
     @brief The following are used for parsing raw mpegts in udp
     ***********************************************************/
     //@{
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public MpegTSContext ts;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int recvbuf_pos;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int recvbuf_len;
 
     //@}
@@ -619,13 +619,13 @@ public class RTSPState {
     @brief Additional output handle, used when input and output are done
     separately, eg for HTTP tunneling.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public URLContext rtsp_hd_out;
 
     /***********************************************************
     @brief RTSP transport mode, such as plain or tunneled.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPControlTransport control_transport;
 
     /***********************************************************
@@ -633,157 +633,157 @@ public class RTSPState {
     An EOF is propagated back if nb_byes == nb_streams.
     This is reset after a seek.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int nb_byes;
 
     /***********************************************************
     @brief Reusable buffer for receiving packets
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public uint8[] recvbuf;
 
     /***********************************************************
     @brief A mask with all requested transport methods
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int lower_transport_mask;
 
     /***********************************************************
     @brief The number of returned packets
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public uint64 packets;
 
     /***********************************************************
     @brief Polling array for udp
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public GLib.PollFD p;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int max_p;
 
     /***********************************************************
     @brief Whether the server supports the GET_PARAMETER method.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int get_parameter_supported;
 
     /***********************************************************
     @brief Do not begin to play the stream immediately.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int initial_pause;
 
     /***********************************************************
     @brief Option flags for the chained RTP muxer.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int rtp_muxer_flags;
 
     /***********************************************************
     @brief Whether the server accepts the x-Dynamic-Rate header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int accept_dynamic_rate;
 
     /***********************************************************
     @brief Various option flags for the RTSP muxer/demuxer.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int rtsp_flags;
 
     /***********************************************************
     @brief Mask of all requested media types
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int media_type_mask;
 
     /***********************************************************
     @brief Minimum and maximum local UDP ports.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int rtp_port_min;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int rtp_port_max;
 
     /***********************************************************
     @brief Timeout to wait for incoming connections.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int initial_timeout;
 
     /***********************************************************
     @brief Timeout of socket i/o operations.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int stimeout;
 
     /***********************************************************
     @brief Size of RTP packet reordering queue.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int reordering_queue_size;
 
     /***********************************************************
     User-Agent string
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public string user_agent;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char default_lang[4];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int buffer_size;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int pkt_size;
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 [Flags]
 public enum RTSPFlags {
     /***********************************************************
     @brief Filter incoming UDP packets - receive packets only from the
     right source address and port.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_FLAG_FILTER_SRC,
 
     /***********************************************************
     @brief Wait for incoming connections.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_FLAG_LISTEN,
 
     /***********************************************************
     @brief Do all IO via the AVIOContext.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_FLAG_CUSTOM_IO,
 
     /***********************************************************
     @brief Send RTCP packets to the source address of received packets.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_FLAG_RTCP_TO_SOURCE,
 
     /***********************************************************
     @brief Try RTP via TCP first if possible.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     RTSP_FLAG_PREFER_TCP;
 }
 
-[CCode (cname="struct RTSPSource",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="struct RTSPSource",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 [Compact]
 public class RTSPSource {
     /***********************************************************
     @brief Source-specific multicast include source IP address (from SDP content)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char addr[128];
 }
 
@@ -793,41 +793,41 @@ SDP content. In the case of RDT, one RTSPStream can represent multiple
 AVStreams. In this case, each AVStream in this set has similar content
 (but different codec/bitrate).
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 [Compact]
 public class RTSPStream {
     /***********************************************************
     @brief RTP stream handle (if UDP)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public URLContext rtp_handle;
 
     /***********************************************************
     @brief RTP/RDT parse context if input, RTP AVFormatContext if output
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public void *transport_priv;
 
     /***********************************************************
     @brief Corresponding stream index, if any. -1 if none (MPEG2TS case)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int stream_index;
 
     /***********************************************************
     @brief Interleave IDs; copies of RTSPTransportField.interleaved_min/max
     for the selected transport. Only used for TCP.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int interleaved_min;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int interleaved_max;
 
     /***********************************************************
     url for this stream (from SDP)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char control_url[1024];
 
     /***********************************************************
@@ -837,49 +837,49 @@ public class RTSPStream {
     /***********************************************************
     @brief Port (from SDP content)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int sdp_port;
 
     /***********************************************************
     @brief IP address (from SDP content)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public sockaddr_storage sdp_ip;
 
     /***********************************************************
     @brief Source-specific multicast include source IP addresses (from SDP content)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPSource[] include_source_addrs;
 
     /***********************************************************
     @brief Number of source-specific multicast include source IP addresses (from SDP content)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int nb_include_source_addrs;
 
     /***********************************************************
     @brief Source-specific multicast exclude source IP addresses (from SDP content)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTSPSource[] exclude_source_addrs;
 
     /***********************************************************
     @brief Number of source-specific multicast exclude source IP addresses (from SDP content)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int nb_exclude_source_addrs;
 
     /***********************************************************
     @brief IP Time-To-Live (from SDP content)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int sdp_ttl;
 
     /***********************************************************
     @brief Payload type
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int sdp_payload_type;
 //@}
 
@@ -890,36 +890,36 @@ public class RTSPStream {
     /***********************************************************
     @brief Handler structure
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public RTPDynamicProtocolHandler dynamic_handler;
 
     /***********************************************************
     @brief Private data associated with the dynamic protocol
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public PayloadContext dynamic_protocol_context;
 //@}
 
     /***********************************************************
     @brief Enable sending RTCP feedback messages according to RFC 4585
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public int feedback;
 
     /***********************************************************
     @brief SSRC for this stream, to allow identifying RTCP packets before the first RTP packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public uint32 ssrc;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char crypto_suite[40];
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
     public char crypto_params[100];
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_parse_line (
     AVFormatContext format_context,
     RTSPMessageHeader reply,
@@ -933,7 +933,7 @@ public void ff_rtsp_parse_line (
 
 @see rtsp_send_cmd_with_content_async
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_send_cmd_async (
     AVFormatContext format_context,
     string method,
@@ -957,7 +957,7 @@ public int ff_rtsp_send_cmd_async (
 
 @return zero if success, nonzero otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_send_cmd_with_content (
     AVFormatContext format_context,
     string method,
@@ -974,7 +974,7 @@ public int ff_rtsp_send_cmd_with_content (
 
 @see rtsp_send_cmd_with_content
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_send_cmd (
     AVFormatContext format_context,
     string method,
@@ -1007,7 +1007,7 @@ connection as well.
 @return 1 if a data packets is ready to be received, -1 on error,
          and 0 on success.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_read_reply (
     AVFormatContext format_context,
     RTSPMessageHeader reply,
@@ -1019,7 +1019,7 @@ public int ff_rtsp_read_reply (
 /***********************************************************
 @brief Skip a RTP/TCP interleaved packet.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_skip_packet (
     AVFormatContext format_context
 );
@@ -1033,7 +1033,7 @@ This can be used for both muxers and demuxers.
 @return 0 on success, < 0 on error. Cleans up all allocations done
          within the function on error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_connect (
     AVFormatContext format_context
 );
@@ -1043,7 +1043,7 @@ public int ff_rtsp_connect (
 
 @param format_context RTSP (de)muxer context
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_close_streams (
     AVFormatContext format_context
 );
@@ -1053,7 +1053,7 @@ public void ff_rtsp_close_streams (
 
 @param format_context RTSP (de)muxer context
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_close_connections (
     AVFormatContext format_context
 );
@@ -1062,7 +1062,7 @@ public void ff_rtsp_close_connections (
 @brief Get the description of the stream and set up the RTSPStream child
 objects.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_setup_input_streams (
     AVFormatContext format_context,
     RTSPMessageHeader reply
@@ -1072,7 +1072,7 @@ public int ff_rtsp_setup_input_streams (
 @brief Announce the stream to the server and set up the RTSPStream child
 objects for each media stream.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_setup_output_streams (
     AVFormatContext format_context,
     string addr
@@ -1082,7 +1082,7 @@ public int ff_rtsp_setup_output_streams (
 @brief Parse RTSP commands (OPTIONS, PAUSE and TEARDOWN) during streaming in
 listen mode.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_parse_streaming_commands (
     AVFormatContext format_context
 );
@@ -1092,7 +1092,7 @@ public int ff_rtsp_parse_streaming_commands (
 within the AVFormatContext; also allocate the RTP streams and the
 GLib.PollFD array used for UDP streams.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_sdp_parse (
     AVFormatContext format_context,
     string content
@@ -1101,7 +1101,7 @@ public int ff_sdp_parse (
 /***********************************************************
 @brief Receive one RTP packet from an TCP interleaved RTSP stream.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_tcp_read_packet (
     AVFormatContext format_context,
     out RTSPStream prtsp_st,
@@ -1112,7 +1112,7 @@ public int ff_rtsp_tcp_read_packet (
 /***********************************************************
 @brief Send buffered packets over TCP.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_tcp_write_packet (
     AVFormatContext format_context,
     RTSPStream rtsp_st
@@ -1122,7 +1122,7 @@ public int ff_rtsp_tcp_write_packet (
 @brief Receive one packet from the RTSPStreams set up in the AVFormatContext
 (which should contain a RTSPState struct as priv_data).
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_fetch_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet
@@ -1133,7 +1133,7 @@ public int ff_rtsp_fetch_packet (
 lower transport mode.
 @return 0 on success, <0 on error, 1 if protocol is unavailable
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_make_setup_request (
     AVFormatContext format_context,
     string host,
@@ -1146,7 +1146,7 @@ public int ff_rtsp_make_setup_request (
 @brief Undo the effect of ff_rtsp_make_setup_request, close the
 transport_priv and rtp_handle fields.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_undo_setup (
     AVFormatContext format_context,
     int send_packets
@@ -1155,7 +1155,7 @@ public void ff_rtsp_undo_setup (
 /***********************************************************
 @brief Open RTSP transport context.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_open_transport_ctx (
     AVFormatContext format_context,
     RTSPStream rtsp_st

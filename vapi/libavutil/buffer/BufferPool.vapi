@@ -60,7 +60,7 @@ av_buffer_pool_uninit ().
 [Compact]
 public class BufferPool { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public delegate LibAVUtil.BufferRef AllocDelegate (
     size_t size
 );
@@ -80,13 +80,13 @@ public LibAVUtil.BufferPool av_buffer_pool_init (
     AllocDelegate alloc
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public delegate LibAVUtil.BufferRef AllocDelegate2 (
     void *opaque,
     size_t size
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public delegate void FreeDelegate2 (
     void *opaque
 );

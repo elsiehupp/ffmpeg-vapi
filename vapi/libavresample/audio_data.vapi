@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public int ff_sample_fmt_is_planar (
     AVSampleFormat sample_fmt,
     int channels
@@ -27,7 +27,7 @@ public int ff_sample_fmt_is_planar (
 /***********************************************************
 Audio buffer used for intermediate storage between conversion phases.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 [Compact]
 public class AudioData {
     /***********************************************************
@@ -139,7 +139,7 @@ public class AudioData {
     public string name;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public int ff_audio_data_set_channels (
     AudioData? a,
     int channels
@@ -164,7 +164,7 @@ and audio parameters.
 @param name            name for debug logging (can be NULL)
 @return                0 on success, negative AVERROR value on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public int ff_audio_data_init (
     AudioData? a,
     uint8[]  const? src,
@@ -203,7 +203,7 @@ The AudioData must have been previously allocated with ff_audio_data_alloc ().
 @param nb_samples  number of samples to allocate space for
 @return            0 on success, negative AVERROR value on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public int ff_audio_data_realloc (
     AudioData? a,
     int nb_samples
@@ -216,7 +216,7 @@ The AudioData must have been previously allocated with ff_audio_data_alloc ().
 
 @param a  AudioData struct
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public void ff_audio_data_free (
     AudioData **a
 );
@@ -229,7 +229,7 @@ Copy data from one AudioData to another.
 @param map  channel map, NULL if not remapping
 @return     0 on success, negative AVERROR value on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public int ff_audio_data_copy (
     AudioData? out,
     AudioData? in,
@@ -248,7 +248,7 @@ Append data from one AudioData to the end of another.
 @param nb_samples  number of samples to copy
 @return            0 on success, negative AVERROR value on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public int ff_audio_data_combine (
     AudioData? dst,
     int dst_offset,
@@ -265,7 +265,7 @@ Remaining samples are shifted to the start of the AudioData.
 @param a           AudioData struct
 @param nb_samples  number of samples to drain
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public void ff_audio_data_drain (
     AudioData? a,
     int nb_samples
@@ -281,7 +281,7 @@ Add samples in AudioData to an AVAudioFifo.
 @return            number of samples actually added to the FIFO, or
                    negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public int ff_audio_data_add_to_fifo (
     AVAudioFifo? af,
     AudioData? a,
@@ -298,7 +298,7 @@ Read samples from an AVAudioFifo to AudioData.
 @return            number of samples actually read from the FIFO, or
                    negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 public int ff_audio_data_read_from_fifo (
     AVAudioFifo? af,
     AudioData? a,

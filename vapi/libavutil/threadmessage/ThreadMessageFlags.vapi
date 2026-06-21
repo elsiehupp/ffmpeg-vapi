@@ -19,7 +19,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 namespace LibAVUtil {
 
 [Flags]
-[CCode (cheader_filename="ffmpeg/libavutil/threadmessage.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavutil/threadmessage.h")]
 public enum ThreadMessageFlags {
     /***********************************************************
     @brief Perform non-blocking operation.

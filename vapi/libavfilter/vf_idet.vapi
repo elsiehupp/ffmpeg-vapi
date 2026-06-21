@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 public const size_t HIST_SIZE; // 4
 
 [CCode (cname="ff_idet_filter_func")]
@@ -27,7 +27,7 @@ public delegate int FfIdetFilterDelegate (
     int w
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 public enum Type {
     [CCode (cname="")]
     TFF,
@@ -42,7 +42,7 @@ public enum Type {
     UNDETERMINED;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 public enum RepeatedField {
     [CCode (cname="")]
     REPEAT_NONE,
@@ -54,7 +54,7 @@ public enum RepeatedField {
     REPEAT_BOTTOM;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 [Compact]
 public class IDETContext {
     [CCode (cname="")]
@@ -127,7 +127,7 @@ public class IDETContext {
     public int eof;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 public void ff_idet_init_x86 (
     IDETContext? idet,
     int for_16b
@@ -136,7 +136,7 @@ public void ff_idet_init_x86 (
 /***********************************************************
 main fall-back for left-over
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 public int ff_idet_filter_line_c (
     uint8[] a,
     uint8[] b,
@@ -144,7 +144,7 @@ public int ff_idet_filter_line_c (
     int w
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 public int ff_idet_filter_line_c_16bit (
     uint16[] a,
     uint16[] b,

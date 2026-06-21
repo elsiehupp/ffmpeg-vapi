@@ -25,188 +25,188 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Maximum possible number of different RTMP channels
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public const size_t RTMP_CHANNELS;
 
 /***********************************************************
 @brief Channels used to for RTMP packets with different purposes (i.e. data, network
 control, remote procedure calls, etc.)
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public enum RTMPChannel {
     /***********************************************************
     @brief Channel for network-related messages (bandwidth report, ping, etc)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_NETWORK_CHANNEL,
 
     /***********************************************************
     @brief Channel for sending server control messages
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_SYSTEM_CHANNEL,
 
     /***********************************************************
     @brief Channel for audio data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_AUDIO_CHANNEL,
 
     /***********************************************************
     @brief Channel for video data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_VIDEO_CHANNEL,
 
     /***********************************************************
     @brief Channel for a/v invokes
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_SOURCE_CHANNEL;
 }
 
 /***********************************************************
 @brief Known RTMP packet types
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public enum RTMPPacketType {
     /***********************************************************
     @brief Chunk size change
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_CHUNK_SIZE,
 
     /***********************************************************
     @brief Number of bytes read
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_BYTES_READ,
 
     /***********************************************************
     User control
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_USER_CONTROL,
 
     /***********************************************************
     @brief Window acknowledgement size
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_WINDOW_ACK_SIZE,
 
     /***********************************************************
     @brief Peer bandwidth
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_SET_PEER_BW,
 
     /***********************************************************
     @brief Audio packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_AUDIO,
 
     /***********************************************************
     @brief Video packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_VIDEO,
 
     /***********************************************************
     @brief Flex shared stream
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_FLEX_STREAM,
 
     /***********************************************************
     @brief Flex shared object
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_FLEX_OBJECT,
 
     /***********************************************************
     @brief Flex shared message
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_FLEX_MESSAGE,
 
     /***********************************************************
     @brief Some notification
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_NOTIFY,
 
     /***********************************************************
     @brief Shared object
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_SHARED_OBJ,
 
     /***********************************************************
     @brief Invoke some stream action
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_INVOKE,
 
     /***********************************************************
     @brief FLV metadata
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PT_METADATA;
 }
 
 /***********************************************************
 @brief Possible RTMP packet header sizes
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public enum RTMPPacketSize {
     /***********************************************************
     @brief Packet has 12-byte header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PS_TWELVEBYTES,
 
     /***********************************************************
     @brief Packet has 8-byte header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PS_EIGHTBYTES,
 
     /***********************************************************
     @brief Packet has 4-byte header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PS_FOURBYTES,
 
     /***********************************************************
     @brief Packet is really a next chunk of a packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     RTMP_PS_ONEBYTE;
 }
 
 /***********************************************************
 @brief Structure for holding RTMP packets
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 [Compact]
 public class RTMPPacket {
     /***********************************************************
     @brief RTMP channel ID (nothing to do with audio/video channels though)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     public int channel_id;
 
     /***********************************************************
     @brief Packet payload type
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     public RTMPPacketType type;
 
     /***********************************************************
     @brief Packet full timestamp
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     public uint32 timestamp;
 
     /***********************************************************
@@ -214,37 +214,37 @@ public class RTMPPacket {
     milliseconds (latter only for media packets). Clipped to a
     maximum of 0xFFFFFF, indicating an extended timestamp field.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     public uint32 ts_field;
 
     /***********************************************************
     @brief Probably an additional channel ID used during streaming data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     public uint32 extra;
 
     /***********************************************************
     @brief Packet payload
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     public uint8[] data;
 
     /***********************************************************
     @brief Packet payload size
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     public int size;
 
     /***********************************************************
     @brief Amount of data read so far
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     public int offset;
 
     /***********************************************************
     @brief Amount read, including headers
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
     public int read;
 }
 
@@ -258,7 +258,7 @@ public class RTMPPacket {
 @param size packet size
 @return zero on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_rtmp_packet_create (
     RTMPPacket packet,
     int channel_id,
@@ -272,7 +272,7 @@ public int ff_rtmp_packet_create (
 
 @param packet packet
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_rtmp_packet_destroy (
     RTMPPacket packet
 );
@@ -288,7 +288,7 @@ public void ff_rtmp_packet_destroy (
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_rtmp_packet_read (
     URLContext url_context,
     RTMPPacket packet,
@@ -309,7 +309,7 @@ public int ff_rtmp_packet_read (
 @param c the first byte already read
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_rtmp_packet_read_internal (
     URLContext url_context,
     RTMPPacket packet,
@@ -330,7 +330,7 @@ public int ff_rtmp_packet_read_internal (
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes written on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_rtmp_packet_write (
     URLContext url_context,
     RTMPPacket packet,
@@ -345,7 +345,7 @@ public int ff_rtmp_packet_write (
 @param opaque_context output context
 @param packet packet to dump
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_rtmp_packet_dump (
     void *opaque_context,
     RTMPPacket packet
@@ -358,7 +358,7 @@ public void ff_rtmp_packet_dump (
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @param channel the channel number that needs to be allocated
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_rtmp_check_alloc_array (
     out RTMPPacket prev_pkt,
     out int nb_prev_pkt,
@@ -378,7 +378,7 @@ public int ff_rtmp_check_alloc_array (
 @param data_end input buffer end
 @return number of bytes used by first AMF entry
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_amf_tag_size (
     uint8[] data,
     uint8[] data_end
@@ -394,7 +394,7 @@ public int ff_amf_tag_size (
 @param dst_size output buffer size
 @return 0 if search and retrieval succeeded, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_amf_get_field_value (
     uint8[] data,
     uint8[] data_end,
@@ -409,7 +409,7 @@ public int ff_amf_get_field_value (
 @param dst pointer to the input buffer (will be modified)
 @param val value to write
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_amf_write_bool (
     out uint8[] dst,
     int val
@@ -421,7 +421,7 @@ public void ff_amf_write_bool (
 @param dst pointer to the input buffer (will be modified)
 @param num value to write
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_amf_write_number (
     out uint8[] dst,
     double num
@@ -433,7 +433,7 @@ public void ff_amf_write_number (
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_amf_write_string (
     out uint8[] dst,
     string str
@@ -446,7 +446,7 @@ public void ff_amf_write_string (
 @param str1 first string to write, may be null
 @param str2 second string to write, may be null
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_amf_write_string2 (
     out uint8[] dst,
     string str1,
@@ -458,7 +458,7 @@ public void ff_amf_write_string2 (
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_amf_write_null (
     out uint8[] dst
 );
@@ -468,7 +468,7 @@ public void ff_amf_write_null (
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_amf_write_object_start (
     out uint8[] dst
 );
@@ -479,7 +479,7 @@ public void ff_amf_write_object_start (
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_amf_write_field_name (
     out uint8[] dst,
     string str
@@ -490,7 +490,7 @@ public void ff_amf_write_field_name (
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public void ff_amf_write_object_end (
     out uint8[] dst
 );
@@ -502,7 +502,7 @@ public void ff_amf_write_object_end (
 @param[out]    val 0 or 1
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_amf_read_bool (
     GetByteContext gbc,
     out int val
@@ -515,7 +515,7 @@ public int ff_amf_read_bool (
 @param[out]    val read value
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_amf_read_number (
     GetByteContext gbc,
     out double val
@@ -535,7 +535,7 @@ ease later parsing.
 @param[out]    length read string length
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_amf_get_string (
     GetByteContext bc,
     uint8[] str,
@@ -555,7 +555,7 @@ ease later parsing.
 @param[out]    length read string length
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_amf_read_string (
     GetByteContext gbc,
     uint8[] str,
@@ -569,7 +569,7 @@ public int ff_amf_read_string (
 @param[in,out] gbc GetByteContext initialized with AMF-formatted data
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_amf_read_null (
     GetByteContext gbc
 );
@@ -579,7 +579,7 @@ public int ff_amf_read_null (
 
 @return 0 if the strings do not match.
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public int ff_amf_match_string (
     uint8[] data,
     int size,

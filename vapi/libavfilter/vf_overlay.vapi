@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
 public enum var_name {
     [CCode (cname="")]
     VAR_MAIN_W,
@@ -67,7 +67,7 @@ public enum var_name {
     VAR_VARS_NB;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
 public enum OverlayFormat {
     [CCode (cname="")]
     OVERLAY_FORMAT_YUV420,
@@ -91,7 +91,7 @@ public enum OverlayFormat {
     OVERLAY_FORMAT_NB;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
 [Compact]
 public class OverlayContext {
     [CCode (cname="")]
@@ -214,7 +214,7 @@ public class OverlayContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
 public void ff_overlay_init_x86 (
     OverlayContext? s,
     int format,

@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
 [Compact]
 public class fmt_map {
     [CCode (cname="")]
@@ -31,18 +31,18 @@ public class fmt_map {
 
 //  extern const struct fmt_map ff_fmt_conversion_table[];
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
 public uint32 ff_fmt_ff2v4l (
     AVPixelFormat pix_fmt,
     AVCodecID codec_id
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
 public AVPixelFormat ff_fmt_v4l2ff (
     uint32 v4l2_fmt, AVCodecID codec_id
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
 public AVCodecID ff_fmt_v4l2codec (
     uint32 v4l2_fmt
 );

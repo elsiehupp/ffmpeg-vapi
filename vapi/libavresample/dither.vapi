@@ -18,11 +18,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 [Compact]
 public class DitherContext { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 [Compact]
 public class DitherDSPContext {
     public delegate void QuantizeDelegate (
@@ -86,7 +86,7 @@ DitherContext.
 @param avr  AVAudioResampleContext
 @return     newly-allocated DitherContext
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 public DitherContext? ff_dither_alloc (
     AVAudioResampleContext? avr,
     AVSampleFormat out_fmt,
@@ -101,7 +101,7 @@ Free a DitherContext.
 
 @param c  DitherContext
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 public void ff_dither_free (
     DitherContext **c
 );
@@ -114,7 +114,7 @@ Convert audio sample format with dithering.
 @param src  source audio data
 @return     0 if ok, negative AVERROR code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 public int ff_convert_dither (
     DitherContext? c,
     AudioData? dst,
@@ -125,7 +125,7 @@ public int ff_convert_dither (
 arch-specific initialization functions
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 public void ff_dither_init_x86 (
     DitherDSPContext? ddsp,
     AVResampleDitherMethod method

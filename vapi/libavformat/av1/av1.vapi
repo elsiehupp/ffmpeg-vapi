@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct AV1SequenceParameters",cheader_filename="ffmpeg/libformat/av1.h")]
+[CCode (cname="struct AV1SequenceParameters",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
 [Compact]
 public class AV1SequenceParameters {
     [CCode (cname="")]
@@ -76,7 +76,7 @@ the resulting bitstream to the provided AVIOContext.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure
 ***********************************************************/
-[CCode (cname="ff_av1_filter_obus",cheader_filename="ffmpeg/libformat/av1.h")]
+[CCode (cname="ff_av1_filter_obus",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
 public int ff_av1_filter_obus (
     AVIOContext pb,
     uint8[] buffer,
@@ -97,7 +97,7 @@ the resulting bitstream to a newly allocated data buffer.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure. On failure, out and size are unchanged
 ***********************************************************/
-[CCode (cname="ff_av1_filter_obus_buf",cheader_filename="ffmpeg/libformat/av1.h")]
+[CCode (cname="ff_av1_filter_obus_buf",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
 public int ff_av1_filter_obus_buf (
     uint8[] input_buffer,
     out uint8[] output_buffer,
@@ -114,7 +114,7 @@ public int ff_av1_filter_obus_buf (
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="ff_av1_parse_seq_header",cheader_filename="ffmpeg/libformat/av1.h")]
+[CCode (cname="ff_av1_parse_seq_header",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
 public int ff_av1_parse_seq_header (
     AV1SequenceParameters seq,
     uint8[] buffer,
@@ -131,7 +131,7 @@ AVIOContext.
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="ff_isom_write_av1c",cheader_filename="ffmpeg/libformat/av1.h")]
+[CCode (cname="ff_isom_write_av1c",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
 public int ff_isom_write_av1c (
     AVIOContext pb,
     uint8[] buffer,

@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/removegrain.h")]
 [Compact]
 public class RemoveGrainContext {
     [CCode (cname="")]
@@ -70,7 +70,7 @@ public class RemoveGrainContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/removegrain.h")]
 public void ff_removegrain_init_x86 (
     RemoveGrainContext? rg
 );

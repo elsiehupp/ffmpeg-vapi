@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/blend.h")]
 public enum BlendMode {
     [CCode (cname="")]
     BLEND_UNSET, // = -1,
@@ -126,7 +126,7 @@ public enum BlendMode {
     BLEND_NB
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/blend.h")]
 [Compact]
 public class FilterParams {
     [CCode (cname="")]
@@ -160,13 +160,13 @@ public class FilterParams {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/blend.h")]
 public void ff_blend_init (
     FilterParams? param,
     int depth
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/blend.h")]
 public void ff_blend_init_x86 (
     FilterParams? param,
     int depth

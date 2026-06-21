@@ -18,16 +18,16 @@ License along with libswresample; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public const size_t SWR_CH_MAX; // 64
 
 /***********************************************************
 sqrt (3/2)
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public const float SQRT3_2; // 1.22474487139158904909
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public const size_t NS_TAPS; // 20
 
 //  #if ARCH_X86_64
@@ -36,7 +36,7 @@ public const size_t NS_TAPS; // 20
 //  public typedef int integer;
 //  #endif
 
-[CCode (cname="mix_1_1_func_type",cheader_filename="")]
+[CCode (cname="mix_1_1_func_type",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate void Mix11Delegate (
     void *out,
     void *in,
@@ -45,7 +45,7 @@ public delegate void Mix11Delegate (
     integer len
 );
 
-[CCode (cname="mix_2_1_func_type",cheader_filename="")]
+[CCode (cname="mix_2_1_func_type",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate void Mix21Delegate (
     void *out,
     void *in1,
@@ -56,7 +56,7 @@ public delegate void Mix21Delegate (
     integer len
 );
 
-[CCode (cname="mix_any_func_type",cheader_filename="")]
+[CCode (cname="mix_any_func_type",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate void MixAnyDelegate (
     uint8[][] out,
     uint8[][] in1,
@@ -64,7 +64,7 @@ public delegate void MixAnyDelegate (
     integer len
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 [Compact]
 public class AudioData {
     /***********************************************************
@@ -110,7 +110,7 @@ public class AudioData {
     public AVSampleFormat fmt;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 [Compact]
 public class DitherContext {
     [CCode (cname="")]
@@ -180,7 +180,7 @@ public class DitherContext {
     public int output_sample_bits;
 }
 
-[CCode (cname="resample_init_func",cheader_filename="")]
+[CCode (cname="resample_init_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate ResampleContext ResampleInitDelegate (
     ResampleContext? c,
     int out_rate,
@@ -197,12 +197,12 @@ public delegate ResampleContext ResampleInitDelegate (
     int exact_rational
 );
 
-[CCode (cname="resample_free_func",cheader_filename="")]
+[CCode (cname="resample_free_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate void ResampleFreeDelegate (
     ResampleContext **c
 );
 
-[CCode (cname="multiple_resample_func",cheader_filename="")]
+[CCode (cname="multiple_resample_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate int MultipleResampleDelegate (
     ResampleContext? c,
     AudioData? dst,
@@ -212,25 +212,25 @@ public delegate int MultipleResampleDelegate (
     out int consumed
 );
 
-[CCode (cname="resample_flush_func",cheader_filename="")]
+[CCode (cname="resample_flush_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate int ResampleFlushDelegate (
     SwrContext? c
 );
 
-[CCode (cname="set_compensation_func",cheader_filename="")]
+[CCode (cname="set_compensation_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate int SetCompensationDelegate (
     ResampleContext? c,
     int sample_delta,
     int compensation_distance
 );
 
-[CCode (cname="get_delay_func",cheader_filename="")]
+[CCode (cname="get_delay_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate int64 GetDelayDelegate (
     SwrContext? s,
     int64 base
 );
 
-[CCode (cname="invert_initial_buffer_func",cheader_filename="")]
+[CCode (cname="invert_initial_buffer_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate int InvertInitialBufferDelegate (
     ResampleContext? c,
     AudioData? dst,
@@ -240,44 +240,44 @@ public delegate int InvertInitialBufferDelegate (
     out int dst_count
 );
 
-[CCode (cname="get_out_samples_func",cheader_filename="")]
+[CCode (cname="get_out_samples_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public delegate int64 GetOutSamplesDelegate (
     SwrContext? s,
     int in_samples
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 [Compact]
 public class Resampler {
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     public resample_init_func init;
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     public resample_free_func free;
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     public multiple_resample_func multiple_resample;
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     public resample_flush_func flush;
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     public set_compensation_func set_compensation;
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     public get_delay_func get_delay;
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     public invert_initial_buffer_func invert_initial_buffer;
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     public get_out_samples_func get_out_samples;
 };
 
 //  extern struct Resampler const swri_resampler;
 //  extern struct Resampler const swri_soxr_resampler;
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 [Compact]
 public class SwrContext {
     /***********************************************************
@@ -732,14 +732,14 @@ public class SwrContext {
     ***********************************************************/
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 //  av_warn_unused_result
 public int swri_realloc_audio (
     AudioData? a,
     int count
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public void swri_noise_shaping_int16 (
     SwrContext? s,
     AudioData? dsts,
@@ -748,7 +748,7 @@ public void swri_noise_shaping_int16 (
     int count
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public void swri_noise_shaping_int32 (
     SwrContext? s,
     AudioData? dsts,
@@ -757,7 +757,7 @@ public void swri_noise_shaping_int32 (
     int count
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public void swri_noise_shaping_float (
     SwrContext? s,
     AudioData? dsts,
@@ -766,7 +766,7 @@ public void swri_noise_shaping_float (
     int count
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public void swri_noise_shaping_double (
     SwrContext? s,
     AudioData? dsts,
@@ -775,18 +775,18 @@ public void swri_noise_shaping_double (
     int count
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 //  av_warn_unused_result
 public int swri_rematrix_init (
     SwrContext? s
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public void swri_rematrix_free (
     SwrContext? s
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public int swri_rematrix (
     SwrContext? s,
     AudioData? out,
@@ -795,12 +795,12 @@ public int swri_rematrix (
     int mustcopy
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public int swri_rematrix_init_x86 (
     SwrContext? s
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 //  av_warn_unused_result
 public int swri_get_dither (
     SwrContext? s,
@@ -810,7 +810,7 @@ public int swri_get_dither (
     AVSampleFormat noise_fmt
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 //  av_warn_unused_result
 public int swri_dither_init (
     SwrContext? s,
@@ -818,7 +818,7 @@ public int swri_dither_init (
     AVSampleFormat in_fmt
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public void swri_audio_convert_init_aarch64 (
     AudioConvert? ac,
     AVSampleFormat out_fmt,
@@ -826,7 +826,7 @@ public void swri_audio_convert_init_aarch64 (
     int channels
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public void swri_audio_convert_init_arm (
     AudioConvert? ac,
     AVSampleFormat out_fmt,
@@ -834,7 +834,7 @@ public void swri_audio_convert_init_arm (
     int channels
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public void swri_audio_convert_init_x86 (
     AudioConvert? ac,
     AVSampleFormat out_fmt,

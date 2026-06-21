@@ -23,16 +23,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Libpostproc version macros
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/version.h")]
 public const int LIBPOSTPROC_VERSION_MAJOR; // 55
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/version.h")]
 public const int LIBPOSTPROC_VERSION_MINOR; // 5
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/version.h")]
 public const int LIBPOSTPROC_VERSION_MICRO; // 100
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/version.h")]
 public const int LIBPOSTPROC_VERSION_INT;
 //  AV_VERSION_INT (
 //      LIBPOSTPROC_VERSION_MAJOR,
@@ -40,7 +40,7 @@ public const int LIBPOSTPROC_VERSION_INT;
 //      LIBPOSTPROC_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/version.h")]
 public const string LIBPOSTPROC_VERSION;
 //  AV_VERSION (
 //      LIBPOSTPROC_VERSION_MAJOR,
@@ -48,8 +48,8 @@ public const string LIBPOSTPROC_VERSION;
 //      LIBPOSTPROC_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/version.h")]
 public const int LIBPOSTPROC_BUILD; // LIBPOSTPROC_VERSION_INT
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/version.h")]
 public const string LIBPOSTPROC_IDENT; // "postproc" AV_STRINGIFY (LIBPOSTPROC_VERSION)

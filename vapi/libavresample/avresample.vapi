@@ -89,10 +89,10 @@ while (get_input (&input, &in_linesize, &in_samples)) {
  avresample_free ().
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public const size_t AVRESAMPLE_MAX_CHANNELS; // 32
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 [Compact]
 public class AVAudioResampleContext { }
 
@@ -101,7 +101,7 @@ public class AVAudioResampleContext { }
 
 Mixing Coefficient Types
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 //  attribute_deprecated
 public enum AVMixCoeffType {
     /***********************************************************
@@ -134,7 +134,7 @@ public enum AVMixCoeffType {
 
 Resampling Filter Types
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 //  attribute_deprecated
 public enum AVResampleFilterType {
     /***********************************************************
@@ -159,7 +159,7 @@ public enum AVResampleFilterType {
 /***********************************************************
 @deprecated use libswresample
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 //  attribute_deprecated
 public enum AVResampleDitherMethod {
     /***********************************************************
@@ -205,7 +205,7 @@ public enum AVResampleDitherMethod {
 Return the LIBAVRESAMPLE_VERSION_INT constant.
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public uint avresample_version ();
 
 /***********************************************************
@@ -216,7 +216,7 @@ Return the libavresample build-time configuration.
 @return  configure string
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public string avresample_configuration ();
 
 /***********************************************************
@@ -226,7 +226,7 @@ public string avresample_configuration ();
 Return the libavresample license.
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public string avresample_license ();
 
 /***********************************************************
@@ -243,7 +243,7 @@ without allocating a context.
 @return AVClass for AVAudioResampleContext
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public AVClass? avresample_get_class ();
 
 /***********************************************************
@@ -255,7 +255,7 @@ Allocate AVAudioResampleContext and set options.
 @return  allocated audio resample context, or NULL on failure
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public AVAudioResampleContext? avresample_alloc_context ();
 
 /***********************************************************
@@ -276,7 +276,7 @@ Initialize AVAudioResampleContext.
 @return     0 on success, negative AVERROR code on failure
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_open (
     AVAudioResampleContext? avr
 );
@@ -291,7 +291,7 @@ Check whether an AVAudioResampleContext is open or closed.
 @return 1 if avr is open, 0 if avr is closed.
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_is_open (
     AVAudioResampleContext? avr
 );
@@ -313,7 +313,7 @@ there was a custom matrix being used, that is also cleared.
 @param avr  audio resample context
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public void avresample_close (
     AVAudioResampleContext? avr
 );
@@ -329,7 +329,7 @@ This also calls avresample_close () before freeing.
 @param avr  audio resample context
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public void avresample_free (
     AVAudioResampleContext **avr
 );
@@ -360,7 +360,7 @@ building custom matrices.
 @return                    0 on success, negative AVERROR code on failure
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_build_matrix (
     uint64 in_layout,
     uint64 out_layout,
@@ -389,7 +389,7 @@ not open, an error is returned.
 @return        0 on success, negative AVERROR code on failure
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_get_matrix (
     AVAudioResampleContext? avr,
     double[] matrix,
@@ -418,7 +418,7 @@ Calling avresample_close () on the context will clear the current matrix.
 @return        0 on success, negative AVERROR code on failure
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_set_matrix (
     AVAudioResampleContext? avr,
     double[] matrix,
@@ -456,7 +456,7 @@ Duplicating the left channel of stereo input:
 @return            0 on success, negative AVERROR code on failure
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_set_channel_mapping (
     AVAudioResampleContext? avr,
     int[] channel_map
@@ -479,7 +479,7 @@ in order to use resampling compensation.
 @return                       0 on success, negative AVERROR code on failure
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_set_compensation (
     AVAudioResampleContext? avr,
     int sample_delta,
@@ -500,7 +500,7 @@ conversion would output.
                      would exceed INT_MAX
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_get_out_samples (
     AVAudioResampleContext? avr,
     int in_nb_samples
@@ -552,7 +552,7 @@ NULL input or call avresample_read ().
                        output FIFO
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_convert (
     AVAudioResampleContext? avr,
     uint8[][] output,
@@ -580,7 +580,7 @@ the delay buffer, which can be useful for synchronization.
 @return     number of samples currently in the resampling delay buffer
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_get_delay (
     AVAudioResampleContext? avr
 );
@@ -604,7 +604,7 @@ avresample_convert ().
 @return     number of samples available for reading
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_available (
     AVAudioResampleContext? avr
 );
@@ -630,7 +630,7 @@ buffer. This function can be used to read samples from that internal FIFO.
 @return            the number of samples written to output
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_read (
     AVAudioResampleContext? avr,
     uint8[][] output,
@@ -685,7 +685,7 @@ or AVERROR_OUTPUT_CHANGED|AVERROR_INPUT_CHANGED is returned.
                        configuration.
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_convert_frame (
     AVAudioResampleContext? avr,
     AVFrame output,
@@ -711,7 +711,7 @@ The function calls avresample_close () internally if the context is open.
 @return                0 on success, AVERROR on failure.
 ***********************************************************/
 //  attribute_deprecated
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public int avresample_config (
     AVAudioResampleContext? avr,
     AVFrame? out,

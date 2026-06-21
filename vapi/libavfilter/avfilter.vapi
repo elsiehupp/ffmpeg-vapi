@@ -35,26 +35,26 @@ Graph-based frame editing library.
 /***********************************************************
 Return the LIBAVFILTER_VERSION_INT constant.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public uint avfilter_version ();
 
 /***********************************************************
 Return the libavfilter build-time configuration.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public string avfilter_configuration ();
 
 /***********************************************************
 Return the libavfilter license.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public string avfilter_license ();
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterPad { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterFormats { }
 
@@ -63,7 +63,7 @@ public class AVFilterFormats { }
 Get the number of elements in a NULL-terminated array of AVFilterPads (e.g.
 AVFilter.inputs/outputs).
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_pad_count (
     AVFilterPad[] pads
 );
@@ -77,7 +77,7 @@ Get the name of an AVFilterPad.
 
 @return name of the pad_idx'th pad in pads
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public string avfilter_pad_get_name (
     AVFilterPad[] pads,
     int pad_idx
@@ -92,7 +92,7 @@ Get the type of an AVFilterPad.
 
 @return type of the pad_idx'th pad in pads
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public AVMediaType avfilter_pad_get_type (
     AVFilterPad[] pads,
     int pad_idx
@@ -156,7 +156,7 @@ public enum FooBar {
 Filter definition. This defines the pads a filter contains, and all the
 callback functions used to interact with the filter.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilter {
     /***********************************************************
@@ -412,18 +412,18 @@ public enum FooBar {
     /***********************************************************
     Process multiple parts of the frame concurrently.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
     AVFILTER_THREAD_SLICE; // (1 << 0)
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterInternal { }
 
 /***********************************************************
 An instance of a filter
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterContext {
     /***********************************************************
@@ -600,7 +600,7 @@ Use the buffersrc and buffersink API instead.
 In the future, access to the header may be reserved for filters
 implementation.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterLink {
     /***********************************************************
@@ -738,19 +738,19 @@ public class AVFilterLink {
         /***********************************************************
         not started
         ***********************************************************/
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
         AVLINK_UNINIT, // = 0
 
         /***********************************************************
         started, but incomplete
         ***********************************************************/
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
         AVLINK_STARTINIT,
 
         /***********************************************************
         complete
         ***********************************************************/
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
         AVLINK_INIT;
     }
 
@@ -936,7 +936,7 @@ Link two filters together.
 @param dstpad index of the input pad on the destination filter
 @return       zero on success
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_link (
     AVFilterContext? src,
     uint srcpad,
@@ -947,7 +947,7 @@ public int avfilter_link (
 /***********************************************************
 Free the link in? link, and set its pointer to NULL.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public void avfilter_link_free (
     AVFilterLink **link
 );
@@ -957,7 +957,7 @@ public void avfilter_link_free (
 Get the number of channels of a link.
 @deprecated Use av_buffersink_get_channels ()
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 //  attribute_deprecated
 public int avfilter_link_get_channels (
     AVFilterLink? link
@@ -969,7 +969,7 @@ Set the closed field of a link.
 @deprecated applications are not supposed to mess with links, they should
 close the sinks.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 //  attribute_deprecated
 public void avfilter_link_set_closed (
     AVFilterLink? link,
@@ -982,7 +982,7 @@ Negotiate the media format, dimensions, etc of all inputs to a filter.
 @param filter the filter to negotiate the properties for its inputs
 @return       zero on successful negotiation
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_config_links (
     AVFilterContext? filter
 );
@@ -1006,7 +1006,7 @@ public enum FooBar {
 Make the filter instance process a command.
 It is recommended to use avfilter_graph_send_command ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_process_command (
     AVFilterContext? filter,
     string cmd,
@@ -1025,7 +1025,7 @@ Iterate over all registered filters.
 @return the next registered filter or NULL when the iteration is
         finished
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public AVFilter? av_filter_iterate (
     void **opaque
 );
@@ -1035,7 +1035,7 @@ public AVFilter? av_filter_iterate (
 /***********************************************************
 Initialize the filter system. Register all builtin filters.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 //  attribute_deprecated
 public void avfilter_register_all ();
 
@@ -1049,7 +1049,7 @@ is not registered.
 @return 0 if the registration was successful, a negative value
 otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 //  attribute_deprecated
 public int avfilter_register (
     AVFilter? filter
@@ -1060,7 +1060,7 @@ Iterate over all registered filters.
 @return If prev is non-NULL, next registered filter after prev or NULL if
 prev is the last filter. If prev is NULL, return the first registered filter.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 //  attribute_deprecated
 public AVFilter? avfilter_next (
     AVFilter? prev
@@ -1075,7 +1075,7 @@ Get a filter definition matching the given name.
 @return     the filter definition, if any matching one is registered.
             NULL if none found.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public AVFilter? avfilter_get_by_name (
     string name
 );
@@ -1091,7 +1091,7 @@ Initialize a filter with the supplied parameters.
             AVOptions API or there are no options that need to be set.
 @return 0 on success, a negative AVERROR on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_init_str (
     AVFilterContext? av_filter_context,
     string args
@@ -1117,7 +1117,7 @@ supported by the filter. In such a case, avfilter_init_str () will fail, but
 this function will leave those extra options in the options AVDictionary and
 continue as usual.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_init_dict (
     AVFilterContext? av_filter_context,
     AVDictionary **options
@@ -1129,7 +1129,7 @@ filtergraph's list of filters.
 
 @param filter the filter to free
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public void avfilter_free (
     AVFilterContext? filter
 );
@@ -1143,7 +1143,7 @@ Insert a filter in the middle of an existing link.
 @param filt_dstpad_idx the output pad on the filter to connect
 @return     zero on success
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_insert_filter (
     AVFilterLink? link,
     AVFilterContext? filt,
@@ -1156,7 +1156,7 @@ public int avfilter_insert_filter (
 
 @see av_opt_find ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public AVClass? avfilter_get_class ();
 
 /***********************************************************
@@ -1171,7 +1171,7 @@ executed multiple times, possibly in parallel.
 
 @return 0 on success, a negative AVERROR on error
 ***********************************************************/
-[CCode (cname="avfilter_action_func",cheader_filename="")]
+[CCode (cname="avfilter_action_func",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public delegate int AVFilterActionDelegate (
     AVFilterContext? av_filter_context,
     void *arg,
@@ -1191,7 +1191,7 @@ A function executing multiple jobs, possibly in parallel.
 
 @return 0 on success, a negative AVERROR on error
 ***********************************************************/
-[CCode (cname="avfilter_execute_func",cheader_filename="")]
+[CCode (cname="avfilter_execute_func",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public delegate int AVFilterExecuteDelegate (
     AVFilterContext? av_filter_context,
     AVFilterActionDelegate? func,
@@ -1200,7 +1200,7 @@ public delegate int AVFilterExecuteDelegate (
     int nb_jobs
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterGraph {
     [CCode (cname="")]
@@ -1307,7 +1307,7 @@ Allocate a filter graph.
 
 @return the allocated filter graph on success or NULL.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public AVFilterGraph? avfilter_graph_alloc ();
 
 /***********************************************************
@@ -1324,7 +1324,7 @@ Create a new filter instance in a filter graph.
         also retrievable directly through AVFilterGraph.filters or with
         avfilter_graph_get_filter ()) on success or NULL on failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public AVFilterContext? avfilter_graph_alloc_filter (
     AVFilterGraph? graph,
     AVFilter? filter,
@@ -1339,7 +1339,7 @@ Get a filter instance identified by instance name from graph.
 @return the pointer to the found filter instance or NULL if it
 cannot be found.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public AVFilterContext? avfilter_graph_get_filter (
     AVFilterGraph? graph,
     string name
@@ -1358,7 +1358,7 @@ filter instance, otherwise set? filt_ctx to NULL.
 @return a negative AVERROR error code in case of failure, a non
 negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_create_filter (
     AVFilterContext **filt_ctx,
     AVFilter? filt,
@@ -1376,13 +1376,13 @@ scale and aresample filters.
 
 @param flags  any of the AVFILTER_AUTO_CONVERT_* constants
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public void avfilter_graph_set_auto_convert (
     AVFilterGraph? graph,
     uint flags
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public enum FooBar {
     /***********************************************************
     all automatic conversions enabled
@@ -1404,7 +1404,7 @@ Check validity and configure all the links and formats in the graph.
 @param log_ctx context used for logging
 @return >= 0 in case of success, a negative AVERROR code otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_config (
     AVFilterGraph? graphctx,
     void *log_ctx
@@ -1414,7 +1414,7 @@ public int avfilter_graph_config (
 Free a graph, destroy its links, and set? graph to NULL.
 If? graph is NULL, do nothing.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public void avfilter_graph_free (
     AVFilterGraph **graph
 );
@@ -1428,7 +1428,7 @@ to the caller.
 This struct specifies, per each not connected pad contained in the graph, the
 filter context and the pad index required for establishing a link.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterInOut {
     /***********************************************************
@@ -1461,14 +1461,14 @@ Allocate a single AVFilterInOut entry.
 Must be freed with avfilter_inout_free ().
 @return allocated AVFilterInOut on success, NULL on failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public AVFilterInOut? avfilter_inout_alloc ();
 
 /***********************************************************
 Free the supplied list of AVFilterInOut and set? inout to NULL.
 If? inout is NULL, do nothing.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public void avfilter_inout_free (
     AVFilterInOut **inout
 );
@@ -1491,7 +1491,7 @@ inputs to the parsed filters.
 @param outputs linked list to the outputs of the graph
 @return zero on success, a negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_parse (
     AVFilterGraph? graph,
     string filters,
@@ -1517,7 +1517,7 @@ the last filter is not specified, "out" is assumed.
                after the parsing, should be freed with avfilter_inout_free ().
 @return non negative on success, a negative AVERROR code on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_parse_ptr (
     AVFilterGraph? graph,
     string filters,
@@ -1548,7 +1548,7 @@ contain inputs of the newly parsed part of the graph.  Analogously
 the outputs parameter will contain outputs of the newly created
 filters.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_parse2 (
     AVFilterGraph? graph,
     string filters,
@@ -1571,7 +1571,7 @@ Send a command to one or more filter instances.
 @returns >=0 on success otherwise an error code.
              AVERROR (ENOSYS) on unsupported commands
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_send_command (
     AVFilterGraph? graph,
     string target,
@@ -1597,7 +1597,7 @@ Queue a command for one or more filter instances.
 @note As this executes commands after this function returns, no return code
       from the filter is provided, also AVFILTER_CMD_FLAG_ONE is not supported.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_queue_command (
     AVFilterGraph? graph,
     string target,
@@ -1616,7 +1616,7 @@ Dump a graph into a human-readable string representation.
 @return  a string, or NULL in case of memory allocation failure;
          the string must be freed using av_free
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public string avfilter_graph_dump (
     AVFilterGraph? graph,
     string options
@@ -1640,7 +1640,7 @@ which are sent to another sink link, although unrequested.
 @return  the return value of ff_request_frame (),
          or AVERROR_EOF if all links returned AVERROR_EOF
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_request_oldest (
     AVFilterGraph? graph
 );

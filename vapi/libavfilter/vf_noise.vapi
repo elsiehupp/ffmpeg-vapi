@@ -19,31 +19,31 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 public const size_t MAX_NOISE; // 5120
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 public const size_t MAX_SHIFT; // 1024
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 public const size_t MAX_RES; // (MAX_NOISE - MAX_SHIFT)
 
 [Flags]
 public enum FooBar {
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
     NOISE_UNIFORM, // 1
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
     NOISE_TEMPORAL, // 2
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
     NOISE_AVERAGED, // 8
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
     NOISE_PATTERN; // 16
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 [Compact]
 public class FilterParams {
     [CCode (cname="")]
@@ -71,7 +71,7 @@ public class FilterParams {
     public int rand_shift_init;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 [Compact]
 public class NoiseContext {
     [CCode (cname="")]
@@ -115,7 +115,7 @@ public class NoiseContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 public void ff_line_noise_c (
     uint8[] dst,
     uint8[] src,
@@ -124,7 +124,7 @@ public void ff_line_noise_c (
     int shift
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 public void ff_line_noise_avg_c (
     uint8[] dst,
     uint8[] src,
@@ -132,7 +132,7 @@ public void ff_line_noise_avg_c (
     int8[] shift
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 public void ff_noise_init_x86 (
     NoiseContext? n
 );

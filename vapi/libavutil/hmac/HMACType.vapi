@@ -25,7 +25,7 @@ namespace LibAVUtil.Crypto {
 @defgroup lavu_hmac HMAC
 ***********************************************************/
 
-[CCode (cprefix="AV_HMAC_",cheader_filename="ffmpeg/libavutil/hmac.h")]
+[CCode (cprefix="AV_HMAC_",cheader_filename="subprojects/ffmpeg/libavutil/hmac.h")]
 public enum HMACType {
     MD5,
     SHA1,

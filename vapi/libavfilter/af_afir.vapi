@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
 [Compact]
 public class AudioFIRSegment {
     [CCode (cname="")]
@@ -73,7 +73,7 @@ public class AudioFIRSegment {
     public RDFTContext **irdft;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
 [Compact]
 public class AudioFIRDSPContext {
     public delegate void FcmulAddDelegate (
@@ -87,7 +87,7 @@ public class AudioFIRDSPContext {
     public FcmulAddDelegate fcmul_add;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
 [Compact]
 public class AudioFIRContext {
     [CCode (cname="")]
@@ -181,12 +181,12 @@ public class AudioFIRContext {
     public AVFloatDSPContext? fdsp;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
 public void ff_afir_init (
     AudioFIRDSPContext? s
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
 public void ff_afir_init_x86 (
     AudioFIRDSPContext? s
 );

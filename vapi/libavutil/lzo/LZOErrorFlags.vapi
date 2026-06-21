@@ -30,7 +30,7 @@ namespace LibAVUtil.Crypto {
 @name Error flags returned by av_lzo1x_decode
 **********************************************************/
 [Flags]
-[CCode (cheader_filename="ffmpeg/libavutil/lzo.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavutil/lzo.h")]
 public enum LZOErrorFlags {
     /***********************************************************
     @brief End of the input buffer reached before decoding finished

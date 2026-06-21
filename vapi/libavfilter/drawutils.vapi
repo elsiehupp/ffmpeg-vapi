@@ -21,13 +21,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 misc drawing utilities
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public int ff_fill_rgba_map (
     uint8[] rgba_map,
     AVPixelFormat pix_fmt
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public int ff_fill_line_with_color (
     uint8[] line[4],
     int pixel_step[4],
@@ -39,7 +39,7 @@ public int ff_fill_line_with_color (
     uint8 rgba_map[4]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public void ff_draw_rectangle (
     uint8[] dst[4],
     int dst_linesize[4],
@@ -53,7 +53,7 @@ public void ff_draw_rectangle (
     int h
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public void ff_copy_rectangle (
     uint8[] dst[4],
     int dst_linesize[4],
@@ -69,10 +69,10 @@ public void ff_copy_rectangle (
     int h
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public const size_t MAX_PLANES; // 4
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 [Compact]
 public class FFDrawContext {
     [CCode (cname="")]
@@ -121,7 +121,7 @@ public class FFDrawContext {
     public uint flags;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 [Compact]
 public class FFDrawColor {
     [CCode (cname="")]
@@ -140,7 +140,7 @@ public class FFDrawColor {
 /***********************************************************
 Process alpha pixel component.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public const int FF_DRAW_PROCESS_ALPHA; // 1
 
 /***********************************************************
@@ -151,7 +151,7 @@ supported the function will return an error.
 flags is combination of FF_DRAW_* flags.
 @return  0 for success, < 0 for error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public int ff_draw_init (
     FFDrawContext? draw,
     AVPixelFormat format,
@@ -161,7 +161,7 @@ public int ff_draw_init (
 /***********************************************************
 Prepare a color.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public void ff_draw_color (
     FFDrawContext? draw,
     FFDrawColor? color,
@@ -173,7 +173,7 @@ Copy a rectangle from an image to another.
 
 The coordinates must be as even as the subsampling requires.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public void ff_copy_rectangle2 (
     FFDrawContext? draw,
     uint8[] dst[],
@@ -194,7 +194,7 @@ Fill a rectangle with an uniform color.
 The coordinates must be as even as the subsampling requires.
 The color needs to be inited with ff_draw_color.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public void ff_fill_rectangle (
     FFDrawContext? draw,
     FFDrawColor? color,
@@ -209,7 +209,7 @@ public void ff_fill_rectangle (
 /***********************************************************
 Blend a rectangle with an uniform color.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public void ff_blend_rectangle (
     FFDrawContext? draw,
     FFDrawColor? color,
@@ -241,7 +241,7 @@ Blend an alpha mask with an uniform color.
 @param x0             horizontal position of the overlay
 @param y0             vertical position of the overlay
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public void ff_blend_mask (
     FFDrawContext? draw,
     FFDrawColor? color,
@@ -268,7 +268,7 @@ Round a dimension according to subsampling.
 @param value      value to round
 @return  the rounded value
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public int ff_draw_round_to_sub (
     FFDrawContext? draw,
     int sub_dir,
@@ -281,7 +281,7 @@ Return the list of pixel formats supported by the draw functions.
 
 The flags are the same as ff_draw_init, i.e., none currently.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public AVFilterFormats ff_draw_supported_pixel_formats (
     uint flags
 );

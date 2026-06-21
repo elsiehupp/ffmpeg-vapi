@@ -26,13 +26,13 @@ using LibAVUtil;
 /***********************************************************
 @brief Opaque structure representing a MediaCodec buffer to render.
 ***********************************************************/
-//  [CCode (cname="struct MediaCodecBuffer",cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
+//  [CCode (cname="struct MediaCodecBuffer",cheader_filename="subprojects/ffmpeg/libavcodec/mediacodec.h")]
 //  public struct MediaCodecBuffer { }
 
 /***********************************************************
 @brief Opaque structure representing a MediaCodec buffer to render.
 ***********************************************************/
-[CCode (cname="struct AVMediaCodecBuffer",cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
+[CCode (cname="struct AVMediaCodecBuffer",cheader_filename="subprojects/ffmpeg/libavcodec/mediacodec.h")]
 [Compact]
 public class MediaCodecBuffer {
 
@@ -47,7 +47,7 @@ public class MediaCodecBuffer {
     discard the buffer
     @return 0 on success, < 0 otherwise
     ***********************************************************/
-    [CCode (cname="av_mediacodec_release_buffer",cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
+    [CCode (cname="av_mediacodec_release_buffer",cheader_filename="subprojects/ffmpeg/libavcodec/mediacodec.h")]
     public int av_mediacodec_release_buffer (
         MediaCodecBuffer buffer,
         int render
@@ -64,7 +64,7 @@ public class MediaCodecBuffer {
     @param time timestamp in nanoseconds of when to render the buffer
     @return 0 on success, < 0 otherwise
     ***********************************************************/
-    [CCode (cname="av_mediacodec_render_buffer_at_time",cheader_filename="ffmpeg/libavcodec/mediacodec.h")]
+    [CCode (cname="av_mediacodec_render_buffer_at_time",cheader_filename="subprojects/ffmpeg/libavcodec/mediacodec.h")]
     public int av_mediacodec_render_buffer_at_time (
         MediaCodecBuffer buffer,
         int64 time

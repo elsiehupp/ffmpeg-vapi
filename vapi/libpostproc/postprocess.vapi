@@ -34,28 +34,28 @@ Video postprocessing library.
 /***********************************************************
 Return the LIBPOSTPROC_VERSION_INT constant.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public uint postproc_version ();
 
 /***********************************************************
 Return the libpostproc build-time configuration.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public string postproc_configuration ();
 
 /***********************************************************
 Return the libpostproc license.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public string postproc_license ();
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public const size_t PP_QUALITY_MAX; // 6
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public class pp_context { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public class pp_mode { }
 
 #if LIBPOSTPROC_VERSION_INT < (52<<16)
@@ -70,7 +70,7 @@ a simple help text
 //  extern const char pp_help[];
 #endif
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public void pp_postprocess (
     uint8[]  src[3],
     int srcStride[3],
@@ -92,69 +92,69 @@ Return a pp_mode or NULL if an error occurred.
 @param name    the string after "-pp" on the command line
 @param quality a number from 0 to PP_QUALITY_MAX
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public pp_mode? pp_get_mode_by_name_and_quality (
     string name,
     int quality
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public void pp_free_mode (
     pp_mode? mode
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public pp_context? pp_get_context (
     int width,
     int height,
     int flags
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public void pp_free_context (
     pp_context? ppContext
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public enum FooBar {
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_CPU_CAPS_MMX, // 0x80000000
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_CPU_CAPS_MMX2, // 0x20000000
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_CPU_CAPS_3DNOW, // 0x40000000
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_CPU_CAPS_ALTIVEC, // 0x10000000
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_CPU_CAPS_AUTO; // 0x00080000
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public enum FooBar {
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_FORMAT, // 0x00000008
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_FORMAT_420, // (0x00000011|PP_FORMAT)
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_FORMAT_422, // (0x00000001|PP_FORMAT)
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_FORMAT_411, // (0x00000002|PP_FORMAT)
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_FORMAT_444, // (0x00000000|PP_FORMAT)
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
     PP_FORMAT_440; // (0x00000010|PP_FORMAT)
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public enum FooBar {
     /***********************************************************
     MPEG2 style QScale

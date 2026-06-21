@@ -23,28 +23,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public enum PlaylistType {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
     PLAYLIST_TYPE_NONE,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
     PLAYLIST_TYPE_EVENT,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
     PLAYLIST_TYPE_VOD,
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
     PLAYLIST_TYPE_NB;
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public void ff_hls_write_playlist_version (
     AVIOContext out,
     int version
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public void ff_hls_write_audio_rendition (
     AVIOContext output,
     string agroup,
@@ -54,7 +54,7 @@ public void ff_hls_write_audio_rendition (
     int is_default
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public void ff_hls_write_stream_info (
     AVStream st,
     AVIOContext output,
@@ -65,7 +65,7 @@ public void ff_hls_write_stream_info (
     string ccgroup
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public void ff_hls_write_playlist_header (
     AVIOContext output,
     int version,
@@ -76,7 +76,7 @@ public void ff_hls_write_playlist_header (
     int iframe_mode
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public void ff_hls_write_init_file (
     AVIOContext output,
     string filename,
@@ -85,7 +85,7 @@ public void ff_hls_write_init_file (
     int64 pos
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public int ff_hls_write_file_entry (
     AVIOContext output,
     int insert_discont,
@@ -110,7 +110,7 @@ public int ff_hls_write_file_entry (
     int iframe_mode
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/hlsplaylist.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public void ff_hls_write_end_list (
     AVIOContext output
 );

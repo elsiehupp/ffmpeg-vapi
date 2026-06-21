@@ -22,23 +22,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct MMSStream",cheader_filename="ffmpeg/libformat/mms.h")]
+[CCode (cname="struct MMSStream",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
 [Compact]
 public class MMSStream {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public int id;
 }
 
-[CCode (cname="struct MMSContext",cheader_filename="ffmpeg/libformat/mms.h")]
+[CCode (cname="struct MMSContext",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
 [Compact]
 public class MMSContext {
     /***********************************************************
     @brief TCP connection handle
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public URLContext mms_hd;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public MMSStream streams;
 
     /***********************************************************
@@ -48,13 +48,13 @@ public class MMSContext {
     /***********************************************************
     @brief Pointer for writing the buffer.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public uint8[] write_out_ptr;
 
     /***********************************************************
     @brief Buffer for outgoing packet.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public uint8 out_buffer[512];
 
     /*@}*/
@@ -66,19 +66,19 @@ public class MMSContext {
     /***********************************************************
     @brief Buffer for incoming packets.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public uint8 in_buffer[65536];
 
     /***********************************************************
     @brief Pointer for reading from incoming buffer.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public uint8[] read_in_ptr;
 
     /***********************************************************
     @brief Reading length from incoming buffer.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public int remaining_in_len;
 
     /*@}*/
@@ -90,25 +90,25 @@ public class MMSContext {
     /***********************************************************
     @brief Stored ASF header.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public uint8[] asf_header;
 
     /***********************************************************
     @brief Size of stored ASF header.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public int asf_header_size;
 
     /***********************************************************
     @brief The header has been received and parsed.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public int header_parsed;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public int asf_packet_len;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public int asf_header_read_size;
 
     /*@}*/
@@ -116,29 +116,29 @@ public class MMSContext {
     /***********************************************************
     @brief Stream numbers.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public int stream_num;
 
     /***********************************************************
     @brief Allocated size of streams
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
     public uint nb_streams_allocated;
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
 public int ff_mms_asf_header_parser (
     MMSContext mms
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
 public int ff_mms_read_data (
     MMSContext mms,
     uint8[] buffer,
     int size
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/mms.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
 public int ff_mms_read_header (
     MMSContext mms,
     uint8[] buffer,

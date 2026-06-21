@@ -23,16 +23,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Libswresample version macros
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/version.h")]
 public const int LIBSWRESAMPLE_VERSION_MAJOR; // 3
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/version.h")]
 public const int LIBSWRESAMPLE_VERSION_MINOR; // 5
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/version.h")]
 public const int LIBSWRESAMPLE_VERSION_MICRO; // 100
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/version.h")]
 public const int LIBSWRESAMPLE_VERSION_INT;
 //  AV_VERSION_INT (
 //      LIBSWRESAMPLE_VERSION_MAJOR,
@@ -40,7 +40,7 @@ public const int LIBSWRESAMPLE_VERSION_INT;
 //      LIBSWRESAMPLE_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/version.h")]
 public const string LIBSWRESAMPLE_VERSION;
 //  AV_VERSION (
 //      LIBSWRESAMPLE_VERSION_MAJOR,
@@ -48,8 +48,8 @@ public const string LIBSWRESAMPLE_VERSION;
 //      LIBSWRESAMPLE_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/version.h")]
 public const int LIBSWRESAMPLE_BUILD; // LIBSWRESAMPLE_VERSION_INT
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/version.h")]
 public const string LIBSWRESAMPLE_IDENT; // "SwR" AV_STRINGIFY (LIBSWRESAMPLE_VERSION)

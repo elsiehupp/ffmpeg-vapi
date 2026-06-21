@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/sndio.h")]
 [Compact]
 public class SndioData {
     [CCode (cname="")]
@@ -56,14 +56,14 @@ public class SndioData {
     public int sample_rate;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/sndio.h")]
 public int ff_sndio_open (
     AVFormatContext? s1,
     int is_output,
     string audio_device
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/sndio.h")]
 public int ff_sndio_close (
     SndioData? s
 );

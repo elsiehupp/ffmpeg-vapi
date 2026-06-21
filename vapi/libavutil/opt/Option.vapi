@@ -46,7 +46,7 @@ should also be set when applicable, but are not required.
 
 The following example illustrates an LibAVUtil.Options-enabled struct:
 @code
-[CCode (cname="",cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
 [Compact]
 public class test_struct {
     Class class;
@@ -64,7 +64,7 @@ public class test_struct {
     public int bin_len;
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
 public const Option test_options[] = {
     {
         "test_int",
@@ -98,9 +98,9 @@ public const Option test_options[] = {
         null };
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
 public const Class test_class = {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public override string class_name {
         public get {
             return "test class";
@@ -109,7 +109,7 @@ public const Class test_class = {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public override string item_name (
         void *class_context
     ) {
@@ -119,7 +119,7 @@ public const Class test_class = {
     }
     //  .option = test_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -165,7 +165,7 @@ public void free_test_struct (out test_struct foo) {
     child_struct field:
 
     @code
-    [CCode (cname="",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public struct child_struct {
         Class class;
 
@@ -173,7 +173,7 @@ public void free_test_struct (out test_struct foo) {
 
     } child_struct;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public const Option child_opts[] = {
         { "test_flags",
         "This is a test Option of flags type.",
@@ -185,7 +185,7 @@ public void free_test_struct (out test_struct foo) {
         { null },
     }
 
-    [CCode (cname="",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public const Class child_class = {
         //  .class_name = "child class";
         //  .item_name = base.item_name,
@@ -285,7 +285,7 @@ before the file is actually opened.
 /***********************************************************
 @brief Option
 ***********************************************************/
-[CCode (cname="struct AVOption",cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cname="struct AVOption",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
 [Compact]
 public class Option {
     [CCode (cname="name")]
@@ -373,7 +373,7 @@ public class Option {
     LibAVUtil.Dictionary (e.g. avformat_open_input ()) to set options found with this
     flag.
     ***********************************************************/
-    [CCode (cname="av_opt_find",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_find",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public Option av_opt_find (
         void *obj,
         string name,
@@ -403,7 +403,7 @@ public class Option {
     @return A pointer to the Option found, or null if no Option
         was found.
     ***********************************************************/
-    [CCode (cname="av_opt_find2",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_find2",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public Option av_opt_find2 (
         void *obj,
         string name,
@@ -422,7 +422,7 @@ public class Option {
         or null
     @return next Option or null
     ***********************************************************/
-    [CCode (cname="av_opt_next",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_next",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public Option av_opt_next (
         void *obj,
         Option prev
@@ -434,7 +434,7 @@ public class Option {
     @param prev result of a previous call to this function or null
     @return next LibAVUtil.Options-enabled child or null
     ***********************************************************/
-    [CCode (cname="av_opt_child_next",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_child_next",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public void *av_opt_child_next (
         void *obj,
         void *prev
@@ -465,7 +465,7 @@ public class Option {
     LibAVUtil.ErrorCode (ERANGE) if the value is out of range
     LibAVUtil.ErrorCode (EINVAL) if the value is not valid
     ***********************************************************/
-    [CCode (cname="av_opt_set",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set (
         void *obj,
         string name,
@@ -473,7 +473,7 @@ public class Option {
         int search_flags
     );
 
-    [CCode (cname="av_opt_set_int",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_int",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_int (
         void *obj,
         string name,
@@ -481,7 +481,7 @@ public class Option {
         int search_flags
     );
 
-    [CCode (cname="av_opt_set_double",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_double",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_double (
         void *obj,
         string name,
@@ -489,7 +489,7 @@ public class Option {
         int search_flags
     );
 
-    [CCode (cname="av_opt_set_q",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_q",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_q (
         void *obj,
         string name,
@@ -497,7 +497,7 @@ public class Option {
         int search_flags
     );
 
-    [CCode (cname="av_opt_set_bin",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_bin",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_bin (
         void *obj,
         string name,
@@ -506,7 +506,7 @@ public class Option {
         int search_flags
     );
 
-    [CCode (cname="av_opt_set_image_size",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_image_size",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_image_size (
         void *obj,
         string name,
@@ -515,14 +515,14 @@ public class Option {
         int search_flags
     );
 
-    [CCode (cname="av_opt_set_pixel_fmt",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_pixel_fmt",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_pixel_fmt (
         void *obj, string name,
         PixelFormat fmt,
         int search_flags
     );
 
-    [CCode (cname="av_opt_set_sample_fmt",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_sample_fmt",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_sample_fmt (
         void *obj,
         string name,
@@ -530,7 +530,7 @@ public class Option {
         int search_flags
     );
 
-    [CCode (cname="av_opt_set_video_rate",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_video_rate",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_video_rate (
         void *obj,
         string name,
@@ -538,7 +538,7 @@ public class Option {
         int search_flags
     );
 
-    [CCode (cname="av_opt_set_channel_layout",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_channel_layout",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_channel_layout (
         void *obj,
         string name,
@@ -550,7 +550,7 @@ public class Option {
     @note Any old dictionary present is discarded and replaced with a copy of the new one. The
     caller still owns val is and responsible for freeing it.
     ***********************************************************/
-    [CCode (cname="av_opt_set_dict_val",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_dict_val",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_dict_val (
         void *obj,
         string name,
@@ -569,7 +569,7 @@ public class Option {
     @param search_flags search flags
     @returns 0 or LibAVUtil.ErrorCode (EINVAL)
     ***********************************************************/
-    [CCode (cname="av_opt_set_int_list",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_int_list",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_int_list (
         void *obj,
         string name,
@@ -596,7 +596,7 @@ public class Option {
     OptionType.STRING or OptionType.BINARY and is set to null,? out_val will be set
     to null instead of an allocated empty string.
     ***********************************************************/
-    [CCode (cname="av_opt_get",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get (
         void *obj,
         string name,
@@ -604,7 +604,7 @@ public class Option {
         out uint8 out_val
     );
 
-    [CCode (cname="av_opt_get_int",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_int",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_int (
         void *obj,
         string name,
@@ -612,7 +612,7 @@ public class Option {
         out int64 out_val
     );
 
-    [CCode (cname="av_opt_get_double",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_double",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_double (
         void *obj,
         string name,
@@ -620,7 +620,7 @@ public class Option {
         out double out_val
     );
 
-    [CCode (cname="av_opt_get_q",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_q",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_q (
         void *obj,
         string name,
@@ -628,7 +628,7 @@ public class Option {
         out Rational out_val
     );
 
-    [CCode (cname="av_opt_get_image_size",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_image_size",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_image_size (
         void *obj,
         string name,
@@ -637,7 +637,7 @@ public class Option {
         out int h_out
     );
 
-    [CCode (cname="av_opt_get_pixel_fmt",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_pixel_fmt",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_pixel_fmt (
         void *obj,
         string name,
@@ -645,7 +645,7 @@ public class Option {
         out PixelFormat out_fmt
     );
 
-    [CCode (cname="av_opt_get_sample_fmt",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_sample_fmt",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_sample_fmt (
         void *obj,
         string name,
@@ -653,7 +653,7 @@ public class Option {
         out SampleFormat out_fmt
     );
 
-    [CCode (cname="av_opt_get_video_rate",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_video_rate",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_video_rate (
         void *obj,
         string name,
@@ -661,7 +661,7 @@ public class Option {
         out Rational out_val
     );
 
-    [CCode (cname="av_opt_get_channel_layout",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_channel_layout",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_channel_layout (
         void *obj,
         string name,
@@ -673,7 +673,7 @@ public class Option {
     @param[out] out_val The returned dictionary is a copy of the actual value and must
     be freed with av_dict_free () by the caller
     ***********************************************************/
-    [CCode (cname="av_opt_get_dict_val",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_dict_val",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_dict_val (
         void *obj,
         string name,
@@ -689,7 +689,7 @@ public class Option {
     @returns a pointer to the field, it can be cast to the correct type and read
         or written to.
     ***********************************************************/
-    [CCode (cname="av_opt_ptr",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_ptr",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public void *av_opt_ptr (
         Class avclass,
         void *obj,
@@ -699,7 +699,7 @@ public class Option {
     /***********************************************************
     @brief Free an OptionRangeList struct and set it to null.
     ***********************************************************/
-    [CCode (cname="av_opt_freep_ranges",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_freep_ranges",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public void av_opt_freep_ranges (
         OptionRangeList ranges
     );
@@ -717,7 +717,7 @@ public class Option {
 
     @return number of compontents returned on success, a negative errro code otherwise
     ***********************************************************/
-    [CCode (cname="av_opt_query_ranges",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_query_ranges",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_query_ranges (
         out OptionRangeList ranges,
         void *obj,
@@ -735,7 +735,7 @@ public class Option {
     @param input_buffer Object to copy into
     @return 0 on success, negative on error
     ***********************************************************/
-    [CCode (cname="av_opt_copy",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_copy",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_copy (
         out void *dest,
         void *input_buffer
@@ -755,7 +755,7 @@ public class Option {
 
     @return number of compontents returned on success, a negative errro code otherwise
     ***********************************************************/
-    [CCode (cname="av_opt_query_ranges_default",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_query_ranges_default",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_query_ranges_default (
         out OptionRangeList ranges,
         void *obj,
@@ -775,7 +775,7 @@ public class Option {
         0 when Option is not set its default,
         <0 on error
     ***********************************************************/
-    [CCode (cname="av_opt_is_set_to_default",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_is_set_to_default",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_is_set_to_default (
         void *obj,
         Option option
@@ -791,7 +791,7 @@ public class Option {
         0 when Option is not set its default,
         <0 on error
     ***********************************************************/
-    [CCode (cname="av_opt_is_set_to_default_by_name",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_is_set_to_default_by_name",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_is_set_to_default_by_name (
         void *obj,
         string name,
@@ -811,7 +811,7 @@ public class Option {
 
     @return 0 on success, a negative number on failure.
     ***********************************************************/
-    [CCode (cname="av_opt_eval_flags",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_eval_flags",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_flags (
         void *obj,
         Option option,
@@ -819,7 +819,7 @@ public class Option {
         out int flags_out
     );
 
-    [CCode (cname="av_opt_eval_int",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_eval_int",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_int (
         void *obj,
         Option option,
@@ -827,7 +827,7 @@ public class Option {
         out int int_out
     );
 
-    [CCode (cname="av_opt_eval_int64",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_eval_int64",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_int64 (
         void *obj,
         Option option,
@@ -835,7 +835,7 @@ public class Option {
         out int64 int64_out
     );
 
-    [CCode (cname="av_opt_eval_float",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_eval_float",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_float (
         void *obj,
         Option option,
@@ -843,7 +843,7 @@ public class Option {
         out float float_out
     );
 
-    [CCode (cname="av_opt_eval_double",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_eval_double",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_double (
         void *obj,
         Option option,
@@ -851,7 +851,7 @@ public class Option {
         out double double_out
     );
 
-    [CCode (cname="av_opt_eval_q",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_eval_q",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_q (
         void *obj,
         Option option,
@@ -868,7 +868,7 @@ public class Option {
         options for which it is !(opt.flags & req_flags).
     @param av_log_obj log context to use for showing the options
     ***********************************************************/
-    [CCode (cname="av_opt_show2",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_show2",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_show2 (
         void *obj,
         void *av_log_obj,
@@ -881,7 +881,7 @@ public class Option {
 
     @param void_context an Option-enabled struct (its first member must be a pointer to Class)
     ***********************************************************/
-    [CCode (cname="av_opt_set_defaults",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_defaults",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public void av_opt_set_defaults (
         void *void_context
     );
@@ -895,7 +895,7 @@ public class Option {
     @param mask combination of OptionFlags
     @param flags combination of OptionFlags
     ***********************************************************/
-    [CCode (cname="av_opt_set_defaults2",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_defaults2",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public void av_opt_set_defaults2 (
         void *void_context,
         OptionFlags mask,
@@ -919,7 +919,7 @@ public class Option {
     the error code issued by av_opt_set () if a key/value pair
     cannot be set
     ***********************************************************/
-    [CCode (cname="av_set_options_string",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_set_options_string",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_set_options_string (
         void *class_context,
         string opts,
@@ -954,7 +954,7 @@ public class Option {
     Separators must use characters distinct from Option names and from each
     other.
     ***********************************************************/
-    [CCode (cname="av_opt_set_from_string",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_from_string",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_from_string (
         void *class_context,
         string opts,
@@ -966,7 +966,7 @@ public class Option {
     /***********************************************************
     @brief Free all allocated objects in obj.
     ***********************************************************/
-    [CCode (cname="av_opt_free",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_free",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public void av_opt_free (
         void *obj
     );
@@ -979,7 +979,7 @@ public class Option {
     @return non-zero if the flag is set, zero if the flag isn't set,
         isn't of the right type, or the flags field doesn't exist.
     ***********************************************************/
-    [CCode (cname="av_opt_flag_is_set",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_flag_is_set",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_flag_is_set (
         void *obj,
         string field_name,
@@ -1000,7 +1000,7 @@ public class Option {
 
     @see @link av_dict_copy ()
     ***********************************************************/
-    [CCode (cname="av_opt_set_dict",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_dict",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_dict (
         void *obj,
         LibAVUtil.Dictionary options
@@ -1021,7 +1021,7 @@ public class Option {
 
     @see @link av_dict_copy ()
     ***********************************************************/
-    [CCode (cname="av_opt_set_dict2",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_set_dict2",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_dict2 (
         void *obj,
         LibAVUtil.Dictionary options,
@@ -1046,7 +1046,7 @@ public class Option {
         LibAVUtil.ErrorCode code in case of error; in particular:
         LibAVUtil.ErrorCode (EINVAL) if no key is present
     ***********************************************************/
-    [CCode (cname="av_opt_get_key_value",cheader_filename="ffmpeg/libavutil/opt.h")]
+    [CCode (cname="av_opt_get_key_value",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_get_key_value (
         out string ropts,
         string key_val_sep,

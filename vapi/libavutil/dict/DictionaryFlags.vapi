@@ -49,7 +49,7 @@ LibAVUtil.DictionaryEntry t = null;
 av_dict_set (&d, "foo", "bar",
         0); // add an entry
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/dict.h")]
 public string k = av_strdup ("key"); // if your strings are already allocated,
 public string v = av_strdup ("value"); // you can avoid copying them like this
 av_dict_set (&d, k, v, AVDictionaryFlags.DONT_STRDUP_KEY | AVDictionaryFlags.DONT_STRDUP_VAL);

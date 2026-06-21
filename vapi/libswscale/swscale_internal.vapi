@@ -21,55 +21,55 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /***********************************************************
 AV_STRINGIFY is too long
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public string STR (
     void *s
 ); // AV_TOSTRING (s)
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t YUVRGB_TABLE_HEADROOM; // 512
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t YUVRGB_TABLE_LUMA_HEADROOM; // 512
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t MAX_FILTER_SIZE; // SWS_MAX_FILTER_SIZE
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t DITHER1XBPP; //
 
 /***********************************************************
 Based on HAVE_BIGENDIAN
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const int ALT32_CORR;
 
 /***********************************************************
 Based on ARCH_X86_64
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t APCK_PTR2;
 
 /***********************************************************
 Based on ARCH_X86_64
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t APCK_COEF;
 
 /***********************************************************
 Based on ARCH_X86_64
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t APCK_SIZE;
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const int RETCODE_USE_CASCADE; // -12345
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsContext { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public enum SwsDither {
     [CCode (cname="")]
     SWS_DITHER_NONE = 0,
@@ -93,7 +93,7 @@ public enum SwsDither {
     NB_SWS_DITHER;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public enum SwsAlphaBlend {
     [CCode (cname="")]
     SWS_ALPHA_BLEND_NONE = 0,
@@ -108,7 +108,7 @@ public enum SwsAlphaBlend {
     SWS_ALPHA_BLEND_NB;
 }
 
-[CCode (cname="SwsFunc",cheader_filename="")]
+[CCode (cname="SwsFunc",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public delegate int SwsDelegate (
     SwsContext? context,
     uint8[] src[],
@@ -131,7 +131,7 @@ without any additional vertical scaling (or point-scaling).
 @param dither  ordered dither array of type int16 and size 8
 @param offset  Dither offset
 ***********************************************************/
-[CCode (cname="yuv2planar1_fn",cheader_filename="")]
+[CCode (cname="yuv2planar1_fn",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public delegate void Yuv2Planar1Delegate (
     int16[] src,
     uint8[] dest,
@@ -153,7 +153,7 @@ with multi-point vertical scaling between input pixels.
 @param dstW          width of destination pixels
 @param offset        Dither offset
 ***********************************************************/
-[CCode (cname="yuv2planarX_fn",cheader_filename="")]
+[CCode (cname="yuv2planarX_fn",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public delegate void Yuv2PlanarXDelegate (
     int16[] filter,
     int filterSize,
@@ -179,7 +179,7 @@ with multi-point vertical scaling between input pixels.
                      output, this is in uint16
 @param dstW          width of chroma planes
 ***********************************************************/
-[CCode (cname="yuv2interleavedX_fn",cheader_filename="")]
+[CCode (cname="yuv2interleavedX_fn",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public delegate void Yuv2InterleavedXDelegate (
     SwsContext? c,
     int16[] chrFilter,
@@ -219,7 +219,7 @@ that this function may do chroma scaling, see the "uvalpha" argument.
                but can be used to generate comfort noise using dithering
                for some output formats.
 ***********************************************************/
-[CCode (cname="yuv2packed1_fn",cheader_filename="")]
+[CCode (cname="yuv2packed1_fn",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public delegate void Yuv2Packed1Delegate (
     SwsContext? c,
     int16[] lumSrc,
@@ -260,7 +260,7 @@ output by doing bilinear scaling between two input lines.
                but can be used to generate comfort noise using dithering
                for some output formats.
 ***********************************************************/
-[CCode (cname="yuv2packed2_fn",cheader_filename="")]
+[CCode (cname="yuv2packed2_fn",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public delegate void Yuv2Packed2Delegate (
     SwsContext? c,
     int16[] lumSrc[2],
@@ -300,7 +300,7 @@ output by doing multi-point vertical scaling between input pixels.
                      but can be used to generate comfort noise using dithering
                      or some output formats.
 ***********************************************************/
-[CCode (cname="yuv2packedX_fn",cheader_filename="")]
+[CCode (cname="yuv2packedX_fn",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public delegate void Yuv2PackedXDelegate (
     SwsContext? c,
     int16[] lumFilter,
@@ -342,7 +342,7 @@ output by doing multi-point vertical scaling between input pixels.
                      but can be used to generate comfort noise using dithering
                      or some output formats.
 ***********************************************************/
-[CCode (cname="yuv2anyX_fn",cheader_filename="")]
+[CCode (cname="yuv2anyX_fn",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public delegate void Yuv2AnyXDelegate (
     SwsContext? c,
     int16[] lumFilter,
@@ -361,7 +361,7 @@ public delegate void Yuv2AnyXDelegate (
 /***********************************************************
 This struct should be aligned on at least a 32-byte boundary.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsContext {
     /***********************************************************
@@ -766,34 +766,34 @@ public class SwsContext {
     //  public DECLARE_ALIGNED (16, int32, input_rgb2yuv_table)[16+40*4];
 
     public enum FooBar {
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         RY_IDX, // 0
 
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         GY_IDX, // 1
 
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         BY_IDX, // 2
 
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         RU_IDX, // 3
 
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         GU_IDX, // 4
 
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         BU_IDX, // 5
 
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         RV_IDX, // 6
 
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         GV_IDX, // 7
 
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         BV_IDX, // 8
 
-        [CCode (cname="",cheader_filename="")]
+        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
         RGB2YUV_SHIFT; // 15
     }
 
@@ -882,81 +882,81 @@ public class SwsContext {
     [CCode (cname="")]
     public int yuv2rgb_u2b_coeff;
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string RED_DITHER; // "0*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string GREEN_DITHER; // "1*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string BLUE_DITHER; // "2*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string Y_COEFF; // "3*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string VR_COEFF; // "4*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string UB_COEFF              "5*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string VG_COEFF; // "6*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string UG_COEFF; // "7*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string Y_OFFSET; // "8*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string U_OFFSET; // "9*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string V_OFFSET; // "10*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string LUM_MMX_FILTER_OFFSET; // "11*8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string CHR_MMX_FILTER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string DSTW_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string ESP_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+8"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string VROUNDER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+16"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string U_TEMP; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+24"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string V_TEMP; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+32"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string Y_TEMP; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+40"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string ALP_MMX_FILTER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+48"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string UV_OFF_PX; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+48"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string UV_OFF_BYTE; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+56"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string DITHER16; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+64"
 
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string DITHER32; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+80"
 
     /***********************************************************
     value equal to above, used for checking that the struct hasn't been changed by mistake
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const size_t DITHER32_INT; // (11*8+4*4*MAX_FILTER_SIZE*3+80)
 
     //  [CCode (cname="")]
@@ -1084,13 +1084,13 @@ public class SwsContext {
     /***********************************************************
     pre defined color-spaces gamma
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const float XYZ_GAMMA; // (2.6f)
 
     /***********************************************************
     pre defined color-spaces gamma
     ***********************************************************/
-    [CCode (cname="",cheader_filename="")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const float RGB_GAMMA; // (2.2f)
 
     public int16[] xyzgamma;
@@ -1394,12 +1394,12 @@ public class SwsContext {
 }
 // FIXME check init (where 0)
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public SwsFunc ff_yuv2rgb_get_func_ptr (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_yuv2rgb_c_init_tables (
     SwsContext? c,
     int inv_table[4],
@@ -1409,7 +1409,7 @@ public int ff_yuv2rgb_c_init_tables (
     int saturation
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_yuv2rgb_init_tables_ppc (
     SwsContext? c,
     int inv_table[4],
@@ -1418,7 +1418,7 @@ public void ff_yuv2rgb_init_tables_ppc (
     int saturation
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_updateMMXDitherTables (
     SwsContext? c,
     int dstY,
@@ -1428,22 +1428,22 @@ public void ff_updateMMXDitherTables (
     int lastInChrBuf
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public av_cold void ff_sws_init_range_convert (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public SwsFunc ff_yuv2rgb_init_x86 (
     wsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public SwsFunc ff_yuv2rgb_init_ppc (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool is16BPS (
     AVPixelFormat pix_fmt
@@ -1456,7 +1456,7 @@ public static bool is16BPS (
 //      return desc->comp[0].depth == 16;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isNBPS (
     AVPixelFormat pix_fmt
@@ -1469,7 +1469,7 @@ public static bool isNBPS (
 //      return desc->comp[0].depth >= 9 && desc->comp[0].depth <= 14;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static int isBE (
     AVPixelFormat pix_fmt
@@ -1482,7 +1482,7 @@ public static int isBE (
 //      return desc->flags & AV_PIX_FMT_FLAG_BE;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isYUV (
     AVPixelFormat pix_fmt
@@ -1495,7 +1495,7 @@ public static bool isYUV (
 //      return !(desc->flags & AV_PIX_FMT_FLAG_RGB) && desc->nb_components >= 2;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isPlanarYUV (
     AVPixelFormat pix_fmt
@@ -1512,7 +1512,7 @@ public static bool isPlanarYUV (
 Identity semi-planar YUV formats. Specifically, those are YUV formats
 where the second and third components (U & V) are on the same plane.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isSemiPlanarYUV (
     AVPixelFormat pix_fmt
@@ -1525,7 +1525,7 @@ public static bool isSemiPlanarYUV (
 //      return (isPlanarYUV (pix_fmt) && desc->comp[1].plane == desc->comp[2].plane);
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static int isRGB (
     AVPixelFormat pix_fmt
@@ -1538,7 +1538,7 @@ public static int isRGB (
 //      return (desc->flags & AV_PIX_FMT_FLAG_RGB);
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isGray (
     AVPixelFormat pix_fmt
@@ -1555,7 +1555,7 @@ public static bool isGray (
 //             pix_fmt != AV_PIX_FMT_MONOWHITE;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isRGBinInt (
     AVPixelFormat pix_fmt
@@ -1581,7 +1581,7 @@ public static bool isRGBinInt (
 //             pix_fmt == AV_PIX_FMT_MONOWHITE;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isBGRinInt (
     AVPixelFormat pix_fmt
@@ -1607,7 +1607,7 @@ public static bool isBGRinInt (
 //             pix_fmt == AV_PIX_FMT_MONOWHITE;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static int isBayer (
     AVPixelFormat pix_fmt
@@ -1620,7 +1620,7 @@ public static int isBayer (
 //      return !!(desc->flags & AV_PIX_FMT_FLAG_BAYER);
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isAnyRGB (
     AVPixelFormat pix_fmt
@@ -1634,7 +1634,7 @@ public static bool isAnyRGB (
 //              pix_fmt == AV_PIX_FMT_MONOBLACK || pix_fmt == AV_PIX_FMT_MONOWHITE;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static int isFloat (
     AVPixelFormat pix_fmt
@@ -1647,7 +1647,7 @@ public static int isFloat (
 //      return desc->flags & AV_PIX_FMT_FLAG_FLOAT;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static int isALPHA (
     AVPixelFormat pix_fmt
@@ -1663,7 +1663,7 @@ public static int isALPHA (
 //      return desc->flags & AV_PIX_FMT_FLAG_ALPHA;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static int isPacked (
     AVPixelFormat pix_fmt
@@ -1678,7 +1678,7 @@ public static int isPacked (
 //              pix_fmt == AV_PIX_FMT_MONOBLACK || pix_fmt == AV_PIX_FMT_MONOWHITE;
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isPlanar (
     AVPixelFormat pix_fmt
@@ -1691,7 +1691,7 @@ public static bool isPlanar (
 //      return (desc->nb_components >= 2 && (desc->flags & AV_PIX_FMT_FLAG_PLANAR));
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isPackedRGB (
     AVPixelFormat pix_fmt
@@ -1704,7 +1704,7 @@ public static bool isPackedRGB (
 //      return ((desc->flags & (AV_PIX_FMT_FLAG_PLANAR | AV_PIX_FMT_FLAG_RGB)) == AV_PIX_FMT_FLAG_RGB);
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool isPlanarRGB (
     AVPixelFormat pix_fmt
@@ -1718,7 +1718,7 @@ public static bool isPlanarRGB (
 //              (AV_PIX_FMT_FLAG_PLANAR | AV_PIX_FMT_FLAG_RGB));
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 //  av_always_inline
 public static bool usePal (
     AVPixelFormat pix_fmt
@@ -1758,22 +1758,22 @@ public static bool usePal (
 Set c->swscale to an unscaled converter if one exists for the specific
 source and destination formats, bit depths, flags, etc.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_get_unscaled_swscale (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_get_unscaled_swscale_ppc (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_get_unscaled_swscale_arm (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_get_unscaled_swscale_aarch64 (
     SwsContext? c
 );
@@ -1782,17 +1782,17 @@ public void ff_get_unscaled_swscale_aarch64 (
 Return function pointer to fastest main scaler path function depending
 on architecture and available optimizations.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public SwsFunc ff_getSwsFunc (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_sws_init_input_funcs (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_sws_init_output_funcs (
     SwsContext? c,
     yuv2planar1_fn? yuv2plane1,
@@ -1804,32 +1804,32 @@ public void ff_sws_init_output_funcs (
     yuv2anyX_fn? yuv2anyX
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_sws_init_swscale_ppc (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_sws_init_swscale_vsx (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_sws_init_swscale_x86 (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_sws_init_swscale_aarch64 (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_sws_init_swscale_arm (
     SwsContext? c
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_hyscale_fast_c (
     SwsContext? c,
     int16[] dst,
@@ -1839,7 +1839,7 @@ public void ff_hyscale_fast_c (
     int xInc
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_hcscale_fast_c (
     SwsContext? c,
     int16[] dst1,
@@ -1851,7 +1851,7 @@ public void ff_hcscale_fast_c (
     int xInc
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_hscaler_mmxext (
     int dstW,
     int xInc,
@@ -1861,7 +1861,7 @@ public int ff_init_hscaler_mmxext (
     int numSplits
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_hyscale_fast_mmxext (
     SwsContext? c,
     int16[] dst,
@@ -1871,7 +1871,7 @@ public void ff_hyscale_fast_mmxext (
     int xInc
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_hcscale_fast_mmxext (
     SwsContext? c,
     int16[] dst1,
@@ -1890,7 +1890,7 @@ the user to set additional AVOptions.
 
 @see sws_getContext ()
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public SwsContext? sws_alloc_set_opts (
     int srcW,
     int srcH,
@@ -1902,7 +1902,7 @@ public SwsContext? sws_alloc_set_opts (
     double[] param
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_sws_alphablendaway (
     SwsContext? c,
     uint8[] src[],
@@ -1913,7 +1913,7 @@ public int ff_sws_alphablendaway (
     int dstStride[]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public static inline void fillPlane16 (
     uint8[] plane,
     int stride,
@@ -1949,13 +1949,13 @@ public static inline void fillPlane16 (
 //      }
 //  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t MAX_SLICE_PLANES; // 4
 
 /***********************************************************
 Slice plane
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsPlane {
     /***********************************************************
@@ -1994,7 +1994,7 @@ Struct which defines a slice of an image to be scaled or an output for
 a scaled slice.
 A slice can also be used as intermediate ring buffer for scaling steps.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsSlice {
     /***********************************************************
@@ -2044,7 +2044,7 @@ public class SwsSlice {
 Struct which holds all necessary data for processing a slice.
 A processing step can be a color conversion or horizontal/vertical scaling.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsFilterDescriptor {
     /***********************************************************
@@ -2089,7 +2089,7 @@ public class SwsFilterDescriptor {
 warp input lines in the form (src + width*i + j) to slice format (line[i][j])
 relative=true means first line src[x][0] otherwise first line is src[x][lum/crh Y]
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_slice_from_src (
     SwsSlice * sws_slice,
     uint8[] src[4],
@@ -2105,7 +2105,7 @@ public int ff_init_slice_from_src (
 /***********************************************************
 Initialize scaler filter descriptor chain
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_filters (
     SwsContext? c
 );
@@ -2113,7 +2113,7 @@ public int ff_init_filters (
 /***********************************************************
 Free all filter data
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_free_filters (
     SwsContext? c
 );
@@ -2124,7 +2124,7 @@ It checks if the slice can hold more @lum lines, if yes
 do nothing otherwise remove @lum least used lines.
 It applies the same procedure for @chr lines.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_rotate_slice (
     SwsSlice? sws_slice,
     int lum,
@@ -2134,7 +2134,7 @@ public int ff_rotate_slice (
 /***********************************************************
 initializes gamma conversion descriptor
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_gamma_convert (
     SwsFilterDescriptor? desc,
     SwsSlice * src,
@@ -2144,7 +2144,7 @@ public int ff_init_gamma_convert (
 /***********************************************************
 initializes lum pixel format conversion descriptor
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_desc_fmt_convert (
     SwsFilterDescriptor? desc,
     SwsSlice * src,
@@ -2155,7 +2155,7 @@ public int ff_init_desc_fmt_convert (
 /***********************************************************
 initializes lum horizontal scaling descriptor
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_desc_hscale (
     SwsFilterDescriptor? desc,
     SwsSlice? src,
@@ -2169,7 +2169,7 @@ public int ff_init_desc_hscale (
 /***********************************************************
 initializes chr pixel format conversion descriptor
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_desc_cfmt_convert (
     SwsFilterDescriptor? desc,
     SwsSlice * src,
@@ -2180,7 +2180,7 @@ public int ff_init_desc_cfmt_convert (
 /***********************************************************
 initializes chr horizontal scaling descriptor
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_desc_chscale (
     SwsFilterDescriptor? desc,
     SwsSlice? src,
@@ -2191,7 +2191,7 @@ public int ff_init_desc_chscale (
     int xInc
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_desc_no_chr (
     SwsFilterDescriptor? desc,
     SwsSlice * src,
@@ -2201,7 +2201,7 @@ public int ff_init_desc_no_chr (
 /***********************************************************
 initializes vertical scaling descriptors
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public int ff_init_vscale (
     SwsContext? c,
     SwsFilterDescriptor? desc,
@@ -2212,7 +2212,7 @@ public int ff_init_vscale (
 /***********************************************************
 setup vertical scaler functions
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public void ff_init_vscale_pfn (
     SwsContext? c,
     yuv2planar1_fn yuv2plane1,
@@ -2228,5 +2228,5 @@ public void ff_init_vscale_pfn (
 /***********************************************************
 number of extra lines to process
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t MAX_LINES_AHEAD; // 4

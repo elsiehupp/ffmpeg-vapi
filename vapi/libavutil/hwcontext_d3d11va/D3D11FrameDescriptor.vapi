@@ -44,7 +44,7 @@ planes of the frame.
 This has no use outside of custom allocation, and Frame LibAVUtil.BufferRef do not
 necessarily point to an instance of this struct.
 ***********************************************************/
-[CCode (cname="struct AVD3D11FrameDescriptor",cheader_filename="ffmpeg/libavutil/hwcontext_d3d11va.h")]
+[CCode (cname="struct AVD3D11FrameDescriptor",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext_d3d11va.h")]
 [Compact]
 public class D3D11FrameDescriptor {
     /***********************************************************

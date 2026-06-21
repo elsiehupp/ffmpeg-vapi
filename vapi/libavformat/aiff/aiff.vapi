@@ -25,7 +25,7 @@ namespace LibAVFormat {
 @file common header for AIFF muxer and demuxer
 ***********************************************************/
 
-[CCode (cname="ff_codec_aiff_tags",cheader_filename="ffmpeg/libformat/aiff.h")]
+[CCode (cname="ff_codec_aiff_tags",cheader_filename="subprojects/ffmpeg/libformat/aiff.h")]
 public const AVCodecTag[] ff_codec_aiff_tags;
 {
     {

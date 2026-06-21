@@ -19,7 +19,7 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pp7.h")]
 [Compact]
 public class PP7Context {
     [CCode (cname="")]
@@ -68,7 +68,7 @@ public class PP7Context {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pp7.h")]
 public void ff_pp7_init_x86 (
     PP7Context? pp7
 );

@@ -19,14 +19,14 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/unsharp.h")]
 public const size_t MIN_MATRIX_SIZE; // 3
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/unsharp.h")]
 public const size_t MAX_MATRIX_SIZE; // 63
 
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/unsharp.h")]
 [Compact]
 public class UnsharpFilterParam {
     /***********************************************************
@@ -84,7 +84,7 @@ public class UnsharpFilterParam {
     public uint32[][] sc;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/unsharp.h")]
 [Compact]
 public class UnsharpContext {
     [CCode (cname="")]

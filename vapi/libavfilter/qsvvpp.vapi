@@ -21,27 +21,54 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Intel Quick Sync Video VPP base function
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
-public define FF_INLINK_IDX (link)  ((int)((link)->dstpad - (link)->dst->input_pads))
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
+public define FF_INLINK_IDX (
+    void *link
+);
+//  {
+//      ((int)((link)->dstpad - (link)->dst->input_pads));
+//  }
 
-[CCode (cname="",cheader_filename="")]
-public define FF_OUTLINK_IDX (link) ((int)((link)->srcpad - (link)->src->output_pads))
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
+public define FF_OUTLINK_IDX (
+    void *link
+);
+//  {
+//      ((int)((link)->srcpad - (link)->src->output_pads));
+//  }
 
-[CCode (cname="",cheader_filename="")]
-public define QSV_VERSION_ATLEAST (MAJOR, MINOR)   \
-    (MFX_VERSION_MAJOR > (MAJOR) ||         \
-     MFX_VERSION_MAJOR == (MAJOR) && MFX_VERSION_MINOR >= (MINOR))
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
+public static bool QSV_VERSION_ATLEAST (
+    int MAJOR,
+    int MINOR
+);
+//  {
+//      return (
+//          MFX_VERSION_MAJOR > (MAJOR) ||
+//          MFX_VERSION_MAJOR == (MAJOR) &&
+//          MFX_VERSION_MINOR >= (MINOR)
+//      );
+//  }
 
-[CCode (cname="",cheader_filename="")]
-public define QSV_RUNTIME_VERSION_ATLEAST (MFX_VERSION, MAJOR, MINOR) \
-    ((MFX_VERSION.Major > (MAJOR)) ||                           \
-    (MFX_VERSION.Major == (MAJOR) && MFX_VERSION.Minor >= (MINOR)))
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
+public static bool QSV_RUNTIME_VERSION_ATLEAST (
+    void *MFX_VERSION,
+    void *MAJOR,
+    void *MINOR
+);
+//  {
+//      return (
+//          (MFX_VERSION.Major > (MAJOR)) ||
+//          (MFX_VERSION.Major == (MAJOR) &&
+//          MFX_VERSION.Minor >= (MINOR))
+//      );
+//  }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 [Compact]
 public class QSVVPPContext { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 [Compact]
 public class QSVVPPCrop {
     /***********************************************************
@@ -75,7 +102,7 @@ public class QSVVPPCrop {
     public int h;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 [Compact]
 public class QSVVPPParam {
     public delegate int FilterFrameDelegate (
@@ -115,7 +142,7 @@ public class QSVVPPParam {
 /***********************************************************
 create and initialize the QSV session
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 public int ff_qsvvpp_create (
     AVFilterContext? avctx, QSVVPPContext **vpp, QSVVPPParam? param
 );
@@ -123,7 +150,7 @@ public int ff_qsvvpp_create (
 /***********************************************************
 release the resources (eg.surfaces)
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 public int ff_qsvvpp_free (
     QSVVPPContext **vpp
 );
@@ -131,7 +158,7 @@ public int ff_qsvvpp_free (
 /***********************************************************
 vpp filter frame and call the cb if needed
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 public int ff_qsvvpp_filter_frame (
     QSVVPPContext? vpp, AVFilterLink? inlink, AVFrame? frame
 );

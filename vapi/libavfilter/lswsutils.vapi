@@ -24,7 +24,7 @@ Miscellaneous utilities which make use of the libswscale library
 /***********************************************************
 Scale image using libswscale.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="ff_scale_image",cheader_filename="subprojects/ffmpeg/libavfilter/lswutils.h")]
 public int ff_scale_image (
     uint8[] dst_data[4],
     int dst_linesize[4],

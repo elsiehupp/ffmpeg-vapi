@@ -27,13 +27,13 @@ namespace LibAVFormat {
 
 @param format_context RTSP demux context
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public int ff_wms_parse_sdp_a_line (
     AVFormatContext format_context,
     string p
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h263_handle_packet (
     AVFormatContext format_context,
     PayloadContext data,
@@ -46,7 +46,7 @@ public int ff_h263_handle_packet (
     int flags
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h264_parse_sprop_parameter_sets (
     AVFormatContext format_context,
     out uint8[] data_ptr,
@@ -54,7 +54,7 @@ public int ff_h264_parse_sprop_parameter_sets (
     string value
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h264_handle_aggregated_packet (
     AVFormatContext format_context,
     PayloadContext data,
@@ -66,7 +66,7 @@ public int ff_h264_handle_aggregated_packet (
     int nal_mask
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h264_handle_frag_packet (
     LibAVCodec.Packet packet,
     uint8[] buffer,
@@ -76,7 +76,7 @@ public int ff_h264_handle_frag_packet (
     int nal_header_len
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/rptdec_formats.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public void ff_h264_parse_framesize (
     LibAVCodec.CodecParameters par,
     string p

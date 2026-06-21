@@ -27,7 +27,7 @@ namespace LibAVUtil {
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_OPT_FLAG_",cheader_filename="ffmpeg/libavutil/opt.h")]
+[CCode (cprefix="AV_OPT_FLAG_",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
 public enum OptionFlags {
     /***********************************************************
     @brief Accept to parse a value without a key; the key will then be returned

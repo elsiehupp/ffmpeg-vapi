@@ -26,30 +26,30 @@ namespace LibAVFormat {
 @file SMJPEG common code
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/smjpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
 public const string SMJPEG_MAGIC;
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/smjpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
 public enum SMJPEGTag {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/smjpeg.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
     SMJPEG_DONE, // (uint32)MKTAG ('D', 'O', 'N', 'E')
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/smjpeg.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
     SMJPEG_HEND, // (uint32)MKTAG ('H', 'E', 'N', 'D')
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/smjpeg.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
     SMJPEG_SND, // (uint32)MKTAG ('_', 'S', 'N', 'D')
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/smjpeg.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
     SMJPEG_SNDD, // (uint32)MKTAG ('s', 'n', 'd', 'D')
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/smjpeg.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
     SMJPEG_TXT, // (uint32)MKTAG ('_', 'T', 'X', 'T')
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/smjpeg.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
     SMJPEG_VID, // (uint32)MKTAG ('_', 'V', 'I', 'D')
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/smjpeg.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
     SMJPEG_VIDD; // (uint32)MKTAG ('v', 'i', 'd', 'D')
 }
 

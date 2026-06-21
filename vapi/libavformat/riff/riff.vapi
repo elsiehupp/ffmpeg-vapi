@@ -29,13 +29,13 @@ do NOT include this in end user applications
 
 //  extern const AVMetadataConv ff_riff_info_conv[];
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int64 ff_start_tag (
     AVIOContext pb,
     string tag
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public void ff_end_tag (
     AVIOContext pb,
     int64 start
@@ -47,14 +47,14 @@ bits_per_encoded_sample fields. Does not read extradata.
 Writes the size of the BMP file to size.
 @return codec tag
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int ff_get_bmp_header (
     AVIOContext pb,
     AVStream st,
     uint32[] size
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public void ff_put_bmp_header (
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
@@ -62,19 +62,19 @@ public void ff_put_bmp_header (
     int ignore_extradata
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 [Flags]
 public enum PutWAVHeaderFlags {
     /***********************************************************
     @brief Tell ff_put_wav_header () to use WAVEFORMATEX even for PCM codecs.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
     FF_PUT_WAV_HEADER_FORCE_WAVEFORMATEX,
 
     /***********************************************************
     @brief Tell ff_put_wav_header () to write an empty channel mask.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
     FF_PUT_WAV_HEADER_SKIP_CHANNELMASK;
 }
 
@@ -85,7 +85,7 @@ public enum PutWAVHeaderFlags {
 
 @return the size or -1 on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int ff_put_wav_header (
     AVFormatContext format_context,
     AVIOContext pb,
@@ -93,13 +93,13 @@ public int ff_put_wav_header (
     int flags
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public LibAVCodec.CodecID ff_wav_codec_get_id (
     uint tag,
     int bps
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int ff_get_wav_header (
     AVFormatContext format_context,
     AVIOContext pb,
@@ -113,7 +113,7 @@ public int ff_get_wav_header (
 
 //  extern const AVCodecTag ff_codec_bmp_tags_unofficial[];
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public void ff_parse_specific_params (
     AVStream st,
     out int au_rate,
@@ -121,7 +121,7 @@ public void ff_parse_specific_params (
     out int au_scale
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int ff_read_riff_info (
     AVFormatContext format_context,
     int64 size
@@ -130,7 +130,7 @@ public int ff_read_riff_info (
 /***********************************************************
 @brief Write all recognized RIFF tags from format_context.metadata
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public void ff_riff_write_info (
     AVFormatContext format_context
 );
@@ -138,24 +138,24 @@ public void ff_riff_write_info (
 /***********************************************************
 @brief Write a single RIFF info tag
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public void ff_riff_write_info_tag (
     AVIOContext pb,
     string tag,
     string str
 );
 
-[CCode (cname="struct ff_asf_guid",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="struct ff_asf_guid",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 [Compact]
 public class ff_asf_guid { }
 
-[CCode (cname="struct AVCodecGuid",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="struct AVCodecGuid",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 [Compact]
 public class AVCodecGuid {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
     public LibAVCodec.CodecID id;
 
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
     public ff_asf_guid guid;
 }
 
@@ -178,31 +178,31 @@ public class AVCodecGuid {
 //  #define FF_BROKEN_BASE_GUID
 //      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0xAA
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public static int ff_guidcmp (
     void *g1,
     void *g2
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int ff_get_guid (
     AVIOContext io_context,
     ff_asf_guid? g
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public void ff_put_guid (
     AVIOContext io_context,
     ff_asf_guid? g
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public ff_asf_guid? ff_get_codec_guid (
     LibAVCodec.CodecID id,
     AVCodecGuid? av_guid
 );
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public LibAVCodec.CodecID ff_codec_guid_get_id (
     AVCodecGuid? guids,
     ff_asf_guid guid

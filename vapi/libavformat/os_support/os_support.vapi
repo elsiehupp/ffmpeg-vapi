@@ -115,7 +115,7 @@ namespace LibAVFormat {
 //      short revents;
 //  }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/os_support.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/os_support.h")]
 [Flags]
 public enum PollEvent {
     /***********************************************************
@@ -125,43 +125,43 @@ public enum PollEvent {
     /***********************************************************
     @brief Any readable data available
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLIN,
 
     /***********************************************************
     @brief File descriptor is writeable
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLOUT,
 
     /***********************************************************
     = POLLIN
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLRDNORM,
 
     /***********************************************************
     = POLLOUT
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLWRNORM,
 
     /***********************************************************
     @brief Priority readable data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLRDBAND,
 
     /***********************************************************
     @brief Priority data can be written
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLWRBAND,
 
     /***********************************************************
     @brief High priority readable data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLPRI,
 
 
@@ -172,19 +172,19 @@ public enum PollEvent {
     /***********************************************************
     @brief Errors pending
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLERR,
 
     /***********************************************************
     @brief Disconnected
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLHUP,
 
     /***********************************************************
     @brief Invalid file descriptor
     ***********************************************************/
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/flv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
     POLLNVAL;
 }
 //  #endif

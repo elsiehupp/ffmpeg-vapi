@@ -22,7 +22,7 @@ namespace LibAVUtil {
 @brief Flags to apply to frame mappings.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="AV_HWFRAME_MAP_",cheader_filename="ffmpeg/libavutil/hwcontext.h")]
+[CCode (cprefix="AV_HWFRAME_MAP_",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 public enum HardwareFrameMappingFlags {
     /***********************************************************
     @brief The mapping must be readable.

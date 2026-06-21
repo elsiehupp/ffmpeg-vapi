@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/hflip.h")]
 [Compact]
 public class FlipContext {
     [CCode (cname="")]
@@ -54,14 +54,14 @@ public class FlipContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/hflip.h")]
 public int ff_hflip_init (
     FlipContext? s,
     int step[4],
     int nb_planes
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/hflip.h")]
 public void ff_hflip_init_x86 (
     FlipContext? s,
     int step[4],

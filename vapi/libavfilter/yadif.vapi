@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public enum YADIFMode {
     /***********************************************************
     send 1 frame for each frame
@@ -43,7 +43,7 @@ public enum YADIFMode {
     YADIF_MODE_SEND_FIELD_NOSPATIAL = 3;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public enum YADIFParity {
     /***********************************************************
     top field first
@@ -64,7 +64,7 @@ public enum YADIFParity {
     YADIF_PARITY_AUTO = -1;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public enum YADIFDeint {
     /***********************************************************
     deinterlace all frames
@@ -79,7 +79,7 @@ public enum YADIFDeint {
     YADIF_DEINT_INTERLACED = 1;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public enum YADIFCurrentField {
     /***********************************************************
     The last frame in a sequence
@@ -100,7 +100,7 @@ public enum YADIFCurrentField {
     YADIF_FIELD_NORMAL = 1;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 [Compact]
 public class YADIFContext {
     [CCode (cname="")]
@@ -208,18 +208,18 @@ public class YADIFContext {
     public int current_field;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public void ff_yadif_init_x86 (
     YADIFContext? yadif
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public int ff_yadif_filter_frame (
     AVFilterLink? link,
     AVFrame? frame
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public int ff_yadif_request_frame (
     AVFilterLink? link
 );

@@ -24,16 +24,16 @@ using LibAVUtil;
 LibAVCodec version macros.
 ***********************************************************/
 
-[CCode (cname="LIBAVCODEC_VERSION_MAJOR",cheader_filename="ffmpeg/libavcodec/version.h")]
+[CCode (cname="LIBAVCODEC_VERSION_MAJOR",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const int LIBAVCODEC_VERSION_MAJOR;
 
-[CCode (cname="LIBAVCODEC_VERSION_MINOR",cheader_filename="ffmpeg/libavcodec/version.h")]
+[CCode (cname="LIBAVCODEC_VERSION_MINOR",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const int LIBAVCODEC_VERSION_MINOR;
 
-[CCode (cname="LIBAVCODEC_VERSION_MICRO",cheader_filename="ffmpeg/libavcodec/version.h")]
+[CCode (cname="LIBAVCODEC_VERSION_MICRO",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const int LIBAVCODEC_VERSION_MICRO;
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const int LIBAVCODEC_VERSION_INT;
 //  AV_VERSION_INT (
 //      LIBAVCODEC_VERSION_MAJOR,
@@ -41,7 +41,7 @@ public const int LIBAVCODEC_VERSION_INT;
 //      LIBAVCODEC_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const string LIBAVCODEC_VERSION;
 //  AV_VERSION (
 //      LIBAVCODEC_VERSION_MAJOR,
@@ -49,10 +49,10 @@ public const string LIBAVCODEC_VERSION;
 //      LIBAVCODEC_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const int LIBAVCODEC_BUILD; // LIBAVCODEC_VERSION_INT
 
-[CCode (cname="LIBAVCODEC_IDENT",cheader_filename="ffmpeg/libavcodec/version.h")]
+[CCode (cname="LIBAVCODEC_IDENT",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const string LIBAVCODEC_IDENT;
 
 /***********************************************************
@@ -66,141 +66,142 @@ at once through the bump. This improves the git bisect-ability of the change.
 ***********************************************************/
 
 #if !FF_API_LOWRES
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_LOWRES; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_DEBUG_MV
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_DEBUG_MV; // (LIBAVCODEC_VERSION_MAJOR < 58)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_AVCTX_TIMEBASE
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_AVCTX_TIMEBASE; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_CODED_FRAME
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_CODED_FRAME; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_SIDEDATA_ONLY_PKT
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_SIDEDATA_ONLY_PKT; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_VDPAU_PROFILE
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_VDPAU_PROFILE; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_CONVERGENCE_DURATION
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_CONVERGENCE_DURATION; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_AVPICTURE
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_AVPICTURE; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_AVPACKET_OLD_API
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_AVPACKET_OLD_API; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_RTP_CALLBACK
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_RTP_CALLBACK; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_VBV_DELAY
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_VBV_DELAY; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_CODER_TYPE
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_CODER_TYPE; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_STAT_BITS
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_STAT_BITS; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_PRIVATE_OPT
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_PRIVATE_OPT; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_ASS_TIMING
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_ASS_TIMING; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_OLD_BSF
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_OLD_BSF; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_COPY_CONTEXT
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_COPY_CONTEXT; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_GET_CONTEXT_DEFAULTS
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_GET_CONTEXT_DEFAULTS; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_NVENC_OLD_NAME
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_NVENC_OLD_NAME; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_STRUCT_VAAPI_CONTEXT
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_STRUCT_VAAPI_CONTEXT; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_MERGE_SD_API
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_MERGE_SD_API; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_TAG_STRING
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_TAG_STRING; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_GETCHROMA
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_GETCHROMA; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_CODEC_GET_SET
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_CODEC_GET_SET; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_USER_VISIBLE_AVHWACCEL
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_USER_VISIBLE_AVHWACCEL; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_LOCKMGR
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_LOCKMGR; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_NEXT
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_NEXT; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 
-[CCode (cname="",cheader_filename="")]
 #if !FF_API_UNSANITIZED_BITRATES
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/version.h")]
 public const bool FF_API_UNSANITIZED_BITRATES; // (LIBAVCODEC_VERSION_MAJOR < 59)
 #endif
 

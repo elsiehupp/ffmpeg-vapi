@@ -40,7 +40,7 @@ component in the plane with the max pixel step.
 @param max_pixstep_comps an array which is filled with the component
 for each plane which has the max pixel step. May be null.
 ***********************************************************/
-[CCode (cname="av_image_fill_max_pixsteps",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_fill_max_pixsteps",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public void av_image_fill_max_pixsteps (
     int max_pixsteps[4],
     int max_pixstep_comps[4],
@@ -53,7 +53,7 @@ width for the plane plane.
 
 @return the computed size in bytes
 ***********************************************************/
-[CCode (cname="av_image_get_linesize",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_get_linesize",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_get_linesize (
     PixelFormat pixel_format,
     int width,
@@ -67,7 +67,7 @@ width width.
 @param linesizes array to be filled with the linesize for each plane
 @return >= 0 in case of success, a negative error code otherwise
 ***********************************************************/
-[CCode (cname="av_image_fill_linesizes",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_fill_linesizes",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_fill_linesizes (
     int linesizes[4],
     PixelFormat pixel_format,
@@ -85,7 +85,7 @@ plane, should be filled by av_image_fill_linesizes ()
 @return the size in bytes required for the image buffer, a negative
 error code in case of failure
 ***********************************************************/
-[CCode (cname="av_image_fill_pointers",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_fill_pointers",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_fill_pointers (
     out uint8 data[4],
     PixelFormat pixel_format,
@@ -104,7 +104,7 @@ av_freep (&pointers[0]).
 @return the size in bytes required for the image buffer, a negative
 error code in case of failure
 ***********************************************************/
-[CCode (cname="av_image_alloc",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_alloc",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_alloc (
     out uint8 pointers[4],
     int linesizes[4],
@@ -126,7 +126,7 @@ and input_linesize, otherwise the function behavior is undefined.
 @param output_linesize linesize for the image plane in output_buffer
 @param input_linesize linesize for the image plane in input_buffer
 ***********************************************************/
-[CCode (cname="av_image_copy_plane",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_copy_plane",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public void av_image_copy_plane (
     out uint8[] output_buffer,
     out int output_linesize,
@@ -142,7 +142,7 @@ public void av_image_copy_plane (
 @param output_linesizes linesizes for the image in output_data
 @param input_linesizes linesizes for the image in input_data
 ***********************************************************/
-[CCode (cname="av_image_copy",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_copy",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public void av_image_copy (
     out uint8 output_data[4],
     out int output_linesizes[4],
@@ -167,7 +167,7 @@ by the CPU architecture.
 @note On x86, the linesizes currently need to be aligned to the cacheline
     size (i.e. 64) to get improved performance.
 ***********************************************************/
-[CCode (cname="av_image_copy_uc_from",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_copy_uc_from",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public void av_image_copy_uc_from (
     out uint8 output_data[4],
     out size_t output_linesizes[4],
@@ -204,7 +204,7 @@ one call, use av_image_alloc ().
 @return the size in bytes required for input_buffer, a negative error code
 in case of failure
 ***********************************************************/
-[CCode (cname="av_image_fill_arrays",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_fill_arrays",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_fill_arrays (
     out uint8[] output_data[4],
     out int output_linesize[4],
@@ -225,7 +225,7 @@ image with the given parameters.
 @param align the assumed linesize alignment
 @return the buffer size in bytes, a negative error code in case of failure
 ***********************************************************/
-[CCode (cname="av_image_get_buffer_size",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_get_buffer_size",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_get_buffer_size (
     PixelFormat pixel_format,
     int width,
@@ -250,7 +250,7 @@ for the buffer to fill.
 @return the number of bytes written to output_buffer, or a negative value
 (error code) on error
 ***********************************************************/
-[CCode (cname="av_image_copy_to_buffer",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_copy_to_buffer",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_copy_to_buffer (
     out uint8[] output_buffer,
     out int output_size,
@@ -272,7 +272,7 @@ bytes of the image can be addressed with a signed int.
 @param log_ctx the parent logging context, it may be null
 @return >= 0 if valid, a negative error code otherwise
 ***********************************************************/
-[CCode (cname="av_image_check_size",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_check_size",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_check_size (
     uint w,
     uint h,
@@ -293,7 +293,7 @@ with a signed int.
 @param log_ctx the parent logging context, it may be null
 @return >= 0 if valid, a negative error code otherwise
 ***********************************************************/
-[CCode (cname="av_image_check_size2",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_check_size2",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_check_size2 (
     uint w,
     uint h,
@@ -315,7 +315,7 @@ sar numerator is 0, it is considered unknown and will return as valid.
 @param sar sample aspect ratio of the image
 @return 0 if valid, a negative LibAVUtil.ErrorCode code otherwise
 ***********************************************************/
-[CCode (cname="av_image_check_sar",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_check_sar",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_check_sar (
     uint w,
     uint h,
@@ -345,7 +345,7 @@ not supported.)
 @param height the height of the image in pixels
 @return 0 if the image data was cleared, a negative LibAVUtil.ErrorCode code otherwise
 ***********************************************************/
-[CCode (cname="av_image_fill_black",cheader_filename="ffmpeg/libavutil/imgutils.h")]
+[CCode (cname="av_image_fill_black",cheader_filename="subprojects/ffmpeg/libavutil/imgutils.h")]
 public int av_image_fill_black (
     out uint8 output_data[4],
     out size_t output_linesize[4],

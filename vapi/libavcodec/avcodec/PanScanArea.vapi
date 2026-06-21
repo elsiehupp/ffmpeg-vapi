@@ -31,7 +31,7 @@ LibAVCodec external API header
 This specifies the area which should be displayed.
 Note there may be multiple such areas for one frame.
 ***********************************************************/
-[CCode (cname="struct AVPanScan",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVPanScan",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
 public class PanScanArea {
     /***********************************************************

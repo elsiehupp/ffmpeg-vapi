@@ -22,10 +22,10 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 /***********************************************************
 quality levels
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_spp.h")]
 public const size_t MAX_LEVEL; // 6
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_spp.h")]
 [Compact]
 public class SPPContext {
     [CCode (cname="")]
@@ -99,7 +99,7 @@ public class SPPContext {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_spp.h")]
 public void ff_spp_init_x86 (
     SPPContext? s
 );

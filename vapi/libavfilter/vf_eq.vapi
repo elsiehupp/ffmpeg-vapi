@@ -30,7 +30,7 @@ static string const var_names[] = {
     NULL
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
 public enum var_name {
     [CCode (cname="")]
     VAR_N,
@@ -48,7 +48,7 @@ public enum var_name {
     VAR_NB;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
 [Compact]
 public class EQParameters {
     public delegate void AdjustDelegate (
@@ -84,7 +84,7 @@ public class EQParameters {
 
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
 public enum EvalMode {
     [CCode (cname="")]
     EVAL_MODE_INIT,
@@ -96,7 +96,7 @@ public enum EvalMode {
     EVAL_MODE_NB
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
 [Compact]
 public class EQContext {
     [CCode (cname="")]
@@ -197,7 +197,7 @@ public class EQContext {
     public EvalMode eval_mode;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
 public void ff_eq_init_x86 (
     EQContext? eq
 );

@@ -27,7 +27,7 @@ namespace LibAVUtil {
 ***********************************************************/
 
 [Flags]
-[CCode (cheader_filename="ffmpeg/libavutil/timecode.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavutil/timecode.h")]
 public enum TimeCodeFlags {
     /***********************************************************
     @brief Timecode is drop frame

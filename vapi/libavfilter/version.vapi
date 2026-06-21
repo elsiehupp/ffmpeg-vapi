@@ -24,17 +24,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Libavfilter version macros
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const int LIBAVFILTER_VERSION_MAJOR; // 7
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const int LIBAVFILTER_VERSION_MINOR; // 57
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const int LIBAVFILTER_VERSION_MICRO; // 100
 
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const int LIBAVFILTER_VERSION_INT;
 //  AV_VERSION_INT (
 //      LIBAVFILTER_VERSION_MAJOR,
@@ -42,7 +42,7 @@ public const int LIBAVFILTER_VERSION_INT;
 //      LIBAVFILTER_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const string LIBAVFILTER_VERSION;
 //  AV_VERSION (
 //      LIBAVFILTER_VERSION_MAJOR,
@@ -50,10 +50,10 @@ public const string LIBAVFILTER_VERSION;
 //      LIBAVFILTER_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const int LIBAVFILTER_BUILD; // LIBAVFILTER_VERSION_INT
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const string LIBAVFILTER_IDENT; // "Lavfi" AV_STRINGIFY (LIBAVFILTER_VERSION)
 
 /***********************************************************
@@ -63,21 +63,21 @@ the public API and may change, break or disappear at any time.
 ***********************************************************/
 
 #if !FF_API_OLD_FILTER_OPTS_ERROR
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const bool FF_API_OLD_FILTER_OPTS_ERROR; // (LIBAVFILTER_VERSION_MAJOR < 8)
 #endif
 
 #if !FF_API_LAVR_OPTS
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const bool FF_API_LAVR_OPTS; // (LIBAVFILTER_VERSION_MAJOR < 8)
 #endif
 
 #if !FF_API_FILTER_GET_SET
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const bool FF_API_FILTER_GET_SET; // (LIBAVFILTER_VERSION_MAJOR < 8)
 #endif
 
 #if !FF_API_NEXT
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const bool FF_API_NEXT; // (LIBAVFILTER_VERSION_MAJOR < 8)
 #endif

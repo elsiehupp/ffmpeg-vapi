@@ -32,19 +32,19 @@ Color conversion and scaling library.
 
 Return the LIBSWSCALE_VERSION_INT constant.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public uint swscale_version ();
 
 /***********************************************************
 Return the libswscale build-time configuration.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public string swscale_configuration ();
 
 /***********************************************************
 Return the libswscale license.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public string swscale_license ();
 
 /***********************************************************
@@ -129,10 +129,10 @@ public enum FooBar {
     SWS_ERROR_DIFFUSION; // 0x800000
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public const float SWS_MAX_REDUCE_CUTOFF; // 0.002
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public enum FooBar {
     [CCode (cname="")]
     SWS_CS_ITU709, // 1
@@ -166,7 +166,7 @@ suitable for sws_setColorspaceDetails ().
 @param colorspace One of the SWS_CS_* macros. If invalid,
 SWS_CS_DEFAULT is used.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public int[] sws_getCoefficients (
     int colorspace
 );
@@ -175,7 +175,7 @@ public int[] sws_getCoefficients (
 when used for filters they must have an odd number of elements
 coeffs cannot be shared between vectors
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 [Compact]
 public class SwsVector {
     /***********************************************************
@@ -194,7 +194,7 @@ public class SwsVector {
 /***********************************************************
 vectors can be shared
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 [Compact]
 public class SwsFilter {
     [CCode (cname="")]
@@ -214,7 +214,7 @@ public class SwsFilter {
 Return a positive value if pix_fmt is a supported input
 format, 0 otherwise.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public int sws_isSupportedInput (
     AVPixelFormat pix_fmt
 );
@@ -223,7 +223,7 @@ public int sws_isSupportedInput (
 Return a positive value if pix_fmt is a supported output
 format, 0 otherwise.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public int sws_isSupportedOutput (
     AVPixelFormat pix_fmt
 );
@@ -233,7 +233,7 @@ public int sws_isSupportedOutput (
 @return a positive value if an endianness conversion for
     pix_fmt is supported, 0 otherwise.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public int sws_isSupportedEndiannessConversion (
     AVPixelFormat pix_fmt
 );
@@ -243,7 +243,7 @@ Allocate an empty SwsContext. This must be filled and passed to
 sws_init_context (). For filling see AVOptions, options.c and
 sws_setColorspaceDetails ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public SwsContext? sws_alloc_context ();
 
 /***********************************************************
@@ -252,7 +252,7 @@ Initialize the swscaler context sws_context.
 @return zero or positive value on success, a negative value on
 error
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 //  av_warn_unused_result
 public int sws_init_context (
     SwsContext? sws_context,
@@ -264,7 +264,7 @@ public int sws_init_context (
 Free the swscaler context swsContext.
 If swsContext is NULL, then does nothing.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public void sws_freeContext (
     SwsContext? swsContext
 );
@@ -290,7 +290,7 @@ scaling/conversion operations using sws_scale ().
 @note this function is to be removed after a saner alternative is
       written
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public SwsContext sws_getContext (
     int srcW,
     int srcH,
@@ -330,7 +330,7 @@ non-sequential order the behavior of the function is undefined.
                  the destination image
 @return          the height of the output slice
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public int sws_scale (
     SwsContext? c,
     out uint8[] srcSlice,
@@ -351,7 +351,7 @@ public int sws_scale (
 @param saturation 16.16 fixed point saturation correction
 @return -1 if not supported
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public int sws_setColorspaceDetails (
     SwsContext? c,
     int inv_table[4],
@@ -366,7 +366,7 @@ public int sws_setColorspaceDetails (
 /***********************************************************
 @return -1 if not supported
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public int sws_getColorspaceDetails (
     SwsContext? c,
     out int[] inv_table,
@@ -381,7 +381,7 @@ public int sws_getColorspaceDetails (
 /***********************************************************
 Allocate and return an uninitialized vector with length coefficients.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public SwsVector? sws_allocVec (
     int length
 );
@@ -390,7 +390,7 @@ public SwsVector? sws_allocVec (
 Return a normalized Gaussian curve used to filter stuff
 quality = 3 is high quality, lower is lower quality.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public SwsVector? sws_getGaussianVec (
     double variance,
     double quality
@@ -399,7 +399,7 @@ public SwsVector? sws_getGaussianVec (
 /***********************************************************
 Scale all the coefficients of a by the scalar value.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public void sws_scaleVec (
     SwsVector? a,
     double scalar
@@ -408,7 +408,7 @@ public void sws_scaleVec (
 /***********************************************************
 Scale all the coefficients of a so that their sum equals height.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public void sws_normalizeVec (
     SwsVector? a,
     double height
@@ -416,52 +416,52 @@ public void sws_normalizeVec (
 
 #if FF_API_SWS_VECTOR
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 //  attribute_deprecated
 public SwsVector? sws_getConstVec (
     double c,
     int length
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 //  attribute_deprecated
 public SwsVector? sws_getIdentityVec ();
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 //  attribute_deprecated
 public void sws_convVec (
     SwsVector? a,
     SwsVector? b
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 //  attribute_deprecated
 public void sws_addVec (
     SwsVector? a,
     SwsVector? b
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 //  attribute_deprecated
 public void sws_subVec (
     SwsVector? a,
     SwsVector? b
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 //  attribute_deprecated
 public void sws_shiftVec (
     SwsVector? a,
     int shift
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 //  attribute_deprecated
 public SwsVector? sws_cloneVec (
     SwsVector? a
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 //  attribute_deprecated
 public void sws_printVec2 (
     SwsVector? a,
@@ -471,12 +471,12 @@ public void sws_printVec2 (
 
 #endif
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public void sws_freeVec (
     SwsVector? a
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public SwsFilter? sws_getDefaultFilter (
     float lumaGBlur,
     float chromaGBlur,
@@ -487,7 +487,7 @@ public SwsFilter? sws_getDefaultFilter (
     int verbose
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public void sws_freeFilter (
     SwsFilter? filter
 );
@@ -504,7 +504,7 @@ the new parameters.
 Be warned that srcFilter and dstFilter are not checked, they
 are assumed to remain the same.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 [Compact]
 public SwsContext? sws_getCachedContext (
     SwsContext? context,
@@ -530,7 +530,7 @@ The output frame will have the same packed format as the palette.
 @param num_pixels number of pixels to convert
 @param palette    array with [256] entries, which must match color arrangement (RGB or BGR) of src
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public void sws_convertPalette8ToPacked32 (
     uint8[] src,
     uint8[] dst,
@@ -548,7 +548,7 @@ With the palette format "ABCD", the destination frame ends up with the format "A
 @param num_pixels number of pixels to convert
 @param palette    array with [256] entries, which must match color arrangement (RGB or BGR) of src
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public void sws_convertPalette8ToPacked24 (
     uint8[] src,
     uint8[] dst,
@@ -562,7 +562,7 @@ AV_OPT_SEARCH_FAKE_OBJ for examining options.
 
 @see av_opt_find ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public AVClass? sws_get_class ();
 
 /***********************************************************

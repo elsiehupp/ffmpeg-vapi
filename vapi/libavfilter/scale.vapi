@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="ff_scale_eval_dimensions",cheader_filename="subprojects/ffmpeg/libavfilter/scale.h")]
 public int ff_scale_eval_dimensions (
     void *ctx,
     string w_expr,

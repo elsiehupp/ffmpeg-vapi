@@ -30,7 +30,7 @@ LibAVCodec external API header
 @defgroup lavc_parsing Frame parsing
 ***********************************************************/
 
-[CCode (cprefix="AV_PICTURE_STRUCTURE_",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="AV_PICTURE_STRUCTURE_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum PictureStructure {
     /***********************************************************
     @brief Unknown

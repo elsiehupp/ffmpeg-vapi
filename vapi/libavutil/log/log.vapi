@@ -35,7 +35,7 @@ function.
 @param fmt The format string (printf-compatible) that specifies how
     subsequent arguments are converted to output.
 ***********************************************************/
-[CCode (cname="av_log",cheader_filename="ffmpeg/libavutil/log.h")]
+[CCode (cname="av_log",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public void av_log (
     void *avcl,
     int level,
@@ -58,7 +58,7 @@ function.
     subsequent arguments are converted to output.
 @param vl The arguments referenced by the format string.
 ***********************************************************/
-[CCode (cname="av_vlog",cheader_filename="ffmpeg/libavutil/log.h")]
+[CCode (cname="av_vlog",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public void av_vlog (
     void *avcl,
     int level,
@@ -73,7 +73,7 @@ public void av_vlog (
 
 @return Current log level
 ***********************************************************/
-[CCode (cname="av_log_get_level",cheader_filename="ffmpeg/libavutil/log.h")]
+[CCode (cname="av_log_get_level",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public int av_log_get_level ();
 
 /***********************************************************
@@ -83,12 +83,12 @@ public int av_log_get_level ();
 
 @param level Logging level
 ***********************************************************/
-[CCode (cname="av_log_set_level",cheader_filename="ffmpeg/libavutil/log.h")]
+[CCode (cname="av_log_set_level",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public void av_log_set_level (
     int level
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public delegate void CallbackDelegate (
     void *arg0,
     int arg1,
@@ -106,7 +106,7 @@ public delegate void CallbackDelegate (
 
 @param callback A logging function with a compatible signature.
 ***********************************************************/
-[CCode (cname="av_log_set_callback",cheader_filename="ffmpeg/libavutil/log.h")]
+[CCode (cname="av_log_set_callback",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public void av_log_set_callback (
     CallbackDelegate callback
 );
@@ -124,7 +124,7 @@ It prints the message to stderr, optionally colorizing it.
     subsequent arguments are converted to output.
 @param vl The arguments referenced by the format string.
 ***********************************************************/
-[CCode (cname="av_log_default_callback",cheader_filename="ffmpeg/libavutil/log.h")]
+[CCode (cname="av_log_default_callback",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public void av_log_default_callback (
     void *avcl,
     int level,
@@ -139,7 +139,7 @@ public void av_log_default_callback (
 @param print_prefix used to store whether the prefix must be printed;
     must point to a persistent integer initially set to 1
 ***********************************************************/
-[CCode (cname="av_log_format_line",cheader_filename="ffmpeg/libavutil/log.h")]
+[CCode (cname="av_log_format_line",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public void av_log_format_line (
     void *ptr,
     int level,
@@ -164,7 +164,7 @@ public void av_log_format_line (
     character. If the return value is not less than line_size, it means
     that the log message was truncated to fit the buffer.
 ***********************************************************/
-[CCode (cname="av_log_format_line2",cheader_filename="ffmpeg/libavutil/log.h")]
+[CCode (cname="av_log_format_line2",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public int av_log_format_line2 (
     void *ptr,
     int level,

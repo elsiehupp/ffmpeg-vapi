@@ -30,7 +30,7 @@ stamps that can be compared to wall clock time, especially when dealing
 with two clocks: the system clock and a hardware device clock, such as
 a soundcard.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/timefilter.h")]
 [Compact]
 public class TimeFilter { }
 
@@ -62,7 +62,7 @@ starting point is something between 0.3 and 3 Hz.
 For more details about these parameters and background concepts please see:
 http://www.kokkinizita.net/papers/usingdll.pdf
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/timefilter.h")]
 public TimeFilter? ff_timefilter_new (
     double clock_period,
     double feedback2_factor,
@@ -85,7 +85,7 @@ cycle).
 
 @return the filtered time, in seconds
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/timefilter.h")]
 public doubleff_timefilter_update (
     TimeFilter? self,
     double system_time,
@@ -99,7 +99,7 @@ Evaluate the filter at a specified time
               (last call to ff_timefilter_update).
 @return  the filtered time
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/timefilter.h")]
 public doubleff_timefilter_eval (
     TimeFilter? self,
     double delta
@@ -113,7 +113,7 @@ This function should mainly be called in case of XRUN.
 Warning: after calling this, the filter is in an undetermined state until
 the next call to ff_timefilter_update ()
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/timefilter.h")]
 public void ff_timefilter_reset (
     TimeFilter? self
 );
@@ -121,7 +121,7 @@ public void ff_timefilter_reset (
 /***********************************************************
 Free all resources associated with the filter
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/timefilter.h")]
 public void ff_timefilter_destroy (
     TimeFilter? self
 );

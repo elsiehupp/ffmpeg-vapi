@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileDNXH {
     FF_PROFILE_DNXHD,
     FF_PROFILE_DNXHR_LB,

@@ -32,7 +32,7 @@ namespace LibAVFormat {
 @param[out] got_width set to non-zero if SAUCE header reported height
 @param get_height Tell SAUCE header to parse height
 ***********************************************************/
-[CCode (cname="",cheader_filename="ffmpeg/libformat/sauce.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/sauce.h")]
 public int ff_sauce_read (
     AVFormatContext avctx,
     uint64[] fsize,

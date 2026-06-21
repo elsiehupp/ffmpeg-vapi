@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 audio volume filter
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public enum PrecisionType {
     [CCode (cname="")]
     PRECISION_FIXED = 0,
@@ -33,7 +33,7 @@ public enum PrecisionType {
     PRECISION_DOUBLE;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public enum EvalMode {
     [CCode (cname="")]
     EVAL_MODE_ONCE,
@@ -45,7 +45,7 @@ public enum EvalMode {
     EVAL_MODE_NB
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public enum VolumeVarName {
     [CCode (cname="")]
     VAR_N,
@@ -87,7 +87,7 @@ public enum VolumeVarName {
     VAR_VARS_NB;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public enum ReplayGainType {
     [CCode (cname="")]
     REPLAYGAIN_DROP,
@@ -102,7 +102,7 @@ public enum ReplayGainType {
     REPLAYGAIN_ALBUM;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 [Compact]
 public class VolumeContext {
     [CCode (cname="")]
@@ -163,7 +163,7 @@ public class VolumeContext {
     public int samples_align;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public void ff_volume_init_x86 (
     VolumeContext? vol
 );
