@@ -17,12 +17,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define OSS_AUDIO_BLOCK_SIZE 4096
+public const size_t OSS_AUDIO_BLOCK_SIZE; // 4096
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class OSSAudioData {
-    AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
     [CCode (cname="")]
     public int fd;
@@ -54,10 +55,12 @@ public class OSSAudioData {
 
 [CCode (cname="",cheader_filename="")]
 public int ff_oss_audio_open (
-    AVFormatContext *s1,
+    AVFormatContext? s1,
     int is_output,
     string audio_device
 );
 
 [CCode (cname="",cheader_filename="")]
-public int ff_oss_audio_close (OSSAudioData *s);
+public int ff_oss_audio_close (
+    OSSAudioData? s
+);

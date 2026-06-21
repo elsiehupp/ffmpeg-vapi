@@ -21,12 +21,16 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define BLOCKSZ 12
-public define MAX_LEVEL 5
+public const size_t BLOCKSZ; // 12
 
 [CCode (cname="",cheader_filename="")]
-public define DCTSIZE 8
-public define DCTSIZE_S "8"
+public const int MAX_LEVEL; // 5
+
+[CCode (cname="",cheader_filename="")]
+public const size_t DCTSIZE; // 8
+
+[CCode (cname="",cheader_filename="")]
+public const string DCTSIZE_S; // "8"
 
 [CCode (cname="",cheader_filename="")]
 public define FIX (x,s)  ((x) * (1 << s) + 0.5)
@@ -40,20 +44,42 @@ public define DESCALE (x,n)  (((x) + (1 << ((n) - 1))) >> n)
 
 [CCode (cname="",cheader_filename="")]
 public typedef int32 int_simd16_t;
-static const int16 FIX_0_382683433 = FIX (0.382683433, 14);
-static const int16 FIX_0_541196100 = FIX (0.541196100, 14);
-static const int16 FIX_0_707106781 = FIX (M_SQRT1_2, 14);
-static const int16 FIX_1_306562965 = FIX (1.306562965, 14);
-static const int16 FIX_1_414213562_A = FIX (M_SQRT2, 14);
-static const int16 FIX_1_847759065 = FIX (1.847759065, 13);
-static const int16 FIX_2_613125930 = FIX (-2.613125930, 13);
-static const int16 FIX_1_414213562 = FIX (M_SQRT2, 13);
-static const int16 FIX_1_082392200 = FIX (1.082392200, 13);
+
+[CCode (cname="",cheader_filename="")]
+public enum FooBar { // int16
+    [CCode (cname="",cheader_filename="")]
+    FIX_0_382683433, // = FIX (0.382683433, 14);
+
+    [CCode (cname="",cheader_filename="")]
+    FIX_0_541196100, // = FIX (0.541196100, 14);
+
+    [CCode (cname="",cheader_filename="")]
+    FIX_0_707106781, // = FIX (M_SQRT1_2, 14);
+
+    [CCode (cname="",cheader_filename="")]
+    FIX_1_306562965, // = FIX (1.306562965, 14);
+
+    [CCode (cname="",cheader_filename="")]
+    FIX_1_414213562_A, // = FIX (M_SQRT2, 14);
+
+    [CCode (cname="",cheader_filename="")]
+    FIX_1_847759065, // = FIX (1.847759065, 13);
+
+    [CCode (cname="",cheader_filename="")]
+    FIX_2_613125930, // = FIX (-2.613125930, 13);
+
+    [CCode (cname="",cheader_filename="")]
+    FIX_1_414213562, // = FIX (M_SQRT2, 13);
+
+    [CCode (cname="",cheader_filename="")]
+    FIX_1_082392200; // = FIX (1.082392200, 13);
+}
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class FSPPContext {
-    AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
     [CCode (cname="")]
     public uint64 threshold_mtx_noq[8 * 2];
@@ -88,12 +114,14 @@ public class FSPPContext {
     [CCode (cname="")]
     public int prev_q;
 
-    uint8[] src;
+    [CCode (cname="")]
+    public uint8[] src;
 
     [CCode (cname="")]
     public int16[] temp;
 
-    uint8[] non_b_qp_table;
+    [CCode (cname="")]
+    public uint8[] non_b_qp_table;
 
     [CCode (cname="")]
     public int non_b_qp_alloc_size;
@@ -101,8 +129,7 @@ public class FSPPContext {
     [CCode (cname="")]
     public int use_bframe_qp;
 
-    [CCode (cname="store_slice")]
-    public void (*store_slice)(
+    public delegate void StoreSliceDelegate (
         uint8[] dst,
         int16[] src,
         ptrdiff_t dst_stride,
@@ -111,52 +138,55 @@ public class FSPPContext {
         ptrdiff_t height,
         ptrdiff_t log2_scale
     );
+
+    [CCode (cname="store_slice")]
+    public StoreSliceDelegate store_slice;
 
     [CCode (cname="store_slice2")]
-    public void (*store_slice2)(
-        uint8[] dst,
-        int16[] src,
-        ptrdiff_t dst_stride,
-        ptrdiff_t src_stride,
-        ptrdiff_t width,
-        ptrdiff_t height,
-        ptrdiff_t log2_scale
-    );
+    public StoreSliceDelegate store_slice2;
 
-    [CCode (cname="mul_thrmat")]
-    public void (*mul_thrmat)(
+    public delegate void MulThrmatDelegate (
         int16[] thr_adr_noq,
         int16[] thr_adr,
         int q
     );
 
-    [CCode (cname="column_fidct")]
-    public void (*column_fidct)(
+    [CCode (cname="mul_thrmat")]
+    public MulThrmatDelegate mul_thrmat;
+
+    public delegate void ColumentFidctDelegate (
         int16[] thr_adr,
         int16[] data,
         int16[] output,
         int cnt
     );
 
-    [CCode (cname="row_idct")]
-    public void (*row_idct)(
+    [CCode (cname="column_fidct")]
+    public ColumentFidctDelegate column_fidct;
+
+    public delegate void RowIdctDelegate (
         int16[] workspace,
         int16[] output_adr,
         ptrdiff_t output_stride,
         int cnt
     );
 
-    [CCode (cname="row_fdct")]
-    public void (*row_fdct)(
+    [CCode (cname="row_idct")]
+    public RowIdctDelegate row_idct;
+
+    public delegate void RowFdctDelegate (
         int16[] data,
         uint8[] pixels,
         ptrdiff_t line_size,
         int cnt
     );
 
+    [CCode (cname="row_fdct")]
+    public RowFdctDelegate row_fdct;
+
 }
 
 [CCode (cname="",cheader_filename="")]
 public void ff_fspp_init_x86 (
-    FSPPContext *fspp
+    FSPPContext? fspp
 );

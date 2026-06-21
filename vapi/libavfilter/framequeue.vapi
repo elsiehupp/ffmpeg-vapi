@@ -30,7 +30,7 @@ must be protected by a mutex or any synchronization mechanism.
 [Compact]
 public class FFFrameBucket {
     [CCode (cname="")]
-    public AVFrame *frame;
+    public AVFrame? frame;
 }
 
 /***********************************************************
@@ -61,7 +61,7 @@ public class FFFrameQueue {
     Array of allocated buckets, used as a circular buffer.
     ***********************************************************/
     [CCode (cname="")]
-    public FFFrameBucket *queue;
+    public FFFrameBucket? queue;
 
     /***********************************************************
     Size of the array of buckets.
@@ -125,43 +125,44 @@ public class FFFrameQueue {
 Init a global structure.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public void ff_framequeue_global_init (FFFrameQueueGlobal *fqg);
+public void ff_framequeue_global_init (FFFrameQueueGlobal? fqg);
 
 /***********************************************************
 Init a frame queue and attach it to a global structure.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public void ff_framequeue_init (FFFrameQueue *fq, FFFrameQueueGlobal *fqg);
+public void ff_framequeue_init (FFFrameQueue? fq, FFFrameQueueGlobal? fqg);
 
 /***********************************************************
 Free the queue and all queued frames.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public void ff_framequeue_free (FFFrameQueue *fq);
+public void ff_framequeue_free (FFFrameQueue? fq);
 
 /***********************************************************
 Add a frame.
 @return  >=0 or an AVERROR code.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public int ff_framequeue_add (FFFrameQueue *fq, AVFrame *frame);
+public int ff_framequeue_add (FFFrameQueue? fq, AVFrame? frame);
 
 /***********************************************************
 Take the first frame in the queue.
 Must not be used with empty queues.
 ***********************************************************/
-AVFrame *ff_framequeue_take (FFFrameQueue *fq);
+AVFrame? ff_framequeue_take (FFFrameQueue? fq);
 
 /***********************************************************
 Access a frame in the queue, without removing it.
 The first frame is numbered 0; the designated frame must exist.
 ***********************************************************/
-AVFrame *ff_framequeue_peek (FFFrameQueue *fq, size_t idx);
+AVFrame? ff_framequeue_peek (FFFrameQueue? fq, size_t idx);
 
 /***********************************************************
 Get the number of queued frames.
 ***********************************************************/
-static inline size_t ff_framequeue_queued_frames (const FFFrameQueue *fq)
+[CCode (cname="",cheader_filename="")]
+public static inline size_t ff_framequeue_queued_frames (const FFFrameQueue? fq)
 {
     return fq->queued;
 }
@@ -169,7 +170,8 @@ static inline size_t ff_framequeue_queued_frames (const FFFrameQueue *fq)
 /***********************************************************
 Get the number of queued samples.
 ***********************************************************/
-static inline uint64 ff_framequeue_queued_samples (const FFFrameQueue *fq)
+[CCode (cname="",cheader_filename="")]
+public static inline uint64 ff_framequeue_queued_samples (const FFFrameQueue? fq)
 {
     return fq->total_samples_head - fq->total_samples_tail;
 }
@@ -179,7 +181,8 @@ Update the statistics after a frame accessed using ff_framequeue_peek ()
 was modified.
 Currently used only as a marker.
 ***********************************************************/
-static inline void ff_framequeue_update_peeked (FFFrameQueue *fq, size_t idx)
+[CCode (cname="",cheader_filename="")]
+public static inline void ff_framequeue_update_peeked (FFFrameQueue? fq, size_t idx)
 {
 }
 
@@ -192,4 +195,4 @@ It adapts the data pointers and timestamps of the head frame to account
 for the skipped samples.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public void ff_framequeue_skip_samples (FFFrameQueue *fq, size_t samples, AVRational time_base);
+public void ff_framequeue_skip_samples (FFFrameQueue? fq, size_t samples, AVRational time_base);

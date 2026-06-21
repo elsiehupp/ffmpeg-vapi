@@ -121,7 +121,7 @@ public define TLS_COMMON_OPTIONS (pstruct, options_field)
 
 [CCode (cname="",cheader_filename="ffmpeg/libformat/tls.h")]
 public int ff_tls_open_underlying (
-    TLSShared *tls_shared,
+    TLSShared? tls_shared,
     URLContext parent,
     string uri,
     out LibAVUtil.Dictionary options

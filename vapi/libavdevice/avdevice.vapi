@@ -71,8 +71,9 @@ If d is NULL, returns the first registered input audio/video device,
 if d is non-NULL, returns the next registered input audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
-AVInputFormat *av_input_audio_device_next (
-    AVInputFormat *d
+[CCode (cname="",cheader_filename="")]
+public AVInputFormat? av_input_audio_device_next (
+    AVInputFormat? d
 );
 
 /***********************************************************
@@ -82,8 +83,9 @@ If d is NULL, returns the first registered input audio/video device,
 if d is non-NULL, returns the next registered input audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
-AVInputFormat *av_input_video_device_next (
-    AVInputFormat *d
+[CCode (cname="",cheader_filename="")]
+public AVInputFormat? av_input_video_device_next (
+    AVInputFormat? d
 );
 
 /***********************************************************
@@ -93,8 +95,9 @@ If d is NULL, returns the first registered output audio/video device,
 if d is non-NULL, returns the next registered output audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
-AVOutputFormat *av_output_audio_device_next (
-    AVOutputFormat *d
+[CCode (cname="",cheader_filename="")]
+public AVOutputFormat? av_output_audio_device_next (
+    AVOutputFormat? d
 );
 
 /***********************************************************
@@ -104,8 +107,9 @@ If d is NULL, returns the first registered output audio/video device,
 if d is non-NULL, returns the next registered output audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
-AVOutputFormat *av_output_video_device_next (
-    AVOutputFormat *d
+[CCode (cname="",cheader_filename="")]
+public AVOutputFormat? av_output_video_device_next (
+    AVOutputFormat? d
 );
 
 [CCode (cname="",cheader_filename="")]
@@ -144,12 +148,14 @@ public enum AVAppToDevMessageType {
     /***********************************************************
     Dummy message.
     ***********************************************************/
-    AV_APP_TO_DEV_NONE = MKBETAG (
-        'N',
-        'O',
-        'N',
-        'E'
-    ),
+    [CCode (cname="")]
+    AV_APP_TO_DEV_NONE,
+    //  MKBETAG (
+    //      'N',
+    //      'O',
+    //      'N',
+    //      'E'
+    //  ),
 
     /***********************************************************
     Window size change message.
@@ -160,12 +166,14 @@ public enum AVAppToDevMessageType {
 
     data: AVDeviceRect: new window size.
     ***********************************************************/
-    AV_APP_TO_DEV_WINDOW_SIZE = MKBETAG (
-        'G',
-        'E',
-        'O',
-        'M'
-    ),
+    [CCode (cname="")]
+    AV_APP_TO_DEV_WINDOW_SIZE,
+    //  MKBETAG (
+    //      'G',
+    //      'E',
+    //      'O',
+    //      'M'
+    //  ),
 
     /***********************************************************
     Repaint request message.
@@ -175,12 +183,14 @@ public enum AVAppToDevMessageType {
     data: AVDeviceRect: area required to be repainted.
           NULL: whole area is required to be repainted.
     ***********************************************************/
-    AV_APP_TO_DEV_WINDOW_REPAINT = MKBETAG (
-        'R',
-        'E',
-        'P',
-        'A'
-    ),
+    [CCode (cname="")]
+    AV_APP_TO_DEV_WINDOW_REPAINT,
+    //  MKBETAG (
+    //      'R',
+    //      'E',
+    //      'P',
+    //      'A'
+    //  ),
 
     /***********************************************************
     Request pause/play.
@@ -191,24 +201,32 @@ public enum AVAppToDevMessageType {
 
     data: NULL
     ***********************************************************/
-    AV_APP_TO_DEV_PAUSE = MKBETAG (
-        'P',
-        'A',
-        'U',
-        ' '
-    ),
-    AV_APP_TO_DEV_PLAY = MKBETAG (
-        'P',
-        'L',
-        'A',
-        'Y'
-    ),
-    AV_APP_TO_DEV_TOGGLE_PAUSE = MKBETAG (
-        'P',
-        'A',
-        'U',
-        'T'
-    ),
+    [CCode (cname="")]
+    AV_APP_TO_DEV_PAUSE,
+    //  MKBETAG (
+    //      'P',
+    //      'A',
+    //      'U',
+    //      ' '
+    //  ),
+
+    [CCode (cname="")]
+    AV_APP_TO_DEV_PLAY,
+    //  MKBETAG (
+    //      'P',
+    //      'L',
+    //      'A',
+    //      'Y'
+    //  ),
+
+    [CCode (cname="")]
+    AV_APP_TO_DEV_TOGGLE_PAUSE,
+    //  MKBETAG (
+    //      'P',
+    //      'A',
+    //      'U',
+    //      'T'
+    //  ),
 
     /***********************************************************
     Volume control message.
@@ -219,12 +237,14 @@ public enum AVAppToDevMessageType {
 
     data: double: new volume with range of 0.0 - 1.0.
     ***********************************************************/
-    AV_APP_TO_DEV_SET_VOLUME = MKBETAG (
-        'S',
-        'V',
-        'O',
-        'L'
-    ),
+    [CCode (cname="")]
+    AV_APP_TO_DEV_SET_VOLUME,
+    //  MKBETAG (
+    //      'S',
+    //      'V',
+    //      'O',
+    //      'L'
+    //  ),
 
     /***********************************************************
     Mute control messages.
@@ -235,24 +255,32 @@ public enum AVAppToDevMessageType {
 
     data: NULL.
     ***********************************************************/
-    AV_APP_TO_DEV_MUTE = MKBETAG (
-        ' ',
-        'M',
-        'U',
-        'T'
-    ),
-    AV_APP_TO_DEV_UNMUTE = MKBETAG (
-        'U',
-        'M',
-        'U',
-        'T'
-    ),
-    AV_APP_TO_DEV_TOGGLE_MUTE = MKBETAG (
-        'T',
-        'M',
-        'U',
-        'T'
-    ),
+    [CCode (cname="")]
+    AV_APP_TO_DEV_MUTE,
+    //  MKBETAG (
+    //      ' ',
+    //      'M',
+    //      'U',
+    //      'T'
+    //  ),
+
+    [CCode (cname="")]
+    AV_APP_TO_DEV_UNMUTE,
+    //  MKBETAG (
+    //      'U',
+    //      'M',
+    //      'U',
+    //      'T'
+    //  ),
+
+    [CCode (cname="")]
+    AV_APP_TO_DEV_TOGGLE_MUTE,
+    //  MKBETAG (
+    //      'T',
+    //      'M',
+    //      'U',
+    //      'T'
+    //  ),
 
     /***********************************************************
     Get volume/mute messages.
@@ -262,18 +290,24 @@ public enum AVAppToDevMessageType {
 
     data: NULL.
     ***********************************************************/
-    AV_APP_TO_DEV_GET_VOLUME = MKBETAG (
-        'G',
-        'V',
-        'O',
-        'L'
-    ),
-    AV_APP_TO_DEV_GET_MUTE = MKBETAG (
-        'G',
-        'M',
-        'U',
-        'T'
-    );
+    [CCode (cname="")]
+    AV_APP_TO_DEV_GET_VOLUME,
+    //  MKBETAG (
+    //      'G',
+    //      'V',
+    //      'O',
+    //      'L'
+    //  ),
+
+    [CCode (cname="")]
+    AV_APP_TO_DEV_GET_MUTE,
+    //  MKBETAG (
+    //      'G',
+    //      'M',
+    //      'U',
+    //      'T'
+    //  );
+
 }
 
 /***********************************************************
@@ -284,12 +318,14 @@ public enum AVDevToAppMessageType {
     /***********************************************************
     Dummy message.
     ***********************************************************/
-    AV_DEV_TO_APP_NONE = MKBETAG (
-        'N',
-        'O',
-        'N',
-        'E'
-    ),
+    [CCode (cname="")]
+    AV_DEV_TO_APP_NONE,
+    //  MKBETAG (
+    //      'N',
+    //      'O',
+    //      'N',
+    //      'E'
+    //  ),
 
     /***********************************************************
     Create window buffer message.
@@ -305,12 +341,14 @@ public enum AVDevToAppMessageType {
     data: AVDeviceRect: preferred size of the window buffer.
           NULL: no preferred size of the window buffer.
     ***********************************************************/
-    AV_DEV_TO_APP_CREATE_WINDOW_BUFFER = MKBETAG (
-        'B',
-        'C',
-        'R',
-        'E'
-    ),
+    [CCode (cname="")]
+    AV_DEV_TO_APP_CREATE_WINDOW_BUFFER,
+    //  MKBETAG (
+    //      'B',
+    //      'C',
+    //      'R',
+    //      'E'
+    //  ),
 
     /***********************************************************
     Prepare window buffer message.
@@ -321,12 +359,14 @@ public enum AVDevToAppMessageType {
 
     data: NULL.
     ***********************************************************/
-    AV_DEV_TO_APP_PREPARE_WINDOW_BUFFER = MKBETAG (
-        'B',
-        'P',
-        'R',
-        'E'
-    ),
+    [CCode (cname="")]
+    AV_DEV_TO_APP_PREPARE_WINDOW_BUFFER,
+    //  MKBETAG (
+    //      'B',
+    //      'P',
+    //      'R',
+    //      'E'
+    //  ),
 
     /***********************************************************
     Display window buffer message.
@@ -337,12 +377,14 @@ public enum AVDevToAppMessageType {
 
     data: NULL.
     ***********************************************************/
-    AV_DEV_TO_APP_DISPLAY_WINDOW_BUFFER = MKBETAG (
-        'B',
-        'D',
-        'I',
-        'S'
-    ),
+    [CCode (cname="")]
+    AV_DEV_TO_APP_DISPLAY_WINDOW_BUFFER,
+    //  MKBETAG (
+    //      'B',
+    //      'D',
+    //      'I',
+    //      'S'
+    //  ),
 
     /***********************************************************
     Destroy window buffer message.
@@ -353,12 +395,14 @@ public enum AVDevToAppMessageType {
 
     data: NULL.
     ***********************************************************/
-    AV_DEV_TO_APP_DESTROY_WINDOW_BUFFER = MKBETAG (
-        'B',
-        'D',
-        'E',
-        'S'
-    ),
+    [CCode (cname="")]
+    AV_DEV_TO_APP_DESTROY_WINDOW_BUFFER,
+    //  MKBETAG (
+    //      'B',
+    //      'D',
+    //      'E',
+    //      'S'
+    //  ),
 
     /***********************************************************
     Buffer fullness status messages.
@@ -367,18 +411,23 @@ public enum AVDevToAppMessageType {
 
     data: NULL.
     ***********************************************************/
-    AV_DEV_TO_APP_BUFFER_OVERFLOW = MKBETAG (
-        'B',
-        'O',
-        'F',
-        'L'
-    ),
-    AV_DEV_TO_APP_BUFFER_UNDERFLOW = MKBETAG (
-        'B',
-        'U',
-        'F',
-        'L'
-    ),
+    [CCode (cname="")]
+    AV_DEV_TO_APP_BUFFER_OVERFLOW,
+    //  MKBETAG (
+    //      'B',
+    //      'O',
+    //      'F',
+    //      'L'
+    //  ),
+
+    [CCode (cname="")]
+    AV_DEV_TO_APP_BUFFER_UNDERFLOW,
+    //  MKBETAG (
+    //      'B',
+    //      'U',
+    //      'F',
+    //      'L'
+    //  ),
 
     /***********************************************************
     Buffer readable/writable.
@@ -391,18 +440,23 @@ public enum AVDevToAppMessageType {
     data: int64: amount of bytes available to read/write.
           NULL: amount of bytes available to read/write is not known.
     ***********************************************************/
-    AV_DEV_TO_APP_BUFFER_READABLE = MKBETAG (
-        'B',
-        'R',
-        'D',
-        ' '
-    ),
-    AV_DEV_TO_APP_BUFFER_WRITABLE = MKBETAG (
-        'B',
-        'W',
-        'R',
-        ' '
-    ),
+    [CCode (cname="")]
+    AV_DEV_TO_APP_BUFFER_READABLE,
+    //  MKBETAG (
+    //      'B',
+    //      'R',
+    //      'D',
+    //      ' '
+    //  ),
+
+    [CCode (cname="")]
+    AV_DEV_TO_APP_BUFFER_WRITABLE,
+    //  MKBETAG (
+    //      'B',
+    //      'W',
+    //      'R',
+    //      ' '
+    //  ),
 
     /***********************************************************
     Mute state change message.
@@ -411,12 +465,14 @@ public enum AVDevToAppMessageType {
 
     data: int: 0 for not muted state, non-zero for muted state.
     ***********************************************************/
-    AV_DEV_TO_APP_MUTE_STATE_CHANGED = MKBETAG (
-        'C',
-        'M',
-        'U',
-        'T'
-    ),
+    [CCode (cname="")]
+    AV_DEV_TO_APP_MUTE_STATE_CHANGED,
+    //  MKBETAG (
+    //      'C',
+    //      'M',
+    //      'U',
+    //      'T'
+    //  ),
 
     /***********************************************************
     Volume level change message.
@@ -425,12 +481,15 @@ public enum AVDevToAppMessageType {
 
     data: double: new volume with range of 0.0 - 1.0.
     ***********************************************************/
-    AV_DEV_TO_APP_VOLUME_LEVEL_CHANGED = MKBETAG (
-        'C',
-        'V',
-        'O',
-        'L'
-    );
+    [CCode (cname="")]
+    AV_DEV_TO_APP_VOLUME_LEVEL_CHANGED,
+    //  MKBETAG (
+    //      'C',
+    //      'V',
+    //      'O',
+    //      'L'
+    //  );
+
 }
 
 /***********************************************************
@@ -445,7 +504,7 @@ Send control message from application to device.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int avdevice_app_to_dev_control_message (
-    AVFormatContext *s,
+    AVFormatContext? s,
     AVAppToDevMessageType type,
     void *data,
     size_t data_size
@@ -463,7 +522,7 @@ Send control message from device to application.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int avdevice_dev_to_app_control_message (
-    AVFormatContext *s,
+    AVFormatContext? s,
     AVDevToAppMessageType type,
     void *data,
     size_t data_size
@@ -508,9 +567,9 @@ returned during next query. Setting invalid value may limit results to zero.
 Example of the usage basing on opengl output device:
 
 @code
- AVFormatContext *oc = NULL;
- AVDeviceCapabilitiesQuery *caps = NULL;
- AVOptionRanges *ranges;
+ AVFormatContext? oc = NULL;
+ AVDeviceCapabilitiesQuery? caps = NULL;
+ AVOptionRanges? ranges;
  int ret;
 
  if ((ret = avformat_alloc_output_context2 (&oc, NULL, "opengl", NULL)) < 0)
@@ -548,9 +607,11 @@ to implement capabilities probing API based on AVOption API. Should not be used 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVDeviceCapabilitiesQuery {
-    public AVClass av_class;
+    [CCode (cname="")]
+    public AVClass? av_class;
 
-    AVFormatContext *device_context;
+    [CCode (cname="")]
+    public AVFormatContext? device_context;
 
     [CCode (cname="")]
     public AVCodecID codec;
@@ -611,7 +672,7 @@ not used anymore.
 [CCode (cname="",cheader_filename="")]
 public int avdevice_capabilities_create (
     AVDeviceCapabilitiesQuery **caps,
-    AVFormatContext *s,
+    AVFormatContext? s,
     AVDictionary **device_options
 );
 
@@ -624,7 +685,7 @@ Free resources created by avdevice_capabilities_create ()
 [CCode (cname="",cheader_filename="")]
 public void avdevice_capabilities_free (
     AVDeviceCapabilitiesQuery **caps,
-    AVFormatContext *s
+    AVFormatContext? s
 );
 
 /***********************************************************
@@ -636,12 +697,14 @@ public class AVDeviceInfo {
     /***********************************************************
     device name, format depends on device
     ***********************************************************/
-    string device_name;
+    [CCode (cname="")]
+    public string device_name;
 
     /***********************************************************
     human friendly name
     ***********************************************************/
-    string device_description;
+    [CCode (cname="")]
+    public string device_description;
 }
 
 /***********************************************************
@@ -653,7 +716,8 @@ public class AVDeviceInfoList {
     /***********************************************************
     list of autodetected devices
     ***********************************************************/
-    AVDeviceInfo **devices;
+    [CCode (cname="")]
+    public AVDeviceInfo **devices;
 
     /***********************************************************
     number of autodetected devices
@@ -683,7 +747,7 @@ Returns available device names and their parameters.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int avdevice_list_devices (
-    AVFormatContext *s,
+    AVFormatContext? s,
     AVDeviceInfoList **device_list
 );
 
@@ -716,17 +780,17 @@ Device context is allocated and deallocated internally.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int avdevice_list_input_sources (
-    AVInputFormat *device,
+    AVInputFormat? device,
     string device_name,
-    AVDictionary *device_options,
+    AVDictionary? device_options,
     AVDeviceInfoList **device_list
 );
 
 [CCode (cname="",cheader_filename="")]
 public int avdevice_list_output_sinks (
-    AVOutputFormat *device,
+    AVOutputFormat? device,
     string device_name,
-    AVDictionary *device_options,
+    AVDictionary? device_options,
     AVDeviceInfoList **device_list
 );
 

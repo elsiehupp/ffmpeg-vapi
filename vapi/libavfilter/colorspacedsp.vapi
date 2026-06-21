@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="yuv2rgb_fn",cheader_filename="")]
-public typedef void (*yuv2rgb_fn)(
+public delegate void Yuv2RgbDelegate (
     int16[] rgb[3],
     ptrdiff_t rgb_stride,
     uint8[] yuv[3],
@@ -31,7 +31,7 @@ public typedef void (*yuv2rgb_fn)(
 );
 
 [CCode (cname="rgb2yuv_fn",cheader_filename="")]
-public typedef void (*rgb2yuv_fn)(
+public delegate void Rgb2YuvDelegate (
     uint8[] yuv[3],
     ptrdiff_t yuv_stride[3],
     int16[] rgb[3],
@@ -43,7 +43,7 @@ public typedef void (*rgb2yuv_fn)(
 );
 
 [CCode (cname="rgb2yuv_fsb_fn",cheader_filename="")]
-public typedef void (*rgb2yuv_fsb_fn)(
+public delegate void Rgb2YuvFsbDelegate (
     uint8[] yuv[3],
     ptrdiff_t yuv_stride[3],
     int16[] rgb[3],
@@ -52,11 +52,11 @@ public typedef void (*rgb2yuv_fsb_fn)(
     int h,
     int16 rgb2yuv_coeffs[3][3][8],
     int16 yuv_offset[8],
-    int *rnd[3][2]
+    out int rnd[3][2]
 );
 
 [CCode (cname="yuv2yuv_fn",cheader_filename="")]
-public typedef void (*yuv2yuv_fn)(
+public delegate void Yuv2YuvDelegate (
     uint8[] yuv_out[3],
     ptrdiff_t yuv_out_stride[3],
     uint8[] yuv_in[3],
@@ -127,12 +127,7 @@ public class ColorSpaceDSPContext {
     [CCode (cname="")]
     public yuv2yuv_fn yuv2yuv[NB_BPP /* in */][NB_BPP /* out */][NB_SS];
 
-    /***********************************************************
-    In-place 3x3 matrix multiplication. Input and output are
-    both 15bpp (our internal data format)
-    ***********************************************************/
-    [CCode (cname="multiply3x3")]
-    public void (*multiply3x3)(
+    public delegate void Multiply3x3Delegate (
         int16[] data[3],
         ptrdiff_t stride,
         int w,
@@ -140,11 +135,18 @@ public class ColorSpaceDSPContext {
         int16 m[3][3][8]
     );
 
+    /***********************************************************
+    In-place 3x3 matrix multiplication. Input and output are
+    both 15bpp (our internal data format)
+    ***********************************************************/
+    [CCode (cname="multiply3x3")]
+    public Multiply3x3Delegate multiply3x3;
+
 }
 
 [CCode (cname="",cheader_filename="")]
 public void ff_colorspacedsp_init (
-    ColorSpaceDSPContext *dsp
+    ColorSpaceDSPContext? dsp
 );
 
 /***********************************************************
@@ -152,5 +154,5 @@ internal
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_colorspacedsp_x86_init (
-    ColorSpaceDSPContext *dsp
+    ColorSpaceDSPContext? dsp
 );

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="")]
 public enum BlendMode {
     [CCode (cname="")]
-    BLEND_UNSET = -1,
+    BLEND_UNSET, // = -1,
 
     [CCode (cname="")]
     BLEND_NORMAL,
@@ -136,7 +136,7 @@ public class FilterParams {
     public double opacity;
 
     [CCode (cname="")]
-    public AVExpr *e;
+    public AVExpr? e;
 
     [CCode (cname="")]
     public string expr_str;
@@ -150,7 +150,7 @@ public class FilterParams {
         ptrdiff_t dst_linesize,
         ptrdiff_t width,
         ptrdiff_t height,
-        struct FilterParams *param,
+        FilterParams? param,
         double[] values,
         int starty
     );
@@ -162,12 +162,12 @@ public class FilterParams {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_blend_init (
-    FilterParams *param,
+    FilterParams? param,
     int depth
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_blend_init_x86 (
-    FilterParams *param,
+    FilterParams? param,
     int depth
 );

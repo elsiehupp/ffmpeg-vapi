@@ -22,11 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 //  #define RTP_G726_HANDLER (bitrate)
-//  static av_cold int g726_ ## bitrate ##_init (AVFormatContext *s, int st_index,
-//                                              PayloadContext *data)
+//  static av_cold int g726_ ## bitrate ##_init (AVFormatContext? s, int st_index,
+//                                              PayloadContext? data)
 //  {
-//      AVStream *stream = s->streams[st_index];
-//      AVCodecParameters *par = stream->codecpar;
+//      AVStream? stream = s->streams[st_index];
+//      AVCodecParameters? par = stream->codecpar;
 //  \
 //      par->bits_per_coded_sample = bitrate/8;
 //      par->bit_rate = par->bits_per_coded_sample * par->sample_rate;

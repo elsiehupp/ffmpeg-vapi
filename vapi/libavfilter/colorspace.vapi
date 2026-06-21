@@ -18,39 +18,91 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define REFERENCE_WHITE 100.0f
+public const float REFERENCE_WHITE; // 100.0f
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class LumaCoefficients {
-    double cr, cg, cb;
+    [CCode (cname="")]
+    public double cr;
+
+    [CCode (cname="")]
+    public double cg;
+
+    [CCode (cname="")]
+    public double cb;
 }
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class PrimaryCoefficients {
-    double xr, yr, xg, yg, xb, yb;
+    [CCode (cname="")]
+    public double xr;
+
+    [CCode (cname="")]
+    public double yr;
+
+    [CCode (cname="")]
+    public double xg;
+
+    [CCode (cname="")]
+    public double yg;
+
+    [CCode (cname="")]
+    public double x;
+
+    [CCode (cname="")]
+    public double yb;
 }
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class WhitepointCoefficients {
-    double xw, yw;
+    [CCode (cname="")]
+    public double xw;
+
+    [CCode (cname="")]
+    public double yw;
 }
 
 [CCode (cname="",cheader_filename="")]
-public void ff_matrix_invert_3x3 (const double in[3][3], double out[3][3]);
-public void ff_matrix_mul_3x3 (double dst[3][3],
-               double src1[3][3], double src2[3][3]);
-public void ff_fill_rgb2xyz_table (const struct PrimaryCoefficients *coeffs,
-                           struct WhitepointCoefficients *wp,
-                           double rgb2xyz[3][3]);
+public void ff_matrix_invert_3x3 (
+    double in[3][3],
+    double out[3][3]
+);
 
-const struct LumaCoefficients *ff_get_luma_coefficients (AVColorSpace csp);
-public void ff_fill_rgb2yuv_table (const struct LumaCoefficients *coeffs,
-                           double rgb2yuv[3][3]);
+[CCode (cname="",cheader_filename="")]
+public void ff_matrix_mul_3x3 (
+    double dst[3][3],
+    double src1[3][3],
+    double src2[3][3]
+);
 
-double ff_determine_signal_peak (AVFrame *in);
-public void ff_update_hdr_metadata (AVFrame *in, double peak);
+[CCode (cname="",cheader_filename="")]
+public void ff_fill_rgb2xyz_table (
+    PrimaryCoefficients? coeffs,
+    WhitepointCoefficients? wp,
+    double rgb2xyz[3][3]
+);
 
-#endif
+[CCode (cname="",cheader_filename="")]
+public LumaCoefficients? ff_get_luma_coefficients (
+    AVColorSpace csp
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_fill_rgb2yuv_table (
+    LumaCoefficients? coeffs,
+    double rgb2yuv[3][3]
+);
+
+[CCode (cname="",cheader_filename="")]
+public double ff_determine_signal_peak (
+    AVFrame? in
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_update_hdr_metadata (
+    AVFrame? in,
+    double peak
+);

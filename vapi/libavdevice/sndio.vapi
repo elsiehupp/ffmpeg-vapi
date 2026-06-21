@@ -22,9 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class SndioData {
-    AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
-    struct sio_hdl *hdl;
+    [CCode (cname="")]
+    public sio_hdl? hdl;
 
     [CCode (cname="")]
     public AVCodecID codec_id;
@@ -35,7 +37,8 @@ public class SndioData {
     [CCode (cname="")]
     public int64 softpos;
 
-    uint8[] buffer;
+    [CCode (cname="")]
+    public uint8[] buffer;
 
     [CCode (cname="")]
     public int bps;
@@ -55,12 +58,12 @@ public class SndioData {
 
 [CCode (cname="",cheader_filename="")]
 public int ff_sndio_open (
-    AVFormatContext *s1,
+    AVFormatContext? s1,
     int is_output,
     string audio_device
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_sndio_close (
-    SndioData *s
+    SndioData? s
 );

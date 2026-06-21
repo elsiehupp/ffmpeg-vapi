@@ -62,7 +62,7 @@ public enum FooBar {
     SWS_BICUBIC, // 4
 
     [CCode (cname="")]
-    SWS_X, //   8
+    SWS_X, // 8
 
     [CCode (cname="")]
     SWS_POINT, // 0x10
@@ -130,7 +130,7 @@ public enum FooBar {
 }
 
 [CCode (cname="",cheader_filename="")]
-public define SWS_MAX_REDUCE_CUTOFF 0.002
+public const float SWS_MAX_REDUCE_CUTOFF; // 0.002
 
 [CCode (cname="",cheader_filename="")]
 public enum FooBar {
@@ -198,16 +198,16 @@ vectors can be shared
 [Compact]
 public class SwsFilter {
     [CCode (cname="")]
-    public SwsVector *lumH;
+    public SwsVector? lumH;
 
     [CCode (cname="")]
-    public SwsVector *lumV;
+    public SwsVector? lumV;
 
     [CCode (cname="")]
-    public SwsVector *chrH;
+    public SwsVector? chrH;
 
     [CCode (cname="")]
-    public SwsVector *chrV;
+    public SwsVector? chrV;
 }
 
 /***********************************************************
@@ -244,7 +244,7 @@ sws_init_context (). For filling see AVOptions, options.c and
 sws_setColorspaceDetails ().
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public SwsContext *sws_alloc_context ();
+public SwsContext? sws_alloc_context ();
 
 /***********************************************************
 Initialize the swscaler context sws_context.
@@ -253,11 +253,11 @@ Initialize the swscaler context sws_context.
 error
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-av_warn_unused_result
+//  av_warn_unused_result
 public int sws_init_context (
-    SwsContext *sws_context,
-    SwsFilter *srcFilter,
-    SwsFilter *dstFilter
+    SwsContext? sws_context,
+    SwsFilter? srcFilter,
+    SwsFilter? dstFilter
 );
 
 /***********************************************************
@@ -266,7 +266,7 @@ If swsContext is NULL, then does nothing.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void sws_freeContext (
-    SwsContext *swsContext
+    SwsContext? swsContext
 );
 
 /***********************************************************
@@ -299,8 +299,8 @@ public SwsContext sws_getContext (
     int dstH,
     AVPixelFormat dstFormat,
     int flags,
-    SwsFilter *srcFilter,
-    SwsFilter *dstFilter,
+    SwsFilter? srcFilter,
+    SwsFilter? dstFilter,
     double[] param
 );
 
@@ -332,7 +332,7 @@ non-sequential order the behavior of the function is undefined.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int sws_scale (
-    SwsContext *c,
+    SwsContext? c,
     out uint8[] srcSlice,
     int srcStride[],
     int srcSliceY,
@@ -353,7 +353,7 @@ public int sws_scale (
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int sws_setColorspaceDetails (
-    SwsContext *c,
+    SwsContext? c,
     int inv_table[4],
     int srcRange,
     int table[4],
@@ -368,21 +368,21 @@ public int sws_setColorspaceDetails (
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int sws_getColorspaceDetails (
-    SwsContext *c,
-    int **inv_table,
-    int *srcRange,
-    int **table,
-    int *dstRange,
-    int *brightness,
-    int *contrast,
-    int *saturation
+    SwsContext? c,
+    out int[] inv_table,
+    out int srcRange,
+    out int[] table,
+    out int dstRange,
+    out int brightness,
+    out int contrast,
+    out int saturation
 );
 
 /***********************************************************
 Allocate and return an uninitialized vector with length coefficients.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public SwsVector *sws_allocVec (
+public SwsVector? sws_allocVec (
     int length
 );
 
@@ -391,7 +391,7 @@ Return a normalized Gaussian curve used to filter stuff
 quality = 3 is high quality, lower is lower quality.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public SwsVector *sws_getGaussianVec (
+public SwsVector? sws_getGaussianVec (
     double variance,
     double quality
 );
@@ -401,7 +401,7 @@ Scale all the coefficients of a by the scalar value.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void sws_scaleVec (
-    SwsVector *a,
+    SwsVector? a,
     double scalar
 );
 
@@ -410,54 +410,62 @@ Scale all the coefficients of a so that their sum equals height.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void sws_normalizeVec (
-    SwsVector *a,
+    SwsVector? a,
     double height
 );
 
 #if FF_API_SWS_VECTOR
 
 [CCode (cname="",cheader_filename="")]
-public attribute_deprecated SwsVector *sws_getConstVec (
+//  attribute_deprecated
+public SwsVector? sws_getConstVec (
     double c,
     int length
 );
 
 [CCode (cname="",cheader_filename="")]
-public attribute_deprecated SwsVector *sws_getIdentityVec ();
+//  attribute_deprecated
+public SwsVector? sws_getIdentityVec ();
 
 [CCode (cname="",cheader_filename="")]
-public attribute_deprecated void sws_convVec (
-    SwsVector *a,
-    SwsVector *b
+//  attribute_deprecated
+public void sws_convVec (
+    SwsVector? a,
+    SwsVector? b
 );
 
 [CCode (cname="",cheader_filename="")]
-public attribute_deprecated void sws_addVec (
-    SwsVector *a,
-    SwsVector *b
+//  attribute_deprecated
+public void sws_addVec (
+    SwsVector? a,
+    SwsVector? b
 );
 
 [CCode (cname="",cheader_filename="")]
-public attribute_deprecated void sws_subVec (
-    SwsVector *a,
-    SwsVector *b
+//  attribute_deprecated
+public void sws_subVec (
+    SwsVector? a,
+    SwsVector? b
 );
 
 [CCode (cname="",cheader_filename="")]
-public attribute_deprecated void sws_shiftVec (
-    SwsVector *a,
+//  attribute_deprecated
+public void sws_shiftVec (
+    SwsVector? a,
     int shift
 );
 
 [CCode (cname="",cheader_filename="")]
-public attribute_deprecated SwsVector *sws_cloneVec (
-    SwsVector *a
+//  attribute_deprecated
+public SwsVector? sws_cloneVec (
+    SwsVector? a
 );
 
 [CCode (cname="",cheader_filename="")]
-public attribute_deprecated void sws_printVec2 (
-    SwsVector *a,
-    AVClass *log_ctx,
+//  attribute_deprecated
+public void sws_printVec2 (
+    SwsVector? a,
+    AVClass? log_ctx,
     int log_level
 );
 
@@ -465,11 +473,11 @@ public attribute_deprecated void sws_printVec2 (
 
 [CCode (cname="",cheader_filename="")]
 public void sws_freeVec (
-    SwsVector *a
+    SwsVector? a
 );
 
 [CCode (cname="",cheader_filename="")]
-public SwsFilter *sws_getDefaultFilter (
+public SwsFilter? sws_getDefaultFilter (
     float lumaGBlur,
     float chromaGBlur,
     float lumaSharpen,
@@ -481,7 +489,7 @@ public SwsFilter *sws_getDefaultFilter (
 
 [CCode (cname="",cheader_filename="")]
 public void sws_freeFilter (
-    SwsFilter *filter
+    SwsFilter? filter
 );
 
 /***********************************************************
@@ -498,8 +506,8 @@ are assumed to remain the same.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 [Compact]
-public SwsContext *sws_getCachedContext (
-    SwsContext *context,
+public SwsContext? sws_getCachedContext (
+    SwsContext? context,
     int srcW,
     int srcH,
     AVPixelFormat srcFormat,
@@ -507,8 +515,8 @@ public SwsContext *sws_getCachedContext (
     int dstH,
     AVPixelFormat dstFormat,
     int flags,
-    SwsFilter *srcFilter,
-    SwsFilter *dstFilter,
+    SwsFilter? srcFilter,
+    SwsFilter? dstFilter,
     double[] param
 );
 
@@ -555,7 +563,7 @@ AV_OPT_SEARCH_FAKE_OBJ for examining options.
 @see av_opt_find ().
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public AVClass *sws_get_class ();
+public AVClass? sws_get_class ();
 
 /***********************************************************
 @}

@@ -25,11 +25,23 @@ namespace LibAVUtil {
 @file byte swapping routines
 ***********************************************************/
 
-//  #define AV_BSWAP16C (x) (((x) << 8 & 0xff00)  | ((x) >> 8 & 0x00ff))
-//  #define AV_BSWAP32C (x) (AV_BSWAP16C (x) << 16 | AV_BSWAP16C ((x) >> 16))
-//  #define AV_BSWAP64C (x) (AV_BSWAP32C (x) << 32 | AV_BSWAP32C ((x) >> 32))
+[CCode (cname="",cheader_filename="ffmpeg/libavutil/bswap.h")]
+public uint16 AV_BSWAP16C (
+    uint16 x
+); // (((x) << 8 & 0xff00)  | ((x) >> 8 & 0x00ff))
 
-//  #define AV_BSWAPC (s, x) AV_BSWAP##s##C (x)
+[CCode (cname="",cheader_filename="ffmpeg/libavutil/bswap.h")]
+public uint32 AV_BSWAP32C (
+    uint32 x
+); // (AV_BSWAP16C (x) << 16 | AV_BSWAP16C ((x) >> 16))
+
+[CCode (cname="",cheader_filename="ffmpeg/libavutil/bswap.h")]
+public uint64 AV_BSWAP64C (
+    uint64 x
+); // (AV_BSWAP32C (x) << 32 | AV_BSWAP32C ((x) >> 32))
+
+//  [CCode (cname="",cheader_filename="ffmpeg/libavutil/bswap.h")]
+//  public uint AV_BSWAPC (s, x) AV_BSWAP##s##C (x)
 
 [CCode (cname="av_bswap16",cheader_filename="ffmpeg/libavutil/bswap.h")]
 public static uint16 av_bswap16 (
@@ -91,17 +103,34 @@ public uint AV_LE2NEC (
     uint x
 );
 
-//  [CCode (cname="AV_BE2NE16C",cheader_filename="ffmpeg/libavutil/bswap.h")]
-//  #define AV_BE2NE16C (uint x) AV_BE2NEC (16, x)
-//  [CCode (cname="AV_BE2NE32C",cheader_filename="ffmpeg/libavutil/bswap.h")]
-//  #define AV_BE2NE32C (uint x) AV_BE2NEC (32, x)
-//  [CCode (cname="AV_BE2NE64C",cheader_filename="ffmpeg/libavutil/bswap.h")]
-//  #define AV_BE2NE64C (uint x) AV_BE2NEC (64, x)
-//  [CCode (cname="AV_LE2NE16C",cheader_filename="ffmpeg/libavutil/bswap.h")]
-//  #define AV_LE2NE16C (uint x) AV_LE2NEC (16, x)
-//  [CCode (cname="AV_LE2NE32C",cheader_filename="ffmpeg/libavutil/bswap.h")]
-//  #define AV_LE2NE32C (uint x) AV_LE2NEC (32, x)
-//  [CCode (cname="AV_LE2NE64C",cheader_filename="ffmpeg/libavutil/bswap.h")]
-//  #define AV_LE2NE64C (uint x) AV_LE2NEC (64, x)
+[CCode (cname="AV_BE2NE16C",cheader_filename="ffmpeg/libavutil/bswap.h")]
+public uint AV_BE2NE16C (
+    uint x
+); // AV_BE2NEC (16, x)
+
+[CCode (cname="AV_BE2NE32C",cheader_filename="ffmpeg/libavutil/bswap.h")]
+public uint AV_BE2NE32C (
+    uint x
+); // AV_BE2NEC (32, x)
+
+[CCode (cname="AV_BE2NE64C",cheader_filename="ffmpeg/libavutil/bswap.h")]
+public uint AV_BE2NE64C (
+    uint x
+); // AV_BE2NEC (64, x)
+
+[CCode (cname="AV_LE2NE16C",cheader_filename="ffmpeg/libavutil/bswap.h")]
+public uint AV_LE2NE16C (
+    uint x
+); // AV_LE2NEC (16, x)
+
+[CCode (cname="AV_LE2NE32C",cheader_filename="ffmpeg/libavutil/bswap.h")]
+public uint AV_LE2NE32C (
+    uint x
+); // AV_LE2NEC (32, x)
+
+[CCode (cname="AV_LE2NE64C",cheader_filename="ffmpeg/libavutil/bswap.h")]
+public uint AV_LE2NE64C (
+    uint x
+); // AV_LE2NEC (64, x)
 
 } // namespace LibAVUtil

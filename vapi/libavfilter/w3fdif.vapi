@@ -21,24 +21,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class W3FDIFDSPContext {
-    [CCode (cname="filter_simple_low")]
-    public void (*filter_simple_low)(
+    public delegate void FilterSimpleLowDelegate (
         int32[] work_line,
         uint8[] in_lines_cur[2],
         int16[] coef,
         int linesize
     );
 
-    [CCode (cname="filter_complex_low")]
-    public void (*filter_complex_low)(
+    [CCode (cname="filter_simple_low")]
+    public FilterSimpleLowDelegate filter_simple_low;
+
+    public delegate void FilterComplexLowDelegate (
         int32[] work_line,
         uint8[] in_lines_cur[4],
         int16[] coef,
         int linesize
     );
 
-    [CCode (cname="filter_simple_high")]
-    public void (*filter_simple_high)(
+    [CCode (cname="filter_complex_low")]
+    public FilterComplexLowDelegate filter_complex_low;
+
+    public delegate void FilterSimpleHighDelegate (
         int32[] work_line,
         uint8[] in_lines_cur[3],
         uint8[] in_lines_adj[3],
@@ -46,8 +49,10 @@ public class W3FDIFDSPContext {
         int linesize
     );
 
-    [CCode (cname="filter_complex_high")]
-    public void (*filter_complex_high)(
+    [CCode (cname="filter_simple_high")]
+    public FilterSimpleHighDelegate filter_simple_high;
+
+    public delegate void FilterComplexHighDelegate (
         int32[] work_line,
         uint8[] in_lines_cur[5],
         uint8[] in_lines_adj[5],
@@ -55,18 +60,23 @@ public class W3FDIFDSPContext {
         int linesize
     );
 
-    [CCode (cname="filter_scale")]
-    public void (*filter_scale)(
+    [CCode (cname="filter_complex_high")]
+    public FilterComplexHighDelegate filter_complex_high;
+
+    public delegate void FilterScaleDelegate (
         uint8[] out_pixel,
         int32[] work_pixel,
         int linesize,
         int max
     );
 
+    [CCode (cname="filter_scale")]
+    public FilterScaleDelegate filter_scale;
+
 }
 
 [CCode (cname="",cheader_filename="")]
 public void ff_w3fdif_init_x86 (
-    W3FDIFDSPContext *dsp,
+    W3FDIFDSPContext? dsp,
     int depth
 );

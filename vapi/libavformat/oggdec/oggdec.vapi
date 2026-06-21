@@ -212,7 +212,7 @@ public class OggState {
     public int curidx;
 
     [CCode (cname="",cheader_filename="ffmpeg/libformat/oggdec.h")]
-    public OggState *next;
+    public OggState? next;
 
     [CCode (cname="",cheader_filename="ffmpeg/libformat/oggdec.h")]
     public int nstreams;

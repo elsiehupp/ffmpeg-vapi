@@ -23,21 +23,35 @@ Libavdevice version macros
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVDEVICE_VERSION_MAJOR 58
-public define LIBAVDEVICE_VERSION_MINOR 8
-public define LIBAVDEVICE_VERSION_MICRO 100
+public const int LIBAVDEVICE_VERSION_MAJOR; // 58
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVDEVICE_VERSION_INT AV_VERSION_INT (LIBAVDEVICE_VERSION_MAJOR, \
-                                               LIBAVDEVICE_VERSION_MINOR, \
-                                               LIBAVDEVICE_VERSION_MICRO)
-public define LIBAVDEVICE_VERSION AV_VERSION (LIBAVDEVICE_VERSION_MAJOR, \
-                                           LIBAVDEVICE_VERSION_MINOR, \
-                                           LIBAVDEVICE_VERSION_MICRO)
-public define LIBAVDEVICE_BUILD LIBAVDEVICE_VERSION_INT
+public const int LIBAVDEVICE_VERSION_MINOR; // 8
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVDEVICE_IDENT       "Lavd" AV_STRINGIFY (LIBAVDEVICE_VERSION)
+public const int LIBAVDEVICE_VERSION_MICRO; // 100
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBAVDEVICE_VERSION_INT;
+//  AV_VERSION_INT (
+//      LIBAVDEVICE_VERSION_MAJOR,
+//      LIBAVDEVICE_VERSION_MINOR,
+//      LIBAVDEVICE_VERSION_MICRO
+//  );
+
+[CCode (cname="",cheader_filename="")]
+public const string LIBAVDEVICE_VERSION;
+//  AV_VERSION (
+//      LIBAVDEVICE_VERSION_MAJOR,
+//      LIBAVDEVICE_VERSION_MINOR,
+//      LIBAVDEVICE_VERSION_MICRO
+//  );
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBAVDEVICE_BUILD; // LIBAVDEVICE_VERSION_INT
+
+[CCode (cname="",cheader_filename="")]
+public const string LIBAVDEVICE_IDENT; // "Lavd" AV_STRINGIFY (LIBAVDEVICE_VERSION)
 
 /***********************************************************
 FF_API_* defines may be placed below to indicate public API that will be

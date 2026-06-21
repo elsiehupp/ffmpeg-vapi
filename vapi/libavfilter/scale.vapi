@@ -21,8 +21,8 @@ public int ff_scale_eval_dimensions (
     void *ctx,
     string w_expr,
     string h_expr,
-    AVFilterLink *inlink,
-    AVFilterLink *outlink,
-    int *ret_w,
-    int *ret_h
+    AVFilterLink? inlink,
+    AVFilterLink? outlink,
+    out int ret_w,
+    out int ret_h
 );

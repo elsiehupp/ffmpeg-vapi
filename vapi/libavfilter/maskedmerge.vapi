@@ -70,5 +70,5 @@ public class MaskedMergeContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_maskedmerge_init_x86 (
-    MaskedMergeContext *s
+    MaskedMergeContext? s
 );

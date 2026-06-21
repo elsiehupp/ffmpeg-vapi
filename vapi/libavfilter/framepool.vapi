@@ -27,6 +27,7 @@ ff_frame_pool_uninit ().
 [Compact]
 public class FFFramePool  { }
 
+[CCode (cname="",cheader_filename="")]
 public delegate AVBufferRef AllocDelegate (
     int size
 );
@@ -44,7 +45,7 @@ the pool is empty. May be NULL, then the default allocator will be used
 @return newly created video frame pool on success, NULL on error.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public FFFramePool *ff_frame_pool_video_init (
+public FFFramePool? ff_frame_pool_video_init (
     AllocDelegate alloc,
     int width,
     int height,
@@ -65,7 +66,7 @@ the pool is empty. May be NULL, then the default allocator will be used
 @return newly created audio frame pool on success, NULL on error.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public FFFramePool *ff_frame_pool_audio_init (
+public FFFramePool? ff_frame_pool_audio_init (
     AllocDelegate alloc,
     int channels,
     int samples,
@@ -95,11 +96,11 @@ Get the video frame pool configuration.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_frame_pool_get_video_config (
-    FFFramePool *pool,
-    int *width,
-    int *height,
-    AVPixelFormat *format,
-    int *align
+    FFFramePool? pool,
+    out int width,
+    out int height,
+    AVPixelFormat? format,
+    out int align
 );
 
 /***********************************************************
@@ -113,11 +114,11 @@ Get the audio frame pool configuration.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_frame_pool_get_audio_config (
-    FFFramePool *pool,
-    int *channels,
-    int *nb_samples,
-    AVSampleFormat *format,
-    int *align
+    FFFramePool? pool,
+    out int channels,
+    out int nb_samples,
+    AVSampleFormat? format,
+    out int align
 );
 
 /***********************************************************
@@ -127,6 +128,6 @@ This function may be called simultaneously from multiple threads.
 @return a new AVFrame on success, NULL on error.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public AVFrame *ff_frame_pool_get (
-    FFFramePool *pool
+public AVFrame? ff_frame_pool_get (
+    FFFramePool? pool
 );

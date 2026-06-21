@@ -50,7 +50,7 @@ public class PP7Context {
     public uint8[] src;
 
     public delegate int RequantizeDelegate (
-        PP7Context *p,
+        PP7Context? p,
         int16[] src,
         int qp
     )
@@ -70,5 +70,5 @@ public class PP7Context {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_pp7_init_x86 (
-    PP7Context *pp7
+    PP7Context? pp7
 );

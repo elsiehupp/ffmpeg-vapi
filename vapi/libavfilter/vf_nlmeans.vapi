@@ -37,10 +37,10 @@ public class NLMeansDSPContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_nlmeans_init (
-    NLMeansDSPContext *dsp
+    NLMeansDSPContext? dsp
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_nlmeans_init_aarch64 (
-    NLMeansDSPContext *dsp
+    NLMeansDSPContext? dsp
 );

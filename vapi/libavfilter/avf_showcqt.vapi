@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [Compact]
 public class Coeffs {
     [CCode (cname="")]
-    public FFTSample *val;
+    public FFTSample? val;
 
     [CCode (cname="")]
     public int start;
@@ -73,13 +73,13 @@ public class ShowCQTContext {
     public AVClass class;
 
     [CCode (cname="")]
-    public AVFilterContext *ctx;
+    public AVFilterContext? ctx;
 
     [CCode (cname="")]
-    public AVFrame *axis_frame;
+    public AVFrame? axis_frame;
 
     [CCode (cname="")]
-    public AVFrame *sono_frame;
+    public AVFrame? sono_frame;
 
     [CCode (cname="")]
     public AVPixelFormat format;
@@ -109,25 +109,25 @@ public class ShowCQTContext {
     public int64 next_pts;
 
     [CCode (cname="")]
-    public double *freq;
+    public double? freq;
 
     [CCode (cname="")]
-    public FFTContext *fft_ctx;
+    public FFTContext? fft_ctx;
 
     [CCode (cname="")]
-    public Coeffs *coeffs;
+    public Coeffs? coeffs;
 
     [CCode (cname="")]
-    public FFTComplex *fft_data;
+    public FFTComplex? fft_data;
 
     [CCode (cname="")]
-    public FFTComplex *fft_result;
+    public FFTComplex? fft_result;
 
     [CCode (cname="")]
-    public FFTComplex *cqt_result;
+    public FFTComplex? cqt_result;
 
     [CCode (cname="")]
-    public float *attack_data;
+    public float? attack_data;
 
     [CCode (cname="")]
     public int fft_bits;
@@ -142,19 +142,19 @@ public class ShowCQTContext {
     public int cqt_align;
 
     [CCode (cname="")]
-    public ColorFloat *c_buf;
+    public ColorFloat? c_buf;
 
     [CCode (cname="")]
-    public float *h_buf;
+    public float? h_buf;
 
     [CCode (cname="")]
-    public float *rcp_h_buf;
+    public float? rcp_h_buf;
 
     [CCode (cname="")]
-    public float *sono_v_buf;
+    public float? sono_v_buf;
 
     [CCode (cname="")]
-    public float *bar_v_buf;
+    public float? bar_v_buf;
 
     [CCode (cname="")]
     public float cmatrix[3][3];
@@ -162,56 +162,68 @@ public class ShowCQTContext {
     [CCode (cname="")]
     public float cscheme_v[6];
 
-    /***********************************************************
-    callback
-    ***********************************************************/
-    [CCode (cname="cqt_calc")]
-    public void (*cqt_calc)(
-        FFTComplex *dst,
-        FFTComplex *src,
-        Coeffs *coeffs,
+    public delegate void QctCalcDelegate (
+        FFTComplex? dst,
+        FFTComplex? src,
+        Coeffs? coeffs,
         int len,
         int fft_len
     );
 
-    [CCode (cname="permute_coeffs")]
-    public void (*permute_coeffs)(
+    /***********************************************************
+    callback
+    ***********************************************************/
+    [CCode (cname="cqt_calc")]
+    public QctCalcDelegate cqt_calc;
+
+    public delegate void PermuteCoeffsDelegate (
         float[] v,
         int len
     );
 
-    [CCode (cname="draw_bar")]
-    public void (*draw_bar)(
-        AVFrame *out,
+    [CCode (cname="permute_coeffs")]
+    public PermuteCoeffsDelegate permute_coeffs;
+
+    public delegate void DrawBarDelegate (
+        AVFrame? out,
         float[] h,
         float[] rcp_h,
-        ColorFloat *c,
+        ColorFloat? color_float,
         int bar_h,
         float bar_t
     );
 
-    [CCode (cname="draw_axis")]
-    public void (*draw_axis)(
-        AVFrame *out,
-        AVFrame *axis,
-        ColorFloat *c,
+    [CCode (cname="draw_bar")]
+    public DrawBarDelegate draw_bar;
+
+    public delegate void DrawAxisDelegate (
+        AVFrame? out,
+        AVFrame? axis,
+        ColorFloat? color_float,
         int off
     );
 
-    [CCode (cname="draw_sono")]
-    public void (*draw_sono)(
-        AVFrame *out,
-        AVFrame *sono,
+    [CCode (cname="draw_axis")]
+    public DrawAxisDelegate draw_axis;
+
+    public delegate void DrawSonoDelegate (
+        AVFrame? out,
+        AVFrame? sono,
         int off,
         int idx
     );
 
-    [CCode (cname="update_sono")]
-    public void (*update_sono)(
-        AVFrame *sono,
-        ColorFloat *c,
+    [CCode (cname="draw_sono")]
+    public DrawSonoDelegate draw_sono;
+
+    public delegate void UpdateSonoDelegate (
+        AVFrame? sono,
+        ColorFloat? color_float,
         int idx
     );
+
+    [CCode (cname="update_sono")]
+    public UpdateSonoDelegate update_sono;
 
     /***********************************************************
     performance debugging
@@ -333,5 +345,5 @@ public class ShowCQTContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_showcqt_init_x86 (
-    ShowCQTContext *s
+    ShowCQTContext? s
 );

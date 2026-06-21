@@ -107,13 +107,13 @@ public class FFFrameSyncIn {
     Current frame, may be NULL before the first one or after EOF
     ***********************************************************/
     [CCode (cname="")]
-    public AVFrame *frame;
+    public AVFrame? frame;
 
     /***********************************************************
     Next frame, for internal use
     ***********************************************************/
     [CCode (cname="")]
-    public AVFrame *frame_next;
+    public AVFrame? frame_next;
 
     /***********************************************************
     PTS of the current frame
@@ -188,7 +188,7 @@ public class FFFrameSync {
     public int64 pts;
 
     public delegate int OnEventDelegate (
-        FFFrameSync *fs
+        FFFrameSync? fs
     );
 
     /***********************************************************
@@ -260,7 +260,7 @@ This step is optional, but necessary to use the options.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_framesync_preinit (
-    FFFrameSync *fs
+    FFFrameSync? fs
 );
 
 /***********************************************************
@@ -275,8 +275,8 @@ The entire structure is expected to be already set to 0 or preinited.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_framesync_init (
-    FFFrameSync *fs,
-    AVFilterContext *parent,
+    FFFrameSync? fs,
+    AVFilterContext? parent,
     uint nb_in
 );
 
@@ -289,7 +289,7 @@ Must be called after all options are set but before all use.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_framesync_configure (
-    FFFrameSync *fs
+    FFFrameSync? fs
 );
 
 /***********************************************************
@@ -297,7 +297,7 @@ Free all memory currently allocated.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_framesync_uninit (
-    FFFrameSync *fs
+    FFFrameSync? fs
 );
 
 /***********************************************************
@@ -312,9 +312,9 @@ Get the current frame in an input.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_framesync_get_frame (
-    FFFrameSync *fs,
+    FFFrameSync? fs,
     uint in,
-    AVFrame **rframe,
+    out AVFrame[] rframe,
     uint get
 );
 
@@ -326,7 +326,7 @@ method of a filter using framesync.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_framesync_activate (
-    FFFrameSync *fs
+    FFFrameSync? fs
 );
 
 /***********************************************************
@@ -342,8 +342,8 @@ base, sync and ext modes on the inputs.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_framesync_init_dualinput (
-    FFFrameSync *fs,
-    AVFilterContext *parent
+    FFFrameSync? fs,
+    AVFilterContext? parent
 );
 
 /***********************************************************
@@ -356,9 +356,9 @@ by the framesync structure.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_framesync_dualinput_get (
-    FFFrameSync *fs,
-    AVFrame **f0,
-    AVFrame **f1
+    FFFrameSync? fs,
+    out AVFrame[] f0,
+    out AVFrame[] f1
 );
 
 /***********************************************************
@@ -366,23 +366,23 @@ Same as ff_framesync_dualinput_get (), but make sure that f0 is writable.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_framesync_dualinput_get_writable (
-    FFFrameSync *fs,
-    AVFrame **f0,
-    AVFrame **f1
+    FFFrameSync? fs,
+    out AVFrame[] f0,
+    out AVFrame[] f1
 );
 
 //  [CCode (cname="",cheader_filename="")]
 //  public define FRAMESYNC_DEFINE_CLASS (name, context, field) \
-//  static int name##_framesync_preinit (AVFilterContext *ctx) { \
-//      context *s = ctx->priv; \
+//  static int name##_framesync_preinit (AVFilterContext? av_filter_context) { \
+//      context? s = av_filter_context->priv; \
 //      ff_framesync_preinit (&s->field); \
 //      return 0; \
 //  } \
-//  static const AVClass *name##_child_class_next (const AVClass *prev) { \
+//  static const AVClass? name##_child_class_next (const AVClass? prev) { \
 //      return prev ? NULL : ff_framesync_get_class (); \
 //  } \
 //  static void *name##_child_next (void *obj, void *prev) { \
-//      context *s = obj; \
+//      context? s = obj; \
 //      s->fs.class = ff_framesync_get_class (); /* FIXME */ \
 //      return prev ? NULL : &s->field; \
 //  } \

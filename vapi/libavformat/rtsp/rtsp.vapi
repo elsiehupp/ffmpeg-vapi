@@ -554,14 +554,14 @@ public class RTSPState {
     we need to subscribe or unsubscribe to any new streams.
     ***********************************************************/
     [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
-    public LibAVCodec.Discard *real_setup_cache;
+    public LibAVCodec.Discard? real_setup_cache;
 
     /***********************************************************
     @brief Current stream setup. This is a temporary buffer used to compare
     current setup to previous frame setup.
     ***********************************************************/
     [CCode (cname="",cheader_filename="ffmpeg/libformat/rtsp.h")]
-    public LibAVCodec.Discard *real_setup;
+    public LibAVCodec.Discard? real_setup;
 
     /***********************************************************
     @brief The last value of the "SET_PARAMETER Subscribe:" RTSP command.

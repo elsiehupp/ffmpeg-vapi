@@ -176,7 +176,7 @@ public class DeshakeContext {
     public int refcount;
 
     [CCode (cname="")]
-    public FILE *fp;
+    public FILE? fp;
 
     [CCode (cname="")]
     public Transform avg;
@@ -206,7 +206,7 @@ public class DeshakeContext {
     public int opencl;
 
     public delegate int TransformDelegate (
-        AVFilterContext *ctx,
+        AVFilterContext? av_filter_context,
         int width,
         int height,
         int cw,
@@ -215,8 +215,8 @@ public class DeshakeContext {
         float[] matrix_uv,
         InterpolateMethod interpolate,
         FillMethod fill,
-        AVFrame *in,
-        AVFrame *out
+        AVFrame? in,
+        AVFrame? out
     );
 
     [CCode (cname="transform")]

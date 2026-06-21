@@ -35,7 +35,7 @@ public int ff_fill_line_with_color (
     uint8 dst_color[4],
     AVPixelFormat pix_fmt,
     uint8 rgba_color[4],
-    int *is_packed_rgba,
+    out int is_packed_rgba,
     uint8 rgba_map[4]
 );
 
@@ -70,7 +70,7 @@ public void ff_copy_rectangle (
 );
 
 [CCode (cname="",cheader_filename="")]
-public define MAX_PLANES 4
+public const size_t MAX_PLANES; // 4
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
@@ -140,7 +140,8 @@ public class FFDrawColor {
 /***********************************************************
 Process alpha pixel component.
 ***********************************************************/
-public define FF_DRAW_PROCESS_ALPHA 1
+[CCode (cname="",cheader_filename="")]
+public const int FF_DRAW_PROCESS_ALPHA; // 1
 
 /***********************************************************
 Init a draw context.
@@ -152,7 +153,7 @@ flags is combination of FF_DRAW_* flags.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_draw_init (
-    FFDrawContext *draw,
+    FFDrawContext? draw,
     AVPixelFormat format,
     uint flags
 );
@@ -162,8 +163,8 @@ Prepare a color.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_draw_color (
-    FFDrawContext *draw,
-    FFDrawColor *color,
+    FFDrawContext? draw,
+    FFDrawColor? color,
     uint8 rgba[4]
 );
 
@@ -174,7 +175,7 @@ The coordinates must be as even as the subsampling requires.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_copy_rectangle2 (
-    FFDrawContext *draw,
+    FFDrawContext? draw,
     uint8[] dst[],
     int dst_linesize[],
     uint8[] src[],
@@ -195,8 +196,8 @@ The color needs to be inited with ff_draw_color.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_fill_rectangle (
-    FFDrawContext *draw,
-    FFDrawColor *color,
+    FFDrawContext? draw,
+    FFDrawColor? color,
     uint8[] dst[],
     int dst_linesize[],
     int dst_x,
@@ -210,8 +211,8 @@ Blend a rectangle with an uniform color.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_blend_rectangle (
-    FFDrawContext *draw,
-    FFDrawColor *color,
+    FFDrawContext? draw,
+    FFDrawColor? color,
     uint8[] dst[],
     int dst_linesize[],
     int dst_w,
@@ -242,8 +243,8 @@ Blend an alpha mask with an uniform color.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_blend_mask (
-    FFDrawContext *draw,
-    FFDrawColor *color,
+    FFDrawContext? draw,
+    FFDrawColor? color,
     uint8[] dst[],
     int dst_linesize[],
     int dst_w,
@@ -269,7 +270,7 @@ Round a dimension according to subsampling.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_draw_round_to_sub (
-    FFDrawContext *draw,
+    FFDrawContext? draw,
     int sub_dir,
     int round_dir,
     int value

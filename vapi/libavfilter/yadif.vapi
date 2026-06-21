@@ -139,19 +139,35 @@ public class YADIFContext {
     [CCode (cname="")]
     public AVFrame out;
 
-    [CCode (cname="filter")]
-    public void (*filter)(
-        AVFilterContext *ctx,
-        AVFrame *dstpic,
+    public delegate void FilterDelegate (
+        AVFilterContext? av_filter_context,
+        AVFrame? dstpic,
         int parity,
         int tff
+    );
+
+    [CCode (cname="filter")]
+    public FilterDelegate filter;
+
+    public delegate void FilterLineDelegate (
+        void *dst,
+        void *prev,
+        void *cur,
+        void *next,
+        int w,
+        int prefs,
+        int mrefs,
+        int parity,
+        int mode
     );
 
     /***********************************************************
     Required alignment for filter_line
     ***********************************************************/
     [CCode (cname="filter_line")]
-    public void (*filter_line)(
+    public FilterLineDelegate filter_line;
+
+    public delegate void FilterEdgesDelegate (
         void *dst,
         void *prev,
         void *cur,
@@ -164,20 +180,10 @@ public class YADIFContext {
     );
 
     [CCode (cname="filter_edges")]
-    public void (*filter_edges)(
-        void *dst,
-        void *prev,
-        void *cur,
-        void *next,
-        int w,
-        int prefs,
-        int mrefs,
-        int parity,
-        int mode
-    );
+    public FilterEdgesDelegate filter_edges;
 
     [CCode (cname="")]
-    public AVPixFmtDescriptor *csp;
+    public AVPixFmtDescriptor? csp;
 
     [CCode (cname="")]
     public int eof;
@@ -204,18 +210,18 @@ public class YADIFContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_yadif_init_x86 (
-    YADIFContext *yadif
+    YADIFContext? yadif
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_yadif_filter_frame (
-    AVFilterLink *link,
-    AVFrame *frame
+    AVFilterLink? link,
+    AVFrame? frame
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_yadif_request_frame (
-    AVFilterLink *link
+    AVFilterLink? link
 );
 
 //  extern const AVOption ff_yadif_options[];

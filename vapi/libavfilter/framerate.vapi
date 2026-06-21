@@ -60,6 +60,7 @@ public class FrameRateContext {
     /***********************************************************
     score that denotes a scene change has happened
     ***********************************************************/
+    [CCode (cname="")]
     public double scene_score;
 
     /***********************************************************
@@ -176,10 +177,10 @@ public class FrameRateContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_framerate_init (
-    FrameRateContext *s
+    FrameRateContext? s
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_framerate_init_x86 (
-    FrameRateContext *s
+    FrameRateContext? s
 );

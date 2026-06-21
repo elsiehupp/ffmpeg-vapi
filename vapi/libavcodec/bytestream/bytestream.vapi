@@ -23,21 +23,27 @@ Bytestream functions
 [CCode (cname="struct GetByteContext",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
 [Compact]
 public class GetByteContext {
-    uint8[] buffer;
+    [CCode (cname="")]
+    public uint8[] buffer;
 
-    uint8[] buffer_end;
+    [CCode (cname="")]
+    public uint8[] buffer_end;
 
-    uint8[] buffer_start;
+    [CCode (cname="")]
+    public uint8[] buffer_start;
 }
 
 [CCode (cname="struct PutByteContext",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
 [Compact]
 public class PutByteContext {
-    uint8[] buffer;
+    [CCode (cname="")]
+    public uint8[] buffer;
 
-    uint8[] buffer_end;
+    [CCode (cname="")]
+    public uint8[] buffer_end;
 
-    uint8[] buffer_start;
+    [CCode (cname="")]
+    public uint8[] buffer_start;
 
     [CCode (cname="")]
     public int eof;
@@ -139,128 +145,152 @@ public class PutByteContext {
 //  #   define bytestream2_peek_ne64 bytestream2_peek_le64
 //  #endif
 
-static void bytestream2_init (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static void bytestream2_init (
     GetByteContext get_byte_context,
     uint8[] buffer,
     int buf_size
 );
 
-static void bytestream2_init_writer (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static void bytestream2_init_writer (
     PutByteContext put_byte_context,
     uint8[] buffer,
     int buf_size
 );
 
-static uint bytestream2_get_bytes_left (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream2_get_bytes_left (
     GetByteContext get_byte_context
 );
 
-static uint bytestream2_get_bytes_left_p (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream2_get_bytes_left_p (
     PutByteContext put_byte_context
 );
 
-static void bytestream2_skip (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static void bytestream2_skip (
     GetByteContext get_byte_context,
     uint size
 );
 
-static void bytestream2_skipu (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static void bytestream2_skipu (
     GetByteContext get_byte_context,
     uint size
 );
 
-static void bytestream2_skip_p (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static void bytestream2_skip_p (
     PutByteContext put_byte_context,
     uint size
 );
 
-static int bytestream2_tell (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static int bytestream2_tell (
     GetByteContext get_byte_context
 );
 
-static int bytestream2_tell_p (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static int bytestream2_tell_p (
     PutByteContext put_byte_context
 );
 
-static int bytestream2_size (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static int bytestream2_size (
     GetByteContext get_byte_context
 );
 
-static int bytestream2_size_p (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static int bytestream2_size_p (
     PutByteContext put_byte_context
 );
 
-static int bytestream2_seek (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static int bytestream2_seek (
     GetByteContext get_byte_context,
     int offset,
     int whence
 );
 
-static int bytestream2_seek_p (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static int bytestream2_seek_p (
     PutByteContext put_byte_context,
     int offset,
     int whence
 );
 
-static uint bytestream2_get_buffer (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream2_get_buffer (
     GetByteContext get_byte_context,
     uint8[] dst,
     uint size
 );
 
-static uint bytestream2_get_bufferu (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream2_get_bufferu (
     GetByteContext get_byte_context,
     uint8[] dst,
     uint size
 );
 
-static uint bytestream2_put_buffer (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream2_put_buffer (
     PutByteContext put_byte_context,
     uint8[] src,
     uint size
 );
 
-static uint bytestream2_put_bufferu (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream2_put_bufferu (
     PutByteContext put_byte_context,
     uint8[] src,
     uint size
 );
 
-static void bytestream2_set_buffer (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static void bytestream2_set_buffer (
     PutByteContext put_byte_context,
     uint8 c,
     uint size
 );
 
-static void bytestream2_set_bufferu (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static void bytestream2_set_bufferu (
     PutByteContext put_byte_context,
     uint8 c,
     uint size
 );
 
-static uint bytestream2_get_eof (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream2_get_eof (
     PutByteContext put_byte_context
 );
 
-static uint bytestream2_copy_bufferu (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream2_copy_bufferu (
     PutByteContext put_byte_context,
     GetByteContext get_byte_context,
     uint size
 );
 
-static uint bytestream2_copy_buffer (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream2_copy_buffer (
     PutByteContext put_byte_context,
     GetByteContext get_byte_context,
     uint size
 );
 
-static uint bytestream_get_buffer (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static uint bytestream_get_buffer (
     out uint8[] b,
     uint8[] dst,
     uint size
 );
 
-static void bytestream_put_buffer (
+[CCode (cname="",cheader_filename="ffmpeg/libavcodec/bytestream.h")]
+public static void bytestream_put_buffer (
     out uint8[] b,
     uint8[] src,
     uint size

@@ -29,7 +29,7 @@ public class VAAPIVPPContext {
     public AVClass class;
 
     [CCode (cname="")]
-    public AVVAAPIDeviceContext *hwctx;
+    public AVVAAPIDeviceContext? hwctx;
 
     [CCode (cname="")]
     public AVBufferRef device_ref;
@@ -44,10 +44,10 @@ public class VAAPIVPPContext {
     public VAContextID va_context;
 
     [CCode (cname="")]
-    public AVBufferRef *input_frames_ref;
+    public AVBufferRef? input_frames_ref;
 
     [CCode (cname="")]
-    public AVHWFramesContext *input_frames;
+    public AVHWFramesContext? input_frames;
 
     [CCode (cname="")]
     public VARectangle input_region;
@@ -74,14 +74,14 @@ public class VAAPIVPPContext {
     public int nb_filter_buffers;
 
     public delegate int BuildFilterParamsDelegate (
-        AVFilterContext *avctx
+        AVFilterContext? avctx
     );
 
     [CCode (cname="build_filter_params")]
     public BuildFilterParamsDelegate build_filter_params;
 
     public delegate void PipelineUninitDelegate (
-        AVFilterContext *avctx
+        AVFilterContext? avctx
     );
 
     [CCode (cname="pipeline_uninit")]
@@ -91,45 +91,45 @@ public class VAAPIVPPContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_vaapi_vpp_ctx_init (
-    AVFilterContext *avctx
+    AVFilterContext? avctx
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_vaapi_vpp_ctx_uninit (
-    AVFilterContext *avctx
+    AVFilterContext? avctx
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_vaapi_vpp_query_formats (
-    AVFilterContext *avctx
+    AVFilterContext? avctx
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_vaapi_vpp_pipeline_uninit (
-    AVFilterContext *avctx
+    AVFilterContext? avctx
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_vaapi_vpp_config_input (
-    AVFilterLink *inlink
+    AVFilterLink? inlink
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_vaapi_vpp_config_output (
-    AVFilterLink *outlink
+    AVFilterLink? outlink
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_vaapi_vpp_init_params (
-    AVFilterContext *avctx,
-    VAProcPipelineParameterBuffer *params,
+    AVFilterContext? avctx,
+    VAProcPipelineParameterBuffer? params,
     AVFrame input_frame,
     AVFrame output_frame
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_vaapi_vpp_make_param_buffers (
-    AVFilterContext *avctx,
+    AVFilterContext? avctx,
     int type,
     void *data,
     size_t size,
@@ -138,7 +138,7 @@ public int ff_vaapi_vpp_make_param_buffers (
 
 [CCode (cname="",cheader_filename="")]
 public int ff_vaapi_vpp_render_picture (
-    AVFilterContext *avctx,
-    VAProcPipelineParameterBuffer *params,
+    AVFilterContext? avctx,
+    VAProcPipelineParameterBuffer? params,
     AVFrame output_frame
 );

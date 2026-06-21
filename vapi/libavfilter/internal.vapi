@@ -27,22 +27,26 @@ public class AVFilterCommand {
     /***********************************************************
     time expressed in seconds
     ***********************************************************/
-    double time;
+    [CCode (cname="")]
+    public double time;
 
     /***********************************************************
     command
     ***********************************************************/
-    string command;
+    [CCode (cname="")]
+    public string command;
 
     /***********************************************************
     optional argument for the command
     ***********************************************************/
-    string arg;
+    [CCode (cname="")]
+    public string arg;
 
     [CCode (cname="")]
     public int flags;
 
-    struct AVFilterCommand *next;
+    [CCode (cname="")]
+    public AVFilterCommand? next;
 }
 
 /***********************************************************
@@ -50,7 +54,8 @@ Update the position of a link in the age heap.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_avfilter_graph_update_heap (
-    AVFilterGraph *graph, AVFilterLink *link
+    AVFilterGraph? graph,
+    AVFilterLink? link
 );
 
 /***********************************************************
@@ -64,13 +69,20 @@ public class AVFilterPad {
     input may have the same name as an output. This may be NULL if this
     pad has no need to ever be referenced by name.
     ***********************************************************/
-    string name;
+    [CCode (cname="")]
+    public string name;
 
     /***********************************************************
     AVFilterPad type.
     ***********************************************************/
     [CCode (cname="")]
     public AVMediaType type;
+
+    public delegate AVFrame GetVideoBufferDelegate (
+        AVFilterLink? link,
+        int w,
+        int h
+    );
 
     /***********************************************************
     Callback function to get a video buffer. If NULL, the filter system will
@@ -79,10 +91,11 @@ public class AVFilterPad {
     Input video pads only.
     ***********************************************************/
     [CCode (cname="get_video_buffer")]
-    public AVFrame (*get_video_buffer)(
-        AVFilterLink *link,
-        int w,
-        int h
+    public GetVideoBufferDelegate get_video_buffer;
+
+    public delegate AVFrame GetAudioBufferDelegate (
+        AVFilterLink? link,
+        int nb_samples
     );
 
     /***********************************************************
@@ -92,9 +105,11 @@ public class AVFilterPad {
     Input audio pads only.
     ***********************************************************/
     [CCode (cname="get_audio_buffer")]
-    public AVFrame (*get_audio_buffer)(
-        AVFilterLink *link,
-        int nb_samples
+    public GetAudioBufferDelegate get_audio_buffer;
+
+    public delegate int FilterFrameDelegate (
+        AVFilterLink? link,
+        AVFrame? frame
     );
 
     /***********************************************************
@@ -108,9 +123,10 @@ public class AVFilterPad {
     hasn't been passed on to another filter.
     ***********************************************************/
     [CCode (cname="filter_frame")]
-    public int (*filter_frame)(
-        AVFilterLink *link,
-        AVFrame *frame
+    public FilterFrameDelegate filter_frame;
+
+    public delegate int PollFrameDelegate (
+        AVFilterLink? link
     );
 
     /***********************************************************
@@ -123,8 +139,10 @@ public class AVFilterPad {
     Output pads only.
     ***********************************************************/
     [CCode (cname="poll_frame")]
-    public int (*poll_frame)(
-        AVFilterLink *link
+    public PollFrameDelegate poll_frame;
+
+    public delegate int RequestFrameDelegate (
+        AVFilterLink? link
     );
 
     /***********************************************************
@@ -135,8 +153,10 @@ public class AVFilterPad {
     Output pads only.
     ***********************************************************/
     [CCode (cname="AVFilterLink")]
-    public int (*request_frame)(
-        AVFilterLink *link
+    public RequestFrameDelegate request_frame;
+
+    public delegate int ConfigPropsDelegate (
+        AVFilterLink? link
     );
 
     /***********************************************************
@@ -154,9 +174,7 @@ public class AVFilterPad {
     and another value on error.
     ***********************************************************/
     [CCode (cname="config_props")]
-    public int (*config_props)(
-        AVFilterLink *link
-    );
+    public ConfigPropsDelegate config_props;
 
     /***********************************************************
     The filter expects a fifo to be inserted on its input link,
@@ -180,17 +198,21 @@ public class AVFilterPad {
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVFilterGraphInternal {
-    void *thread;
+    [CCode (cname="")]
+    public void *thread;
 
-    avfilter_execute_func *thread_execute;
+    [CCode (cname="")]
+    public AVFilterExecuteDelegate? thread_execute;
 
-    FFFrameQueueGlobal frame_queues;
+    [CCode (cname="")]
+    public FFFrameQueueGlobal frame_queues;
 }
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVFilterInternal {
-    avfilter_execute_func *execute;
+    [CCode (cname="")]
+    public AVFilterExecuteDelegate? execute;
 }
 
 /***********************************************************
@@ -220,9 +242,10 @@ Parse a pixel format.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_parse_pixel_format (
-    AVPixelFormat *ret,
+    AVPixelFormat? ret,
     string arg,
     void *log_ctx
 );
@@ -235,9 +258,10 @@ Parse a sample rate.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_parse_sample_rate (
-    int *ret,
+    out int ret,
     string arg,
     void *log_ctx
 );
@@ -250,9 +274,10 @@ Parse a time base.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_parse_time_base (
-    AVRational *ret,
+    AVRational? ret,
     string arg,
     void *log_ctx
 );
@@ -265,9 +290,10 @@ Parse a sample format name or a corresponding integer representation.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_parse_sample_format (
-    int *ret,
+    out int ret,
     string arg,
     void *log_ctx
 );
@@ -282,17 +308,18 @@ Parse a channel layout or a corresponding integer representation.
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_parse_channel_layout (
-    int64 *ret,
-    int *nret,
+    int64[] ret,
+    out int nret,
     string arg,
     void *log_ctx
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_update_link_current_pts (
-    AVFilterLink *link,
+    AVFilterLink? link,
     int64 pts
 );
 
@@ -305,7 +332,7 @@ end time of the last frame.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_avfilter_link_set_in_status (
-    AVFilterLink *link,
+    AVFilterLink? link,
     int status,
     int64 pts
 );
@@ -316,14 +343,14 @@ The pts should probably be left unset (AV_NOPTS_VALUE).
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_avfilter_link_set_out_status (
-    AVFilterLink *link,
+    AVFilterLink? link,
     int status,
     int64 pts
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_command_queue_pop (
-    AVFilterContext *filter
+    AVFilterContext? filter
 );
 
 /***********************************************************
@@ -331,7 +358,13 @@ misc trace functions
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define FF_TPRINTF_START (ctx, func) ff_tlog (NULL, "%-16s: ", #func)
+public define FF_TPRINTF_START (
+    void *ctx,
+    void *func
+);
+//  {
+//      ff_tlog (NULL, "%-16s: ", #func);
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public string ff_get_ref_perms_string (
@@ -343,14 +376,14 @@ public string ff_get_ref_perms_string (
 [CCode (cname="",cheader_filename="")]
 public void ff_tlog_ref (
     void *ctx,
-    AVFrame *ref,
+    AVFrame? ref,
     int end
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_tlog_link (
     void *ctx,
-    AVFilterLink *link,
+    AVFilterLink? link,
     int end
 );
 
@@ -371,54 +404,56 @@ Insert a new pad.
 [CCode (cname="",cheader_filename="")]
 public int ff_insert_pad (
     uint idx,
-    uint *count,
+    uint? count,
     size_t padidx_off,
     AVFilterPad **pads,
     AVFilterLink ***links,
-    AVFilterPad *newpad
+    AVFilterPad? newpad
 );
 
 /***********************************************************
 Insert a new input pad for the filter.
 ***********************************************************/
-static inline int ff_insert_inpad (
-    AVFilterContext *f,
+[CCode (cname="",cheader_filename="")]
+public static inline int ff_insert_inpad (
+    AVFilterContext? av_filter_context,
     uint index,
-    AVFilterPad *p
-) {
-    return ff_insert_pad (
-        index,
-        &f->nb_inputs,
-        offsetof (
-            AVFilterLink,
-            dstpad
-        ),
-        &f->input_pads, &f->inputs, p
-    );
-
-}
+    AVFilterPad? p
+);
+//  {
+//      return ff_insert_pad (
+//          index,
+//          &av_filter_context->nb_inputs,
+//          offsetof (
+//              AVFilterLink,
+//              dstpad
+//          ),
+//          &av_filter_context->input_pads, &av_filter_context->inputs, p
+//      );
+//  }
 
 /***********************************************************
 Insert a new output pad for the filter.
 ***********************************************************/
-static inline int ff_insert_outpad (
-    AVFilterContext *f,
+[CCode (cname="",cheader_filename="")]
+public static inline int ff_insert_outpad (
+    AVFilterContext? av_filter_context,
     uint index,
-    AVFilterPad *p
-) {
-    return ff_insert_pad (
-        index,
-        &f->nb_outputs,
-        offsetof (
-            AVFilterLink,
-            srcpad
-        ),
-        &f->output_pads,
-        &f->outputs,
-        p
-    );
-
-}
+    AVFilterPad? p
+);
+//  {
+//      return ff_insert_pad (
+//          index,
+//          &av_filter_context->nb_outputs,
+//          offsetof (
+//              AVFilterLink,
+//              srcpad
+//          ),
+//          &av_filter_context->output_pads,
+//          &av_filter_context->outputs,
+//          p
+//      );
+//  }
 
 /***********************************************************
 Poll a frame from the filter chain.
@@ -429,7 +464,7 @@ number in case of error
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_poll_frame (
-    AVFilterLink *link
+    AVFilterLink? link
 );
 
 /***********************************************************
@@ -465,26 +500,41 @@ filter is also allowed to simply forward a success return value.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_request_frame (
-    AVFilterLink *link
+    AVFilterLink? link
 );
 
 [CCode (cname="",cheader_filename="")]
-public define AVFILTER_DEFINE_CLASS (fname)            \
-    static const AVClass fname##_class = {      \
-        .class_name = #fname, \
-        .item_name = av_default_item_name, \
-        .option = fname##_options, \
-        .version = LIBAVUTIL_VERSION_INT, \
-        .category = AV_CLASS_CATEGORY_FILTER, \
-    }
+public define AVFILTER_DEFINE_CLASS (
+    fname
+);
+//  static const AVClass fname##_class = {
+//      .class_name = #fname,
+//      .item_name = av_default_item_name,
+//      .option = fname##_options,
+//      .version = LIBAVUTIL_VERSION_INT,
+//      .category = AV_CLASS_CATEGORY_FILTER,
+//  }
 
 /***********************************************************
 Find the index of a link.
 
 I.e. find i such that link == ctx->(in|out)puts[i]
 ***********************************************************/
-public define FF_INLINK_IDX (link)  ((int)((link)->dstpad - (link)->dst->input_pads))
-public define FF_OUTLINK_IDX (link) ((int)((link)->srcpad - (link)->src->output_pads))
+[CCode (cname="",cheader_filename="")]
+public define FF_INLINK_IDX (
+    void *link
+);
+//  {
+//      return ((int)((link)->dstpad - (link)->dst->input_pads));
+//  }
+
+[CCode (cname="",cheader_filename="")]
+public define FF_OUTLINK_IDX (
+    void *link
+);
+//  {
+//      return ((int)((link)->srcpad - (link)->src->output_pads));
+//  }
 
 /***********************************************************
 Send a frame of data to the next filter.
@@ -499,7 +549,8 @@ is responsible for unreferencing frame in case of error.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_filter_frame (
-    AVFilterLink *link, AVFrame *frame
+    AVFilterLink? link,
+    AVFrame? frame
 );
 
 /***********************************************************
@@ -511,14 +562,14 @@ Allocate a new filter context and return it.
 @return newly created filter context or NULL on failure
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public AVFilterContext *ff_filter_alloc (
-    const AVFilter *filter,
+public AVFilterContext? ff_filter_alloc (
+    AVFilter? filter,
     string inst_name
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_filter_activate (
-    AVFilterContext *filter
+    AVFilterContext? filter
 );
 
 /***********************************************************
@@ -526,22 +577,26 @@ Remove a filter from a graph;
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_filter_graph_remove_filter (
-    AVFilterGraph *graph,
-    AVFilterContext *filter
+    AVFilterGraph? graph,
+    AVFilterContext? filter
 );
 
-/***********************************************************
-The filter is aware of hardware frames, and any hardware frame context
-should not be automatically propagated through it.
-***********************************************************/
-public define FF_FILTER_FLAG_HWFRAME_AWARE (1 << 0)
+[Flags]
+public enum FooBar {
+    /***********************************************************
+    The filter is aware of hardware frames, and any hardware frame context
+    should not be automatically propagated through it.
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="")]
+    FF_FILTER_FLAG_HWFRAME_AWARE; // (1 << 0)
+}
 
 /***********************************************************
 Run one round of processing on a filter graph.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_filter_graph_run_once (
-    AVFilterGraph *graph
+    AVFilterGraph? graph
 );
 
 /***********************************************************
@@ -549,18 +604,20 @@ Normalize the qscale factor
 FIXME the H264 qscale is a log based scale, mpeg1/2 is not, the code below
       cannot be optimal
 ***********************************************************/
-static inline int ff_norm_qscale (
+[CCode (cname="",cheader_filename="")]
+public static inline int ff_norm_qscale (
     int qscale,
     int type
-) {
-    switch (type) {
-    case FF_QSCALE_TYPE_MPEG1: return qscale;
-    case FF_QSCALE_TYPE_MPEG2: return qscale >> 1;
-    case FF_QSCALE_TYPE_H264:  return qscale >> 2;
-    case FF_QSCALE_TYPE_VP56:  return (63 - qscale + 2) >> 2;
-    }
-    return qscale;
-}
+);
+//  {
+//      switch (type) {
+//      case FF_QSCALE_TYPE_MPEG1: return qscale;
+//      case FF_QSCALE_TYPE_MPEG2: return qscale >> 1;
+//      case FF_QSCALE_TYPE_H264:  return qscale >> 2;
+//      case FF_QSCALE_TYPE_VP56:  return (63 - qscale + 2) >> 2;
+//      }
+//      return qscale;
+//  }
 
 /***********************************************************
 Get number of threads for current filter instance.
@@ -568,7 +625,7 @@ This number is always same or less than graph->nb_threads.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_filter_get_nb_threads (
-    AVFilterContext *ctx
+    AVFilterContext? av_filter_context
 );
 
 /***********************************************************
@@ -586,7 +643,7 @@ compatibility).
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_filter_init_hw_frames (
-    AVFilterContext *avctx,
-    AVFilterLink *link,
+    AVFilterContext? avctx,
+    AVFilterLink? link,
     int default_pool_size
 );

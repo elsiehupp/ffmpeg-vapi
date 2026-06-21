@@ -52,7 +52,7 @@ public class RC4Context {
     ***********************************************************/
     [CCode (cname="av_rc4_init",cheader_filename="ffmpeg/libavutil/rc4.h")]
     public int av_rc4_init (
-        RC4Context d,
+        RC4Context rc4_context,
         uint8[] key,
         int key_bits,
         int decrypt
@@ -69,7 +69,7 @@ public class RC4Context {
     ***********************************************************/
     [CCode (cname="av_rc4_crypt",cheader_filename="ffmpeg/libavutil/rc4.h")]
     public void av_rc4_crypt (
-        RC4Context d,
+        RC4Context rc4_context,
         out uint8[] output_buffer,
         uint8[] input_buffer,
         int count,

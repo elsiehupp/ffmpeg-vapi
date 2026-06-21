@@ -25,13 +25,13 @@ Conversion routines between libav* and vid.stab
 /***********************************************************
 Converts an AVPixelFormat to a VSPixelFormat.
 
-@param[in] ctx AVFilterContext used for logging
+@param[in] av_filter_context AVFilterContext used for logging
 @param[in] pf  AVPixelFormat
 @return    a corresponding VSPixelFormat
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public VSPixelFormat ff_av2vs_pixfmt (
-    AVFilterContext *ctx,
+    AVFilterContext? av_filter_context,
     AVPixelFormat pf
 );
 

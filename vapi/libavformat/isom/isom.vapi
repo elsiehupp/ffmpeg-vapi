@@ -511,7 +511,7 @@ public class MOVStreamContext {
     @brief Extradata array (and size) for multiple stsd
     ***********************************************************/
     [CCode (cname="",cheader_filename="ffmpeg/libformat/isom.h")]
-    public uint8[] *extradata;
+    public uint8[][] extradata;
 
     [CCode (cname="",cheader_filename="ffmpeg/libformat/isom.h")]
     public int[] extradata_size;
@@ -916,7 +916,7 @@ public enum MOVSampleDependencyFlags {
 
 
 [CCode (cname="",cheader_filename="ffmpeg/libformat/isom.h")]
-public bool TAG_IS_AVCI (
+public static bool TAG_IS_AVCI (
     uint32 tag
 );
     //  ((tag) == MKTAG ('a', 'i', '5', 'p') ||
@@ -974,19 +974,20 @@ See CoreAudioTypes and AudioStreamBasicDescription at Apple.
 public static LibAVCodec.CodecID ff_mov_get_lpcm_codec_id (
     int bps,
     int flags
-) {
-    /***********************************************************
-    @brief Lpcm flags:
-    0x1 = float
-    0x2 = big-endian
-    0x4 = signed
-    ***********************************************************/
-    return ff_get_pcm_codec_id (
-        bps,
-        flags & 1,
-        flags & 2,
-        (flags & 4) != 0 ? -1 : 0
-    );
-}
+);
+//  {
+//      /***********************************************************
+//      @brief Lpcm flags:
+//      0x1 = float
+//      0x2 = big-endian
+//      0x4 = signed
+//      ***********************************************************/
+//      return ff_get_pcm_codec_id (
+//          bps,
+//          flags & 1,
+//          flags & 2,
+//          (flags & 4) != 0 ? -1 : 0
+//      );
+//  }
 
 } // namespace LibAVFormat

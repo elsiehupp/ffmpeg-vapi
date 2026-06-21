@@ -23,7 +23,7 @@ namespace LibAVUtil {
 ***********************************************************/
 
 /***********************************************************
-@brief Parse str and store the parsed ratio in q.
+@brief Parse str and store the parsed ratio in rational_q.
 
 Note that a ratio with infinite (1/0) or negative value is
 considered valid, so you should check on the returned value if you
@@ -31,7 +31,7 @@ want to exclude those values.
 
 The undefined value can be expressed using the "0:0" string.
 
-@param[in,out] q pointer to the Rational which will contain the ratio
+@param[in,out] rational_q pointer to the Rational which will contain the ratio
 @param[in] str the string to parse: it has to be a string in the format
 num:den, a float number or an expression
 @param[in] max the maximum allowed numerator and denominator
@@ -42,7 +42,7 @@ level of log_ctx
 ***********************************************************/
 [CCode (cname="av_parse_ratio",cheader_filename="ffmpeg/libavutil/parseutils.h")]
 public int av_parse_ratio (
-    Rational q,
+    Rational rational_q,
     string str,
     int max,
     int log_offset,

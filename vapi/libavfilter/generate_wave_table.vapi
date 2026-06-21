@@ -18,8 +18,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [CCode (cname="",cheader_filename="")]
 public enum WaveType {
+    [CCode (cname="",cheader_filename="")]
     WAVE_SIN,
+
+    [CCode (cname="",cheader_filename="")]
     WAVE_TRI,
+
+    [CCode (cname="",cheader_filename="")]
     WAVE_NB;
 }
 

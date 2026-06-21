@@ -45,7 +45,7 @@ format to interleaved signed 16-bit integer, downsampling from 48kHz to
 44.1kHz and downmixing from 5.1 channels to stereo (using the default mixing
 matrix). This is using the swr_alloc () function.
 @code
-SwrContext *swr = swr_alloc ();
+SwrContext? swr = swr_alloc ();
 av_opt_set_channel_layout (swr, "in_channel_layout", AV_CH_LAYOUT_5POINT1, 0);
 av_opt_set_channel_layout (swr, "out_channel_layout", AV_CH_LAYOUT_STEREO, 0);
 av_opt_set_int (swr, "in_sample_rate", 48000, 0);
@@ -56,7 +56,7 @@ av_opt_set_sample_fmt (swr, "out_sample_fmt", AV_SAMPLE_FMT_S16, 0);
 
 The same job can be done using swr_alloc_set_opts () as well:
 @code
-SwrContext *swr = swr_alloc_set_opts (NULL, // we're allocating a new context
+SwrContext? swr = swr_alloc_set_opts (NULL, // we're allocating a new context
                       AV_CH_LAYOUT_STEREO, // out_ch_layout
                       AV_SAMPLE_FMT_S16, // out_sample_fmt
                       44100, // out_sample_rate
@@ -91,7 +91,7 @@ swr_get_delay ().
 The following code demonstrates the conversion loop assuming the parameters
 from above and caller-defined functions get_input () and handle_output ():
 @code
-uint8[] *input;
+uint8[][] input;
 public int in_samples;
 
 while (get_input (&input, &in_samples)) {
@@ -125,38 +125,65 @@ These constants are used for the @ref avoptions interface for lswr.
 
 ***********************************************************/
 
-/***********************************************************
-Force resampling even if equal sample rate
-TODO use int resample ?
-long term TODO can we enable this dynamically?
-***********************************************************/
-public define SWR_FLAG_RESAMPLE 1
+[CCode (cname="",cheader_filename="")]
+public enum FooBar {
+    /***********************************************************
+    Force resampling even if equal sample rate
+    TODO use int resample ?
+    long term TODO can we enable this dynamically?
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="")]
+    SWR_FLAG_RESAMPLE; // 1
+}
 
 /***********************************************************
 Dithering algorithms
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public enum SwrDitherType {
-    SWR_DITHER_NONE = 0,
+    [CCode (cname="")]
+    SWR_DITHER_NONE; // = 0,
+
+    [CCode (cname="")]
     SWR_DITHER_RECTANGULAR,
+
+    [CCode (cname="")]
     SWR_DITHER_TRIANGULAR,
+
+    [CCode (cname="")]
     SWR_DITHER_TRIANGULAR_HIGHPASS,
 
     /***********************************************************
     not part of API/ABI
     ***********************************************************/
-    SWR_DITHER_NS = 64,
+    [CCode (cname="")]
+    SWR_DITHER_NS, // = 64,
+
+    [CCode (cname="")]
     SWR_DITHER_NS_LIPSHITZ,
+
+    [CCode (cname="")]
     SWR_DITHER_NS_F_WEIGHTED,
+
+    [CCode (cname="")]
     SWR_DITHER_NS_MODIFIED_E_WEIGHTED,
+
+    [CCode (cname="")]
     SWR_DITHER_NS_IMPROVED_E_WEIGHTED,
+
+    [CCode (cname="")]
     SWR_DITHER_NS_SHIBATA,
+
+    [CCode (cname="")]
     SWR_DITHER_NS_LOW_SHIBATA,
+
+    [CCode (cname="")]
     SWR_DITHER_NS_HIGH_SHIBATA,
 
     /***********************************************************
     not part of API/ABI
     ***********************************************************/
+    [CCode (cname="")]
     SWR_DITHER_NB;
 }
 
@@ -168,16 +195,19 @@ public enum SwrEngine {
     /***********************************************************
     SW Resampler
     ***********************************************************/
+    [CCode (cname="")]
     SWR_ENGINE_SWR,
 
     /***********************************************************
     SoX Resampler
     ***********************************************************/
+    [CCode (cname="")]
     SWR_ENGINE_SOXR,
 
     /***********************************************************
     not part of API/ABI
     ***********************************************************/
+    [CCode (cname="")]
     SWR_ENGINE_NB;
 }
 
@@ -189,16 +219,19 @@ public enum SwrFilterType {
     /***********************************************************
     Cubic
     ***********************************************************/
+    [CCode (cname="")]
     SWR_FILTER_TYPE_CUBIC,
 
     /***********************************************************
     Blackman Nuttall windowed sinc
     ***********************************************************/
+    [CCode (cname="")]
     SWR_FILTER_TYPE_BLACKMAN_NUTTALL,
 
     /***********************************************************
     Kaiser windowed sinc
     ***********************************************************/
+    [CCode (cname="")]
     SWR_FILTER_TYPE_KAISER;
 };
 
@@ -214,7 +247,7 @@ structure.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 [Compact]
-public class SwrContext SwrContext;
+public class SwrContext { }
 
 /***********************************************************
 Get the AVClass for SwrContext. It can be used in combination with
@@ -223,7 +256,8 @@ AV_OPT_SEARCH_FAKE_OBJ for examining options.
 @see av_opt_find ().
 @return the AVClass of SwrContext
 ***********************************************************/
-const AVClass *swr_get_class ();
+[CCode (cname="",cheader_filename="")]
+public AVClass? swr_get_class ();
 
 /***********************************************************
 @name SwrContext constructor functions
@@ -240,8 +274,7 @@ with swr_alloc_set_opts ()) before calling swr_init ().
 @return NULL on error, allocated context otherwise
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-[Compact]
-public class SwrContext *swr_alloc ();
+public SwrContext? swr_alloc ();
 
 /***********************************************************
 Initialize context after user parameters have been set.
@@ -255,7 +288,7 @@ Initialize context after user parameters have been set.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_init (
-    SwrContext *s
+    SwrContext? s
 );
 
 /***********************************************************
@@ -267,7 +300,7 @@ Check whether an swr context has been initialized or not.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_is_initialized (
-    SwrContext *s
+    SwrContext? s
 );
 
 /***********************************************************
@@ -291,8 +324,8 @@ on the allocated context.
 @return NULL on error, allocated context otherwise
 ***********************************************************/
 [Compact]
-public SwrContext *swr_alloc_set_opts (
-    SwrContext *s,
+public SwrContext? swr_alloc_set_opts (
+    SwrContext? s,
     int64 out_ch_layout,
     AVSampleFormat out_sample_fmt,
     int out_sample_rate,
@@ -316,7 +349,9 @@ Free the given SwrContext and set the pointer to NULL.
 @param[in] s a pointer to a pointer to Swr context
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public void swr_free (SwrContext **s);
+public void swr_free (
+    SwrContext **s
+);
 
 /***********************************************************
 Closes the context so that swr_is_initialized () returns 0.
@@ -329,7 +364,9 @@ where one tries to support libavresample and libswresample.
 @param[in,out] s Swr context to be closed
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public void swr_close (SwrContext *s);
+public void swr_close (
+    SwrContext? s
+);
 
 /***********************************************************
 @}
@@ -359,10 +396,10 @@ input samples. Conversion will run directly without copying whenever possible.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_convert (
-    SwrContext *s,
-    uint8[] *out,
+    SwrContext? s,
+    uint8[][] out,
     int out_count,
-    uint8[] *in,
+    uint8[][] in,
     int in_count
 );
 
@@ -385,7 +422,7 @@ timestamps are in 1/(in_sample_rate * out_sample_rate) units.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int64 swr_next_pts (
-    SwrContext *s,
+    SwrContext? s,
     int64 pts
 );
 
@@ -416,7 +453,7 @@ public internally called when needed in swr_next_pts ().
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_set_compensation (
-    SwrContext *s,
+    SwrContext? s,
     int sample_delta,
     int compensation_distance
 );
@@ -431,7 +468,7 @@ Set a customized input channel mapping.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_set_channel_mapping (
-    SwrContext *s,
+    SwrContext? s,
     int[] channel_map
 );
 
@@ -484,7 +521,7 @@ Set a customized remix matrix.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_set_matrix (
-    SwrContext *s,
+    SwrContext? s,
     double[] matrix,
     int stride
 );
@@ -509,7 +546,7 @@ if needed for "hard" compensation.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_drop_output (
-    SwrContext *s,
+    SwrContext? s,
     int count
 );
 
@@ -526,7 +563,7 @@ if needed for "hard" compensation.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_inject_silence (
-    SwrContext *s,
+    SwrContext? s,
     int count
 );
 
@@ -556,7 +593,7 @@ for upsampling and the input sample rate.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int64 swr_get_delay (
-    SwrContext *s,
+    SwrContext? s,
     int64 base
 );
 
@@ -578,7 +615,7 @@ swr_get_out_samples () returns for the same number of input samples.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_get_out_samples (
-    SwrContext *s,
+    SwrContext? s,
     int in_samples
 );
 
@@ -659,9 +696,9 @@ or the result of a bitwise-OR of them is returned.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_convert_frame (
-    SwrContext *swr,
+    SwrContext? swr,
     AVFrame output,
-    AVFrame *input
+    AVFrame? input
 );
 
 /***********************************************************
@@ -680,9 +717,9 @@ The function calls swr_close () internally if the context is open.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swr_config_frame (
-    SwrContext *swr,
-    AVFrame *out,
-    AVFrame *in
+    SwrContext? swr,
+    AVFrame? out,
+    AVFrame? in
 );
 
 /***********************************************************

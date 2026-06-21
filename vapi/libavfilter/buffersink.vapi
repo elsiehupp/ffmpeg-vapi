@@ -31,7 +31,7 @@ memory buffer sink API for audio and video
 /***********************************************************
 Get a frame with filtered data from sink and put it in frame.
 
-@param ctx    pointer to a buffersink or abuffersink filter context.
+@param av_filter_context    pointer to a buffersink or abuffersink filter context.
 @param frame  pointer to an allocated frame that will be filled with data.
               The data must be freed using av_frame_unref () / av_frame_free ()
 @param flags  a combination of AV_BUFFERSINK_FLAG_* flags
@@ -40,24 +40,29 @@ Get a frame with filtered data from sink and put it in frame.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int av_buffersink_get_frame_flags (
-    AVFilterContext *ctx,
-    AVFrame *frame,
+    AVFilterContext? av_filter_context,
+    AVFrame? frame,
     int flags
 );
 
-/***********************************************************
-Tell av_buffersink_get_buffer_ref () to read video/samples buffer
-reference, but not remove it from the buffer. This is useful if you
-need only to read a video/samples buffer, without to fetch it.
-***********************************************************/
-public define AV_BUFFERSINK_FLAG_PEEK 1
+[Flags]
+public enum FooBar {
+    /***********************************************************
+    Tell av_buffersink_get_buffer_ref () to read video/samples buffer
+    reference, but not remove it from the buffer. This is useful if you
+    need only to read a video/samples buffer, without to fetch it.
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="")]
+    AV_BUFFERSINK_FLAG_PEEK, // 1
 
-/***********************************************************
-Tell av_buffersink_get_buffer_ref () not to request a frame from its input.
-If a frame is already buffered, it is read (and removed from the buffer),
-but if no frame is present, return AVERROR (EAGAIN).
-***********************************************************/
-public define AV_BUFFERSINK_FLAG_NO_REQUEST 2
+    /***********************************************************
+    Tell av_buffersink_get_buffer_ref () not to request a frame from its input.
+    If a frame is already buffered, it is read (and removed from the buffer),
+    but if no frame is present, return AVERROR (EAGAIN).
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="")]
+    AV_BUFFERSINK_FLAG_NO_REQUEST; // 2
+}
 
 /***********************************************************
 Struct to use for initializing a buffersink context.
@@ -68,7 +73,8 @@ public class AVBufferSinkParams {
     /***********************************************************
     list of allowed pixel formats, terminated by AV_PIX_FMT_NONE
     ***********************************************************/
-    const enum AVPixelFormat *pixel_fmts;
+    [CCode (cname="")]
+    public AVPixelFormat[] pixel_fmts;
 }
 
 /***********************************************************
@@ -76,7 +82,8 @@ Create an AVBufferSinkParams structure.
 
 Must be freed with av_free ().
 ***********************************************************/
-AVBufferSinkParams *av_buffersink_params_alloc ();
+[CCode (cname="",cheader_filename="")]
+public AVBufferSinkParams? av_buffersink_params_alloc ();
 
 /***********************************************************
 Struct to use for initializing an abuffersink context.
@@ -87,12 +94,14 @@ public class AVABufferSinkParams {
     /***********************************************************
     list of allowed sample formats, terminated by AV_SAMPLE_FMT_NONE
     ***********************************************************/
-    const enum AVSampleFormat *sample_fmts;
+    [CCode (cname="")]
+    public AVSampleFormat? sample_fmts;
 
     /***********************************************************
     list of allowed channel layouts, terminated by -1
     ***********************************************************/
-    const int64 *channel_layouts;
+    [CCode (cname="")]
+    public int64[] channel_layouts;
 
     /***********************************************************
     list of allowed channel counts, terminated by -1
@@ -118,7 +127,8 @@ Create an AVABufferSinkParams structure.
 
 Must be freed with av_free ().
 ***********************************************************/
-AVABufferSinkParams *av_abuffersink_params_alloc ();
+[CCode (cname="",cheader_filename="")]
+public AVABufferSinkParams? av_abuffersink_params_alloc ();
 
 /***********************************************************
 Set the frame size for an audio buffer sink.
@@ -129,7 +139,7 @@ not enough. The last buffer at EOF will be padded with 0.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void av_buffersink_set_frame_size (
-    AVFilterContext *ctx,
+    AVFilterContext? av_filter_context,
     uint frame_size
 );
 
@@ -141,55 +151,60 @@ Get the properties of the stream
 
 [CCode (cname="",cheader_filename="")]
 public AVMediaType av_buffersink_get_type (
-    const AVFilterContext *ctx
+    AVFilterContext? av_filter_context
 );
 
-AVRational av_buffersink_get_time_base (
-    const AVFilterContext *ctx
+[CCode (cname="",cheader_filename="")]
+public AVRational av_buffersink_get_time_base (
+    AVFilterContext? av_filter_context
 );
 
 [CCode (cname="",cheader_filename="")]
 public int av_buffersink_get_format (
-    const AVFilterContext *ctx
+    AVFilterContext? av_filter_context
 );
 
 
-AVRational av_buffersink_get_frame_rate (
-    const AVFilterContext *ctx
+[CCode (cname="",cheader_filename="")]
+public AVRational av_buffersink_get_frame_rate (
+    AVFilterContext? av_filter_context
 );
 
 [CCode (cname="",cheader_filename="")]
 public int av_buffersink_get_w (
-    const AVFilterContext *ctx
+    AVFilterContext? av_filter_context
 );
 
 [CCode (cname="",cheader_filename="")]
 public int av_buffersink_get_h (
-    const AVFilterContext *ctx
+    AVFilterContext? av_filter_context
 );
 
-AVRational av_buffersink_get_sample_aspect_ratio (
-    const AVFilterContext *ctx
+[CCode (cname="",cheader_filename="")]
+public AVRational av_buffersink_get_sample_aspect_ratio (
+    AVFilterContext? av_filter_context
 );
 
 
 [CCode (cname="",cheader_filename="")]
 public int av_buffersink_get_channels (
-    const AVFilterContext *ctx
+    AVFilterContext? av_filter_context
 );
 
-uint64 av_buffersink_get_channel_layout (
-    const AVFilterContext *ctx
+[CCode (cname="",cheader_filename="")]
+public uint64 av_buffersink_get_channel_layout (
+    AVFilterContext? av_filter_context
 );
 
 [CCode (cname="",cheader_filename="")]
 public int av_buffersink_get_sample_rate (
-    const AVFilterContext *ctx
+    AVFilterContext? av_filter_context
 );
 
 
-AVBufferRef av_buffersink_get_hw_frames_ctx (
-    const AVFilterContext *ctx
+[CCode (cname="",cheader_filename="")]
+public AVBufferRef av_buffersink_get_hw_frames_ctx (
+    AVFilterContext? av_filter_context
 );
 
 
@@ -200,7 +215,7 @@ AVBufferRef av_buffersink_get_hw_frames_ctx (
 /***********************************************************
 Get a frame with filtered data from sink and put it in frame.
 
-@param ctx pointer to a context of a buffersink or abuffersink AVFilter.
+@param av_filter_context pointer to a context of a buffersink or abuffersink AVFilter.
 @param frame pointer to an allocated frame that will be filled with data.
              The data must be freed using av_frame_unref () / av_frame_free ()
 
@@ -213,8 +228,8 @@ Get a frame with filtered data from sink and put it in frame.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int av_buffersink_get_frame (
-    AVFilterContext *ctx,
-    AVFrame *frame
+    AVFilterContext? av_filter_context,
+    AVFrame? frame
 );
 
 /***********************************************************
@@ -222,7 +237,7 @@ Same as av_buffersink_get_frame (), but with the ability to specify the number
 of samples read. This function is less efficient than
 av_buffersink_get_frame (), because it copies the data around.
 
-@param ctx pointer to a context of the abuffersink AVFilter.
+@param av_filter_context pointer to a context of the abuffersink AVFilter.
 @param frame pointer to an allocated frame that will be filled with data.
              The data must be freed using av_frame_unref () / av_frame_free ()
              frame will contain exactly nb_samples audio samples, except at
@@ -236,8 +251,8 @@ the other with a single sink, not both.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int av_buffersink_get_samples (
-    AVFilterContext *ctx,
-    AVFrame *frame,
+    AVFilterContext? av_filter_context,
+    AVFrame? frame,
     int nb_samples
 );
 

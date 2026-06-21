@@ -253,7 +253,7 @@ public enum PollEvent {
 //  DEF_FS_FUNCTION2 (stat, _wstati64, _stati64, stat*)
 
 //  static inline int win32_rename (string src_utf8, string dest_utf8) {
-//      wchar_t src_w, *dest_w;
+//      wchar_t src_w,? dest_w;
 //      int ret;
 
 //      if (utf8towchar (src_utf8, &src_w))

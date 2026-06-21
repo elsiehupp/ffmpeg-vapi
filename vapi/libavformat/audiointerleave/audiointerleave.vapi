@@ -62,6 +62,7 @@ public class AudioInterleaveContext {
     /***********************************************************
     @brief Time base of output audio packets
     ***********************************************************/
+    [CCode (cname="")]
     public LibAVUtil.Rational time_base;
 }
 

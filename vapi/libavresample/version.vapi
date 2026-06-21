@@ -23,21 +23,36 @@ Libavresample version macros.
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVRESAMPLE_VERSION_MAJOR 4
-public define LIBAVRESAMPLE_VERSION_MINOR 0
-public define LIBAVRESAMPLE_VERSION_MICRO 0
+public const int LIBAVRESAMPLE_VERSION_MAJOR; // 4
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVRESAMPLE_VERSION_INT AV_VERSION_INT (LIBAVRESAMPLE_VERSION_MAJOR, \
-                                                  LIBAVRESAMPLE_VERSION_MINOR, \
-                                                  LIBAVRESAMPLE_VERSION_MICRO)
-public define LIBAVRESAMPLE_VERSION AV_VERSION (LIBAVRESAMPLE_VERSION_MAJOR, \
-                                                  LIBAVRESAMPLE_VERSION_MINOR, \
-                                                  LIBAVRESAMPLE_VERSION_MICRO)
-public define LIBAVRESAMPLE_BUILD LIBAVRESAMPLE_VERSION_INT
+public const int LIBAVRESAMPLE_VERSION_MINOR; // 0
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVRESAMPLE_IDENT        "Lavr" AV_STRINGIFY (LIBAVRESAMPLE_VERSION)
+public const int LIBAVRESAMPLE_VERSION_MICRO; // 0
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBAVRESAMPLE_VERSION_INT;
+//  AV_VERSION_INT (
+//      LIBAVRESAMPLE_VERSION_MAJOR,
+//      LIBAVRESAMPLE_VERSION_MINOR,
+//      LIBAVRESAMPLE_VERSION_MICRO
+//  );
+
+[CCode (cname="",cheader_filename="")]
+public const string LIBAVRESAMPLE_VERSION;
+//  AV_VERSION (
+//      LIBAVRESAMPLE_VERSION_MAJOR,
+//      LIBAVRESAMPLE_VERSION_MINOR,
+//      LIBAVRESAMPLE_VERSION_MICRO
+//  );
+
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBAVRESAMPLE_BUILD; // LIBAVRESAMPLE_VERSION_INT
+
+[CCode (cname="",cheader_filename="")]
+public const string LIBAVRESAMPLE_IDENT; // "Lavr" AV_STRINGIFY (LIBAVRESAMPLE_VERSION)
 
 /***********************************************************
 FF_API_* defines may be placed below to indicate public API that will be

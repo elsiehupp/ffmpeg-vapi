@@ -45,7 +45,7 @@ public class BitStreamFilterContextOld {
     public CodecParserContext[] parser;
 
     [CCode (cname="next")]
-    public BitStreamFilterContextOld *next;
+    public BitStreamFilterContextOld? next;
 
     /***********************************************************
     @brief Internal default arguments, used if null is passed to av_bitstream_filter_filter ().

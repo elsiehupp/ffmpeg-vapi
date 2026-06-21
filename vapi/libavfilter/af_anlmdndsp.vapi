@@ -46,10 +46,10 @@ public class AudioNLMDNDSPContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_anlmdn_init (
-    AudioNLMDNDSPContext *s
+    AudioNLMDNDSPContext? s
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_anlmdn_init_x86 (
-    AudioNLMDNDSPContext *s
+    AudioNLMDNDSPContext? s
 );

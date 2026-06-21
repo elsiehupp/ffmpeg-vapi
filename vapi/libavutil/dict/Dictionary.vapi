@@ -111,7 +111,7 @@ public class Dictionary  {
     @brief Parse the key/value pairs list and add the parsed entries to a dictionary.
 
     In case of failure, all the successfully set entries are stored in
-    *pm. You may need to manually free the created dictionary.
+   ? pm. You may need to manually free the created dictionary.
 
     @param key_val_sep a 0-terminated list of characters used to separate
         key from value

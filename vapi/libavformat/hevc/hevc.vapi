@@ -32,7 +32,7 @@ The NAL units are converted to an MP4-compatible format (start code prefixes
 are replaced by 4-byte size fields, as per ISO/IEC 14496-15).
 
 If filter_ps is non-zero, any HEVC parameter sets found in the input will be
-discarded, and *ps_count will be set to the number of discarded PS NAL units.
+discarded, and? ps_count will be set to the number of discarded PS NAL units.
 
 @param pb address of the AVIOContext where the data shall be written
 @param buf_in address of the buffer holding the input data
@@ -60,9 +60,9 @@ The NAL units are converted to an MP4-compatible format (start code prefixes
 are replaced by 4-byte size fields, as per ISO/IEC 14496-15).
 
 If filter_ps is non-zero, any HEVC parameter sets found in the input will be
-discarded, and *ps_count will be set to the number of discarded PS NAL units.
+discarded, and? ps_count will be set to the number of discarded PS NAL units.
 
-On output, *size holds the size (in bytes) of the output data buffer.
+On output,? size holds the size (in bytes) of the output data buffer.
 
 @param buf_in address of the buffer holding the input data
 @param size address of the variable holding the size (in bytes) of the input

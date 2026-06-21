@@ -35,21 +35,24 @@ program birth year, defined by the program for show_banner ()
 ***********************************************************/
 //  extern const int program_birth_year;
 
-//  extern AVCodecContext *avcodec_opts[AVMEDIA_TYPE_NB];
-//  extern AVFormatContext *avformat_opts;
-//  extern AVDictionary *sws_dict;
-//  extern AVDictionary *swr_opts;
-//  extern AVDictionary *format_opts, *codec_opts, *resample_opts;
+//  extern AVCodecContext? avcodec_opts[AVMEDIA_TYPE_NB];
+//  extern AVFormatContext? avformat_opts;
+//  extern AVDictionary? sws_dict;
+//  extern AVDictionary? swr_opts;
+//  extern AVDictionary? format_opts,? codec_opts,? resample_opts;
 //  extern int hide_banner;
+
+[CCode (cname="",cheader_filename="")]
+public delegate void CallbackDelegate (
+    int ret
+);
 
 /***********************************************************
 Register a program-specific cleanup routine.
 ***********************************************************/
 [CCode (cname="register_exit")]
 public void register_exit (
-    void (*cb)(
-        int ret
-    )
+    CallbackDelegate cb
 );
 
 /***********************************************************
@@ -310,12 +313,14 @@ public class OptionDef {
         [CCode (cname="")]
         public void *dst_ptr;
 
-        [CCode (cname="func_arg")]
-        public int (*func_arg)(
-            void *,
-            string,
-            string
+        public delegate int FuncArgDelegate (
+            void *data,
+            string string_1,
+            string string_2
         );
+
+        [CCode (cname="func_arg")]
+        public FuncArgDelegate func_arg;
 
         [CCode (cname="")]
         public size_t off;
@@ -349,7 +354,7 @@ public void show_help_options (
 
 #if CONFIG_AVDEVICE
 [CCode (cname="",cheader_filename="")]
-public define CMDUTILS_COMMON_OPTIONS_AVDEVICE                                                                                \
+public define CMDUTILS_COMMON_OPTIONS_AVDEVICE
     {
         "sources",
         OPT_EXIT | HAS_ARG,
@@ -374,7 +379,7 @@ public define CMDUTILS_COMMON_OPTIONS_AVDEVICE                                  
 #endif
 
 [CCode (cname="",cheader_filename="")]
-public define CMDUTILS_COMMON_OPTIONS                                                                                         \
+public define CMDUTILS_COMMON_OPTIONS
     {
         "L",
         OPT_EXIT,
@@ -632,6 +637,12 @@ public int show_help (
     string arg
 );
 
+[CCode (cname="",cheader_filename="")]
+public delegate void ParseArgDelegate (
+    void *optctx,
+    string str
+);
+
 /***********************************************************
 Parse the command line arguments.
 
@@ -648,12 +659,9 @@ not have to be processed.
 public void parse_options (
     void *optctx,
     int argc,
-    string *argv,
-    OptionDef *options,
-    void (* parse_arg_function)(
-        void *optctx,
-        char*
-    )
+    string? argv,
+    OptionDef? options,
+    ParseArgDelegate parse_arg_function
 );
 
 /***********************************************************
@@ -666,7 +674,7 @@ public int parse_option (
     void *optctx,
     string opt,
     string arg,
-    OptionDef *options
+    OptionDef? options
 );
 
 /***********************************************************
@@ -722,25 +730,25 @@ public class OptionGroup {
     public string arg;
 
     [CCode (cname="")]
-    public Option *opts;
+    public Option? opts;
 
     [CCode (cname="")]
     public int nb_opts;
 
     [CCode (cname="")]
-    public AVDictionary *codec_opts;
+    public AVDictionary? codec_opts;
 
     [CCode (cname="")]
-    public AVDictionary *format_opts;
+    public AVDictionary? format_opts;
 
     [CCode (cname="")]
-    public AVDictionary *resample_opts;
+    public AVDictionary? resample_opts;
 
     [CCode (cname="")]
-    public AVDictionary *sws_dict;
+    public AVDictionary? sws_dict;
 
     [CCode (cname="")]
-    public AVDictionary *swr_opts;
+    public AVDictionary? swr_opts;
 }
 
 /***********************************************************
@@ -787,7 +795,7 @@ Parse an options group and write results into optctx.
 [CCode (cname="",cheader_filename="")]
 public int parse_optgroup (
     void *optctx,
-    OptionGroup *g
+    OptionGroup? g
 );
 
 /***********************************************************
@@ -810,11 +818,11 @@ same as the order of group definitions.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int split_commandline (
-    OptionParseContext *octx,
+    OptionParseContext? octx,
     int argc,
     string argv[],
-    OptionDef *options,
-    OptionGroupDef *groups,
+    OptionDef? options,
+    OptionGroupDef? groups,
     int nb_groups
 );
 
@@ -823,7 +831,7 @@ Free all allocated memory in an OptionParseContext.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void uninit_parse_context (
-    OptionParseContext *octx
+    OptionParseContext? octx
 );
 
 /***********************************************************
@@ -832,8 +840,8 @@ Find the '-loglevel' option in the command line args and apply it.
 [CCode (cname="",cheader_filename="")]
 public void parse_loglevel (
     int argc
-    string *argv,
-    OptionDef *options
+    string? argv,
+    OptionDef? options
 );
 
 /***********************************************************
@@ -842,24 +850,24 @@ Return index of option opt in argv or 0 if not found.
 [CCode (cname="",cheader_filename="")]
 public int locate_option (
     int argc,
-    string *argv,
-    OptionDef *options,
+    string? argv,
+    OptionDef? options,
     string optname
 );
 
 /***********************************************************
 Check if the given stream matches a stream specifier.
 
-@param s  Corresponding format context.
-@param st Stream from s to be checked.
+@param av_format_context  Corresponding format context.
+@param st Stream from av_format_context to be checked.
 @param spec A stream specifier of the [v|a|s|d]:[\<stream index\>] form.
 
 @return 1 if the stream matches, 0 if it doesn't, <0 on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int check_stream_specifier (
-    AVFormatContext *s,
-    AVStream *st,
+    AVFormatContext? av_format_context,
+    AVStream? st,
     string spec
 );
 
@@ -871,34 +879,36 @@ opts which apply to the codec with ID codec_id.
 
 @param opts     dictionary to place options in
 @param codec_id ID of the codec that should be filtered for
-@param s Corresponding format context.
-@param st A stream from s for which the options should be filtered.
+@param av_format_context Corresponding format context.
+@param st A stream from av_format_context for which the options should be filtered.
 @param codec The particular codec for which the options should be filtered.
              If null, the default one is looked up according to the codec id.
 @return a pointer to the created dictionary
 ***********************************************************/
-public AVDictionary *filter_codec_opts (
-    AVDictionary *opts,
+[CCode (cname="",cheader_filename="")]
+public AVDictionary? filter_codec_opts (
+    AVDictionary? opts,
     AVCodecID codec_id,
-    AVFormatContext *s,
-    AVStream *st,
-    AVCodec *codec
+    AVFormatContext? av_format_context,
+    AVStream? st,
+    AVCodec? codec
 );
 
 /***********************************************************
 Setup AVCodecContext options for avformat_find_stream_info ().
 
 Create an array of dictionaries, one dictionary for each stream
-contained in s.
+contained in av_format_context.
 Each dictionary will contain the options from codec_opts which can
 be applied to the corresponding stream codec context.
 
 @return pointer to the created array of dictionaries, NULL if it
 cannot be created
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public AVDictionary **setup_find_stream_info_opts (
-    AVFormatContext *s,
-    AVDictionary *codec_opts
+    AVFormatContext? av_format_context,
+    AVDictionary? codec_opts
 );
 
 /***********************************************************
@@ -924,8 +934,8 @@ the program.
 [CCode (cname="",cheader_filename="")]
 public void show_banner (
     int argc,
-    string *argv,
-    OptionDef *options
+    string? argv,
+    OptionDef? options
 );
 
 /***********************************************************
@@ -1179,7 +1189,7 @@ codec_name-preset_name.avpreset in the above-mentioned directories.
 preset, may be NULL
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public FILE *get_preset_file (
+public FILE? get_preset_file (
     string filename,
     size_t filename_size,
     string preset_name,
@@ -1210,77 +1220,85 @@ public define media_type_string av_get_media_type_string
 
 [CCode (cname="",cheader_filename="")]
 public define GROW_ARRAY (
-    array,
-    nb_elems
-) {
-    array = grow_array (
-        array,
-        sizeof (*array),
-        &nb_elems,
-        nb_elems + 1
-    );
-}
+    void *array,
+    void *nb_elems
+);
+//  {
+//      array = grow_array (
+//          array,
+//          sizeof (*array),
+//          &nb_elems,
+//          nb_elems + 1
+//      );
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public define GET_PIX_FMT_NAME (
-    pix_fmt
-) {
-    string name = av_get_pix_fmt_name (pix_fmt);
-}
+    void *pix_fmt
+);
+//  {
+//      string name = av_get_pix_fmt_name (pix_fmt);
+//  }
 
 [CCode (cname="",cheader_filename="")]
-public define GET_CODEC_NAME (id) {
-    string name = avcodec_descriptor_get (id)->name;
-}
+public define GET_CODEC_NAME (
+    void *id
+);
+//  {
+//      string name = avcodec_descriptor_get (id)->name;
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public define GET_SAMPLE_FMT_NAME (
-    sample_fmt
-) {
-    string name = av_get_sample_fmt_name (sample_fmt);
-}
+    void *sample_fmt
+);
+//  {
+//      string name = av_get_sample_fmt_name (sample_fmt);
+//  }
 
 [CCode (cname="",cheader_filename="")]
-public define GET_SAMPLE_RATE_NAME (rate) {
-    char name[16];
-    snprintf (
-        name,
-        sizeof (name),
-        "%d",
-        rate
-    );
-
-}
+public define GET_SAMPLE_RATE_NAME (
+    void *rate
+);
+//  {
+//      char name[16];
+//      snprintf (
+//          name,
+//          sizeof (name),
+//          "%d",
+//          rate
+//      );
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public define GET_CH_LAYOUT_NAME (
-    ch_layout
-) {
-    char name[16];
-    snprintf (
-        name,
-        sizeof (name),
-        "0x%"PRIx64,
-        ch_layout
-    );
-
-}
+    void *ch_layout
+);
+//  {
+//      char name[16];
+//      snprintf (
+//          name,
+//          sizeof (name),
+//          "0x%"PRIx64,
+//          ch_layout
+//      );
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public define GET_CH_LAYOUT_DESC (
-    ch_layout
-) {
-    char name[128];
-    av_get_channel_layout_string (
-        name,
-        sizeof (name),
-        0,
-        ch_layout
-    );
-
-}
+    void *ch_layout
+);
+//  {
+//      char name[128];
+//      av_get_channel_layout_string (
+//          name,
+//          sizeof (name),
+//          0,
+//          ch_layout
+//      );
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public double get_rotation (
-    AVStream *st
+    AVStream? st
 );

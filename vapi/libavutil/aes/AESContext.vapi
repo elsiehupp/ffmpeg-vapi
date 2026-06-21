@@ -45,7 +45,7 @@ public class AESContext {
     ***********************************************************/
     [CCode (cname="av_aes_init",cheader_filename="ffmpeg/libavutil/aes.h")]
     public int av_aes_init (
-        AESContext a,
+        AESContext aes_context,
         uint8[] key,
         int key_bits,
         int decrypt
@@ -62,7 +62,7 @@ public class AESContext {
     ***********************************************************/
     [CCode (cname="av_aes_crypt",cheader_filename="ffmpeg/libavutil/aes.h")]
     public void av_aes_crypt (
-        AESContext a,
+        AESContext aes_context,
         out uint8[] output_buffer,
         uint8[] input_buffer,
         int count,

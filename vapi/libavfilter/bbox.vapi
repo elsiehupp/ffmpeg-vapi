@@ -46,7 +46,7 @@ region with values > min_val.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_calculate_bounding_box (
-    FFBoundingBox *bbox,
+    FFBoundingBox? bbox,
     uint8[] data,
     int linesize,
     int w,

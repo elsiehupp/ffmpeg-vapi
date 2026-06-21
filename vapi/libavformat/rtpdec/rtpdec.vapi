@@ -293,7 +293,7 @@ public class RTPPacket {
     public int64 recvtime;
 
     [CCode (cname="",cheader_filename="ffmpeg/libformat/rtpdec.h")]
-    public RTPPacket *next;
+    public RTPPacket? next;
 }
 
 [CCode (cname="struct RTPDemuxContext",cheader_filename="ffmpeg/libformat/rtpdec.h")]

@@ -29,21 +29,29 @@ public class FilterParam {
     [CCode (cname="")]
     public int power;
 
-    string radius_expr;
+    [CCode (cname="")]
+    public string radius_expr;
 }
 
 [CCode (cname="",cheader_filename="")]
-public define Y 0
-public define U 1
-public define V 2
-public define A 3
+public enum FooBar {
+    [CCode (cname="",cheader_filename="")]
+    Y, // 0
+
+    [CCode (cname="",cheader_filename="")]
+    U, // 1
+
+    [CCode (cname="",cheader_filename="")]
+    V, // 2
+
+    [CCode (cname="",cheader_filename="")]
+    A; // 3
+}
 
 [CCode (cname="",cheader_filename="")]
 public int ff_boxblur_eval_filter_params (
-    AVFilterLink *inlink,
-    FilterParam *luma_param,
-    FilterParam *chroma_param,
-    FilterParam *alpha_param
+    AVFilterLink? inlink,
+    FilterParam? luma_param,
+    FilterParam? chroma_param,
+    FilterParam? alpha_param
 );
-
-#endif // AVFILTER_BOXBLUR_H

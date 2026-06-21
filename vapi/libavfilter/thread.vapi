@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public int ff_graph_thread_init (AVFilterGraph *graph);
+public int ff_graph_thread_init (AVFilterGraph? graph);
 
 [CCode (cname="",cheader_filename="")]
-public void ff_graph_thread_free (AVFilterGraph *graph);
+public void ff_graph_thread_free (AVFilterGraph? graph);

@@ -33,7 +33,7 @@ public class PullupField {
     public int parity;
 
     [CCode (cname="")]
-    public PullupBuffer *buffer;
+    public PullupBuffer? buffer;
 
     [CCode (cname="")]
     public uint flags;
@@ -54,10 +54,10 @@ public class PullupField {
     public int[] vars;
 
     [CCode (cname="")]
-    public PullupField *prev;
+    public PullupField? prev;
 
     [CCode (cname="")]
-    public PullupField *next;
+    public PullupField? next;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -73,13 +73,13 @@ public class PullupFrame {
     public int parity;
 
     [CCode (cname="")]
-    public PullupBuffer *ifields[4];
+    public PullupBuffer? ifields[4];
 
     [CCode (cname="")]
-    public PullupBuffer *ofields[2];
+    public PullupBuffer? ofields[2];
 
     [CCode (cname="")]
-    public PullupBuffer *buffer;
+    public PullupBuffer? buffer;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -131,13 +131,13 @@ public class PullupContext {
     public int planeheight[4];
 
     [CCode (cname="")]
-    public PullupField *first;
+    public PullupField? first;
 
     [CCode (cname="")]
-    public PullupField *last;
+    public PullupField? last;
 
     [CCode (cname="")]
-    public PullupField *head;
+    public PullupField? head;
 
     [CCode (cname="")]
     public PullupBuffer buffers[10];
@@ -145,30 +145,36 @@ public class PullupContext {
     [CCode (cname="")]
     public PullupFrame frame;
 
+    public delegate int DiffDelegate (
+        uint8[] a,
+        uint8[] b,
+        ptrdiff_t s
+    );
+
     [CCode (cname="diff")]
-    public int (*diff)(
+    public DiffDelegate diff;
+
+    public delegate int CombDelegate (
         uint8[] a,
         uint8[] b,
         ptrdiff_t s
     );
 
     [CCode (cname="comb")]
-    public int (*comb)(
+    public CombDelegate comb;
+
+    public delegate int VarDelegate (
         uint8[] a,
         uint8[] b,
         ptrdiff_t s
     );
 
     [CCode (cname="var")]
-    public int (*var )(
-        uint8[] a,
-        uint8[] b,
-        ptrdiff_t s
-    );
+    public VarDelegate var;
 
 }
 
 [CCode (cname="",cheader_filename="")]
 public void ff_pullup_init_x86 (
-    PullupContext *s
+    PullupContext? s
 );

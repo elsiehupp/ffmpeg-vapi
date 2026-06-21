@@ -37,6 +37,6 @@ public class LimiterDSPContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_limiter_init_x86 (
-    LimiterDSPContext *dsp,
+    LimiterDSPContext? dsp,
     int bpp
 );

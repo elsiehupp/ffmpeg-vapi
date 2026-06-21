@@ -21,29 +21,70 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="")]
 public enum WindowFunc {
     WFUNC_RECT,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_HANNING,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_HAMMING,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_BLACKMAN,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_BARTLETT,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_WELCH,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_FLATTOP,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_BHARRIS,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_BNUTTALL,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_SINE,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_NUTTALL,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_BHANN,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_LANCZOS,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_GAUSS,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_TUKEY,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_DOLPH,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_CAUCHY,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_PARZEN,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_POISSON,
+
+    [CCode (cname="",cheader_filename="")]
     WFUNC_BOHMAN,
-    NB_WFUNC
+
+    [CCode (cname="",cheader_filename="")]
+    NB_WFUNC;
 }
 
-static inline void generate_window_func (
+[CCode (cname="",cheader_filename="")]
+public static inline void generate_window_func (
     float[] lut,
     int N,
     int win_func,

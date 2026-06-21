@@ -194,7 +194,7 @@ public class addrinfo {
     public string ai_canonname;
 
     [CCode (cname="",cheader_filename="ffmpeg/libformat/network.h")]
-    public addrinfo *ai_next;
+    public addrinfo? ai_next;
 }
 #endif // !HAVE_STRUCT_ADDRINFO
 

@@ -20,20 +20,35 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
-public class AudioData AudioData;
+public class AudioData { }
+
+[CCode (cname="",cheader_filename="")]
 [Compact]
-public class AudioConvert AudioConvert;
+public class AudioConvert { }
+
+[CCode (cname="",cheader_filename="")]
 [Compact]
-public class AudioMix AudioMix;
+public class AudioMix { }
+
+[CCode (cname="",cheader_filename="")]
 [Compact]
-public class ResampleContext ResampleContext;
+public class ResampleContext { }
 
 [CCode (cname="",cheader_filename="")]
 public enum RemapPoint {
+    [CCode (cname="",cheader_filename="")]
     REMAP_NONE,
+
+    [CCode (cname="",cheader_filename="")]
     REMAP_IN_COPY,
+
+    [CCode (cname="",cheader_filename="")]
     REMAP_IN_CONVERT,
+
+    [CCode (cname="",cheader_filename="")]
     REMAP_OUT_COPY,
+
+    [CCode (cname="",cheader_filename="")]
     REMAP_OUT_CONVERT;
 }
 
@@ -90,7 +105,7 @@ public class AVAudioResampleContext {
     AVClass for logging and AVOptions
     ***********************************************************/
     [CCode (cname="")]
-    public AVClass av_class;
+    public AVClass? av_class;
 
     /***********************************************************
     input channel layout
@@ -143,17 +158,20 @@ public class AVAudioResampleContext {
     /***********************************************************
     center mix level
     ***********************************************************/
-    double center_mix_level;
+    [CCode (cname="")]
+    public double center_mix_level;
 
     /***********************************************************
     surround mix level
     ***********************************************************/
-    double surround_mix_level;
+    [CCode (cname="")]
+    public double surround_mix_level;
 
     /***********************************************************
     lfe mix level
     ***********************************************************/
-    double lfe_mix_level;
+    [CCode (cname="")]
+    public double lfe_mix_level;
 
     /***********************************************************
     enable mix level normalization
@@ -188,7 +206,8 @@ public class AVAudioResampleContext {
     /***********************************************************
     resampling cutoff frequency. 1.0 corresponds to half the output sample rate
     ***********************************************************/
-    double cutoff;
+    [CCode (cname="")]
+    public double cutoff;
 
     /***********************************************************
     resampling filter type
@@ -271,42 +290,50 @@ public class AVAudioResampleContext {
     /***********************************************************
     buffer for converted input
     ***********************************************************/
-    AudioData *in_buffer;
+    [CCode (cname="")]
+    public AudioData? in_buffer;
 
     /***********************************************************
     buffer for output from resampler
     ***********************************************************/
-    AudioData *resample_out_buffer;
+    [CCode (cname="")]
+    public AudioData? resample_out_buffer;
 
     /***********************************************************
     buffer for converted output
     ***********************************************************/
-    AudioData *out_buffer;
+    [CCode (cname="")]
+    public AudioData? out_buffer;
 
     /***********************************************************
     FIFO for output samples
     ***********************************************************/
-    AVAudioFifo *out_fifo;
+    [CCode (cname="")]
+    public AVAudioFifo? out_fifo;
 
     /***********************************************************
     input sample format conversion context
     ***********************************************************/
-    AudioConvert *ac_in;
+    [CCode (cname="")]
+    public AudioConvert? ac_in;
 
     /***********************************************************
     output sample format conversion context
     ***********************************************************/
-    AudioConvert *ac_out;
+    [CCode (cname="")]
+    public AudioConvert? ac_out;
 
     /***********************************************************
     resampling context
     ***********************************************************/
-    ResampleContext *resample;
+    [CCode (cname="")]
+    public ResampleContext? resample;
 
     /***********************************************************
     channel mixing context
     ***********************************************************/
-    AudioMix *am;
+    [CCode (cname="")]
+    public AudioMix? am;
 
     /***********************************************************
     matrixed stereo encoding
@@ -318,7 +345,8 @@ public class AVAudioResampleContext {
     mix matrix
     only used if avresample_set_matrix () is called before avresample_open ()
     ***********************************************************/
-    double[] mix_matrix;
+    [CCode (cname="")]
+    public double[] mix_matrix;
 
     [CCode (cname="")]
     public int use_channel_map;
@@ -326,12 +354,19 @@ public class AVAudioResampleContext {
     [CCode (cname="")]
     public RemapPoint remap_point;
 
-    ChannelMapInfo ch_map_info;
+    [CCode (cname="")]
+    public ChannelMapInfo ch_map_info;
 };
 
 
 [CCode (cname="",cheader_filename="")]
-public void ff_audio_resample_init_aarch64 (ResampleContext *c,
-                                    AVSampleFormat sample_fmt);
-public void ff_audio_resample_init_arm (ResampleContext *c,
-                                AVSampleFormat sample_fmt);
+public void ff_audio_resample_init_aarch64 (
+    ResampleContext? c,
+    AVSampleFormat sample_fmt
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_audio_resample_init_arm (
+    ResampleContext? c,
+    AVSampleFormat sample_fmt
+);

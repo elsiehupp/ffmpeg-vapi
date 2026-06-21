@@ -1267,12 +1267,12 @@ public string avio_enum_protocols (
 @brief Pause and resume playing - only meaningful if using a network streaming
 protocol (e.g. MMS).
 
-@param h IO context from which to call the read_pause function pointer
+@param avio_context IO context from which to call the read_pause function pointer
 @param pause 1 for pause, 0 for resume
 ***********************************************************/
 [CCode (cname="",cheader_filename="ffmpeg/libformat/avio.h")]
 public int avio_pause (
-    AVIOContext h,
+    AVIOContext avio_context,
     int pause
 );
 
@@ -1280,7 +1280,7 @@ public int avio_pause (
 @brief Seek to a given timestamp relative to some component stream.
 Only meaningful if using a network streaming protocol (e.g. MMS.).
 
-@param h IO context from which to call the seek function pointers
+@param avio_context IO context from which to call the seek function pointers
 @param stream_index The stream index that the timestamp is relative to.
        If stream_index is (-1) the timestamp should be in AV_TIME_BASE
        units from the beginning of the presentation.
@@ -1297,21 +1297,21 @@ Only meaningful if using a network streaming protocol (e.g. MMS.).
 ***********************************************************/
 [CCode (cname="",cheader_filename="ffmpeg/libformat/avio.h")]
 public int64 avio_seek_time (
-    AVIOContext h,
+    AVIOContext avio_context,
     int stream_index,
     int64 timestamp,
     int flags
 );
 
 /***********************************************************
-@brief Read contents of h into print buffer, up to max_size bytes, or up to EOF.
+@brief Read contents of avio_context into print buffer, up to max_size bytes, or up to EOF.
 
 @return 0 for success (max_size bytes read or EOF reached), negative error
 code otherwise
 ***********************************************************/
 [CCode (cname="",cheader_filename="ffmpeg/libformat/avio.h")]
 public int avio_read_to_bprint (
-    AVIOContext h,
+    AVIOContext avio_context,
     LibAVUtil.BPrintBuffer pb,
     size_t max_size
 );

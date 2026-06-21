@@ -101,7 +101,7 @@ public class GradFunContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_gradfun_init_x86 (
-    GradFunContext *gf
+    GradFunContext? gf
 );
 
 [CCode (cname="",cheader_filename="")]

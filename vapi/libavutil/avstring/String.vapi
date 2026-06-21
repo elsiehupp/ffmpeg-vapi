@@ -27,7 +27,7 @@ namespace String {
 ***********************************************************/
 
 /***********************************************************
-@brief Return non-zero if pfx is a prefix of str. If it is, *ptr is set to
+@brief Return non-zero if pfx is a prefix of str. If it is,? ptr is set to
 the address of the first character in str after the prefix.
 
 @param str input string
@@ -44,7 +44,7 @@ public int av_strstart (
 
 /***********************************************************
 @brief Return non-zero if pfx is a prefix of str independent of case. If
-it is, *ptr is set to the address of the first character in str
+it is,? ptr is set to the address of the first character in str
 after the prefix.
 
 @param str input string

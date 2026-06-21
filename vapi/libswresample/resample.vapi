@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [Compact]
 public class ResampleContext {
     [CCode (cname="")]
-    public AVClass av_class;
+    public AVClass? av_class;
 
     [CCode (cname="")]
     public uint8[] filter_bank;
@@ -88,9 +88,9 @@ public class ResampleContext {
     [CCode (cname="")]
     public int phase_count_compensation;
 
-    struct {
-        [CCode (cname="resample_one")]
-        public void (*resample_one)(
+    [Compact]
+    public class FooBar {
+        public delegate void ResampleOneDelegate (
             void *dst,
             void *src,
             int n,
@@ -98,9 +98,22 @@ public class ResampleContext {
             int64 incr
         );
 
+        [CCode (cname="resample_one")]
+        public ResampleOneDelegate resample_one;
+
+        public delegate int ResampleCommonDelegate (
+            ResampleContext? resample_context,
+            void *dst,
+            void *src,
+            int n,
+            int update_ctx
+        );
+
         [CCode (cname="resample_common")]
-        public int (*resample_common)(
-            ResampleContext *c,
+        public ResampleCommonDelegate resample_common;
+
+        public delegate int ResambleLinearDelegate (
+            ResampleContext? resample_context,
             void *dst,
             void *src,
             int n,
@@ -108,33 +121,29 @@ public class ResampleContext {
         );
 
         [CCode (cname="resample_linear")]
-        public int (*resample_linear)(
-            ResampleContext *c,
-            void *dst,
-            void *src,
-            int n,
-            int update_ctx
-        );
+        public ResambleLinearDelegate resample_linear;
 
-    } dsp;
+    }
+
+    public FooBar dsp;
 }
 
 [CCode (cname="",cheader_filename="")]
 public void swri_resample_dsp_init (
-    ResampleContext *c
+    ResampleContext? resample_context
 );
 
 [CCode (cname="",cheader_filename="")]
 public void swri_resample_dsp_x86_init (
-    ResampleContext *c
+    ResampleContext? resample_context
 );
 
 [CCode (cname="",cheader_filename="")]
 public void swri_resample_dsp_arm_init (
-    ResampleContext *c
+    ResampleContext? resample_context
 );
 
 [CCode (cname="",cheader_filename="")]
 public void swri_resample_dsp_aarch64_init (
-    ResampleContext *c
+    ResampleContext? resample_context
 );

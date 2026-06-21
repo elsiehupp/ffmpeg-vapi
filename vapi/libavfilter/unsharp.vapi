@@ -133,9 +133,9 @@ public class UnsharpContext {
     public int opencl;
 
     public delegate int ApplyUnsharpDeleegate (
-        AVFilterContext *ctx,
-        AVFrame *in,
-        AVFrame *out
+        AVFilterContext? av_filter_context,
+        AVFrame? in,
+        AVFrame? out
     );
 
     [CCode (cname="apply_unsharp")]

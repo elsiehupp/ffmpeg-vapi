@@ -62,6 +62,7 @@ public class HQDN3DContext {
 
 }
 
+[CCode (cname="",cheader_filename="")]
 public enum FooBar {
     [CCode (cname="",cheader_filename="")]
     LUMA_SPATIAL, // 0
@@ -78,5 +79,5 @@ public enum FooBar {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_hqdn3d_init_x86 (
-    HQDN3DContext *hqdn3d
+    HQDN3DContext? hqdn3d
 );

@@ -185,10 +185,10 @@ public class OverlayContext {
     public string y_expr;
 
     [CCode (cname="")]
-    public AVExpr *x_pexpr;
+    public AVExpr? x_pexpr;
 
     [CCode (cname="")]
-    public AVExpr *y_pexpr;
+    public AVExpr? y_pexpr;
 
     public delegate int BlendRowDelegate (
         uint8[] d,
@@ -203,7 +203,7 @@ public class OverlayContext {
     public iBlendRowDelegate blend_row[4];
 
     public delegate int BlendSliceDelegate (
-        AVFilterContext *ctx,
+        AVFilterContext? av_filter_context,
         void *arg,
         int jobnr,
         int nb_jobs
@@ -216,7 +216,7 @@ public class OverlayContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_overlay_init_x86 (
-    OverlayContext *s,
+    OverlayContext? s,
     int format,
     int pix_format,
     int alpha_format,

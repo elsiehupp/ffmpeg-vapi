@@ -29,7 +29,7 @@ public enum DNNReturnType {
     DNN_SUCCESS,
 
     [CCode (cname="")]
-    DNN_ERROR
+    DNN_ERROR;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -38,7 +38,7 @@ public enum DNNBackendType {
     DNN_NATIVE,
 
     [CCode (cname="")]
-    DNN_TF
+    DNN_TF;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -47,7 +47,7 @@ public enum DNNDataType {
     DNN_FLOAT,
 
     [CCode (cname="")]
-    DNN_UINT8
+    DNN_UINT8;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -94,19 +94,20 @@ public class DNNModel {
     [CCode (cname="")]
     public void *model;
 
+    public delegate DNNReturnType SetInputDelegate (
+        void *model,
+        DNNInputData? input,
+        string input_name,
+        string? output_names,
+        uint32 nb_output
+    );
+
     /***********************************************************
     Sets model input and output.
     Should be called at least once before model execution.
     ***********************************************************/
     [CCode (cname="")]
-    public DNNReturnType (*set_input_output)(
-        void *model,
-        DNNInputData *input,
-        string input_name,
-        string *output_names,
-        uint32 nb_output
-    );
-
+    public SetInputDelegate set_input_output;
 }
 
 /***********************************************************
@@ -115,31 +116,37 @@ Stores pointers to functions for loading, executing, freeing DNN models for one 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class DNNModule {
+    public delegate DNNModel LoadModelDelegate (
+        string model_filename
+    );
+
     /***********************************************************
     Loads model and parameters from given file. Returns NULL if it is not possible.
     ***********************************************************/
     [CCode (cname="")]
-    public DNNModel *(*load_model)(
-        string model_filename
+    public LoadModelDelegate load_model;
+
+    public delegate DNNReturnType ExecuteModelDelegate (
+        DNNModel? model,
+        DNNData? outputs,
+        uint32 nb_output
     );
 
     /***********************************************************
     Executes model with specified input and output. Returns DNN_ERROR otherwise.
     ***********************************************************/
     [CCode (cname="")]
-    public DNNReturnType (*execute_model)(
-        const DNNModel *model,
-        DNNData *outputs,
-        uint32 nb_output
+    public ExecuteModelDelegate execute_model;
+
+    public delegate void FreeModelDelegate (
+        DNNModel **model
     );
 
     /***********************************************************
     Frees memory allocated for model.
     ***********************************************************/
     [CCode (cname="")]
-    public void (*free_model)(
-        DNNModel **model
-    );
+    public FreeModelDelegate free_model;
 
 }
 
@@ -147,8 +154,6 @@ public class DNNModule {
 Initializes DNNModule depending on chosen backend.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public DNNModule *ff_get_dnn_module (
+public DNNModule? ff_get_dnn_module (
     DNNBackendType backend_type
 );
-
-#endif

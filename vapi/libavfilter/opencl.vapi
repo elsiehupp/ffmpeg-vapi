@@ -30,14 +30,14 @@ public class OpenCLFilterContext {
     [CCode (cname="")]
     public AVClass class;
 
-    public AVBufferRef *device_ref;
+    public AVBufferRef? device_ref;
     [CCode (cname="")]
 
     [CCode (cname="")]
-    public AVHWDeviceContext *device;
+    public AVHWDeviceContext? device;
 
     [CCode (cname="")]
-    public AVOpenCLDeviceContext *hwctx;
+    public AVOpenCLDeviceContext? hwctx;
 
     [CCode (cname="")]
     public cl_program program;
@@ -60,20 +60,20 @@ avctx, cle and err.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public define CL_SET_KERNEL_ARG (
-    kernel,
-    arg_num,
-    type,
-    arg
-) {
-    cle = clSetKernelArg (kernel, arg_num, sizeof (type), arg); \
-    if (cle != CL_SUCCESS) {                                   \
-        av_log (avctx, AV_LOG_ERROR, "Failed to set kernel "    \
-               "argument %d: error %d.\n", arg_num, cle); \
-        err = AVERROR (EIO); \
-        goto fail; \
-    }
-
-}
+    void *kernel,
+    void *arg_num,
+    void *type,
+    void *arg
+);
+//  {
+//      cle = clSetKernelArg (kernel, arg_num, sizeof (type), arg);
+//      if (cle != CL_SUCCESS) {
+//          av_log (avctx, AV_LOG_ERROR, "Failed to set kernel "
+//                 "argument %d: error %d.\n", arg_num, cle);
+//          err = AVERROR (EIO);
+//          goto fail;
+//      }
+//  }
 
 /***********************************************************
 A helper macro to handle OpenCL errors. It will assign errcode to
@@ -81,67 +81,71 @@ variable err, log error msg, and jump to fail label on error.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public define CL_FAIL_ON_ERROR (
-    errcode,
+    void *errcode,
     ...
-) {                    \
-    if (cle != CL_SUCCESS) {                               \
-        av_log (avctx, AV_LOG_ERROR, __VA_ARGS__); \
-        err = errcode; \
-        goto fail; \
-    }                                                      \
-}
+);
+//  {
+//      if (cle != CL_SUCCESS) {
+//          av_log (avctx, AV_LOG_ERROR, __VA_ARGS__);
+//          err = errcode;
+//          goto fail;
+//      }
+//  }
 
 /***********************************************************
 release an OpenCL Kernel
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public define CL_RELEASE_KERNEL (
-    k
-) {                                                          \
-    if (k) {                                                  \
-        cle = clReleaseKernel (k); \
-        if (cle != CL_SUCCESS)                                \
-            av_log (avctx, AV_LOG_ERROR, "Failed to release "  \
-                   "OpenCL kernel: %d.\n", cle); \
-    }                                                         \
-}
+    void *k
+);
+//  {
+//      if (k) {
+//          cle = clReleaseKernel (k);
+//          if (cle != CL_SUCCESS)
+//              av_log (avctx, AV_LOG_ERROR, "Failed to release "
+//                     "OpenCL kernel: %d.\n", cle);
+//      }
+//  }
 
 /***********************************************************
 release an OpenCL Memory Object
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public define CL_RELEASE_MEMORY (
-    m
-) {                                                          \
-    if (m) {                                                  \
-        cle = clReleaseMemObject (m); \
-        if (cle != CL_SUCCESS)                                \
-            av_log (avctx, AV_LOG_ERROR, "Failed to release "  \
-                   "OpenCL memory: %d.\n", cle); \
-    }                                                         \
-}
+    void *m
+);
+//  {
+//      if (m) {
+//          cle = clReleaseMemObject (m);
+//          if (cle != CL_SUCCESS)
+//              av_log (avctx, AV_LOG_ERROR, "Failed to release "
+//                     "OpenCL memory: %d.\n", cle);
+//      }
+//  }
 
 /***********************************************************
 release an OpenCL Command Queue
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public define CL_RELEASE_QUEUE (
-    q
-) {                                                          \
-    if (q) {                                                  \
-        cle = clReleaseCommandQueue (q); \
-        if (cle != CL_SUCCESS)                                \
-            av_log (avctx, AV_LOG_ERROR, "Failed to release "  \
-                   "OpenCL command queue: %d.\n", cle); \
-    }                                                         \
-}
+    void *q
+);
+//  {
+//      if (q) {
+//          cle = clReleaseCommandQueue (q);
+//          if (cle != CL_SUCCESS)
+//              av_log (avctx, AV_LOG_ERROR, "Failed to release "
+//                     "OpenCL command queue: %d.\n", cle);
+//      }
+//  }
 
 /***********************************************************
 Return that all inputs and outputs support only AV_PIX_FMT_OPENCL.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_opencl_filter_query_formats (
-    AVFilterContext *avctx
+    AVFilterContext? avctx
 );
 
 /***********************************************************
@@ -150,7 +154,7 @@ context and extract the device from it.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_opencl_filter_config_input (
-    AVFilterLink *inlink
+    AVFilterLink? inlink
 );
 
 /***********************************************************
@@ -158,7 +162,7 @@ Create a suitable hardware frames context for the output.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_opencl_filter_config_output (
-    AVFilterLink *outlink
+    AVFilterLink? outlink
 );
 
 /***********************************************************
@@ -166,7 +170,7 @@ Initialise an OpenCL filter context.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_opencl_filter_init (
-    AVFilterContext *avctx
+    AVFilterContext? avctx
 );
 
 /***********************************************************
@@ -174,7 +178,7 @@ Uninitialise an OpenCL filter context.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_opencl_filter_uninit (
-    AVFilterContext *avctx
+    AVFilterContext? avctx
 );
 
 /***********************************************************
@@ -185,8 +189,8 @@ Will log any build errors if compilation fails.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_opencl_filter_load_program (
-    AVFilterContext *avctx,
-    string *program_source_array,
+    AVFilterContext? avctx,
+    string? program_source_array,
     int nb_strings
 );
 
@@ -197,7 +201,7 @@ Same as ff_opencl_filter_load_program (), but from a file.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_opencl_filter_load_program_from_file (
-    AVFilterContext *avctx,
+    AVFilterContext? avctx,
     string filename
 );
 
@@ -206,8 +210,8 @@ Find the work size needed needed for a given plane of an image.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_opencl_filter_work_size_from_image (
-    AVFilterContext *avctx,
-    size_t *work_size,
+    AVFilterContext? avctx,
+    size_t? work_size,
     AVFrame frame,
     int plane,
     int block_alignment
@@ -219,7 +223,7 @@ be included in an OpenCL program.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_opencl_print_const_matrix_3x3 (
-    AVBPrint *buf,
+    AVBPrint? buf,
     string name_str,
     double mat[3][3]
 );

@@ -279,13 +279,13 @@ public class PPContext {
     info on struct for av_log
     ***********************************************************/
     [CCode (cname="")]
-    public AVClass *av_class;
+    public AVClass? av_class;
 
     /***********************************************************
     used for the horizontal code
     ***********************************************************/
     [CCode (cname="")]
-    uint8[] tempBlocks;
+    public uint8[] tempBlocks;
 
     /***********************************************************
     luma histogram.
@@ -336,13 +336,13 @@ public class PPContext {
     used to fix MPEG2 style qscale
     ***********************************************************/
     [CCode (cname="")]
-    public int8 *stdQPTable;
+    public int8? stdQPTable;
 
     [CCode (cname="")]
-    public int8 *nonBQPTable;
+    public int8? nonBQPTable;
 
     [CCode (cname="")]
-    public int8 *forcedQPTable;
+    public int8? forcedQPTable;
 
     [CCode (cname="")]
     public int QP;
@@ -389,10 +389,13 @@ public static inline void linecpy (
     void *src,
     int lines,
     int stride
-) {
-    if (stride > 0) {
-        memcpy (dest, src, lines*stride);
-    } else {
-        memcpy ((uint8*)dest+(lines-1)*stride, (const uint8*)src+(lines-1)*stride, -lines*stride);
-    }
-}
+);
+//  {
+//      if (
+//          stride > 0
+//      ) {
+//          memcpy (dest, src, lines*stride);
+//      } else {
+//          memcpy ((uint8*)dest+(lines-1)*stride, (const uint8*)src+(lines-1)*stride, -lines*stride);
+//      }
+//  }

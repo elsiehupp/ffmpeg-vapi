@@ -22,8 +22,7 @@ public class BWDIFContext {
     [CCode (cname="",cheader="")]
     public YADIFContext yadif;
 
-    [CCode (cname="filter_intra")]
-    public void (*filter_intra)(
+    public delegate void FilterIntraDelegate (
         void *dst1,
         void *cur1,
         int w,
@@ -35,8 +34,10 @@ public class BWDIFContext {
         int clip_max
     );
 
-    [CCode (cname="filter_line")]
-    public void (*filter_line)(
+    [CCode (cname="filter_intra")]
+    public FilterIntraDelegate filter_intra;
+
+    public delegate void FileterLineDelegate (
         void *dst,
         void *prev,
         void *cur,
@@ -54,8 +55,10 @@ public class BWDIFContext {
         int clip_max
     );
 
-    [CCode (cname="filter_edge")]
-    public void (*filter_edge)(
+    [CCode (cname="filter_line")]
+    public FileterLineDelegate filter_line;
+
+    public delegate void FilterEdgeDelegate (
         void *dst,
         void *prev,
         void *cur,
@@ -70,9 +73,12 @@ public class BWDIFContext {
         int spat
     );
 
+    [CCode (cname="filter_edge")]
+    public FilterEdgeDelegate filter_edge;
+
 }
 
 [CCode (cname="",cheader="")]
 public void ff_bwdif_init_x86 (
-    BWDIFContext *bwdif
+    BWDIFContext? bwdif
 );

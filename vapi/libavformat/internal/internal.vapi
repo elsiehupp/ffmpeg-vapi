@@ -36,10 +36,18 @@ public const size_t PROBE_BUF_MAX;
 [CCode (cname="",cheader_filename="ffmpeg/libformat/internal.h")]
 public const size_t MAX_PROBE_PACKETS;
 
+[CCode (cname="",cheader_filename="ffmpeg/libformat/internal.h")]
+public define hex_dump_debug (
+    void *class,
+    void *buffer,
+    void *size
+);
 //  #ifdef DEBUG
-//  #    define hex_dump_debug (class, buffer, size) av_hex_dump_log (class, AV_LOG_DEBUG, buffer, size)
+//  av_hex_dump_log (class, AV_LOG_DEBUG, buffer, size)
 //  #else
-//  #    define hex_dump_debug (class, buffer, size) do { if (0) av_hex_dump_log (class, AV_LOG_DEBUG, buffer, size); } while (0)
+//  {
+//      if (0) av_hex_dump_log (class, AV_LOG_DEBUG, buffer, size);
+//  }
 //  #endif
 
 [CCode (cname="struct AVCodecTag",cheader_filename="ffmpeg/libformat/internal.h")]
@@ -973,11 +981,21 @@ public int ff_copy_whiteblacklists (
     AVFormatContext src
 );
 
-/***********************************************************
-@brief Returned by demuxers to indicate that data was consumed but discarded
-(ignored streams or junk data). The framework will re-call the demuxer.
-***********************************************************/
-//  #define FFERROR_REDO FFERRTAG ('R','E','D','O')
+public enum FooBar {
+    /***********************************************************
+    @brief Returned by demuxers to indicate that data was consumed but discarded
+    (ignored streams or junk data). The framework will re-call the demuxer.
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="ffmpeg/libformat/internal.h")]
+    FFERROR_REDO;
+    //  FFERRTAG (
+    //      'R',
+    //      'E',
+    //      'D',
+    //      'O'
+    //  );
+
+}
 
 /***********************************************************
 @brief Utility function to open IO stream of output format.
@@ -1187,8 +1205,8 @@ public void ff_packet_list_free (
 
 [CCode (cname="",cheader_filename="ffmpeg/libformat/internal.h")]
 public void avpriv_register_devices (
-    AVOutputFormat[] o,
-    AVInputFormat[] i
+    AVOutputFormat[] av_output_format,
+    AVInputFormat[] av_input_format
 );
 
 } // namespace LibAVFormat

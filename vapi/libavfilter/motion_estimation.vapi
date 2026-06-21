@@ -18,6 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
+[CCode (cname="",cheader_filename="")]
 public enum FooBar {
     [CCode (cname="",cheader="")]
     AV_ME_METHOD_ESA, // 1
@@ -109,7 +110,7 @@ public class AVMotionEstContext {
     public AVMotionEstPredictor preds[2];
 
     public delegate uint64 GetCostDelegate (
-        AVMotionEstContext *me_ctx,
+        AVMotionEstContext? me_ctx,
         int x_mb,
         int y_mb,
         int mv_x,
@@ -123,7 +124,7 @@ public class AVMotionEstContext {
 
 [CCode (cname="",cheader="")]
 public void ff_me_init_context (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int mb_size,
     int search_param,
     int width,
@@ -136,7 +137,7 @@ public void ff_me_init_context (
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_cmp_sad (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
     int x_mv,
@@ -145,72 +146,72 @@ public uint64 ff_me_cmp_sad (
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_search_esa (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
-    int *mv
+    out int mv
 );
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_search_tss (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
-    int *mv
+    out int mv
 );
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_search_tdls (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
-    int *mv
+    out int mv
 );
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_search_ntss (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
-    int *mv
+    out int mv
 );
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_search_fss (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
-    int *mv
+    out int mv
 );
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_search_ds (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
-    int *mv
+    out int mv
 );
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_search_hexbs (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
-    int *mv
+    out int mv
 );
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_search_epzs (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
-    int *mv
+    out int mv
 );
 
 [CCode (cname="",cheader="")]
 public uint64 ff_me_search_umh (
-    AVMotionEstContext *me_ctx,
+    AVMotionEstContext? me_ctx,
     int x_mb,
     int y_mb,
-    int *mv
+    out int mv
 );

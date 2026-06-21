@@ -18,9 +18,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
-public typedef void (mix_func)(
-    uint8[] *src,
+[CCode (cname="mix_func",cheader_filename="")]
+public delegate void MixDelegate (
+    uint8[][] src,
     void **matrix,
     int len,
     int out_ch,
@@ -49,7 +49,7 @@ the optimized mixing function.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_audio_mix_set_func (
-    AudioMix *am,
+    AudioMix? am,
     AVSampleFormat fmt,
     AVMixCoeffType coeff_type,
     int in_channels,
@@ -57,7 +57,7 @@ public void ff_audio_mix_set_func (
     int ptr_align,
     int samples_align,
     string descr,
-    void *mix_func
+    MixDelegate mix_func
 );
 
 /***********************************************************
@@ -69,8 +69,9 @@ AudioMix context.
 @param avr  AVAudioResampleContext
 @return     newly-allocated AudioMix context.
 ***********************************************************/
-AudioMix *ff_audio_mix_alloc (
-    AVAudioResampleContext *avr
+[CCode (cname="",cheader_filename="")]
+public AudioMix? ff_audio_mix_alloc (
+    AVAudioResampleContext? avr
 );
 
 /***********************************************************
@@ -86,8 +87,8 @@ Apply channel mixing to audio data using the current mixing matrix.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_mix (
-    AudioMix *am,
-    AudioData *src
+    AudioMix? am,
+    AudioData? src
 );
 
 /***********************************************************
@@ -95,7 +96,7 @@ Get the current mixing matrix.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_mix_get_matrix (
-    AudioMix *am,
+    AudioMix? am,
     double[] matrix,
     int stride
 );
@@ -105,7 +106,7 @@ Set the current mixing matrix.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_mix_set_matrix (
-    AudioMix *am,
+    AudioMix? am,
     double[] matrix,
     int stride
 );
@@ -116,5 +117,5 @@ arch-specific initialization functions
 
 [CCode (cname="",cheader_filename="")]
 public void ff_audio_mix_init_x86 (
-    AudioMix *am
+    AudioMix? am
 );

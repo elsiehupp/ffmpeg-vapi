@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define DSHOWDEBUG 0
+public const bool DSHOWDEBUG; // 0
 
 [CCode (cname="",cheader_filename="")]
 public define COBJMACROS
@@ -34,59 +34,60 @@ public define NO_DSHOW_STRSAFE
 EC_DEVICE_LOST is not defined in MinGW dshow headers.
 ***********************************************************/
 #if !EC_DEVICE_LOST
-public define EC_DEVICE_LOST 0x1f
+public const int EC_DEVICE_LOST; // 0x1f
 #endif
 
 [CCode (cname="",cheader_filename="")]
 public long ff_copy_dshow_media_type (
-    AM_MEDIA_TYPE *dst,
-    AM_MEDIA_TYPE *src
+    AM_MEDIA_TYPE? dst,
+    AM_MEDIA_TYPE? src
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_print_VIDEO_STREAM_CONFIG_CAPS (
-    const VIDEO_STREAM_CONFIG_CAPS *caps
+    VIDEO_STREAM_CONFIG_CAPS? caps
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_print_AUDIO_STREAM_CONFIG_CAPS (
-    const AUDIO_STREAM_CONFIG_CAPS *caps
+    AUDIO_STREAM_CONFIG_CAPS? caps
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_print_AM_MEDIA_TYPE (
-    const AM_MEDIA_TYPE *type
+    AM_MEDIA_TYPE? type
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_printGUID (
-    const GUID *g
+    GUID? g
 );
 
-//  extern const AVClass *ff_dshow_context_class_ptr;
+//  extern const AVClass? ff_dshow_context_class_ptr;
 
 [CCode (cname="",cheader_filename="")]
 public define dshowdebug (
     ...
-) {
-    ff_dlog (
-        &ff_dshow_context_class_ptr,
-        __VA_ARGS__
-    );
-
-}
+);
+//  {
+//      ff_dlog (
+//          &ff_dshow_context_class_ptr,
+//          __VA_ARGS__
+//      );
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public static inline void nothing (
     void *foo
-) {
-}
+);
+//  {
+//  }
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class GUIDoffset {
     [CCode (cname="")]
-    public GUID *iid;
+    public GUID? iid;
 
     [CCode (cname="")]
     public int offset;
@@ -112,118 +113,124 @@ public enum dshowSourceFilterType {
 
 [CCode (cname="",cheader_filename="")]
 public define DECLARE_QUERYINTERFACE (
-    class,
+    void *class,
     ...
-) {
-    long WINAPI                                                                  \
-    class##_QueryInterface (class *this, GUID *riid, void **ppvObject)      \
-    {                                                                            \
-        struct GUIDoffset ifaces[] = __VA_ARGS__; \
-        public int i; \
-        dshowdebug (AV_STRINGIFY (class)"_QueryInterface (%p, %p, %p)\n", this, riid, ppvObject); \
-        ff_printGUID (riid); \
-        if (!ppvObject)                                                          \
-            return E_POINTER; \
-        for (i = 0; i < sizeof (ifaces)/sizeof (ifaces[0]); i++) {                 \
-            if (IsEqualGUID (riid, ifaces[i].iid)) {                              \
-                void *obj = (void *) ((uint8[] ) this + ifaces[i].offset); \
-                class##_AddRef (this); \
-                dshowdebug ("\tfound %d with offset %d\n", i, ifaces[i].offset); \
-                *ppvObject = (void *) obj; \
-                return S_OK; \
-            }                                                                    \
-        }                                                                        \
-        dshowdebug ("\tE_NOINTERFACE\n"); \
-        *ppvObject = NULL; \
-        return E_NOINTERFACE; \
-    }
+);
+//  {
+//      long WINAPI
+//      class##_QueryInterface (class? this, GUID? riid, void **ppvObject)
+//      {
+//          struct GUIDoffset ifaces[] = __VA_ARGS__;
+//          public int i;
+//          dshowdebug (AV_STRINGIFY (class)"_QueryInterface (%p, %p, %p)\n", this, riid, ppvObject);
+//          ff_printGUID (riid);
+//          if (!ppvObject)
+//              return E_POINTER;
+//          for (i = 0; i < sizeof (ifaces)/sizeof (ifaces[0]); i++) {
+//              if (IsEqualGUID (riid, ifaces[i].iid)) {
+//                  void *obj = (void *) ((uint8[] ) this + ifaces[i].offset);
+//                  class##_AddRef (this);
+//                  dshowdebug ("\tfound %d with offset %d\n", i, ifaces[i].offset);
+//                 ? ppvObject = (void *) obj;
+//                  return S_OK;
+//              }
+//          }
+//          dshowdebug ("\tE_NOINTERFACE\n");
+//         ? ppvObject = NULL;
+//          return E_NOINTERFACE;
+//      }
 
-}
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public define DECLARE_ADDREF (
-    class
-) {
-    ulong WINAPI                                                         \
-    class##_AddRef (class *this)                                                  \
-    {                                                                            \
-        dshowdebug (AV_STRINGIFY (class)"_AddRef (%p)\t%ld\n", this, this->ref+1); \
-        return InterlockedIncrement (&this->ref); \
-    }
+    void *class
+);
+//  {
+//      ulong WINAPI
+//      class##_AddRef (class? this)
+//      {
+//          dshowdebug (AV_STRINGIFY (class)"_AddRef (%p)\t%ld\n", this, this->ref+1);
+//          return InterlockedIncrement (&this->ref);
+//      }
 
-}
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public define DECLARE_RELEASE (
-    class
-) {
-    ulong WINAPI                                                         \
-    class##_Release (class *this)                                                 \
-    {                                                                            \
-        long ref = InterlockedDecrement (&this->ref); \
-        dshowdebug (AV_STRINGIFY (class)"_Release (%p)\t%ld\n", this, ref); \
-        if (!ref)                                                                \
-            class##_Destroy (this); \
-        return ref; \
-    }
+    void *class
+);
+//  {
+//      ulong WINAPI
+//      class##_Release (class? this)
+//      {
+//          long ref = InterlockedDecrement (&this->ref);
+//          dshowdebug (AV_STRINGIFY (class)"_Release (%p)\t%ld\n", this, ref);
+//          if (!ref)
+//              class##_Destroy (this);
+//          return ref;
+//      }
 
-}
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public define DECLARE_DESTROY (
-    class,
-    func
-) {
-    void class##_Destroy (class *this)                                            \
-    {                                                                            \
-        dshowdebug (AV_STRINGIFY (class)"_Destroy (%p)\n", this); \
-        func (this); \
-        if (this) {                                                              \
-            if (this->vtbl)                                                      \
-                CoTaskMemFree (this->vtbl); \
-            CoTaskMemFree (this); \
-        }                                                                        \
-    }
+    void *class,
+    void *func
+);
+//  {
+//      void class##_Destroy (class? this)
+//      {
+//          dshowdebug (AV_STRINGIFY (class)"_Destroy (%p)\n", this);
+//          func (this);
+//          if (this) {
+//              if (this->vtbl)
+//                  CoTaskMemFree (this->vtbl);
+//              CoTaskMemFree (this);
+//          }
+//      }
 
-}
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public define DECLARE_CREATE (
-    class,
-    setup,
+    void *class,
+    void *setup,
     ...
-) {
-    class *class##_Create (__VA_ARGS__)                                           \
-    {                                                                            \
-        class *this = CoTaskMemAlloc (sizeof (class)); \
-        void *vtbl = CoTaskMemAlloc (sizeof (*this->vtbl)); \
-        dshowdebug (AV_STRINGIFY (class)"_Create (%p)\n", this); \
-        if (!this || !vtbl)                                                      \
-            goto fail; \
-        ZeroMemory (this, sizeof (class)); \
-        ZeroMemory (vtbl, sizeof (*this->vtbl)); \
-        this->ref = 1; \
-        this->vtbl = vtbl; \
-        if (!setup)                                                              \
-            goto fail; \
-        dshowdebug ("created "AV_STRINGIFY (class)" %p\n", this); \
-        return this; \
-    fail:                                                                        \
-        class##_Destroy (this); \
-        dshowdebug ("could not create "AV_STRINGIFY (class)"\n"); \
-        return NULL; \
-    }
+);
+//  {
+//      class? class##_Create (__VA_ARGS__)
+//      {
+//          class? this = CoTaskMemAlloc (sizeof (class));
+//          void *vtbl = CoTaskMemAlloc (sizeof (*this->vtbl));
+//          dshowdebug (AV_STRINGIFY (class)"_Create (%p)\n", this);
+//          if (!this || !vtbl)
+//              goto fail;
+//          ZeroMemory (this, sizeof (class));
+//          ZeroMemory (vtbl, sizeof (*this->vtbl));
+//          this->ref = 1;
+//          this->vtbl = vtbl;
+//          if (!setup)
+//              goto fail;
+//          dshowdebug ("created "AV_STRINGIFY (class)" %p\n", this);
+//          return this;
+//      fail:
+//          class##_Destroy (this);
+//          dshowdebug ("could not create "AV_STRINGIFY (class)"\n");
+//          return NULL;
+//      }
 
-}
+//  }
 
 [CCode (cname="",cheader_filename="")]
 public define SETVTBL (
-    vtbl,
-    class,
-    fn
-) {
-    (vtbl)->fn = (void *) class##_##fn;
-}
+    void *vtbl,
+    void *class,
+    void *fn
+);
+//  {
+//      (vtbl)->fn = (void *) class##_##fn;
+//  }
 
 /*****************************************************************************
 Forward Declarations
@@ -255,22 +262,22 @@ libAVPin
 [Compact]
 public class libAVPin {
     [CCode (cname="")]
-    public IPinVtbl *vtbl;
+    public IPinVtbl? vtbl;
 
     [CCode (cname="")]
     public long ref;
 
     [CCode (cname="")]
-    public libAVFilter *filter;
+    public libAVFilter? filter;
 
     [CCode (cname="")]
-    public IPin *connectedto;
+    public IPin? connectedto;
 
     [CCode (cname="")]
     public AM_MEDIA_TYPE type;
 
     [CCode (cname="")]
-    public IMemInputPinVtbl *imemvtbl;
+    public IMemInputPinVtbl? imemvtbl;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -443,8 +450,8 @@ public void libAVPin_Destroy (
 );
 
 [CCode (cname="",cheader_filename="")]
-public libAVPin *libAVPin_Create (
-    libAVFilter *filter
+public libAVPin? libAVPin_Create (
+    libAVFilter? filter
 );
 
 [CCode (cname="",cheader_filename="")]
@@ -460,7 +467,7 @@ libAVEnumPins
 [Compact]
 public class libAVEnumPins {
     [CCode (cname="")]
-    public IEnumPinsVtbl *vtbl;
+    public IEnumPinsVtbl? vtbl;
 
     [CCode (cname="")]
     public long ref;
@@ -469,10 +476,10 @@ public class libAVEnumPins {
     public int pos;
 
     [CCode (cname="")]
-    public libAVPin *pin;
+    public libAVPin? pin;
 
     [CCode (cname="")]
-    public libAVFilter *filter;
+    public libAVFilter? filter;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -523,9 +530,9 @@ public void libAVEnumPins_Destroy (
     libAVEnumPins *
 );
 
-libAVEnumPins *libAVEnumPins_Create (
-    libAVPin *pin,
-    libAVFilter *filter
+libAVEnumPins? libAVEnumPins_Create (
+    libAVPin? pin,
+    libAVFilter? filter
 );
 
 /*****************************************************************************
@@ -535,7 +542,7 @@ libAVEnumMediaTypes
 [Compact]
 public class libAVEnumMediaTypes {
     [CCode (cname="")]
-    public IEnumMediaTypesVtbl *vtbl;
+    public IEnumMediaTypesVtbl? vtbl;
 
     [CCode (cname="")]
     public long ref;
@@ -595,8 +602,8 @@ public void libAVEnumMediaTypes_Destroy (
 );
 
 [CCode (cname="",cheader_filename="")]
-public libAVEnumMediaTypes *libAVEnumMediaTypes_Create (
-    const AM_MEDIA_TYPE *type
+public libAVEnumMediaTypes? libAVEnumMediaTypes_Create (
+    AM_MEDIA_TYPE? type
 );
 
 /*****************************************************************************
@@ -606,16 +613,16 @@ libAVFilter
 [Compact]
 public class libAVFilter {
     [CCode (cname="")]
-    public IBaseFilterVtbl *vtbl;
+    public IBaseFilterVtbl? vtbl;
 
     [CCode (cname="")]
     public long ref;
 
     [CCode (cname="")]
-    public const wchar_t *name;
+    public const wchar_t? name;
 
     [CCode (cname="")]
-    public libAVPin *pin;
+    public libAVPin? pin;
 
     [CCode (cname="")]
     public FILTER_INFO info;
@@ -624,7 +631,7 @@ public class libAVFilter {
     public FILTER_STATE state;
 
     [CCode (cname="")]
-    public IReferenceClock *clock;
+    public IReferenceClock? clock;
 
     [CCode (cname="")]
     public dshowDeviceType type;
@@ -638,8 +645,7 @@ public class libAVFilter {
     [CCode (cname="")]
     public int64 start_time;
 
-    [CCode (cname="callback")]
-    public void (*callback)(
+    public delegate void CallbackDelegate (
         void *priv_data,
         int index,
         uint8[] buf,
@@ -647,6 +653,9 @@ public class libAVFilter {
         int64 time,
         dshowDeviceType type
     );
+
+    [CCode (cname="callback")]
+    public CallbackDelegate callback;
 
 }
 
@@ -746,7 +755,7 @@ public void libAVFilter_Destroy (
 );
 
 [CCode (cname="",cheader_filename="")]
-public libAVFilter *libAVFilter_Create (
+public libAVFilter? libAVFilter_Create (
     void *,
     void *,
     dshowDeviceType
@@ -762,7 +771,7 @@ public class dshow_ctx {
     public AVClass class;
 
     [CCode (cname="")]
-    public IGraphBuilder *graph;
+    public IGraphBuilder? graph;
 
     [CCode (cname="")]
     public string device_name[2];
@@ -828,16 +837,16 @@ public class dshow_ctx {
     public string video_filter_save_file;
 
     [CCode (cname="")]
-    public IBaseFilter *device_filter[2];
+    public IBaseFilter? device_filter[2];
 
     [CCode (cname="")]
-    public IPin *device_pin[2];
+    public IPin? device_pin[2];
 
     [CCode (cname="")]
-    public libAVFilter *capture_filter[2];
+    public libAVFilter? capture_filter[2];
 
     [CCode (cname="")]
-    public libAVPin *capture_pin[2];
+    public libAVPin? capture_pin[2];
 
     [CCode (cname="")]
     public HANDLE mutex;
@@ -850,7 +859,7 @@ public class dshow_ctx {
     public HANDLE event[2];
 
     [CCode (cname="")]
-    public AVPacketList *pktl;
+    public AVPacketList? pktl;
 
     [CCode (cname="")]
     public int eof;
@@ -862,10 +871,10 @@ public class dshow_ctx {
     public uint video_frame_num;
 
     [CCode (cname="")]
-    public IMediaControl *control;
+    public IMediaControl? control;
 
     [CCode (cname="")]
-    public IMediaEvent *media_event;
+    public IMediaEvent? media_event;
 
     [CCode (cname="")]
     public AVPixelFormat pixel_format;
@@ -898,15 +907,16 @@ public class dshow_ctx {
 /*****************************************************************************
 CrossBar
 ****************************************************************************/
+[CCode (cname="",cheader_filename="")]
 public HRESULT dshow_try_setup_crossbar_options (
-    ICaptureGraphBuilder2 *graph_builder2,
-    IBaseFilter *device_filter,
+    ICaptureGraphBuilder2? graph_builder2,
+    IBaseFilter? device_filter,
     dshowDeviceType devtype,
-    AVFormatContext *avctx
+    AVFormatContext? avctx
 );
 
 [CCode (cname="",cheader_filename="")]
 public void dshow_show_filter_properties (
-    IBaseFilter *pFilter,
-    AVFormatContext *avctx
+    IBaseFilter? pFilter,
+    AVFormatContext? avctx
 );

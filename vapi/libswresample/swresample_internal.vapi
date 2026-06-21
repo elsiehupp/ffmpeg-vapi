@@ -28,7 +28,7 @@ sqrt (3/2)
 public const float SQRT3_2; // 1.22474487139158904909
 
 [CCode (cname="",cheader_filename="")]
-public const size_t NS_TAPS; 20
+public const size_t NS_TAPS; // 20
 
 //  #if ARCH_X86_64
 //  public typedef int64 integer;
@@ -36,8 +36,8 @@ public const size_t NS_TAPS; 20
 //  public typedef int integer;
 //  #endif
 
-[CCode (cname="",cheader_filename="")]
-public typedef void (mix_1_1_func_type)(
+[CCode (cname="mix_1_1_func_type",cheader_filename="")]
+public delegate void Mix11Delegate (
     void *out,
     void *in,
     void *coeffp,
@@ -45,8 +45,8 @@ public typedef void (mix_1_1_func_type)(
     integer len
 );
 
-[CCode (cname="",cheader_filename="")]
-public typedef void (mix_2_1_func_type)(
+[CCode (cname="mix_2_1_func_type",cheader_filename="")]
+public delegate void Mix21Delegate (
     void *out,
     void *in1,
     void *in2,
@@ -56,10 +56,10 @@ public typedef void (mix_2_1_func_type)(
     integer len
 );
 
-[CCode (cname="",cheader_filename="")]
-public typedef void (mix_any_func_type)(
-    uint8[] *out,
-    uint8[] *in1,
+[CCode (cname="mix_any_func_type",cheader_filename="")]
+public delegate void MixAnyDelegate (
+    uint8[][] out,
+    uint8[][] in1,
     void *coeffp,
     integer len
 );
@@ -70,12 +70,14 @@ public class AudioData {
     /***********************************************************
     samples buffer per channel
     ***********************************************************/
-    uint8[] ch[SWR_CH_MAX];
+    [CCode (cname="")]
+    public uint8[] ch[SWR_CH_MAX];
 
     /***********************************************************
     samples buffer
     ***********************************************************/
-    uint8[] data;
+    [CCode (cname="")]
+    public uint8[] data;
 
     /***********************************************************
     number of channels
@@ -123,7 +125,8 @@ public class DitherContext {
     /***********************************************************
     Noise scale
     ***********************************************************/
-    float noise_scale;
+    [CCode (cname="")]
+    public float noise_scale;
 
     /***********************************************************
     Noise shaping dither taps
@@ -134,12 +137,14 @@ public class DitherContext {
     /***********************************************************
     Noise shaping dither scale
     ***********************************************************/
-    float ns_scale;
+    [CCode (cname="")]
+    public float ns_scale;
 
     /***********************************************************
     Noise shaping dither scale^-1
     ***********************************************************/
-    float ns_scale_1;
+    [CCode (cname="")]
+    public float ns_scale_1;
 
     /***********************************************************
     Noise shaping dither position
@@ -150,7 +155,8 @@ public class DitherContext {
     /***********************************************************
     Noise shaping filter coefficients
     ***********************************************************/
-    float ns_coeffs[NS_TAPS];
+    [CCode (cname="")]
+    public float ns_coeffs[NS_TAPS];
 
     [CCode (cname="")]
     public float ns_errors[SWR_CH_MAX][2*NS_TAPS];
@@ -158,12 +164,14 @@ public class DitherContext {
     /***********************************************************
     noise used for dithering
     ***********************************************************/
-    AudioData noise;
+    [CCode (cname="")]
+    public AudioData noise;
 
     /***********************************************************
     temporary storage when writing into the input buffer isn't possible
     ***********************************************************/
-    AudioData temp;
+    [CCode (cname="")]
+    public AudioData temp;
 
     /***********************************************************
     the number of used output bits, needed to scale dither correctly
@@ -173,8 +181,8 @@ public class DitherContext {
 }
 
 [CCode (cname="resample_init_func",cheader_filename="")]
-public ResampleContext (* resample_init_func)(
-    ResampleContext *c,
+public delegate ResampleContext ResampleInitDelegate (
+    ResampleContext? c,
     int out_rate,
     int in_rate,
     int filter_size,
@@ -190,51 +198,51 @@ public ResampleContext (* resample_init_func)(
 );
 
 [CCode (cname="resample_free_func",cheader_filename="")]
-public typedef void (* resample_free_func)(
+public delegate void ResampleFreeDelegate (
     ResampleContext **c
 );
 
 [CCode (cname="multiple_resample_func",cheader_filename="")]
-public typedef int (* multiple_resample_func)(
-    ResampleContext *c,
-    AudioData *dst,
+public delegate int MultipleResampleDelegate (
+    ResampleContext? c,
+    AudioData? dst,
     int dst_size,
-    AudioData *src,
+    AudioData? src,
     int src_size,
-    int *consumed
+    out int consumed
 );
 
 [CCode (cname="resample_flush_func",cheader_filename="")]
-public typedef int (* resample_flush_func)(
-    SwrContext *c
+public delegate int ResampleFlushDelegate (
+    SwrContext? c
 );
 
 [CCode (cname="set_compensation_func",cheader_filename="")]
-public typedef int (* set_compensation_func)(
-    ResampleContext *c,
+public delegate int SetCompensationDelegate (
+    ResampleContext? c,
     int sample_delta,
     int compensation_distance
 );
 
 [CCode (cname="get_delay_func",cheader_filename="")]
-public typedef int64 (* get_delay_func)(
-    SwrContext *s,
+public delegate int64 GetDelayDelegate (
+    SwrContext? s,
     int64 base
 );
 
 [CCode (cname="invert_initial_buffer_func",cheader_filename="")]
-public typedef int (* invert_initial_buffer_func)(
-    ResampleContext *c,
-    AudioData *dst,
-    AudioData *src,
+public delegate int InvertInitialBufferDelegate (
+    ResampleContext? c,
+    AudioData? dst,
+    AudioData? src,
     int src_size,
-    int *dst_idx,
-    int *dst_count
+    out int dst_idx,
+    out int dst_count
 );
 
 [CCode (cname="get_out_samples_func",cheader_filename="")]
-public typedef int64 (* get_out_samples_func)(
-    SwrContext *s,
+public delegate int64 GetOutSamplesDelegate (
+    SwrContext? s,
     int in_samples
 );
 
@@ -275,7 +283,8 @@ public class SwrContext {
     /***********************************************************
     AVClass used for AVOption and av_log ()
     ***********************************************************/
-    public AVClass av_class;
+    [CCode (cname="")]
+    public AVClass? av_class;
 
     /***********************************************************
     logging level offset
@@ -286,7 +295,8 @@ public class SwrContext {
     /***********************************************************
     parent logging context
     ***********************************************************/
-    void *log_ctx;
+    [CCode (cname="")]
+    public void *log_ctx;
 
     /***********************************************************
     input sample format
@@ -339,27 +349,32 @@ public class SwrContext {
     /***********************************************************
     surround mixing level
     ***********************************************************/
-    float slev;
+    [CCode (cname="")]
+    public float slev;
 
     /***********************************************************
     center mixing level
     ***********************************************************/
-    float clev;
+    [CCode (cname="")]
+    public float clev;
 
     /***********************************************************
     LFE mixing level
     ***********************************************************/
-    float lfe_mix_level;
+    [CCode (cname="")]
+    public float lfe_mix_level;
 
     /***********************************************************
     rematrixing volume coefficient
     ***********************************************************/
-    float rematrix_volume;
+    [CCode (cname="")]
+    public float rematrix_volume;
 
     /***********************************************************
     maximum value for rematrixing output
     ***********************************************************/
-    float rematrix_maxval;
+    [CCode (cname="")]
+    public float rematrix_maxval;
 
     /***********************************************************
     matrixed stereo encoding
@@ -424,7 +439,8 @@ public class SwrContext {
     [CCode (cname="")]
     public int user_dither_method;
 
-    struct DitherContext dither;
+    [CCode (cname="")]
+    public DitherContext dither;
 
     /***********************************************************
     length of each FIR filter in the resampling filterbank relative to the cutoff frequency
@@ -453,7 +469,8 @@ public class SwrContext {
     /***********************************************************
     resampling cutoff frequency (swr: 6dB point; soxr: 0dB point). 1.0 corresponds to half the output sample rate
     ***********************************************************/
-    double cutoff;
+    [CCode (cname="")]
+    public double cutoff;
 
     /***********************************************************
     swr resampling filter type
@@ -464,12 +481,14 @@ public class SwrContext {
     /***********************************************************
     swr beta value for Kaiser window (only applicable if filter_type == AV_FILTER_TYPE_KAISER)
     ***********************************************************/
-    double kaiser_beta;
+    [CCode (cname="")]
+    public double kaiser_beta;
 
     /***********************************************************
     soxr resampling precision (in bits)
     ***********************************************************/
-    double precision;
+    [CCode (cname="")]
+    public double precision;
 
     /***********************************************************
     soxr: if 1 then passband rolloff will be none (Chebyshev) & irrational ratio approximation precision will be higher
@@ -480,27 +499,32 @@ public class SwrContext {
     /***********************************************************
     swr minimum below which no compensation will happen
     ***********************************************************/
-    float min_compensation;
+    [CCode (cname="")]
+    public float min_compensation;
 
     /***********************************************************
     swr minimum below which no silence inject / sample drop will happen
     ***********************************************************/
-    float min_hard_compensation;
+    [CCode (cname="")]
+    public float min_hard_compensation;
 
     /***********************************************************
     swr duration over which soft compensation is applied
     ***********************************************************/
-    float soft_compensation_duration;
+    [CCode (cname="")]
+    public float soft_compensation_duration;
 
     /***********************************************************
     swr maximum soft compensation in seconds over soft_compensation_duration
     ***********************************************************/
-    float max_soft_compensation;
+    [CCode (cname="")]
+    public float max_soft_compensation;
 
     /***********************************************************
     swr simple 1 parameter async, similar to ffmpegs -async
     ***********************************************************/
-    float async;
+    [CCode (cname="")]
+    public float async;
 
     /***********************************************************
     swr first pts in samples
@@ -529,42 +553,50 @@ public class SwrContext {
     /***********************************************************
     input audio data
     ***********************************************************/
-    AudioData in;
+    [CCode (cname="")]
+    public AudioData in;
 
     /***********************************************************
     post-input audio data: used for rematrix/resample
     ***********************************************************/
-    AudioData postin;
+    [CCode (cname="")]
+    public AudioData postin;
 
     /***********************************************************
     public intermediate audio data (postin/preout)
     ***********************************************************/
-    AudioData midbuf;
+    [CCode (cname="")]
+    public AudioData midbuf;
 
     /***********************************************************
     pre-output audio data: used for rematrix/resample
     ***********************************************************/
-    AudioData preout;
+    [CCode (cname="")]
+    public AudioData preout;
 
     /***********************************************************
     converted output audio data
     ***********************************************************/
-    AudioData out;
+    [CCode (cname="")]
+    public AudioData out;
 
     /***********************************************************
     cached audio data (convert and resample purpose)
     ***********************************************************/
-    AudioData in_buffer;
+    [CCode (cname="")]
+    public AudioData in_buffer;
 
     /***********************************************************
     temporary with silence
     ***********************************************************/
-    AudioData silence;
+    [CCode (cname="")]
+    public AudioData silence;
 
     /***********************************************************
     temporary used to discard output
     ***********************************************************/
-    AudioData drop_temp;
+    [CCode (cname="")]
+    public AudioData drop_temp;
 
     /***********************************************************
     cached buffer position
@@ -611,50 +643,62 @@ public class SwrContext {
     /***********************************************************
     soxr 0.1.1: needed to fixup delayed_samples after flush has been called.
     ***********************************************************/
-    double delayed_samples_fixup;
+    [CCode (cname="")]
+    public double delayed_samples_fixup;
 
     /***********************************************************
     input conversion context
     ***********************************************************/
-    struct AudioConvert *in_convert;
+    [CCode (cname="")]
+    public AudioConvert? in_convert;
 
     /***********************************************************
     output conversion context
     ***********************************************************/
-    struct AudioConvert *out_convert;
+    [CCode (cname="")]
+    public AudioConvert? out_convert;
 
     /***********************************************************
     full conversion context (single conversion for input and output)
     ***********************************************************/
-    struct AudioConvert *full_convert;
+    [CCode (cname="")]
+    public AudioConvert? full_convert;
 
     /***********************************************************
     resampling context
     ***********************************************************/
-    struct ResampleContext *resample;
+    [CCode (cname="")]
+    public ResampleContext? resample;
 
     /***********************************************************
     resampler virtual function table
     ***********************************************************/
-    struct Resampler const *resampler;
+    [CCode (cname="")]
+    public Resampler[] resampler;
 
     /***********************************************************
     floating point rematrixing coefficients
     ***********************************************************/
-    double matrix[SWR_CH_MAX][SWR_CH_MAX];
+    [CCode (cname="")]
+    public double matrix[SWR_CH_MAX][SWR_CH_MAX];
 
     /***********************************************************
     single precision floating point rematrixing coefficients
     ***********************************************************/
-    float matrix_flt[SWR_CH_MAX][SWR_CH_MAX];
+    [CCode (cname="")]
+    public float matrix_flt[SWR_CH_MAX][SWR_CH_MAX];
 
-    uint8[] native_matrix;
+    [CCode (cname="")]
+    public uint8[] native_matrix;
 
-    uint8[] native_one;
+    [CCode (cname="")]
+    public uint8[] native_one;
 
-    uint8[] native_simd_one;
+    [CCode (cname="")]
+    public uint8[] native_simd_one;
 
-    uint8[] native_simd_matrix;
+    [CCode (cname="")]
+    public uint8[] native_simd_matrix;
 
     /***********************************************************
     17.15 fixed point rematrixing coefficients
@@ -668,106 +712,115 @@ public class SwrContext {
     [CCode (cname="")]
     public uint8 matrix_ch[SWR_CH_MAX][SWR_CH_MAX+1];
 
-    mix_1_1_func_type *mix_1_1_f;
+    [CCode (cname="")]
+    public Mix11Delegate? mix_1_1_f;
 
-    mix_1_1_func_type *mix_1_1_simd;
+    [CCode (cname="")]
+    public Mix11Delegate? mix_1_1_simd;
 
-    mix_2_1_func_type *mix_2_1_f;
+    [CCode (cname="")]
+    public Mix21Delegate? mix_2_1_f;
 
-    mix_2_1_func_type *mix_2_1_simd;
+    [CCode (cname="")]
+    public Mix21Delegate? mix_2_1_simd;
 
-    mix_any_func_type *mix_any_f;
+    [CCode (cname="")]
+    public MixAnyDelegate? mix_any_f;
 
     /***********************************************************
     TODO: callbacks for ASM optimizations
     ***********************************************************/
-};
+}
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int swri_realloc_audio (
-    AudioData *a,
+    AudioData? a,
     int count
 );
 
 [CCode (cname="",cheader_filename="")]
 public void swri_noise_shaping_int16 (
-    SwrContext *s,
-    AudioData *dsts,
-    AudioData *srcs,
-    AudioData *noises,
+    SwrContext? s,
+    AudioData? dsts,
+    AudioData? srcs,
+    AudioData? noises,
     int count
 );
 
 [CCode (cname="",cheader_filename="")]
 public void swri_noise_shaping_int32 (
-    SwrContext *s,
-    AudioData *dsts,
-    AudioData *srcs,
-    AudioData *noises,
+    SwrContext? s,
+    AudioData? dsts,
+    AudioData? srcs,
+    AudioData? noises,
     int count
 );
 
 [CCode (cname="",cheader_filename="")]
 public void swri_noise_shaping_float (
-    SwrContext *s,
-    AudioData *dsts,
-    AudioData *srcs,
-    AudioData *noises,
+    SwrContext? s,
+    AudioData? dsts,
+    AudioData? srcs,
+    AudioData? noises,
     int count
 );
 
 [CCode (cname="",cheader_filename="")]
 public void swri_noise_shaping_double (
-    SwrContext *s,
-    AudioData *dsts,
-    AudioData *srcs,
-    AudioData *noises,
+    SwrContext? s,
+    AudioData? dsts,
+    AudioData? srcs,
+    AudioData? noises,
     int count
 );
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int swri_rematrix_init (
-    SwrContext *s
+    SwrContext? s
 );
 
 [CCode (cname="",cheader_filename="")]
 public void swri_rematrix_free (
-    SwrContext *s
+    SwrContext? s
 );
 
 [CCode (cname="",cheader_filename="")]
 public int swri_rematrix (
-    SwrContext *s,
-    AudioData *out,
-    AudioData *in,
+    SwrContext? s,
+    AudioData? out,
+    AudioData? in,
     int len,
     int mustcopy
 );
 
 [CCode (cname="",cheader_filename="")]
 public int swri_rematrix_init_x86 (
-    SwrContext *s
+    SwrContext? s
 );
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int swri_get_dither (
-    SwrContext *s,
+    SwrContext? s,
     void *dst,
     int len,
     uint seed,
     AVSampleFormat noise_fmt
 );
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int swri_dither_init (
-    SwrContext *s,
+    SwrContext? s,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt
 );
 
 [CCode (cname="",cheader_filename="")]
 public void swri_audio_convert_init_aarch64 (
-    AudioConvert *ac,
+    AudioConvert? ac,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
     int channels
@@ -775,7 +828,7 @@ public void swri_audio_convert_init_aarch64 (
 
 [CCode (cname="",cheader_filename="")]
 public void swri_audio_convert_init_arm (
-    AudioConvert *ac,
+    AudioConvert? ac,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
     int channels
@@ -783,10 +836,8 @@ public void swri_audio_convert_init_arm (
 
 [CCode (cname="",cheader_filename="")]
 public void swri_audio_convert_init_x86 (
-    AudioConvert *ac,
+    AudioConvert? ac,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
     int channels
 );
-
-#endif

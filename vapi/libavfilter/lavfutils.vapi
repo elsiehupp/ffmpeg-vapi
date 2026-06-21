@@ -35,9 +35,9 @@ Load image from filename and put the resulting image in data.
 public int ff_load_image (
     uint8[] data[4],
     int linesize[4],
-    int *w,
-    int *h,
-    AVPixelFormat *pix_fmt,
+    out int w,
+    out int h,
+    AVPixelFormat? pix_fmt,
     string filename,
     void *log_ctx
 );

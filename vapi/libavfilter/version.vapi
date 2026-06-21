@@ -25,22 +25,36 @@ Libavfilter version macros
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVFILTER_VERSION_MAJOR 7
-public define LIBAVFILTER_VERSION_MINOR 57
-public define LIBAVFILTER_VERSION_MICRO 100
+public const int LIBAVFILTER_VERSION_MAJOR; // 7
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBAVFILTER_VERSION_MINOR; // 57
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBAVFILTER_VERSION_MICRO; // 100
 
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVFILTER_VERSION_INT AV_VERSION_INT (LIBAVFILTER_VERSION_MAJOR, \
-                                               LIBAVFILTER_VERSION_MINOR, \
-                                               LIBAVFILTER_VERSION_MICRO)
-public define LIBAVFILTER_VERSION AV_VERSION (LIBAVFILTER_VERSION_MAJOR, \
-                                           LIBAVFILTER_VERSION_MINOR, \
-                                           LIBAVFILTER_VERSION_MICRO)
-public define LIBAVFILTER_BUILD LIBAVFILTER_VERSION_INT
+public const int LIBAVFILTER_VERSION_INT;
+//  AV_VERSION_INT (
+//      LIBAVFILTER_VERSION_MAJOR,
+//      LIBAVFILTER_VERSION_MINOR,
+//      LIBAVFILTER_VERSION_MICRO
+//  );
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVFILTER_IDENT       "Lavfi" AV_STRINGIFY (LIBAVFILTER_VERSION)
+public const string LIBAVFILTER_VERSION;
+//  AV_VERSION (
+//      LIBAVFILTER_VERSION_MAJOR,
+//      LIBAVFILTER_VERSION_MINOR,
+//      LIBAVFILTER_VERSION_MICRO
+//  );
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBAVFILTER_BUILD; // LIBAVFILTER_VERSION_INT
+
+[CCode (cname="",cheader_filename="")]
+public const string LIBAVFILTER_IDENT; // "Lavfi" AV_STRINGIFY (LIBAVFILTER_VERSION)
 
 /***********************************************************
 FF_API_* defines may be placed below to indicate public API that will be
@@ -48,15 +62,22 @@ dropped at a future version bump. The defines themselves are not part of
 the public API and may change, break or disappear at any time.
 ***********************************************************/
 
-//  #if !FF_API_OLD_FILTER_OPTS_ERROR
-//  #define FF_API_OLD_FILTER_OPTS_ERROR (LIBAVFILTER_VERSION_MAJOR < 8)
-//  #endif
-//  #if !FF_API_LAVR_OPTS
-//  #define FF_API_LAVR_OPTS (LIBAVFILTER_VERSION_MAJOR < 8)
-//  #endif
-//  #if !FF_API_FILTER_GET_SET
-//  #define FF_API_FILTER_GET_SET (LIBAVFILTER_VERSION_MAJOR < 8)
-//  #endif
-//  #if !FF_API_NEXT
-//  #define FF_API_NEXT (LIBAVFILTER_VERSION_MAJOR < 8)
-//  #endif
+#if !FF_API_OLD_FILTER_OPTS_ERROR
+[CCode (cname="",cheader_filename="")]
+public const bool FF_API_OLD_FILTER_OPTS_ERROR; // (LIBAVFILTER_VERSION_MAJOR < 8)
+#endif
+
+#if !FF_API_LAVR_OPTS
+[CCode (cname="",cheader_filename="")]
+public const bool FF_API_LAVR_OPTS; // (LIBAVFILTER_VERSION_MAJOR < 8)
+#endif
+
+#if !FF_API_FILTER_GET_SET
+[CCode (cname="",cheader_filename="")]
+public const bool FF_API_FILTER_GET_SET; // (LIBAVFILTER_VERSION_MAJOR < 8)
+#endif
+
+#if !FF_API_NEXT
+[CCode (cname="",cheader_filename="")]
+public const bool FF_API_NEXT; // (LIBAVFILTER_VERSION_MAJOR < 8)
+#endif

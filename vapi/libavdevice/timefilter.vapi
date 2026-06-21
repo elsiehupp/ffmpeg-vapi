@@ -62,8 +62,11 @@ starting point is something between 0.3 and 3 Hz.
 For more details about these parameters and background concepts please see:
 http://www.kokkinizita.net/papers/usingdll.pdf
 ***********************************************************/
-TimeFilter * ff_timefilter_new (
-    double clock_period, double feedback2_factor, double feedback3_factor
+[CCode (cname="",cheader_filename="")]
+public TimeFilter? ff_timefilter_new (
+    double clock_period,
+    double feedback2_factor,
+    double feedback3_factor
 );
 
 /***********************************************************
@@ -84,7 +87,9 @@ cycle).
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public doubleff_timefilter_update (
-    TimeFilter *self, double system_time, double period
+    TimeFilter? self,
+    double system_time,
+    double period
 );
 
 /***********************************************************
@@ -96,7 +101,8 @@ Evaluate the filter at a specified time
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public doubleff_timefilter_eval (
-    TimeFilter *self, double delta
+    TimeFilter? self,
+    double delta
 );
 
 /***********************************************************
@@ -109,7 +115,7 @@ the next call to ff_timefilter_update ()
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_timefilter_reset (
-    TimeFilter *
+    TimeFilter? self
 );
 
 /***********************************************************
@@ -117,5 +123,5 @@ Free all resources associated with the filter
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_timefilter_destroy (
-    TimeFilter *
+    TimeFilter? self
 );

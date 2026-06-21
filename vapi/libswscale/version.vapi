@@ -22,21 +22,35 @@ swscale version macros
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define LIBSWSCALE_VERSION_MAJOR 5
-public define LIBSWSCALE_VERSION_MINOR 5
-public define LIBSWSCALE_VERSION_MICRO 100
+public const int LIBSWSCALE_VERSION_MAJOR; // 5
 
 [CCode (cname="",cheader_filename="")]
-public define LIBSWSCALE_VERSION_INT AV_VERSION_INT (LIBSWSCALE_VERSION_MAJOR, \
-                                               LIBSWSCALE_VERSION_MINOR, \
-                                               LIBSWSCALE_VERSION_MICRO)
-public define LIBSWSCALE_VERSION AV_VERSION (LIBSWSCALE_VERSION_MAJOR, \
-                                           LIBSWSCALE_VERSION_MINOR, \
-                                           LIBSWSCALE_VERSION_MICRO)
-public define LIBSWSCALE_BUILD LIBSWSCALE_VERSION_INT
+public const int LIBSWSCALE_VERSION_MINOR; // 5
 
 [CCode (cname="",cheader_filename="")]
-public define LIBSWSCALE_IDENT        "SwS" AV_STRINGIFY (LIBSWSCALE_VERSION)
+public const int LIBSWSCALE_VERSION_MICRO; // 100
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBSWSCALE_VERSION_INT;
+//  AV_VERSION_INT (
+//      LIBSWSCALE_VERSION_MAJOR,
+//      LIBSWSCALE_VERSION_MINOR,
+//      LIBSWSCALE_VERSION_MICRO
+//  );
+
+[CCode (cname="",cheader_filename="")]
+public const string LIBSWSCALE_VERSION;
+//  AV_VERSION (
+//      LIBSWSCALE_VERSION_MAJOR,
+//      LIBSWSCALE_VERSION_MINOR,
+//      LIBSWSCALE_VERSION_MICRO
+//  );
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBSWSCALE_BUILD; // LIBSWSCALE_VERSION_INT
+
+[CCode (cname="",cheader_filename="")]
+public const string LIBSWSCALE_IDENT; // "SwS" AV_STRINGIFY (LIBSWSCALE_VERSION)
 
 /***********************************************************
 FF_API_* defines may be placed below to indicate public API that will be
@@ -44,6 +58,7 @@ dropped at a future version bump. The defines themselves are not part of
 the public API and may change, break or disappear at any time.
 ***********************************************************/
 
-//  #if !FF_API_SWS_VECTOR
-//  #define FF_API_SWS_VECTOR (LIBSWSCALE_VERSION_MAJOR < 6)
-//  #endif
+#if !FF_API_SWS_VECTOR
+[CCode (cname="",cheader_filename="")]
+public const bool FF_API_SWS_VECTOR; // (LIBSWSCALE_VERSION_MAJOR < 6)
+#endif

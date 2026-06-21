@@ -59,10 +59,10 @@ public class FilterParams {
     public int seed;
 
     [CCode (cname="")]
-    public int8 *noise;
+    public int8? noise;
 
     [CCode (cname="")]
-    public int8 *prev_shift[MAX_RES][3];
+    public int8? prev_shift[MAX_RES][3];
 
     [CCode (cname="")]
     public int rand_shift[MAX_RES];
@@ -95,7 +95,7 @@ public class NoiseContext {
     public delegate void LineNoiseDelegate (
         uint8[] dst,
         uint8[] src,
-        int8 *noise,
+        int8? noise,
         int len,
         int shift
     );
@@ -119,7 +119,7 @@ public class NoiseContext {
 public void ff_line_noise_c (
     uint8[] dst,
     uint8[] src,
-    int8 *noise,
+    int8? noise,
     int len,
     int shift
 );
@@ -134,5 +134,5 @@ public void ff_line_noise_avg_c (
 
 [CCode (cname="",cheader_filename="")]
 public void ff_noise_init_x86 (
-    NoiseContext *n
+    NoiseContext? n
 );

@@ -52,7 +52,7 @@ public enum var_name {
 [Compact]
 public class EQParameters {
     public delegate void AdjustDelegate (
-        EQParameters *eq,
+        EQParameters? eq,
         uint8[] dst,
         int dst_stride,
         uint8[] src,
@@ -109,7 +109,7 @@ public class EQContext {
     public string contrast_expr;
 
     [CCode (cname="")]
-    public AVExpr *contrast_pexpr;
+    public AVExpr? contrast_pexpr;
 
     [CCode (cname="")]
     public double contrast;
@@ -118,7 +118,7 @@ public class EQContext {
     public string brightness_expr;
 
     [CCode (cname="")]
-    public AVExpr *brightness_pexpr;
+    public AVExpr? brightness_pexpr;
 
     [CCode (cname="")]
     public double brightness;
@@ -127,7 +127,7 @@ public class EQContext {
     public string saturation_expr;
 
     [CCode (cname="")]
-    public AVExpr *saturation_pexpr;
+    public AVExpr? saturation_pexpr;
 
     [CCode (cname="")]
     public double saturation;
@@ -136,7 +136,7 @@ public class EQContext {
     public string gamma_expr;
 
     [CCode (cname="")]
-    public AVExpr *gamma_pexpr;
+    public AVExpr? gamma_pexpr;
 
     [CCode (cname="")]
     public double gamma;
@@ -145,7 +145,7 @@ public class EQContext {
     public string gamma_weight_expr;
 
     [CCode (cname="")]
-    public AVExpr *gamma_weight_pexpr;
+    public AVExpr? gamma_weight_pexpr;
 
     [CCode (cname="")]
     public double gamma_weight;
@@ -154,7 +154,7 @@ public class EQContext {
     public string gamma_r_expr;
 
     [CCode (cname="")]
-    public AVExpr *gamma_r_pexpr;
+    public AVExpr? gamma_r_pexpr;
 
     [CCode (cname="")]
     public double gamma_r;
@@ -163,7 +163,7 @@ public class EQContext {
     public string gamma_g_expr;
 
     [CCode (cname="")]
-    public AVExpr *gamma_g_pexpr;
+    public AVExpr? gamma_g_pexpr;
 
     [CCode (cname="")]
     public double gamma_g;
@@ -172,7 +172,7 @@ public class EQContext {
     public string gamma_b_expr;
 
     [CCode (cname="")]
-    public AVExpr *gamma_b_pexpr;
+    public AVExpr? gamma_b_pexpr;
 
     [CCode (cname="")]
     public double gamma_b;
@@ -181,7 +181,7 @@ public class EQContext {
     public double var_values[VAR_NB];
 
     public delegate void ProcessDelegate (
-        EQParameters *par,
+        EQParameters? par,
         uint8[] dst,
         int dst_stride,
         uint8[] src,
@@ -199,5 +199,5 @@ public class EQContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_eq_init_x86 (
-    EQContext *eq
+    EQContext? eq
 );

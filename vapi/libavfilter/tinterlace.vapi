@@ -149,5 +149,5 @@ public class TInterlaceContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_tinterlace_init_x86 (
-    TInterlaceContext *interlace
+    TInterlaceContext? interlace
 );

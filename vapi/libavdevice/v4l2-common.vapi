@@ -25,13 +25,16 @@ public class fmt_map {
     [CCode (cname="")]
     public AVCodecID codec_id;
 
-    uint32 v4l2_fmt;
+    [CCode (cname="")]
+    public uint32 v4l2_fmt;
 }
 
 //  extern const struct fmt_map ff_fmt_conversion_table[];
 
-uint32 ff_fmt_ff2v4l (
-    AVPixelFormat pix_fmt, AVCodecID codec_id
+[CCode (cname="",cheader_filename="")]
+public uint32 ff_fmt_ff2v4l (
+    AVPixelFormat pix_fmt,
+    AVCodecID codec_id
 );
 
 [CCode (cname="",cheader_filename="")]

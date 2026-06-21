@@ -97,7 +97,7 @@ public class ID3v2ExtraMeta {
     public void *data;
 
     [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
-    public ID3v2ExtraMeta *next;
+    public ID3v2ExtraMeta? next;
 }
 
 [CCode (cname="struct ID3v2ExtraMetaGEOB",cheader_filename="ffmpeg/libformat/id3v2.h")]
@@ -192,7 +192,7 @@ public int ff_id3v2_tag_len (
 
 @param metadata Parsed metadata is stored here
 @param extra_meta If not NULL, extra metadata is parsed into a list of
-ID3v2ExtraMeta structs and *extra_meta points to the head of the list
+ID3v2ExtraMeta structs and? extra_meta points to the head of the list
 ***********************************************************/
 [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public void ff_id3v2_read_dict (
@@ -208,7 +208,7 @@ public void ff_id3v2_read_dict (
 Data is read from and stored to AVFormatContext.
 
 @param extra_meta If not NULL, extra metadata is parsed into a list of
-ID3v2ExtraMeta structs and *extra_meta points to the head of the list
+ID3v2ExtraMeta structs and? extra_meta points to the head of the list
 @param[opt] max_search_search restrict ID3 magic number search (bytes from start)
 ***********************************************************/
 [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
@@ -274,7 +274,7 @@ public int ff_id3v2_write_simple (
 
 /***********************************************************
 @brief Free memory allocated parsing special (non-text) metadata.
-@param extra_meta Pointer to a pointer to the head of a ID3v2ExtraMeta list, *extra_meta is set to NULL.
+@param extra_meta Pointer to a pointer to the head of a ID3v2ExtraMeta list,? extra_meta is set to NULL.
 ***********************************************************/
 [CCode (cname="",cheader_filename="ffmpeg/libformat/id3v2.h")]
 public void ff_id3v2_free_extra_meta (

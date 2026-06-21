@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_AC3_DEMUXER
-static int ac3_probe (const AVProbeData *p)
+static int ac3_probe (const AVProbeData? p)
 {
     return ac3_eac3_probe (p, LibAVCodec.CodecID.AC3);
 }
@@ -105,7 +105,7 @@ public class AC3Demuxer : AVInputFormat {
 #endif
 
 #if CONFIG_EAC3_DEMUXER
-static int eac3_probe (const AVProbeData *p)
+static int eac3_probe (const AVProbeData? p)
 {
     return ac3_eac3_probe (p, LibAVCodec.CodecID.EAC3);
 }

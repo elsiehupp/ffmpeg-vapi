@@ -72,5 +72,5 @@ public class RemoveGrainContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_removegrain_init_x86 (
-    RemoveGrainContext *rg
+    RemoveGrainContext? rg
 );

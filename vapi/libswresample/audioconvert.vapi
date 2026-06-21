@@ -25,8 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Audio format conversion routines
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
-public typedef void (conv_func_type)(
+[CCode (cname="conv_func_type",cheader_filename="")]
+public delegate void ConvDelegate (
     uint8[] po,
     uint8[] pi,
     int is,
@@ -34,10 +34,10 @@ public typedef void (conv_func_type)(
     uint8[] end
 );
 
-[CCode (cname="",cheader_filename="")]
-public typedef void (simd_func_type)(
-    uint8[] *dst,
-    uint8[] *src,
+[CCode (cname="simd_func_type",cheader_filename="")]
+public delegate void SimdDelegate (
+    uint8[][] dst,
+    uint8[][] src,
     int len
 );
 
@@ -53,9 +53,11 @@ public class AudioConvert {
     [CCode (cname="")]
     public int out_simd_align_mask;
 
-    conv_func_type *conv_f;
+    [CCode (cname="")]
+    public ConvDelegate? conv_f;
 
-    simd_func_type *simd_f;
+    [CCode (cname="")]
+    public SimdDelegate? simd_f;
 
     [CCode (cname="")]
     public int[] ch_map;
@@ -65,7 +67,7 @@ public class AudioConvert {
     ***********************************************************/
     [CCode (cname="")]
     public uint8 silence[8];
-}AudioConvert;
+}
 
 /***********************************************************
 Create an audio sample format converter context
@@ -77,7 +79,8 @@ Create an audio sample format converter context
               if all channels must be selected
 @return NULL on error
 ***********************************************************/
-AudioConvert *swri_audio_convert_alloc (
+[CCode (cname="",cheader_filename="")]
+public AudioConvert? swri_audio_convert_alloc (
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
     int channels,
@@ -91,7 +94,7 @@ and set the pointer to NULL
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void swri_audio_convert_free (
-    AudioConvert **ctx
+    AudioConvert **audio_convert_context
 );
 
 /***********************************************************
@@ -102,8 +105,8 @@ Convert between audio sample formats
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int swri_audio_convert (
-    AudioConvert *ctx,
-    AudioData *out,
-    AudioData *in,
+    AudioConvert? audio_convert_context,
+    AudioData? out,
+    AudioData? in,
     int len
 );

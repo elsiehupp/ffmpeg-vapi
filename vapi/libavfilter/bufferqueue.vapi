@@ -34,7 +34,7 @@ header.
 Powers of 2 are recommended.
 ***********************************************************/
 #if !FF_BUFQUEUE_SIZE
-public define FF_BUFQUEUE_SIZE 64
+public const size_t FF_BUFQUEUE_SIZE; // 64
 #endif
 
 /***********************************************************
@@ -46,24 +46,28 @@ public class FFBufQueue {
     [CCode (cname="")]
     public AVFrame queue[FF_BUFQUEUE_SIZE];
 
-    ushort head;
+    [CCode (cname="")]
+    public ushort head;
 
     /***********************************************************
     number of available buffers
     ***********************************************************/
-    ushort available;
+    [CCode (cname="")]
+    public ushort available;
 }
 
-[CCode (cname="",cheader_filename="")]
-public define BUCKET (i) queue->queue[(queue->head + (i)) % FF_BUFQUEUE_SIZE]
+//  public define BUCKET (i) queue->queue[(queue->head + (i)) % FF_BUFQUEUE_SIZE]
 
 /***********************************************************
 Test if a buffer queue is full.
 ***********************************************************/
-static inline int ff_bufqueue_is_full (FFBufQueue *queue)
-{
-    return queue->available == FF_BUFQUEUE_SIZE;
-}
+[CCode (cname="",cheader_filename="")]
+public static inline bool ff_bufqueue_is_full (
+    FFBufQueue? queue
+);
+//  {
+//      return queue->available == FF_BUFQUEUE_SIZE;
+//  }
 
 /***********************************************************
 Add a buffer to the queue.
@@ -71,16 +75,21 @@ Add a buffer to the queue.
 If the queue is already full, then the current last buffer is dropped
 (and unrefed) with a warning before adding the new buffer.
 ***********************************************************/
-static inline void ff_bufqueue_add (
-    void *log, FFBufQueue *queue,
+[CCode (cname="",cheader_filename="")]
+public static inline void ff_bufqueue_add (
+    void *log,
+    FFBufQueue? queue,
     AVFrame buf
-) {
-    if (ff_bufqueue_is_full (queue)) {
-        av_log (log, AV_LOG_WARNING, "Buffer queue overflow, dropping.\n");
-        av_frame_free (&BUCKET (--queue->available));
-    }
-    BUCKET (queue->available++) = buf;
-}
+);
+//  {
+//      if (
+//          ff_bufqueue_is_full (queue)
+//      ) {
+//          av_log (log, AV_LOG_WARNING, "Buffer queue overflow, dropping.\n");
+//          av_frame_free (&BUCKET (--queue->available));
+//      }
+//      BUCKET (queue->available++) = buf;
+//  }
 
 /***********************************************************
 Get a buffer from the queue without altering it.
@@ -88,39 +97,48 @@ Get a buffer from the queue without altering it.
 Buffer with index 0 is the first buffer in the queue.
 Return NULL if the queue has not enough buffers.
 ***********************************************************/
-static inline AVFrame *ff_bufqueue_peek (FFBufQueue *queue,
-                                        uint index)
-{
-    return index < queue->available ? BUCKET (index) : NULL;
-}
+[CCode (cname="",cheader_filename="")]
+public static inline AVFrame? ff_bufqueue_peek (
+    FFBufQueue? queue,
+    uint index
+);
+//  {
+//      return index < queue->available ? BUCKET (index) : NULL;
+//  }
 
 /***********************************************************
 Get the first buffer from the queue and remove it.
 
 Do not use on an empty queue.
 ***********************************************************/
-static inline AVFrame *ff_bufqueue_get (
-    FFBufQueue *queue
-) {
-    [CCode (cname="")]
-    public AVFrame ret = queue->queue[queue->head];
-    av_assert0 (queue->available);
-    queue->available--;
-    queue->queue[queue->head] = NULL;
-    queue->head = (queue->head + 1) % FF_BUFQUEUE_SIZE;
-    return ret;
-}
+[CCode (cname="",cheader_filename="")]
+public static inline AVFrame? ff_bufqueue_get (
+    FFBufQueue? queue
+);
+//  {
+//      [CCode (cname="")]
+//      public AVFrame ret = queue->queue[queue->head];
+//      av_assert0 (queue->available);
+//      queue->available--;
+//      queue->queue[queue->head] = NULL;
+//      queue->head = (queue->head + 1) % FF_BUFQUEUE_SIZE;
+//      return ret;
+//  }
 
 /***********************************************************
 Unref and remove all buffers from the queue.
 ***********************************************************/
-static inline void ff_bufqueue_discard_all (
-    FFBufQueue *queue
-) {
-    while (queue->available) {
-        public AVFrame buf = ff_bufqueue_get (queue);
-        av_frame_free (&buf);
-    }
-}
+[CCode (cname="",cheader_filename="")]
+public static inline void ff_bufqueue_discard_all (
+    FFBufQueue? queue
+);
+//  {
+//      while (
+//          queue->available
+//      ) {
+//          public AVFrame buf = ff_bufqueue_get (queue);
+//          av_frame_free (&buf);
+//      }
+//  }
 
-#undef BUCKET
+//  #undef BUCKET

@@ -24,18 +24,32 @@ Libpostproc version macros
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define LIBPOSTPROC_VERSION_MAJOR 55
-public define LIBPOSTPROC_VERSION_MINOR 5
-public define LIBPOSTPROC_VERSION_MICRO 100
+public const int LIBPOSTPROC_VERSION_MAJOR; // 55
 
 [CCode (cname="",cheader_filename="")]
-public define LIBPOSTPROC_VERSION_INT AV_VERSION_INT (LIBPOSTPROC_VERSION_MAJOR, \
-                                               LIBPOSTPROC_VERSION_MINOR, \
-                                               LIBPOSTPROC_VERSION_MICRO)
-public define LIBPOSTPROC_VERSION AV_VERSION (LIBPOSTPROC_VERSION_MAJOR, \
-                                           LIBPOSTPROC_VERSION_MINOR, \
-                                           LIBPOSTPROC_VERSION_MICRO)
-public define LIBPOSTPROC_BUILD LIBPOSTPROC_VERSION_INT
+public const int LIBPOSTPROC_VERSION_MINOR; // 5
 
 [CCode (cname="",cheader_filename="")]
-public define LIBPOSTPROC_IDENT       "postproc" AV_STRINGIFY (LIBPOSTPROC_VERSION)
+public const int LIBPOSTPROC_VERSION_MICRO; // 100
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBPOSTPROC_VERSION_INT;
+//  AV_VERSION_INT (
+//      LIBPOSTPROC_VERSION_MAJOR,
+//      LIBPOSTPROC_VERSION_MINOR,
+//      LIBPOSTPROC_VERSION_MICRO
+//  );
+
+[CCode (cname="",cheader_filename="")]
+public const string LIBPOSTPROC_VERSION;
+//  AV_VERSION (
+//      LIBPOSTPROC_VERSION_MAJOR,
+//      LIBPOSTPROC_VERSION_MINOR,
+//      LIBPOSTPROC_VERSION_MICRO
+//  );
+
+[CCode (cname="",cheader_filename="")]
+public const int LIBPOSTPROC_BUILD; // LIBPOSTPROC_VERSION_INT
+
+[CCode (cname="",cheader_filename="")]
+public const string LIBPOSTPROC_IDENT; // "postproc" AV_STRINGIFY (LIBPOSTPROC_VERSION)

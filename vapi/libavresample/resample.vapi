@@ -22,10 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [Compact]
 public class ResampleContext {
     [CCode (cname="")]
-    public AVAudioResampleContext *avr;
+    public AVAudioResampleContext? avr;
 
     [CCode (cname="")]
-    public AudioData *buffer;
+    public AudioData? buffer;
 
     [CCode (cname="")]
     public uint8[] filter_bank;
@@ -66,17 +66,18 @@ public class ResampleContext {
     [CCode (cname="")]
     public int kaiser_beta;
 
-    [CCode (cname="set_filter")]
-    public void (*set_filter)(
+    public delegate void SetFilterDelegate (
         void *filter,
         double[] tab,
         int phase,
         int tap_count
     );
 
-    [CCode (cname="resample_one")]
-    public void (*resample_one)(
-        ResampleContext *c,
+    [CCode (cname="set_filter")]
+    public SetFilterDelegate set_filter;
+
+    public delegate void ResampleOneDelegate (
+        ResampleContext? resample_context,
         void *dst0,
         int dst_index,
         void *src0,
@@ -84,13 +85,18 @@ public class ResampleContext {
         int frac
     );
 
-    [CCode (cname="resample_nearest")]
-    public void (*resample_nearest)(
+    [CCode (cname="resample_one")]
+    public ResampleOneDelegate resample_one;
+
+    public delegate void ResampleNearestDelegate (
         void *dst0,
         int dst_index,
         void *src0,
         uint index
     );
+
+    [CCode (cname="resample_nearest")]
+    public ResampleNearestDelegate resample_nearest;
 
     [CCode (cname="")]
     public int padding_size;
@@ -118,18 +124,18 @@ ResampleContext.
 @return     newly-allocated ResampleContext
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public ResampleContext *ff_audio_resample_init (
-    AVAudioResampleContext *avr
+public ResampleContext? ff_audio_resample_init (
+    AVAudioResampleContext? avr
 );
 
 /***********************************************************
 Free a ResampleContext.
 
-@param c  ResampleContext
+@param resample_context  ResampleContext
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_audio_resample_free (
-    ResampleContext **c
+    ResampleContext **resample_context
 );
 
 /***********************************************************
@@ -146,14 +152,14 @@ in order to fit all available output. If it cannot be reallocated, fewer
 input samples will be consumed in order to have the output fit in the
 destination data buffers.
 
-@param c         ResampleContext
+@param resample_context         ResampleContext
 @param dst       destination audio data
 @param src       source audio data
 @return          0 on success, negative AVERROR code on failure
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_resample (
-    ResampleContext *c,
-    AudioData *dst,
-    AudioData *src
+    ResampleContext? resample_context,
+    AudioData? dst,
+    AudioData? src
 );

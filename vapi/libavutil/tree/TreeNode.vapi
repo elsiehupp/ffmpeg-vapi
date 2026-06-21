@@ -148,7 +148,7 @@ public class TreeNode {
 
     [CCode (cname="av_tree_destroy",cheader_filename="ffmpeg/libavutil/tree.h")]
     public void av_tree_destroy (
-        TreeNode t
+        TreeNode tree_node
     );
 
     /***********************************************************
@@ -163,7 +163,7 @@ public class TreeNode {
     ***********************************************************/
     [CCode (cname="av_tree_enumerate",cheader_filename="ffmpeg/libavutil/tree.h")]
     public void av_tree_enumerate (
-        TreeNode t,
+        TreeNode tree_node,
         void *opaque,
         TreeEnumerateComparisonDelegate cmp,
         TreeEnumerateEnumerationDelegate enu

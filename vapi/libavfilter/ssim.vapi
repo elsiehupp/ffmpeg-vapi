@@ -21,26 +21,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class SSIMDSPContext {
-    [CCode (cname="ssim_4x4_line")]
-    public void (*ssim_4x4_line)(
+    public delegate int SumDelegate ();
+
+    public delegate void Ssim4x4LineDelegate (
         uint8[] buf,
         ptrdiff_t buf_stride,
         uint8[] ref,
         ptrdiff_t ref_stride,
-        int (*sums)[4],
+        SumDelegate sums[4],
+        int w
+    );
+
+    [CCode (cname="ssim_4x4_line")]
+    public Ssim4x4LineDelegate ssim_4x4_line;
+
+    public delegate float SsimEndLineDelegate (
+        SumDelegate sum0[4],
+        SumDelegate sum1[4],
         int w
     );
 
     [CCode (cname="ssim_end_line")]
-    float (*ssim_end_line)(
-        const int (*sum0)[4],
-        int (*sum1)[4],
-        int w
-    );
+    public SsimEndLineDelegate ssim_end_line;
 
 }
 
 [CCode (cname="",cheader_filename="")]
 public void ff_ssim_init_x86 (
-    SSIMDSPContext *dsp
+    SSIMDSPContext? dsp
 );

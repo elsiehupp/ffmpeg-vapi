@@ -30,10 +30,10 @@ LibAVCodec external API header
 @defgroup lavc_parsing Frame parsing
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
 public delegate int ParserInitDelegate (
     CodecParserContext s
 );
+
 public delegate int ParserParseDelegate (
     CodecParserContext s,
     CodecContext avctx,
@@ -42,9 +42,11 @@ public delegate int ParserParseDelegate (
     uint8[] buffer,
     int buf_size
 );
+
 public delegate void ParserCloseDelegate (
     CodecParserContext s
 );
+
 public delegate int ParserSplitDelegate (
     CodecContext avctx,
     uint8[] buffer,
@@ -79,7 +81,7 @@ public abstract class CodecParser {
     public ParserSplitDelegate split;
 
     [CCode (cname="next")]
-    public CodecParser *next;
+    public CodecParser? next;
 
     /***********************************************************
     @brief Iterate over all registered codec parsers.
@@ -92,7 +94,9 @@ public abstract class CodecParser {
     iteration is finished
     ***********************************************************/
     [CCode (cname="av_parser_iterate",cheader_filename="ffmpeg/libavcodec/avcodec.h")]
-    public CodecParser av_parser_iterate (out void *opaque);
+    public CodecParser av_parser_iterate (
+        out void *opaque
+    );
 
 }
 
@@ -144,7 +148,8 @@ pix_fmt_list parameter.
 public LibAVUtil.PixelFormat avcodec_find_best_pix_fmt_of_list (
     LibAVUtil.PixelFormat[] pix_fmt_list,
     LibAVUtil.PixelFormat input_pix_fmt,
-    int has_alpha, out int loss_ptr
+    int has_alpha,
+    out int loss_ptr
 );
 
 /***********************************************************

@@ -50,16 +50,15 @@ Return the libpostproc license.
 public string postproc_license ();
 
 [CCode (cname="",cheader_filename="")]
-public define PP_QUALITY_MAX 6
+public const size_t PP_QUALITY_MAX; // 6
 
 [CCode (cname="",cheader_filename="")]
-public typedef void pp_context;
-public typedef void pp_mode;
+public class pp_context { }
+
+[CCode (cname="",cheader_filename="")]
+public class pp_mode { }
 
 #if LIBPOSTPROC_VERSION_INT < (52<<16)
-public typedef pp_context pp_context_t;
-public typedef pp_mode pp_mode_t;
-
 /***********************************************************
 a simple help text
 ***********************************************************/
@@ -81,8 +80,8 @@ public void pp_postprocess (
     int verticalSize,
     int8 *QP_store,
     int QP_stride,
-    pp_mode *mode,
-    pp_context *ppContext,
+    pp_mode? mode,
+    pp_context? ppContext,
     int pict_type
 );
 
@@ -93,17 +92,19 @@ Return a pp_mode or NULL if an error occurred.
 @param name    the string after "-pp" on the command line
 @param quality a number from 0 to PP_QUALITY_MAX
 ***********************************************************/
-pp_mode *pp_get_mode_by_name_and_quality (
+[CCode (cname="",cheader_filename="")]
+public pp_mode? pp_get_mode_by_name_and_quality (
     string name,
     int quality
 );
 
 [CCode (cname="",cheader_filename="")]
 public void pp_free_mode (
-    pp_mode *mode
+    pp_mode? mode
 );
 
-pp_context *pp_get_context (
+[CCode (cname="",cheader_filename="")]
+public pp_context? pp_get_context (
     int width,
     int height,
     int flags
@@ -111,28 +112,55 @@ pp_context *pp_get_context (
 
 [CCode (cname="",cheader_filename="")]
 public void pp_free_context (
-    pp_context *ppContext
+    pp_context? ppContext
 );
 
 [CCode (cname="",cheader_filename="")]
-public define PP_CPU_CAPS_MMX 0x80000000
-public define PP_CPU_CAPS_MMX2 0x20000000
-public define PP_CPU_CAPS_3DNOW 0x40000000
-public define PP_CPU_CAPS_ALTIVEC 0x10000000
-public define PP_CPU_CAPS_AUTO 0x00080000
+public enum FooBar {
+    [CCode (cname="",cheader_filename="")]
+    PP_CPU_CAPS_MMX, // 0x80000000
+
+    [CCode (cname="",cheader_filename="")]
+    PP_CPU_CAPS_MMX2, // 0x20000000
+
+    [CCode (cname="",cheader_filename="")]
+    PP_CPU_CAPS_3DNOW, // 0x40000000
+
+    [CCode (cname="",cheader_filename="")]
+    PP_CPU_CAPS_ALTIVEC, // 0x10000000
+
+    [CCode (cname="",cheader_filename="")]
+    PP_CPU_CAPS_AUTO; // 0x00080000
+}
 
 [CCode (cname="",cheader_filename="")]
-public define PP_FORMAT 0x00000008
-public define PP_FORMAT_420 (0x00000011|PP_FORMAT)
-public define PP_FORMAT_422 (0x00000001|PP_FORMAT)
-public define PP_FORMAT_411 (0x00000002|PP_FORMAT)
-public define PP_FORMAT_444 (0x00000000|PP_FORMAT)
-public define PP_FORMAT_440 (0x00000010|PP_FORMAT)
+public enum FooBar {
+    [CCode (cname="",cheader_filename="")]
+    PP_FORMAT, // 0x00000008
 
-/***********************************************************
-MPEG2 style QScale
-***********************************************************/
-public define PP_PICT_TYPE_QP2 0x00000010
+    [CCode (cname="",cheader_filename="")]
+    PP_FORMAT_420, // (0x00000011|PP_FORMAT)
+
+    [CCode (cname="",cheader_filename="")]
+    PP_FORMAT_422, // (0x00000001|PP_FORMAT)
+
+    [CCode (cname="",cheader_filename="")]
+    PP_FORMAT_411, // (0x00000002|PP_FORMAT)
+
+    [CCode (cname="",cheader_filename="")]
+    PP_FORMAT_444, // (0x00000000|PP_FORMAT)
+
+    [CCode (cname="",cheader_filename="")]
+    PP_FORMAT_440; // (0x00000010|PP_FORMAT)
+}
+
+[CCode (cname="",cheader_filename="")]
+public enum FooBar {
+    /***********************************************************
+    MPEG2 style QScale
+    ***********************************************************/
+    PP_PICT_TYPE_QP2; // 0x00000010
+}
 
 /***********************************************************
 @}

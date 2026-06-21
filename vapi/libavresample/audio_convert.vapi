@@ -39,7 +39,7 @@ set as the optimized conversion function.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_audio_convert_set_func (
-    AudioConvert *ac,
+    AudioConvert? ac,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
     int channels,
@@ -60,8 +60,9 @@ Allocate and initialize AudioConvert context for sample format conversion.
 @param apply_map   apply channel map during conversion
 @return            newly-allocated AudioConvert context
 ***********************************************************/
-AudioConvert *ff_audio_convert_alloc (
-    AVAudioResampleContext *avr,
+[CCode (cname="",cheader_filename="")]
+public AudioConvert? ff_audio_convert_alloc (
+    AVAudioResampleContext? avr,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
     int channels,
@@ -99,9 +100,9 @@ set by this function before a successful return.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_convert (
-    AudioConvert *ac,
-    AudioData *out,
-    AudioData *in
+    AudioConvert? ac,
+    AudioData? out,
+    AudioData? in
 );
 
 /***********************************************************
@@ -110,15 +111,15 @@ arch-specific initialization functions
 
 [CCode (cname="",cheader_filename="")]
 public void ff_audio_convert_init_aarch64 (
-    AudioConvert *ac
+    AudioConvert? ac
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_audio_convert_init_arm (
-    AudioConvert *ac
+    AudioConvert? ac
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_audio_convert_init_x86 (
-    AudioConvert *ac
+    AudioConvert? ac
 );

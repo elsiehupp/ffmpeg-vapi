@@ -66,6 +66,7 @@ public class DitherDSPContext {
     @param len  number of output noise samples
                 constraints: multiple of 16
     ***********************************************************/
+    [CCode (cname="")]
     public delegate void DitherIntToFloatDelegate (
         out float[] dst,
         int[] src0,
@@ -86,8 +87,8 @@ DitherContext.
 @return     newly-allocated DitherContext
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public DitherContext *ff_dither_alloc (
-    AVAudioResampleContext *avr,
+public DitherContext? ff_dither_alloc (
+    AVAudioResampleContext? avr,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
     int channels,
@@ -115,9 +116,9 @@ Convert audio sample format with dithering.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_convert_dither (
-    DitherContext *c,
-    AudioData *dst,
-    AudioData *src
+    DitherContext? c,
+    AudioData? dst,
+    AudioData? src
 );
 
 /***********************************************************
@@ -126,6 +127,6 @@ arch-specific initialization functions
 
 [CCode (cname="",cheader_filename="")]
 public void ff_dither_init_x86 (
-    DitherDSPContext *ddsp,
+    DitherDSPContext? ddsp,
     AVResampleDitherMethod method
 );

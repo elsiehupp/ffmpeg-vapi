@@ -178,15 +178,15 @@ public class AudioFIRContext {
     public AudioFIRDSPContext afirdsp;
 
     [CCode (cname="")]
-    public AVFloatDSPContext *fdsp;
+    public AVFloatDSPContext? fdsp;
 }
 
 [CCode (cname="",cheader_filename="")]
 public void ff_afir_init (
-    AudioFIRDSPContext *s
+    AudioFIRDSPContext? s
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_afir_init_x86 (
-    AudioFIRDSPContext *s
+    AudioFIRDSPContext? s
 );

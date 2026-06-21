@@ -29,7 +29,7 @@ public const size_t MAX_LEVEL; // 6
 [Compact]
 public class SPPContext {
     [CCode (cname="")]
-    public AVClass av_class;
+    public AVClass? av_class;
 
     [CCode (cname="")]
     public int log2_count;
@@ -53,13 +53,13 @@ public class SPPContext {
     public uint16[] temp;
 
     [CCode (cname="")]
-    public AVCodecContext *avctx;
+    public AVCodecContext? avctx;
 
     [CCode (cname="")]
-    public AVDCT *dct;
+    public AVDCT? dct;
 
     [CCode (cname="")]
-    public int8 *non_b_qp_table;
+    public int8? non_b_qp_table;
 
     [CCode (cname="")]
     public int non_b_qp_alloc_size;
@@ -101,5 +101,5 @@ public class SPPContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_spp_init_x86 (
-    SPPContext *s
+    SPPContext? s
 );

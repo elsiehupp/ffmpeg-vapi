@@ -2701,7 +2701,7 @@ public class AVPacketList {
     public LibAVCodec.Packet packet;
 
     [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
-    public AVPacketList *next;
+    public AVPacketList? next;
 }
 
 
@@ -3599,7 +3599,7 @@ Miscellaneous utility functions related to both muxing and demuxing
 /***********************************************************
 @brief Send a nice hexadecimal dump of a buffer to the specified file stream.
 
-@param f The file stream pointer where the dump should be sent to.
+@param file The file stream pointer where the dump should be sent to.
 @param buffer buffer
 @param size buffer size
 
@@ -3607,7 +3607,7 @@ Miscellaneous utility functions related to both muxing and demuxing
 ***********************************************************/
 [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_hex_dump (
-    GLib.File f,
+    GLib.File file,
     uint8[] buffer,
     int size
 );
@@ -3635,14 +3635,14 @@ public void av_hex_dump_log (
 /***********************************************************
 @brief Send a nice dump of a packet to the specified file stream.
 
-@param f The file stream pointer where the dump should be sent to.
+@param file The file stream pointer where the dump should be sent to.
 @param packet packet to dump
 @param dump_payload True if the payload must be displayed, too.
 @param st AVStream that the packet belongs to
 ***********************************************************/
 [CCode (cname="",cheader_filename="ffmpeg/libformat/avformat.h")]
 public void av_pkt_dump2 (
-    GLib.File f,
+    GLib.File file,
     LibAVCodec.Packet packet,
     int dump_payload,
     AVStream st

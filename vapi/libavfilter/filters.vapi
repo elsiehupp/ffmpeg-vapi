@@ -22,10 +22,20 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 Filters implementation helper functions
 ***********************************************************/
 
-/***********************************************************
-Special return code when activate () did not do anything.
-***********************************************************/
-public define FFERROR_NOT_READY FFERRTAG ('N','R','D','Y')
+public enum FooBar {
+    /***********************************************************
+    Special return code when activate () did not do anything.
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="")]
+    FFERROR_NOT_READY;
+    //  FFERRTAG (
+    //      'N',
+    //      'R',
+    //      'D',
+    //      'Y'
+    //  );
+
+}
 
 /***********************************************************
 Mark a filter ready and schedule it for activation.
@@ -39,7 +49,7 @@ events.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_filter_set_ready (
-    AVFilterContext *filter,
+    AVFilterContext? filter,
     uint priority
 );
 
@@ -50,8 +60,8 @@ Commands will trigger the process_command () callback.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_inlink_process_commands (
-    AVFilterLink *link,
-    AVFrame *frame
+    AVFilterLink? link,
+    AVFrame? frame
 );
 
 /***********************************************************
@@ -62,16 +72,17 @@ of the frame.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_inlink_evaluate_timeline_at_frame (
-    AVFilterLink *link,
-    AVFrame *frame
+    AVFilterLink? link,
+    AVFrame? frame
 );
 
 /***********************************************************
 Get the number of frames available on the link.
 @return the number of frames available in the link fifo.
 ***********************************************************/
-size_t ff_inlink_queued_frames (
-    AVFilterLink *link
+[CCode (cname="",cheader_filename="")]
+public size_t ff_inlink_queued_frames (
+    AVFilterLink? link
 );
 
 /***********************************************************
@@ -80,7 +91,7 @@ Test if a frame is available on the link.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_inlink_check_available_frame (
-    AVFilterLink *link
+    AVFilterLink? link
 );
 
 
@@ -91,7 +102,7 @@ Get the number of samples available on the link.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_inlink_queued_samples (
-    AVFilterLink *link
+    AVFilterLink? link
 );
 
 /***********************************************************
@@ -101,7 +112,7 @@ Test if enough samples are available on the link.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_inlink_check_available_samples (
-    AVFilterLink *link,
+    AVFilterLink? link,
     uint min
 );
 
@@ -119,8 +130,8 @@ ff_inlink_consume_frame (). Negative error codes must still be checked.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_inlink_consume_frame (
-    AVFilterLink *link,
-    AVFrame **rframe
+    AVFilterLink? link,
+    out AVFrame[] rframe
 );
 
 /***********************************************************
@@ -137,10 +148,10 @@ ff_inlink_consume_samples (). Negative error codes must still be checked.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_inlink_consume_samples (
-    AVFilterLink *link,
+    AVFilterLink? link,
     uint min,
     uint max,
-    AVFrame *rframe
+    AVFrame? rframe
 );
 
 /***********************************************************
@@ -149,8 +160,8 @@ The first frame is numbered 0; the designated frame must exist.
 @return the frame at idx position in the link fifo.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public AVFrame *ff_inlink_peek_frame (
-    AVFilterLink *link,
+public AVFrame? ff_inlink_peek_frame (
+    AVFilterLink? link,
     size_t idx
 );
 
@@ -161,8 +172,8 @@ buffer allocation callback, and therefore allows direct rendering.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_inlink_make_frame_writable (
-    AVFilterLink *link,
-    AVFrame **rframe
+    AVFilterLink? link,
+    out AVFrame[] rframe
 );
 
 /***********************************************************
@@ -188,9 +199,9 @@ need to call that since the same treatment happens in ff_filter_frame ().
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_inlink_acknowledge_status (
-    AVFilterLink *link,
-    int *rstatus,
-    int64 *rpts
+    AVFilterLink? link,
+    out int rstatus,
+    int64[] rpts
 );
 
 /***********************************************************
@@ -201,7 +212,7 @@ Also it cannot fail.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_inlink_request_frame (
-    AVFilterLink *link
+    AVFilterLink? link
 );
 
 /***********************************************************
@@ -210,25 +221,27 @@ Also discard all frames in the link's FIFO.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_inlink_set_status (
-    AVFilterLink *link,
+    AVFilterLink? link,
     int status
 );
 
 /***********************************************************
 Test if a frame is wanted on an output link.
 ***********************************************************/
-static inline int ff_outlink_frame_wanted (
-    AVFilterLink *link
-) {
-    return link->frame_wanted_out;
-}
+[CCode (cname="",cheader_filename="")]
+public static inline int ff_outlink_frame_wanted (
+    AVFilterLink? link
+);
+//  {
+//      return link->frame_wanted_out;
+//  }
 
 /***********************************************************
 Get the status on an output link.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_outlink_get_status (
-    AVFilterLink *link
+    AVFilterLink? link
 );
 
 /***********************************************************
@@ -238,97 +251,108 @@ in link time base and relative to the frames timeline.
 In particular, for AVERROR_EOF, it should reflect the
 end time of the last frame.
 ***********************************************************/
-static inline void ff_outlink_set_status (
-    AVFilterLink *link,
+[CCode (cname="",cheader_filename="")]
+public static inline void ff_outlink_set_status (
+    AVFilterLink? link,
     int status,
     int64 pts
-) {
-    ff_avfilter_link_set_in_status (
-        link,
-        status,
-        pts
-    );
-
-}
+);
+//  {
+//      ff_avfilter_link_set_in_status (
+//          link,
+//          status,
+//          pts
+//      );
+//  }
 
 /***********************************************************
 Forward the status on an output link to an input link.
 If the status is set, it will discard all queued frames and this macro
 will return immediately.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public define FF_FILTER_FORWARD_STATUS_BACK (
-    outlink,
-    inlink
-) { \
-    int ret = ff_outlink_get_status (outlink); \
-    if (ret) { \
-        ff_inlink_set_status (inlink, ret); \
-        return 0; \
-    } \
-}
+    void *outlink,
+    void *inlink
+);
+//  {
+//      int ret = ff_outlink_get_status (outlink);
+//      if (ret) {
+//          ff_inlink_set_status (inlink, ret);
+//          return 0;
+//      }
+//  }
 
 /***********************************************************
 Forward the status on an output link to all input links.
 If the status is set, it will discard all queued frames and this macro
 will return immediately.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public define FF_FILTER_FORWARD_STATUS_BACK_ALL (
-    outlink,
-    filter
-) { \
-    public int ret = ff_outlink_get_status (outlink); \
-    if (ret) { \
-        uint i; \
-        for (i = 0; i < filter->nb_inputs; i++) \
-            ff_inlink_set_status (filter->inputs[i], ret); \
-        return 0; \
-    } \
-}
+    void *outlink,
+    void *filter
+);
+//  {
+//      int ret = ff_outlink_get_status (outlink);
+//      if (ret) {
+//          uint i;
+//          for (i = 0; i < filter->nb_inputs; i++)
+//              ff_inlink_set_status (filter->inputs[i], ret);
+//          return 0;
+//      }
+//  }
 
 /***********************************************************
 Acknowledge the status on an input link and forward it to an output link.
 If the status is set, this macro will return immediately.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public define FF_FILTER_FORWARD_STATUS (
-    inlink,
-    outlink
-) { \
-    int status; \
-    int64 pts; \
-    if (ff_inlink_acknowledge_status (inlink, &status, &pts)) { \
-        ff_outlink_set_status (outlink, status, pts); \
-        return 0; \
-    } \
-}
+    void *inlink,
+    void *outlink
+);
+//  {
+//      int status;
+//      int64 pts;
+//      if (ff_inlink_acknowledge_status (inlink, &status, &pts)) {
+//          ff_outlink_set_status (outlink, status, pts);
+//          return 0;
+//      }
+//  }
 
 /***********************************************************
 Acknowledge the status on an input link and forward it to an output link.
 If the status is set, this macro will return immediately.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public define FF_FILTER_FORWARD_STATUS_ALL (
-    inlink,
-    filter
-) do { \
-    int status; \
-    int64 pts; \
-    if (ff_inlink_acknowledge_status (inlink, &status, &pts)) { \
-        uint i; \
-        for (i = 0; i < filter->nb_outputs; i++) \
-            ff_outlink_set_status (filter->outputs[i], status, pts); \
-        return 0; \
-    } \
-} while (0)
+    void *inlink,
+    void *filter
+);
+//  {
+//      int status;
+//      int64 pts;
+//      if (ff_inlink_acknowledge_status (inlink, &status, &pts)) {
+//          uint i;
+//          for (i = 0; i < filter->nb_outputs; i++)
+//              ff_outlink_set_status (filter->outputs[i], status, pts);
+//          return 0;
+//      }
+//  }
 
 /***********************************************************
 Forward the frame_wanted_out flag from an output link to an input link.
 If the flag is set, this macro will return immediately.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public define FF_FILTER_FORWARD_WANTED (
-    outlink,
-    inlink
-) { \
-    if (ff_outlink_frame_wanted (outlink)) { \
-        ff_inlink_request_frame (inlink); \
-        return 0; \
-    } \
-}
+    void *outlink,
+    void *inlink
+);
+//  {
+//      if (ff_outlink_frame_wanted (outlink)) {
+//          ff_inlink_request_frame (inlink);
+//          return 0;
+//      }
+//  }

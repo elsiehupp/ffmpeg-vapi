@@ -92,10 +92,10 @@ public class GBlurContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_gblur_init (
-    GBlurContext *s
+    GBlurContext? s
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_gblur_init_x86 (
-    GBlurContext *s
+    GBlurContext? s
 );

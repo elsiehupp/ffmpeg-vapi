@@ -44,7 +44,7 @@ public class AESCTRContext {
     ***********************************************************/
     [CCode (cname="av_aes_ctr_init",cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public int av_aes_ctr_init (
-        AESCTRContext a,
+        AESCTRContext aes_ctr_context,
         uint8[] key
     );
 
@@ -53,7 +53,7 @@ public class AESCTRContext {
     ***********************************************************/
     [CCode (cname="av_aes_ctr_free",cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_free (
-        AESCTRContext a
+        AESCTRContext aes_ctr_context
     );
 
     /***********************************************************
@@ -64,7 +64,7 @@ public class AESCTRContext {
     ***********************************************************/
     [CCode (cname="av_aes_ctr_crypt",cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_crypt (
-        AESCTRContext a,
+        AESCTRContext aes_ctr_context,
         out uint8[] output_buffer,
         uint8[] input_buffer,
         int size
@@ -75,7 +75,7 @@ public class AESCTRContext {
     ***********************************************************/
     [CCode (cname="av_aes_ctr_get_iv",cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public uint8[] av_aes_ctr_get_iv (
-        AESCTRContext a
+        AESCTRContext aes_ctr_context
     );
 
     /***********************************************************
@@ -83,7 +83,7 @@ public class AESCTRContext {
     ***********************************************************/
     [CCode (cname="av_aes_ctr_set_random_iv",cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_set_random_iv (
-        AESCTRContext a
+        AESCTRContext aes_ctr_context
     );
 
     /***********************************************************
@@ -91,7 +91,7 @@ public class AESCTRContext {
     ***********************************************************/
     [CCode (cname="av_aes_ctr_set_iv",cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_set_iv (
-        AESCTRContext a,
+        AESCTRContext aes_ctr_context,
         uint8[] initialization_vector
     );
 
@@ -100,7 +100,7 @@ public class AESCTRContext {
     ***********************************************************/
     [CCode (cname="av_aes_ctr_set_full_iv",cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_set_full_iv (
-        AESCTRContext a,
+        AESCTRContext aes_ctr_context,
         uint8[] initialization_vector
     );
 
@@ -109,7 +109,7 @@ public class AESCTRContext {
     ***********************************************************/
     [CCode (cname="av_aes_ctr_increment_iv",cheader_filename="ffmpeg/libavutil/aes_ctr.h")]
     public void av_aes_ctr_increment_iv (
-        AESCTRContext a
+        AESCTRContext aes_ctr_context
     );
 
 }

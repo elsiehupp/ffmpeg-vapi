@@ -79,8 +79,8 @@ public class QSVVPPCrop {
 [Compact]
 public class QSVVPPParam {
     public delegate int FilterFrameDelegate (
-        AVFilterLink *outlink,
-        AVFrame *frame
+        AVFilterLink? outlink,
+        AVFrame? frame
     );
 
     /***********************************************************
@@ -109,7 +109,7 @@ public class QSVVPPParam {
     [CCode (cname="")]
     public int num_crop;
 
-    QSVVPPCrop *crop;
+    QSVVPPCrop? crop;
 }
 
 /***********************************************************
@@ -117,7 +117,7 @@ create and initialize the QSV session
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_qsvvpp_create (
-    AVFilterContext *avctx, QSVVPPContext **vpp, QSVVPPParam *param
+    AVFilterContext? avctx, QSVVPPContext **vpp, QSVVPPParam? param
 );
 
 /***********************************************************
@@ -133,5 +133,5 @@ vpp filter frame and call the cb if needed
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_qsvvpp_filter_frame (
-    QSVVPPContext *vpp, AVFilterLink *inlink, AVFrame *frame
+    QSVVPPContext? vpp, AVFilterLink? inlink, AVFrame? frame
 );

@@ -187,24 +187,24 @@ public static int ff_guidcmp (
 [CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
 public int ff_get_guid (
     AVIOContext io_context,
-    ff_asf_guid *g
+    ff_asf_guid? g
 );
 
 [CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
 public void ff_put_guid (
     AVIOContext io_context,
-    ff_asf_guid *g
+    ff_asf_guid? g
 );
 
 [CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
-public ff_asf_guid *ff_get_codec_guid (
+public ff_asf_guid? ff_get_codec_guid (
     LibAVCodec.CodecID id,
-    AVCodecGuid *av_guid
+    AVCodecGuid? av_guid
 );
 
 [CCode (cname="",cheader_filename="ffmpeg/libformat/riff.h")]
 public LibAVCodec.CodecID ff_codec_guid_get_id (
-    AVCodecGuid *guids,
+    AVCodecGuid? guids,
     ff_asf_guid guid
 );
 

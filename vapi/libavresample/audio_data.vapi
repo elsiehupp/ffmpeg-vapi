@@ -33,17 +33,20 @@ public class AudioData {
     /***********************************************************
     AVClass for logging
     ***********************************************************/
+    [CCode (cname="")]
     public AVClass class;
 
     /***********************************************************
     data plane pointers
     ***********************************************************/
-    uint8[] data[AVRESAMPLE_MAX_CHANNELS];
+    [CCode (cname="")]
+    public int8[] data[AVRESAMPLE_MAX_CHANNELS];
 
     /***********************************************************
     data buffer
     ***********************************************************/
-    uint8[] buffer;
+    [CCode (cname="")]
+    public uint8[] buffer;
 
     /***********************************************************
     allocated buffer size
@@ -132,12 +135,13 @@ public class AudioData {
     /***********************************************************
     name for debug logging
     ***********************************************************/
-    string name;
+    [CCode (cname="")]
+    public string name;
 }
 
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_data_set_channels (
-    AudioData *a,
+    AudioData? a,
     int channels
 );
 
@@ -162,8 +166,8 @@ and audio parameters.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_data_init (
-    AudioData *a,
-    uint8[]  const *src,
+    AudioData? a,
+    uint8[]  const? src,
     int plane_size,
     int channels,
     int nb_samples,
@@ -183,7 +187,7 @@ This allocates an internal buffer and sets audio parameters.
 @param name            name for debug logging (can be NULL)
 @return                newly allocated AudioData struct, or NULL on error
 ***********************************************************/
-AudioData *ff_audio_data_alloc (
+AudioData? ff_audio_data_alloc (
     int channels,
     int nb_samples,
     AVSampleFormat sample_fmt,
@@ -201,7 +205,7 @@ The AudioData must have been previously allocated with ff_audio_data_alloc ().
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_data_realloc (
-    AudioData *a,
+    AudioData? a,
     int nb_samples
 );
 
@@ -213,7 +217,9 @@ The AudioData must have been previously allocated with ff_audio_data_alloc ().
 @param a  AudioData struct
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public void ff_audio_data_free (AudioData **a);
+public void ff_audio_data_free (
+    AudioData **a
+);
 
 /***********************************************************
 Copy data from one AudioData to another.
@@ -225,9 +231,9 @@ Copy data from one AudioData to another.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_data_copy (
-    AudioData *out,
-    AudioData *in,
-    ChannelMapInfo *map
+    AudioData? out,
+    AudioData? in,
+    ChannelMapInfo? map
 );
 
 /***********************************************************
@@ -244,9 +250,9 @@ Append data from one AudioData to the end of another.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_data_combine (
-    AudioData *dst,
+    AudioData? dst,
     int dst_offset,
-    AudioData *src,
+    AudioData? src,
     int src_offset,
     int nb_samples
 );
@@ -261,7 +267,7 @@ Remaining samples are shifted to the start of the AudioData.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public void ff_audio_data_drain (
-    AudioData *a,
+    AudioData? a,
     int nb_samples
 );
 
@@ -277,8 +283,8 @@ Add samples in AudioData to an AVAudioFifo.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_data_add_to_fifo (
-    AVAudioFifo *af,
-    AudioData *a,
+    AVAudioFifo? af,
+    AudioData? a,
     int offset,
     int nb_samples
 );
@@ -294,7 +300,7 @@ Read samples from an AVAudioFifo to AudioData.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_audio_data_read_from_fifo (
-    AVAudioFifo *af,
-    AudioData *a,
+    AVAudioFifo? af,
+    AudioData? a,
     int nb_samples
 );

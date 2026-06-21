@@ -34,6 +34,6 @@ public class PSNRDSPContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_psnr_init_x86 (
-    PSNRDSPContext *dsp,
+    PSNRDSPContext? dsp,
     int bpp
 );

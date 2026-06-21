@@ -69,12 +69,12 @@ public class ThresholdContext {
 
     [CCode (cname="")]
     public void ff_threshold_init (
-        ThresholdContext *s
+        ThresholdContext? s
     );
 
     [CCode (cname="")]
     public void ff_threshold_init_x86 (
-        ThresholdContext *s
+        ThresholdContext? s
     );
 
 }

@@ -48,7 +48,7 @@ public const int LIBAVFORMAT_VERSION_INT;
 //  )
 
 [CCode (cname="",cheader_filename="ffmpeg/libformat/version.h")]
-public const string LIBAVFORMAT_VERSION
+public const string LIBAVFORMAT_VERSION;
 //  AV_VERSION (
 //      LIBAVFORMAT_VERSION_MAJOR,
 //      LIBAVFORMAT_VERSION_MINOR,

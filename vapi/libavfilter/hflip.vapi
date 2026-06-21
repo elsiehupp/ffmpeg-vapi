@@ -56,14 +56,14 @@ public class FlipContext {
 
 [CCode (cname="",cheader_filename="")]
 public int ff_hflip_init (
-    FlipContext *s,
+    FlipContext? s,
     int step[4],
     int nb_planes
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_hflip_init_x86 (
-    FlipContext *s,
+    FlipContext? s,
     int step[4],
     int nb_planes
 );

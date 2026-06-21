@@ -54,7 +54,7 @@ public class AlsaData {
     public AVClass class;
 
     [CCode (cname="")]
-    public snd_pcm_t *h;
+    public snd_pcm_t? h;
 
     /***********************************************************
     bytes per sample * channels
@@ -84,7 +84,7 @@ public class AlsaData {
     public int last_period;
 
     [CCode (cname="")]
-    public TimeFilter *timefilter;
+    public TimeFilter? timefilter;
 
     public delegate void ReorderFuncDelegate (
         const void *,
@@ -126,13 +126,13 @@ Open an ALSA PCM.
 @return 0 if OK, AVERROR_xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-av_warn_unused_result
+//  av_warn_unused_result
 public int ff_alsa_open (
-    AVFormatContext *s,
+    AVFormatContext? s,
     snd_pcm_stream_t mode,
-    uint *sample_rate,
+    uint? sample_rate,
     int channels,
-    AVCodecID *codec_id
+    AVCodecID? codec_id
 );
 
 /***********************************************************
@@ -144,7 +144,7 @@ Close the ALSA PCM.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int ff_alsa_close (
-    AVFormatContext *s1
+    AVFormatContext? s1
 );
 
 /***********************************************************
@@ -156,22 +156,22 @@ Try to recover from ALSA buffer underrun.
 @return 0 if OK, AVERROR_xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-av_warn_unused_result
+//  av_warn_unused_result
 public int ff_alsa_xrun_recover (
-    AVFormatContext *s1,
+    AVFormatContext? s1,
     int err
 );
 
 [CCode (cname="",cheader_filename="")]
-av_warn_unused_result
+//  av_warn_unused_result
 public int ff_alsa_extend_reorder_buf (
-    AlsaData *s,
+    AlsaData? s,
     int size
 );
 
 [CCode (cname="",cheader_filename="")]
-av_warn_unused_result
+//  av_warn_unused_result
 public int ff_alsa_get_device_list (
-    AVDeviceInfoList *device_list,
+    AVDeviceInfoList? device_list,
     snd_pcm_stream_t stream_type
 );

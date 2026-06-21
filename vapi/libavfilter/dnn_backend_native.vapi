@@ -132,21 +132,21 @@ Represents simple feed-forward convolutional network.
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class ConvolutionalNetwork {
-    public Layer *layers;
+    public Layer? layers;
 
     [CCode (cname="")]
     public int32 layers_num;
 }
 
 [CCode (cname="",cheader_filename="")]
-public DNNModel *ff_dnn_load_model_native (
+public DNNModel? ff_dnn_load_model_native (
     string model_filename
 );
 
 [CCode (cname="",cheader_filename="")]
 public DNNReturnType ff_dnn_execute_model_native (
-    DNNModel *model,
-    DNNData *outputs,
+    DNNModel? model,
+    DNNData? outputs,
     uint32 nb_output
 );
 

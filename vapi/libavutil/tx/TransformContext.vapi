@@ -24,7 +24,7 @@ namespace LibAVUtil {
 @note Using a different context than the one allocated during av_tx_init ()
 is not allowed.
 
-@param s the transform context
+@param transform_context the transform context
 @param out the output array
 @param in the input array
 @param stride the input or output stride (depending on transform direction)
@@ -32,7 +32,7 @@ in bytes, currently implemented for all MDCT transforms
 ***********************************************************/
 [CCode (cname="av_tx_fn",cheader_filename="ffmpeg/libavutil/tx.h")]
 public delegate void TransformDelegate (
-    TransformContext s,
+    TransformContext transform_context,
     out void *output,
     void *input,
     size_t stride

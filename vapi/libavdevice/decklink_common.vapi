@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #endif
 
 #ifdef _WIN32
-static string dup_wchar_to_utf8 (wchar_t *w)
+static string dup_wchar_to_utf8 (wchar_t? w)
 {
     string s = NULL;
     int l = WideCharToMultiByte (CP_UTF8, 0, w, -1, 0, 0, 0, 0);
@@ -55,6 +55,7 @@ public define DECKLINK_STRDUP av_strdup
 /***********************************************************
 free () is needed for a string returned by the DeckLink SDL.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public define DECKLINK_FREE (s) free ((void *) s)
 #endif
 
@@ -64,14 +65,31 @@ class decklink_input_callback;
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class AVPacketQueue {
-    AVPacketList *first_pkt;
-    AVPacketList *last_pkt;
+    [CCode (cname="")]
+    public AVPacketList? first_pkt;
+
+    [CCode (cname="")]
+    public AVPacketList? last_pkt;
+
+    [CCode (cname="")]
     public int nb_packets;
-    ulong long size;
+
+    [CCode (cname="")]
+    public ulong long size;
+
+    [CCode (cname="")]
     public int abort_request;
-    pthread_mutex_t mutex;
-    pthread_cond_t cond;
-    AVFormatContext *avctx;
+
+    [CCode (cname="")]
+    public pthread_mutex_t mutex;
+
+    [CCode (cname="")]
+    public pthread_cond_t cond;
+
+    [CCode (cname="")]
+    public AVFormatContext? avctx;
+
+    [CCode (cname="")]
     public int64 max_q_size;
 }
 
@@ -81,37 +99,70 @@ public class decklink_ctx {
     /***********************************************************
     DeckLink SDK interfaces
     ***********************************************************/
-    IDeckLink *dl;
-    IDeckLinkOutput *dlo;
-    IDeckLinkInput *dli;
-    IDeckLinkConfiguration *cfg;
-    IDeckLinkProfileAttributes *attr;
-    decklink_output_callback *output_callback;
+    [CCode (cname="")]
+    public IDeckLink? dl;
+
+    [CCode (cname="")]
+    public IDeckLinkOutput? dlo;
+
+    [CCode (cname="")]
+    public IDeckLinkInput? dli;
+
+    [CCode (cname="")]
+    public IDeckLinkConfiguration? cfg;
+
+    [CCode (cname="")]
+    public IDeckLinkProfileAttributes? attr;
+
+    [CCode (cname="")]
+    public decklink_output_callback? output_callback;
 
     /***********************************************************
     DeckLink mode information
     ***********************************************************/
-    BMDTimeValue bmd_tb_den;
-    BMDTimeValue bmd_tb_num;
-    BMDDisplayMode bmd_mode;
-    BMDVideoConnection video_input;
-    BMDAudioConnection audio_input;
-    BMDTimecodeFormat tc_format;
+    [CCode (cname="")]
+    public BMDTimeValue bmd_tb_den;
+
+    [CCode (cname="")]
+    public BMDTimeValue bmd_tb_num;
+
+    [CCode (cname="")]
+    public BMDDisplayMode bmd_mode;
+
+    [CCode (cname="")]
+    public BMDVideoConnection video_input;
+
+    [CCode (cname="")]
+    public BMDAudioConnection audio_input;
+
+    [CCode (cname="")]
+    public BMDTimecodeFormat tc_format;
+
+    [CCode (cname="")]
     public int bmd_width;
+
+    [CCode (cname="")]
     public int bmd_height;
+
+    [CCode (cname="")]
     public int bmd_field_dominance;
+
+    [CCode (cname="")]
     public int supports_vanc;
 
     /***********************************************************
     Capture buffer queue
     ***********************************************************/
-    AVPacketQueue queue;
+    [CCode (cname="")]
+    public AVPacketQueue queue;
 
     /***********************************************************
     Streams present
     ***********************************************************/
     [CCode (cname="")]
     public int audio;
+
+    [CCode (cname="")]
     public int video;
 
     /***********************************************************
@@ -119,49 +170,95 @@ public class decklink_ctx {
     ***********************************************************/
     [CCode (cname="")]
     public int playback_started;
+
+    [CCode (cname="")]
     public int capture_started;
+
+    [CCode (cname="")]
     public int64 last_pts;
-    ulong frameCount;
+
+    [CCode (cname="")]
+    public ulong frameCount;
+
+    [CCode (cname="")]
     public uint dropped;
-    AVStream *audio_st;
-    AVStream *video_st;
-    AVStream *teletext_st;
-    uint16 cdp_sequence_num;
+
+    [CCode (cname="")]
+    public AVStream? audio_st;
+
+    [CCode (cname="")]
+    public AVStream? video_st;
+
+    [CCode (cname="")]
+    public AVStream? teletext_st;
+
+    [CCode (cname="")]
+    public uint16 cdp_sequence_num;
 
     /***********************************************************
     Options
     ***********************************************************/
     [CCode (cname="")]
     public int list_devices;
+
+    [CCode (cname="")]
     public int list_formats;
+
+    [CCode (cname="")]
     public int64 teletext_lines;
-    double preroll;
+
+    [CCode (cname="")]
+    public double preroll;
+
+    [CCode (cname="")]
     public int duplex_mode;
-    DecklinkPtsSource audio_pts_source;
-    DecklinkPtsSource video_pts_source;
+
+    [CCode (cname="")]
+    public DecklinkPtsSource audio_pts_source;
+
+    [CCode (cname="")]
+    public DecklinkPtsSource video_pts_source;
+
+    [CCode (cname="")]
     public int draw_bars;
-    BMDPixelFormat raw_format;
+
+    [CCode (cname="")]
+    public BMDPixelFormat raw_format;
 
     [CCode (cname="")]
     public int frames_preroll;
+
+    [CCode (cname="")]
     public int frames_buffer;
 
-    pthread_mutex_t mutex;
-    pthread_cond_t cond;
+    public pthread_mutex_t mutex;
+
+    [CCode (cname="")]
+    public pthread_cond_t cond;
+
+    [CCode (cname="")]
     public int frames_buffer_available_spots;
+
+    [CCode (cname="")]
     public int autodetect;
 
 #if CONFIG_LIBKLVANC
-    struct klvanc_context_s *vanc_ctx;
+    [CCode (cname="")]
+    public klvanc_context_s? vanc_ctx;
 #endif
 
     public int channels;
+
+    [CCode (cname="")]
     public int audio_depth;
 }
 
 [CCode (cname="",cheader_filename="")]
 public enum decklink_direction_t {
+    [CCode (cname="",cheader_filename="")]
     DIRECTION_IN,
+
+    [CCode (cname="",cheader_filename="")]
     DIRECTION_OUT
 }
 
@@ -209,13 +306,13 @@ static const BMDTimecodeFormat decklink_timecode_format_map[] = {
 
 [CCode (cname="",cheader_filename="")]
 public int ff_decklink_set_configs (
-    AVFormatContext *avctx,
+    AVFormatContext? avctx,
     decklink_direction_t direction
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_decklink_set_format (
-    AVFormatContext *avctx,
+    AVFormatContext? avctx,
     int width,
     int height,
     int tb_num,
@@ -227,39 +324,39 @@ public int ff_decklink_set_format (
 
 [CCode (cname="",cheader_filename="")]
 public int ff_decklink_set_format (
-    AVFormatContext *avctx,
+    AVFormatContext? avctx,
     decklink_direction_t direction,
     int num
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_decklink_list_devices (
-    AVFormatContext *avctx,
-    AVDeviceInfoList *device_list,
+    AVFormatContext? avctx,
+    AVDeviceInfoList? device_list,
     int show_inputs,
     int show_outputs
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_decklink_list_devices_legacy (
-    AVFormatContext *avctx,
+    AVFormatContext? avctx,
     int show_inputs,
     int show_outputs
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_decklink_list_formats (
-    AVFormatContext *avctx,
+    AVFormatContext? avctx,
     decklink_direction_t direction = DIRECTION_OUT
 );
 
 [CCode (cname="",cheader_filename="")]
 public void ff_decklink_cleanup (
-    AVFormatContext *avctx
+    AVFormatContext? avctx
 );
 
 [CCode (cname="",cheader_filename="")]
 public int ff_decklink_init_device (
-    AVFormatContext *avctx,
+    AVFormatContext? avctx,
     char* name
 );

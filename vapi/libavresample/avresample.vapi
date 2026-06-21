@@ -40,7 +40,7 @@ format to interleaved signed 16-bit integer, downsampling from 48kHz to
 44.1kHz and downmixing from 5.1 channels to stereo (using the default mixing
 matrix):
 @code
-AVAudioResampleContext *avr = avresample_alloc_context ();
+AVAudioResampleContext? avr = avresample_alloc_context ();
 av_opt_set_int (avr, "in_channel_layout", AV_CH_LAYOUT_5POINT1, 0);
 av_opt_set_int (avr, "out_channel_layout", AV_CH_LAYOUT_STEREO, 0);
 av_opt_set_int (avr, "in_sample_rate", 48000, 0);
@@ -67,7 +67,7 @@ flushed by calling avresample_convert () with NULL input.
 The following code demonstrates the conversion loop assuming the parameters
 from above and caller-defined functions get_input () and handle_output ():
 @code
-uint8[] *input;
+uint8[][] input;
 public int in_linesize, in_samples;
 
 while (get_input (&input, &in_linesize, &in_samples)) {
@@ -90,11 +90,11 @@ while (get_input (&input, &in_linesize, &in_samples)) {
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define AVRESAMPLE_MAX_CHANNELS 32
+public const size_t AVRESAMPLE_MAX_CHANNELS; // 32
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
-public class AVAudioResampleContext AVAudioResampleContext;
+public class AVAudioResampleContext { }
 
 /***********************************************************
 @deprecated use libswresample
@@ -102,25 +102,30 @@ public class AVAudioResampleContext AVAudioResampleContext;
 Mixing Coefficient Types
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public enum attribute_deprecated AVMixCoeffType {
+//  attribute_deprecated
+public enum AVMixCoeffType {
     /***********************************************************
     16-bit 8.8 fixed-point
     ***********************************************************/
+    [CCode (cname="")]
     AV_MIX_COEFF_TYPE_Q8,
 
     /***********************************************************
     32-bit 17.15 fixed-point
     ***********************************************************/
+    [CCode (cname="")]
     AV_MIX_COEFF_TYPE_Q15,
 
     /***********************************************************
     floating-point
     ***********************************************************/
+    [CCode (cname="")]
     AV_MIX_COEFF_TYPE_FLT,
 
     /***********************************************************
     Number of coeff types. Not part of ABI
     ***********************************************************/
+    [CCode (cname="")]
     AV_MIX_COEFF_TYPE_NB;
 }
 
@@ -130,20 +135,24 @@ public enum attribute_deprecated AVMixCoeffType {
 Resampling Filter Types
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public enum attribute_deprecated AVResampleFilterType {
+//  attribute_deprecated
+public enum AVResampleFilterType {
     /***********************************************************
     Cubic
     ***********************************************************/
+    [CCode (cname="")]
     AV_RESAMPLE_FILTER_TYPE_CUBIC,
 
     /***********************************************************
     Blackman Nuttall Windowed Sinc
     ***********************************************************/
+    [CCode (cname="")]
     AV_RESAMPLE_FILTER_TYPE_BLACKMAN_NUTTALL,
 
     /***********************************************************
     Kaiser Windowed Sinc
     ***********************************************************/
+    [CCode (cname="")]
     AV_RESAMPLE_FILTER_TYPE_KAISER;
 }
 
@@ -151,35 +160,42 @@ public enum attribute_deprecated AVResampleFilterType {
 @deprecated use libswresample
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public enum attribute_deprecated AVResampleDitherMethod {
+//  attribute_deprecated
+public enum AVResampleDitherMethod {
     /***********************************************************
     Do not use dithering
     ***********************************************************/
+    [CCode (cname="")]
     AV_RESAMPLE_DITHER_NONE,
 
     /***********************************************************
     Rectangular Dither
     ***********************************************************/
+    [CCode (cname="")]
     AV_RESAMPLE_DITHER_RECTANGULAR,
 
     /***********************************************************
     Triangular Dither
     ***********************************************************/
+    [CCode (cname="")]
     AV_RESAMPLE_DITHER_TRIANGULAR,
 
     /***********************************************************
     Triangular Dither with High Pass
     ***********************************************************/
+    [CCode (cname="")]
     AV_RESAMPLE_DITHER_TRIANGULAR_HP,
 
     /***********************************************************
     Triangular Dither with Noise Shaping
     ***********************************************************/
+    [CCode (cname="")]
     AV_RESAMPLE_DITHER_TRIANGULAR_NS,
 
     /***********************************************************
     Number of dither types. Not part of ABI.
     ***********************************************************/
+    [CCode (cname="")]
     AV_RESAMPLE_DITHER_NB;
 }
 
@@ -188,7 +204,8 @@ public enum attribute_deprecated AVResampleDitherMethod {
 
 Return the LIBAVRESAMPLE_VERSION_INT constant.
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public uint avresample_version ();
 
 /***********************************************************
@@ -198,8 +215,9 @@ public uint avresample_version ();
 Return the libavresample build-time configuration.
 @return  configure string
 ***********************************************************/
-attribute_deprecated
-string avresample_configuration ();
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
+public string avresample_configuration ();
 
 /***********************************************************
 
@@ -207,8 +225,9 @@ string avresample_configuration ();
 
 Return the libavresample license.
 ***********************************************************/
-attribute_deprecated
-string avresample_license ();
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
+public string avresample_license ();
 
 /***********************************************************
 
@@ -223,8 +242,9 @@ without allocating a context.
 
 @return AVClass for AVAudioResampleContext
 ***********************************************************/
-attribute_deprecated
-const AVClass *avresample_get_class ();
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
+public AVClass? avresample_get_class ();
 
 /***********************************************************
 
@@ -234,8 +254,9 @@ Allocate AVAudioResampleContext and set options.
 
 @return  allocated audio resample context, or NULL on failure
 ***********************************************************/
-attribute_deprecated
-AVAudioResampleContext *avresample_alloc_context ();
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
+public AVAudioResampleContext? avresample_alloc_context ();
 
 /***********************************************************
 
@@ -254,9 +275,10 @@ Initialize AVAudioResampleContext.
 @param avr  audio resample context
 @return     0 on success, negative AVERROR code on failure
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_open (
-    AVAudioResampleContext *avr
+    AVAudioResampleContext? avr
 );
 
 /***********************************************************
@@ -268,9 +290,10 @@ Check whether an AVAudioResampleContext is open or closed.
 @param avr AVAudioResampleContext to check
 @return 1 if avr is open, 0 if avr is closed.
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_is_open (
-    AVAudioResampleContext *avr
+    AVAudioResampleContext? avr
 );
 
 /***********************************************************
@@ -289,9 +312,10 @@ there was a custom matrix being used, that is also cleared.
 
 @param avr  audio resample context
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public void avresample_close (
-    AVAudioResampleContext *avr
+    AVAudioResampleContext? avr
 );
 
 /***********************************************************
@@ -304,7 +328,8 @@ This also calls avresample_close () before freeing.
 
 @param avr  audio resample context
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public void avresample_free (
     AVAudioResampleContext **avr
 );
@@ -334,7 +359,8 @@ building custom matrices.
 @param matrix_encoding     matrixed stereo downmix mode (e.g. dplii)
 @return                    0 on success, negative AVERROR code on failure
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_build_matrix (
     uint64 in_layout,
     uint64 out_layout,
@@ -362,9 +388,10 @@ not open, an error is returned.
 @param stride  distance between adjacent input channels in the matrix array
 @return        0 on success, negative AVERROR code on failure
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_get_matrix (
-    AVAudioResampleContext *avr,
+    AVAudioResampleContext? avr,
     double[] matrix,
     int stride
 );
@@ -390,9 +417,10 @@ Calling avresample_close () on the context will clear the current matrix.
 @param stride  distance between adjacent input channels in the matrix array
 @return        0 on success, negative AVERROR code on failure
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_set_matrix (
-    AVAudioResampleContext *avr,
+    AVAudioResampleContext? avr,
     double[] matrix,
     int stride
 );
@@ -427,9 +455,10 @@ Duplicating the left channel of stereo input:
 @param channel_map customized input channel mapping
 @return            0 on success, negative AVERROR code on failure
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_set_channel_mapping (
-    AVAudioResampleContext *avr,
+    AVAudioResampleContext? avr,
     int[] channel_map
 );
 
@@ -449,9 +478,10 @@ in order to use resampling compensation.
 @param compensation_distance  compensation distance, in samples
 @return                       0 on success, negative AVERROR code on failure
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_set_compensation (
-    AVAudioResampleContext *avr,
+    AVAudioResampleContext? avr,
     int sample_delta,
     int compensation_distance
 );
@@ -469,9 +499,10 @@ conversion would output.
 @return              number of samples or AVERROR (EINVAL) if the value
                      would exceed INT_MAX
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_get_out_samples (
-    AVAudioResampleContext *avr,
+    AVAudioResampleContext? avr,
     int in_nb_samples
 );
 
@@ -520,13 +551,14 @@ NULL input or call avresample_read ().
                        not including converted samples added to the internal
                        output FIFO
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_convert (
-    AVAudioResampleContext *avr,
-    uint8[] *output,
+    AVAudioResampleContext? avr,
+    uint8[][] output,
     int out_plane_size,
     int out_samples,
-    uint8[]  const *input,
+    uint8[]  const? input,
     int in_plane_size,
     int in_samples
 );
@@ -547,9 +579,10 @@ the delay buffer, which can be useful for synchronization.
 @param avr  audio resample context
 @return     number of samples currently in the resampling delay buffer
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_get_delay (
-    AVAudioResampleContext *avr
+    AVAudioResampleContext? avr
 );
 
 /***********************************************************
@@ -570,9 +603,10 @@ avresample_convert ().
 @param avr  audio resample context
 @return     number of samples available for reading
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_available (
-    AVAudioResampleContext *avr
+    AVAudioResampleContext? avr
 );
 
 /***********************************************************
@@ -595,10 +629,11 @@ buffer. This function can be used to read samples from that internal FIFO.
 @param nb_samples  number of samples to read from the FIFO
 @return            the number of samples written to output
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_read (
-    AVAudioResampleContext *avr,
-    uint8[] *output,
+    AVAudioResampleContext? avr,
+    uint8[][] output,
     int nb_samples
 );
 
@@ -649,11 +684,12 @@ or AVERROR_OUTPUT_CHANGED|AVERROR_INPUT_CHANGED is returned.
 @return                0 on success, AVERROR on failure or nonmatching
                        configuration.
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_convert_frame (
-    AVAudioResampleContext *avr,
+    AVAudioResampleContext? avr,
     AVFrame output,
-    AVFrame *input
+    AVFrame? input
 );
 
 /***********************************************************
@@ -674,11 +710,12 @@ The function calls avresample_close () internally if the context is open.
 @param in              input AVFrame
 @return                0 on success, AVERROR on failure.
 ***********************************************************/
-attribute_deprecated
+//  attribute_deprecated
+[CCode (cname="",cheader_filename="")]
 public int avresample_config (
-    AVAudioResampleContext *avr,
-    AVFrame *out,
-    AVFrame *in
+    AVAudioResampleContext? avr,
+    AVFrame? out,
+    AVFrame? in
 );
 
 /***********************************************************

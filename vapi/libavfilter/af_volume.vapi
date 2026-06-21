@@ -108,7 +108,7 @@ public class VolumeContext {
     [CCode (cname="")]
     public AVClass class;
 
-    public AVFloatDSPContext *fdsp;
+    public AVFloatDSPContext? fdsp;
 
     [CCode (cname="")]
     public int precision;
@@ -120,7 +120,7 @@ public class VolumeContext {
     public string volume_expr;
 
     [CCode (cname="")]
-    public AVExpr *volume_pexpr;
+    public AVExpr? volume_pexpr;
 
     [CCode (cname="")]
     public double var_values[VAR_VARS_NB];
@@ -165,5 +165,5 @@ public class VolumeContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_volume_init_x86 (
-    VolumeContext *vol
+    VolumeContext? vol
 );

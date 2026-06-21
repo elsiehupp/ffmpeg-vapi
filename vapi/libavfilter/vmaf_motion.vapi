@@ -22,9 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class VMAFMotionDSPContext {
-    [CCode (cname="sad")]
-    public uint64 (*sad)(
-        const uint16[] img1,
+    public delegate uint64 SadDelegate (
+        uint16[] img1,
         uint16[] img2,
         int w,
         int h,
@@ -32,9 +31,11 @@ public class VMAFMotionDSPContext {
         ptrdiff_t img2_stride
     );
 
-    [CCode (cname="convolution_x")]
-    public void (*convolution_x)(
-        const uint16[] filter,
+    [CCode (cname="sad")]
+    public SadDelegate sad;
+
+    public delegate void ConvolutionXDelegate (
+        uint16[] filter,
         int filt_w,
         uint16[] src,
         uint16[] dst,
@@ -44,9 +45,11 @@ public class VMAFMotionDSPContext {
         ptrdiff_t dst_stride
     );
 
-    [CCode (cname="convolution_y")]
-    public void (*convolution_y)(
-        const uint16[] filter,
+    [CCode (cname="convolution_x")]
+    public ConvolutionXDelegate convolution_x;
+
+    public delegate void ConvolutionYDelegate (
+        uint16[] filter,
         int filt_w,
         uint8[] src,
         uint16[] dst,
@@ -56,15 +59,21 @@ public class VMAFMotionDSPContext {
         ptrdiff_t dst_stride
     );
 
+    [CCode (cname="convolution_y")]
+    public ConvolutionYDelegate convolution_y;
+
 }
 
 [CCode (cname="",cheader_filename="")]
-public void ff_vmafmotion_init_x86 (VMAFMotionDSPContext *dsp);
+public void ff_vmafmotion_init_x86 (
+    VMAFMotionDSPContext? dsp
+);
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class VMAFMotionData {
-    uint16 filter[5];
+    [CCode (cname="")]
+    public uint16 filter[5];
 
     [CCode (cname="")]
     public int width;
@@ -72,33 +81,40 @@ public class VMAFMotionData {
     [CCode (cname="")]
     public int height;
 
-    ptrdiff_t stride;
+    [CCode (cname="")]
+    public ptrdiff_t stride;
 
-    uint16[] blur_data[2 /*cur, prev */];
+    [CCode (cname="")]
+    public uint16[] blur_data[2 /*cur, prev */];
 
-    uint16[] temp_data;
+    [CCode (cname="")]
+    public uint16[] temp_data;
 
-    double motion_sum;
+    [CCode (cname="")]
+    public double motion_sum;
 
     [CCode (cname="")]
     public uint64 nb_frames;
 
-    VMAFMotionDSPContext vmafdsp;
+    [CCode (cname="")]
+    public VMAFMotionDSPContext vmafdsp;
 }
 
 [CCode (cname="",cheader_filename="")]
 public int ff_vmafmotion_init (
-    VMAFMotionData *data,
+    VMAFMotionData? data,
     int w,
     int h,
     AVPixelFormat fmt
 );
 
-double ff_vmafmotion_process (
-    VMAFMotionData *data,
-    AVFrame *frame
+[CCode (cname="",cheader_filename="")]
+public double ff_vmafmotion_process (
+    VMAFMotionData? data,
+    AVFrame? frame
 );
 
-double ff_vmafmotion_uninit (
-    VMAFMotionData *data
+[CCode (cname="",cheader_filename="")]
+public double ff_vmafmotion_uninit (
+    VMAFMotionData? data
 );

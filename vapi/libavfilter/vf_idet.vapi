@@ -129,7 +129,7 @@ public class IDETContext {
 
 [CCode (cname="",cheader_filename="")]
 public void ff_idet_init_x86 (
-    IDETContext *idet,
+    IDETContext? idet,
     int for_16b
 );
 

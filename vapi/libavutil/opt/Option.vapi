@@ -29,7 +29,7 @@ namespace LibAVUtil {
 @defgroup avoptions LibAVUtil.Options
 @ingroup LibAVUtil.Data
 LibAVUtil.Options provide a generic system to declare options on arbitrary structs
-("objects"). An option can have a help text, a type and a range of possible
+("objects"). An Option can have a help text, a type and a range of possible
 values. Options may then be enumerated, read and written to.
 
 @section avoptions_implement Implementing LibAVUtil.Options
@@ -37,7 +37,7 @@ This section describes how to add LibAVUtil.Options capabilities to a struct.
 
 All LibAVUtil.Options-related information is stored in an Class. Therefore
 the first member of the struct should be a pointer to an Class describing it.
-The option field of the Class must be set to a null-terminated static array
+The Option field of the Class must be set to a null-terminated static array
 of LibAVUtil.Options. Each Option must have a non-empty name, a type, a default
 value and for number-type LibAVUtil.Options also a range of allowed values. It must
 also declare an offset in bytes from the start of the struct, where the field
@@ -57,7 +57,8 @@ public class test_struct {
     [CCode (cname="")]
     public char str_opt;
 
-    uint8[] bin_opt;
+    [CCode (cname="")]
+    public uint8[] bin_opt;
 
     [CCode (cname="")]
     public int bin_len;
@@ -67,7 +68,7 @@ public class test_struct {
 public const Option test_options[] = {
     {
         "test_int",
-        "This is a test option of int type.",
+        "This is a test Option of int type.",
         offsetof (
             test_struct,
             int_opt
@@ -78,7 +79,7 @@ public const Option test_options[] = {
     },
     {
         "test_str",
-        "This is a test option of string type.",
+        "This is a test Option of string type.",
         offsetof (
             test_struct,
             str_opt
@@ -87,7 +88,7 @@ public const Option test_options[] = {
     },
     {
         "test_bin",
-        "This is a test option of binary type.",
+        "This is a test Option of binary type.",
         offsetof (
             test_struct, bin_opt
         ),
@@ -175,7 +176,7 @@ public void free_test_struct (out test_struct foo) {
     [CCode (cname="",cheader_filename="ffmpeg/libavutil/opt.h")]
     public const Option child_opts[] = {
         { "test_flags",
-        "This is a test option of flags type.",
+        "This is a test Option of flags type.",
         offsetof (
             child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 },
         INT_MIN,
@@ -218,17 +219,17 @@ public void free_test_struct (out test_struct foo) {
 
 @subsection avoptions_implement_named_constants Named constants
     It is possible to create named constants for options. Simply set the unit
-    field of the option the constants should apply to a string and
+    field of the Option the constants should apply to a string and
     create the constants themselves as options of type OptionType.CONST
     with their unit field set to the same string.
     Their default_val field should contain the value of the named
     constant.
-    For example, to add some named constants for the test_flags option
+    For example, to add some named constants for the test_flags Option
     above, put the following into the child_opts array:
     @code
     {
         "test_flags",
-        "This is a test option of flags type.",
+        "This is a test Option of flags type.",
      offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 },
         INT_MIN,
         int.MAX, "test_unit"
@@ -248,7 +249,7 @@ AVFormatContext in libavformat.
 @subsection avoptions_use_examine Examining LibAVUtil.Options
 The basic functions for examining options are av_opt_next (), which iterates
 over all options defined for one object, and av_opt_find (), which searches
-for an option with the given name.
+for an Option with the given name.
 
 The situation is more complicated with nesting. An LibAVUtil.Options-enabled struct
 may have LibAVUtil.Options-enabled children. Passing the OptionSearchFlags.SEARCH_CHILDREN flag
@@ -267,16 +268,16 @@ av_opt_next () on each result).
 When setting options, you often have a string read directly from the
 user. In such a case, simply passing it to av_opt_set () is enough. For
 non-string type options, av_opt_set () will parse the string according to the
-option type.
+Option type.
 
-Similarly av_opt_get () will read any option type and convert it to a string
+Similarly av_opt_get () will read any Option type and convert it to a string
 which will be returned. Do not forget that the string is allocated, so you
 have to free it with av_free ().
 
 In some cases it may be more convenient to put all options into an
 LibAVUtil.Dictionary and call av_opt_set_dict () on it. A specific case of this
 are the format/codec open functions in lavf/lavc which take a dictionary
-filled with option as a parameter. This makes it possible to set some options
+filled with Option as a parameter. This makes it possible to set some options
 that cannot be set otherwise, since e.g. the input file format is not known
 before the file is actually opened.
 ***********************************************************/
@@ -298,7 +299,7 @@ public class Option {
     public string short_help_text;
 
     /***********************************************************
-    @brief The offset relative to the context structure where the option
+    @brief The offset relative to the context structure where the Option
     value is stored. It should be 0 for named constants.
     ***********************************************************/
     [CCode (cname="offset")]
@@ -311,21 +312,30 @@ public class Option {
     @brief The default value for scalar options
     ***********************************************************/
     //  union {
-    //      int64 i64;
-    //      double dbl;
-    //      string str;
-    //      /* TODO those are unused now */
-    //      Rational q;
+    //      [CCode (cname="")]
+    //      public int64 i64;
+
+    //      [CCode (cname="")]
+    //      public double dbl;
+
+    //      [CCode (cname="")]
+    //      public string str;
+
+    //      /***********************************************************
+    //      TODO those are unused now
+    //      ***********************************************************/
+    //      [CCode (cname="")]
+    //      public Rational q;
     //  } default_val;
 
     /***********************************************************
-    @brief Minimum valid value for the option
+    @brief Minimum valid value for the Option
     ***********************************************************/
     [CCode (cname="min")]
     public double min;
 
     /***********************************************************
-    @brief Maximum valid value for the option
+    @brief Maximum valid value for the Option
     ***********************************************************/
     [CCode (cname="max")]
     public double max;
@@ -334,7 +344,7 @@ public class Option {
     public OptionFlags flags;
 
     /***********************************************************
-    @brief The logical unit to which the option belongs. Non-constant
+    @brief The logical unit to which the Option belongs. Non-constant
     options and corresponding named constants share the same
     unit. May be null.
     ***********************************************************/
@@ -342,20 +352,20 @@ public class Option {
     public string unit;
 
     /***********************************************************
-    @brief Look for an option in an object. Consider only options which
+    @brief Look for an Option in an object. Consider only options which
     have all the specified flags set.
 
     @param[in] obj A pointer to a struct whose first element is a
         pointer to an Class.
         Alternatively a double pointer to an Class, if
         OptionSearchFlags.FAKE_OBJECT_PARAMETER search flag is set.
-    @param[in] name The name of the option to look for.
+    @param[in] name The name of the Option to look for.
     @param[in] unit When searching for named constants, name of the unit
         it belongs to.
     @param opt_flags Find only options with all the specified flags set (AV_OPT_FLAG).
     @param search_flags A combination of OptionSearchFlags.
 
-    @return A pointer to the option found, or null if no option
+    @return A pointer to the Option found, or null if no Option
         was found.
 
     @note Options found with OptionSearchFlags.SEARCH_CHILDREN flag may not be settable
@@ -373,24 +383,24 @@ public class Option {
     );
 
     /***********************************************************
-    @brief Look for an option in an object. Consider only options which
+    @brief Look for an Option in an object. Consider only options which
     have all the specified flags set.
 
     @param[in] obj A pointer to a struct whose first element is a
         pointer to an Class.
         Alternatively a double pointer to an Class, if
         OptionSearchFlags.FAKE_OBJECT_PARAMETER search flag is set.
-    @param[in] name The name of the option to look for.
+    @param[in] name The name of the Option to look for.
     @param[in] unit When searching for named constants, name of the unit
         it belongs to.
     @param opt_flags Find only options with all the specified flags set (AV_OPT_FLAG).
     @param search_flags A combination of OptionSearchFlags.
-    @param[out] target_obj if non-null, an object to which the option belongs will be
+    @param[out] target_obj if non-null, an object to which the Option belongs will be
     written here. It may be different from obj if OptionSearchFlags.SEARCH_CHILDREN is present
     in search_flags. This parameter is ignored if search_flags contain
     OptionSearchFlags.FAKE_OBJECT_PARAMETER.
 
-    @return A pointer to the option found, or null if no option
+    @return A pointer to the Option found, or null if no Option
         was found.
     ***********************************************************/
     [CCode (cname="av_opt_find2",cheader_filename="ffmpeg/libavutil/opt.h")]
@@ -447,11 +457,11 @@ public class Option {
     with '+' causes it to be set without affecting the other flags;
     similarly, '-' unsets a flag.
     @param search_flags flags passed to av_opt_find2. I.e. if OptionSearchFlags.SEARCH_CHILDREN
-    is passed here, then the option may be set on a child of obj.
+    is passed here, then the Option may be set on a child of obj.
 
     @return 0 if the value has been set, or an LibAVUtil.ErrorCode code in case of
     error:
-    AVERROR_OPTION_NOT_FOUND if no matching option exists
+    AVERROR_OPTION_NOT_FOUND if no matching Option exists
     LibAVUtil.ErrorCode (ERANGE) if the value is out of range
     LibAVUtil.ErrorCode (EINVAL) if the value is not valid
     ***********************************************************/
@@ -549,10 +559,10 @@ public class Option {
     );
 
     /***********************************************************
-    @brief Set a binary option to an integer list.
+    @brief Set a binary Option to an integer list.
 
     @param obj Class object to set options on
-    @param name name of the binary option
+    @param name name of the binary Option
     @param val pointer to an integer list (must have the correct type with
         regard to the contents of the list)
     @param term list terminator (usually 0 or -1)
@@ -570,20 +580,20 @@ public class Option {
 
     /***********************************************************
     @defgroup opt_get_funcs Option getting functions
-    Those functions get a value of the option with the given name from an object.
+    Those functions get a value of the Option with the given name from an object.
 
     @param[in] obj a struct whose first element is a pointer to an Class.
-    @param[in] name name of the option to get.
+    @param[in] name name of the Option to get.
     @param[in] search_flags flags passed to av_opt_find2. I.e. if OptionSearchFlags.SEARCH_CHILDREN
-    is passed here, then the option may be found in a child of obj.
-    @param[out] out_val value of the option will be written here
+    is passed here, then the Option may be found in a child of obj.
+    @param[out] out_val value of the Option will be written here
     @return >=0 on success, a negative error code otherwise
     ***********************************************************/
     /***********************************************************
     @note the returned string will be av_malloc ()ed and must be av_free ()ed by the caller
 
-    @note if AV_OPT_ALLOW_NULL is set in search_flags in av_opt_get, and the option has
-    OptionType.STRING or OptionType.BINARY and is set to null, *out_val will be set
+    @note if AV_OPT_ALLOW_NULL is set in search_flags in av_opt_get, and the Option has
+    OptionType.STRING or OptionType.BINARY and is set to null,? out_val will be set
     to null instead of an allocated empty string.
     ***********************************************************/
     [CCode (cname="av_opt_get",cheader_filename="ffmpeg/libavutil/opt.h")]
@@ -695,7 +705,7 @@ public class Option {
     );
 
     /***********************************************************
-    @brief Get a list of allowed ranges for the given option.
+    @brief Get a list of allowed ranges for the given Option.
 
     The returned list may depend on other fields in obj like for example profile.
 
@@ -732,7 +742,7 @@ public class Option {
     );
 
     /***********************************************************
-    @brief Get a default list of allowed ranges for the given option.
+    @brief Get a default list of allowed ranges for the given Option.
 
     This list is constructed without using the Class.query_ranges () callback
     and can be used as fallback from within the callback.
@@ -754,31 +764,31 @@ public class Option {
     );
 
     /***********************************************************
-    @brief Check if given option is set to its default value.
+    @brief Check if given Option is set to its default value.
 
-    Options o must belong to the obj. This function must not be called to check child's options state.
+    Options Option must belong to the obj. This function must not be called to check child's options state.
     @see @link av_opt_is_set_to_default_by_name ().
 
-    @param obj Class object to check option on
-    @param o option to be checked
-    @return     >0 when option is set to its default,
-        0 when option is not set its default,
+    @param obj Class object to check Option on
+    @param option Option to be checked
+    @return     >0 when Option is set to its default,
+        0 when Option is not set its default,
         <0 on error
     ***********************************************************/
     [CCode (cname="av_opt_is_set_to_default",cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_is_set_to_default (
         void *obj,
-        Option o
+        Option option
     );
 
     /***********************************************************
-    @brief Check if given option is set to its default value.
+    @brief Check if given Option is set to its default value.
 
-    @param obj Class object to check option on
-    @param name option name
+    @param obj Class object to check Option on
+    @param name Option name
     @param search_flags combination of OptionSearchFlags
-    @return    >0 when option is set to its default,
-        0 when option is not set its default,
+    @return    >0 when Option is set to its default,
+        0 when Option is not set its default,
         <0 on error
     ***********************************************************/
     [CCode (cname="av_opt_is_set_to_default_by_name",cheader_filename="ffmpeg/libavutil/opt.h")]
@@ -789,13 +799,13 @@ public class Option {
     );
 
     /***********************************************************
-    @defgroup opt_eval_funcs Evaluating option strings
-    This group of functions can be used to evaluate option strings
+    @defgroup opt_eval_funcs Evaluating Option strings
+    This group of functions can be used to evaluate Option strings
     and get numbers out of them. They do the same thing as av_opt_set (),
     except the result is written into the caller-supplied pointer.
 
     @param obj a struct whose first element is a pointer to Class.
-    @param o an option for which the string is to be evaluated.
+    @param option an Option for which the string is to be evaluated.
     @param val string to be evaluated.
     @param *_out value of the string will be written here.
 
@@ -804,7 +814,7 @@ public class Option {
     [CCode (cname="av_opt_eval_flags",cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_flags (
         void *obj,
-        Option o,
+        Option option,
         string val,
         out int flags_out
     );
@@ -812,7 +822,7 @@ public class Option {
     [CCode (cname="av_opt_eval_int",cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_int (
         void *obj,
-        Option o,
+        Option option,
         string val,
         out int int_out
     );
@@ -820,7 +830,7 @@ public class Option {
     [CCode (cname="av_opt_eval_int64",cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_int64 (
         void *obj,
-        Option o,
+        Option option,
         string val,
         out int64 int64_out
     );
@@ -828,7 +838,7 @@ public class Option {
     [CCode (cname="av_opt_eval_float",cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_float (
         void *obj,
-        Option o,
+        Option option,
         string val,
         out float float_out
     );
@@ -836,7 +846,7 @@ public class Option {
     [CCode (cname="av_opt_eval_double",cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_double (
         void *obj,
-        Option o,
+        Option option,
         string val,
         out double double_out
     );
@@ -844,7 +854,7 @@ public class Option {
     [CCode (cname="av_opt_eval_q",cheader_filename="ffmpeg/libavutil/opt.h")]
     public int av_opt_eval_q (
         void *obj,
-        Option o,
+        Option option,
         string val,
         out Rational q_out
     );
@@ -919,7 +929,7 @@ public class Option {
 
     /***********************************************************
     @brief Parse the key-value pairs list in opts. For each key=value pair found,
-    set the value of the corresponding option in class_context.
+    set the value of the corresponding Option in class_context.
 
     @param class_context the Class object to set options on
     @param opts the options string, key-value pairs separated by a
@@ -928,7 +938,7 @@ public class Option {
         notation: if the first field in opts has no key part,
         the key is taken from the first element of shorthand;
         then again for the second, etc., until either opts is
-        finished, shorthand is finished or a named option is
+        finished, shorthand is finished or a named Option is
         found; after that, all options must be named
     @param key_val_sep a 0-terminated list of characters used to separate
         key from value, for example '='
@@ -941,7 +951,7 @@ public class Option {
         cannot be set
 
     Options names must use only the following characters: a-z A-Z 0-9 - . / _
-    Separators must use characters distinct from option names and from each
+    Separators must use characters distinct from Option names and from each
     other.
     ***********************************************************/
     [CCode (cname="av_opt_set_from_string",cheader_filename="ffmpeg/libavutil/opt.h")]
@@ -964,7 +974,7 @@ public class Option {
     /***********************************************************
     @brief Check whether a particular flag is set in a flags field.
 
-    @param field_name the name of the flag field option
+    @param field_name the name of the flag field Option
     @param flag_name the name of the flag to check
     @return non-zero if the flag is set, zero if the flag isn't set,
         isn't of the right type, or the flags field doesn't exist.
@@ -985,7 +995,7 @@ public class Option {
         Of course this new dictionary needs to be freed by caller
         with av_dict_free ().
 
-    @return 0 on success, a negative LibAVUtil.ErrorCode if some option was found in obj,
+    @return 0 on success, a negative LibAVUtil.ErrorCode if some Option was found in obj,
         but could not be set.
 
     @see @link av_dict_copy ()
@@ -1006,7 +1016,7 @@ public class Option {
         with av_dict_free ().
     @param search_flags A combination of OptionSearchFlags.
 
-    @return 0 on success, a negative LibAVUtil.ErrorCode if some option was found in obj,
+    @return 0 on success, a negative LibAVUtil.ErrorCode if some Option was found in obj,
         but could not be set.
 
     @see @link av_dict_copy ()

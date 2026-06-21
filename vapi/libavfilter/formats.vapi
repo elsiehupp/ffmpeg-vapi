@@ -144,18 +144,29 @@ or unknown disposition.
 The result is only valid inside AVFilterChannelLayouts and immediately
 related functions.
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
 public define FF_COUNT2LAYOUT (
     void *c
-) {
-    return (0x8000000000000000ULL | (c));
-}
+);
+//  {
+//      return (0x8000000000000000ULL | (c));
+//  }
 
 /***********************************************************
 Decode a channel count encoded as a channel layout.
 Return 0 if the channel layout was a real one.
 ***********************************************************/
-public define FF_LAYOUT2COUNT (l) (((l) & 0x8000000000000000ULL) ? \
-                           (int)((l) & 0x7FFFFFFF) : 0)
+[CCode (cname="",cheader_filename="")]
+public define FF_LAYOUT2COUNT (
+    void *l
+);
+//  {
+//      return (
+//          ((l) & 0x8000000000000000ULL)
+//          ? (int)((l) & 0x7FFFFFFF)
+//          : 0
+//      );
+//  }
 
 /***********************************************************
 Return a channel layouts/samplerates list which contains the intersection of
@@ -167,37 +178,44 @@ is returned.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public AVFilterChannelLayouts ff_merge_channel_layouts (
-    AVFilterChannelLayouts *a,
-    AVFilterChannelLayouts *b
+    AVFilterChannelLayouts? a,
+    AVFilterChannelLayouts? b
 );
+
+[CCode (cname="",cheader_filename="")]
 public AVFilterFormats ff_merge_samplerates (
-    AVFilterFormats *a,
-    AVFilterFormats *b
+    AVFilterFormats? a,
+    AVFilterFormats? b
 );
 
 /***********************************************************
 Construct an empty AVFilterChannelLayouts/AVFilterFormats struct --
 representing any channel layout (with known disposition)/sample rate.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public AVFilterChannelLayouts ff_all_channel_layouts ();
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public AVFilterFormats ff_all_samplerates ();
 
 /***********************************************************
 Construct an AVFilterChannelLayouts coding for any channel layout, with
 known or unknown disposition.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public AVFilterChannelLayouts ff_all_channel_counts ();
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public AVFilterChannelLayouts avfilter_make_format64_list (
-    const int64 *fmts
+    const int64[] fmts
 );
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public AVFilterChannelLayouts ff_make_formatu64_list (
     const uint64[] fmts
 );
@@ -208,16 +226,18 @@ A helper for query_formats () which sets all links to the same list of channel
 layouts/sample rates. If there are no links hooked to this filter, the list
 is freed.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_set_common_channel_layouts (
-    AVFilterContext *ctx,
-    AVFilterChannelLayouts *layouts
+    AVFilterContext? av_filter_context,
+    AVFilterChannelLayouts? layouts
 );
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_set_common_samplerates (
-    AVFilterContext *ctx,
-    AVFilterFormats *samplerates
+    AVFilterContext? av_filter_context,
+    AVFilterFormats? samplerates
 );
 
 /***********************************************************
@@ -225,24 +245,27 @@ A helper for query_formats () which sets all links to the same list of
 formats. If there are no links hooked to this filter, the list of formats is
 freed.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_set_common_formats (
-    AVFilterContext *ctx,
-    AVFilterFormats *formats
+    AVFilterContext? av_filter_context,
+    AVFilterFormats? formats
 );
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_add_channel_layout (
     AVFilterChannelLayouts **l,
     uint64 channel_layout
 );
 
 /***********************************************************
-Add *ref as a new reference to f.
+Add? ref as a new reference to f.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_channel_layouts_ref (
-    AVFilterChannelLayouts *f,
+    AVFilterChannelLayouts? f,
     AVFilterChannelLayouts **ref
 );
 
@@ -260,9 +283,10 @@ public void ff_channel_layouts_changeref (
     AVFilterChannelLayouts **newref
 );
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_default_query_formats (
-    AVFilterContext *ctx
+    AVFilterContext? av_filter_context
 );
 
 /***********************************************************
@@ -270,9 +294,10 @@ Set the formats list to all known channel layouts. This function behaves
 like ff_default_query_formats (), except it only accepts known channel
 layouts. It should only be used with audio filters.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_query_formats_all_layouts (
-    AVFilterContext *ctx
+    AVFilterContext? av_filter_context
 );
 
 /***********************************************************
@@ -282,20 +307,22 @@ AVFilter->query_formats ().
 @param fmts list of media formats, terminated by -1
 @return the format list, with no existing references
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public AVFilterFormats ff_make_format_list (
     int[] fmts
 );
 
 /***********************************************************
-Add fmt to the list of media formats contained in *avff.
-If *avff is NULL the function allocates the filter formats struct
-and puts its pointer in *avff.
+Add fmt to the list of media formats contained in? avff.
+If? avff is NULL the function allocates the filter formats struct
+and puts its pointer in? avff.
 
 @return a non negative value in case of success, or a negative
 value corresponding to an AVERROR code in case of error
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_add_format (
     AVFilterFormats **avff,
     int64 fmt
@@ -304,7 +331,8 @@ public int ff_add_format (
 /***********************************************************
 Return a list of all formats supported by FFmpeg for the given media type.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public AVFilterFormats ff_all_formats (
     AVMediaType type
 );
@@ -312,7 +340,8 @@ public AVFilterFormats ff_all_formats (
 /***********************************************************
 Construct a formats list containing all planar sample formats.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public AVFilterFormats ff_planar_sample_fmts ();
 
 /***********************************************************
@@ -325,13 +354,13 @@ is returned.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public AVFilterFormats ff_merge_formats (
-    AVFilterFormats *a,
-    AVFilterFormats *b,
+    AVFilterFormats? a,
+    AVFilterFormats? b,
     AVMediaType type
 );
 
 /***********************************************************
-Add *ref as a new reference to formats.
+Add? ref as a new reference to formats.
 That is the pointers will point like in the ascii art below:
   ________
  |formats |<--------.
@@ -342,16 +371,17 @@ That is the pointers will point like in the ascii art below:
  | |____| |    | |____|
  |________|    |________________________
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_formats_ref (
-    AVFilterFormats *formats,
+    AVFilterFormats? formats,
     AVFilterFormats **ref
 );
 
 /***********************************************************
-If *ref is non-NULL, remove *ref as a reference to the format list
+If? ref is non-NULL, remove? ref as a reference to the format list
 it currently points to, deallocates that list if this was the last
-reference, and sets *ref to NULL.
+reference, and sets? ref to NULL.
 
         Before                                 After
   ________                               ________         NULL

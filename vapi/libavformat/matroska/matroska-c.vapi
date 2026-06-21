@@ -447,7 +447,7 @@ const AVMetadataConv ff_mkv_metadata_conv[] = {
 //      MatroskaVideoStereoModeType stereo_mode
 //  );
 //  {
-//      AVStereo3D *stereo;
+//      AVStereo3D? stereo;
 //      int ret;
 
 //      stereo = av_stereo3d_alloc ();

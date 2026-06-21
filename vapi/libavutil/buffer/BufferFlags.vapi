@@ -138,7 +138,7 @@ public int av_buffer_make_writable (
 
 @param buffer a buffer reference to reallocate. On success, buffer will be
     unreferenced and a new reference with the required size will be
-    written in its place. On failure buffer will be left untouched. *buffer
+    written in its place. On failure buffer will be left untouched.? buffer
     may be null, then a new buffer is allocated.
 @param size required new buffer size.
 @return 0 on success, a negative LibAVUtil.ErrorCode on failure.

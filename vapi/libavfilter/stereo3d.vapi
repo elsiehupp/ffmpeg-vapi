@@ -42,4 +42,6 @@ public class Stereo3DDSPContext {
 }
 
 [CCode (cname="",cheader_filename="")]
-public void ff_stereo3d_init_x86 (Stereo3DDSPContext *dsp);
+public void ff_stereo3d_init_x86 (
+    Stereo3DDSPContext? dsp
+);

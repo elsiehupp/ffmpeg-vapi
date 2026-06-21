@@ -28,25 +28,27 @@ Memory buffer source API.
 @{
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
-public enum {
-
+[Flags]
+public enum FooBar {
     /***********************************************************
     Do not check for format changes.
     ***********************************************************/
-    AV_BUFFERSRC_FLAG_NO_CHECK_FORMAT = 1,
+    [CCode (cname="",cheader_filename="")]
+    AV_BUFFERSRC_FLAG_NO_CHECK_FORMAT, // = 1,
 
     /***********************************************************
     Immediately push the frame to the output.
     ***********************************************************/
-    AV_BUFFERSRC_FLAG_PUSH = 4,
+    [CCode (cname="",cheader_filename="")]
+    AV_BUFFERSRC_FLAG_PUSH, // = 4,
 
     /***********************************************************
     Keep a reference to the frame.
     If the frame if reference-counted, create a new reference;
     otherwise copy the frame data.
     ***********************************************************/
-    AV_BUFFERSRC_FLAG_KEEP_REF = 8,
+    [CCode (cname="",cheader_filename="")]
+    AV_BUFFERSRC_FLAG_KEEP_REF; // = 8,
 
 }
 
@@ -59,7 +61,7 @@ The number is reset when a frame is added.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public uint av_buffersrc_get_nb_failed_requests (
-    AVFilterContext *buffer_src
+    AVFilterContext? buffer_src
 );
 
 /***********************************************************
@@ -146,7 +148,7 @@ This function may be called multiple times, the later calls override the
 previous ones. Some of the parameters may also be set through AVOptions, then
 whatever method is used last takes precedence.
 
-@param ctx an instance of the buffersrc or abuffersrc filter
+@param av_filter_context an instance of the buffersrc or abuffersrc filter
 @param param the stream parameters. The frames later passed to this filter
              must conform to those parameters. All the allocated fields in
              param remain owned by the caller, libavfilter will make internal
@@ -155,14 +157,14 @@ whatever method is used last takes precedence.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int av_buffersrc_parameters_set (
-    AVFilterContext *ctx,
-    AVBufferSrcParameters *param
+    AVFilterContext? av_filter_context,
+    AVBufferSrcParameters? param
 );
 
 /***********************************************************
 Add a frame to the buffer source.
 
-@param ctx   an instance of the buffersrc filter
+@param av_filter_context   an instance of the buffersrc filter
 @param frame frame to be added. If the frame is reference counted, this
 function will make a new reference to it. Otherwise the frame data will be
 copied.
@@ -172,16 +174,17 @@ copied.
 This function is equivalent to av_buffersrc_add_frame_flags () with the
 AV_BUFFERSRC_FLAG_KEEP_REF flag.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int av_buffersrc_write_frame (
-    AVFilterContext *ctx,
-    AVFrame *frame
+    AVFilterContext? av_filter_context,
+    AVFrame? frame
 );
 
 /***********************************************************
 Add a frame to the buffer source.
 
-@param ctx   an instance of the buffersrc filter
+@param av_filter_context   an instance of the buffersrc filter
 @param frame frame to be added. If the frame is reference counted, this
 function will take ownership of the reference (s) and reset the frame.
 Otherwise the frame data will be copied. If this function returns an error,
@@ -196,10 +199,11 @@ while this function takes ownership of the reference passed to it.
 This function is equivalent to av_buffersrc_add_frame_flags () without the
 AV_BUFFERSRC_FLAG_KEEP_REF flag.
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int av_buffersrc_add_frame (
-    AVFilterContext *ctx,
-    AVFrame *frame
+    AVFilterContext? av_filter_context,
+    AVFrame? frame
 );
 
 /***********************************************************
@@ -217,9 +221,10 @@ If this function returns an error, the input frame is not touched.
 @return            >= 0 in case of success, a negative AVERROR code
                    in case of failure
 ***********************************************************/
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int av_buffersrc_add_frame_flags (
-    AVFilterContext *buffer_src,
+    AVFilterContext? buffer_src,
     AVFrame frame,
     int flags
 );
@@ -233,7 +238,7 @@ of the last frame.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 public int av_buffersrc_close (
-    AVFilterContext *ctx,
+    AVFilterContext? av_filter_context,
     int64 pts,
     uint flags
 );

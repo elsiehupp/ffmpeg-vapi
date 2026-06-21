@@ -216,7 +216,7 @@ public class T140DynamicHandler : RTPDynamicProtocolHandler {
 //  extern RTPDynamicProtocolHandler ff_rdt_live_video_handler;
 //  extern RTPDynamicProtocolHandler ff_rdt_live_audio_handler;
 
-//  static const RTPDynamicProtocolHandler *rtp_dynamic_protocol_handler_list[] = {
+//  static const RTPDynamicProtocolHandler? rtp_dynamic_protocol_handler_list[] = {
 //      /***********************************************************
 //      rtp
 //      ***********************************************************/

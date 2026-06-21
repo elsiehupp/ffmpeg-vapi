@@ -16,10 +16,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-av_warn_unused_result
+[CCode (cname="",cheader_filename="")]
+//  av_warn_unused_result
 public int ff_alloc_input_device_context (
     AVFormatContext **avctx,
-    AVInputFormat *iformat,
+    AVInputFormat? iformat,
     string format
 );
 
