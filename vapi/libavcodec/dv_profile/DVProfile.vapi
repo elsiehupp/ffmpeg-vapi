@@ -131,11 +131,13 @@ public class DVProfile {
     [CCode (cname="audio_samples_dist")]
     public int audio_samples_dist[5];
 
+    public delegate uint8 AudioShuffleDelegate ();
+
     /***********************************************************
     @brief PCM shuffling table
     ***********************************************************/
-    //  [CCode (cname="audio_shuffle")]
-    //  public uint8 (*audio_shuffle)[9];
+    [CCode (cname="audio_shuffle")]
+    public AudioShuffleDelegate audio_shuffle[9];
 
     /***********************************************************
     @brief Get a DV profile for the provided compressed frame.

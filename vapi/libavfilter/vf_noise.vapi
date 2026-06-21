@@ -20,15 +20,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define MAX_NOISE 5120
-public define MAX_SHIFT 1024
-public define MAX_RES (MAX_NOISE-MAX_SHIFT)
+public const size_t MAX_NOISE; // 5120
 
 [CCode (cname="",cheader_filename="")]
-public define NOISE_UNIFORM  1
-public define NOISE_TEMPORAL 2
-public define NOISE_AVERAGED 8
-public define NOISE_PATTERN  16
+public const size_t MAX_SHIFT; // 1024
+
+[CCode (cname="",cheader_filename="")]
+public const size_t MAX_RES; // (MAX_NOISE - MAX_SHIFT)
+
+[Flags]
+public enum FooBar {
+    [CCode (cname="",cheader_filename="")]
+    NOISE_UNIFORM, // 1
+
+    [CCode (cname="",cheader_filename="")]
+    NOISE_TEMPORAL, // 2
+
+    [CCode (cname="",cheader_filename="")]
+    NOISE_AVERAGED, // 8
+
+    [CCode (cname="",cheader_filename="")]
+    NOISE_PATTERN; // 16
+}
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
@@ -73,12 +86,13 @@ public class NoiseContext {
     [CCode (cname="")]
     public int height[4];
 
-    FilterParams all;
+    [CCode (cname="")]
+    public FilterParams all;
 
-    FilterParams param[4];
+    [CCode (cname="")]
+    public FilterParams param[4];
 
-    [CCode (cname="line_noise")]
-    public void (*line_noise)(
+    public delegate void LineNoiseDelegate (
         uint8[] dst,
         uint8[] src,
         int8 *noise,
@@ -86,13 +100,18 @@ public class NoiseContext {
         int shift
     );
 
-    [CCode (cname="line_noise_avg")]
-    public void (*line_noise_avg)(
+    [CCode (cname="line_noise")]
+    public LineNoiseDelegate line_noise;
+
+    public delegate void LineNoiseAvgDelegate (
         uint8[] dst,
         uint8[] src,
         int len,
-        int8 * const *shift
+        int8[] shift
     );
+
+    [CCode (cname="line_noise_avg")]
+    public LineNoiseAvgDelegate line_noise_avg;
 
 }
 
@@ -110,7 +129,7 @@ public void ff_line_noise_avg_c (
     uint8[] dst,
     uint8[] src,
     int len,
-    int8 * const *shift
+    int8[] shift
 );
 
 [CCode (cname="",cheader_filename="")]

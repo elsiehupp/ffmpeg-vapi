@@ -140,55 +140,55 @@ Get the properties of the stream
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public AVMediaType av_buffersink_get_type                (
+public AVMediaType av_buffersink_get_type (
     const AVFilterContext *ctx
 );
 
-AVRational       av_buffersink_get_time_base           (
-    const AVFilterContext *ctx
-);
-
-[CCode (cname="",cheader_filename="")]
-public int              av_buffersink_get_format              (
-    const AVFilterContext *ctx
-);
-
-
-AVRational       av_buffersink_get_frame_rate          (
+AVRational av_buffersink_get_time_base (
     const AVFilterContext *ctx
 );
 
 [CCode (cname="",cheader_filename="")]
-public int              av_buffersink_get_w                   (
+public int av_buffersink_get_format (
+    const AVFilterContext *ctx
+);
+
+
+AVRational av_buffersink_get_frame_rate (
     const AVFilterContext *ctx
 );
 
 [CCode (cname="",cheader_filename="")]
-public int              av_buffersink_get_h                   (
+public int av_buffersink_get_w (
     const AVFilterContext *ctx
 );
 
-AVRational       av_buffersink_get_sample_aspect_ratio (
+[CCode (cname="",cheader_filename="")]
+public int av_buffersink_get_h (
+    const AVFilterContext *ctx
+);
+
+AVRational av_buffersink_get_sample_aspect_ratio (
     const AVFilterContext *ctx
 );
 
 
 [CCode (cname="",cheader_filename="")]
-public int              av_buffersink_get_channels            (
+public int av_buffersink_get_channels (
     const AVFilterContext *ctx
 );
 
-uint64         av_buffersink_get_channel_layout      (
+uint64 av_buffersink_get_channel_layout (
     const AVFilterContext *ctx
 );
 
 [CCode (cname="",cheader_filename="")]
-public int              av_buffersink_get_sample_rate         (
+public int av_buffersink_get_sample_rate (
     const AVFilterContext *ctx
 );
 
 
-AVBufferRef av_buffersink_get_hw_frames_ctx       (
+AVBufferRef av_buffersink_get_hw_frames_ctx (
     const AVFilterContext *ctx
 );
 

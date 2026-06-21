@@ -23,18 +23,18 @@ Libavresample version macros.
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVRESAMPLE_VERSION_MAJOR  4
-public define LIBAVRESAMPLE_VERSION_MINOR  0
-public define LIBAVRESAMPLE_VERSION_MICRO  0
+public define LIBAVRESAMPLE_VERSION_MAJOR 4
+public define LIBAVRESAMPLE_VERSION_MINOR 0
+public define LIBAVRESAMPLE_VERSION_MICRO 0
 
 [CCode (cname="",cheader_filename="")]
-public define LIBAVRESAMPLE_VERSION_INT  AV_VERSION_INT (LIBAVRESAMPLE_VERSION_MAJOR, \
+public define LIBAVRESAMPLE_VERSION_INT AV_VERSION_INT (LIBAVRESAMPLE_VERSION_MAJOR, \
                                                   LIBAVRESAMPLE_VERSION_MINOR, \
                                                   LIBAVRESAMPLE_VERSION_MICRO)
-public define LIBAVRESAMPLE_VERSION          AV_VERSION (LIBAVRESAMPLE_VERSION_MAJOR, \
+public define LIBAVRESAMPLE_VERSION AV_VERSION (LIBAVRESAMPLE_VERSION_MAJOR, \
                                                   LIBAVRESAMPLE_VERSION_MINOR, \
                                                   LIBAVRESAMPLE_VERSION_MICRO)
-public define LIBAVRESAMPLE_BUILD        LIBAVRESAMPLE_VERSION_INT
+public define LIBAVRESAMPLE_BUILD LIBAVRESAMPLE_VERSION_INT
 
 [CCode (cname="",cheader_filename="")]
 public define LIBAVRESAMPLE_IDENT        "Lavr" AV_STRINGIFY (LIBAVRESAMPLE_VERSION)

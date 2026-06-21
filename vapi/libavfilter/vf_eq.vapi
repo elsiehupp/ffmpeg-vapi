@@ -51,8 +51,7 @@ public enum var_name {
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class EQParameters {
-    [CCode (cname="adjust")]
-    public void (*adjust)(
+    public delegate void AdjustDelegate (
         EQParameters *eq,
         uint8[] dst,
         int dst_stride,
@@ -61,6 +60,9 @@ public class EQParameters {
         int w,
         int h
     );
+
+    [CCode (cname="adjust")]
+    public AdjustDelegate adjust;
 
     [CCode (cname="")]
     public uint8 lut[256];
@@ -110,7 +112,7 @@ public class EQContext {
     public AVExpr *contrast_pexpr;
 
     [CCode (cname="")]
-    public double  contrast;
+    public double contrast;
 
     [CCode (cname="")]
     public string brightness_expr;
@@ -119,7 +121,7 @@ public class EQContext {
     public AVExpr *brightness_pexpr;
 
     [CCode (cname="")]
-    public double  brightness;
+    public double brightness;
 
     [CCode (cname="")]
     public string saturation_expr;
@@ -137,7 +139,7 @@ public class EQContext {
     public AVExpr *gamma_pexpr;
 
     [CCode (cname="")]
-    public double  gamma;
+    public double gamma;
 
     [CCode (cname="")]
     public string gamma_weight_expr;
@@ -146,7 +148,7 @@ public class EQContext {
     public AVExpr *gamma_weight_pexpr;
 
     [CCode (cname="")]
-    public double  gamma_weight;
+    public double gamma_weight;
 
     [CCode (cname="")]
     public string gamma_r_expr;
@@ -155,7 +157,7 @@ public class EQContext {
     public AVExpr *gamma_r_pexpr;
 
     [CCode (cname="")]
-    public double  gamma_r;
+    public double gamma_r;
 
     [CCode (cname="")]
     public string gamma_g_expr;
@@ -164,7 +166,7 @@ public class EQContext {
     public AVExpr *gamma_g_pexpr;
 
     [CCode (cname="")]
-    public double  gamma_g;
+    public double gamma_g;
 
     [CCode (cname="")]
     public string gamma_b_expr;
@@ -173,13 +175,12 @@ public class EQContext {
     public AVExpr *gamma_b_pexpr;
 
     [CCode (cname="")]
-    public double  gamma_b;
+    public double gamma_b;
 
     [CCode (cname="")]
     public double var_values[VAR_NB];
 
-    [CCode (cname="")]
-    public void (*process)(
+    public delegate void ProcessDelegate (
         EQParameters *par,
         uint8[] dst,
         int dst_stride,
@@ -190,8 +191,13 @@ public class EQContext {
     );
 
     [CCode (cname="")]
+    public ProcessDelegate process;
+
+    [CCode (cname="")]
     public EvalMode eval_mode;
 }
 
 [CCode (cname="",cheader_filename="")]
-public void ff_eq_init_x86 (EQContext *eq);
+public void ff_eq_init_x86 (
+    EQContext *eq
+);

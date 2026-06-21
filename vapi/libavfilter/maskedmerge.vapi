@@ -40,13 +40,15 @@ public class MaskedMergeContext {
     public int planes;
 
     [CCode (cname="")]
-    public int half, depth;
+    public int half;
+
+    [CCode (cname="")]
+    public int depth;
 
     [CCode (cname="")]
     public FFFrameSync fs;
 
-    [CCode (cname="maskedmerge")]
-    public void (*maskedmerge)(
+    public delegate void MaskedMergeDelegate (
         uint8[] bsrc,
         uint8[] osrc,
         uint8[] msrc,
@@ -61,7 +63,12 @@ public class MaskedMergeContext {
         int shift
     );
 
+    [CCode (cname="maskedmerge")]
+    public MaskedMergeDelegate maskedmerge;
+
 }
 
 [CCode (cname="",cheader_filename="")]
-public void ff_maskedmerge_init_x86 (MaskedMergeContext *s);
+public void ff_maskedmerge_init_x86 (
+    MaskedMergeContext *s
+);

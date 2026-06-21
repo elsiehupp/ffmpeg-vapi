@@ -1,7 +1,7 @@
 /***********************************************************
 @brief MicroDVD subtitle demuxer
-@copyright 2010  Aurelien Jacobs <aurel@gnuage.org>
-@copyright 2012  Clément Bœsch <u pkh me>
+@copyright 2010 Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2012 Clément Bœsch <u pkh me>
 ***********************************************************/
 /***********************************************************
 @brief This file is part of FFmpeg.

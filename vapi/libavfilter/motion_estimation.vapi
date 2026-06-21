@@ -18,34 +18,34 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
-public enum { }
-[CCode (cname="",cheader="")]
-public define AV_ME_METHOD_ESA        1
+public enum FooBar {
+    [CCode (cname="",cheader="")]
+    AV_ME_METHOD_ESA, // 1
 
-[CCode (cname="",cheader="")]
-public define AV_ME_METHOD_TSS        2
+    [CCode (cname="",cheader="")]
+    AV_ME_METHOD_TSS, // 2
 
-[CCode (cname="",cheader="")]
-public define AV_ME_METHOD_TDLS       3
+    [CCode (cname="",cheader="")]
+    AV_ME_METHOD_TDLS, // 3
 
-[CCode (cname="",cheader="")]
-public define AV_ME_METHOD_NTSS       4
+    [CCode (cname="",cheader="")]
+    AV_ME_METHOD_NTSS, // 4
 
-[CCode (cname="",cheader="")]
-public define AV_ME_METHOD_FSS        5
+    [CCode (cname="",cheader="")]
+    AV_ME_METHOD_FSS, // 5
 
-[CCode (cname="",cheader="")]
-public define AV_ME_METHOD_DS         6
+    [CCode (cname="",cheader="")]
+    AV_ME_METHOD_DS, // 6
 
-[CCode (cname="",cheader="")]
-public define AV_ME_METHOD_HEXBS      7
+    [CCode (cname="",cheader="")]
+    AV_ME_METHOD_HEXBS, // 7
 
-[CCode (cname="",cheader="")]
-public define AV_ME_METHOD_EPZS       8
+    [CCode (cname="",cheader="")]
+    AV_ME_METHOD_EPZS, // 8
 
-[CCode (cname="",cheader="")]
-public define AV_ME_METHOD_UMH        9
+    [CCode (cname="",cheader="")]
+    AV_ME_METHOD_UMH; // 9
+}
 
 [CCode (cname="",cheader="")]
 [Compact]
@@ -108,14 +108,16 @@ public class AVMotionEstContext {
     [CCode (cname="",cheader="")]
     public AVMotionEstPredictor preds[2];
 
-    [CCode (cname="get_cost")]
-    public uint64 (*get_cost)(
+    public delegate uint64 GetCostDelegate (
         AVMotionEstContext *me_ctx,
         int x_mb,
         int y_mb,
         int mv_x,
         int mv_y
     );
+
+    [CCode (cname="get_cost")]
+    public GetCostDelegate get_cost;
 
 }
 

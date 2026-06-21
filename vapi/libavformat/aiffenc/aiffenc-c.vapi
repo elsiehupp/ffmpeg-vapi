@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 /***********************************************************
 @brief AIFF/AIFF-C muxer
-@copyright 2006  Patrick Guimond
+@copyright 2006 Patrick Guimond
 ***********************************************************/
 namespace LibAVFormat {
 

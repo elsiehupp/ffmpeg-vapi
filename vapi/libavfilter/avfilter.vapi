@@ -238,7 +238,7 @@ public class AVFilter {
             AVERROR code on failure (but the code will be
               dropped and treated as ENOMEM by the calling code)
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="preinit")]
     public int (*preinit)(
         AVFilterContext *ctx
     );
@@ -264,7 +264,7 @@ public class AVFilter {
 
     @return 0 on success, a negative AVERROR on failure
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="init")]
     public int (*init)(
         AVFilterContext *ctx
     );
@@ -280,7 +280,7 @@ public class AVFilter {
 
     Otherwise the semantics is the same as for @ref AVFilter.init "init".
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="init_dict")]
     public int (*init_dict)(
         AVFilterContext *ctx,
         AVDictionary **options
@@ -296,7 +296,7 @@ public class AVFilter {
     This callback may be called even if @ref AVFilter.init "init" was not
     called or failed, so it must be prepared to handle such a situation.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="uninit")]
     public void (*uninit)(
         AVFilterContext *ctx
     );
@@ -324,7 +324,7 @@ public class AVFilter {
     @return zero on success, a negative value corresponding to an
         AVERROR code otherwise
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="query_formats")]
     public int (*query_formats)(
         AVFilterContext *
     );
@@ -359,7 +359,7 @@ public class AVFilter {
     @returns >=0 on success otherwise an error code.
              AVERROR (ENOSYS) on unsupported commands
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="process_command")]
     public int (*process_command)(
         AVFilterContext *,
         string cmd,
@@ -374,7 +374,7 @@ public class AVFilter {
     callback. Args contains the user-supplied parameters, opaque is
     used for providing binary data.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="init_opaque")]
     public int (*init_opaque)(
         AVFilterContext *ctx,
         void *opaque
@@ -392,7 +392,7 @@ public class AVFilter {
     possible, it must use ff_filter_set_ready () to schedule another
     activation.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="activate")]
     public int (*activate)(
         AVFilterContext *ctx
     );
@@ -437,7 +437,7 @@ public class AVFilterContext {
     array of input pads
     ***********************************************************/
     [CCode (cname="")]
-    public AVFilterPad   *input_pads;
+    public AVFilterPad *input_pads;
 
     /***********************************************************
     array of pointers to input links
@@ -449,13 +449,13 @@ public class AVFilterContext {
     number of input pads
     ***********************************************************/
     [CCode (cname="")]
-    public uint    nb_inputs;
+    public uint nb_inputs;
 
     /***********************************************************
     array of output pads
     ***********************************************************/
     [CCode (cname="")]
-    public AVFilterPad   *output_pads;
+    public AVFilterPad *output_pads;
 
     /***********************************************************
     array of pointers to output links
@@ -467,7 +467,7 @@ public class AVFilterContext {
     number of output pads
     ***********************************************************/
     [CCode (cname="")]
-    public uint    nb_outputs;
+    public uint nb_outputs;
 
     /***********************************************************
     private data for use by the filter
@@ -698,13 +698,13 @@ public class AVFilterLink {
     negotiation.
     ***********************************************************/
     [CCode (cname="")]
-    public AVFilterFormats  *in_samplerates;
+    public AVFilterFormats *in_samplerates;
 
     [CCode (cname="")]
     public AVFilterFormats *out_samplerates;
 
     [CCode (cname="")]
-    public AVFilterChannelLayouts  *in_channel_layouts;
+    public AVFilterChannelLayouts *in_channel_layouts;
 
     [CCode (cname="")]
     public AVFilterChannelLayouts *out_channel_layouts;

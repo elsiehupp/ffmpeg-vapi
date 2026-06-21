@@ -132,7 +132,7 @@ public class FFDrawColor {
 
         uint16 u16[8];
 
-        uint8  u8[16];
+        uint8 u8[16];
 
     } comp[MAX_PLANES];
 }

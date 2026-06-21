@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /***********************************************************
 @brief RAW aptX demuxer
 
-@copyright 2017  Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2017 Aurelien Jacobs <aurel@gnuage.org>
 ***********************************************************/
 namespace LibAVFormat {
 

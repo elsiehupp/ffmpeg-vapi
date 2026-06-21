@@ -72,7 +72,7 @@ a simple help text
 #endif
 
 [CCode (cname="",cheader_filename="")]
-public void  pp_postprocess (
+public void pp_postprocess (
     uint8[]  src[3],
     int srcStride[3],
     uint8[]  dst[3],
@@ -115,24 +115,24 @@ public void pp_free_context (
 );
 
 [CCode (cname="",cheader_filename="")]
-public define PP_CPU_CAPS_MMX   0x80000000
-public define PP_CPU_CAPS_MMX2  0x20000000
+public define PP_CPU_CAPS_MMX 0x80000000
+public define PP_CPU_CAPS_MMX2 0x20000000
 public define PP_CPU_CAPS_3DNOW 0x40000000
 public define PP_CPU_CAPS_ALTIVEC 0x10000000
-public define PP_CPU_CAPS_AUTO  0x00080000
+public define PP_CPU_CAPS_AUTO 0x00080000
 
 [CCode (cname="",cheader_filename="")]
-public define PP_FORMAT         0x00000008
-public define PP_FORMAT_420    (0x00000011|PP_FORMAT)
-public define PP_FORMAT_422    (0x00000001|PP_FORMAT)
-public define PP_FORMAT_411    (0x00000002|PP_FORMAT)
-public define PP_FORMAT_444    (0x00000000|PP_FORMAT)
-public define PP_FORMAT_440    (0x00000010|PP_FORMAT)
+public define PP_FORMAT 0x00000008
+public define PP_FORMAT_420 (0x00000011|PP_FORMAT)
+public define PP_FORMAT_422 (0x00000001|PP_FORMAT)
+public define PP_FORMAT_411 (0x00000002|PP_FORMAT)
+public define PP_FORMAT_444 (0x00000000|PP_FORMAT)
+public define PP_FORMAT_440 (0x00000010|PP_FORMAT)
 
 /***********************************************************
 MPEG2 style QScale
 ***********************************************************/
-public define PP_PICT_TYPE_QP2  0x00000010
+public define PP_PICT_TYPE_QP2 0x00000010
 
 /***********************************************************
 @}

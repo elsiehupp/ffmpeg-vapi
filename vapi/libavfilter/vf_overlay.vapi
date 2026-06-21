@@ -18,33 +18,77 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [CCode (cname="",cheader_filename="")]
 public enum var_name {
+    [CCode (cname="")]
     VAR_MAIN_W,
+
+    [CCode (cname="")]
     VAR_MW,
+
+    [CCode (cname="")]
     VAR_MAIN_H,
+
+    [CCode (cname="")]
     VAR_MH,
+
+    [CCode (cname="")]
     VAR_OVERLAY_W,
+
+    [CCode (cname="")]
     VAR_OW,
+
+    [CCode (cname="")]
     VAR_OVERLAY_H,
+
+    [CCode (cname="")]
     VAR_OH,
+
+    [CCode (cname="")]
     VAR_HSUB,
+
+    [CCode (cname="")]
     VAR_VSUB,
+
+    [CCode (cname="")]
     VAR_X,
+
+    [CCode (cname="")]
     VAR_Y,
+
+    [CCode (cname="")]
     VAR_N,
+
+    [CCode (cname="")]
     VAR_POS,
+
+    [CCode (cname="")]
     VAR_T,
-    VAR_VARS_NB
+
+    [CCode (cname="")]
+    VAR_VARS_NB;
 }
 
 [CCode (cname="",cheader_filename="")]
 public enum OverlayFormat {
+    [CCode (cname="")]
     OVERLAY_FORMAT_YUV420,
+
+    [CCode (cname="")]
     OVERLAY_FORMAT_YUV422,
+
+    [CCode (cname="")]
     OVERLAY_FORMAT_YUV444,
+
+    [CCode (cname="")]
     OVERLAY_FORMAT_RGB,
+
+    [CCode (cname="")]
     OVERLAY_FORMAT_GBRP,
+
+    [CCode (cname="")]
     OVERLAY_FORMAT_AUTO,
-    OVERLAY_FORMAT_NB
+
+    [CCode (cname="")]
+    OVERLAY_FORMAT_NB;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -98,7 +142,8 @@ public class OverlayContext {
     [CCode (cname="")]
     public int eval_mode;
 
-    FFFrameSync fs;
+    [CCode (cname="")]
+    public FFFrameSync fs;
 
     /***********************************************************
     steps per pixel for each plane of the main output
@@ -115,29 +160,37 @@ public class OverlayContext {
     /***********************************************************
     chroma subsampling values
     ***********************************************************/
+    [CCode (cname="")]
+    public int hsub;
+
     /***********************************************************
     chroma subsampling values
     ***********************************************************/
     [CCode (cname="")]
-    public int hsub, vsub;
+    public int vsub;
 
     /***********************************************************
     format descriptor for main input
     ***********************************************************/
-    const AVPixFmtDescriptor *main_desc;
+    [CCode (cname="")]
+    public AVPixFmtDescriptor main_desc;
 
-    double var_values[VAR_VARS_NB];
+    [CCode (cname="")]
+    public double var_values[VAR_VARS_NB];
 
-    string x_expr;
+    [CCode (cname="")]
+    public string x_expr;
 
-    string y_expr;
+    [CCode (cname="")]
+    public string y_expr;
 
-    AVExpr *x_pexpr;
+    [CCode (cname="")]
+    public AVExpr *x_pexpr;
 
-    AVExpr *y_pexpr;
+    [CCode (cname="")]
+    public AVExpr *y_pexpr;
 
-    [CCode (cname="blend_row")]
-    public int (*blend_row[4])(
+    public delegate int BlendRowDelegate (
         uint8[] d,
         uint8[] da,
         uint8[] s,
@@ -146,13 +199,18 @@ public class OverlayContext {
         ptrdiff_t alinesize
     );
 
-    [CCode (cname="blend_slice")]
-    public int (*blend_slice)(
+    [CCode (cname="blend_row")]
+    public iBlendRowDelegate blend_row[4];
+
+    public delegate int BlendSliceDelegate (
         AVFilterContext *ctx,
         void *arg,
         int jobnr,
         int nb_jobs
     );
+
+    [CCode (cname="blend_slice")]
+    public BlendSliceDelegate blend_slice;
 
 }
 

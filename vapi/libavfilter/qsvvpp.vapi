@@ -23,6 +23,8 @@ Intel Quick Sync Video VPP base function
 
 [CCode (cname="",cheader_filename="")]
 public define FF_INLINK_IDX (link)  ((int)((link)->dstpad - (link)->dst->input_pads))
+
+[CCode (cname="",cheader_filename="")]
 public define FF_OUTLINK_IDX (link) ((int)((link)->srcpad - (link)->src->output_pads))
 
 [CCode (cname="",cheader_filename="")]
@@ -37,7 +39,7 @@ public define QSV_RUNTIME_VERSION_ATLEAST (MFX_VERSION, MAJOR, MINOR) \
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
-public class QSVVPPContext QSVVPPContext;
+public class QSVVPPContext { }
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
@@ -51,29 +53,41 @@ public class QSVVPPCrop {
     /***********************************************************
     Crop rectangle
     ***********************************************************/
-    /***********************************************************
-    Crop rectangle
-    ***********************************************************/
-    /***********************************************************
-    Crop rectangle
-    ***********************************************************/
+    [CCode (cname="")]
+    public int x;
+
     /***********************************************************
     Crop rectangle
     ***********************************************************/
     [CCode (cname="")]
-    public int x, y, w, h;
+    public int y;
+
+    /***********************************************************
+    Crop rectangle
+    ***********************************************************/
+    [CCode (cname="")]
+    public int w;
+
+    /***********************************************************
+    Crop rectangle
+    ***********************************************************/
+    [CCode (cname="")]
+    public int h;
 }
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class QSVVPPParam {
+    public delegate int FilterFrameDelegate (
+        AVFilterLink *outlink,
+        AVFrame *frame
+    );
+
     /***********************************************************
     default is ff_filter_frame
     ***********************************************************/
     [CCode (cname="filter_frame")]
-    public int (*filter_frame)(
-        AVFilterLink *outlink, AVFrame *frame
-    );
+    public FilterFrameDelegate filter_frame;
 
     /***********************************************************
     To fill with MFX enhanced filter configurations

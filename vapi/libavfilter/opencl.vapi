@@ -30,7 +30,7 @@ public class OpenCLFilterContext {
     [CCode (cname="")]
     public AVClass class;
 
-    public AVBufferRef       *device_ref;
+    public AVBufferRef *device_ref;
     [CCode (cname="")]
 
     [CCode (cname="")]
@@ -40,16 +40,16 @@ public class OpenCLFilterContext {
     public AVOpenCLDeviceContext *hwctx;
 
     [CCode (cname="")]
-    public cl_program         program;
+    public cl_program program;
 
     [CCode (cname="")]
     public AVPixelFormat output_format;
 
     [CCode (cname="")]
-    public int                output_width;
+    public int output_width;
 
     [CCode (cname="")]
-    public int                output_height;
+    public int output_height;
 }
 
 

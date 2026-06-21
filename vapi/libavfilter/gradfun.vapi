@@ -64,13 +64,10 @@ public class GradFunContext {
     /***********************************************************
     holds image data for blur algorithm passed into filter.
     ***********************************************************/
-    uint16[] buf;
+    [CCode (cname="")]
+    public uint16[] buf;
 
-    /***********************************************************
-    DSP function.
-    ***********************************************************/
-    [CCode (cname="filter_line")]
-    public void (*filter_line) (
+    public delegate void FilterLineDelegate (
         uint8[] dst,
         uint8[] src,
         uint16[] dc,
@@ -82,8 +79,10 @@ public class GradFunContext {
     /***********************************************************
     DSP function.
     ***********************************************************/
-    [CCode (cname="blur_line")]
-    public void (*blur_line) (
+    [CCode (cname="filter_line")]
+    public FilterLineDelegate filter_line;
+
+    public delegate void BlurLineDelegate (
         uint16[] dc,
         uint16[] buf,
         uint16[] buf1,
@@ -91,6 +90,12 @@ public class GradFunContext {
         int src_linesize,
         int width
     );
+
+    /***********************************************************
+    DSP function.
+    ***********************************************************/
+    [CCode (cname="blur_line")]
+    public BlurLineDelegate blur_line;
 
 }
 

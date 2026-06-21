@@ -25,6 +25,13 @@ public class DitherContext { }
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class DitherDSPContext {
+    public delegate void QuantizeDelegate (
+        int16[] dst,
+        float[] src,
+        float[] dither,
+        int len
+    );
+
     /***********************************************************
     Convert samples from flt to s16 with added dither noise.
 
@@ -34,12 +41,7 @@ public class DitherDSPContext {
     @param len    number of samples
     ***********************************************************/
     [CCode (cname="quantize")]
-    public void (*quantize)(
-        int16[] dst,
-        float[] src,
-        float[] dither,
-        int len
-    );
+    public QuantizeDelegate quantize;
 
     /***********************************************************
     src and dst constraints for quantize ()
@@ -64,13 +66,14 @@ public class DitherDSPContext {
     @param len  number of output noise samples
                 constraints: multiple of 16
     ***********************************************************/
-    [CCode (cname="dither_int_to_float")]
-    public void (*dither_int_to_float)(
-        float[] dst,
-        int *src0,
+    public delegate void DitherIntToFloatDelegate (
+        out float[] dst,
+        int[] src0,
         int len
     );
 
+    [CCode (cname="dither_int_to_float")]
+    public DitherIntToFloatDelegate dither_int_to_float;
 }
 
 /***********************************************************
@@ -82,7 +85,8 @@ DitherContext.
 @param avr  AVAudioResampleContext
 @return     newly-allocated DitherContext
 ***********************************************************/
-DitherContext *ff_dither_alloc (
+[CCode (cname="",cheader_filename="")]
+public DitherContext *ff_dither_alloc (
     AVAudioResampleContext *avr,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,

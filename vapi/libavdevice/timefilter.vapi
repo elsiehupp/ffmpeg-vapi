@@ -32,7 +32,7 @@ a soundcard.
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
 [Compact]
-public class TimeFilter TimeFilter;
+public class TimeFilter { }
 
 
 /***********************************************************
@@ -62,7 +62,9 @@ starting point is something between 0.3 and 3 Hz.
 For more details about these parameters and background concepts please see:
 http://www.kokkinizita.net/papers/usingdll.pdf
 ***********************************************************/
-TimeFilter * ff_timefilter_new (double clock_period, double feedback2_factor, double feedback3_factor);
+TimeFilter * ff_timefilter_new (
+    double clock_period, double feedback2_factor, double feedback3_factor
+);
 
 /***********************************************************
 Update the filter
@@ -81,7 +83,9 @@ cycle).
 @return the filtered time, in seconds
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public doubleff_timefilter_update (TimeFilter *self, double system_time, double period);
+public doubleff_timefilter_update (
+    TimeFilter *self, double system_time, double period
+);
 
 /***********************************************************
 Evaluate the filter at a specified time
@@ -91,7 +95,9 @@ Evaluate the filter at a specified time
 @return  the filtered time
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public doubleff_timefilter_eval (TimeFilter *self, double delta);
+public doubleff_timefilter_eval (
+    TimeFilter *self, double delta
+);
 
 /***********************************************************
 Reset the filter
@@ -102,10 +108,14 @@ Warning: after calling this, the filter is in an undetermined state until
 the next call to ff_timefilter_update ()
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public void ff_timefilter_reset (TimeFilter *);
+public void ff_timefilter_reset (
+    TimeFilter *
+);
 
 /***********************************************************
 Free all resources associated with the filter
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public void ff_timefilter_destroy (TimeFilter *);
+public void ff_timefilter_destroy (
+    TimeFilter *
+);

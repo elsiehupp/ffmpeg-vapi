@@ -1,6 +1,6 @@
 /***********************************************************
 @brief SubRip subtitle muxer
-@copyright 2012  Nicolas George <nicolas.george@normalesup.org>
+@copyright 2012 Nicolas George <nicolas.george@normalesup.org>
 ***********************************************************/
 /***********************************************************
 @brief This file is part of FFmpeg.

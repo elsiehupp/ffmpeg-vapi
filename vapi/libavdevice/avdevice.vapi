@@ -72,7 +72,7 @@ if d is non-NULL, returns the next registered input audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
 AVInputFormat *av_input_audio_device_next (
-    AVInputFormat  *d
+    AVInputFormat *d
 );
 
 /***********************************************************
@@ -83,7 +83,7 @@ if d is non-NULL, returns the next registered input audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
 AVInputFormat *av_input_video_device_next (
-    AVInputFormat  *d
+    AVInputFormat *d
 );
 
 /***********************************************************

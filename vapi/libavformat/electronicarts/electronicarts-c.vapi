@@ -1,5 +1,5 @@
 /* Electronic Arts Multimedia File Demuxer
-@copyright 2004  The FFmpeg project
+@copyright 2004 The FFmpeg project
 @copyright 2006-2008 Peter Ross
 ***********************************************************/
 /***********************************************************

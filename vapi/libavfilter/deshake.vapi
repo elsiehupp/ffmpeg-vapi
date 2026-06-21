@@ -24,12 +24,16 @@ public enum SearchMethod {
     /***********************************************************
     Search all possible positions
     ***********************************************************/
+    [CCode (cname="")]
     EXHAUSTIVE,
 
     /***********************************************************
     Search most possible positions (faster)
     ***********************************************************/
+    [CCode (cname="")]
     SMART_EXHAUSTIVE,
+
+    [CCode (cname="")]
     SEARCH_COUNT;
 }
 
@@ -55,12 +59,14 @@ public class MotionVector {
     /***********************************************************
     Horizontal shift
     ***********************************************************/
-    double x;
+    [CCode (cname="")]
+    public double x;
 
     /***********************************************************
     Vertical shift
     ***********************************************************/
-    double y;
+    [CCode (cname="")]
+    public double y;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -69,21 +75,24 @@ public class Transform {
     /***********************************************************
     Motion vector
     ***********************************************************/
-    MotionVector vec;
+    [CCode (cname="")]
+    public MotionVector vec;
 
     /***********************************************************
     Angle of rotation
     ***********************************************************/
-    double angle;
+    [CCode (cname="")]
+    public double angle;
 
     /***********************************************************
     Zoom percentage
     ***********************************************************/
-    double zoom;
+    [CCode (cname="")]
+    public double zoom;
 }
 
 [CCode (cname="",cheader_filename="")]
-public define MAX_R 64
+public const size_t MAX_R; // 64
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
@@ -95,12 +104,13 @@ public class DeshakeContext {
     Scratch buffer for motion search
     ***********************************************************/
     [CCode (cname="")]
-    public int counts[2*MAX_R+1][2*MAX_R+1];
+    public int counts[2 * MAX_R + 1][2 * MAX_R + 1];
 
     /***********************************************************
     Scratch buffer for block angles
     ***********************************************************/
-    double[] angles;
+    [CCode (cname="")]
+    public double[] angles;
 
     [CCode (cname="")]
     public uint angles_size;
@@ -150,12 +160,14 @@ public class DeshakeContext {
     /***********************************************************
     Sum of the absolute difference function
     ***********************************************************/
-    av_pixelutils_sad_fn sad;
+    [CCode (cname="")]
+    public av_pixelutils_sad_fn sad;
 
     /***********************************************************
     Transform from last frame
     ***********************************************************/
-    Transform last;
+    [CCode (cname="")]
+    public Transform last;
 
     /***********************************************************
     Number of reference frames (defines averaging window)
@@ -163,9 +175,11 @@ public class DeshakeContext {
     [CCode (cname="")]
     public int refcount;
 
-    FILE *fp;
+    [CCode (cname="")]
+    public FILE *fp;
 
-    Transform avg;
+    [CCode (cname="")]
+    public Transform avg;
 
     /***********************************************************
     Crop motion search to this box
@@ -185,13 +199,13 @@ public class DeshakeContext {
     /***********************************************************
     Motion search detailed log filename
     ***********************************************************/
-    string filename;
+    [CCode (cname="")]
+    public string filename;
 
     [CCode (cname="")]
     public int opencl;
 
-    [CCode (cname="transform")]
-    public int (* transform)(
+    public delegate int TransformDelegate (
         AVFilterContext *ctx,
         int width,
         int height,
@@ -205,4 +219,6 @@ public class DeshakeContext {
         AVFrame *out
     );
 
+    [CCode (cname="transform")]
+    public TransformDelegate transform;
 }

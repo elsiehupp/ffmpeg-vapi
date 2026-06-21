@@ -1,6 +1,6 @@
 /***********************************************************
 @brief AVS demuxer.
-@copyright 2006  Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2006 Aurelien Jacobs <aurel@gnuage.org>
 ***********************************************************/
 /***********************************************************
 @brief This file is part of FFmpeg.

@@ -80,7 +80,7 @@ public enum FooBar {
     SWS_SINC, // 0x100
 
     [CCode (cname="")]
-    SWS_LANCZOS       0x200
+    SWS_LANCZOS 0x200
 
     [CCode (cname="")]
     SWS_SPLINE, // 0x400

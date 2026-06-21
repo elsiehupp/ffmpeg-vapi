@@ -20,40 +20,109 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [CCode (cname="",cheader_filename="")]
 public enum BlendMode {
+    [CCode (cname="")]
     BLEND_UNSET = -1,
+
+    [CCode (cname="")]
     BLEND_NORMAL,
+
+    [CCode (cname="")]
     BLEND_ADDITION,
+
+    [CCode (cname="")]
     BLEND_AND,
+
+    [CCode (cname="")]
     BLEND_AVERAGE,
+
+    [CCode (cname="")]
     BLEND_BURN,
+
+    [CCode (cname="")]
     BLEND_DARKEN,
+
+    [CCode (cname="")]
     BLEND_DIFFERENCE,
+
+    [CCode (cname="")]
     BLEND_GRAINEXTRACT,
+
+    [CCode (cname="")]
     BLEND_DIVIDE,
+
+    [CCode (cname="")]
     BLEND_DODGE,
+
+    [CCode (cname="")]
     BLEND_EXCLUSION,
+
+    [CCode (cname="")]
     BLEND_HARDLIGHT,
+
+    [CCode (cname="")]
     BLEND_LIGHTEN,
+
+    [CCode (cname="")]
     BLEND_MULTIPLY,
+
+    [CCode (cname="")]
     BLEND_NEGATION,
+
+    [CCode (cname="")]
     BLEND_OR,
+
+    [CCode (cname="")]
     BLEND_OVERLAY,
+
+    [CCode (cname="")]
     BLEND_PHOENIX,
+
+    [CCode (cname="")]
     BLEND_PINLIGHT,
+
+    [CCode (cname="")]
     BLEND_REFLECT,
+
+    [CCode (cname="")]
     BLEND_SCREEN,
+
+    [CCode (cname="")]
     BLEND_SOFTLIGHT,
+
+    [CCode (cname="")]
     BLEND_SUBTRACT,
+
+    [CCode (cname="")]
     BLEND_VIVIDLIGHT,
+
+    [CCode (cname="")]
     BLEND_XOR,
+
+    [CCode (cname="")]
     BLEND_HARDMIX,
+
+    [CCode (cname="")]
     BLEND_LINEARLIGHT,
+
+    [CCode (cname="")]
     BLEND_GLOW,
+
+    [CCode (cname="")]
     BLEND_GRAINMERGE,
+
+    [CCode (cname="")]
     BLEND_MULTIPLY128,
+
+    [CCode (cname="")]
     BLEND_HEAT,
+
+    [CCode (cname="")]
     BLEND_FREEZE,
+
+    [CCode (cname="")]
     BLEND_EXTREMITY,
+
+    [CCode (cname="")]
     BLEND_NB
 }
 
@@ -63,14 +132,16 @@ public class FilterParams {
     [CCode (cname="")]
     public BlendMode mode;
 
-    double opacity;
+    [CCode (cname="")]
+    public double opacity;
 
-    AVExpr *e;
+    [CCode (cname="")]
+    public AVExpr *e;
 
-    string expr_str;
+    [CCode (cname="")]
+    public string expr_str;
 
-    [CCode (cname="blend")]
-    public void (*blend)(
+    public delegate void BlendDelegate (
         uint8[] top,
         ptrdiff_t top_linesize,
         uint8[] bottom,
@@ -83,6 +154,9 @@ public class FilterParams {
         double[] values,
         int starty
     );
+
+    [CCode (cname="blend")]
+    public BlendDelegate blend;
 
 }
 

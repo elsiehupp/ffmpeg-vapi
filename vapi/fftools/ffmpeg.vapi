@@ -26,16 +26,16 @@ public define VSYNC_AUTO       -1
 public define VSYNC_PASSTHROUGH 0
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-public define VSYNC_CFR         1
+public define VSYNC_CFR 1
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-public define VSYNC_VFR         2
+public define VSYNC_VFR 2
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-public define VSYNC_VSCFR       0xfe
+public define VSYNC_VSCFR 0xfe
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-public define VSYNC_DROP        0xff
+public define VSYNC_DROP 0xff
 
 /***********************************************************
 arbitrary sanity check value
@@ -70,7 +70,7 @@ public class HWAccel {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public string name;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
+    [CCode (cname="init",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public int (*init)(
         AVCodecContext *s
     );
@@ -185,37 +185,37 @@ public class OptionsContext {
     public SpecifierOpt codec_names;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_codec_names;
+    public int nb_codec_names;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt audio_channels;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_audio_channels;
+    public int nb_audio_channels;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt audio_sample_rate;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_audio_sample_rate;
+    public int nb_audio_sample_rate;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt frame_rates;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_frame_rates;
+    public int nb_frame_rates;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt frame_sizes;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_frame_sizes;
+    public int nb_frame_sizes;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt frame_pix_fmts;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_frame_pix_fmts;
+    public int nb_frame_pix_fmts;
 
     /***********************************************************
     input options
@@ -239,37 +239,37 @@ public class OptionsContext {
     public SpecifierOpt ts_scale;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_ts_scale;
+    public int nb_ts_scale;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt dump_attachment;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_dump_attachment;
+    public int nb_dump_attachment;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt hwaccels;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_hwaccels;
+    public int nb_hwaccels;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt hwaccel_devices;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_hwaccel_devices;
+    public int nb_hwaccel_devices;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt hwaccel_output_formats;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_hwaccel_output_formats;
+    public int nb_hwaccel_output_formats;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt autorotate;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_autorotate;
+    public int nb_autorotate;
 
     /***********************************************************
     output options
@@ -278,7 +278,7 @@ public class OptionsContext {
     public StreamMap *stream_maps;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int     nb_stream_maps;
+    public int nb_stream_maps;
 
     /***********************************************************
     one info entry per -map_channel
@@ -290,7 +290,7 @@ public class OptionsContext {
     number of (valid) -map_channel settings
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int           nb_audio_channel_maps;
+    public int nb_audio_channel_maps;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public int metadata_global_manual;
@@ -305,7 +305,7 @@ public class OptionsContext {
     public string *attachments;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int       nb_attachments;
+    public int nb_attachments;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public int chapters_input_file;
@@ -347,7 +347,7 @@ public class OptionsContext {
     indexed by output file stream index
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int   *streamid_map;
+    public int *streamid_map;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public int nb_streamid_map;
@@ -356,206 +356,206 @@ public class OptionsContext {
     public SpecifierOpt metadata;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_metadata;
+    public int nb_metadata;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt max_frames;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_max_frames;
+    public int nb_max_frames;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt bitstream_filters;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_bitstream_filters;
+    public int nb_bitstream_filters;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt codec_tags;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_codec_tags;
+    public int nb_codec_tags;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt sample_fmts;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_sample_fmts;
+    public int nb_sample_fmts;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt qscale;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_qscale;
+    public int nb_qscale;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt forced_key_frames;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_forced_key_frames;
+    public int nb_forced_key_frames;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt force_fps;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_force_fps;
+    public int nb_force_fps;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt frame_aspect_ratios;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_frame_aspect_ratios;
+    public int nb_frame_aspect_ratios;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt rc_overrides;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_rc_overrides;
+    public int nb_rc_overrides;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt intra_matrices;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_intra_matrices;
+    public int nb_intra_matrices;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt inter_matrices;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_inter_matrices;
+    public int nb_inter_matrices;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt chroma_intra_matrices;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_chroma_intra_matrices;
+    public int nb_chroma_intra_matrices;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt top_field_first;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_top_field_first;
+    public int nb_top_field_first;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt metadata_map;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_metadata_map;
+    public int nb_metadata_map;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt presets;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_presets;
+    public int nb_presets;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt copy_initial_nonkeyframes;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_copy_initial_nonkeyframes;
+    public int nb_copy_initial_nonkeyframes;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt copy_prior_start;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_copy_prior_start;
+    public int nb_copy_prior_start;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt filters;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_filters;
+    public int nb_filters;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt filter_scripts;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_filter_scripts;
+    public int nb_filter_scripts;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt reinit_filters;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_reinit_filters;
+    public int nb_reinit_filters;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt fix_sub_duration;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_fix_sub_duration;
+    public int nb_fix_sub_duration;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt canvas_sizes;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_canvas_sizes;
+    public int nb_canvas_sizes;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt pass;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_pass;
+    public int nb_pass;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt passlogfiles;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_passlogfiles;
+    public int nb_passlogfiles;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt max_muxing_queue_size;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_max_muxing_queue_size;
+    public int nb_max_muxing_queue_size;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt guess_layout_max;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_guess_layout_max;
+    public int nb_guess_layout_max;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt apad;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_apad;
+    public int nb_apad;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt discard;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_discard;
+    public int nb_discard;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt disposition;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_disposition;
+    public int nb_disposition;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt program;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_program;
+    public int nb_program;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt time_bases;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_time_bases;
+    public int nb_time_bases;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public SpecifierOpt enc_time_bases;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_enc_time_bases;
+    public int nb_enc_time_bases;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
 [Compact]
 public class InputFilter {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public AVFilterContext    *filter;
+    public AVFilterContext *filter;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public InputStream *ist;
@@ -564,13 +564,13 @@ public class InputFilter {
     public FilterGraph *graph;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public uint8            *name;
+    public uint8 *name;
 
     /***********************************************************
     AVMEDIA_TYPE_SUBTITLE for sub2video
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public AVMediaType    type;
+    public AVMediaType type;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public AVFifoBuffer *frame_queue;
@@ -607,25 +607,25 @@ public class InputFilter {
 [Compact]
 public class OutputFilter {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public AVFilterContext     *filter;
+    public AVFilterContext *filter;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public OutputStream *ost;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public FilterGraph  *graph;
+    public FilterGraph *graph;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public uint8             *name;
+    public uint8 *name;
 
     /***********************************************************
     temporary storage until stream maps are processed
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public AVFilterInOut       *out_tmp;
+    public AVFilterInOut *out_tmp;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public AVMediaType     type;
+    public AVMediaType type;
 
     /***********************************************************
     desired output stream properties
@@ -662,7 +662,7 @@ public class OutputFilter {
 [Compact]
 public classFilterGraph {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int            index;
+    public int index;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public const string graph_desc;
@@ -674,16 +674,16 @@ public classFilterGraph {
     public int reconfiguration;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public InputFilter   **inputs;
+    public InputFilter **inputs;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int          nb_inputs;
+    public int nb_inputs;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public OutputFilter **outputs;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int         nb_outputs;
+    public int nb_outputs;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
@@ -709,7 +709,7 @@ public classInputStream {
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public int decoding_needed;
-public define DECODING_FOR_OST    1
+public define DECODING_FOR_OST 1
 public define DECODING_FOR_FILTER 2
 
     public AVCodecContext *dec_ctx;
@@ -730,7 +730,7 @@ public define DECODING_FOR_FILTER 2
     time when read started
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int64       start;
+    public int64 start;
 
     /***********************************************************
     predicted dts of the next packet read for this stream or
@@ -738,28 +738,28 @@ public define DECODING_FOR_FILTER 2
     frame in current packet (in AV_TIME_BASE units)
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int64       next_dts;
+    public int64 next_dts;
 
     /***********************************************************
     dts of the last packet read for this stream (in AV_TIME_BASE units)
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int64       dts;
+    public int64 dts;
 
     /***********************************************************
     synthetic pts for the next decode frame (in AV_TIME_BASE units)
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int64       next_pts;
+    public int64 next_pts;
 
     /***********************************************************
-    current pts of the decoded frame  (in AV_TIME_BASE units)
+    current pts of the decoded frame (in AV_TIME_BASE units)
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int64       pts;
+    public int64 pts;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int           wrap_correction_done;
+    public int wrap_correction_done;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public int64 filter_in_rescale_delta_last;
@@ -862,7 +862,7 @@ public define DECODING_FOR_FILTER 2
     public InputFilter **filters;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int        nb_filters;
+    public int nb_filters;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public int reinit_filters;
@@ -886,20 +886,22 @@ public define DECODING_FOR_FILTER 2
     hwaccel context
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public void  *hwaccel_ctx;
+    public void *hwaccel_ctx;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public void (*hwaccel_uninit)(AVCodecContext *s);
+    [CCode (cname="hwaccel_uninit",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
+    public void (*hwaccel_uninit)(
+        AVCodecContext *s
+    );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int  (*hwaccel_get_buffer)(
+    [CCode (cname="hwaccel_get_buffer",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
+    public int (*hwaccel_get_buffer)(
         AVCodecContext *s,
         AVFrame *frame,
         int flags
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int  (*hwaccel_retrieve_data)(
+    [CCode (cname="hwaccel_retrieve_data",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
+    public int (*hwaccel_retrieve_data)(
         AVCodecContext *s,
         AVFrame *frame
     );
@@ -1169,10 +1171,10 @@ public class OutputStream {
     public AVRational enc_timebase;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public int                    nb_bitstream_filters;
+    public int nb_bitstream_filters;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public AVBSFContext            **bsf_ctx;
+    public AVBSFContext **bsf_ctx;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public AVCodecContext *enc_ctx;
@@ -1202,7 +1204,7 @@ public class OutputStream {
     public int last_nb0_frames[3];
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-    public void  *hwaccel_ctx;
+    public void *hwaccel_ctx;
 
     /***********************************************************
     video only
@@ -1438,17 +1440,17 @@ public class OutputFile {
 }
 
 //  extern InputStream **input_streams;
-//  extern int        nb_input_streams;
-//  extern InputFile   **input_files;
-//  extern int        nb_input_files;
+//  extern int nb_input_streams;
+//  extern InputFile **input_files;
+//  extern int nb_input_files;
 
 //  extern OutputStream **output_streams;
-//  extern int         nb_output_streams;
-//  extern OutputFile   **output_files;
-//  extern int         nb_output_files;
+//  extern int nb_output_streams;
+//  extern OutputFile **output_files;
+//  extern int nb_output_files;
 
 //  extern FilterGraph **filtergraphs;
-//  extern int        nb_filtergraphs;
+//  extern int nb_filtergraphs;
 
 //  extern string vstats_filename;
 //  extern string sdp_filename;

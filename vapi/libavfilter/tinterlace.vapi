@@ -25,27 +25,54 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 temporal field interlace filter, ported from MPlayer/libmpcodecs
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
-public define TINTERLACE_FLAG_VLPF 01
-public define TINTERLACE_FLAG_CVLPF 2
-public define TINTERLACE_FLAG_EXACT_TB 4
+[Flags]
+public enum FooBar {
+    [CCode (cname="",cheader_filename="")]
+    TINTERLACE_FLAG_VLPF, // 01
+
+    [CCode (cname="",cheader_filename="")]
+    TINTERLACE_FLAG_CVLPF, // 2
+
+    [CCode (cname="",cheader_filename="")]
+    TINTERLACE_FLAG_EXACT_TB; // 4
+}
 
 [CCode (cname="",cheader_filename="")]
 public enum TInterlaceMode {
+    [CCode (cname="")]
     MODE_MERGE = 0,
+
+    [CCode (cname="")]
     MODE_DROP_EVEN,
+
+    [CCode (cname="")]
     MODE_DROP_ODD,
+
+    [CCode (cname="")]
     MODE_PAD,
+
+    [CCode (cname="")]
     MODE_INTERLEAVE_TOP,
+
+    [CCode (cname="")]
     MODE_INTERLEAVE_BOTTOM,
+
+    [CCode (cname="")]
     MODE_INTERLACEX2,
+
+    [CCode (cname="")]
     MODE_MERGEX2,
+
+    [CCode (cname="")]
     MODE_NB;
 }
 
 [CCode (cname="",cheader_filename="")]
 public enum InterlaceScanMode {
+    [CCode (cname="")]
     MODE_TFF = 0,
+
+    [CCode (cname="")]
     MODE_BFF;
 }
 
@@ -91,19 +118,22 @@ public class TInterlaceContext {
     /***********************************************************
     buffer used to fill padded lines
     ***********************************************************/
-    uint8[] black_data[4];
+    [CCode (cname="")]
+    public uint8[] black_data[4];
 
     [CCode (cname="")]
     public int black_linesize[4];
 
-    FFDrawContext draw;
+    [CCode (cname="")]
+    public FFDrawContext draw;
 
-    FFDrawColor color;
+    [CCode (cname="")]
+    public FFDrawColor color;
 
-    const AVPixFmtDescriptor *csp;
+    [CCode (cname="")]
+    public AVPixFmtDescriptor[] csp;
 
-    [CCode (cname="lowpass_line")]
-    public void (*lowpass_line)(
+    public delegate void LowpassLineDelegate (
         uint8[] dstp,
         ptrdiff_t width,
         uint8[] srcp,
@@ -111,6 +141,9 @@ public class TInterlaceContext {
         ptrdiff_t pref,
         int clip_max
     );
+
+    [CCode (cname="lowpass_line")]
+    public LowpassLineDelegate lowpass_line
 
 }
 

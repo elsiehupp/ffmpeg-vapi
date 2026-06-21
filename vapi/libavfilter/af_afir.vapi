@@ -76,12 +76,15 @@ public class AudioFIRSegment {
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class AudioFIRDSPContext {
-    [CCode (cname="fcmul_add")]
-    public void (*fcmul_add)(
-        float[] sum, float[] t, float[] c,
+    public delegate void FcmulAddDelegate (
+        float[] sum,
+        float[] t,
+        float[] c,
         ptrdiff_t len
     );
 
+    [CCode (cname="fcmul_add")]
+    public FcmulAddDelegate fcmul_add;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -99,7 +102,6 @@ public class AudioFIRContext {
     [CCode (cname="")]
     public float length;
 
-    [CCode (cname="")]
     [CCode (cname="")]
     public int gtype;
 

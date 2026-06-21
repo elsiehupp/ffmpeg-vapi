@@ -296,9 +296,9 @@ public SwrContext *swr_alloc_set_opts (
     int64 out_ch_layout,
     AVSampleFormat out_sample_fmt,
     int out_sample_rate,
-    int64  in_ch_layout,
-    AVSampleFormat  in_sample_fmt,
-    int  in_sample_rate,
+    int64 in_ch_layout,
+    AVSampleFormat in_sample_fmt,
+    int in_sample_rate,
     int log_offset,
     void *log_ctx
 );

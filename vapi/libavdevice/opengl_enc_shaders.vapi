@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static string  const FF_OPENGL_VERTEX_SHADER =
+static string const FF_OPENGL_VERTEX_SHADER =
     "uniform mat4 u_projectionMatrix;"
     "uniform mat4 u_modelViewMatrix;"
 
@@ -36,7 +36,7 @@ static string  const FF_OPENGL_VERTEX_SHADER =
 /***********************************************************
 Fragment shader for packet RGBA formats.
 ***********************************************************/
-static string  const FF_OPENGL_FRAGMENT_SHADER_RGBA_PACKET =
+static string const FF_OPENGL_FRAGMENT_SHADER_RGBA_PACKET =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
@@ -54,7 +54,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGBA_PACKET =
 /***********************************************************
 Fragment shader for packet RGB formats.
 ***********************************************************/
-static string  const FF_OPENGL_FRAGMENT_SHADER_RGB_PACKET =
+static string const FF_OPENGL_FRAGMENT_SHADER_RGB_PACKET =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
@@ -72,7 +72,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGB_PACKET =
 /***********************************************************
 Fragment shader for planar RGBA formats.
 ***********************************************************/
-static string  const FF_OPENGL_FRAGMENT_SHADER_RGBA_PLANAR =
+static string const FF_OPENGL_FRAGMENT_SHADER_RGBA_PLANAR =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
@@ -95,7 +95,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGBA_PLANAR =
 /***********************************************************
 Fragment shader for planar RGB formats.
 ***********************************************************/
-static string  const FF_OPENGL_FRAGMENT_SHADER_RGB_PLANAR =
+static string const FF_OPENGL_FRAGMENT_SHADER_RGB_PLANAR =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
@@ -117,7 +117,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_RGB_PLANAR =
 /***********************************************************
 Fragment shader for planar YUV formats.
 ***********************************************************/
-static string  const  FF_OPENGL_FRAGMENT_SHADER_YUV_PLANAR =
+static string const FF_OPENGL_FRAGMENT_SHADER_YUV_PLANAR =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
@@ -147,7 +147,7 @@ static string  const  FF_OPENGL_FRAGMENT_SHADER_YUV_PLANAR =
 /***********************************************************
 Fragment shader for planar YUVA formats.
 ***********************************************************/
-static string  const FF_OPENGL_FRAGMENT_SHADER_YUVA_PLANAR =
+static string const FF_OPENGL_FRAGMENT_SHADER_YUVA_PLANAR =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif
@@ -174,7 +174,7 @@ static string  const FF_OPENGL_FRAGMENT_SHADER_YUVA_PLANAR =
                                        "1.5958, -0.81290, 0.0) * yuv, texture2D (u_texture3, texture_coordinate).r), 0.0, 1.0);"
     "}";
 
-static string  const FF_OPENGL_FRAGMENT_SHADER_GRAY =
+static string const FF_OPENGL_FRAGMENT_SHADER_GRAY =
 #if defined (GL_ES_VERSION_2_0)
     "precision mediump float;"
 #endif

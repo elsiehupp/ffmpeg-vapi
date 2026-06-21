@@ -73,100 +73,100 @@ public class ShowCQTContext {
     public AVClass class;
 
     [CCode (cname="")]
-    public AVFilterContext     *ctx;
+    public AVFilterContext *ctx;
 
     [CCode (cname="")]
-    public AVFrame             *axis_frame;
+    public AVFrame *axis_frame;
 
     [CCode (cname="")]
-    public AVFrame             *sono_frame;
+    public AVFrame *sono_frame;
 
     [CCode (cname="")]
-    public AVPixelFormat  format;
+    public AVPixelFormat format;
 
     [CCode (cname="")]
-    public int                 sono_idx;
+    public int sono_idx;
 
     [CCode (cname="")]
-    public int                 sono_count;
+    public int sono_count;
 
     [CCode (cname="")]
-    public int                 step;
+    public int step;
 
     [CCode (cname="")]
-    public AVRational          step_frac;
+    public AVRational step_frac;
 
     [CCode (cname="")]
-    public int                 remaining_frac;
+    public int remaining_frac;
 
     [CCode (cname="")]
-    public int                 remaining_fill;
+    public int remaining_fill;
 
     [CCode (cname="")]
-    public int                 remaining_fill_max;
+    public int remaining_fill_max;
 
     [CCode (cname="")]
-    public int64             next_pts;
+    public int64 next_pts;
 
     [CCode (cname="")]
-    public double              *freq;
+    public double *freq;
 
     [CCode (cname="")]
-    public FFTContext          *fft_ctx;
+    public FFTContext *fft_ctx;
 
     [CCode (cname="")]
-    public Coeffs              *coeffs;
+    public Coeffs *coeffs;
 
     [CCode (cname="")]
-    public FFTComplex          *fft_data;
+    public FFTComplex *fft_data;
 
     [CCode (cname="")]
-    public FFTComplex          *fft_result;
+    public FFTComplex *fft_result;
 
     [CCode (cname="")]
-    public FFTComplex          *cqt_result;
+    public FFTComplex *cqt_result;
 
     [CCode (cname="")]
-    public float               *attack_data;
+    public float *attack_data;
 
     [CCode (cname="")]
-    public int                 fft_bits;
+    public int fft_bits;
 
     [CCode (cname="")]
-    public int                 fft_len;
+    public int fft_len;
 
     [CCode (cname="")]
-    public int                 cqt_len;
+    public int cqt_len;
 
     [CCode (cname="")]
-    public int                 cqt_align;
+    public int cqt_align;
 
     [CCode (cname="")]
-    public ColorFloat          *c_buf;
+    public ColorFloat *c_buf;
 
     [CCode (cname="")]
-    public float               *h_buf;
+    public float *h_buf;
 
     [CCode (cname="")]
-    public float               *rcp_h_buf;
+    public float *rcp_h_buf;
 
     [CCode (cname="")]
-    public float               *sono_v_buf;
+    public float *sono_v_buf;
 
     [CCode (cname="")]
-    public float               *bar_v_buf;
+    public float *bar_v_buf;
 
     [CCode (cname="")]
-    public float               cmatrix[3][3];
+    public float cmatrix[3][3];
 
     [CCode (cname="")]
-    public float               cscheme_v[6];
+    public float cscheme_v[6];
 
     /***********************************************************
     callback
     ***********************************************************/
-    [CCode (cname="")]
-    public void                (*cqt_calc)(
+    [CCode (cname="cqt_calc")]
+    public void (*cqt_calc)(
         FFTComplex *dst,
         FFTComplex *src,
         Coeffs *coeffs,
@@ -174,14 +174,14 @@ public class ShowCQTContext {
         int fft_len
     );
 
-    [CCode (cname="")]
-    public void                (*permute_coeffs)(
+    [CCode (cname="permute_coeffs")]
+    public void (*permute_coeffs)(
         float[] v,
         int len
     );
 
-    [CCode (cname="")]
-    public void                (*draw_bar)(
+    [CCode (cname="draw_bar")]
+    public void (*draw_bar)(
         AVFrame *out,
         float[] h,
         float[] rcp_h,
@@ -190,24 +190,24 @@ public class ShowCQTContext {
         float bar_t
     );
 
-    [CCode (cname="")]
-    public void                (*draw_axis)(
+    [CCode (cname="draw_axis")]
+    public void (*draw_axis)(
         AVFrame *out,
         AVFrame *axis,
         ColorFloat *c,
         int off
     );
 
-    [CCode (cname="")]
-    public void                (*draw_sono)(
+    [CCode (cname="draw_sono")]
+    public void (*draw_sono)(
         AVFrame *out,
         AVFrame *sono,
         int off,
         int idx
     );
 
-    [CCode (cname="")]
-    public void                (*update_sono)(
+    [CCode (cname="update_sono")]
+    public void (*update_sono)(
         AVFrame *sono,
         ColorFloat *c,
         int idx
@@ -217,55 +217,55 @@ public class ShowCQTContext {
     performance debugging
     ***********************************************************/
     [CCode (cname="")]
-    public int64             fft_time;
+    public int64 fft_time;
 
     [CCode (cname="")]
-    public int64             cqt_time;
+    public int64 cqt_time;
 
     [CCode (cname="")]
-    public int64             process_cqt_time;
+    public int64 process_cqt_time;
 
     [CCode (cname="")]
-    public int64             update_sono_time;
+    public int64 update_sono_time;
 
     [CCode (cname="")]
-    public int64             alloc_time;
+    public int64 alloc_time;
 
     [CCode (cname="")]
-    public int64             bar_time;
+    public int64 bar_time;
 
     [CCode (cname="")]
-    public int64             axis_time;
+    public int64 axis_time;
 
     [CCode (cname="")]
-    public int64             sono_time;
+    public int64 sono_time;
 
     /***********************************************************
     option
     ***********************************************************/
     [CCode (cname="")]
-    public int                 width;
+    public int width;
 
     [CCode (cname="")]
-    public int                 height;
+    public int height;
 
     [CCode (cname="")]
-    public AVRational          rate;
+    public AVRational rate;
 
     [CCode (cname="")]
-    public int                 bar_h;
+    public int bar_h;
 
     [CCode (cname="")]
-    public int                 axis_h;
+    public int axis_h;
 
     [CCode (cname="")]
-    public int                 sono_h;
+    public int sono_h;
 
     /***********************************************************
     deprecated
     ***********************************************************/
     [CCode (cname="")]
-    public int                 fullhd;
+    public int fullhd;
 
     [CCode (cname="")]
     public string sono_v;
@@ -274,40 +274,40 @@ public class ShowCQTContext {
     public string bar_v;
 
     [CCode (cname="")]
-    public float               sono_g;
+    public float sono_g;
 
     [CCode (cname="")]
-    public float               bar_g;
+    public float bar_g;
 
     [CCode (cname="")]
-    public float               bar_t;
+    public float bar_t;
 
     [CCode (cname="")]
-    public double              timeclamp;
+    public double timeclamp;
 
     [CCode (cname="")]
-    public double              attack;
+    public double attack;
 
     [CCode (cname="")]
-    public double              basefreq;
+    public double basefreq;
 
     [CCode (cname="")]
-    public double              endfreq;
+    public double endfreq;
 
     /***********************************************************
     deprecated - ignored
     ***********************************************************/
     [CCode (cname="")]
-    public float               coeffclamp;
+    public float coeffclamp;
 
     [CCode (cname="")]
     public string tlength;
 
     [CCode (cname="")]
-    public int                 count;
+    public int count;
 
     [CCode (cname="")]
-    public int                 fcount;
+    public int fcount;
 
     [CCode (cname="")]
     public string fontfile;
@@ -322,10 +322,10 @@ public class ShowCQTContext {
     public string axisfile;
 
     [CCode (cname="")]
-    public int                 axis;
+    public int axis;
 
     [CCode (cname="")]
-    public int                 csp;
+    public int csp;
 
     [CCode (cname="")]
     public string cscheme;

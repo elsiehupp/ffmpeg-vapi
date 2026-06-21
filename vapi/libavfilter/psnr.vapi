@@ -21,12 +21,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class PSNRDSPContext {
-    [CCode (cname="sse_line")]
-    public uint64 (*sse_line)(
+    public delegate uint64 SseLineDelegate (
         uint8[] buf,
         uint8[] ref,
         int w
     );
+
+    [CCode (cname="sse_line")]
+    public SseLineDelegate sse_line;
 
 }
 

@@ -443,7 +443,7 @@ public void libAVPin_Destroy (
 );
 
 [CCode (cname="",cheader_filename="")]
-public libAVPin            *libAVPin_Create (
+public libAVPin *libAVPin_Create (
     libAVFilter *filter
 );
 
@@ -777,19 +777,19 @@ public class dshow_ctx {
     public int audio_device_number;
 
     [CCode (cname="")]
-    public int   list_options;
+    public int list_options;
 
     [CCode (cname="")]
-    public int   list_devices;
+    public int list_devices;
 
     [CCode (cname="")]
-    public int   audio_buffer_size;
+    public int audio_buffer_size;
 
     [CCode (cname="")]
-    public int   crossbar_video_input_pin_number;
+    public int crossbar_video_input_pin_number;
 
     [CCode (cname="")]
-    public int   crossbar_audio_input_pin_number;
+    public int crossbar_audio_input_pin_number;
 
     [CCode (cname="")]
     public string video_pin_name;
@@ -798,22 +798,22 @@ public class dshow_ctx {
     public string audio_pin_name;
 
     [CCode (cname="")]
-    public int   show_video_device_dialog;
+    public int show_video_device_dialog;
 
     [CCode (cname="")]
-    public int   show_audio_device_dialog;
+    public int show_audio_device_dialog;
 
     [CCode (cname="")]
-    public int   show_video_crossbar_connection_dialog;
+    public int show_video_crossbar_connection_dialog;
 
     [CCode (cname="")]
-    public int   show_audio_crossbar_connection_dialog;
+    public int show_audio_crossbar_connection_dialog;
 
     [CCode (cname="")]
-    public int   show_analog_tv_tuner_dialog;
+    public int show_analog_tv_tuner_dialog;
 
     [CCode (cname="")]
-    public int   show_analog_tv_tuner_audio_dialog;
+    public int show_analog_tv_tuner_audio_dialog;
 
     [CCode (cname="")]
     public string audio_filter_load_file;
@@ -831,13 +831,13 @@ public class dshow_ctx {
     public IBaseFilter *device_filter[2];
 
     [CCode (cname="")]
-    public IPin        *device_pin[2];
+    public IPin *device_pin[2];
 
     [CCode (cname="")]
     public libAVFilter *capture_filter[2];
 
     [CCode (cname="")]
-    public libAVPin    *capture_pin[2];
+    public libAVPin *capture_pin[2];
 
     [CCode (cname="")]
     public HANDLE mutex;

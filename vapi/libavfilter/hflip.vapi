@@ -43,12 +43,14 @@ public class FlipContext {
     [CCode (cname="")]
     public int planeheight[4];
 
-    [CCode (cname="flip_line")]
-    public void (*flip_line[4])(
+    public delegate void FlipLineDelegate (
         uint8[] src,
         uint8[] dst,
         int w
     );
+
+    [CCode (cname="flip_line")]
+    public FlipLineDelegate flip_line[4];
 
 }
 

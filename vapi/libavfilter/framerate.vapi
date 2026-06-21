@@ -17,11 +17,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define BLEND_FACTOR_DEPTH8   7
-public define BLEND_FACTOR_DEPTH16 15
+public const int BLEND_FACTOR_DEPTH8; // 7
+
+[CCode (cname="",cheader_filename="")]
+public const int BLEND_FACTOR_DEPTH16; // 15
 
 [CCode (cname="blend_func")]
-public typedef void (*blend_func)(
+public delegate void BlendDelegate (
     uint8[] src1,
     ptrdiff_t src1_linesize,
     uint8[] src2,
@@ -42,6 +44,7 @@ public class FrameRateContext {
     public AVClass class;
 
     // parameters
+
     /***********************************************************
     output frames per second
     ***********************************************************/
@@ -57,7 +60,7 @@ public class FrameRateContext {
     /***********************************************************
     score that denotes a scene change has happened
     ***********************************************************/
-    double scene_score;
+    public double scene_score;
 
     /***********************************************************
     start of range to apply linear interpolation
@@ -95,12 +98,14 @@ public class FrameRateContext {
     /***********************************************************
     Sum of the absolute difference function (scene detect only)
     ***********************************************************/
-    ff_scene_sad_fn sad;
+    [CCode (cname="")]
+    public ff_scene_sad_fn sad;
 
     /***********************************************************
-    previous MAFD                           (scene detect only)
+    previous MAFD (scene detect only)
     ***********************************************************/
-    double prev_mafd;
+    [CCode (cname="")]
+    public double prev_mafd;
 
     [CCode (cname="")]
     public int blend_factor_max;
@@ -144,7 +149,8 @@ public class FrameRateContext {
     /***********************************************************
     scene change score (f0 to f1)
     ***********************************************************/
-    double score;
+    [CCode (cname="")]
+    public double score;
 
     /***********************************************************
     1 if the filter is being flushed
@@ -164,9 +170,16 @@ public class FrameRateContext {
     [CCode (cname="")]
     public int64 n;
 
-    blend_func blend;
+    [CCode (cname="")]
+    public BlendDelegate blend;
 }
 
 [CCode (cname="",cheader_filename="")]
-public void ff_framerate_init (FrameRateContext *s);
-public void ff_framerate_init_x86 (FrameRateContext *s);
+public void ff_framerate_init (
+    FrameRateContext *s
+);
+
+[CCode (cname="",cheader_filename="")]
+public void ff_framerate_init_x86 (
+    FrameRateContext *s
+);

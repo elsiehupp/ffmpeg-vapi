@@ -20,8 +20,13 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 [CCode (cname="",cheader_filename="")]
 public enum EOFAction {
+    [CCode (cname="")]
     EOF_ACTION_REPEAT,
+
+    [CCode (cname="")]
     EOF_ACTION_ENDALL,
+
+    [CCode (cname="")]
     EOF_ACTION_PASS
 }
 
@@ -58,16 +63,19 @@ public enum FFFrameSyncExtMode {
     /***********************************************************
     Completely stop all streams with this one.
     ***********************************************************/
+    [CCode (cname="")]
     EXT_STOP,
 
     /***********************************************************
     Ignore this stream and continue processing the other ones.
     ***********************************************************/
+    [CCode (cname="")]
     EXT_NULL,
 
     /***********************************************************
     Extend the frame to infinity.
     ***********************************************************/
+    [CCode (cname="")]
     EXT_INFINITY;
 }
 
@@ -144,7 +152,6 @@ public class FFFrameSyncIn {
     ***********************************************************/
     [CCode (cname="")]
     public uint sync;
-
 }
 
 /***********************************************************
@@ -180,13 +187,15 @@ public class FFFrameSync {
     [CCode (cname="")]
     public int64 pts;
 
+    public delegate int OnEventDelegate (
+        FFFrameSync *fs
+    );
+
     /***********************************************************
     Callback called when a frame event is ready
     ***********************************************************/
     [CCode (cname="on_event")]
-    public int (*on_event)(F
-        FFrameSync *fs
-    );
+    public OnEventDelegate on_event;
 
     /***********************************************************
     Opaque pointer, not used by the API
@@ -362,27 +371,27 @@ public int ff_framesync_dualinput_get_writable (
     AVFrame **f1
 );
 
-[CCode (cname="",cheader_filename="")]
-public define FRAMESYNC_DEFINE_CLASS (name, context, field) \
-static int name##_framesync_preinit (AVFilterContext *ctx) { \
-    context *s = ctx->priv; \
-    ff_framesync_preinit (&s->field); \
-    return 0; \
-} \
-static const AVClass *name##_child_class_next (const AVClass *prev) { \
-    return prev ? NULL : ff_framesync_get_class (); \
-} \
-static void *name##_child_next (void *obj, void *prev) { \
-    context *s = obj; \
-    s->fs.class = ff_framesync_get_class (); /* FIXME */ \
-    return prev ? NULL : &s->field; \
-} \
-static const AVClass name##_class = { \
-    .class_name = #name, \
-    .item_name = av_default_item_name, \
-    .option = name##_options, \
-    .version = LIBAVUTIL_VERSION_INT, \
-    .category = AV_CLASS_CATEGORY_FILTER, \
-    .child_class_next = name##_child_class_next, \
-    .child_next = name##_child_next, \
-}
+//  [CCode (cname="",cheader_filename="")]
+//  public define FRAMESYNC_DEFINE_CLASS (name, context, field) \
+//  static int name##_framesync_preinit (AVFilterContext *ctx) { \
+//      context *s = ctx->priv; \
+//      ff_framesync_preinit (&s->field); \
+//      return 0; \
+//  } \
+//  static const AVClass *name##_child_class_next (const AVClass *prev) { \
+//      return prev ? NULL : ff_framesync_get_class (); \
+//  } \
+//  static void *name##_child_next (void *obj, void *prev) { \
+//      context *s = obj; \
+//      s->fs.class = ff_framesync_get_class (); /* FIXME */ \
+//      return prev ? NULL : &s->field; \
+//  } \
+//  static const AVClass name##_class = { \
+//      .class_name = #name, \
+//      .item_name = av_default_item_name, \
+//      .option = name##_options, \
+//      .version = LIBAVUTIL_VERSION_INT, \
+//      .category = AV_CLASS_CATEGORY_FILTER, \
+//      .child_class_next = name##_child_class_next, \
+//      .child_next = name##_child_next, \
+//  }

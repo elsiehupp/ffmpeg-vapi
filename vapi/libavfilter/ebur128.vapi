@@ -333,7 +333,7 @@ public int ff_ebur128_set_channel (
 [CCode (cname="",cheader_filename="")]
 public void ff_ebur128_add_frames_short (
     FFEBUR128State * st,
-    short *src,
+    short[] src,
     size_t frames
 );
 
@@ -378,7 +378,7 @@ public void ff_ebur128_add_frames_double (
 [CCode (cname="",cheader_filename="")]
 public void ff_ebur128_add_frames_planar_short (
     FFEBUR128State * st,
-    short **srcs,
+    short[][] srcs,
     size_t frames,
     int stride
 );

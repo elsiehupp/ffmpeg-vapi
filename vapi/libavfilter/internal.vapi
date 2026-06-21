@@ -78,7 +78,7 @@ public class AVFilterPad {
 
     Input video pads only.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="get_video_buffer")]
     public AVFrame (*get_video_buffer)(
         AVFilterLink *link,
         int w,
@@ -91,7 +91,7 @@ public class AVFilterPad {
 
     Input audio pads only.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="get_audio_buffer")]
     public AVFrame (*get_audio_buffer)(
         AVFilterLink *link,
         int nb_samples
@@ -107,7 +107,7 @@ public class AVFilterPad {
     must ensure that frame is properly unreferenced on error if it
     hasn't been passed on to another filter.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="filter_frame")]
     public int (*filter_frame)(
         AVFilterLink *link,
         AVFrame *frame
@@ -122,8 +122,10 @@ public class AVFilterPad {
 
     Output pads only.
     ***********************************************************/
-    [CCode (cname="")]
-    public int (*poll_frame)(AVFilterLink *link);
+    [CCode (cname="poll_frame")]
+    public int (*poll_frame)(
+        AVFilterLink *link
+    );
 
     /***********************************************************
     Frame request callback. A call to this should result in some progress
@@ -132,7 +134,7 @@ public class AVFilterPad {
 
     Output pads only.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="AVFilterLink")]
     public int (*request_frame)(
         AVFilterLink *link
     );
@@ -151,7 +153,7 @@ public class AVFilterPad {
     For both input and output filters, this should return zero on success,
     and another value on error.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="config_props")]
     public int (*config_props)(
         AVFilterLink *link
     );

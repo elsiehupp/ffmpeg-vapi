@@ -38,19 +38,19 @@ public class VAAPIVPPContext {
     public int valid_ids;
 
     [CCode (cname="")]
-    public VAConfigID  va_config;
+    public VAConfigID va_config;
 
     [CCode (cname="")]
     public VAContextID va_context;
 
     [CCode (cname="")]
-    public AVBufferRef       *input_frames_ref;
+    public AVBufferRef *input_frames_ref;
 
     [CCode (cname="")]
     public AVHWFramesContext *input_frames;
 
     [CCode (cname="")]
-    public VARectangle        input_region;
+    public VARectangle input_region;
 
     [CCode (cname="")]
     public AVPixelFormat output_format;
@@ -68,20 +68,24 @@ public class VAAPIVPPContext {
     public int output_height;
 
     [CCode (cname="")]
-    public ABufferID         filter_buffers[VAProcFilterCount];
+    public ABufferID filter_buffers[VAProcFilterCount];
 
     [CCode (cname="")]
-    public int                nb_filter_buffers;
+    public int nb_filter_buffers;
+
+    public delegate int BuildFilterParamsDelegate (
+        AVFilterContext *avctx
+    );
 
     [CCode (cname="build_filter_params")]
-    public int (*build_filter_params)(
+    public BuildFilterParamsDelegate build_filter_params;
+
+    public delegate void PipelineUninitDelegate (
         AVFilterContext *avctx
     );
 
     [CCode (cname="pipeline_uninit")]
-    public void (*pipeline_uninit)(
-        AVFilterContext *avctx
-    );
+    public PipelineUninitDelegate pipeline_uninit;
 
 }
 

@@ -20,8 +20,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define MIN_MATRIX_SIZE 3
-public define MAX_MATRIX_SIZE 63
+public const size_t MIN_MATRIX_SIZE; // 3
+
+[CCode (cname="",cheader_filename="")]
+public const size_t MAX_MATRIX_SIZE; // 63
 
 
 [CCode (cname="",cheader_filename="")]
@@ -72,12 +74,14 @@ public class UnsharpFilterParam {
     /***********************************************************
     finite state machine storage within a row
     ***********************************************************/
-    uint32[] sr;
+    [CCode (cname="")]
+    public uint32[] sr;
 
     /***********************************************************
     finite state machine storage across rows
     ***********************************************************/
-    uint32[] *sc;
+    [CCode (cname="")]
+    public uint32[][] sc;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -87,23 +91,40 @@ public class UnsharpContext {
     public AVClass class;
 
     [CCode (cname="")]
-    public int lmsize_x, lmsize_y, cmsize_x, cmsize_y;
+    public int lmsize_x;
 
     [CCode (cname="")]
-    public float lamount, camount;
+    public int lmsize_y;
+
+    [CCode (cname="")]
+    public int cmsize_x;
+
+    [CCode (cname="")]
+    public int cmsize_y;
+
+    [CCode (cname="")]
+    public float lamount;
+
+    [CCode (cname="")]
+    public float camount;
 
     /***********************************************************
     luma parameters (width, height, amount)
     ***********************************************************/
-    UnsharpFilterParam luma;
+    [CCode (cname="")]
+    public UnsharpFilterParam luma;
 
     /***********************************************************
     chroma parameters (width, height, amount)
     ***********************************************************/
-    UnsharpFilterParam chroma;
+    [CCode (cname="")]
+    public UnsharpFilterParam chroma;
 
     [CCode (cname="")]
-    public int hsub, vsub;
+    public int hsub;
+
+    [CCode (cname="")]
+    public int vsub;
 
     [CCode (cname="")]
     public int nb_threads;
@@ -111,9 +132,12 @@ public class UnsharpContext {
     [CCode (cname="")]
     public int opencl;
 
-    [CCode (cname="apply_unsharp")]
-    public int (* apply_unsharp)(
-        AVFilterContext *ctx, AVFrame *in, AVFrame *out
+    public delegate int ApplyUnsharpDeleegate (
+        AVFilterContext *ctx,
+        AVFrame *in,
+        AVFrame *out
     );
 
+    [CCode (cname="apply_unsharp")]
+    public ApplyUnsharpDeleegate apply_unsharp;
 }

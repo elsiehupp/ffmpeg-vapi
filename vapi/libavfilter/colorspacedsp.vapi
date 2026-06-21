@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="yuv2rgb_fn",cheader_filename="")]
 public typedef void (*yuv2rgb_fn)(
     int16[] rgb[3],
     ptrdiff_t rgb_stride,
@@ -30,7 +30,7 @@ public typedef void (*yuv2rgb_fn)(
     int16 yuv_offset[8]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="rgb2yuv_fn",cheader_filename="")]
 public typedef void (*rgb2yuv_fn)(
     uint8[] yuv[3],
     ptrdiff_t yuv_stride[3],
@@ -42,7 +42,7 @@ public typedef void (*rgb2yuv_fn)(
     int16 yuv_offset[8]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="rgb2yuv_fsb_fn",cheader_filename="")]
 public typedef void (*rgb2yuv_fsb_fn)(
     uint8[] yuv[3],
     ptrdiff_t yuv_stride[3],
@@ -55,7 +55,7 @@ public typedef void (*rgb2yuv_fsb_fn)(
     int *rnd[3][2]
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="yuv2yuv_fn",cheader_filename="")]
 public typedef void (*yuv2yuv_fn)(
     uint8[] yuv_out[3],
     ptrdiff_t yuv_out_stride[3],
@@ -131,7 +131,7 @@ public class ColorSpaceDSPContext {
     In-place 3x3 matrix multiplication. Input and output are
     both 15bpp (our internal data format)
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="multiply3x3")]
     public void (*multiply3x3)(
         int16[] data[3],
         ptrdiff_t stride,

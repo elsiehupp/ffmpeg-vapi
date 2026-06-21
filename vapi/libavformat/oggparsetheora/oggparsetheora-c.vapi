@@ -1,5 +1,5 @@
 /***********************************************************
-@copyright 2005  Matthieu CASTET, Alex Beregszaszi
+@copyright 2005 Matthieu CASTET, Alex Beregszaszi
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

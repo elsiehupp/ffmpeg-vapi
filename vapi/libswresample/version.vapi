@@ -24,18 +24,18 @@ Libswresample version macros
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define LIBSWRESAMPLE_VERSION_MAJOR   3
-public define LIBSWRESAMPLE_VERSION_MINOR   5
+public define LIBSWRESAMPLE_VERSION_MAJOR 3
+public define LIBSWRESAMPLE_VERSION_MINOR 5
 public define LIBSWRESAMPLE_VERSION_MICRO 100
 
 [CCode (cname="",cheader_filename="")]
-public define LIBSWRESAMPLE_VERSION_INT  AV_VERSION_INT (LIBSWRESAMPLE_VERSION_MAJOR, \
+public define LIBSWRESAMPLE_VERSION_INT AV_VERSION_INT (LIBSWRESAMPLE_VERSION_MAJOR, \
                                                   LIBSWRESAMPLE_VERSION_MINOR, \
                                                   LIBSWRESAMPLE_VERSION_MICRO)
-public define LIBSWRESAMPLE_VERSION      AV_VERSION (LIBSWRESAMPLE_VERSION_MAJOR, \
+public define LIBSWRESAMPLE_VERSION AV_VERSION (LIBSWRESAMPLE_VERSION_MAJOR, \
                                               LIBSWRESAMPLE_VERSION_MINOR, \
                                               LIBSWRESAMPLE_VERSION_MICRO)
-public define LIBSWRESAMPLE_BUILD        LIBSWRESAMPLE_VERSION_INT
+public define LIBSWRESAMPLE_BUILD LIBSWRESAMPLE_VERSION_INT
 
 [CCode (cname="",cheader_filename="")]
 public define LIBSWRESAMPLE_IDENT        "SwR" AV_STRINGIFY (LIBSWRESAMPLE_VERSION)

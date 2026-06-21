@@ -1,6 +1,6 @@
 /***********************************************************
 @brief NC camera feed demuxer
-@copyright 2009  Nicolas Martin (martinic at iro dot umontreal dot ca)
+@copyright 2009 Nicolas Martin (martinic at iro dot umontreal dot ca)
                     Edouard Auvinet
 ***********************************************************/
 /***********************************************************

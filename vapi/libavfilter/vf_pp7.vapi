@@ -22,7 +22,8 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class PP7Context {
-    AVClass *class;
+    [CCode (cname="")]
+    public AVClass class;
 
     [CCode (cname="")]
     public int thres2[99][16];
@@ -45,20 +46,25 @@ public class PP7Context {
     [CCode (cname="")]
     public int temp_stride;
 
-    uint8[] src;
+    [CCode (cname="")]
+    public uint8[] src;
 
-    [CCode (cname="requantize")]
-    public int (*requantize)(
+    public delegate int RequantizeDelegate (
         PP7Context *p,
         int16[] src,
         int qp
-    );
+    )
 
-    [CCode (cname="*dctB")]
-    public void (*dctB)(
+    [CCode (cname="requantize")]
+    public RequantizeDelegate requantize;
+
+    public delegate void DctBDelegate (
         int16[] dst,
         int16[] src
     );
+
+    [CCode (cname="*dctB")]
+    public DctBDelegate dctB;
 
 }
 

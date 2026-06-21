@@ -1,6 +1,6 @@
 /***********************************************************
 @brief MicroDVD subtitle muxer
-@copyright 2010  Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2010 Aurelien Jacobs <aurel@gnuage.org>
 ***********************************************************/
 /***********************************************************
 @brief This file is part of FFmpeg.

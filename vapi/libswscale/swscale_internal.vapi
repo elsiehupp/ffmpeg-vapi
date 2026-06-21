@@ -108,7 +108,7 @@ public enum SwsAlphaBlend {
     SWS_ALPHA_BLEND_NB;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="SwsFunc",cheader_filename="")]
 public typedef int (*SwsFunc)(
     SwsContext *context,
     uint8[] src[],
@@ -131,7 +131,7 @@ without any additional vertical scaling (or point-scaling).
 @param dither  ordered dither array of type int16 and size 8
 @param offset  Dither offset
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="yuv2planar1_fn",cheader_filename="")]
 public typedef void (*yuv2planar1_fn)(
     int16[] src,
     uint8[] dest,
@@ -153,7 +153,7 @@ with multi-point vertical scaling between input pixels.
 @param dstW          width of destination pixels
 @param offset        Dither offset
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="yuv2planarX_fn",cheader_filename="")]
 public typedef void (*yuv2planarX_fn)(
     int16[] filter,
     int filterSize,
@@ -179,7 +179,7 @@ with multi-point vertical scaling between input pixels.
                      output, this is in uint16
 @param dstW          width of chroma planes
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="yuv2interleavedX_fn",cheader_filename="")]
 public typedef void (*yuv2interleavedX_fn)(
     SwsContext *c,
     int16[] chrFilter,
@@ -219,7 +219,7 @@ that this function may do chroma scaling, see the "uvalpha" argument.
                but can be used to generate comfort noise using dithering
                for some output formats.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="yuv2packed1_fn",cheader_filename="")]
 public typedef void (*yuv2packed1_fn)(
     SwsContext *c,
     int16[] lumSrc,
@@ -260,7 +260,7 @@ output by doing bilinear scaling between two input lines.
                but can be used to generate comfort noise using dithering
                for some output formats.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="yuv2packed2_fn",cheader_filename="")]
 public typedef void (*yuv2packed2_fn)(
     SwsContext *c,
     int16[] lumSrc[2],
@@ -300,7 +300,7 @@ output by doing multi-point vertical scaling between input pixels.
                      but can be used to generate comfort noise using dithering
                      or some output formats.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="yuv2packedX_fn",cheader_filename="")]
 public typedef void (*yuv2packedX_fn)(
     SwsContext *c,
     int16[] lumFilter,
@@ -342,7 +342,7 @@ output by doing multi-point vertical scaling between input pixels.
                      but can be used to generate comfort noise using dithering
                      or some output formats.
 ***********************************************************/
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="yuv2anyX_fn",cheader_filename="")]
 public typedef void (*yuv2anyX_fn)(
     SwsContext *c,
     int16[] lumFilter,
@@ -378,13 +378,13 @@ public class SwsContext {
     public SwsFunc swscale;
 
     /***********************************************************
-    Width  of source      luma/alpha planes.
+    Width of source luma/alpha planes.
     ***********************************************************/
     [CCode (cname="")]
     public int srcW;
 
     /***********************************************************
-    Height of source      luma/alpha planes.
+    Height of source luma/alpha planes.
     ***********************************************************/
     [CCode (cname="")]
     public int srcH;
@@ -396,25 +396,25 @@ public class SwsContext {
     public int dstH;
 
     /***********************************************************
-    Width  of source      chroma     planes.
+    Width of source chroma planes.
     ***********************************************************/
     [CCode (cname="")]
     public int chrSrcW;
 
     /***********************************************************
-    Height of source      chroma     planes.
+    Height of source chroma planes.
     ***********************************************************/
     [CCode (cname="")]
     public int chrSrcH;
 
     /***********************************************************
-    Width  of destination chroma     planes.
+    Width of destination chroma planes.
     ***********************************************************/
     [CCode (cname="")]
     public int chrDstW;
 
     /***********************************************************
-    Height of destination chroma     planes.
+    Height of destination chroma planes.
     ***********************************************************/
     [CCode (cname="")]
     public int chrDstH;
@@ -438,7 +438,7 @@ public class SwsContext {
     public AVPixelFormat dstFormat;
 
     /***********************************************************
-    Source      pixel format.
+    Source pixel format.
     ***********************************************************/
     [CCode (cname="")]
     public AVPixelFormat srcFormat;
@@ -450,7 +450,7 @@ public class SwsContext {
     public int dstFormatBpp;
 
     /***********************************************************
-    Number of bits per pixel of the source      pixel format.
+    Number of bits per pixel of the source pixel format.
     ***********************************************************/
     [CCode (cname="")]
     public int srcFormatBpp;
@@ -462,13 +462,13 @@ public class SwsContext {
     public int srcBpc;
 
     /***********************************************************
-    Binary logarithm of horizontal subsampling factor between luma/alpha and chroma planes in source      image.
+    Binary logarithm of horizontal subsampling factor between luma/alpha and chroma planes in source image.
     ***********************************************************/
     [CCode (cname="")]
     public int chrSrcHSubSample;
 
     /***********************************************************
-    Binary logarithm of vertical   subsampling factor between luma/alpha and chroma planes in source      image.
+    Binary logarithm of vertical subsampling factor between luma/alpha and chroma planes in source image.
     ***********************************************************/
     [CCode (cname="")]
     public int chrSrcVSubSample;
@@ -480,7 +480,7 @@ public class SwsContext {
     public int chrDstHSubSample;
 
     /***********************************************************
-    Binary logarithm of vertical   subsampling factor between luma/alpha and chroma planes in destination image.
+    Binary logarithm of vertical subsampling factor between luma/alpha and chroma planes in destination image.
     ***********************************************************/
     [CCode (cname="")]
     public int chrDstVSubSample;
@@ -582,7 +582,7 @@ public class SwsContext {
     public int lastInLumBuf;
 
     /***********************************************************
-    Last scaled horizontal chroma     line from source in the ring buffer.
+    Last scaled horizontal chroma line from source in the ring buffer.
     ***********************************************************/
     [CCode (cname="")]
     public int lastInChrBuf;
@@ -594,7 +594,7 @@ public class SwsContext {
     public int lumBufIndex;
 
     /***********************************************************
-    Index in ring buffer of the last scaled horizontal chroma     line from source.
+    Index in ring buffer of the last scaled horizontal chroma line from source.
     ***********************************************************/
     [CCode (cname="")]
     public int chrBufIndex;
@@ -630,19 +630,19 @@ public class SwsContext {
     public int16[] hLumFilter;
 
     /***********************************************************
-    Array of horizontal filter coefficients for chroma     planes.
+    Array of horizontal filter coefficients for chroma planes.
     ***********************************************************/
     [CCode (cname="")]
     public int16[] hChrFilter;
 
     /***********************************************************
-    Array of vertical   filter coefficients for luma/alpha planes.
+    Array of vertical filter coefficients for luma/alpha planes.
     ***********************************************************/
     [CCode (cname="")]
     public int16[] vLumFilter;
 
     /***********************************************************
-    Array of vertical   filter coefficients for chroma     planes.
+    Array of vertical filter coefficients for chroma planes.
     ***********************************************************/
     [CCode (cname="")]
     public int16[] vChrFilter;
@@ -654,19 +654,19 @@ public class SwsContext {
     public int32[] hLumFilterPos;
 
     /***********************************************************
-    Array of horizontal filter starting positions for each dst[i] for chroma     planes.
+    Array of horizontal filter starting positions for each dst[i] for chroma planes.
     ***********************************************************/
     [CCode (cname="")]
     public int32[] hChrFilterPos;
 
     /***********************************************************
-    Array of vertical   filter starting positions for each dst[i] for luma/alpha planes.
+    Array of vertical filter starting positions for each dst[i] for luma/alpha planes.
     ***********************************************************/
     [CCode (cname="")]
     public int32[] vLumFilterPos;
 
     /***********************************************************
-    Array of vertical   filter starting positions for each dst[i] for chroma     planes.
+    Array of vertical filter starting positions for each dst[i] for chroma planes.
     ***********************************************************/
     [CCode (cname="")]
     public int32[] vChrFilterPos;
@@ -678,19 +678,19 @@ public class SwsContext {
     public int hLumFilterSize;
 
     /***********************************************************
-    Horizontal filter size for chroma     pixels.
+    Horizontal filter size for chroma pixels.
     ***********************************************************/
     [CCode (cname="")]
     public int hChrFilterSize;
 
     /***********************************************************
-    Vertical   filter size for luma/alpha pixels.
+    Vertical filter size for luma/alpha pixels.
     ***********************************************************/
     [CCode (cname="")]
     public int vLumFilterSize;
 
     /***********************************************************
-    Vertical   filter size for chroma     pixels.
+    Vertical filter size for chroma pixels.
     ***********************************************************/
     [CCode (cname="")]
     public int vChrFilterSize;
@@ -747,7 +747,7 @@ public class SwsContext {
     [CCode (cname="")]
     public void *yuvTable;
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (16, int, table_gV)[256 + 2*YUVRGB_TABLE_HEADROOM];
 
     [CCode (cname="")]
@@ -762,7 +762,7 @@ public class SwsContext {
     /***********************************************************
     This table can contain both C and SIMD formatted values, the C vales are always at the XY_IDX points
     ***********************************************************/
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (16, int32, input_rgb2yuv_table)[16+40*4];
 
     public enum FooBar {
@@ -829,7 +829,7 @@ public class SwsContext {
     public int dstColorspaceTable[4];
 
     /***********************************************************
-    0 = MPG YUV range, 1 = JPG YUV range (source      image).
+    0 = MPG YUV range, 1 = JPG YUV range (source image).
     ***********************************************************/
     [CCode (cname="")]
     public int srcRange;
@@ -882,114 +882,114 @@ public class SwsContext {
     [CCode (cname="")]
     public int yuv2rgb_u2b_coeff;
 
-[CCode (cname="",cheader_filename="")]
-public const string RED_DITHER; // "0*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string RED_DITHER; // "0*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string GREEN_DITHER; // "1*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string GREEN_DITHER; // "1*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string BLUE_DITHER; // "2*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string BLUE_DITHER; // "2*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string Y_COEFF; // "3*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string Y_COEFF; // "3*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string VR_COEFF; // "4*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string VR_COEFF; // "4*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string UB_COEFF              "5*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string UB_COEFF              "5*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string VG_COEFF; // "6*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string VG_COEFF; // "6*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string UG_COEFF; // "7*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string UG_COEFF; // "7*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string Y_OFFSET; // "8*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string Y_OFFSET; // "8*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string U_OFFSET; // "9*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string U_OFFSET; // "9*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string V_OFFSET; // "10*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string V_OFFSET; // "10*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string LUM_MMX_FILTER_OFFSET; // "11*8"
+    [CCode (cname="",cheader_filename="")]
+    public const string LUM_MMX_FILTER_OFFSET; // "11*8"
 
-[CCode (cname="",cheader_filename="")]
-public const string CHR_MMX_FILTER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)
-[CCode (cname="",cheader_filename="")]
-public const string DSTW_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2"
+    [CCode (cname="",cheader_filename="")]
+    public const string CHR_MMX_FILTER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)
+    [CCode (cname="",cheader_filename="")]
+    public const string DSTW_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2"
 
-[CCode (cname="",cheader_filename="")]
-public const string ESP_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+8"
+    [CCode (cname="",cheader_filename="")]
+    public const string ESP_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+8"
 
-[CCode (cname="",cheader_filename="")]
-public const string VROUNDER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+16"
+    [CCode (cname="",cheader_filename="")]
+    public const string VROUNDER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+16"
 
-[CCode (cname="",cheader_filename="")]
-public const string U_TEMP; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+24"
+    [CCode (cname="",cheader_filename="")]
+    public const string U_TEMP; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+24"
 
-[CCode (cname="",cheader_filename="")]
-public const string V_TEMP; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+32"
+    [CCode (cname="",cheader_filename="")]
+    public const string V_TEMP; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+32"
 
-[CCode (cname="",cheader_filename="")]
-public const string Y_TEMP; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+40"
+    [CCode (cname="",cheader_filename="")]
+    public const string Y_TEMP; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+40"
 
-[CCode (cname="",cheader_filename="")]
-public const string ALP_MMX_FILTER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+48"
+    [CCode (cname="",cheader_filename="")]
+    public const string ALP_MMX_FILTER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2+48"
 
-[CCode (cname="",cheader_filename="")]
-public const string UV_OFF_PX; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+48"
+    [CCode (cname="",cheader_filename="")]
+    public const string UV_OFF_PX; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+48"
 
-[CCode (cname="",cheader_filename="")]
-public const string UV_OFF_BYTE; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+56"
+    [CCode (cname="",cheader_filename="")]
+    public const string UV_OFF_BYTE; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+56"
 
-[CCode (cname="",cheader_filename="")]
-public const string DITHER16; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+64"
+    [CCode (cname="",cheader_filename="")]
+    public const string DITHER16; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+64"
 
-[CCode (cname="",cheader_filename="")]
-public const string DITHER32; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+80"
+    [CCode (cname="",cheader_filename="")]
+    public const string DITHER32; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*3+80"
 
-[CCode (cname="",cheader_filename="")]
-/***********************************************************
-value equal to above, used for checking that the struct hasn't been changed by mistake
-***********************************************************/
-public const int DITHER32_INT; // (11*8+4*4*MAX_FILTER_SIZE*3+80)
+    /***********************************************************
+    value equal to above, used for checking that the struct hasn't been changed by mistake
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="")]
+    public const size_t DITHER32_INT; // (11*8+4*4*MAX_FILTER_SIZE*3+80)
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, redDither);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, greenDither);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, blueDither);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, yCoeff);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, vrCoeff);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, ubCoeff);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, vgCoeff);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, ugCoeff);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, yOffset);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, uOffset);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, vOffset);
 
     [CCode (cname="")]
@@ -999,24 +999,24 @@ public const int DITHER32_INT; // (11*8+4*4*MAX_FILTER_SIZE*3+80)
     public int32 chrMmxFilter[4 * MAX_FILTER_SIZE];
 
     /***********************************************************
-    Width  of destination luma/alpha planes.
+    Width of destination luma/alpha planes.
     ***********************************************************/
     [CCode (cname="")]
     public int dstW;
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, esp);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, vRounder);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, u_temp);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, v_temp);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint64, y_temp);
 
     [CCode (cname="")]
@@ -1029,19 +1029,19 @@ public const int DITHER32_INT; // (11*8+4*4*MAX_FILTER_SIZE*3+80)
     /***********************************************************
     offset (in pixels) between u and v planes
     ***********************************************************/
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, ptrdiff_t, uv_off);
 
     /***********************************************************
     offset (in bytes) between u and v planes
     ***********************************************************/
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, ptrdiff_t, uv_offx2);
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint16, dither16)[8];
 
-    [CCode (cname="")]
+    //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (8, uint32, dither32)[8];
 
     [CCode (cname="")]
@@ -1051,47 +1051,48 @@ public const int DITHER32_INT; // (11*8+4*4*MAX_FILTER_SIZE*3+80)
     public uint8[] lumDither8;
 
 #if HAVE_ALTIVEC
-    public vector signed short   CY;
+    public vector signed short CY;
 
     [CCode (cname="")]
-    public vector signed short   CRV;
+    public vector signed short CRV;
 
     [CCode (cname="")]
-    public vector signed short   CBU;
+    public vector signed short CBU;
 
     [CCode (cname="")]
-    public vector signed short   CGU;
+    public vector signed short CGU;
 
     [CCode (cname="")]
-    public vector signed short   CGV;
+    public vector signed short CGV;
 
     [CCode (cname="")]
-    public vector signed short   OY;
+    public vector signed short OY;
 
     [CCode (cname="")]
     public vector ushort CSHIFT;
 
     [CCode (cname="")]
-    public vector signed short  *vYCoeffsBank;
+    public vector signed short[] vYCoeffsBank;
 
     [CCode (cname="")]
-    public vector signed short  *vCCoeffsBank;
+    public vector signed short[] vCCoeffsBank;
 #endif
 
     [CCode (cname="")]
     public int use_mmx_vfilter;
 
-/***********************************************************
-pre defined color-spaces gamma
-***********************************************************/
-[CCode (cname="",cheader_filename="")]
-public const float XYZ_GAMMA; // (2.6f)
+    /***********************************************************
+    pre defined color-spaces gamma
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="")]
+    public const float XYZ_GAMMA; // (2.6f)
 
-/***********************************************************
-pre defined color-spaces gamma
-***********************************************************/
-[CCode (cname="",cheader_filename="")]
-public const float RGB_GAMMA; // (2.2f)
+    /***********************************************************
+    pre defined color-spaces gamma
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="")]
+    public const float RGB_GAMMA; // (2.2f)
+
     public int16[] xyzgamma;
 
     [CCode (cname="")]
@@ -1154,7 +1155,7 @@ public const float RGB_GAMMA; // (2.2f)
     /***********************************************************
     Unscaled conversion of luma plane to YV12 for horizontal scaler.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="lumToYV12")]
     public void (*lumToYV12)(
         uint8[] dst,
         uint8[] src,
@@ -1167,7 +1168,7 @@ public const float RGB_GAMMA; // (2.2f)
     /***********************************************************
     Unscaled conversion of alpha plane to YV12 for horizontal scaler.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="alpToYV12")]
     public void (*alpToYV12)(
         uint8[] dst,
         uint8[] src,
@@ -1180,7 +1181,7 @@ public const float RGB_GAMMA; // (2.2f)
     /***********************************************************
     Unscaled conversion of chroma planes to YV12 for horizontal scaler.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="chrToYV12")]
     public void (*chrToYV12)(
         uint8[] dstU,
         uint8[] dstV,
@@ -1198,7 +1199,7 @@ public const float RGB_GAMMA; // (2.2f)
     /***********************************************************
     @{
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="readLumPlanar")]
     public void (*readLumPlanar)(
         uint8[] dst,
         uint8[] src[4],
@@ -1206,7 +1207,7 @@ public const float RGB_GAMMA; // (2.2f)
         int32[] rgb2yuv
     );
 
-    [CCode (cname="")]
+    [CCode (cname="readChrPlanar")]
     public void (*readChrPlanar)(
         uint8[] dstU,
         uint8[] dstV,
@@ -1215,7 +1216,7 @@ public const float RGB_GAMMA; // (2.2f)
         int32[] rgb2yuv
     );
 
-    [CCode (cname="")]
+    [CCode (cname="readAlpPlanar")]
     public void (*readAlpPlanar)(
         uint8[] dst,
         uint8[] src[4],
@@ -1248,7 +1249,7 @@ public const float RGB_GAMMA; // (2.2f)
     /***********************************************************
     @{
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="hyscale_fast")]
     public void (*hyscale_fast)(
         SwsContext *c,
         int16[] dst,
@@ -1258,7 +1259,7 @@ public const float RGB_GAMMA; // (2.2f)
         int xInc
     );
 
-    [CCode (cname="")]
+    [CCode (cname="hcscale_fast")]
     public void (*hcscale_fast)(
         SwsContext *c,
         int16[] dst1,
@@ -1307,7 +1308,7 @@ public const float RGB_GAMMA; // (2.2f)
     /***********************************************************
     @{
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="hyScale")]
     public void (*hyScale)(
         SwsContext *c,
         int16[] dst,
@@ -1318,7 +1319,7 @@ public const float RGB_GAMMA; // (2.2f)
         int filterSize
     );
 
-    [CCode (cname="")]
+    [CCode (cname="hcScale")]
     public void (*hcScale)(
         SwsContext *c,
         int16[] dst,
@@ -1336,7 +1337,7 @@ public const float RGB_GAMMA; // (2.2f)
     /***********************************************************
     Color range conversion function for luma plane if needed.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="lumConvertRange")]
     public void (*lumConvertRange)(
         int16[] dst,
         int width
@@ -1345,7 +1346,7 @@ public const float RGB_GAMMA; // (2.2f)
     /***********************************************************
     Color range conversion function for chroma planes if needed.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="chrConvertRange")]
     public void (*chrConvertRange)(
         int16[] dst1,
         int16[] dst2,
@@ -1883,7 +1884,7 @@ public define FILL (wfunc) \
 }
 
 [CCode (cname="",cheader_filename="")]
-public #define MAX_SLICE_PLANES; // 4
+public const size_t MAX_SLICE_PLANES; // 4
 
 /***********************************************************
 Slice plane
@@ -2007,7 +2008,7 @@ public class SwsFilterDescriptor {
     /***********************************************************
     Function for processing input slice sliceH lines starting from line sliceY
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="process")]
     public int (*process)(
         SwsContext *c,
         SwsFilterDescriptor *desc,
@@ -2161,4 +2162,4 @@ public void ff_init_vscale_pfn (
 number of extra lines to process
 ***********************************************************/
 [CCode (cname="",cheader_filename="")]
-public #define MAX_LINES_AHEAD; // 4
+public const size_t MAX_LINES_AHEAD; // 4

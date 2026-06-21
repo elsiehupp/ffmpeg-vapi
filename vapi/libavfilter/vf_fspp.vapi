@@ -101,7 +101,7 @@ public class FSPPContext {
     [CCode (cname="")]
     public int use_bframe_qp;
 
-    [CCode (cname="")]
+    [CCode (cname="store_slice")]
     public void (*store_slice)(
         uint8[] dst,
         int16[] src,
@@ -112,7 +112,7 @@ public class FSPPContext {
         ptrdiff_t log2_scale
     );
 
-    [CCode (cname="")]
+    [CCode (cname="store_slice2")]
     public void (*store_slice2)(
         uint8[] dst,
         int16[] src,
@@ -123,14 +123,14 @@ public class FSPPContext {
         ptrdiff_t log2_scale
     );
 
-    [CCode (cname="")]
+    [CCode (cname="mul_thrmat")]
     public void (*mul_thrmat)(
         int16[] thr_adr_noq,
         int16[] thr_adr,
         int q
     );
 
-    [CCode (cname="")]
+    [CCode (cname="column_fidct")]
     public void (*column_fidct)(
         int16[] thr_adr,
         int16[] data,
@@ -138,7 +138,7 @@ public class FSPPContext {
         int cnt
     );
 
-    [CCode (cname="")]
+    [CCode (cname="row_idct")]
     public void (*row_idct)(
         int16[] workspace,
         int16[] output_adr,
@@ -146,7 +146,7 @@ public class FSPPContext {
         int cnt
     );
 
-    [CCode (cname="")]
+    [CCode (cname="row_fdct")]
     public void (*row_fdct)(
         int16[] data,
         uint8[] pixels,

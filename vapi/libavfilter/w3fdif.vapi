@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class W3FDIFDSPContext {
-    [CCode (cname="")]
+    [CCode (cname="filter_simple_low")]
     public void (*filter_simple_low)(
         int32[] work_line,
         uint8[] in_lines_cur[2],
@@ -29,7 +29,7 @@ public class W3FDIFDSPContext {
         int linesize
     );
 
-    [CCode (cname="")]
+    [CCode (cname="filter_complex_low")]
     public void (*filter_complex_low)(
         int32[] work_line,
         uint8[] in_lines_cur[4],
@@ -37,7 +37,7 @@ public class W3FDIFDSPContext {
         int linesize
     );
 
-    [CCode (cname="")]
+    [CCode (cname="filter_simple_high")]
     public void (*filter_simple_high)(
         int32[] work_line,
         uint8[] in_lines_cur[3],
@@ -46,7 +46,7 @@ public class W3FDIFDSPContext {
         int linesize
     );
 
-    [CCode (cname="")]
+    [CCode (cname="filter_complex_high")]
     public void (*filter_complex_high)(
         int32[] work_line,
         uint8[] in_lines_cur[5],
@@ -55,7 +55,7 @@ public class W3FDIFDSPContext {
         int linesize
     );
 
-    [CCode (cname="")]
+    [CCode (cname="filter_scale")]
     public void (*filter_scale)(
         uint8[] out_pixel,
         int32[] work_pixel,

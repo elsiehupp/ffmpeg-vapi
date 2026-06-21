@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class LimiterDSPContext {
-    [CCode (cname="limiter")]
-    public void (*limiter)(
+    public delegate void LimiterDelegate (
         uint8[] src,
         uint8[] dst,
         ptrdiff_t slinesize,
@@ -30,6 +29,9 @@ public class LimiterDSPContext {
         int min,
         int max
     );
+
+    [CCode (cname="limiter")]
+    public LimiterDelegate limiter;
 
 }
 

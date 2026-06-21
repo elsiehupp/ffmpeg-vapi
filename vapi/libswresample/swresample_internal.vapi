@@ -19,21 +19,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define SWR_CH_MAX 64
+public const size_t SWR_CH_MAX; // 64
 
-[CCode (cname="",cheader_filename="")]
-public define SQRT3_2      1.22474487139158904909  /***********************************************************
-    sqrt (3/2)
+/***********************************************************
+sqrt (3/2)
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
+public const float SQRT3_2; // 1.22474487139158904909
 
 [CCode (cname="",cheader_filename="")]
-public define NS_TAPS 20
+public const size_t NS_TAPS; 20
 
-#if ARCH_X86_64
-public typedef int64 integer;
-#else
-public typedef int integer;
-#endif
+//  #if ARCH_X86_64
+//  public typedef int64 integer;
+//  #else
+//  public typedef int integer;
+//  #endif
 
 [CCode (cname="",cheader_filename="")]
 public typedef void (mix_1_1_func_type)(
@@ -171,7 +172,7 @@ public class DitherContext {
     public int output_sample_bits;
 }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="resample_init_func",cheader_filename="")]
 public ResampleContext (* resample_init_func)(
     ResampleContext *c,
     int out_rate,
@@ -188,13 +189,13 @@ public ResampleContext (* resample_init_func)(
     int exact_rational
 );
 
-[CCode (cname="",cheader_filename="")]
-public typedef void    (* resample_free_func)(
+[CCode (cname="resample_free_func",cheader_filename="")]
+public typedef void (* resample_free_func)(
     ResampleContext **c
 );
 
-[CCode (cname="",cheader_filename="")]
-public typedef int     (* multiple_resample_func)(
+[CCode (cname="multiple_resample_func",cheader_filename="")]
+public typedef int (* multiple_resample_func)(
     ResampleContext *c,
     AudioData *dst,
     int dst_size,
@@ -203,26 +204,26 @@ public typedef int     (* multiple_resample_func)(
     int *consumed
 );
 
-[CCode (cname="",cheader_filename="")]
-public typedef int     (* resample_flush_func)(
+[CCode (cname="resample_flush_func",cheader_filename="")]
+public typedef int (* resample_flush_func)(
     SwrContext *c
 );
 
-[CCode (cname="",cheader_filename="")]
-public typedef int     (* set_compensation_func)(
+[CCode (cname="set_compensation_func",cheader_filename="")]
+public typedef int (* set_compensation_func)(
     ResampleContext *c,
     int sample_delta,
     int compensation_distance
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="get_delay_func",cheader_filename="")]
 public typedef int64 (* get_delay_func)(
     SwrContext *s,
     int64 base
 );
 
-[CCode (cname="",cheader_filename="")]
-public typedef int     (* invert_initial_buffer_func)(
+[CCode (cname="invert_initial_buffer_func",cheader_filename="")]
+public typedef int (* invert_initial_buffer_func)(
     ResampleContext *c,
     AudioData *dst,
     AudioData *src,
@@ -231,7 +232,7 @@ public typedef int     (* invert_initial_buffer_func)(
     int *dst_count
 );
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="get_out_samples_func",cheader_filename="")]
 public typedef int64 (* get_out_samples_func)(
     SwrContext *s,
     int in_samples
@@ -240,14 +241,29 @@ public typedef int64 (* get_out_samples_func)(
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class Resampler {
-  resample_init_func            init;
-  resample_free_func            free;
-  multiple_resample_func        multiple_resample;
-  resample_flush_func           flush;
-  set_compensation_func         set_compensation;
-  get_delay_func                get_delay;
-  invert_initial_buffer_func    invert_initial_buffer;
-  get_out_samples_func          get_out_samples;
+    [CCode (cname="",cheader_filename="")]
+    public resample_init_func init;
+
+    [CCode (cname="",cheader_filename="")]
+    public resample_free_func free;
+
+    [CCode (cname="",cheader_filename="")]
+    public multiple_resample_func multiple_resample;
+
+    [CCode (cname="",cheader_filename="")]
+    public resample_flush_func flush;
+
+    [CCode (cname="",cheader_filename="")]
+    public set_compensation_func set_compensation;
+
+    [CCode (cname="",cheader_filename="")]
+    public get_delay_func get_delay;
+
+    [CCode (cname="",cheader_filename="")]
+    public invert_initial_buffer_func invert_initial_buffer;
+
+    [CCode (cname="",cheader_filename="")]
+    public get_out_samples_func get_out_samples;
 };
 
 //  extern struct Resampler const swri_resampler;
@@ -276,7 +292,7 @@ public class SwrContext {
     input sample format
     ***********************************************************/
     [CCode (cname="")]
-    public AVSampleFormat  in_sample_fmt;
+    public AVSampleFormat in_sample_fmt;
 
     /***********************************************************
     public internal sample format (AV_SAMPLE_FMT_FLTP or AV_SAMPLE_FMT_S16P)
@@ -294,7 +310,7 @@ public class SwrContext {
     input channel layout
     ***********************************************************/
     [CCode (cname="")]
-    public int64  in_ch_layout;
+    public int64 in_ch_layout;
 
     /***********************************************************
     output channel layout
@@ -306,13 +322,13 @@ public class SwrContext {
     input sample rate
     ***********************************************************/
     [CCode (cname="")]
-    public int      in_sample_rate;
+    public int in_sample_rate;
 
     /***********************************************************
     output sample rate
     ***********************************************************/
     [CCode (cname="")]
-    public int     out_sample_rate;
+    public int out_sample_rate;
 
     /***********************************************************
     miscellaneous flags such as SWR_FLAG_RESAMPLE

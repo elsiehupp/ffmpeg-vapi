@@ -19,14 +19,16 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
-public define MAX_LEVEL 6 /***********************************************************
-    quality levels
+/***********************************************************
+quality levels
 ***********************************************************/
+[CCode (cname="",cheader_filename="")]
+public const size_t MAX_LEVEL; // 6
 
 [CCode (cname="",cheader_filename="")]
 [Compact]
 public class SPPContext {
+    [CCode (cname="")]
     public AVClass av_class;
 
     [CCode (cname="")]
@@ -44,13 +46,17 @@ public class SPPContext {
     [CCode (cname="")]
     public int temp_linesize;
 
-    uint8[] src;
+    [CCode (cname="")]
+    public uint8[] src;
 
-    uint16[] temp;
+    [CCode (cname="")]
+    public uint16[] temp;
 
-    AVCodecContext *avctx;
+    [CCode (cname="")]
+    public AVCodecContext *avctx;
 
-    AVDCT *dct;
+    [CCode (cname="")]
+    public AVDCT *dct;
 
     [CCode (cname="")]
     public int8 *non_b_qp_table;
@@ -62,10 +68,12 @@ public class SPPContext {
     public int use_bframe_qp;
 
     [CCode (cname="")]
-    public int hsub, vsub;
+    public int hsub;
 
-    [CCode (cname="store_slice")]
-    public void (*store_slice)(
+    [CCode (cname="")]
+    public int vsub;
+
+    public delegate void StoreSliceDelegate (
         uint8[] dst,
         int16[] src,
         int dst_stride,
@@ -76,15 +84,22 @@ public class SPPContext {
         uint8 dither[8][8]
     );
 
-    [CCode (cname="requantize")]
-    public void (*requantize)(
+    [CCode (cname="store_slice")]
+    public StoreSliceDelegate store_slice;
+
+    public delegate void RequantizeDelegate (
         int16 dst[64],
         int16 src[64],
         int qp,
         uint8[] permutation
-    );
+    )
+
+    [CCode (cname="requantize")]
+    public RequantizeDelegate requantize;
 
 }
 
 [CCode (cname="",cheader_filename="")]
-public void ff_spp_init_x86 (SPPContext *s);
+public void ff_spp_init_x86 (
+    SPPContext *s
+);

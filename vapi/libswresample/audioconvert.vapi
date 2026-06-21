@@ -48,7 +48,7 @@ public class AudioConvert {
     public int channels;
 
     [CCode (cname="")]
-    public int  in_simd_align_mask;
+    public int in_simd_align_mask;
 
     [CCode (cname="")]
     public int out_simd_align_mask;

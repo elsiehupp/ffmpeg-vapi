@@ -76,8 +76,7 @@ public class GBlurContext {
     [CCode (cname="")]
     public int nb_planes;
 
-    [CCode (cname="horiz_slice")]
-    public void (*horiz_slice)(
+    public delegate void HorizSliceDelegate (
         float[] buffer,
         int width,
         int height,
@@ -85,6 +84,9 @@ public class GBlurContext {
         float nu,
         float bscale
     );
+
+    [CCode (cname="horiz_slice")]
+    public HorizSliceDelegate horiz_slice;
 
 }
 

@@ -1,6 +1,6 @@
 /***********************************************************
 @brief RAW SBC demuxer
-@copyright 2017  Aurelien Jacobs <aurel@gnuage.org>
+@copyright 2017 Aurelien Jacobs <aurel@gnuage.org>
 ***********************************************************/
 /***********************************************************
 @brief This file is part of FFmpeg.

@@ -47,7 +47,9 @@ Register a program-specific cleanup routine.
 ***********************************************************/
 [CCode (cname="register_exit")]
 public void register_exit (
-    void (*cb)(int ret)
+    void (*cb)(
+        int ret
+    )
 );
 
 /***********************************************************
@@ -207,19 +209,19 @@ public class SpecifierOpt {
         public uint8[] str;
 
         [CCode (cname="")]
-        public int        i;
+        public int i;
 
         [CCode (cname="")]
-        public int64  i64;
+        public int64 i64;
 
         [CCode (cname="")]
         public uint64 ui64;
 
         [CCode (cname="")]
-        public float      f;
+        public float f;
 
         [CCode (cname="")]
-        public double   dbl;
+        public double dbl;
 
     } u;
 }
@@ -723,7 +725,7 @@ public class OptionGroup {
     public Option *opts;
 
     [CCode (cname="")]
-    public int  nb_opts;
+    public int nb_opts;
 
     [CCode (cname="")]
     public AVDictionary *codec_opts;
@@ -755,7 +757,7 @@ public class OptionGroupList {
     public OptionGroup[] groups;
 
     [CCode (cname="")]
-    public int       nb_groups;
+    public int nb_groups;
 }
 
 [CCode (cname="",cheader_filename="")]
@@ -768,7 +770,7 @@ public class OptionParseContext {
     public OptionGroupList groups;
 
     [CCode (cname="")]
-    public int           nb_groups;
+    public int nb_groups;
 
     /***********************************************************
     parsing state

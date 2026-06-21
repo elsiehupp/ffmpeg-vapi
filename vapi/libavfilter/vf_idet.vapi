@@ -17,10 +17,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define HIST_SIZE 4
+public const size_t HIST_SIZE; // 4
 
 [CCode (cname="ff_idet_filter_func")]
-public typedef int (*ff_idet_filter_func)(
+public delegate int FfIdetFilterDelegate (
     uint8[] a,
     uint8[] b,
     uint8[] c,
@@ -109,7 +109,7 @@ public class IDETContext {
     public AVFrame prev;
 
     [CCode (cname="")]
-    public ff_idet_filter_func filter_line;
+    public FfIdetFilterDelegate filter_line;
 
     [CCode (cname="")]
     public int interlaced_flag_accuracy;
@@ -146,7 +146,7 @@ public int ff_idet_filter_line_c (
 
 [CCode (cname="",cheader_filename="")]
 public int ff_idet_filter_line_c_16bit (
-    const uint16[] a,
+    uint16[] a,
     uint16[] b,
     uint16[] c,
     int w

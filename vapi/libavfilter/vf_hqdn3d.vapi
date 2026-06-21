@@ -29,11 +29,14 @@ public class HQDN3DContext {
     [CCode (cname="")]
     public int16[] coefs[4];
 
-    uint16[] line;
+    [CCode (cname="")]
+    public uint16[] line;
 
-    uint16[] frame_prev[3];
+    [CCode (cname="")]
+    public uint16[] frame_prev[3];
 
-    double strength[4];
+    [CCode (cname="")]
+    public double strength[4];
 
     [CCode (cname="")]
     public int hsub;
@@ -44,8 +47,7 @@ public class HQDN3DContext {
     [CCode (cname="")]
     public int depth;
 
-    [CCode (cname="denoise_row")]
-    public void (*denoise_row[17])(
+    public delegate void DenoiseRowDelegate (
         uint8[] src,
         uint8[] dst,
         uint16[] line_ant,
@@ -55,13 +57,26 @@ public class HQDN3DContext {
         int16[] temporal
     );
 
+    [CCode (cname="denoise_row")]
+    public DenoiseRowDelegate denoise_row[17];
+
+}
+
+public enum FooBar {
+    [CCode (cname="",cheader_filename="")]
+    LUMA_SPATIAL, // 0
+
+    [CCode (cname="",cheader_filename="")]
+    LUMA_TMP, // 1
+
+    [CCode (cname="",cheader_filename="")]
+    CHROMA_SPATIAL, // 2
+
+    [CCode (cname="",cheader_filename="")]
+    CHROMA_TMP; // 3
 }
 
 [CCode (cname="",cheader_filename="")]
-public define LUMA_SPATIAL   0
-public define LUMA_TMP       1
-public define CHROMA_SPATIAL 2
-public define CHROMA_TMP     3
-
-[CCode (cname="",cheader_filename="")]
-public void ff_hqdn3d_init_x86 (HQDN3DContext *hqdn3d);
+public void ff_hqdn3d_init_x86 (
+    HQDN3DContext *hqdn3d
+);

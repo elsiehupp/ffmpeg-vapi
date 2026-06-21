@@ -36,7 +36,7 @@ static string dup_wchar_to_utf8 (wchar_t *w)
         WideCharToMultiByte (CP_UTF8, 0, w, -1, s, l, 0, 0);
     return s;
 }
-public define DECKLINK_STR    OLECHAR *
+public define DECKLINK_STR OLECHAR *
 public define DECKLINK_STRDUP dup_wchar_to_utf8
 public define DECKLINK_FREE (s) SysFreeString (s)
 #elif defined (__APPLE__)
@@ -46,11 +46,11 @@ static string dup_cfstring_to_utf8 (CFStringRef w)
     CFStringGetCString (w, s, 255, kCFStringEncodingUTF8);
     return av_strdup (s);
 }
-public define DECKLINK_STR    const __CFString *
+public define DECKLINK_STR const __CFString *
 public define DECKLINK_STRDUP dup_cfstring_to_utf8
 public define DECKLINK_FREE (s) CFRelease (s)
 #else
-public define DECKLINK_STR    string
+public define DECKLINK_STR string
 public define DECKLINK_STRDUP av_strdup
 /***********************************************************
 free () is needed for a string returned by the DeckLink SDL.
