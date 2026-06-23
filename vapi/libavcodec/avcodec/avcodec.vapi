@@ -93,7 +93,7 @@ This is handled as follows:
     or avcodec_send_frame () (encoding) functions. This will enter draining
     mode.
 - Call avcodec_receive_frame () (decoding) or avcodec_receive_packet ()
-    (encoding) in a loop until AVERROR_EOF is returned. The functions will
+    (encoding) in a loop until LibAVUtil.ErrorCode.END_OF_FILE is returned. The functions will
     not return LibAVUtil.ErrorCode (EAGAIN), unless you forgot to enter draining mode.
 - Before decoding can be resumed again, the codec has to be reset with
     avcodec_flush_buffers ().

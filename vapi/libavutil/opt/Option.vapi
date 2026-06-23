@@ -68,31 +68,34 @@ public class test_struct {
 public const Option test_options[] = {
     {
         "test_int",
-        "This is a test Option of int type.",
+        short_help_text = "This is a test Option of int type.",
         offsetof (
             test_struct,
             int_opt
         ),
-        OptionType.INT, { .i64 = -1 },
+        LibAVUtil.OptionType.INT,
+        {
+        .i64 = -1
+        },
         INT_MIN,
         int.MAX
     },
     {
         "test_str",
-        "This is a test Option of string type.",
+        short_help_text = "This is a test Option of string type.",
         offsetof (
             test_struct,
             str_opt
         ),
-        OptionType.STRING
+        LibAVUtil.OptionType.STRING
     },
     {
         "test_bin",
-        "This is a test Option of binary type.",
+        short_help_text = "This is a test Option of binary type.",
         offsetof (
             test_struct, bin_opt
         ),
-        OptionType.BINARY
+        LibAVUtil.OptionType.BINARY
     },
     {
         null };
@@ -175,14 +178,23 @@ public void free_test_struct (out test_struct foo) {
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public const Option child_opts[] = {
-        { "test_flags",
-        "This is a test Option of flags type.",
-        offsetof (
-            child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 },
-        INT_MIN,
-        int.MAX
+        {
+            "test_flags",
+            "This is a test Option of flags type.",
+            offsetof (
+                child_struct,
+                flags_opt
+            ),
+            LibAVUtil.OptionType.FLAGS,
+            {
+                .i64 = 0
+            },
+            INT_MIN,
+            int.MAX
         },
-        { null },
+        {
+            null
+        },
     }
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
@@ -229,16 +241,27 @@ public void free_test_struct (out test_struct foo) {
     @code
     {
         "test_flags",
-        "This is a test Option of flags type.",
-     offsetof (child_struct, flags_opt), OptionType.FLAGS, { .i64 = 0 },
+        short_help_text = "This is a test Option of flags type.",
+        offsetof (child_struct, flags_opt),
+        LibAVUtil.OptionType.FLAGS,
+        {
+            .i64 = 0
+        },
         INT_MIN,
         int.MAX, "test_unit"
     },
     {
         "flag1",
-        "This is a flag with value 16",
+        short_help_text = "This is a flag with value 16",
         0,
-        OptionType.CONST, { .i64 = 16 }, 0, 0, "test_unit" },
+        LibAVUtil.OptionType.CONST,
+        {
+            .i64 = 16
+        },
+        0,
+        0,
+        "test_unit"
+    },
     @endcode
 
 @section avoptions_use Using LibAVUtil.Options
@@ -282,6 +305,13 @@ that cannot be set otherwise, since e.g. the input file format is not known
 before the file is actually opened.
 ***********************************************************/
 
+//  new LibAVUtil.Option () {
+//      name = ,
+//      short_help_text = ,
+//      offset = ,
+//      option_type = ,
+//  }
+
 /***********************************************************
 @brief Option
 ***********************************************************/
@@ -306,7 +336,7 @@ public class Option {
     public int offset;
 
     [CCode (cname="type")]
-    public OptionType type;
+    public OptionType option_type;
 
     /***********************************************************
     @brief The default value for scalar options
@@ -332,16 +362,16 @@ public class Option {
     @brief Minimum valid value for the Option
     ***********************************************************/
     [CCode (cname="min")]
-    public double min;
+    public double minimum;
 
     /***********************************************************
     @brief Maximum valid value for the Option
     ***********************************************************/
     [CCode (cname="max")]
-    public double max;
+    public double maximum;
 
     [CCode (cname="flags")]
-    public OptionFlags flags;
+    public OptionFlags option_flags;
 
     /***********************************************************
     @brief The logical unit to which the Option belongs. Non-constant
@@ -461,7 +491,7 @@ public class Option {
 
     @return 0 if the value has been set, or an LibAVUtil.ErrorCode code in case of
     error:
-    AVERROR_OPTION_NOT_FOUND if no matching Option exists
+    LibAVUtil.ErrorCode.OPTION_NOT_FOUND if no matching Option exists
     LibAVUtil.ErrorCode (ERANGE) if the value is out of range
     LibAVUtil.ErrorCode (EINVAL) if the value is not valid
     ***********************************************************/
@@ -593,7 +623,7 @@ public class Option {
     @note the returned string will be av_malloc ()ed and must be av_free ()ed by the caller
 
     @note if AV_OPT_ALLOW_NULL is set in search_flags in av_opt_get, and the Option has
-    OptionType.STRING or OptionType.BINARY and is set to null,? out_val will be set
+    LibAVUtil.OptionType.STRING or OptionType.BINARY and is set to null,? out_val will be set
     to null instead of an allocated empty string.
     ***********************************************************/
     [CCode (cname="av_opt_get",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
@@ -1058,4 +1088,195 @@ public class Option {
 
 
 }
+
+public class LibAVUtil.FlagsOption : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.FLAGS;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.IntOption : LibAVUtil.Int64Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.INT;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.Int64Option : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.INT64;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.DoubleOption : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.DOUBLE;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.FloatOption : LibAVUtil.DoubleOption {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.FLOAT;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.StringOption : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.STRING;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.RationalOption : LibAVUtil.DoubleOption {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.RATIONAL;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.BinaryOption : LibAVUtil.StringOption {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.BINARY;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.DictOption : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.DICT;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.Uint64Option : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.UINT64;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.ConstOption : LibAVUtil.Int64Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.CONST;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.ImageSizeOption : LibAVUtil.StringOption {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.IMAGE_SIZE;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.PixelFormatOption : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.PIXEL_FORMAT;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.SampleFormatOption : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.SAMPLE_FORMAT;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.VideoRateOption : LibAVUtil.StringOption {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.VIDEO_RATE;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.DurationOption : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.DURATION;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.ColorOption : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.COLOR;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.ChannelLayourOption : LibAVUtil.Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.CHANNEL_LAYOUT;
+        }
+
+    }
+
+}
+
+public class LibAVUtil.BoolOption : LibAVUtil.Int64Option {
+    public override OptionType option_type {
+        public get {
+            return LibAVUtil.OptionType.BOOL;
+        }
+
+    }
+
+}
+
 } // namespace LibAVUtil

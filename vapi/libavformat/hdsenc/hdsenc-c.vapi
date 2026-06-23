@@ -23,47 +23,68 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (HDSContext, x)
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "window_size",
-        "number of fragments kept in the manifest",
-        OFFSET (window_size
+    new LibAVUtil.IntOption () {
+        name = "window_size",
+        short_help_text = "number of fragments kept in the manifest",
+        offsetof (
+            HDSContext,
+            window_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0 }, 0,
-        INT_MAX,
-        E
+        {
+            .i64 = 0
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "extra_window_size",
-        "number of fragments kept outside of the manifest before removing from disk",
-        OFFSET (extra_window_size
+    new LibAVUtil.IntOption () {
+        name = "extra_window_size",
+        short_help_text = "number of fragments kept outside of the manifest before removing from disk",
+        offsetof (
+            HDSContext,
+            extra_window_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 5 }, 0,
-        INT_MAX,
-        E
+        {
+            .i64 = 5
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "min_frag_duration",
-        "minimum fragment duration (in microseconds)",
-        OFFSET (min_frag_duration), AV_OPT_TYPE_INT64, { .i64 = 10000000 }, 0,
-        INT_MAX,
-        E
-    },
-    {
-        "remove_at_exit",
-        "remove all fragments when finished",
-        OFFSET (remove_at_exit
+    new LibAVUtil.Int64Option () {
+        name = "min_frag_duration",
+        short_help_text = "minimum fragment duration (in microseconds)",
+        offsetof (
+            HDSContext,
+            min_frag_duration
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
+        {
+            .i64 = 10000000
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "remove_at_exit",
+        short_help_text = "remove all fragments when finished",
+        offsetof (
+            HDSContext,
+            remove_at_exit
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="hds_class",cheader_filename="ffmpeg/libformat/hdsenc.c")]
 public class HDSMuxerClass : LibAVUtil.Class {

@@ -22,41 +22,66 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (LIBSMBContext, x)
-public define D AV_OPT_FLAG_DECODING_PARAM
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "timeout",
-        "set timeout in ms of socket I/O operations",
-        OFFSET (timeout
+    new LibAVUtil.IntOption () {
+        name = "timeout",
+        short_help_text = "set timeout in ms of socket I/O operations",
+        offsetof (
+            LIBSMBContext,
+            timeout
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
-        INT_MAX,
-        D|E
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.IntOption () {
+        name = "truncate",
+        short_help_text = "truncate existing files on write",
+        offsetof (
+            LIBSMBContext,
+            trunc
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.StringOption () {
+        name = "workgroup",
+        short_help_text = "set the workgroup used for making connections",
+        offsetof (
+            LIBSMBContext,
+            workgroup
+        ),
+        {
+            0
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
     {
-        "truncate",
-        "truncate existing files on write",
-        OFFSET (trunc
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 1 }, 0, 1, E
-    },
-    {
-        "workgroup",
-        "set the workgroup used for making connections",
-        OFFSET (workgroup
-        ),
-        AV_OPT_TYPE_STRING,
-        { 0 }, 0, 0, D|E
-    },
-    {NULL}
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="libsmbclient_context_class",cheader_filename="ffmpeg/libformat/libsmbclient.c")]
 public class LibSMBClientURLProtocolClass : LibAVUtil.Class {

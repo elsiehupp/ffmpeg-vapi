@@ -74,7 +74,19 @@ public class VOCDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
-    //  .codec_tag = (AVCodecTag[]){ ff_voc_codec_tags, 0 };
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_voc_codec_tags,
+                0
+            };
+
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

@@ -91,6 +91,7 @@ public class VividasDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

@@ -23,43 +23,61 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option file_options[] = {
-    {
-        "truncate",
-        "truncate existing files on write",
+    new LibAVUtil.BoolOption () {
+        name = "truncate",
+        short_help_text = "truncate existing files on write",
         offsetof (
-            FileContext, trunc
+            FileContext,
+            trunc
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1 }, 0, 1, AV_OPT_FLAG_ENCODING_PARAM
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "blocksize",
-        "set I/O operation maximum block size",
+    new LibAVUtil.IntOption () {
+        name = "blocksize",
+        short_help_text = "set I/O operation maximum block size",
         offsetof (
-            FileContext, blocksize
+            FileContext,
+            blocksize
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = INT_MAX }, 1,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM
+        {
+            .i64 = int.MAX
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "follow",
-        "Follow a file as it is being written",
+    new LibAVUtil.IntOption () {
+        name = "follow",
+        short_help_text = "Follow a file as it is being written",
         offsetof (
-            FileContext, follow
+            FileContext,
+            follow
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0 }, 0, 1, AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "seekable",
-        "Sets if the file is seekable",
+    new LibAVUtil.IntOption () {
+        name = "seekable",
+        short_help_text = "Sets if the file is seekable",
         offsetof (
-            FileContext, seekable
+            FileContext,
+            seekable
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1, 0, AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_ENCODING_PARAM
+        {
+            .i64 = -1
+        },
+        -1,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -67,16 +85,19 @@ static const LibAVUtil.Option file_options[] = {
 }
 
 static const LibAVUtil.Option pipe_options[] = {
-    {
-        "blocksize",
-        "set I/O operation maximum block size",
+    new LibAVUtil.IntOption () {
+        name = "blocksize",
+        short_help_text = "set I/O operation maximum block size",
         offsetof (
-            FileContext, blocksize
+            FileContext,
+            blocksize
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = INT_MAX }, 1,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM
+        {
+            .i64 = int.MAX
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL

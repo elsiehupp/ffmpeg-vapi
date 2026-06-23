@@ -27,119 +27,237 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (RTPContext, x)
-public define D AV_OPT_FLAG_DECODING_PARAM
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "ttl",
-        "Time to live (in milliseconds, multicast only)",
-        OFFSET (ttl
+    new LibAVUtil.IntOption () {
+        name = "ttl",
+        short_help_text = "Time to live (in milliseconds, multicast only)",
+        offsetof (
+            RTPContext,
+            ttl
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "buffer_size",
-        "Send/Receive buffer size (in bytes)",
-        OFFSET (buffer_size
+    new LibAVUtil.IntOption () {
+        name = "buffer_size",
+        short_help_text = "Send/Receive buffer size (in bytes)",
+        offsetof (
+            RTPContext,
+            buffer_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "rtcp_port",
-        "Custom rtcp port",
-        OFFSET (rtcp_port
+    new LibAVUtil.IntOption () {
+        name = "rtcp_port",
+        short_help_text = "Custom rtcp port",
+        offsetof (
+            RTPContext,
+            rtcp_port
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "local_rtpport",
-        "Local rtp port",
-        OFFSET (local_rtpport
+    new LibAVUtil.IntOption () {
+        name = "local_rtpport",
+        short_help_text = "Local rtp port",
+        offsetof (
+            RTPContext,
+            local_rtpport
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "local_rtcpport",
-        "Local rtcp port",
-        OFFSET (local_rtcpport
+    new LibAVUtil.IntOption () {
+        name = "local_rtcpport",
+        short_help_text = "Local rtcp port",
+        offsetof (
+            RTPContext,
+            local_rtcpport
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "connect",
-        "Connect socket",
-        OFFSET (connect
+    new LibAVUtil.BoolOption () {
+        name = "connect",
+        short_help_text = "Connect socket",
+        offsetof (
+            RTPContext,
+            connect
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, //  .flags = D|E
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "write_to_source",
-        "Send packets to the source address of the latest received packet",
-        OFFSET (write_to_source
+    new LibAVUtil.BoolOption () {
+        name = "write_to_source",
+        short_help_text = "Send packets to the source address of the latest received packet",
+        offsetof (
+            RTPContext,
+            write_to_source
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, //  .flags = D|E
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "pkt_size",
-        "Maximum packet size",
-        OFFSET (pkt_size
+    new LibAVUtil.IntOption () {
+        name = "pkt_size",
+        short_help_text = "Maximum packet size",
+        offsetof (
+            RTPContext,
+            pkt_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "dscp",
-        "DSCP class",
-        OFFSET (dscp
+    new LibAVUtil.IntOption () {
+        name = "dscp",
+        short_help_text = "DSCP class",
+        offsetof (
+            RTPContext,
+            dscp
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "sources",
-        "Source list",
-        OFFSET (sources
+    new LibAVUtil.StringOption () {
+        name = "sources",
+        short_help_text = "Source list",
+        offsetof (
+            RTPContext,
+            sources
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, //  .flags = D|E
+        {
+            .str = NULL
+        },
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "block",
-        "Block list",
-        OFFSET (block
+    new LibAVUtil.StringOption () {
+        name = "block",
+        short_help_text = "Block list",
+        offsetof (
+            RTPContext,
+            block
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, //  .flags = D|E
+        {
+            .str = NULL
+        },
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "fec",
-        "FEC",
-        OFFSET (fec_options_str
+    new LibAVUtil.StringOption () {
+        name = "fec",
+        short_help_text = "FEC",
+        offsetof (
+            RTPContext,
+            fec_options_str
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, //  .flags = E
+        {
+            .str = NULL
+        },
+        //  .flags =
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
     {
         NULL

@@ -27,136 +27,243 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (MOVContext, x)
-public define FLAGS AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option mov_options[] = {
-    {
-        "use_absolute_path",
-        "allow using absolute path when opening alias, this is a possible security issue",
-        OFFSET (use_absolute_path
+    new LibAVUtil.BoolOption () {
+        name = "use_absolute_path",
+        short_help_text = "allow using absolute path when opening alias, this is a possible security issue",
+        offsetof (
+            MOVContext,
+            use_absolute_path
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0},
+        {
+            .i64 = 0
+        },
         0,
-        1, FLAGS},
-    {
-        "seek_streams_individually",
-        "Seek each stream individually to the to the closest point",
-        OFFSET (seek_individually
+        1,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
+    },
+    new LibAVUtil.BoolOption () {
+        name = "seek_streams_individually",
+        short_help_text = "Seek each stream individually to the to the closest point",
+        offsetof (
+            MOVContext,
+            seek_individually
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1 },
+        {
+            .i64 = 1
+        },
         0,
-        1, FLAGS},
-    {
-        "ignore_editlist",
-        "Ignore the edit list atom.",
-        OFFSET (ignore_editlist
+        1,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
+    },
+    new LibAVUtil.BoolOption () {
+        name = "ignore_editlist",
+        short_help_text = "Ignore the edit list atom.",
+        offsetof (
+            MOVContext,
+            ignore_editlist
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0},
+        {
+            .i64 = 0
+        },
         0,
-        1, FLAGS},
-    {
-        "advanced_editlist",
-        "Modify the AVIndex according to the editlists. Use this option to decode in the order specified by the edits.",
-        OFFSET (advanced_editlist
+        1,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
+    },
+    new LibAVUtil.BoolOption () {
+        name = "advanced_editlist",
+        short_help_text = "Modify the AVIndex according to the editlists. Use this option to decode in the order specified by the edits.",
+        offsetof (
+            MOVContext,
+            advanced_editlist
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1},
+        {
+            .i64 = 1
+        },
         0,
-        1, FLAGS},
-    {
-        "ignore_chapters",
-        "",
-        OFFSET (ignore_chapters
+        1,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
+    },
+    new LibAVUtil.BoolOption () {
+        name = "ignore_chapters",
+        short_help_text = "",
+        offsetof (
+            MOVContext,
+            ignore_chapters
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0},
+        {
+            .i64 = 0
+        },
         0,
-        1, FLAGS},
-    {
-        "use_mfra_for",
-        "use mfra for fragment timestamps",
-        OFFSET (use_mfra_for
+        1,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
+    },
+    new LibAVUtil.IntOption () {
+        name = "use_mfra_for",
+        short_help_text = "use mfra for fragment timestamps",
+        offsetof (
+            MOVContext,
+            use_mfra_for
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = FF_MOV_FLAG_MFRA_AUTO},
+        {
+            .i64 = FF_MOV_FLAG_MFRA_AUTO
+        },
         -1,
-        FF_MOV_FLAG_MFRA_PTS, FLAGS,
+        FF_MOV_FLAG_MFRA_PTS,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        ),
         "use_mfra_for"
     },
-    {
-        "auto",
-        "auto",
+    new LibAVUtil.ConstOption () {
+        name = "auto",
+        short_help_text = "auto",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_MFRA_AUTO}, 0, 0,
-        FLAGS, "use_mfra_for"
-    },
-    {
-        "dts",
-        "dts",
+            .i64 = FF_MOV_FLAG_MFRA_AUTO
+        },
         0,
-        AV_OPT_TYPE_CONST,
-        {
-            .i64 = FF_MOV_FLAG_MFRA_DTS}, 0, 0,
-        FLAGS, "use_mfra_for"
-    },
-    {
-        "pts",
-        "pts",
         0,
-        AV_OPT_TYPE_CONST,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        ),
+        "use_mfra_for"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "dts",
+        short_help_text = "dts",
+        0,
         {
-            .i64 = FF_MOV_FLAG_MFRA_PTS}, 0, 0,
-        FLAGS, "use_mfra_for"
-    },
-    {
-        "export_all",
-        "Export unrecognized metadata entries",
-        OFFSET (export_all
+            .i64 = FF_MOV_FLAG_MFRA_DTS
+        },
+        0,
+        0,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
         ),
-        AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, .flags = FLAGS
+        "use_mfra_for"
     },
-    {
-        "export_xmp",
-        "Export full XMP metadata",
-        OFFSET (export_xmp
+    new LibAVUtil.ConstOption () {
+        name = "pts",
+        short_help_text = "pts",
+        0,
+        {
+            .i64 = FF_MOV_FLAG_MFRA_PTS
+        },
+        0,
+        0,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
         ),
-        AV_OPT_TYPE_BOOL, { .i64 = 0 }, 0, 1, .flags = FLAGS
+        "use_mfra_for"
     },
-    {
-        "activation_bytes",
-        "Secret bytes for Audible AAX files",
-        OFFSET (activation_bytes
+    new LibAVUtil.BoolOption () {
+        name = "export_all",
+        short_help_text = "Export unrecognized metadata entries",
+        offsetof (
+            MOVContext,
+            export_all
         ),
-        AV_OPT_TYPE_BINARY, .flags = AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
     },
-    {
-        "audible_fixed_key", // extracted from libAAX_SDK.so and AAXSDKWin.dll files!
+    new LibAVUtil.BoolOption () {
+        name = "export_xmp",
+        short_help_text = "Export full XMP metadata",
+        offsetof (
+            MOVContext,
+            export_xmp
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
+    },
+    new LibAVUtil.BinaryOption () {
+        name = "activation_bytes",
+        short_help_text = "Secret bytes for Audible AAX files",
+        offsetof (
+            MOVContext,
+            activation_bytes
+        ),
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.BinaryOption () {
+        name = "audible_fixed_key",
+        // extracted from libAAX_SDK.so and AAXSDKWin.dll files!
         "Fixed key used for handling Audible AAX files",
-        OFFSET (audible_fixed_key
+        offsetof (
+            MOVContext,
+            audible_fixed_key
         ),
-        AV_OPT_TYPE_BINARY, {.str="77214d4b196a87cd520045fd20a51d67"},
-        //  .flags = AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        "decryption_key",
-        "The media decryption key (hex)",
-        OFFSET (decryption_key), AV_OPT_TYPE_BINARY, .flags = AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        "enable_drefs",
-        "Enable external track support.",
-        OFFSET (enable_drefs), AV_OPT_TYPE_BOOL,
         {
-            .i64 = 0}, 0, 1, FLAGS },
+            .str = "77214d4b196a87cd520045fd20a51d67"
+        },
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.BinaryOption () {
+        name = "decryption_key",
+        short_help_text = "The media decryption key (hex)",
+        offsetof (
+            MOVContext,
+            decryption_key
+        ),
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "enable_drefs",
+        short_help_text = "Enable external track support.",
+        offsetof (
+            MOVContext,
+            enable_drefs
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
+    },
 
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="mov_class",cheader_filename="ffmpeg/libformat/mov.c")]
 public class MOVDemuxerClass : LibAVUtil.Class {

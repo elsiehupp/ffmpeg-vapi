@@ -28,70 +28,103 @@ Unix socket url_protocol
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (UnixContext, x)
-public define ED AV_OPT_FLAG_DECODING_PARAM|AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option unix_options[] = {
-    {
-        "listen",
-        "Open socket for listening",
-        OFFSET (listen
+    new LibAVUtil.BoolOption () {
+        name = "listen",
+        short_help_text = "Open socket for listening",
+        offsetof (
+            UnixContext,
+            listen
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, ED
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "timeout",
-        "Timeout in ms",
-        OFFSET (timeout
+    new LibAVUtil.IntOption () {
+        name = "timeout",
+        short_help_text = "Timeout in ms",
+        offsetof (
+            UnixContext,
+            timeout
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        ED
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "type",
-        "Socket type",
-        OFFSET (type
+    new LibAVUtil.IntOption () {
+        name = "type",
+        short_help_text = "Socket type",
+        offsetof (
+            UnixContext,
+            type
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = SOCK_STREAM },
-        INT_MIN,
-        INT_MAX,
-        ED, "type"
-    },
-    {
-        "stream",
-        "Stream (reliable stream-oriented)",
-        0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = SOCK_STREAM },
-        INT_MIN,
-        INT_MAX,
-        ED, "type"
+            .i64 = SOCK_STREAM
+        },
+        int.MIN,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        ),
+        "type"
     },
-    {
-        "datagram",
-        "Datagram (unreliable packet-oriented)",
+    new LibAVUtil.ConstOption () {
+        name = "stream",
+        short_help_text = "Stream (reliable stream-oriented)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = SOCK_DGRAM },
-        INT_MIN,
-        INT_MAX,
-        ED, "type"
+            .i64 = SOCK_STREAM
+        },
+        int.MIN,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        ),
+        "type"
     },
-    {
-        "seqpacket",
-        "Seqpacket (reliable packet-oriented",
+    new LibAVUtil.ConstOption () {
+        name = "datagram",
+        short_help_text = "Datagram (unreliable packet-oriented)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = SOCK_SEQPACKET },
-        INT_MIN,
-        INT_MAX,
-        ED, "type"
+            .i64 = SOCK_DGRAM
+        },
+        int.MIN,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        ),
+        "type"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "seqpacket",
+        short_help_text = "Seqpacket (reliable packet-oriented",
+        0,
+        {
+            .i64 = SOCK_SEQPACKET
+        },
+        int.MIN,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        ),
+        "type"
     },
     {
         NULL

@@ -88,6 +88,7 @@ public class RTPMpegTSMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
+
 }
 
 } // namespace LibAVFormat

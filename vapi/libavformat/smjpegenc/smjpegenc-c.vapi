@@ -101,7 +101,20 @@ public class SDLMotionJpegMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (const AVCodecTag? const []){ ff_codec_smjpeg_video_tags, ff_codec_smjpeg_audio_tags, 0 };
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_smjpeg_video_tags,
+                ff_codec_smjpeg_audio_tags,
+                0
+            };
+
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

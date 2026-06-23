@@ -56,6 +56,7 @@ public class RDFTContext {
     public void av_rdft_end (
         RDFTContext s
     );
+
 }
 
 } // namespace LibAVCodec

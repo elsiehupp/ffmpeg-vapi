@@ -57,6 +57,7 @@ public class DVDemuxContext {
         DVDemuxContext demux_context,
         int64 frame_offset
     );
+
 }
 
 [CCode (cname="struct DVMuxContext",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]

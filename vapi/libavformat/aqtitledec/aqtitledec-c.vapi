@@ -29,17 +29,23 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (AQTitleContext, x)
-public define SD AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option aqt_options[] = {
-    {
-        "subfps",
-        "set the movie frame rate",
-        OFFSET (frame_rate),
-        AV_OPT_TYPE_RATIONAL,
-        {.dbl=25}, 0,
-        INT_MAX,
-        SD
+    new LibAVUtil.RationalOption () {
+        name = "subfps",
+        short_help_text = "set the movie frame rate",
+        offsetof (
+            AQTitleContext,
+            frame_rate
+        ),
+        {
+            .dbl = 25
+        },
+        0,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
     },
     {
         NULL

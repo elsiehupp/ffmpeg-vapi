@@ -26,15 +26,39 @@ namespace LibAVFormat {
 public class IVFMuxerPrivateData { }
 
 static const AVCodecTag codec_ivf_tags[] = {
-    {
-        LibAVCodec.CodecID.VP8, MKTAG ('V', 'P', '8', '0') },
-    {
-        LibAVCodec.CodecID.VP9, MKTAG ('V', 'P', '9', '0') },
-    {
-        LibAVCodec.CodecID.AV1, MKTAG ('A', 'V', '0', '1') },
-    {
-        LibAVCodec.CodecID.NONE, 0 }
-}
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.VP8,
+        tag = MKTAG (
+            'V',
+            'P',
+            '8',
+            '0'
+        )
+    },
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.VP9,
+        tag = MKTAG (
+            'V',
+            'P',
+            '9',
+            '0'
+        )
+    },
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AV1,
+        tag = MKTAG (
+            'A',
+            'V',
+            '0',
+            '1'
+        )
+    },
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.NONE,
+        tag = 0
+    }
+
+};
 
 [CCode (cname="ff_ivf_muxer",cheader_filename="")]
 public class IVFMuxer : AVOutputFormat {
@@ -100,7 +124,7 @@ public class IVFMuxer : AVOutputFormat {
     [CCode (cname="ivf_write_packet",cheader_filename="")]
     public override int write_packet (
         AVFormatContext format_context,
-        LibAVCodec.Packet packet
+        tag = LibAVCodec.Packet packet
     );
 
     [CCode (cname="ivf_write_trailer",cheader_filename="")]
@@ -111,9 +135,21 @@ public class IVFMuxer : AVOutputFormat {
     [CCode (cname="ivf_check_bitstream",cheader_filename="")]
     public override int check_bitstream (
         AVFormatContext format_context,
-        LibAVCodec.Packet packet
+        tag = LibAVCodec.Packet packet
     );
-    //  .codec_tag = (AVCodecTag[]){ codec_ivf_tags, 0 };
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_ivf_tags,
+        tag =         0
+            };
+
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

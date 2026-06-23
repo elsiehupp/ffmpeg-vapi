@@ -37,7 +37,10 @@ namespace LibAVFormat {
 //  #endif
 
 static const LibAVUtil.Option options[] = {
-    TLS_COMMON_OPTIONS (TLSContext, tls_shared),
+    TLS_COMMON_OPTIONS (
+        TLSContext,
+        tls_shared
+    ),
     {
         NULL
     }

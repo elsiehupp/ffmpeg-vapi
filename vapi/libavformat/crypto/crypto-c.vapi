@@ -23,39 +23,78 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (CryptoContext, x)
-public define D AV_OPT_FLAG_DECODING_PARAM
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "key",
-        "AES encryption/decryption key",
-        OFFSET (key), AV_OPT_TYPE_BINARY, .flags = D|E
+    new LibAVUtil.BinaryOption () {
+        name = "key",
+        short_help_text = "AES encryption/decryption key",
+        offsetof (
+            CryptoContext,
+            key
+        ),
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "iv",
-        "AES encryption/decryption initialization vector",
-        OFFSET (iv), AV_OPT_TYPE_BINARY, .flags = D|E
+    new LibAVUtil.BinaryOption () {
+        name = "iv",
+        short_help_text = "AES encryption/decryption initialization vector",
+        offsetof (
+            CryptoContext,
+            iv
+        ),
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "decryption_key",
-        "AES decryption key",
-        OFFSET (decrypt_key), AV_OPT_TYPE_BINARY, .flags = D
+    new LibAVUtil.BinaryOption () {
+        name = "decryption_key",
+        short_help_text = "AES decryption key",
+        offsetof (
+            CryptoContext,
+            decrypt_key
+        ),
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "decryption_iv",
-        "AES decryption initialization vector",
-        OFFSET (decrypt_iv), AV_OPT_TYPE_BINARY, .flags = D
+    new LibAVUtil.BinaryOption () {
+        name = "decryption_iv",
+        short_help_text = "AES decryption initialization vector",
+        offsetof (
+            CryptoContext,
+            decrypt_iv
+        ),
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "encryption_key",
-        "AES encryption key",
-        OFFSET (encrypt_key), AV_OPT_TYPE_BINARY, .flags = E
+    new LibAVUtil.BinaryOption () {
+        name = "encryption_key",
+        short_help_text = "AES encryption key",
+        offsetof (
+            CryptoContext,
+            encrypt_key
+        ),
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "encryption_iv",
-        "AES encryption initialization vector",
-        OFFSET (encrypt_iv), AV_OPT_TYPE_BINARY, .flags = E
+    new LibAVUtil.BinaryOption () {
+        name = "encryption_iv",
+        short_help_text = "AES encryption initialization vector",
+        offsetof (
+            CryptoContext,
+            encrypt_iv
+        ),
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
     {
         NULL

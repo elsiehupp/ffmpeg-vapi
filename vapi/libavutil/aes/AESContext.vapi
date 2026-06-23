@@ -69,6 +69,7 @@ public class AESContext {
         uint8[] initialization_vector,
         int decrypt
     );
+
 }
 
 } // namespace LibAVUtil.Crypto

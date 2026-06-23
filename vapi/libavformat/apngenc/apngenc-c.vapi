@@ -24,26 +24,40 @@ first version by Donny Yang <work@kota.moe>
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (APNGMuxContext, x)
-public define ENC AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "plays",
-        "Number of times to play the output: 0 - infinite loop, 1 - no loop",
-        OFFSET (plays
+    new LibAVUtil.IntOption () {
+        name = "plays",
+        short_help_text = "Number of times to play the output: 0 - infinite loop, 1 - no loop",
+        offsetof (
+            APNGMuxContext,
+            plays
         ),
-        AV_OPT_TYPE_INT, { .i64 = 1 }, 0, UINT_MAX, ENC
+        {
+            .i64 = 1
+        },
+        0,
+        UINT_MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.RationalOption () {
+        name = "final_delay",
+        short_help_text = "Force delay after the last frame",
+        offsetof (
+            APNGMuxContext,
+            last_delay
+        ),
+        {
+            .dbl = 0
+        },
+        0,
+        USHRT_MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        "final_delay",
-        "Force delay after the last frame",
-        OFFSET (last_delay
-        ),
-        AV_OPT_TYPE_RATIONAL, { .dbl = 0 }, 0, USHRT_MAX, ENC
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="apng_muxer_class",cheader_filename="ffmpeg/libformat/apngenc.c")]
 public class APNGMuxerClass : LibAVUtil.Class {

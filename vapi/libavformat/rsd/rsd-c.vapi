@@ -66,7 +66,18 @@ public class RSDDemuxer : AVInputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){rsd_tags, 0},
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                rsd_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {

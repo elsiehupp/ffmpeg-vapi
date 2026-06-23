@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+[CCode (cprefix="AV_LOG_",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public enum LogFlags {
     /***********************************************************
     @brief Skip repeated messages, this requires the user app to use av_log () instead of
@@ -30,9 +30,9 @@ public enum LogFlags {
     "Last message repeated x times" messages below (f)printf messages with some
     bad luck.
     Also to receive the last, "last repeated" line if any, the user app must
-    call av_log (null, AV_LOG_QUIET, "%s", ""); at the end
+    call av_log (null, LogLevel.QUIET, "%s", ""); at the end
     ***********************************************************/
-    AV_LOG_SKIP_REPEATED,
+    SKIP_REPEATED,
 
     /***********************************************************
     @brief Include the log severity in messages originating from codecs.
@@ -40,15 +40,15 @@ public enum LogFlags {
     Results in messages such as:
     [rawvideo @ 0xDEADBEEF] [error] encode did not produce valid pts
     ***********************************************************/
-    AV_LOG_PRINT_LEVEL;
+    PRINT_LEVEL;
 
     [CCode (cname="av_log_set_flags",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
-    public static void av_log_set_flags (
+    public static void set_flags (
         LogFlags arg
     );
 
     [CCode (cname="av_log_get_flags",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
-    public static int av_log_get_flags ();
+    public static LogFlags get_flags ();
 }
 
 } // namespace LibAVUtil

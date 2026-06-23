@@ -90,6 +90,7 @@ public class SegaFilmDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

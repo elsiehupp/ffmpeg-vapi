@@ -85,7 +85,18 @@ public class RSOMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (AVCodecTag[]){ff_codec_rso_tags, 0},
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_rso_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {

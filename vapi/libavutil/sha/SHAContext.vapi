@@ -100,6 +100,7 @@ public class SHAContext {
         SHAContext context,
         uint8[] digest
     );
+
 }
 
 } // namespace LibAVUtil

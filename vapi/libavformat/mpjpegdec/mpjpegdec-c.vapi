@@ -23,19 +23,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (MPJPEGDemuxContext, x)
-public define DEC AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option mpjpeg_options[] = {
-    {
-        "strict_mime_boundary",
-        "require MIME boundaries match",
-        OFFSET (strict_mime_boundary
+    new LibAVUtil.BoolOption () {
+        name = "strict_mime_boundary",
+        short_help_text = "require MIME boundaries match",
+        offsetof (
+            MPJPEGDemuxContext,
+            strict_mime_boundary
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, DEC
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

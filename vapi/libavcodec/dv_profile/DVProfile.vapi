@@ -175,6 +175,7 @@ public class DVProfile {
         LibAVUtil.PixelFormat pixel_format,
         LibAVUtil.Rational frame_rate
     );
+
 }
 
 } // namespace LibAVCodec

@@ -47,21 +47,25 @@ Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPT
 ***********************************************************/
 
 static const LibAVUtil.Option options[] = {
-    {
-        "eia608_extract",
-        "extract eia 608 captions from s436m track",
-      offsetof (MXFContext, eia608_extract
+    new LibAVUtil.BoolOption () {
+        name = "eia608_extract",
+        short_help_text = "extract eia 608 captions from s436m track",
+        offsetof (
+            MXFContext,
+            eia608_extract
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1,
-      AV_OPT_FLAG_DECODING_PARAM
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/mfxdec.c")]
 public class MXFDemuxerClass : LibAVUtil.Class {
@@ -94,7 +98,7 @@ public class MXFDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER;
+    //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="struct MXFContext",cheader_filename="ffmpeg/libformat/mfxdec.c")]

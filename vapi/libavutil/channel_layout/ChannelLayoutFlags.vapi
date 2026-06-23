@@ -253,6 +253,7 @@ public enum ChannelLayoutFlags {
         out ChannelLayoutFlags layout,
         out string name
     );
+
 }
 
 } // namespace LibAVUtil

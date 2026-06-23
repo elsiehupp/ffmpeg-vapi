@@ -91,6 +91,7 @@ public class MasteringDisplayMetadata {
     public MasteringDisplayMetadata av_mastering_display_metadata_create_side_data (
         Frame frame
     );
+
 }
 
 } // namespace LibAVUtil

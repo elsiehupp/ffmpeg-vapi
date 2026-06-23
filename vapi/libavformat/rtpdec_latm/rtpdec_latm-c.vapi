@@ -36,7 +36,7 @@ public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -85,6 +85,7 @@ public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

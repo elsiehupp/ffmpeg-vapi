@@ -49,6 +49,7 @@ public enum OptionSearchFlags {
     @description In av_opt_get, return null if the option has a pointer type and is set to null,
         rather than returning an empty string.
     ***********************************************************/
+    [CCode (cname="")]
     AV_OPT_ALLOW_NULL,
 
     /***********************************************************
@@ -56,6 +57,7 @@ public enum OptionSearchFlags {
         one component for certain option types.
     @see @link OptionRangeList for details.
     ***********************************************************/
+    [CCode (cname="")]
     AV_OPT_MULTI_COMPONENT_RANGE;
 }
 

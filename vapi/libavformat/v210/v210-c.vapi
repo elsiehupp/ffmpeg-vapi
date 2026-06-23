@@ -23,24 +23,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (V210DemuxerContext, x)
-public define DEC AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option v210_options[] = {
-    {
-        "video_size",
-        "set frame size",
-        OFFSET (width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, DEC
+    new LibAVUtil.ImageSizeOption () {
+        name = "video_size",
+        short_help_text = "set frame size",
+        offsetof (
+            V210DemuxerContext,
+            width
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.VideoRateOption () {
+        name = "framerate",
+        short_help_text = "set frame rate",
+        offsetof (
+            V210DemuxerContext,
+            framerate
+        ),
+        {
+            .str = "25"
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        "framerate",
-        "set frame rate",
-        OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0,
-        INT_MAX,
-        DEC
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 #if CONFIG_V210_DEMUXER
 

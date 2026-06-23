@@ -69,6 +69,7 @@ public class MediaCodecBuffer {
         MediaCodecBuffer buffer,
         int64 time
     );
+
 }
 
 } // namespace LibAVCodec

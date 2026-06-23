@@ -248,7 +248,7 @@ public int ff_outlink_get_status (
 Set the status field of a link from the source filter.
 The pts should reflect the timestamp of the status change,
 in link time base and relative to the frames timeline.
-In particular, for AVERROR_EOF, it should reflect the
+In particular, for LibAVUtil.ErrorCode.END_OF_FILE, it should reflect the
 end time of the last frame.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]

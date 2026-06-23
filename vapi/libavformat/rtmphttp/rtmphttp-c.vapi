@@ -26,23 +26,26 @@ namespace LibAVFormat {
 @file RTMP HTTP protocol
 ***********************************************************/
 
-//  #define OFFSET (x) offsetof (RTMP_HTTPContext, x)
-//  #define DEC AV_OPT_FLAG_DECODING_PARAM
-
 static const LibAVUtil.Option ffrtmphttp_options[] = {
-    {
-        "ffrtmphttp_tls",
-        "Use a HTTPS tunneling connection (RTMPTS).",
-        OFFSET (tls
+    new LibAVUtil.BoolOption () {
+        name = "ffrtmphttp_tls",
+        short_help_text = "Use a HTTPS tunneling connection (RTMPTS).",
+        offsetof (
+            RTMP_HTTPContext,
+            tls
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, DEC},
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="ffrtmphttp_class",cheader_filename="ffmpeg/libformat/rtmphttp.c")]
 public class RTMPHTTPURLProtocolClass : LibAVUtil.Class {

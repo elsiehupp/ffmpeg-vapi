@@ -27,169 +27,315 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (UDPContext, x)
-public define D AV_OPT_FLAG_DECODING_PARAM
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "buffer_size",
-        "System data size (in bytes)",
-        OFFSET (buffer_size
+    new LibAVUtil.IntOption () {
+        name = "buffer_size",
+        short_help_text = "System data size (in bytes)",
+        offsetof (
+            UDPContext,
+            buffer_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "bitrate",
-        "Bits to send per second",
-        OFFSET (bitrate), AV_OPT_TYPE_INT64, { .i64 = 0  }, 0, INT64_MAX, .flags = E
-    },
-    {
-        "burst_bits",
-        "Max length of bursts in bits (when using bitrate)",
-        OFFSET (burst_bits), AV_OPT_TYPE_INT64, { .i64 = 0  }, 0, INT64_MAX, .flags = E
-    },
-    {
-        "localport",
-        "Local port",
-        OFFSET (local_port
+    new LibAVUtil.Int64Option () {
+        name = "bitrate",
+        short_help_text = "Bits to send per second",
+        offsetof (
+            UDPContext,
+            bitrate
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        D|E
-    },
-    {
-        "local_port",
-        "Local port",
-        OFFSET (local_port
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
-    },
-    {
-        "localaddr",
-        "Local address",
-        OFFSET (localaddr
-        ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, //  .flags = D|E
-    },
-    {
-        "udplite_coverage",
-        "choose UDPLite head size which should be validated by checksum",
-        OFFSET (udplite_coverage
-        ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        D|E
+        int64.MAX,
+        .flags =
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "pkt_size",
-        "Maximum UDP packet size",
-        OFFSET (pkt_size
+    new LibAVUtil.Int64Option () {
+        name = "burst_bits",
+        short_help_text = "Max length of bursts in bits (when using bitrate)",
+        offsetof (
+            UDPContext,
+            burst_bits
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 1472 }, -1,
-        INT_MAX,
-        .flags = D|E
-    },
-    {
-        "reuse",
-        "explicitly allow reusing UDP sockets",
-        OFFSET (reuse_socket
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = -1 }, -1, 1, D|E
-    },
-    {
-        "reuse_socket",
-        "explicitly allow reusing UDP sockets",
-        OFFSET (reuse_socket
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = -1 }, -1, 1, //  .flags = D|E
-    },
-    {
-        "broadcast",
-        "explicitly allow or disallow broadcast destination",
-        OFFSET (is_broadcast
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0  }, 0, 1, E
-    },
-    {
-        "ttl",
-        "Time to live (multicast only)",
-        OFFSET (ttl
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 16 }, 0,
-        INT_MAX,
-        E
-    },
-    {
-        "connect",
-        "set if connect () should be called on socket",
-        OFFSET (is_connected
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, //  .flags = D|E
-    },
-    {
-        "fifo_size",
-        "set the UDP receiving circular buffer size, expressed as a number of packets with size of 188 bytes",
-        OFFSET (circular_buffer_size
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 7*4096}, 0,
-        INT_MAX,
-        D
-    },
-    {
-        "overrun_nonfatal",
-        "survive in case of UDP receiving circular buffer overrun",
-        OFFSET (overrun_nonfatal
-        ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, D
+        0,
+        int64.MAX,
+        .flags =
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "timeout",
-        "set raise error timeout (only in read mode)",
-        OFFSET (timeout
+    new LibAVUtil.IntOption () {
+        name = "localport",
+        short_help_text = "Local port",
+        offsetof (
+            UDPContext,
+            local_port
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0 }, 0,
-        INT_MAX,
-        D
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "sources",
-        "Source list",
-        OFFSET (sources
+    new LibAVUtil.IntOption () {
+        name = "local_port",
+        short_help_text = "Local port",
+        offsetof (
+            UDPContext,
+            local_port
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, //  .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "block",
-        "Block list",
-        OFFSET (block
+    new LibAVUtil.StringOption () {
+        name = "localaddr",
+        short_help_text = "Local address",
+        offsetof (
+            UDPContext,
+            localaddr
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, //  .flags = D|E
+        {
+            .str = NULL
+        },
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.IntOption () {
+        name = "udplite_coverage",
+        short_help_text = "choose UDPLite head size which should be validated by checksum",
+        offsetof (
+            UDPContext,
+            udplite_coverage
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.IntOption () {
+        name = "pkt_size",
+        short_help_text = "Maximum UDP packet size",
+        offsetof (
+            UDPContext,
+            pkt_size
+        ),
+        {
+            .i64 = 1472
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.BoolOption () {
+        name = "reuse",
+        short_help_text = "explicitly allow reusing UDP sockets",
+        offsetof (
+            UDPContext,
+            reuse_socket
+        ),
+        {
+            .i64 = -1
+        },
+        -1,
+        1,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.BoolOption () {
+        name = "reuse_socket",
+        short_help_text = "explicitly allow reusing UDP sockets",
+        offsetof (
+            UDPContext,
+            reuse_socket
+        ),
+        {
+            .i64 = -1
+        },
+        -1,
+        1,
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.BoolOption () {
+        name = "broadcast",
+        short_help_text = "explicitly allow or disallow broadcast destination",
+        offsetof (
+            UDPContext,
+            is_broadcast
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.IntOption () {
+        name = "ttl",
+        short_help_text = "Time to live (multicast only)",
+        offsetof (
+            UDPContext,
+            ttl
+        ),
+        {
+            .i64 = 16
+        },
+        0,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.BoolOption () {
+        name = "connect",
+        short_help_text = "set if connect () should be called on socket",
+        offsetof (
+            UDPContext,
+            is_connected
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.IntOption () {
+        name = "fifo_size",
+        short_help_text = "set the UDP receiving circular buffer size, expressed as a number of packets with size of 188 bytes",
+        offsetof (
+            UDPContext,
+            circular_buffer_size
+        ),
+        {
+            .i64 = 7*4096
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "overrun_nonfatal",
+        short_help_text = "survive in case of UDP receiving circular buffer overrun",
+        offsetof (
+            UDPContext,
+            overrun_nonfatal
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "timeout",
+        short_help_text = "set raise error timeout (only in read mode)",
+        offsetof (
+            UDPContext,
+            timeout
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "sources",
+        short_help_text = "Source list",
+        offsetof (
+            UDPContext,
+            sources
+        ),
+        {
+            .str = NULL
+        },
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.StringOption () {
+        name = "block",
+        short_help_text = "Block list",
+        offsetof (
+            UDPContext,
+            block
+        ),
+        {
+            .str = NULL
+        },
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
     {
         NULL

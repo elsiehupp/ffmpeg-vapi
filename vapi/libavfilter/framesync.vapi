@@ -391,7 +391,7 @@ public int ff_framesync_dualinput_get_writable (
 //      .item_name = av_default_item_name, \
 //      .option = name##_options, \
 //      .version = LIBAVUTIL_VERSION_INT, \
-//      .category = AV_CLASS_CATEGORY_FILTER, \
+//      .category = LibAVUtil.ClassCategory.FILTER, \
 //      .child_class_next = name##_child_class_next, \
 //      .child_next = name##_child_next, \
 //  }

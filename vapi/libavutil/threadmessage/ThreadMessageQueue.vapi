@@ -18,7 +18,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVUtil {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/threadmessage.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavutil/threadmessage.h")]
 public delegate void ThreadMessageFreeDelegate (
     void *msg
 );
@@ -76,7 +76,7 @@ public class ThreadMessageQueue {
     @brief Set the sending error code.
 
     If the error code is set to non-zero, av_thread_message_queue_send () will
-    return it immediately. Conventional values, such as AVERROR_EOF or
+    return it immediately. Conventional values, such as LibAVUtil.ErrorCode.END_OF_FILE or
     LibAVUtil.ErrorCode (EAGAIN), can be used to cause the sending thread to stop or
     suspend its operation.
     ***********************************************************/
@@ -91,7 +91,7 @@ public class ThreadMessageQueue {
 
     If the error code is set to non-zero, av_thread_message_queue_recv () will
     return it immediately when there are no longer available messages.
-    Conventional values, such as AVERROR_EOF or LibAVUtil.ErrorCode (EAGAIN), can be used
+    Conventional values, such as LibAVUtil.ErrorCode.END_OF_FILE or LibAVUtil.ErrorCode (EAGAIN), can be used
     to cause the receiving thread to stop or suspend its operation.
     ***********************************************************/
     [CCode (cname="av_thread_message_queue_set_err_recv",cheader_filename="subprojects/ffmpeg/libavutil/threadmessage.h")]

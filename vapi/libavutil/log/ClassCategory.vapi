@@ -21,30 +21,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+[CCode (cprefix="AV_CLASS_CATEGORY_",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public enum ClassCategory {
-    AV_CLASS_CATEGORY_NA,
-    AV_CLASS_CATEGORY_INPUT,
-    AV_CLASS_CATEGORY_OUTPUT,
-    AV_CLASS_CATEGORY_MUXER,
-    AV_CLASS_CATEGORY_DEMUXER,
-    AV_CLASS_CATEGORY_ENCODER,
-    AV_CLASS_CATEGORY_DECODER,
-    AV_CLASS_CATEGORY_FILTER,
-    AV_CLASS_CATEGORY_BITSTREAM_FILTER,
-    AV_CLASS_CATEGORY_SWSCALER,
-    AV_CLASS_CATEGORY_SWRESAMPLER,
-    AV_CLASS_CATEGORY_DEVICE_VIDEO_OUTPUT,
-    AV_CLASS_CATEGORY_DEVICE_VIDEO_INPUT,
-    AV_CLASS_CATEGORY_DEVICE_AUDIO_OUTPUT,
-    AV_CLASS_CATEGORY_DEVICE_AUDIO_INPUT,
-    AV_CLASS_CATEGORY_DEVICE_OUTPUT,
-    AV_CLASS_CATEGORY_DEVICE_INPUT;
+    [CCode (cname="AV_CLASS_CATEGORY_NA")]
+    NOT_APPLICABLE,
+    INPUT,
+    OUTPUT,
+    MUXER,
+    DEMUXER,
+    ENCODER,
+    DECODER,
+    FILTER,
+    BITSTREAM_FILTER,
+
+    [CCode (cname="AV_CLASS_CATEGORY_SWSCALER")]
+    SOFTWARE_SCALER,
+    SOFTWARE_ESAMPLER,
+    DEVICE_VIDEO_OUTPUT,
+    DEVICE_VIDEO_INPUT,
+    DEVICE_AUDIO_OUTPUT,
+    DEVICE_AUDIO_INPUT,
+    DEVICE_OUTPUT,
+    DEVICE_INPUT;
 
     /***********************************************************
     @brief Not part of ABI/API
     ***********************************************************/
-    //  AV_CLASS_CATEGORY_NB
+    //  LibAVUtil.ClassCategory.NB
 
     [CCode (cname="AV_IS_INPUT_DEVICE",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
     public static bool av_is_input_device (

@@ -76,6 +76,7 @@ public class RC4Context {
         uint8[] initialization_vector,
         int decrypt
     );
+
 }
 
 } // namespace LibAVUtil.Crypto

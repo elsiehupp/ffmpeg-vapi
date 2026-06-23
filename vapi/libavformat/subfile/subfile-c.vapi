@@ -21,19 +21,34 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-//  #define OFFSET (field) offsetof (SubfileContext, field)
-//  #define D AV_OPT_FLAG_DECODING_PARAM
-
 static const LibAVUtil.Option subfile_options[] = {
-    {
-        "start",
-        "start offset",
-        OFFSET (start), AV_OPT_TYPE_INT64, { .i64 = 0}, 0, INT64_MAX, D
+    new LibAVUtil.Int64Option () {
+        name = "start",
+        short_help_text = "start offset",
+        offsetof (
+            SubfileContext,
+            start
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        int64.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "end",
-        "end offset",
-        OFFSET (end), AV_OPT_TYPE_INT64, { .i64 = 0}, 0, INT64_MAX, D
+    new LibAVUtil.Int64Option () {
+        name = "end",
+        short_help_text = "end offset",
+        offsetof (
+            SubfileContext,
+            end
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        int64.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -41,7 +56,7 @@ static const LibAVUtil.Option subfile_options[] = {
 }
 
 //  #undef OFFSET
-//  #undef D
+//  #undef LibAVUtil.OptionFlags.DECODING_PARAM
 
 [CCode (cname="subfile_class",cheader_filename="")]
 public class SubFileURLProtocolClass : LibAVUtil.Class {

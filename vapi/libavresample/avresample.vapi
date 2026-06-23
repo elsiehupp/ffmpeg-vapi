@@ -669,8 +669,8 @@ avresample_convert () with NULL input or call avresample_read ().
 
 If the AVAudioResampleContext configuration does not match the output and
 input AVFrame settings the conversion does not take place and depending on
-which AVFrame is not matching AVERROR_OUTPUT_CHANGED, AVERROR_INPUT_CHANGED
-or AVERROR_OUTPUT_CHANGED|AVERROR_INPUT_CHANGED is returned.
+which AVFrame is not matching LibAVUtil.ErrorCode.OUTPUT_CHANGED, LibAVUtil.ErrorCode.INPUT_CHANGED
+or LibAVUtil.ErrorCode.OUTPUT_CHANGED|LibAVUtil.ErrorCode.INPUT_CHANGED is returned.
 
 @see avresample_get_out_samples ()
 @see avresample_available ()

@@ -28,53 +28,68 @@ chunk, followed by data chunks where each Cluster is written out as a Chunk.
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (WebMChunkContext, x)
 static const LibAVUtil.Option options[] = {
-    {
-        "chunk_start_index",
-        "start index of the chunk",
-        OFFSET (chunk_start_index
+    new LibAVUtil.IntOption () {
+        name = "chunk_start_index",
+        short_help_text = "start index of the chunk",
+        offsetof (
+            WebMChunkContext,
+            chunk_start_index
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "header",
-        "filename of the header where the initialization data will be written",
-        OFFSET (header_filename
+    new LibAVUtil.StringOption () {
+        name = "header",
+        short_help_text = "filename of the header where the initialization data will be written",
+        offsetof (
+            WebMChunkContext,
+            header_filename
         ),
-        AV_OPT_TYPE_STRING,
-        { 0 }, 0, 0, AV_OPT_FLAG_ENCODING_PARAM
+        {
+            0
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "audio_chunk_duration",
-        "duration of each chunk in milliseconds",
-        OFFSET (chunk_duration
+    new LibAVUtil.IntOption () {
+        name = "audio_chunk_duration",
+        short_help_text = "duration of each chunk in milliseconds",
+        offsetof (
+            WebMChunkContext,
+            chunk_duration
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 5000}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM
+        {
+            .i64 = 5000
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "method",
-        "set the HTTP method",
-        OFFSET (http_method
+    new LibAVUtil.StringOption () {
+        name = "method",
+        short_help_text = "set the HTTP method",
+        offsetof (
+            WebMChunkContext,
+            http_method
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        0, 0, AV_OPT_FLAG_ENCODING_PARAM
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 #if CONFIG_WEBM_CHUNK_MUXER
 

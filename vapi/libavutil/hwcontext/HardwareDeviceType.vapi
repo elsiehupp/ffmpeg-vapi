@@ -18,29 +18,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
+[CCode (cprefix="AV_HWDEVICE_TYPE_",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 public enum HardwareDeviceType {
-    AV_HWDEVICE_TYPE_NONE,
-    AV_HWDEVICE_TYPE_VDPAU,
-    AV_HWDEVICE_TYPE_CUDA,
-    AV_HWDEVICE_TYPE_VAAPI,
-    AV_HWDEVICE_TYPE_DXVA2,
-    AV_HWDEVICE_TYPE_QSV,
-    AV_HWDEVICE_TYPE_VIDEOTOOLBOX,
-    AV_HWDEVICE_TYPE_D3D11VA,
-    AV_HWDEVICE_TYPE_DRM,
-    AV_HWDEVICE_TYPE_OPENCL,
-    AV_HWDEVICE_TYPE_MEDIACODEC;
+    NONE,
+    VDPAU,
+    CUDA,
+    VAAPI,
+    DXVA2,
+    QSV,
+
+    [CCode (cname="AV_HWDEVICE_TYPE_D3D11VA")]
+    DIRECT3D_11_VA,
+
+    [CCode (cname="AV_HWDEVICE_TYPE_MEDIACODEC")]
+    MEDIA_CODEC;
 
     /***********************************************************
     @brief Look up an HardwareDeviceType by name.
 
     @param name String name of the device type (case-insensitive).
-    @return The type from enum HardwareDeviceType, or AV_HWDEVICE_TYPE_NONE if
+    @return The type from enum HardwareDeviceType, or LibAVUtil.HardwareDeviceType.NONE if
         not found.
     ***********************************************************/
     [CCode (cname="av_hwdevice_find_type_by_name",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
-    public static HardwareDeviceType av_hwdevice_find_type_by_name (
+    public static HardwareDeviceType find_type_by_name (
         string name
     );
 
@@ -52,20 +53,20 @@ public enum HardwareDeviceType {
         is not valid.
     ***********************************************************/
     [CCode (cname="av_hwdevice_get_type_name",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
-    public static string av_hwdevice_get_type_name (
+    public static string get_type_name (
         HardwareDeviceType type
     );
 
     /***********************************************************
     @brief Iterate over supported device types.
 
-    @param type AV_HWDEVICE_TYPE_NONE initially, then the previous type
+    @param type LibAVUtil.HardwareDeviceType.NONE initially, then the previous type
         returned by this function in subsequent iterations.
     @return The next usable device type from enum HardwareDeviceType, or
-        AV_HWDEVICE_TYPE_NONE if there are no more.
+        NONE if there are no more.
     ***********************************************************/
     [CCode (cname="av_hwdevice_iterate_types",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
-    public static HardwareDeviceType av_hwdevice_iterate_types (
+    public static HardwareDeviceType iterate_types (
         HardwareDeviceType prev
     );
 

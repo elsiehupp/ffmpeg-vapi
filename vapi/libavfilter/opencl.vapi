@@ -68,7 +68,7 @@ public define CL_SET_KERNEL_ARG (
 //  {
 //      cle = clSetKernelArg (kernel, arg_num, sizeof (type), arg);
 //      if (cle != CL_SUCCESS) {
-//          av_log (avctx, AV_LOG_ERROR, "Failed to set kernel "
+//          av_log (avctx, LogLevel.ERROR, "Failed to set kernel "
 //                 "argument %d: error %d.\n", arg_num, cle);
 //          err = AVERROR (EIO);
 //          goto fail;
@@ -86,7 +86,7 @@ public define CL_FAIL_ON_ERROR (
 );
 //  {
 //      if (cle != CL_SUCCESS) {
-//          av_log (avctx, AV_LOG_ERROR, __VA_ARGS__);
+//          av_log (avctx, LogLevel.ERROR, __VA_ARGS__);
 //          err = errcode;
 //          goto fail;
 //      }
@@ -103,7 +103,7 @@ public define CL_RELEASE_KERNEL (
 //      if (k) {
 //          cle = clReleaseKernel (k);
 //          if (cle != CL_SUCCESS)
-//              av_log (avctx, AV_LOG_ERROR, "Failed to release "
+//              av_log (avctx, LogLevel.ERROR, "Failed to release "
 //                     "OpenCL kernel: %d.\n", cle);
 //      }
 //  }
@@ -119,7 +119,7 @@ public define CL_RELEASE_MEMORY (
 //      if (m) {
 //          cle = clReleaseMemObject (m);
 //          if (cle != CL_SUCCESS)
-//              av_log (avctx, AV_LOG_ERROR, "Failed to release "
+//              av_log (avctx, LogLevel.ERROR, "Failed to release "
 //                     "OpenCL memory: %d.\n", cle);
 //      }
 //  }
@@ -135,7 +135,7 @@ public define CL_RELEASE_QUEUE (
 //      if (q) {
 //          cle = clReleaseCommandQueue (q);
 //          if (cle != CL_SUCCESS)
-//              av_log (avctx, AV_LOG_ERROR, "Failed to release "
+//              av_log (avctx, LogLevel.ERROR, "Failed to release "
 //                     "OpenCL command queue: %d.\n", cle);
 //      }
 //  }

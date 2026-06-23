@@ -154,8 +154,8 @@ const CodecTags ff_mkv_codec_tags[] = {
     },
     {
         "A_WAVPACK4",
-        LibAVCodec.CodecID.WAVPACK},
-
+        LibAVCodec.CodecID.WAVPACK
+    },
     {
         "D_WEBVTT/SUBTITLES",
         LibAVCodec.CodecID.WEBVTT
@@ -170,8 +170,8 @@ const CodecTags ff_mkv_codec_tags[] = {
     },
     {
         "D_WEBVTT/METADATA",
-        LibAVCodec.CodecID.WEBVTT},
-
+        LibAVCodec.CodecID.WEBVTT
+    },
     {
         "S_TEXT/UTF8",
         LibAVCodec.CodecID.SUBRIP
@@ -214,8 +214,8 @@ const CodecTags ff_mkv_codec_tags[] = {
     },
     {
         "S_HDMV/TEXTST",
-        LibAVCodec.CodecID.HDMV_TEXT_SUBTITLE},
-
+        LibAVCodec.CodecID.HDMV_TEXT_SUBTITLE
+    },
     {
         "V_AV1",
         LibAVCodec.CodecID.AV1
@@ -302,8 +302,8 @@ const CodecTags ff_mkv_codec_tags[] = {
     },
     {
         "V_VP9",
-        LibAVCodec.CodecID.VP9},
-
+        LibAVCodec.CodecID.VP9
+    },
     {
         "",
         LibAVCodec.CodecID.NONE}
@@ -320,16 +320,16 @@ const CodecTags ff_webm_codec_tags[] = {
     },
     {
         "V_AV1",
-        LibAVCodec.CodecID.AV1},
-
+        LibAVCodec.CodecID.AV1
+    },
     {
         "A_VORBIS",
         LibAVCodec.CodecID.VORBIS
     },
     {
         "A_OPUS",
-        LibAVCodec.CodecID.OPUS},
-
+        LibAVCodec.CodecID.OPUS
+    },
     {
         "D_WEBVTT/SUBTITLES",
         LibAVCodec.CodecID.WEBVTT
@@ -344,8 +344,8 @@ const CodecTags ff_webm_codec_tags[] = {
     },
     {
         "D_WEBVTT/METADATA",
-        LibAVCodec.CodecID.WEBVTT},
-
+        LibAVCodec.CodecID.WEBVTT
+    },
     {
         "",
         LibAVCodec.CodecID.NONE}
@@ -366,8 +366,8 @@ const CodecMime ff_mkv_image_mime_tags[] = {
     },
     {
         "image/tiff",
-        LibAVCodec.CodecID.TIFF},
-
+        LibAVCodec.CodecID.TIFF
+    },
     {
         "",
         LibAVCodec.CodecID.NONE
@@ -394,8 +394,8 @@ const CodecMime ff_mkv_mime_tags[] = {
     },
     {
         "binary",
-        LibAVCodec.CodecID.BIN_DATA},
-
+        LibAVCodec.CodecID.BIN_DATA
+    },
     {
         "",
         LibAVCodec.CodecID.NONE

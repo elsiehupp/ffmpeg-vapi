@@ -74,6 +74,7 @@ public class SoXDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

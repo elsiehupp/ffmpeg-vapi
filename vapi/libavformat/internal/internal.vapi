@@ -43,20 +43,20 @@ public define hex_dump_debug (
     void *size
 );
 //  #ifdef DEBUG
-//  av_hex_dump_log (class, AV_LOG_DEBUG, buffer, size)
+//  av_hex_dump_log (class, LogLevel.DEBUG, buffer, size)
 //  #else
 //  {
-//      if (0) av_hex_dump_log (class, AV_LOG_DEBUG, buffer, size);
+//      if (0) av_hex_dump_log (class, LogLevel.DEBUG, buffer, size);
 //  }
 //  #endif
 
 [CCode (cname="struct AVCodecTag",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 [Compact]
 public class AVCodecTag {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
-    public LibAVCodec.CodecID id;
+    [CCode (cname="id",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
+    public LibAVCodec.CodecID codec_id;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
+    [CCode (cname="tag",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
     public uint tag;
 }
 
@@ -753,7 +753,7 @@ public int ff_framehash_write_header (
 
 @param format_context media file handle
 @param packet is filled
-@return 0 if OK, AVERROR_xxx on error
+@return 0 if OK, LibAVUtil.ErrorCode.xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_read_packet (
@@ -918,7 +918,7 @@ which is always set to 0.
 Previously allocated extradata in par will be freed.
 
 @param size size of extradata
-@return 0 if OK, AVERROR_xxx on error
+@return 0 if OK, LibAVUtil.ErrorCode.xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_alloc_extradata (
@@ -931,7 +931,7 @@ public int ff_alloc_extradata (
 which is always set to 0 and fill it from pb.
 
 @param size size of extradata
-@return >= 0 if OK, AVERROR_xxx on error
+@return >= 0 if OK, LibAVUtil.ErrorCode.xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_get_extradata (
@@ -945,7 +945,7 @@ public int ff_get_extradata (
 @brief Add frame for rfps calculation.
 
 @param dts timestamp of the i-th frame
-@return 0 if OK, AVERROR_xxx on error
+@return 0 if OK, LibAVUtil.ErrorCode.xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_rfps_add_frame (

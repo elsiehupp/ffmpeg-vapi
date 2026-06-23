@@ -23,64 +23,78 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (NUTContext, x)
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "syncpoints",
-        "NUT syncpoint behaviour",
-        OFFSET (flags
+    new LibAVUtil.FlagsOption () {
+        name = "syncpoints",
+        short_help_text = "NUT syncpoint behaviour",
+        offsetof (
+            NUTContext,
+            flags
         ),
-        AV_OPT_TYPE_FLAGS,
         {
-            .i64 = 0},
-        INT_MIN,
-        INT_MAX,
-        E, "syncpoints"
+            .i64 = 0
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "syncpoints"
     },
-    {
-        "default",
-        "",
+    new LibAVUtil.ConstOption () {
+        name = "default",
+        short_help_text = "",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = 0},
-        INT_MIN,
-        INT_MAX,
-        E, "syncpoints"
+            .i64 = 0
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "syncpoints"
     },
-    {
-        "none",
-        "Disable syncpoints, low overhead and unseekable",
+    new LibAVUtil.ConstOption () {
+        name = "none",
+        short_help_text = "Disable syncpoints,
+        low overhead and unseekable",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = NUT_PIPE},
-        INT_MIN,
-        INT_MAX,
-        E, "syncpoints"
+            .i64 = NUT_PIPE
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "syncpoints"
     },
-    {
-        "timestamped",
-        "Extend syncpoints with a wallclock timestamp",
+    new LibAVUtil.ConstOption () {
+        name = "timestamped",
+        short_help_text = "Extend syncpoints with a wallclock timestamp",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = NUT_BROADCAST},
-        INT_MIN,
-        INT_MAX,
-        E, "syncpoints"
+            .i64 = NUT_BROADCAST
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "syncpoints"
     },
-    {
-        "write_index",
-        "Write index",
-        OFFSET (write_index
+    new LibAVUtil.BoolOption () {
+        name = "write_index",
+        short_help_text = "Write index",
+        offsetof (
+            NUTContext,
+            write_index
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, 0, 1, E, },
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="class",cheader_filename="ffmpeg/libformat/nutenc.c")]
 public class NUTMuxerClass : LibAVUtil.Class {
@@ -215,7 +229,15 @@ public class NUTMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = ff_nut_codec_tags,
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return ff_nut_codec_tags;
+        }
+
+    }
+
     //  .priv_class = class;
 }
 

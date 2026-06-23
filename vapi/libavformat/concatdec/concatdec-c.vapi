@@ -22,35 +22,48 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (ConcatContext, x)
-public define DEC AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "safe",
-        "enable safe mode",
-      OFFSET (safe
+    new LibAVUtil.BoolOption () {
+        name = "safe",
+        short_help_text = "enable safe mode",
+        offsetof (
+            ConcatContext,
+            safe
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, -1, 1, DEC
+        {
+            .i64 = 1
+        },
+        -1,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "auto_convert",
-        "automatically convert bitstream format",
-      OFFSET (auto_convert
+    new LibAVUtil.BoolOption () {
+        name = "auto_convert",
+        short_help_text = "automatically convert bitstream format",
+        offsetof (
+            ConcatContext,
+            auto_convert
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, 0, 1, DEC
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "segment_time_metadata",
-        "output file segment start time and duration as packet metadata",
-      OFFSET (segment_time_metadata
+    new LibAVUtil.BoolOption () {
+        name = "segment_time_metadata",
+        short_help_text = "output file segment start time and duration as packet metadata",
+        offsetof (
+            ConcatContext,
+            segment_time_metadata
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, DEC
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

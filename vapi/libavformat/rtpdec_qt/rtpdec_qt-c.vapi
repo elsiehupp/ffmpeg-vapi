@@ -72,9 +72,9 @@ namespace LibAVFormat {
 //      );
 //  }
 
-//  RTP_QT_HANDLER (qt, vid, "X-QT", AVMEDIA_TYPE_VIDEO);
-//  RTP_QT_HANDLER (qt, aud, "X-QT", AVMEDIA_TYPE_AUDIO);
-//  RTP_QT_HANDLER (quicktime, vid, "X-QUICKTIME", AVMEDIA_TYPE_VIDEO);
-//  RTP_QT_HANDLER (quicktime, aud, "X-QUICKTIME", AVMEDIA_TYPE_AUDIO);
+//  RTP_QT_HANDLER (qt, vid, "X-QT", LibAVUtil.MediaType.VIDEO);
+//  RTP_QT_HANDLER (qt, aud, "X-QT", LibAVUtil.MediaType.AUDIO);
+//  RTP_QT_HANDLER (quicktime, vid, "X-QUICKTIME", LibAVUtil.MediaType.VIDEO);
+//  RTP_QT_HANDLER (quicktime, aud, "X-QUICKTIME", LibAVUtil.MediaType.AUDIO);
 
 } // namespace LibAVFormat

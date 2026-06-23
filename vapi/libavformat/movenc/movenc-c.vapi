@@ -25,1028 +25,1087 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option options[] = {
-    {
-        "movflags",
-        "MOV muxer flags",
+    new LibAVUtil.FlagsOption () {
+        name = "movflags",
+        short_help_text = "MOV muxer flags",
         offsetof (
             MOVMuxContext,
-        flags
+            flags
         ),
-        AV_OPT_TYPE_FLAGS,
         {
             .i64 = 0
+
         },
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "rtphint",
-        "Add RTP hint tracks",
+    new LibAVUtil.ConstOption () {
+        name = "rtphint",
+        short_help_text = "Add RTP hint tracks",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = FF_MOV_FLAG_RTP_HINT
+
         },
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "moov_size",
-        "maximum moov size so it can be placed at the begin",
+    new LibAVUtil.IntOption () {
+        name = "moov_size",
+        short_help_text = "maximum moov size so it can be placed at the begin",
         offsetof (
             MOVMuxContext,
-        reserved_moov_size
+            reserved_moov_size
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
-        0 },
-    {
-        "empty_moov",
-        "Make the initial moov atom empty",
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        0
+    },
+    new LibAVUtil.ConstOption () {
+        name = "empty_moov",
+        short_help_text = "Make the initial moov atom empty",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = FF_MOV_FLAG_EMPTY_MOOV
+
         },
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "frag_keyframe",
-        "Fragment at video keyframes",
+    new LibAVUtil.ConstOption () {
+        name = "frag_keyframe",
+        short_help_text = "Fragment at video keyframes",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = FF_MOV_FLAG_FRAG_KEYFRAME
+
         },
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "frag_every_frame",
-        "Fragment at every frame",
+    new LibAVUtil.ConstOption () {
+        name = "frag_every_frame",
+        short_help_text = "Fragment at every frame",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = FF_MOV_FLAG_FRAG_EVERY_FRAME
+
         },
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "separate_moof",
-        "Write separate moof/mdat atoms for each track",
+    new LibAVUtil.ConstOption () {
+        name = "separate_moof",
+        short_help_text = "Write separate moof/mdat atoms for each track",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = FF_MOV_FLAG_SEPARATE_MOOF
+
         },
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "frag_custom",
-        "Flush fragments on caller requests",
+    new LibAVUtil.ConstOption () {
+        name = "frag_custom",
+        short_help_text = "Flush fragments on caller requests",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = FF_MOV_FLAG_FRAG_CUSTOM
+
         },
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "isml",
-        "Create a live smooth streaming feed (for pushing to a publishing point)",
+    new LibAVUtil.ConstOption () {
+        name = "isml",
+        short_help_text = "Create a live smooth streaming feed (for pushing to a publishing point)",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = FF_MOV_FLAG_ISML
+
         },
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "faststart",
-        "Run a second pass to put the index (moov atom) at the beginning of the file",
+    new LibAVUtil.ConstOption () {
+        name = "faststart",
+        short_help_text = "Run a second pass to put the index (moov atom) at the beginning of the file",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = FF_MOV_FLAG_FASTSTART
+
         },
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "omit_tfhd_offset",
-        "Omit the base data offset in tfhd atoms",
+    new LibAVUtil.ConstOption () {
+        name = "omit_tfhd_offset",
+        short_help_text = "Omit the base data offset in tfhd atoms",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_OMIT_TFHD_OFFSET},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_OMIT_TFHD_OFFSET
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "disable_chpl",
-        "Disable Nero chapter atom",
+    new LibAVUtil.ConstOption () {
+        name = "disable_chpl",
+        short_help_text = "Disable Nero chapter atom",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_DISABLE_CHPL},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_DISABLE_CHPL
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "default_base_moof",
-        "Set the default-base-is-moof flag in tfhd atoms",
+    new LibAVUtil.ConstOption () {
+        name = "default_base_moof",
+        short_help_text = "Set the default-base-is-moof flag in tfhd atoms",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_DEFAULT_BASE_MOOF},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_DEFAULT_BASE_MOOF
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "dash",
-        "Write DASH compatible fragmented MP4",
+    new LibAVUtil.ConstOption () {
+        name = "dash",
+        short_help_text = "Write DASH compatible fragmented MP4",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_DASH},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_DASH
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "frag_discont",
-        "Signal that the next fragment is discontinuous from earlier ones",
+    new LibAVUtil.ConstOption () {
+        name = "frag_discont",
+        short_help_text = "Signal that the next fragment is discontinuous from earlier ones",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_FRAG_DISCONT},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_FRAG_DISCONT
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "delay_moov",
-        "Delay writing the initial moov until the first fragment is cut, or until the first fragment flush",
+    new LibAVUtil.ConstOption () {
+        name = "delay_moov",
+        short_help_text = "Delay writing the initial moov until the first fragment is cut, or until the first fragment flush",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_DELAY_MOOV},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_DELAY_MOOV
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "global_sidx",
-        "Write a global sidx index at the start of the file",
+    new LibAVUtil.ConstOption () {
+        name = "global_sidx",
+        short_help_text = "Write a global sidx index at the start of the file",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_GLOBAL_SIDX},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_GLOBAL_SIDX
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "skip_sidx",
-        "Skip writing of sidx atom",
+    new LibAVUtil.ConstOption () {
+        name = "skip_sidx",
+        short_help_text = "Skip writing of sidx atom",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_SKIP_SIDX},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_SKIP_SIDX
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "write_colr",
-        "Write colr atom (Experimental, may be renamed or changed, do not use from scripts)",
+    new LibAVUtil.ConstOption () {
+        name = "write_colr",
+        short_help_text = "Write colr atom (Experimental, may be renamed or changed, do not use from scripts)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_WRITE_COLR},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_WRITE_COLR
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "write_gama",
-        "Write deprecated gama atom",
+    new LibAVUtil.ConstOption () {
+        name = "write_gama",
+        short_help_text = "Write deprecated gama atom",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_WRITE_GAMA},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_WRITE_GAMA
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "use_metadata_tags",
-        "Use mdta atom for metadata.",
+    new LibAVUtil.ConstOption () {
+        name = "use_metadata_tags",
+        short_help_text = "Use mdta atom for metadata.",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_USE_MDTA},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_USE_MDTA
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "skip_trailer",
-        "Skip writing the mfra/tfra/mfro trailer for fragmented files",
+    new LibAVUtil.ConstOption () {
+        name = "skip_trailer",
+        short_help_text = "Skip writing the mfra/tfra/mfro trailer for fragmented files",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_SKIP_TRAILER},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
+            .i64 = FF_MOV_FLAG_SKIP_TRAILER
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "movflags"
     },
-    {
-        "negative_cts_offsets",
-        "Use negative CTS offsets (reducing the need for edit lists)",
+    new LibAVUtil.ConstOption () {
+        name = "negative_cts_offsets",
+        short_help_text = "Use negative CTS offsets (reducing the need for edit lists)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = FF_MOV_FLAG_NEGATIVE_CTS_OFFSETS},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM,
-        "movflags" },
-    FF_RTP_FLAG_OPTS (MOVMuxContext, rtp_flags),
-    {
-        "skip_iods",
-        "Skip writing iods atom.",
+            .i64 = FF_MOV_FLAG_NEGATIVE_CTS_OFFSETS
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "movflags"
+    },
+    FF_RTP_FLAG_OPTS (
+        MOVMuxContext,
+        rtp_flags
+    ),
+    new LibAVUtil.BoolOption () {
+        name = "skip_iods",
+        short_help_text = "Skip writing iods atom.",
         offsetof (
             MOVMuxContext,
             iods_skip
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "iods_audio_profile",
-        "iods audio profile atom.",
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "iods_audio_profile",
+        short_help_text = "iods audio profile atom.",
         offsetof (
             MOVMuxContext,
             iods_audio_profile
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
         255,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "iods_video_profile",
-        "iods video profile atom.",
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "iods_video_profile",
+        short_help_text = "iods video profile atom.",
         offsetof (
             MOVMuxContext,
             iods_video_profile
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
         255,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "frag_duration",
-        "Maximum fragment duration",
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "frag_duration",
+        short_help_text = "Maximum fragment duration",
         offsetof (
             MOVMuxContext,
             max_fragment_duration
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "min_frag_duration",
-        "Minimum fragment duration",
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "min_frag_duration",
+        short_help_text = "Minimum fragment duration",
         offsetof (
             MOVMuxContext,
             min_fragment_duration
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "frag_size",
-        "Maximum fragment size",
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "frag_size",
+        short_help_text = "Maximum fragment size",
         offsetof (
             MOVMuxContext,
             max_fragment_size
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "ism_lookahead",
-        "Number of lookahead entries for ISM files",
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "ism_lookahead",
+        short_help_text = "Number of lookahead entries for ISM files",
         offsetof (
             MOVMuxContext,
             ism_lookahead
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "video_track_timescale",
-        "set timescale of all video tracks",
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "video_track_timescale",
+        short_help_text = "set timescale of all video tracks",
         offsetof (
             MOVMuxContext,
             video_track_timescale
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "brand",
-        "Override major brand",
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "brand",
+        short_help_text = "Override major brand",
         offsetof (
             MOVMuxContext,
             major_brand
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        .flags = AV_OPT_FLAG_ENCODING_PARAM
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "use_editlist",
-        "use edit list",
+    new LibAVUtil.BoolOption () {
+        name = "use_editlist",
+        short_help_text = "use edit list",
         offsetof (
             MOVMuxContext,
             use_editlist
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = -1
         },
         -1,
-        1, AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "fragment_index",
-        "Fragment number of the next fragment",
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "fragment_index",
+        short_help_text = "Fragment number of the next fragment",
         offsetof (
             MOVMuxContext,
             fragments
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 1}, 1,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "mov_gamma",
-        "gamma value for gama atom",
+        {
+            .i64 = 1
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.FloatOption () {
+        name = "mov_gamma",
+        short_help_text = "gamma value for gama atom",
         offsetof (
             MOVMuxContext,
-            gamma), AV_OPT_TYPE_FLOAT, {.dbl = 0.0 }, 0.0, 10, AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "frag_interleave",
-        "Interleave samples within fragments (max number of consecutive samples, lower is tighter interleaving, but with more overhead)",
+            gamma
+        ),
+        {
+            .dbl = 0.0
+        },
+        0.0,
+        10,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "frag_interleave",
+        short_help_text = "Interleave samples within fragments (max number of consecutive samples, lower is tighter interleaving, but with more overhead)",
         offsetof (
             MOVMuxContext,
             frag_interleave
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "encryption_scheme",
-        "Configures the encryption scheme, allowed values are none, cenc-aes-ctr",
+    new LibAVUtil.StringOption () {
+        name = "encryption_scheme",
+        short_help_text = "Configures the encryption scheme, allowed values are none, cenc-aes-ctr",
         offsetof (
             MOVMuxContext,
             encryption_scheme_str
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
-        .flags = AV_OPT_FLAG_ENCODING_PARAM
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "encryption_key",
-        "The media encryption key (hex)",
+    new LibAVUtil.BinaryOption () {
+        name = "encryption_key",
+        short_help_text = "The media encryption key (hex)",
         offsetof (
             MOVMuxContext,
-            encryption_key), AV_OPT_TYPE_BINARY, .flags = AV_OPT_FLAG_ENCODING_PARAM
+            encryption_key
+        ),
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "encryption_kid",
-        "The media encryption key identifier (hex)",
+    new LibAVUtil.BinaryOption () {
+        name = "encryption_kid",
+        short_help_text = "The media encryption key identifier (hex)",
         offsetof (
             MOVMuxContext,
-            encryption_kid), AV_OPT_TYPE_BINARY, .flags = AV_OPT_FLAG_ENCODING_PARAM
+            encryption_kid
+        ),
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "use_stream_ids_as_track_ids",
-        "use stream ids as track ids",
+    new LibAVUtil.BoolOption () {
+        name = "use_stream_ids_as_track_ids",
+        short_help_text = "use stream ids as track ids",
         offsetof (
             MOVMuxContext,
             use_stream_ids_as_track_ids
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "write_tmcd",
-        "force or disable writing tmcd",
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "write_tmcd",
+        short_help_text = "force or disable writing tmcd",
         offsetof (
             MOVMuxContext,
             write_tmcd
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = -1
         },
         -1,
-        1, AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "write_prft",
-        "Write producer reference time box with specified time source",
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "write_prft",
+        short_help_text = "Write producer reference time box with specified time source",
         offsetof (
             MOVMuxContext,
             write_prft
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = MOV_PRFT_NONE}, 0, MOV_PRFT_NB-1, AV_OPT_FLAG_ENCODING_PARAM, "prft"
+        {
+            .i64 = MOV_PRFT_NONE
+        },
+        0,
+        MOV_PRFT_NB-1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "prft"
     },
-    {
-        "wallclock", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = MOV_PRFT_SRC_WALLCLOCK}, 0, 0, AV_OPT_FLAG_ENCODING_PARAM, "prft"
+    new LibAVUtil.ConstOption () {
+        name = "wallclock",
+        NULL,
+        0,
+        {
+            .i64 = MOV_PRFT_SRC_WALLCLOCK
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "prft"
     },
-    {
-        "pts", NULL, 0, AV_OPT_TYPE_CONST, { .i64 = MOV_PRFT_SRC_PTS}, 0, 0, AV_OPT_FLAG_ENCODING_PARAM, "prft"
+    new LibAVUtil.ConstOption () {
+        name = "pts",
+        NULL,
+        0,
+        {
+            .i64 = MOV_PRFT_SRC_PTS
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "prft"
     },
-    {
-        "empty_hdlr_name",
-        "write zero-length name string in hdlr atoms within mdia and minf atoms",
+    new LibAVUtil.BoolOption () {
+        name = "empty_hdlr_name",
+        short_help_text = "write zero-length name string in hdlr atoms within mdia and minf atoms",
         offsetof (
             MOVMuxContext,
             empty_hdlr_name
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, AV_OPT_FLAG_ENCODING_PARAM},
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 static const AVCodecTag codec_3gp_tags[] = {
-    {
-        LibAVCodec.CodecID.H263,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.H263,
+        tag = MKTAG (
             's',
             '2',
             '6',
             '3'
         )
     },
-    {
-        LibAVCodec.CodecID.H264,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.H264,
+        tag = MKTAG (
             'a',
             'v',
             'c',
             '1'
         )
     },
-    {
-        LibAVCodec.CodecID.MPEG4,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MPEG4,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'v'
         )
     },
-    {
-        LibAVCodec.CodecID.AAC,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AAC,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.AMR_NB,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AMR_NB,
+        tag = MKTAG (
             's',
             'a',
             'm',
             'r'
         )
     },
-    {
-        LibAVCodec.CodecID.AMR_WB,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AMR_WB,
+        tag = MKTAG (
             's',
             'a',
             'w',
             'b'
         )
     },
-    {
-        LibAVCodec.CodecID.MOV_TEXT,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MOV_TEXT,
+        tag = MKTAG (
             't',
             'x',
             '3',
             'g'
         )
     },
-    {
-        LibAVCodec.CodecID.NONE,
-        0
-    };
-}
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.NONE,
+        tag = 0
+    }
+
+};
 
 const AVCodecTag codec_mp4_tags[] = {
-    {
-        LibAVCodec.CodecID.MPEG4,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MPEG4,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'v'
         )
     },
-    {
-        LibAVCodec.CodecID.H264,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.H264,
+        tag = MKTAG (
             'a',
             'v',
             'c',
             '1'
         )
     },
-    {
-        LibAVCodec.CodecID.H264,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.H264,
+        tag = MKTAG (
             'a',
             'v',
             'c',
             '3'
         )
     },
-    {
-        LibAVCodec.CodecID.HEVC,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.HEVC,
+        tag = MKTAG (
             'h',
             'e',
             'v',
             '1'
         )
     },
-    {
-        LibAVCodec.CodecID.HEVC,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.HEVC,
+        tag = MKTAG (
             'h',
             'v',
             'c',
             '1'
         )
     },
-    {
-        LibAVCodec.CodecID.MPEG2VIDEO,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MPEG2VIDEO,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'v'
         )
     },
-    {
-        LibAVCodec.CodecID.MPEG1VIDEO,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MPEG1VIDEO,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'v'
         )
     },
-    {
-        LibAVCodec.CodecID.MJPEG,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MJPEG,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'v'
         )
     },
-    {
-        LibAVCodec.CodecID.PNG,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.PNG,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'v'
         )
     },
-    {
-        LibAVCodec.CodecID.JPEG2000,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.JPEG2000,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'v'
         )
     },
-    {
-        LibAVCodec.CodecID.VC1,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.VC1,
+        tag = MKTAG (
             'v',
             'c',
             '-',
             '1'
         )
     },
-    {
-        LibAVCodec.CodecID.DIRAC,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.DIRAC,
+        tag = MKTAG (
             'd',
             'r',
             'a',
             'c'
         )
     },
-    {
-        LibAVCodec.CodecID.TSCC2,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.TSCC2,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'v'
         )
     },
-    {
-        LibAVCodec.CodecID.VP9,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.VP9,
+        tag = MKTAG (
             'v',
             'p',
             '0',
             '9'
         )
     },
-    {
-        LibAVCodec.CodecID.AV1,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AV1,
+        tag = MKTAG (
             'a',
             'v',
             '0',
             '1'
         )
     },
-    {
-        LibAVCodec.CodecID.AAC,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AAC,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.MP4ALS,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MP4ALS,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.MP3,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MP3,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.MP2,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MP2,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.AC3,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AC3,
+        tag = MKTAG (
             'a',
             'c',
             '-',
             '3'
         )
     },
-    {
-        LibAVCodec.CodecID.EAC3,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.EAC3,
+        tag = MKTAG (
             'e',
             'c',
             '-',
             '3'
         )
     },
-    {
-        LibAVCodec.CodecID.DTS,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.DTS,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.FLAC,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.FLAC,
+        tag = MKTAG (
             'f',
             'L',
             'a',
             'C'
         )
     },
-    {
-        LibAVCodec.CodecID.OPUS,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.OPUS,
+        tag = MKTAG (
             'O',
             'p',
             'u',
             's'
         )
     },
-    {
-        LibAVCodec.CodecID.VORBIS,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.VORBIS,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.QCELP,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.QCELP,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.EVRC,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.EVRC,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.DVD_SUBTITLE,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.DVD_SUBTITLE,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             's'
         )
     },
-    {
-        LibAVCodec.CodecID.MOV_TEXT,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MOV_TEXT,
+        tag = MKTAG (
             't',
             'x',
             '3',
             'g'
         )
     },
-    {
-        LibAVCodec.CodecID.BIN_DATA,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.BIN_DATA,
+        tag = MKTAG (
             'g',
             'p',
             'm',
             'd'
         )
     },
-    {
-        LibAVCodec.CodecID.NONE,
-        0
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.NONE,
+        tag = 0
     }
-}
+
+};
 
 const AVCodecTag codec_ism_tags[] = {
-    {
-        LibAVCodec.CodecID.WMAPRO,
-        MKTAG (,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.WMAPRO,
+        tag = MKTAG (
             'w',
             'm',
             'a',
             ' '
         )
     },
-    {
-        LibAVCodec.CodecID.NONE,
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.NONE,
         0
-    };
-}
+    }
+
+};
 
 static const AVCodecTag codec_ipod_tags[] = {
-    {
-        LibAVCodec.CodecID.H264,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.H264,
+        tag = MKTAG (
             'a',
             'v',
             'c',
             '1'
         )
     },
-    {
-        LibAVCodec.CodecID.MPEG4,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MPEG4,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'v'
         )
     },
-    {
-        LibAVCodec.CodecID.AAC,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AAC,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.ALAC,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.ALAC,
+        tag = MKTAG (
             'a',
             'l',
             'a',
             'c'
         )
     },
-    {
-        LibAVCodec.CodecID.AC3,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AC3,
+        tag = MKTAG (
             'a',
             'c',
             '-',
             '3'
         )
     },
-    {
-        LibAVCodec.CodecID.MOV_TEXT,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MOV_TEXT,
+        tag = MKTAG (
             't',
             'x',
             '3',
             'g'
         )
     },
-    {
-        LibAVCodec.CodecID.MOV_TEXT,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MOV_TEXT,
+        tag = MKTAG (
             't',
             'e',
             'x',
             't'
         )
     },
-    {
-        LibAVCodec.CodecID.NONE,
-        0 };
-}
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.NONE,
+        tag = 0
+    }
+
+};
 
 static const AVCodecTag codec_f4v_tags[] = {
-    {
-        LibAVCodec.CodecID.MP3,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.MP3,
+        tag = MKTAG (
             '.',
             'm',
             'p',
             '3'
         )
     },
-    {
-        LibAVCodec.CodecID.AAC,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.AAC,
+        tag = MKTAG (
             'm',
             'p',
             '4',
             'a'
         )
     },
-    {
-        LibAVCodec.CodecID.H264,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.H264,
+        tag = MKTAG (
             'a',
             'v',
             'c',
             '1'
         )
     },
-    {
-        LibAVCodec.CodecID.VP6A,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.VP6A,
+        tag = MKTAG (
             'V',
             'P',
             '6',
             'A'
         )
     },
-    {
-        LibAVCodec.CodecID.VP6F,
-        MKTAG (
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.VP6F,
+        tag = MKTAG (
             'V',
             'P',
             '6',
             'F'
         )
     },
-    {
-        LibAVCodec.CodecID.NONE,
-        0 };
-}
+    new AVCodecTag () {
+        codec_id = LibAVCodec.CodecID.NONE,
+        tag = 0
+    }
+
+};
 
 #if CONFIG_MOV_MUXER
 
@@ -1174,9 +1233,20 @@ public class MOVMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){
-    //      ff_codec_movvideo_tags, ff_codec_movaudio_tags, ff_codec_movsubtitle_tags, 0
-    //  },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_movvideo_tags,
+                ff_codec_movaudio_tags,
+                ff_codec_movsubtitle_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
     public override int check_bitstream (
@@ -1313,7 +1383,18 @@ public class TGPMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){ codec_3gp_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_3gp_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
     public override int check_bitstream (
@@ -1459,7 +1540,18 @@ public class MP4Muxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){ codec_mp4_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_mp4_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
     public override int check_bitstream (
@@ -1596,7 +1688,18 @@ public class PSPMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){ codec_mp4_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_mp4_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
     public override int check_bitstream (
@@ -1733,7 +1836,18 @@ public class TG2Muxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){ codec_3gp_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_3gp_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
     public override int check_bitstream (
@@ -1879,7 +1993,18 @@ public class IPodMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){ codec_ipod_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_ipod_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
     public override int check_bitstream (
@@ -2025,8 +2150,19 @@ public class ISMVMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){
-    //      codec_mp4_tags, codec_ism_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_mp4_tags,
+                codec_ism_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
     public override int check_bitstream (
@@ -2172,7 +2308,18 @@ public class F4VMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){ codec_f4v_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_f4v_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
     public override int check_bitstream (

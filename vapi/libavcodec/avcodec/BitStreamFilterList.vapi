@@ -110,6 +110,7 @@ public class BitStreamFilterList {
         BitStreamFilterList lst,
         BitStreamFilterContext bsf
     );
+
 }
 
 } // namespace LibAVCodec

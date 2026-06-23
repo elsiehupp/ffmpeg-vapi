@@ -31,7 +31,7 @@ namespace LibAVUtil {
 ***********************************************************/
 //  #define av_assert0 (cond) do {
 //      if (!(cond)) {
-//        av_log (null, AV_LOG_PANIC, "Assertion %s failed at %s:%d\n",
+//        av_log (null, LogLevel.PANIC, "Assertion %s failed at %s:%d\n",
 //        AV_STRINGIFY (cond), __FILE__, __LINE__);
 //        abort ();
 //      }

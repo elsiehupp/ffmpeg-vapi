@@ -156,6 +156,7 @@ public class DiracSequenceHeader {
         uint8[] buffer, size_t buf_size,
         void *log_ctx
     );
+
 }
 
 } // namespace LibAVCodec

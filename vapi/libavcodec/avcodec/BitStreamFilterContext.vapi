@@ -155,7 +155,7 @@ public class BitStreamFilterContext {
 
     After sending each packet, the filter must be completely drained by calling
     av_bsf_receive_packet () repeatedly until it returns LibAVUtil.ErrorCode (EAGAIN) or
-    AVERROR_EOF.
+    LibAVUtil.ErrorCode.END_OF_FILE.
 
     @param packet the packet to filter. The bitstream filter will take ownership of
     the packet and reset the contents of packet. packet is not touched if an error occurs.
@@ -185,7 +185,7 @@ public class BitStreamFilterContext {
         touched.
 
     @return 0 on success. LibAVUtil.ErrorCode (EAGAIN) if more packets need to be sent to the
-    filter (using av_bsf_send_packet ()) to get more output. AVERROR_EOF if there
+    filter (using av_bsf_send_packet ()) to get more output. LibAVUtil.ErrorCode.END_OF_FILE if there
     will be no further output from the filter. Another negative LibAVUtil.ErrorCode value if
     an error occurs.
 

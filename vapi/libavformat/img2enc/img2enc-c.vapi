@@ -24,54 +24,82 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (VideoMuxData, x)
-public define ENC AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option muxoptions[] = {
-    {
-        "update",
-        "continuously overwrite one file",
-        OFFSET (update
+    new LibAVUtil.BoolOption () {
+        name = "update",
+        short_help_text = "continuously overwrite one file",
+        offsetof (
+            VideoMuxData,
+            update
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, ENC
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "start_number",
+        short_help_text = "set first number in the sequence",
+        offsetof (
+            VideoMuxData,
+            img_number
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "strftime",
+        short_help_text = "use strftime for filename",
+        offsetof (
+            VideoMuxData,
+            use_strftime
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "frame_pts",
+        short_help_text = "use current frame pts for filename",
+        offsetof (
+            VideoMuxData,
+            frame_pts
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "atomic_writing",
+        short_help_text = "write files atomically (using temporary files and renames)",
+        offsetof (
+            VideoMuxData,
+            use_rename
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        "start_number",
-        "set first number in the sequence",
-        OFFSET (img_number
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 1 }, 0,
-        INT_MAX,
-        ENC
-    },
-    {
-        "strftime",
-        "use strftime for filename",
-        OFFSET (use_strftime
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, ENC
-    },
-    {
-        "frame_pts",
-        "use current frame pts for filename",
-        OFFSET (frame_pts
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, ENC
-    },
-    {
-        "atomic_writing",
-        "write files atomically (using temporary files and renames)",
-        OFFSET (use_rename
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, ENC
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 #if CONFIG_IMAGE2_MUXER
 

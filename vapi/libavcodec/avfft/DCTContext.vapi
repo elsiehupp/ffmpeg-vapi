@@ -62,6 +62,7 @@ public class DCTContext {
     public void av_dct_end (
         DCTContext dct_context
     );
+
 }
 
 } // namespace LibAVCodec

@@ -28,31 +28,48 @@ namespace LibAVFormat {
 /*@{*/
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (URLContext,x)
-public define E AV_OPT_FLAG_ENCODING_PARAM
-public define D AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "protocol_whitelist",
-        "List of protocols that are allowed to be used",
-        OFFSET (protocol_whitelist
-        ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, CHAR_MIN, CHAR_MAX, D
-    },
-    {
-        "protocol_blacklist",
-        "List of protocols that are not allowed to be used",
-        OFFSET (protocol_blacklist
-        ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, CHAR_MIN, CHAR_MAX, D
-    },
-    {
-        "rw_timeout",
-        "Timeout for IO operations (in microseconds)",
+    new LibAVUtil.StringOption () {
+        name = "protocol_whitelist",
+        short_help_text = "List of protocols that are allowed to be used",
         offsetof (
-            URLContext, rw_timeout), AV_OPT_TYPE_INT64, { .i64 = 0 }, 0, INT64_MAX, AV_OPT_FLAG_ENCODING_PARAM | AV_OPT_FLAG_DECODING_PARAM
+            URLContext,
+            protocol_whitelist
+        ),
+        {
+            .str = NULL
+        },
+        CHAR_MIN,
+        CHAR_MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "protocol_blacklist",
+        short_help_text = "List of protocols that are not allowed to be used",
+        offsetof (
+            URLContext,
+            protocol_blacklist
+        ),
+        {
+            .str = NULL
+        },
+        CHAR_MIN,
+        CHAR_MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.Int64Option () {
+        name = "rw_timeout",
+        short_help_text = "Timeout for IO operations (in microseconds)",
+        offsetof (
+            URLContext,
+            rw_timeout
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        int64.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM | LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -91,6 +108,7 @@ public class URLContextClass : LibAVUtil.Class {
     public override LibAVUtil.Class child_class_next (
         LibAVUtil.Class prev
     );
+
 }
 /*@}*/
 

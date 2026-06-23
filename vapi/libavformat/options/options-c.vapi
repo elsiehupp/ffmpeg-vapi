@@ -57,12 +57,13 @@ public class AVFormatContextClass : LibAVUtil.Class {
     public override LibAVUtil.Class child_class_next (
         LibAVUtil.Class prev
     );
-    //  .category = AV_CLASS_CATEGORY_MUXER,
+    //  .category = LibAVUtil.ClassCategory.MUXER,
 
     [CCode (cname="get_category",cheader_filename="")]
     public override LibAVUtil.ClassCategory get_category (
         void *class_context
     );
+
 }
 
 } // namespace LibAVFormat

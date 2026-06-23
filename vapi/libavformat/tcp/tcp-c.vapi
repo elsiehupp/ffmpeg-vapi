@@ -23,75 +23,150 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (TCPContext, x)
-public define D AV_OPT_FLAG_DECODING_PARAM
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "listen",
-        "Listen for incoming connections",
-        OFFSET (listen
+    new LibAVUtil.IntOption () {
+        name = "listen",
+        short_help_text = "Listen for incoming connections",
+        offsetof (
+            TCPContext,
+            listen
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0 }, 0, 2, //  .flags = D|E
+        {
+            .i64 = 0
+        },
+        0,
+        2,
+        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "timeout",
-        "set timeout (in microseconds) of socket I/O operations",
-        OFFSET (rw_timeout
+    new LibAVUtil.IntOption () {
+        name = "timeout",
+        short_help_text = "set timeout (in microseconds) of socket I/O operations",
+        offsetof (
+            TCPContext,
+            rw_timeout
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "listen_timeout",
-        "Connection awaiting timeout (in milliseconds)",
-        OFFSET (listen_timeout
+    new LibAVUtil.IntOption () {
+        name = "listen_timeout",
+        short_help_text = "Connection awaiting timeout (in milliseconds)",
+        offsetof (
+            TCPContext,
+            listen_timeout
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "send_buffer_size",
-        "Socket send buffer size (in bytes)",
-        OFFSET (send_buffer_size
+    new LibAVUtil.IntOption () {
+        name = "send_buffer_size",
+        short_help_text = "Socket send buffer size (in bytes)",
+        offsetof (
+            TCPContext,
+            send_buffer_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "recv_buffer_size",
-        "Socket receive buffer size (in bytes)",
-        OFFSET (recv_buffer_size
+    new LibAVUtil.IntOption () {
+        name = "recv_buffer_size",
+        short_help_text = "Socket receive buffer size (in bytes)",
+        offsetof (
+            TCPContext,
+            recv_buffer_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "tcp_nodelay",
-        "Use TCP_NODELAY to disable nagle's algorithm",
-        OFFSET (tcp_nodelay
+    new LibAVUtil.BoolOption () {
+        name = "tcp_nodelay",
+        short_help_text = "Use TCP_NODELAY to disable nagle's algorithm",
+        offsetof (
+            TCPContext,
+            tcp_nodelay
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, .flags = D|E },
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        ) },
 #if !HAVE_WINSOCK2_H
-    {
-        "tcp_mss",
-        "Maximum segment size for outgoing TCP packets",
-        OFFSET (tcp_mss
+    new LibAVUtil.IntOption () {
+        name = "tcp_mss",
+        short_help_text = "Maximum segment size for outgoing TCP packets",
+        offsetof (
+            TCPContext,
+            tcp_mss
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = D|E },
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        ) },
 #endif /***********************************************************
 !HAVE_WINSOCK2_H
 ***********************************************************/

@@ -23,18 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option asf_options[] = {
-    {
-        "packet_size",
-        "Packet size",
+    new LibAVUtil.IntOption () {
+        name = "packet_size",
+        short_help_text = "Packet size",
         offsetof (
-            ASFContext, packet_size
+            ASFContext,
+            packet_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 3200}, PACKET_SIZE_MIN, PACKET_SIZE_MAX, AV_OPT_FLAG_ENCODING_PARAM
+        {
+            .i64 = 3200
+        },
+        PACKET_SIZE_MIN,
+        PACKET_SIZE_MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 #if CONFIG_ASF_MUXER
 
@@ -159,9 +166,20 @@ public class AsfMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]) {
-    //      codec_asf_bmp_tags, ff_codec_bmp_tags, ff_codec_wav_tags, 0
-    //  },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_asf_bmp_tags,
+                ff_codec_bmp_tags,
+                ff_codec_wav_tags,
+                0
+            };
+        }
+
+    }
+
     //  .priv_class = asf_muxer_class;
 }
 #endif // CONFIG_ASF_MUXER
@@ -289,9 +307,21 @@ public class AsfStreamMuxer : AVOutputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]) {
-    //      codec_asf_bmp_tags, ff_codec_bmp_tags, ff_codec_wav_tags, 0
-    //  },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                codec_asf_bmp_tags,
+                ff_codec_bmp_tags,
+                ff_codec_wav_tags,
+                0
+            };
+
+        }
+
+    }
+
     //  .priv_class = asf_stream_muxer_class;
 }
 #endif // CONFIG_ASF_STREAM_MUXER

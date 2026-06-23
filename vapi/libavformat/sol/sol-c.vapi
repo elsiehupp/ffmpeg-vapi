@@ -69,6 +69,7 @@ public class SOLDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

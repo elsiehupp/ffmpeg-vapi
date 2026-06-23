@@ -27,7 +27,7 @@ public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -71,7 +71,7 @@ public class MpegVideoDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_VIDEO;
+            return LibAVUtil.MediaType.VIDEO;
 
         }
 

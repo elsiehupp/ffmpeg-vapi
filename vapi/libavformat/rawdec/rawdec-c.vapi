@@ -24,42 +24,61 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (FFRawVideoDemuxerContext, x)
-public define DEC AV_OPT_FLAG_DECODING_PARAM
 const LibAVUtil.Option ff_rawvideo_options[] = {
-    {
-        "framerate",
-        "",
-        OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0,
-        INT_MAX,
-        DEC},
-    {
-        "raw_packet_size",
-        "",
-        OFFSET (raw_packet_size
+    new LibAVUtil.VideoRateOption () {
+        name = "framerate",
+        short_help_text = "",
+        offsetof (
+            FFRawVideoDemuxerContext,
+            framerate
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = RAW_PACKET_SIZE }, 1,
-        INT_MAX,
-        DEC},
+        {
+            .str = "25"
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "raw_packet_size",
+        short_help_text = "",
+        offsetof (
+            FFRawVideoDemuxerContext,
+            raw_packet_size
+        ),
+        {
+            .i64 = RAW_PACKET_SIZE
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
     {
-        NULL };
-}
-#undef OFFSET
-public define OFFSET (x) offsetof (FFRawDemuxerContext, x)
+        NULL
+    }
+
+};
+
 const LibAVUtil.Option ff_raw_options[] = {
-    {
-        "raw_packet_size",
-        "",
-        OFFSET (raw_packet_size
+    new LibAVUtil.IntOption () {
+        name = "raw_packet_size",
+        short_help_text = "",
+        offsetof (
+            FFRawDemuxerContext,
+            raw_packet_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = RAW_PACKET_SIZE }, 1,
-        INT_MAX,
-        DEC},
+        {
+            .i64 = RAW_PACKET_SIZE
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 #if CONFIG_DATA_DEMUXER
 //  FF_RAW_DEMUXER_CLASS (raw_data)

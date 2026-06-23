@@ -112,7 +112,7 @@ public int ff_network_wait_fd_timeout (
 triggered, return before that.
 @param timeout Timeout in microseconds. Maybe have lower actual precision.
 @param int_cb Interrupt callback, is checked regularly.
-@return LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expirted, AVERROR_EXIT if interrupted by int_cb
+@return LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expirted, LibAVUtil.ErrorCode.EXIT if interrupted by int_cb
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
 public int ff_network_sleep_interruptible (

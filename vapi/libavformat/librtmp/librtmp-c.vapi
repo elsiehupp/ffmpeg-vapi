@@ -27,133 +27,251 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (LibRTMPContext, x)
-public define DEC AV_OPT_FLAG_DECODING_PARAM
-public define ENC AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "rtmp_app",
-        "Name of application to connect to on the RTMP server",
-        OFFSET (app
+    new LibAVUtil.StringOption () {
+        name = "rtmp_app",
+        short_help_text = "Name of application to connect to on the RTMP server",
+        offsetof (
+            LibRTMPContext,
+            app
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = NULL }, 0, 0, DEC|ENC},
-    {
-        "rtmp_buffer",
-        "Set buffer time in milliseconds. The default is 3000.",
-        OFFSET (client_buffer_time
-        ),
-        AV_OPT_TYPE_STRING,
-        {.str = "3000"}, 0, 0, DEC|ENC},
-    {
-        "rtmp_conn",
-        "Append arbitrary AMF data to the Connect message",
-        OFFSET (conn
-        ),
-        AV_OPT_TYPE_STRING,
-        {.str = NULL }, 0, 0, DEC|ENC},
-    {
-        "rtmp_flashver",
-        "Version of the Flash plugin used to run the SWF player.",
-        OFFSET (flashver
-        ),
-        AV_OPT_TYPE_STRING,
-        {.str = NULL }, 0, 0, DEC|ENC},
-    {
-        "rtmp_live",
-        "Specify that the media is a live stream.",
-        OFFSET (live
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0},
-        INT_MIN,
-        INT_MAX,
-        DEC, "rtmp_live"
-    },
-    {
-        "any",
-        "both",
-        0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = -2}, 0, 0, DEC, "rtmp_live"
-    },
-    {
-        "live",
-        "live stream",
+            .str = NULL
+        },
         0,
-        AV_OPT_TYPE_CONST,
-        {
-            .i64 = -1}, 0, 0, DEC, "rtmp_live"
-    },
-    {
-        "recorded",
-        "recorded stream",
         0,
-        AV_OPT_TYPE_CONST,
-        {
-            .i64 = 0}, 0, 0, DEC, "rtmp_live"
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
-    {
-        "rtmp_pageurl",
-        "URL of the web page in which the media was embedded. By default no value will be sent.",
-        OFFSET (pageurl
+    new LibAVUtil.StringOption () {
+        name = "rtmp_buffer",
+        short_help_text = "Set buffer time in milliseconds. The default is 3000.",
+        offsetof (
+            LibRTMPContext,
+            client_buffer_time
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = NULL }, 0, 0, DEC},
-    {
-        "rtmp_playpath",
-        "Stream identifier to play or to publish",
-        OFFSET (playpath
+        {
+            .str = "3000"
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.StringOption () {
+        name = "rtmp_conn",
+        short_help_text = "Append arbitrary AMF data to the Connect message",
+        offsetof (
+            LibRTMPContext,
+            conn
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = NULL }, 0, 0, DEC|ENC},
-    {
-        "rtmp_subscribe",
-        "Name of live stream to subscribe to. Defaults to rtmp_playpath.",
-        OFFSET (subscribe
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.StringOption () {
+        name = "rtmp_flashver",
+        short_help_text = "Version of the Flash plugin used to run the SWF player.",
+        offsetof (
+            LibRTMPContext,
+            flashver
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = NULL }, 0, 0, DEC},
-    {
-        "rtmp_swfurl",
-        "URL of the SWF player. By default no value will be sent",
-        OFFSET (swfurl
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.IntOption () {
+        name = "rtmp_live",
+        short_help_text = "Specify that the media is a live stream.",
+        offsetof (
+            LibRTMPContext,
+            live
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = NULL }, 0, 0, DEC|ENC},
-    {
-        "rtmp_swfverify",
-        "URL to player swf file, compute hash/size automatically. (unimplemented)",
-        OFFSET (swfverify
+        {
+            .i64 = 0
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
+        "rtmp_live"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "any",
+        short_help_text = "both",
+        0,
+        {
+            .i64 = -2
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
+        "rtmp_live"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "live",
+        short_help_text = "live stream",
+        0,
+        {
+            .i64 = -1
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
+        "rtmp_live"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "recorded",
+        short_help_text = "recorded stream",
+        0,
+        {
+            .i64 = 0
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
+        "rtmp_live"
+    },
+    new LibAVUtil.StringOption () {
+        name = "rtmp_pageurl",
+        short_help_text = "URL of the web page in which the media was embedded. By default no value will be sent.",
+        offsetof (
+            LibRTMPContext,
+            pageurl
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = NULL }, 0, 0, DEC},
-    {
-        "rtmp_tcurl",
-        "URL of the target stream. Defaults to proto://host[:port]/app.",
-        OFFSET (tcurl
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "rtmp_playpath",
+        short_help_text = "Stream identifier to play or to publish",
+        offsetof (
+            LibRTMPContext,
+            playpath
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = NULL }, 0, 0, DEC|ENC},
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.StringOption () {
+        name = "rtmp_subscribe",
+        short_help_text = "Name of live stream to subscribe to. Defaults to rtmp_playpath.",
+        offsetof (
+            LibRTMPContext,
+            subscribe
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "rtmp_swfurl",
+        short_help_text = "URL of the SWF player. By default no value will be sent",
+        offsetof (
+            LibRTMPContext,
+            swfurl
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.StringOption () {
+        name = "rtmp_swfverify",
+        short_help_text = "URL to player swf file, compute hash/size automatically. (unimplemented)",
+        offsetof (
+            LibRTMPContext,
+            swfverify
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "rtmp_tcurl",
+        short_help_text = "URL of the target stream. Defaults to proto://host[:port]/app.",
+        offsetof (
+            LibRTMPContext,
+            tcurl
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
 #if CONFIG_NETWORK
-    {
-        "rtmp_buffer_size",
-        "set buffer size in bytes",
-        OFFSET (buffer_size
+    new LibAVUtil.IntOption () {
+        name = "rtmp_buffer_size",
+        short_help_text = "set buffer size in bytes",
+        offsetof (
+            LibRTMPContext,
+            buffer_size
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
-        INT_MAX,
-        DEC|ENC },
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        ) },
 #endif
 
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="struct LibRTMPContext",cheader_filename="ffmpeg/libformat/librtmp.c")]
 [Compact]

@@ -27,20 +27,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_WAV_DEMUXER
-public define OFFSET (x) offsetof (WAVDemuxContext, x)
-public define DEC AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option demux_options[] = {
-    {
-        "ignore_length",
-        "Ignore length",
-        OFFSET (ignore_length
+    new LibAVUtil.BoolOption () {
+        name = "ignore_length",
+        short_help_text = "Ignore length",
+        offsetof (
+            WAVDemuxContext,
+            ignore_length
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, DEC
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="wav_demuxer_class",cheader_filename="ffmpeg/libformat/wavdec.c")]
 public class WAVDemuxerClass : LibAVUtil.Class {
@@ -134,7 +140,19 @@ public class WAVDemuxer : AVInputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]) { ff_codec_wav_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_wav_tags,
+                0
+            };
+
+        }
+
+    }
+
     //  .priv_class = wav_demuxer_class;
 }
 #endif // CONFIG_WAV_DEMUXER
@@ -202,7 +220,19 @@ public class Wave64Demuxer : AVInputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]) { ff_codec_wav_tags, 0 };
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_wav_tags,
+                0
+            };
+
+        }
+
+    }
+
 }
 #endif // CONFIG_W64_DEMUXER
 

@@ -97,6 +97,7 @@ public class VC1TestMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
+
 }
 
 } // namespace LibAVFormat

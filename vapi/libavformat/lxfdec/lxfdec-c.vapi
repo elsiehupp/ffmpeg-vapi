@@ -70,7 +70,19 @@ public class LXFDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .codec_tag = (AVCodecTag[]){lxf_tags, 0};
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                lxf_tags,
+                0
+            };
+
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

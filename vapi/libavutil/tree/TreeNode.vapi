@@ -168,6 +168,7 @@ public class TreeNode {
         TreeEnumerateComparisonDelegate cmp,
         TreeEnumerateEnumerationDelegate enu
     );
+
 }
 
 } // namespace LibAVUtil

@@ -23,20 +23,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option options[] = {
-    {
-        "usetoc",
-        "use table of contents",
+    new LibAVUtil.BoolOption () {
+        name = "usetoc",
+        short_help_text = "use table of contents",
         offsetof (
             MP3DecContext, usetoc
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, AV_OPT_FLAG_DECODING_PARAM},
+        0, 1, LibAVUtil.OptionFlags.DECODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/mp3dec.c")]
 public class MP3DemuxerClass : LibAVUtil.Class {
@@ -69,7 +71,7 @@ public class MP3DemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER;
+    //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="struct MP3DecContext",cheader_filename="ffmpeg/libformat/mp3dec.c")]

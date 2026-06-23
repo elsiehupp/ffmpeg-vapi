@@ -30,12 +30,13 @@ namespace LibAVFormat {
     support work with concatdec, hls
 ***********************************************************/
 
-//  #define OFFSET (x) offsetof (Context, x)
-//  #define D AV_OPT_FLAG_DECODING_PARAM
-//  static const LibAVUtil.Option options[] = {
-//      {NULL},
-//  }
-//  #undef D
+static const LibAVUtil.Option options[] = {
+    {
+        NULL
+    }
+
+};
+//  #undef LibAVUtil.OptionFlags.DECODING_PARAM
 //  #undef OFFSET
 
 [CCode (cname="async_context_class",cheader_filename="ffmpeg/libformat/async.c")]
@@ -127,23 +128,27 @@ public class AsyncURLProtocol : URLProtocol {
 #if 0
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (TestContext, x)
-public define D AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option async_test_options[] = {
-    {
-        "async-test-read-error",
-        "cause read fail",
-        OFFSET (opt_read_error
+    new LibAVUtil.IntOption () {
+        name = "async-test-read-error",
+        short_help_text = "cause read fail",
+        offsetof (
+            TestContext,
+            opt_read_error
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0 },
-        INT_MIN,
-        INT_MAX,
-        .flags = D
+        {
+            .i64 = 0
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {NULL};
-}
-#undef D
+    {
+        NULL
+    }
+
+};
+#undef LibAVUtil.OptionFlags.DECODING_PARAM
 #undef OFFSET
 
 [CCode (cname="async_test_context_class",cheader_filename="ffmpeg/libformat/async.c")]

@@ -327,7 +327,7 @@ public void ff_update_link_current_pts (
 Set the status field of a link from the source filter.
 The pts should reflect the timestamp of the status change,
 in link time base and relative to the frames timeline.
-In particular, for AVERROR_EOF, it should reflect the
+In particular, for LibAVUtil.ErrorCode.END_OF_FILE, it should reflect the
 end time of the last frame.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
@@ -476,7 +476,7 @@ use ff_link_set_frame_wanted () instead.
 The input filter may pass the request on to its inputs, fulfill the
 request from an internal buffer or any other means specific to its function.
 
-When the end of a stream is reached AVERROR_EOF is returned and no further
+When the end of a stream is reached LibAVUtil.ErrorCode.END_OF_FILE is returned and no further
 frames are returned after that.
 
 When a filter is unable to output a frame for example due to its sources
@@ -494,7 +494,7 @@ filter is also allowed to simply forward a success return value.
 
 @param link the input link
 @return     zero on success
-            AVERROR_EOF on end of file
+            LibAVUtil.ErrorCode.END_OF_FILE on end of file
             AVERROR (EAGAIN) if the previous filter cannot output a frame
             currently and can neither guarantee that EOF has been reached.
 ***********************************************************/
@@ -512,7 +512,7 @@ public define AVFILTER_DEFINE_CLASS (
 //      .item_name = av_default_item_name,
 //      .option = fname##_options,
 //      .version = LIBAVUTIL_VERSION_INT,
-//      .category = AV_CLASS_CATEGORY_FILTER,
+//      .category = LibAVUtil.ClassCategory.FILTER,
 //  }
 
 /***********************************************************

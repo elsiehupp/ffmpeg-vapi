@@ -43,7 +43,7 @@ public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_VIDEO;
+            return LibAVUtil.MediaType.VIDEO;
 
         }
 
@@ -92,6 +92,7 @@ public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
+
 }
 
 [CCode (cname="ff_vorbis_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
@@ -108,7 +109,7 @@ public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -166,6 +167,7 @@ public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

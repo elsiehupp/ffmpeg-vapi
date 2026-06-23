@@ -79,7 +79,19 @@ public class IRCAMMuxer : AVOutputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .codec_tag = (const AVCodecTag? const []){ ff_codec_ircam_le_tags, 0 };
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_ircam_le_tags,
+                0
+            };
+
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

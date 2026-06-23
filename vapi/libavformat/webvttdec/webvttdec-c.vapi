@@ -26,63 +26,84 @@ namespace LibAVFormat {
 @see http://dev.w3.org/html5/webvtt/
 ***********************************************************/
 
-//  #define OFFSET (x) offsetof (WebVTTContext, x)
-//  #define KIND_FLAGS AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
-
 static const LibAVUtil.Option options[] = {
-    {
-        "kind",
-        "Set kind of WebVTT track",
-        OFFSET (kind
+    new LibAVUtil.IntOption () {
+        name = "kind",
+        short_help_text = "Set kind of WebVTT track",
+        offsetof (
+            WebVTTContext,
+            kind
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0 }, 0,
-        INT_MAX,
-        KIND_FLAGS, "webvtt_kind"
-    },
-    {
-        "subtitles",
-        "WebVTT subtitles kind",
-        0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = 0 },
-        INT_MIN,
-        INT_MAX,
-        KIND_FLAGS, "webvtt_kind"
-    },
-    {
-        "captions",
-        "WebVTT captions kind",
+            .i64 = 0
+        },
         0,
-        AV_OPT_TYPE_CONST,
-        {
-            .i64 = AV_DISPOSITION_CAPTIONS },
-        INT_MIN,
-        INT_MAX,
-        KIND_FLAGS, "webvtt_kind"
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        ),
+        "webvtt_kind"
     },
-    {
-        "descriptions",
-        "WebVTT descriptions kind",
+    new LibAVUtil.ConstOption () {
+        name = "subtitles",
+        short_help_text = "WebVTT subtitles kind",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_DISPOSITION_DESCRIPTIONS },
-        INT_MIN,
-        INT_MAX,
-        KIND_FLAGS, "webvtt_kind"
+            .i64 = 0
+        },
+        int.MIN,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        ),
+        "webvtt_kind"
     },
-    {
-        "metadata",
-        "WebVTT metadata kind",
+    new LibAVUtil.ConstOption () {
+        name = "captions",
+        short_help_text = "WebVTT captions kind",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = AV_DISPOSITION_METADATA },
-        INT_MIN,
-        INT_MAX,
-        KIND_FLAGS, "webvtt_kind"
+            .i64 = AV_DISPOSITION_CAPTIONS
+        },
+        int.MIN,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        ),
+        "webvtt_kind"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "descriptions",
+        short_help_text = "WebVTT descriptions kind",
+        0,
+        {
+            .i64 = AV_DISPOSITION_DESCRIPTIONS
+        },
+        int.MIN,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        ),
+        "webvtt_kind"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "metadata",
+        short_help_text = "WebVTT metadata kind",
+        0,
+        {
+            .i64 = AV_DISPOSITION_METADATA
+        },
+        int.MIN,
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        ),
+        "webvtt_kind"
     },
     {
         NULL

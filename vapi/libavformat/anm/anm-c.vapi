@@ -73,6 +73,7 @@ public class ANMDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
 }
 
 } // namespace LibAVFormat

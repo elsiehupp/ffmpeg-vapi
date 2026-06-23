@@ -30,6 +30,7 @@ public enum BufferFlags {
     @brief Always treat the buffer as read-only, even when it has only one
     reference.
     ***********************************************************/
+    [CCode (cname="")]
     AV_BUFFER_FLAG_READONLY;
 }
 

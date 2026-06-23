@@ -32,40 +32,74 @@ namespace LibAVFormat {
 public class FLVDemuxerClassPrivateData { }
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (FLVContext, x)
-public define VD AV_OPT_FLAG_VIDEO_PARAM | AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "flv_metadata",
-        "Allocate streams according to the onMetaData array",
-        OFFSET (trust_metadata
+    new LibAVUtil.BoolOption () {
+        name = "flv_metadata",
+        short_help_text = "Allocate streams according to the onMetaData array",
+        offsetof (
+            FLVContext,
+            trust_metadata
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, VD
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
     },
-    {
-        "flv_full_metadata",
-        "Dump full metadata of the onMetadata",
-        OFFSET (dump_full_metadata
+    new LibAVUtil.BoolOption () {
+        name = "flv_full_metadata",
+        short_help_text = "Dump full metadata of the onMetadata",
+        offsetof (
+            FLVContext,
+            dump_full_metadata
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, VD
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
     },
-    {
-        "flv_ignore_prevtag",
-        "Ignore the Size of previous tag",
-        OFFSET (trust_datasize
+    new LibAVUtil.BoolOption () {
+        name = "flv_ignore_prevtag",
+        short_help_text = "Ignore the Size of previous tag",
+        offsetof (
+            FLVContext,
+            trust_datasize
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, VD
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
     },
-    {
-        "missing_streams",
-        "",
-        OFFSET (missing_streams
+    new LibAVUtil.IntOption () {
+        name = "missing_streams",
+        short_help_text = "",
+        offsetof (
+            FLVContext,
+            missing_streams
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0 }, 0, 0xFF, VD | AV_OPT_FLAG_EXPORT | AV_OPT_FLAG_READONLY
+        {
+            .i64 = 0
+        },
+        0,
+        0xFF,
+        (
+            LibAVUtil.OptionFlags.VIDEO_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        ) | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
     },
     {
         NULL

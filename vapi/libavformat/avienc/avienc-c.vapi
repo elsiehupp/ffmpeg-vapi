@@ -23,30 +23,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (AVIContext, x)
-public define ENC AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "reserve_index_space",
-        "reserve space (in bytes) at the beginning of the file for each stream index",
-        OFFSET (reserve_index_space
+    new LibAVUtil.IntOption () {
+        name = "reserve_index_space",
+        short_help_text = "reserve space (in bytes) at the beginning of the file for each stream index",
+        offsetof (
+            AVIContext,
+            reserve_index_space
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0 }, 0,
-        INT_MAX,
-        ENC
+        {
+            .i64 = 0
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "write_channel_mask",
+        short_help_text = "write channel mask into wave format header",
+        offsetof (
+            AVIContext,
+            write_channel_mask
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        "write_channel_mask",
-        "write channel mask into wave format header",
-        OFFSET (write_channel_mask
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1 }, 0, 1, ENC
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="avi_muxer_class",cheader_filename="ffmpeg/libformat/avienc.c")]
 public class AVIMuxerClass : LibAVUtil.Class {
@@ -172,9 +182,20 @@ public class AVIMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (AVCodecTag[]) {
-    //      ff_codec_bmp_tags, ff_codec_wav_tags, 0
-    //  },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return  {
+                ff_codec_bmp_tags,
+                ff_codec_wav_tags,
+                0
+            };
+
+        }
+
+    }
+
     //  .priv_class = avi_muxer_class;
 }
 

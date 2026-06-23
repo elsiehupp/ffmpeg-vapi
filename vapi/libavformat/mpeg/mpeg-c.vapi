@@ -91,14 +91,19 @@ public class MPEGPSDemuxer : AVInputFormat {
 
 #if CONFIG_VOBSUB_DEMUXER
 static const LibAVUtil.Option options[] = {
-    {
-        "sub_name",
-        "URI for .sub file",
+    new LibAVUtil.StringOption () {
+        name = "sub_name",
+        short_help_text = "URI for .sub file",
         offsetof (
-            MpegDemuxContext, sub_name
+            MpegDemuxContext,
+            sub_name
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, 0, 0, AV_OPT_FLAG_DECODING_PARAM
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

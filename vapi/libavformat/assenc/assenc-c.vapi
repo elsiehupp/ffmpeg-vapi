@@ -23,23 +23,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (ASSContext, x)
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "ignore_readorder",
-        "write events immediately, even if they're out-of-order",
-        OFFSET (ignore_readorder
+    new LibAVUtil.BoolOption () {
+        name = "ignore_readorder",
+        short_help_text = "write events immediately, even if they're out-of-order",
+        offsetof (
+            ASSContext,
+            ignore_readorder
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, E
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="ass_class",cheader_filename="ffmpeg/libformat/assenc.c")]
 public class ASSClass : LibAVUtil.Class {

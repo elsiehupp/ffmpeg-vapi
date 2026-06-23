@@ -49,7 +49,7 @@ public delegate int InterruptCallbackDelegate (
 
 /***********************************************************
 @brief Callback for checking whether to abort blocking functions.
-AVERROR_EXIT is returned in this case by the interrupted
+LibAVUtil.ErrorCode.EXIT is returned in this case by the interrupted
 function. During blocking operations, callback is called with
 opaque as parameter. If the callback returns 1, the
 blocking operation will be aborted.

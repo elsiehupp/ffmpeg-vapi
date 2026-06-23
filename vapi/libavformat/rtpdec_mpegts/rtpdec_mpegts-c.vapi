@@ -27,7 +27,7 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_DATA;
+            return LibAVUtil.MediaType.DATA;
 
         }
 

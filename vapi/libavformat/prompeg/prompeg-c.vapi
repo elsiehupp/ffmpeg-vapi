@@ -81,35 +81,48 @@ namespace LibAVFormat {
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ***********************************************************/
 
-//  #define OFFSET (x) offsetof (PrompegContext, x)
-//  #define E AV_OPT_FLAG_ENCODING_PARAM
-
 static const LibAVUtil.Option options[] = {
-    {
-        "ttl",
-        "Time to live (in milliseconds, multicast only)",
-        OFFSET (ttl
+    new LibAVUtil.IntOption () {
+        name = "ttl",
+        short_help_text = "Time to live (in milliseconds, multicast only)",
+        offsetof (
+            PrompegContext,
+            ttl
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = E
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "l",
-        "FEC L",
-        OFFSET (l
+    new LibAVUtil.IntOption () {
+        name = "l",
+        short_help_text = "FEC L",
+        offsetof (
+            PrompegContext,
+            l
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 5 }, 4, 20, .flags = E
+        {
+            .i64 = 5
+        },
+        4,
+        20,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "d",
-        "FEC D",
-        OFFSET (d
+    new LibAVUtil.IntOption () {
+        name = "d",
+        short_help_text = "FEC D",
+        offsetof (
+            PrompegContext,
+            d
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 5 }, 4, 20, .flags = E
+        {
+            .i64 = 5
+        },
+        4,
+        20,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL

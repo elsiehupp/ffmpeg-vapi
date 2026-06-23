@@ -75,6 +75,7 @@ public class PAFDemuxer : AVInputFormat {
     public override int read_close (
         AVFormatContext format_context
     );
+
 }
 
 } // namespace LibAVFormat

@@ -24,20 +24,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (MicroDVDContext, x)
-public define SD AV_OPT_FLAG_SUBTITLE_PARAM|AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option microdvd_options[] = {
-    {
-        "subfps",
-        "set the movie frame rate fallback",
-        OFFSET (frame_rate),
-        AV_OPT_TYPE_RATIONAL,
+    new LibAVUtil.RationalOption () {
+        name = "subfps",
+        short_help_text = "set the movie frame rate fallback",
+        offsetof (
+            MicroDVDContext,
+            frame_rate
+        ),
         {
             .dbl = 0
         },
         0,
-        INT_MAX,
-        SD
+        int.MAX,
+        (
+            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+            LibAVUtil.OptionFlags.DECODING_PARAM
+        )
     },
     {
         NULL

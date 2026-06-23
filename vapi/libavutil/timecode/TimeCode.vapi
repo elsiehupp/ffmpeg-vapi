@@ -185,6 +185,7 @@ public class TimeCode {
     public static int av_timecode_check_frame_rate (
         Rational rate
     );
+
 }
 
 } // namespace LibAVUtil

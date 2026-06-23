@@ -91,6 +91,7 @@ public class G729BitMuxer : AVOutputFormat {
         uint8[] buffer,
         int buf_size
     );
+
 }
 #endif
 

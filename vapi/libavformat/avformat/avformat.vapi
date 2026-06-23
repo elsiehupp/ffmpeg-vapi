@@ -411,7 +411,7 @@ fields with default values.
 @param io_context associated IO context
 @param packet packet
 @param size desired payload size
-@return >0 (read size) if OK, AVERROR_xxx otherwise
+@return >0 (read size) if OK, LibAVUtil.ErrorCode.xxx otherwise
 ***********************************************************/
 [CCode (cname="av_get_packet",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_get_packet (
@@ -432,7 +432,7 @@ the final size.
 @param io_context associated IO context
 @param packet packet
 @param size amount of data to read
-@return >0 (read size) if OK, AVERROR_xxx otherwise, previous data
+@return >0 (read size) if OK, LibAVUtil.ErrorCode.xxx otherwise, previous data
     will not be lost even if an error occurs.
 ***********************************************************/
 [CCode (cname="av_append_packet",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
@@ -675,11 +675,11 @@ public abstract class AVOutputFormat {
     public abstract AVFormatFlags1 flags { public get; }
 
     /***********************************************************
-    @brief List of supported codec_id-codec_tag pairs, ordered by "better
+    @brief List of supported codec_id-codec_tag_list pairs, ordered by "better
     choice first". The arrays are all terminated by LibAVCodec.CodecID.NONE.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-    public abstract AVCodecTag[] codec_tag { public get; }
+    [CCode (cname="codec_tag",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    public abstract AVCodecTag[] codec_tag_list { public get; }
 
 
     /***********************************************************
@@ -858,6 +858,7 @@ public abstract class AVOutputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
 }
 
 /***********************************************************
@@ -902,7 +903,7 @@ public abstract class AVInputFormat {
     public abstract string extensions { public get; }
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-    public AVCodecTag codec_tag;
+    public AVCodecTag codec_tag_list;
 
     /***********************************************************
     @brief LibAVUtil.Class for the private context
@@ -1074,6 +1075,7 @@ public abstract class AVInputFormat {
         AVFormatContext format_context,
         AVDeviceCapabilitiesQuery caps
     );
+
 }
 
 /***********************************************************
@@ -3058,7 +3060,7 @@ examined packets may be buffered for later processing.
                 dictionaries, where i-th member contains options for
                 codec corresponding to i-th stream.
                 On return each dictionary will be filled with options that were not found.
-@return >=0 if OK, AVERROR_xxx on error
+@return >=0 if OK, LibAVUtil.ErrorCode.xxx on error
 
 @note this function isn't guaranteed to open all the codecs, so
       options being non-empty at return is a perfectly normal behavior.
@@ -3114,9 +3116,9 @@ be found are ignored.
                          selected stream
 @param flags flags; none are currently defined
 @return the non-negative stream number in case of success,
-         AVERROR_STREAM_NOT_FOUND if no stream with the requested type
+         LibAVUtil.ErrorCode.STREAM_NOT_FOUND if no stream with the requested type
          could be found,
-         AVERROR_DECODER_NOT_FOUND if streams were found but no decoder
+         LibAVUtil.ErrorCode.DECODER_NOT_FOUND if streams were found but no decoder
 @note If av_find_best_stream returns successfully and decoder_ret is not
        NULL, then decoder_ret is guaranteed to be set to a valid LibAVCodec.Codec.
 ***********************************************************/
@@ -3520,7 +3522,7 @@ file private data.
 May only be called after a successful call to avformat_write_header.
 
 @param format_context media file handle
-@return 0 if OK, AVERROR_xxx on error
+@return 0 if OK, LibAVUtil.ErrorCode.xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_write_trailer (
@@ -3673,8 +3675,8 @@ public void av_pkt_dump_log2 (
 @brief Get the LibAVCodec.CodecID for the given codec tag tag.
 If no codec id is found returns LibAVCodec.CodecID.NONE.
 
-@param tags list of supported codec_id-codec_tag pairs, as stored
-in AVInputFormat.codec_tag and AVOutputFormat.codec_tag
+@param tags list of supported codec_id-codec_tag_list pairs, as stored
+in AVInputFormat.codec_tag_list and AVOutputFormat.codec_tag_list
 @param tag codec tag to match to a codec ID
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
@@ -3687,8 +3689,8 @@ public LibAVCodec.CodecID av_codec_get_id (
 @brief Get the codec tag for the given codec id id.
 If no codec tag is found returns 0.
 
-@param tags list of supported codec_id-codec_tag pairs, as stored
-in AVInputFormat.codec_tag and AVOutputFormat.codec_tag
+@param tags list of supported codec_id-codec_tag_list pairs, as stored
+in AVInputFormat.codec_tag_list and AVOutputFormat.codec_tag_list
 @param id codec ID to match to a codec tag
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
@@ -3700,8 +3702,8 @@ public uint av_codec_get_tag (
 /***********************************************************
 @brief Get the codec tag for the given codec id.
 
-@param tags list of supported codec_id - codec_tag pairs, as stored
-in AVInputFormat.codec_tag and AVOutputFormat.codec_tag
+@param tags list of supported codec_id - codec_tag_list pairs, as stored
+in AVInputFormat.codec_tag_list and AVOutputFormat.codec_tag_list
 @param id codec id that should be searched for in the list
 @param tag A pointer to the found tag
 @return 0 if id was not found in tags, > 0 if it was found
@@ -3871,7 +3873,7 @@ for getting unique dynamic payload types.
 @param buffer buffer where the SDP will be stored (must be allocated by
            the caller)
 @param size the size of the buffer
-@return 0 if OK, AVERROR_xxx on error
+@return 0 if OK, LibAVUtil.ErrorCode.xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_sdp_create (

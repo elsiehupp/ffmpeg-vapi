@@ -27,42 +27,67 @@ namespace LibAVFormat {
 ***********************************************************/
 
 static const LibAVUtil.Option options[] = {
-    {
-        "min_delay",
-        "minimum valid delay between frames (in hundredths of second)",
+    new LibAVUtil.IntOption () {
+        name = "min_delay",
+        short_help_text = "minimum valid delay between frames (in hundredths of second)",
         offsetof (
-            GIFDemuxContext, min_delay
+            GIFDemuxContext,
+            min_delay
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = GIF_MIN_DELAY}, 0, 100 * 60, AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = GIF_MIN_DELAY
+        },
+        0,
+        100 * 60,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "max_gif_delay",
-        "maximum valid delay between frames (in hundredths of seconds)",
+    new LibAVUtil.IntOption () {
+        name = "max_gif_delay",
+        short_help_text = "maximum valid delay between frames (in hundredths of seconds)",
         offsetof (
-            GIFDemuxContext, max_delay
+            GIFDemuxContext,
+            max_delay
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 65535}, 0, 65535, AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = 65535
+        },
+        0,
+        65535,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "default_delay",
-        "default delay between frames (in hundredths of second)",
+    new LibAVUtil.IntOption () {
+        name = "default_delay",
+        short_help_text = "default delay between frames (in hundredths of second)",
         offsetof (
-            GIFDemuxContext, default_delay
+            GIFDemuxContext,
+            default_delay
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = GIF_DEFAULT_DELAY}, 0, 100 * 60, AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = GIF_DEFAULT_DELAY
+        },
+        0,
+        100 * 60,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "ignore_loop",
-        "ignore loop setting (netscape extension)",
+    new LibAVUtil.BoolOption () {
+        name = "ignore_loop",
+        short_help_text = "ignore loop setting (netscape extension)",
         offsetof (
-            GIFDemuxContext, ignore_loop), AV_OPT_TYPE_BOOL,{ .i64 = 1}, 0, 1, AV_OPT_FLAG_DECODING_PARAM
+            GIFDemuxContext,
+            ignore_loop
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/gifdec.c")]
 public class GIFDemuxerClass : LibAVUtil.Class {
@@ -95,7 +120,7 @@ public class GIFDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER;
+    //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="struct GIFDemuxContext",cheader_filename="ffmpeg/libformat/gifdec.c")]

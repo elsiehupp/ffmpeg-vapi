@@ -223,7 +223,7 @@ Get a frame with filtered data from sink and put it in frame.
         - >= 0 if a frame was successfully returned.
         - AVERROR (EAGAIN) if no frames are available at this point; more
           input frames must be added to the filtergraph to get more output.
-        - AVERROR_EOF if there will be no more output frames on this sink.
+        - LibAVUtil.ErrorCode.END_OF_FILE if there will be no more output frames on this sink.
         - A different negative AVERROR code in other failure cases.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]

@@ -26,18 +26,23 @@ namespace LibAVFormat {
 public const string BOUNDARY_TAG; // "ffmpeg"
 
 static const LibAVUtil.Option options[] = {
-    {
-        "boundary_tag",
-        "Boundary tag",
+    new LibAVUtil.StringOption () {
+        name = "boundary_tag",
+        short_help_text = "Boundary tag",
         offsetof (
-            MPJPEGContext, boundary_tag
+            MPJPEGContext,
+            boundary_tag
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = BOUNDARY_TAG}, .flags = AV_OPT_FLAG_ENCODING_PARAM
+        {
+            .str = BOUNDARY_TAG
+        },
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="mpjpeg_muxer_class",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
 public class MultipartJpegMuxerClass : LibAVUtil.Class {

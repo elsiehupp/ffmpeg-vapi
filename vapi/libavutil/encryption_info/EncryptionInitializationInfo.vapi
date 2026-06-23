@@ -123,6 +123,7 @@ public class EncryptionInitializationInfo {
         EncryptionInitializationInfo info,
         out size_t side_data_size
     );
+
 }
 
 } // namespace LibAVUtil

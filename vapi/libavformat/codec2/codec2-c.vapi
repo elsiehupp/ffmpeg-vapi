@@ -26,29 +26,45 @@ namespace LibAVFormat {
 with -frames_per_packet 1000 compared to default, same sha1sum
 ***********************************************************/
 public define FRAMES_PER_PACKET
-    {
-        "frames_per_packet",
-        "Number of frames to read at a time. Higher = faster decoding, lower granularity",
+    new LibAVUtil.IntOption () {
+        name = "frames_per_packet",
+        short_help_text = "Number of frames to read at a time. Higher = faster decoding, lower granularity",
         offsetof (
-            Codec2Context, frames_per_packet
+            Codec2Context,
+            frames_per_packet
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 1}, 1,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM}
+        {
+            .i64 = 1
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    }
+
+};
 
 static const LibAVUtil.Option codec2_options[] = {
     FRAMES_PER_PACKET,
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 static const LibAVUtil.Option codec2raw_options[] = {
-    AVPRIV_CODEC2_AVOPTIONS ("codec2 mode [mandatory]", Codec2Context, -1, -1, AV_OPT_FLAG_DECODING_PARAM),
+    AVPRIV_CODEC2_AVOPTIONS (
+        "codec2 mode [mandatory]",
+        Codec2Context,
+        -1,
+        -1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    ),
     FRAMES_PER_PACKET,
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="codec2_mux_class",cheader_filename="ffmpeg/libformat/codec2.c")]
 public class Codec2MuxerClass : LibAVUtil.Class {
@@ -78,7 +94,7 @@ public class Codec2MuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER;
+    //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="codec2_demux_class",cheader_filename="ffmpeg/libformat/codec2.c")]
@@ -110,7 +126,7 @@ public class Codec2DemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER;
+    //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="codec2raw_demux_class",cheader_filename="ffmpeg/libformat/codec2.c")]
@@ -142,7 +158,7 @@ public class Codec2RawDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER;
+    //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
 #if CONFIG_CODEC2_DEMUXER

@@ -23,32 +23,53 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option options[] = {
-    {
-        "id3v2_version",
-        "Select ID3v2 version to write. Currently 3 and 4 are supported.",
-      offsetof (MP3Context, id3v2_version
+    new LibAVUtil.IntOption () {
+        name = "id3v2_version",
+        short_help_text = "Select ID3v2 version to write. Currently 3 and 4 are supported.",
+        offsetof (
+            MP3Context,
+            id3v2_version
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 4}, 0, 4, AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "write_id3v1",
-        "Enable ID3v1 writing. ID3v1 tags are written in UTF-8 which may not be supported by most software.",
-      offsetof (MP3Context, write_id3v1),
-        AV_OPT_TYPE_BOOL,
+        {
+            .i64 = 4
+        },
+        0,
+        4,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "write_id3v1",
+        short_help_text = "Enable ID3v1 writing. ID3v1 tags are written in UTF-8 which may not be supported by most software.",
+        offsetof (
+            MP3Context,
+            write_id3v1
+        ),
         {
             .i64 = 0
         },
-        0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "write_xing",
-        "Write the Xing header containing file duration.",
-      offsetof (MP3Context, write_xing
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "write_xing",
+        short_help_text = "Write the Xing header containing file duration.",
+        offsetof (
+            MP3Context,
+            write_xing
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="mp3_muxer_class",cheader_filename="ffmpeg/libformat/mp3enc.c")]
 public class MP3MuxerClass : LibAVUtil.Class {

@@ -73,6 +73,7 @@ public class TWOFISHContext {
         uint8[] initialization_vector,
         int decrypt
     );
+
 }
 
 } // namespace LibAVUtil.Crypto

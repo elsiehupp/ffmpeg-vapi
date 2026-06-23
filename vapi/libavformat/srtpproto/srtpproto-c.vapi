@@ -23,44 +23,62 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define D AV_OPT_FLAG_DECODING_PARAM
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "srtp_out_suite",
-        "",
+    new LibAVUtil.StringOption () {
+        name = "srtp_out_suite",
+        short_help_text = "",
         offsetof (
-            SRTPProtoContext, out_suite
+            SRTPProtoContext,
+            out_suite
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, 0, 0, E
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "srtp_out_params",
-        "",
+    new LibAVUtil.StringOption () {
+        name = "srtp_out_params",
+        short_help_text = "",
         offsetof (
-            SRTPProtoContext, out_params
+            SRTPProtoContext,
+            out_params
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, 0, 0, E
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "srtp_in_suite",
-        "",
+    new LibAVUtil.StringOption () {
+        name = "srtp_in_suite",
+        short_help_text = "",
         offsetof (
-            SRTPProtoContext, in_suite
+            SRTPProtoContext,
+            in_suite
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, 0, 0, D
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "srtp_in_params",
-        "",
+    new LibAVUtil.StringOption () {
+        name = "srtp_in_params",
+        short_help_text = "",
         offsetof (
-            SRTPProtoContext, in_params
+            SRTPProtoContext,
+            in_params
         ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, 0, 0, D
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

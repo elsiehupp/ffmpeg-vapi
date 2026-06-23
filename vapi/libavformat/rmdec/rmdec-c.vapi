@@ -116,6 +116,7 @@ public class RealMediaDemuxer : AVInputFormat {
         int64 timestamp,
         int flags
     );
+
 }
 
 [CCode (cname="ff_rdt_demuxer",cheader_filename="ffmpeg/libformat/rmdec.c")]

@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file API-specific header for AV_HWDEVICE_TYPE_DRM.
+@file API-specific header for LibAVUtil.HardwareDeviceType.DRM.
 
 Internal frame allocation is not currently supported - all frames
 must be allocated by the user. Thus HardwareFrameContext is always

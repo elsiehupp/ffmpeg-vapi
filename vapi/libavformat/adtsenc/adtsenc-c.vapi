@@ -23,32 +23,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define ENC AV_OPT_FLAG_ENCODING_PARAM
-public define OFFSET (obj) offsetof (ADTSContext, obj)
 static const LibAVUtil.Option options[] = {
-    {
-        "write_id3v2",
-        "Enable ID3v2 tag writing",
-        OFFSET (id3v2tag
+    new LibAVUtil.BoolOption () {
+        name = "write_id3v2",
+        short_help_text = "Enable ID3v2 tag writing",
+        offsetof (
+            ADTSContext,
+            id3v2tag
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, ENC},
-    {
-        "write_apetag",
-        "Enable APE tag writing",
-        OFFSET (apetag
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "write_apetag",
+        short_help_text = "Enable APE tag writing",
+        offsetof (
+            ADTSContext,
+            apetag
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, ENC},
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="adts_muxer_class",cheader_filename="ffmpeg/libformat/adtsenc.c")]
 public class ADTSMuxerClass : LibAVUtil.Class {

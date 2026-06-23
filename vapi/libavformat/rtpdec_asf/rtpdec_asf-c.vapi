@@ -80,7 +80,7 @@ namespace LibAVFormat {
 //      );
 //  }
 
-//  RTP_ASF_HANDLER (asf_pfv, "x-asf-pf", AVMEDIA_TYPE_VIDEO);
-//  RTP_ASF_HANDLER (asf_pfa, "x-asf-pf", AVMEDIA_TYPE_AUDIO);
+//  RTP_ASF_HANDLER (asf_pfv, "x-asf-pf", LibAVUtil.MediaType.VIDEO);
+//  RTP_ASF_HANDLER (asf_pfa, "x-asf-pf", LibAVUtil.MediaType.AUDIO);
 
 } // namespace LibAVFormat

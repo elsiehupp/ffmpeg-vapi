@@ -22,30 +22,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (AIFFOutputContext, x)
-public define ENC AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "write_id3v2",
-        "Enable ID3 tags writing.",
-        OFFSET (write_id3v2),
-        AV_OPT_TYPE_BOOL,
+    new LibAVUtil.BoolOption () {
+        name = "write_id3v2",
+        short_help_text = "Enable ID3 tags writing.",
+        offsetof (
+            AIFFOutputContext,
+            write_id3v2
+        ),
         {
             .i64 = 0
         },
-        0, 1, ENC
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "id3v2_version",
-        "Select ID3v2 version to write. Currently 3 and 4 are supported.",
-        OFFSET (id3v2_version
+    new LibAVUtil.IntOption () {
+        name = "id3v2_version",
+        short_help_text = "Select ID3v2 version to write. Currently 3 and 4 are supported.",
+        offsetof (
+            AIFFOutputContext,
+            id3v2_version
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 4}, 3, 4, ENC
+        {
+            .i64 = 4
+        },
+        3,
+        4,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="aiff_muxer_class",cheader_filename="ffmpeg/libformat/aiffenc.c")]
 public class AIFFMuxerClass : LibAVUtil.Class {
@@ -162,7 +172,19 @@ public class AIFFMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (AVCodecTag[]){ ff_codec_aiff_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_aiff_tags,
+                0
+            };
+
+        }
+
+    }
+
     //  .priv_class = aiff_muxer_class;
 }
 

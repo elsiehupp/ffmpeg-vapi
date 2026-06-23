@@ -142,7 +142,7 @@ to the string in timestr. If the string represents a duration, it
 is the number of microseconds contained in the time interval. If
 the string is a date, is the number of microseconds since 1st of
 January, 1970 up to the time of the parsed date. If timestr cannot
-be successfully parsed, set time to INT64_MIN.
+be successfully parsed, set time to int64.MIN.
 
 @param timestr a string representing a date or a duration.
 - If a date the syntax is:

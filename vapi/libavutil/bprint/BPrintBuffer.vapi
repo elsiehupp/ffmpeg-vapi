@@ -42,6 +42,7 @@ public class BPrintBuffer {
         int nb_channels,
         uint64 channel_layout
     );
+
 }
 
 } // namespace LibAVUtil

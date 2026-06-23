@@ -23,17 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option options[] = {
-    {
-        "use_odml",
-        "use odml index",
+    new LibAVUtil.BoolOption () {
+        name = "use_odml",
+        short_help_text = "use odml index",
         offsetof (
-            AVIContext, use_odml
+            AVIContext,
+            use_odml
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, -1, 1, AV_OPT_FLAG_DECODING_PARAM},
+        {
+            .i64 = 1
+        },
+        -1,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/avidec.c")]
 public class AVIDemuxerClass : LibAVUtil.Class {
@@ -66,7 +74,7 @@ public class AVIDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER;
+    //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="struct AVIContext",cheader_filename="ffmpeg/libformat/avidec.c")]

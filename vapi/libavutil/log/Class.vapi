@@ -139,6 +139,7 @@ public abstract class Class {
         string key,
         int flags
     );
+
 }
 
 /***********************************************************

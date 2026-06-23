@@ -68,6 +68,7 @@ public class ContentLightMetadata {
     public ContentLightMetadata av_content_light_metadata_create_side_data (
         Frame frame
     );
+
 }
 
 } // namespace LibAVUtil

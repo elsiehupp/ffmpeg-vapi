@@ -23,25 +23,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (obj) offsetof (ASTMuxContext, obj)
 static const LibAVUtil.Option options[] = {
-    {
-        "loopstart",
-        "Loopstart position in milliseconds.",
-        OFFSET (loopstart), AV_OPT_TYPE_INT64, { .i64 = -1 }, -1,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM
+    new LibAVUtil.Int64Option () {
+        name = "loopstart",
+        short_help_text = "Loopstart position in milliseconds.",
+        offsetof (
+            ASTMuxContext,
+            loopstart
+        ),
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.Int64Option () {
+        name = "loopend",
+        short_help_text = "Loopend position in milliseconds.",
+        offsetof (
+            ASTMuxContext,
+            loopend
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        "loopend",
-        "Loopend position in milliseconds.",
-        OFFSET (loopend), AV_OPT_TYPE_INT64, { .i64 = 0 }, 0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="ast_muxer_class",cheader_filename="ffmpeg/libformat/astenc.c")]
 public class ASTMuxerClass : LibAVUtil.Class {
@@ -152,7 +167,19 @@ public class ASTMuxer : AVOutputFormat {
         AVFormatContext format_context
     );
     //  .priv_class = ast_muxer_class,
-    //  .codec_tag = (AVCodecTag[]){ff_codec_ast_tags, 0};
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_ast_tags,
+                0
+            };
+
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

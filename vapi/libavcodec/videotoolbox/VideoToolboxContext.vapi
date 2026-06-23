@@ -127,6 +127,7 @@ public class VideoToolboxContext {
     public void av_videotoolbox_default_free (
         CodecContext codec_context
     );
+
 }
 
 } // namespace LibAVCodec

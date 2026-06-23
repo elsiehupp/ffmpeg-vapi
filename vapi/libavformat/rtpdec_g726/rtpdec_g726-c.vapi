@@ -43,7 +43,7 @@ namespace LibAVFormat {
 //      [CCode (cname="codec_type",cheader_filename="")]
 //      public override LibAVUtil.MediaType codec_type {
 //          public get {
-//              return AVMEDIA_TYPE_AUDIO;
+//              return LibAVUtil.MediaType.AUDIO;
 //          }
 //      }
 //      [CCode (cname="codec_id",cheader_filename="")]
@@ -66,7 +66,7 @@ namespace LibAVFormat {
 //      [CCode (cname="codec_type",cheader_filename="")]
 //      public override LibAVUtil.MediaType codec_type {
 //          public get {
-//              return AVMEDIA_TYPE_AUDIO;
+//              return LibAVUtil.MediaType.AUDIO;
 //          }
 //      }
 //      [CCode (cname="codec_id",cheader_filename="")]

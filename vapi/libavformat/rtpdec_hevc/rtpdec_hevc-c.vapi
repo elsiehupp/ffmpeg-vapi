@@ -36,7 +36,7 @@ public class H265DynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_VIDEO;
+            return LibAVUtil.MediaType.VIDEO;
 
         }
 
@@ -89,6 +89,7 @@ public class H265DynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

@@ -149,6 +149,7 @@ public class Expression {
         string numstr,
         out char[] tail
     );
+
 }
 
 } // namespace LibAVUtil

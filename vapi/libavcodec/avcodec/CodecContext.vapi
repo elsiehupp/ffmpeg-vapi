@@ -2048,7 +2048,7 @@ public class CodecContext {
         size set to 0); in this case, it is considered a flush
         packet, which signals the end of the stream. Sending the
         first flush packet will return success. Subsequent ones are
-        unnecessary and will return AVERROR_EOF. If the decoder
+        unnecessary and will return LibAVUtil.ErrorCode.END_OF_FILE. If the decoder
         still has frames buffered, it will return them after sending
         a flush packet.
 
@@ -2057,7 +2057,7 @@ public class CodecContext {
         must read output with avcodec_receive_frame () (once
         all output is read, the packet should be resent, and
         the call will not fail with EAGAIN).
-        AVERROR_EOF: the decoder has been flushed, and no new packets can
+        LibAVUtil.ErrorCode.END_OF_FILE: the decoder has been flushed, and no new packets can
         be sent to it (also returned if more than 1 flush
         packet is sent)
         LibAVUtil.ErrorCode (EINVAL): codec not opened, it is an encoder, or requires flush
@@ -2083,10 +2083,10 @@ public class CodecContext {
         0: success, a frame was returned
         LibAVUtil.ErrorCode (EAGAIN): output is not available in this state - user must try
             to send new input
-        AVERROR_EOF: the decoder has been fully flushed, and there will be
+        LibAVUtil.ErrorCode.END_OF_FILE: the decoder has been fully flushed, and there will be
             no more output frames
         LibAVUtil.ErrorCode (EINVAL): codec not opened, or it is an encoder
-        AVERROR_INPUT_CHANGED: current decoded frame has changed parameters
+        LibAVUtil.ErrorCode.INPUT_CHANGED: current decoded frame has changed parameters
             with respect to first decoded frame. Applicable
             when flag AV_CODEC_FLAG_DROPCHANGED is set.
         other negative values: legitimate decoding errors
@@ -2112,7 +2112,7 @@ public class CodecContext {
         still has packets buffered, it will return them after this
         call. Once flushing mode has been entered, additional flush
         packets are ignored, and sending frames will return
-        AVERROR_EOF.
+        LibAVUtil.ErrorCode.END_OF_FILE.
 
         For audio:
         If AV_CODEC_CAP_VARIABLE_FRAME_SIZE is set, then each frame
@@ -2125,7 +2125,7 @@ public class CodecContext {
             must read output with avcodec_receive_packet () (once
             all output is read, the packet should be resent, and
             the call will not fail with EAGAIN).
-        AVERROR_EOF: the encoder has been flushed, and no new frames can
+        LibAVUtil.ErrorCode.END_OF_FILE: the encoder has been flushed, and no new frames can
             be sent to it
         LibAVUtil.ErrorCode (EINVAL): codec not opened, refcounted_frames not set, it is a
             decoder, or requires flush
@@ -2148,7 +2148,7 @@ public class CodecContext {
     @return 0 on success, otherwise negative error code:
         LibAVUtil.ErrorCode (EAGAIN): output is not available in the current state - user
             must try to send input
-        AVERROR_EOF: the encoder has been fully flushed, and there will be
+        LibAVUtil.ErrorCode.END_OF_FILE: the encoder has been fully flushed, and there will be
             no more output packets
         LibAVUtil.ErrorCode (EINVAL): codec not opened, or it is an encoder
             other errors: legitimate decoding errors

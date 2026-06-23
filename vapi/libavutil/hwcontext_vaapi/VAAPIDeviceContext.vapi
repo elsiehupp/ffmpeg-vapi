@@ -34,7 +34,7 @@ public class VAAPIDeviceContext : AbstractHardwareContext {
     /***********************************************************
     @brief Driver quirks to apply - this is filled by av_hwdevice_ctx_init (),
     with reference to a table of known drivers, unless the
-    AV_VAAPI_DRIVER_QUIRK_USER_SET bit is already present. The user
+    LibAVUtil.VAAPIDriverQuirk.USER_SET bit is already present. The user
     may need to refer to this field when performing any later
     operations using VAAPI with the same VADisplay.
     ***********************************************************/

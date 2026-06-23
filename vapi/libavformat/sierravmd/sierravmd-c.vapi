@@ -82,6 +82,7 @@ public class VMDDemuxer : AVInputFormat {
     public override int read_close (
         AVFormatContext format_context
     );
+
 }
 
 } // namespace LibAVFormat

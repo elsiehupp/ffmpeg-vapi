@@ -135,7 +135,7 @@ public class CodecParserContext {
     /***********************************************************
     @brief Set by parser to 1 for key frames and 0 for non-key frames.
     It is initialized to -1, so if the parser doesn't set this flag,
-    old-style fallback using AV_PICTURE_TYPE_I picture type as key frames
+    old-style fallback using LibAVUtil.PictureType.INTRA picture type as key frames
     will be used.
     ***********************************************************/
     [CCode (cname="key_frame")]

@@ -101,6 +101,7 @@ public class SHA512Context {
         SHA512Context context,
         uint8[] digest
     );
+
 }
 
 } // namespace LibAVUtil

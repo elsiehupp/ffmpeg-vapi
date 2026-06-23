@@ -27,69 +27,71 @@ namespace LibAVUtil {
 
 @defgroup lavu_log_constants Logging Constants
 ***********************************************************/
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+[CCode (cprefix="AV_LOG_",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public enum LogLevel {
     /***********************************************************
     @brief Print no output.
     ***********************************************************/
-    AV_LOG_QUIET,
+    QUIET,
 
     /***********************************************************
     @brief Something went really wrong and we will crash now.
     ***********************************************************/
-    AV_LOG_PANIC,
+    PANIC,
 
     /***********************************************************
     @brief Something went wrong and recovery is not possible.
     For example, no header was found for a format which depends
     on headers or an illegal combination of parameters is used.
     ***********************************************************/
-    AV_LOG_FATAL,
+    FATAL,
 
     /***********************************************************
     @brief Something went wrong and cannot losslessly be recovered.
     However, not all future data is affected.
     ***********************************************************/
-    AV_LOG_ERROR,
+    ERROR,
 
     /***********************************************************
     @brief Something somehow does not look correct. This may or may not
     lead to problems. An example would be the use of '-vstrict -2'.
     ***********************************************************/
-    AV_LOG_WARNING,
+    WARNING,
 
     /***********************************************************
     @brief Standard information.
     ***********************************************************/
-    AV_LOG_INFO,
+    INFO,
 
     /***********************************************************
     @brief Detailed information.
     ***********************************************************/
-    AV_LOG_VERBOSE,
+    VERBOSE,
 
     /***********************************************************
     @brief Stuff which is only useful for libav* developers.
     ***********************************************************/
-    AV_LOG_DEBUG,
+    DEBUG,
 
     /***********************************************************
     @brief Extremely verbose debugging, useful for libav* development.
     ***********************************************************/
-    AV_LOG_TRACE;
+    TRACE;
 
     /***********************************************************
     @brief Sets additional colors for extended debugging sessions.
     @code
-       av_log (class_context, AV_LOG_DEBUG|AV_LOG_COLOR (134), "Message in purple\n");
-       @endcode
+    av_log (class_context, LogLevel.DEBUG|LogLevel.color (134), "Message in purple\n");
+    @endcode
+
     Requires 256color terminal support. Uses outside debugging is not
     recommended.
     ***********************************************************/
     [CCode (cname="AV_LOG_C",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
-    public static LogLevel AV_LOG_COLOR (
+    public static LogLevel color (
         int color
     );
+
 }
 
 } // namespace LibAVUtil

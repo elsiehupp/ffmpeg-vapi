@@ -35,35 +35,40 @@ namespace LibAVFormat {
 public class MatroskaDemuxerPrivateData { }
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (MatroskaDemuxContext, x)
 static const LibAVUtil.Option options[] = {
-    {
-        "live",
-        "flag indicating that the input is a live file that only has the headers.",
-        OFFSET (is_live
+    new LibAVUtil.BoolOption () {
+        name = "live",
+        short_help_text = "flag indicating that the input is a live file that only has the headers.",
+        offsetof (
+            MatroskaDemuxContext,
+            is_live
         ),
-        AV_OPT_TYPE_BOOL,
-        {
-            .i64 = 0
-        },
-        0, 1, AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        "bandwidth",
-        "bandwidth of this stream to be specified in the DASH manifest.",
-        OFFSET (bandwidth
-        ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "bandwidth",
+        short_help_text = "bandwidth of this stream to be specified in the DASH manifest.",
+        offsetof (
+            MatroskaDemuxContext,
+            bandwidth
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="webm_dash_class",cheader_filename="ffmpeg/libformat/matroskadec.c")]
 public class WebMDashManifestDemuxerClass : LibAVUtil.Class {

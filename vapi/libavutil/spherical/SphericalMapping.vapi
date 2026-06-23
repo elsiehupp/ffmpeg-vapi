@@ -240,6 +240,7 @@ public class SphericalMapping {
     public int av_spherical_from_name (
         string name
     );
+
 }
 
 } // namespace LibAVUtil

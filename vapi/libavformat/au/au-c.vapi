@@ -112,7 +112,18 @@ public class AUMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (AVCodecTag[]) { codec_au_tags, 0 },
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return  {
+                codec_au_tags,
+                0
+            };
+
+        }
+
+    }
 
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {

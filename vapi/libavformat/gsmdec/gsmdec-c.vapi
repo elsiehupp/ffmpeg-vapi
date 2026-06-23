@@ -23,18 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option options[] = {
-    {
-        "sample_rate",
-        "",
+    new LibAVUtil.IntOption () {
+        name = "sample_rate",
+        short_help_text = "",
         offsetof (
-            GSMDemuxerContext, sample_rate
+            GSMDemuxerContext,
+            sample_rate
         ),
-        AV_OPT_TYPE_INT, { .i64 = GSM_SAMPLE_RATE}, 1, INT_MAX / GSM_BLOCK_SIZE,
-        AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = GSM_SAMPLE_RATE
+        },
+        1,
+        int.MAX / GSM_BLOCK_SIZE,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="gsm_class",cheader_filename="ffmpeg/libformat/gsmdec.c")]
 public class GSMDemuxerClass : LibAVUtil.Class {

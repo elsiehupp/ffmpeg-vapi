@@ -23,32 +23,54 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (RawVideoDemuxerContext, x)
-public define DEC AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option rawvideo_options[] = {
-    {
-        "video_size",
-        "set frame size",
-        OFFSET (width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, DEC
-    },
-    {
-        "pixel_format",
-        "set pixel format",
-        OFFSET (pixel_format
+    new LibAVUtil.ImageSizeOption () {
+        name = "video_size",
+        short_help_text = "set frame size",
+        offsetof (
+            RawVideoDemuxerContext,
+            width
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = "yuv420p"}, 0, 0, DEC
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "pixel_format",
+        short_help_text = "set pixel format",
+        offsetof (
+            RawVideoDemuxerContext,
+            pixel_format
+        ),
+        {
+            .str = "yuv420p"
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.VideoRateOption () {
+        name = "framerate",
+        short_help_text = "set frame rate",
+        offsetof (
+            RawVideoDemuxerContext,
+            framerate
+        ),
+        {
+            .str = "25"
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        "framerate",
-        "set frame rate",
-        OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0,
-        INT_MAX,
-        DEC
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="rawvideo_demuxer_class",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
 public class RawVideoDemuxerClass : LibAVUtil.Class {

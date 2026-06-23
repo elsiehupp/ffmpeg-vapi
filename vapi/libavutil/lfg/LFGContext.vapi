@@ -87,6 +87,7 @@ public class LFGContext {
         LFGContext lfg,
         out double output_buffer[2]
     );
+
 }
 
 } // namespace LibAVUtil

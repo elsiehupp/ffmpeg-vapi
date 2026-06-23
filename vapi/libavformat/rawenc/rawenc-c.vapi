@@ -1801,6 +1801,7 @@ public class SingleJPEGMuxer : AVOutputFormat {
     public override int write_header (
         AVFormatContext format_context
     );
+
 }
 #endif
 

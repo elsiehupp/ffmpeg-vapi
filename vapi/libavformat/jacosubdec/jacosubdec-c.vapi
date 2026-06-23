@@ -90,6 +90,7 @@ public class JacoSubDemuxer : AVInputFormat {
     public override int read_close (
         AVFormatContext format_context
     );
+
 }
 
 } // namespace LibAVFormat

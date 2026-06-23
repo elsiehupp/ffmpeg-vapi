@@ -33,7 +33,7 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_VIDEO;
+            return LibAVUtil.MediaType.VIDEO;
 
         }
 

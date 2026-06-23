@@ -83,6 +83,7 @@ public class VorbisParseContext {
     public void av_vorbis_parse_reset (
         VorbisParseContext vorbis_parse_context
     );
+
 }
 
 } // namespace LibAVCodec

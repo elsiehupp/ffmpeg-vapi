@@ -150,6 +150,7 @@ public class MpegTSContext {
     public void avpriv_mpegts_parse_close (
         MpegTSContext ts
     );
+
 }
 
 [CCode (cname="struct SLConfigDescr",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]

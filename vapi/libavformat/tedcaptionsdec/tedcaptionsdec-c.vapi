@@ -23,18 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option tedcaptions_options[] = {
-    {
-        "start_time",
-        "set the start time (offset) of the subtitles, in ms",
+    new LibAVUtil.Int64Option () {
+        name = "start_time",
+        short_help_text = "set the start time (offset) of the subtitles, in ms",
         offsetof (
-            TEDCaptionsDemuxer, start_time), AV_OPT_TYPE_INT64,
+            TEDCaptionsDemuxer,
+            start_time
+        ),
         {
-            .i64 = 15000 }, INT64_MIN, INT64_MAX,
-        AV_OPT_FLAG_SUBTITLE_PARAM | AV_OPT_FLAG_DECODING_PARAM
+            .i64 = 15000
+        },
+        int64.MIN,
+        int64.MAX,
+        .flags = LibAVUtil.OptionFlags.SUBTITLE_PARAM | LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="tedcaptions_demuxer_class",cheader_filename="ffmpeg/libformat/tedcaptionsdec.c")]
 public class TedCaptionsDemuxerClass : LibAVUtil.Class {
@@ -131,6 +138,7 @@ public class TedCaptionsDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

@@ -538,25 +538,25 @@ parameters that fit to the device.
 List of capabilities that can be queried:
  - Capabilities valid for both audio and video devices:
    - codec:          supported audio/video codecs.
-                     type: AV_OPT_TYPE_INT (AVCodecID value)
+                     type: LibAVUtil.OptionType.INT (AVCodecID value)
  - Capabilities valid for audio devices:
    - sample_format:  supported sample formats.
-                     type: AV_OPT_TYPE_INT (AVSampleFormat value)
+                     type: LibAVUtil.OptionType.INT (AVSampleFormat value)
    - sample_rate:    supported sample rates.
-                     type: AV_OPT_TYPE_INT
+                     type: LibAVUtil.OptionType.INT
    - channels:       supported number of channels.
-                     type: AV_OPT_TYPE_INT
+                     type: LibAVUtil.OptionType.INT
    - channel_layout: supported channel layouts.
-                     type: AV_OPT_TYPE_INT64
+                     type: LibAVUtil.OptionType.INT64
  - Capabilities valid for video devices:
    - pixel_format:   supported pixel formats.
-                     type: AV_OPT_TYPE_INT (AVPixelFormat value)
+                     type: LibAVUtil.OptionType.INT (AVPixelFormat value)
    - window_size:    supported window sizes (describes size of the window size presented to the user).
-                     type: AV_OPT_TYPE_IMAGE_SIZE
+                     type: LibAVUtil.OptionType.IMAGE_SIZE
    - frame_size:     supported frame sizes (describes size of provided video frames).
-                     type: AV_OPT_TYPE_IMAGE_SIZE
+                     type: LibAVUtil.OptionType.IMAGE_SIZE
    - fps:            supported fps values
-                     type: AV_OPT_TYPE_RATIONAL
+                     type: LibAVUtil.OptionType.RATIONAL
 
 Value of the capability may be set by user using av_opt_set () function
 and AVDeviceCapabilitiesQuery object. Following queries will

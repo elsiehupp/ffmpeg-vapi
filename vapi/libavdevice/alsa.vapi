@@ -123,7 +123,7 @@ Open an ALSA PCM.
                 out: actually selected AVCodecID, changed only if
                 AV_CODEC_ID_NONE was requested
 
-@return 0 if OK, AVERROR_xxx on error
+@return 0 if OK, LibAVUtil.ErrorCode.xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
 //  av_warn_unused_result
@@ -153,7 +153,7 @@ Try to recover from ALSA buffer underrun.
 @param s1 media file handle
 @param err error code reported by the previous ALSA call
 
-@return 0 if OK, AVERROR_xxx on error
+@return 0 if OK, LibAVUtil.ErrorCode.xxx on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
 //  av_warn_unused_result

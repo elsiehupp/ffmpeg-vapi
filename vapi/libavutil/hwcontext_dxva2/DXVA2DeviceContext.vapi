@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 /***********************************************************
-@file An API-specific header for AV_HWDEVICE_TYPE_DXVA2.
+@file An API-specific header for LibAVUtil.HardwareDeviceType.DXVA2.
 
 Only fixed-size pools are supported.
 

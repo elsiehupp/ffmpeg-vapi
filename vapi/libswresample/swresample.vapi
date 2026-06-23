@@ -415,7 +415,7 @@ timestamps are in 1/(in_sample_rate * out_sample_rate) units.
              See ffmpeg-resampler (1) for the two modes of compensation.
 
 @param s[in]     initialized Swr context
-@param pts[in]   timestamp for the next input sample, INT64_MIN if unknown
+@param pts[in]   timestamp for the next input sample, int64.MIN if unknown
 @see swr_set_compensation (), swr_drop_output (), and swr_inject_silence () are
      function used internally for timestamp compensation.
 @return the output timestamp for the next output sample
@@ -681,7 +681,7 @@ swr_convert () with NULL input.
 
 If the SwrContext configuration does not match the output and
 input AVFrame settings the conversion does not take place and depending on
-which AVFrame is not matching AVERROR_OUTPUT_CHANGED, AVERROR_INPUT_CHANGED
+which AVFrame is not matching LibAVUtil.ErrorCode.OUTPUT_CHANGED, LibAVUtil.ErrorCode.INPUT_CHANGED
 or the result of a bitwise-OR of them is returned.
 
 @see swr_delay ()

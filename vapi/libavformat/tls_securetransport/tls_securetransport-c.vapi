@@ -22,7 +22,10 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 namespace LibAVFormat {
 
 static const LibAVUtil.Option options[] = {
-    TLS_COMMON_OPTIONS (TLSContext, tls_shared),
+    TLS_COMMON_OPTIONS (
+        TLSContext,
+        tls_shared
+    ),
     {
         NULL
     }

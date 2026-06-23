@@ -23,20 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option aptx_options[] = {
-    {
-        "sample_rate",
-        "",
+    new LibAVUtil.IntOption () {
+        name = "sample_rate",
+        short_help_text = "",
         offsetof (
-            AptXDemuxerContext, sample_rate
+            AptXDemuxerContext,
+            sample_rate
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 48000}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = 48000
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 #if CONFIG_APTX_DEMUXER
 

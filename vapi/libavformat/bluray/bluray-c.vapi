@@ -22,40 +22,68 @@ BluRay (libbluray) protocol
 
 @copyright 2012 Petri Hintukainen <phintuka <at> users.sourceforge.net>
 ***********************************************************/
-public define OFFSET (x) offsetof (BlurayContext, x)
 static const LibAVUtil.Option options[] = {
-    {
-        "playlist",
-        "",
-        OFFSET (playlist
+    new LibAVUtil.IntOption () {
+        name = "playlist",
+        short_help_text = "",
+        offsetof (
+            BlurayContext,
+            playlist
         ),
-        AV_OPT_TYPE_INT,
-        { .i64=-1 }, -1, 99999, AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = -1
+        },
+        -1,
+        99999,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "angle",
-        "",
-        OFFSET (angle
+    new LibAVUtil.IntOption () {
+        name = "angle",
+        short_help_text = "",
+        offsetof (
+            BlurayContext,
+            angle
         ),
-        AV_OPT_TYPE_INT,
-        { .i64=0 }, 0, 0xfe, AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64=0
+        },
+        0,
+        0xfe,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
-    {
-        "chapter",
-        "",
-        OFFSET (chapter
+    new LibAVUtil.IntOption () {
+        name = "chapter",
+        short_help_text = "",
+        offsetof (
+            BlurayContext,
+            chapter
         ),
-        AV_OPT_TYPE_INT,
-        { .i64=1 }, 1, 0xfffe, AV_OPT_FLAG_DECODING_PARAM },
+        {
+            .i64=1
+        },
+        1,
+        0xfffe,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
     /*{
         "region",
-        "bluray player region code (1 = region A, 2 = region B, 4 = region C)",
-        OFFSET (region
+        short_help_text = "bluray player region code (1 = region A, 2 = region B, 4 = region C)",
+        offsetof (
+            BlurayContext,
+            region
         ),
-        AV_OPT_TYPE_INT,
-        { .i64=0 }, 0, 3, AV_OPT_FLAG_DECODING_PARAM },*/
-    {NULL}
-}
+        {
+            .i64=0
+        },
+        0,
+        3,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },*/
+    {
+        NULL
+    }
+
+};
 
 [CCode (cname="bluray_context_class",cheader_filename="")]
 public class BluRayContextClass : LibAVUtil.Class {

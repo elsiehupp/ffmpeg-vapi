@@ -27,34 +27,53 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (TtyDemuxContext, x)
-public define DEC AV_OPT_FLAG_DECODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "chars_per_frame",
-        "",
+    new LibAVUtil.IntOption () {
+        name = "chars_per_frame",
+        short_help_text = "",
         offsetof (
-            TtyDemuxContext, chars_per_frame
+            TtyDemuxContext,
+            chars_per_frame
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 6000}, 1,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM},
-    {
-        "video_size",
-        "A string describing frame size, such as 640x480 or hd720.",
-        OFFSET (width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, DEC
+        {
+            .i64 = 6000
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.ImageSizeOption () {
+        name = "video_size",
+        short_help_text = "A string describing frame size, such as 640x480 or hd720.",
+        offsetof (
+            TtyDemuxContext,
+            width
+        ),
+        .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.VideoRateOption () {
+        name = "framerate",
+        short_help_text = "",
+        offsetof (
+            TtyDemuxContext,
+            framerate
+        ),
+        {
+            .str = "25"
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        "framerate",
-        "",
-        OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0,
-        INT_MAX,
-        DEC
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="tty_demuxer_class",cheader_filename="")]
 public class TTYDemuxerClass : LibAVUtil.Class {

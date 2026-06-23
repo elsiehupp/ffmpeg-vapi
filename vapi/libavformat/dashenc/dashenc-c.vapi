@@ -24,257 +24,417 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (DASHContext, x)
-public define E AV_OPT_FLAG_ENCODING_PARAM
-static const LibAVUtil.Option options[] = {
-    {
-        "adaptation_sets",
-        "Adaptation sets. Syntax: id=0,streams=0,1,2 id=1,streams=3,4 and so on",
-        OFFSET (adaptation_sets
-        ),
-        AV_OPT_TYPE_STRING,
-        { 0 }, 0, 0, AV_OPT_FLAG_ENCODING_PARAM
-    },
-    {
-        "window_size",
-        "number of segments kept in the manifest",
-        OFFSET (window_size
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 0 }, 0,
-        INT_MAX,
-        E
-    },
-    {
-        "extra_window_size",
-        "number of segments kept outside of the manifest before removing from disk",
-        OFFSET (extra_window_size
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 5 }, 0,
-        INT_MAX,
-        E },
-#if FF_API_DASH_MIN_SEG_DURATION
-    {
-        "min_seg_duration",
-        "minimum segment duration (in microseconds) (will be deprecated)",
-        OFFSET (min_seg_duration
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 5000000 }, 0,
-        INT_MAX,
-        E },
-#endif
 
-    {
-        "seg_duration",
-        "segment duration (in seconds, fractional value can be set)",
-        OFFSET (seg_duration), AV_OPT_TYPE_DURATION, { .i64 = 5000000 }, 0,
-        INT_MAX,
-        E
-    },
-    {
-        "remove_at_exit",
-        "remove all segments when finished",
-        OFFSET (remove_at_exit
+static const LibAVUtil.Option options[] = {
+    new LibAVUtil.StringOption () {
+        name = "adaptation_sets",
+        short_help_text = "Adaptation sets. Syntax: id=0,streams=0,1,2 id=1,streams=3,4 and so on",
+        offsetof (
+            DASHContext,
+            adaptation_sets
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
-    },
-    {
-        "use_template",
-        "Use SegmentTemplate instead of SegmentList",
-        OFFSET (use_template
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1 }, 0, 1, E
-    },
-    {
-        "use_timeline",
-        "Use SegmentTimeline in SegmentTemplate",
-        OFFSET (use_timeline
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1 }, 0, 1, E
-    },
-    {
-        "single_file",
-        "Store all segments in one file, accessed using byte ranges",
-        OFFSET (single_file
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
-    },
-    {
-        "single_file_name",
-        "DASH-templated name to be used for baseURL. Implies storing all segments in one file, accessed using byte ranges",
-        OFFSET (single_file_name
-        ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, 0, 0, E
-    },
-    {
-        "init_seg_name",
-        "DASH-templated name to used for the initialization segment",
-        OFFSET (init_seg_name
-        ),
-        AV_OPT_TYPE_STRING,
-        {.str = "init-stream$RepresentationID$.$ext$"}, 0, 0, E
-    },
-    {
-        "media_seg_name",
-        "DASH-templated name to used for the media segments",
-        OFFSET (media_seg_name
-        ),
-        AV_OPT_TYPE_STRING,
-        {.str = "chunk-stream$RepresentationID$-$Number%05d$.$ext$"}, 0, 0, E
-    },
-    {
-        "utc_timing_url",
-        "URL of the page that will return the UTC timestamp in ISO format",
-        OFFSET (utc_timing_url
-        ),
-        AV_OPT_TYPE_STRING,
-        { 0 }, 0, 0, E
-    },
-    {
-        "method",
-        "set the HTTP method",
-        OFFSET (method
-        ),
-        AV_OPT_TYPE_STRING,
         {
-            .str = NULL
+            0
         },
-        0, 0, E
-    },
-    {
-        "http_user_agent",
-        "override User-Agent field in HTTP header",
-        OFFSET (user_agent
-        ),
-        AV_OPT_TYPE_STRING,
-        {
-            .str = NULL
-        },
-        0, 0, E},
-    {
-        "http_persistent",
-        "Use persistent HTTP connections",
-        OFFSET (http_persistent
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
-    },
-    {
-        "hls_playlist",
-        "Generate HLS playlist files (master.m3u8, media_%d.m3u8)",
-        OFFSET (hls_playlist
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
-    },
-    {
-        "streaming",
-        "Enable/Disable streaming mode of output. Each frame will be moof fragment",
-        OFFSET (streaming
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
-    },
-    {
-        "timeout",
-        "set timeout for socket I/O operations",
-        OFFSET (timeout), AV_OPT_TYPE_DURATION, { .i64 = -1 }, -1,
-        INT_MAX,
-        .flags = E
-    },
-    {
-        "index_correction",
-        "Enable/Disable segment index correction logic",
-        OFFSET (index_correction
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
-    },
-    {
-        "format_options","set list of options for the container format (mp4/webm) used for dash",
-        OFFSET (format_options_str
-        ),
-        AV_OPT_TYPE_STRING,
-        {
-            .str = NULL
-        },
-        0, 0, E},
-    {
-        "global_sidx",
-        "Write global SIDX atom. Applicable only for single file, mp4 output, non-streaming mode",
-        OFFSET (global_sidx
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
-    },
-    {
-        "dash_segment_type",
-        "set dash segment files type",
-        OFFSET (segment_type_option
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = SEGMENT_TYPE_AUTO }, 0, SEGMENT_TYPE_NB - 1, E, "segment_type"
-    },
-    {
-        "auto",
-        "select segment file format based on codec",
         0,
-        AV_OPT_TYPE_CONST,
-        {
-            .i64 = SEGMENT_TYPE_AUTO }, 0, UINT_MAX, E, "segment_type"
-    },
-    {
-        "mp4",
-        "make segment file in ISOBMFF format",
         0,
-        AV_OPT_TYPE_CONST,
-        {
-            .i64 = SEGMENT_TYPE_MP4 }, 0, UINT_MAX, E, "segment_type"
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "webm",
-        "make segment file in WebM format",
-        0,
-        AV_OPT_TYPE_CONST,
-        {
-            .i64 = SEGMENT_TYPE_WEBM }, 0, UINT_MAX, E, "segment_type"
-    },
-    {
-        "ignore_io_errors",
-        "Ignore IO errors during open and write. Useful for long-duration runs with network output",
-        OFFSET (ignore_io_errors
+    new LibAVUtil.IntOption () {
+        name = "window_size",
+        short_help_text = "number of segments kept in the manifest",
+        offsetof (
+            DASHContext,
+            window_size
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
-    },
-    {
-        "lhls",
-        "Enable Low-latency HLS (Experimental). Adds #EXT-X-PREFETCH tag with current segment's URI",
-        OFFSET (lhls
-        ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 0 }, 0, 1, E
-    },
-    {
-        "master_m3u8_publish_rate",
-        "Publish master playlist every after this many segment intervals",
-        OFFSET (master_publish_rate
-        ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
-        0, UINT_MAX, E},
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "extra_window_size",
+        short_help_text = "number of segments kept outside of the manifest before removing from disk",
+        offsetof (
+            DASHContext,
+            extra_window_size
+        ),
+        {
+            .i64 = 5
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+#if FF_API_DASH_MIN_SEG_DURATION
+    new LibAVUtil.IntOption () {
+        name = "min_seg_duration",
+        short_help_text = "minimum segment duration (in microseconds) (will be deprecated)",
+        offsetof (
+            DASHContext,
+            min_seg_duration
+        ),
+        {
+            .i64 = 5000000
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+#endif
+
+    new LibAVUtil.DurationOption () {
+        name = "seg_duration",
+        short_help_text = "segment duration (in seconds, fractional value can be set)",
+        offsetof (
+            DASHContext,
+            seg_duration
+        ),
+        {
+            .i64 = 5000000
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    }new LibAVUtil.BoolOption () ,
+    new LibAVUtil.IntOption () {
+        name = "remove_at_exit",
+        short_help_text = "remove all segments when finished",
+        offsetof (
+            DASHContext,
+            remove_at_exit
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "use_template",
+        short_help_text = "Use SegmentTemplate instead of SegmentList",
+        offsetof (
+            DASHContext,
+            use_template
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "use_timeline",
+        short_help_text = "Use SegmentTimeline in SegmentTemplate",
+        offsetof (
+            DASHContext,
+            use_timeline
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "single_file",
+        short_help_text = "Store all segments in one file, accessed using byte ranges",
+        offsetof (
+            DASHContext,
+            single_file
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "single_file_name",
+        short_help_text = "DASH-templated name to be used for baseURL. Implies storing all segments in one file, accessed using byte ranges",
+        offsetof (
+            DASHContext,
+            single_file_name
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "init_seg_name",
+        short_help_text = "DASH-templated name to used for the initialization segment",
+        offsetof (
+            DASHContext,
+            init_seg_name
+        ),
+        {
+            .str = "init-stream$RepresentationID$.$ext$"
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "media_seg_name",
+        short_help_text = "DASH-templated name to used for the media segments",
+        offsetof (
+            DASHContext,
+            media_seg_name
+        ),
+        {
+            .str = "chunk-stream$RepresentationID$-$Number%05d$.$ext$"
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "utc_timing_url",
+        short_help_text = "URL of the page that will return the UTC timestamp in ISO format",
+        offsetof (
+            DASHContext,
+            utc_timing_url
+        ),
+        {
+            0
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "method",
+        short_help_text = "set the HTTP method",
+        offsetof (
+            DASHContext,
+            method
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "http_user_agent",
+        short_help_text = "override User-Agent field in HTTP header",
+        offsetof (
+            DASHContext,
+            user_agent
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "http_persistent",
+        short_help_text = "Use persistent HTTP connections",
+        offsetof (
+            DASHContext,
+            http_persistent
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "hls_playlist",
+        short_help_text = "Generate HLS playlist files (master.m3u8, media_%d.m3u8)",
+        offsetof (
+            DASHContext,
+            hls_playlist
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "streaming",
+        short_help_text = "Enable/Disable streaming mode of output. Each frame will be moof fragment",
+        offsetof (
+            DASHContext,
+            streaming
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.DurationOption () {
+        name = "timeout",
+        short_help_text = "set timeout for socket I/O operations",
+        offsetof (
+            DASHContext,
+            timeout
+        ),
+        {
+            .i64 = -1
+        },
+        -1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "index_correction",
+        short_help_text = "Enable/Disable segment index correction logic",
+        offsetof (
+            DASHContext,
+            index_correction
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "format_options",
+        short_help_text = "set list of options for the container format (mp4/webm) used for dash",
+        offsetof (
+            DASHContext,
+            format_options_str
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "global_sidx",
+        short_help_text = "Write global SIDX atom. Applicable only for single file, mp4 output, non-streaming mode",
+        offsetof (
+            DASHContext,
+            global_sidx
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "dash_segment_type",
+        short_help_text = "set dash segment files type",
+        offsetof (
+            DASHContext,
+            segment_type_option
+        ),
+        {
+            .i64 = SEGMENT_TYPE_AUTO
+        },
+        0,
+        SEGMENT_TYPE_NB - 1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "segment_type"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "auto",
+        short_help_text = "select segment file format based on codec",
+        0,
+        {
+            .i64 = SEGMENT_TYPE_AUTO
+        },
+        0,
+        UINT_MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "segment_type"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "mp4",
+        short_help_text = "make segment file in ISOBMFF format",
+        0,
+        {
+            .i64 = SEGMENT_TYPE_MP4
+        },
+        0,
+        UINT_MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "segment_type"
+    },
+    new LibAVUtil.ConstOption () {
+        name = "webm",
+        short_help_text = "make segment file in WebM format",
+        0,
+        {
+            .i64 = SEGMENT_TYPE_WEBM
+        },
+        0,
+        UINT_MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "segment_type"
+    },
+    new LibAVUtil.BoolOption () {
+        name = "ignore_io_errors",
+        short_help_text = "Ignore IO errors during open and write. Useful for long-duration runs with network output",
+        offsetof (
+            DASHContext,
+            ignore_io_errors
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "lhls",
+        short_help_text = "Enable Low-latency HLS (Experimental). Adds #EXT-X-PREFETCH tag with current segment's URI",
+        offsetof (
+            DASHContext,
+            lhls
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "master_m3u8_publish_rate",
+        short_help_text = "Publish master playlist every after this many segment intervals",
+        offsetof (
+            DASHContext,
+            master_publish_rate
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        UINT_MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="dash_class",cheader_filename="ffmpeg/libformat/dashenc.c")]
 public class DashMuxerClass : LibAVUtil.Class {

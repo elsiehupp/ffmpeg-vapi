@@ -73,6 +73,7 @@ public class TEAContext {
         uint8[] initialization_vector,
         int decrypt
     );
+
 }
 
 } // namespace LibAVUtil.Crypto

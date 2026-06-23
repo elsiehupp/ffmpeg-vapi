@@ -23,31 +23,39 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 static const LibAVUtil.Option pcm_options[] = {
-    {
-        "sample_rate",
-        "",
+    new LibAVUtil.IntOption () {
+        name = "sample_rate",
+        short_help_text = "",
         offsetof (
-            PCMAudioDemuxerContext, sample_rate
+            PCMAudioDemuxerContext,
+            sample_rate
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 44100}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = 44100
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "channels",
+        short_help_text = "",
+        offsetof (
+            PCMAudioDemuxerContext,
+            channels
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        "channels",
-        "",
-        offsetof (
-            PCMAudioDemuxerContext, channels
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 1}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="struct PCMAudioDemuxerContext",cheader_filename="ffmpeg/libformat/pcmdec.c")]
 [Compact]
@@ -1239,31 +1247,39 @@ public class PCMVIDCDemuxer : PCMDemuxer {
 }
 
 static const LibAVUtil.Option sln_options[] = {
-    {
-        "sample_rate",
-        "",
+    new LibAVUtil.IntOption () {
+        name = "sample_rate",
+        short_help_text = "",
         offsetof (
-            PCMAudioDemuxerContext, sample_rate
+            PCMAudioDemuxerContext,
+            sample_rate
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 8000}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = 8000
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "channels",
+        short_help_text = "",
+        offsetof (
+            PCMAudioDemuxerContext,
+            channels
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        "channels",
-        "",
-        offsetof (
-            PCMAudioDemuxerContext, channels
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 1}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="sln_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
 public class SLNDemuxerClass : LibAVUtil.Class {

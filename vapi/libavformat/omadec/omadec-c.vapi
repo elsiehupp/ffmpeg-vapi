@@ -121,7 +121,19 @@ public class OMADemuxer : AVInputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){ff_oma_codec_tags, 0};
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_oma_codec_tags,
+                0
+            };
+
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

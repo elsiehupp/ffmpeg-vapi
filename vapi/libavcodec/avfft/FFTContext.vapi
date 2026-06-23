@@ -99,6 +99,7 @@ public class FFTContext {
     public void av_mdct_end (
         FFTContext fft_context
     );
+
 }
 
 } // namespace LibAVCodec

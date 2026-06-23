@@ -92,6 +92,7 @@ public class RIPEMDContext {
         RIPEMDContext context,
         uint8[] digest
     );
+
 }
 
 } // namespace LibAVUtil

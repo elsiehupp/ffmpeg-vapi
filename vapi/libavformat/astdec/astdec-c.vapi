@@ -75,7 +75,19 @@ public class ASTDemuxer : AVInputFormat {
         }
 
     }
-    //  .codec_tag = (AVCodecTag[]){ff_codec_ast_tags, 0};
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_ast_tags,
+                0
+            };
+
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

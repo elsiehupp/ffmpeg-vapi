@@ -98,7 +98,15 @@ public class NUTDemuxer : AVInputFormat {
         }
 
     }
-    //  .codec_tag = ff_nut_codec_tags;
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return ff_nut_codec_tags;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

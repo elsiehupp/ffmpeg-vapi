@@ -140,6 +140,7 @@ public class EncryptionInfo {
         EncryptionInfo info,
         out size_t side_data_size
     );
+
 }
 
 } // namespace LibAVUtil

@@ -81,6 +81,7 @@ public class FLICDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
 }
 
 } // namespace LibAVFormat

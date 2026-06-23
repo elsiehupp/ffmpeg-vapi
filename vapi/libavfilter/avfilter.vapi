@@ -1625,20 +1625,20 @@ public string avfilter_graph_dump (
 /***********************************************************
 Request a frame on the oldest sink link.
 
-If the request returns AVERROR_EOF, try the next.
+If the request returns LibAVUtil.ErrorCode.END_OF_FILE, try the next.
 
 Note that this function is not meant to be the sole scheduling mechanism
 of a filtergraph, only a convenience function to help drain a filtergraph
 in a balanced way under normal circumstances.
 
-Also note that AVERROR_EOF does not mean that frames did not arrive on
+Also note that LibAVUtil.ErrorCode.END_OF_FILE does not mean that frames did not arrive on
 some of the sinks during the process.
 When there are multiple sink links, in case the requested link
 returns an EOF, this may cause a filter to flush pending frames
 which are sent to another sink link, although unrequested.
 
 @return  the return value of ff_request_frame (),
-         or AVERROR_EOF if all links returned AVERROR_EOF
+         or LibAVUtil.ErrorCode.END_OF_FILE if all links returned LibAVUtil.ErrorCode.END_OF_FILE
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_request_oldest (

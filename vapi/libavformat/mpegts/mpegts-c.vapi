@@ -24,69 +24,128 @@ namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
 public define MPEGTS_OPTIONS
-    {
-        "resync_size",
-        "set size limit for looking up a new synchronization",
+    new LibAVUtil.IntOption () {
+        name = "resync_size",
+        short_help_text = "set size limit for looking up a new synchronization",
         offsetof (
-            MpegTSContext, resync_size
+            MpegTSContext,
+            resync_size
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = MAX_RESYNC_SIZE}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM }
+        {
+            .i64 = MAX_RESYNC_SIZE
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    }
+
+};
 
 static const LibAVUtil.Option options[] = {
     MPEGTS_OPTIONS,
-    {
-        "fix_teletext_pts",
-        "try to fix pts values of dvb teletext streams",
+    new LibAVUtil.BoolOption () {
+        name = "fix_teletext_pts",
+        short_help_text = "try to fix pts values of dvb teletext streams",
         offsetof (
-            MpegTSContext, fix_teletext_pts), AV_OPT_TYPE_BOOL,
-     { .i64 = 1}, 0, 1, AV_OPT_FLAG_DECODING_PARAM
+            MpegTSContext,
+            fix_teletext_pts
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "ts_packetsize",
+        short_help_text = "output option carrying the raw packet size",
+        offsetof (
+            MpegTSContext,
+            raw_packet_size
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
+    },
+    new LibAVUtil.BoolOption () {
+        name = "scan_all_pmts",
+        short_help_text = "scan and combine all PMTs",
+        offsetof (
+            MpegTSContext,
+            scan_all_pmts
+        ),
+        {
+            .i64 = -1
+        },
+        -1,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "skip_unknown_pmt",
+        short_help_text = "skip PMTs for programs not advertised in the PAT",
+        offsetof (
+            MpegTSContext,
+            skip_unknown_pmt
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "merge_pmt_versions",
+        short_help_text = "re-use streams when PMT's version/pids change",
+        offsetof (
+            MpegTSContext,
+            merge_pmt_versions
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "skip_changes",
+        short_help_text = "skip changing / adding streams / programs",
+        offsetof (
+            MpegTSContext,
+            skip_changes
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        0
+    },
+    new LibAVUtil.BoolOption () {
+        name = "skip_clear",
+        short_help_text = "skip clearing programs",
+        offsetof (
+            MpegTSContext,
+            skip_clear
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        0
     },
     {
-        "ts_packetsize",
-        "output option carrying the raw packet size",
-        offsetof (
-            MpegTSContext, raw_packet_size), AV_OPT_TYPE_INT,
-     { .i64 = 0}, 0, 0, AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_EXPORT | AV_OPT_FLAG_READONLY
-    },
-    {
-        "scan_all_pmts",
-        "scan and combine all PMTs",
-        offsetof (
-            MpegTSContext, scan_all_pmts), AV_OPT_TYPE_BOOL,
-     { .i64 = -1}, -1, 1, AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        "skip_unknown_pmt",
-        "skip PMTs for programs not advertised in the PAT",
-        offsetof (
-            MpegTSContext, skip_unknown_pmt), AV_OPT_TYPE_BOOL,
-     { .i64 = 0}, 0, 1, AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        "merge_pmt_versions",
-        "re-use streams when PMT's version/pids change",
-        offsetof (
-            MpegTSContext, merge_pmt_versions), AV_OPT_TYPE_BOOL,
-     { .i64 = 0}, 0, 1, AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        "skip_changes",
-        "skip changing / adding streams / programs",
-        offsetof (
-            MpegTSContext, skip_changes), AV_OPT_TYPE_BOOL,
-     { .i64 = 0}, 0, 1, 0 },
-    {
-        "skip_clear",
-        "skip clearing programs",
-        offsetof (
-            MpegTSContext, skip_clear), AV_OPT_TYPE_BOOL,
-     { .i64 = 0}, 0, 1, 0 },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="mpegts_class",cheader_filename="ffmpeg/libformat/mpegts.c")]
 public class MpegTSDemuxerClass : LibAVUtil.Class {
@@ -123,24 +182,39 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
 
 static const LibAVUtil.Option raw_options[] = {
     MPEGTS_OPTIONS,
-    {
-        "compute_pcr",
-        "compute exact PCR for each transport stream packet"
-            offsetof (MpegTSContext, mpeg2ts_compute_pcr), AV_OPT_TYPE_BOOL,
-            { .i64 = 0 }, 0, 1, AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        "ts_packetsize",
-        "output option carrying the raw packet size"
+    new LibAVUtil.BoolOption () {
+        name = "compute_pcr",
+        short_help_text = "compute exact PCR for each transport stream packet"
         offsetof (
-            MpegTSContext, raw_packet_size), AV_OPT_TYPE_INT,
+            MpegTSContext,
+            mpeg2ts_compute_pcr
+        ),
         {
-            .i64 = 0 }, 0, 0,
-        AV_OPT_FLAG_DECODING_PARAM | AV_OPT_FLAG_EXPORT | AV_OPT_FLAG_READONLY
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "ts_packetsize",
+        short_help_text = "output option carrying the raw packet size"
+        offsetof (
+            MpegTSContext,
+            raw_packet_size
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="mpegtsraw_class",cheader_filename="ffmpeg/libformat/mpegts.c")]
 public class MpegTSRawDemuxerClass : LibAVUtil.Class {

@@ -572,7 +572,7 @@ public class InputFilter {
     public uint8? name;
 
     /***********************************************************
-    AVMEDIA_TYPE_SUBTITLE for sub2video
+    LibAVUtil.MediaType.SUBTITLE for sub2video
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     public AVMediaType type;

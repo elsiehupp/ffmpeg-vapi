@@ -41,89 +41,131 @@ SMPTE RP224: Registry of SMPTE Universal Labels
 
 [CCode (cname="",cheader_filename="")]
 public define MXF_COMMON_OPTIONS
-    {
-        "signal_standard",
-        "Force/set Signal Standard",
+    new LibAVUtil.IntOption () {
+        name = "signal_standard",
+        short_help_text = "Force/set Signal Standard",
         offsetof (
-            MXFContext, signal_standard
+            MXFContext,
+            signal_standard
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
-        7, AV_OPT_FLAG_ENCODING_PARAM, "signal_standard"
+        7,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "signal_standard"
     },
-    {
-        "bt601",
-        "ITU-R BT.601 and BT.656, also SMPTE 125M (525 and 625 line interlaced)",
+    new LibAVUtil.ConstOption () {
+        name = "bt601",
+        short_help_text = "ITU-R BT.601 and BT.656, also SMPTE 125M (525 and 625 line interlaced)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = 1}, -1, 7, AV_OPT_FLAG_ENCODING_PARAM, "signal_standard"
+            .i64 = 1
+        },
+        -1,
+        7,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "signal_standard"
     },
-    {
-        "bt1358",
-        "ITU-R BT.1358 and ITU-R BT.799-3, also SMPTE 293M (525 and 625 line progressive)",
+    new LibAVUtil.ConstOption () {
+        name = "bt1358",
+        short_help_text = "ITU-R BT.1358 and ITU-R BT.799-3, also SMPTE 293M (525 and 625 line progressive)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = 2}, -1, 7, AV_OPT_FLAG_ENCODING_PARAM, "signal_standard"
+            .i64 = 2
+        },
+        -1,
+        7,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "signal_standard"
     },
-    {
-        "smpte347m",
-        "SMPTE 347M (540 Mbps mappings)",
+    new LibAVUtil.ConstOption () {
+        name = "smpte347m",
+        short_help_text = "SMPTE 347M (540 Mbps mappings)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = 3}, -1, 7, AV_OPT_FLAG_ENCODING_PARAM, "signal_standard"
+            .i64 = 3
+        },
+        -1,
+        7,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "signal_standard"
     },
-    {
-        "smpte274m",
-        "SMPTE 274M (1125 line)",
+    new LibAVUtil.ConstOption () {
+        name = "smpte274m",
+        short_help_text = "SMPTE 274M (1125 line)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = 4}, -1, 7, AV_OPT_FLAG_ENCODING_PARAM, "signal_standard"
+            .i64 = 4
+        },
+        -1,
+        7,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "signal_standard"
     },
-    {
-        "smpte296m",
-        "SMPTE 296M (750 line progressive)",
+    new LibAVUtil.ConstOption () {
+        name = "smpte296m",
+        short_help_text = "SMPTE 296M (750 line progressive)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = 5}, -1, 7, AV_OPT_FLAG_ENCODING_PARAM, "signal_standard"
+            .i64 = 5
+        },
+        -1,
+        7,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "signal_standard"
     },
-    {
-        "smpte349m",
-        "SMPTE 349M (1485 Mbps mappings)",
+    new LibAVUtil.ConstOption () {
+        name = "smpte349m",
+        short_help_text = "SMPTE 349M (1485 Mbps mappings)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = 6}, -1, 7, AV_OPT_FLAG_ENCODING_PARAM, "signal_standard"
+            .i64 = 6
+        },
+        -1,
+        7,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "signal_standard"
     },
-    {
-        "smpte428",
-        "SMPTE 428-1 DCDM",
+    new LibAVUtil.ConstOption () {
+        name = "smpte428",
+        short_help_text = "SMPTE 428-1 DCDM",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = 7}, -1, 7, AV_OPT_FLAG_ENCODING_PARAM, "signal_standard"},
+            .i64 = 7
+        },
+        -1,
+        7,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        "signal_standard"
+    }
+
+};
 
 
 
 static const LibAVUtil.Option mxf_options[] = {
-    MXF_COMMON_OPTIONS
-    {
-        "store_user_comments",
-        "",
-      offsetof (MXFContext, store_user_comments
+    MXF_COMMON_OPTIONS,
+    new LibAVUtil.BoolOption () {
+        name = "store_user_comments",
+        short_help_text = "",
+        offsetof (
+            MXFContext,
+            store_user_comments
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="struct MXFContext",cheader_filename="ffmpeg/libformat/mxfenc.c")]
 [Compact]
@@ -161,31 +203,40 @@ public class MXFMuxerClass : LibAVUtil.Class {
 }
 
 static const LibAVUtil.Option d10_options[] = {
-    {
-        "d10_channelcount",
-        "Force/set channelcount in generic sound essence descriptor",
-      offsetof (MXFContext, channel_count
+    new LibAVUtil.IntOption () {
+        name = "d10_channelcount",
+        short_help_text = "Force/set channelcount in generic sound essence descriptor",
+        offsetof (
+            MXFContext,
+            channel_count
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
-        8, AV_OPT_FLAG_ENCODING_PARAM},
-    MXF_COMMON_OPTIONS
-    {
-        "store_user_comments",
-        "",
-      offsetof (MXFContext, store_user_comments
+        8,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    MXF_COMMON_OPTIONS,
+    new LibAVUtil.BoolOption () {
+        name = "store_user_comments",
+        short_help_text = "",
+        offsetof (
+            MXFContext,
+            store_user_comments
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, AV_OPT_FLAG_ENCODING_PARAM},
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="mxf_d10_muxer_class",cheader_filename="ffmpeg/libformat/mxfenc.c")]
 public class MXFD10MuxerClass : LibAVUtil.Class {
@@ -219,28 +270,40 @@ public class MXFD10MuxerClass : LibAVUtil.Class {
 }
 
 static const LibAVUtil.Option opatom_options[] = {
-    {
-        "mxf_audio_edit_rate",
-        "Audio edit rate for timecode",
+    new LibAVUtil.RationalOption () {
+        name = "mxf_audio_edit_rate",
+        short_help_text = "Audio edit rate for timecode",
         offsetof (
-            MXFContext, audio_edit_rate
+            MXFContext,
+            audio_edit_rate
         ),
-        AV_OPT_TYPE_RATIONAL,
-        {.dbl=25}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM
+        {
+            .dbl = 25
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    MXF_COMMON_OPTIONS
-    {
-        "store_user_comments",
-        "",
-      offsetof (MXFContext, store_user_comments
+    MXF_COMMON_OPTIONS,
+    new LibAVUtil.BoolOption () {
+        name = "store_user_comments",
+        short_help_text = "",
+        offsetof (
+            MXFContext,
+            store_user_comments
         ),
-        AV_OPT_TYPE_BOOL,
-        { .i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="mxf_opatom_muxer_class",cheader_filename="ffmpeg/libformat/mxfenc.c")]
 public class MXFOPAtomMuxerClass : LibAVUtil.Class {

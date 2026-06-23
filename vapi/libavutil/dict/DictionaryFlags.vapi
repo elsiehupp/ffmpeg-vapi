@@ -43,21 +43,20 @@ entries and finally av_dict_free () to free the dictionary
 and all its contents.
 
 @code
-LibAVUtil.Dictionary d = null; // "create" an empty dictionary
-LibAVUtil.DictionaryEntry t = null;
+    LibAVUtil.Dictionary d = null; // "create" an empty dictionary
+    LibAVUtil.DictionaryEntry t = null;
 
-av_dict_set (&d, "foo", "bar",
-        0); // add an entry
+    av_dict_set (&d, "foo", "bar",
+            0); // add an entry
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/dict.h")]
-public string k = av_strdup ("key"); // if your strings are already allocated,
-public string v = av_strdup ("value"); // you can avoid copying them like this
-av_dict_set (&d, k, v, AVDictionaryFlags.DONT_STRDUP_KEY | AVDictionaryFlags.DONT_STRDUP_VAL);
+    string k = av_strdup ("key"); // if your strings are already allocated,
+    string v = av_strdup ("value"); // you can avoid copying them like this
+    av_dict_set (&d, k, v, AVDictionaryFlags.DONT_STRDUP_KEY | AVDictionaryFlags.DONT_STRDUP_VAL);
 
-while (t = av_dict_get (d, "", t, AVDictionaryFlags.IGNORE_SUFFIX)) {
-    <....>        // iterate over all entries in d
-}
-av_dict_free (&d);
+    while (t = av_dict_get (d, "", t, AVDictionaryFlags.IGNORE_SUFFIX)) {
+        <....>        // iterate over all entries in d
+    }
+    av_dict_free (&d);
 @endcode
 ***********************************************************/
 [CCode (cprefix="AV_DICT_",cheader_filename="dict.h")]

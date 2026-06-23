@@ -23,26 +23,40 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (TeeContext, x)
 static const LibAVUtil.Option options[] = {
-    {
-        "use_fifo",
-        "Use fifo pseudo-muxer to separate actual muxers from encoder",
-        OFFSET (use_fifo
+    new LibAVUtil.BoolOption () {
+        name = "use_fifo",
+        short_help_text = "Use fifo pseudo-muxer to separate actual muxers from encoder",
+        offsetof (
+            TeeContext,
+            use_fifo
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "fifo_options",
-        "fifo pseudo-muxer options",
-        OFFSET (fifo_options_str
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "fifo_options",
+        short_help_text = "fifo pseudo-muxer options",
+        offsetof (
+            TeeContext,
+            fifo_options_str
         ),
-        AV_OPT_TYPE_STRING, {.str = NULL}, 0, 0, AV_OPT_FLAG_ENCODING_PARAM},
-        {NULL}
-}
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    {
+        NULL
+    }
+
+};
 
 [CCode (cname="tee_muxer_class",cheader_filename="")]
 public class TeeMuxerClass : LibAVUtil.Class {

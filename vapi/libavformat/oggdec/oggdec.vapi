@@ -85,6 +85,7 @@ public abstract class OggCodec {
         AVFormatContext format_context,
         int idx
     );
+
 }
 
 [CCode (cname="struct ogg_stream",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]

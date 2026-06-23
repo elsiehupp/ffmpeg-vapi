@@ -23,34 +23,54 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (FailingMuxerContext, x)
 static const LibAVUtil.Option options[] = {
-    {
-        "write_header_ret",
-        "write_header () return value",
-        OFFSET (write_header_ret
+    new LibAVUtil.IntOption () {
+        name = "write_header_ret",
+        short_help_text = "write_header () return value",
+        offsetof (
+            FailingMuxerContext,
+            write_header_ret
         ),
-        AV_OPT_TYPE_INT, { .i64 = 0},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "write_trailer_ret",
-        "write_trailer () return value",
-        OFFSET (write_trailer_ret
+        {
+            .i64 = 0
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "write_trailer_ret",
+        short_help_text = "write_trailer () return value",
+        offsetof (
+            FailingMuxerContext,
+            write_trailer_ret
         ),
-        AV_OPT_TYPE_INT, { .i64 = 0},
-        INT_MIN,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-    {
-        "print_deinit_summary",
-        "print summary when deinitializing muxer",
-        OFFSET (print_deinit_summary
+        {
+            .i64 = 0
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "print_deinit_summary",
+        short_help_text = "print summary when deinitializing muxer",
+        offsetof (
+            FailingMuxerContext,
+            print_deinit_summary
         ),
-        AV_OPT_TYPE_BOOL, { .i64 = 1}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-        {NULL}
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    {
+        NULL
     }
+
+};
 
 [CCode (cname="failing_muxer_class",cheader_filename="ffmpeg/libformat/fifo_test.c")]
 public class FifoTestMuxerClass : LibAVUtil.Class {

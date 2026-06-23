@@ -246,6 +246,7 @@ public class Rational {
     public uint32 av_q2intfloat (
         Rational q
     );
+
 }
 
 } // namespace LibAVUtil

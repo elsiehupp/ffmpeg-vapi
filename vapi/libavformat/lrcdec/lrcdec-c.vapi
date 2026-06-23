@@ -85,6 +85,7 @@ public class LRCDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

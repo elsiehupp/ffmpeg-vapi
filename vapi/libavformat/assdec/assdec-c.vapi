@@ -86,6 +86,7 @@ public class ASSDemuxer : AVInputFormat {
         int64 max_ts,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

@@ -22,7 +22,7 @@ namespace LibAVUtil {
 @file a very simple circular buffer FIFO implementation
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/fifo.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavutil/fifo.h")]
 public delegate void GenericReadDelegate (
     void *arg0,
     void *arg1,
@@ -246,6 +246,7 @@ public class FifoBuffer {
         FifoBuffer fifo_buffer,
         int offs
     );
+
 }
 
 } // namespace LibAVUtil

@@ -74,6 +74,7 @@ public class TransformContext {
     public void av_tx_uninit (
         TransformContext transform_context
     );
+
 }
 
 } // namespace LibAVUtil

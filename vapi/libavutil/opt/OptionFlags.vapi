@@ -77,7 +77,7 @@ public enum OptionFlags {
     @brief Set if option is deprecated, users should refer to
     Option.help text for more information
     ***********************************************************/
-    DEPRECATED,
+    DEPRECATED;
 
     /***********************************************************
     @brief FIXME think about enc-audio, ... style flags

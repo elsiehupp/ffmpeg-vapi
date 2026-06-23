@@ -22,7 +22,7 @@ namespace LibAVUtil {
 [Compact]
 public class HardwareFrameInternalContext { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 public delegate void HardwareFrameContextFreeDelegate (
     HardwareFrameContext hardware_frames_context
 );

@@ -23,19 +23,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (WebpContext, x)
-public define ENC AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "loop",
-        "Number of times to loop the output: 0 - infinite loop",
-        OFFSET (loop
+    new LibAVUtil.IntOption () {
+        name = "loop",
+        short_help_text = "Number of times to loop the output: 0 - infinite loop",
+        offsetof (
+            WebpContext,
+            loop
         ),
-        AV_OPT_TYPE_INT, { .i64 = 1 }, 0, 65535, ENC
+        {
+            .i64 = 1
+        },
+        0,
+        65535,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="webp_muxer_class",cheader_filename="ffmpeg/libformat/webpenc.c")]
 public class WebPMuxerClass : LibAVUtil.Class {

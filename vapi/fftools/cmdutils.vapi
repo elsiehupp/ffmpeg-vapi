@@ -35,7 +35,7 @@ program birth year, defined by the program for show_banner ()
 ***********************************************************/
 //  extern const int program_birth_year;
 
-//  extern AVCodecContext? avcodec_opts[AVMEDIA_TYPE_NB];
+//  extern AVCodecContext? avcodec_opts[LibAVUtil.MediaType.NB];
 //  extern AVFormatContext? avformat_opts;
 //  extern AVDictionary? sws_dict;
 //  extern AVDictionary? swr_opts;
@@ -1216,7 +1216,7 @@ public void *grow_array (
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define media_type_string av_get_media_type_string
+public define media_type_string LibAVUtil.MediaType.to_string
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define GROW_ARRAY (

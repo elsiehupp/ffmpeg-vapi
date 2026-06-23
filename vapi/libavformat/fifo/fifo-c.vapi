@@ -23,87 +23,152 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (FifoContext, x)
 static const LibAVUtil.Option options[] = {
-    {
-        "fifo_format",
-        "Target muxer",
-        OFFSET (format
+    new LibAVUtil.StringOption () {
+        name = "fifo_format",
+        short_help_text = "Target muxer",
+        offsetof (
+            FifoContext,
+            format
         ),
-        AV_OPT_TYPE_STRING, {.str = NULL}, 0, 0, AV_OPT_FLAG_ENCODING_PARAM},
-
-    {
-        "queue_size",
-        "Size of fifo queue",
-        OFFSET (queue_size
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "queue_size",
+        short_help_text = "Size of fifo queue",
+        offsetof (
+            FifoContext,
+            queue_size
         ),
-        AV_OPT_TYPE_INT, { .i64 = FIFO_DEFAULT_QUEUE_SIZE}, 1,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-
-    {
-        "format_opts",
-        "Options to be passed to underlying muxer",
-        OFFSET (format_options_str
+        {
+            .i64 = FIFO_DEFAULT_QUEUE_SIZE
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "format_opts",
+        short_help_text = "Options to be passed to underlying muxer",
+        offsetof (
+            FifoContext,
+            format_options_str
         ),
-        AV_OPT_TYPE_STRING, {.str = NULL}, 0, 0, AV_OPT_FLAG_ENCODING_PARAM},
-
-    {
-        "drop_pkts_on_overflow",
-        "Drop packets on fifo queue overflow not to block encoder",
-        OFFSET (drop_pkts_on_overflow
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "drop_pkts_on_overflow",
+        short_help_text = "Drop packets on fifo queue overflow not to block encoder",
+        offsetof (
+            FifoContext,
+            drop_pkts_on_overflow
         ),
-        AV_OPT_TYPE_BOOL, { .i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-
-    {
-        "restart_with_keyframe",
-        "Wait for keyframe when restarting output",
-        OFFSET (restart_with_keyframe
-        ),
-        AV_OPT_TYPE_BOOL, { .i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-
-    {
-        "attempt_recovery",
-        "Attempt recovery in case of failure",
-        OFFSET (attempt_recovery),
-    AV_OPT_TYPE_BOOL, { .i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-
-    {
-        "max_recovery_attempts",
-        "Maximal number of recovery attempts",
-        OFFSET (max_recovery_attempts
-        ),
-        AV_OPT_TYPE_INT, { .i64 = FIFO_DEFAULT_MAX_RECOVERY_ATTEMPTS}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_ENCODING_PARAM},
-
-    {
-        "recovery_wait_time",
-        "Waiting time between recovery attempts",
-        OFFSET (recovery_wait_time
-        ),
-        AV_OPT_TYPE_DURATION, { .i64 = FIFO_DEFAULT_RECOVERY_WAIT_TIME_USEC}, 0, INT64_MAX, AV_OPT_FLAG_ENCODING_PARAM},
-
-    {
-        "recovery_wait_streamtime",
-        "Use stream time instead of real time while waiting for recovery",
-        OFFSET (recovery_wait_streamtime
-        ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
-        0, 1, AV_OPT_FLAG_ENCODING_PARAM},
-
-    {
-        "recover_any_error",
-        "Attempt recovery regardless of type of the error",
-        OFFSET (recover_any_error
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "restart_with_keyframe",
+        short_help_text = "Wait for keyframe when restarting output",
+        offsetof (
+            FifoContext,
+            restart_with_keyframe
         ),
-        AV_OPT_TYPE_BOOL, { .i64 = 0}, 0, 1, AV_OPT_FLAG_ENCODING_PARAM},
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "attempt_recovery",
+        short_help_text = "Attempt recovery in case of failure",
+        offsetof (
+            FifoContext,
+            attempt_recovery
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "max_recovery_attempts",
+        short_help_text = "Maximal number of recovery attempts",
+        offsetof (
+            FifoContext,
+            max_recovery_attempts
+        ),
+        {
+            .i64 = FIFO_DEFAULT_MAX_RECOVERY_ATTEMPTS
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.DurationOption () {
+        name = "recovery_wait_time",
+        short_help_text = "Waiting time between recovery attempts",
+        offsetof (
+            FifoContext,
+            recovery_wait_time
+        ),
+        {
+            .i64 = FIFO_DEFAULT_RECOVERY_WAIT_TIME_USEC
+        },
+        0,
+        int64.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "recovery_wait_streamtime",
+        short_help_text = "Use stream time instead of real time while waiting for recovery",
+        offsetof (
+            FifoContext,
+            recovery_wait_streamtime
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.BoolOption () {
+        name = "recover_any_error",
+        short_help_text = "Attempt recovery regardless of type of the error",
+        offsetof (
+            FifoContext,
+            recover_any_error
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    {
+        NULL
+    }
 
-        {NULL};
-}
+};
 
 [CCode (cname="fifo_muxer_class",cheader_filename="ffmpeg/libformat/fifo.c")]
 public class FifoMuxerClass : LibAVUtil.Class {

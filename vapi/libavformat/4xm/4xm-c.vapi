@@ -81,6 +81,7 @@ public class FourXMDemuxer : AVInputFormat {
     public override int read_close (
         AVFormatContext format_context
     );
+
 }
 
 } // namespace LibAVFormat

@@ -43,7 +43,7 @@ public class MP4VESDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_VIDEO;
+            return LibAVUtil.MediaType.VIDEO;
 
         }
 
@@ -83,6 +83,7 @@ public class MP4VESDynamicHandler : RTPDynamicProtocolHandler {
         PayloadContext priv_data,
         string line
     );
+
 }
 
 [CCode (cname="ff_mpeg4_generic_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
@@ -99,7 +100,7 @@ public class Mpeg4GenericDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -148,6 +149,7 @@ public class Mpeg4GenericDynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

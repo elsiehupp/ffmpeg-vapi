@@ -101,7 +101,20 @@ public class WTVMuxer : AVOutputFormat {
     public override int write_trailer (
         AVFormatContext format_context
     );
-    //  .codec_tag = (AVCodecTag[]){ ff_codec_bmp_tags, ff_codec_wav_tags, 0 };
+
+    [CCode (cname="codec_tag")]
+    public override AVCodecTag[] codec_tag_list {
+        public get {
+            return {
+                ff_codec_bmp_tags,
+                ff_codec_wav_tags,
+                0
+            };
+
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

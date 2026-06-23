@@ -21,29 +21,40 @@ namespace LibAVFormat {
 @brief CDXL demuxer
 @copyright 2011-2012 Paul B Mahol
 ***********************************************************/
-public define OFFSET (x) offsetof (CDXLDemuxContext, x)
 static const LibAVUtil.Option cdxl_options[] = {
-    {
-        "sample_rate",
-        "",
-        OFFSET (sample_rate
+    new LibAVUtil.IntOption () {
+        name = "sample_rate",
+        short_help_text = "",
+        offsetof (
+            CDXLDemuxContext,
+            sample_rate
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 11025 }, 1,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = 11025
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.StringOption () {
+        name = "framerate",
+        short_help_text = "",
+        offsetof (
+            CDXLDemuxContext,
+            framerate
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        "framerate",
-        "",
-        OFFSET (framerate
-        ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, 0, 0, AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="cdxl_demuxer_class",cheader_filename="ffmpeg/libformat/cdxl.c")]
 public class CDXLDemuxerClass : LibAVUtil.Class {

@@ -36,7 +36,7 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -87,6 +87,7 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
+
 }
 
 [CCode (cname="ff_amr_wb_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
@@ -103,7 +104,7 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -154,6 +155,7 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
         uint16 seq,
         int flags
     );
+
 }
 
 } // namespace LibAVFormat

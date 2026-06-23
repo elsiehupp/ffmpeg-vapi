@@ -68,6 +68,7 @@ public class Subtitle {
     public void avsubtitle_free (
         Subtitle sub
     );
+
 }
 
 } // namespace LibAVCodec

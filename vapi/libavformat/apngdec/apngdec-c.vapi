@@ -28,37 +28,53 @@ namespace LibAVFormat {
 ***********************************************************/
 
 static const LibAVUtil.Option options[] = {
-    {
-        "ignore_loop",
-        "ignore loop setting",
+    new LibAVUtil.BoolOption () {
+        name = "ignore_loop",
+        short_help_text = "ignore loop setting",
         offsetof (
-            APNGDemuxContext, ignore_loop
+            APNGDemuxContext,
+            ignore_loop
         ),
-        AV_OPT_TYPE_BOOL, { .i64 = 1 }, 0, 1, AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "max_fps",
+        short_help_text = "maximum framerate (0 is no limit)",
+        offsetof (
+            APNGDemuxContext,
+            max_fps
+        ),
+        {
+            .i64 = 0
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "default_fps",
+        short_help_text = "default framerate (0 is as fast as possible)",
+        offsetof (
+            APNGDemuxContext,
+            default_fps
+        ),
+        {
+            .i64 = DEFAULT_APNG_FPS
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        "max_fps",
-        "maximum framerate (0 is no limit)",
-        offsetof (
-            APNGDemuxContext, max_fps
-        ),
-        AV_OPT_TYPE_INT, { .i64 = 0 }, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        "default_fps",
-        "default framerate (0 is as fast as possible)",
-        offsetof (
-            APNGDemuxContext, default_fps
-        ),
-        AV_OPT_TYPE_INT, { .i64 = DEFAULT_APNG_FPS }, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/apngdec.c")]
 public class APNGDemuxerClass : LibAVUtil.Class {
@@ -91,7 +107,7 @@ public class APNGDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = AV_CLASS_CATEGORY_DEMUXER;
+    //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="struct APNGDemuxContext",cheader_filename="ffmpeg/libformat/apngdec.c")]

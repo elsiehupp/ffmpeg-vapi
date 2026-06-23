@@ -92,6 +92,7 @@ public class WebVTTMuxer : AVOutputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
+
 }
 
 } // namespace LibAVFormat

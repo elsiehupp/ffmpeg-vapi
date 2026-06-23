@@ -27,16 +27,25 @@ namespace LibAVFormat {
 ***********************************************************/
 
 static const LibAVUtil.Option fits_options[] = {
-    {
-        "framerate",
-        "set the framerate",
+    new LibAVUtil.VideoRateOption () {
+        name = "framerate",
+        short_help_text = "set the framerate",
         offsetof (
-            FITSContext, framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "1"}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM},
+            FITSContext,
+            framerate
+        ),
+        {
+            .str = "1"
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="struct FITSContext",cheader_filename="")]
 [Compact]

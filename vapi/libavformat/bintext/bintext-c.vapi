@@ -32,32 +32,54 @@ iCEDraw File demuxer
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (BinDemuxContext, x)
 static const LibAVUtil.Option options[] = {
-    {
-        "linespeed",
-        "set simulated line speed (bytes per second)",
-        OFFSET (chars_per_frame
+    new LibAVUtil.IntOption () {
+        name = "linespeed",
+        short_help_text = "set simulated line speed (bytes per second)",
+        offsetof (
+            BinDemuxContext,
+            chars_per_frame
         ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 6000}, 1,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM},
-    {
-        "video_size",
-        "set video size, such as 640x480 or hd720.",
-        OFFSET (width), AV_OPT_TYPE_IMAGE_SIZE, {.str = NULL}, 0, 0, AV_OPT_FLAG_DECODING_PARAM
+        {
+            .i64 = 6000
+        },
+        1,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.ImageSizeOption () {
+        name = "video_size",
+        short_help_text = "set video size, such as 640x480 or hd720.",
+        offsetof (
+            BinDemuxContext,
+            width
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+    },
+    new LibAVUtil.VideoRateOption () {
+        name = "framerate",
+        short_help_text = "set framerate (frames per second)",
+        offsetof (
+            BinDemuxContext,
+            framerate
+        ),
+        {
+            .str = "25"
+        },
+        0,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
-        "framerate",
-        "set framerate (frames per second)",
-        OFFSET (framerate), AV_OPT_TYPE_VIDEO_RATE, {.str = "25"}, 0,
-        INT_MAX,
-        AV_OPT_FLAG_DECODING_PARAM
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 //  #define CLASS (name)
 //  (const LibAVUtil.Class[1]){{

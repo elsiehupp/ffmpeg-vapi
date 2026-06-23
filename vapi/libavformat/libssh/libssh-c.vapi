@@ -22,41 +22,66 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (LIBSSHContext, x)
-public define D AV_OPT_FLAG_DECODING_PARAM
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "timeout",
-        "set timeout of socket I/O operations",
-        OFFSET (rw_timeout
+    new LibAVUtil.IntOption () {
+        name = "timeout",
+        short_help_text = "set timeout of socket I/O operations",
+        offsetof (
+            LIBSSHContext,
+            rw_timeout
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = -1
         },
         -1,
-        INT_MAX,
-        D|E
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.IntOption () {
+        name = "truncate",
+        short_help_text = "Truncate existing files on write",
+        offsetof (
+            LIBSSHContext,
+            trunc
+        ),
+        {
+            .i64 = 1
+        },
+        0,
+        1,
+
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
+    },
+    new LibAVUtil.StringOption () {
+        name = "private_key",
+        short_help_text = "set path to private key",
+        offsetof (
+            LIBSSHContext,
+            priv_key
+        ),
+        {
+            .str = NULL
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        .flags = (
+            LibAVUtil.OptionFlags.DECODING_PARAM |
+            LibAVUtil.OptionFlags.ENCODING_PARAM
+        )
     },
     {
-        "truncate",
-        "Truncate existing files on write",
-        OFFSET (trunc
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 1 }, 0, 1, E
-    },
-    {
-        "private_key",
-        "set path to private key",
-        OFFSET (priv_key
-        ),
-        AV_OPT_TYPE_STRING,
-        { .str = NULL }, 0, 0, D|E
-    },
-    {NULL}
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="libssh_context_class",cheader_filename="ffmpeg/libformat/libssh.c")]
 public class LibSSHURLProtocolClass : LibAVUtil.Class {

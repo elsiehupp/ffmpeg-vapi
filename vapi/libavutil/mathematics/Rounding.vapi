@@ -146,7 +146,7 @@ public enum Rounding {
     NEAREST_THEN_AWAY_FROM_ZERO,
 
     /***********************************************************
-    @brief Flag telling rescaling functions to pass `INT64_MIN`/`MAX` through
+    @brief Flag telling rescaling functions to pass `int64.MIN`/`MAX` through
     unchanged, avoiding special cases for #AV_NOPTS_VALUE.
 
     Unlike other values of the enumeration Rounding, this value is a
@@ -163,7 +163,7 @@ public enum Rounding {
 
     av_rescale_rnd (AV_NOPTS_VALUE, 1, 2, Rounding.UP | Rounding.AVOID_SPECIAL_CASE);
     // Rescaling AV_NOPTS_VALUE:
-    //     AV_NOPTS_VALUE == INT64_MIN
+    //     AV_NOPTS_VALUE == int64.MIN
     //     AV_NOPTS_VALUE is passed through
     //     => AV_NOPTS_VALUE
     @endcode
@@ -207,7 +207,7 @@ public int64 av_rescale (
 
 The operation is mathematically equivalent to `a * b / c`, but writing that
 directly can overflow, and does not support different rounding methods.
-If the result is not representable then INT64_MIN is returned.
+If the result is not representable then int64.MIN is returned.
 
 @see @link av_rescale (), av_rescale_q (), av_rescale_q_rnd ()
 ***********************************************************/

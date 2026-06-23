@@ -24,811 +24,795 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (HLSContext, x)
-public define E AV_OPT_FLAG_ENCODING_PARAM
 static const LibAVUtil.Option options[] = {
-    {
-        "start_number",
-        "set first number in the sequence",
-        OFFSET (
+    new LibAVUtil.Int64Option () {
+        name = "start_number",
+        short_help_text = "set first number in the sequence",
+        offsetof (
+            HLSContext,
             start_sequence
         ),
-        AV_OPT_TYPE_INT64,
         {
             .i64 = 0
         },
         0,
-        INT64_MAX,
-        E
+        int64.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_time",
-        "set segment length in seconds",
-        OFFSET (
+    new LibAVUtil.FloatOption () {
+        name = "hls_time",
+        short_help_text = "set segment length in seconds",
+        offsetof (
+            HLSContext,
             time
         ),
-        AV_OPT_TYPE_FLOAT,
         {
             .dbl = 2
         },
         0,
         FLT_MAX,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_init_time",
-        "set segment length in seconds at init list",
-        OFFSET (
+    new LibAVUtil.FloatOption () {
+        name = "hls_init_time",
+        short_help_text = "set segment length in seconds at init list",
+        offsetof (
+            HLSContext,
             init_time
         ),
-        AV_OPT_TYPE_FLOAT,
         {
             .dbl = 0
         },
         0,
         FLT_MAX,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_list_size",
-        "set maximum number of playlist entries",
-        OFFSET (
+    new LibAVUtil.IntOption () {
+        name = "hls_list_size",
+        short_help_text = "set maximum number of playlist entries",
+        offsetof (
+            HLSContext,
             max_nb_segments
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 5
         },
         0,
-        INT_MAX,
-        E
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_delete_threshold",
-        "set number of unreferenced segments to keep before deleting",
-        OFFSET (
+    new LibAVUtil.IntOption () {
+        name = "hls_delete_threshold",
+        short_help_text = "set number of unreferenced segments to keep before deleting",
+        offsetof (
+            HLSContext,
             hls_delete_threshold
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 1
         },
         1,
-        INT_MAX,
-        E
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_ts_options","set hls mpegts list of options for the container format used for hls",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_ts_options","set hls mpegts list of options for the container format used for hls",
+        offsetof (
+            HLSContext,
             format_options_str
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_vtt_options","set hls vtt list of options for the container format used for hls",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_vtt_options","set hls vtt list of options for the container format used for hls",
+        offsetof (
+            HLSContext,
             vtt_format_options_str
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
 #if FF_API_HLS_WRAP
-    {
-        "hls_wrap",
-        "set number after which the index wraps (will be deprecated)",
-        OFFSET (
+    new LibAVUtil.IntOption () {
+        name = "hls_wrap",
+        short_help_text = "set number after which the index wraps (will be deprecated)",
+        offsetof (
+            HLSContext,
             wrap
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        E
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
 #endif
 
-    {
-        "hls_allow_cache",
-        "explicitly set whether the client MAY (1) or MUST NOT (0) cache media segments",
-        OFFSET (
+    new LibAVUtil.IntOption () {
+        name = "hls_allow_cache",
+        short_help_text = "explicitly set whether the client MAY (1) or MUST NOT (0) cache media segments",
+        offsetof (
+            HLSContext,
             allowcache
         ),
-        AV_OPT_TYPE_INT,
         {
-            .i64 = -1},
-        INT_MIN,
-        INT_MAX,
-        E
+            .i64 = -1
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_base_url",
-        "url to prepend to each playlist entry",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_base_url",
+        short_help_text = "url to prepend to each playlist entry",
+        offsetof (
+            HLSContext,
             baseurl
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_segment_filename",
-        "filename template for segment files",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_segment_filename",
+        short_help_text = "filename template for segment files",
+        offsetof (
+            HLSContext,
             segment_filename
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_segment_size",
-        "maximum size per segment file, (in bytes)",
-        OFFSET (
+    new LibAVUtil.IntOption () {
+        name = "hls_segment_size",
+        short_help_text = "maximum size per segment file, (in bytes)",
+        offsetof (
+            HLSContext,
             max_seg_size
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
-        INT_MAX,
-        E
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_key_info_file",
-        "file with key URI and key file path",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_key_info_file",
+        short_help_text = "file with key URI and key file path",
+        offsetof (
+            HLSContext,
             key_info_file
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_enc",
-        "enable AES128 encryption support",
-        OFFSET (
+    new LibAVUtil.BoolOption () {
+        name = "hls_enc",
+        short_help_text = "enable AES128 encryption support",
+        offsetof (
+            HLSContext,
             encrypt
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
         0,
         1,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_enc_key",
-        "hex-coded 16 byte key to encrypt the segments",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_enc_key",
+        short_help_text = "hex-coded 16 byte key to encrypt the segments",
+        offsetof (
+            HLSContext,
             key
         ),
-        AV_OPT_TYPE_STRING,
-        .flags = E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_enc_key_url",
-        "url to access the key to decrypt the segments",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_enc_key_url",
+        short_help_text = "url to access the key to decrypt the segments",
+        offsetof (
+            HLSContext,
             key_url
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_enc_iv",
-        "hex-coded 16 byte initialization vector",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_enc_iv",
+        short_help_text = "hex-coded 16 byte initialization vector",
+        offsetof (
+            HLSContext,
             iv
         ),
-        AV_OPT_TYPE_STRING,
-        .flags = E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_subtitle_path",
-        "set path of hls subtitles",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_subtitle_path",
+        short_help_text = "set path of hls subtitles",
+        offsetof (
+            HLSContext,
             subtitle_filename
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_segment_type",
-        "set hls segment files type",
-        OFFSET (
+    new LibAVUtil.IntOption () {
+        name = "hls_segment_type",
+        short_help_text = "set hls segment files type",
+        offsetof (
+            HLSContext,
             segment_type
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = SEGMENT_TYPE_MPEGTS
         },
         0,
         SEGMENT_TYPE_FMP4,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "segment_type"
     },
-    {
-        "mpegts",
-        "make segment file to mpegts files in m3u8",
+    new LibAVUtil.ConstOption () {
+        name = "mpegts",
+        short_help_text = "make segment file to mpegts files in m3u8",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = SEGMENT_TYPE_MPEGTS
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "segment_type"
     },
-    {
-        "fmp4",
-        "make segment file to fragment mp4 files in m3u8",
+    new LibAVUtil.ConstOption () {
+        name = "fmp4",
+        short_help_text = "make segment file to fragment mp4 files in m3u8",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = SEGMENT_TYPE_FMP4
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "segment_type"
     },
-    {
-        "hls_fmp4_init_filename",
-        "set fragment mp4 file init filename",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "hls_fmp4_init_filename",
+        short_help_text = "set fragment mp4 file init filename",
+        offsetof (
+            HLSContext,
             fmp4_init_filename
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = "init.mp4"
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_flags",
-        "set flags affecting HLS playlist and media file generation",
-        OFFSET (
+    new LibAVUtil.FlagsOption () {
+        name = "hls_flags",
+        short_help_text = "set flags affecting HLS playlist and media file generation",
+        offsetof (
+            HLSContext,
             flags
         ),
-        AV_OPT_TYPE_FLAGS,
         {
             .i64 = 0
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "single_file",
-        "generate a single media file indexed with byte ranges",
+    new LibAVUtil.ConstOption () {
+        name = "single_file",
+        short_help_text = "generate a single media file indexed with byte ranges",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_SINGLE_FILE
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "temp_file",
-        "write segment and playlist to temporary file and rename when complete",
+    new LibAVUtil.ConstOption () {
+        name = "temp_file",
+        short_help_text = "write segment and playlist to temporary file and rename when complete",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_TEMP_FILE
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "delete_segments",
-        "delete segment files that are no longer part of the playlist",
+    new LibAVUtil.ConstOption () {
+        name = "delete_segments",
+        short_help_text = "delete segment files that are no longer part of the playlist",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_DELETE_SEGMENTS
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "round_durations",
-        "round durations in m3u8 to whole numbers",
+    new LibAVUtil.ConstOption () {
+        name = "round_durations",
+        short_help_text = "round durations in m3u8 to whole numbers",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_ROUND_DURATIONS
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "discont_start",
-        "start the playlist with a discontinuity tag",
+    new LibAVUtil.ConstOption () {
+        name = "discont_start",
+        short_help_text = "start the playlist with a discontinuity tag",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_DISCONT_START
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "omit_endlist",
-        "Do not append an endlist when ending stream",
+    new LibAVUtil.ConstOption () {
+        name = "omit_endlist",
+        short_help_text = "Do not append an endlist when ending stream",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_OMIT_ENDLIST
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "split_by_time",
-        "split the hls segment by time which user set by hls_time",
+    new LibAVUtil.ConstOption () {
+        name = "split_by_time",
+        short_help_text = "split the hls segment by time which user set by hls_time",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_SPLIT_BY_TIME
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "append_list",
-        "append the new segments into old hls segment list",
+    new LibAVUtil.ConstOption () {
+        name = "append_list",
+        short_help_text = "append the new segments into old hls segment list",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_APPEND_LIST
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "program_date_time",
-        "add EXT-X-PROGRAM-DATE-TIME",
+    new LibAVUtil.ConstOption () {
+        name = "program_date_time",
+        short_help_text = "add EXT-X-PROGRAM-DATE-TIME",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_PROGRAM_DATE_TIME
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "second_level_segment_index",
-        "include segment index in segment filenames when use_localtime",
+    new LibAVUtil.ConstOption () {
+        name = "second_level_segment_index",
+        short_help_text = "include segment index in segment filenames when use_localtime",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_SECOND_LEVEL_SEGMENT_INDEX
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "second_level_segment_duration",
-        "include segment duration in segment filenames when use_localtime",
+    new LibAVUtil.ConstOption () {
+        name = "second_level_segment_duration",
+        short_help_text = "include segment duration in segment filenames when use_localtime",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_SECOND_LEVEL_SEGMENT_DURATION
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "second_level_segment_size",
-        "include segment size in segment filenames when use_localtime",
+    new LibAVUtil.ConstOption () {
+        name = "second_level_segment_size",
+        short_help_text = "include segment size in segment filenames when use_localtime",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_SECOND_LEVEL_SEGMENT_SIZE
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "periodic_rekey",
-        "reload keyinfo file periodically for re-keying",
+    new LibAVUtil.ConstOption () {
+        name = "periodic_rekey",
+        short_help_text = "reload keyinfo file periodically for re-keying",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_PERIODIC_REKEY
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "independent_segments",
-        "add EXT-X-INDEPENDENT-SEGMENTS, whenever applicable",
+    new LibAVUtil.ConstOption () {
+        name = "independent_segments",
+        short_help_text = "add EXT-X-INDEPENDENT-SEGMENTS, whenever applicable",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_INDEPENDENT_SEGMENTS
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
-    {
-        "iframes_only",
-        "add EXT-X-I-FRAMES-ONLY, whenever applicable",
+    new LibAVUtil.ConstOption () {
+        name = "iframes_only",
+        short_help_text = "add EXT-X-I-FRAMES-ONLY, whenever applicable",
         0,
-        AV_OPT_TYPE_CONST,
         {
             .i64 = HLS_I_FRAMES_ONLY
         },
         0,
         UINT_MAX,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
 #if FF_API_HLS_USE_LOCALTIME
-    {
-        "use_localtime",
-        "set filename expansion with strftime at segment creation (will be deprecated )",
-        OFFSET (
+    new LibAVUtil.BoolOption () {
+        name = "use_localtime",
+        short_help_text = "set filename expansion with strftime at segment creation (will be deprecated )",
+        offsetof (
+            HLSContext,
             use_localtime
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
         0,
         1,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
 #endif
 
-    {
-        "strftime",
-        "set filename expansion with strftime at segment creation",
-        OFFSET (
+    new LibAVUtil.BoolOption () {
+        name = "strftime",
+        short_help_text = "set filename expansion with strftime at segment creation",
+        offsetof (
+            HLSContext,
             use_localtime
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
         0,
         1,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
 #if FF_API_HLS_USE_LOCALTIME
-    {
-        "use_localtime_mkdir",
-        "create last directory component in strftime-generated filename (will be deprecated)",
-        OFFSET (
+    new LibAVUtil.BoolOption () {
+        name = "use_localtime_mkdir",
+        short_help_text = "create last directory component in strftime-generated filename (will be deprecated)",
+        offsetof (
+            HLSContext,
             use_localtime_mkdir
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
         0,
         1,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
 #endif
 
-    {
-        "strftime_mkdir",
-        "create last directory component in strftime-generated filename",
-        OFFSET (
+    new LibAVUtil.BoolOption () {
+        name = "strftime_mkdir",
+        short_help_text = "create last directory component in strftime-generated filename",
+        offsetof (
+            HLSContext,
             use_localtime_mkdir
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
         0,
         1,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_playlist_type",
-        "set the HLS playlist type",
-        OFFSET (
+    new LibAVUtil.IntOption () {
+        name = "hls_playlist_type",
+        short_help_text = "set the HLS playlist type",
+        offsetof (
+            HLSContext,
             pl_type
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = PLAYLIST_TYPE_NONE
         },
         0,
         PLAYLIST_TYPE_NB - 1,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "pl_type"
     },
-    {
-        "event",
-        "EVENT playlist",
+    new LibAVUtil.ConstOption () {
+        name = "event",
+        short_help_text = "EVENT playlist",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = PLAYLIST_TYPE_EVENT },
-        INT_MIN,
-        INT_MAX,
-        E,
+            .i64 = PLAYLIST_TYPE_EVENT
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "pl_type"
     },
-    {
-        "vod",
-        "VOD playlist",
+    new LibAVUtil.ConstOption () {
+        name = "vod",
+        short_help_text = "VOD playlist",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = PLAYLIST_TYPE_VOD },
-        INT_MIN,
-        INT_MAX,
-        E,
+            .i64 = PLAYLIST_TYPE_VOD
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "pl_type"
     },
-    {
-        "method",
-        "set the HTTP method (default: PUT)",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "method",
+        short_help_text = "set the HTTP method (default: PUT)",
+        offsetof (
+            HLSContext,
             method
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "hls_start_number_source",
-        "set source of first number in sequence",
-        OFFSET (
+    new LibAVUtil.IntOption () {
+        name = "hls_start_number_source",
+        short_help_text = "set source of first number in sequence",
+        offsetof (
+            HLSContext,
             start_sequence_source_type
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = HLS_START_SEQUENCE_AS_START_NUMBER
         },
         0,
         HLS_START_SEQUENCE_AS_FORMATTED_DATETIME,
-        E,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "start_sequence_source_type"
     },
-    {
-        "generic",
-        "start_number value (default)",
+    new LibAVUtil.ConstOption () {
+        name = "generic",
+        short_help_text = "start_number value (default)",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_START_SEQUENCE_AS_START_NUMBER },
-        INT_MIN,
-        INT_MAX,
-        E,
+            .i64 = HLS_START_SEQUENCE_AS_START_NUMBER
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "start_sequence_source_type"
     },
-    {
-        "epoch",
-        "seconds since epoch",
+    new LibAVUtil.ConstOption () {
+        name = "epoch",
+        short_help_text = "seconds since epoch",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_START_SEQUENCE_AS_SECONDS_SINCE_EPOCH },
-        INT_MIN,
-        INT_MAX,
-        E,
+            .i64 = HLS_START_SEQUENCE_AS_SECONDS_SINCE_EPOCH
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "start_sequence_source_type"
     },
-    {
-        "datetime",
-        "current datetime as YYYYMMDDhhmmss",
+    new LibAVUtil.ConstOption () {
+        name = "datetime",
+        short_help_text = "current datetime as YYYYMMDDhhmmss",
         0,
-        AV_OPT_TYPE_CONST,
         {
-            .i64 = HLS_START_SEQUENCE_AS_FORMATTED_DATETIME },
-        INT_MIN,
-        INT_MAX,
-        E,
+            .i64 = HLS_START_SEQUENCE_AS_FORMATTED_DATETIME
+        },
+        int.MIN,
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "start_sequence_source_type"
     },
-    {
-        "http_user_agent",
-        "override User-Agent field in HTTP header",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "http_user_agent",
+        short_help_text = "override User-Agent field in HTTP header",
+        offsetof (
+            HLSContext,
             user_agent
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "var_stream_map",
-        "Variant stream map string",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "var_stream_map",
+        short_help_text = "Variant stream map string",
+        offsetof (
+            HLSContext,
             var_stream_map
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "cc_stream_map",
-        "Closed captions stream map string",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "cc_stream_map",
+        short_help_text = "Closed captions stream map string",
+        offsetof (
+            HLSContext,
             cc_stream_map
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "master_pl_name",
-        "Create HLS master playlist with this name",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "master_pl_name",
+        short_help_text = "Create HLS master playlist with this name",
+        offsetof (
+            HLSContext,
             master_pl_name
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "master_pl_publish_rate",
-        "Publish master play list every after this many segment intervals",
-        OFFSET (
+    new LibAVUtil.IntOption () {
+        name = "master_pl_publish_rate",
+        short_help_text = "Publish master play list every after this many segment intervals",
+        offsetof (
+            HLSContext,
             master_publish_rate
         ),
-        AV_OPT_TYPE_INT,
         {
             .i64 = 0
         },
         0,
         UINT_MAX,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "http_persistent",
-        "Use persistent HTTP connections",
-        OFFSET (
+    new LibAVUtil.BoolOption () {
+        name = "http_persistent",
+        short_help_text = "Use persistent HTTP connections",
+        offsetof (
+            HLSContext,
             http_persistent
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
         0,
         1,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "timeout",
-        "set timeout for socket I/O operations",
-        OFFSET (
+    new LibAVUtil.DurationOption () {
+        name = "timeout",
+        short_help_text = "set timeout for socket I/O operations",
+        offsetof (
+            HLSContext,
             timeout
         ),
-        AV_OPT_TYPE_DURATION,
         {
             .i64 = -1
         },
         -1,
-        INT_MAX,
-        .flags = E
+        int.MAX,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "ignore_io_errors",
-        "Ignore IO errors for stable long-duration runs with network output",
-        OFFSET (
+    new LibAVUtil.BoolOption () {
+        name = "ignore_io_errors",
+        short_help_text = "Ignore IO errors for stable long-duration runs with network output",
+        offsetof (
+            HLSContext,
             ignore_io_errors
         ),
-        AV_OPT_TYPE_BOOL,
         {
             .i64 = 0
         },
         0,
         1,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
-    {
-        "headers",
-        "set custom HTTP headers, can override built in default headers",
-        OFFSET (
+    new LibAVUtil.StringOption () {
+        name = "headers",
+        short_help_text = "set custom HTTP headers, can override built in default headers",
+        offsetof (
+            HLSContext,
             headers
         ),
-        AV_OPT_TYPE_STRING,
         {
             .str = NULL
         },
         0,
         0,
-        E
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        NULL };
-}
+        NULL
+    }
+
+};
 
 [CCode (cname="hls_class",cheader_filename="ffmpeg/libformat/hlsenc.c")]
 public class HLSMuxerClass : LibAVUtil.Class {

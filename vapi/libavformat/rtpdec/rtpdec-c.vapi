@@ -37,7 +37,7 @@ public class L24DynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -68,7 +68,7 @@ public class GSMDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -99,7 +99,7 @@ public class RealMediaMP3DynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -130,7 +130,7 @@ public class SpeexDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -161,7 +161,7 @@ public class OpusDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_AUDIO;
+            return LibAVUtil.MediaType.AUDIO;
 
         }
 
@@ -195,7 +195,7 @@ public class T140DynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
-            return AVMEDIA_TYPE_SUBTITLE;
+            return LibAVUtil.MediaType.SUBTITLE;
 
         }
 

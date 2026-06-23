@@ -32,42 +32,63 @@ public enum PictureType {
     /***********************************************************
     @brief Undefined
     ***********************************************************/
-    AV_PICTURE_TYPE_NONE,
+    [CCode (name="AV_PICTURE_TYPE_NONE")]
+    NONE,
 
     /***********************************************************
     @brief Intra
     ***********************************************************/
-    AV_PICTURE_TYPE_I,
+    [CCode (name="AV_PICTURE_TYPE_I")]
+    INTRA,
 
     /***********************************************************
     @brief Predicted
     ***********************************************************/
-    AV_PICTURE_TYPE_P,
+    [CCode (name="AV_PICTURE_TYPE_P")]
+    PREDICTED,
 
     /***********************************************************
     @brief Bi-dir predicted
     ***********************************************************/
-    AV_PICTURE_TYPE_B,
+    [CCode (name="AV_PICTURE_TYPE_B")]
+    BIDIRECTIONAL_PREDICTED,
 
     /***********************************************************
     @brief S (GMC)-VOP MPEG-4
     ***********************************************************/
-    AV_PICTURE_TYPE_S,
+    [CCode (name="AV_PICTURE_TYPE_S")]
+    S_GMC_VOP_MPEG4,
 
     /***********************************************************
     @brief Switching Intra
     ***********************************************************/
-    AV_PICTURE_TYPE_SI,
+    [CCode (name="AV_PICTURE_TYPE_SI")]
+    SWITCHING_INTRA,
 
     /***********************************************************
     @brief Switching Predicted
     ***********************************************************/
-    AV_PICTURE_TYPE_SP,
+    [CCode (name="AV_PICTURE_TYPE_SP")]
+    SWITCHING_PREDICTED,
 
     /***********************************************************
     @brief BI type
     ***********************************************************/
-    AV_PICTURE_TYPE_BI;
+    [CCode (name="AV_PICTURE_TYPE_BI")]
+    BI;
+
+    /***********************************************************
+    @brief Return a single letter to describe the given picture type
+    pict_type.
+
+    @param[in] pict_type the picture type @return a single character
+    representing the picture type, '?' if pict_type is unknown
+    ***********************************************************/
+    [CCode (cname="av_get_picture_type_char",cheader_filename="subprojects/ffmpeg/libavutil/avutil.h")]
+    public char to_char (
+        PictureType pict_type
+    );
+
 }
 
 } // namespace LibAVUtil

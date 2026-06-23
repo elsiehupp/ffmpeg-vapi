@@ -22,53 +22,79 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
-public define OFFSET (x) offsetof (HashContext, x)
-public define ENC AV_OPT_FLAG_ENCODING_PARAM
 #if CONFIG_HASH_MUXER || CONFIG_FRAMEHASH_MUXER
+[CCode (cname="",cheader_filename="")]
 static const LibAVUtil.Option hash_options[] = {
-    {
-        "hash",
-        "set hash to use",
-        OFFSET (hash_name
+    new LibAVUtil.StringOption () {
+        name = "hash",
+        short_help_text = "set hash to use",
+        offsetof (
+            HashContext,
+            hash_name
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = "sha256"}, 0, 0, ENC
+        {
+            .str = "sha256"
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "format_version",
+        short_help_text = "file format version",
+        offsetof (
+            HashContext,
+            format_version
+        ),
+        {
+            .i64 = 2
+        },
+        1,
+        2,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        "format_version",
-        "file format version",
-        OFFSET (format_version
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 2}, 1, 2, ENC
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 #endif
 
 #if CONFIG_MD5_MUXER || CONFIG_FRAMEMD5_MUXER
 static const LibAVUtil.Option md5_options[] = {
-    {
-        "hash",
-        "set hash to use",
-        OFFSET (hash_name
+    new LibAVUtil.StringOption () {
+        name = "hash",
+        short_help_text = "set hash to use",
+        offsetof (
+            HashContext,
+            hash_name
         ),
-        AV_OPT_TYPE_STRING,
-        {.str = "md5"}, 0, 0, ENC
+        {
+            .str = "md5"
+        },
+        0,
+        0,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+    },
+    new LibAVUtil.IntOption () {
+        name = "format_version",
+        short_help_text = "file format version",
+        offsetof (
+            HashContext,
+            format_version
+        ),
+        {
+            .i64 = 2
+        },
+        1,
+        2,
+        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
-        "format_version",
-        "file format version",
-        OFFSET (format_version
-        ),
-        AV_OPT_TYPE_INT,
-        { .i64 = 2}, 1, 2, ENC
-    },
-    {
-        NULL };
-}
+        NULL
+    }
+
+};
 #endif
 
 #if CONFIG_HASH_MUXER
