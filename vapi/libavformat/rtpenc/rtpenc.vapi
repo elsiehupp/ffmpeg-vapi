@@ -145,7 +145,7 @@ public define FF_RTP_FLAG_OPTS (
             {
                 .i64 = 0
             },
-            INT_MIN,
+            int.MIN,
             int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
             "rtpflags"
         },
@@ -156,7 +156,7 @@ public define FF_RTP_FLAG_OPTS (
             {
                 .i64 = FF_RTP_FLAG_MP4A_LATM
             },
-            INT_MIN,
+            int.MIN,
             int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
             "rtpflags"
         },
@@ -167,7 +167,7 @@ public define FF_RTP_FLAG_OPTS (
             {
                 .i64 = FF_RTP_FLAG_RFC2190
             },
-            INT_MIN,
+            int.MIN,
             int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
             "rtpflags"
         },
@@ -178,7 +178,7 @@ public define FF_RTP_FLAG_OPTS (
             {
                 .i64 = FF_RTP_FLAG_SKIP_RTCP
             },
-            INT_MIN,
+            int.MIN,
             int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
             "rtpflags"
         },
@@ -189,7 +189,7 @@ public define FF_RTP_FLAG_OPTS (
             {
                 .i64 = FF_RTP_FLAG_H264_MODE0
             },
-            INT_MIN,
+            int.MIN,
             int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
             "rtpflags"
         },
@@ -200,7 +200,7 @@ public define FF_RTP_FLAG_OPTS (
             {
                 .i64 = FF_RTP_FLAG_SEND_BYE
             },
-            INT_MIN,
+            int.MIN,
             int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
             "rtpflags"
         }

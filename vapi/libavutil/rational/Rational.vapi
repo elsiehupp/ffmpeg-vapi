@@ -87,7 +87,7 @@ public class Rational {
         - 0 if `a == b`
         - 1 if `a > b`
         - -1 if `a < b`
-        - `INT_MIN` if one of the values is of the form `0 / 0`
+        - `int.MIN` if one of the values is of the form `0 / 0`
     ***********************************************************/
     [CCode (cname="av_cmp_q",cheader_filename="subprojects/ffmpeg/libavutil/rational.h")]
     public int av_cmp_q (

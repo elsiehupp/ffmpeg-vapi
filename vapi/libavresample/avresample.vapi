@@ -497,7 +497,7 @@ conversion would output.
 @param in_nb_samples number of input samples
 
 @return              number of samples or AVERROR (EINVAL) if the value
-                     would exceed INT_MAX
+                     would exceed int.MAX
 ***********************************************************/
 //  attribute_deprecated
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]

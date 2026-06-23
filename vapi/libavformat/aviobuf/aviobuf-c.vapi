@@ -34,8 +34,8 @@ static const LibAVUtil.Option ff_avio_options[] = {
         {
             .str = NULL
         },
-        CHAR_MIN,
-        CHAR_MAX,
+        char.MIN,
+        char.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {

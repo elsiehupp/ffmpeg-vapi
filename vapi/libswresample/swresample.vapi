@@ -485,7 +485,7 @@ building custom matrices.
 @param surround_mix_level  mix level for the surround channel (s)
 @param lfe_mix_level       mix level for the low-frequency effects channel
 @param rematrix_maxval     if 1.0, coefficients will be normalized to prevent
-                           overflow. if INT_MAX, coefficients will not be
+                           overflow. if int.MAX, coefficients will not be
                            normalized.
 @param[out] matrix         mixing coefficients; matrix[i + stride * o] is
                            the weight of input channel i in output channel o.

@@ -39,8 +39,8 @@ static const LibAVUtil.Option options[] = {
         {
             .str = NULL
         },
-        CHAR_MIN,
-        CHAR_MAX,
+        char.MIN,
+        char.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.StringOption () {
@@ -53,8 +53,8 @@ static const LibAVUtil.Option options[] = {
         {
             .str = NULL
         },
-        CHAR_MIN,
-        CHAR_MAX,
+        char.MIN,
+        char.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.Int64Option () {

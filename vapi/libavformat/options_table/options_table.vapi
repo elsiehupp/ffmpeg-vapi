@@ -41,7 +41,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = DEFAULT
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -57,7 +57,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVIO_FLAG_DIRECT
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -121,7 +121,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_AUTO_BSF
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -137,7 +137,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_FLUSH_PACKETS
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
@@ -152,7 +152,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_IGNIDX
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "fflags"
@@ -164,7 +164,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_GENPTS
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "fflags"
@@ -176,7 +176,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_NOFILLIN
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "fflags"
@@ -188,7 +188,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_NOPARSE
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "fflags"
@@ -200,7 +200,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_IGNDTS
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "fflags"
@@ -212,7 +212,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_DISCARD_CORRUPT
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "fflags"
@@ -224,7 +224,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_SORT_DTS
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "fflags"
@@ -237,7 +237,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_KEEP_SIDE_DATA
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "fflags"
@@ -251,7 +251,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_FAST_SEEK
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "fflags"
@@ -264,7 +264,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = AVFMT_FLAG_MP4A_LATM
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
@@ -426,7 +426,7 @@ public const LibAVUtil.Option avformat_options[] = {
         {
             .i64 = FF_FDEBUG_TS
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
@@ -547,7 +547,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_CRCCHECK
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -562,7 +562,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_CRCCHECK
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -574,7 +574,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_CRCCHECK
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -586,7 +586,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_BITSTREAM
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -598,7 +598,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_BUFFER
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -610,7 +610,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_EXPLODE
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -622,7 +622,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_IGNORE_ERR
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -634,7 +634,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_CAREFUL
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -646,7 +646,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_COMPLIANT
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -658,7 +658,7 @@ to be removed when avconv is fixed
         {
             .i64 = AV_EF_AGGRESSIVE
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM,
         "err_detect"
@@ -783,7 +783,7 @@ to be removed when avconv is fixed
         {
             .i64 = DEFAULT
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -802,7 +802,7 @@ to be removed when avconv is fixed
         {
             .i64 = DEFAULT
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -818,7 +818,7 @@ to be removed when avconv is fixed
         {
             .i64 = FF_COMPLIANCE_VERY_STRICT
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -834,7 +834,7 @@ to be removed when avconv is fixed
         {
             .i64 = FF_COMPLIANCE_STRICT
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -850,7 +850,7 @@ to be removed when avconv is fixed
         {
             .i64 = FF_COMPLIANCE_NORMAL
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -866,7 +866,7 @@ to be removed when avconv is fixed
         {
             .i64 = FF_COMPLIANCE_UNOFFICIAL
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -882,7 +882,7 @@ to be removed when avconv is fixed
         {
             .i64 = FF_COMPLIANCE_EXPERIMENTAL
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
@@ -930,7 +930,7 @@ to be removed when avconv is fixed
         {
             .i64 = AVFMT_AVOID_NEG_TS_AUTO
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
@@ -945,7 +945,7 @@ to be removed when avconv is fixed
         {
             .i64 = 0
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
@@ -960,7 +960,7 @@ to be removed when avconv is fixed
         {
             .i64 = AVFMT_AVOID_NEG_TS_MAKE_NON_NEGATIVE
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
@@ -975,7 +975,7 @@ to be removed when avconv is fixed
         {
             .i64 = AVFMT_AVOID_NEG_TS_MAKE_ZERO
         },
-        INT_MIN,
+        int.MIN,
         int.MAX,
         .flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
@@ -993,8 +993,8 @@ to be removed when avconv is fixed
         {
             .str = ", "
         },
-        CHAR_MIN,
-        CHAR_MAX,
+        char.MIN,
+        char.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
         .flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
@@ -1011,8 +1011,8 @@ to be removed when avconv is fixed
         {
             .str = NULL
         },
-        CHAR_MIN,
-        CHAR_MAX,
+        char.MIN,
+        char.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.StringOption () {
@@ -1025,8 +1025,8 @@ to be removed when avconv is fixed
         {
             .str = NULL
         },
-        CHAR_MIN,
-        CHAR_MAX,
+        char.MIN,
+        char.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.StringOption () {
@@ -1039,8 +1039,8 @@ to be removed when avconv is fixed
         {
             .str = NULL
         },
-        CHAR_MIN,
-        CHAR_MAX,
+        char.MIN,
+        char.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.StringOption () {
@@ -1053,8 +1053,8 @@ to be removed when avconv is fixed
         {
             .str = NULL
         },
-        CHAR_MIN,
-        CHAR_MAX,
+        char.MIN,
+        char.MAX,
         .flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {

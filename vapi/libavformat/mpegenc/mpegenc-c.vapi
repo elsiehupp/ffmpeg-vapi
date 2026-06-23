@@ -26,7 +26,7 @@ namespace LibAVFormat {
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "muxrate",
-        NULL,
+        short_help_text = "",
         offsetof (
             MpegMuxContext,
             user_mux_rate

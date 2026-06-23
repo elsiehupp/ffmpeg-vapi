@@ -57,7 +57,7 @@ Backwards compat.
 //  #define FFUMOD (a,b);
 
 /***********************************************************
-@brief Absolute value, Note, INT_MIN / int64.MIN result in undefined behavior as they
+@brief Absolute value, Note, int.MIN / int64.MIN result in undefined behavior as they
 are not representable as absolute values of their type. This is the same
 as with abs ()
 @see @link FFNABS ()

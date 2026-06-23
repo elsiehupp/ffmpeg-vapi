@@ -77,7 +77,7 @@ public const Option test_options[] = {
         {
         .i64 = -1
         },
-        INT_MIN,
+        int.MIN,
         int.MAX
     },
     {
@@ -189,7 +189,7 @@ public void free_test_struct (out test_struct foo) {
             {
                 .i64 = 0
             },
-            INT_MIN,
+            int.MIN,
             int.MAX
         },
         {
@@ -247,7 +247,7 @@ public void free_test_struct (out test_struct foo) {
         {
             .i64 = 0
         },
-        INT_MIN,
+        int.MIN,
         int.MAX, "test_unit"
     },
     {

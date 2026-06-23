@@ -39,8 +39,8 @@ static const LibAVUtil.Option options[] = {
         {
             .str = "auto"
         },
-        CHAR_MIN,
-        CHAR_MAX,
+        char.MIN,
+        char.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
@@ -109,7 +109,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = SEGMENT_LIST_FLAG_CACHE
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "list_flags"
     },

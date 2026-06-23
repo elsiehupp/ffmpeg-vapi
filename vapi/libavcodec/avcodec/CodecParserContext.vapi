@@ -161,7 +161,7 @@ public class CodecParserContext {
     @brief Offset of the current timestamp against last timestamp sync point in
     units of CodecContext.time_base.
 
-    Set to INT_MIN when dts_sync_point unused. Otherwise, it must
+    Set to int.MIN when dts_sync_point unused. Otherwise, it must
     contain a valid timestamp offset.
 
     Note that the timestamp of sync point has usually a nonzero
@@ -176,7 +176,7 @@ public class CodecParserContext {
     /***********************************************************
     @brief Presentation delay of current frame in units of CodecContext.time_base.
 
-    Set to INT_MIN when dts_sync_point unused. Otherwise, it must
+    Set to int.MIN when dts_sync_point unused. Otherwise, it must
     contain valid non-negative timestamp delta (presentation time of a frame
     must not lie in the past).
 

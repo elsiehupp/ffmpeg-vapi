@@ -36,7 +36,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = 1
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.RationalOption () {
@@ -50,7 +50,7 @@ static const LibAVUtil.Option options[] = {
             .dbl = 0
         },
         0,
-        USHRT_MAX,
+        ushort.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {

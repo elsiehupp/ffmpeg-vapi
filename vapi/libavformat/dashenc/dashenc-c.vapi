@@ -360,7 +360,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = SEGMENT_TYPE_AUTO
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "segment_type"
     },
@@ -372,7 +372,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = SEGMENT_TYPE_MP4
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "segment_type"
     },
@@ -384,7 +384,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = SEGMENT_TYPE_WEBM
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "segment_type"
     },
@@ -427,7 +427,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = 0
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {

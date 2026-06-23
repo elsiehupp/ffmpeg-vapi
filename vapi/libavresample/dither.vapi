@@ -36,7 +36,7 @@ public class DitherDSPContext {
     Convert samples from flt to s16 with added dither noise.
 
     @param dst    destination float array, range -0.5 to 0.5
-    @param src    source int array, range INT_MIN to INT_MAX.
+    @param src    source int array, range int.MIN to int.MAX.
     @param dither float dither noise array
     @param len    number of samples
     ***********************************************************/
@@ -60,7 +60,7 @@ public class DitherDSPContext {
 
     @param dst  destination float array, range -0.5 to 0.5
                 constraints: 32-byte aligned
-    @param src0 source int array, range INT_MIN to INT_MAX.
+    @param src0 source int array, range int.MIN to int.MAX.
                 the array size is len * 2
                 constraints: 32-byte aligned
     @param len  number of output noise samples

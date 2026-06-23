@@ -291,7 +291,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = SEGMENT_TYPE_MPEGTS
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "segment_type"
     },
@@ -303,7 +303,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = SEGMENT_TYPE_FMP4
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "segment_type"
     },
@@ -332,7 +332,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = 0
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -344,7 +344,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_SINGLE_FILE
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -356,7 +356,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_TEMP_FILE
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -368,7 +368,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_DELETE_SEGMENTS
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -380,7 +380,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_ROUND_DURATIONS
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -392,7 +392,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_DISCONT_START
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -404,7 +404,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_OMIT_ENDLIST
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -416,7 +416,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_SPLIT_BY_TIME
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -428,7 +428,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_APPEND_LIST
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -440,7 +440,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_PROGRAM_DATE_TIME
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -452,7 +452,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_SECOND_LEVEL_SEGMENT_INDEX
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -464,7 +464,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_SECOND_LEVEL_SEGMENT_DURATION
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -476,7 +476,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_SECOND_LEVEL_SEGMENT_SIZE
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -488,7 +488,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_PERIODIC_REKEY
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -500,7 +500,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_INDEPENDENT_SEGMENTS
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -512,7 +512,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = HLS_I_FRAMES_ONLY
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
         "flags"
     },
@@ -749,7 +749,7 @@ static const LibAVUtil.Option options[] = {
             .i64 = 0
         },
         0,
-        UINT_MAX,
+        uint.MAX,
         .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {

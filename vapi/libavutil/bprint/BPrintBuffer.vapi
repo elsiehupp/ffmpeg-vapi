@@ -109,7 +109,7 @@ av_bprint_is_complete ().
 
 The size_max field determines several possible behaviours:
 
-size_max = -1 (= UINT_MAX) or any large value will let the buffer be
+size_max = -1 (= uint.MAX) or any large value will let the buffer be
 reallocated as necessary, with an amortized linear cost.
 
 size_max = 0 prevents writing anything to the buffer: only the total
@@ -153,7 +153,7 @@ such as the current paragraph.
     1 is replaced by the maximum value for automatic storage;
     any large value means that the internal buffer will be
     reallocated as needed up to that limit; -1 is converted to
-    UINT_MAX, the largest limit possible.
+    uint.MAX, the largest limit possible.
     May use @link BPrintSize macros.
 ***********************************************************/
 [CCode (cname="av_bprint_init",cheader_filename="subprojects/ffmpeg/libavutil/bprint.h")]
