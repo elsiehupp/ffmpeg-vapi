@@ -39,7 +39,7 @@ set as the optimized conversion function.
 @param conv           conversion function pointer
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_convert.h")]
-public void ff_audio_convert_set_func (
+internal void ff_audio_convert_set_func (
     AudioConvert? ac,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
@@ -62,7 +62,7 @@ Allocate and initialize AudioConvert context for sample format conversion.
 @return            newly-allocated AudioConvert context
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_convert.h")]
-public AudioConvert? ff_audio_convert_alloc (
+internal AudioConvert? ff_audio_convert_alloc (
     AVAudioResampleContext? avr,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
@@ -79,7 +79,7 @@ The AudioConvert must have been previously allocated with ff_audio_convert_alloc
 @param ac  AudioConvert struct
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_convert.h")]
-public void ff_audio_convert_free (
+internal void ff_audio_convert_free (
     AudioConvert **ac
 );
 
@@ -100,7 +100,7 @@ set by this function before a successful return.
 @return       0 on success, negative AVERROR code on failure
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_convert.h")]
-public int ff_audio_convert (
+internal int ff_audio_convert (
     AudioConvert? ac,
     AudioData? out,
     AudioData? in
@@ -111,17 +111,17 @@ arch-specific initialization functions
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_convert.h")]
-public void ff_audio_convert_init_aarch64 (
+internal void ff_audio_convert_init_aarch64 (
     AudioConvert? ac
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_convert.h")]
-public void ff_audio_convert_init_arm (
+internal void ff_audio_convert_init_arm (
     AudioConvert? ac
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_convert.h")]
-public void ff_audio_convert_init_x86 (
+internal void ff_audio_convert_init_x86 (
     AudioConvert? ac
 );
 

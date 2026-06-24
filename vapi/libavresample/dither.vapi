@@ -21,12 +21,12 @@ namespace LibAVResample {
 
 [CCode (cname="struct DitherContext",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 [Compact]
-public class DitherContext { }
+internal class DitherContext { }
 
 [CCode (cname="struct DitherDSPContext",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 [Compact]
-public class DitherDSPContext {
-    public delegate void QuantizeDelegate (
+internal class DitherDSPContext {
+    internal delegate void QuantizeDelegate (
         int16[] dst,
         float[] src,
         float[] dither,
@@ -42,19 +42,19 @@ public class DitherDSPContext {
     @param len    number of samples
     ***********************************************************/
     [CCode (cname="quantize")]
-    public QuantizeDelegate quantize;
+    internal QuantizeDelegate quantize;
 
     /***********************************************************
     src and dst constraints for quantize ()
     ***********************************************************/
     [CCode (cname="")]
-    public int ptr_align;
+    internal int ptr_align;
 
     /***********************************************************
     len constraints for quantize ()
     ***********************************************************/
     [CCode (cname="")]
-    public int samples_align;
+    internal int samples_align;
 
     /***********************************************************
     Convert dither noise from int to float with triangular distribution.
@@ -68,14 +68,14 @@ public class DitherDSPContext {
                 constraints: multiple of 16
     ***********************************************************/
     [CCode (cname="")]
-    public delegate void DitherIntToFloatDelegate (
+    internal delegate void DitherIntToFloatDelegate (
         out float[] dst,
         int[] src0,
         int len
     );
 
     [CCode (cname="dither_int_to_float")]
-    public DitherIntToFloatDelegate dither_int_to_float;
+    internal DitherIntToFloatDelegate dither_int_to_float;
 }
 
 /***********************************************************
@@ -88,7 +88,7 @@ DitherContext.
 @return     newly-allocated DitherContext
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
-public DitherContext? ff_dither_alloc (
+internal DitherContext? ff_dither_alloc (
     AVAudioResampleContext? avr,
     AVSampleFormat out_fmt,
     AVSampleFormat in_fmt,
@@ -103,7 +103,7 @@ Free a DitherContext.
 @param c  DitherContext
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
-public void ff_dither_free (
+internal void ff_dither_free (
     DitherContext **c
 );
 
@@ -116,7 +116,7 @@ Convert audio sample format with dithering.
 @return     0 if ok, negative AVERROR code on failure
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
-public int ff_convert_dither (
+internal int ff_convert_dither (
     DitherContext? c,
     AudioData? dst,
     AudioData? src
@@ -127,7 +127,7 @@ arch-specific initialization functions
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
-public void ff_dither_init_x86 (
+internal void ff_dither_init_x86 (
     DitherDSPContext? ddsp,
     AVResampleDitherMethod method
 );

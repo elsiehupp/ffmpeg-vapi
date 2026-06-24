@@ -24,16 +24,16 @@ Libavresample version macros.
 namespace LibAVResample {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/version.h")]
-public const int LIBAVRESAMPLE_VERSION_MAJOR; // 4
+internal const int LIBAVRESAMPLE_VERSION_MAJOR; // 4
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/version.h")]
-public const int LIBAVRESAMPLE_VERSION_MINOR; // 0
+internal const int LIBAVRESAMPLE_VERSION_MINOR; // 0
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/version.h")]
-public const int LIBAVRESAMPLE_VERSION_MICRO; // 0
+internal const int LIBAVRESAMPLE_VERSION_MICRO; // 0
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/version.h")]
-public const int LIBAVRESAMPLE_VERSION_INT;
+internal const int LIBAVRESAMPLE_VERSION_INT;
 //  AV_VERSION_INT (
 //      LIBAVRESAMPLE_VERSION_MAJOR,
 //      LIBAVRESAMPLE_VERSION_MINOR,
@@ -41,7 +41,7 @@ public const int LIBAVRESAMPLE_VERSION_INT;
 //  );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/version.h")]
-public const string LIBAVRESAMPLE_VERSION;
+internal const string LIBAVRESAMPLE_VERSION;
 //  AV_VERSION (
 //      LIBAVRESAMPLE_VERSION_MAJOR,
 //      LIBAVRESAMPLE_VERSION_MINOR,
@@ -50,15 +50,15 @@ public const string LIBAVRESAMPLE_VERSION;
 
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/version.h")]
-public const int LIBAVRESAMPLE_BUILD; // LIBAVRESAMPLE_VERSION_INT
+internal const int LIBAVRESAMPLE_BUILD; // LIBAVRESAMPLE_VERSION_INT
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/version.h")]
-public const string LIBAVRESAMPLE_IDENT; // "Lavr" AV_STRINGIFY (LIBAVRESAMPLE_VERSION)
+internal const string LIBAVRESAMPLE_IDENT; // "Lavr" AV_STRINGIFY (LIBAVRESAMPLE_VERSION)
 
 /***********************************************************
-FF_API_* defines may be placed below to indicate public API that will be
+FF_API_* defines may be placed below to indicate internal API that will be
 dropped at a future version bump. The defines themselves are not part of
-the public API and may change, break or disappear at any time.
+the internal API and may change, break or disappear at any time.
 ***********************************************************/
 
 } // namespace LibAVResample

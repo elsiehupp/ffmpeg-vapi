@@ -22,76 +22,76 @@ namespace LibSoftwareResample {
 
 [CCode (cname="struct ResampleContext",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
 [Compact]
-public class ResampleContext {
+internal class LibSoftwareResample.ResampleContext {
     [CCode (cname="")]
-    public AVClass? av_class;
+    internal AVClass? av_class;
 
     [CCode (cname="")]
-    public uint8[] filter_bank;
+    internal uint8[] filter_bank;
 
     [CCode (cname="")]
-    public int filter_length;
+    internal int filter_length;
 
     [CCode (cname="")]
-    public int filter_alloc;
+    internal int filter_alloc;
 
     [CCode (cname="")]
-    public int ideal_dst_incr;
+    internal int ideal_dst_incr;
 
     [CCode (cname="")]
-    public int dst_incr;
+    internal int dst_incr;
 
     [CCode (cname="")]
-    public int dst_incr_div;
+    internal int dst_incr_div;
 
     [CCode (cname="")]
-    public int dst_incr_mod;
+    internal int dst_incr_mod;
 
     [CCode (cname="")]
-    public int index;
+    internal int index;
 
     [CCode (cname="")]
-    public int frac;
+    internal int frac;
 
     [CCode (cname="")]
-    public int src_incr;
+    internal int src_incr;
 
     [CCode (cname="")]
-    public int compensation_distance;
+    internal int compensation_distance;
 
     [CCode (cname="")]
-    public int phase_count;
+    internal int phase_count;
 
     [CCode (cname="")]
-    public int linear;
+    internal int linear;
 
     [CCode (cname="")]
-    public SoftwareResampleFilterType filter_type;
+    internal SoftwareResampleFilterType filter_type;
 
     [CCode (cname="")]
-    public double kaiser_beta;
+    internal double kaiser_beta;
 
     [CCode (cname="")]
-    public double factor;
+    internal double factor;
 
     [CCode (cname="")]
-    public AVSampleFormat format;
+    internal AVSampleFormat format;
 
     [CCode (cname="")]
-    public int felem_size;
+    internal int felem_size;
 
     [CCode (cname="")]
-    public int filter_shift;
+    internal int filter_shift;
 
     /***********************************************************
     desired phase_count when compensation is enabled
     ***********************************************************/
     [CCode (cname="")]
-    public int phase_count_compensation;
+    internal int phase_count_compensation;
 
     [Compact]
-    public class DspFunctions { // not a named struct type !!!
-        public delegate void ResampleOneDelegate (
+    internal class DspFunctions { // not a named struct type !!!
+        internal delegate void ResampleOneDelegate (
             void *dst,
             void *src,
             int n,
@@ -100,10 +100,10 @@ public class ResampleContext {
         );
 
         [CCode (cname="resample_one")]
-        public ResampleOneDelegate resample_one;
+        internal ResampleOneDelegate resample_one;
 
-        public delegate int ResampleCommonDelegate (
-            ResampleContext? resample_context,
+        internal delegate int ResampleCommonDelegate (
+            LibSoftwareResample.ResampleContext? resample_context,
             void *dst,
             void *src,
             int n,
@@ -111,10 +111,10 @@ public class ResampleContext {
         );
 
         [CCode (cname="resample_common")]
-        public ResampleCommonDelegate resample_common;
+        internal ResampleCommonDelegate resample_common;
 
-        public delegate int ResambleLinearDelegate (
-            ResampleContext? resample_context,
+        internal delegate int ResambleLinearDelegate (
+            LibSoftwareResample.ResampleContext? resample_context,
             void *dst,
             void *src,
             int n,
@@ -122,30 +122,31 @@ public class ResampleContext {
         );
 
         [CCode (cname="resample_linear")]
-        public ResambleLinearDelegate resample_linear;
+        internal ResambleLinearDelegate resample_linear;
     }
 
-    public DspFunctions dsp;
+    internal DspFunctions dsp;
+
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
+    internal void swri_resample_dsp_init (
+        LibSoftwareResample.ResampleContext? resample_context
+    );
+
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
+    internal void swri_resample_dsp_x86_init (
+        LibSoftwareResample.ResampleContext? resample_context
+    );
+
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
+    internal void swri_resample_dsp_arm_init (
+        LibSoftwareResample.ResampleContext? resample_context
+    );
+
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
+    internal void swri_resample_dsp_aarch64_init (
+        LibSoftwareResample.ResampleContext? resample_context
+    );
+
 }
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
-public void swri_resample_dsp_init (
-    ResampleContext? resample_context
-);
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
-public void swri_resample_dsp_x86_init (
-    ResampleContext? resample_context
-);
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
-public void swri_resample_dsp_arm_init (
-    ResampleContext? resample_context
-);
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
-public void swri_resample_dsp_aarch64_init (
-    ResampleContext? resample_context
-);
 
 } // namespace LibSoftwareResample

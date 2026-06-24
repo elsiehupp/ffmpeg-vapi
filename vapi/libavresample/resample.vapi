@@ -21,53 +21,53 @@ namespace LibAVResample {
 
 [CCode (cname="struct ResampleContext",cheader_filename="subprojects/ffmpeg/libavresample/resample.h")]
 [Compact]
-public class ResampleContext {
+internal class ResampleContext {
     [CCode (cname="")]
-    public AVAudioResampleContext? avr;
+    internal AVAudioResampleContext? avr;
 
     [CCode (cname="")]
-    public AudioData? buffer;
+    internal AudioData? buffer;
 
     [CCode (cname="")]
-    public uint8[] filter_bank;
+    internal uint8[] filter_bank;
 
     [CCode (cname="")]
-    public int filter_length;
+    internal int filter_length;
 
     [CCode (cname="")]
-    public int ideal_dst_incr;
+    internal int ideal_dst_incr;
 
     [CCode (cname="")]
-    public int dst_incr;
+    internal int dst_incr;
 
     [CCode (cname="")]
-    public uint index;
+    internal uint index;
 
     [CCode (cname="")]
-    public int frac;
+    internal int frac;
 
     [CCode (cname="")]
-    public int src_incr;
+    internal int src_incr;
 
     [CCode (cname="")]
-    public int compensation_distance;
+    internal int compensation_distance;
 
     [CCode (cname="")]
-    public int phase_shift;
+    internal int phase_shift;
 
     [CCode (cname="")]
-    public int phase_mask;
+    internal int phase_mask;
 
     [CCode (cname="")]
-    public int linear;
+    internal int linear;
 
     [CCode (cname="")]
-    public AVResampleFilterType filter_type;
+    internal AVResampleFilterType filter_type;
 
     [CCode (cname="")]
-    public int kaiser_beta;
+    internal int kaiser_beta;
 
-    public delegate void SetFilterDelegate (
+    internal delegate void SetFilterDelegate (
         void *filter,
         double[] tab,
         int phase,
@@ -75,9 +75,9 @@ public class ResampleContext {
     );
 
     [CCode (cname="set_filter")]
-    public SetFilterDelegate set_filter;
+    internal SetFilterDelegate set_filter;
 
-    public delegate void ResampleOneDelegate (
+    internal delegate void ResampleOneDelegate (
         ResampleContext? resample_context,
         void *dst0,
         int dst_index,
@@ -87,9 +87,9 @@ public class ResampleContext {
     );
 
     [CCode (cname="resample_one")]
-    public ResampleOneDelegate resample_one;
+    internal ResampleOneDelegate resample_one;
 
-    public delegate void ResampleNearestDelegate (
+    internal delegate void ResampleNearestDelegate (
         void *dst0,
         int dst_index,
         void *src0,
@@ -97,22 +97,22 @@ public class ResampleContext {
     );
 
     [CCode (cname="resample_nearest")]
-    public ResampleNearestDelegate resample_nearest;
+    internal ResampleNearestDelegate resample_nearest;
 
     [CCode (cname="")]
-    public int padding_size;
+    internal int padding_size;
 
     [CCode (cname="")]
-    public int initial_padding_filled;
+    internal int initial_padding_filled;
 
     [CCode (cname="")]
-    public int initial_padding_samples;
+    internal int initial_padding_samples;
 
     [CCode (cname="")]
-    public int final_padding_filled;
+    internal int final_padding_filled;
 
     [CCode (cname="")]
-    public int final_padding_samples;
+    internal int final_padding_samples;
 }
 
 /***********************************************************
@@ -125,7 +125,7 @@ ResampleContext.
 @return     newly-allocated ResampleContext
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/resample.h")]
-public ResampleContext? ff_audio_resample_init (
+internal ResampleContext? ff_audio_resample_init (
     AVAudioResampleContext? avr
 );
 
@@ -135,7 +135,7 @@ Free a ResampleContext.
 @param resample_context  ResampleContext
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/resample.h")]
-public void ff_audio_resample_free (
+internal void ff_audio_resample_free (
     ResampleContext **resample_context
 );
 
@@ -159,7 +159,7 @@ destination data buffers.
 @return          0 on success, negative AVERROR code on failure
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/resample.h")]
-public int ff_audio_resample (
+internal int ff_audio_resample (
     ResampleContext? resample_context,
     AudioData? dst,
     AudioData? src

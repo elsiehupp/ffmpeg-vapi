@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVResample {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public int ff_sample_fmt_is_planar (
+internal int ff_sample_fmt_is_planar (
     AVSampleFormat sample_fmt,
     int channels
 );
@@ -30,118 +30,118 @@ Audio buffer used for intermediate storage between conversion phases.
 ***********************************************************/
 [CCode (cname="struct AudioData",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 [Compact]
-public class AudioData {
+internal class AudioData {
     /***********************************************************
     AVClass for logging
     ***********************************************************/
     [CCode (cname="class")]
-    public AVClass av_class;
+    internal AVClass av_class;
 
     /***********************************************************
     data plane pointers
     ***********************************************************/
     [CCode (cname="")]
-    public int8[] data[AVRESAMPLE_MAX_CHANNELS];
+    internal int8[] data[AVRESAMPLE_MAX_CHANNELS];
 
     /***********************************************************
     data buffer
     ***********************************************************/
     [CCode (cname="")]
-    public uint8[] buffer;
+    internal uint8[] buffer;
 
     /***********************************************************
     allocated buffer size
     ***********************************************************/
     [CCode (cname="")]
-    public uint buffer_size;
+    internal uint buffer_size;
 
     /***********************************************************
     number of samples the buffer can hold
     ***********************************************************/
     [CCode (cname="")]
-    public int allocated_samples;
+    internal int allocated_samples;
 
     /***********************************************************
     current number of samples
     ***********************************************************/
     [CCode (cname="")]
-    public int nb_samples;
+    internal int nb_samples;
 
     /***********************************************************
     sample format
     ***********************************************************/
     [CCode (cname="")]
-    public AVSampleFormat sample_fmt;
+    internal AVSampleFormat sample_fmt;
 
     /***********************************************************
     channel count
     ***********************************************************/
     [CCode (cname="")]
-    public int channels;
+    internal int channels;
 
     /***********************************************************
     allocated channel count
     ***********************************************************/
     [CCode (cname="")]
-    public int allocated_channels;
+    internal int allocated_channels;
 
     /***********************************************************
     sample format is planar
     ***********************************************************/
     [CCode (cname="")]
-    public int is_planar;
+    internal int is_planar;
 
     /***********************************************************
     number of data planes
     ***********************************************************/
     [CCode (cname="")]
-    public int planes;
+    internal int planes;
 
     /***********************************************************
     bytes per sample
     ***********************************************************/
     [CCode (cname="")]
-    public int sample_size;
+    internal int sample_size;
 
     /***********************************************************
     sample byte offset within a plane
     ***********************************************************/
     [CCode (cname="")]
-    public int stride;
+    internal int stride;
 
     /***********************************************************
     data is read-only
     ***********************************************************/
     [CCode (cname="")]
-    public int read_only;
+    internal int read_only;
 
     /***********************************************************
     realloc is allowed
     ***********************************************************/
     [CCode (cname="")]
-    public int allow_realloc;
+    internal int allow_realloc;
 
     /***********************************************************
     minimum data pointer alignment
     ***********************************************************/
     [CCode (cname="")]
-    public int ptr_align;
+    internal int ptr_align;
 
     /***********************************************************
     allocated samples alignment
     ***********************************************************/
     [CCode (cname="")]
-    public int samples_align;
+    internal int samples_align;
 
     /***********************************************************
     name for debug logging
     ***********************************************************/
     [CCode (cname="")]
-    public string name;
+    internal string name;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public int ff_audio_data_set_channels (
+internal int ff_audio_data_set_channels (
     AudioData? a,
     int channels
 );
@@ -166,7 +166,7 @@ and audio parameters.
 @return                0 on success, negative AVERROR value on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public int ff_audio_data_init (
+internal int ff_audio_data_init (
     AudioData? a,
     uint8[]  const? src,
     int plane_size,
@@ -188,7 +188,8 @@ This allocates an internal buffer and sets audio parameters.
 @param name            name for debug logging (can be NULL)
 @return                newly allocated AudioData struct, or NULL on error
 ***********************************************************/
-AudioData? ff_audio_data_alloc (
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
+internal AudioData? ff_audio_data_alloc (
     int channels,
     int nb_samples,
     AVSampleFormat sample_fmt,
@@ -205,7 +206,7 @@ The AudioData must have been previously allocated with ff_audio_data_alloc ().
 @return            0 on success, negative AVERROR value on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public int ff_audio_data_realloc (
+internal int ff_audio_data_realloc (
     AudioData? a,
     int nb_samples
 );
@@ -218,7 +219,7 @@ The AudioData must have been previously allocated with ff_audio_data_alloc ().
 @param a  AudioData struct
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public void ff_audio_data_free (
+internal void ff_audio_data_free (
     AudioData **a
 );
 
@@ -231,7 +232,7 @@ Copy data from one AudioData to another.
 @return     0 on success, negative AVERROR value on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public int ff_audio_data_copy (
+internal int ff_audio_data_copy (
     AudioData? out,
     AudioData? in,
     ChannelMapInfo? map
@@ -250,7 +251,7 @@ Append data from one AudioData to the end of another.
 @return            0 on success, negative AVERROR value on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public int ff_audio_data_combine (
+internal int ff_audio_data_combine (
     AudioData? dst,
     int dst_offset,
     AudioData? src,
@@ -267,7 +268,7 @@ Remaining samples are shifted to the start of the AudioData.
 @param nb_samples  number of samples to drain
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public void ff_audio_data_drain (
+internal void ff_audio_data_drain (
     AudioData? a,
     int nb_samples
 );
@@ -283,7 +284,7 @@ Add samples in AudioData to an AVAudioFifo.
                    negative AVERROR code on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public int ff_audio_data_add_to_fifo (
+internal int ff_audio_data_add_to_fifo (
     AVAudioFifo? af,
     AudioData? a,
     int offset,
@@ -300,7 +301,7 @@ Read samples from an AVAudioFifo to AudioData.
                    negative AVERROR code on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
-public int ff_audio_data_read_from_fifo (
+internal int ff_audio_data_read_from_fifo (
     AVAudioFifo? af,
     AudioData? a,
     int nb_samples

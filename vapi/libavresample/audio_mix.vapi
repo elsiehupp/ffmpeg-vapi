@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVResample {
 
 [CCode (cname="mix_func",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
-public delegate void MixDelegate (
+internal delegate void MixDelegate (
     uint8[][] src,
     void **matrix,
     int len,
@@ -49,7 +49,7 @@ the optimized mixing function.
 @param mix_func       mixing function pointer
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
-public void ff_audio_mix_set_func (
+internal void ff_audio_mix_set_func (
     AudioMix? am,
     AVSampleFormat fmt,
     AVMixCoeffType coeff_type,
@@ -71,7 +71,7 @@ AudioMix context.
 @return     newly-allocated AudioMix context.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
-public AudioMix? ff_audio_mix_alloc (
+internal AudioMix? ff_audio_mix_alloc (
     AVAudioResampleContext? avr
 );
 
@@ -79,7 +79,7 @@ public AudioMix? ff_audio_mix_alloc (
 Free an AudioMix context.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
-public void ff_audio_mix_free (
+internal void ff_audio_mix_free (
     AudioMix **am
 );
 
@@ -87,7 +87,7 @@ public void ff_audio_mix_free (
 Apply channel mixing to audio data using the current mixing matrix.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
-public int ff_audio_mix (
+internal int ff_audio_mix (
     AudioMix? am,
     AudioData? src
 );
@@ -96,7 +96,7 @@ public int ff_audio_mix (
 Get the current mixing matrix.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
-public int ff_audio_mix_get_matrix (
+internal int ff_audio_mix_get_matrix (
     AudioMix? am,
     double[] matrix,
     int stride
@@ -106,7 +106,7 @@ public int ff_audio_mix_get_matrix (
 Set the current mixing matrix.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
-public int ff_audio_mix_set_matrix (
+internal int ff_audio_mix_set_matrix (
     AudioMix? am,
     double[] matrix,
     int stride
@@ -117,7 +117,7 @@ arch-specific initialization functions
 ***********************************************************/
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
-public void ff_audio_mix_init_x86 (
+internal void ff_audio_mix_init_x86 (
     AudioMix? am
 );
 
