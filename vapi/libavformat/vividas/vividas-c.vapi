@@ -30,13 +30,13 @@ namespace LibAVFormat {
 @sa http://wiki.multimedia.cx/index.php?title=Vividas_VIV
 ***********************************************************/
 
-[CCode (cname="struct VividasDemuxContext",cheader_filename="")]
+[CCode (cname="struct VividasDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
 [Compact]
 public class VividasDemuxerPrivateData { }
 
-[CCode (cname="ff_vividas_demuxer",cheader_filename="")]
+[CCode (cname="ff_vividas_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
 public class VividasDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override string name {
         public get {
             return "vividas";
@@ -45,7 +45,7 @@ public class VividasDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override string long_name {
         public get {
             return "Vividas VIV";
@@ -54,7 +54,7 @@ public class VividasDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VividasDemuxerPrivateData);
@@ -63,28 +63,28 @@ public class VividasDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="viv_probe",cheader_filename="")]
+    [CCode (cname="viv_probe",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="viv_read_header",cheader_filename="")]
+    [CCode (cname="viv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="viv_read_packet",cheader_filename="")]
+    [CCode (cname="viv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="viv_read_close",cheader_filename="")]
+    [CCode (cname="viv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="viv_read_seek",cheader_filename="")]
+    [CCode (cname="viv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

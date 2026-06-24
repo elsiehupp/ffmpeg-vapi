@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "ignore_readorder",
@@ -42,9 +42,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="ass_class",cheader_filename="ffmpeg/libformat/assenc.c")]
+[CCode (cname="ass_class",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
 public class ASSClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override string class_name {
         public get {
             return "ass muxer";
@@ -53,7 +53,7 @@ public class ASSClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -62,10 +62,10 @@ public class ASSClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -75,13 +75,13 @@ public class ASSClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct ASSContext",cheader_filename="ffmpeg/libformat/assenc.c")]
+[CCode (cname="struct ASSContext",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
 [Compact]
 public class ASSMuxerPrivateData { }
 
-[CCode (cname="ff_ass_muxer",cheader_filename="ffmpeg/libformat/assenc.c")]
+[CCode (cname="ff_ass_muxer",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
 public class ASSMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override string name {
         public get {
             return "ass";
@@ -90,7 +90,7 @@ public class ASSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override string long_name {
         public get {
             return "SSA (SubStation Alpha) subtitle";
@@ -99,7 +99,7 @@ public class ASSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override string mime_type {
         public get {
             return "text/x-ass";
@@ -108,7 +108,7 @@ public class ASSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override string extensions {
         public get {
             return "ass,ssa";
@@ -117,7 +117,7 @@ public class ASSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ASSMuxerPrivateData);
@@ -126,7 +126,7 @@ public class ASSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="subtitle_codec",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="subtitle_codec",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.ASS;
@@ -135,23 +135,23 @@ public class ASSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="write_header",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="write_packet",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="write_trailer",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/assenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.NO_TIMESTAMPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;

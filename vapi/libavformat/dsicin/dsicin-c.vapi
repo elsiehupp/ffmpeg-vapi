@@ -26,13 +26,13 @@ namespace LibAVFormat {
 @file Delphine Software International CIN file demuxer
 ***********************************************************/
 
-[CCode (cname="struct CinDemuxContext",cheader_filename="")]
+[CCode (cname="struct CinDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/dsicin.c")]
 [Compact]
 public class DSICINDemuxerPrivateData { }
 
-[CCode (cname="ff_dsicin_demuxer",cheader_filename="")]
+[CCode (cname="ff_dsicin_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/dsicin.c")]
 public class DSICINDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dsicin.c")]
     public override string name {
         public get {
             return "dsicin";
@@ -41,7 +41,7 @@ public class DSICINDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/dsicin.c")]
     public override string long_name {
         public get {
             return "Delphine Software International CIN";
@@ -50,7 +50,7 @@ public class DSICINDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/dsicin.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (DSICINDemuxerPrivateData);
@@ -59,17 +59,17 @@ public class DSICINDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="cin_probe",cheader_filename="")]
+    [CCode (cname="cin_probe",cheader_filename="subprojects/ffmpeg/libavformat/dsicin.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="cin_read_header",cheader_filename="")]
+    [CCode (cname="cin_read_header",cheader_filename="subprojects/ffmpeg/libavformat/dsicin.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="cin_read_packet",cheader_filename="")]
+    [CCode (cname="cin_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/dsicin.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

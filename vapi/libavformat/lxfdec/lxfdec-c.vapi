@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct LXFDemuxContext",cheader_filename="")]
+[CCode (cname="struct LXFDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
 [Compact]
 public class LXFDemuxerPrivateData { }
 
-[CCode (cname="ff_lxf_demuxer",cheader_filename="")]
+[CCode (cname="ff_lxf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
 public class LXFDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override string name {
         public get {
             return "lxf";
@@ -37,7 +37,7 @@ public class LXFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override string long_name {
         public get {
             return "VR native stream (LXF)";
@@ -46,7 +46,7 @@ public class LXFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LXFDemuxerPrivateData);
@@ -55,17 +55,17 @@ public class LXFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="lxf_probe",cheader_filename="")]
+    [CCode (cname="lxf_probe",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="lxf_read_header",cheader_filename="")]
+    [CCode (cname="lxf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="lxf_read_packet",cheader_filename="")]
+    [CCode (cname="lxf_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

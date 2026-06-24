@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="ff_apc_demuxer",cheader_filename="")]
+[CCode (cname="ff_apc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/apc.c")]
 public class APCDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/apc.c")]
     public override string name {
         public get {
             return "apc";
@@ -32,7 +32,7 @@ public class APCDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/apc.c")]
     public override string long_name {
         public get {
             return "CRYO APC";
@@ -41,17 +41,17 @@ public class APCDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="apc_probe",cheader_filename="")]
+    [CCode (cname="apc_probe",cheader_filename="subprojects/ffmpeg/libavformat/apc.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="apc_read_header",cheader_filename="")]
+    [CCode (cname="apc_read_header",cheader_filename="subprojects/ffmpeg/libavformat/apc.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="apc_read_packet",cheader_filename="")]
+    [CCode (cname="apc_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/apc.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

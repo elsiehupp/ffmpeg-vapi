@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="image2_brender_pix_class",cheader_filename="")]
+[CCode (cname="image2_brender_pix_class",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
 public class Image2BRenderPIXDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override string class_name {
         public get {
             return "brender_pix demuxer";
@@ -33,7 +33,7 @@ public class Image2BRenderPIXDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -43,7 +43,7 @@ public class Image2BRenderPIXDemuxerClass : LibAVUtil.Class {
     }
     //  .option = ff_img_options,
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -53,9 +53,9 @@ public class Image2BRenderPIXDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_image2_brender_pix_demuxer",cheader_filename="")]
+[CCode (cname="ff_image2_brender_pix_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
 public class Image2BRenderPIXDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override string name {
         public get {
             return "brender_pix";
@@ -64,7 +64,7 @@ public class Image2BRenderPIXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override string long_name {
         public get {
             return "BRender PIX image";
@@ -73,7 +73,7 @@ public class Image2BRenderPIXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -82,23 +82,23 @@ public class Image2BRenderPIXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="brender_read_probe",cheader_filename="")]
+    [CCode (cname="brender_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ff_img_read_header",cheader_filename="")]
+    [CCode (cname="ff_img_read_header",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_img_read_packet",cheader_filename="")]
+    [CCode (cname="ff_img_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="raw_codec_id",cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.BRENDER_PIX;

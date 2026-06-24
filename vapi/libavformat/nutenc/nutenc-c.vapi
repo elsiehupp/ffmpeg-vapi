@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.FlagsOption () {
         name = "syncpoints",
@@ -86,9 +86,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="class",cheader_filename="ffmpeg/libformat/nutenc.c")]
+[CCode (cname="class",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
 public class NUTMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override string class_name {
         public get {
             return "nutenc";
@@ -97,7 +97,7 @@ public class NUTMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -106,10 +106,10 @@ public class NUTMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -119,9 +119,9 @@ public class NUTMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_nut_muxer",cheader_filename="ffmpeg/libformat/nutenc.c")]
+[CCode (cname="ff_nut_muxer",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
 public class NUTMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override string name {
         public get {
             return "nut";
@@ -130,7 +130,7 @@ public class NUTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override string long_name {
         public get {
             return "NUT";
@@ -139,7 +139,7 @@ public class NUTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override string mime_type {
         public get {
             return "video/x-nut";
@@ -148,7 +148,7 @@ public class NUTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override string extensions {
         public get {
             return "nut";
@@ -157,7 +157,7 @@ public class NUTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (NUTContext);
@@ -166,7 +166,7 @@ public class NUTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
         #if CONFIG_LIBVORBIS
@@ -181,7 +181,7 @@ public class NUTMuxer : AVOutputFormat {
         }
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG4;
@@ -190,28 +190,28 @@ public class NUTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="nut_write_header",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="nut_write_header",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="nut_write_packet",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="nut_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="nut_write_trailer",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="nut_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="nut_write_deinit",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="nut_write_deinit",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/nutenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_VARIABLE_FPS;

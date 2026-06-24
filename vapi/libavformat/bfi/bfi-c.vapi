@@ -28,13 +28,13 @@ namespace LibAVFormat {
 @see http://wiki.multimedia.cx/index.php?title=BFI
 ***********************************************************/
 
-[CCode (cname="struct BFIContext",cheader_filename="")]
+[CCode (cname="struct BFIContext",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
 [Compact]
 public class BFIDemuxerPrivateData { }
 
-[CCode (cname="ff_bfi_demuxer",cheader_filename="")]
+[CCode (cname="ff_bfi_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
 public class BFIDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override string name {
         public get {
             return "bfi";
@@ -43,7 +43,7 @@ public class BFIDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override string long_name {
         public get {
             return "Brute Force & Ignorance";
@@ -52,7 +52,7 @@ public class BFIDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BFIDemuxerPrivateData);
@@ -61,17 +61,17 @@ public class BFIDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="bfi_probe",cheader_filename="")]
+    [CCode (cname="bfi_probe",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="bfi_read_header",cheader_filename="")]
+    [CCode (cname="bfi_read_header",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="bfi_read_packet",cheader_filename="")]
+    [CCode (cname="bfi_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

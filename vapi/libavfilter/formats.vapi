@@ -56,7 +56,7 @@ we must ensure that all links which reference either pre-merge format list
 get updated as well. Therefore, we have the format list structure store a
 pointer to each of the pointers to itself.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
+[CCode (cname="struct AVFilterFormats",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 [Compact]
 public class AVFilterFormats {
     /***********************************************************
@@ -97,7 +97,7 @@ differences:
   channel count with unknown disposition with the same number of channels
   (e.g. AV_CH_LAYOUT_STEREO and FF_COUNT2LAYOUT (2).
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
+[CCode (cname="struct AVFilterChannelLayouts",cheader_filename="subprojects/ffmpeg/libavfilter/formats.h")]
 [Compact]
 public class AVFilterChannelLayouts {
     /***********************************************************

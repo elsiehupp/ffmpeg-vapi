@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="icecast_context_class",cheader_filename="")]
+[CCode (cname="icecast_context_class",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
 public class IceCastURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
     public override string class_name {
         public get {
             return "icecast";
@@ -33,7 +33,7 @@ public class IceCastURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -43,7 +43,7 @@ public class IceCastURLProtocolClass : LibAVUtil.Class {
     }
     //  .option = options,
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -53,13 +53,13 @@ public class IceCastURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct IcecastContext",cheader_filename="")]
+[CCode (cname="struct IcecastContext",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
 [Compact]
 public class IceCastPrivateData { }
 
-[CCode (cname="ff_icecast_protocol",cheader_filename="")]
+[CCode (cname="ff_icecast_protocol",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
 public class IceCastURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
     public override string name {
         public get {
             return "icecast";
@@ -68,26 +68,26 @@ public class IceCastURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="icecast_open",cheader_filename="")]
+    [CCode (cname="icecast_open",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="icecast_write",cheader_filename="")]
+    [CCode (cname="icecast_write",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="icecast_close",cheader_filename="")]
+    [CCode (cname="icecast_close",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (IceCastPrivateData);
@@ -97,7 +97,7 @@ public class IceCastURLProtocol : URLProtocol {
     }
     //  .priv_data_class = icecast_context_class,
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;

@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct TTAMuxContext",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+[CCode (cname="struct TTAMuxContext",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
 [Compact]
 public class TrueAudioMuxerPrivateData { }
 
-[CCode (cname="ff_tta_muxer",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+[CCode (cname="ff_tta_muxer",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
 public class TrueAudioMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override string name {
         public get {
             return "tta";
@@ -37,7 +37,7 @@ public class TrueAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override string long_name {
         public get {
             return "TTA (True Audio)";
@@ -46,7 +46,7 @@ public class TrueAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override string mime_type {
         public get {
             return "audio/x-tta";
@@ -55,7 +55,7 @@ public class TrueAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override string extensions {
         public get {
             return "tta";
@@ -64,7 +64,7 @@ public class TrueAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TrueAudioMuxerPrivateData);
@@ -73,7 +73,7 @@ public class TrueAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.TTA;
@@ -82,7 +82,7 @@ public class TrueAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -91,23 +91,23 @@ public class TrueAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="tta_init",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="tta_init",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="tta_write_header",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="tta_write_header",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="tta_write_packet",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="tta_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="tta_write_trailer",cheader_filename="ffmpeg/libformat/ttaenc.c")]
+    [CCode (cname="tta_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );

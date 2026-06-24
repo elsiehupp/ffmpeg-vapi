@@ -23,7 +23,7 @@ first version by Donny Yang <work@kota.moe>
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "plays",
@@ -55,9 +55,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="apng_muxer_class",cheader_filename="ffmpeg/libformat/apngenc.c")]
+[CCode (cname="apng_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
 public class APNGMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override string class_name {
         public get {
             return "APNG muxer";
@@ -66,7 +66,7 @@ public class APNGMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -75,7 +75,7 @@ public class APNGMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -84,17 +84,17 @@ public class APNGMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 }
 
-[CCode (cname="struct APNGMuxContext",cheader_filename="ffmpeg/libformat/apngenc.c")]
+[CCode (cname="struct APNGMuxContext",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
 [Compact]
 public class APNGMuxerPrivateData { }
 
-[CCode (cname="ff_apng_muxer",cheader_filename="ffmpeg/libformat/apngenc.c")]
+[CCode (cname="ff_apng_muxer",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
 public class APNGMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override string name {
         public get {
             return "apng";
@@ -103,7 +103,7 @@ public class APNGMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override string long_name {
         public get {
             return "Animated Portable Network Graphics";
@@ -112,7 +112,7 @@ public class APNGMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override string mime_type {
         public get {
             return "image/png";
@@ -121,7 +121,7 @@ public class APNGMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override string extensions {
         public get {
             return "apng";
@@ -130,7 +130,7 @@ public class APNGMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (APNGMuxerPrivateData);
@@ -139,7 +139,7 @@ public class APNGMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -148,7 +148,7 @@ public class APNGMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.APNG;
@@ -157,29 +157,29 @@ public class APNGMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="apng_write_header",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="apng_write_header",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="apng_write_packet",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="apng_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="apng_write_trailer",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="apng_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="apng_deinit",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="apng_deinit",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
     //  .priv_class = apng_muxer_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/apngenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS;

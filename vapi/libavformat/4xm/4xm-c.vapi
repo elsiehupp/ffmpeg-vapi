@@ -28,13 +28,13 @@ for more information on the .4xm file format, visit:
 http://www.pcisys.net/~melanson/codecs/
 ***********************************************************/
 
-[CCode (cname="struct FourxmDemuxContext",cheader_filename="")]
+[CCode (cname="struct FourxmDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/4xm.c")]
 [Compact]
 public class FourXMDemuxerPrivateData { }
 
-[CCode (cname="ff_fourxm_demuxer",cheader_filename="")]
+[CCode (cname="ff_fourxm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/4xm.c")]
 public class FourXMDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/4xm.c")]
     public override string name {
         public get {
             return "4xm";
@@ -43,7 +43,7 @@ public class FourXMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/4xm.c")]
     public override string long_name {
         public get {
             return "4X Technologies";
@@ -52,7 +52,7 @@ public class FourXMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/4xm.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FourXMDemuxerPrivateData);
@@ -61,23 +61,23 @@ public class FourXMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="fourxm_probe",cheader_filename="")]
+    [CCode (cname="fourxm_probe",cheader_filename="subprojects/ffmpeg/libavformat/4xm.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="fourxm_read_header",cheader_filename="")]
+    [CCode (cname="fourxm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/4xm.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="fourxm_read_packet",cheader_filename="")]
+    [CCode (cname="fourxm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/4xm.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="fourxm_read_close",cheader_filename="")]
+    [CCode (cname="fourxm_read_close",cheader_filename="subprojects/ffmpeg/libavformat/4xm.c")]
     public override int read_close (
         AVFormatContext format_context
     );

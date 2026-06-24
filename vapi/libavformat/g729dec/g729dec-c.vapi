@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="g729_options",cheader_filename="")]
+[CCode (cname="g729_options",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
 static const LibAVUtil.Option g729_options[] = {
     new LibAVUtil.IntOption () {
         name = "bit_rate",
@@ -42,9 +42,9 @@ static const LibAVUtil.Option g729_options[] = {
 
 };
 
-[CCode (cname="g729_demuxer_class",cheader_filename="")]
+[CCode (cname="g729_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
 public class G729DemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override string class_name {
         public get {
             return "g729 demuxer";
@@ -53,7 +53,7 @@ public class G729DemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -63,7 +63,7 @@ public class G729DemuxerClass : LibAVUtil.Class {
     }
     //  .option = g729_options,
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -73,13 +73,13 @@ public class G729DemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct G729DemuxerContext",cheader_filename="")]
+[CCode (cname="struct G729DemuxerContext",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
 [Compact]
 public class G729DemuxerPrivateData { }
 
-[CCode (cname="ff_g729_demuxer",cheader_filename="")]
+[CCode (cname="ff_g729_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
 public class G729Demuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override string name {
         public get {
             return "g729";
@@ -88,7 +88,7 @@ public class G729Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override string long_name {
         public get {
             return "G.729 raw format demuxer";
@@ -97,7 +97,7 @@ public class G729Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (G729DemuxerPrivateData);
@@ -106,18 +106,18 @@ public class G729Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="g729_read_header",cheader_filename="")]
+    [CCode (cname="g729_read_header",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="g729_read_packet",cheader_filename="")]
+    [CCode (cname="g729_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -126,7 +126,7 @@ public class G729Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override string extensions {
         public get {
             return "g729";

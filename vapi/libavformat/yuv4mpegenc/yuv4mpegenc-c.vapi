@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_yuv4mpegpipe_muxer",cheader_filename="")]
+[CCode (cname="ff_yuv4mpegpipe_muxer",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
 public class YUV4MpegPipeMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override string name {
         public get {
             return "yuv4mpegpipe";
@@ -33,7 +33,7 @@ public class YUV4MpegPipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override string long_name {
         public get {
             return "YUV4MPEG pipe";
@@ -42,7 +42,7 @@ public class YUV4MpegPipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override string extensions {
         public get {
             return "y4m";
@@ -51,7 +51,7 @@ public class YUV4MpegPipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (int);
@@ -60,7 +60,7 @@ public class YUV4MpegPipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -69,7 +69,7 @@ public class YUV4MpegPipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.WRAPPED_AVFRAME;
@@ -78,12 +78,12 @@ public class YUV4MpegPipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="yuv4_write_header",cheader_filename="")]
+    [CCode (cname="yuv4_write_header",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="yuv4_write_packet",cheader_filename="")]
+    [CCode (cname="yuv4_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

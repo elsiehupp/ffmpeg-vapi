@@ -353,9 +353,9 @@ public void show_help_options (
     int alt_flags
 );
 
-#if CONFIG_AVDEVICE
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define CMDUTILS_COMMON_OPTIONS_AVDEVICE
+public static OptionDef[] CMDUTILS_COMMON_OPTIONS_AVDEVICE = {
+#if CONFIG_AVDEVICE
     new OptionDef () {
         name = "sources",
         option_def_flags = (
@@ -379,14 +379,14 @@ public define CMDUTILS_COMMON_OPTIONS_AVDEVICE
         },
         help = "list sinks of the output device",
         argument_name = "device"
-    },
-
+    }
 #else
-//  #define CMDUTILS_COMMON_OPTIONS_AVDEVICE
+
 #endif
+};
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define CMDUTILS_COMMON_OPTIONS
+public static OptionDef[] CMDUTILS_COMMON_OPTIONS = {
     new OptionDef () {
         name = "L",
         option_def_flags = OptionDef.Flags.EXIT,
@@ -619,6 +619,7 @@ public define CMDUTILS_COMMON_OPTIONS
         argument_name = "hide_banner"
     },
     CMDUTILS_COMMON_OPTIONS_AVDEVICE
+};
 
 /***********************************************************
 Show help for all options with given flags in class and all its
@@ -1227,89 +1228,6 @@ public void *grow_array (
     out int size,
     int new_size
 );
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define media_type_string LibAVUtil.MediaType.to_string
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define GROW_ARRAY (
-    void *array,
-    void *nb_elems
-);
-//  {
-//      array = grow_array (
-//          array,
-//          sizeof (*array),
-//          &nb_elems,
-//          nb_elems + 1
-//      );
-//  }
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define GET_PIX_FMT_NAME (
-    void *pix_fmt
-);
-//  {
-//      string name = av_get_pix_fmt_name (pix_fmt);
-//  }
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define GET_CODEC_NAME (
-    void *id
-);
-//  {
-//      string name = avcodec_descriptor_get (id)->name;
-//  }
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define GET_SAMPLE_FMT_NAME (
-    void *sample_fmt
-);
-//  {
-//      string name = av_get_sample_fmt_name (sample_fmt);
-//  }
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define GET_SAMPLE_RATE_NAME (
-    void *rate
-);
-//  {
-//      char name[16];
-//      snprintf (
-//          name,
-//          sizeof (name),
-//          "%d",
-//          rate
-//      );
-//  }
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define GET_CH_LAYOUT_NAME (
-    void *ch_layout
-);
-//  {
-//      char name[16];
-//      snprintf (
-//          name,
-//          sizeof (name),
-//          "0x%"PRIx64,
-//          ch_layout
-//      );
-//  }
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public define GET_CH_LAYOUT_DESC (
-    void *ch_layout
-);
-//  {
-//      char name[128];
-//      av_get_channel_layout_string (
-//          name,
-//          sizeof (name),
-//          0,
-//          ch_layout
-//      );
-//  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public double get_rotation (

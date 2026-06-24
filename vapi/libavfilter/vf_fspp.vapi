@@ -72,7 +72,7 @@ public enum Fix { // int16
     @1_082392200; // = FIX (1.082392200, 13);
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
+[CCode (cname="struct FSPPContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 [Compact]
 public class FSPPContext {
     [CCode (cname="class")]

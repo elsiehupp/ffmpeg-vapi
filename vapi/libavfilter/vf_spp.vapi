@@ -25,7 +25,7 @@ quality levels
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_spp.h")]
 public const size_t MAX_LEVEL; // 6
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_spp.h")]
+[CCode (cname="struct SPPContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_spp.h")]
 [Compact]
 public class SPPContext {
     [CCode (cname="")]

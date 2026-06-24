@@ -92,7 +92,7 @@ while (get_input (&input, &in_linesize, &in_samples)) {
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 public const size_t AVRESAMPLE_MAX_CHANNELS; // 32
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
+[CCode (cname="struct AVAudioResampleContext",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 [Compact]
 public class AVAudioResampleContext { }
 

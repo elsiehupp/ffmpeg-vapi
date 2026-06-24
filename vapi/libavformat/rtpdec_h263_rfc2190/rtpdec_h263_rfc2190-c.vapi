@@ -28,9 +28,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_h263_rfc2190_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_h263_rfc2190_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263_rfc2190.c")]
 public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263_rfc2190.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.VIDEO;
@@ -39,7 +39,7 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263_rfc2190.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.H263;
@@ -48,7 +48,7 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="need_parsing",cheader_filename="")]
+    [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263_rfc2190.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVStreamParseType.FULL;
@@ -57,7 +57,7 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="h263_handle_packet",cheader_filename="")]
+    [CCode (cname="h263_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263_rfc2190.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -70,7 +70,7 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
         int flags
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263_rfc2190.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -79,7 +79,7 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="h263_close_context",cheader_filename="")]
+    [CCode (cname="h263_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263_rfc2190.c")]
     public override void close (
         PayloadContext protocol_data
     );

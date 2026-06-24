@@ -23,13 +23,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct SRTContext",cheader_filename="")]
+[CCode (cname="struct SRTContext",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
 [Compact]
 public class SubRipDemuxerPrivateData { }
 
-[CCode (cname="ff_srt_demuxer",cheader_filename="")]
+[CCode (cname="ff_srt_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
 public class SubRipDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override string name {
         public get {
             return "srt";
@@ -38,7 +38,7 @@ public class SubRipDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override string long_name {
         public get {
             return "SubRip subtitle";
@@ -47,7 +47,7 @@ public class SubRipDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SubRipDemuxerPrivateData);
@@ -56,23 +56,23 @@ public class SubRipDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="srt_probe",cheader_filename="")]
+    [CCode (cname="srt_probe",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="srt_read_header",cheader_filename="")]
+    [CCode (cname="srt_read_header",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="srt_read_packet",cheader_filename="")]
+    [CCode (cname="srt_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="srt_read_seek",cheader_filename="")]
+    [CCode (cname="srt_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -82,7 +82,7 @@ public class SubRipDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="srt_read_close",cheader_filename="")]
+    [CCode (cname="srt_read_close",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );

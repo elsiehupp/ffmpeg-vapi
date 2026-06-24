@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct SDSContext",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+[CCode (cname="struct SDSContext",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
 [Compact]
 public class SDSDemuxerPrivateData { }
 
-[CCode (cname="ff_sds_demuxer",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+[CCode (cname="ff_sds_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
 public class SDSDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override string name {
         public get {
             return "sds";
@@ -37,7 +37,7 @@ public class SDSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override string long_name {
         public get {
             return "MIDI Sample Dump Standard";
@@ -46,7 +46,7 @@ public class SDSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SDSDemuxerPrivateData);
@@ -55,23 +55,23 @@ public class SDSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="sds_probe",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+    [CCode (cname="sds_probe",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="sds_read_header",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+    [CCode (cname="sds_read_header",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="sds_read_packet",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+    [CCode (cname="sds_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override string extensions {
         public get {
             return "sds";
@@ -80,7 +80,7 @@ public class SDSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/sdsdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

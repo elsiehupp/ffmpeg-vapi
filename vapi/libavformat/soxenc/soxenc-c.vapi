@@ -31,13 +31,13 @@ namespace LibAVFormat {
 @see http://wiki.multimedia.cx/index.php?title=SoX_native_intermediate_format
 ***********************************************************/
 
-[CCode (cname="struct SoXContext",cheader_filename="")]
+[CCode (cname="struct SoXContext",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
 [Compact]
 public class SoXMuxerPrivateData { }
 
-[CCode (cname="ff_sox_muxer",cheader_filename="")]
+[CCode (cname="ff_sox_muxer",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
 public class SoXMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override string name {
         public get {
             return "sox";
@@ -46,7 +46,7 @@ public class SoXMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override string long_name {
         public get {
             return "SoX native";
@@ -55,7 +55,7 @@ public class SoXMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override string extensions {
         public get {
             return "sox";
@@ -64,7 +64,7 @@ public class SoXMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SoXMuxerPrivateData);
@@ -73,7 +73,7 @@ public class SoXMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S32LE;
@@ -82,7 +82,7 @@ public class SoXMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -91,23 +91,23 @@ public class SoXMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="sox_write_header",cheader_filename="")]
+    [CCode (cname="sox_write_header",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_write_packet",cheader_filename="")]
+    [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="sox_write_trailer",cheader_filename="")]
+    [CCode (cname="sox_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/soxenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS;

@@ -76,7 +76,7 @@ public enum InterlaceScanMode {
     BFF;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
+[CCode (cname="struct TInterlaceContext",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
 [Compact]
 public class TInterlaceContext {
     [CCode (cname="class")]

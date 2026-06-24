@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct IVFEncContext",cheader_filename="")]
+[CCode (cname="struct IVFEncContext",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
 [Compact]
 public class IVFMuxerPrivateData { }
 
@@ -60,9 +60,9 @@ static const AVCodecTag codec_ivf_tags[] = {
 
 };
 
-[CCode (cname="ff_ivf_muxer",cheader_filename="")]
+[CCode (cname="ff_ivf_muxer",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
 public class IVFMuxer : AVOutputFormat {
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (IVFMuxerPrivateData);
@@ -71,7 +71,7 @@ public class IVFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override string name {
         public get {
             return "ivf";
@@ -80,7 +80,7 @@ public class IVFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override string long_name {
         public get {
             return "On2 IVF";
@@ -89,7 +89,7 @@ public class IVFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override string extensions {
         public get {
             return "ivf";
@@ -98,7 +98,7 @@ public class IVFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -107,7 +107,7 @@ public class IVFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.VP8;
@@ -116,23 +116,23 @@ public class IVFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="ivf_write_header",cheader_filename="")]
+    [CCode (cname="ivf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ivf_write_packet",cheader_filename="")]
+    [CCode (cname="ivf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         tag = LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ivf_write_trailer",cheader_filename="")]
+    [CCode (cname="ivf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ivf_check_bitstream",cheader_filename="")]
+    [CCode (cname="ivf_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         tag = LibAVCodec.Packet packet

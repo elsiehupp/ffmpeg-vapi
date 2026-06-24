@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_dirac_codec",cheader_filename="")]
+[CCode (cname="ff_dirac_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
 public class DiracCodec : OggCodec {
     [CCode (cname="magic")]
     public override uint8[] magic {
@@ -40,13 +40,13 @@ public class DiracCodec : OggCodec {
 
     }
 
-    [CCode (cname="dirac_header",cheader_filename="")]
+    [CCode (cname="dirac_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="dirac_gptopts",cheader_filename="")]
+    [CCode (cname="dirac_gptopts",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,
@@ -72,7 +72,7 @@ public class DiracCodec : OggCodec {
 
 }
 
-[CCode (cname="ff_old_dirac_codec",cheader_filename="")]
+[CCode (cname="ff_old_dirac_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
 public class OldDiracCodec : OggCodec {
     [CCode (cname="magic")]
     public override uint8[] magic {
@@ -91,13 +91,13 @@ public class OldDiracCodec : OggCodec {
 
     }
 
-    [CCode (cname="old_dirac_header",cheader_filename="")]
+    [CCode (cname="old_dirac_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="old_dirac_gptopts",cheader_filename="")]
+    [CCode (cname="old_dirac_gptopts",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,

@@ -21,7 +21,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "safe",
@@ -64,9 +64,9 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="concat_class",cheader_filename="ffmpeg/libformat/concatdec.c")]
+[CCode (cname="concat_class",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
 public class ConcatDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override string class_name {
         public get {
             return "concat demuxer";
@@ -75,7 +75,7 @@ public class ConcatDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -84,10 +84,10 @@ public class ConcatDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -97,13 +97,13 @@ public class ConcatDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct ConcatContext",cheader_filename="ffmpeg/libformat/concatdec.c")]
+[CCode (cname="struct ConcatContext",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
 [Compact]
 public class ConcatDemuxerPrivateData { }
 
-[CCode (cname="ff_concat_demuxer",cheader_filename="ffmpeg/libformat/concatdec.c")]
+[CCode (cname="ff_concat_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
 public class ConcatDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override string name {
         public get {
             return "concat";
@@ -112,7 +112,7 @@ public class ConcatDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override string long_name {
         public get {
             return "Virtual concatenation script";
@@ -121,7 +121,7 @@ public class ConcatDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ConcatDemuxerPrivateData);
@@ -130,28 +130,28 @@ public class ConcatDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="concat_probe",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="concat_probe",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="concat_read_header",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="concat_read_header",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="concat_read_packet",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="concat_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="concat_read_close",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="concat_read_close",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="concat_seek",cheader_filename="ffmpeg/libformat/concatdec.c")]
+    [CCode (cname="concat_seek",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,

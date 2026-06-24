@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_null_muxer",cheader_filename="")]
+[CCode (cname="ff_null_muxer",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
 public class NullMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
     public override string name {
         public get {
             return "null";
@@ -33,7 +33,7 @@ public class NullMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
     public override string long_name {
         public get {
             return "raw null video";
@@ -42,7 +42,7 @@ public class NullMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
         #if AV_HAVE_BIGENDIAN
@@ -53,7 +53,7 @@ public class NullMuxer : AVOutputFormat {
         }
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.WRAPPED_AVFRAME;
@@ -62,13 +62,13 @@ public class NullMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="null_write_packet",cheader_filename="")]
+    [CCode (cname="null_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.NO_FILE | AVFormatFlags1.NO_TIMESTAMPS;

@@ -26,9 +26,9 @@ namespace LibAVFormat {
 Based on documents from Game Audio Player and own research
 ***********************************************************/
 
-[CCode (cname="ff_sol_demuxer",cheader_filename="")]
+[CCode (cname="ff_sol_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/sol.c")]
 public class SOLDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sol.c")]
     public override string name {
         public get {
             return "sol";
@@ -37,7 +37,7 @@ public class SOLDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/sol.c")]
     public override string long_name {
         public get {
             return "Sierra SOL";
@@ -46,23 +46,23 @@ public class SOLDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="sol_probe",cheader_filename="")]
+    [CCode (cname="sol_probe",cheader_filename="subprojects/ffmpeg/libavformat/sol.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="sol_read_header",cheader_filename="")]
+    [CCode (cname="sol_read_header",cheader_filename="subprojects/ffmpeg/libavformat/sol.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="sol_read_packet",cheader_filename="")]
+    [CCode (cname="sol_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/sol.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ff_pcm_read_seek",cheader_filename="")]
+    [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/sol.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

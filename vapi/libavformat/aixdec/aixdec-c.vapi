@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="ff_aix_demuxer",cheader_filename="")]
+[CCode (cname="ff_aix_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
 public class AIXDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override string name {
         public get {
             return "aix";
@@ -32,7 +32,7 @@ public class AIXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override string long_name {
         public get {
             return "CRI AIX";
@@ -41,23 +41,23 @@ public class AIXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="aix_probe",cheader_filename="")]
+    [CCode (cname="aix_probe",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="aix_read_header",cheader_filename="")]
+    [CCode (cname="aix_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="aix_read_packet",cheader_filename="")]
+    [CCode (cname="aix_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override string extensions {
         public get {
             return "aix";
@@ -66,7 +66,7 @@ public class AIXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

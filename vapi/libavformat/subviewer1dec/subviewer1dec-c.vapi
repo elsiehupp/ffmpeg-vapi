@@ -25,13 +25,13 @@ namespace LibAVFormat {
 @file SubViewer v1 subtitle demuxer
 ***********************************************************/
 
-[CCode (cname="struct SubViewer1Context",cheader_filename="")]
+[CCode (cname="struct SubViewer1Context",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
 [Compact]
 public class SubViewerV1DemuxerPrivateData { }
 
-[CCode (cname="ff_subviewer1_demuxer",cheader_filename="")]
+[CCode (cname="ff_subviewer1_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
 public class SubViewerV1Demuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
     public override string name {
         public get {
             return "subviewer1";
@@ -40,7 +40,7 @@ public class SubViewerV1Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
     public override string long_name {
         public get {
             return "SubViewer v1 subtitle format";
@@ -49,7 +49,7 @@ public class SubViewerV1Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SubViewerV1DemuxerPrivateData);
@@ -58,23 +58,23 @@ public class SubViewerV1Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="subviewer1_probe",cheader_filename="")]
+    [CCode (cname="subviewer1_probe",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="subviewer1_read_header",cheader_filename="")]
+    [CCode (cname="subviewer1_read_header",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="subviewer1_read_packet",cheader_filename="")]
+    [CCode (cname="subviewer1_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="subviewer1_read_seek",cheader_filename="")]
+    [CCode (cname="subviewer1_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -84,12 +84,12 @@ public class SubViewerV1Demuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="subviewer1_read_close",cheader_filename="")]
+    [CCode (cname="subviewer1_read_close",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/subviewer1dec.c")]
     public override string extensions {
         public get {
             return "sub";

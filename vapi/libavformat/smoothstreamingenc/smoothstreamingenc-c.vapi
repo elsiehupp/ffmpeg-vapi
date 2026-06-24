@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "window_size",
@@ -90,9 +90,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="ism_class",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+[CCode (cname="ism_class",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
 public class SmoothStreamingMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override string class_name {
         public get {
             return "smooth streaming muxer";
@@ -101,7 +101,7 @@ public class SmoothStreamingMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -110,10 +110,10 @@ public class SmoothStreamingMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -123,13 +123,13 @@ public class SmoothStreamingMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct SmoothStreamingContext",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+[CCode (cname="struct SmoothStreamingContext",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
 [Compact]
 public class SmoothStreamingMuxerPrivateData { }
 
-[CCode (cname="ff_smoothstreaming_muxer",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+[CCode (cname="ff_smoothstreaming_muxer",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
 public class SmoothStreamingMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override string name {
         public get {
             return "smoothstreaming";
@@ -138,7 +138,7 @@ public class SmoothStreamingMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override string long_name {
         public get {
             return "Smooth Streaming Muxer";
@@ -147,7 +147,7 @@ public class SmoothStreamingMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SmoothStreamingMuxerPrivateData);
@@ -156,7 +156,7 @@ public class SmoothStreamingMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -165,7 +165,7 @@ public class SmoothStreamingMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
@@ -174,7 +174,7 @@ public class SmoothStreamingMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.NO_FILE;
@@ -183,18 +183,18 @@ public class SmoothStreamingMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="ism_write_header",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="ism_write_header",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ism_write_packet",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="ism_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ism_write_trailer",cheader_filename="ffmpeg/libformat/smoothstreamingenc.c")]
+    [CCode (cname="ism_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );

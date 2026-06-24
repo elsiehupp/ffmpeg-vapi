@@ -27,9 +27,9 @@ namespace LibAVFormat {
 @author Ronald S. Bultje <rbultje@ronald.bitfreak.net>
 ***********************************************************/
 
-[CCode (cname="ff_qdm2_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_qdm2_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qdm2.c")]
 public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qdm2.c")]
     public override string enc_name {
         public get {
             return "X-QDM";
@@ -38,7 +38,7 @@ public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qdm2.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -47,7 +47,7 @@ public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qdm2.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -56,7 +56,7 @@ public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qdm2.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -65,7 +65,7 @@ public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="qdm2_parse_packet",cheader_filename="")]
+    [CCode (cname="qdm2_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qdm2.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

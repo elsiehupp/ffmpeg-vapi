@@ -58,7 +58,7 @@ No members can be added to this struct without a major bump, if
 new elements have been added after this struct in AVFormatContext
 or AVIOContext.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+[CCode (cname="struct AVIOInterruptCB",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 [Compact]
 public class AVIOInterruptCB {
     [CCode (cname="")]
@@ -113,7 +113,7 @@ public enum AVIODirEntryType {
 Only name and type fields are guaranteed be set.
 Rest of fields are protocol or/and platform dependent and might be unknown.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+[CCode (cname="struct AVIODirEntry",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 [Compact]
 public class AVIODirEntry {
     /***********************************************************
@@ -254,7 +254,7 @@ sizeof (AVIOContext) must not be used outside libav*.
     when implementing custom I/O. Normally these are set to the
     function pointers specified in avio_alloc_context ()
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+[CCode (cname="struct AVIOContext",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 public abstract class AVIOContext {
     /***********************************************************
     @brief A class for private options.

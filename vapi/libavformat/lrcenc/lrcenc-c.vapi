@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_lrc_muxer",cheader_filename="")]
+[CCode (cname="ff_lrc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/lrcenc.c")]
 public class LRCMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/lrcenc.c")]
     public override string name {
         public get {
             return "lrc";
@@ -33,7 +33,7 @@ public class LRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/lrcenc.c")]
     public override string long_name {
         public get {
             return "LRC lyrics";
@@ -42,7 +42,7 @@ public class LRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/lrcenc.c")]
     public override string extensions {
         public get {
             return "lrc";
@@ -51,7 +51,7 @@ public class LRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/lrcenc.c")]
     public override size_t priv_data_size {
         public get {
             return 0;
@@ -60,18 +60,18 @@ public class LRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="lrc_write_header",cheader_filename="")]
+    [CCode (cname="lrc_write_header",cheader_filename="subprojects/ffmpeg/libavformat/lrcenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="lrc_write_packet",cheader_filename="")]
+    [CCode (cname="lrc_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/lrcenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/lrcenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
@@ -80,7 +80,7 @@ public class LRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="subtitle_codec",cheader_filename="")]
+    [CCode (cname="subtitle_codec",cheader_filename="subprojects/ffmpeg/libavformat/lrcenc.c")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.SUBRIP;

@@ -25,9 +25,9 @@ namespace LibAVFormat {
 
 #if CONFIG_SWF_MUXER
 
-[CCode (cname="ff_swf_muxer",cheader_filename="ffmpeg/libformat/swfenc.c")]
+[CCode (cname="ff_swf_muxer",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
 public class SWFMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override string name {
         public get {
             return "swf";
@@ -36,7 +36,7 @@ public class SWFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override string long_name {
         public get {
             return "SWF (ShockWave Flash)";
@@ -45,7 +45,7 @@ public class SWFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override string mime_type {
         public get {
             return "application/x-shockwave-flash";
@@ -54,7 +54,7 @@ public class SWFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override string extensions {
         public get {
             return "swf";
@@ -63,7 +63,7 @@ public class SWFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SWFContext);
@@ -72,7 +72,7 @@ public class SWFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.MP3;
@@ -81,7 +81,7 @@ public class SWFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.FLV1;
@@ -90,24 +90,24 @@ public class SWFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="swf_write_header",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="swf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="swf_write_packet",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="swf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="swf_write_trailer",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="swf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
@@ -120,9 +120,9 @@ public class SWFMuxer : AVOutputFormat {
 
 #if CONFIG_AVM2_MUXER
 
-[CCode (cname="ff_avm2_muxer",cheader_filename="ffmpeg/libformat/swfenc.c")]
+[CCode (cname="ff_avm2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
 public class AVM2Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override string name {
         public get {
             return "avm2";
@@ -131,7 +131,7 @@ public class AVM2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override string long_name {
         public get {
             return "SWF (ShockWave Flash) (AVM2)";
@@ -140,7 +140,7 @@ public class AVM2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override string mime_type {
         public get {
             return "application/x-shockwave-flash";
@@ -149,7 +149,7 @@ public class AVM2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SWFContext);
@@ -158,7 +158,7 @@ public class AVM2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.MP3;
@@ -167,7 +167,7 @@ public class AVM2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.FLV1;
@@ -176,24 +176,24 @@ public class AVM2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="swf_write_header",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="swf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="swf_write_packet",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="swf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="swf_write_trailer",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="swf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/swfenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;

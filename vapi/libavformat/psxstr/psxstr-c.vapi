@@ -31,13 +31,13 @@ concatenations of raw compact disc sectors) or STR files with 0x2C-byte
 RIFF headers, followed by CD sectors.
 ***********************************************************/
 
-[CCode (cname="struct StrDemuxContext",cheader_filename="")]
+[CCode (cname="struct StrDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
 [Compact]
 public class STRDemuxerPrivateData { }
 
-[CCode (cname="ff_str_demuxer",cheader_filename="")]
+[CCode (cname="ff_str_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
 public class STRDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override string name {
         public get {
             return "psxstr";
@@ -46,7 +46,7 @@ public class STRDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override string long_name {
         public get {
             return "Sony Playstation STR";
@@ -55,7 +55,7 @@ public class STRDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (STRDemuxerPrivateData);
@@ -64,28 +64,28 @@ public class STRDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="str_probe",cheader_filename="")]
+    [CCode (cname="str_probe",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="str_read_header",cheader_filename="")]
+    [CCode (cname="str_read_header",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="str_read_packet",cheader_filename="")]
+    [CCode (cname="str_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="str_read_close",cheader_filename="")]
+    [CCode (cname="str_read_close",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_BYTE_SEEK;

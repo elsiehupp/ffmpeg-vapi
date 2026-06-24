@@ -30,7 +30,7 @@ stamps that can be compared to wall clock time, especially when dealing
 with two clocks: the system clock and a hardware device clock, such as
 a soundcard.
 ***********************************************************/
-[CCode (cname="TimeFilter",cheader_filename="subprojects/ffmpeg/libavdevice/timefilter.h")]
+[CCode (cname="struct TimeFilter",cheader_filename="subprojects/ffmpeg/libavdevice/timefilter.h")]
 [Compact]
 public class TimeFilter { }
 

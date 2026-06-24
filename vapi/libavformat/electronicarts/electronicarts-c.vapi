@@ -27,13 +27,13 @@ namespace LibAVFormat {
 by Robin Kay (komadori at gekkou.co.uk)
 ***********************************************************/
 
-[CCode (cname="struct EaDemuxContext",cheader_filename="")]
+[CCode (cname="struct EaDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/electronicarts.c")]
 [Compact]
 public class EADemuxerPrivateData { }
 
-[CCode (cname="ff_ea_demuxer",cheader_filename="")]
+[CCode (cname="ff_ea_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/electronicarts.c")]
 public class EADemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/electronicarts.c")]
     public override string name {
         public get {
             return "ea";
@@ -42,7 +42,7 @@ public class EADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/electronicarts.c")]
     public override string long_name {
         public get {
             return "Electronic Arts Multimedia";
@@ -51,7 +51,7 @@ public class EADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/electronicarts.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (EADemuxerPrivateData);
@@ -60,17 +60,17 @@ public class EADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="ea_probe",cheader_filename="")]
+    [CCode (cname="ea_probe",cheader_filename="subprojects/ffmpeg/libavformat/electronicarts.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ea_read_header",cheader_filename="")]
+    [CCode (cname="ea_read_header",cheader_filename="subprojects/ffmpeg/libavformat/electronicarts.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ea_read_packet",cheader_filename="")]
+    [CCode (cname="ea_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/electronicarts.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

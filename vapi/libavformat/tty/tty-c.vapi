@@ -26,7 +26,7 @@ namespace LibAVFormat {
 @file Tele-typewriter demuxer
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "chars_per_frame",
@@ -70,9 +70,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="tty_demuxer_class",cheader_filename="")]
+[CCode (cname="tty_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
 public class TTYDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override string class_name {
         public get {
             return "TTY demuxer";
@@ -81,7 +81,7 @@ public class TTYDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -91,7 +91,7 @@ public class TTYDemuxerClass : LibAVUtil.Class {
     }
     //  .option = options,
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -101,13 +101,13 @@ public class TTYDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct TtyDemuxContext",cheader_filename="")]
+[CCode (cname="struct TtyDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
 [Compact]
 public class TTYDemuxerPrivateData { }
 
-[CCode (cname="ff_tty_demuxer",cheader_filename="")]
+[CCode (cname="ff_tty_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
 public class TTYDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override string name {
         public get {
             return "tty";
@@ -116,7 +116,7 @@ public class TTYDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override string long_name {
         public get {
             return "Tele-typewriter";
@@ -125,7 +125,7 @@ public class TTYDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TTYDemuxerPrivateData);
@@ -134,23 +134,23 @@ public class TTYDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="read_probe",cheader_filename="")]
+    [CCode (cname="read_probe",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header",cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet",cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="tty_extensions",cheader_filename="")]
+    [CCode (cname="tty_extensions",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override string extensions {
         public get;
     }

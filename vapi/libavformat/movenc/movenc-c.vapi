@@ -1016,9 +1016,9 @@ static const AVCodecTag codec_f4v_tags[] = {
 
 #if CONFIG_MOV_MUXER
 
-[CCode (cname="mov_muxer_class",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="mov_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class MOVMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
             return "mov muxer";
@@ -1027,7 +1027,7 @@ public class MOVMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -1036,10 +1036,10 @@ public class MOVMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -1049,9 +1049,9 @@ public class MOVMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_mov_muxer",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ff_mov_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class MOVMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
             return "mov";
@@ -1060,7 +1060,7 @@ public class MOVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string long_name {
         public get {
             return "QuickTime / MOV";
@@ -1069,7 +1069,7 @@ public class MOVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string extensions {
         public get {
             return "mov";
@@ -1078,7 +1078,7 @@ public class MOVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
@@ -1087,7 +1087,7 @@ public class MOVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -1096,7 +1096,7 @@ public class MOVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBX264_ENCODER ? LibAVCodec.CodecID.H264 : LibAVCodec.CodecID.MPEG4;
@@ -1105,34 +1105,34 @@ public class MOVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_init",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_header",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_packet",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mov_write_trailer",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_free",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -1155,7 +1155,7 @@ public class MOVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -1166,9 +1166,9 @@ public class MOVMuxer : AVOutputFormat {
 
 #if CONFIG_TGP_MUXER
 
-[CCode (cname="tgp_muxer_class",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="tgp_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class TGPMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
             return "tgp muxer";
@@ -1177,7 +1177,7 @@ public class TGPMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -1186,10 +1186,10 @@ public class TGPMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -1199,9 +1199,9 @@ public class TGPMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_tgp_muxer",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ff_tgp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class TGPMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
             return "3gp";
@@ -1210,7 +1210,7 @@ public class TGPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string long_name {
         public get {
             return "3GP (3GPP file format)";
@@ -1219,7 +1219,7 @@ public class TGPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string extensions {
         public get {
             return "3gp";
@@ -1228,7 +1228,7 @@ public class TGPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
@@ -1237,7 +1237,7 @@ public class TGPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AMR_NB;
@@ -1246,7 +1246,7 @@ public class TGPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H263;
@@ -1255,34 +1255,34 @@ public class TGPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_init",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_header",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_packet",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mov_write_trailer",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_free",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -1303,7 +1303,7 @@ public class TGPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -1314,9 +1314,9 @@ public class TGPMuxer : AVOutputFormat {
 
 #if CONFIG_MP4_MUXER
 
-[CCode (cname="mp4_muxer_class",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="mp4_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class MP4MuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
             return "mp4 muxer";
@@ -1325,7 +1325,7 @@ public class MP4MuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -1334,10 +1334,10 @@ public class MP4MuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -1347,9 +1347,9 @@ public class MP4MuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_mp4_muxer",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ff_mp4_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class MP4Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
             return "mp4";
@@ -1358,7 +1358,7 @@ public class MP4Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string long_name {
         public get {
             return "MP4 (MPEG-4 Part 14)";
@@ -1367,7 +1367,7 @@ public class MP4Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string mime_type {
         public get {
             return "video/mp4";
@@ -1376,7 +1376,7 @@ public class MP4Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string extensions {
         public get {
             return "mp4";
@@ -1385,7 +1385,7 @@ public class MP4Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
@@ -1394,7 +1394,7 @@ public class MP4Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -1403,7 +1403,7 @@ public class MP4Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBX264_ENCODER ? LibAVCodec.CodecID.H264 : LibAVCodec.CodecID.MPEG4;
@@ -1412,34 +1412,34 @@ public class MP4Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_init",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_header",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_packet",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mov_write_trailer",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_free",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -1460,7 +1460,7 @@ public class MP4Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -1471,9 +1471,9 @@ public class MP4Muxer : AVOutputFormat {
 
 #if CONFIG_PSP_MUXER
 
-[CCode (cname="psp_muxer_class",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="psp_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class PSPMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
             return "psp muxer";
@@ -1482,7 +1482,7 @@ public class PSPMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -1491,10 +1491,10 @@ public class PSPMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -1504,9 +1504,9 @@ public class PSPMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_psp_muxer",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ff_psp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class PSPMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
             return "psp";
@@ -1515,7 +1515,7 @@ public class PSPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string long_name {
         public get {
             return "PSP MP4 (MPEG-4 Part 14)";
@@ -1524,7 +1524,7 @@ public class PSPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string extensions {
         public get {
             return "mp4,psp";
@@ -1533,7 +1533,7 @@ public class PSPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
@@ -1542,7 +1542,7 @@ public class PSPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -1551,7 +1551,7 @@ public class PSPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBX264_ENCODER ? LibAVCodec.CodecID.H264 : LibAVCodec.CodecID.MPEG4;
@@ -1560,34 +1560,34 @@ public class PSPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_init",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_header",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_packet",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mov_write_trailer",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_free",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -1608,7 +1608,7 @@ public class PSPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -1619,9 +1619,9 @@ public class PSPMuxer : AVOutputFormat {
 
 #if CONFIG_TG2_MUXER
 
-[CCode (cname="tg2_muxer_class",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="tg2_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class TG2MuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
             return "tg2 muxer";
@@ -1630,7 +1630,7 @@ public class TG2MuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -1639,10 +1639,10 @@ public class TG2MuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -1652,9 +1652,9 @@ public class TG2MuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_tg2_muxer",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ff_tg2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class TG2Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
             return "3g2";
@@ -1663,7 +1663,7 @@ public class TG2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string long_name {
         public get {
             return "3GP2 (3GPP2 file format)";
@@ -1672,7 +1672,7 @@ public class TG2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string extensions {
         public get {
             return "3g2";
@@ -1681,7 +1681,7 @@ public class TG2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
@@ -1690,7 +1690,7 @@ public class TG2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AMR_NB;
@@ -1699,7 +1699,7 @@ public class TG2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H263;
@@ -1708,34 +1708,34 @@ public class TG2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_init",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_header",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_packet",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mov_write_trailer",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_free",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -1756,7 +1756,7 @@ public class TG2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -1767,9 +1767,9 @@ public class TG2Muxer : AVOutputFormat {
 
 #if CONFIG_IPOD_MUXER
 
-[CCode (cname="ipod_muxer_class",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ipod_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class IPodMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
             return "ipod muxer";
@@ -1778,7 +1778,7 @@ public class IPodMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -1787,10 +1787,10 @@ public class IPodMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -1800,9 +1800,9 @@ public class IPodMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_ipod_muxer",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ff_ipod_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class IPodMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
             return "ipod";
@@ -1811,7 +1811,7 @@ public class IPodMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string long_name {
         public get {
             return "iPod H.264 MP4 (MPEG-4 Part 14)";
@@ -1820,7 +1820,7 @@ public class IPodMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string mime_type {
         public get {
             return "video/mp4";
@@ -1829,7 +1829,7 @@ public class IPodMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string extensions {
         public get {
             return "m4v,m4a,m4b";
@@ -1838,7 +1838,7 @@ public class IPodMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
@@ -1847,7 +1847,7 @@ public class IPodMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -1856,7 +1856,7 @@ public class IPodMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
@@ -1865,34 +1865,34 @@ public class IPodMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_init",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_header",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_packet",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mov_write_trailer",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_free",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -1913,7 +1913,7 @@ public class IPodMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -1924,9 +1924,9 @@ public class IPodMuxer : AVOutputFormat {
 
 #if CONFIG_ISMV_MUXER
 
-[CCode (cname="ismv_muxer_class",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ismv_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class ISMVMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
             return "ismv muxer";
@@ -1935,7 +1935,7 @@ public class ISMVMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -1944,10 +1944,10 @@ public class ISMVMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -1957,9 +1957,9 @@ public class ISMVMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_ismv_muxer",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ff_ismv_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class ISMVMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
             return "ismv";
@@ -1968,7 +1968,7 @@ public class ISMVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string long_name {
         public get {
             return "ISMV/ISMA (Smooth Streaming)";
@@ -1977,7 +1977,7 @@ public class ISMVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string mime_type {
         public get {
             return "video/mp4";
@@ -1986,7 +1986,7 @@ public class ISMVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string extensions {
         public get {
             return "ismv,isma";
@@ -1995,7 +1995,7 @@ public class ISMVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
@@ -2004,7 +2004,7 @@ public class ISMVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -2013,7 +2013,7 @@ public class ISMVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
@@ -2022,34 +2022,34 @@ public class ISMVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_init",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_header",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_packet",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mov_write_trailer",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_free",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -2071,7 +2071,7 @@ public class ISMVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -2082,9 +2082,9 @@ public class ISMVMuxer : AVOutputFormat {
 
 #if CONFIG_F4V_MUXER
 
-[CCode (cname="f4v_muxer_class",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="f4v_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class F4VMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
             return "f4v muxer";
@@ -2093,7 +2093,7 @@ public class F4VMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -2102,10 +2102,10 @@ public class F4VMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -2115,9 +2115,9 @@ public class F4VMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_f4v_muxer",cheader_filename="ffmpeg/libformat/movenc.c")]
+[CCode (cname="ff_f4v_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
 public class F4VMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
             return "f4v";
@@ -2126,7 +2126,7 @@ public class F4VMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string long_name {
         public get {
             return "F4V Adobe Flash Video";
@@ -2135,7 +2135,7 @@ public class F4VMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string mime_type {
         public get {
             return "application/f4v";
@@ -2144,7 +2144,7 @@ public class F4VMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string extensions {
         public get {
             return "f4v";
@@ -2153,7 +2153,7 @@ public class F4VMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MOVMuxContext);
@@ -2162,7 +2162,7 @@ public class F4VMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -2171,7 +2171,7 @@ public class F4VMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
@@ -2180,34 +2180,34 @@ public class F4VMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_init",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_header",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_write_packet",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mov_write_trailer",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mov_free",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH;
@@ -2228,7 +2228,7 @@ public class F4VMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mov_check_bitstream",cheader_filename="ffmpeg/libformat/movenc.c")]
+    [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

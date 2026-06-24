@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct PMPContext",cheader_filename="")]
+[CCode (cname="struct PMPContext",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
 [Compact]
 public class PMPDemuxerPrivateData { }
 
-[CCode (cname="ff_pmp_demuxer",cheader_filename="")]
+[CCode (cname="ff_pmp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
 public class PMPDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
     public override string name {
         public get {
             return "pmp";
@@ -37,7 +37,7 @@ public class PMPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
     public override string long_name {
         public get {
             return "Playstation Portable PMP";
@@ -46,7 +46,7 @@ public class PMPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PMPDemuxerPrivateData);
@@ -55,23 +55,23 @@ public class PMPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="pmp_probe",cheader_filename="")]
+    [CCode (cname="pmp_probe",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="pmp_header",cheader_filename="")]
+    [CCode (cname="pmp_header",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="pmp_packet",cheader_filename="")]
+    [CCode (cname="pmp_packet",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="pmp_seek",cheader_filename="")]
+    [CCode (cname="pmp_seek",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -79,7 +79,7 @@ public class PMPDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="pmp_close",cheader_filename="")]
+    [CCode (cname="pmp_close",cheader_filename="subprojects/ffmpeg/libavformat/pmpdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );

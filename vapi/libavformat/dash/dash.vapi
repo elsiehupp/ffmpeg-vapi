@@ -39,7 +39,7 @@ public enum DASHTmplId {
 }
 
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
+[CCode (cname="ff_dash_fill_tmpl_params",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
 public void ff_dash_fill_tmpl_params (
     string dst,
     size_t buffer_size,

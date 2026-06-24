@@ -30,7 +30,7 @@ namespace LibAVFormat {
     support filling with a background thread
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "read_ahead_limit",
@@ -50,13 +50,13 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="struct Context",cheader_filename="")]
+[CCode (cname="struct Context",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
 [Compact]
 public class CachePrivateData { }
 
-[CCode (cname="cache_context_class",cheader_filename="")]
+[CCode (cname="cache_context_class",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
 public class CacheContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override string class_name {
         public get {
             return "Cache";
@@ -65,7 +65,7 @@ public class CacheContextClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -74,10 +74,10 @@ public class CacheContextClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -87,9 +87,9 @@ public class CacheContextClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_cache_protocol",cheader_filename="")]
+[CCode (cname="ff_cache_protocol",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
 public class CacheURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override string name {
         public get {
             return "cache";
@@ -98,7 +98,7 @@ public class CacheURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="cache_open",cheader_filename="")]
+    [CCode (cname="cache_open",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -106,26 +106,26 @@ public class CacheURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="cache_read",cheader_filename="")]
+    [CCode (cname="cache_read",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="cache_seek",cheader_filename="")]
+    [CCode (cname="cache_seek",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="cache_close",cheader_filename="")]
+    [CCode (cname="cache_close",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (CachePrivateData);

@@ -70,9 +70,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/apngdec.c")]
+[CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
 public class APNGDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override string class_name {
         public get {
             return "APNG demuxer";
@@ -81,7 +81,7 @@ public class APNGDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -90,10 +90,10 @@ public class APNGDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -104,13 +104,13 @@ public class APNGDemuxerClass : LibAVUtil.Class {
     //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
-[CCode (cname="struct APNGDemuxContext",cheader_filename="ffmpeg/libformat/apngdec.c")]
+[CCode (cname="struct APNGDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
 [Compact]
 public class APNGDemuxerPrivateData { }
 
-[CCode (cname="ff_apng_demuxer",cheader_filename="ffmpeg/libformat/apngdec.c")]
+[CCode (cname="ff_apng_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
 public class APNGDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override string name {
         public get {
             return "apng";
@@ -119,7 +119,7 @@ public class APNGDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override string long_name {
         public get {
             return "Animated Portable Network Graphics";
@@ -128,7 +128,7 @@ public class APNGDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (APNGDemuxerPrivateData);
@@ -137,23 +137,23 @@ public class APNGDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="apng_probe",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="apng_probe",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="apng_read_header",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="apng_read_header",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="apng_read_packet",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="apng_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/apngdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

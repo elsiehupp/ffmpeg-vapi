@@ -26,13 +26,13 @@ namespace LibAVFormat {
 @see http://service.real.com/help/library/guides/ProductionGuide/prodguide/htmfiles/realtext.htm
 ***********************************************************/
 
-[CCode (cname="struct RealTextContext",cheader_filename="")]
+[CCode (cname="struct RealTextContext",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
 [Compact]
 public class RealTextDemuxerPrivateData { }
 
-[CCode (cname="ff_realtext_demuxer",cheader_filename="")]
+[CCode (cname="ff_realtext_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
 public class RealTextDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
     public override string name {
         public get {
             return "realtext";
@@ -41,7 +41,7 @@ public class RealTextDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
     public override string long_name {
         public get {
             return "RealText subtitle format";
@@ -50,7 +50,7 @@ public class RealTextDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RealTextDemuxerPrivateData);
@@ -59,23 +59,23 @@ public class RealTextDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="realtext_probe",cheader_filename="")]
+    [CCode (cname="realtext_probe",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="realtext_read_header",cheader_filename="")]
+    [CCode (cname="realtext_read_header",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="realtext_read_packet",cheader_filename="")]
+    [CCode (cname="realtext_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="realtext_read_seek",cheader_filename="")]
+    [CCode (cname="realtext_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -85,12 +85,12 @@ public class RealTextDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="realtext_read_close",cheader_filename="")]
+    [CCode (cname="realtext_read_close",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/realtextdec.c")]
     public override string extensions {
         public get {
             return "rt";

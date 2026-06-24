@@ -43,9 +43,9 @@ static const LibAVUtil.Option asf_options[] = {
 
 #if CONFIG_ASF_MUXER
 
-[CCode (cname="asf_muxer_class",cheader_filename="ffmpeg/libformat/asfenc.c")]
+[CCode (cname="asf_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
 public class ASFMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string class_name {
         public get {
             return "ASF muxer";
@@ -54,7 +54,7 @@ public class ASFMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -64,7 +64,7 @@ public class ASFMuxerClass : LibAVUtil.Class {
     }
     //  .option = asf_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -74,9 +74,9 @@ public class ASFMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_asf_muxer",cheader_filename="ffmpeg/libformat/asfenc.c")]
+[CCode (cname="ff_asf_muxer",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
 public class AsfMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string name {
         public get {
             return "asf";
@@ -85,7 +85,7 @@ public class AsfMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string long_name {
         public get {
             return "ASF (Advanced / Active Streaming Format)";
@@ -94,7 +94,7 @@ public class AsfMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string mime_type {
         public get {
             return "video/x-ms-asf";
@@ -103,7 +103,7 @@ public class AsfMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string extensions {
         public get {
             return "asf,wmv,wma";
@@ -112,7 +112,7 @@ public class AsfMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ASFContext);
@@ -121,7 +121,7 @@ public class AsfMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.WMAV2;
@@ -130,7 +130,7 @@ public class AsfMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MSMPEG4V3;
@@ -139,24 +139,24 @@ public class AsfMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="asf_write_header",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="asf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="asf_write_packet",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="asf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="asf_write_trailer",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="asf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER;
@@ -184,9 +184,9 @@ public class AsfMuxer : AVOutputFormat {
 
 #if CONFIG_ASF_STREAM_MUXER
 
-[CCode (cname="asf_stream_muxer_class",cheader_filename="ffmpeg/libformat/asfenc.c")]
+[CCode (cname="asf_stream_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
 public class ASFStreamMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string class_name {
         public get {
             return "ASF stream muxer";
@@ -195,7 +195,7 @@ public class ASFStreamMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -205,7 +205,7 @@ public class ASFStreamMuxerClass : LibAVUtil.Class {
     }
     //  .option = asf_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -215,9 +215,9 @@ public class ASFStreamMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_asf_stream_muxer",cheader_filename="ffmpeg/libformat/asfenc.c")]
+[CCode (cname="ff_asf_stream_muxer",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
 public class AsfStreamMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string name {
         public get {
             return "asf_stream";
@@ -226,7 +226,7 @@ public class AsfStreamMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string long_name {
         public get {
             return "ASF (Advanced / Active Streaming Format)";
@@ -235,7 +235,7 @@ public class AsfStreamMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string mime_type {
         public get {
             return "video/x-ms-asf";
@@ -244,7 +244,7 @@ public class AsfStreamMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string extensions {
         public get {
             return "asf,wmv,wma";
@@ -253,7 +253,7 @@ public class AsfStreamMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ASFContext);
@@ -262,7 +262,7 @@ public class AsfStreamMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.WMAV2;
@@ -271,7 +271,7 @@ public class AsfStreamMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MSMPEG4V3;
@@ -280,24 +280,24 @@ public class AsfStreamMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="asf_write_stream_header",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="asf_write_stream_header",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="asf_write_packet",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="asf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="asf_write_trailer",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="asf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/asfenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER;

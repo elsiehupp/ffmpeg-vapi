@@ -47,9 +47,9 @@ static const LibAVUtil.Option ffrtmpcrypt_options[] = {
 
 };
 
-[CCode (cname="ffrtmpcrypt_class",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+[CCode (cname="ffrtmpcrypt_class",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
 public class RTMPCryptURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override string class_name {
         public get {
             return "ffrtmpcrypt";
@@ -58,7 +58,7 @@ public class RTMPCryptURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -68,7 +68,7 @@ public class RTMPCryptURLProtocolClass : LibAVUtil.Class {
     }
     //  .option = ffrtmpcrypt_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -78,13 +78,13 @@ public class RTMPCryptURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct RTMPEContext",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+[CCode (cname="struct RTMPEContext",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
 [Compact]
 public class RTMPCryptPrivateData { }
 
-[CCode (cname="ff_ffrtmpcrypt_protocol",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+[CCode (cname="ff_ffrtmpcrypt_protocol",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
 public class RTMPCryptURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override string name {
         public get {
             return "ffrtmpcrypt";
@@ -93,33 +93,33 @@ public class RTMPCryptURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="rtmpe_open",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="rtmpe_open",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="rtmpe_read",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="rtmpe_read",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmpe_write",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="rtmpe_write",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmpe_close",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="rtmpe_close",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RTMPCryptPrivateData);
@@ -128,7 +128,7 @@ public class RTMPCryptURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;

@@ -27,7 +27,7 @@ public int ff_sample_fmt_is_planar (
 /***********************************************************
 Audio buffer used for intermediate storage between conversion phases.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
+[CCode (cname="struct AudioData",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
 [Compact]
 public class AudioData {
     /***********************************************************

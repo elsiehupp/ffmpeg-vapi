@@ -26,7 +26,7 @@ namespace LibAVFormat {
 @file RTP protocol
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "ttl",
@@ -212,9 +212,9 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="rtp_class",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+[CCode (cname="rtp_class",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
 public class RTPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override string class_name {
         public get {
             return "rtp";
@@ -223,7 +223,7 @@ public class RTPURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -232,10 +232,10 @@ public class RTPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -245,13 +245,13 @@ public class RTPURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct RTPContext",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+[CCode (cname="struct RTPContext",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
 [Compact]
 public class RTPPrivateData { }
 
-[CCode (cname="ff_rtp_protocol",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+[CCode (cname="ff_rtp_protocol",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
 public class RTPURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override string name {
         public get {
             return "rtp";
@@ -260,45 +260,45 @@ public class RTPURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="rtp_open",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="rtp_open",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="rtp_read",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="rtp_read",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtp_write",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="rtp_write",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtp_close",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="rtp_close",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="rtp_get_file_handle",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="rtp_get_file_handle",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="rtp_get_multi_file_handle",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="rtp_get_multi_file_handle",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override int url_get_multi_file_handle (
         URLContext url_context,
         out int[] handles,
         out int numhandles
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RTPPrivateData);
@@ -307,7 +307,7 @@ public class RTPURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtpproto.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;

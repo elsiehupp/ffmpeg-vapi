@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="W3FDIFDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/w3fdif.h")]
+[CCode (cname="struct W3FDIFDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/w3fdif.h")]
 [Compact]
 public class W3FDIFDSPContext {
     public delegate void FilterSimpleLowDelegate (

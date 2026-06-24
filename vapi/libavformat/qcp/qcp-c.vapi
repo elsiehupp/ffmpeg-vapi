@@ -29,13 +29,13 @@ namespace LibAVFormat {
     http://tools.ietf.org/html/rfc3625
 ***********************************************************/
 
-[CCode (cname="struct QCPContext",cheader_filename="")]
+[CCode (cname="struct QCPContext",cheader_filename="subprojects/ffmpeg/libavformat/qcp.c")]
 [Compact]
 public class QCPDemuxerPrivateData { }
 
-[CCode (cname="ff_qcp_demuxer",cheader_filename="")]
+[CCode (cname="ff_qcp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/qcp.c")]
 public class QCPDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/qcp.c")]
     public override string name {
         public get {
             return "qcp";
@@ -44,7 +44,7 @@ public class QCPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/qcp.c")]
     public override string long_name {
         public get {
             return "QCP";
@@ -53,7 +53,7 @@ public class QCPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/qcp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (QCPDemuxerPrivateData);
@@ -62,17 +62,17 @@ public class QCPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="qcp_probe",cheader_filename="")]
+    [CCode (cname="qcp_probe",cheader_filename="subprojects/ffmpeg/libavformat/qcp.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="qcp_read_header",cheader_filename="")]
+    [CCode (cname="qcp_read_header",cheader_filename="subprojects/ffmpeg/libavformat/qcp.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="qcp_read_packet",cheader_filename="")]
+    [CCode (cname="qcp_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/qcp.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_mpegts_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_mpegts_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpegts.c")]
 public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpegts.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.DATA;
@@ -33,7 +33,7 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpegts.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -42,7 +42,7 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="mpegts_handle_packet",cheader_filename="")]
+    [CCode (cname="mpegts_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpegts.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -55,14 +55,14 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
         int flags
     );
 
-    [CCode (cname="mpegts_init",cheader_filename="")]
+    [CCode (cname="mpegts_init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpegts.c")]
     public override int init (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );
 
-    [CCode (cname="mpegts_close_context",cheader_filename="")]
+    [CCode (cname="mpegts_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpegts.c")]
     public override void close (
         PayloadContext protocol_data
     );

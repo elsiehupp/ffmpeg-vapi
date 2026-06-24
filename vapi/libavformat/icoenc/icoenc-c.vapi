@@ -26,13 +26,13 @@ namespace LibAVFormat {
 @file Microsoft Windows ICO muxer
 ***********************************************************/
 
-[CCode (cname="struct IcoMuxContext",cheader_filename="")]
+[CCode (cname="struct IcoMuxContext",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
 [Compact]
 public class ICOMuxerPrivateData { }
 
-[CCode (cname="ff_ico_muxer",cheader_filename="")]
+[CCode (cname="ff_ico_muxer",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
 public class ICOMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override string name {
         public get {
             return "ico";
@@ -41,7 +41,7 @@ public class ICOMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override string long_name {
         public get {
             return "Microsoft Windows ICO";
@@ -50,7 +50,7 @@ public class ICOMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ICOMuxerPrivateData);
@@ -59,7 +59,7 @@ public class ICOMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override string mime_type {
         public get {
             return "image/vnd.microsoft.icon";
@@ -68,7 +68,7 @@ public class ICOMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override string extensions {
         public get {
             return "ico";
@@ -77,7 +77,7 @@ public class ICOMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -86,7 +86,7 @@ public class ICOMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.BMP;
@@ -95,23 +95,23 @@ public class ICOMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="ico_write_header",cheader_filename="")]
+    [CCode (cname="ico_write_header",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ico_write_packet",cheader_filename="")]
+    [CCode (cname="ico_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ico_write_trailer",cheader_filename="")]
+    [CCode (cname="ico_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/icoenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS;

@@ -26,7 +26,7 @@ namespace LibAVFormat {
 @file RTMP protocol based on http://rtmpdump.mplayerhq.hu/ librtmp
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "rtmp_app",
@@ -235,13 +235,13 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="struct LibRTMPContext",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="struct LibRTMPContext",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 [Compact]
 public class LibRTMPPrivateData { }
 
-[CCode (cname="librtmp_class",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="librtmp_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {
             return "librtmp protocol";
@@ -250,7 +250,7 @@ public class LibRTMPURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -259,10 +259,10 @@ public class LibRTMPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -272,9 +272,9 @@ public class LibRTMPURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_librtmp_protocol",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="ff_librtmp_protocol",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string name {
         public get {
             return "rtmp";
@@ -283,39 +283,39 @@ public class LibRTMPURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="rtmp_open",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_open",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="rtmp_read",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_write",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_write",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_close",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_close",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="rtmp_read_pause",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_pause",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
 
-    [CCode (cname="rtmp_read_seek",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
@@ -323,12 +323,12 @@ public class LibRTMPURLProtocol : URLProtocol {
         int flags
     );
 
-    [CCode (cname="rtmp_get_file_handle",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_get_file_handle",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LibRTMPPrivateData);
@@ -338,7 +338,7 @@ public class LibRTMPURLProtocol : URLProtocol {
     }
     //  .priv_data_class = librtmp_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;
@@ -348,9 +348,9 @@ public class LibRTMPURLProtocol : URLProtocol {
     }
 }
 
-[CCode (cname="librtmpt_class",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="librtmpt_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPTURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {
             return "librtmpt protocol";
@@ -359,7 +359,7 @@ public class LibRTMPTURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -368,10 +368,10 @@ public class LibRTMPTURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -381,9 +381,9 @@ public class LibRTMPTURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_librtmpt_protocol",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="ff_librtmpt_protocol",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPTURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string name {
         public get {
             return "rtmpt";
@@ -392,39 +392,39 @@ public class LibRTMPTURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="rtmp_open",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_open",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="rtmp_read",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_write",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_write",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_close",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_close",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="rtmp_read_pause",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_pause",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
 
-    [CCode (cname="rtmp_read_seek",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
@@ -432,12 +432,12 @@ public class LibRTMPTURLProtocol : URLProtocol {
         int flags
     );
 
-    [CCode (cname="rtmp_get_file_handle",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_get_file_handle",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LibRTMPPrivateData);
@@ -447,7 +447,7 @@ public class LibRTMPTURLProtocol : URLProtocol {
     }
     //  .priv_data_class = librtmpt_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;
@@ -457,9 +457,9 @@ public class LibRTMPTURLProtocol : URLProtocol {
     }
 }
 
-[CCode (cname="librtmpe_class",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="librtmpe_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPEURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {
             return "librtmpe protocol";
@@ -468,7 +468,7 @@ public class LibRTMPEURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -477,10 +477,10 @@ public class LibRTMPEURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -490,9 +490,9 @@ public class LibRTMPEURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_librtmpe_protocol",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="ff_librtmpe_protocol",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPEURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string name {
         public get {
             return "rtmpe";
@@ -501,39 +501,39 @@ public class LibRTMPEURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="rtmp_open",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_open",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="rtmp_read",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_write",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_write",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_close",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_close",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="rtmp_read_pause",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_pause",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
 
-    [CCode (cname="rtmp_read_seek",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
@@ -541,12 +541,12 @@ public class LibRTMPEURLProtocol : URLProtocol {
         int flags
     );
 
-    [CCode (cname="rtmp_get_file_handle",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_get_file_handle",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LibRTMPPrivateData);
@@ -556,7 +556,7 @@ public class LibRTMPEURLProtocol : URLProtocol {
     }
     //  .priv_data_class = librtmpe_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;
@@ -566,9 +566,9 @@ public class LibRTMPEURLProtocol : URLProtocol {
     }
 }
 
-[CCode (cname="librtmpte_class",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="librtmpte_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPTEURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {
             return "librtmpte protocol";
@@ -577,7 +577,7 @@ public class LibRTMPTEURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -586,10 +586,10 @@ public class LibRTMPTEURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -599,9 +599,9 @@ public class LibRTMPTEURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_librtmpte_protocol",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="ff_librtmpte_protocol",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPTEURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string name {
         public get {
             return "rtmpte";
@@ -610,39 +610,39 @@ public class LibRTMPTEURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="rtmp_open",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_open",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="rtmp_read",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_write",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_write",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_close",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_close",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="rtmp_read_pause",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_pause",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
 
-    [CCode (cname="rtmp_read_seek",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
@@ -650,12 +650,12 @@ public class LibRTMPTEURLProtocol : URLProtocol {
         int flags
     );
 
-    [CCode (cname="rtmp_get_file_handle",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_get_file_handle",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LibRTMPPrivateData);
@@ -665,7 +665,7 @@ public class LibRTMPTEURLProtocol : URLProtocol {
     }
     //  .priv_data_class = librtmpte_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;
@@ -675,9 +675,9 @@ public class LibRTMPTEURLProtocol : URLProtocol {
     }
 }
 
-[CCode (cname="librtmps_class",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="librtmps_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPSURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {
             return "librtmps protocol";
@@ -686,7 +686,7 @@ public class LibRTMPSURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -695,10 +695,10 @@ public class LibRTMPSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -708,9 +708,9 @@ public class LibRTMPSURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_librtmps_protocol",cheader_filename="ffmpeg/libformat/librtmp.c")]
+[CCode (cname="ff_librtmps_protocol",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
 public class LibRTMPSURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string name {
         public get {
             return "rtmps";
@@ -719,39 +719,39 @@ public class LibRTMPSURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="rtmp_open",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_open",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="rtmp_read",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_write",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_write",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="rtmp_close",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_close",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="rtmp_read_pause",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_pause",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_read_pause (
         URLContext url_context,
         int pause
     );
 
-    [CCode (cname="rtmp_read_seek",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int64 url_read_seek (
         URLContext url_context,
         int stream_index,
@@ -759,12 +759,12 @@ public class LibRTMPSURLProtocol : URLProtocol {
         int flags
     );
 
-    [CCode (cname="rtmp_get_file_handle",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="rtmp_get_file_handle",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (LibRTMPPrivateData);
@@ -774,7 +774,7 @@ public class LibRTMPSURLProtocol : URLProtocol {
     }
     //  .priv_data_class = librtmps_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/librtmp.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;

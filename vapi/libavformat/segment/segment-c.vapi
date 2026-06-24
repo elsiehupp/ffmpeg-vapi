@@ -27,7 +27,7 @@ M3U8 specification can be find here:
 @url {http://tools.ietf.org/id/draft-pantos-http-live-streaming}
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "reference_stream",
@@ -443,9 +443,9 @@ static const LibAVUtil.Option options[] = {
 
 #if CONFIG_SEGMENT_MUXER
 
-[CCode (cname="seg_class",cheader_filename="ffmpeg/libformat/segment.c")]
+[CCode (cname="seg_class",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
 public class SegmentMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override string class_name {
         public get {
             return "segment muxer";
@@ -454,7 +454,7 @@ public class SegmentMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -463,10 +463,10 @@ public class SegmentMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -476,9 +476,9 @@ public class SegmentMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_segment_muxer",cheader_filename="ffmpeg/libformat/segment.c")]
+[CCode (cname="ff_segment_muxer",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
 public class SegmentMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override string name {
         public get {
             return "segment";
@@ -487,7 +487,7 @@ public class SegmentMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override string long_name {
         public get {
             return "segment";
@@ -496,7 +496,7 @@ public class SegmentMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SegmentContext);
@@ -505,7 +505,7 @@ public class SegmentMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_FILE | AVFormatFlags1.WANTS_GLOBAL_HEADER;
@@ -514,34 +514,34 @@ public class SegmentMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="seg_init",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_init",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="seg_write_header",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_write_header",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="seg_write_packet",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="seg_write_trailer",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="seg_free",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_free",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="seg_check_bitstream",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -552,9 +552,9 @@ public class SegmentMuxer : AVOutputFormat {
 
 #if CONFIG_STREAM_SEGMENT_MUXER
 
-[CCode (cname="sseg_class",cheader_filename="ffmpeg/libformat/segment.c")]
+[CCode (cname="sseg_class",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
 public class StreamSegmentMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override string class_name {
         public get {
             return "stream_segment muxer";
@@ -563,7 +563,7 @@ public class StreamSegmentMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -572,10 +572,10 @@ public class StreamSegmentMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -585,9 +585,9 @@ public class StreamSegmentMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_stream_segment_muxer",cheader_filename="ffmpeg/libformat/segment.c")]
+[CCode (cname="ff_stream_segment_muxer",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
 public class StreamSegmentMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override string name {
         public get {
             return "stream_segment,ssegment";
@@ -596,7 +596,7 @@ public class StreamSegmentMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override string long_name {
         public get {
             return "streaming segment muxer";
@@ -605,7 +605,7 @@ public class StreamSegmentMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SegmentContext);
@@ -614,7 +614,7 @@ public class StreamSegmentMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_FILE;
@@ -623,34 +623,34 @@ public class StreamSegmentMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="seg_init",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_init",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="seg_write_header",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_write_header",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="seg_write_packet",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="seg_write_trailer",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="seg_free",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_free",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override void deinit (
         AVFormatContext format_context
     );
 
-    [CCode (cname="seg_check_bitstream",cheader_filename="ffmpeg/libformat/segment.c")]
+    [CCode (cname="seg_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/segment.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

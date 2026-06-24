@@ -849,7 +849,7 @@ public classInputStream {
 
     public PrevSub prev_sub;
 
-    [CCode (cname="sub2video",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
+    [CCode (cname="struct sub2video",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
     [Compact]
     public class Sub2Video {
         [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]

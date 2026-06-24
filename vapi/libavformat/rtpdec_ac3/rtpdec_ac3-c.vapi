@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_ac3_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_ac3_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_ac3.c")]
 public class AC3DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_ac3.c")]
     public override string enc_name {
         public get {
             return "ac3";
@@ -33,7 +33,7 @@ public class AC3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_ac3.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -42,7 +42,7 @@ public class AC3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_ac3.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.AC3;
@@ -51,7 +51,7 @@ public class AC3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="need_parsing",cheader_filename="")]
+    [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_ac3.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVStreamParseType.FULL;
@@ -60,7 +60,7 @@ public class AC3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_ac3.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -69,12 +69,12 @@ public class AC3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="ac3_close_context",cheader_filename="")]
+    [CCode (cname="ac3_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_ac3.c")]
     public override void close (
         PayloadContext protocol_data
     );
 
-    [CCode (cname="ac3_handle_packet",cheader_filename="")]
+    [CCode (cname="ac3_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_ac3.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

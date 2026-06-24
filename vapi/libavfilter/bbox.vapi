@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="FFBoundingBox",cheader_filename="subprojects/ffmpeg/libavfilter/bbox.h")]
+[CCode (cname="struct FFBoundingBox",cheader_filename="subprojects/ffmpeg/libavfilter/bbox.h")]
 [Compact]
 public class FFBoundingBox {
     [CCode (cname="x1")]

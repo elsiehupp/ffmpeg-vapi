@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "code_size",
@@ -56,9 +56,9 @@ static const LibAVUtil.Option options[] = {
 
 #if CONFIG_G726_DEMUXER
 
-[CCode (cname="g726le_demuxer_class",cheader_filename="ffmpeg/libformat/g726.c")]
+[CCode (cname="g726le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
 public class G726LEDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string class_name {
         public get {
             return "G.726 big-endian demuxer";
@@ -67,7 +67,7 @@ public class G726LEDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -77,7 +77,7 @@ public class G726LEDemuxerClass : LibAVUtil.Class {
     }
     //  .option = options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -87,9 +87,9 @@ public class G726LEDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_g726_demuxer",cheader_filename="ffmpeg/libformat/g726.c")]
+[CCode (cname="ff_g726_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
 public class G726Demuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string name {
         public get {
             return "g726";
@@ -98,7 +98,7 @@ public class G726Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string long_name {
         public get {
             return "raw big-endian G.726 (\"left aligned\")";
@@ -107,18 +107,18 @@ public class G726Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="g726_read_header",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="g726_read_header",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="g726_read_packet",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="g726_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (G726Context);
@@ -128,7 +128,7 @@ public class G726Demuxer : AVInputFormat {
     }
     //  .priv_class = g726le_demuxer_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.ADPCM_G726;
@@ -141,9 +141,9 @@ public class G726Demuxer : AVInputFormat {
 
 #if CONFIG_G726LE_DEMUXER
 
-[CCode (cname="g726_demuxer_class",cheader_filename="ffmpeg/libformat/g726.c")]
+[CCode (cname="g726_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
 public class G726DemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string class_name {
         public get {
             return "G.726 little-endian demuxer";
@@ -152,7 +152,7 @@ public class G726DemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -162,7 +162,7 @@ public class G726DemuxerClass : LibAVUtil.Class {
     }
     //  .option = options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -172,9 +172,9 @@ public class G726DemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_g726le_demuxer",cheader_filename="ffmpeg/libformat/g726.c")]
+[CCode (cname="ff_g726le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
 public class G726LEDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string name {
         public get {
             return "g726le";
@@ -183,7 +183,7 @@ public class G726LEDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string long_name {
         public get {
             return "raw little-endian G.726 (\"right aligned\")";
@@ -192,18 +192,18 @@ public class G726LEDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="g726_read_header",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="g726_read_header",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="g726_read_packet",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="g726_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (G726Context);
@@ -213,7 +213,7 @@ public class G726LEDemuxer : AVInputFormat {
     }
     //  .priv_class = g726_demuxer_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/g726.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.ADPCM_G726LE;

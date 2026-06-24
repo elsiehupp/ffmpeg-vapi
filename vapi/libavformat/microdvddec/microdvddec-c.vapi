@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="microdvd_options",cheader_filename="")]
+[CCode (cname="microdvd_options",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
 static const LibAVUtil.Option microdvd_options[] = {
     new LibAVUtil.RationalOption () {
         name = "subfps",
@@ -45,9 +45,9 @@ static const LibAVUtil.Option microdvd_options[] = {
     }
 }
 
-[CCode (cname="microdvd_class",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+[CCode (cname="microdvd_class",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
 public class MicroDVDDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override string class_name {
         public get {
             return "microdvddec";
@@ -56,7 +56,7 @@ public class MicroDVDDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -66,7 +66,7 @@ public class MicroDVDDemuxerClass : LibAVUtil.Class {
     }
     //  .option = microdvd_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -76,13 +76,13 @@ public class MicroDVDDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct MicroDVDContext",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+[CCode (cname="struct MicroDVDContext",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
 [Compact]
 public class MicroDVDDemuxerPrivateData { }
 
-[CCode (cname="ff_microdvd_demuxer",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+[CCode (cname="ff_microdvd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
 public class MicroDVDDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override string name {
         public get {
             return "microdvd";
@@ -91,7 +91,7 @@ public class MicroDVDDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override string long_name {
         public get {
             return "MicroDVD subtitle format";
@@ -100,7 +100,7 @@ public class MicroDVDDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MicroDVDDemuxerPrivateData);
@@ -109,23 +109,23 @@ public class MicroDVDDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="microdvd_probe",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="microdvd_probe",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="microdvd_read_header",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="microdvd_read_header",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="microdvd_read_packet",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="microdvd_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="microdvd_read_seek",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="microdvd_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -135,7 +135,7 @@ public class MicroDVDDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="microdvd_read_close",cheader_filename="ffmpeg/libformat/microdvddec.c")]
+    [CCode (cname="microdvd_read_close",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_close (
         AVFormatContext format_context
     );

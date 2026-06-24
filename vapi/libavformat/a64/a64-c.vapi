@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="ff_a64_muxer",cheader_filename="")]
+[CCode (cname="ff_a64_muxer",cheader_filename="subprojects/ffmpeg/libavformat/a64.c")]
 public class A64Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/a64.c")]
     public override string name {
         public get {
             return "a64";
@@ -32,7 +32,7 @@ public class A64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/a64.c")]
     public override string long_name {
         public get {
             return "a64 - video for Commodore 64";
@@ -41,7 +41,7 @@ public class A64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/a64.c")]
     public override string extensions {
         public get {
             return "a64,A64";
@@ -50,7 +50,7 @@ public class A64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/a64.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.A64_MULTI;
@@ -59,12 +59,12 @@ public class A64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="a64_write_header",cheader_filename="")]
+    [CCode (cname="a64_write_header",cheader_filename="subprojects/ffmpeg/libavformat/a64.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_write_packet",cheader_filename="")]
+    [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/a64.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

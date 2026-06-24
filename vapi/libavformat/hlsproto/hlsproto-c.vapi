@@ -27,13 +27,13 @@ namespace LibAVFormat {
 http://tools.ietf.org/html/draft-pantos-http-live-streaming
 ***********************************************************/
 
-[CCode (cname="struct HLSContext",cheader_filename="")]
+[CCode (cname="struct HLSContext",cheader_filename="subprojects/ffmpeg/libavformat/hlsproto.c")]
 [Compact]
 public class HLSPrivateData { }
 
-[CCode (cname="ff_hls_protocol",cheader_filename="")]
+[CCode (cname="ff_hls_protocol",cheader_filename="subprojects/ffmpeg/libavformat/hlsproto.c")]
 public class HLSURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/hlsproto.c")]
     public override string name {
         public get {
             return "hls";
@@ -42,26 +42,26 @@ public class HLSURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="hls_open",cheader_filename="")]
+    [CCode (cname="hls_open",cheader_filename="subprojects/ffmpeg/libavformat/hlsproto.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="hls_read",cheader_filename="")]
+    [CCode (cname="hls_read",cheader_filename="subprojects/ffmpeg/libavformat/hlsproto.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="hls_close",cheader_filename="")]
+    [CCode (cname="hls_close",cheader_filename="subprojects/ffmpeg/libavformat/hlsproto.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/hlsproto.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NESTED_SCHEME;
@@ -70,7 +70,7 @@ public class HLSURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/hlsproto.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HLSPrivateData);

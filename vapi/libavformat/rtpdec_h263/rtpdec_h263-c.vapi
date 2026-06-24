@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_h263_1998_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_h263_1998_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
 public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override string enc_name {
         public get {
             return "H263-1998";
@@ -33,7 +33,7 @@ public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.VIDEO;
@@ -42,7 +42,7 @@ public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.H263;
@@ -51,7 +51,7 @@ public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="need_parsing",cheader_filename="")]
+    [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVStreamParseType.FULL;
@@ -60,7 +60,7 @@ public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="ff_h263_handle_packet",cheader_filename="")]
+    [CCode (cname="ff_h263_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -75,9 +75,9 @@ public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
 
 }
 
-[CCode (cname="ff_h263_2000_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_h263_2000_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
 public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override string enc_name {
         public get {
             return "H263-2000";
@@ -86,7 +86,7 @@ public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.VIDEO;
@@ -95,7 +95,7 @@ public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.H263;
@@ -104,7 +104,7 @@ public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="need_parsing",cheader_filename="")]
+    [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVStreamParseType.FULL;
@@ -113,7 +113,7 @@ public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="ff_h263_handle_packet",cheader_filename="")]
+    [CCode (cname="ff_h263_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

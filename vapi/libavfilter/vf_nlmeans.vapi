@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="NLMeansDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_nlmeans.h")]
+[CCode (cname="struct NLMeansDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_nlmeans.h")]
 [Compact]
 public class NLMeansDSPContext {
     public delegate void ComputeSafeSsdIntegralImageDelegate (

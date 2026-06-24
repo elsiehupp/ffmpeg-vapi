@@ -27,11 +27,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct FLVContext",cheader_filename="ffmpeg/libformat/flvdec.c")]
+[CCode (cname="struct FLVContext",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
 [Compact]
 public class FLVDemuxerClassPrivateData { }
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "flv_metadata",
@@ -98,9 +98,9 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="flv_class",cheader_filename="ffmpeg/libformat/flvdec.c")]
+[CCode (cname="flv_class",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
 public class FLVDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string class_name {
         public get {
             return "flvdec";
@@ -109,7 +109,7 @@ public class FLVDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -118,10 +118,10 @@ public class FLVDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -131,9 +131,9 @@ public class FLVDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_flv_demuxer",cheader_filename="ffmpeg/libformat/flvdec.c")]
+[CCode (cname="ff_flv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
 public class FLVDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string name {
         public get {
             return "flv";
@@ -142,7 +142,7 @@ public class FLVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string long_name {
         public get {
             return "FLV (Flash Video)";
@@ -151,7 +151,7 @@ public class FLVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FLVDemuxerClassPrivateData);
@@ -160,23 +160,23 @@ public class FLVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="flv_probe",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_probe",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="flv_read_header",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flv_read_packet",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flv_read_seek",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -184,12 +184,12 @@ public class FLVDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flv_read_close",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string extensions {
         public get {
             return "flv";
@@ -200,9 +200,9 @@ public class FLVDemuxer : AVInputFormat {
     //  .priv_class = flv_class;
 }
 
-[CCode (cname="live_flv_class",cheader_filename="ffmpeg/libformat/flvdec.c")]
+[CCode (cname="live_flv_class",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
 public class LiveFLVDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string class_name {
         public get {
             return "live_flvdec";
@@ -211,7 +211,7 @@ public class LiveFLVDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -220,10 +220,10 @@ public class LiveFLVDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -233,9 +233,9 @@ public class LiveFLVDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_live_flv_demuxer",cheader_filename="ffmpeg/libformat/flvdec.c")]
+[CCode (cname="ff_live_flv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
 public class LiveFLVDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string name {
         public get {
             return "live_flv";
@@ -244,7 +244,7 @@ public class LiveFLVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string long_name {
         public get {
             return "live RTMP FLV (Flash Video)";
@@ -253,7 +253,7 @@ public class LiveFLVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FLVDemuxerClassPrivateData);
@@ -262,23 +262,23 @@ public class LiveFLVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="live_flv_probe",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="live_flv_probe",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="flv_read_header",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flv_read_packet",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flv_read_seek",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -286,12 +286,12 @@ public class LiveFLVDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flv_read_close",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string extensions {
         public get {
             return "flv";
@@ -301,7 +301,7 @@ public class LiveFLVDemuxer : AVInputFormat {
     }
     //  .priv_class = live_flv_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES;
@@ -311,9 +311,9 @@ public class LiveFLVDemuxer : AVInputFormat {
     }
 }
 
-[CCode (cname="kux_class",cheader_filename="ffmpeg/libformat/flvdec.c")]
+[CCode (cname="kux_class",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
 public class KUXDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string class_name {
         public get {
             return "kuxdec";
@@ -322,7 +322,7 @@ public class KUXDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -331,10 +331,10 @@ public class KUXDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -344,9 +344,9 @@ public class KUXDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_kux_demuxer",cheader_filename="ffmpeg/libformat/flvdec.c")]
+[CCode (cname="ff_kux_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
 public class KUXDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string name {
         public get {
             return "kux";
@@ -355,7 +355,7 @@ public class KUXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string long_name {
         public get {
             return "KUX (YouKu)";
@@ -364,7 +364,7 @@ public class KUXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FLVDemuxerClassPrivateData);
@@ -373,23 +373,23 @@ public class KUXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="kux_probe",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="kux_probe",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="flv_read_header",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flv_read_packet",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flv_read_seek",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -397,12 +397,12 @@ public class KUXDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flv_read_close",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="flv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/flvdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string extensions {
         public get {
             return "kux";

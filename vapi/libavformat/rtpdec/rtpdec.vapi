@@ -76,9 +76,9 @@ public int ff_rtp_send_rtcp_feedback (
 );
 
 /***********************************************************
-@brief Phese statistics are used for rtcp receiver reports...
+@brief TYhese statistics are used for rtcp receiver reports...
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="struct RTPStatistics",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
 [Compact]
 public class RTPStatistics {
     /***********************************************************
@@ -185,7 +185,7 @@ public delegate int DynamicPayloadPacketHandlerProc (
     int flags
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="struct RTPDynamicProtocolHandler",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
 public abstract class RTPDynamicProtocolHandler {
     [CCode (cname="")]
     public abstract string enc_name { public get; }

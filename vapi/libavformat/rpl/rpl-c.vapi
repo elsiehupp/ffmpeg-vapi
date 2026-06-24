@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct RPLContext",cheader_filename="")]
+[CCode (cname="struct RPLContext",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
 [Compact]
 public class RPLDemuxerPrivateData { }
 
-[CCode (cname="ff_rpl_demuxer",cheader_filename="")]
+[CCode (cname="ff_rpl_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
 public class RPLDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override string name {
         public get {
             return "rpl";
@@ -37,7 +37,7 @@ public class RPLDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override string long_name {
         public get {
             return "RPL / ARMovie";
@@ -46,7 +46,7 @@ public class RPLDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RPLDemuxerPrivateData);
@@ -55,17 +55,17 @@ public class RPLDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="rpl_probe",cheader_filename="")]
+    [CCode (cname="rpl_probe",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="rpl_read_header",cheader_filename="")]
+    [CCode (cname="rpl_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="rpl_read_packet",cheader_filename="")]
+    [CCode (cname="rpl_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

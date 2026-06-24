@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_boa_demuxer",cheader_filename="")]
+[CCode (cname="ff_boa_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/boadec.c")]
 public class BOADemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/boadec.c")]
     public override string name {
         public get {
             return "boa";
@@ -33,7 +33,7 @@ public class BOADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/boadec.c")]
     public override string long_name {
         public get {
             return "Black Ops Audio";
@@ -42,23 +42,23 @@ public class BOADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="probe",cheader_filename="")]
+    [CCode (cname="probe",cheader_filename="subprojects/ffmpeg/libavformat/boadec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header",cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/boadec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet",cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/boadec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/boadec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

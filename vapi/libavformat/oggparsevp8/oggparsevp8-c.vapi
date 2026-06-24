@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_vp8_codec",cheader_filename="")]
+[CCode (cname="ff_vp8_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparsevp8.c")]
 public class VP8Codec : OggCodec {
     [CCode (cname="magic")]
     public override uint8[] magic {
@@ -41,19 +41,19 @@ public class VP8Codec : OggCodec {
 
     }
 
-    [CCode (cname="vp8_header",cheader_filename="")]
+    [CCode (cname="vp8_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsevp8.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="vp8_packet",cheader_filename="")]
+    [CCode (cname="vp8_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparsevp8.c")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="vp8_gptopts",cheader_filename="")]
+    [CCode (cname="vp8_gptopts",cheader_filename="subprojects/ffmpeg/libavformat/oggparsevp8.c")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,

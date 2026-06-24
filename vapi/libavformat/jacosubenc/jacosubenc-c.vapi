@@ -18,9 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_jacosub_muxer",cheader_filename="")]
+[CCode (cname="ff_jacosub_muxer",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
 public class JacoSubMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override string name {
         public get {
             return "jacosub";
@@ -29,7 +29,7 @@ public class JacoSubMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override string long_name {
         public get {
             return "JACOsub subtitle format";
@@ -38,7 +38,7 @@ public class JacoSubMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override string mime_type {
         public get {
             return "text/x-jacosub";
@@ -47,7 +47,7 @@ public class JacoSubMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override string extensions {
         public get {
             return "jss,js";
@@ -56,18 +56,18 @@ public class JacoSubMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="jacosub_write_header",cheader_filename="")]
+    [CCode (cname="jacosub_write_header",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_write_packet",cheader_filename="")]
+    [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
@@ -76,7 +76,7 @@ public class JacoSubMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="subtitle_codec",cheader_filename="")]
+    [CCode (cname="subtitle_codec",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.JACOSUB;

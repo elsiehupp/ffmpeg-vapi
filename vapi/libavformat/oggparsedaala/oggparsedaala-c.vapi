@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_daala_codec",cheader_filename="")]
+[CCode (cname="ff_daala_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedaala.c")]
 public class DaalaCodec : OggCodec {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedaala.c")]
     public override uint8[] name {
         public get {
             return "Daala".data;
@@ -51,19 +51,19 @@ public class DaalaCodec : OggCodec {
 
     }
 
-    [CCode (cname="daala_header",cheader_filename="")]
+    [CCode (cname="daala_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedaala.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="daala_packet",cheader_filename="")]
+    [CCode (cname="daala_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedaala.c")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="daala_gptopts",cheader_filename="")]
+    [CCode (cname="daala_gptopts",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedaala.c")]
     public override uint64 gptopts (
         AVFormatContext context,
         int arg1,

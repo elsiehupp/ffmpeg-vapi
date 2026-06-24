@@ -34,48 +34,48 @@ namespace LibAVFormat {
 //      return 0;
 //  }
 //  \
-//  [CCode (cname="ff_g726_ ## bitrate ## _dynamic_handler",cheader_filename="")]
+//  [CCode (cname="ff_g726_ ## bitrate ## _dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //  public class G726DynamicHandler : RTPDynamicProtocolHandler {
-//      [CCode (cname="enc_name",cheader_filename="")]
+//      [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override string enc_name {
 //          public get {
 //              return "AAL2-G726-" #bitrate,
-//      [CCode (cname="codec_type",cheader_filename="")]
+//      [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override LibAVUtil.MediaType codec_type {
 //          public get {
 //              return LibAVUtil.MediaType.AUDIO;
 //          }
 //      }
-//      [CCode (cname="codec_id",cheader_filename="")]
+//      [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override LibAVCodec.CodecID codec_id {
 //          public get {
 //              return LibAVCodec.CodecID.ADPCM_G726;
 //          }
 //      }
-//      [CCode (cname="g726_ ## bitrate ## _init",cheader_filename="")]
+//      [CCode (cname="g726_ ## bitrate ## _init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override int init (
 //          AVFormatContext format_context
 //      );
 //  }
-//  [CCode (cname="ff_g726le_ ## bitrate ## _dynamic_handler",cheader_filename="")]
+//  [CCode (cname="ff_g726le_ ## bitrate ## _dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //  public class G726LEDynamicHandler : RTPDynamicProtocolHandler {
-//      [CCode (cname="enc_name",cheader_filename="")]
+//      [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override string enc_name {
 //          public get {
 //              return "G726-" #bitrate,
-//      [CCode (cname="codec_type",cheader_filename="")]
+//      [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override LibAVUtil.MediaType codec_type {
 //          public get {
 //              return LibAVUtil.MediaType.AUDIO;
 //          }
 //      }
-//      [CCode (cname="codec_id",cheader_filename="")]
+//      [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override LibAVCodec.CodecID codec_id {
 //          public get {
 //              return LibAVCodec.CodecID.ADPCM_G726LE;
 //          }
 //      }
-//      [CCode (cname="g726_ ## bitrate ## _init",cheader_filename="")]
+//      [CCode (cname="g726_ ## bitrate ## _init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override int init (
 //          AVFormatContext format_context
 //      );

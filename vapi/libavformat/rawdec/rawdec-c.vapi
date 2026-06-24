@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_rawvideo_options",cheader_filename="")]
+[CCode (cname="ff_rawvideo_options",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
 const LibAVUtil.Option ff_rawvideo_options[] = {
     new LibAVUtil.VideoRateOption () {
         name = "framerate",
@@ -77,9 +77,9 @@ const LibAVUtil.Option ff_raw_options[] = {
 #if CONFIG_DATA_DEMUXER
 //  FF_RAW_DEMUXER_CLASS (raw_data)
 
-[CCode (cname="ff_data_demuxer",cheader_filename="")]
+[CCode (cname="ff_data_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
 public class DataDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override string name {
         public get {
             return "data";
@@ -88,7 +88,7 @@ public class DataDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override string long_name {
         public get {
             return "raw data";
@@ -97,18 +97,18 @@ public class DataDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="ff_raw_data_read_header",cheader_filename="")]
+    [CCode (cname="ff_raw_data_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="raw_codec_id",cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -117,7 +117,7 @@ public class DataDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS;
@@ -126,7 +126,7 @@ public class DataDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);

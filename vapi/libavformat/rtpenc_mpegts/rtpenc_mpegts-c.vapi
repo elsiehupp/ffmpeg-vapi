@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct MuxChain",cheader_filename="")]
+[CCode (cname="struct MuxChain",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
 [Compact]
 public class RTPMpegTSMuxerPrivateData { }
 
-[CCode (cname="ff_rtp_mpegts_muxer",cheader_filename="")]
+[CCode (cname="ff_rtp_mpegts_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
 public class RTPMpegTSMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override string name {
         public get {
             return "rtp_mpegts";
@@ -37,7 +37,7 @@ public class RTPMpegTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override string long_name {
         public get {
             return "RTP/mpegts output format";
@@ -46,7 +46,7 @@ public class RTPMpegTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RTPMpegTSMuxerPrivateData);
@@ -55,7 +55,7 @@ public class RTPMpegTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -64,7 +64,7 @@ public class RTPMpegTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG4;
@@ -73,18 +73,18 @@ public class RTPMpegTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="rtp_mpegts_write_header",cheader_filename="")]
+    [CCode (cname="rtp_mpegts_write_header",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="rtp_mpegts_write_packet",cheader_filename="")]
+    [CCode (cname="rtp_mpegts_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="rtp_mpegts_write_close",cheader_filename="")]
+    [CCode (cname="rtp_mpegts_write_close",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );

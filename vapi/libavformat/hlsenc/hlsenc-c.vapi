@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.Int64Option () {
         name = "start_number",
@@ -699,9 +699,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="hls_class",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+[CCode (cname="hls_class",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
 public class HLSMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override string class_name {
         public get {
             return "hls muxer";
@@ -710,7 +710,7 @@ public class HLSMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -719,10 +719,10 @@ public class HLSMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -732,13 +732,13 @@ public class HLSMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct HLSContext",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+[CCode (cname="struct HLSContext",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
 [Compact]
 public class HLSMuxerPrivateData { }
 
-[CCode (cname="ff_hls_muxer",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+[CCode (cname="ff_hls_muxer",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
 public class HLSMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override string name {
         public get {
             return "hls";
@@ -747,7 +747,7 @@ public class HLSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override string long_name {
         public get {
             return "Apple HTTP Live Streaming";
@@ -756,7 +756,7 @@ public class HLSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override string extensions {
         public get {
             return "m3u8";
@@ -765,7 +765,7 @@ public class HLSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HLSMuxerPrivateData);
@@ -774,7 +774,7 @@ public class HLSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -783,7 +783,7 @@ public class HLSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
@@ -792,7 +792,7 @@ public class HLSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="subtitle_codec",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="subtitle_codec",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.WEBVTT;
@@ -801,7 +801,7 @@ public class HLSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_FILE | AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.NO_DIMENSIONS;
@@ -810,23 +810,23 @@ public class HLSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="hls_init",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="hls_init",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="hls_write_header",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="hls_write_header",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="hls_write_packet",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="hls_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="hls_write_trailer",cheader_filename="ffmpeg/libformat/hlsenc.c")]
+    [CCode (cname="hls_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );

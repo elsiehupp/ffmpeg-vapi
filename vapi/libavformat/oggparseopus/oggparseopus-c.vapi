@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_opus_codec",cheader_filename="")]
+[CCode (cname="ff_opus_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparseopus.c")]
 public class OpusCodec : OggCodec {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/oggparseopus.c")]
     public override uint8[] name {
         public get {
             return "Opus".data;
@@ -50,13 +50,13 @@ public class OpusCodec : OggCodec {
 
     }
 
-    [CCode (cname="opus_header",cheader_filename="")]
+    [CCode (cname="opus_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseopus.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="opus_packet",cheader_filename="")]
+    [CCode (cname="opus_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseopus.c")]
     public override int packet (
         AVFormatContext context,
         int arg

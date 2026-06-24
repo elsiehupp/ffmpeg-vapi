@@ -25,9 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 //  FF_RAW_DEMUXER_CLASS (shorten)
-[CCode (cname="ff_shorten_demuxer",cheader_filename="")]
+[CCode (cname="ff_shorten_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
 public class RawShortenDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override string name {
         public get {
             return "shn";
@@ -36,7 +36,7 @@ public class RawShortenDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override string long_name {
         public get {
             return "raw Shorten";
@@ -45,23 +45,23 @@ public class RawShortenDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="shn_probe",cheader_filename="")]
+    [CCode (cname="shn_probe",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ff_raw_audio_read_header",cheader_filename="")]
+    [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_BINARY_SEARCH | AVFormatFlags1.NO_GENERIC_SEARCH | AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.NO_TIMESTAMPS;
@@ -70,7 +70,7 @@ public class RawShortenDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override string extensions {
         public get {
             return "shn";
@@ -79,7 +79,7 @@ public class RawShortenDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.SHORTEN;
@@ -88,7 +88,7 @@ public class RawShortenDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);

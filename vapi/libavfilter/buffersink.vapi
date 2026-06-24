@@ -68,7 +68,7 @@ public enum AVBufferSinkFlags {
 /***********************************************************
 Struct to use for initializing a buffersink context.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
+[CCode (cname="struct AVBufferSinkParams",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 [Compact]
 public class AVBufferSinkParams {
     /***********************************************************
@@ -89,7 +89,7 @@ public AVBufferSinkParams? av_buffersink_params_alloc ();
 /***********************************************************
 Struct to use for initializing an abuffersink context.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
+[CCode (cname="struct AVABufferSinkParams",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 [Compact]
 public class AVABufferSinkParams {
     /***********************************************************

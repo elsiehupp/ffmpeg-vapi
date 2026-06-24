@@ -72,7 +72,7 @@ passed to this filter.
 It should be allocated with av_buffersrc_parameters_alloc () and freed with
 av_free (). All the allocated fields in it remain owned by the caller.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
+[CCode (cname="struct AVBufferSrcParameters",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 [Compact]
 public class AVBufferSrcParameters {
     /***********************************************************

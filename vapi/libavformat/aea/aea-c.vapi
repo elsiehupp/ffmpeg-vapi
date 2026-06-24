@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="ff_aea_demuxer",cheader_filename="")]
+[CCode (cname="ff_aea_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aea.c")]
 public class AEADemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aea.c")]
     public override string name {
         public get {
             return "aea";
@@ -33,7 +33,7 @@ public class AEADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/aea.c")]
     public override string long_name {
         public get {
             return "MD STUDIO audio";
@@ -42,23 +42,23 @@ public class AEADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="aea_read_probe",cheader_filename="")]
+    [CCode (cname="aea_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/aea.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="aea_read_header",cheader_filename="")]
+    [CCode (cname="aea_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aea.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="aea_read_packet",cheader_filename="")]
+    [CCode (cname="aea_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aea.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ff_pcm_read_seek",cheader_filename="")]
+    [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/aea.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -66,7 +66,7 @@ public class AEADemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/aea.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -75,7 +75,7 @@ public class AEADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/aea.c")]
     public override string extensions {
         public get {
             return "aea";

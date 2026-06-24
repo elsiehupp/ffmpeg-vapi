@@ -28,9 +28,9 @@ namespace LibAVFormat {
 @see http://wiki.multimedia.cx/index.php?title=Sorenson_Video_3#Packetization
 ***********************************************************/
 
-[CCode (cname="ff_svq3_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_svq3_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_svq3.c")]
 public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_svq3.c")]
     public override string enc_name {
         public get {
             return "X-SV3V-ES";
@@ -39,7 +39,7 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_svq3.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.VIDEO;
@@ -51,7 +51,7 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
     /***********************************************************
     @see if (config_packet) above
     ***********************************************************/
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_svq3.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -60,7 +60,7 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_svq3.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -69,12 +69,12 @@ public class SVQ3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="svq3_close_context",cheader_filename="")]
+    [CCode (cname="svq3_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_svq3.c")]
     public override void close (
         PayloadContext protocol_data
     );
 
-    [CCode (cname="svq3_parse_packet",cheader_filename="")]
+    [CCode (cname="svq3_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_svq3.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_celt_codec",cheader_filename="ffmpeg/libformat/oggparsecelt.c")]
+[CCode (cname="ff_celt_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparsecelt.c")]
 public class CELTCodec : OggCodec {
     [CCode (cname="magic")]
     public override uint8[] magic {
@@ -41,7 +41,7 @@ public class CELTCodec : OggCodec {
 
     }
 
-    [CCode (cname="celt_header",cheader_filename="ffmpeg/libformat/oggparsecelt.c")]
+    [CCode (cname="celt_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsecelt.c")]
     public override int header (
         AVFormatContext context,
         int arg

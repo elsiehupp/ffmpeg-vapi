@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_swf_demuxer",cheader_filename="")]
+[CCode (cname="ff_swf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/swfdec.c")]
 public class SWFDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/swfdec.c")]
     public override string name {
         public get {
             return "swf";
@@ -34,7 +34,7 @@ public class SWFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/swfdec.c")]
     public override string long_name {
         public get {
             return "SWF (ShockWave Flash)";
@@ -43,7 +43,7 @@ public class SWFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/swfdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SWFContext);
@@ -52,24 +52,24 @@ public class SWFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="swf_probe",cheader_filename="")]
+    [CCode (cname="swf_probe",cheader_filename="subprojects/ffmpeg/libavformat/swfdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="swf_read_header",cheader_filename="")]
+    [CCode (cname="swf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/swfdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="swf_read_packet",cheader_filename="")]
+    [CCode (cname="swf_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/swfdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
 #if CONFIG_ZLIB
-    [CCode (cname="swf_read_close",cheader_filename="")]
+    [CCode (cname="swf_read_close",cheader_filename="subprojects/ffmpeg/libavformat/swfdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );

@@ -40,7 +40,7 @@ public const size_t FF_BUFQUEUE_SIZE; // 64
 /***********************************************************
 Structure holding the queue
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
+[CCode (cname="struct FFBufQueue",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
 [Compact]
 public class FFBufQueue {
     [CCode (cname="")]

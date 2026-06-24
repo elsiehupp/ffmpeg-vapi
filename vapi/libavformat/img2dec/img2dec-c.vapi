@@ -25,9 +25,9 @@ namespace LibAVFormat {
 
 //  #define IMAGEAUTO_DEMUXER (imgname, codecid)
 
-[CCode (cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public abstract class ImageClass : LibAVUtil.Class {
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -37,7 +37,7 @@ public abstract class ImageClass : LibAVUtil.Class {
     }
     //  .option = ff_img2pipe_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -47,9 +47,9 @@ public abstract class ImageClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public abstract class ImageDemuxer : AVInputFormat {
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -58,18 +58,18 @@ public abstract class ImageDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="ff_img_read_header",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="ff_img_read_header",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_img_read_packet",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="ff_img_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -79,9 +79,9 @@ public abstract class ImageDemuxer : AVInputFormat {
     }
 }
 
-[CCode (cname="bmp_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="bmp_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class BMPClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "bmp demuxer";
@@ -91,9 +91,9 @@ public class BMPClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_bmp_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_bmp_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class BMPPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "bmp_pipe";
@@ -102,7 +102,7 @@ public class BMPPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped bmp sequence";
@@ -111,7 +111,7 @@ public class BMPPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -120,13 +120,13 @@ public class BMPPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="bmp_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="bmp_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
     //  .priv_class = bmp_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.BMP;
@@ -136,9 +136,9 @@ public class BMPPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="dds_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="dds_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class DDSClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "dds demuxer";
@@ -148,9 +148,9 @@ public class DDSClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_dds_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_dds_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class DDSPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "dds_pipe";
@@ -159,7 +159,7 @@ public class DDSPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped dds sequence";
@@ -168,7 +168,7 @@ public class DDSPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -177,14 +177,14 @@ public class DDSPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="dds_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="dds_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = dds_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.DDS;
@@ -194,9 +194,9 @@ public class DDSPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="dpx_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="dpx_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class DPXClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "dpx demuxer";
@@ -206,9 +206,9 @@ public class DPXClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_dpx_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_dpx_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class DPXPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "dpx_pipe";
@@ -217,7 +217,7 @@ public class DPXPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped dpx sequence";
@@ -226,7 +226,7 @@ public class DPXPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -235,14 +235,14 @@ public class DPXPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="dpx_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="dpx_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = dpx_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.DPX;
@@ -252,9 +252,9 @@ public class DPXPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="exr_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="exr_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class EXRClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "exr demuxer";
@@ -264,9 +264,9 @@ public class EXRClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_exr_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_exr_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class EXRPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "exr_pipe";
@@ -275,7 +275,7 @@ public class EXRPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped exr sequence";
@@ -284,7 +284,7 @@ public class EXRPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -293,14 +293,14 @@ public class EXRPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="exr_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="exr_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = exr_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.EXR;
@@ -310,9 +310,9 @@ public class EXRPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="gif_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="gif_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class GIFClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "gif demuxer";
@@ -322,9 +322,9 @@ public class GIFClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_gif_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_gif_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class GIFPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "gif_pipe";
@@ -333,7 +333,7 @@ public class GIFPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped gif sequence";
@@ -342,7 +342,7 @@ public class GIFPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -351,14 +351,14 @@ public class GIFPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="gif_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="gif_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = gif_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.GIF;
@@ -368,9 +368,9 @@ public class GIFPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="j2k_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="j2k_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class J2KClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "j2k demuxer";
@@ -380,9 +380,9 @@ public class J2KClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_j2k_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_j2k_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class J2KPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "j2k_pipe";
@@ -391,7 +391,7 @@ public class J2KPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped j2k sequence";
@@ -400,7 +400,7 @@ public class J2KPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -409,14 +409,14 @@ public class J2KPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="j2k_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="j2k_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = j2k_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.JPEG2000;
@@ -426,9 +426,9 @@ public class J2KPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="jpeg_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="jpeg_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class JPEGClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "jpeg demuxer";
@@ -438,9 +438,9 @@ public class JPEGClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_jpeg_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_jpeg_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class JPEGPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "jpeg_pipe";
@@ -449,7 +449,7 @@ public class JPEGPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped jpeg sequence";
@@ -458,7 +458,7 @@ public class JPEGPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -467,14 +467,14 @@ public class JPEGPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="jpeg_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="jpeg_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = jpeg_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.MJPEG;
@@ -484,9 +484,9 @@ public class JPEGPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="jpegls_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="jpegls_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class JPEGLSClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "jpegls demuxer";
@@ -496,9 +496,9 @@ public class JPEGLSClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_jpegls_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_jpegls_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class JPEGLSPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "jpegls_pipe";
@@ -507,7 +507,7 @@ public class JPEGLSPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped jpegls sequence";
@@ -516,7 +516,7 @@ public class JPEGLSPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -525,14 +525,14 @@ public class JPEGLSPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="jpegls_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="jpegls_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = jpegls_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.JPEGLS;
@@ -542,9 +542,9 @@ public class JPEGLSPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="pam_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="pam_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PAMClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "pam demuxer";
@@ -554,9 +554,9 @@ public class PAMClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_pam_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_pam_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PAMPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "pam_pipe";
@@ -565,7 +565,7 @@ public class PAMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped pam sequence";
@@ -574,7 +574,7 @@ public class PAMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -583,14 +583,14 @@ public class PAMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="pam_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="pam_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pam_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PAM;
@@ -600,9 +600,9 @@ public class PAMPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="pbm_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="pbm_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PBMClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "pbm demuxer";
@@ -612,9 +612,9 @@ public class PBMClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_pbm_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_pbm_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PBMPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "pbm_pipe";
@@ -623,7 +623,7 @@ public class PBMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped pbm sequence";
@@ -632,7 +632,7 @@ public class PBMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -641,14 +641,14 @@ public class PBMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="pbm_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="pbm_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pbm_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PBM;
@@ -658,9 +658,9 @@ public class PBMPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="pcx_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="pcx_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PCXClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "pcx demuxer";
@@ -670,9 +670,9 @@ public class PCXClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_pcx_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_pcx_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PCXPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "pcx_pipe";
@@ -681,7 +681,7 @@ public class PCXPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped pcx sequence";
@@ -690,7 +690,7 @@ public class PCXPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -699,14 +699,14 @@ public class PCXPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="pcx_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="pcx_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pcx_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCX;
@@ -716,9 +716,9 @@ public class PCXPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="pgm_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="pgm_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PGMClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "pgm demuxer";
@@ -728,9 +728,9 @@ public class PGMClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_pgm_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_pgm_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PGMPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "pgm_pipe";
@@ -739,7 +739,7 @@ public class PGMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped pgm sequence";
@@ -748,7 +748,7 @@ public class PGMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -757,14 +757,14 @@ public class PGMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="pgm_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="pgm_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pgm_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PGM;
@@ -774,9 +774,9 @@ public class PGMPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="pgmyuv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="pgmyuv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PGMYUVClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "pgmyuv demuxer";
@@ -786,9 +786,9 @@ public class PGMYUVClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_pgmyuv_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_pgmyuv_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PGMYUVPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "pgmyuv_pipe";
@@ -797,7 +797,7 @@ public class PGMYUVPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped pgmyuv sequence";
@@ -806,7 +806,7 @@ public class PGMYUVPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -815,14 +815,14 @@ public class PGMYUVPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="pgmyuv_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="pgmyuv_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pgmyuv_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PGMYUV;
@@ -832,9 +832,9 @@ public class PGMYUVPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="pictor_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="pictor_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PictorClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "pictor demuxer";
@@ -844,9 +844,9 @@ public class PictorClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_pictor_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_pictor_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PictorPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "pictor_pipe";
@@ -855,7 +855,7 @@ public class PictorPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped pictor sequence";
@@ -864,7 +864,7 @@ public class PictorPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -873,14 +873,14 @@ public class PictorPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="pictor_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="pictor_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pictor_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PICTOR;
@@ -890,9 +890,9 @@ public class PictorPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="png_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="png_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PNGClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "png demuxer";
@@ -902,9 +902,9 @@ public class PNGClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_png_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_png_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PNGPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "png_pipe";
@@ -913,7 +913,7 @@ public class PNGPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped png sequence";
@@ -922,7 +922,7 @@ public class PNGPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -931,14 +931,14 @@ public class PNGPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="png_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="png_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = png_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PNG;
@@ -948,9 +948,9 @@ public class PNGPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="ppm_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ppm_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PPMClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "ppm demuxer";
@@ -960,9 +960,9 @@ public class PPMClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_ppm_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_ppm_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PPMPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "ppm_pipe";
@@ -971,7 +971,7 @@ public class PPMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped ppm sequence";
@@ -980,7 +980,7 @@ public class PPMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -989,14 +989,14 @@ public class PPMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="ppm_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="ppm_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = ppm_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PPM;
@@ -1006,9 +1006,9 @@ public class PPMPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="psd_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="psd_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PSDClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "psd demuxer";
@@ -1018,9 +1018,9 @@ public class PSDClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_psd_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_psd_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class PSDPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "psd_pipe";
@@ -1029,7 +1029,7 @@ public class PSDPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped psd sequence";
@@ -1038,7 +1038,7 @@ public class PSDPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -1047,14 +1047,14 @@ public class PSDPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="psd_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="psd_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = psd_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PSD;
@@ -1064,9 +1064,9 @@ public class PSDPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="qdraw_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="qdraw_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class QDrawClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "qdraw demuxer";
@@ -1076,9 +1076,9 @@ public class QDrawClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_qdraw_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_qdraw_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class QDrawPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "qdraw_pipe";
@@ -1087,7 +1087,7 @@ public class QDrawPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped qdraw sequence";
@@ -1096,7 +1096,7 @@ public class QDrawPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -1105,14 +1105,14 @@ public class QDrawPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="qdraw_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="qdraw_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = qdraw_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.QDRAW;
@@ -1122,9 +1122,9 @@ public class QDrawPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="sgi_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="sgi_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class SGIClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "sgi demuxer";
@@ -1134,9 +1134,9 @@ public class SGIClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_sgi_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_sgi_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class SGIPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "sgi_pipe";
@@ -1145,7 +1145,7 @@ public class SGIPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped sgi sequence";
@@ -1154,7 +1154,7 @@ public class SGIPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -1163,14 +1163,14 @@ public class SGIPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="sgi_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="sgi_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = sgi_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.SGI;
@@ -1180,9 +1180,9 @@ public class SGIPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="sunrast_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="sunrast_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class SunrastClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "sunrast demuxer";
@@ -1192,9 +1192,9 @@ public class SunrastClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_sunrast_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_sunrast_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class SunrastPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "sunrast_pipe";
@@ -1203,7 +1203,7 @@ public class SunrastPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped sunrast sequence";
@@ -1212,7 +1212,7 @@ public class SunrastPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -1221,14 +1221,14 @@ public class SunrastPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="sunrast_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="sunrast_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = sunrast_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.SUNRAST;
@@ -1238,9 +1238,9 @@ public class SunrastPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="svg_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="svg_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class SVGClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "svg demuxer";
@@ -1250,9 +1250,9 @@ public class SVGClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_svg_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_svg_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class SVGPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "svg_pipe";
@@ -1261,7 +1261,7 @@ public class SVGPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped svg sequence";
@@ -1270,7 +1270,7 @@ public class SVGPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -1279,14 +1279,14 @@ public class SVGPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="svg_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="svg_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = svg_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.SVG;
@@ -1296,9 +1296,9 @@ public class SVGPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="tiff_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="tiff_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class TIFFClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "tiff demuxer";
@@ -1308,9 +1308,9 @@ public class TIFFClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_tiff_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_tiff_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class TIFFPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "tiff_pipe";
@@ -1319,7 +1319,7 @@ public class TIFFPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped tiff sequence";
@@ -1328,7 +1328,7 @@ public class TIFFPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -1337,14 +1337,14 @@ public class TIFFPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="tiff_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="tiff_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = tiff_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.TIFF;
@@ -1354,9 +1354,9 @@ public class TIFFPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="webp_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="webp_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class WebPClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "webp demuxer";
@@ -1366,9 +1366,9 @@ public class WebPClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_webp_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_webp_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class WebPPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "webp_pipe";
@@ -1377,7 +1377,7 @@ public class WebPPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped webp sequence";
@@ -1386,7 +1386,7 @@ public class WebPPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -1395,14 +1395,14 @@ public class WebPPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="webp_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="webp_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = webp_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.WEBP;
@@ -1412,9 +1412,9 @@ public class WebPPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="xpm_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="xpm_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class XPMClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "xpm demuxer";
@@ -1424,9 +1424,9 @@ public class XPMClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_xpm_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_xpm_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class XPMPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "xpm_pipe";
@@ -1435,7 +1435,7 @@ public class XPMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped xpm sequence";
@@ -1444,7 +1444,7 @@ public class XPMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -1453,14 +1453,14 @@ public class XPMPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="xpm_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="xpm_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = xpm_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.XPM;
@@ -1470,9 +1470,9 @@ public class XPMPipeDemuxer : ImageDemuxer {
     }
 }
 
-[CCode (cname="xwd_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="xwd_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class XWDClass : ImageClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string class_name {
         public get {
             return "xwd demuxer";
@@ -1482,9 +1482,9 @@ public class XWDClass : ImageClass {
     }
 }
 
-[CCode (cname="ff_image_xwd_pipe_demuxer",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cname="ff_image_xwd_pipe_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
 public class XWDPipeDemuxer : ImageDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string name {
         public get {
             return "xwd_pipe";
@@ -1493,7 +1493,7 @@ public class XWDPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string long_name {
         public get {
             return "piped xwd sequence";
@@ -1502,7 +1502,7 @@ public class XWDPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoDemuxData);
@@ -1511,14 +1511,14 @@ public class XWDPipeDemuxer : ImageDemuxer {
 
     }
 
-    [CCode (cname="xwd_probe",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="xwd_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
-    //  [CCode (cname="priv_class",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = xwd_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/img2dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.XWD;

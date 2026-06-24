@@ -29,9 +29,9 @@ namespace LibAVFormat {
 @author Josh Allmann <joshua.allmann@gmail.com>
 ***********************************************************/
 
-[CCode (cname="ff_theora_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+[CCode (cname="ff_theora_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
 public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override string enc_name {
         public get {
             return "theora";
@@ -40,7 +40,7 @@ public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.VIDEO;
@@ -49,7 +49,7 @@ public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.THEORA;
@@ -58,7 +58,7 @@ public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -67,7 +67,7 @@ public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="xiph_parse_sdp_line",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="xiph_parse_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
@@ -75,12 +75,12 @@ public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
         string line
     );
 
-    [CCode (cname="xiph_close_context",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="xiph_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override void close (
         PayloadContext protocol_data
     );
 
-    [CCode (cname="xiph_handle_packet",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="xiph_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -95,9 +95,9 @@ public class TheoraDynamicHandler : RTPDynamicProtocolHandler {
 
 }
 
-[CCode (cname="ff_vorbis_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+[CCode (cname="ff_vorbis_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
 public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override string enc_name {
         public get {
             return "vorbis";
@@ -106,7 +106,7 @@ public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -115,7 +115,7 @@ public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.VORBIS;
@@ -124,7 +124,7 @@ public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="need_parsing",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVStreamParseType.HEADERS;
@@ -133,7 +133,7 @@ public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -142,7 +142,7 @@ public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="xiph_parse_sdp_line",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="xiph_parse_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
@@ -150,12 +150,12 @@ public class VorbisDynamicHandler : RTPDynamicProtocolHandler {
         string line
     );
 
-    [CCode (cname="xiph_close_context",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="xiph_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override void close (
         PayloadContext protocol_data
     );
 
-    [CCode (cname="xiph_handle_packet",cheader_filename="ffmpeg/libformat/rtpdec_xiph.c")]
+    [CCode (cname="xiph_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_xiph.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

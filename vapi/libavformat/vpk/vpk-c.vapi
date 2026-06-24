@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct VPKDemuxContext",cheader_filename="")]
+[CCode (cname="struct VPKDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/vpk.c")]
 [Compact]
 public class VPKDemuxerPrivateData { }
 
-[CCode (cname="ff_vpk_demuxer",cheader_filename="")]
+[CCode (cname="ff_vpk_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vpk.c")]
 public class VPKDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vpk.c")]
     public override string name {
         public get {
             return "vpk";
@@ -37,7 +37,7 @@ public class VPKDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/vpk.c")]
     public override string long_name {
         public get {
             return "Sony PS2 VPK";
@@ -46,7 +46,7 @@ public class VPKDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/vpk.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VPKDemuxerPrivateData);
@@ -55,23 +55,23 @@ public class VPKDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="vpk_probe",cheader_filename="")]
+    [CCode (cname="vpk_probe",cheader_filename="subprojects/ffmpeg/libavformat/vpk.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="vpk_read_header",cheader_filename="")]
+    [CCode (cname="vpk_read_header",cheader_filename="subprojects/ffmpeg/libavformat/vpk.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="vpk_read_packet",cheader_filename="")]
+    [CCode (cname="vpk_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/vpk.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/vpk.c")]
     public override string extensions {
         public get {
             return "vpk";

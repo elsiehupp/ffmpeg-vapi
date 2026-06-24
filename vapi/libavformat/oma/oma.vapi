@@ -21,13 +21,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
+[CCode (cname="EA3_HEADER_SIZE",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
 public const size_t EA3_HEADER_SIZE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
+[CCode (cname="ID3v2_EA3_MAGIC",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
 public const string ID3v2_EA3_MAGIC;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
+[CCode (cname="OMA_ENC_HEADER_SIZE",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
 public const size_t OMA_ENC_HEADER_SIZE;
 
 [CCode (cheader_filename="subprojects/ffmpeg/libformat/oma.h")]

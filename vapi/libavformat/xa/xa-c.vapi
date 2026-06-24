@@ -29,13 +29,13 @@ for more information on the XA audio format see
 http://wiki.multimedia.cx/index.php?title=Maxis_XA
 ***********************************************************/
 
-[CCode (cname="struct MaxisXADemuxContext",cheader_filename="")]
+[CCode (cname="struct MaxisXADemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
 [Compact]
 public class XADemuxerPrivateData { }
 
-[CCode (cname="ff_xa_demuxer",cheader_filename="")]
+[CCode (cname="ff_xa_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
 public class XADemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override string name {
         public get {
             return "xa";
@@ -44,7 +44,7 @@ public class XADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override string long_name {
         public get {
             return "Maxis XA";
@@ -53,7 +53,7 @@ public class XADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (XADemuxerPrivateData);
@@ -62,17 +62,17 @@ public class XADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="xa_probe",cheader_filename="")]
+    [CCode (cname="xa_probe",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="xa_read_header",cheader_filename="")]
+    [CCode (cname="xa_read_header",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="xa_read_packet",cheader_filename="")]
+    [CCode (cname="xa_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

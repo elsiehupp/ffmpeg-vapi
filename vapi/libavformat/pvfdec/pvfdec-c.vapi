@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_pvf_demuxer",cheader_filename="")]
+[CCode (cname="ff_pvf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pvfdec.c")]
 public class PVFDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pvfdec.c")]
     public override string name {
         public get {
             return "pvf";
@@ -33,7 +33,7 @@ public class PVFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pvfdec.c")]
     public override string long_name {
         public get {
             return "PVF (Portable Voice Format)";
@@ -42,23 +42,23 @@ public class PVFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="pvf_probe",cheader_filename="")]
+    [CCode (cname="pvf_probe",cheader_filename="subprojects/ffmpeg/libavformat/pvfdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="pvf_read_header",cheader_filename="")]
+    [CCode (cname="pvf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/pvfdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_pcm_read_packet",cheader_filename="")]
+    [CCode (cname="ff_pcm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/pvfdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ff_pcm_read_seek",cheader_filename="")]
+    [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/pvfdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -66,7 +66,7 @@ public class PVFDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pvfdec.c")]
     public override string extensions {
         public get {
             return "pvf";
@@ -75,7 +75,7 @@ public class PVFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/pvfdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

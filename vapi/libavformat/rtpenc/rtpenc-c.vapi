@@ -81,9 +81,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="rtp_muxer_class",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+[CCode (cname="rtp_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
 public class RTPMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override string class_name {
         public get {
             return "RTP muxer";
@@ -92,7 +92,7 @@ public class RTPMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -101,10 +101,10 @@ public class RTPMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -114,9 +114,9 @@ public class RTPMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_rtp_muxer",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+[CCode (cname="ff_rtp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
 public class RTPMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override string name {
         public get {
             return "rtp";
@@ -125,7 +125,7 @@ public class RTPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override string long_name {
         public get {
             return "RTP output";
@@ -134,7 +134,7 @@ public class RTPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RTPMuxContext);
@@ -143,7 +143,7 @@ public class RTPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_MULAW;
@@ -152,7 +152,7 @@ public class RTPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MPEG4;
@@ -161,24 +161,24 @@ public class RTPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="rtp_write_header",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="rtp_write_header",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="rtp_write_packet",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="rtp_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="rtp_write_trailer",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="rtp_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
     //  .priv_class = rtp_muxer_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtpenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;

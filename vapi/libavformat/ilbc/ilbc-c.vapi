@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_ilbc_demuxer",cheader_filename="ffmpeg/libformat/ilbc.c")]
+[CCode (cname="ff_ilbc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
 public class ILBCDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override string name {
         public get {
             return "ilbc";
@@ -33,7 +33,7 @@ public class ILBCDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override string long_name {
         public get {
             return "iLBC storage";
@@ -42,23 +42,23 @@ public class ILBCDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="ilbc_probe",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="ilbc_probe",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ilbc_read_header",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="ilbc_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ilbc_read_packet",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="ilbc_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -68,9 +68,9 @@ public class ILBCDemuxer : AVInputFormat {
     }
 }
 
-[CCode (cname="ff_ilbc_muxer",cheader_filename="ffmpeg/libformat/ilbc.c")]
+[CCode (cname="ff_ilbc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
 public class ILBCMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override string name {
         public get {
             return "ilbc";
@@ -79,7 +79,7 @@ public class ILBCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override string long_name {
         public get {
             return "iLBC storage";
@@ -88,7 +88,7 @@ public class ILBCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override string mime_type {
         public get {
             return "audio/iLBC";
@@ -97,7 +97,7 @@ public class ILBCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override string extensions {
         public get {
             return "lbc";
@@ -106,7 +106,7 @@ public class ILBCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.ILBC;
@@ -115,18 +115,18 @@ public class ILBCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="ilbc_write_header",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="ilbc_write_header",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ilbc_write_packet",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="ilbc_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/ilbc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS;

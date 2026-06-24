@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct PVAContext",cheader_filename="")]
+[CCode (cname="struct PVAContext",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
 [Compact]
 public class PVADemuxerPrivateData { }
 
-[CCode (cname="ff_pva_demuxer",cheader_filename="")]
+[CCode (cname="ff_pva_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
 public class PVADemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override string name {
         public get {
             return "pva";
@@ -37,7 +37,7 @@ public class PVADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override string long_name {
         public get {
             return "TechnoTrend PVA";
@@ -46,7 +46,7 @@ public class PVADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PVADemuxerPrivateData);
@@ -55,23 +55,23 @@ public class PVADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="pva_probe",cheader_filename="")]
+    [CCode (cname="pva_probe",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="pva_read_header",cheader_filename="")]
+    [CCode (cname="pva_read_header",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="pva_read_packet",cheader_filename="")]
+    [CCode (cname="pva_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="pva_read_timestamp",cheader_filename="")]
+    [CCode (cname="pva_read_timestamp",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,

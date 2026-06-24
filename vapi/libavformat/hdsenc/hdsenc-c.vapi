@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "window_size",
@@ -78,9 +78,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="hds_class",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+[CCode (cname="hds_class",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
 public class HDSMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override string class_name {
         public get {
             return "HDS muxer";
@@ -89,7 +89,7 @@ public class HDSMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -98,10 +98,10 @@ public class HDSMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -111,13 +111,13 @@ public class HDSMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct HDSContext",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+[CCode (cname="struct HDSContext",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
 [Compact]
 public class HDSMuxerPrivateData { }
 
-[CCode (cname="ff_hds_muxer",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+[CCode (cname="ff_hds_muxer",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
 public class HDSMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override string name {
         public get {
             return "hds";
@@ -126,7 +126,7 @@ public class HDSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override string long_name {
         public get {
             return "HDS Muxer";
@@ -135,7 +135,7 @@ public class HDSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HDSMuxerPrivateData);
@@ -144,7 +144,7 @@ public class HDSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -153,7 +153,7 @@ public class HDSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.H264;
@@ -162,7 +162,7 @@ public class HDSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.NO_FILE;
@@ -171,18 +171,18 @@ public class HDSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="hds_write_header",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="hds_write_header",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="hds_write_packet",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="hds_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="hds_write_trailer",cheader_filename="ffmpeg/libformat/hdsenc.c")]
+    [CCode (cname="hds_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );

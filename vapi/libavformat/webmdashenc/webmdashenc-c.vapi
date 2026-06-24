@@ -29,7 +29,7 @@ ISO DASH Specification:
 http://standards.iso.org/ittf/PubliclyAvailableStandards/c065274_ISO_IEC_23009-1_2014.zip
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "adaptation_sets",
@@ -135,9 +135,9 @@ static const LibAVUtil.Option options[] = {
 
 #if CONFIG_WEBM_DASH_MANIFEST_MUXER
 
-[CCode (cname="webm_dash_class",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+[CCode (cname="webm_dash_class",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
 public class WebMDashManifestMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override string class_name {
         public get {
             return "WebM DASH Manifest muxer";
@@ -146,7 +146,7 @@ public class WebMDashManifestMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -155,10 +155,10 @@ public class WebMDashManifestMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -168,9 +168,9 @@ public class WebMDashManifestMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_webm_dash_manifest_muxer",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+[CCode (cname="ff_webm_dash_manifest_muxer",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
 public class WebMDashManifestMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override string name {
         public get {
             return "webm_dash_manifest";
@@ -179,7 +179,7 @@ public class WebMDashManifestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override string long_name {
         public get {
             return "WebM DASH Manifest";
@@ -188,7 +188,7 @@ public class WebMDashManifestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override string mime_type {
         public get {
             return "application/xml";
@@ -197,7 +197,7 @@ public class WebMDashManifestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override string extensions {
         public get {
             return "xml";
@@ -206,7 +206,7 @@ public class WebMDashManifestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WebMDashMuxContext);
@@ -215,19 +215,19 @@ public class WebMDashManifestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="webm_dash_manifest_write_header",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="webm_dash_manifest_write_header",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="webm_dash_manifest_write_packet",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="webm_dash_manifest_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="webm_dash_manifest_write_trailer",cheader_filename="ffmpeg/libformat/webmdashenc.c")]
+    [CCode (cname="webm_dash_manifest_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );

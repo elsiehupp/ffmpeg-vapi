@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_qcelp_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_qcelp_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qcelp.c")]
 public class QCELPDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qcelp.c")]
     public override string enc_name {
         public get {
             return "x-Purevoice";
@@ -33,7 +33,7 @@ public class QCELPDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qcelp.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -42,7 +42,7 @@ public class QCELPDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qcelp.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.QCELP;
@@ -51,7 +51,7 @@ public class QCELPDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qcelp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -61,7 +61,7 @@ public class QCELPDynamicHandler : RTPDynamicProtocolHandler {
     }
     //  .static_payload_id = 12,
 
-    [CCode (cname="qcelp_parse_packet",cheader_filename="")]
+    [CCode (cname="qcelp_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qcelp.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_mp4a_latm_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_mp4a_latm_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_latm.c")]
 public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_latm.c")]
     public override string enc_name {
         public get {
             return "MP4A-LATM";
@@ -33,7 +33,7 @@ public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_latm.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -42,7 +42,7 @@ public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_latm.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -51,7 +51,7 @@ public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_latm.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -60,7 +60,7 @@ public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="latm_parse_sdp_line",cheader_filename="")]
+    [CCode (cname="latm_parse_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_latm.c")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
@@ -68,12 +68,12 @@ public class M4ALATMDynamicHandler : RTPDynamicProtocolHandler {
         string line
     );
 
-    [CCode (cname="latm_close_context",cheader_filename="")]
+    [CCode (cname="latm_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_latm.c")]
     public override void close (
         PayloadContext protocol_data
     );
 
-    [CCode (cname="latm_parse_packet",cheader_filename="")]
+    [CCode (cname="latm_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_latm.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

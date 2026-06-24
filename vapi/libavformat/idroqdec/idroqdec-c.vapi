@@ -29,13 +29,13 @@ for more information on the .roq file format, visit:
 http://www.csse.monash.edu.au/~timf/
 ***********************************************************/
 
-[CCode (cname="struct RoqDemuxContext",cheader_filename="")]
+[CCode (cname="struct RoqDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/idroqdec.c")]
 [Compact]
 public class ROQDemuxerPrivateData { }
 
-[CCode (cname="ff_roq_demuxer",cheader_filename="")]
+[CCode (cname="ff_roq_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/idroqdec.c")]
 public class ROQDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/idroqdec.c")]
     public override string name {
         public get {
             return "roq";
@@ -44,7 +44,7 @@ public class ROQDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/idroqdec.c")]
     public override string long_name {
         public get {
             return "id RoQ";
@@ -53,7 +53,7 @@ public class ROQDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/idroqdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ROQDemuxerPrivateData);
@@ -62,17 +62,17 @@ public class ROQDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="roq_probe",cheader_filename="")]
+    [CCode (cname="roq_probe",cheader_filename="subprojects/ffmpeg/libavformat/idroqdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="roq_read_header",cheader_filename="")]
+    [CCode (cname="roq_read_header",cheader_filename="subprojects/ffmpeg/libavformat/idroqdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="roq_read_packet",cheader_filename="")]
+    [CCode (cname="roq_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/idroqdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

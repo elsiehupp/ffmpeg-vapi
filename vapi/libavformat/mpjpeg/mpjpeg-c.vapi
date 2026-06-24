@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="BOUNDARY_TAG",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+[CCode (cname="BOUNDARY_TAG",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
 public const string BOUNDARY_TAG; // "ffmpeg"
 
 static const LibAVUtil.Option options[] = {
@@ -42,9 +42,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="mpjpeg_muxer_class",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+[CCode (cname="mpjpeg_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
 public class MultipartJpegMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override string class_name {
         public get {
             return "mpjpeg_muxer";
@@ -53,7 +53,7 @@ public class MultipartJpegMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -62,10 +62,10 @@ public class MultipartJpegMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -75,13 +75,13 @@ public class MultipartJpegMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct MPJPEGContext",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+[CCode (cname="struct MPJPEGContext",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
 [Compact]
 public class MultipartJpegMuxerPrivateData { }
 
-[CCode (cname="ff_mpjpeg_muxer",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+[CCode (cname="ff_mpjpeg_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
 public class MultipartJpegMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override string name {
         public get {
             return "mpjpeg";
@@ -90,7 +90,7 @@ public class MultipartJpegMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override string long_name {
         public get {
             return "MIME multipart JPEG";
@@ -99,7 +99,7 @@ public class MultipartJpegMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override string mime_type {
         public get {
             return "multipart/x-mixed-replace;boundary=" + BOUNDARY_TAG;
@@ -108,7 +108,7 @@ public class MultipartJpegMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override string extensions {
         public get {
             return "mjpg";
@@ -117,7 +117,7 @@ public class MultipartJpegMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MultipartJpegMuxerPrivateData);
@@ -126,7 +126,7 @@ public class MultipartJpegMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -135,7 +135,7 @@ public class MultipartJpegMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MJPEG;
@@ -144,23 +144,23 @@ public class MultipartJpegMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mpjpeg_write_header",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="mpjpeg_write_header",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpjpeg_write_packet",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="mpjpeg_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mpjpeg_write_trailer",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="mpjpeg_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS;

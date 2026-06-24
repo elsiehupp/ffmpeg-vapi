@@ -97,7 +97,7 @@ public enum YADIFCurrentField {
     NORMAL; // = 1;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
+[CCode (cname="struct YADIFContext",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 [Compact]
 public class YADIFContext {
     [CCode (cname="class")]

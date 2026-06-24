@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="fmt_map",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
+[CCode (cname="struct fmt_map",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
 [Compact]
 public class fmt_map {
     [CCode (cname="ff_fmt")]

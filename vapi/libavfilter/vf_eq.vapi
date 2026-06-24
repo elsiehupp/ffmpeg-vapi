@@ -48,7 +48,7 @@ public enum VarName {
     NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
+[CCode (cname="struct EQParameters",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
 [Compact]
 public class EQParameters {
     public delegate void AdjustDelegate (
@@ -91,7 +91,7 @@ public enum EvalMode {
     NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
+[CCode (cname="struct EQContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
 [Compact]
 public class EQContext {
     [CCode (cname="class")]

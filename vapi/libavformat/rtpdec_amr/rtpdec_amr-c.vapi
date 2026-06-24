@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_amr_nb_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+[CCode (cname="ff_amr_nb_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
 public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override string enc_name {
         public get {
             return "AMR";
@@ -33,7 +33,7 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -42,7 +42,7 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.AMR_NB;
@@ -51,7 +51,7 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -60,14 +60,14 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="amr_init",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="amr_init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int init (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );
 
-    [CCode (cname="amr_parse_sdp_line",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="amr_parse_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
@@ -75,7 +75,7 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
         string line
     );
 
-    [CCode (cname="amr_handle_packet",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="amr_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -90,9 +90,9 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
 
 }
 
-[CCode (cname="ff_amr_wb_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+[CCode (cname="ff_amr_wb_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
 public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override string enc_name {
         public get {
             return "AMR-WB";
@@ -101,7 +101,7 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -110,7 +110,7 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.AMR_WB;
@@ -119,7 +119,7 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -128,14 +128,14 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="amr_init",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="amr_init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int init (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );
 
-    [CCode (cname="amr_parse_sdp_line",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="amr_parse_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
@@ -143,7 +143,7 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
         string line
     );
 
-    [CCode (cname="amr_handle_packet",cheader_filename="ffmpeg/libformat/rtpdec_amr.c")]
+    [CCode (cname="amr_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

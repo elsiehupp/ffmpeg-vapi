@@ -41,7 +41,7 @@ public delegate void SimdDelegate (
     int len
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/audioconvert.h")]
+[CCode (cname="struct AudioConvert",cheader_filename="subprojects/ffmpeg/libswresample/audioconvert.h")]
 [Compact]
 public class AudioConvert {
     [CCode (cname="")]

@@ -23,9 +23,9 @@ namespace LibAVFormat {
 
 //  FF_RAW_DEMUXER_CLASS (acm)
 
-[CCode (cname="ff_acm_demuxer",cheader_filename="")]
+[CCode (cname="ff_acm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
 public class ACMDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override string name {
         public get {
             return "acm";
@@ -34,7 +34,7 @@ public class ACMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override string long_name {
         public get {
             return "Interplay ACM";
@@ -43,23 +43,23 @@ public class ACMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="acm_probe",cheader_filename="")]
+    [CCode (cname="acm_probe",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="acm_read_header",cheader_filename="")]
+    [CCode (cname="acm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_BINARY_SEARCH | AVFormatFlags1.NO_GENERIC_SEARCH | AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.NO_TIMESTAMPS;
@@ -68,7 +68,7 @@ public class ACMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override string extensions {
         public get {
             return "acm";
@@ -77,7 +77,7 @@ public class ACMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.INTERPLAY_ACM;
@@ -86,7 +86,7 @@ public class ACMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);

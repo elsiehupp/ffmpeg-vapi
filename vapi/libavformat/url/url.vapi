@@ -100,7 +100,7 @@ public class URLContext {
     public int min_packet_size;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+[CCode (cname="struct URLProtocol",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
 public abstract class URLProtocol {
     [CCode (cname="")]
     public abstract string name { public get; }

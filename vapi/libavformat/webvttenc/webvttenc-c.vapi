@@ -26,9 +26,9 @@ namespace LibAVFormat {
 @see http://dev.w3.org/html5/webvtt/
 ***********************************************************/
 
-[CCode (cname="ff_webvtt_muxer",cheader_filename="")]
+[CCode (cname="ff_webvtt_muxer",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
 public class WebVTTMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override string name {
         public get {
             return "webvtt";
@@ -37,7 +37,7 @@ public class WebVTTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override string long_name {
         public get {
             return "WebVTT subtitle";
@@ -46,7 +46,7 @@ public class WebVTTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override string extensions {
         public get {
             return "vtt";
@@ -55,7 +55,7 @@ public class WebVTTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override string mime_type {
         public get {
             return "text/vtt";
@@ -64,7 +64,7 @@ public class WebVTTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
@@ -73,7 +73,7 @@ public class WebVTTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="subtitle_codec",cheader_filename="")]
+    [CCode (cname="subtitle_codec",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.WEBVTT;
@@ -82,12 +82,12 @@ public class WebVTTMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="webvtt_write_header",cheader_filename="")]
+    [CCode (cname="webvtt_write_header",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="webvtt_write_packet",cheader_filename="")]
+    [CCode (cname="webvtt_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

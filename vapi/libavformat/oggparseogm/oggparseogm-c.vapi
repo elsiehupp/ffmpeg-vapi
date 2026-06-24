@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_ogm_video_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+[CCode (cname="ff_ogm_video_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
 public class OGMVideoCodec : OggCodec {
     [CCode (cname="magic",)]
     public override uint8[] magic {
@@ -43,13 +43,13 @@ public class OGMVideoCodec : OggCodec {
 
     }
 
-    [CCode (cname="ogm_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="ogm_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="ogm_packet",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="ogm_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int packet (
         AVFormatContext context,
         int arg
@@ -73,7 +73,7 @@ public class OGMVideoCodec : OggCodec {
 
 }
 
-[CCode (cname="ff_ogm_audio_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+[CCode (cname="ff_ogm_audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
 public class OGMAudioCodec : OggCodec {
     [CCode (cname="magic",)]
     public override uint8[] magic {
@@ -92,13 +92,13 @@ public class OGMAudioCodec : OggCodec {
 
     }
 
-    [CCode (cname="ogm_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="ogm_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="ogm_packet",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="ogm_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int packet (
         AVFormatContext context,
         int arg
@@ -122,7 +122,7 @@ public class OGMAudioCodec : OggCodec {
 
 }
 
-[CCode (cname="ff_ogm_text_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+[CCode (cname="ff_ogm_text_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
 public class OGMTextCodec : OggCodec {
     [CCode (cname="magic",)]
     public override uint8[] magic {
@@ -141,13 +141,13 @@ public class OGMTextCodec : OggCodec {
 
     }
 
-    [CCode (cname="ogm_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="ogm_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="ogm_packet",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="ogm_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int packet (
         AVFormatContext context,
         int arg
@@ -171,7 +171,7 @@ public class OGMTextCodec : OggCodec {
 
 }
 
-[CCode (cname="ff_ogm_old_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+[CCode (cname="ff_ogm_old_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
 public class OGMOldCodec : OggCodec {
     [CCode (cname="magic",)]
     public override uint8[] magic {
@@ -190,13 +190,13 @@ public class OGMOldCodec : OggCodec {
 
     }
 
-    [CCode (cname="ogm_dshow_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="ogm_dshow_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="ogm_packet",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="ogm_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int packet (
         AVFormatContext context,
         int arg

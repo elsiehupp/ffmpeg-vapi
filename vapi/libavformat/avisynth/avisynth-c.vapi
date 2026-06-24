@@ -21,13 +21,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct AviSynthContext",cheader_filename="")]
+[CCode (cname="struct AviSynthContext",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
 [Compact]
 public class AVISynthDemuxerPrivateData { }
 
-[CCode (cname="ff_avisynth_demuxer",cheader_filename="")]
+[CCode (cname="ff_avisynth_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
 public class AVISynthDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override string name {
         public get {
             return "avisynth";
@@ -36,7 +36,7 @@ public class AVISynthDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override string long_name {
         public get {
             return "AviSynth script";
@@ -45,7 +45,7 @@ public class AVISynthDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AVISynthDemuxerPrivateData);
@@ -54,23 +54,23 @@ public class AVISynthDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="avisynth_read_header",cheader_filename="")]
+    [CCode (cname="avisynth_read_header",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="avisynth_read_packet",cheader_filename="")]
+    [CCode (cname="avisynth_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="avisynth_read_close",cheader_filename="")]
+    [CCode (cname="avisynth_read_close",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="avisynth_read_seek",cheader_filename="")]
+    [CCode (cname="avisynth_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -78,7 +78,7 @@ public class AVISynthDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override string extensions {
         public get {
             return "avs";

@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct TTAContext",cheader_filename="")]
+[CCode (cname="struct TTAContext",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
 [Compact]
 public class TrueAudioDemuxerPrivateData { }
 
-[CCode (cname="ff_tta_demuxer",cheader_filename="")]
+[CCode (cname="ff_tta_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
 public class TrueAudioDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override string name {
         public get {
             return "tta";
@@ -37,7 +37,7 @@ public class TrueAudioDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override string long_name {
         public get {
             return "TTA (True Audio)";
@@ -46,7 +46,7 @@ public class TrueAudioDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TrueAudioDemuxerPrivateData);
@@ -55,23 +55,23 @@ public class TrueAudioDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="tta_probe",cheader_filename="")]
+    [CCode (cname="tta_probe",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="tta_read_header",cheader_filename="")]
+    [CCode (cname="tta_read_header",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="tta_read_packet",cheader_filename="")]
+    [CCode (cname="tta_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="tta_read_seek",cheader_filename="")]
+    [CCode (cname="tta_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -79,7 +79,7 @@ public class TrueAudioDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override string extensions {
         public get {
             return "tta";

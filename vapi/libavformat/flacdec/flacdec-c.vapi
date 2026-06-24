@@ -22,14 +22,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct FLACDecContext",cheader_filename="ffmpeg/libformat/flacdec.c")]
+[CCode (cname="struct FLACDecContext",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
 [Compact]
 public class FLACDemuxerPrivateData { }
 
 //  FF_RAW_DEMUXER_CLASS (flac)
-[CCode (cname="ff_flac_demuxer",cheader_filename="ffmpeg/libformat/flacdec.c")]
+[CCode (cname="ff_flac_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
 public class FLACDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override string name {
         public get {
             return "flac";
@@ -38,7 +38,7 @@ public class FLACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override string long_name {
         public get {
             return "raw FLAC";
@@ -47,23 +47,23 @@ public class FLACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="flac_probe",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="flac_probe",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="flac_read_header",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="flac_read_header",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flac_seek",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="flac_seek",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -71,7 +71,7 @@ public class FLACDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flac_read_timestamp",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="flac_read_timestamp",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
@@ -79,7 +79,7 @@ public class FLACDemuxer : AVInputFormat {
         int64 pos_limit
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -88,7 +88,7 @@ public class FLACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override string extensions {
         public get {
             return "flac";
@@ -97,7 +97,7 @@ public class FLACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.FLAC;
@@ -106,7 +106,7 @@ public class FLACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/flacdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FLACDemuxerPrivateData);

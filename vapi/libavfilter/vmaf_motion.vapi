@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vmaf_motion.h")]
+[CCode (cname="struct VMAFMotionDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/vmaf_motion.h")]
 [Compact]
 public class VMAFMotionDSPContext {
     public delegate uint64 SadDelegate (
@@ -69,7 +69,7 @@ public void ff_vmafmotion_init_x86 (
     VMAFMotionDSPContext? dsp
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vmaf_motion.h")]
+[CCode (cname="struct VMAFMotionData",cheader_filename="subprojects/ffmpeg/libavfilter/vmaf_motion.h")]
 [Compact]
 public class VMAFMotionData {
     [CCode (cname="")]

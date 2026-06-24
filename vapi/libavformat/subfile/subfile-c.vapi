@@ -54,9 +54,9 @@ static const LibAVUtil.Option subfile_options[] = {
 //  #undef OFFSET
 //  #undef LibAVUtil.OptionFlags.DECODING_PARAM
 
-[CCode (cname="subfile_class",cheader_filename="")]
+[CCode (cname="subfile_class",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
 public class SubFileURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override string class_name {
         public get {
             return "subfile";
@@ -65,7 +65,7 @@ public class SubFileURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -75,7 +75,7 @@ public class SubFileURLProtocolClass : LibAVUtil.Class {
     }
     //  .option = subfile_options,
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -85,13 +85,13 @@ public class SubFileURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct SubfileContext",cheader_filename="")]
+[CCode (cname="struct SubfileContext",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
 [Compact]
 public class SubFilePrivateData { }
 
-[CCode (cname="ff_subfile_protocol",cheader_filename="")]
+[CCode (cname="ff_subfile_protocol",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
 public class SubFileURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override string name {
         public get {
             return "subfile";
@@ -100,7 +100,7 @@ public class SubFileURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="subfile_open",cheader_filename="")]
+    [CCode (cname="subfile_open",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -108,26 +108,26 @@ public class SubFileURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="subfile_read",cheader_filename="")]
+    [CCode (cname="subfile_read",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="subfile_seek",cheader_filename="")]
+    [CCode (cname="subfile_seek",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="subfile_close",cheader_filename="")]
+    [CCode (cname="subfile_close",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SubFilePrivateData);

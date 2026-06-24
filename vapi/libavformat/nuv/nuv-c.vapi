@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct NUVContext",cheader_filename="")]
+[CCode (cname="struct NUVContext",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
 [Compact]
 public class NUVDemuxerPrivateData { }
 
-[CCode (cname="ff_nuv_demuxer",cheader_filename="")]
+[CCode (cname="ff_nuv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
 public class NUVDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override string name {
         public get {
             return "nuv";
@@ -37,7 +37,7 @@ public class NUVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override string long_name {
         public get {
             return "NuppelVideo";
@@ -46,7 +46,7 @@ public class NUVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (NUVDemuxerPrivateData);
@@ -55,23 +55,23 @@ public class NUVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="nuv_probe",cheader_filename="")]
+    [CCode (cname="nuv_probe",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="nuv_header",cheader_filename="")]
+    [CCode (cname="nuv_header",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="nuv_packet",cheader_filename="")]
+    [CCode (cname="nuv_packet",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="nuv_read_dts",cheader_filename="")]
+    [CCode (cname="nuv_read_dts",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
@@ -79,7 +79,7 @@ public class NUVDemuxer : AVInputFormat {
         int64 pos_limit
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

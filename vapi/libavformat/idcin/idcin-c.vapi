@@ -70,13 +70,13 @@ heuristic:
         transmitting them to the video decoder
 ***********************************************************/
 
-[CCode (cname="struct IdcinDemuxContext",cheader_filename="")]
+[CCode (cname="struct IdcinDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
 [Compact]
 public class IDCINDemuxerPrivateData { }
 
-[CCode (cname="ff_idcin_demuxer",cheader_filename="")]
+[CCode (cname="ff_idcin_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
 public class IDCINDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
     public override string name {
         public get {
             return "idcin";
@@ -85,7 +85,7 @@ public class IDCINDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
     public override string long_name {
         public get {
             return "id Cinematic";
@@ -94,7 +94,7 @@ public class IDCINDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (IDCINDemuxerPrivateData);
@@ -103,23 +103,23 @@ public class IDCINDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="idcin_probe",cheader_filename="")]
+    [CCode (cname="idcin_probe",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="idcin_read_header",cheader_filename="")]
+    [CCode (cname="idcin_read_header",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="idcin_read_packet",cheader_filename="")]
+    [CCode (cname="idcin_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="idcin_read_seek",cheader_filename="")]
+    [CCode (cname="idcin_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -127,7 +127,7 @@ public class IDCINDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/idcin.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_BYTE_SEEK;

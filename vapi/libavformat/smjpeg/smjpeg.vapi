@@ -26,7 +26,7 @@ namespace LibAVFormat {
 @file SMJPEG common code
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
+[CCode (cname="SMJPEG_MAGIC",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
 public const string SMJPEG_MAGIC;
 
 [CCode (cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]

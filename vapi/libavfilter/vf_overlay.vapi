@@ -78,7 +78,7 @@ public enum OverlayFormat {
     NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
+[CCode (cname="struct OverlayContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
 [Compact]
 public class OverlayContext {
     [CCode (cname="class")]

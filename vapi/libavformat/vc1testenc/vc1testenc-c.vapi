@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct RCVContext",cheader_filename="")]
+[CCode (cname="struct RCVContext",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
 [Compact]
 public class VC1TestMuxerPrivateData { }
 
-[CCode (cname="ff_vc1t_muxer",cheader_filename="")]
+[CCode (cname="ff_vc1t_muxer",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
 public class VC1TestMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override string name {
         public get {
             return "vc1test";
@@ -37,7 +37,7 @@ public class VC1TestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override string long_name {
         public get {
             return "VC-1 test bitstream";
@@ -46,7 +46,7 @@ public class VC1TestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override string extensions {
         public get {
             return "rcv";
@@ -55,7 +55,7 @@ public class VC1TestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VC1TestMuxerPrivateData);
@@ -64,7 +64,7 @@ public class VC1TestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -73,7 +73,7 @@ public class VC1TestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.WMV3;
@@ -82,18 +82,18 @@ public class VC1TestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="vc1test_write_header",cheader_filename="")]
+    [CCode (cname="vc1test_write_header",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="vc1test_write_packet",cheader_filename="")]
+    [CCode (cname="vc1test_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="vc1test_write_trailer",cheader_filename="")]
+    [CCode (cname="vc1test_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );

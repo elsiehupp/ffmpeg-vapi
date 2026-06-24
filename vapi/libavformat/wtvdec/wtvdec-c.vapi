@@ -27,13 +27,13 @@ namespace LibAVFormat {
 @author Peter Ross <pross@xvid.org>
 ***********************************************************/
 
-[CCode (cname="struct WtvContext",cheader_filename="")]
+[CCode (cname="struct WtvContext",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
 [Compact]
 public class WTVDemuxerPrivateData { }
 
-[CCode (cname="ff_wtv_demuxer",cheader_filename="")]
+[CCode (cname="ff_wtv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
 public class WTVDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override string name {
         public get {
             return "wtv";
@@ -42,7 +42,7 @@ public class WTVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override string long_name {
         public get {
             return "Windows Television (WTV)";
@@ -51,7 +51,7 @@ public class WTVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WTVDemuxerPrivateData);
@@ -60,23 +60,23 @@ public class WTVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="read_probe",cheader_filename="")]
+    [CCode (cname="read_probe",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header",cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet",cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="read_seek",cheader_filename="")]
+    [CCode (cname="read_seek",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -84,12 +84,12 @@ public class WTVDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="read_close",cheader_filename="")]
+    [CCode (cname="read_close",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.SHOW_IDS;

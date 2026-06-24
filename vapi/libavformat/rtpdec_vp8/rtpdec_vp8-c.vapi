@@ -29,9 +29,9 @@ namespace LibAVFormat {
 @see http://tools.ietf.org/html/draft-ietf-payload-vp8-05
 ***********************************************************/
 
-[CCode (cname="ff_vp8_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_vp8_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
 public class VP8DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override string enc_name {
         public get {
             return "VP8";
@@ -40,7 +40,7 @@ public class VP8DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.VIDEO;
@@ -49,7 +49,7 @@ public class VP8DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.VP8;
@@ -58,7 +58,7 @@ public class VP8DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -67,19 +67,19 @@ public class VP8DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="vp8_init",cheader_filename="")]
+    [CCode (cname="vp8_init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override int init (
         AVFormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );
 
-    [CCode (cname="vp8_close_context",cheader_filename="")]
+    [CCode (cname="vp8_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override void close (
         PayloadContext protocol_data
     );
 
-    [CCode (cname="vp8_handle_packet",cheader_filename="")]
+    [CCode (cname="vp8_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -92,7 +92,7 @@ public class VP8DynamicHandler : RTPDynamicProtocolHandler {
         int flags
     );
 
-    [CCode (cname="vp8_need_keyframe",cheader_filename="")]
+    [CCode (cname="vp8_need_keyframe",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override int need_keyframe (
         PayloadContext context
     );

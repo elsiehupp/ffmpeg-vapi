@@ -79,7 +79,7 @@ public class CodecMime {
 @brief The exact value of the fractional number is: 'val + num / den'.
 num is assumed to be 0 <= num < den.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
+[CCode (cname="struct FFFrac",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 [Compact]
 public class FFFrac {
     [CCode (cname="")]

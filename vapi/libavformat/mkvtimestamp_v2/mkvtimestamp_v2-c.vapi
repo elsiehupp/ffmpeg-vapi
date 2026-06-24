@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_mkvtimestamp_v2_muxer",cheader_filename="")]
+[CCode (cname="ff_mkvtimestamp_v2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
 public class MKVTimeStampV2Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
     public override string name {
         public get {
             return "mkvtimestamp_v2";
@@ -33,7 +33,7 @@ public class MKVTimeStampV2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
     public override string long_name {
         public get {
             return "extract pts as timecode v2 format, as defined by mkvtoolnix";
@@ -42,7 +42,7 @@ public class MKVTimeStampV2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -51,7 +51,7 @@ public class MKVTimeStampV2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
@@ -60,12 +60,12 @@ public class MKVTimeStampV2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="write_header",cheader_filename="")]
+    [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="write_packet",cheader_filename="")]
+    [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

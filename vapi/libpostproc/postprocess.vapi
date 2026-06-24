@@ -52,10 +52,10 @@ public string postproc_license ();
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public const size_t PP_QUALITY_MAX; // 6
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
+[CCode (cname="struct pp_context",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public class pp_context { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
+[CCode (cname="struct pp_mode",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess.h")]
 public class pp_mode { }
 
 #if LIBPOSTPROC_VERSION_INT < (52<<16)

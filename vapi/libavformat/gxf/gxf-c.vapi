@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct gxf_stream_info",cheader_filename="")]
+[CCode (cname="struct gxf_stream_info",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
 [Compact]
 public class GXFDemuxerPrivateData { }
 
-[CCode (cname="ff_gxf_demuxer",cheader_filename="")]
+[CCode (cname="ff_gxf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
 public class GXFDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override string name {
         public get {
             return "gxf";
@@ -37,7 +37,7 @@ public class GXFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override string long_name {
         public get {
             return "GXF (General eXchange Format)";
@@ -46,7 +46,7 @@ public class GXFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GXFDemuxerPrivateData);
@@ -55,23 +55,23 @@ public class GXFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="gxf_probe",cheader_filename="")]
+    [CCode (cname="gxf_probe",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="gxf_header",cheader_filename="")]
+    [CCode (cname="gxf_header",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="gxf_packet",cheader_filename="")]
+    [CCode (cname="gxf_packet",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="gxf_seek",cheader_filename="")]
+    [CCode (cname="gxf_seek",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -79,7 +79,7 @@ public class GXFDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="gxf_read_timestamp",cheader_filename="")]
+    [CCode (cname="gxf_read_timestamp",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,

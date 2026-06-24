@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_msf_demuxer",cheader_filename="")]
+[CCode (cname="ff_msf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/msf.c")]
 public class MSFDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/msf.c")]
     public override string name {
         public get {
             return "msf";
@@ -33,7 +33,7 @@ public class MSFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/msf.c")]
     public override string long_name {
         public get {
             return "Sony PS3 MSF";
@@ -42,23 +42,23 @@ public class MSFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="msf_probe",cheader_filename="")]
+    [CCode (cname="msf_probe",cheader_filename="subprojects/ffmpeg/libavformat/msf.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="msf_read_header",cheader_filename="")]
+    [CCode (cname="msf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/msf.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="msf_read_packet",cheader_filename="")]
+    [CCode (cname="msf_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/msf.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/msf.c")]
     public override string extensions {
         public get {
             return "msf";

@@ -27,7 +27,7 @@ namespace LibAVFormat {
 ***********************************************************/
 /*@{*/
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/avio.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "protocol_whitelist",
@@ -70,9 +70,9 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="ffurl_context_class",cheader_filename="")]
+[CCode (cname="ffurl_context_class",cheader_filename="subprojects/ffmpeg/libavformat/avio.c")]
 public class URLContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/avio.c")]
     public override string class_name {
         public get {
             return "URLContext";
@@ -83,7 +83,7 @@ public class URLContextClass : LibAVUtil.Class {
     //  .item_name = urlcontext_to_name,
     //  .option = options,
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/avio.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -92,13 +92,13 @@ public class URLContextClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="urlcontext_child_next",cheader_filename="")]
+    [CCode (cname="urlcontext_child_next",cheader_filename="subprojects/ffmpeg/libavformat/avio.c")]
     public override void *child_next (
         void *obj,
         void *prev
     );
 
-    [CCode (cname="ff_urlcontext_child_class_next",cheader_filename="")]
+    [CCode (cname="ff_urlcontext_child_class_next",cheader_filename="subprojects/ffmpeg/libavformat/avio.c")]
     public override LibAVUtil.Class child_class_next (
         LibAVUtil.Class prev
     );

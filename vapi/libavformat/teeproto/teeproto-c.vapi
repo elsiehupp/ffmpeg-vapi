@@ -28,9 +28,9 @@ static const LibAVUtil.Option tee_options[] = {
     }
 }
 
-[CCode (cname="tee_class",cheader_filename="")]
+[CCode (cname="tee_class",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
 public class TeeURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
     public override string class_name {
         public get {
             return "tee";
@@ -39,7 +39,7 @@ public class TeeURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -49,7 +49,7 @@ public class TeeURLProtocolClass : LibAVUtil.Class {
     }
     //  .option = tee_options,
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -59,13 +59,13 @@ public class TeeURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct TeeContext",cheader_filename="")]
+[CCode (cname="struct TeeContext",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
 [Compact]
 public class TeePrivateData { }
 
-[CCode (cname="ff_tee_protocol",cheader_filename="")]
+[CCode (cname="ff_tee_protocol",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
 public class TeeURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
     public override string name {
         public get {
             return "tee";
@@ -74,26 +74,26 @@ public class TeeURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="tee_open",cheader_filename="")]
+    [CCode (cname="tee_open",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="tee_write",cheader_filename="")]
+    [CCode (cname="tee_write",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="tee_close",cheader_filename="")]
+    [CCode (cname="tee_close",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TeePrivateData);

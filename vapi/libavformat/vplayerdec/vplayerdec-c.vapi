@@ -25,13 +25,13 @@ namespace LibAVFormat {
 @file VPlayer subtitles format demuxer
 ***********************************************************/
 
-[CCode (cname="struct VPlayerContext",cheader_filename="")]
+[CCode (cname="struct VPlayerContext",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
 [Compact]
 public class VPlayerDemuxerPrivateData { }
 
-[CCode (cname="ff_vplayer_demuxer",cheader_filename="")]
+[CCode (cname="ff_vplayer_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
 public class VPlayerDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override string name {
         public get {
             return "vplayer";
@@ -40,7 +40,7 @@ public class VPlayerDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override string long_name {
         public get {
             return "VPlayer subtitles";
@@ -49,7 +49,7 @@ public class VPlayerDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VPlayerDemuxerPrivateData);
@@ -58,23 +58,23 @@ public class VPlayerDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="vplayer_probe",cheader_filename="")]
+    [CCode (cname="vplayer_probe",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="vplayer_read_header",cheader_filename="")]
+    [CCode (cname="vplayer_read_header",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="vplayer_read_packet",cheader_filename="")]
+    [CCode (cname="vplayer_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="vplayer_read_seek",cheader_filename="")]
+    [CCode (cname="vplayer_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -84,12 +84,12 @@ public class VPlayerDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="vplayer_read_close",cheader_filename="")]
+    [CCode (cname="vplayer_read_close",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override string extensions {
         public get {
             return "txt";

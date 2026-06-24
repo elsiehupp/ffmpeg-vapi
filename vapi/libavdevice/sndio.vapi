@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/sndio.h")]
+[CCode (cname="struct SndioData",cheader_filename="subprojects/ffmpeg/libavdevice/sndio.h")]
 [Compact]
 public class SndioData {
     [CCode (cname="class")]

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_skeleton_codec",cheader_filename="ffmpeg/libformat/oggparseskeleton.c")]
+[CCode (cname="ff_skeleton_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparseskeleton.c")]
 public class SkeletonCodec : OggCodec {
     [CCode (cname="magic")]
     public override uint8[] magic {
@@ -40,7 +40,7 @@ public class SkeletonCodec : OggCodec {
 
     }
 
-    [CCode (cname="skeleton_header",cheader_filename="ffmpeg/libformat/oggparseskeleton.c")]
+    [CCode (cname="skeleton_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseskeleton.c")]
     public override int header (
         AVFormatContext context,
         int arg

@@ -47,7 +47,7 @@ public delegate void FfReorderDelegate(
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
 public const size_t ALSA_BUFFER_SIZE_MAX; // 131072
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
+[CCode (cname="struct AlsaData",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
 [Compact]
 public class AlsaData {
     [CCode (cname="class")]

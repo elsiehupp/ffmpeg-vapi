@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct ThpDemuxContext",cheader_filename="")]
+[CCode (cname="struct ThpDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
 [Compact]
 public class THPDemuxerPrivateData { }
 
-[CCode (cname="ff_thp_demuxer",cheader_filename="")]
+[CCode (cname="ff_thp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
 public class THPDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override string name {
         public get {
             return "thp";
@@ -37,7 +37,7 @@ public class THPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override string long_name {
         public get {
             return "THP";
@@ -46,7 +46,7 @@ public class THPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (THPDemuxerPrivateData);
@@ -55,17 +55,17 @@ public class THPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="thp_probe",cheader_filename="")]
+    [CCode (cname="thp_probe",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="thp_read_header",cheader_filename="")]
+    [CCode (cname="thp_read_header",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="thp_read_packet",cheader_filename="")]
+    [CCode (cname="thp_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

@@ -22,7 +22,7 @@ ARGB black, for VAProcPipelineParameterBuffer.output_background_color.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 public const uint32 VAAPI_VPP_BACKGROUND_BLACK; // 0xff000000
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
+[CCode (cname="struct VAAPIVPPContext",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
 [Compact]
 public class VAAPIVPPContext {
     [CCode (cname="class")]

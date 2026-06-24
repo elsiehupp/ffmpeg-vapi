@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_ilbc_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_ilbc_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_libc.c")]
 public class ILBCDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_libc.c")]
     public override string enc_name {
         public get {
             return "iLBC";
@@ -33,7 +33,7 @@ public class ILBCDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_libc.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -42,7 +42,7 @@ public class ILBCDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_libc.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.ILBC;
@@ -51,7 +51,7 @@ public class ILBCDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="ilbc_parse_sdp_line",cheader_filename="")]
+    [CCode (cname="ilbc_parse_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_libc.c")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,

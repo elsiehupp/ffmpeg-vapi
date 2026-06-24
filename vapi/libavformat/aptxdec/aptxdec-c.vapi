@@ -43,9 +43,9 @@ static const LibAVUtil.Option aptx_options[] = {
 
 #if CONFIG_APTX_DEMUXER
 
-[CCode (cname="aptx_demuxer_class",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+[CCode (cname="aptx_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
 public class APTXDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string class_name {
         public get {
             return "aptx demuxer";
@@ -54,7 +54,7 @@ public class APTXDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -64,7 +64,7 @@ public class APTXDemuxerClass : LibAVUtil.Class {
     }
     //  .option = aptx_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -74,9 +74,9 @@ public class APTXDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_aptx_demuxer",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+[CCode (cname="ff_aptx_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
 public class APTXDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string name {
         public get {
             return "aptx";
@@ -85,7 +85,7 @@ public class APTXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string long_name {
         public get {
             return "raw aptX";
@@ -94,7 +94,7 @@ public class APTXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string extensions {
         public get {
             return "aptx";
@@ -103,7 +103,7 @@ public class APTXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AptXDemuxerContext);
@@ -112,16 +112,16 @@ public class APTXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="aptx_read_header",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="aptx_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int read_header (
         AVFormatContext format_context
     )
-    [CCode (cname="aptx_read_packet",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="aptx_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     )
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -135,9 +135,9 @@ public class APTXDemuxer : AVInputFormat {
 
 #if CONFIG_APTX_HD_DEMUXER
 
-[CCode (cname="aptx_hd_demuxer_class",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+[CCode (cname="aptx_hd_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
 public class APTXHDDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string class_name {
         public get {
             return "aptx hd demuxer";
@@ -146,7 +146,7 @@ public class APTXHDDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -156,7 +156,7 @@ public class APTXHDDemuxerClass : LibAVUtil.Class {
     }
     //  .option = aptx_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -166,9 +166,9 @@ public class APTXHDDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_aptx_hd_demuxer",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+[CCode (cname="ff_aptx_hd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
 public class APTXDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string name {
         public get {
             return "aptx_hd";
@@ -177,7 +177,7 @@ public class APTXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string long_name {
         public get {
             return "raw aptX HD";
@@ -186,7 +186,7 @@ public class APTXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string extensions {
         public get {
             return "aptxhd";
@@ -195,7 +195,7 @@ public class APTXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AptXDemuxerContext);
@@ -204,18 +204,18 @@ public class APTXDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="aptx_hd_read_header",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="aptx_hd_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="aptx_hd_read_packet",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="aptx_hd_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/aptxdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

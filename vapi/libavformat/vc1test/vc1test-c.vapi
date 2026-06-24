@@ -28,9 +28,9 @@ by Konstantin Shishkov
 Format specified in SMPTE standard 421 Annex L
 ***********************************************************/
 
-[CCode (cname="ff_vc1t_demuxer",cheader_filename="")]
+[CCode (cname="ff_vc1t_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
 public class VC1TestDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override string name {
         public get {
             return "vc1test";
@@ -39,7 +39,7 @@ public class VC1TestDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override string long_name {
         public get {
             return "VC-1 test bitstream";
@@ -48,23 +48,23 @@ public class VC1TestDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="vc1t_probe",cheader_filename="")]
+    [CCode (cname="vc1t_probe",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="vc1t_read_header",cheader_filename="")]
+    [CCode (cname="vc1t_read_header",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="vc1t_read_packet",cheader_filename="")]
+    [CCode (cname="vc1t_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override string extensions {
         public get {
             return "rcv";
@@ -73,7 +73,7 @@ public class VC1TestDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

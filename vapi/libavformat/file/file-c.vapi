@@ -94,9 +94,9 @@ static const LibAVUtil.Option pipe_options[] = {
     }
 }
 
-[CCode (cname="file_class",cheader_filename="ffmpeg/libformat/file.c")]
+[CCode (cname="file_class",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
 public class FileClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override string class_name {
         public get {
             return "file";
@@ -105,7 +105,7 @@ public class FileClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -115,7 +115,7 @@ public class FileClass : LibAVUtil.Class {
     }
     //  .option = file_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -125,9 +125,9 @@ public class FileClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="pipe_class",cheader_filename="ffmpeg/libformat/file.c")]
+[CCode (cname="pipe_class",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
 public class PipeClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override string class_name {
         public get {
             return "pipe";
@@ -136,7 +136,7 @@ public class PipeClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -146,7 +146,7 @@ public class PipeClass : LibAVUtil.Class {
     }
     //  .option = pipe_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -158,9 +158,9 @@ public class PipeClass : LibAVUtil.Class {
 
 #if CONFIG_FILE_PROTOCOL
 
-[CCode (cname="ff_file_protocol",cheader_filename="ffmpeg/libformat/file.c")]
+[CCode (cname="ff_file_protocol",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
 public class FileURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override string name {
         public get {
             return "file";
@@ -169,62 +169,62 @@ public class FileURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="file_open",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_open",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="file_read",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_read",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="file_write",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_write",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="file_seek",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_seek",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="file_close",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_close",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="file_get_handle",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_get_handle",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="file_check",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_check",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_check (
         URLContext url_context,
         int mask
     );
 
-    [CCode (cname="file_delete",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_delete",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_delete (
         URLContext url_context
     );
 
-    [CCode (cname="file_move",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_move",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_move (
         URLContext h_src,
         URLContext h_dst
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FileContext);
@@ -234,18 +234,18 @@ public class FileURLProtocol : URLProtocol {
     }
     //  .priv_data_class = file_class,
 
-    [CCode (cname="file_open_dir",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_open_dir",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_open_dir (
         URLContext url_context
     );
 
-    [CCode (cname="file_read_dir",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_read_dir",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_read_dir (
         URLContext url_context,
         out AVIODirEntry next
     );
 
-    [CCode (cname="file_close_dir",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_close_dir",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_close_dir (
         URLContext url_context
     );
@@ -256,9 +256,9 @@ public class FileURLProtocol : URLProtocol {
 
 #if CONFIG_PIPE_PROTOCOL
 
-[CCode (cname="ff_pipe_protocol",cheader_filename="ffmpeg/libformat/file.c")]
+[CCode (cname="ff_pipe_protocol",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
 public class PipeURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override string name {
         public get {
             return "pipe";
@@ -267,39 +267,39 @@ public class PipeURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="pipe_open",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="pipe_open",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="file_read",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_read",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="file_write",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_write",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="file_get_handle",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_get_handle",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="file_check",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="file_check",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_check (
         URLContext url_context,
         int mask
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/file.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FileContext);

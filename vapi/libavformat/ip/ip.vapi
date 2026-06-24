@@ -25,7 +25,7 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Structure for storing IP (UDP) source filters or block lists.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/ip.h")]
+[CCode (cname="struct IPSourceFilters",cheader_filename="subprojects/ffmpeg/libformat/ip.h")]
 [Compact]
 public class IPSourceFilters {
     [CCode (cname="")]

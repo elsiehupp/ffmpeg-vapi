@@ -25,7 +25,7 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Platform-specific
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmpdh.h")]
+[CCode (cname="struct FFBigNum",cheader_filename="subprojects/ffmpeg/libformat/rtmpdh.h")]
 [Compact]
 public class FFBigNum { }
 

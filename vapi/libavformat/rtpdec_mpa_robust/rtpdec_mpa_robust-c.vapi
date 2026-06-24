@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_mpeg_audio_robust_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_mpeg_audio_robust_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpa_robust.c")]
 public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpa_robust.c")]
     public override string enc_name {
         public get {
             return "mpa-robust";
@@ -33,7 +33,7 @@ public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpa_robust.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -42,7 +42,7 @@ public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpa_robust.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MP3ADU;
@@ -51,7 +51,7 @@ public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="need_parsing",cheader_filename="")]
+    [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpa_robust.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVStreamParseType.HEADERS;
@@ -60,7 +60,7 @@ public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpa_robust.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -69,12 +69,12 @@ public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="mpa_robust_close_context",cheader_filename="")]
+    [CCode (cname="mpa_robust_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpa_robust.c")]
     public override void close (
         PayloadContext protocol_data
     );
 
-    [CCode (cname="mpa_robust_parse_packet",cheader_filename="")]
+    [CCode (cname="mpa_robust_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpa_robust.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

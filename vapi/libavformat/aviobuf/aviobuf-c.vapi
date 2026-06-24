@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_avio_options",cheader_filename="")]
+[CCode (cname="ff_avio_options",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
 static const LibAVUtil.Option ff_avio_options[] = {
     new LibAVUtil.StringOption () {
         name = "protocol_whitelist",
@@ -42,9 +42,9 @@ static const LibAVUtil.Option ff_avio_options[] = {
 
 };
 
-[CCode (cname="ff_avio_class",cheader_filename="")]
+[CCode (cname="ff_avio_class",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
 public class AVIOContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
     public override string class_name {
         public get {
             return "AVIOContext";
@@ -53,7 +53,7 @@ public class AVIOContextClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -62,7 +62,7 @@ public class AVIOContextClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -72,13 +72,13 @@ public class AVIOContextClass : LibAVUtil.Class {
     }
     //  .option = ff_avio_options,
 
-    [CCode (cname="ff_avio_child_next",cheader_filename="")]
+    [CCode (cname="ff_avio_child_next",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
     public override void *child_next (
         void *obj,
         void *prev
     );
 
-    [CCode (cname="ff_avio_child_class_next",cheader_filename="")]
+    [CCode (cname="ff_avio_child_class_next",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
     public override LibAVUtil.Class child_class_next (
         LibAVUtil.Class prev
     );

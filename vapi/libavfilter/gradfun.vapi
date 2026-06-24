@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /***********************************************************
 Holds instance-specific information for gradfun.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
+[CCode (cname="struct GradFunContext",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
 [Compact]
 public class GradFunContext {
     [CCode (cname="class")]

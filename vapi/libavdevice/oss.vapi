@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/oss.h")]
 public const size_t OSS_AUDIO_BLOCK_SIZE; // 4096
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/oss.h")]
+[CCode (cname="struct OSSAudioData",cheader_filename="subprojects/ffmpeg/libavdevice/oss.h")]
 [Compact]
 public class OSSAudioData {
     [CCode (cname="class")]

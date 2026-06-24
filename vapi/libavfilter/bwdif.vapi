@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="BWDIFContext",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]
+[CCode (cname="struct BWDIFContext",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]
 [Compact]
 public class BWDIFContext {
     [CCode (cname="yadif",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]

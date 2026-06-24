@@ -118,7 +118,7 @@ static const AVCodecTag additional_subtitle_tags[] = {
 
 };
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "reserve_index_space",
@@ -224,9 +224,9 @@ static const LibAVUtil.Option options[] = {
 
 #if CONFIG_MATROSKA_MUXER
 
-[CCode (cname="matroska_class",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+[CCode (cname="matroska_class",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
 public class MatroskaMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string class_name {
         public get {
             return "matroska muxer";
@@ -235,7 +235,7 @@ public class MatroskaMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -244,10 +244,10 @@ public class MatroskaMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -257,9 +257,9 @@ public class MatroskaMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_matroska_muxer",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+[CCode (cname="ff_matroska_muxer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
 public class MatroskaMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string name {
         public get {
             return "matroska";
@@ -268,7 +268,7 @@ public class MatroskaMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string long_name {
         public get {
             return "Matroska";
@@ -277,7 +277,7 @@ public class MatroskaMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string mime_type {
         public get {
             return "video/x-matroska";
@@ -286,7 +286,7 @@ public class MatroskaMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string extensions {
         public get {
             return "mkv";
@@ -295,7 +295,7 @@ public class MatroskaMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MatroskaMuxContext);
@@ -304,7 +304,7 @@ public class MatroskaMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return CONFIG_LIBVORBIS_ENCODER ? LibAVCodec.CodecID.VORBIS : LibAVCodec.CodecID.AC3;
@@ -313,7 +313,7 @@ public class MatroskaMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBX264_ENCODER ? LibAVCodec.CodecID.H264 : LibAVCodec.CodecID.MPEG4;
@@ -322,29 +322,29 @@ public class MatroskaMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mkv_init",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_init",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mkv_write_header",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_write_header",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mkv_write_flush_packet",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_write_flush_packet",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mkv_write_trailer",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
@@ -369,7 +369,7 @@ public class MatroskaMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="subtitle_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="subtitle_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.ASS;
@@ -378,13 +378,13 @@ public class MatroskaMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mkv_query_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_query_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
     );
 
-    [CCode (cname="mkv_check_bitstream",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -395,9 +395,9 @@ public class MatroskaMuxer : AVOutputFormat {
 
 #if CONFIG_WEBM_MUXER
 
-[CCode (cname="webm_class",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+[CCode (cname="webm_class",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
 public class WebMMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string class_name {
         public get {
             return "webm muxer";
@@ -406,7 +406,7 @@ public class WebMMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -415,10 +415,10 @@ public class WebMMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -428,9 +428,9 @@ public class WebMMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_webm_muxer",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+[CCode (cname="ff_webm_muxer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
 public class WebMMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string name {
         public get {
             return "webm";
@@ -439,7 +439,7 @@ public class WebMMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string long_name {
         public get {
             return "WebM";
@@ -448,7 +448,7 @@ public class WebMMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string mime_type {
         public get {
             return "video/webm";
@@ -457,7 +457,7 @@ public class WebMMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string extensions {
         public get {
             return "webm";
@@ -466,7 +466,7 @@ public class WebMMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MatroskaMuxContext);
@@ -475,7 +475,7 @@ public class WebMMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return CONFIG_LIBOPUS_ENCODER ? LibAVCodec.CodecID.OPUS : LibAVCodec.CodecID.VORBIS;
@@ -484,7 +484,7 @@ public class WebMMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return CONFIG_LIBVPX_VP9_ENCODER ? LibAVCodec.CodecID.VP9 : LibAVCodec.CodecID.VP8;
@@ -493,7 +493,7 @@ public class WebMMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="subtitle_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="subtitle_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.WEBVTT;
@@ -502,41 +502,41 @@ public class WebMMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mkv_init",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_init",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mkv_write_header",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_write_header",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mkv_write_flush_packet",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_write_flush_packet",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mkv_write_trailer",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="webm_query_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="webm_query_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
     );
 
-    [CCode (cname="mkv_check_bitstream",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
@@ -550,9 +550,9 @@ public class WebMMuxer : AVOutputFormat {
 
 #if CONFIG_MATROSKA_AUDIO_MUXER
 
-[CCode (cname="mka_class",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+[CCode (cname="mka_class",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
 public class MatroskaAudioMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string class_name {
         public get {
             return "matroska audio muxer";
@@ -561,7 +561,7 @@ public class MatroskaAudioMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -570,10 +570,10 @@ public class MatroskaAudioMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -583,9 +583,9 @@ public class MatroskaAudioMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_matroska_audio_muxer",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+[CCode (cname="ff_matroska_audio_muxer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
 public class MatroskaAudioMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string name {
         public get {
             return "matroska";
@@ -594,7 +594,7 @@ public class MatroskaAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string long_name {
         public get {
             return "Matroska Audio";
@@ -603,7 +603,7 @@ public class MatroskaAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string mime_type {
         public get {
             return "audio/x-matroska";
@@ -612,7 +612,7 @@ public class MatroskaAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string extensions {
         public get {
             return "mka";
@@ -621,7 +621,7 @@ public class MatroskaAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MatroskaMuxContext);
@@ -630,7 +630,7 @@ public class MatroskaAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return CONFIG_LIBVORBIS_ENCODER ?
@@ -640,7 +640,7 @@ public class MatroskaAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -649,35 +649,35 @@ public class MatroskaAudioMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mkv_init",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_init",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mkv_write_header",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_write_header",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mkv_write_flush_packet",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_write_flush_packet",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="mkv_write_trailer",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mkv_check_bitstream",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="mkv_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/matroskaenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;

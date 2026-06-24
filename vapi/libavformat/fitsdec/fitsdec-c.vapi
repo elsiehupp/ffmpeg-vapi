@@ -45,13 +45,13 @@ static const LibAVUtil.Option fits_options[] = {
 
 };
 
-[CCode (cname="struct FITSContext",cheader_filename="")]
+[CCode (cname="struct FITSContext",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
 [Compact]
 public class FITSDemuxerClassPrivateData { }
 
-[CCode (cname="fits_demuxer_class",cheader_filename="")]
+[CCode (cname="fits_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
 public class FITSDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override string class_name {
         public get {
             return "FITS demuxer";
@@ -60,7 +60,7 @@ public class FITSDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -70,7 +70,7 @@ public class FITSDemuxerClass : LibAVUtil.Class {
     }
     //  .option = fits_options,
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -80,9 +80,9 @@ public class FITSDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_fits_demuxer",cheader_filename="")]
+[CCode (cname="ff_fits_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
 public class FITSDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override string name {
         public get {
             return "fits";
@@ -91,7 +91,7 @@ public class FITSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override string long_name {
         public get {
             return "Flexible Image Transport System";
@@ -100,7 +100,7 @@ public class FITSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FITSDemuxerClassPrivateData);
@@ -109,24 +109,24 @@ public class FITSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="fits_probe",cheader_filename="")]
+    [CCode (cname="fits_probe",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="fits_read_header",cheader_filename="")]
+    [CCode (cname="fits_read_header",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="fits_read_packet",cheader_filename="")]
+    [CCode (cname="fits_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = fits_demuxer_class,
 
-    [CCode (cname="raw_codec_id",cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.FITS;

@@ -35,9 +35,9 @@ Interleaved Mode (2). (This requires implementing STAP-B, MTAP16, MTAP24,
                        FU-B packet types)
 ***********************************************************/
 
-[CCode (cname="ff_h264_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_h264_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
 public class H264DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override string enc_name {
         public get {
             return "H264";
@@ -46,7 +46,7 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.VIDEO;
@@ -55,7 +55,7 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.H264;
@@ -64,7 +64,7 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="need_parsing",cheader_filename="")]
+    [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVStreamParseType.FULL;
@@ -73,7 +73,7 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -82,7 +82,7 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="parse_h264_sdp_line",cheader_filename="")]
+    [CCode (cname="parse_h264_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
@@ -90,12 +90,12 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
         string line
     );
 
-    [CCode (cname="h264_close_context",cheader_filename="")]
+    [CCode (cname="h264_close_context",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override void close (
         PayloadContext protocol_data
     );
 
-    [CCode (cname="h264_handle_packet",cheader_filename="")]
+    [CCode (cname="h264_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="muxoptions",cheader_filename="")]
+[CCode (cname="muxoptions",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
 static const LibAVUtil.Option muxoptions[] = {
     new LibAVUtil.BoolOption () {
         name = "update",
@@ -93,9 +93,9 @@ static const LibAVUtil.Option muxoptions[] = {
 
 #if CONFIG_IMAGE2_MUXER
 
-[CCode (cname="img2mux_class",cheader_filename="ffmpeg/libformat/img2enc.c")]
+[CCode (cname="img2mux_class",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
 public class Image2MuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string class_name {
         public get {
             return "image2 muxer";
@@ -104,7 +104,7 @@ public class Image2MuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -114,7 +114,7 @@ public class Image2MuxerClass : LibAVUtil.Class {
     }
     //  .option = muxoptions,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -124,9 +124,9 @@ public class Image2MuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_image2_muxer",cheader_filename="ffmpeg/libformat/img2enc.c")]
+[CCode (cname="ff_image2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
 public class Image2Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string name {
         public get {
             return "image2";
@@ -135,7 +135,7 @@ public class Image2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string long_name {
         public get {
             return "image2 sequence";
@@ -144,7 +144,7 @@ public class Image2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string extensions {
         public get {
             return "bmp,dpx,jls,jpeg,jpg,ljpg,pam,pbm,pcx,pgm,pgmyuv,png," +
@@ -155,7 +155,7 @@ public class Image2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoMuxData);
@@ -164,7 +164,7 @@ public class Image2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MJPEG;
@@ -173,25 +173,25 @@ public class Image2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="write_header",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="write_packet",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="query_codec",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="query_codec",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS | AVFormatFlags1.NO_DIMENSIONS | AVFormatFlags1.NO_FILE;
@@ -205,9 +205,9 @@ public class Image2Muxer : AVOutputFormat {
 
 #if CONFIG_IMAGE2PIPE_MUXER
 
-[CCode (cname="ff_image2pipe_muxer",cheader_filename="ffmpeg/libformat/img2enc.c")]
+[CCode (cname="ff_image2pipe_muxer",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
 public class Image2PipeMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string name {
         public get {
             return "image2pipe";
@@ -216,7 +216,7 @@ public class Image2PipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string long_name {
         public get {
             return "piped image2 sequence";
@@ -225,7 +225,7 @@ public class Image2PipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VideoMuxData);
@@ -234,7 +234,7 @@ public class Image2PipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.MJPEG;
@@ -243,25 +243,25 @@ public class Image2PipeMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="write_header",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="write_packet",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="query_codec",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="query_codec",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int query_codec (
         LibAVCodec.CodecID id,
         int std_compliance
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/img2enc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS | AVFormatFlags1.NO_DIMENSIONS;

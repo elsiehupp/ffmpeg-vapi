@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="SSIMDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/ssim.h")]
+[CCode (cname="struct SSIMDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/ssim.h")]
 [Compact]
 public class SSIMDSPContext {
     public delegate int SumDelegate ();

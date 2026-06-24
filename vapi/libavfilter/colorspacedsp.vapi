@@ -97,7 +97,7 @@ public enum ChromaSubsamplingIndex {
     NB_SS;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
+[CCode (cname="struct ColorSpaceDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 [Compact]
 public class ColorSpaceDSPContext {
     /***********************************************************

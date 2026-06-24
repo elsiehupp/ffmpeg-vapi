@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct FrmContext",cheader_filename="")]
+[CCode (cname="struct FrmContext",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
 [Compact]
 public class FRMDemuxerPrivateData { }
 
@@ -30,9 +30,9 @@ public class FRMDemuxerPrivateData { }
 @file Megalux Frame demuxer
 ***********************************************************/
 
-[CCode (cname="ff_frm_demuxer",cheader_filename="")]
+[CCode (cname="ff_frm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
 public class FRMDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override string name {
         public get {
             return "frm";
@@ -41,7 +41,7 @@ public class FRMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FRMDemuxerPrivateData);
@@ -50,7 +50,7 @@ public class FRMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override string long_name {
         public get {
             return "Megalux Frame";
@@ -59,17 +59,17 @@ public class FRMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="frm_read_probe",cheader_filename="")]
+    [CCode (cname="frm_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="frm_read_header",cheader_filename="")]
+    [CCode (cname="frm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="frm_read_packet",cheader_filename="")]
+    [CCode (cname="frm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

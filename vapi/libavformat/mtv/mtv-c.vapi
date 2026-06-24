@@ -26,13 +26,13 @@ namespace LibAVFormat {
 @file MTV demuxer.
 ***********************************************************/
 
-[CCode (cname="struct MTVDemuxContext",cheader_filename="")]
+[CCode (cname="struct MTVDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
 [Compact]
 public class MTVDemuxerPrivateData { }
 
-[CCode (cname="ff_mtv_demuxer",cheader_filename="")]
+[CCode (cname="ff_mtv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
 public class MTVDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override string name {
         public get {
             return "mtv";
@@ -41,7 +41,7 @@ public class MTVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override string long_name {
         public get {
             return "MTV";
@@ -50,7 +50,7 @@ public class MTVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MTVDemuxerPrivateData);
@@ -59,17 +59,17 @@ public class MTVDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="mtv_probe",cheader_filename="")]
+    [CCode (cname="mtv_probe",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="mtv_read_header",cheader_filename="")]
+    [CCode (cname="mtv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mtv_read_packet",cheader_filename="")]
+    [CCode (cname="mtv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

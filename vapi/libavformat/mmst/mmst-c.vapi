@@ -32,13 +32,13 @@ ASF specification. Revision 01.20.03.
 [2]http://msdn.microsoft.com/en-us/library/bb643323.aspx
 ***********************************************************/
 
-[CCode (cname="struct MMSTContext",cheader_filename="")]
+[CCode (cname="struct MMSTContext",cheader_filename="subprojects/ffmpeg/libavformat/mmst.c")]
 [Compact]
 public class MMSTPrivateData { }
 
-[CCode (cname="ff_mmst_protocol",cheader_filename="")]
+[CCode (cname="ff_mmst_protocol",cheader_filename="subprojects/ffmpeg/libavformat/mmst.c")]
 public class MMSTURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mmst.c")]
     public override string name {
         public get {
             return "mmst";
@@ -47,26 +47,26 @@ public class MMSTURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="mms_open",cheader_filename="")]
+    [CCode (cname="mms_open",cheader_filename="subprojects/ffmpeg/libavformat/mmst.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="mms_read",cheader_filename="")]
+    [CCode (cname="mms_read",cheader_filename="subprojects/ffmpeg/libavformat/mmst.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="mms_close",cheader_filename="")]
+    [CCode (cname="mms_close",cheader_filename="subprojects/ffmpeg/libavformat/mmst.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/mmst.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MMSTPrivateData);
@@ -75,7 +75,7 @@ public class MMSTURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mmst.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;

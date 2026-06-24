@@ -30,13 +30,13 @@ Technical details here:
 http://wiki.multimedia.cx/index.php?title=EA_Command_And_Conquer_3_Audio_Codec
 ***********************************************************/
 
-[CCode (cname="struct CdataDemuxContext",cheader_filename="")]
+[CCode (cname="struct CdataDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
 [Compact]
 public class EACTDATADemuxerPrivateData { }
 
-[CCode (cname="ff_ea_cdata_demuxer",cheader_filename="")]
+[CCode (cname="ff_ea_cdata_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
 public class EACTDATADemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override string name {
         public get {
             return "ea_cdata";
@@ -45,7 +45,7 @@ public class EACTDATADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override string long_name {
         public get {
             return "Electronic Arts cdata";
@@ -54,7 +54,7 @@ public class EACTDATADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (EACTDATADemuxerPrivateData);
@@ -63,23 +63,23 @@ public class EACTDATADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="cdata_probe",cheader_filename="")]
+    [CCode (cname="cdata_probe",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="cdata_read_header",cheader_filename="")]
+    [CCode (cname="cdata_read_header",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="cdata_read_packet",cheader_filename="")]
+    [CCode (cname="cdata_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override string extensions {
         public get {
             return "cdata";

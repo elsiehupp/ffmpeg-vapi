@@ -90,7 +90,7 @@ public enum ReplayGainType {
     ALBUM;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
+[CCode (cname="struct VolumeContext",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 [Compact]
 public class VolumeContext {
     [CCode (cname="class")]

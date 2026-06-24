@@ -53,13 +53,13 @@ static const LibAVUtil.Option pcm_options[] = {
 
 };
 
-[CCode (cname="struct PCMAudioDemuxerContext",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="struct PCMAudioDemuxerContext",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 [Compact]
 public class PCMDemuxerPrivateData { }
 
-[CCode (cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public abstract class PCMDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -69,7 +69,7 @@ public abstract class PCMDemuxerClass : LibAVUtil.Class {
     }
     //  .option = pcm_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -79,9 +79,9 @@ public abstract class PCMDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public abstract class PCMDemuxer : AVInputFormat {
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PCMDemuxerPrivateData);
@@ -90,18 +90,18 @@ public abstract class PCMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="pcm_read_header",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="pcm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_pcm_read_packet",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="ff_pcm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ff_pcm_read_seek",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -109,7 +109,7 @@ public abstract class PCMDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -120,9 +120,9 @@ public abstract class PCMDemuxer : AVInputFormat {
 }
 
 
-[CCode (cname="f64be_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="f64be_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMF64BEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "f64be demuxer";
@@ -133,9 +133,9 @@ public class PCMF64BEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_f64be_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_f64be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMF64BEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "f64be";
@@ -144,7 +144,7 @@ public class PCMF64BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM 64-bit floating-point big-endian";
@@ -153,7 +153,7 @@ public class PCMF64BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -162,7 +162,7 @@ public class PCMF64BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_F64BE;
@@ -173,9 +173,9 @@ public class PCMF64BEDemuxer : PCMDemuxer {
     //  .priv_class = f64be_demuxer_class;
 }
 
-[CCode (cname="f64le_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="f64le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMF64LEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "f64le demuxer";
@@ -186,9 +186,9 @@ public class PCMF64LEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_f64le_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_f64le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMF64LEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "f64le";
@@ -197,7 +197,7 @@ public class PCMF64LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM 64-bit floating-point little-endian";
@@ -206,7 +206,7 @@ public class PCMF64LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -215,7 +215,7 @@ public class PCMF64LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_F64LE;
@@ -226,9 +226,9 @@ public class PCMF64LEDemuxer : PCMDemuxer {
     //  .priv_class = f64le_demuxer_class;
 }
 
-[CCode (cname="f32be_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="f32be_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMF32BEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "f32be demuxer";
@@ -239,9 +239,9 @@ public class PCMF32BEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_f32be_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_f32be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMF32BEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "f32be";
@@ -250,7 +250,7 @@ public class PCMF32BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM 32-bit floating-point big-endian";
@@ -259,7 +259,7 @@ public class PCMF32BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -268,7 +268,7 @@ public class PCMF32BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_F32BE;
@@ -279,9 +279,9 @@ public class PCMF32BEDemuxer : PCMDemuxer {
     //  .priv_class = f32be_demuxer_class;
 }
 
-[CCode (cname="f32le_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="f32le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMF32LEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "f32le demuxer";
@@ -292,9 +292,9 @@ public class PCMF32LEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_f32le_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_f32le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMF32LEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "f32le";
@@ -303,7 +303,7 @@ public class PCMF32LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM 32-bit floating-point little-endian";
@@ -312,7 +312,7 @@ public class PCMF32LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -321,7 +321,7 @@ public class PCMF32LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_F32LE;
@@ -332,9 +332,9 @@ public class PCMF32LEDemuxer : PCMDemuxer {
     //  .priv_class = f32le_demuxer_class;
 }
 
-[CCode (cname="s32be_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="s32be_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS32BEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "s32be demuxer";
@@ -345,9 +345,9 @@ public class PCMS32BEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_s32be_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_s32be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS32BEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "s32be";
@@ -356,7 +356,7 @@ public class PCMS32BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM signed 32-bit big-endian";
@@ -365,7 +365,7 @@ public class PCMS32BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -374,7 +374,7 @@ public class PCMS32BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S32BE;
@@ -385,9 +385,9 @@ public class PCMS32BEDemuxer : PCMDemuxer {
     //  .priv_class = s32be_demuxer_class;
 }
 
-[CCode (cname="s32le_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="s32le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS32LEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "s32le demuxer";
@@ -398,9 +398,9 @@ public class PCMS32LEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_s32le_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_s32le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS32LEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "s32le";
@@ -409,7 +409,7 @@ public class PCMS32LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM signed 32-bit little-endian";
@@ -418,7 +418,7 @@ public class PCMS32LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -427,7 +427,7 @@ public class PCMS32LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S32LE;
@@ -438,9 +438,9 @@ public class PCMS32LEDemuxer : PCMDemuxer {
     //  .priv_class = s32le_demuxer_class;
 }
 
-[CCode (cname="s24be_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="s24be_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS24BEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "s24be demuxer";
@@ -451,9 +451,9 @@ public class PCMS24BEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_s24be_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_s24be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS24BEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "s24be";
@@ -462,7 +462,7 @@ public class PCMS24BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM signed 24-bit big-endian";
@@ -471,7 +471,7 @@ public class PCMS24BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -480,7 +480,7 @@ public class PCMS24BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S24BE;
@@ -491,9 +491,9 @@ public class PCMS24BEDemuxer : PCMDemuxer {
     //  .priv_class = s24be_demuxer_class;
 }
 
-[CCode (cname="s24le_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="s24le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS24LEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "s24le demuxer";
@@ -504,9 +504,9 @@ public class PCMS24LEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_s24le_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_s24le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS24LEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "s24le";
@@ -515,7 +515,7 @@ public class PCMS24LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM signed 24-bit little-endian";
@@ -524,7 +524,7 @@ public class PCMS24LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -533,7 +533,7 @@ public class PCMS24LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S24LE;
@@ -544,9 +544,9 @@ public class PCMS24LEDemuxer : PCMDemuxer {
     //  .priv_class = s24le_demuxer_class;
 }
 
-[CCode (cname="s16be_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="s16be_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS16BEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "s16be demuxer";
@@ -557,9 +557,9 @@ public class PCMS16BEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_s16be_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_s16be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS16BEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "s16be";
@@ -568,7 +568,7 @@ public class PCMS16BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM signed 16-bit big-endian";
@@ -577,7 +577,7 @@ public class PCMS16BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
         #if AV_HAVE_BIGENDIAN
@@ -588,7 +588,7 @@ public class PCMS16BEDemuxer : PCMDemuxer {
         }
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S16BE;
@@ -600,9 +600,9 @@ public class PCMS16BEDemuxer : PCMDemuxer {
     //  .mime_type = "audio/L16";
 }
 
-[CCode (cname="s16le_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="s16le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS16LEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "s16le demuxer";
@@ -613,9 +613,9 @@ public class PCMS16LEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_s16le_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_s16le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS16LEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "s16le";
@@ -624,7 +624,7 @@ public class PCMS16LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM signed 16-bit little-endian";
@@ -633,7 +633,7 @@ public class PCMS16LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
         #if AV_HAVE_BIGENDIAN
@@ -644,7 +644,7 @@ public class PCMS16LEDemuxer : PCMDemuxer {
         }
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
@@ -655,9 +655,9 @@ public class PCMS16LEDemuxer : PCMDemuxer {
     //  .priv_class = s16le_demuxer_class;
 }
 
-[CCode (cname="s8_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="s8_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS8DemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "s8 demuxer";
@@ -668,9 +668,9 @@ public class PCMS8DemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_s8_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_s8_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMS8Demuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "s8";
@@ -679,7 +679,7 @@ public class PCMS8Demuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM signed 8-bit";
@@ -688,7 +688,7 @@ public class PCMS8Demuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "sb";
@@ -697,7 +697,7 @@ public class PCMS8Demuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S8;
@@ -708,9 +708,9 @@ public class PCMS8Demuxer : PCMDemuxer {
     //  .priv_class = s8_demuxer_class;
 }
 
-[CCode (cname="u32be_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="u32be_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU32BEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "u32be demuxer";
@@ -721,9 +721,9 @@ public class PCMU32BEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_u32be_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_u32be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU32BEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "u32be";
@@ -732,7 +732,7 @@ public class PCMU32BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM unsigned 32-bit big-endian";
@@ -741,7 +741,7 @@ public class PCMU32BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -750,7 +750,7 @@ public class PCMU32BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_U32BE;
@@ -761,9 +761,9 @@ public class PCMU32BEDemuxer : PCMDemuxer {
     //  .priv_class = u32be_demuxer_class;
 }
 
-[CCode (cname="u32le_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="u32le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU32LEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "u32le demuxer";
@@ -774,9 +774,9 @@ public class PCMU32LEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_u32le_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_u32le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU32LEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "u32le";
@@ -785,7 +785,7 @@ public class PCMU32LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM unsigned 32-bit little-endian";
@@ -794,7 +794,7 @@ public class PCMU32LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -803,7 +803,7 @@ public class PCMU32LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_U32LE;
@@ -814,9 +814,9 @@ public class PCMU32LEDemuxer : PCMDemuxer {
     //  .priv_class = u32le_demuxer_class;
 }
 
-[CCode (cname="u24be_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="u24be_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU24BEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "u24be demuxer";
@@ -827,9 +827,9 @@ public class PCMU24BEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_u24be_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_u24be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU24BEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "u24be";
@@ -838,7 +838,7 @@ public class PCMU24BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM unsigned 24-bit big-endian";
@@ -847,7 +847,7 @@ public class PCMU24BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -856,7 +856,7 @@ public class PCMU24BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_U24BE;
@@ -867,9 +867,9 @@ public class PCMU24BEDemuxer : PCMDemuxer {
     //  .priv_class = u24be_demuxer_class;
 }
 
-[CCode (cname="u24le_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="u24le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU24LEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "u24le demuxer";
@@ -880,9 +880,9 @@ public class PCMU24LEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_u24le_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_u24le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU24LEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "u24le";
@@ -891,7 +891,7 @@ public class PCMU24LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM unsigned 24-bit little-endian";
@@ -900,7 +900,7 @@ public class PCMU24LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -909,7 +909,7 @@ public class PCMU24LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_U24LE;
@@ -920,9 +920,9 @@ public class PCMU24LEDemuxer : PCMDemuxer {
     //  .priv_class = u24le_demuxer_class;
 }
 
-[CCode (cname="u16be_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="u16be_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU16BEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "u16be demuxer";
@@ -933,9 +933,9 @@ public class PCMU16BEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_u16be_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_u16be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU16BEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "u16be";
@@ -944,7 +944,7 @@ public class PCMU16BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM unsigned 16-bit big-endian";
@@ -953,7 +953,7 @@ public class PCMU16BEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
         #if AV_HAVE_BIGENDIAN
@@ -964,7 +964,7 @@ public class PCMU16BEDemuxer : PCMDemuxer {
         }
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_U16BE;
@@ -975,9 +975,9 @@ public class PCMU16BEDemuxer : PCMDemuxer {
     //  .priv_class = u16be_demuxer_class;
 }
 
-[CCode (cname="u16le_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="u16le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU16LEDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "u16le demuxer";
@@ -988,9 +988,9 @@ public class PCMU16LEDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_u16le_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_u16le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU16LEDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "u16le";
@@ -999,7 +999,7 @@ public class PCMU16LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM unsigned 16-bit little-endian";
@@ -1008,7 +1008,7 @@ public class PCMU16LEDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
         #if AV_HAVE_BIGENDIAN
@@ -1019,7 +1019,7 @@ public class PCMU16LEDemuxer : PCMDemuxer {
         }
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_U16LE;
@@ -1030,9 +1030,9 @@ public class PCMU16LEDemuxer : PCMDemuxer {
     //  .priv_class = u16le_demuxer_class;
 }
 
-[CCode (cname="u8_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="u8_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU8DemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "u8 demuxer";
@@ -1043,9 +1043,9 @@ public class PCMU8DemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_u8_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_u8_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMU8Demuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "u8";
@@ -1054,7 +1054,7 @@ public class PCMU8Demuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM unsigned 8-bit";
@@ -1063,7 +1063,7 @@ public class PCMU8Demuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "ub";
@@ -1072,7 +1072,7 @@ public class PCMU8Demuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_U8;
@@ -1083,9 +1083,9 @@ public class PCMU8Demuxer : PCMDemuxer {
     //  .priv_class = u8_demuxer_class;
 }
 
-[CCode (cname="alaw_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="alaw_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMNALAWDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "alaw demuxer";
@@ -1096,9 +1096,9 @@ public class PCMNALAWDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_alaw_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_alaw_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMALAWDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "alaw";
@@ -1107,7 +1107,7 @@ public class PCMALAWDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM A-law";
@@ -1116,7 +1116,7 @@ public class PCMALAWDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "al";
@@ -1125,7 +1125,7 @@ public class PCMALAWDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_ALAW;
@@ -1136,9 +1136,9 @@ public class PCMALAWDemuxer : PCMDemuxer {
     //  .priv_class = alaw_demuxer_class;
 }
 
-[CCode (cname="mulaw_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="mulaw_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMMULAWDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "mulaw demuxer";
@@ -1149,9 +1149,9 @@ public class PCMMULAWDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_mulaw_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_mulaw_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMMULAWDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "mulaw";
@@ -1160,7 +1160,7 @@ public class PCMMULAWDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM mu-law";
@@ -1169,7 +1169,7 @@ public class PCMMULAWDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "ul";
@@ -1178,7 +1178,7 @@ public class PCMMULAWDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_MULAW;
@@ -1189,9 +1189,9 @@ public class PCMMULAWDemuxer : PCMDemuxer {
     //  .priv_class = mulaw_demuxer_class;
 }
 
-[CCode (cname="vidc_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="vidc_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMVIDCDemuxerClass : PCMDemuxerClass {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "vidc demuxer";
@@ -1202,9 +1202,9 @@ public class PCMVIDCDemuxerClass : PCMDemuxerClass {
     //  .option = pcm_options;
 }
 
-[CCode (cname="ff_pcm_vidc_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_pcm_vidc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class PCMVIDCDemuxer : PCMDemuxer {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "vidc";
@@ -1213,7 +1213,7 @@ public class PCMVIDCDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "PCM Archimedes VIDC";
@@ -1222,7 +1222,7 @@ public class PCMVIDCDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "";
@@ -1231,7 +1231,7 @@ public class PCMVIDCDemuxer : PCMDemuxer {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_VIDC;
@@ -1273,9 +1273,9 @@ static const LibAVUtil.Option sln_options[] = {
 
 };
 
-[CCode (cname="sln_demuxer_class",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="sln_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class SLNDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {
             return "sln demuxer";
@@ -1286,9 +1286,9 @@ public class SLNDemuxerClass : LibAVUtil.Class {
     //  .option = sln_options;
 }
 
-[CCode (cname="ff_sln_demuxer",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cname="ff_sln_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class SLNDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {
             return "sln";
@@ -1297,7 +1297,7 @@ public class SLNDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string long_name {
         public get {
             return "Asterisk raw pcm";
@@ -1306,7 +1306,7 @@ public class SLNDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string extensions {
         public get {
             return "sln";
@@ -1315,7 +1315,7 @@ public class SLNDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;

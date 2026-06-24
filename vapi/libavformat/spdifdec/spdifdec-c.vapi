@@ -27,9 +27,9 @@ namespace LibAVFormat {
 @author Anssi Hannula
 ***********************************************************/
 
-[CCode (cname="ff_spdif_demuxer",cheader_filename="")]
+[CCode (cname="ff_spdif_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/spdifdec.c")]
 public class SPDIFDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/spdifdec.c")]
     public override string name {
         public get {
             return "spdif";
@@ -38,7 +38,7 @@ public class SPDIFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/spdifdec.c")]
     public override string long_name {
         public get {
             return "IEC 61937 (compressed data in S/PDIF)";
@@ -47,23 +47,23 @@ public class SPDIFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="spdif_probe",cheader_filename="")]
+    [CCode (cname="spdif_probe",cheader_filename="subprojects/ffmpeg/libavformat/spdifdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="spdif_read_header",cheader_filename="")]
+    [CCode (cname="spdif_read_header",cheader_filename="subprojects/ffmpeg/libavformat/spdifdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_spdif_read_packet",cheader_filename="")]
+    [CCode (cname="ff_spdif_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/spdifdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/spdifdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

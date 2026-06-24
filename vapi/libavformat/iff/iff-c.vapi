@@ -30,13 +30,13 @@ for more information on the .iff file format, visit:
 http://wiki.multimedia.cx/index.php?title=IFF
 ***********************************************************/
 
-[CCode (cname="struct IffDemuxContext",cheader_filename="")]
+[CCode (cname="struct IffDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
 [Compact]
 public class IFFDemuxerPrivateData { }
 
-[CCode (cname="ff_iff_demuxer",cheader_filename="")]
+[CCode (cname="ff_iff_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
 public class IFFDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override string name {
         public get {
             return "iff";
@@ -45,7 +45,7 @@ public class IFFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override string long_name {
         public get {
             return "IFF (Interchange File Format)";
@@ -54,7 +54,7 @@ public class IFFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (IFFDemuxerPrivateData);
@@ -63,23 +63,23 @@ public class IFFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="iff_probe",cheader_filename="")]
+    [CCode (cname="iff_probe",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="iff_read_header",cheader_filename="")]
+    [CCode (cname="iff_read_header",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="iff_read_packet",cheader_filename="")]
+    [CCode (cname="iff_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.NO_BYTE_SEEK;

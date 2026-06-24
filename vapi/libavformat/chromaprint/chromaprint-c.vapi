@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "silence_threshold",
@@ -96,9 +96,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="chromaprint_class",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+[CCode (cname="chromaprint_class",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
 public class ChromaPrintMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override string class_name {
         public get {
             return "chromaprint muxer";
@@ -107,7 +107,7 @@ public class ChromaPrintMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -116,10 +116,10 @@ public class ChromaPrintMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -129,13 +129,13 @@ public class ChromaPrintMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct ChromaprintMuxContext",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+[CCode (cname="struct ChromaprintMuxContext",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
 [Compact]
 public class ChromaPrintMuxerPrivateData { }
 
-[CCode (cname="ff_chromaprint_muxer",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+[CCode (cname="ff_chromaprint_muxer",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
 public class ChromaPrintMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override string name {
         public get {
             return "chromaprint";
@@ -144,7 +144,7 @@ public class ChromaPrintMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override string long_name {
         public get {
             return "Chromaprint";
@@ -153,7 +153,7 @@ public class ChromaPrintMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ChromaPrintMuxerPrivateData);
@@ -162,7 +162,7 @@ public class ChromaPrintMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
         #if AV_HAVE_BIGENDIAN
@@ -173,23 +173,23 @@ public class ChromaPrintMuxer : AVOutputFormat {
         }
     }
 
-    [CCode (cname="write_header",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="write_packet",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="write_trailer",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/chromaprint.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS;

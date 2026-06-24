@@ -30,9 +30,9 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_ogg_demuxer",cheader_filename="")]
+[CCode (cname="ff_ogg_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
 public class OggDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override string name {
         public get {
             return "ogg";
@@ -41,7 +41,7 @@ public class OggDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override string long_name {
         public get {
             return "Ogg";
@@ -50,7 +50,7 @@ public class OggDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (Ogg);
@@ -59,28 +59,28 @@ public class OggDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="ogg_probe",cheader_filename="")]
+    [CCode (cname="ogg_probe",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ogg_read_header",cheader_filename="")]
+    [CCode (cname="ogg_read_header",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ogg_read_packet",cheader_filename="")]
+    [CCode (cname="ogg_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ogg_read_close",cheader_filename="")]
+    [CCode (cname="ogg_read_close",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ogg_read_seek",cheader_filename="")]
+    [CCode (cname="ogg_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -88,7 +88,7 @@ public class OggDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="ogg_read_timestamp",cheader_filename="")]
+    [CCode (cname="ogg_read_timestamp",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
@@ -96,7 +96,7 @@ public class OggDemuxer : AVInputFormat {
         int64 pos_limit
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override string extensions {
         public get {
             return "ogg";
@@ -105,7 +105,7 @@ public class OggDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES | AVFormatFlags1.NO_BINARY_SEARCH;

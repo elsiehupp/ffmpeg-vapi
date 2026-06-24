@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_flac_codec",cheader_filename="")]
+[CCode (cname="ff_flac_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparseflac.c")]
 public class FlacCodec : OggCodec {
     [CCode (cname="magic")]
     public override uint8[] magic {
@@ -40,7 +40,7 @@ public class FlacCodec : OggCodec {
 
     }
 
-    [CCode (cname="flac_header",cheader_filename="")]
+    [CCode (cname="flac_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseflac.c")]
     public override int header (
         AVFormatContext context,
         int arg
@@ -56,7 +56,7 @@ public class FlacCodec : OggCodec {
 
 }
 
-[CCode (cname="ff_old_flac_codec",cheader_filename="")]
+[CCode (cname="ff_old_flac_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparseflac.c")]
 public class OldFlacCodec : OggCodec {
     [CCode (cname="magic")]
     public override uint8[] magic {
@@ -75,7 +75,7 @@ public class OldFlacCodec : OggCodec {
 
     }
 
-    [CCode (cname="old_flac_header",cheader_filename="")]
+    [CCode (cname="old_flac_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseflac.c")]
     public override int header (
         AVFormatContext context,
         int arg

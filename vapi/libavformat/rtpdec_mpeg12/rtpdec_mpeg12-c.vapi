@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_mpeg_audio_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_mpeg_audio_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
 public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -33,7 +33,7 @@ public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MP3;
@@ -42,7 +42,7 @@ public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="need_parsing",cheader_filename="")]
+    [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVStreamParseType.FULL;
@@ -51,7 +51,7 @@ public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="mpeg_parse_packet",cheader_filename="")]
+    [CCode (cname="mpeg_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -66,9 +66,9 @@ public class MpegAudioDynamicHandler : RTPDynamicProtocolHandler {
     //  .static_payload_id = 14;
 }
 
-[CCode (cname="ff_mpeg_video_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_mpeg_video_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
 public class MpegVideoDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.VIDEO;
@@ -77,7 +77,7 @@ public class MpegVideoDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MPEG2VIDEO;
@@ -86,7 +86,7 @@ public class MpegVideoDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="need_parsing",cheader_filename="")]
+    [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
     public override AVStreamParseType need_parsing {
         public get {
             return AVStreamParseType.FULL;
@@ -95,7 +95,7 @@ public class MpegVideoDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="mpeg_parse_packet",cheader_filename="")]
+    [CCode (cname="mpeg_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpeg12.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

@@ -95,7 +95,7 @@ public class DigestParams {
 @brief HTTP Authentication state structure. Must be zero-initialized
 before used with the functions below.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+[CCode (cname="struct HTTPAuthState",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
 [Compact]
 public class HTTPAuthState {
     /***********************************************************

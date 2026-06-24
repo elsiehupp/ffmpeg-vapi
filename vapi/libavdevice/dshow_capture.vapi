@@ -19,17 +19,6 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public const bool DSHOWDEBUG; // 0
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public define COBJMACROS
-public define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-public define NO_DSHOW_STRSAFE
-#include <dshow.h>
-#include <dvdmedia.h>
-
 /***********************************************************
 EC_DEVICE_LOST is not defined in MinGW dshow headers.
 ***********************************************************/
@@ -66,10 +55,9 @@ public void ff_printGUID (
 //  extern const AVClass? ff_dshow_context_class_ptr;
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public define dshowdebug (
+public static void dshowdebug (
     ...
-);
-//  {
+) {
 //      ff_dlog (
 //          &ff_dshow_context_class_ptr,
 //          __VA_ARGS__
@@ -79,9 +67,7 @@ public define dshowdebug (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public static inline void nothing (
     void *foo
-);
-//  {
-//  }
+); // {}
 
 [CCode (cname="struct GUIDoffset",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
@@ -111,12 +97,10 @@ public enum DirectShowSourceFilterType {
     AUDIO_SOURCE_DEVICE; // = 1;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public define DECLARE_QUERYINTERFACE (
-    void *class,
-    ...
-);
-//  {
+//  public define DECLARE_QUERYINTERFACE (
+//      void *class,
+//      ...
+//  ) {
 //      long WINAPI
 //      class##_QueryInterface (class? this, GUID? riid, void **ppvObject)
 //      {
@@ -142,11 +126,9 @@ public define DECLARE_QUERYINTERFACE (
 
 //  }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public define DECLARE_ADDREF (
-    void *class
-);
-//  {
+//  public define DECLARE_ADDREF (
+//      void *class
+//  ) {
 //      ulong WINAPI
 //      class##_AddRef (class? this)
 //      {
@@ -156,11 +138,9 @@ public define DECLARE_ADDREF (
 
 //  }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public define DECLARE_RELEASE (
-    void *class
-);
-//  {
+//  public define DECLARE_RELEASE (
+//      void *class
+//  ) {
 //      ulong WINAPI
 //      class##_Release (class? this)
 //      {
@@ -173,12 +153,10 @@ public define DECLARE_RELEASE (
 
 //  }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public define DECLARE_DESTROY (
-    void *class,
-    void *func
-);
-//  {
+//  public define DECLARE_DESTROY (
+//      void *class,
+//      void *func
+//  ) {
 //      void class##_Destroy (class? this)
 //      {
 //          dshowdebug (AV_STRINGIFY (class)"_Destroy (%p)\n", this);
@@ -192,13 +170,11 @@ public define DECLARE_DESTROY (
 
 //  }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public define DECLARE_CREATE (
-    void *class,
-    void *setup,
-    ...
-);
-//  {
+//  public define DECLARE_CREATE (
+//      void *class,
+//      void *setup,
+//      ...
+//  ) {
 //      class? class##_Create (__VA_ARGS__)
 //      {
 //          class? this = CoTaskMemAlloc (sizeof (class));
@@ -222,13 +198,11 @@ public define DECLARE_CREATE (
 
 //  }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public define SETVTBL (
-    void *vtbl,
-    void *class,
-    void *fn
-);
-//  {
+//  public define SETVTBL (
+//      void *vtbl,
+//      void *class,
+//      void *fn
+//  ) {
 //      (vtbl)->fn = (void *) class##_##fn;
 //  }
 
@@ -237,30 +211,30 @@ Forward Declarations
 ****************************************************************************/
 [CCode (cname="struct libAVPin",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
-public class libAVPin { }
+public class LibAVPin { }
 
 [CCode (cname="struct libAVMemInputPin",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
-public class libAVMemInputPin { }
+public class LibAVMemInputPin { }
 
 [CCode (cname="struct libAVEnumPins",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
-public class libAVEnumPins { }
+public class LibAVEnumPins { }
 
 [CCode (cname="struct libAVEnumMediaTypes",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
-public class libAVEnumMediaTypes { }
+public class LibAVEnumMediaTypes { }
 
 [CCode (cname="struct libAVFilter",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
-public class libAVFilter { }
+public class LibAVFilter { }
 
 /*****************************************************************************
 libAVPin
 ****************************************************************************/
 [CCode (cname="struct libAVPin",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
-public class libAVPin {
+public class LibAVPin {
     [CCode (cname="")]
     public IPinVtbl? vtbl;
 
@@ -465,7 +439,7 @@ libAVEnumPins
  ****************************************************************************/
 [CCode (cname="struct libAVEnumPins",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
-public class libAVEnumPins {
+public class LibAVEnumPins {
     [CCode (cname="")]
     public IEnumPinsVtbl? vtbl;
 
@@ -541,7 +515,7 @@ libAVEnumMediaTypes
  ****************************************************************************/
 [CCode (cname="struct libAVEnumMediaTypes",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
-public class libAVEnumMediaTypes {
+public class LibAVEnumMediaTypes {
     [CCode (cname="")]
     public IEnumMediaTypesVtbl? vtbl;
 
@@ -612,7 +586,7 @@ libAVFilter
  ****************************************************************************/
 [CCode (cname="struct libAVFilter",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
-public class libAVFilter {
+public class LibAVFilter {
     [CCode (cname="")]
     public IBaseFilterVtbl? vtbl;
 

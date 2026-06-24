@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="Stereo3DDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/stereo3d.h")]
+[CCode (cname="struct Stereo3DDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/stereo3d.h")]
 [Compact]
 public class Stereo3DDSPContext {
     public delegate void AnaglyphDelegate (

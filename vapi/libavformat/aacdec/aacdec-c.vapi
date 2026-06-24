@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="ff_aac_demuxer",cheader_filename="")]
+[CCode (cname="ff_aac_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
 public class AACDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
     public override string name {
         public get {
             return "aac";
@@ -33,7 +33,7 @@ public class AACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
     public override string long_name {
         public get {
             return "raw ADTS AAC (Advanced Audio Coding)";
@@ -42,23 +42,23 @@ public class AACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="adts_aac_probe",cheader_filename="")]
+    [CCode (cname="adts_aac_probe",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="adts_aac_read_header",cheader_filename="")]
+    [CCode (cname="adts_aac_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="adts_aac_read_packet",cheader_filename="")]
+    [CCode (cname="adts_aac_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -67,7 +67,7 @@ public class AACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
     public override string extensions {
         public get {
             return "aac";
@@ -76,7 +76,7 @@ public class AACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
     public override string mime_type {
         public get {
             return "audio/aac,audio/aacp,audio/x-aac";
@@ -85,7 +85,7 @@ public class AACDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/aacdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.AAC;

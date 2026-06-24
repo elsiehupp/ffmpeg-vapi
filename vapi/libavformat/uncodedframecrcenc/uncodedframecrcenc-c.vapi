@@ -21,9 +21,9 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_uncodedframecrc_muxer",cheader_filename="")]
+[CCode (cname="ff_uncodedframecrc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/uncodedframecrcenc.c")]
 public class UncodedFrameCRCMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/uncodedframecrcenc.c")]
     public override string name {
         public get {
             return "uncodedframecrc";
@@ -32,7 +32,7 @@ public class UncodedFrameCRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/uncodedframecrcenc.c")]
     public override string long_name {
         public get {
             return "uncoded framecrc testing";
@@ -41,7 +41,7 @@ public class UncodedFrameCRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/uncodedframecrcenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
@@ -50,7 +50,7 @@ public class UncodedFrameCRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/uncodedframecrcenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
@@ -59,18 +59,18 @@ public class UncodedFrameCRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="write_header",cheader_filename="")]
+    [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/uncodedframecrcenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="write_packet",cheader_filename="")]
+    [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/uncodedframecrcenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="write_frame",cheader_filename="")]
+    [CCode (cname="write_frame",cheader_filename="subprojects/ffmpeg/libavformat/uncodedframecrcenc.c")]
     public override int write_uncoded_frame (
         AVFormatContext format_context,
         int stream_index,
@@ -78,7 +78,7 @@ public class UncodedFrameCRCMuxer : AVOutputFormat {
         uint flags
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/uncodedframecrcenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;

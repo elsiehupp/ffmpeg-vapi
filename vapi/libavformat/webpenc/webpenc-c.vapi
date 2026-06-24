@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "loop",
@@ -42,9 +42,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="webp_muxer_class",cheader_filename="ffmpeg/libformat/webpenc.c")]
+[CCode (cname="webp_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
 public class WebPMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override string class_name {
         public get {
             return "WebP muxer";
@@ -53,7 +53,7 @@ public class WebPMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -62,7 +62,7 @@ public class WebPMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -71,17 +71,17 @@ public class WebPMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 }
 
-[CCode (cname="struct WebpContext",cheader_filename="ffmpeg/libformat/webpenc.c")]
+[CCode (cname="struct WebpContext",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
 [Compact]
 public class WebPMuxerPrivateData { }
 
-[CCode (cname="ff_webp_muxer",cheader_filename="ffmpeg/libformat/webpenc.c")]
+[CCode (cname="ff_webp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
 public class WebPMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override string name {
         public get {
             return "webp";
@@ -90,7 +90,7 @@ public class WebPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override string long_name {
         public get {
             return "WebP";
@@ -99,7 +99,7 @@ public class WebPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override string extensions {
         public get {
             return "webp";
@@ -108,7 +108,7 @@ public class WebPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WebPMuxerPrivateData);
@@ -117,7 +117,7 @@ public class WebPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.WEBP;
@@ -126,24 +126,24 @@ public class WebPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="webp_write_header",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="webp_write_header",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="webp_write_packet",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="webp_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="webp_write_trailer",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="webp_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
     //  .priv_class = webp_muxer_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/webpenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS;

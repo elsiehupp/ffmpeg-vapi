@@ -52,7 +52,7 @@ as the seed, and therefore does not (av_murmur3_init ()).
 To make hashes comparable, you should provide the same seed for all calls to
 this hash function -- if you are supplying one yourself, that is.
 ***********************************************************/
-[CCode (cname="AVMurMur3",cheader_filename="subprojects/ffmpeg/libavutil/murmur3.h")]
+[CCode (cname="struct AVMurMur3",cheader_filename="subprojects/ffmpeg/libavutil/murmur3.h")]
 [Compact]
 public class MurMur3Context {
     /***********************************************************

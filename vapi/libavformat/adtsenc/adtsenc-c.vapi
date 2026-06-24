@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "write_id3v2",
@@ -54,9 +54,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="adts_muxer_class",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+[CCode (cname="adts_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
 public class ADTSMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override string class_name {
         public get {
             return "ADTS muxer";
@@ -65,7 +65,7 @@ public class ADTSMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -75,7 +75,7 @@ public class ADTSMuxerClass : LibAVUtil.Class {
     }
     //  .option = options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -85,13 +85,13 @@ public class ADTSMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct ADTSContext",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+[CCode (cname="struct ADTSContext",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
 [Compact]
 public class ADTSMuxerPrivateData { }
 
-[CCode (cname="ff_adts_muxer",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+[CCode (cname="ff_adts_muxer",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
 public class ADTSMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override string name {
         public get {
             return "adts";
@@ -100,7 +100,7 @@ public class ADTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override string long_name {
         public get {
             return "ADTS AAC (Advanced Audio Coding)";
@@ -109,7 +109,7 @@ public class ADTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override string mime_type {
         public get {
             return "audio/aac";
@@ -118,7 +118,7 @@ public class ADTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override string extensions {
         public get {
             return "aac,adts";
@@ -127,7 +127,7 @@ public class ADTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (ADTSMuxerPrivateData);
@@ -136,7 +136,7 @@ public class ADTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.AAC;
@@ -145,7 +145,7 @@ public class ADTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -154,29 +154,29 @@ public class ADTSMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="adts_init",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="adts_init",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="adts_write_header",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="adts_write_header",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="adts_write_packet",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="adts_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="adts_write_trailer",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="adts_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
     //  .priv_class = adts_muxer_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/adtsenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS;

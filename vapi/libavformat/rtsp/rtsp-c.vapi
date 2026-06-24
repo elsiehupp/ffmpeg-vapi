@@ -24,9 +24,9 @@ namespace LibAVFormat {
 
 #if CONFIG_SDP_DEMUXER
 
-[CCode (cname="sdp_demuxer_class",cheader_filename="ffmpeg/libformat/rtsp.c")]
+[CCode (cname="sdp_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
 public class SDPDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string class_name {
         public get {
             return "SDP demuxer";
@@ -35,7 +35,7 @@ public class SDPDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -45,7 +45,7 @@ public class SDPDemuxerClass : LibAVUtil.Class {
     }
     //  .option = sdp_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -55,9 +55,9 @@ public class SDPDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_sdp_demuxer",cheader_filename="ffmpeg/libformat/rtsp.c")]
+[CCode (cname="ff_sdp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
 public class SDPDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string name {
         public get {
             return "sdp";
@@ -66,7 +66,7 @@ public class SDPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string long_name {
         public get {
             return "SDP";
@@ -75,7 +75,7 @@ public class SDPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RTSPState);
@@ -84,23 +84,23 @@ public class SDPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="sdp_probe",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="sdp_probe",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="sdp_read_header",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="sdp_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_rtsp_fetch_packet",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="ff_rtsp_fetch_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="sdp_read_close",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="sdp_read_close",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_close (
         AVFormatContext format_context
     );
@@ -110,9 +110,9 @@ public class SDPDemuxer : AVInputFormat {
 
 #if CONFIG_RTP_DEMUXER
 
-[CCode (cname="rtp_demuxer_class",cheader_filename="ffmpeg/libformat/rtsp.c")]
+[CCode (cname="rtp_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
 public class RTPDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string class_name {
         public get {
             return "RTP demuxer";
@@ -121,7 +121,7 @@ public class RTPDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -131,7 +131,7 @@ public class RTPDemuxerClass : LibAVUtil.Class {
     }
     //  .option = rtp_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -141,9 +141,9 @@ public class RTPDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_rtp_demuxer",cheader_filename="ffmpeg/libformat/rtsp.c")]
+[CCode (cname="ff_rtp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
 public class RTPDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string name {
         public get {
             return "rtp";
@@ -152,7 +152,7 @@ public class RTPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string long_name {
         public get {
             return "RTP input";
@@ -161,7 +161,7 @@ public class RTPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RTSPState);
@@ -170,28 +170,28 @@ public class RTPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="rtp_probe",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="rtp_probe",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="rtp_read_header",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="rtp_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_rtsp_fetch_packet",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="ff_rtsp_fetch_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="sdp_read_close",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="sdp_read_close",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtsp.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_FILE;

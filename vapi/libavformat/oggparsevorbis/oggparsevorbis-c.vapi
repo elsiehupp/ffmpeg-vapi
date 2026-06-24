@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_vorbis_codec",cheader_filename="")]
+[CCode (cname="ff_vorbis_codec",cheader_filename="subprojects/ffmpeg/libavformat/offparsevorbis.c")]
 public class VorbisCodec : OggCodec {
     [CCode (cname="magic")]
     public override uint8[] magic {
@@ -43,19 +43,19 @@ public class VorbisCodec : OggCodec {
 
     }
 
-    [CCode (cname="vorbis_header",cheader_filename="")]
+    [CCode (cname="vorbis_header",cheader_filename="subprojects/ffmpeg/libavformat/offparsevorbis.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="vorbis_packet",cheader_filename="")]
+    [CCode (cname="vorbis_packet",cheader_filename="subprojects/ffmpeg/libavformat/offparsevorbis.c")]
     public override int packet (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="vorbis_cleanup",cheader_filename="")]
+    [CCode (cname="vorbis_cleanup",cheader_filename="subprojects/ffmpeg/libavformat/offparsevorbis.c")]
     public override void cleanup (
         AVFormatContext format_context,
         int idx

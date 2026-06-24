@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_iv8_demuxer",cheader_filename="")]
+[CCode (cname="ff_iv8_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
 public class IV8Demuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override string name {
         public get {
             return "iv8";
@@ -32,7 +32,7 @@ public class IV8Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override string long_name {
         public get {
             return "IndigoVision 8000 video";
@@ -41,23 +41,23 @@ public class IV8Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="probe",cheader_filename="")]
+    [CCode (cname="probe",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header",cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet",cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;

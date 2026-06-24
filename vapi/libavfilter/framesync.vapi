@@ -78,7 +78,7 @@ public enum FFFrameSyncExtrapolationMode {
 /***********************************************************
 Input stream structure
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
+[CCode (cname="struct FFFrameSyncIn",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 [Compact]
 public class FFFrameSyncIn {
     /***********************************************************
@@ -153,7 +153,7 @@ public class FFFrameSyncIn {
 /***********************************************************
 Frame sync structure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
+[CCode (cname="struct FFFrameSync",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 [Compact]
 public class FFFrameSync {
     [CCode (cname="class")]

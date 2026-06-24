@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct SIFFContext",cheader_filename="")]
+[CCode (cname="struct SIFFContext",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
 [Compact]
 public class SIFFDemuxerPrivateData { }
 
-[CCode (cname="ff_siff_demuxer",cheader_filename="")]
+[CCode (cname="ff_siff_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
 public class SIFFDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override string name {
         public get {
             return "siff";
@@ -37,7 +37,7 @@ public class SIFFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override string long_name {
         public get {
             return "Beam Software SIFF";
@@ -46,7 +46,7 @@ public class SIFFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SIFFDemuxerPrivateData);
@@ -55,23 +55,23 @@ public class SIFFDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="siff_probe",cheader_filename="")]
+    [CCode (cname="siff_probe",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="siff_read_header",cheader_filename="")]
+    [CCode (cname="siff_read_header",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="siff_read_packet",cheader_filename="")]
+    [CCode (cname="siff_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override string extensions {
         public get {
             return "vb,son";

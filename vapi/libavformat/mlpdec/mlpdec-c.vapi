@@ -26,9 +26,9 @@ namespace LibAVFormat {
 
 #if CONFIG_MLP_DEMUXER
 //  FF_RAW_DEMUXER_CLASS (mlp)
-[CCode (cname="ff_mlp_demuxer",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+[CCode (cname="ff_mlp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
 public class MLPDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override string name {
         public get {
             return "mlp";
@@ -37,7 +37,7 @@ public class MLPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override string long_name {
         public get {
             return "raw MLP";
@@ -46,23 +46,23 @@ public class MLPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="mlp_probe",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="mlp_probe",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ff_raw_audio_read_header",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.NO_TIMESTAMPS;
@@ -71,7 +71,7 @@ public class MLPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override string extensions {
         public get {
             return "mlp";
@@ -80,7 +80,7 @@ public class MLPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.MLP;
@@ -89,7 +89,7 @@ public class MLPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);
@@ -103,9 +103,9 @@ public class MLPDemuxer : AVInputFormat {
 
 #if CONFIG_TRUEHD_DEMUXER
 //  FF_RAW_DEMUXER_CLASS (truehd)
-[CCode (cname="ff_truehd_demuxer",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+[CCode (cname="ff_truehd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
 public class TrueHDDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override string name {
         public get {
             return "truehd";
@@ -114,7 +114,7 @@ public class TrueHDDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override string long_name {
         public get {
             return "raw TrueHD";
@@ -123,23 +123,23 @@ public class TrueHDDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="thd_probe",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="thd_probe",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ff_raw_audio_read_header",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.NO_TIMESTAMPS;
@@ -148,7 +148,7 @@ public class TrueHDDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override string extensions {
         public get {
             return "thd";
@@ -157,7 +157,7 @@ public class TrueHDDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.TRUEHD;
@@ -166,7 +166,7 @@ public class TrueHDDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mlpdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);

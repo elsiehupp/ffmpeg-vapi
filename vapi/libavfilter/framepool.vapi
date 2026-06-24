@@ -23,11 +23,10 @@ Frame pool. This structure is opaque and not meant to be accessed
 directly. It is allocated with ff_frame_pool_init () and freed with
 ff_frame_pool_uninit ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
+[CCode (cname="struct FFFramePool",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 [Compact]
-public class FFFramePool  { }
+public class FFFramePool { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
 public delegate AVBufferRef AllocDelegate (
     int size
 );

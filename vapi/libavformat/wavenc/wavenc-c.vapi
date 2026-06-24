@@ -173,9 +173,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="wav_muxer_class",cheader_filename="ffmpeg/libformat/wavenc.c")]
+[CCode (cname="wav_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
 public class WAVMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string class_name {
         public get {
             return "WAV muxer";
@@ -184,7 +184,7 @@ public class WAVMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -193,10 +193,10 @@ public class WAVMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -206,9 +206,9 @@ public class WAVMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_wav_muxer",cheader_filename="ffmpeg/libformat/wavenc.c")]
+[CCode (cname="ff_wav_muxer",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
 public class WAVMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string name {
         public get {
             return "wav";
@@ -217,7 +217,7 @@ public class WAVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string long_name {
         public get {
             return "WAV / WAVE (Waveform Audio)";
@@ -226,7 +226,7 @@ public class WAVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string mime_type {
         public get {
             return "audio/x-wav";
@@ -235,7 +235,7 @@ public class WAVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string extensions {
         public get {
             return "wav";
@@ -244,7 +244,7 @@ public class WAVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WAVMuxContext);
@@ -253,7 +253,7 @@ public class WAVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
@@ -262,7 +262,7 @@ public class WAVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -271,24 +271,24 @@ public class WAVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="wav_write_header",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="wav_write_header",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="wav_write_packet",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="wav_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="wav_write_trailer",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="wav_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
@@ -314,9 +314,9 @@ public class WAVMuxer : AVOutputFormat {
 
 #if CONFIG_W64_MUXER
 
-[CCode (cname="ff_w64_muxer",cheader_filename="ffmpeg/libformat/wavenc.c")]
+[CCode (cname="ff_w64_muxer",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
 public class Wave64Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string name {
         public get {
             return "w64";
@@ -325,7 +325,7 @@ public class Wave64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string long_name {
         public get {
             return "Sony Wave64";
@@ -334,7 +334,7 @@ public class Wave64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string extensions {
         public get {
             return "w64";
@@ -343,7 +343,7 @@ public class Wave64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WAVMuxContext);
@@ -352,7 +352,7 @@ public class Wave64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
@@ -361,7 +361,7 @@ public class Wave64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -370,24 +370,24 @@ public class Wave64Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="w64_write_header",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="w64_write_header",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="wav_write_packet",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="wav_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="w64_write_trailer",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="w64_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/wavenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;

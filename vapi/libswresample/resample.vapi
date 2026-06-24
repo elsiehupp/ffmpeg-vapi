@@ -89,7 +89,7 @@ public class ResampleContext {
     public int phase_count_compensation;
 
     [Compact]
-    public class FooBar {
+    public class DspFunctions { // not a named struct type !!!
         public delegate void ResampleOneDelegate (
             void *dst,
             void *src,
@@ -122,10 +122,9 @@ public class ResampleContext {
 
         [CCode (cname="resample_linear")]
         public ResambleLinearDelegate resample_linear;
-
     }
 
-    public FooBar dsp;
+    public DspFunctions dsp;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]

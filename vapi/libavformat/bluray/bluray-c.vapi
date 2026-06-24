@@ -77,9 +77,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="bluray_context_class",cheader_filename="")]
+[CCode (cname="bluray_context_class",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
 public class BluRayContextClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override string class_name {
         public get {
             return "bluray";
@@ -88,7 +88,7 @@ public class BluRayContextClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -98,7 +98,7 @@ public class BluRayContextClass : LibAVUtil.Class {
     }
     //  .option = options,
 
-    [CCode (cname="version",cheader_filename="")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -108,13 +108,13 @@ public class BluRayContextClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct BlurayContext",cheader_filename="")]
+[CCode (cname="struct BlurayContext",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
 [Compact]
 public class BluRayPrivateData { }
 
-[CCode (cname="ff_bluray_protocol",cheader_filename="")]
+[CCode (cname="ff_bluray_protocol",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
 public class BluRayURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override string name {
         public get {
             return "bluray";
@@ -123,33 +123,33 @@ public class BluRayURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="bluray_close",cheader_filename="")]
+    [CCode (cname="bluray_close",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="bluray_open",cheader_filename="")]
+    [CCode (cname="bluray_open",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="bluray_read",cheader_filename="")]
+    [CCode (cname="bluray_read",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="bluray_seek",cheader_filename="")]
+    [CCode (cname="bluray_seek",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BluRayPrivateData);

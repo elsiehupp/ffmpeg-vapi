@@ -64,9 +64,9 @@ static const LibAVUtil.Option codec2raw_options[] = {
 
 };
 
-[CCode (cname="codec2_mux_class",cheader_filename="ffmpeg/libformat/codec2.c")]
+[CCode (cname="codec2_mux_class",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
 public class Codec2MuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string class_name {
         public get {
             return "codec2 muxer";
@@ -75,7 +75,7 @@ public class Codec2MuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -84,7 +84,7 @@ public class Codec2MuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -95,9 +95,9 @@ public class Codec2MuxerClass : LibAVUtil.Class {
     //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
-[CCode (cname="codec2_demux_class",cheader_filename="ffmpeg/libformat/codec2.c")]
+[CCode (cname="codec2_demux_class",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
 public class Codec2DemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string class_name {
         public get {
             return "codec2 demuxer";
@@ -106,7 +106,7 @@ public class Codec2DemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -116,7 +116,7 @@ public class Codec2DemuxerClass : LibAVUtil.Class {
     }
     //  .option = codec2_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -127,9 +127,9 @@ public class Codec2DemuxerClass : LibAVUtil.Class {
     //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
-[CCode (cname="codec2raw_demux_class",cheader_filename="ffmpeg/libformat/codec2.c")]
+[CCode (cname="codec2raw_demux_class",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
 public class Codec2RawDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string class_name {
         public get {
             return "codec2raw demuxer";
@@ -138,7 +138,7 @@ public class Codec2RawDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -148,7 +148,7 @@ public class Codec2RawDemuxerClass : LibAVUtil.Class {
     }
     //  .option = codec2raw_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -161,9 +161,9 @@ public class Codec2RawDemuxerClass : LibAVUtil.Class {
 
 #if CONFIG_CODEC2_DEMUXER
 
-[CCode (cname="ff_codec2_demuxer",cheader_filename="ffmpeg/libformat/codec2.c")]
+[CCode (cname="ff_codec2_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
 public class Codec2Demuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string name {
         public get {
             return "codec2";
@@ -172,7 +172,7 @@ public class Codec2Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string long_name {
         public get {
             return "codec2 .c2 demuxer";
@@ -181,7 +181,7 @@ public class Codec2Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (Codec2Context);
@@ -190,7 +190,7 @@ public class Codec2Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string extensions {
         public get {
             return "c2";
@@ -199,23 +199,23 @@ public class Codec2Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="codec2_probe",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="codec2_probe",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="codec2_read_header",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="codec2_read_header",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="codec2_read_packet",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="codec2_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ff_pcm_read_seek",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -223,7 +223,7 @@ public class Codec2Demuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -232,7 +232,7 @@ public class Codec2Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.CODEC2;
@@ -246,9 +246,9 @@ public class Codec2Demuxer : AVInputFormat {
 
 #if CONFIG_CODEC2_MUXER
 
-[CCode (cname="ff_codec2_muxer",cheader_filename="ffmpeg/libformat/codec2.c")]
+[CCode (cname="ff_codec2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
 public class Codec2Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string name {
         public get {
             return "codec2";
@@ -257,7 +257,7 @@ public class Codec2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string long_name {
         public get {
             return "codec2 .c2 muxer";
@@ -266,7 +266,7 @@ public class Codec2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (Codec2Context);
@@ -275,7 +275,7 @@ public class Codec2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string extensions {
         public get {
             return "c2";
@@ -284,7 +284,7 @@ public class Codec2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.CODEC2;
@@ -293,7 +293,7 @@ public class Codec2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -302,19 +302,19 @@ public class Codec2Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="codec2_write_header",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="codec2_write_header",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_write_packet",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS;
@@ -328,9 +328,9 @@ public class Codec2Muxer : AVOutputFormat {
 
 #if CONFIG_CODEC2RAW_DEMUXER
 
-[CCode (cname="ff_codec2raw_demuxer",cheader_filename="ffmpeg/libformat/codec2.c")]
+[CCode (cname="ff_codec2raw_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
 public class Codec2RawDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string name {
         public get {
             return "codec2raw";
@@ -339,7 +339,7 @@ public class Codec2RawDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string long_name {
         public get {
             return "raw codec2 demuxer";
@@ -348,7 +348,7 @@ public class Codec2RawDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (Codec2Context);
@@ -357,18 +357,18 @@ public class Codec2RawDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="codec2raw_read_header",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="codec2raw_read_header",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="codec2_read_packet",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="codec2_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ff_pcm_read_seek",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -376,7 +376,7 @@ public class Codec2RawDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -385,7 +385,7 @@ public class Codec2RawDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/codec2.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.CODEC2;

@@ -277,16 +277,16 @@ public enum Mode {
 /***********************************************************
 forward declaration of FFEBUR128StateInternal
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
+[CCode (cname="struct FFEBUR128StateInternal",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 [Compact]
 public class FFEBUR128StateInternal { }
 
 /***********************************************************
 @brief Contains information about the state of a loudness measurement.
 
- You should not need to modify this struct directly.
+You should not need to modify this struct directly.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
+[CCode (cname="struct FFEBUR128State",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 [Compact]
 public class FFEBUR128State {
     /***********************************************************

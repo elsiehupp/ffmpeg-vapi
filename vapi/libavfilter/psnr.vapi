@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="PSNRDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/psnr.h")]
+[CCode (cname="struct PSNRDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/psnr.h")]
 [Compact]
 public class PSNRDSPContext {
     public delegate uint64 SseLineDelegate (

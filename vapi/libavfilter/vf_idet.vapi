@@ -42,7 +42,7 @@ public enum RepeatedField {
     BOTTOM;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
+[CCode (cname="struct IDETContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 [Compact]
 public class IDETContext {
     [CCode (cname="class")]

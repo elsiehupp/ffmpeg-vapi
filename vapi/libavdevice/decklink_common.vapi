@@ -26,43 +26,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #define IDeckLinkProfileAttributes IDeckLinkAttributes
 //  #endif
 
-#ifdef _WIN32
-static string dup_wchar_to_utf8 (wchar_t? w)
-{
-    string s = NULL;
-    int l = WideCharToMultiByte (CP_UTF8, 0, w, -1, 0, 0, 0, 0);
-    s = (string ) av_malloc (l);
-    if (s)
-        WideCharToMultiByte (CP_UTF8, 0, w, -1, s, l, 0, 0);
-    return s;
-}
-public define DECKLINK_STR OLECHAR *
-public define DECKLINK_STRDUP dup_wchar_to_utf8
-public define DECKLINK_FREE (s) SysFreeString (s)
-#elif defined (__APPLE__)
-static string dup_cfstring_to_utf8 (CFStringRef w)
-{
-    char s[256];
-    CFStringGetCString (w, s, 255, kCFStringEncodingUTF8);
-    return av_strdup (s);
-}
-public define DECKLINK_STR const __CFString *
-public define DECKLINK_STRDUP dup_cfstring_to_utf8
-public define DECKLINK_FREE (s) CFRelease (s)
-#else
-public define DECKLINK_STR string
-public define DECKLINK_STRDUP av_strdup
-/***********************************************************
-free () is needed for a string returned by the DeckLink SDL.
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
-public define DECKLINK_FREE (s) free ((void *) s)
-#endif
 
-class decklink_output_callback;
-class decklink_input_callback;
+[CCode (cname="struct decklink_output_callback",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
+[Compact]
+public class DeckLinkOutputCallback {}
 
-[CCode (cname="struct",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
+[CCode (cname="struct decklink_input_callback",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
+[Compact]
+public class DeckLinkInputCallback {}
+
+[CCode (cname="struct AVPacketQueue",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 [Compact]
 public class AVPacketQueue {
     [CCode (cname="")]
@@ -93,7 +66,7 @@ public class AVPacketQueue {
     public int64 max_q_size;
 }
 
-[CCode (cname="struct",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
+[CCode (cname="struct decklink_ctx",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 [Compact]
 public class decklink_ctx {
     /***********************************************************

@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/fifotext.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "write_header_ret",
@@ -66,9 +66,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="failing_muxer_class",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+[CCode (cname="failing_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
 public class FifoTestMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override string class_name {
         public get {
             return "Fifo test muxer";
@@ -77,7 +77,7 @@ public class FifoTestMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -86,10 +86,10 @@ public class FifoTestMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -99,13 +99,13 @@ public class FifoTestMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct FailingMuxerContext",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+[CCode (cname="struct FailingMuxerContext",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
 [Compact]
 public class FifoTestMuxerPrivateData { }
 
-[CCode (cname="ff_fifo_test_muxer",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+[CCode (cname="ff_fifo_test_muxer",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
 public class FifoTestMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override string name {
         public get {
             return "fifo_test";
@@ -114,7 +114,7 @@ public class FifoTestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override string long_name {
         public get {
             return "Fifo test muxer";
@@ -123,7 +123,7 @@ public class FifoTestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FifoTestMuxerPrivateData);
@@ -132,29 +132,29 @@ public class FifoTestMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="failing_write_header",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="failing_write_header",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="failing_write_packet",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="failing_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="failing_write_trailer",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="failing_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="failing_deinit",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="failing_deinit",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override void deinit (
         AVFormatContext format_context
     );
     //  .priv_class = failing_muxer_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/fifo_test.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_FILE | AVFormatFlags1.ALLOWS_FLUSH;

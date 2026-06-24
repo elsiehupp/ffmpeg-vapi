@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 
-[CCode (cname="l24_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+[CCode (cname="l24_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
 public class L24DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override string enc_name {
         public get {
             return "L24";
@@ -34,7 +34,7 @@ public class L24DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -43,7 +43,7 @@ public class L24DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.PCM_S24BE;
@@ -54,9 +54,9 @@ public class L24DynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="gsm_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+[CCode (cname="gsm_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
 public class GSMDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override string enc_name {
         public get {
             return "GSM";
@@ -65,7 +65,7 @@ public class GSMDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -74,7 +74,7 @@ public class GSMDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.GSM;
@@ -85,9 +85,9 @@ public class GSMDynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="realmedia_mp3_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+[CCode (cname="realmedia_mp3_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
 public class RealMediaMP3DynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override string enc_name {
         public get {
             return "X-MP3-draft-00";
@@ -96,7 +96,7 @@ public class RealMediaMP3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -105,7 +105,7 @@ public class RealMediaMP3DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.MP3ADU;
@@ -116,9 +116,9 @@ public class RealMediaMP3DynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="speex_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+[CCode (cname="speex_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
 public class SpeexDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override string enc_name {
         public get {
             return "speex";
@@ -127,7 +127,7 @@ public class SpeexDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -136,7 +136,7 @@ public class SpeexDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.SPEEX;
@@ -147,9 +147,9 @@ public class SpeexDynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="opus_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+[CCode (cname="opus_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
 public class OpusDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override string enc_name {
         public get {
             return "opus";
@@ -158,7 +158,7 @@ public class OpusDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.AUDIO;
@@ -167,7 +167,7 @@ public class OpusDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.OPUS;
@@ -178,12 +178,12 @@ public class OpusDynamicHandler : RTPDynamicProtocolHandler {
 }
 
 
-[CCode (cname="t140_dynamic_handler",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+[CCode (cname="t140_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
 public class T140DynamicHandler : RTPDynamicProtocolHandler {
     /***********************************************************
     @brief RFC 4103
     ***********************************************************/
-    [CCode (cname="enc_name",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override string enc_name {
         public get {
             return "t140";
@@ -192,7 +192,7 @@ public class T140DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.SUBTITLE;
@@ -201,7 +201,7 @@ public class T140DynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="ffmpeg/libformat/rtpdec.c")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.TEXT;

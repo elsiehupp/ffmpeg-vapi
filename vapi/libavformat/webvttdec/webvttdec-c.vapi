@@ -100,9 +100,9 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="webvtt_demuxer_class",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+[CCode (cname="webvtt_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
 public class WebVTTDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override string class_name {
         public get {
             return "WebVTT demuxer";
@@ -111,7 +111,7 @@ public class WebVTTDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -121,7 +121,7 @@ public class WebVTTDemuxerClass : LibAVUtil.Class {
     }
     //  .option = options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -131,13 +131,13 @@ public class WebVTTDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct WebVTTContext",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+[CCode (cname="struct WebVTTContext",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
 [Compact]
 public class WebVTTDemuxerPrivateData { }
 
-[CCode (cname="ff_webvtt_demuxer",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+[CCode (cname="ff_webvtt_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
 public class WebVTTDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override string name {
         public get {
             return "webvtt";
@@ -146,7 +146,7 @@ public class WebVTTDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override string long_name {
         public get {
             return "WebVTT subtitle";
@@ -155,7 +155,7 @@ public class WebVTTDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (WebVTTDemuxerPrivateData);
@@ -164,23 +164,23 @@ public class WebVTTDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="webvtt_probe",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="webvtt_probe",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="webvtt_read_header",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="webvtt_read_header",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="webvtt_read_packet",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="webvtt_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="webvtt_read_seek",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="webvtt_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -190,12 +190,12 @@ public class WebVTTDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="webvtt_read_close",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="webvtt_read_close",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/webvttdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override string extensions {
         public get {
             return "vtt";

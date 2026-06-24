@@ -35,9 +35,9 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="tls_class",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+[CCode (cname="tls_class",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
 public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override string class_name {
         public get {
             return "tls";
@@ -46,7 +46,7 @@ public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -55,10 +55,10 @@ public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -68,13 +68,13 @@ public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct TLSContext",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+[CCode (cname="struct TLSContext",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
 [Compact]
 public class SecureChannelTLSPrivateData { }
 
-[CCode (cname="ff_tls_protocol",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+[CCode (cname="ff_tls_protocol",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
 public class SecureChannelTLSURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override string name {
         public get {
             return "tls";
@@ -83,7 +83,7 @@ public class SecureChannelTLSURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="tls_open",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="tls_open",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -91,31 +91,31 @@ public class SecureChannelTLSURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="tls_read",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="tls_read",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="tls_write",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="tls_write",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="tls_close",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="tls_close",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="tls_get_file_handle",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="tls_get_file_handle",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (SecureChannelTLSPrivateData);
@@ -124,7 +124,7 @@ public class SecureChannelTLSURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/tls_schannel.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;

@@ -41,9 +41,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="demuxer_class",cheader_filename="ffmpeg/libformat/avidec.c")]
+[CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
 public class AVIDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override string class_name {
         public get {
             return "avi";
@@ -52,7 +52,7 @@ public class AVIDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -61,10 +61,10 @@ public class AVIDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -75,13 +75,13 @@ public class AVIDemuxerClass : LibAVUtil.Class {
     //  .category = LibAVUtil.ClassCategory.DEMUXER;
 }
 
-[CCode (cname="struct AVIContext",cheader_filename="ffmpeg/libformat/avidec.c")]
+[CCode (cname="struct AVIContext",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
 [Compact]
 public class AVIDemuxerPrivateData { }
 
-[CCode (cname="ff_avi_demuxer",cheader_filename="ffmpeg/libformat/avidec.c")]
+[CCode (cname="ff_avi_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
 public class AVIDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override string name {
         public get {
             return "avi";
@@ -90,7 +90,7 @@ public class AVIDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override string long_name {
         public get {
             return "AVI (Audio Video Interleaved)";
@@ -99,7 +99,7 @@ public class AVIDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AVIDemuxerPrivateData);
@@ -108,7 +108,7 @@ public class AVIDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override string extensions {
         public get {
             return "avi";
@@ -117,28 +117,28 @@ public class AVIDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="avi_probe",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="avi_probe",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="avi_read_header",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="avi_read_header",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="avi_read_packet",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="avi_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="avi_read_close",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="avi_read_close",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="avi_read_seek",cheader_filename="ffmpeg/libformat/avidec.c")]
+    [CCode (cname="avi_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

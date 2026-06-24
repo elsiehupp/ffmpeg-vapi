@@ -43,9 +43,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="gsm_class",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+[CCode (cname="gsm_class",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
 public class GSMDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override string class_name {
         public get {
             return "gsm demuxer";
@@ -54,7 +54,7 @@ public class GSMDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -63,10 +63,10 @@ public class GSMDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -76,13 +76,13 @@ public class GSMDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct GSMDemuxerContext",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+[CCode (cname="struct GSMDemuxerContext",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
 [Compact]
 public class GSMDemuxerPrivateData { }
 
-[CCode (cname="ff_gsm_demuxer",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+[CCode (cname="ff_gsm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
 public class GSMDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override string name {
         public get {
             return "gsm";
@@ -91,7 +91,7 @@ public class GSMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override string long_name {
         public get {
             return "raw GSM";
@@ -100,7 +100,7 @@ public class GSMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GSMDemuxerPrivateData);
@@ -109,23 +109,23 @@ public class GSMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="gsm_probe",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="gsm_probe",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="gsm_read_header",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="gsm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="gsm_read_packet",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="gsm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -134,7 +134,7 @@ public class GSMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override string extensions {
         public get {
             return "gsm";
@@ -143,7 +143,7 @@ public class GSMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/gsmdec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.GSM;

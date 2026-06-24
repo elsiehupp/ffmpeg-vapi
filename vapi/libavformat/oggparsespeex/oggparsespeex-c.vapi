@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_speex_codec",cheader_filename="ffmpeg/libformat/oggparsespeex.c")]
+[CCode (cname="ff_speex_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggparsespeex.c")]
 public class SpeexCodec : OggCodec {
     [CCode (cname="magic")]
     public override uint8[] magic {
@@ -43,13 +43,13 @@ public class SpeexCodec : OggCodec {
 
     }
 
-    [CCode (cname="speex_header",cheader_filename="ffmpeg/libformat/oggparsespeex.c")]
+    [CCode (cname="speex_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsespeex.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="speex_packet",cheader_filename="ffmpeg/libformat/oggparsespeex.c")]
+    [CCode (cname="speex_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparsespeex.c")]
     public override int packet (
         AVFormatContext context,
         int arg

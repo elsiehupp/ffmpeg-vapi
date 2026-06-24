@@ -31,9 +31,9 @@ http://www.opengroup.org/public/pubs/external/auformat.html
 http://www.goice.co.jp/member/mo/formats/au.html
 ***********************************************************/
 
-[CCode (cname="ff_au_muxer",cheader_filename="")]
+[CCode (cname="ff_au_muxer",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
 public class AUMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override string name {
         public get {
             return "au";
@@ -42,7 +42,7 @@ public class AUMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override string long_name {
         public get {
             return "Sun AU";
@@ -51,7 +51,7 @@ public class AUMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override string mime_type {
         public get {
             return "audio/basic";
@@ -60,7 +60,7 @@ public class AUMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override string extensions {
         public get {
             return "au";
@@ -69,7 +69,7 @@ public class AUMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AUContext);
@@ -78,7 +78,7 @@ public class AUMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16BE;
@@ -87,7 +87,7 @@ public class AUMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -96,19 +96,19 @@ public class AUMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="au_write_header",cheader_filename="")]
+    [CCode (cname="au_write_header",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_write_packet",cheader_filename="")]
+    [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="au_write_trailer",cheader_filename="")]
+    [CCode (cname="au_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
@@ -125,7 +125,7 @@ public class AUMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_TIMESTAMPS;

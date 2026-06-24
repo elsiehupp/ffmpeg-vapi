@@ -25,10 +25,10 @@ namespace LibAVFormat {
 [CCode (cname="struct voc_dec_context",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
 [Compact]
 public class VocDecContext {
-    [CCode (cname="")]
+    [CCode (cname="remaining_size")]
     public int64 remaining_size;
 
-    [CCode (cname="")]
+    [CCode (cname="pts")]
     public int64 pts;
 }
 
@@ -52,7 +52,7 @@ public enum VocType {
 //  extern const uchar ff_voc_magic[21];
 //  extern const AVCodecTag ff_voc_codec_tags[];
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
+[CCode (cname="ff_voc_get_packet",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
 public int ff_voc_get_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet,

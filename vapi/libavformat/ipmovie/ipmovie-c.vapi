@@ -34,13 +34,13 @@ to write your own as it uses a rather roundabout approach for splitting
 up and sending out the chunks.
 ***********************************************************/
 
-[CCode (cname="struct IPMVEContext",cheader_filename="")]
+[CCode (cname="struct IPMVEContext",cheader_filename="subprojects/ffmpeg/libavformat/ipmovie.c")]
 [Compact]
 public class InterplayDemuxerPrivateData { }
 
-[CCode (cname="ff_ipmovie_demuxer",cheader_filename="")]
+[CCode (cname="ff_ipmovie_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ipmovie.c")]
 public class InterplayDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ipmovie.c")]
     public override string name {
         public get {
             return "ipmovie";
@@ -49,7 +49,7 @@ public class InterplayDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/ipmovie.c")]
     public override string long_name {
         public get {
             return "Interplay MVE";
@@ -58,7 +58,7 @@ public class InterplayDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/ipmovie.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (InterplayDemuxerPrivateData);
@@ -67,17 +67,17 @@ public class InterplayDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="ipmovie_probe",cheader_filename="")]
+    [CCode (cname="ipmovie_probe",cheader_filename="subprojects/ffmpeg/libavformat/ipmovie.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ipmovie_read_header",cheader_filename="")]
+    [CCode (cname="ipmovie_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ipmovie.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ipmovie_read_packet",cheader_filename="")]
+    [CCode (cname="ipmovie_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/ipmovie.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet

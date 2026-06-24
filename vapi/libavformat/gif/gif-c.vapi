@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "loop",
@@ -56,9 +56,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="gif_muxer_class",cheader_filename="ffmpeg/libformat/gif.c")]
+[CCode (cname="gif_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
 public class GIFMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override string class_name {
         public get {
             return "GIF muxer";
@@ -67,7 +67,7 @@ public class GIFMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -76,7 +76,7 @@ public class GIFMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -85,17 +85,17 @@ public class GIFMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override LibAVUtil.Option[] option { public get; }
 }
 
-[CCode (cname="struct GIFContext",cheader_filename="ffmpeg/libformat/gif.c")]
+[CCode (cname="struct GIFContext",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
 [Compact]
 public class GIFMuxerPrivateData { }
 
-[CCode (cname="ff_gif_muxer",cheader_filename="ffmpeg/libformat/gif.c")]
+[CCode (cname="ff_gif_muxer",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
 public class GIFMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override string name {
         public get {
             return "gif";
@@ -104,7 +104,7 @@ public class GIFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override string long_name {
         public get {
             return "CompuServe Graphics Interchange Format (GIF)";
@@ -113,7 +113,7 @@ public class GIFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override string mime_type {
         public get {
             return "image/gif";
@@ -122,7 +122,7 @@ public class GIFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override string extensions {
         public get {
             return "gif";
@@ -131,7 +131,7 @@ public class GIFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (GIFMuxerPrivateData);
@@ -140,7 +140,7 @@ public class GIFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.NONE;
@@ -149,7 +149,7 @@ public class GIFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.GIF;
@@ -158,24 +158,24 @@ public class GIFMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="gif_write_header",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="gif_write_header",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="gif_write_packet",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="gif_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="gif_write_trailer",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="gif_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
     //  .priv_class = gif_muxer_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/gif.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS;

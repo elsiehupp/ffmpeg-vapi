@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_wve_demuxer",cheader_filename="")]
+[CCode (cname="ff_wve_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/wvedec.c")]
 public class WVEDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wvedec.c")]
     public override string name {
         public get {
             return "wve";
@@ -32,7 +32,7 @@ public class WVEDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/wvedec.c")]
     public override string long_name {
         public get {
             return "Psion 3 audio";
@@ -41,23 +41,23 @@ public class WVEDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="wve_probe",cheader_filename="")]
+    [CCode (cname="wve_probe",cheader_filename="subprojects/ffmpeg/libavformat/wvedec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="wve_read_header",cheader_filename="")]
+    [CCode (cname="wve_read_header",cheader_filename="subprojects/ffmpeg/libavformat/wvedec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_pcm_read_packet",cheader_filename="")]
+    [CCode (cname="ff_pcm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/wvedec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="ff_pcm_read_seek",cheader_filename="")]
+    [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/wvedec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

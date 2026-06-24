@@ -46,7 +46,7 @@ should also be set when applicable, but are not required.
 
 The following example illustrates an LibAVUtil.Options-enabled struct:
 @code
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
+[CCode (cname="struct test_struct",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
 [Compact]
 public class test_struct {
     Class class;
@@ -102,8 +102,8 @@ public const Option test_options[] = {
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
-public const Class test_class = {
-    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
+public class test_class : Class{
+    [CCode (cname="sclass_name",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public override string class_name {
         public get {
             return "test class";
@@ -168,7 +168,7 @@ public void free_test_struct (out test_struct foo) {
     child_struct field:
 
     @code
-    [CCode (cname="struct ",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
+    [CCode (cname="struct child_struct",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public struct child_struct {
         Class class;
 

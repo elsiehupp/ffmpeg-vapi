@@ -24,9 +24,9 @@ namespace LibAVFormat {
 Synthesizes vapour (?)
 ***********************************************************/
 
-[CCode (cname="class_vs",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+[CCode (cname="class_vs",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
 public class VapourSynthDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override string class_name {
         public get {
             return "VapourSynth demuxer";
@@ -35,7 +35,7 @@ public class VapourSynthDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -44,10 +44,10 @@ public class VapourSynthDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -57,13 +57,13 @@ public class VapourSynthDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct VSContext",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+[CCode (cname="struct VSContext",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
 [Compact]
 public class VapourSynthDemuxerPrivateData { }
 
-[CCode (cname="ff_vapoursynth_demuxer",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+[CCode (cname="ff_vapoursynth_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
 public class VapourSynthDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override string name {
         public get {
             return "vapoursynth";
@@ -72,7 +72,7 @@ public class VapourSynthDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override string long_name {
         public get {
             return "VapourSynth demuxer";
@@ -81,7 +81,7 @@ public class VapourSynthDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (VapourSynthDemuxerPrivateData);
@@ -90,28 +90,28 @@ public class VapourSynthDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="probe_vs",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="probe_vs",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header_vs",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="read_header_vs",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet_vs",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="read_packet_vs",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="read_close_vs",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="read_close_vs",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_seek_vs",cheader_filename="ffmpeg/libformat/vapoursynth.c")]
+    [CCode (cname="read_seek_vs",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,

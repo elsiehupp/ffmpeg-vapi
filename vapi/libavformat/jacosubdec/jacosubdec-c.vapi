@@ -27,13 +27,13 @@ namespace LibAVFormat {
 @todo Support P[ALETTE] directive.
 ***********************************************************/
 
-[CCode (cname="struct JACOsubContext",cheader_filename="")]
+[CCode (cname="struct JACOsubContext",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
 [Compact]
 public class JacoSubDemuxerPrivateData { }
 
-[CCode (cname="ff_jacosub_demuxer",cheader_filename="")]
+[CCode (cname="ff_jacosub_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
 public class JacoSubDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override string name {
         public get {
             return "jacosub";
@@ -42,7 +42,7 @@ public class JacoSubDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override string long_name {
         public get {
             return "JACOsub subtitle format";
@@ -51,7 +51,7 @@ public class JacoSubDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (JacoSubDemuxerPrivateData);
@@ -60,23 +60,23 @@ public class JacoSubDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="jacosub_probe",cheader_filename="")]
+    [CCode (cname="jacosub_probe",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="jacosub_read_header",cheader_filename="")]
+    [CCode (cname="jacosub_read_header",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="jacosub_read_packet",cheader_filename="")]
+    [CCode (cname="jacosub_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="jacosub_read_seek",cheader_filename="")]
+    [CCode (cname="jacosub_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_seek2 (
         AVFormatContext format_context,
         int stream_index,
@@ -86,7 +86,7 @@ public class JacoSubDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="jacosub_read_close",cheader_filename="")]
+    [CCode (cname="jacosub_read_close",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_close (
         AVFormatContext format_context
     );

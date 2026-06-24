@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_sup_muxer",cheader_filename="")]
+[CCode (cname="ff_sup_muxer",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
 public class SUPMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override string name {
         public get {
             return "sup";
@@ -33,7 +33,7 @@ public class SUPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override string long_name {
         public get {
             return "raw HDMV Presentation Graphic Stream subtitles";
@@ -42,7 +42,7 @@ public class SUPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override string extensions {
         public get {
             return "sup";
@@ -51,7 +51,7 @@ public class SUPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override string mime_type {
         public get {
             return "application/x-pgs";
@@ -60,7 +60,7 @@ public class SUPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="subtitle_codec",cheader_filename="")]
+    [CCode (cname="subtitle_codec",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override LibAVCodec.CodecID subtitle_codec {
         public get {
             return LibAVCodec.CodecID.HDMV_PGS_SUBTITLE;
@@ -69,18 +69,18 @@ public class SUPMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="sup_write_header",cheader_filename="")]
+    [CCode (cname="sup_write_header",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="sup_write_packet",cheader_filename="")]
+    [CCode (cname="sup_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;

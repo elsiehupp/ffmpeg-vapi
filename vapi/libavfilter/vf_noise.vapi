@@ -44,7 +44,7 @@ public enum NoiseType {
     PATTERN; // 16
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
+[CCode (cname="struct FilterParams",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 [Compact]
 public class FilterParams {
     [CCode (cname="")]
@@ -72,7 +72,7 @@ public class FilterParams {
     public int rand_shift_init;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
+[CCode (cname="struct NoiseContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 [Compact]
 public class NoiseContext {
     [CCode (cname="class")]

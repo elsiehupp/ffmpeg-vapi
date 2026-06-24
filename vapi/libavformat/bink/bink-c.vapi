@@ -30,13 +30,13 @@ Technical details here:
 http://wiki.multimedia.cx/index.php?title=Bink_Container
 ***********************************************************/
 
-[CCode (cname="struct BinkDemuxContext",cheader_filename="")]
+[CCode (cname="struct BinkDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
 [Compact]
 public class BinkDemuxerPrivateData { }
 
-[CCode (cname="ff_bink_demuxer",cheader_filename="")]
+[CCode (cname="ff_bink_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
 public class BinkDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
     public override string name {
         public get {
             return "bink";
@@ -45,7 +45,7 @@ public class BinkDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
     public override string long_name {
         public get {
             return "Bink";
@@ -54,7 +54,7 @@ public class BinkDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BinkDemuxerPrivateData);
@@ -63,23 +63,23 @@ public class BinkDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="probe",cheader_filename="")]
+    [CCode (cname="probe",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header",cheader_filename="")]
+    [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet",cheader_filename="")]
+    [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="read_seek",cheader_filename="")]
+    [CCode (cname="read_seek",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -87,7 +87,7 @@ public class BinkDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/bink.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.SHOW_IDS;

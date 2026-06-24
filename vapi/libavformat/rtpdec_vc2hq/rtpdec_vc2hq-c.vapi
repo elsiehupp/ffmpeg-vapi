@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_vc2hq_dynamic_handler",cheader_filename="")]
+[CCode (cname="ff_vc2hq_dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vc2hq.c")]
 public class VC2HQDynamicHandler : RTPDynamicProtocolHandler {
-    [CCode (cname="enc_name",cheader_filename="")]
+    [CCode (cname="enc_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vc2hq.c")]
     public override string enc_name {
         public get {
             return "VC2";
@@ -33,7 +33,7 @@ public class VC2HQDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_type",cheader_filename="")]
+    [CCode (cname="codec_type",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vc2hq.c")]
     public override LibAVUtil.MediaType codec_type {
         public get {
             return LibAVUtil.MediaType.VIDEO;
@@ -42,7 +42,7 @@ public class VC2HQDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="codec_id",cheader_filename="")]
+    [CCode (cname="codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vc2hq.c")]
     public override LibAVCodec.CodecID codec_id {
         public get {
             return LibAVCodec.CodecID.DIRAC;
@@ -51,7 +51,7 @@ public class VC2HQDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vc2hq.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (PayloadContext);
@@ -60,7 +60,7 @@ public class VC2HQDynamicHandler : RTPDynamicProtocolHandler {
 
     }
 
-    [CCode (cname="vc2hq_handle_packet",cheader_filename="")]
+    [CCode (cname="vc2hq_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vc2hq.c")]
     public override int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,

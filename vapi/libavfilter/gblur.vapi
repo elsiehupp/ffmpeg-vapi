@@ -25,7 +25,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gblur.h")]
+[CCode (cname="struct GBlurContext",cheader_filename="subprojects/ffmpeg/libavfilter/gblur.h")]
 [Compact]
 public class GBlurContext {
     [CCode (cname="class")]

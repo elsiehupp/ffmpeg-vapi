@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="ff_adp_demuxer",cheader_filename="")]
+[CCode (cname="ff_adp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/adp.c")]
 public class ADPDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/adp.c")]
     public override string name {
         public get {
             return "adp";
@@ -32,7 +32,7 @@ public class ADPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/adp.c")]
     public override string long_name {
         public get {
             return "ADP";
@@ -41,23 +41,23 @@ public class ADPDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="adp_probe",cheader_filename="")]
+    [CCode (cname="adp_probe",cheader_filename="subprojects/ffmpeg/libavformat/adp.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="adp_read_header",cheader_filename="")]
+    [CCode (cname="adp_read_header",cheader_filename="subprojects/ffmpeg/libavformat/adp.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="adp_read_packet",cheader_filename="")]
+    [CCode (cname="adp_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/adp.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/adp.c")]
     public override string extensions {
         public get {
             return "adp,dtk";

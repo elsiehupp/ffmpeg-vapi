@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct BRSTMDemuxContext",cheader_filename="ffmpeg/libformat/brstm.c")]
+[CCode (cname="struct BRSTMDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
 [Compact]
 public class BRSTMDemuxerPrivateData { }
 
-[CCode (cname="ff_brstm_demuxer",cheader_filename="ffmpeg/libformat/brstm.c")]
+[CCode (cname="ff_brstm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
 public class BRSTMDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override string name {
         public get {
             return "brstm";
@@ -37,7 +37,7 @@ public class BRSTMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override string long_name {
         public get {
             return "BRSTM (Binary Revolution Stream)";
@@ -46,7 +46,7 @@ public class BRSTMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BRSTMDemuxerPrivateData);
@@ -55,28 +55,28 @@ public class BRSTMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="probe",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="probe",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="read_close",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="read_close",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_seek",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="read_seek",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -84,7 +84,7 @@ public class BRSTMDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override string extensions {
         public get {
             return "brstm";
@@ -94,9 +94,9 @@ public class BRSTMDemuxer : AVInputFormat {
     }
 }
 
-[CCode (cname="ff_bfstm_demuxer",cheader_filename="ffmpeg/libformat/brstm.c")]
+[CCode (cname="ff_bfstm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
 public class BFSTMDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override string name {
         public get {
             return "bfstm";
@@ -105,7 +105,7 @@ public class BFSTMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override string long_name {
         public get {
             return "BFSTM (Binary Cafe Stream)";
@@ -114,7 +114,7 @@ public class BFSTMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (BRSTMDemuxerPrivateData);
@@ -123,28 +123,28 @@ public class BFSTMDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="probe_bfstm",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="probe_bfstm",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="read_header",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_packet",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="read_close",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="read_close",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="read_seek",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="read_seek",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -152,7 +152,7 @@ public class BFSTMDemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/brstm.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/brstm.c")]
     public override string extensions {
         public get {
             return "bfstm,bcstm";

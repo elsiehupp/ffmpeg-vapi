@@ -268,22 +268,22 @@ public enum OggFlags {
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 public const uint64 OGG_NOGRANULE_VALUE;
 
-//  extern public class OggCodec ff_celt_codec;
-//  extern public class OggCodec ff_daala_codec;
-//  extern public class OggCodec ff_dirac_codec;
-//  extern public class OggCodec ff_flac_codec;
-//  extern public class OggCodec ff_ogm_audio_codec;
-//  extern public class OggCodec ff_ogm_old_codec;
-//  extern public class OggCodec ff_ogm_text_codec;
-//  extern public class OggCodec ff_ogm_video_codec;
-//  extern public class OggCodec ff_old_dirac_codec;
-//  extern public class OggCodec ff_old_flac_codec;
-//  extern public class OggCodec ff_opus_codec;
-//  extern public class OggCodec ff_skeleton_codec;
-//  extern public class OggCodec ff_speex_codec;
-//  extern public class OggCodec ff_theora_codec;
-//  extern public class OggCodec ff_vorbis_codec;
-//  extern public class OggCodec ff_vp8_codec;
+//  extern public static OggCodec ff_celt_codec;
+//  extern public static OggCodec ff_daala_codec;
+//  extern public static OggCodec ff_dirac_codec;
+//  extern public static OggCodec ff_flac_codec;
+//  extern public static OggCodec ff_ogm_audio_codec;
+//  extern public static OggCodec ff_ogm_old_codec;
+//  extern public static OggCodec ff_ogm_text_codec;
+//  extern public static OggCodec ff_ogm_video_codec;
+//  extern public static OggCodec ff_old_dirac_codec;
+//  extern public static OggCodec ff_old_flac_codec;
+//  extern public static OggCodec ff_opus_codec;
+//  extern public static OggCodec ff_skeleton_codec;
+//  extern public static OggCodec ff_speex_codec;
+//  extern public static OggCodec ff_theora_codec;
+//  extern public static OggCodec ff_vorbis_codec;
+//  extern public static OggCodec ff_vp8_codec;
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 public int ff_vorbis_comment (

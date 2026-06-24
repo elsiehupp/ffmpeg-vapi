@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="MPEGTS_OPTIONS",cheader_filename="")]
+[CCode (cname="MPEGTS_OPTIONS",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
 public define MPEGTS_OPTIONS
     new LibAVUtil.IntOption () {
         name = "resync_size",
@@ -131,9 +131,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="mpegts_class",cheader_filename="ffmpeg/libformat/mpegts.c")]
+[CCode (cname="mpegts_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
 public class MpegTSDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string class_name {
         public get {
             return "mpegts demuxer";
@@ -142,7 +142,7 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -151,10 +151,10 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -196,9 +196,9 @@ static const LibAVUtil.Option raw_options[] = {
 
 };
 
-[CCode (cname="mpegtsraw_class",cheader_filename="ffmpeg/libformat/mpegts.c")]
+[CCode (cname="mpegtsraw_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
 public class MpegTSRawDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string class_name {
         public get {
             return "mpegtsraw demuxer";
@@ -207,7 +207,7 @@ public class MpegTSRawDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -217,7 +217,7 @@ public class MpegTSRawDemuxerClass : LibAVUtil.Class {
     }
     //  .option = raw_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -227,9 +227,9 @@ public class MpegTSRawDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_mpegts_demuxer",cheader_filename="ffmpeg/libformat/mpegts.c")]
+[CCode (cname="ff_mpegts_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
 public class MPEGTSDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string name {
         public get {
             return "mpegts";
@@ -238,7 +238,7 @@ public class MPEGTSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string long_name {
         public get {
             return "MPEG-TS (MPEG-2 Transport Stream)";
@@ -247,7 +247,7 @@ public class MPEGTSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegTSContext);
@@ -256,28 +256,28 @@ public class MPEGTSDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="mpegts_probe",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="mpegts_probe",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="mpegts_read_header",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="mpegts_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpegts_read_packet",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="mpegts_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mpegts_read_close",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="mpegts_read_close",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpegts_get_dts",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="mpegts_get_dts",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
@@ -285,7 +285,7 @@ public class MPEGTSDemuxer : AVInputFormat {
         int64 pos_limit
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.SHOW_IDS | AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES;
@@ -296,9 +296,9 @@ public class MPEGTSDemuxer : AVInputFormat {
     //  .priv_class = mpegts_class;
 }
 
-[CCode (cname="ff_mpegtsraw_demuxer",cheader_filename="ffmpeg/libformat/mpegts.c")]
+[CCode (cname="ff_mpegtsraw_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
 public class MpegTSRawDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string name {
         public get {
             return "mpegtsraw";
@@ -307,7 +307,7 @@ public class MpegTSRawDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string long_name {
         public get {
             return "raw MPEG-TS (MPEG-2 Transport Stream)";
@@ -316,7 +316,7 @@ public class MpegTSRawDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (MpegTSContext);
@@ -325,23 +325,23 @@ public class MpegTSRawDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="mpegts_read_header",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="mpegts_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpegts_raw_read_packet",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="mpegts_raw_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="mpegts_read_close",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="mpegts_read_close",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="mpegts_get_dts",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="mpegts_get_dts",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int64 read_timestamp (
         AVFormatContext format_context,
         int stream_index,
@@ -349,7 +349,7 @@ public class MpegTSRawDemuxer : AVInputFormat {
         int64 pos_limit
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mpegts.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.SHOW_IDS | AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES;

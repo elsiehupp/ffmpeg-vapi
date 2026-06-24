@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct FLVContext",cheader_filename="ffmpeg/libformat/flvenc.c")]
+[CCode (cname="struct FLVContext",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
 [Compact]
 public class FLVMuxerPrivateClass { }
 
@@ -96,9 +96,9 @@ static const LibAVUtil.Option options[] = {
 
 };
 
-[CCode (cname="flv_muxer_class",cheader_filename="ffmpeg/libformat/flvenc.c")]
+[CCode (cname="flv_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
 public class FLVMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override string class_name {
         public get {
             return "flv muxer";
@@ -107,7 +107,7 @@ public class FLVMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -116,10 +116,10 @@ public class FLVMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -129,9 +129,9 @@ public class FLVMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_flv_muxer",cheader_filename="ffmpeg/libformat/flvenc.c")]
+[CCode (cname="ff_flv_muxer",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
 public class FLVMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override string name {
         public get {
             return "flv";
@@ -140,7 +140,7 @@ public class FLVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override string long_name {
         public get {
             return "FLV (Flash Video)";
@@ -149,7 +149,7 @@ public class FLVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="mime_type",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="mime_type",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override string mime_type {
         public get {
             return "video/x-flv";
@@ -158,7 +158,7 @@ public class FLVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override string extensions {
         public get {
             return "flv";
@@ -167,7 +167,7 @@ public class FLVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FLVMuxerPrivateClass);
@@ -176,7 +176,7 @@ public class FLVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
         #if CONFIG_LIBMP3LAME
@@ -187,7 +187,7 @@ public class FLVMuxer : AVOutputFormat {
         }
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.FLV1;
@@ -196,28 +196,28 @@ public class FLVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="flv_init",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="flv_init",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int init (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flv_write_header",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="flv_write_header",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flv_write_packet",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="flv_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flv_write_trailer",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="flv_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flv_check_bitstream",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="flv_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int check_bitstream (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
@@ -236,7 +236,7 @@ public class FLVMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/flvenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;

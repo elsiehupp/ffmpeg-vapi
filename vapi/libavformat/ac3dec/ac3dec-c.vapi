@@ -34,9 +34,9 @@ static int ac3_probe (
 
 //  FF_RAW_DEMUXER_CLASS (ac3)
 
-[CCode (cname="ff_ac3_demuxer",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+[CCode (cname="ff_ac3_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
 public class AC3Demuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override string name {
         public get {
             return "ac3";
@@ -45,7 +45,7 @@ public class AC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override string long_name {
         public get {
             return "raw AC-3";
@@ -54,23 +54,23 @@ public class AC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="ac3_probe",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="ac3_probe",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ff_raw_audio_read_header",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -79,7 +79,7 @@ public class AC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override string extensions {
         public get {
             return "ac3";
@@ -88,7 +88,7 @@ public class AC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.AC3;
@@ -97,7 +97,7 @@ public class AC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);
@@ -121,9 +121,9 @@ static int eac3_probe (
 }
 
 //  FF_RAW_DEMUXER_CLASS (eac3)
-[CCode (cname="ff_eac3_demuxer",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+[CCode (cname="ff_eac3_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
 public class EAC3Demuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override string name {
         public get {
             return "eac3";
@@ -132,7 +132,7 @@ public class EAC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override string long_name {
         public get {
             return "raw E-AC-3";
@@ -141,23 +141,23 @@ public class EAC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="eac3_probe",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="eac3_probe",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="ff_raw_audio_read_header",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -166,7 +166,7 @@ public class EAC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override string extensions {
         public get {
             return "eac3";
@@ -175,7 +175,7 @@ public class EAC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.EAC3;
@@ -184,7 +184,7 @@ public class EAC3Demuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/ac3dec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (FFRawDemuxerContext);

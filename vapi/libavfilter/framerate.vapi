@@ -37,7 +37,7 @@ public delegate void BlendDelegate (
     int half
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framerate.h")]
+[CCode (cname="struct FrameRateContext",cheader_filename="subprojects/ffmpeg/libavfilter/framerate.h")]
 [Compact]
 public class FrameRateContext {
     [CCode (cname="class")]

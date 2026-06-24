@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_dcstr_demuxer",cheader_filename="")]
+[CCode (cname="ff_dcstr_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/dcstr.c")]
 public class DCSTRDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dcstr.c")]
     public override string name {
         public get {
             return "dcstr";
@@ -33,7 +33,7 @@ public class DCSTRDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/dcstr.c")]
     public override string long_name {
         public get {
             return "Sega DC STR";
@@ -42,23 +42,23 @@ public class DCSTRDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="dcstr_probe",cheader_filename="")]
+    [CCode (cname="dcstr_probe",cheader_filename="subprojects/ffmpeg/libavformat/dcstr.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="dcstr_read_header",cheader_filename="")]
+    [CCode (cname="dcstr_read_header",cheader_filename="subprojects/ffmpeg/libavformat/dcstr.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="dcstr_read_packet",cheader_filename="")]
+    [CCode (cname="dcstr_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/dcstr.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="extensions",cheader_filename="")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/dcstr.c")]
     public override string extensions {
         public get {
             return "str";
@@ -67,7 +67,7 @@ public class DCSTRDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/dcstr.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.NO_BINARY_SEARCH;

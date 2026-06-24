@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="rawvideo_options",cheader_filename="")]
+[CCode (cname="rawvideo_options",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
 static const LibAVUtil.Option rawvideo_options[] = {
     new LibAVUtil.ImageSizeOption () {
         name = "video_size",
@@ -66,9 +66,9 @@ static const LibAVUtil.Option rawvideo_options[] = {
 
 };
 
-[CCode (cname="rawvideo_demuxer_class",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+[CCode (cname="rawvideo_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
 public class RawVideoDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override string class_name {
         public get {
             return "rawvideo demuxer";
@@ -77,7 +77,7 @@ public class RawVideoDemuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -87,7 +87,7 @@ public class RawVideoDemuxerClass : LibAVUtil.Class {
     }
     //  .option = rawvideo_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -97,13 +97,13 @@ public class RawVideoDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct RawVideoDemuxerContext",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+[CCode (cname="struct RawVideoDemuxerContext",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
 [Compact]
 public class RawVideoDemuxerPrivateData { }
 
-[CCode (cname="ff_rawvideo_demuxer",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+[CCode (cname="ff_rawvideo_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
 public class RawVideoDemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override string name {
         public get {
             return "rawvideo";
@@ -112,7 +112,7 @@ public class RawVideoDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override string long_name {
         public get {
             return "raw video";
@@ -121,7 +121,7 @@ public class RawVideoDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (RawVideoDemuxerPrivateData);
@@ -130,18 +130,18 @@ public class RawVideoDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="rawvideo_read_header",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="rawvideo_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="rawvideo_read_packet",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="rawvideo_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.USE_GENERIC_INDEX;
@@ -150,7 +150,7 @@ public class RawVideoDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override string extensions {
         public get {
             return "yuv,cif,qcif,rgb";
@@ -159,7 +159,7 @@ public class RawVideoDemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="raw_codec_id",cheader_filename="ffmpeg/libformat/rawvideodec.c")]
+    [CCode (cname="raw_codec_id",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override LibAVCodec.CodecID raw_codec_id {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;

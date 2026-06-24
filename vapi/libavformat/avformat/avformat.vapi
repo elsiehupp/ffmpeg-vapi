@@ -621,7 +621,7 @@ public enum AVFormatFlags1 {
 @addtogroup lavf_encoding
 @{
 ***********************************************************/
-[CCode (cname="class AVOutputFormat",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="struct AVOutputFormat",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public abstract class AVOutputFormat {
     [CCode (cname="name")]
     public abstract string name { public get; }
@@ -876,7 +876,7 @@ public abstract class AVOutputFormat {
 @addtogroup lavf_decoding
 @{
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="struct AVInputFormat",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public abstract class AVInputFormat {
     /***********************************************************
     @brief A comma separated list of short names for the format. New names
@@ -1310,7 +1310,7 @@ Removal, reordering and changes to existing fields require a major
 version bump.
 sizeof (AVStream) must not be used outside libav*.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="struct AVStream",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVStream {
     /***********************************************************
@@ -1747,7 +1747,7 @@ Removal, reordering and changes to existing fields require a major
 version bump.
 sizeof (AVProgram) must not be used outside libav*.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="struct AVProgram",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
 public class AVProgram {
     [CCode (cname="")]
@@ -2059,7 +2059,7 @@ can be found in libavformat/options_table.h.
 The LibAVUtil.Option/command line parameter names differ in some cases from the C
 structure field names for historic reasons or brevity.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="struct AVFormatContext",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public abstract class AVFormatContext {
     /***********************************************************
     @brief A class for logging and @ref avoptions. Set by avformat_alloc_context ().

@@ -25,9 +25,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace LibAVFormat {
 
-[CCode (cname="aa_class",cheader_filename="ffmpeg/libformat/aadec.c")]
+[CCode (cname="aa_class",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
 public class AAClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override string class_name {
         public get {
             return "aa";
@@ -36,7 +36,7 @@ public class AAClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -46,7 +46,7 @@ public class AAClass : LibAVUtil.Class {
     }
     //  .option = aa_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -56,13 +56,13 @@ public class AAClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct AADemuxContext",cheader_filename="ffmpeg/libformat/aadec.c")]
+[CCode (cname="struct AADemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
 [Compact]
 public class AADemuxerPrivateData { }
 
-[CCode (cname="ff_aa_demuxer",cheader_filename="ffmpeg/libformat/aadec.c")]
+[CCode (cname="ff_aa_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
 public class AADemuxer : AVInputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override string name {
         public get {
             return "aa";
@@ -71,7 +71,7 @@ public class AADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override string long_name {
         public get {
             return "Audible AA format files";
@@ -81,7 +81,7 @@ public class AADemuxer : AVInputFormat {
     }
     //  .priv_class = aa_class,
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (AADemuxerPrivateData);
@@ -90,7 +90,7 @@ public class AADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="extensions",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override string extensions {
         public get {
             return "aa";
@@ -99,23 +99,23 @@ public class AADemuxer : AVInputFormat {
 
     }
 
-    [CCode (cname="aa_probe",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="aa_probe",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override int read_probe (
         AVProbeData format_context
     );
 
-    [CCode (cname="aa_read_header",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="aa_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override int read_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="aa_read_packet",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="aa_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override int read_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="aa_read_seek",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="aa_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override int read_seek (
         AVFormatContext format_context,
         int stream_index,
@@ -123,12 +123,12 @@ public class AADemuxer : AVInputFormat {
         int flags
     );
 
-    [CCode (cname="aa_read_close",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="aa_read_close",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override int read_close (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/aadec.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.NO_GENERIC_SEARCH;

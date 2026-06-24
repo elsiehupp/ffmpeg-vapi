@@ -245,7 +245,7 @@ is opaque. This means that if you would like to set options, you must use
 the @ref avoptions API and cannot directly set values to members of the
 structure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
+[CCode (cname="struct SwrContext",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
 [Compact]
 public class SwrContext { }
 

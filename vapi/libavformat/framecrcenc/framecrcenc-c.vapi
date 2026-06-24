@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_framecrc_muxer",cheader_filename="")]
+[CCode (cname="ff_framecrc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/framecrcenc.c")]
 public class FrameCRCMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/framecrcenc.c")]
     public override string name {
         public get {
             return "framecrc";
@@ -33,7 +33,7 @@ public class FrameCRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/framecrcenc.c")]
     public override string long_name {
         public get {
             return "framecrc testing";
@@ -42,7 +42,7 @@ public class FrameCRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/framecrcenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
@@ -51,7 +51,7 @@ public class FrameCRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/framecrcenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
@@ -60,18 +60,18 @@ public class FrameCRCMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="framecrc_write_header",cheader_filename="")]
+    [CCode (cname="framecrc_write_header",cheader_filename="subprojects/ffmpeg/libavformat/framecrcenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="framecrc_write_packet",cheader_filename="")]
+    [CCode (cname="framecrc_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/framecrcenc.c")]
     public override int write_packet (
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="flags",cheader_filename="")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/framecrcenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;

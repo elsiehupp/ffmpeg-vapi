@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_HASH_MUXER || CONFIG_FRAMEHASH_MUXER
-[CCode (cname="hash_options",cheader_filename="")]
+[CCode (cname="hash_options",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
 static const LibAVUtil.Option hash_options[] = {
     new LibAVUtil.StringOption () {
         name = "hash",
@@ -91,9 +91,9 @@ static const LibAVUtil.Option md5_options[] = {
 
 #if CONFIG_HASH_MUXER
 
-[CCode (cname="hashenc_class",cheader_filename="ffmpeg/libformat/hashenc.c")]
+[CCode (cname="hashenc_class",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
 public class HashMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string class_name {
         public get {
             return "hash muxer";
@@ -102,7 +102,7 @@ public class HashMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -112,7 +112,7 @@ public class HashMuxerClass : LibAVUtil.Class {
     }
     //  .option = hash_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -122,9 +122,9 @@ public class HashMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_hash_muxer",cheader_filename="ffmpeg/libformat/hashenc.c")]
+[CCode (cname="ff_hash_muxer",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
 public class HashMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string name {
         public get {
             return "hash";
@@ -133,7 +133,7 @@ public class HashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string long_name {
         public get {
             return "Hash testing";
@@ -142,7 +142,7 @@ public class HashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HashContext);
@@ -151,7 +151,7 @@ public class HashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
@@ -160,7 +160,7 @@ public class HashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
@@ -169,24 +169,24 @@ public class HashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="hash_write_header",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="hash_write_header",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="hash_write_packet",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="hash_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="hash_write_trailer",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="hash_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -200,9 +200,9 @@ public class HashMuxer : AVOutputFormat {
 
 #if CONFIG_MD5_MUXER
 
-[CCode (cname="md5enc_class",cheader_filename="ffmpeg/libformat/hashenc.c")]
+[CCode (cname="md5enc_class",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
 public class MD5MuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string class_name {
         public get {
             return "MD5 muxer";
@@ -211,7 +211,7 @@ public class MD5MuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -221,7 +221,7 @@ public class MD5MuxerClass : LibAVUtil.Class {
     }
     //  .option = md5_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -231,9 +231,9 @@ public class MD5MuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_md5_muxer",cheader_filename="ffmpeg/libformat/hashenc.c")]
+[CCode (cname="ff_md5_muxer",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
 public class MD5Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string name {
         public get {
             return "md5";
@@ -242,7 +242,7 @@ public class MD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string long_name {
         public get {
             return "MD5 testing";
@@ -251,7 +251,7 @@ public class MD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HashContext);
@@ -260,7 +260,7 @@ public class MD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
@@ -269,7 +269,7 @@ public class MD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
@@ -278,24 +278,24 @@ public class MD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="hash_write_header",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="hash_write_header",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="hash_write_packet",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="hash_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="hash_write_trailer",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="hash_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -309,9 +309,9 @@ public class MD5Muxer : AVOutputFormat {
 
 #if CONFIG_FRAMEHASH_MUXER
 
-[CCode (cname="framehash_class",cheader_filename="ffmpeg/libformat/hashenc.c")]
+[CCode (cname="framehash_class",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
 public class FrameHashMuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string class_name {
         public get {
             return "frame hash muxer";
@@ -320,7 +320,7 @@ public class FrameHashMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -330,7 +330,7 @@ public class FrameHashMuxerClass : LibAVUtil.Class {
     }
     //  .option = hash_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -340,9 +340,9 @@ public class FrameHashMuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_framehash_muxer",cheader_filename="ffmpeg/libformat/hashenc.c")]
+[CCode (cname="ff_framehash_muxer",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
 public class FrameHashMuxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string name {
         public get {
             return "framehash";
@@ -351,7 +351,7 @@ public class FrameHashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string long_name {
         public get {
             return "Per-frame hash testing";
@@ -360,7 +360,7 @@ public class FrameHashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HashContext);
@@ -369,7 +369,7 @@ public class FrameHashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
@@ -378,7 +378,7 @@ public class FrameHashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
@@ -387,24 +387,24 @@ public class FrameHashMuxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="framehash_write_header",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="framehash_write_header",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="framehash_write_packet",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="framehash_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="framehash_write_trailer",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="framehash_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
@@ -418,9 +418,9 @@ public class FrameHashMuxer : AVOutputFormat {
 
 #if CONFIG_FRAMEMD5_MUXER
 
-[CCode (cname="framemd5_class",cheader_filename="ffmpeg/libformat/hashenc.c")]
+[CCode (cname="framemd5_class",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
 public class FrameMD5MuxerClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string class_name {
         public get {
             return "frame MD5 muxer";
@@ -429,7 +429,7 @@ public class FrameMD5MuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -439,7 +439,7 @@ public class FrameMD5MuxerClass : LibAVUtil.Class {
     }
     //  .option = md5_options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -449,9 +449,9 @@ public class FrameMD5MuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="ff_framemd5_muxer",cheader_filename="ffmpeg/libformat/hashenc.c")]
+[CCode (cname="ff_framemd5_muxer",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
 public class FrameMD5Muxer : AVOutputFormat {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string name {
         public get {
             return "framemd5";
@@ -460,7 +460,7 @@ public class FrameMD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="long_name",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="long_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string long_name {
         public get {
             return "Per-frame MD5 testing";
@@ -469,7 +469,7 @@ public class FrameMD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (HashContext);
@@ -478,7 +478,7 @@ public class FrameMD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="audio_codec",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="audio_codec",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override LibAVCodec.CodecID audio_codec {
         public get {
             return LibAVCodec.CodecID.PCM_S16LE;
@@ -487,7 +487,7 @@ public class FrameMD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="video_codec",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="video_codec",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override LibAVCodec.CodecID video_codec {
         public get {
             return LibAVCodec.CodecID.RAWVIDEO;
@@ -496,24 +496,24 @@ public class FrameMD5Muxer : AVOutputFormat {
 
     }
 
-    [CCode (cname="framehash_write_header",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="framehash_write_header",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_header (
         AVFormatContext format_context
     );
 
-    [CCode (cname="framehash_write_packet",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="framehash_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="framehash_write_trailer",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="framehash_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int write_trailer (
         AVFormatContext format_context
     );
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hashenc.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override AVFormatFlags1 flags {
         public get {
             return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;

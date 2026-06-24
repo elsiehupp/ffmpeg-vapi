@@ -72,7 +72,7 @@ public void ff_copy_rectangle (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public const size_t MAX_PLANES; // 4
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
+[CCode (cname="struct FFDrawContext",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 [Compact]
 public class FFDrawContext {
     [CCode (cname="")]
@@ -121,7 +121,7 @@ public class FFDrawContext {
     public uint flags;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
+[CCode (cname="struct FFDrawColor",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 [Compact]
 public class FFDrawColor {
     [CCode (cname="")]

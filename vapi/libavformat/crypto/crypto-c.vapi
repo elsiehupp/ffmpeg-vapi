@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BinaryOption () {
         name = "key",
@@ -101,9 +101,9 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="crypto_class",cheader_filename="ffmpeg/libformat/crypto.c")]
+[CCode (cname="crypto_class",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
 public class CryptoURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override string class_name {
         public get {
             return "crypto";
@@ -112,7 +112,7 @@ public class CryptoURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -122,7 +122,7 @@ public class CryptoURLProtocolClass : LibAVUtil.Class {
     }
     //  .option = options,
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -132,13 +132,13 @@ public class CryptoURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct CryptoContext",cheader_filename="ffmpeg/libformat/crypto.c")]
+[CCode (cname="struct CryptoContext",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
 [Compact]
 public class CryptoPrivateData { }
 
-[CCode (cname="ff_crypto_protocol",cheader_filename="ffmpeg/libformat/crypto.c")]
+[CCode (cname="ff_crypto_protocol",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
 public class CryptoURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override string name {
         public get {
             return "crypto";
@@ -147,7 +147,7 @@ public class CryptoURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="crypto_open2",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="crypto_open2",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override int url_open2 (
         URLContext url_context,
         string url,
@@ -155,33 +155,33 @@ public class CryptoURLProtocol : URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="crypto_seek",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="crypto_seek",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="crypto_read",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="crypto_read",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="crypto_write",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="crypto_write",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="crypto_close",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="crypto_close",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (CryptoPrivateData);
@@ -191,7 +191,7 @@ public class CryptoURLProtocol : URLProtocol {
     }
     //  .priv_data_class = crypto_class,
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/crypto.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NESTED_SCHEME;

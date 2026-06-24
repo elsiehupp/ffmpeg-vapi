@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="")]
+[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "listen",
@@ -137,9 +137,9 @@ static const LibAVUtil.Option options[] = {
     }
 }
 
-[CCode (cname="tcp_class",cheader_filename="ffmpeg/libformat/tcp.c")]
+[CCode (cname="tcp_class",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
 public class TCPURLProtocolClass : LibAVUtil.Class {
-    [CCode (cname="class_name",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override string class_name {
         public get {
             return "tcp";
@@ -148,7 +148,7 @@ public class TCPURLProtocolClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override string item_name (
         void *class_context
     ) {
@@ -157,10 +157,10 @@ public class TCPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override LibAVUtil.Option[] option { public get; }
 
-    [CCode (cname="version",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int version {
         public get {
             return LibAVUtil.Version.INT;
@@ -170,13 +170,13 @@ public class TCPURLProtocolClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="struct TCPContext",cheader_filename="ffmpeg/libformat/tcp.c")]
+[CCode (cname="struct TCPContext",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
 [Compact]
 public class TCPPrivateData { }
 
-[CCode (cname="ff_tcp_protocol",cheader_filename="ffmpeg/libformat/tcp.c")]
+[CCode (cname="ff_tcp_protocol",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
 public class TCPURLProtocol : URLProtocol {
-    [CCode (cname="name",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override string name {
         public get {
             return "tcp";
@@ -185,55 +185,55 @@ public class TCPURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="tcp_open",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="tcp_open",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int url_open (
         URLContext url_context,
         string url,
         int flags
     );
 
-    [CCode (cname="tcp_accept",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="tcp_accept",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int url_accept (
         URLContext server_url_context,
         out URLContext client_url_context
     );
 
-    [CCode (cname="tcp_read",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="tcp_read",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="tcp_write",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="tcp_write",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="tcp_close",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="tcp_close",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="tcp_get_file_handle",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="tcp_get_file_handle",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="tcp_get_window_size",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="tcp_get_window_size",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int url_get_short_seek (
         URLContext url_context
     );
 
-    [CCode (cname="tcp_shutdown",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="tcp_shutdown",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int url_shutdown (
         URLContext url_context,
         int flags
     );
 
-    [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override size_t priv_data_size {
         public get {
             return sizeof (TCPPrivateData);
@@ -242,7 +242,7 @@ public class TCPURLProtocol : URLProtocol {
 
     }
 
-    [CCode (cname="flags",cheader_filename="ffmpeg/libformat/tcp.c")]
+    [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override URLProtocolFlags flags {
         public get {
             return URLProtocolFlags.NETWORK;
