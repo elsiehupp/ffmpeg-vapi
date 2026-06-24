@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct NLMeansDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_nlmeans.h")]
 [Compact]
@@ -43,3 +44,5 @@ public void ff_nlmeans_init (
 public void ff_nlmeans_init_aarch64 (
     NLMeansDSPContext? dsp
 );
+
+} // namespace LibAVFilter

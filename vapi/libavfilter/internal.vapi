@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 public internal API functions
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct AVFilterCommand",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
@@ -648,3 +649,5 @@ public int ff_filter_init_hw_frames (
     AVFilterLink? link,
     int default_pool_size
 );
+
+} // namespace LibAVFilter

@@ -19,6 +19,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct FilterParam",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
 [Compact]
@@ -55,3 +56,5 @@ public int ff_boxblur_eval_filter_params (
     FilterParam? chroma_param,
     FilterParam? alpha_param
 );
+
+} // namespace LibAVFilter

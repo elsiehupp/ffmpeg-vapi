@@ -49,7 +49,7 @@ public class HTTPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {
@@ -186,7 +186,7 @@ public class HTTPSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

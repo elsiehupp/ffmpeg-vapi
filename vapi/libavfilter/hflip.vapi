@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct FlipContext",cheader_filename="subprojects/ffmpeg/libavfilter/hflip.h")]
 [Compact]
@@ -67,3 +68,5 @@ public void ff_hflip_init_x86 (
     int step[4],
     int nb_planes
 );
+
+} // namespace LibAVFilter

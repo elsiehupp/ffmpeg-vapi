@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct W3FDIFDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/w3fdif.h")]
 [Compact]
@@ -80,3 +81,5 @@ public void ff_w3fdif_init_x86 (
     W3FDIFDSPContext? dsp,
     int depth
 );
+
+} // namespace LibAVFilter

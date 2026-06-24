@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 Filters implementation helper functions
@@ -357,3 +358,5 @@ public define FF_FILTER_FORWARD_WANTED (
 //          return 0;
 //      }
 //  }
+
+} // namespace LibAVFilter

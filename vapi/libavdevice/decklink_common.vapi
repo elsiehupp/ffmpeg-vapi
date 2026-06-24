@@ -19,6 +19,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 //  #include <DeckLinkAPIVersion.h>
 //  #if BLACKMAGIC_DECKLINK_API_VERSION < 0x0b000000
@@ -333,3 +334,5 @@ public int ff_decklink_init_device (
     AVFormatContext? avctx,
     char* name
 );
+
+} // namespace LibAVDevice

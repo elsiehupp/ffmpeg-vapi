@@ -19,6 +19,7 @@ You should have received a copy of the GNU General Public License along
 with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 public const size_t BLOCKSZ; // 12
@@ -187,3 +188,5 @@ public class FSPPContext {
 public void ff_fspp_init_x86 (
     FSPPContext? fspp
 );
+
+} // namespace LibAVFilter

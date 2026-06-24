@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="yuv2rgb_fn",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public delegate void Yuv2RgbDelegate (
@@ -156,3 +157,5 @@ internal
 public void ff_colorspacedsp_x86_init (
     ColorSpaceDSPContext? dsp
 );
+
+} // namespace LibAVFilter

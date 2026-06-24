@@ -50,7 +50,7 @@ public class LibRTMPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {
@@ -371,7 +371,7 @@ public class LibRTMPTURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {
@@ -488,7 +488,7 @@ public class LibRTMPEURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {
@@ -605,7 +605,7 @@ public class LibRTMPTEURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {
@@ -722,7 +722,7 @@ public class LibRTMPSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

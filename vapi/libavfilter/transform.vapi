@@ -30,6 +30,7 @@ example, the identity matrix would be:
                      0, 1, 0,
                      0, 0, 1}
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="enum InterpolateMethod",cprefix="INTERPOLATE_",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public enum InterpolateMethod {
@@ -195,3 +196,5 @@ public int avfilter_transform (
     InterpolateMethod interpolate,
     FillMethod fill
 );
+
+} // namespace LibAVFilter

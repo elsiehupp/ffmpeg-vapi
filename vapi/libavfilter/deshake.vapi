@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="enum SearchMethod",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 public enum SearchMethod {
@@ -219,3 +220,5 @@ public class DeshakeContext {
     [CCode (cname="transform")]
     public TransformDelegate transform;
 }
+
+} // namespace LibAVFilter

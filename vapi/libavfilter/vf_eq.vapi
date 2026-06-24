@@ -21,6 +21,7 @@ You should have received a copy of the GNU General Public License along
 with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
+namespace LibAVFilter {
 
 static string const var_names[] = {
     "n", // frame count
@@ -196,3 +197,5 @@ public class EQContext {
 public void ff_eq_init_x86 (
     EQContext? eq
 );
+
+} // namespace LibAVFilter

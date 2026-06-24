@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 Intel Quick Sync Video VPP base function
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 public define FF_INLINK_IDX (
@@ -162,3 +163,5 @@ vpp filter frame and call the cb if needed
 public int ff_qsvvpp_filter_frame (
     QSVVPPContext? vpp, AVFilterLink? inlink, AVFrame? frame
 );
+
+} // namespace LibAVFilter

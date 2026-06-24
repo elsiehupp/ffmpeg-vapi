@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibSoftwareRescale {
 
 /***********************************************************
 AV_STRINGIFY is too long
@@ -2232,3 +2233,5 @@ number of extra lines to process
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const size_t MAX_LINES_AHEAD; // 4
+
+} // namespace LibSoftwareRescale

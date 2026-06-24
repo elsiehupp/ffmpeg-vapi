@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 [CCode (cname="ff_alloc_input_device_context",cheader_filename="subprojects/ffmpeg/libavdevice/internal.h")]
 //  av_warn_unused_result
@@ -23,3 +24,5 @@ public int ff_alloc_input_device_context (
     AVInputFormat? iformat,
     string format
 );
+
+} // namespace LibAVDevice

@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup lpp
 external API header
 ***********************************************************/
+namespace LibPostProc {
 
 /***********************************************************
 @defgroup lpp libpostproc
@@ -167,3 +168,5 @@ public enum PostProcessPictureType {
 /***********************************************************
 @}
 ***********************************************************/
+
+} // namespace LibPostProc

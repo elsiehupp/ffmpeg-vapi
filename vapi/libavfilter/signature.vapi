@@ -22,6 +22,7 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 @file
 MPEG-7 video signature calculation and lookup filter
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 public const int ELEMENT_COUNT; // 10
@@ -10521,3 +10522,5 @@ static const ElemCat* elements[ELEMENT_COUNT] = {
     &elem_d7,
     &elem_d8
 };
+
+} // namespace LibAVFilter

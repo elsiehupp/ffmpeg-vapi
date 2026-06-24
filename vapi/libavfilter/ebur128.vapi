@@ -23,10 +23,11 @@ https://github.com/jiixyj/libebur128/
 ***********************************************************/
 
 /***********************************************************
-\file ebur128.h
- @brief libebur128 - a library for loudness measurement according to
+@file ebur128.h
+@brief libebur128 - a library for loudness measurement according to
         the EBU R128 standard.
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 \enum channel
@@ -613,3 +614,5 @@ public int ff_ebur128_relative_threshold (
     FFEBUR128State * st,
     double[] out
 );
+
+} // namespace LibAVFilter

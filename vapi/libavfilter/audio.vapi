@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="ff_packed_sample_fmts_array",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
 public static const AVSampleFormat ff_packed_sample_fmts_array[];
@@ -73,3 +74,5 @@ public AVFrame? ff_get_audio_buffer (
     AVFilterLink? link,
     int nb_samples
 );
+
+} // namespace LibAVFilter

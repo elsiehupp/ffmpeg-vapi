@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License along
 with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct PullupBuffer",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 [Compact]
@@ -178,3 +179,5 @@ public class PullupContext {
 public void ff_pullup_init_x86 (
     PullupContext? s
 );
+
+} // namespace LibAVFilter

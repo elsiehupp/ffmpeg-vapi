@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct Coeffs",cheader_filename="subprojects/ffmpeg/libavfilter/avf_showcqt.h")]
 [Compact]
@@ -347,3 +348,5 @@ public class ShowCQTContext {
 public void ff_showcqt_init_x86 (
     ShowCQTContext? s
 );
+
+} // namespace LibAVFilter

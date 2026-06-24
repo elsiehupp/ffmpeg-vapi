@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="enum YADIFMode",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public enum YADIFMode {
@@ -222,3 +223,5 @@ public int ff_yadif_request_frame (
 );
 
 //  extern const AVOption ff_yadif_options[];
+
+} // namespace LibAVFilter

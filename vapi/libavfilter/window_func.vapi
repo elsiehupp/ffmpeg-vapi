@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="enum WindowFunc",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
 public enum WindowFunc {
@@ -91,3 +92,5 @@ public static inline void generate_window_func (
     int win_func,
     float[] overlap
 );
+
+} // namespace LibAVFilter

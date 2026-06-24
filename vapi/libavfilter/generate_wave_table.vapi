@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="enum WaveType",cheader_filename="subprojects/ffmpeg/libavfilter/generate_wave_table.h")]
 public enum WaveType {
@@ -38,3 +39,5 @@ public void ff_generate_wave_table (
     double max,
     double phase
 );
+
+} // namespace LibAVFilter

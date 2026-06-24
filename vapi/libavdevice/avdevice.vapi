@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup lavd
 Main libavdevice API header
 ***********************************************************/
+namespace LibAVDevice {
 
 /***********************************************************
 @defgroup lavd libavdevice
@@ -797,3 +798,5 @@ public int avdevice_list_output_sinks (
 /***********************************************************
 @}
 ***********************************************************/
+
+} // namespace LibAVDevice

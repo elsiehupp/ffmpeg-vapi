@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup lavr
 external API header
 ***********************************************************/
+namespace LibAVResample {
 
 /***********************************************************
 @defgroup lavr libavresample
@@ -716,3 +717,5 @@ public int avresample_config (
 /***********************************************************
 @}
 ***********************************************************/
+
+} // namespace LibAVResample

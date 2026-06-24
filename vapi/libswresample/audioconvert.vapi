@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 Audio format conversion routines
 ***********************************************************/
+namespace LibSoftwareResample {
 
 [CCode (cname="conv_func_type",cheader_filename="subprojects/ffmpeg/libswresample/audioconvert.h")]
 public delegate void ConvDelegate (
@@ -110,3 +111,5 @@ public int swri_audio_convert (
     AudioData? in,
     int len
 );
+
+} // namespace LibSoftwareResample

@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 public const size_t MAX_NOISE; // 5120
@@ -137,3 +138,5 @@ public void ff_line_noise_avg_c (
 public void ff_noise_init_x86 (
     NoiseContext? n
 );
+
+} // namespace LibAVFilter

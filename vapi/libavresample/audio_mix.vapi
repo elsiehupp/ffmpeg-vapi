@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVResample {
 
 [CCode (cname="mix_func",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
 public delegate void MixDelegate (
@@ -119,3 +120,5 @@ arch-specific initialization functions
 public void ff_audio_mix_init_x86 (
     AudioMix? am
 );
+
+} // namespace LibAVResample

@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup lavfi_buffersink
 memory buffer sink API for audio and video
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 @defgroup lavfi_buffersink Buffer sink API
@@ -260,3 +261,5 @@ public int av_buffersink_get_samples (
 /***********************************************************
 @}
 ***********************************************************/
+
+} // namespace LibAVFilter

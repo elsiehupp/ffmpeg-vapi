@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 DNN inference engine interface.
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cprefix="DNN_",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_interface.h")]
 public enum DNNReturnType {
@@ -148,3 +149,5 @@ Initializes DNNModule depending on chosen backend.
 public DNNModule? ff_get_dnn_module (
     DNNBackendType backend_type
 );
+
+} // namespace LibAVFilter

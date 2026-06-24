@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup libsws
 external API header
 ***********************************************************/
+namespace LibSoftwareRescale {
 
 /***********************************************************
 @defgroup libsws libswscale
@@ -567,3 +568,5 @@ public AVClass? sws_get_class ();
 /***********************************************************
 @}
 ***********************************************************/
+
+} // namespace LibSoftwareRescale

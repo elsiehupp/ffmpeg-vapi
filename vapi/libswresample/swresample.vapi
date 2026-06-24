@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup lswr
 libswresample public header
 ***********************************************************/
+namespace LibSoftwareResample {
 
 /***********************************************************
 @defgroup lswr libswresample
@@ -725,3 +726,5 @@ public int swr_config_frame (
 @}
 @}
 ***********************************************************/
+
+} // namespace LibSoftwareResample

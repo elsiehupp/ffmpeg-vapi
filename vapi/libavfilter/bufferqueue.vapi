@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 FFBufQueue: simple AVFrame queue API
@@ -142,3 +143,5 @@ public static inline void ff_bufqueue_discard_all (
 //  }
 
 //  #undef BUCKET
+
+} // namespace LibAVFilter

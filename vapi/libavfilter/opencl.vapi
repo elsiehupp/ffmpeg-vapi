@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 The intended target is OpenCL 1.2, so disable warnings for APIs
@@ -227,3 +228,5 @@ public void ff_opencl_print_const_matrix_3x3 (
     string name_str,
     double mat[3][3]
 );
+
+} // namespace LibAVFilter

@@ -24,6 +24,7 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct GBlurContext",cheader_filename="subprojects/ffmpeg/libavfilter/gblur.h")]
 [Compact]
@@ -99,3 +100,5 @@ public void ff_gblur_init (
 public void ff_gblur_init_x86 (
     GBlurContext? s
 );
+
+} // namespace LibAVFilter

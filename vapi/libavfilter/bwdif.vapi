@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct BWDIFContext",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]
 [Compact]
@@ -82,3 +83,5 @@ public class BWDIFContext {
 public void ff_bwdif_init_x86 (
     BWDIFContext? bwdif
 );
+
+} // namespace LibAVFilter

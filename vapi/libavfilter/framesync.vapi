@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="enum EOFAction",cprefix="EOF_ACTION_",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public enum EOFAction {
@@ -391,3 +392,5 @@ public int ff_framesync_dualinput_get_writable (
 //      .child_class_next = name##_child_class_next, \
 //      .child_next = name##_child_next, \
 //  }
+
+} // namespace LibAVFilter

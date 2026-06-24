@@ -19,6 +19,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 [CCode (cname="ff_get_pixfmt_from_fb_varinfo",cheader_filename="subprojects/ffmpeg/libavdevice/fbdev_common.h")]
 public AVPixelFormat ff_get_pixfmt_from_fb_varinfo (
@@ -32,3 +33,5 @@ public string ff_fbdev_default_device ();
 public int ff_fbdev_get_device_list (
     AVDeviceInfoList? device_list
 );
+
+} // namespace LibAVDevice

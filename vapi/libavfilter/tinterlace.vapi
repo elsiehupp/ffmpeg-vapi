@@ -24,6 +24,7 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 @file
 temporal field interlace filter, ported from MPlayer/libmpcodecs
 ***********************************************************/
+namespace LibAVFilter {
 
 [Flags]
 public enum TemporalInterlaceFlags {
@@ -151,3 +152,5 @@ public class TInterlaceContext {
 public void ff_tinterlace_init_x86 (
     TInterlaceContext? interlace
 );
+
+} // namespace LibAVFilter

@@ -42,7 +42,7 @@ public class GSMDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

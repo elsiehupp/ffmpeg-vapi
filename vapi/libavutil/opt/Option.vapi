@@ -121,7 +121,7 @@ public class test_class : Class{
         );
     }
 
-    [CCode (cname="option",cheader_filename="")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {
@@ -213,7 +213,7 @@ public void free_test_struct (out test_struct foo) {
         //  .class_name = "child class";
         //  .item_name = base.item_name,
 
-        [CCode (cname="option",cheader_filename="")]
+        [CCode (cname="option")]
         public override LibAVUtil.Option[] options {
             public get {
                 return {

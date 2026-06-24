@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 Miscellaneous utilities which make use of the libavformat library
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 Load image from filename and put the resulting image in data.
@@ -41,3 +42,5 @@ public int ff_load_image (
     string filename,
     void *log_ctx
 );
+
+} // namespace LibAVFilter

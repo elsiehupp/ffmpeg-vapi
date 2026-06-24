@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 Libpostproc version macros
 ***********************************************************/
+namespace LibPostProc {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/version.h")]
 public const int LIBPOSTPROC_VERSION_MAJOR; // 55
@@ -53,3 +54,5 @@ public const int LIBPOSTPROC_BUILD; // LIBPOSTPROC_VERSION_INT
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/version.h")]
 public const string LIBPOSTPROC_IDENT; // "postproc" AV_STRINGIFY (LIBPOSTPROC_VERSION)
+
+} // namespace LibPostProc

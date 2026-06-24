@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
 public enum MotionEstimationMethon {
@@ -215,3 +216,5 @@ public uint64 ff_me_search_umh (
     int y_mb,
     out int mv
 );
+
+} // namespace LibAVFilter

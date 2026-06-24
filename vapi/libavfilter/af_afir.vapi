@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct AudioFIRSegment",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
 [Compact]
@@ -190,3 +191,5 @@ public void ff_afir_init (
 public void ff_afir_init_x86 (
     AudioFIRDSPContext? s
 );
+
+} // namespace LibAVFilter

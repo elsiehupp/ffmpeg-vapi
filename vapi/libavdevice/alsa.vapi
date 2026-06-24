@@ -26,6 +26,7 @@ ALSA input and output: definitions and structures
 @author Luca Abeni ( lucabe72 email it )
 @author Benoit Fouet ( benoit fouet free fr )
 ***********************************************************/
+namespace LibAVDevice {
 
 /***********************************************************
 XXX: we make the assumption that the soundcard accepts this format
@@ -175,3 +176,5 @@ public int ff_alsa_get_device_list (
     AVDeviceInfoList? device_list,
     snd_pcm_stream_t stream_type
 );
+
+} // namespace LibAVDevice

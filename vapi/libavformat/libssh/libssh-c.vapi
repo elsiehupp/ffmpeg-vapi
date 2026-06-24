@@ -41,7 +41,7 @@ public class LibSSHURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

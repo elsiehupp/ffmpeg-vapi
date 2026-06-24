@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 swscale version macros
 ***********************************************************/
+namespace LibSoftwareRescale {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/version.h")]
 public const int LIBSWSCALE_VERSION_MAJOR; // 5
@@ -62,3 +63,5 @@ the public API and may change, break or disappear at any time.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/version.h")]
 public const bool FF_API_SWS_VECTOR; // (LIBSWSCALE_VERSION_MAJOR < 6)
 #endif
+
+} // namespace LibSoftwareRescale

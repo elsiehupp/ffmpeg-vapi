@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 Miscellaneous utilities which make use of the libswscale library
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 Scale image using libswscale.
@@ -38,3 +39,5 @@ public int ff_scale_image (
     AVPixelFormat src_pix_fmt,
     void *log_ctx
 );
+
+} // namespace LibAVFilter

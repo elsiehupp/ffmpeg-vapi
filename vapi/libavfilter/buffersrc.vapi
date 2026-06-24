@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup lavfi_buffersrc
 Memory buffer source API.
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 @defgroup lavfi_buffersrc Buffer source API
@@ -247,3 +248,5 @@ public int av_buffersrc_close (
 /***********************************************************
 @}
 ***********************************************************/
+
+} // namespace LibAVFilter

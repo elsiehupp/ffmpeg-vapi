@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVResample {
 
 /***********************************************************
 Set conversion function if the parameters match.
@@ -123,3 +124,5 @@ public void ff_audio_convert_init_arm (
 public void ff_audio_convert_init_x86 (
     AudioConvert? ac
 );
+
+} // namespace LibAVResample

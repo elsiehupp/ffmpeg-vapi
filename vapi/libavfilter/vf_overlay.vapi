@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="enum var_name",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
 public enum VarName {
@@ -209,3 +210,5 @@ public void ff_overlay_init_x86 (
     int alpha_format,
     int main_has_alpha
 );
+
+} // namespace LibAVFilter

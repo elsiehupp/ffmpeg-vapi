@@ -18,6 +18,7 @@ You should have received a copy of the GNU General Public License along
 with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 quality levels
@@ -103,3 +104,5 @@ public class SPPContext {
 public void ff_spp_init_x86 (
     SPPContext? s
 );
+
+} // namespace LibAVFilter

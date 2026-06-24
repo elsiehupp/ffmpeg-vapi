@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 [CCode (cname="ff_decklink_read_header",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_dec.h")]
 public int ff_decklink_read_header (
@@ -41,3 +42,5 @@ public int ff_decklink_list_input_devices (
     AVDeviceInfoList? device_list
 );
 
+
+} // namespace LibAVDevice

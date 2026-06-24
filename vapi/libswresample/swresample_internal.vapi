@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with libswresample; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibSoftwareResample {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 public const size_t SWR_CH_MAX; // 64
@@ -841,3 +842,5 @@ public void swri_audio_convert_init_x86 (
     AVSampleFormat in_fmt,
     int channels
 );
+
+} // namespace LibSoftwareResample

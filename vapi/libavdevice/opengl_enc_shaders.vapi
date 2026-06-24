@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 static string const FF_OPENGL_VERTEX_SHADER =
     "uniform mat4 u_projectionMatrix;"
@@ -186,3 +187,5 @@ static string const FF_OPENGL_FRAGMENT_SHADER_GRAY =
         "float c = texture2D (u_texture0, texture_coordinate).r;"
         "gl_FragColor = vec4 (c, c, c, 1.0);"
     "}";
+
+} // namespace LibAVDevice

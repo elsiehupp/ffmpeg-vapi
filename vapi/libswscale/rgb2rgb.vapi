@@ -22,6 +22,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibSoftwareRescale {
 
 /***********************************************************
 A full collection of RGB to RGB (BGR) converters
@@ -535,3 +536,5 @@ public void ff_sws_rgb2rgb_init ();
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
 public void rgb2rgb_init_x86 ();
+
+} // namespace LibSoftwareRescale

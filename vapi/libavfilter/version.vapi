@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup lavfi
 Libavfilter version macros
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const int LIBAVFILTER_VERSION_MAJOR; // 7
@@ -81,3 +82,5 @@ public const bool FF_API_FILTER_GET_SET; // (LIBAVFILTER_VERSION_MAJOR < 8)
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
 public const bool FF_API_NEXT; // (LIBAVFILTER_VERSION_MAJOR < 8)
 #endif
+
+} // namespace LibAVFilter

@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 A list of supported formats for one end of a filter link. This is used
@@ -415,3 +416,5 @@ public void ff_formats_changeref (
     AVFilterFormats **oldref,
     AVFilterFormats **newref
 );
+
+} // namespace LibAVFilter

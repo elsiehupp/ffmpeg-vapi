@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 Conversion routines between libav* and vid.stab
@@ -43,3 +44,5 @@ av* versions.
 ***********************************************************/
 [CCode (cname="ff_vs_init",cheader_filename="subprojects/ffmpeg/libavfilter/vidstabutils.h")]
 public void ff_vs_init ();
+
+} // namespace LibAVFilter

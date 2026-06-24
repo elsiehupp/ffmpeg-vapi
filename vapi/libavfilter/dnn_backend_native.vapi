@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 DNN inference functions interface for native backend.
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
 public enum DNNLayerType {
@@ -154,3 +155,5 @@ public DNNReturnType ff_dnn_execute_model_native (
 public void ff_dnn_free_model_native (
     DNNModel **model
 );
+
+} // namespace LibAVFilter

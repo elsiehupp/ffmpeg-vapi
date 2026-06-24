@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 Libswresample version macros
 ***********************************************************/
+namespace LibSoftwareResample {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/version.h")]
 public const int LIBSWRESAMPLE_VERSION_MAJOR; // 3
@@ -53,3 +54,5 @@ public const int LIBSWRESAMPLE_BUILD; // LIBSWRESAMPLE_VERSION_INT
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/version.h")]
 public const string LIBSWRESAMPLE_IDENT; // "SwR" AV_STRINGIFY (LIBSWRESAMPLE_VERSION)
+
+} // namespace LibSoftwareResample

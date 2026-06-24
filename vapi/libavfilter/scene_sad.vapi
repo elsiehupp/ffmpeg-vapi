@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 Scene SAD functions
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="ff_scene_sad_fn")]
 public delegate void FfSceneSadDelegate (
@@ -63,3 +64,5 @@ public FfSceneSadDelegate ff_scene_sad_get_fn_x86 (
 public FfSceneSadDelegate ff_scene_sad_get_fn (
     int depth
 );
+
+} // namespace LibAVFilter

@@ -119,7 +119,7 @@ static const AVCodecTag additional_subtitle_tags[] = {
 };
 
 public abstract class MatroskaClassOptions : LibAVUtil.Class {
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

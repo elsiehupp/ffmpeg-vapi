@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="ff_scale_eval_dimensions",cheader_filename="subprojects/ffmpeg/libavfilter/scale.h")]
 public int ff_scale_eval_dimensions (
@@ -26,3 +27,5 @@ public int ff_scale_eval_dimensions (
     out int ret_w,
     out int ret_h
 );
+
+} // namespace LibAVFilter

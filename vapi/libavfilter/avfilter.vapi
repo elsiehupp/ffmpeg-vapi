@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup lavfi
 Main libavfilter public API header
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 @defgroup lavfi libavfilter
@@ -1640,3 +1641,5 @@ public int avfilter_graph_request_oldest (
 /***********************************************************
 @}
 ***********************************************************/
+
+} // namespace LibAVFilter

@@ -19,6 +19,7 @@ You should have received a copy of the GNU General Public License along
 with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct HQDN3DContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
 [Compact]
@@ -62,8 +63,8 @@ public class HQDN3DContext {
 
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
-public enum FooBar {
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
+public enum LumaChromaSpatialTemporal { // not a named type !!!
     [CCode (cname="LUMA_SPATIAL")]
     LUMA_SPATIAL, // 0
 
@@ -81,3 +82,5 @@ public enum FooBar {
 public void ff_hqdn3d_init_x86 (
     HQDN3DContext? hqdn3d
 );
+
+} // namespace LibAVFilter

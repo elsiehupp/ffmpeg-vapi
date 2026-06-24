@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 
 [CCode (cname="ff_default_get_video_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/video.h")]
@@ -49,3 +50,5 @@ public AVFrame? ff_get_video_buffer (
     int w,
     int h
 );
+
+} // namespace LibAVFilter

@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct VMAFMotionDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/vmaf_motion.h")]
 [Compact]
@@ -118,3 +119,5 @@ public double ff_vmafmotion_process (
 public double ff_vmafmotion_uninit (
     VMAFMotionData? data
 );
+
+} // namespace LibAVFilter

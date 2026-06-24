@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct SSIMDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/ssim.h")]
 [Compact]
@@ -50,3 +51,5 @@ public class SSIMDSPContext {
 public void ff_ssim_init_x86 (
     SSIMDSPContext? dsp
 );
+
+} // namespace LibAVFilter

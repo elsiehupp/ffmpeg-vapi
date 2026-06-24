@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 [CCode (cname="struct fmt_map",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
 [Compact]
@@ -46,3 +47,5 @@ public AVPixelFormat ff_fmt_v4l2ff (
 public AVCodecID ff_fmt_v4l2codec (
     uint32 v4l2_fmt
 );
+
+} // namespace LibAVDevice

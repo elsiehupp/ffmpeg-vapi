@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct FFBoundingBox",cheader_filename="subprojects/ffmpeg/libavfilter/bbox.h")]
 [Compact]
@@ -53,3 +54,5 @@ public int ff_calculate_bounding_box (
     int h,
     int min_val
 );
+
+} // namespace LibAVFilter

@@ -32,7 +32,7 @@ namespace LibAVFormat {
 public class FLVDemuxerClassPrivateData { }
 
 public abstract class FLVDemuxerClass : LibAVUtil.Class {
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

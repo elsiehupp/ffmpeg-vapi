@@ -56,7 +56,7 @@ public class OpenTLSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/tls_openssl.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

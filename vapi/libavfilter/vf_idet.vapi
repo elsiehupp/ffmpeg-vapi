@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 public const size_t HIST_SIZE; // 4
@@ -139,3 +140,5 @@ public int ff_idet_filter_line_c_16bit (
     uint16[] c,
     int w
 );
+
+} // namespace LibAVFilter

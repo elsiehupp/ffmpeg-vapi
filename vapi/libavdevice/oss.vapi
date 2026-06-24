@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/oss.h")]
 public const size_t OSS_AUDIO_BLOCK_SIZE; // 4096
@@ -64,3 +65,5 @@ public int ff_oss_audio_open (
 public int ff_oss_audio_close (
     OSSAudioData? s
 );
+
+} // namespace LibAVDevice

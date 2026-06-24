@@ -29,7 +29,7 @@ M3U8 specification can be find here:
 
 public abstract class SegmentOptionsClass : LibAVUtil.Class {
 
-    [CCode (cname="option",cheader_filename="")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

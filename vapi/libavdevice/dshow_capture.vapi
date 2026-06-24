@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 /***********************************************************
 EC_DEVICE_LOST is not defined in MinGW dshow headers.
@@ -895,3 +896,5 @@ public void dshow_show_filter_properties (
     IBaseFilter? pFilter,
     AVFormatContext? avctx
 );
+
+} // namespace LibAVDevice

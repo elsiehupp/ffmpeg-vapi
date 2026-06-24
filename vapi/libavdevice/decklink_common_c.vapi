@@ -19,6 +19,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 [CCode (cname="enum DecklinkPtsSource",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
 public enum DecklinkPtsSource {
@@ -113,3 +114,5 @@ public class decklink_cctx {
     [CCode (cname="")]
     public int timing_offset;
 }
+
+} // namespace LibAVDevice

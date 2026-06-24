@@ -18,6 +18,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVDevice {
 
 [CCode (cname="ff_codec_id_to_pulse_format",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
 public pa_sample_format_t ff_codec_id_to_pulse_format (
@@ -46,3 +47,5 @@ public void ff_pulse_audio_disconnect_context (
     pa_mainloop **pa_ml,
     pa_context **pa_ctx
 );
+
+} // namespace LibAVDevice

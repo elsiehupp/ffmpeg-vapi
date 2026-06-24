@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="enum PassthroughType",cprefix="TRANSPOSE_PT_TYPE_",cheader_filename="subprojects/ffmpeg/libavfilter/transpose.h")]
 public enum PassthroughType {
@@ -49,3 +50,5 @@ public enum TransposeDirection {
     [CCode (cname="TRANSPOSE_VFLIP")]
     VERTICAL_FLIP;
 }
+
+} // namespace LibAVFilter

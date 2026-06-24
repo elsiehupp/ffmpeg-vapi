@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @ingroup lavr
 Libavresample version macros.
 ***********************************************************/
+namespace LibAVResample {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/version.h")]
 public const int LIBAVRESAMPLE_VERSION_MAJOR; // 4
@@ -59,3 +60,5 @@ FF_API_* defines may be placed below to indicate public API that will be
 dropped at a future version bump. The defines themselves are not part of
 the public API and may change, break or disappear at any time.
 ***********************************************************/
+
+} // namespace LibAVResample

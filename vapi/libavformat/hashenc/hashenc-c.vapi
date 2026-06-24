@@ -26,7 +26,7 @@ namespace LibAVFormat {
 
 public abstract class HashOptionsClass : LibAVUtil.Class {
 
-    [CCode (cname="option",cheader_filename="")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {
@@ -72,7 +72,7 @@ public abstract class HashOptionsClass : LibAVUtil.Class {
 
 public abstract class MD5OptionsClass : LibAVUtil.Class {
 
-    [CCode (cname="option",cheader_filename="")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

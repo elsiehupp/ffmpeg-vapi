@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 audio volume filter
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="enum PrecisionType",cprefix="PRECISION_",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public enum PrecisionType {
@@ -155,3 +156,5 @@ public class VolumeContext {
 public void ff_volume_init_x86 (
     VolumeContext? vol
 );
+
+} // namespace LibAVFilter

@@ -16,6 +16,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public const float REFERENCE_WHITE; // 100.0f
@@ -106,3 +107,5 @@ public void ff_update_hdr_metadata (
     AVFrame? in,
     double peak
 );
+
+} // namespace LibAVFilter

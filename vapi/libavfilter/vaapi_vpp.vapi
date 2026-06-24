@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
 ARGB black, for VAProcPipelineParameterBuffer.output_background_color.
@@ -142,3 +143,5 @@ public int ff_vaapi_vpp_render_picture (
     VAProcPipelineParameterBuffer? params,
     AVFrame output_frame
 );
+
+} // namespace LibAVFilter

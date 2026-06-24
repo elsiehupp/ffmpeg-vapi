@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVResample {
 
 [CCode (cname="struct ResampleContext",cheader_filename="subprojects/ffmpeg/libavresample/resample.h")]
 [Compact]
@@ -163,3 +164,5 @@ public int ff_audio_resample (
     AudioData? dst,
     AudioData? src
 );
+
+} // namespace LibAVResample

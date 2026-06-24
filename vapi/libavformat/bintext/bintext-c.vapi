@@ -41,7 +41,7 @@ public abstract class BinTextClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

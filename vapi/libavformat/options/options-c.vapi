@@ -37,7 +37,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
     }
     //  .item_name = format_to_name,
 
-    [CCode (cname="option",cheader_filename="")]
+    [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {
             return {

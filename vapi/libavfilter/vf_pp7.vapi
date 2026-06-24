@@ -18,6 +18,7 @@ You should have received a copy of the GNU General Public License along
 with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct PP7Context",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pp7.h")]
 [Compact]
@@ -72,3 +73,5 @@ public class PP7Context {
 public void ff_pp7_init_x86 (
     PP7Context? pp7
 );
+
+} // namespace LibAVFilter

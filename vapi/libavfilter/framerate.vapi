@@ -15,6 +15,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framerate.h")]
 public const int BLEND_FACTOR_DEPTH8; // 7
@@ -184,3 +185,5 @@ public void ff_framerate_init (
 public void ff_framerate_init_x86 (
     FrameRateContext? s
 );
+
+} // namespace LibAVFilter

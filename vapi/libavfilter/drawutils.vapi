@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 misc drawing utilities
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public int ff_fill_rgba_map (
@@ -285,3 +286,5 @@ The flags are the same as ff_draw_init, i.e., none currently.
 public AVFilterFormats ff_draw_supported_pixel_formats (
     uint flags
 );
+
+} // namespace LibAVFilter

@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct PSNRDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/psnr.h")]
 [Compact]
@@ -37,3 +38,5 @@ public void ff_psnr_init_x86 (
     PSNRDSPContext? dsp,
     int bpp
 );
+
+} // namespace LibAVFilter

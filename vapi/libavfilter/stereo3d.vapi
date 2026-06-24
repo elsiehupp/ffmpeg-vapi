@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
+namespace LibAVFilter {
 
 [CCode (cname="struct Stereo3DDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/stereo3d.h")]
 [Compact]
@@ -44,3 +45,5 @@ public class Stereo3DDSPContext {
 public void ff_stereo3d_init_x86 (
     Stereo3DDSPContext? dsp
 );
+
+} // namespace LibAVFilter

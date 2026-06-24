@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @file
 public internal API header.
 ***********************************************************/
+namespace LibPostProc {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 public enum FooBar {
@@ -399,3 +400,5 @@ public static inline void linecpy (
 //          memcpy ((uint8*)dest+(lines-1)*stride, (const uint8*)src+(lines-1)*stride, -lines*stride);
 //      }
 //  }
+
+} // namespace LibPostProc
