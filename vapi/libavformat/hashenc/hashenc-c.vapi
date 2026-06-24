@@ -23,76 +23,101 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_HASH_MUXER || CONFIG_FRAMEHASH_MUXER
-[CCode (cname="hash_options",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
-static const LibAVUtil.Option hash_options[] = {
-    new LibAVUtil.StringOption () {
-        name = "hash",
-        short_help_text = "set hash to use",
-        offset = offsetof (
-            HashContext,
-            hash_name
-        ),
-        default_value = "sha256",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "format_version",
-        short_help_text = "file format version",
-        offset = offsetof (
-            HashContext,
-            format_version
-        ),
-        default_value = 2,
-        minimum_value = 1,
-        maximum_value = 2,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
+
+public abstract class HashOptionsClass : LibAVUtil.Class {
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.StringOption () {
+                    name = "hash",
+                    short_help_text = "set hash to use",
+                    offset = offsetof (
+                        HashContext,
+                        hash_name
+                    ),
+                    default_value = "sha256",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "format_version",
+                    short_help_text = "file format version",
+                    offset = offsetof (
+                        HashContext,
+                        format_version
+                    ),
+                    default_value = 2,
+                    minimum_value = 1,
+                    maximum_value = 2,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
 
-};
+}
+
 #endif
 
 #if CONFIG_MD5_MUXER || CONFIG_FRAMEMD5_MUXER
-static const LibAVUtil.Option md5_options[] = {
-    new LibAVUtil.StringOption () {
-        name = "hash",
-        short_help_text = "set hash to use",
-        offset = offsetof (
-            HashContext,
-            hash_name
-        ),
-        default_value = "md5",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "format_version",
-        short_help_text = "file format version",
-        offset = offsetof (
-            HashContext,
-            format_version
-        ),
-        default_value = 2,
-        minimum_value = 1,
-        maximum_value = 2,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
+
+public abstract class MD5OptionsClass : LibAVUtil.Class {
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.StringOption () {
+                    name = "hash",
+                    short_help_text = "set hash to use",
+                    offset = offsetof (
+                        HashContext,
+                        hash_name
+                    ),
+                    default_value = "md5",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "format_version",
+                    short_help_text = "file format version",
+                    offset = offsetof (
+                        HashContext,
+                        format_version
+                    ),
+                    default_value = 2,
+                    minimum_value = 1,
+                    maximum_value = 2,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
 
-};
+}
+
 #endif
 
 #if CONFIG_HASH_MUXER
 
 [CCode (cname="hashenc_class",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
-public class HashMuxerClass : LibAVUtil.Class {
+public class HashMuxerClass : HashOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string class_name {
         public get {
@@ -110,7 +135,6 @@ public class HashMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = hash_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int version {
@@ -201,7 +225,7 @@ public class HashMuxer : AVOutputFormat {
 #if CONFIG_MD5_MUXER
 
 [CCode (cname="md5enc_class",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
-public class MD5MuxerClass : LibAVUtil.Class {
+public class MD5MuxerClass : MD5OptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string class_name {
         public get {
@@ -219,7 +243,6 @@ public class MD5MuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = md5_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int version {
@@ -310,7 +333,7 @@ public class MD5Muxer : AVOutputFormat {
 #if CONFIG_FRAMEHASH_MUXER
 
 [CCode (cname="framehash_class",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
-public class FrameHashMuxerClass : LibAVUtil.Class {
+public class FrameHashMuxerClass : HashOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string class_name {
         public get {
@@ -328,7 +351,6 @@ public class FrameHashMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = hash_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int version {
@@ -419,7 +441,7 @@ public class FrameHashMuxer : AVOutputFormat {
 #if CONFIG_FRAMEMD5_MUXER
 
 [CCode (cname="framemd5_class",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
-public class FrameMD5MuxerClass : LibAVUtil.Class {
+public class FrameMD5MuxerClass : MD5OptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override string class_name {
         public get {
@@ -437,7 +459,6 @@ public class FrameMD5MuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = md5_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hashenc.c")]
     public override int version {

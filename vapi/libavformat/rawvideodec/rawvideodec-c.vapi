@@ -22,50 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="rawvideo_options",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
-static const LibAVUtil.Option rawvideo_options[] = {
-    new LibAVUtil.ImageSizeOption () {
-        name = "video_size",
-        short_help_text = "set frame size",
-        offset = offsetof (
-            RawVideoDemuxerContext,
-            width
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "pixel_format",
-        short_help_text = "set pixel format",
-        offset = offsetof (
-            RawVideoDemuxerContext,
-            pixel_format
-        ),
-        default_value = "yuv420p",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.VideoRateOption () {
-        name = "framerate",
-        short_help_text = "set frame rate",
-        offset = offsetof (
-            RawVideoDemuxerContext,
-            framerate
-        ),
-        default_value = "25",
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="rawvideo_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
 public class RawVideoDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
@@ -85,7 +41,56 @@ public class RawVideoDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = rawvideo_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.ImageSizeOption () {
+                    name = "video_size",
+                    short_help_text = "set frame size",
+                    offset = offsetof (
+                        RawVideoDemuxerContext,
+                        width
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "pixel_format",
+                    short_help_text = "set pixel format",
+                    offset = offsetof (
+                        RawVideoDemuxerContext,
+                        pixel_format
+                    ),
+                    default_value = "yuv420p",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.VideoRateOption () {
+                    name = "framerate",
+                    short_help_text = "set frame rate",
+                    offset = offsetof (
+                        RawVideoDemuxerContext,
+                        framerate
+                    ),
+                    default_value = "25",
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rawvideodec.c")]
     public override int version {

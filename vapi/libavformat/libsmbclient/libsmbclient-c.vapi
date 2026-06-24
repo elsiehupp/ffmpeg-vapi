@@ -21,59 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/libsmbclient.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "timeout",
-        short_help_text = "set timeout in ms of socket I/O operations",
-        offset = offsetof (
-            LIBSMBContext,
-            timeout
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "truncate",
-        short_help_text = "truncate existing files on write",
-        offset = offsetof (
-            LIBSMBContext,
-            trunc
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.StringOption () {
-        name = "workgroup",
-        short_help_text = "set the workgroup used for making connections",
-        offset = offsetof (
-            LIBSMBContext,
-            workgroup
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="libsmbclient_context_class",cheader_filename="subprojects/ffmpeg/libavformat/libsmbclient.c")]
 public class LibSMBClientURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/libsmbclient.c")]
@@ -93,7 +40,65 @@ public class LibSMBClientURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "timeout",
+                    short_help_text = "set timeout in ms of socket I/O operations",
+                    offset = offsetof (
+                        LIBSMBContext,
+                        timeout
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "truncate",
+                    short_help_text = "truncate existing files on write",
+                    offset = offsetof (
+                        LIBSMBContext,
+                        trunc
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.StringOption () {
+                    name = "workgroup",
+                    short_help_text = "set the workgroup used for making connections",
+                    offset = offsetof (
+                        LIBSMBContext,
+                        workgroup
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/libsmbclient.c")]
     public override int version {

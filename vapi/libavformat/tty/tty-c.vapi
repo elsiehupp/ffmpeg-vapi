@@ -26,50 +26,6 @@ namespace LibAVFormat {
 @file Tele-typewriter demuxer
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "chars_per_frame",
-        short_help_text = "",
-        offset = offsetof (
-            TtyDemuxContext,
-            chars_per_frame
-        ),
-        default_value = 6000,
-        minimum_value = 1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.ImageSizeOption () {
-        name = "video_size",
-        short_help_text = "A string describing frame size, such as 640x480 or hd720.",
-        offset = offsetof (
-            TtyDemuxContext,
-            width
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.VideoRateOption () {
-        name = "framerate",
-        short_help_text = "",
-        offset = offsetof (
-            TtyDemuxContext,
-            framerate
-        ),
-        default_value = "25",
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="tty_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
 public class TTYDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
@@ -89,7 +45,56 @@ public class TTYDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "chars_per_frame",
+                    short_help_text = "",
+                    offset = offsetof (
+                        TtyDemuxContext,
+                        chars_per_frame
+                    ),
+                    default_value = 6000,
+                    minimum_value = 1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.ImageSizeOption () {
+                    name = "video_size",
+                    short_help_text = "A string describing frame size, such as 640x480 or hd720.",
+                    offset = offsetof (
+                        TtyDemuxContext,
+                        width
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.VideoRateOption () {
+                    name = "framerate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        TtyDemuxContext,
+                        framerate
+                    ),
+                    default_value = "25",
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/tty.c")]
     public override int version {

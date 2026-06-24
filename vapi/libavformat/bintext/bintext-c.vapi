@@ -31,74 +31,74 @@ Artworx Data Format demuxer
 iCEDraw File demuxer
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "linespeed",
-        short_help_text = "set simulated line speed (bytes per second)",
-        offset = offsetof (
-            BinDemuxContext,
-            chars_per_frame
-        ),
-        default_value = 6000,
-        minimum_value = 1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.ImageSizeOption () {
-        name = "video_size",
-        short_help_text = "set video size, such as 640x480 or hd720.",
-        offset = offsetof (
-            BinDemuxContext,
-            width
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.VideoRateOption () {
-        name = "framerate",
-        short_help_text = "set framerate (frames per second)",
-        offset = offsetof (
-            BinDemuxContext,
-            framerate
-        ),
-        default_value = "25",
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
+public abstract class BinTextClass : LibAVUtil.Class {
+    [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
+    public override string item_name (
+        void *class_context
+    ) {
+        return base.item_name (
+            class_context
+        );
     }
 
-};
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "linespeed",
+                    short_help_text = "set simulated line speed (bytes per second)",
+                    offset = offsetof (
+                        BinDemuxContext,
+                        chars_per_frame
+                    ),
+                    default_value = 6000,
+                    minimum_value = 1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.ImageSizeOption () {
+                    name = "video_size",
+                    short_help_text = "set video size, such as 640x480 or hd720.",
+                    offset = offsetof (
+                        BinDemuxContext,
+                        width
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.VideoRateOption () {
+                    name = "framerate",
+                    short_help_text = "set framerate (frames per second)",
+                    offset = offsetof (
+                        BinDemuxContext,
+                        framerate
+                    ),
+                    default_value = "25",
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
 
-//  #define CLASS (name)
-//  (const LibAVUtil.Class[1]){{
-//      [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
-//      public override string class_name {
-//          public get {
-//              return name;
-//          }
-//      }
-//      [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
-//      public override string item_name (
-//          void *class_context
-//      ) {
-//          return base.item_name (
-//              class_context
-//          );
-//      }
-//      //  .option = options,
-//      [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
-//      public override int version {
-//          public get {
-//              return LibAVUtil.Version.INT;
-//          }
-//      }
-//  }}
+            };
+
+        }
+
+    }
+
+    [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
+    public override int version {
+        public get {
+            return LibAVUtil.Version.INT;
+        }
+    }
+
+}
 
 #if CONFIG_BINTEXT_DEMUXER
 
@@ -146,8 +146,26 @@ public class BinaryTextDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .priv_class = CLASS ("Binary text demuxer")
+
+    public override LibAVUtil.Class priv_class {
+        public get {
+            return new BinaryTextDemuxerBinTextClass ();
+        }
+
+    }
+
 }
+
+public class BinaryTextDemuxerBinTextClass : BinTextClass {
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
+    public override string class_name {
+        public get {
+            return "Binary text demuxer";
+        }
+    }
+
+}
+
 #endif
 
 #if CONFIG_XBIN_DEMUXER
@@ -196,8 +214,26 @@ public class XBINDemuxer : AVInputFormat {
         AVFormatContext format_context,
         LibAVCodec.Packet packet
     );
-    //  .priv_class = CLASS ("eXtended BINary text (XBIN) demuxer")
+
+    public override LibAVUtil.Class priv_class {
+        public get {
+            return new XBINDemuxerBinTextClass ();
+        }
+
+    }
+
 }
+
+public class XBINDemuxerBinTextClass : BinTextClass {
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
+    public override string class_name {
+        public get {
+            return "eXtended BINary text (XBIN) demuxer";
+        }
+    }
+
+}
+
 #endif
 
 #if CONFIG_ADF_DEMUXER
@@ -250,8 +286,26 @@ public class ADFDemuxer : AVInputFormat {
         }
 
     }
-    //  .priv_class = CLASS ("Artworx Data Format demuxer")
+
+    public override LibAVUtil.Class priv_class {
+        public get {
+            return new ADFDemuxerBinTextClass ();
+        }
+
+    }
+
 }
+
+public class ADFDemuxerBinTextClass : BinTextClass {
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
+    public override string class_name {
+        public get {
+            return "Artworx Data Format demuxer";
+        }
+    }
+
+}
+
 #endif
 
 #if CONFIG_IDF_DEMUXER
@@ -309,8 +363,26 @@ public class IDFDemuxer : AVInputFormat {
         }
 
     }
-    //  .priv_class = CLASS ("iCE Draw File demuxer")
+
+    public override LibAVUtil.Class priv_class {
+        public get {
+            return new IDFDemuxerBinTextClass ();
+        }
+
+    }
+
 }
+
+public class IDFDemuxerBinTextClass : BinTextClass {
+    [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
+    public override string class_name {
+        public get {
+            return "iCE Draw File demuxer";
+        }
+    }
+
+}
+
 #endif
 
 } // namespace LibAVFormat

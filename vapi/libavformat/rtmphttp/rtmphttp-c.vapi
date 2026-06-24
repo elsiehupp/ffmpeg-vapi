@@ -26,25 +26,6 @@ namespace LibAVFormat {
 @file RTMP HTTP protocol
 ***********************************************************/
 
-static const LibAVUtil.Option ffrtmphttp_options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "ffrtmphttp_tls",
-        short_help_text = "Use a HTTPS tunneling connection (RTMPTS).",
-        offset = offsetof (
-            RTMP_HTTPContext,
-            tls
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="ffrtmphttp_class",cheader_filename="subprojects/ffmpeg/libavformat/rtmphttp.c")]
 public class RTMPHTTPURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtmphttp.c")]
@@ -64,7 +45,32 @@ public class RTMPHTTPURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = ffrtmphttp_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "ffrtmphttp_tls",
+                    short_help_text = "Use a HTTPS tunneling connection (RTMPTS).",
+                    offset = offsetof (
+                        RTMP_HTTPContext,
+                        tls
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtmphttp.c")]
     public override int version {

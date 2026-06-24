@@ -27,62 +27,6 @@ The chunk muxer enables writing WebM Live chunks where there is a header
 chunk, followed by data chunks where each Cluster is written out as a Chunk.
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/webmchunk.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "chunk_start_index",
-        short_help_text = "start index of the chunk",
-        offset = offsetof (
-            WebMChunkContext,
-            chunk_start_index
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "header",
-        short_help_text = "filename of the header where the initialization data will be written",
-        offset = offsetof (
-            WebMChunkContext,
-            header_filename
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "audio_chunk_duration",
-        short_help_text = "duration of each chunk in milliseconds",
-        offset = offsetof (
-            WebMChunkContext,
-            chunk_duration
-        ),
-        default_value = 5000,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "method",
-        short_help_text = "set the HTTP method",
-        offset = offsetof (
-            WebMChunkContext,
-            http_method
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 #if CONFIG_WEBM_CHUNK_MUXER
 
 [CCode (cname="webm_chunk_class",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
@@ -105,8 +49,67 @@ public class WebMChunkMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "chunk_start_index",
+                    short_help_text = "start index of the chunk",
+                    offset = offsetof (
+                        WebMChunkContext,
+                        chunk_start_index
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "header",
+                    short_help_text = "filename of the header where the initialization data will be written",
+                    offset = offsetof (
+                        WebMChunkContext,
+                        header_filename
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "audio_chunk_duration",
+                    short_help_text = "duration of each chunk in milliseconds",
+                    offset = offsetof (
+                        WebMChunkContext,
+                        chunk_duration
+                    ),
+                    default_value = 5000,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "method",
+                    short_help_text = "set the HTTP method",
+                    offset = offsetof (
+                        WebMChunkContext,
+                        http_method
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
     public override int version {

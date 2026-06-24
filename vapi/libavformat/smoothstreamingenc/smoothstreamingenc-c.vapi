@@ -22,74 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "window_size",
-        short_help_text = "number of fragments kept in the manifest",
-        offset = offsetof (
-            SmoothStreamingContext,
-            window_size
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "extra_window_size",
-        short_help_text = "number of fragments kept outside of the manifest before removing from disk",
-        offset = offsetof (
-            SmoothStreamingContext,
-            extra_window_size
-        ),
-        default_value = 5,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "lookahead_count",
-        short_help_text = "number of lookahead fragments",
-        offset = offsetof (
-            SmoothStreamingContext,
-            lookahead_count
-        ),
-        default_value = 2,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.Int64Option () {
-        name = "min_frag_duration",
-        short_help_text = "minimum fragment duration (in microseconds)",
-        offset = offsetof (
-            SmoothStreamingContext,
-            min_frag_duration
-        ),
-        default_value = 5000000,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "remove_at_exit",
-        short_help_text = "remove all fragments when finished",
-        offset = offsetof (
-            SmoothStreamingContext,
-            remove_at_exit
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="ism_class",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
 public class SmoothStreamingMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
@@ -110,8 +42,79 @@ public class SmoothStreamingMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return{
+                new LibAVUtil.IntOption () {
+                    name = "window_size",
+                    short_help_text = "number of fragments kept in the manifest",
+                    offset = offsetof (
+                        SmoothStreamingContext,
+                        window_size
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "extra_window_size",
+                    short_help_text = "number of fragments kept outside of the manifest before removing from disk",
+                    offset = offsetof (
+                        SmoothStreamingContext,
+                        extra_window_size
+                    ),
+                    default_value = 5,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "lookahead_count",
+                    short_help_text = "number of lookahead fragments",
+                    offset = offsetof (
+                        SmoothStreamingContext,
+                        lookahead_count
+                    ),
+                    default_value = 2,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.Int64Option () {
+                    name = "min_frag_duration",
+                    short_help_text = "minimum fragment duration (in microseconds)",
+                    offset = offsetof (
+                        SmoothStreamingContext,
+                        min_frag_duration
+                    ),
+                    default_value = 5000000,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "remove_at_exit",
+                    short_help_text = "remove all fragments when finished",
+                    offset = offsetof (
+                        SmoothStreamingContext,
+                        remove_at_exit
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override int version {

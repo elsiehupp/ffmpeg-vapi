@@ -24,505 +24,515 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.FlagsOption () {
-        name = "movflags",
-        short_help_text = "MOV muxer flags",
-        offset = offsetof (
-            MOVMuxContext,
-            flags
-        ),
-        default_value = 0,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "rtphint",
-        short_help_text = "Add RTP hint tracks",
-        offset = 0,
-        default_value = MOVFlags.RTP_HINT,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.IntOption () {
-        name = "moov_size",
-        short_help_text = "maximum moov size so it can be placed at the begin",
-        offset = offsetof (
-            MOVMuxContext,
-            reserved_moov_size
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = 0
-    },
-    new LibAVUtil.ConstOption () {
-        name = "empty_moov",
-        short_help_text = "Make the initial moov atom empty",
-        offset = 0,
-        default_value = MOVFlags.EMPTY_MOOV,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "frag_keyframe",
-        short_help_text = "Fragment at video keyframes",
-        offset = 0,
-        default_value = MOVFlags.FRAG_KEYFRAME,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "frag_every_frame",
-        short_help_text = "Fragment at every frame",
-        offset = 0,
-        default_value = MOVFlags.FRAG_EVERY_FRAME,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "separate_moof",
-        short_help_text = "Write separate moof/mdat atoms for each track",
-        offset = 0,
-        default_value = MOVFlags.SEPARATE_MOOF,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "frag_custom",
-        short_help_text = "Flush fragments on caller requests",
-        offset = 0,
-        default_value = MOVFlags.FRAG_CUSTOM,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "isml",
-        short_help_text = "Create a live smooth streaming feed (for pushing to a publishing point)",
-        offset = 0,
-        default_value = MOVFlags.ISML,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "faststart",
-        short_help_text = "Run a second pass to put the index (moov atom) at the beginning of the file",
-        offset = 0,
-        default_value = MOVFlags.FASTSTART,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "omit_tfhd_offset",
-        short_help_text = "Omit the base data offset in tfhd atoms",
-        offset = 0,
-        default_value = MOVFlags.OMIT_TFHD_OFFSET,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "disable_chpl",
-        short_help_text = "Disable Nero chapter atom",
-        offset = 0,
-        default_value = MOVFlags.DISABLE_CHPL,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "default_base_moof",
-        short_help_text = "Set the default-base-is-moof flag in tfhd atoms",
-        offset = 0,
-        default_value = MOVFlags.DEFAULT_BASE_MOOF,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "dash",
-        short_help_text = "Write DASH compatible fragmented MP4",
-        offset = 0,
-        default_value = MOVFlags.DASH,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "frag_discont",
-        short_help_text = "Signal that the next fragment is discontinuous from earlier ones",
-        offset = 0,
-        default_value = MOVFlags.FRAG_DISCONT,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "delay_moov",
-        short_help_text = "Delay writing the initial moov until the first fragment is cut, or until the first fragment flush",
-        offset = 0,
-        default_value = MOVFlags.DELAY_MOOV,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "global_sidx",
-        short_help_text = "Write a global sidx index at the start of the file",
-        offset = 0,
-        default_value = MOVFlags.GLOBAL_SIDX,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "skip_sidx",
-        short_help_text = "Skip writing of sidx atom",
-        offset = 0,
-        default_value = MOVFlags.SKIP_SIDX,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "write_colr",
-        short_help_text = "Write colr atom (Experimental, may be renamed or changed, do not use from scripts)",
-        offset = 0,
-        default_value = MOVFlags.WRITE_COLR,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "write_gama",
-        short_help_text = "Write deprecated gama atom",
-        offset = 0,
-        default_value = MOVFlags.WRITE_GAMA,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "use_metadata_tags",
-        short_help_text = "Use mdta atom for metadata.",
-        offset = 0,
-        default_value = MOVFlags.USE_MDTA,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "skip_trailer",
-        short_help_text = "Skip writing the mfra/tfra/mfro trailer for fragmented files",
-        offset = 0,
-        default_value = MOVFlags.SKIP_TRAILER,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "negative_cts_offsets",
-        short_help_text = "Use negative CTS offsets (reducing the need for edit lists)",
-        offset = 0,
-        default_value = MOVFlags.NEGATIVE_CTS_OFFSETS,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "movflags"
-    },
-    FF_RTP_FLAG_OPTS (
-        MOVMuxContext,
-        rtp_flags
-    ),
-    new LibAVUtil.BoolOption () {
-        name = "skip_iods",
-        short_help_text = "Skip writing iods atom.",
-        offset = offsetof (
-            MOVMuxContext,
-            iods_skip
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "iods_audio_profile",
-        short_help_text = "iods audio profile atom.",
-        offset = offsetof (
-            MOVMuxContext,
-            iods_audio_profile
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 255,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "iods_video_profile",
-        short_help_text = "iods video profile atom.",
-        offset = offsetof (
-            MOVMuxContext,
-            iods_video_profile
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 255,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "frag_duration",
-        short_help_text = "Maximum fragment duration",
-        offset = offsetof (
-            MOVMuxContext,
-            max_fragment_duration
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "min_frag_duration",
-        short_help_text = "Minimum fragment duration",
-        offset = offsetof (
-            MOVMuxContext,
-            min_fragment_duration
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "frag_size",
-        short_help_text = "Maximum fragment size",
-        offset = offsetof (
-            MOVMuxContext,
-            max_fragment_size
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "ism_lookahead",
-        short_help_text = "Number of lookahead entries for ISM files",
-        offset = offsetof (
-            MOVMuxContext,
-            ism_lookahead
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "video_track_timescale",
-        short_help_text = "set timescale of all video tracks",
-        offset = offsetof (
-            MOVMuxContext,
-            video_track_timescale
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "brand",
-        short_help_text = "Override major brand",
-        offset = offsetof (
-            MOVMuxContext,
-            major_brand
-        ),
-        default_value = "",
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "use_editlist",
-        short_help_text = "use edit list",
-        offset = offsetof (
-            MOVMuxContext,
-            use_editlist
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "fragment_index",
-        short_help_text = "Fragment number of the next fragment",
-        offset = offsetof (
-            MOVMuxContext,
-            fragments
-        ),
-        default_value = 1,
-        minimum_value = 1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.FloatOption () {
-        name = "mov_gamma",
-        short_help_text = "gamma value for gama atom",
-        offset = offsetof (
-            MOVMuxContext,
-            gamma
-        ),
-        default_value = 0.0,
-        minimum_value = 0.0,
-        maximum_value = 10,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "frag_interleave",
-        short_help_text = "Interleave samples within fragments (max number of consecutive samples, lower is tighter interleaving, but with more overhead)",
-        offset = offsetof (
-            MOVMuxContext,
-            frag_interleave
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "encryption_scheme",
-        short_help_text = "Configures the encryption scheme, allowed values are none, cenc-aes-ctr",
-        offset = offsetof (
-            MOVMuxContext,
-            encryption_scheme_str
-        ),
-        default_value = "",
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "encryption_key",
-        short_help_text = "The media encryption key (hex)",
-        offset = offsetof (
-            MOVMuxContext,
-            encryption_key
-        ),
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "encryption_kid",
-        short_help_text = "The media encryption key identifier (hex)",
-        offset = offsetof (
-            MOVMuxContext,
-            encryption_kid
-        ),
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "use_stream_ids_as_track_ids",
-        short_help_text = "use stream ids as track ids",
-        offset = offsetof (
-            MOVMuxContext,
-            use_stream_ids_as_track_ids
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "write_tmcd",
-        short_help_text = "force or disable writing tmcd",
-        offset = offsetof (
-            MOVMuxContext,
-            write_tmcd
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "write_prft",
-        short_help_text = "Write producer reference time box with specified time source",
-        offset = offsetof (
-            MOVMuxContext,
-            write_prft
-        ),
-        default_value = MOV_PRFT_NONE,
-        minimum_value = 0,
-        maximum_value = (
-            MOV_PRFT_NB - 1
-        ),
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "prft"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "wallclock",
-        short_help_text = "",
-        offset = 0,
-        default_value = MOV_PRFT_SRC_WALLCLOCK,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "prft"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "pts",
-        short_help_text = "",
-        offset = 0,
-        default_value = MOV_PRFT_SRC_PTS,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "prft"
-    },
-    new LibAVUtil.BoolOption () {
-        name = "empty_hdlr_name",
-        short_help_text = "write zero-length name string in hdlr atoms within mdia and minf atoms",
-        offset = offsetof (
-            MOVMuxContext,
-            empty_hdlr_name
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
+public abstract class MOVOptionsClass : LibAVUtil.Class {
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.FlagsOption () {
+                    name = "movflags",
+                    short_help_text = "MOV muxer flags",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        flags
+                    ),
+                    default_value = 0,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "rtphint",
+                    short_help_text = "Add RTP hint tracks",
+                    offset = 0,
+                    default_value = MOVFlags.RTP_HINT,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.IntOption () {
+                    name = "moov_size",
+                    short_help_text = "maximum moov size so it can be placed at the begin",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        reserved_moov_size
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = 0
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "empty_moov",
+                    short_help_text = "Make the initial moov atom empty",
+                    offset = 0,
+                    default_value = MOVFlags.EMPTY_MOOV,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "frag_keyframe",
+                    short_help_text = "Fragment at video keyframes",
+                    offset = 0,
+                    default_value = MOVFlags.FRAG_KEYFRAME,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "frag_every_frame",
+                    short_help_text = "Fragment at every frame",
+                    offset = 0,
+                    default_value = MOVFlags.FRAG_EVERY_FRAME,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "separate_moof",
+                    short_help_text = "Write separate moof/mdat atoms for each track",
+                    offset = 0,
+                    default_value = MOVFlags.SEPARATE_MOOF,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "frag_custom",
+                    short_help_text = "Flush fragments on caller requests",
+                    offset = 0,
+                    default_value = MOVFlags.FRAG_CUSTOM,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "isml",
+                    short_help_text = "Create a live smooth streaming feed (for pushing to a publishing point)",
+                    offset = 0,
+                    default_value = MOVFlags.ISML,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "faststart",
+                    short_help_text = "Run a second pass to put the index (moov atom) at the beginning of the file",
+                    offset = 0,
+                    default_value = MOVFlags.FASTSTART,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "omit_tfhd_offset",
+                    short_help_text = "Omit the base data offset in tfhd atoms",
+                    offset = 0,
+                    default_value = MOVFlags.OMIT_TFHD_OFFSET,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "disable_chpl",
+                    short_help_text = "Disable Nero chapter atom",
+                    offset = 0,
+                    default_value = MOVFlags.DISABLE_CHPL,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "default_base_moof",
+                    short_help_text = "Set the default-base-is-moof flag in tfhd atoms",
+                    offset = 0,
+                    default_value = MOVFlags.DEFAULT_BASE_MOOF,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "dash",
+                    short_help_text = "Write DASH compatible fragmented MP4",
+                    offset = 0,
+                    default_value = MOVFlags.DASH,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "frag_discont",
+                    short_help_text = "Signal that the next fragment is discontinuous from earlier ones",
+                    offset = 0,
+                    default_value = MOVFlags.FRAG_DISCONT,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "delay_moov",
+                    short_help_text = "Delay writing the initial moov until the first fragment is cut, or until the first fragment flush",
+                    offset = 0,
+                    default_value = MOVFlags.DELAY_MOOV,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "global_sidx",
+                    short_help_text = "Write a global sidx index at the start of the file",
+                    offset = 0,
+                    default_value = MOVFlags.GLOBAL_SIDX,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "skip_sidx",
+                    short_help_text = "Skip writing of sidx atom",
+                    offset = 0,
+                    default_value = MOVFlags.SKIP_SIDX,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "write_colr",
+                    short_help_text = "Write colr atom (Experimental, may be renamed or changed, do not use from scripts)",
+                    offset = 0,
+                    default_value = MOVFlags.WRITE_COLR,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "write_gama",
+                    short_help_text = "Write deprecated gama atom",
+                    offset = 0,
+                    default_value = MOVFlags.WRITE_GAMA,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "use_metadata_tags",
+                    short_help_text = "Use mdta atom for metadata.",
+                    offset = 0,
+                    default_value = MOVFlags.USE_MDTA,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "skip_trailer",
+                    short_help_text = "Skip writing the mfra/tfra/mfro trailer for fragmented files",
+                    offset = 0,
+                    default_value = MOVFlags.SKIP_TRAILER,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "negative_cts_offsets",
+                    short_help_text = "Use negative CTS offsets (reducing the need for edit lists)",
+                    offset = 0,
+                    default_value = MOVFlags.NEGATIVE_CTS_OFFSETS,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "movflags"
+                },
+                FF_RTP_FLAG_OPTS (
+                    MOVMuxContext,
+                    rtp_flags
+                ),
+                new LibAVUtil.BoolOption () {
+                    name = "skip_iods",
+                    short_help_text = "Skip writing iods atom.",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        iods_skip
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "iods_audio_profile",
+                    short_help_text = "iods audio profile atom.",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        iods_audio_profile
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 255,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "iods_video_profile",
+                    short_help_text = "iods video profile atom.",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        iods_video_profile
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 255,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "frag_duration",
+                    short_help_text = "Maximum fragment duration",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        max_fragment_duration
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "min_frag_duration",
+                    short_help_text = "Minimum fragment duration",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        min_fragment_duration
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "frag_size",
+                    short_help_text = "Maximum fragment size",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        max_fragment_size
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "ism_lookahead",
+                    short_help_text = "Number of lookahead entries for ISM files",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        ism_lookahead
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "video_track_timescale",
+                    short_help_text = "set timescale of all video tracks",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        video_track_timescale
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "brand",
+                    short_help_text = "Override major brand",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        major_brand
+                    ),
+                    default_value = "",
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "use_editlist",
+                    short_help_text = "use edit list",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        use_editlist
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "fragment_index",
+                    short_help_text = "Fragment number of the next fragment",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        fragments
+                    ),
+                    default_value = 1,
+                    minimum_value = 1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.FloatOption () {
+                    name = "mov_gamma",
+                    short_help_text = "gamma value for gama atom",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        gamma
+                    ),
+                    default_value = 0.0,
+                    minimum_value = 0.0,
+                    maximum_value = 10,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "frag_interleave",
+                    short_help_text = "Interleave samples within fragments (max number of consecutive samples, lower is tighter interleaving, but with more overhead)",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        frag_interleave
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "encryption_scheme",
+                    short_help_text = "Configures the encryption scheme, allowed values are none, cenc-aes-ctr",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        encryption_scheme_str
+                    ),
+                    default_value = "",
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "encryption_key",
+                    short_help_text = "The media encryption key (hex)",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        encryption_key
+                    ),
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "encryption_kid",
+                    short_help_text = "The media encryption key identifier (hex)",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        encryption_kid
+                    ),
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "use_stream_ids_as_track_ids",
+                    short_help_text = "use stream ids as track ids",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        use_stream_ids_as_track_ids
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "write_tmcd",
+                    short_help_text = "force or disable writing tmcd",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        write_tmcd
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "write_prft",
+                    short_help_text = "Write producer reference time box with specified time source",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        write_prft
+                    ),
+                    default_value = MOV_PRFT_NONE,
+                    minimum_value = 0,
+                    maximum_value = (
+                        MOV_PRFT_NB - 1
+                    ),
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "prft"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "wallclock",
+                    short_help_text = "",
+                    offset = 0,
+                    default_value = MOV_PRFT_SRC_WALLCLOCK,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "prft"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "pts",
+                    short_help_text = "",
+                    offset = 0,
+                    default_value = MOV_PRFT_SRC_PTS,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "prft"
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "empty_hdlr_name",
+                    short_help_text = "write zero-length name string in hdlr atoms within mdia and minf atoms",
+                    offset = offsetof (
+                        MOVMuxContext,
+                        empty_hdlr_name
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
 
-};
+}
 
 static const AVCodecTag codec_3gp_tags[] = {
     new AVCodecTag () {
@@ -1017,7 +1027,7 @@ static const AVCodecTag codec_f4v_tags[] = {
 #if CONFIG_MOV_MUXER
 
 [CCode (cname="mov_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class MOVMuxerClass : LibAVUtil.Class {
+public class MOVMuxerClass : MOVOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
@@ -1035,9 +1045,6 @@ public class MOVMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
@@ -1167,7 +1174,7 @@ public class MOVMuxer : AVOutputFormat {
 #if CONFIG_TGP_MUXER
 
 [CCode (cname="tgp_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class TGPMuxerClass : LibAVUtil.Class {
+public class TGPMuxerClass : MOVOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
@@ -1185,9 +1192,6 @@ public class TGPMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
@@ -1315,7 +1319,7 @@ public class TGPMuxer : AVOutputFormat {
 #if CONFIG_MP4_MUXER
 
 [CCode (cname="mp4_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class MP4MuxerClass : LibAVUtil.Class {
+public class MP4MuxerClass : MOVOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
@@ -1333,9 +1337,6 @@ public class MP4MuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
@@ -1472,7 +1473,7 @@ public class MP4Muxer : AVOutputFormat {
 #if CONFIG_PSP_MUXER
 
 [CCode (cname="psp_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class PSPMuxerClass : LibAVUtil.Class {
+public class PSPMuxerClass : MOVOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
@@ -1490,9 +1491,6 @@ public class PSPMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
@@ -1620,7 +1618,7 @@ public class PSPMuxer : AVOutputFormat {
 #if CONFIG_TG2_MUXER
 
 [CCode (cname="tg2_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class TG2MuxerClass : LibAVUtil.Class {
+public class TG2MuxerClass : MOVOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
@@ -1638,9 +1636,6 @@ public class TG2MuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
@@ -1768,7 +1763,7 @@ public class TG2Muxer : AVOutputFormat {
 #if CONFIG_IPOD_MUXER
 
 [CCode (cname="ipod_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class IPodMuxerClass : LibAVUtil.Class {
+public class IPodMuxerClass : MOVOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
@@ -1786,9 +1781,6 @@ public class IPodMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
@@ -1925,7 +1917,7 @@ public class IPodMuxer : AVOutputFormat {
 #if CONFIG_ISMV_MUXER
 
 [CCode (cname="ismv_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class ISMVMuxerClass : LibAVUtil.Class {
+public class ISMVMuxerClass : MOVOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
@@ -1943,9 +1935,6 @@ public class ISMVMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {
@@ -2083,7 +2072,7 @@ public class ISMVMuxer : AVOutputFormat {
 #if CONFIG_F4V_MUXER
 
 [CCode (cname="f4v_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class F4VMuxerClass : LibAVUtil.Class {
+public class F4VMuxerClass : MOVOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string class_name {
         public get {
@@ -2101,9 +2090,6 @@ public class F4VMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int version {

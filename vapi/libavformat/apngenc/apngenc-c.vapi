@@ -23,38 +23,6 @@ first version by Donny Yang <work@kota.moe>
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "plays",
-        short_help_text = "Number of times to play the output: 0 - infinite loop, 1 - no loop",
-        offset = offsetof (
-            APNGMuxContext,
-            plays
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = uint.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.RationalOption () {
-        name = "final_delay",
-        short_help_text = "Force delay after the last frame",
-        offset = offsetof (
-            APNGMuxContext,
-            last_delay
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = ushort.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="apng_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
 public class APNGMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
@@ -84,8 +52,43 @@ public class APNGMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "plays",
+                    short_help_text = "Number of times to play the output: 0 - infinite loop, 1 - no loop",
+                    offset = offsetof (
+                        APNGMuxContext,
+                        plays
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = uint.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.RationalOption () {
+                    name = "final_delay",
+                    short_help_text = "Force delay after the last frame",
+                    offset = offsetof (
+                        APNGMuxContext,
+                        last_delay
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = ushort.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 }
 
 [CCode (cname="struct APNGMuxContext",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]

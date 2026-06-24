@@ -22,78 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option file_options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "truncate",
-        short_help_text = "truncate existing files on write",
-        offset = offsetof (
-            FileContext,
-            trunc
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "blocksize",
-        short_help_text = "set I/O operation maximum block size",
-        offset = offsetof (
-            FileContext,
-            blocksize
-        ),
-        default_value = int.MAX,
-        minimum_value = 1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "follow",
-        short_help_text = "Follow a file as it is being written",
-        offset = offsetof (
-            FileContext,
-            follow
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "seekable",
-        short_help_text = "Sets if the file is seekable",
-        offset = offsetof (
-            FileContext,
-            seekable
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-}
-
-static const LibAVUtil.Option pipe_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "blocksize",
-        short_help_text = "set I/O operation maximum block size",
-        offset = offsetof (
-            FileContext,
-            blocksize
-        ),
-        default_value = int.MAX,
-        minimum_value = 1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="file_class",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
 public class FileClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
@@ -113,7 +41,68 @@ public class FileClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = file_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "truncate",
+                    short_help_text = "truncate existing files on write",
+                    offset = offsetof (
+                        FileContext,
+                        trunc
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "blocksize",
+                    short_help_text = "set I/O operation maximum block size",
+                    offset = offsetof (
+                        FileContext,
+                        blocksize
+                    ),
+                    default_value = int.MAX,
+                    minimum_value = 1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "follow",
+                    short_help_text = "Follow a file as it is being written",
+                    offset = offsetof (
+                        FileContext,
+                        follow
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "seekable",
+                    short_help_text = "Sets if the file is seekable",
+                    offset = offsetof (
+                        FileContext,
+                        seekable
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int version {
@@ -144,7 +133,32 @@ public class PipeClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = pipe_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "blocksize",
+                    short_help_text = "set I/O operation maximum block size",
+                    offset = offsetof (
+                        FileContext,
+                        blocksize
+                    ),
+                    default_value = int.MAX,
+                    minimum_value = 1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int version {

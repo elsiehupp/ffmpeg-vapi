@@ -22,38 +22,6 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tee.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "use_fifo",
-        short_help_text = "Use fifo pseudo-muxer to separate actual muxers from encoder",
-        offset = offsetof (
-            TeeContext,
-            use_fifo
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "fifo_options",
-        short_help_text = "fifo pseudo-muxer options",
-        offset = offsetof (
-            TeeContext,
-            fifo_options_str
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="tee_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/tee.c")]
 public class TeeMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tee.c")]
@@ -73,7 +41,44 @@ public class TeeMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "use_fifo",
+                    short_help_text = "Use fifo pseudo-muxer to separate actual muxers from encoder",
+                    offset = offsetof (
+                        TeeContext,
+                        use_fifo
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "fifo_options",
+                    short_help_text = "fifo pseudo-muxer options",
+                    offset = offsetof (
+                        TeeContext,
+                        fifo_options_str
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/tee.c")]
     public override int version {

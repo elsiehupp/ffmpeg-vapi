@@ -22,12 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option tee_options[] = {
-    {
-        NULL
-    }
-}
-
 [CCode (cname="tee_class",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
 public class TeeURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
@@ -47,7 +41,20 @@ public class TeeURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = tee_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/teeproto.c")]
     public override int version {

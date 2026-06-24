@@ -22,26 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "loop",
-        short_help_text = "Number of times to loop the output: 0 - infinite loop",
-        offset = offsetof (
-            WebpContext,
-            loop
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 65535,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="webp_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
 public class WebPMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
@@ -71,8 +51,31 @@ public class WebPMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "loop",
+                    short_help_text = "Number of times to loop the output: 0 - infinite loop",
+                    offset = offsetof (
+                        WebpContext,
+                        loop
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 65535,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 }
 
 [CCode (cname="struct WebpContext",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]

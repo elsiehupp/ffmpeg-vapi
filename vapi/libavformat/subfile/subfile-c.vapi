@@ -21,36 +21,6 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option subfile_options[] = {
-    new LibAVUtil.Int64Option () {
-        name = "start",
-        short_help_text = "start offset",
-        offset = offsetof (
-            SubfileContext,
-            start
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int64.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.Int64Option () {
-        name = "end",
-        short_help_text = "end offset",
-        offset = offsetof (
-            SubfileContext,
-            end
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int64.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-}
-
 //  #undef OFFSET
 //  #undef LibAVUtil.OptionFlags.DECODING_PARAM
 
@@ -73,7 +43,44 @@ public class SubFileURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = subfile_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.Int64Option () {
+                    name = "start",
+                    short_help_text = "start offset",
+                    offset = offsetof (
+                        SubfileContext,
+                        start
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int64.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.Int64Option () {
+                    name = "end",
+                    short_help_text = "end offset",
+                    offset = offsetof (
+                        SubfileContext,
+                        end
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int64.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override int version {

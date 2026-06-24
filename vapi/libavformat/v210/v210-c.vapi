@@ -22,42 +22,51 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="v210_options",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
-static const LibAVUtil.Option v210_options[] = {
-    new LibAVUtil.ImageSizeOption () {
-        name = "video_size",
-        short_help_text = "set frame size",
-        offset = offsetof (
-            V210DemuxerContext,
-            width
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.VideoRateOption () {
-        name = "framerate",
-        short_help_text = "set frame rate",
-        offset = offsetof (
-            V210DemuxerContext,
-            framerate
-        ),
-        default_value = "25",
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
+public abstract class V210OptionsClass : LibAVUtil.Class {
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.ImageSizeOption () {
+                    name = "video_size",
+                    short_help_text = "set frame size",
+                    offset = offsetof (
+                        V210DemuxerContext,
+                        width
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.VideoRateOption () {
+                    name = "framerate",
+                    short_help_text = "set frame rate",
+                    offset = offsetof (
+                        V210DemuxerContext,
+                        framerate
+                    ),
+                    default_value = "25",
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
 
-};
+}
 
 #if CONFIG_V210_DEMUXER
 
 [CCode (cname="v210_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
-public class V210DemuxerClass : LibAVUtil.Class {
+public class V210DemuxerClass : V210OptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override string class_name {
         public get {
@@ -75,7 +84,6 @@ public class V210DemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = v210_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override int version {
@@ -160,7 +168,7 @@ public class V210Demuxer : AVInputFormat {
 #if CONFIG_V210X_DEMUXER
 
 [CCode (cname="v210x_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
-public class V210XDemuxerClass : LibAVUtil.Class {
+public class V210XDemuxerClass : V210OptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override string class_name {
         public get {
@@ -178,7 +186,6 @@ public class V210XDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = v210_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override int version {

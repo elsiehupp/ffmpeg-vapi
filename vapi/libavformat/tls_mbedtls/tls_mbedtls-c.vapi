@@ -22,24 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option options[] = {
-    TLS_COMMON_OPTIONS (
-        TLSContext,
-        tls_shared
-    ),
-    new LibAVUtil.StringOption () {
-        name = "key_password",
-        short_help_text = "Password for the private key file",
-        offset = OFFSET (
-            priv_key_pw
-        ),
-        option_flags = TLS_OPTFL
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="tls_class",cheader_filename="subprojects/ffmpeg/libavformat/tls_mbedtls.c")]
 public class MbedTLSURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tls_mbedtls.c")]
@@ -60,8 +42,31 @@ public class MbedTLSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tls_mbedtls.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/tls_mbedtls.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                TLS_COMMON_OPTIONS (
+                    TLSContext,
+                    tls_shared
+                ),
+                new LibAVUtil.StringOption () {
+                    name = "key_password",
+                    short_help_text = "Password for the private key file",
+                    offset = OFFSET (
+                        priv_key_pw
+                    ),
+                    option_flags = TLS_OPTFL
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/tls_mbedtls.c")]
     public override int version {

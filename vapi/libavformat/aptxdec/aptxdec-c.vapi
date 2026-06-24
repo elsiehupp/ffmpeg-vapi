@@ -22,29 +22,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-static const LibAVUtil.Option aptx_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "sample_rate",
-        short_help_text = "",
-        offset = offsetof (
-            AptXDemuxerContext,
-            sample_rate
-        ),
-        default_value = 48000,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
+public abstract class AptXOptionsClass : LibAVUtil.Class {
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "sample_rate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        AptXDemuxerContext,
+                        sample_rate
+                    ),
+                    default_value = 48000,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
 
-};
+}
 
 #if CONFIG_APTX_DEMUXER
 
 [CCode (cname="aptx_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
-public class APTXDemuxerClass : LibAVUtil.Class {
+public class APTXDemuxerClass : AptXOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string class_name {
         public get {
@@ -62,7 +73,6 @@ public class APTXDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = aptx_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int version {
@@ -136,7 +146,7 @@ public class APTXDemuxer : AVInputFormat {
 #if CONFIG_APTX_HD_DEMUXER
 
 [CCode (cname="aptx_hd_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
-public class APTXHDDemuxerClass : LibAVUtil.Class {
+public class APTXHDDemuxerClass : AptXOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string class_name {
         public get {
@@ -154,7 +164,6 @@ public class APTXHDDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = aptx_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int version {

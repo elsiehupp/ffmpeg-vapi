@@ -34,38 +34,6 @@ namespace LibAVFormat {
 [Compact]
 public class MatroskaDemuxerPrivateData { }
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "live",
-        short_help_text = "flag indicating that the input is a live file that only has the headers.",
-        offset = offsetof (
-            MatroskaDemuxContext,
-            is_live
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "bandwidth",
-        short_help_text = "bandwidth of this stream to be specified in the DASH manifest.",
-        offset = offsetof (
-            MatroskaDemuxContext,
-            bandwidth
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="webm_dash_class",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
 public class WebMDashManifestDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
@@ -86,8 +54,43 @@ public class WebMDashManifestDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "live",
+                    short_help_text = "flag indicating that the input is a live file that only has the headers.",
+                    offset = offsetof (
+                        MatroskaDemuxContext,
+                        is_live
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "bandwidth",
+                    short_help_text = "bandwidth of this stream to be specified in the DASH manifest.",
+                    offset = offsetof (
+                        MatroskaDemuxContext,
+                        bandwidth
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override int version {

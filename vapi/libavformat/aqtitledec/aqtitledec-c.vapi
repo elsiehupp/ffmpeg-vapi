@@ -28,28 +28,6 @@ namespace LibAVFormat {
 @see https://trac.annodex.net/wiki/AQTitle
 ***********************************************************/
 
-[CCode (cname="aqt_options",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
-static const LibAVUtil.Option aqt_options[] = {
-    new LibAVUtil.RationalOption () {
-        name = "subfps",
-        short_help_text = "set the movie frame rate",
-        offset = offsetof (
-            AQTitleContext,
-            frame_rate
-        ),
-        default_value = 25,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="aqt_class",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
 public class AQTitleClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
@@ -69,7 +47,35 @@ public class AQTitleClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = aqt_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.RationalOption () {
+                    name = "subfps",
+                    short_help_text = "set the movie frame rate",
+                    offset = offsetof (
+                        AQTitleContext,
+                        frame_rate
+                    ),
+                    default_value = 25,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
     public override int version {

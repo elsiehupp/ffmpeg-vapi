@@ -46,60 +46,6 @@ IEC 61937 frames at normal usage start every specific count of bytes,
      dependent from data-type (spaces between packets are filled by zeros)
 ***********************************************************/
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.FlagsOption () {
-        name = "spdif_flags",
-        short_help_text = "IEC 61937 encapsulation flags",
-        offset = offsetof (
-            IEC61937Context,
-            spdif_flags
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "spdif_flags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "be",
-        short_help_text = "output in big-endian format (for use as s16be)",
-        offset = 0,
-        default_value = SPDIF_FLAG_BIGENDIAN,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "spdif_flags"
-    },
-    new LibAVUtil.IntOption () {
-        name = "dtshd_rate",
-        short_help_text = "mux complete DTS frames in HD mode at the specified IEC958 rate (in Hz, default 0=disabled)",
-        offset = offsetof (
-            IEC61937Context,
-            dtshd_rate
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 768000,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "dtshd_fallback_time",
-        short_help_text = "min secs to strip HD for after an overflow (-1: till the end, default 60)",
-        offset = offsetof (
-            IEC61937Context,
-            dtshd_fallback
-        ),
-        default_value = 60,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="spdif_class",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
 public class SPIDFMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
@@ -119,7 +65,67 @@ public class SPIDFMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.FlagsOption () {
+                    name = "spdif_flags",
+                    short_help_text = "IEC 61937 encapsulation flags",
+                    offset = offsetof (
+                        IEC61937Context,
+                        spdif_flags
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "spdif_flags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "be",
+                    short_help_text = "output in big-endian format (for use as s16be)",
+                    offset = 0,
+                    default_value = SPDIF_FLAG_BIGENDIAN,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "spdif_flags"
+                },
+                new LibAVUtil.IntOption () {
+                    name = "dtshd_rate",
+                    short_help_text = "mux complete DTS frames in HD mode at the specified IEC958 rate (in Hz, default 0=disabled)",
+                    offset = offsetof (
+                        IEC61937Context,
+                        dtshd_rate
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 768000,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "dtshd_fallback_time",
+                    short_help_text = "min secs to strip HD for after an overflow (-1: till the end, default 60)",
+                    offset = offsetof (
+                        IEC61937Context,
+                        dtshd_fallback
+                    ),
+                    default_value = 60,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
     public override int version {

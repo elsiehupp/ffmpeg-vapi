@@ -22,62 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "window_size",
-        short_help_text = "number of fragments kept in the manifest",
-        offset = offsetof (
-            HDSContext,
-            window_size
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "extra_window_size",
-        short_help_text = "number of fragments kept outside of the manifest before removing from disk",
-        offset = offsetof (
-            HDSContext,
-            extra_window_size
-        ),
-        default_value = 5,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.Int64Option () {
-        name = "min_frag_duration",
-        short_help_text = "minimum fragment duration (in microseconds)",
-        offset = offsetof (
-            HDSContext,
-            min_frag_duration
-        ),
-        default_value = 10000000,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "remove_at_exit",
-        short_help_text = "remove all fragments when finished",
-        offset = offsetof (
-            HDSContext,
-            remove_at_exit
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="hds_class",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
 public class HDSMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
@@ -98,8 +42,67 @@ public class HDSMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "window_size",
+                    short_help_text = "number of fragments kept in the manifest",
+                    offset = offsetof (
+                        HDSContext,
+                        window_size
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "extra_window_size",
+                    short_help_text = "number of fragments kept outside of the manifest before removing from disk",
+                    offset = offsetof (
+                        HDSContext,
+                        extra_window_size
+                    ),
+                    default_value = 5,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.Int64Option () {
+                    name = "min_frag_duration",
+                    short_help_text = "minimum fragment duration (in microseconds)",
+                    offset = offsetof (
+                        HDSContext,
+                        min_frag_duration
+                    ),
+                    default_value = 10000000,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "remove_at_exit",
+                    short_help_text = "remove all fragments when finished",
+                    offset = offsetof (
+                        HDSContext,
+                        remove_at_exit
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override int version {

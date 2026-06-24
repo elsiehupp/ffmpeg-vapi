@@ -23,28 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="microdvd_options",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
-static const LibAVUtil.Option microdvd_options[] = {
-    new LibAVUtil.RationalOption () {
-        name = "subfps",
-        short_help_text = "set the movie frame rate fallback",
-        offset = offsetof (
-            MicroDVDContext,
-            frame_rate
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="microdvd_class",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
 public class MicroDVDDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
@@ -64,7 +42,34 @@ public class MicroDVDDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = microdvd_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.RationalOption () {
+                    name = "subfps",
+                    short_help_text = "set the movie frame rate fallback",
+                    offset = offsetof (
+                        MicroDVDContext,
+                        frame_rate
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                {
+                    NULL
+                }
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int version {

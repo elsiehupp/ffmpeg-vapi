@@ -22,26 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ser_options",cheader_filename="subprojects/ffmpeg/libavformat/serdec.c")]
-static const LibAVUtil.Option ser_options[] = {
-    new LibAVUtil.VideoRateOption () {
-        name = "framerate",
-        short_help_text = "set frame rate",
-        offset = offsetof (
-            SERDemuxerContext,
-            framerate
-        ),
-        default_value = "25",
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="ser_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/dec.c")]
 public class SERDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/dec.c")]
@@ -61,7 +41,32 @@ public class SERDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = ser_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.VideoRateOption () {
+                    name = "framerate",
+                    short_help_text = "set frame rate",
+                    offset = offsetof (
+                        SERDemuxerContext,
+                        framerate
+                    ),
+                    default_value = "25",
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/dec.c")]
     public override int version {

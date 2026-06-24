@@ -22,49 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option sbg_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "sample_rate",
-        short_help_text = "",
-        offset = offsetof (
-            sbg_demuxer,
-            sample_rate
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "frame_size",
-        short_help_text = "",
-        offset = offsetof (
-            sbg_demuxer,
-            frame_size
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "max_file_size",
-        short_help_text = "",
-        offset = offsetof (
-            sbg_demuxer,
-            max_file_size
-        ),
-        default_value = 5000000,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="sbg_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
 public class SBGDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
@@ -84,7 +41,56 @@ public class SBGDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = sbg_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "sample_rate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        sbg_demuxer,
+                        sample_rate
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "frame_size",
+                    short_help_text = "",
+                    offset = offsetof (
+                        sbg_demuxer,
+                        frame_size
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "max_file_size",
+                    short_help_text = "",
+                    offset = offsetof (
+                        sbg_demuxer,
+                        max_file_size
+                    ),
+                    default_value = 5000000,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
     public override int version {

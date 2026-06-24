@@ -22,61 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/srtproto.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.StringOption () {
-        name = "srtp_out_suite",
-        short_help_text = "",
-        offset = offsetof (
-            SRTPProtoContext,
-            out_suite
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "srtp_out_params",
-        short_help_text = "",
-        offset = offsetof (
-            SRTPProtoContext,
-            out_params
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "srtp_in_suite",
-        short_help_text = "",
-        offset = offsetof (
-            SRTPProtoContext,
-            in_suite
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "srtp_in_params",
-        short_help_text = "",
-        offset = offsetof (
-            SRTPProtoContext,
-            in_params
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="srtp_context_class",cheader_filename="subprojects/ffmpeg/libavformat/srtpproto.c")]
 public class SRTPURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/srtpproto.c")]
@@ -96,7 +41,68 @@ public class SRTPURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.StringOption () {
+                    name = "srtp_out_suite",
+                    short_help_text = "",
+                    offset = offsetof (
+                        SRTPProtoContext,
+                        out_suite
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "srtp_out_params",
+                    short_help_text = "",
+                    offset = offsetof (
+                        SRTPProtoContext,
+                        out_params
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "srtp_in_suite",
+                    short_help_text = "",
+                    offset = offsetof (
+                        SRTPProtoContext,
+                        in_suite
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "srtp_in_params",
+                    short_help_text = "",
+                    offset = offsetof (
+                        SRTPProtoContext,
+                        in_params
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/srtpproto.c")]
     public override int version {

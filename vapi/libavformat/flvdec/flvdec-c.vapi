@@ -31,75 +31,85 @@ namespace LibAVFormat {
 [Compact]
 public class FLVDemuxerClassPrivateData { }
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "flv_metadata",
-        short_help_text = "Allocate streams according to the onMetaData array",
-        offset = offsetof (
-            FLVContext,
-            trust_metadata
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "flv_full_metadata",
-        short_help_text = "Dump full metadata of the onMetadata",
-        offset = offsetof (
-            FLVContext,
-            dump_full_metadata
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "flv_ignore_prevtag",
-        short_help_text = "Ignore the Size of previous tag",
-        offset = offsetof (
-            FLVContext,
-            trust_datasize
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "missing_streams",
-        short_help_text = "",
-        offset = offsetof (
-            FLVContext,
-            missing_streams
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 0xFF,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ) | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
-    },
-    {
-        NULL
+public abstract class FLVDemuxerClass : LibAVUtil.Class {
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "flv_metadata",
+                    short_help_text = "Allocate streams according to the onMetaData array",
+                    offset = offsetof (
+                        FLVContext,
+                        trust_metadata
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "flv_full_metadata",
+                    short_help_text = "Dump full metadata of the onMetadata",
+                    offset = offsetof (
+                        FLVContext,
+                        dump_full_metadata
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "flv_ignore_prevtag",
+                    short_help_text = "Ignore the Size of previous tag",
+                    offset = offsetof (
+                        FLVContext,
+                        trust_datasize
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "missing_streams",
+                    short_help_text = "",
+                    offset = offsetof (
+                        FLVContext,
+                        missing_streams
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 0xFF,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ) | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
+
 }
 
 [CCode (cname="flv_class",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-public class FLVDemuxerClass : LibAVUtil.Class {
+public class FLVDemuxerClass : FLVDemuxerClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string class_name {
         public get {
@@ -117,9 +127,6 @@ public class FLVDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int version {
@@ -200,8 +207,9 @@ public class FLVDemuxer : AVInputFormat {
     //  .priv_class = flv_class;
 }
 
+
 [CCode (cname="live_flv_class",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-public class LiveFLVDemuxerClass : LibAVUtil.Class {
+public class LiveFLVDemuxerClass : FLVDemuxerClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string class_name {
         public get {
@@ -219,9 +227,6 @@ public class LiveFLVDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int version {
@@ -312,7 +317,7 @@ public class LiveFLVDemuxer : AVInputFormat {
 }
 
 [CCode (cname="kux_class",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-public class KUXDemuxerClass : LibAVUtil.Class {
+public class KUXDemuxerClass : FLVDemuxerClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string class_name {
         public get {
@@ -330,9 +335,6 @@ public class KUXDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int version {

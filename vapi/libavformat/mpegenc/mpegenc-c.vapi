@@ -22,51 +22,60 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "muxrate",
-        short_help_text = "",
-        offset = offsetof (
-            MpegMuxContext,
-            user_mux_rate
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = (
-            (
-                (
-                    1 << 22
-                ) - 1
-            ) * (
-                8 * 50
-            )
-        ),
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "preload",
-        short_help_text = "Initial demux-decode delay in microseconds.",
-        offset = offsetof (
-            MpegMuxContext,
-            preload
-        ),
-        default_value = 500000,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
+public abstract class MpegOptionsClass : LibAVUtil.Class {
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "muxrate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        MpegMuxContext,
+                        user_mux_rate
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = (
+                        (
+                            (
+                                1 << 22
+                            ) - 1
+                        ) * (
+                            8 * 50
+                        )
+                    ),
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "preload",
+                    short_help_text = "Initial demux-decode delay in microseconds.",
+                    offset = offsetof (
+                        MpegMuxContext,
+                        preload
+                    ),
+                    default_value = 500000,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
 
-};
+}
 
 
 #if CONFIG_MPEG1SYSTEM_MUXER
 
 [CCode (cname="mpeg_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class Mpeg2SystemsMuxerClass : LibAVUtil.Class {
+public class Mpeg2SystemsMuxerClass : MpegOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string class_name {
         public get {
@@ -94,8 +103,6 @@ public class Mpeg2SystemsMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg1system_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
@@ -186,7 +193,7 @@ public class Mpeg2SystemsMuxer : AVOutputFormat {
 #if CONFIG_MPEG1VCD_MUXER
 
 [CCode (cname="vcd_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class VCDMuxerClass : LibAVUtil.Class {
+public class VCDMuxerClass : MpegOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string class_name {
         public get {
@@ -214,8 +221,6 @@ public class VCDMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg1vcd_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
@@ -297,7 +302,7 @@ public class VCDMuxer : AVOutputFormat {
 #if CONFIG_MPEG2VOB_MUXER
 
 [CCode (cname="vob_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class VOBMuxerClass : LibAVUtil.Class {
+public class VOBMuxerClass : MpegOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string class_name {
         public get {
@@ -325,8 +330,6 @@ public class VOBMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg2vob_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
@@ -420,7 +423,7 @@ public class VOBMuxer : AVOutputFormat {
 #if CONFIG_MPEG2SVCD_MUXER
 
 [CCode (cname="svcd_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class SVCDMuxerClass : LibAVUtil.Class {
+public class SVCDMuxerClass : MpegOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string class_name {
         public get {
@@ -448,8 +451,6 @@ public class SVCDMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg2svcd_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
@@ -543,7 +544,7 @@ public class SVCDMuxer : AVOutputFormat {
 #if CONFIG_MPEG2DVD_MUXER
 
 [CCode (cname="dvd_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class DVDVOBMuxerClass : LibAVUtil.Class {
+public class DVDVOBMuxerClass : MpegOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string class_name {
         public get {
@@ -571,8 +572,6 @@ public class DVDVOBMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 }
 
 [CCode (cname="ff_mpeg2dvd_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]

@@ -25,16 +25,6 @@ namespace LibAVFormat {
 Based on the CURL SChannel module
 ***********************************************************/
 
-static const LibAVUtil.Option options[] = {
-    TLS_COMMON_OPTIONS (
-        TLSContext,
-        tls_shared
-    ),
-    {
-        NULL
-    }
-}
-
 [CCode (cname="tls_class",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
 public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
@@ -55,8 +45,23 @@ public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                TLS_COMMON_OPTIONS (
+                    TLSContext,
+                    tls_shared
+                ),
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override int version {

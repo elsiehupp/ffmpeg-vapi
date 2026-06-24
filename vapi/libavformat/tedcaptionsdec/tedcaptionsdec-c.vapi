@@ -22,25 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option tedcaptions_options[] = {
-    new LibAVUtil.Int64Option () {
-        name = "start_time",
-        short_help_text = "set the start time (offset) of the subtitles, in ms",
-        offset = offsetof (
-            TEDCaptionsDemuxer,
-            start_time
-        ),
-        default_value = 15000,
-        minimum_value = int64.MIN,
-        maximum_value = int64.MAX,
-        option_flags = LibAVUtil.OptionFlags.SUBTITLE_PARAM | LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="tedcaptions_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
 public class TedCaptionsDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
@@ -60,7 +41,32 @@ public class TedCaptionsDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = tedcaptions_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.Int64Option () {
+                    name = "start_time",
+                    short_help_text = "set the start time (offset) of the subtitles, in ms",
+                    offset = offsetof (
+                        TEDCaptionsDemuxer,
+                        start_time
+                    ),
+                    default_value = 15000,
+                    minimum_value = int64.MIN,
+                    maximum_value = int64.MAX,
+                    option_flags = LibAVUtil.OptionFlags.SUBTITLE_PARAM | LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
     public override int version {

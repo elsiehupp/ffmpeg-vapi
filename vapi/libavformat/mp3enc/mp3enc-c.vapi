@@ -22,49 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "id3v2_version",
-        short_help_text = "Select ID3v2 version to write. Currently 3 and 4 are supported.",
-        offset = offsetof (
-            MP3Context,
-            id3v2_version
-        ),
-        default_value = 4,
-        minimum_value = 0,
-        maximum_value = 4,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "write_id3v1",
-        short_help_text = "Enable ID3v1 writing. ID3v1 tags are written in UTF-8 which may not be supported by most software.",
-        offset = offsetof (
-            MP3Context,
-            write_id3v1
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "write_xing",
-        short_help_text = "Write the Xing header containing file duration.",
-        offset = offsetof (
-            MP3Context,
-            write_xing
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="mp3_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mp3enc.c")]
 public class MP3MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mp3enc.c")]
@@ -84,7 +41,56 @@ public class MP3MuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "id3v2_version",
+                    short_help_text = "Select ID3v2 version to write. Currently 3 and 4 are supported.",
+                    offset = offsetof (
+                        MP3Context,
+                        id3v2_version
+                    ),
+                    default_value = 4,
+                    minimum_value = 0,
+                    maximum_value = 4,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "write_id3v1",
+                    short_help_text = "Enable ID3v1 writing. ID3v1 tags are written in UTF-8 which may not be supported by most software.",
+                    offset = offsetof (
+                        MP3Context,
+                        write_id3v1
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "write_xing",
+                    short_help_text = "Write the Xing header containing file duration.",
+                    offset = offsetof (
+                        MP3Context,
+                        write_xing
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mp3enc.c")]
     public override int version {

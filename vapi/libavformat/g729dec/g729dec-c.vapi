@@ -22,26 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="g729_options",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
-static const LibAVUtil.Option g729_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "bit_rate",
-        short_help_text = "",
-        offset = offsetof (
-            G729DemuxerContext,
-            bit_rate
-        ),
-        default_value = 8000,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="g729_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
 public class G729DemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
@@ -61,7 +41,32 @@ public class G729DemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = g729_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "bit_rate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        G729DemuxerContext,
+                        bit_rate
+                    ),
+                    default_value = 8000,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override int version {

@@ -26,192 +26,6 @@ namespace LibAVFormat {
 @file RTP protocol
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "ttl",
-        short_help_text = "Time to live (in milliseconds, multicast only)",
-        offset = offsetof (
-            RTPContext,
-            ttl
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "buffer_size",
-        short_help_text = "Send/Receive buffer size (in bytes)",
-        offset = offsetof (
-            RTPContext,
-            buffer_size
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "rtcp_port",
-        short_help_text = "Custom rtcp port",
-        offset = offsetof (
-            RTPContext,
-            rtcp_port
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "local_rtpport",
-        short_help_text = "Local rtp port",
-        offset = offsetof (
-            RTPContext,
-            local_rtpport
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "local_rtcpport",
-        short_help_text = "Local rtcp port",
-        offset = offsetof (
-            RTPContext,
-            local_rtcpport
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "connect",
-        short_help_text = "Connect socket",
-        offset = offsetof (
-            RTPContext,
-            connect
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "write_to_source",
-        short_help_text = "Send packets to the source address of the latest received packet",
-        offset = offsetof (
-            RTPContext,
-            write_to_source
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "pkt_size",
-        short_help_text = "Maximum packet size",
-        offset = offsetof (
-            RTPContext,
-            pkt_size
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "dscp",
-        short_help_text = "DSCP class",
-        offset = offsetof (
-            RTPContext,
-            dscp
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.StringOption () {
-        name = "sources",
-        short_help_text = "Source list",
-        offset = offsetof (
-            RTPContext,
-            sources
-        ),
-        default_value = "",
-        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.StringOption () {
-        name = "block",
-        short_help_text = "Block list",
-        offset = offsetof (
-            RTPContext,
-            block
-        ),
-        default_value = "",
-        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.StringOption () {
-        name = "fec",
-        short_help_text = "FEC",
-        offset = offsetof (
-            RTPContext,
-            fec_options_str
-        ),
-        default_value = "",
-        //  option_flags =
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="rtp_class",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
 public class RTPURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
@@ -232,8 +46,193 @@ public class RTPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "ttl",
+                    short_help_text = "Time to live (in milliseconds, multicast only)",
+                    offset = offsetof (
+                        RTPContext,
+                        ttl
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "buffer_size",
+                    short_help_text = "Send/Receive buffer size (in bytes)",
+                    offset = offsetof (
+                        RTPContext,
+                        buffer_size
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "rtcp_port",
+                    short_help_text = "Custom rtcp port",
+                    offset = offsetof (
+                        RTPContext,
+                        rtcp_port
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "local_rtpport",
+                    short_help_text = "Local rtp port",
+                    offset = offsetof (
+                        RTPContext,
+                        local_rtpport
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "local_rtcpport",
+                    short_help_text = "Local rtcp port",
+                    offset = offsetof (
+                        RTPContext,
+                        local_rtcpport
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "connect",
+                    short_help_text = "Connect socket",
+                    offset = offsetof (
+                        RTPContext,
+                        connect
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "write_to_source",
+                    short_help_text = "Send packets to the source address of the latest received packet",
+                    offset = offsetof (
+                        RTPContext,
+                        write_to_source
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "pkt_size",
+                    short_help_text = "Maximum packet size",
+                    offset = offsetof (
+                        RTPContext,
+                        pkt_size
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "dscp",
+                    short_help_text = "DSCP class",
+                    offset = offsetof (
+                        RTPContext,
+                        dscp
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.StringOption () {
+                    name = "sources",
+                    short_help_text = "Source list",
+                    offset = offsetof (
+                        RTPContext,
+                        sources
+                    ),
+                    default_value = "",
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.StringOption () {
+                    name = "block",
+                    short_help_text = "Block list",
+                    offset = offsetof (
+                        RTPContext,
+                        block
+                    ),
+                    default_value = "",
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.StringOption () {
+                    name = "fec",
+                    short_help_text = "FEC",
+                    offset = offsetof (
+                        RTPContext,
+                        fec_options_str
+                    ),
+                    default_value = "",
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtpproto.c")]
     public override int version {

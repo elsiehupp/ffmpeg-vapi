@@ -21,59 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/libssh.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "timeout",
-        short_help_text = "set timeout of socket I/O operations",
-        offset = offsetof (
-            LIBSSHContext,
-            rw_timeout
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "truncate",
-        short_help_text = "Truncate existing files on write",
-        offset = offsetof (
-            LIBSSHContext,
-            trunc
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.StringOption () {
-        name = "private_key",
-        short_help_text = "set path to private key",
-        offset = offsetof (
-            LIBSSHContext,
-            priv_key
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="libssh_context_class",cheader_filename="subprojects/ffmpeg/libavformat/libssh.c")]
 public class LibSSHURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/libssh.c")]
@@ -93,7 +40,65 @@ public class LibSSHURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "timeout",
+                    short_help_text = "set timeout of socket I/O operations",
+                    offset = offsetof (
+                        LIBSSHContext,
+                        rw_timeout
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "truncate",
+                    short_help_text = "Truncate existing files on write",
+                    offset = offsetof (
+                        LIBSSHContext,
+                        trunc
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.StringOption () {
+                    name = "private_key",
+                    short_help_text = "set path to private key",
+                    offset = offsetof (
+                        LIBSSHContext,
+                        priv_key
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/libssh.c")]
     public override int version {

@@ -22,50 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/fifotext.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "write_header_ret",
-        short_help_text = "write_header () return value",
-        offset = offsetof (
-            FailingMuxerContext,
-            write_header_ret
-        ),
-        default_value = 0,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "write_trailer_ret",
-        short_help_text = "write_trailer () return value",
-        offset = offsetof (
-            FailingMuxerContext,
-            write_trailer_ret
-        ),
-        default_value = 0,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "print_deinit_summary",
-        short_help_text = "print summary when deinitializing muxer",
-        offset = offsetof (
-            FailingMuxerContext,
-            print_deinit_summary
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="failing_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
 public class FifoTestMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
@@ -86,8 +42,55 @@ public class FifoTestMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "write_header_ret",
+                    short_help_text = "write_header () return value",
+                    offset = offsetof (
+                        FailingMuxerContext,
+                        write_header_ret
+                    ),
+                    default_value = 0,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "write_trailer_ret",
+                    short_help_text = "write_trailer () return value",
+                    offset = offsetof (
+                        FailingMuxerContext,
+                        write_trailer_ret
+                    ),
+                    default_value = 0,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "print_deinit_summary",
+                    short_help_text = "print summary when deinitializing muxer",
+                    offset = offsetof (
+                        FailingMuxerContext,
+                        print_deinit_summary
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override int version {

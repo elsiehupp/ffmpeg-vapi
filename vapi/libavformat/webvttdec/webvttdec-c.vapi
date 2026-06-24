@@ -26,80 +26,6 @@ namespace LibAVFormat {
 @see http://dev.w3.org/html5/webvtt/
 ***********************************************************/
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "kind",
-        short_help_text = "Set kind of WebVTT track",
-        offset = offsetof (
-            WebVTTContext,
-            kind
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ),
-        unit = "webvtt_kind"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "subtitles",
-        short_help_text = "WebVTT subtitles kind",
-        offset = 0,
-        default_value = 0,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ),
-        unit = "webvtt_kind"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "captions",
-        short_help_text = "WebVTT captions kind",
-        offset = 0,
-        default_value = AVDispositionFlags.CAPTIONS,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ),
-        unit = "webvtt_kind"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "descriptions",
-        short_help_text = "WebVTT descriptions kind",
-        offset = 0,
-        default_value = AVDispositionFlags.DESCRIPTIONS,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ),
-        unit = "webvtt_kind"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "metadata",
-        short_help_text = "WebVTT metadata kind",
-        offset = 0,
-        default_value = AVDispositionFlags.METADATA,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.SUBTITLE_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ),
-        unit = "webvtt_kind"
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="webvtt_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
 public class WebVTTDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
@@ -119,7 +45,88 @@ public class WebVTTDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "kind",
+                    short_help_text = "Set kind of WebVTT track",
+                    offset = offsetof (
+                        WebVTTContext,
+                        kind
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ),
+                    unit = "webvtt_kind"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "subtitles",
+                    short_help_text = "WebVTT subtitles kind",
+                    offset = 0,
+                    default_value = 0,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ),
+                    unit = "webvtt_kind"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "captions",
+                    short_help_text = "WebVTT captions kind",
+                    offset = 0,
+                    default_value = AVDispositionFlags.CAPTIONS,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ),
+                    unit = "webvtt_kind"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "descriptions",
+                    short_help_text = "WebVTT descriptions kind",
+                    offset = 0,
+                    default_value = AVDispositionFlags.DESCRIPTIONS,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ),
+                    unit = "webvtt_kind"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "metadata",
+                    short_help_text = "WebVTT metadata kind",
+                    offset = 0,
+                    default_value = AVDispositionFlags.METADATA,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.SUBTITLE_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ),
+                    unit = "webvtt_kind"
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int version {

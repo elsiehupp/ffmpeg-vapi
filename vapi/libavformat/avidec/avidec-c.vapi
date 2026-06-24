@@ -22,25 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "use_odml",
-        short_help_text = "use odml index",
-        offset = offsetof (
-            AVIContext,
-            use_odml
-        ),
-        default_value = 1,
-        minimum_value = -1,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
 public class AVIDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
@@ -61,8 +42,31 @@ public class AVIDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "use_odml",
+                    short_help_text = "use odml index",
+                    offset = offsetof (
+                        AVIContext,
+                        use_odml
+                    ),
+                    default_value = 1,
+                    minimum_value = -1,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int version {

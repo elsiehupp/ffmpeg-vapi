@@ -39,98 +39,6 @@ public define MPEGTS_OPTIONS
 
 };
 
-static const LibAVUtil.Option options[] = {
-    MPEGTS_OPTIONS,
-    new LibAVUtil.BoolOption () {
-        name = "fix_teletext_pts",
-        short_help_text = "try to fix pts values of dvb teletext streams",
-        offset = offsetof (
-            MpegTSContext,
-            fix_teletext_pts
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "ts_packetsize",
-        short_help_text = "output option carrying the raw packet size",
-        offset = offsetof (
-            MpegTSContext,
-            raw_packet_size
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
-    },
-    new LibAVUtil.BoolOption () {
-        name = "scan_all_pmts",
-        short_help_text = "scan and combine all PMTs",
-        offset = offsetof (
-            MpegTSContext,
-            scan_all_pmts
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "skip_unknown_pmt",
-        short_help_text = "skip PMTs for programs not advertised in the PAT",
-        offset = offsetof (
-            MpegTSContext,
-            skip_unknown_pmt
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "merge_pmt_versions",
-        short_help_text = "re-use streams when PMT's version/pids change",
-        offset = offsetof (
-            MpegTSContext,
-            merge_pmt_versions
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "skip_changes",
-        short_help_text = "skip changing / adding streams / programs",
-        offset = offsetof (
-            MpegTSContext,
-            skip_changes
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = 0
-    },
-    new LibAVUtil.BoolOption () {
-        name = "skip_clear",
-        short_help_text = "skip clearing programs",
-        offset = offsetof (
-            MpegTSContext,
-            skip_clear
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = 0
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="mpegts_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
 public class MpegTSDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
@@ -151,8 +59,104 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                MPEGTS_OPTIONS,
+                new LibAVUtil.BoolOption () {
+                    name = "fix_teletext_pts",
+                    short_help_text = "try to fix pts values of dvb teletext streams",
+                    offset = offsetof (
+                        MpegTSContext,
+                        fix_teletext_pts
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "ts_packetsize",
+                    short_help_text = "output option carrying the raw packet size",
+                    offset = offsetof (
+                        MpegTSContext,
+                        raw_packet_size
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "scan_all_pmts",
+                    short_help_text = "scan and combine all PMTs",
+                    offset = offsetof (
+                        MpegTSContext,
+                        scan_all_pmts
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "skip_unknown_pmt",
+                    short_help_text = "skip PMTs for programs not advertised in the PAT",
+                    offset = offsetof (
+                        MpegTSContext,
+                        skip_unknown_pmt
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "merge_pmt_versions",
+                    short_help_text = "re-use streams when PMT's version/pids change",
+                    offset = offsetof (
+                        MpegTSContext,
+                        merge_pmt_versions
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "skip_changes",
+                    short_help_text = "skip changing / adding streams / programs",
+                    offset = offsetof (
+                        MpegTSContext,
+                        skip_changes
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = 0
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "skip_clear",
+                    short_help_text = "skip clearing programs",
+                    offset = offsetof (
+                        MpegTSContext,
+                        skip_clear
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = 0
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int version {
@@ -163,38 +167,6 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
 
     }
 }
-
-static const LibAVUtil.Option raw_options[] = {
-    MPEGTS_OPTIONS,
-    new LibAVUtil.BoolOption () {
-        name = "compute_pcr",
-        short_help_text = "compute exact PCR for each transport stream packet"
-        offset = offsetof (
-            MpegTSContext,
-            mpeg2ts_compute_pcr
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "ts_packetsize",
-        short_help_text = "output option carrying the raw packet size"
-        offset = offsetof (
-            MpegTSContext,
-            raw_packet_size
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
-    },
-    {
-        NULL
-    }
-
-};
 
 [CCode (cname="mpegtsraw_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
 public class MpegTSRawDemuxerClass : LibAVUtil.Class {
@@ -215,7 +187,45 @@ public class MpegTSRawDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = raw_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                MPEGTS_OPTIONS,
+                new LibAVUtil.BoolOption () {
+                    name = "compute_pcr",
+                    short_help_text = "compute exact PCR for each transport stream packet"
+                    offset = offsetof (
+                        MpegTSContext,
+                        mpeg2ts_compute_pcr
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "ts_packetsize",
+                    short_help_text = "output option carrying the raw packet size"
+                    offset = offsetof (
+                        MpegTSContext,
+                        raw_packet_size
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int version {

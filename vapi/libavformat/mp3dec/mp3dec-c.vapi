@@ -22,24 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "usetoc",
-        short_help_text = "use table of contents",
-        offset = offsetof (
-            MP3DecContext, usetoc
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mp3dec.c")]
 public class MP3DemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mp3dec.c")]
@@ -60,8 +42,30 @@ public class MP3DemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mp3dec.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/mp3dec.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "usetoc",
+                    short_help_text = "use table of contents",
+                    offset = offsetof (
+                        MP3DecContext, usetoc
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mp3dec.c")]
     public override int version {

@@ -21,36 +21,6 @@ namespace LibAVFormat {
 @brief CDXL demuxer
 @copyright 2011-2012 Paul B Mahol
 ***********************************************************/
-static const LibAVUtil.Option cdxl_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "sample_rate",
-        short_help_text = "",
-        offset = offsetof (
-            CDXLDemuxContext,
-            sample_rate
-        ),
-        default_value = 11025,
-        minimum_value = 1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "framerate",
-        short_help_text = "",
-        offset = offsetof (
-            CDXLDemuxContext,
-            framerate
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
 
 [CCode (cname="cdxl_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/cdxl.c")]
 public class CDXLDemuxerClass : LibAVUtil.Class {
@@ -71,7 +41,44 @@ public class CDXLDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = cdxl_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "sample_rate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        CDXLDemuxContext,
+                        sample_rate
+                    ),
+                    default_value = 11025,
+                    minimum_value = 1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "framerate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        CDXLDemuxContext,
+                        framerate
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/cdxl.c")]
     public override int version {

@@ -43,8 +43,16 @@ public class LibModPlugDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
     public override int version {

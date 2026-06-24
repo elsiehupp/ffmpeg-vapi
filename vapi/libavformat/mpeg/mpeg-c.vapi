@@ -90,23 +90,6 @@ public class MPEGPSDemuxer : AVInputFormat {
 }
 
 #if CONFIG_VOBSUB_DEMUXER
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.StringOption () {
-        name = "sub_name",
-        short_help_text = "URI for .sub file",
-        offset = offsetof (
-            MpegDemuxContext,
-            sub_name
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-}
 
 [CCode (cname="vobsub_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
 public class VobSubDemuxerClass : LibAVUtil.Class {
@@ -128,8 +111,31 @@ public class VobSubDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.StringOption () {
+                    name = "sub_name",
+                    short_help_text = "URI for .sub file",
+                    offset = offsetof (
+                        MpegDemuxContext,
+                        sub_name
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int version {

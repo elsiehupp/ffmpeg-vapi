@@ -23,56 +23,35 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_rawvideo_options",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
-const LibAVUtil.Option ff_rawvideo_options[] = {
-    new LibAVUtil.VideoRateOption () {
-        name = "framerate",
-        short_help_text = "",
-        offset = offsetof (
-            FFRawVideoDemuxerContext,
-            framerate
-        ),
-        default_value = "25",
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "raw_packet_size",
-        short_help_text = "",
-        offset = offsetof (
-            FFRawVideoDemuxerContext,
-            raw_packet_size
-        ),
-        default_value = RAW_PACKET_SIZE,
-        minimum_value = 1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
+public abstract class RawOptionsClass : LibAVUtil.Class {
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "raw_packet_size",
+                    short_help_text = "",
+                    offset = offsetof (
+                        FFRawDemuxerContext,
+                        raw_packet_size
+                    ),
+                    default_value = RAW_PACKET_SIZE,
+                    minimum_value = 1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
 
-};
-
-const LibAVUtil.Option ff_raw_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "raw_packet_size",
-        short_help_text = "",
-        offset = offsetof (
-            FFRawDemuxerContext,
-            raw_packet_size
-        ),
-        default_value = RAW_PACKET_SIZE,
-        minimum_value = 1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
+}
 
 #if CONFIG_DATA_DEMUXER
 //  FF_RAW_DEMUXER_CLASS (raw_data)

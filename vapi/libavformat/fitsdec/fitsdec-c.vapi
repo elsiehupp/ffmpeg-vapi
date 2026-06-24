@@ -26,25 +26,6 @@ namespace LibAVFormat {
 @file FITS demuxer.
 ***********************************************************/
 
-static const LibAVUtil.Option fits_options[] = {
-    new LibAVUtil.VideoRateOption () {
-        name = "framerate",
-        short_help_text = "set the framerate",
-        offset = offsetof (
-            FITSContext,
-            framerate
-        ),
-        default_value = "1",
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="struct FITSContext",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
 [Compact]
 public class FITSDemuxerClassPrivateData { }
@@ -68,7 +49,32 @@ public class FITSDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = fits_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.VideoRateOption () {
+                    name = "framerate",
+                    short_help_text = "set the framerate",
+                    offset = offsetof (
+                        FITSContext,
+                        framerate
+                    ),
+                    default_value = "1",
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override int version {

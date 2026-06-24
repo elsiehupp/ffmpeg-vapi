@@ -22,27 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "sample_rate",
-        short_help_text = "",
-        offset = offsetof (
-            GSMDemuxerContext,
-            sample_rate
-        ),
-        default_value = GSM_SAMPLE_RATE,
-        minimum_value = 1,
-        maximum_value = (
-            int.MAX / GSM_BLOCK_SIZE
-        ),
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="gsm_class",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
 public class GSMDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
@@ -63,8 +42,33 @@ public class GSMDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "sample_rate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        GSMDemuxerContext,
+                        sample_rate
+                    ),
+                    default_value = GSM_SAMPLE_RATE,
+                    minimum_value = 1,
+                    maximum_value = (
+                        int.MAX / GSM_BLOCK_SIZE
+                    ),
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override int version {

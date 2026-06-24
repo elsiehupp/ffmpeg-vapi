@@ -22,61 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "serial_offset",
-        short_help_text = "serial number offset",
-        offset = offsetof (
-            OGGContext,
-            serial_offset
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "oggpagesize",
-        short_help_text = "Set preferred Ogg page size.",
-        offset = offsetof (
-            OGGContext,
-            pref_size
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = MAX_PAGE_SIZE,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "pagesize",
-        short_help_text = "preferred page size in bytes (deprecated)",
-        offset = offsetof (
-            OGGContext,
-            pref_size
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = MAX_PAGE_SIZE,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.Int64Option () {
-        name = "page_duration",
-        short_help_text = "preferred page duration, in microseconds",
-        offset = offsetof (
-            OGGContext,
-            pref_duration
-        ),
-        default_value = 1000000,
-        minimum_value = 0,
-        maximum_value = int64.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 //  #define OGG_CLASS (flavor, name)
 [CCode (cname="flavor ## _muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
 public class FlaverMuxerClass : LibAVUtil.Class {
@@ -98,8 +43,67 @@ public class FlaverMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "serial_offset",
+                    short_help_text = "serial number offset",
+                    offset = offsetof (
+                        OGGContext,
+                        serial_offset
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "oggpagesize",
+                    short_help_text = "Set preferred Ogg page size.",
+                    offset = offsetof (
+                        OGGContext,
+                        pref_size
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = MAX_PAGE_SIZE,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "pagesize",
+                    short_help_text = "preferred page size in bytes (deprecated)",
+                    offset = offsetof (
+                        OGGContext,
+                        pref_size
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = MAX_PAGE_SIZE,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.Int64Option () {
+                    name = "page_duration",
+                    short_help_text = "preferred page duration, in microseconds",
+                    offset = offsetof (
+                        OGGContext,
+                        pref_duration
+                    ),
+                    default_value = 1000000,
+                    minimum_value = 0,
+                    maximum_value = int64.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int version {

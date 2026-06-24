@@ -23,74 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="muxoptions",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
-static const LibAVUtil.Option muxoptions[] = {
-    new LibAVUtil.BoolOption () {
-        name = "update",
-        short_help_text = "continuously overwrite one file",
-        offset = offsetof (
-            VideoMuxData,
-            update
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "start_number",
-        short_help_text = "set first number in the sequence",
-        offset = offsetof (
-            VideoMuxData,
-            img_number
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "strftime",
-        short_help_text = "use strftime for filename",
-        offset = offsetof (
-            VideoMuxData,
-            use_strftime
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "frame_pts",
-        short_help_text = "use current frame pts for filename",
-        offset = offsetof (
-            VideoMuxData,
-            frame_pts
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "atomic_writing",
-        short_help_text = "write files atomically (using temporary files and renames)",
-        offset = offsetof (
-            VideoMuxData,
-            use_rename
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 #if CONFIG_IMAGE2_MUXER
 
 [CCode (cname="img2mux_class",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
@@ -112,7 +44,80 @@ public class Image2MuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = muxoptions,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "update",
+                    short_help_text = "continuously overwrite one file",
+                    offset = offsetof (
+                        VideoMuxData,
+                        update
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "start_number",
+                    short_help_text = "set first number in the sequence",
+                    offset = offsetof (
+                        VideoMuxData,
+                        img_number
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "strftime",
+                    short_help_text = "use strftime for filename",
+                    offset = offsetof (
+                        VideoMuxData,
+                        use_strftime
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "frame_pts",
+                    short_help_text = "use current frame pts for filename",
+                    offset = offsetof (
+                        VideoMuxData,
+                        frame_pts
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "atomic_writing",
+                    short_help_text = "write files atomically (using temporary files and renames)",
+                    offset = offsetof (
+                        VideoMuxData,
+                        use_rename
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int version {

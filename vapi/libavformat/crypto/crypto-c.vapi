@@ -22,85 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BinaryOption () {
-        name = "key",
-        short_help_text = "AES encryption/decryption key",
-        offset = offsetof (
-            CryptoContext,
-            key
-        ),
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "iv",
-        short_help_text = "AES encryption/decryption initialization vector",
-        offset = offsetof (
-            CryptoContext,
-            iv
-        ),
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "decryption_key",
-        short_help_text = "AES decryption key",
-        offset = offsetof (
-            CryptoContext,
-            decrypt_key
-        ),
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "decryption_iv",
-        short_help_text = "AES decryption initialization vector",
-        offset = offsetof (
-            CryptoContext,
-            decrypt_iv
-        ),
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "encryption_key",
-        short_help_text = "AES encryption key",
-        offset = offsetof (
-            CryptoContext,
-            encrypt_key
-        ),
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "encryption_iv",
-        short_help_text = "AES encryption initialization vector",
-        offset = offsetof (
-            CryptoContext,
-            encrypt_iv
-        ),
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="crypto_class",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
 public class CryptoURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
@@ -120,7 +41,92 @@ public class CryptoURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BinaryOption () {
+                    name = "key",
+                    short_help_text = "AES encryption/decryption key",
+                    offset = offsetof (
+                        CryptoContext,
+                        key
+                    ),
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "iv",
+                    short_help_text = "AES encryption/decryption initialization vector",
+                    offset = offsetof (
+                        CryptoContext,
+                        iv
+                    ),
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "decryption_key",
+                    short_help_text = "AES decryption key",
+                    offset = offsetof (
+                        CryptoContext,
+                        decrypt_key
+                    ),
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "decryption_iv",
+                    short_help_text = "AES decryption initialization vector",
+                    offset = offsetof (
+                        CryptoContext,
+                        decrypt_iv
+                    ),
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "encryption_key",
+                    short_help_text = "AES encryption key",
+                    offset = offsetof (
+                        CryptoContext,
+                        encrypt_key
+                    ),
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "encryption_iv",
+                    short_help_text = "AES encryption initialization vector",
+                    offset = offsetof (
+                        CryptoContext,
+                        encrypt_iv
+                    ),
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override int version {

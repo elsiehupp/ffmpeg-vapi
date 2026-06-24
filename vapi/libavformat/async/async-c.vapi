@@ -29,13 +29,6 @@ namespace LibAVFormat {
     support timeout
     support work with concatdec, hls
 ***********************************************************/
-
-static const LibAVUtil.Option options[] = {
-    {
-        NULL
-    }
-
-};
 //  #undef LibAVUtil.OptionFlags.DECODING_PARAM
 //  #undef OFFSET
 
@@ -59,8 +52,19 @@ public class AsyncContextClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
     public override int version {
@@ -127,28 +131,6 @@ public class AsyncURLProtocol : URLProtocol {
 
 #if 0
 
-[CCode (cname="async_test_options",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
-static const LibAVUtil.Option async_test_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "async-test-read-error",
-        short_help_text = "cause read fail",
-        offset = offsetof (
-            TestContext,
-            opt_read_error
-        ),
-        default_value = 0,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-#undef LibAVUtil.OptionFlags.DECODING_PARAM
-#undef OFFSET
-
 [CCode (cname="async_test_context_class",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
 public class AsyncTestContextClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
@@ -168,7 +150,32 @@ public class AsyncTestContextClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = async_test_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "async-test-read-error",
+                    short_help_text = "cause read fail",
+                    offset = offsetof (
+                        TestContext,
+                        opt_read_error
+                    ),
+                    default_value = 0,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
     public override int version {

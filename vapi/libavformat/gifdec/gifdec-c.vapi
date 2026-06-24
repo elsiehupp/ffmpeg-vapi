@@ -26,65 +26,6 @@ namespace LibAVFormat {
 @file GIF demuxer.
 ***********************************************************/
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "min_delay",
-        short_help_text = "minimum valid delay between frames (in hundredths of second)",
-        offset = offsetof (
-            GIFDemuxContext,
-            min_delay
-        ),
-        default_value = GIF_MIN_DELAY,
-        minimum_value = 0,
-        maximum_value = (
-            100 * 60
-        ),
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "max_gif_delay",
-        short_help_text = "maximum valid delay between frames (in hundredths of seconds)",
-        offset = offsetof (
-            GIFDemuxContext,
-            max_delay
-        ),
-        default_value = 65535,
-        minimum_value = 0,
-        maximum_value = 65535,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "default_delay",
-        short_help_text = "default delay between frames (in hundredths of second)",
-        offset = offsetof (
-            GIFDemuxContext,
-            default_delay
-        ),
-        default_value = GIF_DEFAULT_DELAY,
-        minimum_value = 0,
-        maximum_value = (
-            100 * 60
-        ),
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "ignore_loop",
-        short_help_text = "ignore loop setting (netscape extension)",
-        offset = offsetof (
-            GIFDemuxContext,
-            ignore_loop
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
 public class GIFDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
@@ -105,8 +46,71 @@ public class GIFDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "min_delay",
+                    short_help_text = "minimum valid delay between frames (in hundredths of second)",
+                    offset = offsetof (
+                        GIFDemuxContext,
+                        min_delay
+                    ),
+                    default_value = GIF_MIN_DELAY,
+                    minimum_value = 0,
+                    maximum_value = (
+                        100 * 60
+                    ),
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "max_gif_delay",
+                    short_help_text = "maximum valid delay between frames (in hundredths of seconds)",
+                    offset = offsetof (
+                        GIFDemuxContext,
+                        max_delay
+                    ),
+                    default_value = 65535,
+                    minimum_value = 0,
+                    maximum_value = 65535,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "default_delay",
+                    short_help_text = "default delay between frames (in hundredths of second)",
+                    offset = offsetof (
+                        GIFDemuxContext,
+                        default_delay
+                    ),
+                    default_value = GIF_DEFAULT_DELAY,
+                    minimum_value = 0,
+                    maximum_value = (
+                        100 * 60
+                    ),
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "ignore_loop",
+                    short_help_text = "ignore loop setting (netscape extension)",
+                    offset = offsetof (
+                        GIFDemuxContext,
+                        ignore_loop
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
     public override int version {

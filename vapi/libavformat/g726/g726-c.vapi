@@ -22,42 +22,52 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "code_size",
-        short_help_text = "Bits per G.726 code",
-        offset = offsetof (
-            G726Context,
-            code_size
-        ),
-        default_value = 4,
-        minimum_value = 2,
-        maximum_value = 5,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "sample_rate",
-        short_help_text = "",
-        offset = offsetof (
-            G726Context,
-            sample_rate
-        ),
-        default_value = 8000,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 #if CONFIG_G726_DEMUXER
 
+public class G726OptionsClass : LibAVUtil.Class {
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "code_size",
+                    short_help_text = "Bits per G.726 code",
+                    offset = offsetof (
+                        G726Context,
+                        code_size
+                    ),
+                    default_value = 4,
+                    minimum_value = 2,
+                    maximum_value = 5,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "sample_rate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        G726Context,
+                        sample_rate
+                    ),
+                    default_value = 8000,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
+
+}
+
 [CCode (cname="g726le_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
-public class G726LEDemuxerClass : LibAVUtil.Class {
+public class G726LEDemuxerClass : G726OptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string class_name {
         public get {
@@ -75,7 +85,6 @@ public class G726LEDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int version {
@@ -142,7 +151,7 @@ public class G726Demuxer : AVInputFormat {
 #if CONFIG_G726LE_DEMUXER
 
 [CCode (cname="g726_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
-public class G726DemuxerClass : LibAVUtil.Class {
+public class G726DemuxerClass : G726OptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string class_name {
         public get {
@@ -160,7 +169,6 @@ public class G726DemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int version {

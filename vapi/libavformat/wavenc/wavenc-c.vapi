@@ -31,148 +31,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-#if CONFIG_WAV_MUXER
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "write_bext",
-        short_help_text = "Write BEXT chunk.",
-        offset = offsetof (
-            WAVMuxContext,
-            write_bext
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "write_peak",
-        short_help_text = "Write Peak Envelope chunk.",
-        offset = offsetof (
-            WAVMuxContext,
-            write_peak
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 2,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "peak"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "off",
-        short_help_text = "Do not write peak chunk.",
-        offset = 0,
-        default_value = PEAK_OFF,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "peak"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "on",
-        short_help_text = "Append peak chunk after wav data.",
-        offset = 0,
-        default_value = PEAK_ON,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "peak"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "only",
-        short_help_text = "Write only peak chunk, omit wav data.",
-        offset = 0,
-        default_value = PEAK_ONLY,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "peak"
-    },
-    new LibAVUtil.IntOption () {
-        name = "rf64",
-        short_help_text = "Use RF64 header rather than RIFF for large files.",
-        offset = offsetof (
-            WAVMuxContext,
-            rf64
-        ),
-        default_value = RF64_NEVER,
-        minimum_value = -1,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "rf64"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "auto",
-        short_help_text = "Write RF64 header if file grows large enough.",
-        offset = 0,
-        default_value = RF64_AUTO,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "rf64"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "always",
-        short_help_text = "Always write RF64 header regardless of file size.",
-        offset = 0,
-        default_value = RF64_ALWAYS,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "rf64"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "never",
-        short_help_text = "Never write RF64 header regardless of file size.",
-        offset = 0,
-        default_value = RF64_NEVER,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "rf64"
-    },
-    new LibAVUtil.IntOption () {
-        name = "peak_block_size",
-        short_help_text = "Number of audio samples used to generate each peak frame.",
-        offset = offsetof (
-            WAVMuxContext,
-            peak_block_size
-        ),
-        default_value = 256,
-        minimum_value = 0,
-        maximum_value = 65536,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "peak_format",
-        short_help_text = "The format of the peak envelope data (1: uint8, 2: uint16).",
-        offset = offsetof (
-            WAVMuxContext,
-            peak_format
-        ),
-        default_value = PEAK_FORMAT_UINT16,
-        minimum_value = PEAK_FORMAT_UINT8,
-        maximum_value = PEAK_FORMAT_UINT16,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "peak_ppv",
-        short_help_text = "Number of peak points per peak value (1 or 2).",
-        offset = offsetof (
-            WAVMuxContext,
-            peak_ppv
-        ),
-        default_value = 2,
-        minimum_value = 1,
-        maximum_value = 2,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="wav_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
 public class WAVMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
@@ -193,8 +51,153 @@ public class WAVMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "write_bext",
+                    short_help_text = "Write BEXT chunk.",
+                    offset = offsetof (
+                        WAVMuxContext,
+                        write_bext
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "write_peak",
+                    short_help_text = "Write Peak Envelope chunk.",
+                    offset = offsetof (
+                        WAVMuxContext,
+                        write_peak
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 2,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "peak"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "off",
+                    short_help_text = "Do not write peak chunk.",
+                    offset = 0,
+                    default_value = PEAK_OFF,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "peak"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "on",
+                    short_help_text = "Append peak chunk after wav data.",
+                    offset = 0,
+                    default_value = PEAK_ON,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "peak"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "only",
+                    short_help_text = "Write only peak chunk, omit wav data.",
+                    offset = 0,
+                    default_value = PEAK_ONLY,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "peak"
+                },
+                new LibAVUtil.IntOption () {
+                    name = "rf64",
+                    short_help_text = "Use RF64 header rather than RIFF for large files.",
+                    offset = offsetof (
+                        WAVMuxContext,
+                        rf64
+                    ),
+                    default_value = RF64_NEVER,
+                    minimum_value = -1,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "rf64"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "auto",
+                    short_help_text = "Write RF64 header if file grows large enough.",
+                    offset = 0,
+                    default_value = RF64_AUTO,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "rf64"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "always",
+                    short_help_text = "Always write RF64 header regardless of file size.",
+                    offset = 0,
+                    default_value = RF64_ALWAYS,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "rf64"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "never",
+                    short_help_text = "Never write RF64 header regardless of file size.",
+                    offset = 0,
+                    default_value = RF64_NEVER,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "rf64"
+                },
+                new LibAVUtil.IntOption () {
+                    name = "peak_block_size",
+                    short_help_text = "Number of audio samples used to generate each peak frame.",
+                    offset = offsetof (
+                        WAVMuxContext,
+                        peak_block_size
+                    ),
+                    default_value = 256,
+                    minimum_value = 0,
+                    maximum_value = 65536,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "peak_format",
+                    short_help_text = "The format of the peak envelope data (1: uint8, 2: uint16).",
+                    offset = offsetof (
+                        WAVMuxContext,
+                        peak_format
+                    ),
+                    default_value = PEAK_FORMAT_UINT16,
+                    minimum_value = PEAK_FORMAT_UINT8,
+                    maximum_value = PEAK_FORMAT_UINT16,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "peak_ppv",
+                    short_help_text = "Number of peak points per peak value (1 or 2).",
+                    offset = offsetof (
+                        WAVMuxContext,
+                        peak_ppv
+                    ),
+                    default_value = 2,
+                    minimum_value = 1,
+                    maximum_value = 2,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int version {

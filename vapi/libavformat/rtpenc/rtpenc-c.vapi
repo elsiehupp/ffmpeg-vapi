@@ -22,65 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option options[] = {
-    FF_RTP_FLAG_OPTS (
-        RTPMuxContext,
-        flags
-    ),
-    new LibAVUtil.IntOption () {
-        name = "payload_type",
-        short_help_text = "Specify RTP payload type",
-        offset = offsetof (
-            RTPMuxContext,
-            payload_type
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 127,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "ssrc",
-        short_help_text = "Stream identifier",
-        offset = offsetof (
-            RTPMuxContext,
-            ssrc
-        ),
-        default_value = 0,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.StringOption () {
-        name = "cname",
-        short_help_text = "CNAME to include in RTCP SR packets",
-        offset = offsetof (
-            RTPMuxContext,
-            cname
-        ),
-        default_value = "",
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "seq",
-        short_help_text = "Starting sequence number",
-        offset = offsetof (
-            RTPMuxContext,
-            seq
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 65535,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="rtp_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
 public class RTPMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
@@ -101,8 +42,71 @@ public class RTPMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                FF_RTP_FLAG_OPTS (
+                    RTPMuxContext,
+                    flags
+                ),
+                new LibAVUtil.IntOption () {
+                    name = "payload_type",
+                    short_help_text = "Specify RTP payload type",
+                    offset = offsetof (
+                        RTPMuxContext,
+                        payload_type
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 127,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "ssrc",
+                    short_help_text = "Stream identifier",
+                    offset = offsetof (
+                        RTPMuxContext,
+                        ssrc
+                    ),
+                    default_value = 0,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.StringOption () {
+                    name = "cname",
+                    short_help_text = "CNAME to include in RTCP SR packets",
+                    offset = offsetof (
+                        RTPMuxContext,
+                        cname
+                    ),
+                    default_value = "",
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "seq",
+                    short_help_text = "Starting sequence number",
+                    offset = offsetof (
+                        RTPMuxContext,
+                        seq
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 65535,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override int version {

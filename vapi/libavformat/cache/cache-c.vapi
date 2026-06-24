@@ -30,26 +30,6 @@ namespace LibAVFormat {
     support filling with a background thread
 ***********************************************************/
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "read_ahead_limit",
-        short_help_text = "Amount in bytes that may be read ahead when seeking isn't supported, -1 for unlimited",
-        offset = offsetof (
-            Context,
-            read_ahead_limit
-        ),
-        default_value = 65536,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="struct Context",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
 [Compact]
 public class CachePrivateData { }
@@ -74,8 +54,31 @@ public class CacheContextClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return  {
+                new LibAVUtil.IntOption () {
+                    name = "read_ahead_limit",
+                    short_help_text = "Amount in bytes that may be read ahead when seeking isn't supported, -1 for unlimited",
+                    offset = offsetof (
+                        Context,
+                        read_ahead_limit
+                    ),
+                    default_value = 65536,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override int version {

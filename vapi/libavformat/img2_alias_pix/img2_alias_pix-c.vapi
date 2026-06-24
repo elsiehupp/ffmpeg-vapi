@@ -41,6 +41,17 @@ public class Image2AliasPIXDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
     //  .option = ff_img_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/img2_alias_pix.c")]

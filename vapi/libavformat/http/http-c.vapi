@@ -49,8 +49,16 @@ public class HTTPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
     public override int version {
@@ -178,8 +186,16 @@ public class HTTPSURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
     public override int version {

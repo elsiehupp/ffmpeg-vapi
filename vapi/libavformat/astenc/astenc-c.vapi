@@ -22,38 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.Int64Option () {
-        name = "loopstart",
-        short_help_text = "Loopstart position in milliseconds.",
-        offset = offsetof (
-            ASTMuxContext,
-            loopstart
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.Int64Option () {
-        name = "loopend",
-        short_help_text = "Loopend position in milliseconds.",
-        offset = offsetof (
-            ASTMuxContext,
-            loopend
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="ast_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
 public class ASTMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
@@ -74,8 +42,43 @@ public class ASTMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.Int64Option () {
+                    name = "loopstart",
+                    short_help_text = "Loopstart position in milliseconds.",
+                    offset = offsetof (
+                        ASTMuxContext,
+                        loopstart
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.Int64Option () {
+                    name = "loopend",
+                    short_help_text = "Loopend position in milliseconds.",
+                    offset = offsetof (
+                        ASTMuxContext,
+                        loopend
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
     public override int version {

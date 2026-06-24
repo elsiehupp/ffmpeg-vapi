@@ -23,26 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="dash_options",cheader_filename="subprojects/ffmpeg/libavformat/dashdec.c")]
-static const LibAVUtil.Option dash_options[] = {
-    new LibAVUtil.StringOption () {
-        name = "allowed_extensions",
-        short_help_text = "List of file extensions that dash is allowed to access"
-        offset = offsetof (
-            DASHContext,
-            allowed_extensions
-        ),
-        default_value = "aac,m4a,m4s,m4v,mov,mp4,webm",
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="dash_class",cheader_filename="subprojects/ffmpeg/libavformat/dashdec.c")]
 public class DashDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/dashdec.c")]
@@ -62,7 +42,32 @@ public class DashDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = dash_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.StringOption () {
+                    name = "allowed_extensions",
+                    short_help_text = "List of file extensions that dash is allowed to access"
+                    offset = offsetof (
+                        DASHContext,
+                        allowed_extensions
+                    ),
+                    default_value = "aac,m4a,m4s,m4v,mov,mp4,webm",
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/dashdec.c")]
     public override int version {

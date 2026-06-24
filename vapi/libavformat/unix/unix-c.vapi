@@ -27,98 +27,6 @@ namespace LibAVFormat {
 Unix socket url_protocol
 ***********************************************************/
 
-[CCode (cname="unix_options",cheader_filename="subprojects/ffmpeg/libavformat/unix.c")]
-static const LibAVUtil.Option unix_options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "listen",
-        short_help_text = "Open socket for listening",
-        offset = offsetof (
-            UnixContext,
-            listen
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "timeout",
-        short_help_text = "Timeout in ms",
-        offset = offsetof (
-            UnixContext,
-            timeout
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "type",
-        short_help_text = "Socket type",
-        offset = offsetof (
-            UnixContext,
-            type
-        ),
-        default_value = SOCK_STREAM,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        ),
-        unit = "type"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "stream",
-        short_help_text = "Stream (reliable stream-oriented)",
-        offset = 0,
-        default_value = SOCK_STREAM,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        ),
-        unit = "type"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "datagram",
-        short_help_text = "Datagram (unreliable packet-oriented)",
-        offset = 0,
-        default_value = SOCK_DGRAM,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        ),
-        unit = "type"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "seqpacket",
-        short_help_text = "Seqpacket (reliable packet-oriented",
-        offset = 0,
-        default_value = SOCK_SEQPACKET,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        ),
-        unit = "type"
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="unix_class",cheader_filename="subprojects/ffmpeg/libavformat/unix.c")]
 public class UnixURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/unix.c")]
@@ -138,7 +46,105 @@ public class UnixURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = unix_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "listen",
+                    short_help_text = "Open socket for listening",
+                    offset = offsetof (
+                        UnixContext,
+                        listen
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "timeout",
+                    short_help_text = "Timeout in ms",
+                    offset = offsetof (
+                        UnixContext,
+                        timeout
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "type",
+                    short_help_text = "Socket type",
+                    offset = offsetof (
+                        UnixContext,
+                        type
+                    ),
+                    default_value = SOCK_STREAM,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    ),
+                    unit = "type"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "stream",
+                    short_help_text = "Stream (reliable stream-oriented)",
+                    offset = 0,
+                    default_value = SOCK_STREAM,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    ),
+                    unit = "type"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "datagram",
+                    short_help_text = "Datagram (unreliable packet-oriented)",
+                    offset = 0,
+                    default_value = SOCK_DGRAM,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    ),
+                    unit = "type"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "seqpacket",
+                    short_help_text = "Seqpacket (reliable packet-oriented",
+                    offset = 0,
+                    default_value = SOCK_SEQPACKET,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    ),
+                    unit = "type"
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/unix.c")]
     public override int version {

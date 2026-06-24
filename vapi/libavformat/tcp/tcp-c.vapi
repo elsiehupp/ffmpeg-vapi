@@ -22,121 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "listen",
-        short_help_text = "Listen for incoming connections",
-        offset = offsetof (
-            TCPContext,
-            listen
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 2,
-        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "timeout",
-        short_help_text = "set timeout (in microseconds) of socket I/O operations",
-        offset = offsetof (
-            TCPContext,
-            rw_timeout
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "listen_timeout",
-        short_help_text = "Connection awaiting timeout (in milliseconds)",
-        offset = offsetof (
-            TCPContext,
-            listen_timeout
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "send_buffer_size",
-        short_help_text = "Socket send buffer size (in bytes)",
-        offset = offsetof (
-            TCPContext,
-            send_buffer_size
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "recv_buffer_size",
-        short_help_text = "Socket receive buffer size (in bytes)",
-        offset = offsetof (
-            TCPContext,
-            recv_buffer_size
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "tcp_nodelay",
-        short_help_text = "Use TCP_NODELAY to disable nagle's algorithm",
-        offset = offsetof (
-            TCPContext,
-            tcp_nodelay
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-#if !HAVE_WINSOCK2_H
-    new LibAVUtil.IntOption () {
-        name = "tcp_mss",
-        short_help_text = "Maximum segment size for outgoing TCP packets",
-        offset = offsetof (
-            TCPContext,
-            tcp_mss
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )
-    },
-#endif /* !HAVE_WINSOCK2_H */
-    {
-        NULL
-    }
-}
-
 [CCode (cname="tcp_class",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
 public class TCPURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
@@ -157,8 +42,126 @@ public class TCPURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "listen",
+                    short_help_text = "Listen for incoming connections",
+                    offset = offsetof (
+                        TCPContext,
+                        listen
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 2,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "timeout",
+                    short_help_text = "set timeout (in microseconds) of socket I/O operations",
+                    offset = offsetof (
+                        TCPContext,
+                        rw_timeout
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "listen_timeout",
+                    short_help_text = "Connection awaiting timeout (in milliseconds)",
+                    offset = offsetof (
+                        TCPContext,
+                        listen_timeout
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "send_buffer_size",
+                    short_help_text = "Socket send buffer size (in bytes)",
+                    offset = offsetof (
+                        TCPContext,
+                        send_buffer_size
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "recv_buffer_size",
+                    short_help_text = "Socket receive buffer size (in bytes)",
+                    offset = offsetof (
+                        TCPContext,
+                        recv_buffer_size
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "tcp_nodelay",
+                    short_help_text = "Use TCP_NODELAY to disable nagle's algorithm",
+                    offset = offsetof (
+                        TCPContext,
+                        tcp_nodelay
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+            #if !HAVE_WINSOCK2_H
+                new LibAVUtil.IntOption () {
+                    name = "tcp_mss",
+                    short_help_text = "Maximum segment size for outgoing TCP packets",
+                    offset = offsetof (
+                        TCPContext,
+                        tcp_mss
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.DECODING_PARAM |
+                        LibAVUtil.OptionFlags.ENCODING_PARAM
+                    )
+                },
+            #endif /* !HAVE_WINSOCK2_H */
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override int version {

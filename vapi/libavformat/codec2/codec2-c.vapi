@@ -41,29 +41,6 @@ public define FRAMES_PER_PACKET
 
 };
 
-static const LibAVUtil.Option codec2_options[] = {
-    FRAMES_PER_PACKET,
-    {
-        NULL
-    }
-
-};
-
-static const LibAVUtil.Option codec2raw_options[] = {
-    AVPRIV_CODEC2_AVOPTIONS (
-        "codec2 mode [mandatory]",
-        Codec2Context,
-        -1,
-        -1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    ),
-    FRAMES_PER_PACKET,
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="codec2_mux_class",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
 public class Codec2MuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
@@ -114,7 +91,21 @@ public class Codec2DemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = codec2_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                FRAMES_PER_PACKET,
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int version {
@@ -146,7 +137,28 @@ public class Codec2RawDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = codec2raw_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                AVPRIV_CODEC2_AVOPTIONS (
+                    "codec2 mode [mandatory]",
+                    Codec2Context,
+                    -1,
+                    -1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                ),
+                FRAMES_PER_PACKET,
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override int version {

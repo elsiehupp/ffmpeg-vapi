@@ -27,24 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_WAV_DEMUXER
-static const LibAVUtil.Option demux_options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "ignore_length",
-        short_help_text = "Ignore length",
-        offset = offsetof (
-            WAVDemuxContext,
-            ignore_length
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
 
 [CCode (cname="wav_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
 public class WAVDemuxerClass : LibAVUtil.Class {
@@ -65,7 +47,32 @@ public class WAVDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = demux_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "ignore_length",
+                    short_help_text = "Ignore length",
+                    offset = offsetof (
+                        WAVDemuxContext,
+                        ignore_length
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override int version {

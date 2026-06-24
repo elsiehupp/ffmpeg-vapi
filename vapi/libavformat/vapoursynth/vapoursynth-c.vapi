@@ -44,8 +44,16 @@ public class VapourSynthDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override int version {

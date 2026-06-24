@@ -66,9 +66,6 @@ public class FFRawDemuxerContext {
     public int raw_packet_size;
 }
 
-//  extern const LibAVUtil.Option ff_rawvideo_options[];
-//  extern const LibAVUtil.Option ff_raw_options[];
-
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
 public int ff_raw_read_partial_packet (
     AVFormatContext format_context,
@@ -95,47 +92,104 @@ public int ff_raw_data_read_header (
     AVFormatContext format_context
 );
 
-//  #define FF_RAW_DEMUXER_CLASS (name)\
-//  public const LibAVUtil.Class name ## _demuxer_class = {
-//      //  .class_name = #name " demuxer",
-//      //  .item_name = base.item_name,
-//      //  .option = ff_raw_options,
-//      //  .version = LibAVUtil.Version.INT,
-//  }
+#define FF_RAW_DEMUXER_CLASS (name)\
+public const LibAVUtil.Class name ## _demuxer_class : RawOptionsClass {
+    //  .class_name = #name " demuxer",
+    //  .item_name = base.item_name,
 
-//  #define FF_RAWVIDEO_DEMUXER_CLASS (name)\
-//  public const LibAVUtil.Class name ## _demuxer_class = {
-//      //  .class_name = #name " demuxer",
-//      //  .item_name = base.item_name,
-//      //  .option = ff_rawvideo_options,
-//      //  .version = LibAVUtil.Version.INT,
-//  }
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
 
-//  #define FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, flag)\
-//  FF_RAWVIDEO_DEMUXER_CLASS (shortname)\
-//  AVInputFormat ff_ ## shortname ## _demuxer = {
-//      //  .name = #shortname,
-//      //  .long_name = NULL_IF_CONFIG_SMALL (longname),
-//      //  .read_probe = probe,
-//      //  .read_header = ff_raw_video_read_header,
-//      //  .read_packet = ff_raw_read_partial_packet,
-//      //  .extensions = ext,
-//      //  .flags = flag,
-//      //  .raw_codec_id = id,
-//      //  .priv_data_size = sizeof (FFRawVideoDemuxerContext),
-//      //  .priv_class = shortname ## _demuxer_class,
-//  }
+            };
 
-//  #define FF_DEF_RAWVIDEO_DEMUXER (shortname, longname, probe, ext, id)\
-//  FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, AVFormatFlags1.USE_GENERIC_INDEX)
+        }
 
-//  #define FF_RAWSUB_DEMUXER_CLASS (name)\
-//  public const LibAVUtil.Class name ## _demuxer_class = {
-//      //  .class_name = #name " demuxer",
-//      //  .item_name = base.item_name,
-//      //  .option = ff_raw_options,
-//      //  .version = LibAVUtil.Version.INT,
-//  }
+    }
+    //  .version = LibAVUtil.Version.INT,
+}
+
+#define FF_RAWVIDEO_DEMUXER_CLASS (name)\
+public const LibAVUtil.Class name ## _demuxer_class = {
+    //  .class_name = #name " demuxer",
+    //  .item_name = base.item_name,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.VideoRateOption () {
+                    name = "framerate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        FFRawVideoDemuxerContext,
+                        framerate
+                    ),
+                    default_value = "25",
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "raw_packet_size",
+                    short_help_text = "",
+                    offset = offsetof (
+                        FFRawVideoDemuxerContext,
+                        raw_packet_size
+                    ),
+                    default_value = RAW_PACKET_SIZE,
+                    minimum_value = 1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
+    //  .version = LibAVUtil.Version.INT,
+}
+
+#define FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, flag)\
+FF_RAWVIDEO_DEMUXER_CLASS (shortname)\
+AVInputFormat ff_ ## shortname ## _demuxer = {
+    //  .name = #shortname,
+    //  .long_name = NULL_IF_CONFIG_SMALL (longname),
+    //  .read_probe = probe,
+    //  .read_header = ff_raw_video_read_header,
+    //  .read_packet = ff_raw_read_partial_packet,
+    //  .extensions = ext,
+    //  .flags = flag,
+    //  .raw_codec_id = id,
+    //  .priv_data_size = sizeof (FFRawVideoDemuxerContext),
+    //  .priv_class = shortname ## _demuxer_class,
+}
+
+#define FF_DEF_RAWVIDEO_DEMUXER (shortname, longname, probe, ext, id)\
+FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, AVFormatFlags1.USE_GENERIC_INDEX)
+
+#define FF_RAWSUB_DEMUXER_CLASS (name)\
+public const LibAVUtil.Class name ## _demuxer_class : RawOptionsClass {
+    //  .class_name = #name " demuxer",
+    //  .item_name = base.item_name,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
+    //  .version = LibAVUtil.Version.INT,
+}
 
 //  #define FF_DEF_RAWSUB_DEMUXER (shortname, longname, probe, ext, id, flag)\
 //  FF_RAWSUB_DEMUXER_CLASS (shortname)\

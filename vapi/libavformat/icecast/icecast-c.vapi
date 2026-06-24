@@ -41,6 +41,17 @@ public class IceCastURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
     //  .option = options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/icecast.c")]

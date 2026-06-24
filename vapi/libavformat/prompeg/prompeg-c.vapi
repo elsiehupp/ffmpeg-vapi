@@ -81,48 +81,6 @@ namespace LibAVFormat {
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ***********************************************************/
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "ttl",
-        short_help_text = "Time to live (in milliseconds, multicast only)",
-        offset = offsetof (
-            PrompegContext,
-            ttl
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "l",
-        short_help_text = "FEC L",
-        offset = offsetof (
-            PrompegContext,
-            l
-        ),
-        default_value = 5,
-        minimum_value = 4,
-        maximum_value = 20,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "d",
-        short_help_text = "FEC D",
-        offset = offsetof (
-            PrompegContext,
-            d
-        ),
-        default_value = 5,
-        minimum_value = 4,
-        maximum_value = 20,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="prompeg_class",cheader_filename="subprojects/ffmpeg/libavformat/prompeg.c")]
 public class ProMpegURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/prompeg.c")]
@@ -143,8 +101,55 @@ public class ProMpegURLProtocolClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/prompeg.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/prompeg.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "ttl",
+                    short_help_text = "Time to live (in milliseconds, multicast only)",
+                    offset = offsetof (
+                        PrompegContext,
+                        ttl
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "l",
+                    short_help_text = "FEC L",
+                    offset = offsetof (
+                        PrompegContext,
+                        l
+                    ),
+                    default_value = 5,
+                    minimum_value = 4,
+                    maximum_value = 20,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "d",
+                    short_help_text = "FEC D",
+                    offset = offsetof (
+                        PrompegContext,
+                        d
+                    ),
+                    default_value = 5,
+                    minimum_value = 4,
+                    maximum_value = 20,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/prompeg.c")]
     public override int version {

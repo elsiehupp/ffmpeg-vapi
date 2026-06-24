@@ -35,6 +35,17 @@ public abstract class ImageClass : LibAVUtil.Class {
             class_context
         );
     }
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
     //  .option = ff_img2pipe_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]

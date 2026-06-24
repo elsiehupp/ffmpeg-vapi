@@ -46,25 +46,6 @@ Simple demuxer, only OP1A supported and some files might not work at all.
 Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPTE 377M D.1
 ***********************************************************/
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "eia608_extract",
-        short_help_text = "extract eia 608 captions from s436m track",
-        offset = offsetof (
-            MXFContext,
-            eia608_extract
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
 public class MXFDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
@@ -85,8 +66,31 @@ public class MXFDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "eia608_extract",
+                    short_help_text = "extract eia 608 captions from s436m track",
+                    offset = offsetof (
+                        MXFContext,
+                        eia608_extract
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
     public override int version {

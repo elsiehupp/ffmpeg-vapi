@@ -26,24 +26,6 @@ namespace LibAVFormat {
 [Compact]
 public class FLACMuxerPrivateData { }
 
-static const LibAVUtil.Option flacenc_options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "write_header",
-        short_help_text = "Write the file header",
-        offset = offsetof (
-            FlacMuxerContext, write_header
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="flac_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/flacenc.c")]
 public class FLACMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flacenc.c")]
@@ -63,7 +45,31 @@ public class FLACMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = flacenc_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "write_header",
+                    short_help_text = "Write the file header",
+                    offset = offsetof (
+                        FlacMuxerContext, write_header
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/flacenc.c")]
     public override int version {

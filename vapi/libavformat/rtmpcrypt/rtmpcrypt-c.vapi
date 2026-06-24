@@ -28,25 +28,6 @@ namespace LibAVFormat {
 @file RTMPE protocol
 ***********************************************************/
 
-static const LibAVUtil.Option ffrtmpcrypt_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "ffrtmpcrypt_tunneling",
-        short_help_text = "Use a HTTP tunneling connection (RTMPTE).",
-        offset = offsetof (
-            RTMPEContext,
-            tunneling
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="ffrtmpcrypt_class",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
 public class RTMPCryptURLProtocolClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
@@ -66,7 +47,32 @@ public class RTMPCryptURLProtocolClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = ffrtmpcrypt_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "ffrtmpcrypt_tunneling",
+                    short_help_text = "Use a HTTP tunneling connection (RTMPTE).",
+                    offset = offsetof (
+                        RTMPEContext,
+                        tunneling
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override int version {

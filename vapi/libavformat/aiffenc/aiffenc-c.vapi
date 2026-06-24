@@ -21,38 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/aiffenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "write_id3v2",
-        short_help_text = "Enable ID3 tags writing.",
-        offset = offsetof (
-            AIFFOutputContext,
-            write_id3v2
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "id3v2_version",
-        short_help_text = "Select ID3v2 version to write. Currently 3 and 4 are supported.",
-        offset = offsetof (
-            AIFFOutputContext,
-            id3v2_version
-        ),
-        default_value = 4,
-        minimum_value = 3,
-        maximum_value = 4,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="aiff_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/aiffenc.c")]
 public class AIFFMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aiffenc.c")]
@@ -72,7 +40,44 @@ public class AIFFMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "write_id3v2",
+                    short_help_text = "Enable ID3 tags writing.",
+                    offset = offsetof (
+                        AIFFOutputContext,
+                        write_id3v2
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "id3v2_version",
+                    short_help_text = "Select ID3v2 version to write. Currently 3 and 4 are supported.",
+                    offset = offsetof (
+                        AIFFOutputContext,
+                        id3v2_version
+                    ),
+                    default_value = 4,
+                    minimum_value = 3,
+                    maximum_value = 4,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/aiffenc.c")]
     public override int version {

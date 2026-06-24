@@ -22,60 +22,6 @@ BluRay (libbluray) protocol
 
 @copyright 2012 Petri Hintukainen <phintuka <at> users.sourceforge.net>
 ***********************************************************/
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "playlist",
-        short_help_text = "",
-        offset = offsetof (
-            BlurayContext,
-            playlist
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 99999,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "angle",
-        short_help_text = "",
-        offset = offsetof (
-            BlurayContext,
-            angle
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 0xfe,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "chapter",
-        short_help_text = "",
-        offset = offsetof (
-            BlurayContext,
-            chapter
-        ),
-        default_value = 1,
-        minimum_value = 1,
-        maximum_value = 0xfffe,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    /*{
-        "region",
-        short_help_text = "bluray player region code (1 = region A, 2 = region B, 4 = region C)",
-        offset = offsetof (
-            BlurayContext,
-            region
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        3,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },*/
-    {
-        NULL
-    }
-
-};
 
 [CCode (cname="bluray_context_class",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
 public class BluRayContextClass : LibAVUtil.Class {
@@ -96,7 +42,68 @@ public class BluRayContextClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "playlist",
+                    short_help_text = "",
+                    offset = offsetof (
+                        BlurayContext,
+                        playlist
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 99999,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "angle",
+                    short_help_text = "",
+                    offset = offsetof (
+                        BlurayContext,
+                        angle
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 0xfe,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "chapter",
+                    short_help_text = "",
+                    offset = offsetof (
+                        BlurayContext,
+                        chapter
+                    ),
+                    default_value = 1,
+                    minimum_value = 1,
+                    maximum_value = 0xfffe,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                /*{
+                    name = "region",
+                    short_help_text = "bluray player region code (1 = region A, 2 = region B, 4 = region C)",
+                    offset = offsetof (
+                        BlurayContext,
+                        region
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 3,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },*/
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override int version {

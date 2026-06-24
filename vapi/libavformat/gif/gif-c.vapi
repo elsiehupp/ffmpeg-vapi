@@ -24,38 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "loop",
-        short_help_text = "Number of times to loop the output: -1 - no loop, 0 - infinite loop",
-        offset = offsetof (
-            GIFContext,
-            loop
-        ),
-        default_value = 0,
-        minimum_value = -1,
-        maximum_value = 65535,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "final_delay",
-        short_help_text = "Force delay (in centiseconds) after the last frame",
-        offset = offsetof (
-            GIFContext,
-            last_delay
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = 65535,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="gif_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
 public class GIFMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
@@ -85,8 +53,43 @@ public class GIFMuxerClass : LibAVUtil.Class {
 
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "loop",
+                    short_help_text = "Number of times to loop the output: -1 - no loop, 0 - infinite loop",
+                    offset = offsetof (
+                        GIFContext,
+                        loop
+                    ),
+                    default_value = 0,
+                    minimum_value = -1,
+                    maximum_value = 65535,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "final_delay",
+                    short_help_text = "Force delay (in centiseconds) after the last frame",
+                    offset = offsetof (
+                        GIFContext,
+                        last_delay
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 65535,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 }
 
 [CCode (cname="struct GIFContext",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]

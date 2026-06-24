@@ -118,114 +118,123 @@ static const AVCodecTag additional_subtitle_tags[] = {
 
 };
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "reserve_index_space",
-        short_help_text = "Reserve a given amount of space (in bytes) at the beginning of the file for the index (cues).",
-        offset = offsetof (
-            MatroskaMuxContext,
-            reserve_cues_space
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "cluster_size_limit",
-        short_help_text = "Store at most the provided amount of bytes in a cluster. ",
-        offset = offsetof (
-            MatroskaMuxContext,
-            cluster_size_limit
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.Int64Option () {
-        name = "cluster_time_limit",
-        short_help_text = "Store at most the provided number of milliseconds in a cluster.",
-        offset = offsetof (
-            MatroskaMuxContext,
-            cluster_time_limit
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        maximum_value = int64.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "dash",
-        short_help_text = "Create a WebM file conforming to WebM DASH specification",
-        offset = offsetof (
-            MatroskaMuxContext,
-            is_dash
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "dash_track_number",
-        short_help_text = "Track number for the DASH stream",
-        offset = offsetof (
-            MatroskaMuxContext,
-            dash_track_number
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 127,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "live",
-        short_help_text = "Write files assuming it is a live stream.",
-        offset = offsetof (
-            MatroskaMuxContext,
-            is_live
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "allow_raw_vfw",
-        short_help_text = "allow RAW VFW mode",
-        offset = offsetof (
-            MatroskaMuxContext,
-            allow_raw_vfw
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "write_crc32",
-        short_help_text = "write a CRC32 element inside every Level 1 element",
-        offset = offsetof (
-            MatroskaMuxContext,
-            write_crc
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
+public abstract class MatroskaClassOptions : LibAVUtil.Class {
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "reserve_index_space",
+                    short_help_text = "Reserve a given amount of space (in bytes) at the beginning of the file for the index (cues).",
+                    offset = offsetof (
+                        MatroskaMuxContext,
+                        reserve_cues_space
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "cluster_size_limit",
+                    short_help_text = "Store at most the provided amount of bytes in a cluster. ",
+                    offset = offsetof (
+                        MatroskaMuxContext,
+                        cluster_size_limit
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.Int64Option () {
+                    name = "cluster_time_limit",
+                    short_help_text = "Store at most the provided number of milliseconds in a cluster.",
+                    offset = offsetof (
+                        MatroskaMuxContext,
+                        cluster_time_limit
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = int64.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "dash",
+                    short_help_text = "Create a WebM file conforming to WebM DASH specification",
+                    offset = offsetof (
+                        MatroskaMuxContext,
+                        is_dash
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "dash_track_number",
+                    short_help_text = "Track number for the DASH stream",
+                    offset = offsetof (
+                        MatroskaMuxContext,
+                        dash_track_number
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 127,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "live",
+                    short_help_text = "Write files assuming it is a live stream.",
+                    offset = offsetof (
+                        MatroskaMuxContext,
+                        is_live
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "allow_raw_vfw",
+                    short_help_text = "allow RAW VFW mode",
+                    offset = offsetof (
+                        MatroskaMuxContext,
+                        allow_raw_vfw
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "write_crc32",
+                    short_help_text = "write a CRC32 element inside every Level 1 element",
+                    offset = offsetof (
+                        MatroskaMuxContext,
+                        write_crc
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
 
-};
+}
 
 #if CONFIG_MATROSKA_MUXER
 
 [CCode (cname="matroska_class",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-public class MatroskaMuxerClass : LibAVUtil.Class {
+public class MatroskaMuxerClass : MatroskaClassOptions {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string class_name {
         public get {
@@ -243,9 +252,6 @@ public class MatroskaMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int version {
@@ -396,7 +402,7 @@ public class MatroskaMuxer : AVOutputFormat {
 #if CONFIG_WEBM_MUXER
 
 [CCode (cname="webm_class",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-public class WebMMuxerClass : LibAVUtil.Class {
+public class WebMMuxerClass : MatroskaClassOptions {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string class_name {
         public get {
@@ -414,9 +420,6 @@ public class WebMMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int version {
@@ -551,7 +554,7 @@ public class WebMMuxer : AVOutputFormat {
 #if CONFIG_MATROSKA_AUDIO_MUXER
 
 [CCode (cname="mka_class",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-public class MatroskaAudioMuxerClass : LibAVUtil.Class {
+public class MatroskaAudioMuxerClass : MatroskaClassOptions {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string class_name {
         public get {
@@ -569,9 +572,6 @@ public class MatroskaAudioMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int version {

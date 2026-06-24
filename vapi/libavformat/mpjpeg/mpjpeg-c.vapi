@@ -25,23 +25,6 @@ namespace LibAVFormat {
 [CCode (cname="BOUNDARY_TAG",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
 public const string BOUNDARY_TAG; // "ffmpeg"
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.StringOption () {
-        name = "boundary_tag",
-        short_help_text = "Boundary tag",
-        offset = offsetof (
-            MPJPEGContext,
-            boundary_tag
-        ),
-        default_value = BOUNDARY_TAG,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="mpjpeg_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
 public class MultipartJpegMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
@@ -62,8 +45,29 @@ public class MultipartJpegMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.StringOption () {
+                    name = "boundary_tag",
+                    short_help_text = "Boundary tag",
+                    offset = offsetof (
+                        MPJPEGContext,
+                        boundary_tag
+                    ),
+                    default_value = BOUNDARY_TAG,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override int version {

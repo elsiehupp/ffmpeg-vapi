@@ -120,6 +120,17 @@ public class test_class : Class{
             class_context
         );
     }
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
     //  .option = test_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
@@ -201,6 +212,17 @@ public void free_test_struct (out test_struct foo) {
     public const Class child_class = {
         //  .class_name = "child class";
         //  .item_name = base.item_name,
+
+        [CCode (cname="option",cheader_filename="")]
+        public override LibAVUtil.Option[] options {
+            public get {
+                return {
+
+                };
+
+            }
+
+        }
         //  .option = child_opts,
         //  .version = LibAVUtil.Version.INT,
     }

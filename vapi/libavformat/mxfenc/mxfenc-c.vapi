@@ -127,28 +127,6 @@ public define MXF_COMMON_OPTIONS
 
 };
 
-
-
-static const LibAVUtil.Option mxf_options[] = {
-    MXF_COMMON_OPTIONS,
-    new LibAVUtil.BoolOption () {
-        name = "store_user_comments",
-        short_help_text = "",
-        offset = offsetof (
-            MXFContext,
-            store_user_comments
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="struct MXFContext",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
 [Compact]
 public class MXFMuxerClassPrivateData { }
@@ -172,7 +150,33 @@ public class MXFMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = mxf_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                MXF_COMMON_OPTIONS,
+                new LibAVUtil.BoolOption () {
+                    name = "store_user_comments",
+                    short_help_text = "",
+                    offset = offsetof (
+                        MXFContext,
+                        store_user_comments
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int version {
@@ -183,38 +187,6 @@ public class MXFMuxerClass : LibAVUtil.Class {
 
     }
 }
-
-static const LibAVUtil.Option d10_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "d10_channelcount",
-        short_help_text = "Force/set channelcount in generic sound essence descriptor",
-        offset = offsetof (
-            MXFContext,
-            channel_count
-        ),
-        default_value = -1,
-        minimum_value = -1,
-        8,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    MXF_COMMON_OPTIONS,
-    new LibAVUtil.BoolOption () {
-        name = "store_user_comments",
-        short_help_text = "",
-        offset = offsetof (
-            MXFContext,
-            store_user_comments
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
 
 [CCode (cname="mxf_d10_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
 public class MXFD10MuxerClass : LibAVUtil.Class {
@@ -235,7 +207,45 @@ public class MXFD10MuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = d10_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "d10_channelcount",
+                    short_help_text = "Force/set channelcount in generic sound essence descriptor",
+                    offset = offsetof (
+                        MXFContext,
+                        channel_count
+                    ),
+                    default_value = -1,
+                    minimum_value = -1,
+                    maximum_value = 8,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                MXF_COMMON_OPTIONS,
+                new LibAVUtil.BoolOption () {
+                    name = "store_user_comments",
+                    short_help_text = "",
+                    offset = offsetof (
+                        MXFContext,
+                        store_user_comments
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int version {
@@ -246,38 +256,6 @@ public class MXFD10MuxerClass : LibAVUtil.Class {
 
     }
 }
-
-static const LibAVUtil.Option opatom_options[] = {
-    new LibAVUtil.RationalOption () {
-        name = "mxf_audio_edit_rate",
-        short_help_text = "Audio edit rate for timecode",
-        offset = offsetof (
-            MXFContext,
-            audio_edit_rate
-        ),
-        default_value = 25,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    MXF_COMMON_OPTIONS,
-    new LibAVUtil.BoolOption () {
-        name = "store_user_comments",
-        short_help_text = "",
-        offset = offsetof (
-            MXFContext,
-            store_user_comments
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
 
 [CCode (cname="mxf_opatom_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
 public class MXFOPAtomMuxerClass : LibAVUtil.Class {
@@ -298,7 +276,45 @@ public class MXFOPAtomMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = opatom_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.RationalOption () {
+                    name = "mxf_audio_edit_rate",
+                    short_help_text = "Audio edit rate for timecode",
+                    offset = offsetof (
+                        MXFContext,
+                        audio_edit_rate
+                    ),
+                    default_value = 25,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                MXF_COMMON_OPTIONS,
+                new LibAVUtil.BoolOption () {
+                    name = "store_user_comments",
+                    short_help_text = "",
+                    offset = offsetof (
+                        MXFContext,
+                        store_user_comments
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int version {

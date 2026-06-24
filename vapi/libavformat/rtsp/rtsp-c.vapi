@@ -43,6 +43,17 @@ public class SDPDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
     //  .option = sdp_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
@@ -128,6 +139,17 @@ public class RTPDemuxerClass : LibAVUtil.Class {
         return base.item_name (
             class_context
         );
+    }
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
     }
     //  .option = rtp_options,
 

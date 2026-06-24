@@ -22,38 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.IntOption () {
-        name = "reserve_index_space",
-        short_help_text = "reserve space (in bytes) at the beginning of the file for each stream index",
-        offset = offsetof (
-            AVIContext,
-            reserve_index_space
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "write_channel_mask",
-        short_help_text = "write channel mask into wave format header",
-        offset = offsetof (
-            AVIContext,
-            write_channel_mask
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="avi_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
 public class AVIMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
@@ -74,8 +42,43 @@ public class AVIMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "reserve_index_space",
+                    short_help_text = "reserve space (in bytes) at the beginning of the file for each stream index",
+                    offset = offsetof (
+                        AVIContext,
+                        reserve_index_space
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "write_channel_mask",
+                    short_help_text = "write channel mask into wave format header",
+                    offset = offsetof (
+                        AVIContext,
+                        write_channel_mask
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
     public override int version {

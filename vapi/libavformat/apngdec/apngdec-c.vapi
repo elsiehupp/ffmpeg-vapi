@@ -27,49 +27,6 @@ namespace LibAVFormat {
 @see http://www.w3.org/TR/PNG
 ***********************************************************/
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "ignore_loop",
-        short_help_text = "ignore loop setting",
-        offset = offsetof (
-            APNGDemuxContext,
-            ignore_loop
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "max_fps",
-        short_help_text = "maximum framerate (0 is no limit)",
-        offset = offsetof (
-            APNGDemuxContext,
-            max_fps
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "default_fps",
-        short_help_text = "default framerate (0 is as fast as possible)",
-        offset = offsetof (
-            APNGDemuxContext,
-            default_fps
-        ),
-        default_value = DEFAULT_APNG_FPS,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
 public class APNGDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
@@ -90,8 +47,55 @@ public class APNGDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "ignore_loop",
+                    short_help_text = "ignore loop setting",
+                    offset = offsetof (
+                        APNGDemuxContext,
+                        ignore_loop
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "max_fps",
+                    short_help_text = "maximum framerate (0 is no limit)",
+                    offset = offsetof (
+                        APNGDemuxContext,
+                        max_fps
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "default_fps",
+                    short_help_text = "default framerate (0 is as fast as possible)",
+                    offset = offsetof (
+                        APNGDemuxContext,
+                        default_fps
+                    ),
+                    default_value = DEFAULT_APNG_FPS,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/apngdec.c")]
     public override int version {

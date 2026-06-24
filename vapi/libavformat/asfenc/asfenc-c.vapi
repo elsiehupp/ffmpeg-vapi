@@ -22,29 +22,39 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option asf_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "packet_size",
-        short_help_text = "Packet size",
-        offset = offsetof (
-            ASFContext,
-            packet_size
-        ),
-        default_value = 3200,
-        minimum_value = PACKET_SIZE_MIN,
-        maximum_value = PACKET_SIZE_MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
+public abstract class ASFOptionsClass : LibAVUtil.Class {
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "packet_size",
+                    short_help_text = "Packet size",
+                    offset = offsetof (
+                        ASFContext,
+                        packet_size
+                    ),
+                    default_value = 3200,
+                    minimum_value = PACKET_SIZE_MIN,
+                    maximum_value = PACKET_SIZE_MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
     }
 
-};
+}
 
 #if CONFIG_ASF_MUXER
 
 [CCode (cname="asf_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
-public class ASFMuxerClass : LibAVUtil.Class {
+public class ASFMuxerClass : ASFOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string class_name {
         public get {
@@ -62,7 +72,6 @@ public class ASFMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = asf_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int version {
@@ -185,7 +194,7 @@ public class AsfMuxer : AVOutputFormat {
 #if CONFIG_ASF_STREAM_MUXER
 
 [CCode (cname="asf_stream_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
-public class ASFStreamMuxerClass : LibAVUtil.Class {
+public class ASFStreamMuxerClass : ASFOptionsClass {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string class_name {
         public get {
@@ -203,7 +212,6 @@ public class ASFStreamMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = asf_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int version {

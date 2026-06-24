@@ -22,37 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const LibAVUtil.Option pcm_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "sample_rate",
-        short_help_text = "",
-        offset = offsetof (
-            PCMAudioDemuxerContext,
-            sample_rate
-        ),
-        default_value = 44100,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "channels",
-        short_help_text = "",
-        offset = offsetof (
-            PCMAudioDemuxerContext,
-            channels
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="struct PCMAudioDemuxerContext",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 [Compact]
 public class PCMDemuxerPrivateData { }
@@ -67,7 +36,6 @@ public abstract class PCMDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = pcm_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override int version {
@@ -77,6 +45,45 @@ public abstract class PCMDemuxerClass : LibAVUtil.Class {
         }
 
     }
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "sample_rate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        PCMAudioDemuxerContext,
+                        sample_rate
+                    ),
+                    default_value = 44100,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "channels",
+                    short_help_text = "",
+                    offset = offsetof (
+                        PCMAudioDemuxerContext,
+                        channels
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
+
 }
 
 [CCode (cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -130,7 +137,7 @@ public class PCMF64BEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_f64be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -183,7 +190,7 @@ public class PCMF64LEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_f64le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -236,7 +243,7 @@ public class PCMF32BEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_f32be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -289,7 +296,7 @@ public class PCMF32LEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_f32le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -342,7 +349,7 @@ public class PCMS32BEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_s32be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -395,7 +402,7 @@ public class PCMS32LEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_s32le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -448,7 +455,7 @@ public class PCMS24BEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_s24be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -501,7 +508,7 @@ public class PCMS24LEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_s24le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -554,7 +561,7 @@ public class PCMS16BEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_s16be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -610,7 +617,7 @@ public class PCMS16LEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_s16le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -665,7 +672,7 @@ public class PCMS8DemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_s8_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -718,7 +725,7 @@ public class PCMU32BEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_u32be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -771,7 +778,7 @@ public class PCMU32LEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_u32le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -824,7 +831,7 @@ public class PCMU24BEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_u24be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -877,7 +884,7 @@ public class PCMU24LEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_u24le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -930,7 +937,7 @@ public class PCMU16BEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_u16be_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -985,7 +992,7 @@ public class PCMU16LEDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_u16le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -1040,7 +1047,7 @@ public class PCMU8DemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_u8_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -1093,7 +1100,7 @@ public class PCMNALAWDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_alaw_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -1146,7 +1153,7 @@ public class PCMMULAWDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_mulaw_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -1199,7 +1206,7 @@ public class PCMVIDCDemuxerClass : PCMDemuxerClass {
         }
 
     }
-    //  .option = pcm_options;
+
 }
 
 [CCode (cname="ff_pcm_vidc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -1242,37 +1249,6 @@ public class PCMVIDCDemuxer : PCMDemuxer {
     //  .priv_class = vidc_demuxer_class;
 }
 
-static const LibAVUtil.Option sln_options[] = {
-    new LibAVUtil.IntOption () {
-        name = "sample_rate",
-        short_help_text = "",
-        offset = offsetof (
-            PCMAudioDemuxerContext,
-            sample_rate
-        ),
-        default_value = 8000,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.IntOption () {
-        name = "channels",
-        short_help_text = "",
-        offset = offsetof (
-            PCMAudioDemuxerContext,
-            channels
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="sln_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
 public class SLNDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
@@ -1283,7 +1259,45 @@ public class SLNDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .option = sln_options;
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.IntOption () {
+                    name = "sample_rate",
+                    short_help_text = "",
+                    offset = offsetof (
+                        PCMAudioDemuxerContext,
+                        sample_rate
+                    ),
+                    default_value = 8000,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.IntOption () {
+                    name = "channels",
+                    short_help_text = "",
+                    offset = offsetof (
+                        PCMAudioDemuxerContext,
+                        channels
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
+
 }
 
 [CCode (cname="ff_sln_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]

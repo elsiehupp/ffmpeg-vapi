@@ -22,25 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="mpjpeg_options",cheader_filename="subprojects/ffmpeg/libavformat/mpjpegdec.c")]
-static const LibAVUtil.Option mpjpeg_options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "strict_mime_boundary",
-        short_help_text = "require MIME boundaries match",
-        offset = offsetof (
-            MPJPEGDemuxContext,
-            strict_mime_boundary
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="mpjpeg_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mjpegdec.c")]
 public class MPJPEGDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mjpegdec.c")]
@@ -60,7 +41,32 @@ public class MPJPEGDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = mpjpeg_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "strict_mime_boundary",
+                    short_help_text = "require MIME boundaries match",
+                    offset = offsetof (
+                        MPJPEGDemuxContext,
+                        strict_mime_boundary
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mjpegdec.c")]
     public override int version {

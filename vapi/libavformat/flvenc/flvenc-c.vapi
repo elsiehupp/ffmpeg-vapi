@@ -26,76 +26,6 @@ namespace LibAVFormat {
 [Compact]
 public class FLVMuxerPrivateClass { }
 
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.FlagsOption () {
-        name = "flvflags",
-        short_help_text = "FLV muxer flags",
-        offset = offsetof (
-            FLVContext,
-            flags
-        ),
-        default_value = 0,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "flvflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "aac_seq_header_detect",
-        short_help_text = "Put AAC sequence header based on stream data",
-        offset = 0,
-        default_value = FLV_AAC_SEQ_HEADER_DETECT,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "flvflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "no_sequence_end",
-        short_help_text = "disable sequence end for FLV",
-        offset = 0,
-        default_value = FLV_NO_SEQUENCE_END,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "flvflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "no_metadata",
-        short_help_text = "disable metadata for FLV",
-        offset = 0,
-        default_value = FLV_NO_METADATA,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "flvflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "no_duration_filesize",
-        short_help_text = "disable duration and filesize zero value metadata for FLV",
-        offset = 0,
-        default_value = FLV_NO_DURATION_FILESIZE,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "flvflags"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "add_keyframe_index",
-        short_help_text = "Add keyframe index metadata",
-        offset = 0,
-        default_value = FLV_ADD_KEYFRAME_INDEX,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "flvflags"
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="flv_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
 public class FLVMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
@@ -116,8 +46,82 @@ public class FLVMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.FlagsOption () {
+                    name = "flvflags",
+                    short_help_text = "FLV muxer flags",
+                    offset = offsetof (
+                        FLVContext,
+                        flags
+                    ),
+                    default_value = 0,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "flvflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "aac_seq_header_detect",
+                    short_help_text = "Put AAC sequence header based on stream data",
+                    offset = 0,
+                    default_value = FLV_AAC_SEQ_HEADER_DETECT,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "flvflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "no_sequence_end",
+                    short_help_text = "disable sequence end for FLV",
+                    offset = 0,
+                    default_value = FLV_NO_SEQUENCE_END,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "flvflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "no_metadata",
+                    short_help_text = "disable metadata for FLV",
+                    offset = 0,
+                    default_value = FLV_NO_METADATA,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "flvflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "no_duration_filesize",
+                    short_help_text = "disable duration and filesize zero value metadata for FLV",
+                    offset = 0,
+                    default_value = FLV_NO_DURATION_FILESIZE,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "flvflags"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "add_keyframe_index",
+                    short_help_text = "Add keyframe index metadata",
+                    offset = 0,
+                    default_value = FLV_ADD_KEYFRAME_INDEX,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "flvflags"
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int version {

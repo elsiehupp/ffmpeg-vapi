@@ -22,38 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "write_id3v2",
-        short_help_text = "Enable ID3v2 tag writing",
-        offset = offsetof (
-            ADTSContext,
-            id3v2tag
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "write_apetag",
-        short_help_text = "Enable APE tag writing",
-        offset = offsetof (
-            ADTSContext,
-            apetag
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="adts_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
 public class ADTSMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
@@ -73,7 +41,44 @@ public class ADTSMuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "write_id3v2",
+                    short_help_text = "Enable ID3v2 tag writing",
+                    offset = offsetof (
+                        ADTSContext,
+                        id3v2tag
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "write_apetag",
+                    short_help_text = "Enable APE tag writing",
+                    offset = offsetof (
+                        ADTSContext,
+                        apetag
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int version {

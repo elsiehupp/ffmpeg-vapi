@@ -21,49 +21,6 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "safe",
-        short_help_text = "enable safe mode",
-        offset = offsetof (
-            ConcatContext,
-            safe
-        ),
-        default_value = 1,
-        minimum_value = -1,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "auto_convert",
-        short_help_text = "automatically convert bitstream format",
-        offset = offsetof (
-            ConcatContext,
-            auto_convert
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "segment_time_metadata",
-        short_help_text = "output file segment start time and duration as packet metadata",
-        offset = offsetof (
-            ConcatContext,
-            segment_time_metadata
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    {
-        NULL
-    }
-}
-
 [CCode (cname="concat_class",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
 public class ConcatDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
@@ -84,8 +41,55 @@ public class ConcatDemuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "safe",
+                    short_help_text = "enable safe mode",
+                    offset = offsetof (
+                        ConcatContext,
+                        safe
+                    ),
+                    default_value = 1,
+                    minimum_value = -1,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "auto_convert",
+                    short_help_text = "automatically convert bitstream format",
+                    offset = offsetof (
+                        ConcatContext,
+                        auto_convert
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "segment_time_metadata",
+                    short_help_text = "output file segment start time and duration as packet metadata",
+                    offset = offsetof (
+                        ConcatContext,
+                        segment_time_metadata
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int version {

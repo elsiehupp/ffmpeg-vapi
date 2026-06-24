@@ -22,70 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
-static const LibAVUtil.Option options[] = {
-    new LibAVUtil.FlagsOption () {
-        name = "syncpoints",
-        short_help_text = "NUT syncpoint behaviour",
-        offset = offsetof (
-            NUTContext,
-            flags
-        ),
-        default_value = 0,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "syncpoints"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "default",
-        short_help_text = "",
-        offset = 0,
-        default_value = 0,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "syncpoints"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "none",
-        short_help_text = "Disable syncpoints,
-        low overhead and unseekable",
-        offset = 0,
-        default_value = NUTFlags.PIPE,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "syncpoints"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "timestamped",
-        short_help_text = "Extend syncpoints with a wallclock timestamp",
-        offset = 0,
-        default_value = NUTFlags.BROADCAST,
-        minimum_value = int.MIN,
-        maximum_value = int.MAX,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        unit = "syncpoints"
-    },
-    new LibAVUtil.BoolOption () {
-        name = "write_index",
-        short_help_text = "Write index",
-        offset = offsetof (
-            NUTContext,
-            write_index
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="class",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
 public class NUTMuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
@@ -106,8 +42,75 @@ public class NUTMuxerClass : LibAVUtil.Class {
         );
     }
 
-    [CCode (cname="options",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
-    public override LibAVUtil.Option[] option { public get; }
+    [CCode (cname="option",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.FlagsOption () {
+                    name = "syncpoints",
+                    short_help_text = "NUT syncpoint behaviour",
+                    offset = offsetof (
+                        NUTContext,
+                        flags
+                    ),
+                    default_value = 0,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "syncpoints"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "default",
+                    short_help_text = "",
+                    offset = 0,
+                    default_value = 0,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "syncpoints"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "none",
+                    short_help_text = "Disable syncpoints,
+                    low overhead and unseekable",
+                    offset = 0,
+                    default_value = NUTFlags.PIPE,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "syncpoints"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "timestamped",
+                    short_help_text = "Extend syncpoints with a wallclock timestamp",
+                    offset = 0,
+                    default_value = NUTFlags.BROADCAST,
+                    minimum_value = int.MIN,
+                    maximum_value = int.MAX,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                    unit = "syncpoints"
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "write_index",
+                    short_help_text = "Write index",
+                    offset = offsetof (
+                        NUTContext,
+                        write_index
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override int version {

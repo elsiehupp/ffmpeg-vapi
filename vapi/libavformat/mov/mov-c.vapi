@@ -26,218 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="mov_options",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
-static const LibAVUtil.Option mov_options[] = {
-    new LibAVUtil.BoolOption () {
-        name = "use_absolute_path",
-        short_help_text = "allow using absolute path when opening alias, this is a possible security issue",
-        offset = offsetof (
-            MOVContext,
-            use_absolute_path
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "seek_streams_individually",
-        short_help_text = "Seek each stream individually to the to the closest point",
-        offset = offsetof (
-            MOVContext,
-            seek_individually
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "ignore_editlist",
-        short_help_text = "Ignore the edit list atom.",
-        offset = offsetof (
-            MOVContext,
-            ignore_editlist
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "advanced_editlist",
-        short_help_text = "Modify the AVIndex according to the editlists. Use this option to decode in the order specified by the edits.",
-        offset = offsetof (
-            MOVContext,
-            advanced_editlist
-        ),
-        default_value = 1,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "ignore_chapters",
-        short_help_text = "",
-        offset = offsetof (
-            MOVContext,
-            ignore_chapters
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.IntOption () {
-        name = "use_mfra_for",
-        short_help_text = "use mfra for fragment timestamps",
-        offset = offsetof (
-            MOVContext,
-            use_mfra_for
-        ),
-        default_value = MOVFlags.MFRA_AUTO,
-        minimum_value = -1,
-        maximum_value = MOVFlags.MFRA_PTS,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ),
-        unit = "use_mfra_for"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "auto",
-        short_help_text = "auto",
-        offset = 0,
-        default_value = MOVFlags.MFRA_AUTO,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ),
-        unit = "use_mfra_for"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "dts",
-        short_help_text = "dts",
-        offset = 0,
-        default_value = MOVFlags.MFRA_DTS,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ),
-        unit = "use_mfra_for"
-    },
-    new LibAVUtil.ConstOption () {
-        name = "pts",
-        short_help_text = "pts",
-        offset = 0,
-        default_value = MOVFlags.MFRA_PTS,
-        minimum_value = 0,
-        maximum_value = 0,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        ),
-        unit = "use_mfra_for"
-    },
-    new LibAVUtil.BoolOption () {
-        name = "export_all",
-        short_help_text = "Export unrecognized metadata entries",
-        offset = offsetof (
-            MOVContext,
-            export_all
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.BoolOption () {
-        name = "export_xmp",
-        short_help_text = "Export full XMP metadata",
-        offset = offsetof (
-            MOVContext,
-            export_xmp
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "activation_bytes",
-        short_help_text = "Secret bytes for Audible AAX files",
-        offset = offsetof (
-            MOVContext,
-            activation_bytes
-        ),
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "audible_fixed_key",
-        // extracted from libAAX_SDK.so and AAXSDKWin.dll files!
-        "Fixed key used for handling Audible AAX files",
-        offset = offsetof (
-            MOVContext,
-            audible_fixed_key
-        ),
-        default_value = "77214d4b196a87cd520045fd20a51d67"
-        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.BinaryOption () {
-        name = "decryption_key",
-        short_help_text = "The media decryption key (hex)",
-        offset = offsetof (
-            MOVContext,
-            decryption_key
-        ),
-        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
-    },
-    new LibAVUtil.BoolOption () {
-        name = "enable_drefs",
-        short_help_text = "Enable external track support.",
-        offset = offsetof (
-            MOVContext,
-            enable_drefs
-        ),
-        default_value = 0,
-        minimum_value = 0,
-        maximum_value = 1,
-        option_flags = (
-            LibAVUtil.OptionFlags.VIDEO_PARAM |
-            LibAVUtil.OptionFlags.DECODING_PARAM
-        )
-    },
-    {
-        NULL
-    }
-
-};
-
 [CCode (cname="mov_class",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
 public class MOVDemuxerClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
@@ -257,7 +45,224 @@ public class MOVDemuxerClass : LibAVUtil.Class {
             class_context
         );
     }
-    //  .option = mov_options,
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+                new LibAVUtil.BoolOption () {
+                    name = "use_absolute_path",
+                    short_help_text = "allow using absolute path when opening alias, this is a possible security issue",
+                    offset = offsetof (
+                        MOVContext,
+                        use_absolute_path
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "seek_streams_individually",
+                    short_help_text = "Seek each stream individually to the to the closest point",
+                    offset = offsetof (
+                        MOVContext,
+                        seek_individually
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "ignore_editlist",
+                    short_help_text = "Ignore the edit list atom.",
+                    offset = offsetof (
+                        MOVContext,
+                        ignore_editlist
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "advanced_editlist",
+                    short_help_text = "Modify the AVIndex according to the editlists. Use this option to decode in the order specified by the edits.",
+                    offset = offsetof (
+                        MOVContext,
+                        advanced_editlist
+                    ),
+                    default_value = 1,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "ignore_chapters",
+                    short_help_text = "",
+                    offset = offsetof (
+                        MOVContext,
+                        ignore_chapters
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.IntOption () {
+                    name = "use_mfra_for",
+                    short_help_text = "use mfra for fragment timestamps",
+                    offset = offsetof (
+                        MOVContext,
+                        use_mfra_for
+                    ),
+                    default_value = MOVFlags.MFRA_AUTO,
+                    minimum_value = -1,
+                    maximum_value = MOVFlags.MFRA_PTS,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ),
+                    unit = "use_mfra_for"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "auto",
+                    short_help_text = "auto",
+                    offset = 0,
+                    default_value = MOVFlags.MFRA_AUTO,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ),
+                    unit = "use_mfra_for"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "dts",
+                    short_help_text = "dts",
+                    offset = 0,
+                    default_value = MOVFlags.MFRA_DTS,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ),
+                    unit = "use_mfra_for"
+                },
+                new LibAVUtil.ConstOption () {
+                    name = "pts",
+                    short_help_text = "pts",
+                    offset = 0,
+                    default_value = MOVFlags.MFRA_PTS,
+                    minimum_value = 0,
+                    maximum_value = 0,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    ),
+                    unit = "use_mfra_for"
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "export_all",
+                    short_help_text = "Export unrecognized metadata entries",
+                    offset = offsetof (
+                        MOVContext,
+                        export_all
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "export_xmp",
+                    short_help_text = "Export full XMP metadata",
+                    offset = offsetof (
+                        MOVContext,
+                        export_xmp
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "activation_bytes",
+                    short_help_text = "Secret bytes for Audible AAX files",
+                    offset = offsetof (
+                        MOVContext,
+                        activation_bytes
+                    ),
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "audible_fixed_key",
+                    // extracted from libAAX_SDK.so and AAXSDKWin.dll files!
+                    short_help_text = "Fixed key used for handling Audible AAX files",
+                    offset = offsetof (
+                        MOVContext,
+                        audible_fixed_key
+                    ),
+                    default_value = "77214d4b196a87cd520045fd20a51d67",
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.BinaryOption () {
+                    name = "decryption_key",
+                    short_help_text = "The media decryption key (hex)",
+                    offset = offsetof (
+                        MOVContext,
+                        decryption_key
+                    ),
+                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
+                },
+                new LibAVUtil.BoolOption () {
+                    name = "enable_drefs",
+                    short_help_text = "Enable external track support.",
+                    offset = offsetof (
+                        MOVContext,
+                        enable_drefs
+                    ),
+                    default_value = 0,
+                    minimum_value = 0,
+                    maximum_value = 1,
+                    option_flags = (
+                        LibAVUtil.OptionFlags.VIDEO_PARAM |
+                        LibAVUtil.OptionFlags.DECODING_PARAM
+                    )
+                },
+                {
+                    NULL
+                }
+
+            };
+
+        }
+
+    }
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
     public override int version {

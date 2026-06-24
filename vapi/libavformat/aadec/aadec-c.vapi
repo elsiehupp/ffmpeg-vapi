@@ -44,6 +44,17 @@ public class AAClass : LibAVUtil.Class {
             class_context
         );
     }
+
+    [CCode (cname="option",cheader_filename="")]
+    public override LibAVUtil.Option[] options {
+        public get {
+            return {
+
+            };
+
+        }
+
+    }
     //  .option = aa_options,
 
     [CCode (cname="version",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
